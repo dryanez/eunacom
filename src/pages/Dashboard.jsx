@@ -266,11 +266,11 @@ const Dashboard = () => {
 
                     {/* ACTIONS GRID */}
                     <div className="actions-grid-custom">
-                        <Link to="/practice" className="action-card-custom">
+                        <Link to="/test" className="action-card-custom">
                             <span className="action-icon-custom">▶️</span>
                             <span className="action-label-custom">Continuar</span>
                         </Link>
-                        <Link to="/practice" className="action-card-custom">
+                        <Link to="/history" className="action-card-custom">
                             <span className="action-icon-custom">❓</span>
                             <span className="action-label-custom">Pregunta aleatoria</span>
                         </Link>

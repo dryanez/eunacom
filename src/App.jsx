@@ -4,7 +4,6 @@ import LandingPage from './pages/LandingPage'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Practice from './pages/Practice'
 import Dashboard from './pages/Dashboard'
 import TestEngine from './pages/TestEngine'
 import TestHistory from './pages/TestHistory'
@@ -22,7 +21,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/practice" element={<Practice />} />
           <Route path="/test" element={<TestEngine />} />
           <Route path="/history" element={<TestHistory />} />
           <Route path="/admin" element={<AdminPanel />} />
