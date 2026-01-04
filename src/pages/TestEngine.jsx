@@ -72,6 +72,8 @@ function TestEngine() {
             const { data: questions, error: qError } = await supabase
                 .from('questions')
                 .select('id, topic')
+                .order('id', { ascending: true })
+                .range(0, 9999)
 
             if (qError) throw qError
 
@@ -81,6 +83,7 @@ function TestEngine() {
             const { data: progress, error: pError } = await supabase
                 .from('user_progress')
                 .select('question_id, is_correct, is_omitted, is_flagged')
+                .range(0, 9999)
 
             // If error is about missing column, we could fallback, but let's assume user runs the script.
             if (pError) {
