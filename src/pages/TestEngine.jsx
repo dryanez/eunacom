@@ -192,8 +192,13 @@ function TestEngine() {
             return
         }
 
-        if (Object.keys(selectedSubjects).length === 0) {
-            alert('Por favor, selecciona al menos una asignatura.')
+        // Check if any status filter is active
+        const anyStatusFilterActive = Object.values(statusFilters).some(f => f)
+        const anySubjectSelected = Object.keys(selectedSubjects).length > 0
+
+        // If NO status filter is active AND no subjects selected, show error
+        if (!anyStatusFilterActive && !anySubjectSelected) {
+            alert('Por favor, selecciona al menos un filtro de estado o una asignatura.')
             return
         }
 
@@ -209,10 +214,14 @@ function TestEngine() {
             allQuestions.forEach(q => {
                 const topic = q.topic || 'Sin categoría'
 
-                // Subject Filter
-                // If subject is NOT selected in the UI state, skip it.
-                // Note: selectedSubjects is { 'Topic': true/false }
-                if (!selectedSubjects[topic]) return
+                // Subject Filter Logic:
+                // If ANY status filter is active AND no subjects are selected, include ALL subjects
+                // Otherwise, only include selected subjects
+                const shouldIncludeSubject = anyStatusFilterActive && !anySubjectSelected
+                    ? true  // Include all subjects if status filter is active
+                    : selectedSubjects[topic]  // Otherwise only include selected subjects
+
+                if (!shouldIncludeSubject) return
 
                 // Status Filter logic
                 const status = userProgress[q.id]
