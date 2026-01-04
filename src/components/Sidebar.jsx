@@ -19,8 +19,7 @@ const Sidebar = () => {
 
     const menuItems = [
         { path: '/dashboard', icon: '🏠', label: 'Inicio' },
-        { path: '/practice', icon: '❓', label: 'Pregunta Aleatoria' },
-        { path: '/simulations', icon: '📝', label: 'Simulaciones' },
+        { path: '/test', icon: '📄', label: 'Crear Examen' },
         { path: '/history', icon: '🕒', label: 'Historial Tests' },
         { path: '/reconstructions', icon: '🏥', label: 'Reconstrucciones' },
         { path: '/flashcards', icon: '🃏', label: 'Flashcards' },
