@@ -91,7 +91,7 @@ function TestEngine() {
             }
 
             console.log('🔄 Fetching all questions (paginated)...')
-            const questions = await fetchAll('questions', 'id, topic', 'created_at')
+            const questions = await fetchAll('questions', 'id, topic, chapter', 'created_at')
             console.log(`✅ Loaded ${questions.length} questions.`)
 
             console.log('🔄 Fetching all progress (paginated)...')
