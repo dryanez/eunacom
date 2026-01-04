@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import '../styles/neumorphism.css'
 
 const Sidebar = () => {
-    const { signOut, user } = useAuth()
+    const { signOut, user, isAdmin } = useAuth()
     const navigate = useNavigate()
     const [isMobileOpen, setIsMobileOpen] = React.useState(false)
     const [examenesOpen, setExamenesOpen] = React.useState(false)
@@ -115,6 +115,21 @@ const Sidebar = () => {
             </nav>
 
             <div className="sidebar__footer">
+                {/* Admin Link - Only visible for admin users */}
+                {isAdmin() && (
+                    <NavLink
+                        to="/admin"
+                        className={({ isActive }) =>
+                            `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                        }
+                        onClick={() => setIsMobileOpen(false)}
+                        style={{ marginBottom: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}
+                    >
+                        <span className="sidebar__item-icon">⚙️</span>
+                        <span className="sidebar__item-label">Admin</span>
+                    </NavLink>
+                )}
+
                 <div className="sidebar__user">
                     <div className="sidebar__avatar">
                         {user?.email?.charAt(0).toUpperCase() || 'U'}

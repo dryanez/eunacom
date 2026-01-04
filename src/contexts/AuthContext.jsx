@@ -65,6 +65,10 @@ export const AuthProvider = ({ children }) => {
         return { error }
     }
 
+    const isAdmin = () => {
+        return user?.email === 'dr.felipeyanez@gmail.com'
+    }
+
     const value = {
         user,
         loading,
@@ -72,6 +76,7 @@ export const AuthProvider = ({ children }) => {
         signIn,
         signInWithGoogle,
         signOut,
+        isAdmin,
     }
 
     return (

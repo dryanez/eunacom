@@ -1,317 +1,227 @@
 import { useState, useEffect } from 'react'
-import '../App.css' // Adjusted path since it's now in pages/
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
+import { useAuth } from '../contexts/AuthContext'
+import Sidebar from '../components/Sidebar'
+import '../styles/dashboard.css'
 
 function AdminPanel() {
-  const [view, setView] = useState('chapters') // chapters, topics, files, content
-  const [chapters, setChapters] = useState([])
-  const [selectedChapter, setSelectedChapter] = useState(null)
+  const { isAdmin } = useAuth()
+  const navigate = useNavigate()
 
-  const [topics, setTopics] = useState([])
-  const [selectedTopic, setSelectedTopic] = useState(null)
+  const [questions, setQuestions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [selectedChapter, setSelectedChapter] = useState('all')
+  const [selectedTopic, setSelectedTopic] = useState('all')
+  const [editingId, setEditingId] = useState(null)
+  const [editForm, setEditForm] = useState({})
 
-  const [files, setFiles] = useState([])
-  const [selectedFile, setSelectedFile] = useState(null)
-  const [fileContent, setFileContent] = useState(null)
-  const [autoRefresh, setAutoRefresh] = useState(true)
-
-  const API_URL = 'http://localhost:8000'
-
-  const fetchChapters = async () => {
-    try {
-      const res = await fetch(`${API_URL}/chapters`)
-      const data = await res.json()
-      if (Array.isArray(data)) {
-        setChapters(data)
-      } else {
-        console.error("Invalid chapters response:", data)
-      }
-    } catch (e) { console.error(e) }
-  }
-
-  const fetchTopics = async (chapter) => {
-    try {
-      const res = await fetch(`${API_URL}/topics?chapter=${chapter}`)
-      const data = await res.json()
-      if (Array.isArray(data)) {
-        setTopics(data)
-      } else {
-        console.error("Invalid topics response:", data)
-        setTopics([])
-      }
-    } catch (e) {
-      console.error(e)
-      setTopics([])
-    }
-  }
-
-  const fetchFiles = async (topic) => {
-    try {
-      if (!topic) return
-      // We could pass chapter here too, but backend file listing is flat for now
-      const res = await fetch(`${API_URL}/files/${topic}?chapter=${selectedChapter}`)
-      const data = await res.json()
-      setFiles(data)
-    } catch (e) {
-      console.error("Error fetching files", e)
-    }
-  }
-
-  const fetchFileContent = async (topic, filename) => {
-    try {
-      const res = await fetch(`${API_URL}/file/${topic}/${filename}?chapter=${selectedChapter}`)
-      const data = await res.json()
-      setFileContent(data)
-      setSelectedFile(filename)
-      setView('content')
-    } catch (e) {
-      console.error("Error fetching file content", e)
-    }
-  }
-
-  const [logs, setLogs] = useState([])
-
-  const fetchLogs = async () => {
-    try {
-      const res = await fetch(`${API_URL}/logs`)
-      const data = await res.json()
-      setLogs(data.logs)
-    } catch (e) {
-      console.error("Error fetching logs", e)
-    }
-  }
-
-  const [processStatus, setProcessStatus] = useState('stopped')
-
-  const checkProcess = async () => {
-    try {
-      const res = await fetch(`${API_URL}/process_status`)
-      const data = await res.json()
-      setProcessStatus(data.status)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  const handleStart = async () => {
-    if (!selectedTopic || !selectedChapter) {
-      alert("Select a chapter and topic first!")
-      return
-    }
-    await fetch(`${API_URL}/start?topic=${selectedTopic}&chapter=${selectedChapter}`, { method: 'POST' })
-    checkProcess()
-  }
-
-  const handleStop = async () => {
-    await fetch(`${API_URL}/stop`, { method: 'POST' })
-    checkProcess()
-  }
-
-  // Initial Load
+  // Redirect non-admin users
   useEffect(() => {
-    fetchChapters()
-    fetchLogs()
-    checkProcess()
-  }, [])
+    if (!isAdmin()) {
+      navigate('/dashboard')
+    }
+  }, [isAdmin, navigate])
 
-  // Auto Refresh
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (autoRefresh) {
-        fetchLogs()
-        checkProcess()
-        if (selectedTopic && view !== 'chapters') {
-          fetchFiles(selectedTopic)
-        }
+    fetchQuestions()
+  }, [selectedChapter, selectedTopic])
+
+  const fetchQuestions = async () => {
+    setLoading(true)
+    try {
+      let query = supabase.table('questions').select('*')
+
+      if (selectedChapter !== 'all') {
+        query = query.eq('chapter', selectedChapter)
       }
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [autoRefresh, selectedTopic, view])
+      if (selectedTopic !== 'all') {
+        query = query.eq('topic', selectedTopic)
+      }
 
-  // Navigation Handlers
-  const selectChapter = (chapter) => {
-    setSelectedChapter(chapter)
-    fetchTopics(chapter)
-    setView('topics')
+      const { data, error } = await query.order('id', { ascending: true }).limit(100)
+
+      if (error) throw error
+      setQuestions(data || [])
+    } catch (error) {
+      console.error('Error fetching questions:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const selectTopic = (topic) => {
-    setSelectedTopic(topic)
-    fetchFiles(topic)
-    setView('files')
+  const handleEdit = (question) => {
+    setEditingId(question.id)
+    setEditForm(question)
   }
 
-  const goBackToChapters = () => {
-    setSelectedChapter(null)
-    setTopics([])
-    setView('chapters')
+  const handleSave = async () => {
+    try {
+      const { error } = await supabase
+        .table('questions')
+        .update(editForm)
+        .eq('id', editingId)
+
+      if (error) throw error
+
+      setQuestions(questions.map(q => q.id === editingId ? editForm : q))
+      setEditingId(null)
+      setEditForm({})
+    } catch (error) {
+      console.error('Error saving question:', error)
+      alert('Error al guardar. Por favor intenta de nuevo.')
+    }
   }
 
-  const goBackToTopics = () => {
-    setSelectedTopic(null)
-    setFiles([])
-    setView('topics')
+  const handleDelete = async (id) => {
+    if (!confirm('¿Estás seguro de que quieres eliminar esta pregunta?')) return
+
+    try {
+      const { error } = await supabase.table('questions').delete().eq('id', id)
+      if (error) throw error
+      setQuestions(questions.filter(q => q.id !== id))
+    } catch (error) {
+      console.error('Error deleting question:', error)
+      alert('Error al eliminar. Por favor intenta de nuevo.')
+    }
   }
 
-  const goBackToFiles = () => {
-    setSelectedFile(null)
-    setFileContent(null)
-    setView('files')
-  }
+  const chapters = ['Capítulo 1', 'Capítulo 2', 'Capítulo 3', 'Capítulo 4']
+  const topics = ['Neurología', 'Endocrinología', 'Infectología', 'Dermatología']
 
   return (
-    <div className="container">
-      <header>
-        <div className="header-left">
-          <h1>⚡ EUNACOM Processing</h1>
-          {selectedChapter && <span className="chapter-badge">{selectedChapter}</span>}
-          {selectedTopic && <span className="current-topic-badge">{selectedTopic}</span>}
+    <div className="dashboard-layout">
+      <Sidebar />
+      <main className="dashboard-main">
+        <header className="dashboard__header">
+          <h2 style={{ color: 'white', margin: 0 }}>Panel de Administración</h2>
+        </header>
 
-          <div className="controls">
-            {processStatus === 'running' ? (
-              <button className="control-btn stop" onClick={handleStop}>⏸️ Pause</button>
-            ) : (
-              <button className="control-btn start" onClick={handleStart} disabled={!selectedTopic}>
-                ▶️ Start {selectedTopic ? selectedTopic : ''}
-              </button>
-            )}
-            <span className={`status-indicator ${processStatus}`}>
-              {processStatus === 'running' ? '● Running' : '● Stopped'}
-            </span>
-          </div>
-        </div>
-
-        <div className="status-bar">
-          <button
-            className={`toggle-btn ${autoRefresh ? 'active' : ''}`}
-            onClick={() => setAutoRefresh(!autoRefresh)}
-          >
-            {autoRefresh ? 'Live ON' : 'Live OFF'}
-          </button>
-        </div>
-      </header>
-
-      <div className="main-layout">
-        <div className="activity-feed">
-          <h3>🔴 Live Activity</h3>
-          <div className="logs-window">
-            {logs.slice().reverse().map((log, i) => (
-              <div key={i} className="log-line">{log}</div>
-            ))}
-          </div>
-        </div>
-
-        {/* VIEW: CHAPTERS LIST */}
-        {view === 'chapters' && (
-          <div className="topics-grid">
-            <h2>📚 Select a Chapter</h2>
-            <div className="grid">
-              {chapters.map(c => (
-                <div key={c} className="topic-card chapter-card" onClick={() => selectChapter(c)}>
-                  <h3>{c}</h3>
-                  <p>Browse content</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* VIEW: TOPICS LIST */}
-        {view === 'topics' && (
-          <div className="topics-grid">
-            <button className="back-btn" onClick={goBackToChapters}>← Back to Chapters</button>
-            <h2>Select a Topic ({selectedChapter})</h2>
-            <div className="grid">
-              {topics.map(t => (
-                <div key={t} className="topic-card" onClick={() => selectTopic(t)}>
-                  <h3>{t}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* VIEW: FILES LIST */}
-        {view === 'files' && (
-          <div className="files-view">
-            <button className="back-btn" onClick={goBackToTopics}>← Back to Categories</button>
-            <h2>Files in {selectedTopic}</h2>
-            <div className="file-list">
-              {files.length === 0 ? <p>No files found (Run Start to process)</p> :
-                files.map(file => (
-                  <div
-                    key={file.filename}
-                    className={`file-item ${file.status.toLowerCase()}`}
-                    onClick={() => fetchFileContent(selectedTopic, file.filename)}
-                  >
-                    <div className="file-name">{file.filename}</div>
-                    <div className="file-meta">
-                      <span className={`badge ${file.status.toLowerCase()}`}>{file.status}</span>
-                      <span className="progress-text">
-                        {file.processed_questions} / {file.total_questions}
-                      </span>
-                    </div>
-                    <div className="mini-progress">
-                      <div className="fill" style={{ width: `${file.progress}%` }}></div>
-                    </div>
-                  </div>
+        <div className="dashboard-content" style={{ padding: '2rem' }}>
+          {/* Filters */}
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Capítulo:</label>
+              <select
+                value={selectedChapter}
+                onChange={(e) => setSelectedChapter(e.target.value)}
+                style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #ddd' }}
+              >
+                <option value="all">Todos</option>
+                {chapters.map(ch => (
+                  <option key={ch} value={ch}>{ch}</option>
                 ))}
+              </select>
             </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Tema:</label>
+              <select
+                value={selectedTopic}
+                onChange={(e) => setSelectedTopic(e.target.value)}
+                style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #ddd' }}
+              >
+                <option value="all">Todos</option>
+                {topics.map(topic => (
+                  <option key={topic} value={topic}>{topic}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={fetchQuestions}
+              style={{
+                padding: '0.5rem 1.5rem',
+                background: '#4EBDDB',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                alignSelf: 'flex-end'
+              }}
+            >
+              Actualizar
+            </button>
           </div>
-        )}
 
-        {/* VIEW: CONTENT DETAILS */}
-        {view === 'content' && (
-          <div className="content-view">
-            <div className="content-header-nav">
-              <button className="back-btn" onClick={goBackToFiles}>← Back to Files</button>
-              <h2>{selectedFile}</h2>
-            </div>
+          {/* Questions Count */}
+          <div style={{ marginBottom: '1rem', color: '#666' }}>
+            <strong>{questions.length}</strong> preguntas encontradas
+          </div>
 
-            <div className="questions-list">
-              {fileContent ? (
-                fileContent.map((row, idx) => (
-                  <div key={idx} className="question-card">
-                    <div className="q-header">
-                      <span className="q-num">#{row.numero}</span>
-                      <span className="q-text">{row.pregunta}</span>
-                    </div>
-                    <div className="options">
-                      {['A', 'B', 'C', 'D', 'E'].map(opt => (
-                        <div
-                          key={opt}
-                          className={`option ${row.respuesta_correcta === opt ? 'correct' : ''}`}
-                        >
-                          <strong>{opt})</strong> {row[`opcion_${opt.toLowerCase()}`]}
-                        </div>
-                      ))}
-                    </div>
-                    {row.explicacion_correcta && (
-                      <div className="ai-enrichment">
-                        <div className="section-title">🤖 AI Explanation</div>
-                        <div className="explanation" dangerouslySetInnerHTML={{ __html: row.explicacion_correcta.replace(/\n/g, '<br/>') }}></div>
-
-                        {row.por_que_incorrectas && (
-                          <>
-                            <div className="section-title">Why others are incorrect</div>
-                            <div className="explanation" dangerouslySetInnerHTML={{ __html: row.por_que_incorrectas.replace(/\n/g, '<br/>') }}></div>
-                          </>
+          {/* Questions Table */}
+          {loading ? (
+            <div>Cargando...</div>
+          ) : (
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', borderRadius: '8px', overflow: 'hidden' }}>
+                <thead style={{ background: '#f8f9fa' }}>
+                  <tr>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>ID</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Pregunta</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Respuesta</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Tema</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Capítulo</th>
+                    <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #dee2e6' }}>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {questions.map(q => (
+                    <tr key={q.id} style={{ borderBottom: '1px solid #dee2e6' }}>
+                      <td style={{ padding: '1rem' }}>{q.id}</td>
+                      <td style={{ padding: '1rem', maxWidth: '300px' }}>
+                        {editingId === q.id ? (
+                          <textarea
+                            value={editForm.question_text || ''}
+                            onChange={(e) => setEditForm({ ...editForm, question_text: e.target.value })}
+                            style={{ width: '100%', minHeight: '60px', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ddd' }}
+                          />
+                        ) : (
+                          <div style={{ fontSize: '0.9rem' }}>{q.question_text?.substring(0, 100)}...</div>
                         )}
-
-                        <div className="meta-tags">
-                          {row.codigo_eunacom && <span className="tag code">🏷️ {row.codigo_eunacom}</span>}
-                          {row.video_recomendado && <span className="tag video">📺 {row.video_recomendado}</span>}
-                          {row.tags && <span className="tag topic">📌 {row.tags}</span>}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))
-              ) : <p>Loading...</p>}
+                      </td>
+                      <td style={{ padding: '1rem' }}>
+                        {editingId === q.id ? (
+                          <input
+                            value={editForm.correct_answer || ''}
+                            onChange={(e) => setEditForm({ ...editForm, correct_answer: e.target.value })}
+                            style={{ width: '50px', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ddd' }}
+                          />
+                        ) : (
+                          <span style={{ fontWeight: 'bold', color: '#4EBDDB' }}>{q.correct_answer}</span>
+                        )}
+                      </td>
+                      <td style={{ padding: '1rem' }}>{q.topic}</td>
+                      <td style={{ padding: '1rem' }}>{q.chapter || 'N/A'}</td>
+                      <td style={{ padding: '1rem' }}>
+                        {editingId === q.id ? (
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={handleSave} style={{ padding: '0.25rem 0.75rem', background: '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                              Guardar
+                            </button>
+                            <button onClick={() => setEditingId(null)} style={{ padding: '0.25rem 0.75rem', background: '#6c757d', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                              Cancelar
+                            </button>
+                          </div>
+                        ) : (
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => handleEdit(q)} style={{ padding: '0.25rem 0.75rem', background: '#4EBDDB', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                              Editar
+                            </button>
+                            <button onClick={() => handleDelete(q.id)} style={{ padding: '0.25rem 0.75rem', background: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                              Eliminar
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
-        )}
-
-      </div>
+          )}
+        </div>
+      </main>
     </div>
   )
 }
