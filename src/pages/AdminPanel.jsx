@@ -46,8 +46,10 @@ function AdminPanel() {
       const { data, error } = await supabase
         .from('questions')
         .select('id, file_source, chapter, topic, video_url, explanation, tags')
-        .range(0, 9999) // Fetch all questions (up to 10k)
+        .order('id', { ascending: true }) // Required for range to work reliably
+        .range(0, 9999)
 
+      console.log('✅ AdminPanel: Fetched total rows:', data?.length)
       if (error) throw error
       setAllQuestionsRaw(data || [])
     } catch (error) {
