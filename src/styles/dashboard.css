@@ -1,0 +1,403 @@
+```css
+/* === DASHBOARD REDESIGN === */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F9FA;
+}
+
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #F8F9FA;
+    /* Light clean background */
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    /* Prevent body scroll, handle inside main */
+}
+
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #F8F9FA;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Header - Cyan Top Bar */
+.dashboard__header {
+    background-color: #4EBDDB;
+    /* Cyan matching sidebar */
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    /* User on right */
+    align-items: center;
+    color: white;
+    height: 60px;
+    /* Fixed height for consistency */
+    flex-shrink: 0;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+    border-radius: 30px;
+    color: #4EBDDB;
+    font-weight: 600;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.header-user img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+/* Sidebar - Cyan Full Height */
+.sidebar {
+    width: 260px;
+    background-color: #4EBDDB !important;
+    /* Force Cyan */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+}
+
+.sidebar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.sidebar__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.sidebar__item:hover,
+.sidebar__item--active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar__item-icon {
+    width: 20px;
+    text-align: center;
+}
+
+/* Content Area */
+.dashboard-content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #E6F7FA;
+    border-radius: 12px;
+    color: #333;
+}
+
+.welcome-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-quote {
+    font-style: italic;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Profile Card - Full Width White */
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f5;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-card-top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-avatar-large {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #e0f7fa;
+    position: relative;
+}
+
+.profile-avatar-badge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 14px;
+}
+
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #4EBDDB;
+}
+
+.profile-level {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.xp-container {
+    margin-top: 0.5rem;
+}
+
+.xp-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 0.25rem;
+}
+
+.xp-bar-container {
+    width: 100%;
+    background: #f0f0f0;
+    height: 16px;
+    /* Thicker like screenshot */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.xp-bar-fill {
+    background: #e0e0e0;
+    /* Gray fill like screenshot or maybe progress color? Screenshot shows empty gray bar mostly */
+    height: 100%;
+    width: 0%;
+    /* Dynamic */
+    transition: width 0.3s ease;
+}
+
+
+/* Stats Row */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-card-new {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eef2f5;
+    min-height: 160px;
+}
+
+.stat-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.stat-card-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #333;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.purchase-btn {
+    background-color: #4EBDDB;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Actions Grid - White cards with icons */
+.actions-grid-custom {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns like screenshot */
+    gap: 1.5rem;
+}
+
+.action-card-custom {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: #555;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f5;
+    transition: transform 0.2s;
+    min-height: 140px;
+}
+
+.action-card-custom:hover {
+    transform: translateY(-2px);
+    border-color: #4EBDDB;
+}
+
+.action-icon-custom {
+    font-size: 2rem;
+    color: #4EBDDB;
+    /* Or gray depending on icon */
+}
+
+.action-label-custom {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #444;
+}
+
+
+/* Bell Curve Graph */
+.graph-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bell-curve-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Simple CSS Bell Curve approximation using masking or just an SVG image 
+   Since we don't have libraries, SVG is best.
+   Handled in JSX mostly, here we just set dimensions.
+*/
+
+
+/* === RESPONSIVE === */
+@media (max-width: 968px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .actions-grid-new {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-avatar-large {
+        margin: 0 auto;
+    }
+
+    .header-user {
+        display: none;
+        /* Hide top profile on mobile, use sidebar */
+    }
+
+    .dashboard__header {
+        justify-content: center;
+    }
+
+    .sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+        width: 250px;
+        height: 100%;
+        background-color: white;
+        z-index: 1000;
+    }
+
+    /* Rest of sidebar responsive logic remains or is handled by component state */
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+}

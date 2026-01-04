@@ -1,0 +1,12 @@
+/* Fix for index.css default centered layout */
+body:has(.landing-page-wrapper) {
+    display: block !important;
+    place-items: initial !important;
+    min-width: 0 !important;
+}
+
+/* Ensure root element takes full width */
+body:has(.landing-page-wrapper) #root {
+    width: 100%;
+    margin: 0 auto;
+}

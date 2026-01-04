@@ -1,0 +1,11 @@
+/* Fix for conflict with App.css .container */
+.landing-page-wrapper .container {
+    height: auto !important;
+    display: block !important;
+    min-height: 0 !important;
+}
+
+/* Ensure header doesn't inherit weird height */
+.landing-page-wrapper .header {
+    height: auto !important;
+}
