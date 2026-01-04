@@ -68,30 +68,41 @@ function TestEngine() {
         try {
             setLoading(true)
 
-            // 1. Fetch All Questions
-            const { data: questions, error: qError } = await supabase
-                .from('questions')
-                .select('id, topic')
-                .order('id', { ascending: true })
-                .range(0, 9999)
+            // Helper for pagination
+            const fetchAll = async (table, select, order = 'id') => {
+                let allRows = []
+                let page = 0
+                const size = 1000
+                while (true) {
+                    const { data, error } = await supabase
+                        .from(table)
+                        .select(select)
+                        .order(order, { ascending: true })
+                        .range(page * size, (page + 1) * size - 1)
 
-            if (qError) throw qError
+                    if (error) throw error
+                    if (!data || data.length === 0) break
 
-            // 2. Fetch User Progress 
-            // Optimistically select new columns. If DB isn't updated, this might error, 
-            // but we are instructing the user to update it.
-            const { data: progress, error: pError } = await supabase
-                .from('user_progress')
-                .select('question_id, is_correct, is_omitted, is_flagged')
-                .range(0, 9999)
-
-            // If error is about missing column, we could fallback, but let's assume user runs the script.
-            if (pError) {
-                console.error("Error fetching progress (possibly missing columns):", pError);
-                // Fallback fetch if columns missing? 
-                // No, just throw to alert dev/user they need to migrate.
-                throw pError;
+                    allRows = [...allRows, ...data]
+                    if (data.length < size) break
+                    page++
+                }
+                return allRows
             }
+
+            console.log('🔄 Fetching all questions (paginated)...')
+            const questions = await fetchAll('questions', 'id, topic', 'created_at')
+            console.log(`✅ Loaded ${questions.length} questions.`)
+
+            console.log('🔄 Fetching all progress (paginated)...')
+            // Note: progress might not have 'created_at', use 'id' or 'question_id' if possible?
+            // user_progress usually has id. unique key is (user_id, question_id).
+            // Let's assume 'id' exists or use 'question_id' for order? 
+            // Better to use default order if PK exists. 
+            // Check user_progress PK. Usually 'id'.
+            // If not, order by question_id.
+            const progress = await fetchAll('user_progress', 'question_id, is_correct, is_omitted, is_flagged', 'question_id')
+            console.log(`✅ Loaded ${progress.length} progress records.`)
 
             // Map progress for O(1) lookup
             const progressMap = {}
@@ -108,6 +119,7 @@ function TestEngine() {
 
         } catch (error) {
             console.error('Error fetching data:', error)
+            alert('Error cargando datos. Revisa la consola.')
         } finally {
             setLoading(false)
         }
