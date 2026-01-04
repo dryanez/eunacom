@@ -250,6 +250,7 @@ function AdminPanel() {
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead style={{ background: '#f8f9fa' }}>
                       <tr>
+                        <th style={{ padding: '1rem', textAlign: 'center', width: '40px' }}>#</th>
                         <th style={{ padding: '1rem', textAlign: 'left', width: '50px' }}>ID</th>
                         <th style={{ padding: '1rem', textAlign: 'left' }}>Pregunta</th>
                         <th style={{ padding: '1rem', textAlign: 'center' }}>Video</th>
@@ -258,8 +259,9 @@ function AdminPanel() {
                       </tr>
                     </thead>
                     <tbody>
-                      {fileQuestions.map(q => (
+                      {fileQuestions.map((q, idx) => (
                         <tr key={q.id} style={{ borderBottom: '1px solid #eee' }}>
+                          <td style={{ padding: '1rem', textAlign: 'center', color: '#888' }}>{idx + 1}</td>
                           <td style={{ padding: '1rem' }}>{q.id}</td>
                           <td style={{ padding: '1rem' }}>
                             {editingId === q.id ? (
