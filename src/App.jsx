@@ -9,6 +9,7 @@ import TestEngine from './pages/TestEngine'
 import TestHistory from './pages/TestHistory'
 import AdminPanel from './pages/AdminPanel'
 import TestRunner from './pages/TestRunner'
+import Simulation from './pages/Simulation'
 import './App.css'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<TestEngine />} />
+          <Route path="/simulation" element={<Simulation />} />
           <Route path="/history" element={<TestHistory />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/test-runner/:id" element={<TestRunner />} />

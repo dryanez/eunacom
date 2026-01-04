@@ -7,6 +7,7 @@ const Sidebar = () => {
     const { signOut, user } = useAuth()
     const navigate = useNavigate()
     const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+    const [examenesOpen, setExamenesOpen] = React.useState(false)
 
     const handleLogout = async () => {
         await signOut()
@@ -19,12 +20,16 @@ const Sidebar = () => {
 
     const menuItems = [
         { path: '/dashboard', icon: '🏠', label: 'Inicio' },
-        { path: '/test', icon: '📄', label: 'Crear Examen' },
         { path: '/history', icon: '🕒', label: 'Historial Tests' },
-        { path: '/reconstructions', icon: '🏥', label: 'Reconstrucciones' },
         { path: '/flashcards', icon: '🃏', label: 'Flashcards' },
         { path: '/stats', icon: '📊', label: 'Estadísticas' },
         { path: '/review', icon: '🔄', label: 'Repasar Errores' },
+    ]
+
+    const examenesItems = [
+        { path: '/test', icon: '📝', label: 'Crear Examen' },
+        { path: '/reconstructions', icon: '🏥', label: 'Reconstrucciones' },
+        { path: '/simulation', icon: '🎯', label: 'Simulación' },
     ]
 
     return (
@@ -56,12 +61,57 @@ const Sidebar = () => {
                         className={({ isActive }) =>
                             `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
                         }
-                        onClick={() => setIsMobileOpen(false)} // Close on click
+                        onClick={() => setIsMobileOpen(false)}
                     >
                         <span className="sidebar__item-icon">{item.icon}</span>
                         <span className="sidebar__item-label">{item.label}</span>
                     </NavLink>
                 ))}
+
+                {/* Exámenes Collapsible Section */}
+                <div style={{ marginTop: '0.5rem' }}>
+                    <div
+                        onClick={() => setExamenesOpen(!examenesOpen)}
+                        className="sidebar__item"
+                        style={{
+                            cursor: 'pointer',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <span className="sidebar__item-icon">📋</span>
+                            <span className="sidebar__item-label">Exámenes</span>
+                        </div>
+                        <span style={{
+                            transform: examenesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.2s',
+                            fontSize: '0.8rem'
+                        }}>
+                            ▼
+                        </span>
+                    </div>
+
+                    {examenesOpen && (
+                        <div style={{ paddingLeft: '1rem' }}>
+                            {examenesItems.map((item) => (
+                                <NavLink
+                                    key={item.path}
+                                    to={item.path}
+                                    className={({ isActive }) =>
+                                        `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                                    }
+                                    onClick={() => setIsMobileOpen(false)}
+                                    style={{ fontSize: '0.9rem' }}
+                                >
+                                    <span className="sidebar__item-icon">{item.icon}</span>
+                                    <span className="sidebar__item-label">{item.label}</span>
+                                </NavLink>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </nav>
 
             <div className="sidebar__footer">
