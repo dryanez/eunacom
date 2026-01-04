@@ -7,7 +7,7 @@ import '../styles/neumorphism.css'
 import '../styles/dashboard.css'
 
 const Dashboard = () => {
-    const { user, loading: authLoading } = useAuth()
+    const { user, loading: authLoading, signOut } = useAuth()
     const navigate = useNavigate()
     const [stats, setStats] = useState({
         totalAnswered: 0,
@@ -15,6 +15,7 @@ const Dashboard = () => {
         streak: 0
     })
     const [loading, setLoading] = useState(true)
+    const [showUserMenu, setShowUserMenu] = useState(false)
 
     useEffect(() => {
         if (authLoading) return
@@ -67,6 +68,11 @@ const Dashboard = () => {
 
     const userName = user?.user_metadata?.full_name || user?.email || 'Guest'
 
+    const handleLogout = async () => {
+        await signOut()
+        navigate('/login')
+    }
+
     return (
         <div className="dashboard-layout">
             <aside className="sidebar">
@@ -107,10 +113,50 @@ const Dashboard = () => {
 
             <main className="dashboard-main">
                 <header className="dashboard__header">
-                    <div className="header-user">
-                        <img src={`https://ui-avatars.com/api/?name=${userName}&background=random`} alt="User" />
-                        <span>{userName}</span>
-                        <span>▼</span>
+                    <div className="header-user" style={{ position: 'relative' }}>
+                        <div
+                            onClick={() => setShowUserMenu(!showUserMenu)}
+                            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
+                        >
+                            <img src={`https://ui-avatars.com/api/?name=${userName}&background=random`} alt="User" />
+                            <span>{userName}</span>
+                            <span>▼</span>
+                        </div>
+
+                        {showUserMenu && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '100%',
+                                right: 0,
+                                marginTop: '0.5rem',
+                                background: 'white',
+                                borderRadius: '8px',
+                                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                                minWidth: '180px',
+                                zIndex: 1000
+                            }}>
+                                <button
+                                    onClick={handleLogout}
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.75rem 1rem',
+                                        border: 'none',
+                                        background: 'transparent',
+                                        textAlign: 'left',
+                                        cursor: 'pointer',
+                                        fontSize: '0.95rem',
+                                        color: '#d32f2f',
+                                        fontWeight: '500',
+                                        borderRadius: '8px',
+                                        transition: 'background 0.2s'
+                                    }}
+                                    onMouseEnter={(e) => e.target.style.background = '#ffebee'}
+                                    onMouseLeave={(e) => e.target.style.background = 'transparent'}
+                                >
+                                    🚪 Cerrar Sesión
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </header>
 
