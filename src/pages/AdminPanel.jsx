@@ -10,86 +10,86 @@ function AdminPanel() {
   const { isAdmin } = useAuth()
   const navigate = useNavigate()
 
-  // State
-  const [currentTab, setCurrentTab] = useState('data') // 'data' | 'stats'
-  const [questions, setQuestions] = useState([])
-  const [allStatsQuestions, setAllStatsQuestions] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [statsLoading, setStatsLoading] = useState(false)
+  // Views: 'files' (list of CSVs) | 'questions' (list of questions for a file)
+  const [currentView, setCurrentView] = useState('files')
+  const [selectedFileObj, setSelectedFileObj] = useState(null) // The file object being viewed
 
-  // Filters
-  const [selectedChapter, setSelectedChapter] = useState('all')
-  const [selectedTopic, setSelectedTopic] = useState('all')
-  const [selectedFile, setSelectedFile] = useState('all')
+  // Data
+  const [allQuestionsRaw, setAllQuestionsRaw] = useState([]) // Minimal data for stats
+  const [fileQuestions, setFileQuestions] = useState([]) // Full data for current file
+  const [loadingStats, setLoadingStats] = useState(true)
+  const [loadingQuestions, setLoadingQuestions] = useState(false)
 
-  // Editing & Visiting
+  // Question Editing
   const [editingId, setEditingId] = useState(null)
   const [editForm, setEditForm] = useState({})
   const [viewingQuestion, setViewingQuestion] = useState(null)
 
-  // Redirect non-admin users
+  // Filters (Global for Files List)
+  const [selectedChapter, setSelectedChapter] = useState('all')
+  const [selectedTopic, setSelectedTopic] = useState('all')
+
+  // Auth Check
   useEffect(() => {
-    if (!isAdmin()) {
-      navigate('/dashboard')
-    }
+    if (!isAdmin()) navigate('/dashboard')
   }, [isAdmin, navigate])
 
-  // Initial Fetch based on active tab
+  // Load ALL Stats Data on Mount (Columns: id, file_source, chapter, topic, flags)
   useEffect(() => {
-    if (currentTab === 'data') {
-      fetchQuestions()
-    } else {
-      fetchStatistics()
-    }
-  }, [currentTab, selectedChapter, selectedTopic, selectedFile])
+    fetchStatsData()
+  }, [])
 
-  const fetchQuestions = async () => {
-    setLoading(true)
+  const fetchStatsData = async () => {
+    setLoadingStats(true)
     try {
-      let query = supabase.from('questions').select('*')
-
-      if (selectedChapter !== 'all') query = query.eq('chapter', selectedChapter)
-      if (selectedTopic !== 'all') query = query.eq('topic', selectedTopic)
-      if (selectedFile !== 'all') query = query.eq('file_source', selectedFile)
-
-      const { data, error } = await query.order('id', { ascending: true }).limit(100)
-
-      if (error) throw error
-      setQuestions(data || [])
-    } catch (error) {
-      console.error('Error fetching questions:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const fetchStatistics = async () => {
-    setStatsLoading(true)
-    try {
-      // Fetch minimal data for statistics aggregation
+      // Fetch lightweight data for the "Files" overview
       const { data, error } = await supabase
         .from('questions')
         .select('id, file_source, chapter, topic, video_url, explanation, tags')
 
       if (error) throw error
-      setAllStatsQuestions(data || [])
+      setAllQuestionsRaw(data || [])
     } catch (error) {
-      console.error('Error fetching stats:', error)
+      console.error('Error fetching global stats:', error)
     } finally {
-      setStatsLoading(false)
+      setLoadingStats(false)
     }
   }
 
-  // Derive Statistics Grouped by File
-  const fileStats = useMemo(() => {
+  // Load Questions for a Specific File
+  const fetchQuestionsForFile = async (filename) => {
+    setLoadingQuestions(true)
+    try {
+      const { data, error } = await supabase
+        .from('questions')
+        .select('*')
+        .eq('file_source', filename)
+        .order('id', { ascending: true })
+
+      if (error) throw error
+      setFileQuestions(data || [])
+    } catch (error) {
+      console.error('Error fetching file questions:', error)
+    } finally {
+      setLoadingQuestions(false)
+    }
+  }
+
+  // Derived: List of Files with Stats
+  const fileList = useMemo(() => {
     const stats = {}
 
-    allStatsQuestions.forEach(q => {
-      const file = q.file_source || 'Desconocido'
+    allQuestionsRaw.forEach(q => {
+      // Filter logic applied to the FILE LIST
+      if (selectedChapter !== 'all' && q.chapter !== selectedChapter) return
+      if (selectedTopic !== 'all' && q.topic !== selectedTopic) return
+
+      const file = q.file_source || 'Sin Archivo'
       if (!stats[file]) {
         stats[file] = {
           name: file,
           chapter: q.chapter || 'N/A',
+          topic: q.topic || 'N/A',
           count: 0,
           missingVideo: 0,
           missingExplanation: 0,
@@ -102,214 +102,200 @@ function AdminPanel() {
       if (!q.tags) stats[file].missingTags++
     })
 
-    return Object.values(stats).sort((a, b) => a.chapter.localeCompare(b.chapter))
-  }, [allStatsQuestions])
+    return Object.values(stats).sort((a, b) => {
+      // Sort by Chapter then Topic then Name
+      if (a.chapter !== b.chapter) return a.chapter.localeCompare(b.chapter)
+      if (a.topic !== b.topic) return a.topic.localeCompare(b.topic)
+      return a.name.localeCompare(b.name)
+    })
+  }, [allQuestionsRaw, selectedChapter, selectedTopic])
 
-  // Derive unique lists for filters
-  const fileSources = useMemo(() => {
-    const sources = new Set(questions.map(q => q.file_source).filter(Boolean))
-    return Array.from(sources).sort()
-  }, [questions])
+  // Derived: Filtering lists
+  const chapters = ['Capítulo 1', 'Capítulo 2', 'Capítulo 3', 'Capítulo 4']
+  const topics = Array.from(new Set(allQuestionsRaw.map(q => q.topic).filter(Boolean))).sort()
 
-  // Actions
-  const handleEdit = (question) => {
-    setEditingId(question.id)
-    setEditForm(question)
+  // Navigation Handlers
+  const handleOpenFile = (fileStats) => {
+    setSelectedFileObj(fileStats)
+    fetchQuestionsForFile(fileStats.name)
+    setCurrentView('questions')
   }
 
+  const handleBack = () => {
+    setCurrentView('files')
+    setSelectedFileObj(null)
+    setFileQuestions([])
+  }
+
+  // Actions
   const handleSave = async () => {
     try {
-      const { error } = await supabase
-        .from('questions')
-        .update(editForm)
-        .eq('id', editingId)
-
+      const { error } = await supabase.from('questions').update(editForm).eq('id', editingId)
       if (error) throw error
-
-      setQuestions(questions.map(q => q.id === editingId ? editForm : q))
+      setFileQuestions(fileQuestions.map(q => q.id === editingId ? editForm : q))
       setEditingId(null)
       setEditForm({})
     } catch (error) {
-      console.error('Error saving:', error)
-      alert('Error al guardar.')
+      alert('Error al guardar')
     }
   }
 
   const handleDelete = async (id) => {
-    if (!confirm('¿Eliminar pregunta?')) return
+    if (!confirm('¿Eliminar?')) return
     try {
-      const { error } = await supabase.from('questions').delete().eq('id', id)
-      if (error) throw error
-      setQuestions(questions.filter(q => q.id !== id))
-    } catch (error) {
-      console.error('Error deleting:', error)
-    }
+      await supabase.from('questions').delete().eq('id', id)
+      setFileQuestions(fileQuestions.filter(q => q.id !== id))
+    } catch (error) { alert('Error al eliminar') }
   }
-
-  const chapters = ['Capítulo 1', 'Capítulo 2', 'Capítulo 3', 'Capítulo 4']
-  const topics = ['Neurología', 'Endocrinología', 'Infectología', 'Dermatología', 'Cardiología', 'Respiratorio', 'Gastroenterología']
 
   return (
     <div className="dashboard-layout">
       <Sidebar />
       <main className="dashboard-main">
         <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
-          <h2 style={{ color: 'white', margin: 0 }}>Panel de Administración</h2>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button
-              onClick={() => setCurrentTab('data')}
-              style={{ padding: '0.5rem 1rem', borderRadius: '20px', border: 'none', background: currentTab === 'data' ? 'white' : 'rgba(255,255,255,0.2)', color: currentTab === 'data' ? '#4EBDDB' : 'white', cursor: 'pointer', fontWeight: 'bold' }}
-            >
-              📊 Explorador de Datos
+          <h2 style={{ color: 'white', margin: 0 }}>
+            {currentView === 'files' ? 'Gestor de Archivos CSV' : `📂 ${selectedFileObj?.name}`}
+          </h2>
+          {currentView === 'questions' && (
+            <button onClick={handleBack} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer' }}>
+              ⬅️ Volver a Archivos
             </button>
-            <button
-              onClick={() => setCurrentTab('stats')}
-              style={{ padding: '0.5rem 1rem', borderRadius: '20px', border: 'none', background: currentTab === 'stats' ? 'white' : 'rgba(255,255,255,0.2)', color: currentTab === 'stats' ? '#4EBDDB' : 'white', cursor: 'pointer', fontWeight: 'bold' }}
-            >
-              📈 Estadísticas de Carga
-            </button>
-          </div>
+          )}
         </header>
 
         <div className="dashboard-content" style={{ padding: '2rem' }}>
 
-          {/* TAB: DATA EXPLORER */}
-          {currentTab === 'data' && (
+          {/* VIEW 1: FILES LIST */}
+          {currentView === 'files' && (
             <>
-              {/* Filters */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-                <div>
-                  <label style={{ display: 'block', fontWeight: '600' }}>Capítulo</label>
-                  <select value={selectedChapter} onChange={e => setSelectedChapter(e.target.value)} style={{ width: '100%', padding: '0.5rem', borderRadius: '8px' }}>
-                    <option value="all">Todos</option>
-                    {chapters.map(ch => <option key={ch} value={ch}>{ch}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontWeight: '600' }}>Tema</label>
-                  <select value={selectedTopic} onChange={e => setSelectedTopic(e.target.value)} style={{ width: '100%', padding: '0.5rem', borderRadius: '8px' }}>
-                    <option value="all">Todos</option>
-                    {topics.map(t => <option key={t} value={t}>{t}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontWeight: '600' }}>Archivo Fuente</label>
-                  <select value={selectedFile} onChange={e => setSelectedFile(e.target.value)} style={{ width: '100%', padding: '0.5rem', borderRadius: '8px' }}>
-                    <option value="all">Todos</option>
-                    {/* Unique sources from current filtered set or fetch separately? For now uses current fetched set + distinct query if implemented properly. Here implies simple client filter logic for demo */}
-                    <option disabled>Selecciona un archivo (filtra primero)</option>
-                  </select>
-                </div>
-                <button onClick={fetchQuestions} style={{ background: '#4EBDDB', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Actualizar</button>
+              {/* Global Filters */}
+              <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+                <select value={selectedChapter} onChange={e => setSelectedChapter(e.target.value)} style={{ padding: '0.6rem', borderRadius: '8px', border: '1px solid #ddd', minWidth: '150px' }}>
+                  <option value="all">Todos los Capítulos</option>
+                  {chapters.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+                <select value={selectedTopic} onChange={e => setSelectedTopic(e.target.value)} style={{ padding: '0.6rem', borderRadius: '8px', border: '1px solid #ddd', minWidth: '150px' }}>
+                  <option value="all">Todos los Temas</option>
+                  {topics.map(t => <option key={t} value={t}>{t}</option>)}
+                </select>
+                <button onClick={fetchStatsData} style={{ background: '#4EBDDB', color: 'white', border: 'none', padding: '0 1rem', borderRadius: '8px', cursor: 'pointer' }}>🔄</button>
               </div>
 
-              {/* Table */}
-              {loading ? <div>Cargando preguntas...</div> : (
-                <div style={{ overflowX: 'auto', background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
+              {loadingStats ? <div>Analizando base de datos...</div> : (
+                <div style={{ background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', overflow: 'hidden' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <thead style={{ background: '#f8f9fa', borderBottom: '2px solid #dee2e6' }}>
+                    <thead style={{ background: '#f1f3f5' }}>
                       <tr>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>ID</th>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Pregunta</th>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Video?</th>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Tags?</th>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Acciones</th>
+                        <th style={{ padding: '1rem', textAlign: 'left' }}>Archivo CSV</th>
+                        <th style={{ padding: '1rem', textAlign: 'left' }}>Capítulo / Tema</th>
+                        <th style={{ padding: '1rem', textAlign: 'center' }}>Preguntas</th>
+                        <th style={{ padding: '1rem', textAlign: 'center' }}>Videos</th>
+                        <th style={{ padding: '1rem', textAlign: 'center' }}>Tags</th>
+                        <th style={{ padding: '1rem', textAlign: 'right' }}>Acción</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {questions.map(q => (
-                        <tr key={q.id} style={{ borderBottom: '1px solid #eee' }}>
-                          <td style={{ padding: '1rem' }}>{q.id}</td>
-                          <td style={{ padding: '1rem', maxWidth: '400px' }}>
-                            {editingId === q.id ? (
-                              <textarea value={editForm.question_text} onChange={e => setEditForm({ ...editForm, question_text: e.target.value })} style={{ width: '100%' }} />
-                            ) : (
-                              <div>
-                                <div style={{ fontSize: '0.95rem' }}>{q.question_text?.substring(0, 80)}...</div>
-                                <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '0.2rem' }}>{q.file_source} | {q.chapter}</div>
-                              </div>
-                            )}
+                      {fileList.map((file, idx) => (
+                        <tr key={idx} style={{ borderBottom: '1px solid #eee', transition: 'background 0.2s' }} className="hover-row">
+                          <td style={{ padding: '1rem', fontWeight: '600', color: '#333' }}>
+                            📄 {file.name}
                           </td>
-                          <td style={{ padding: '1rem' }}>{q.video_url ? '✅' : '❌'}</td>
-                          <td style={{ padding: '1rem' }}>{q.tags ? '✅' : '❌'}</td>
-                          <td style={{ padding: '1rem' }}>
-                            {editingId === q.id ? (
-                              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                <button onClick={handleSave} style={{ background: '#28a745', color: 'white', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px' }}>Guardar</button>
-                                <button onClick={() => setEditingId(null)} style={{ background: '#6c757d', color: 'white', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px' }}>X</button>
-                              </div>
-                            ) : (
-                              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                <button onClick={() => setViewingQuestion(q)} style={{ background: '#17a2b8', color: 'white', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>👁️ Ver Info</button>
-                                <button onClick={() => handleEdit(q)} style={{ background: '#ffc107', color: '#333', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>✏️</button>
-                                <button onClick={() => handleDelete(q.id)} style={{ background: '#dc3545', color: 'white', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>🗑️</button>
-                              </div>
-                            )}
+                          <td style={{ padding: '1rem', color: '#666', fontSize: '0.9rem' }}>
+                            {file.chapter} <br /> {file.topic}
+                          </td>
+                          <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold' }}>
+                            {file.count}
+                          </td>
+                          <td style={{ padding: '1rem', textAlign: 'center' }}>
+                            <span style={{ color: file.missingVideo === 0 ? '#28a745' : '#ffc107', fontWeight: 'bold' }}>
+                              {Math.round(((file.count - file.missingVideo) / file.count) * 100)}%
+                            </span>
+                          </td>
+                          <td style={{ padding: '1rem', textAlign: 'center' }}>
+                            <span style={{ color: file.missingTags === 0 ? '#28a745' : '#ffc107', fontWeight: 'bold' }}>
+                              {Math.round(((file.count - file.missingTags) / file.count) * 100)}%
+                            </span>
+                          </td>
+                          <td style={{ padding: '1rem', textAlign: 'right' }}>
+                            <button
+                              onClick={() => handleOpenFile(file)}
+                              style={{ background: '#4EBDDB', color: 'white', border: 'none', padding: '0.4rem 1rem', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}
+                            >
+                              Ver Preguntas ↣
+                            </button>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                  {questions.length === 0 && <div style={{ padding: '2rem', textAlign: 'center', color: '#888' }}>No hay preguntas para estos filtros.</div>}
+                  {fileList.length === 0 && <div style={{ padding: '2rem', textAlign: 'center' }}>No se encontraron archivos cargados.</div>}
                 </div>
               )}
             </>
           )}
 
-          {/* TAB: STATISTICS */}
-          {currentTab === 'stats' && (
-            <div>
-              {statsLoading ? <div>Analizando base de datos...</div> : (
-                <div style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
+          {/* VIEW 2: QUESTIONS LIST */}
+          {currentView === 'questions' && (
+            <>
+              <div style={{ marginBottom: '1rem', display: 'flex', gap: '2rem', background: '#e9ecef', padding: '1rem', borderRadius: '8px' }}>
+                <div><strong>Archivo:</strong> {selectedFileObj.name}</div>
+                <div><strong>Total:</strong> {selectedFileObj.count} preguntas</div>
+              </div>
+
+              {loadingQuestions ? <div>Cargando preguntas de {selectedFileObj.name}...</div> : (
+                <div style={{ overflowX: 'auto', background: 'white', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <thead style={{ background: '#343a40', color: 'white' }}>
+                    <thead style={{ background: '#f8f9fa' }}>
                       <tr>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Archivo Fuente (CSV)</th>
-                        <th style={{ padding: '1rem', textAlign: 'left' }}>Capítulo</th>
-                        <th style={{ padding: '1rem', textAlign: 'center' }}>Total Preguntas</th>
-                        <th style={{ padding: '1rem', textAlign: 'center' }}>% Videos</th>
-                        <th style={{ padding: '1rem', textAlign: 'center' }}>% Explicaciones</th>
-                        <th style={{ padding: '1rem', textAlign: 'center' }}>Estado</th>
+                        <th style={{ padding: '1rem', textAlign: 'left', width: '50px' }}>ID</th>
+                        <th style={{ padding: '1rem', textAlign: 'left' }}>Pregunta</th>
+                        <th style={{ padding: '1rem', textAlign: 'center' }}>Video</th>
+                        <th style={{ padding: '1rem', textAlign: 'center' }}>Tags</th>
+                        <th style={{ padding: '1rem', textAlign: 'right' }}>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {fileStats.map((stat, idx) => (
-                        <tr key={idx} style={{ borderBottom: '1px solid #eee' }}>
-                          <td style={{ padding: '1rem', fontWeight: '600' }}>{stat.name}</td>
-                          <td style={{ padding: '1rem' }}>{stat.chapter}</td>
-                          <td style={{ padding: '1rem', textAlign: 'center', fontSize: '1.2rem' }}>{stat.count}</td>
-                          <td style={{ padding: '1rem', textAlign: 'center' }}>
-                            <span style={{ color: stat.missingVideo === 0 ? 'green' : 'orange' }}>
-                              {Math.round(((stat.count - stat.missingVideo) / stat.count) * 100)}%
-                            </span>
+                      {fileQuestions.map(q => (
+                        <tr key={q.id} style={{ borderBottom: '1px solid #eee' }}>
+                          <td style={{ padding: '1rem' }}>{q.id}</td>
+                          <td style={{ padding: '1rem' }}>
+                            {editingId === q.id ? (
+                              <textarea value={editForm.question_text || ''} onChange={e => setEditForm({ ...editForm, question_text: e.target.value })} style={{ width: '100%', minHeight: '60px' }} />
+                            ) : (
+                              <div style={{ maxHeight: '80px', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                                {q.question_text}
+                              </div>
+                            )}
                           </td>
-                          <td style={{ padding: '1rem', textAlign: 'center' }}>
-                            <span style={{ color: stat.missingExplanation === 0 ? 'green' : 'red' }}>
-                              {Math.round(((stat.count - stat.missingExplanation) / stat.count) * 100)}%
-                            </span>
-                          </td>
-                          <td style={{ padding: '1rem', textAlign: 'center' }}>
-                            {stat.missingVideo === 0 && stat.missingExplanation === 0 ? '✅ Completo' : '⚠️ Faltan Datos'}
+                          <td style={{ padding: '1rem', textAlign: 'center' }}>{q.video_url ? '✅' : '❌'}</td>
+                          <td style={{ padding: '1rem', textAlign: 'center' }}>{q.tags ? '✅' : '❌'}</td>
+                          <td style={{ padding: '1rem', textAlign: 'right' }}>
+                            {editingId === q.id ? (
+                              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                                <button onClick={handleSave} style={{ background: '#28a745', color: 'white', border: 'none', padding: '0.3rem 0.6rem', borderRadius: '4px' }}>Guardar</button>
+                                <button onClick={() => setEditingId(null)} style={{ background: '#6c757d', color: 'white', border: 'none', padding: '0.3rem 0.6rem', borderRadius: '4px' }}>X</button>
+                              </div>
+                            ) : (
+                              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                                <button onClick={() => setViewingQuestion(q)} style={{ background: '#17a2b8', color: 'white', border: 'none', padding: '0.3rem 0.6rem', borderRadius: '4px', cursor: 'pointer' }}>👁️</button>
+                                <button onClick={() => { setEditingId(q.id); setEditForm(q); }} style={{ background: '#ffc107', color: 'black', border: 'none', padding: '0.3rem 0.6rem', borderRadius: '4px', cursor: 'pointer' }}>✏️</button>
+                                <button onClick={() => handleDelete(q.id)} style={{ background: '#dc3545', color: 'white', border: 'none', padding: '0.3rem 0.6rem', borderRadius: '4px', cursor: 'pointer' }}>🗑️</button>
+                              </div>
+                            )}
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                  {fileStats.length === 0 && <div style={{ padding: '2rem', textAlign: 'center' }}>No hay datos subidos aún.</div>}
                 </div>
               )}
-            </div>
+            </>
           )}
 
         </div>
 
         {/* Modal */}
-        {viewingQuestion && (
-          <QuestionDetailsModal
-            question={viewingQuestion}
-            onClose={() => setViewingQuestion(null)}
-          />
-        )}
+        {viewingQuestion && <QuestionDetailsModal question={viewingQuestion} onClose={() => setViewingQuestion(null)} />}
       </main>
     </div>
   )
