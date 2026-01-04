@@ -67,7 +67,7 @@ function AdminPanel() {
         .from('questions')
         .select('*')
         .eq('file_source', filename)
-        .order('id', { ascending: true })
+        .order('created_at', { ascending: true })
 
       if (error) throw error
       setFileQuestions(data || [])
