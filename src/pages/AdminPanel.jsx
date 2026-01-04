@@ -43,15 +43,26 @@ function AdminPanel() {
     setLoadingStats(true)
     try {
       // Fetch lightweight data for the "Files" overview
-      const { data, error } = await supabase
-        .from('questions')
-        .select('id, file_source, chapter, topic, video_url, explanation, tags')
-        .order('id', { ascending: true }) // Required for range to work reliably
-        .range(0, 9999)
+      let allData = []
+      let page = 0
+      const size = 1000
+      while (true) {
+        const { data, error } = await supabase
+          .from('questions')
+          .select('id, file_source, chapter, topic, video_url, explanation, tags')
+          .order('id', { ascending: true })
+          .range(page * size, (page + 1) * size - 1)
 
-      console.log('✅ AdminPanel: Fetched total rows:', data?.length)
-      if (error) throw error
-      setAllQuestionsRaw(data || [])
+        if (error) throw error
+        if (!data || data.length === 0) break
+
+        allData = [...allData, ...data]
+        if (data.length < size) break
+        page++
+      }
+
+      console.log('✅ AdminPanel: Fetched total rows:', allData.length)
+      setAllQuestionsRaw(allData)
     } catch (error) {
       console.error('Error fetching global stats:', error)
     } finally {
