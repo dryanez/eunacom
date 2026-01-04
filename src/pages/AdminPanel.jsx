@@ -30,7 +30,7 @@ function AdminPanel() {
   const fetchQuestions = async () => {
     setLoading(true)
     try {
-      let query = supabase.table('questions').select('*')
+      let query = supabase.from('questions').select('*')
 
       if (selectedChapter !== 'all') {
         query = query.eq('chapter', selectedChapter)
@@ -58,7 +58,7 @@ function AdminPanel() {
   const handleSave = async () => {
     try {
       const { error } = await supabase
-        .table('questions')
+        .from('questions')
         .update(editForm)
         .eq('id', editingId)
 
@@ -77,7 +77,7 @@ function AdminPanel() {
     if (!confirm('¿Estás seguro de que quieres eliminar esta pregunta?')) return
 
     try {
-      const { error } = await supabase.table('questions').delete().eq('id', id)
+      const { error } = await supabase.from('questions').delete().eq('id', id)
       if (error) throw error
       setQuestions(questions.filter(q => q.id !== id))
     } catch (error) {
