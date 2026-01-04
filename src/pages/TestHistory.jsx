@@ -49,6 +49,20 @@ function TestHistory() {
         return 'Tutor (Sin límite)'
     }
 
+    const handleDelete = async (e, id) => {
+        e.stopPropagation()
+        if (!confirm('¿Estás seguro de que quieres eliminar este examen permanentemente?')) return
+
+        try {
+            const { error } = await supabase.from('tests').delete().eq('id', id)
+            if (error) throw error
+            setTests(tests.filter(t => t.id !== id))
+        } catch (error) {
+            console.error('Error deleting test:', error)
+            alert('Error al eliminar. Intenta nuevamente.')
+        }
+    }
+
     return (
         <div className="dashboard-layout">
             <Sidebar />
@@ -146,7 +160,7 @@ function TestHistory() {
                                                         </button>
                                                     ) : (
                                                         <button
-                                                            onClick={() => navigate(`/test-runner/${test.id}`)} // Re-visit for review
+                                                            onClick={() => navigate(`/test-runner/${test.id}`)}
                                                             style={{
                                                                 background: 'none', border: 'none', cursor: 'pointer',
                                                                 color: '#666', fontSize: '1.2rem', marginRight: '0.5rem'
@@ -156,6 +170,16 @@ function TestHistory() {
                                                             📊
                                                         </button>
                                                     )}
+                                                    <button
+                                                        onClick={(e) => handleDelete(e, test.id)}
+                                                        style={{
+                                                            background: 'none', border: 'none', cursor: 'pointer',
+                                                            color: '#ff4d4f', fontSize: '1.2rem'
+                                                        }}
+                                                        title="Eliminar"
+                                                    >
+                                                        🗑️
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))

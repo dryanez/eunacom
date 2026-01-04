@@ -201,6 +201,100 @@ function TestEngine() {
 
     // ... useMemo block ends
 
+    const EUNACOM_BLUEPRINT = [
+        // Medicina Interna (67 q)
+        { dbTopic: 'Cardiología', count: 10 },
+        { dbTopic: 'Respiratorio', count: 10 },
+        { dbTopic: 'Gastroenterología', count: 10 },
+        { dbTopic: 'Endocrinología', count: 10 }, // Merged Diabetes (5) + Endo (5)
+        { dbTopic: 'Neurología', count: 5 },
+        { dbTopic: 'Nefrología', count: 5 },
+        { dbTopic: 'Hematología', count: 5 },
+        { dbTopic: 'Infectología', count: 4 },
+        { dbTopic: 'Reumatología', count: 4 },
+        { dbTopic: 'Geriatría', count: 4, fallback: 'Medicina Interna' }, // Fallback if missing
+
+        // Cirugía (20 q)
+        { dbTopic: 'Cirugía y Anestesia', count: 10 },
+        { dbTopic: 'Traumatología', count: 5 },
+        { dbTopic: 'Urología', count: 5 },
+
+        // Pediatría (29 q)
+        { dbTopic: 'Pediatría', count: 20 }, // Includes General Ped
+        { dbTopic: 'Neonatología', count: 9 }, // Explicit Neonatología slice
+
+        // Obs/Gin (29 q)
+        { dbTopic: 'Ginecología', count: 15 },
+        { dbTopic: 'Obstetricia', count: 14 },
+
+        // Others
+        { dbTopic: 'Psiquiatría', count: 14 },
+        { dbTopic: 'Salud Pública', count: 9 },
+
+        // Especialidades (12 q)
+        { dbTopic: 'Dermatología', count: 4 },
+        { dbTopic: 'Oftalmología', count: 4 },
+        { dbTopic: 'Otorrinolaringología', count: 4 }
+    ]
+
+    const handleGenerateSimulacro = () => {
+        if (loading) return
+
+        const selectedIds = []
+        const usedIndices = new Set()
+
+        // Helper to pick N random questions for a topic
+        const pickRandom = (topic, n, fallbackTopic = null) => {
+            // Filter candidates: Matches Topic AND Unused in this test AND (Ideally) Unused in history?
+            // For Simulacro, we usually allow reused questions, but prioritize new?
+            // Let's just pick random from available.
+
+            let candidates = allQuestions.filter(q =>
+                (q.topic === topic || (q.topic && q.topic.includes(topic)))
+            )
+
+            // Fallback
+            if (candidates.length < n && fallbackTopic) {
+                const fallbackCandidates = allQuestions.filter(q => q.topic === fallbackTopic)
+                candidates = [...candidates, ...fallbackCandidates]
+            }
+
+            // Shuffle
+            for (let i = candidates.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+            }
+
+            // Select
+            let count = 0
+            for (const q of candidates) {
+                if (count >= n) break
+                if (!usedIndices.has(q.id)) {
+                    selectedIds.push(q.id)
+                    usedIndices.add(q.id)
+                    count++
+                }
+            }
+
+            // Log shortage
+            if (count < n) console.warn(`Simulacro: Not enough questions for ${topic}. Wanted ${n}, got ${count}.`)
+        }
+
+        console.log('🚀 Generating Simulacro EUNACOM...')
+
+        EUNACOM_BLUEPRINT.forEach(item => {
+            pickRandom(item.dbTopic, item.count, item.fallback)
+        })
+
+        console.log(`✅ Generated ${selectedIds.length} questions.`)
+
+        // Navigate to Test Taker
+        // Assuming we pass IDs via state or specific route? 
+        // Existing logic likely passes filters.
+        // If we want exact IDs, we might need to modify TestTaker or pass them in state.
+        navigate('/test-taker', { state: { mode: 'simulacro', questionIds: selectedIds } })
+    }
+
     const handleCreateTest = async () => {
         if (!numQuestions || numQuestions <= 0) {
             alert('Por favor, ingresa el número de preguntas.')
@@ -339,12 +433,41 @@ function TestEngine() {
     const viableSubjects = subjects.filter(s => s.count > 0)
     const allSelected = viableSubjects.length > 0 && viableSubjects.every(s => selectedSubjects[s.name])
 
+    // State for recent tests
+    const [recentTests, setRecentTests] = useState([])
+
+    useEffect(() => {
+        fetchData()
+        fetchRecentTests()
+    }, [])
+
+    const fetchRecentTests = async () => {
+        try {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (!user) return
+
+            const { data, error } = await supabase
+                .from('tests')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false })
+                .limit(5)
+
+            if (error) throw error
+            setRecentTests(data || [])
+        } catch (error) {
+            console.error('Error fetching recent tests:', error)
+        }
+    }
+
+    // ... (Existing Functions) ...
+
     return (
         <div className="dashboard-layout">
             <Sidebar />
             <main className="dashboard-main">
                 <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
-                    <h2 style={{ color: 'white', margin: 0, fontSize: '1.25rem' }}>Crear Examen</h2>
+                    <h2 style={{ color: 'white', margin: 0, fontSize: '1.25rem' }}>Motor de Exámenes</h2>
                     <div className="header-user">
                         <span>Usuario</span>
                     </div>
@@ -352,7 +475,61 @@ function TestEngine() {
 
                 <div className="dashboard-content">
 
+                    {/* Recent Exams Accordion */}
+                    {recentTests.length > 0 && (
+                        <AccordionSection title="Exámenes Hechos (Recientes)">
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                {recentTests.map(test => (
+                                    <div key={test.id} style={{
+                                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                                        padding: '0.75rem', border: '1px solid #eee', borderRadius: '8px',
+                                        background: '#fcfcfc'
+                                    }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                            <div style={{
+                                                width: '32px', height: '32px', borderRadius: '50%',
+                                                background: test.status === 'completed' ? '#dcfce7' : '#e0f2fe',
+                                                color: test.status === 'completed' ? '#166534' : '#0369a1',
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold'
+                                            }}>
+                                                {test.score || 0}%
+                                            </div>
+                                            <div>
+                                                <div style={{ fontWeight: '600', color: '#333', fontSize: '0.9rem' }}>Examen #{test.id.slice(0, 6)}</div>
+                                                <div style={{ fontSize: '0.8rem', color: '#777' }}>
+                                                    {new Date(test.created_at).toLocaleDateString()} • {test.total_questions} preguntas
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => navigate(`/test-runner/${test.id}`)}
+                                            style={{
+                                                background: 'transparent',
+                                                border: '1px solid #4EBDDB',
+                                                color: '#4EBDDB',
+                                                padding: '0.25rem 0.75rem',
+                                                borderRadius: '6px',
+                                                cursor: 'pointer',
+                                                fontSize: '0.8rem',
+                                                fontWeight: '600'
+                                            }}
+                                        >
+                                            {test.status === 'completed' ? 'Ver Resultados' : 'Continuar'}
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => navigate('/history')}
+                                    style={{ marginTop: '0.5rem', alignSelf: 'center', border: 'none', background: 'none', color: '#4EBDDB', cursor: 'pointer', fontSize: '0.9rem' }}
+                                >
+                                    Ver Todos ➝
+                                </button>
+                            </div>
+                        </AccordionSection>
+                    )}
+
                     {/* Test Mode Accordion */}
+
                     <AccordionSection title="Modo de Examen">
                         <div style={{ display: 'flex', gap: '2rem' }}>
                             <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>

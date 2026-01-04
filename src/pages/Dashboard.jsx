@@ -75,41 +75,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-layout">
-            <aside className="sidebar">
-                <div className="sidebar__logo">
-                    <span>Mi eunacom</span>
-                </div>
-                <nav className="sidebar__nav">
-                    <a href="#" className="sidebar__item sidebar__item--active">
-                        <span className="sidebar__item-icon">🏠</span> Inicio
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">↺</span> Simulaciones
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">📄</span> Prueba
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">❓</span> Pregunta aleatoria
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">🃏</span> Flashcards de estudio
-                    </a>
-                    <div style={{ marginTop: 'auto' }}></div>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">📚</span> Repasar
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">📁</span> Recursos
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">🎮</span> Juegos
-                    </a>
-                    <a href="#" className="sidebar__item">
-                        <span className="sidebar__item-icon">🏪</span> Tienda
-                    </a>
-                </nav>
-            </aside>
+            <Sidebar />
 
             <main className="dashboard-main">
                 <header className="dashboard__header">
