@@ -144,6 +144,9 @@ function TestRunner() {
                         onConflict: 'user_id,question_id'
                     })
 
+                // Wait for trigger to complete (small delay to ensure DB trigger has fired)
+                await new Promise(resolve => setTimeout(resolve, 500))
+
                 // Fetch answer statistics
                 const { data: stats } = await supabase
                     .from('answer_statistics')
