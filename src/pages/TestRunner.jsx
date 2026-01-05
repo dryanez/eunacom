@@ -140,8 +140,6 @@ function TestRunner() {
                         is_correct: isCorrect,
                         is_omitted: false,
                         is_flagged: !!flags[currentQ.id]
-                    }, {
-                        onConflict: 'user_id,question_id'
                     })
 
                 // Wait for trigger to complete (small delay to ensure DB trigger has fired)
