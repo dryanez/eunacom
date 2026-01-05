@@ -28,8 +28,10 @@ const QuestionArea = ({
     const getIncorrectExplanation = (optionKey) => {
         if (!question.incorrect_explanations || !showFeedback) return null
 
-        // Try to find explanation for this option (case insensitive)
-        const regex = new RegExp(`\\*\\s*\\*\\*${optionKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
+        // Try to find explanation for this option (case insensitive for the letter)
+        // Matches both "**b) Option:**" and "**B) Option:**"
+        const lowerKey = optionKey.toLowerCase()
+        const regex = new RegExp(`\\*\\s*\\*\\*${lowerKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
         const match = question.incorrect_explanations.match(regex)
 
         if (match && match[1]) {
