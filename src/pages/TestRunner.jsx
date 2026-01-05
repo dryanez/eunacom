@@ -43,6 +43,10 @@ function TestRunner() {
 
             // Initialize local state from DB if resuming (answers are JSONB)
             if (testData.answers) setAnswers(testData.answers)
+            // Restore current question index if resuming
+            if (testData.current_question_index !== null && testData.current_question_index !== undefined) {
+                setCurrentQuestionIndex(testData.current_question_index)
+            }
             // We need to add 'flags' column to DB if we want persistence, 
             // for now let's keep it local or assume it's part of metadata later.
             // Let's assume ephemeral for MVP or add to answers object if needed.
@@ -86,13 +90,18 @@ function TestRunner() {
     }
 
     // Auto-save interactions
-    const saveProgress = useCallback(async (newAnswers) => {
+    const saveProgress = useCallback(async (newAnswers, questionIndex = null) => {
         if (!test) return
 
-        // Silent save
+        // Silent save - include current question index
+        const updateData = { answers: newAnswers }
+        if (questionIndex !== null) {
+            updateData.current_question_index = questionIndex
+        }
+
         const { error } = await supabase
             .from('tests')
-            .update({ answers: newAnswers })
+            .update(updateData)
             .eq('id', test.id)
 
         if (error) console.error('Error saving progress:', error)
@@ -282,12 +291,16 @@ function TestRunner() {
 
                     onNext={() => {
                         if (currentQuestionIndex < questionsData.length - 1) {
-                            setCurrentQuestionIndex(prev => prev + 1)
+                            const newIndex = currentQuestionIndex + 1
+                            setCurrentQuestionIndex(newIndex)
+                            saveProgress(answers, newIndex)
                         }
                     }}
                     onPrev={() => {
                         if (currentQuestionIndex > 0) {
-                            setCurrentQuestionIndex(prev => prev - 1)
+                            const newIndex = currentQuestionIndex - 1
+                            setCurrentQuestionIndex(newIndex)
+                            saveProgress(answers, newIndex)
                         }
                     }}
                     onFlag={handleFlag}
