@@ -19,6 +19,7 @@ function TestRunner() {
     const [answers, setAnswers] = useState({}) // { questionId: optionKey }
     const [flags, setFlags] = useState({})     // { questionId: boolean }
     const [feedback, setFeedback] = useState({}) // { questionId: { isCorrect: bool } } -> Tutor mode only
+    const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: count, B: count, ... } }
 
     const [showFinishModal, setShowFinishModal] = useState(false)
 
@@ -114,7 +115,7 @@ function TestRunner() {
         setFlags(prev => ({ ...prev, [currentQ.id]: !prev[currentQ.id] }))
     }
 
-    const handleSubmitAnswer = () => {
+    const handleSubmitAnswer = async () => {
         // Only for TUTOR mode individual check
         const currentQ = questionsData[currentQuestionIndex]
         const selected = answers[currentQ.id]
@@ -125,6 +126,44 @@ function TestRunner() {
             ...prev,
             [currentQ.id]: { isCorrect }
         }))
+
+        // Save to user_progress with selected_answer
+        try {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (user) {
+                await supabase
+                    .from('user_progress')
+                    .upsert({
+                        user_id: user.id,
+                        question_id: currentQ.id,
+                        selected_answer: selected,
+                        is_correct: isCorrect,
+                        is_omitted: false,
+                        is_flagged: !!flags[currentQ.id]
+                    }, {
+                        onConflict: 'user_id,question_id'
+                    })
+
+                // Fetch answer statistics
+                const { data: stats } = await supabase
+                    .from('answer_statistics')
+                    .select('option_selected, count')
+                    .eq('question_id', currentQ.id)
+
+                if (stats) {
+                    const statsObj = {}
+                    stats.forEach(s => {
+                        statsObj[s.option_selected] = s.count
+                    })
+                    setAnswerStats(prev => ({
+                        ...prev,
+                        [currentQ.id]: statsObj
+                    }))
+                }
+            }
+        } catch (error) {
+            console.error('Error saving progress:', error)
+        }
     }
 
     const handleFinishAttempt = () => {
@@ -225,6 +264,7 @@ function TestRunner() {
                     testMode={test.mode}
                     feedback={feedback[currentQuestion.id]}
                     showFeedback={!!feedback[currentQuestion.id] || test.mode === 'review'}
+                    answerStats={answerStats[currentQuestion.id]}
 
                     onNext={() => {
                         if (currentQuestionIndex < questionsData.length - 1) {

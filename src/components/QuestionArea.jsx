@@ -13,7 +13,8 @@ const QuestionArea = ({
     onSubmit,
     feedback,
     showFeedback, // Boolean: If true, show explanation and correct/incorrect styles
-    testMode
+    testMode,
+    answerStats // { A: count, B: count, C: count, D: count, E: count }
 }) => {
     const explanationRef = React.useRef(null)
 
@@ -37,11 +38,15 @@ const QuestionArea = ({
         return null
     }
 
-    // Mock stat for now
+    // Calculate percentage for each option
     const getStat = (optKey) => {
-        // Deterministic mock based on char code
-        const val = (optKey.charCodeAt(0) * 7) % 100
-        return val < 10 ? val + 20 : val
+        if (!answerStats || !showFeedback) return null
+
+        const total = Object.values(answerStats).reduce((sum, count) => sum + count, 0)
+        if (total === 0) return 0
+
+        const count = answerStats[optKey] || 0
+        return Math.round((count / total) * 100)
     }
 
     return (
@@ -139,10 +144,39 @@ const QuestionArea = ({
                                     <span style={{ fontSize: '1rem' }}>{text}</span>
                                 </div>
 
-                                {/* Stats (Visible always or only feedback?) -> User asked "all the way to the right" */}
-                                <div style={{ color: '#999', fontSize: '0.85rem', fontWeight: '500' }}>
-                                    {getStat(key)}%
-                                </div>
+                                {/* Stats with percentage bar (only shown after feedback) */}
+                                {showFeedback && answerStats && (
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: '150px' }}>
+                                        {/* Percentage Bar */}
+                                        <div style={{
+                                            flex: 1,
+                                            height: '8px',
+                                            background: '#e2e8f0',
+                                            borderRadius: '4px',
+                                            overflow: 'hidden'
+                                        }}>
+                                            <div style={{
+                                                width: `${getStat(key)}%`,
+                                                height: '100%',
+                                                background: isCorrect ? '#48bb78' : (isSelected ? '#4EBDDB' : '#cbd5e0'),
+                                                transition: 'width 0.5s ease-out'
+                                            }} />
+                                        </div>
+
+                                        {/* Percentage Text */}
+                                        <div style={{
+                                            color: isCorrect ? '#48bb78' : (isSelected ? '#4EBDDB' : '#999'),
+                                            fontSize: '0.9rem',
+                                            fontWeight: '600',
+                                            minWidth: '45px',
+                                            textAlign: 'right'
+                                        }}>
+                                            {getStat(key)}%
+                                            {isSelected && ' ←'}
+                                            {isCorrect && ' ✓'}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Incorrect Explanation (only shown for wrong answers when feedback is visible) */}

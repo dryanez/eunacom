@@ -22,7 +22,7 @@ const TestSidebar = ({
         }}>
             <h3 style={{ marginBottom: '1.5rem', color: '#333', fontSize: '1.1rem' }}>Preguntas</h3>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {questions.map((q, index) => {
                     const isFlagged = flags[q.id]
                     const isAnswered = answers[q.id] !== undefined
@@ -39,55 +39,96 @@ const TestSidebar = ({
                         bgColor = '#eefcfd'
                     }
 
+                    // Truncate question text to ~60 characters
+                    const questionPreview = q.question_text?.length > 60
+                        ? q.question_text.substring(0, 60) + '...'
+                        : q.question_text || 'Sin texto'
+
                     return (
                         <button
                             key={q.id}
                             onClick={() => onNavigate(index)}
                             style={{
                                 width: '100%',
-                                aspectRatio: '1/1',
+                                minHeight: '60px',
                                 border: `2px solid ${borderColor}`,
                                 borderRadius: '8px',
                                 background: bgColor,
                                 color: textColor,
-                                fontWeight: '600',
-                                fontSize: '0.9rem',
+                                fontWeight: index === currentQuestionIndex ? '600' : '400',
+                                fontSize: '0.85rem',
                                 cursor: 'pointer',
                                 position: 'relative',
                                 display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
+                                alignItems: 'flex-start',
+                                padding: '10px 12px',
+                                textAlign: 'left',
+                                gap: '10px',
+                                transition: 'all 0.2s'
                             }}
                         >
-                            {index + 1}
-
-                            {/* Indicators Overlay */}
-                            <div style={{ position: 'absolute', top: '-4px', right: '-4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                                {/* Flag */}
-                                {isFlagged && (
-                                    <span style={{ fontSize: '0.8rem' }}>🚩</span>
-                                )}
+                            {/* Question Number */}
+                            <div style={{
+                                minWidth: '24px',
+                                height: '24px',
+                                borderRadius: '50%',
+                                border: `2px solid ${borderColor}`,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '0.75rem',
+                                fontWeight: '600',
+                                flexShrink: 0,
+                                marginTop: '2px'
+                            }}>
+                                {index + 1}
                             </div>
 
-                            {/* Result Indicator (Bottom Right) */}
-                            {qFeedback && (
-                                <div style={{ position: 'absolute', bottom: '-4px', right: '-4px', background: 'white', borderRadius: '50%', padding: '2px' }}>
-                                    {qFeedback.isCorrect ? '✅' : '❌'}
-                                </div>
-                            )}
+                            {/* Question Preview Text */}
+                            <div style={{
+                                flex: 1,
+                                fontSize: '0.8rem',
+                                lineHeight: '1.4',
+                                color: index === currentQuestionIndex ? '#1a3b5c' : '#666',
+                                overflow: 'hidden',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical'
+                            }}>
+                                {questionPreview}
+                            </div>
 
-                            {/* Answered but no feedback yet (Timed mode or Tutor before check) */}
-                            {isAnswered && !qFeedback && !isFlagged && (
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: '4px',
-                                    right: '4px',
-                                    width: '6px',
-                                    height: '6px',
-                                    borderRadius: '50%',
-                                    background: '#4EBDDB'
-                                }} />
-                            )}
+                            {/* Indicators */}
+                            <div style={{
+                                position: 'absolute',
+                                top: '8px',
+                                right: '8px',
+                                display: 'flex',
+                                gap: '4px',
+                                alignItems: 'center'
+                            }}>
+                                {/* Flag */}
+                                {isFlagged && (
+                                    <span style={{ fontSize: '0.9rem' }}>🚩</span>
+                                )}
+
+                                {/* Result Indicator */}
+                                {qFeedback && (
+                                    <span style={{ fontSize: '0.9rem' }}>
+                                        {qFeedback.isCorrect ? '✅' : '❌'}
+                                    </span>
+                                )}
+
+                                {/* Answered dot */}
+                                {isAnswered && !qFeedback && (
+                                    <div style={{
+                                        width: '8px',
+                                        height: '8px',
+                                        borderRadius: '50%',
+                                        background: '#4EBDDB'
+                                    }} />
+                                )}
+                            </div>
                         </button>
                     )
                 })}
