@@ -96,15 +96,38 @@ function TestRunner() {
                 // Now update feedback with correct/incorrect for submitted questions
                 if (testData.submitted_questions && testData.submitted_questions.length > 0) {
                     const updatedFeedback = {}
-                    testData.submitted_questions.forEach(qId => {
+                    const updatedStats = {}
+
+                    // Set feedback for each submitted question
+                    for (const qId of testData.submitted_questions) {
                         const question = sortedQuestions.find(q => q.id === qId)
                         if (question && testData.answers && testData.answers[qId]) {
                             updatedFeedback[qId] = {
                                 isCorrect: testData.answers[qId] === question.correct_option
                             }
+
+                            // Fetch statistics for this question
+                            try {
+                                const { data: stats } = await supabase
+                                    .from('answer_statistics')
+                                    .select('option_selected, count')
+                                    .eq('question_id', qId)
+
+                                if (stats) {
+                                    const statsObj = {}
+                                    stats.forEach(s => {
+                                        statsObj[s.option_selected] = s.count
+                                    })
+                                    updatedStats[qId] = statsObj
+                                }
+                            } catch (error) {
+                                console.error('Error fetching stats for question:', qId, error)
+                            }
                         }
-                    })
+                    }
+
                     setFeedback(updatedFeedback)
+                    setAnswerStats(updatedStats)
                 }
             }
 
