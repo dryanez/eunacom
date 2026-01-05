@@ -129,18 +129,29 @@ function TestRunner() {
 
         // Save to user_progress with selected_answer
         try {
-            const { data: { user } } = await supabase.auth.getUser()
+            const { data: { user }, error: authError } = await supabase.auth.getUser()
+            console.log('🔐 Auth user:', user?.id, authError)
+
             if (user) {
-                await supabase
+                const insertData = {
+                    user_id: user.id,
+                    question_id: currentQ.id,
+                    selected_answer: selected,
+                    is_correct: isCorrect,
+                    is_omitted: false,
+                    is_flagged: !!flags[currentQ.id]
+                }
+                console.log('📝 Attempting to insert:', insertData)
+
+                const { data: upsertData, error: upsertError } = await supabase
                     .from('user_progress')
-                    .upsert({
-                        user_id: user.id,
-                        question_id: currentQ.id,
-                        selected_answer: selected,
-                        is_correct: isCorrect,
-                        is_omitted: false,
-                        is_flagged: !!flags[currentQ.id]
-                    })
+                    .upsert(insertData)
+
+                if (upsertError) {
+                    console.error('❌ Upsert error:', upsertError)
+                    throw upsertError
+                }
+                console.log('✅ Upsert successful:', upsertData)
 
                 // Wait for trigger to complete (small delay to ensure DB trigger has fired)
                 await new Promise(resolve => setTimeout(resolve, 500))
@@ -161,9 +172,11 @@ function TestRunner() {
                         [currentQ.id]: statsObj
                     }))
                 }
+            } else {
+                console.error('❌ No user found - not authenticated')
             }
         } catch (error) {
-            console.error('Error saving progress:', error)
+            console.error('💥 Error saving progress:', error)
         }
     }
 
