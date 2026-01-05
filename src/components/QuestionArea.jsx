@@ -24,19 +24,31 @@ const QuestionArea = ({
         }
     }, [showFeedback])
 
-    // Parse incorrect explanations (format: "* **a) Option:** Explanation\n* **b) Option:** Explanation")
+    // Parse incorrect explanations
+    // Handles two formats:
+    // 1. "* **a) Option:** Explanation" (with asterisks)
+    // 2. "a) Option explanation" (simple format)
     const getIncorrectExplanation = (optionKey) => {
         if (!question.incorrect_explanations || !showFeedback) return null
 
-        // Try to find explanation for this option (case insensitive for the letter)
-        // Matches both "**b) Option:**" and "**B) Option:**"
         const lowerKey = optionKey.toLowerCase()
-        const regex = new RegExp(`\\*\\s*\\*\\*${lowerKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
-        const match = question.incorrect_explanations.match(regex)
+
+        // Try format 1: "* **a) Option:** Explanation"
+        let regex = new RegExp(`\\*\\s*\\*\\*${lowerKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
+        let match = question.incorrect_explanations.match(regex)
 
         if (match && match[1]) {
             return match[1].trim()
         }
+
+        // Try format 2: "a) Option explanation" (simple format)
+        regex = new RegExp(`^${lowerKey}\\)\\s*(.+?)(?=\\n[a-e]\\)|$)`, 'ism')
+        match = question.incorrect_explanations.match(regex)
+
+        if (match && match[1]) {
+            return match[1].trim()
+        }
+
         return null
     }
 
