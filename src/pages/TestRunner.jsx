@@ -47,6 +47,20 @@ function TestRunner() {
             if (testData.current_question_index !== null && testData.current_question_index !== undefined) {
                 setCurrentQuestionIndex(testData.current_question_index)
             }
+            // Restore submitted questions (those that have been "checked")
+            if (testData.submitted_questions && Array.isArray(testData.submitted_questions)) {
+                // Rebuild feedback state for submitted questions
+                const restoredFeedback = {}
+                testData.submitted_questions.forEach(qId => {
+                    const question = testData.questions.find(id => id === qId)
+                    if (question && testData.answers && testData.answers[qId]) {
+                        // We'll need to fetch the question to check if answer is correct
+                        // For now, mark as submitted (we'll update this after questions load)
+                        restoredFeedback[qId] = { isCorrect: null } // Placeholder
+                    }
+                })
+                setFeedback(restoredFeedback)
+            }
             // We need to add 'flags' column to DB if we want persistence, 
             // for now let's keep it local or assume it's part of metadata later.
             // Let's assume ephemeral for MVP or add to answers object if needed.
@@ -78,6 +92,20 @@ function TestRunner() {
                     }
                 }).filter(Boolean)
                 setQuestionsData(sortedQuestions)
+
+                // Now update feedback with correct/incorrect for submitted questions
+                if (testData.submitted_questions && testData.submitted_questions.length > 0) {
+                    const updatedFeedback = {}
+                    testData.submitted_questions.forEach(qId => {
+                        const question = sortedQuestions.find(q => q.id === qId)
+                        if (question && testData.answers && testData.answers[qId]) {
+                            updatedFeedback[qId] = {
+                                isCorrect: testData.answers[qId] === question.correct_option
+                            }
+                        }
+                    })
+                    setFeedback(updatedFeedback)
+                }
             }
 
         } catch (error) {
@@ -180,6 +208,31 @@ function TestRunner() {
                         ...prev,
                         [currentQ.id]: statsObj
                     }))
+                }
+
+                // Mark this question as submitted (locked)
+                const { error: submitError } = await supabase
+                    .from('tests')
+                    .update({
+                        submitted_questions: supabase.rpc('array_append', {
+                            arr: test.submitted_questions || [],
+                            elem: currentQ.id
+                        })
+                    })
+                    .eq('id', test.id)
+
+                if (submitError) {
+                    console.error('Error marking question as submitted:', submitError)
+                    // Fallback: use direct array update
+                    const currentSubmitted = test.submitted_questions || []
+                    if (!currentSubmitted.includes(currentQ.id)) {
+                        await supabase
+                            .from('tests')
+                            .update({
+                                submitted_questions: [...currentSubmitted, currentQ.id]
+                            })
+                            .eq('id', test.id)
+                    }
                 }
             } else {
                 console.error('❌ No user found - not authenticated')
