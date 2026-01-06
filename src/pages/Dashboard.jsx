@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
 import Sidebar from '../components/Sidebar'
+import { getAvatar, getAvatarUrl } from '../config/avatars'
+import { getLevelTitle, getXPForLevel, getLevelProgress, formatXP } from '../utils/xpSystem'
 import {
     Play,
     HelpCircle,
@@ -27,6 +29,12 @@ const Dashboard = () => {
         correctAnswers: 0,
         streak: 0
     })
+    const [profile, setProfile] = useState({
+        level: 1,
+        xp: 0,
+        avatar_id: 'house',
+        display_name: ''
+    })
     const [loading, setLoading] = useState(true)
     const [showUserMenu, setShowUserMenu] = useState(false)
 
@@ -44,6 +52,7 @@ const Dashboard = () => {
     const fetchUserStats = async () => {
         setLoading(true)
         try {
+            // Fetch user progress
             const { data, error } = await supabase
                 .from('user_progress')
                 .select('*')
@@ -59,6 +68,17 @@ const Dashboard = () => {
                 correctAnswers: correct,
                 streak: 0
             })
+
+            // Fetch user profile for gamification data
+            const { data: profileData, error: profileError } = await supabase
+                .from('profiles')
+                .select('level, xp, avatar_id, display_name')
+                .eq('user_id', user.id)
+                .single()
+
+            if (!profileError && profileData) {
+                setProfile(profileData)
+            }
         } catch (error) {
             console.error('Error fetching stats:', error)
         } finally {
@@ -70,12 +90,13 @@ const Dashboard = () => {
         ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100)
         : 0
 
-    const level = 1
-    const xpCurrent = 0
-    const xpMax = 100
-    const rank = 0
+    // Gamification data from profile
+    const levelTitle = getLevelTitle(profile.level)
+    const xpForNextLevel = getXPForLevel(profile.level + 1)
+    const levelProgress = getLevelProgress(profile.xp, profile.level)
+    const avatar = getAvatar(profile.avatar_id)
 
-    const userName = user?.user_metadata?.full_name || user?.email || 'Guest'
+    const userName = profile.display_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Guest'
 
     const handleLogout = async () => {
         await signOut()
@@ -132,7 +153,16 @@ const Dashboard = () => {
                             onClick={() => setShowUserMenu(!showUserMenu)}
                             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
                         >
-                            <img src={`https://ui-avatars.com/api/?name=${userName}&background=8b5cf6&color=fff`} alt="User" />
+                            <img
+                                src={getAvatarUrl(profile.avatar_id)}
+                                alt={userName}
+                                style={{
+                                    width: '32px',
+                                    height: '32px',
+                                    borderRadius: '50%',
+                                    border: '2px solid rgba(139, 92, 246, 0.3)'
+                                }}
+                            />
                             <span>{userName}</span>
                             <ChevronDown size={16} />
                         </div>
@@ -183,27 +213,30 @@ const Dashboard = () => {
                         <div className="profile-card-top">
                             <div className="profile-avatar-large">
                                 <img
-                                    src={`https://ui-avatars.com/api/?name=${userName}&background=8b5cf6&color=fff&size=128`}
-                                    alt="Profile"
+                                    src={getAvatarUrl(profile.avatar_id)}
+                                    alt={avatar.name}
+                                    title={`${avatar.name} (${avatar.show})`}
                                     style={{ width: '100%', height: '100%', borderRadius: '50%' }}
                                 />
                                 <div className="profile-avatar-badge">
-                                    <Flame size={20} color="#f97316" />
+                                    <Trophy size={20} color="#f59e0b" />
                                 </div>
                             </div>
                             <div className="profile-info">
-                                <div className="profile-name">Estudiante</div>
-                                <div className="profile-level">Nivel {level}</div>
+                                <div className="profile-name">{userName}</div>
+                                <div className="profile-level">
+                                    {levelTitle} - Nivel {profile.level}
+                                </div>
                             </div>
                         </div>
 
                         <div className="xp-container">
                             <div className="xp-text">
-                                <span>{xpMax} XP para subir de nivel</span>
-                                <span>{xpCurrent}/{xpMax} XP</span>
+                                <span>{formatXP(xpForNextLevel - profile.xp)} XP para subir de nivel</span>
+                                <span>{formatXP(profile.xp)}/{formatXP(xpForNextLevel)} XP</span>
                             </div>
                             <div className="xp-bar-container">
-                                <div className="xp-bar-fill" style={{ width: `${(xpCurrent / xpMax) * 100}%` }}></div>
+                                <div className="xp-bar-fill" style={{ width: `${levelProgress}%` }}></div>
                             </div>
                         </div>
                     </div>
