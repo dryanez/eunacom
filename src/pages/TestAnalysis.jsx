@@ -178,6 +178,14 @@ const TestAnalysis = () => {
                 const correctAnswers = questionStats.find(s => s.option_selected === q.correct_answer)?.count || 0
                 const avgPercentage = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0
 
+                // Tag Parsing
+                let parsedTags = []
+                if (Array.isArray(q.tags)) parsedTags = q.tags
+                else if (typeof q.tags === 'string') {
+                    const cleaned = q.tags.replace(/^{|}$/g, '')
+                    if (cleaned) parsedTags = cleaned.split(',').map(t => t.trim().replace(/^"|"$/g, ''))
+                }
+
                 return {
                     id: q.id,
                     text: q.question_text,
@@ -188,7 +196,7 @@ const TestAnalysis = () => {
                     isOmitted,
                     avgPercentage,
                     totalAnswers,
-                    tags: Array.isArray(q.tags) ? q.tags : [],
+                    tags: parsedTags,
                     video_url: q.video_url,
                     eunacom_code: q.eunacom_code
                 }
@@ -527,7 +535,7 @@ const TestAnalysis = () => {
                                     </div>
 
                                     {/* Table Header */}
-                                    <div style={{ display: 'grid', gridTemplateColumns: '50px 100px 1fr 2fr 50px 80px 50px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>CODE</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
@@ -541,7 +549,7 @@ const TestAnalysis = () => {
                                     {testQuestions.map((q, idx) => (
                                         <div key={q.id} style={{
                                             display: 'grid',
-                                            gridTemplateColumns: '50px 100px 1fr 2fr 50px 80px 50px',
+                                            gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px',
                                             padding: '1rem 1.5rem',
                                             borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
                                             alignItems: 'center',
@@ -549,10 +557,10 @@ const TestAnalysis = () => {
                                         }}>
                                             <div style={{ fontSize: '0.9rem', color: '#999' }}>{q.id}</div>
                                             <div style={{ fontSize: '0.85rem', color: '#4EBDDB', fontWeight: '600' }}>{q.eunacom_code || '-'}</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>{q.topic || 'General'}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={q.topic}>{q.topic || 'General'}</div>
 
                                             {/* Tags */}
-                                            <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap' }}>
+                                            <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'nowrap', overflow: 'hidden' }}>
                                                 {q.tags && q.tags.slice(0, 3).map((tag, tIdx) => (
                                                     <span key={tIdx} style={{
                                                         background: '#edf2f7',
