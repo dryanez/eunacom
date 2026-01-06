@@ -14,7 +14,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
         try {
             setLoading(true)
 
-            // 1. Fetch test details (score, etc)
+            // 1. Fetch test details (including questions and answers)
             const { data: testData, error: testError } = await supabase
                 .from('tests')
                 .select('*')
@@ -23,56 +23,61 @@ const TestAnalysisModal = ({ testId, onClose }) => {
 
             if (testError) throw testError
 
-            // 2. Fetch user progress (answers)
-            const { data: progressData, error: progressError } = await supabase
-                .from('user_progress')
-                .select('*')
-                .eq('test_id', testId)
+            const questionIds = testData.questions || []
+            const userAnswers = testData.answers || {}
 
-            if (progressError) throw progressError
+            // 2. Fetch question details (topic, correct_answer) for calculation
+            const { data: questionsData, error: qError } = await supabase
+                .from('questions')
+                .select('id, topic, correct_answer')
+                .in('id', questionIds)
 
-            // 3. Fetch topics for these questions (Two-step query to avoid JOIN issues)
-            const questionIds = progressData.map(p => p.question_id)
-            let questionMap = {}
+            if (qError) throw qError
 
-            if (questionIds.length > 0) {
-                const { data: questionData, error: qError } = await supabase
-                    .from('questions')
-                    .select('id, topic')
-                    .in('id', questionIds)
-
-                if (qError) throw qError
-
-                // Create lookup map
-                questionData.forEach(q => {
-                    questionMap[q.id] = q.topic
-                })
-            }
-
-            // Calculate Stats
-            const totalQ = testData.total_questions || 0
-            const correct = progressData.filter(p => p.is_correct).length
-            const incorrect = progressData.filter(p => !p.is_correct).length
-            const omitted = totalQ - (correct + incorrect)
-
-            // Calculate Topic Breakdown
+            // 3. Compute Stats Locally (Test Table is the Source of Truth)
+            let correctCount = 0
+            let incorrectCount = 0
+            let omittedCount = 0
             const topicMap = {}
 
-            progressData.forEach(p => {
-                const topic = questionMap[p.question_id] || 'General' // Use the map
-                if (!topicMap[topic]) topicMap[topic] = { total: 0, correct: 0, incorrect: 0, omitted: 0 }
-
-                topicMap[topic].total += 1
-                if (p.is_correct) topicMap[topic].correct += 1
-                else topicMap[topic].incorrect += 1
+            // Initialize topic map
+            questionsData.forEach(q => {
+                const topic = q.topic || 'General'
+                if (!topicMap[topic]) {
+                    topicMap[topic] = { total: 0, correct: 0, incorrect: 0, omitted: 0 }
+                }
             })
 
+            // Iterate through questions to score them
+            questionsData.forEach(q => {
+                const topic = q.topic || 'General'
+                const userAns = userAnswers[q.id]
+
+                topicMap[topic].total += 1
+
+                if (!userAns) {
+                    omittedCount++
+                    topicMap[topic].omitted += 1
+                } else if (userAns === q.correct_answer) {
+                    correctCount++
+                    topicMap[topic].correct += 1
+                } else {
+                    incorrectCount++
+                    topicMap[topic].incorrect += 1
+                }
+            })
+
+            // Calculate score purely based on this data (matches the table logic)
+            const score = questionIds.length > 0
+                ? Math.round((correctCount / questionIds.length) * 100)
+                : 0
+
             setStats({
-                score: testData.score || 0,
-                total: totalQ,
-                correct,
-                incorrect,
-                omitted
+                score: score,
+                total: questionIds.length,
+                correct: correctCount,
+                incorrect: incorrectCount,
+                omitted: omittedCount
             })
 
             setTopicBreakdown(Object.entries(topicMap).map(([name, data]) => ({ name, ...data })))
