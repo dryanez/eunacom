@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import Sidebar from '../components/Sidebar'
 import '../styles/dashboard.css'
 
 const TestAnalysis = () => {
@@ -219,8 +218,6 @@ const TestAnalysis = () => {
 
     return (
         <div className="dashboard-layout">
-            <Sidebar userName={userName} />
-
             <main className="dashboard-main">
                 <div style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
                     <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
-import Sidebar from '../components/Sidebar'
 import { TrendingUp, Target, Award, Clock, CheckCircle, XCircle, Circle } from 'lucide-react'
 import '../styles/dashboard.css'
 
@@ -211,8 +210,6 @@ const Statistics = () => {
 
     return (
         <div className="dashboard-layout">
-            <Sidebar />
-
             <main className="dashboard-main">
                 <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
                     {/* Header */}
