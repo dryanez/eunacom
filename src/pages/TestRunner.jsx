@@ -234,27 +234,28 @@ function TestRunner() {
                 }
 
                 // Mark this question as submitted (locked)
-                const { error: submitError } = await supabase
-                    .from('tests')
-                    .update({
-                        submitted_questions: supabase.rpc('array_append', {
-                            arr: test.submitted_questions || [],
-                            elem: currentQ.id
-                        })
-                    })
-                    .eq('id', test.id)
+                const currentSubmitted = (test.submitted_questions && Array.isArray(test.submitted_questions))
+                    ? test.submitted_questions
+                    : []
 
-                if (submitError) {
-                    console.error('Error marking question as submitted:', submitError)
-                    // Fallback: use direct array update
-                    const currentSubmitted = test.submitted_questions || []
-                    if (!currentSubmitted.includes(currentQ.id)) {
-                        await supabase
-                            .from('tests')
-                            .update({
-                                submitted_questions: [...currentSubmitted, currentQ.id]
-                            })
-                            .eq('id', test.id)
+                if (!currentSubmitted.includes(currentQ.id)) {
+                    const newSubmitted = [...currentSubmitted, currentQ.id]
+
+                    // Update local state first
+                    setTest(prev => ({
+                        ...prev,
+                        submitted_questions: newSubmitted
+                    }))
+
+                    const { error: submitError } = await supabase
+                        .from('tests')
+                        .update({
+                            submitted_questions: newSubmitted
+                        })
+                        .eq('id', test.id)
+
+                    if (submitError) {
+                        console.error('Error marking question as submitted:', submitError)
                     }
                 }
             } else {
