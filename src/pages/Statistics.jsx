@@ -209,198 +209,44 @@ const Statistics = () => {
     }
 
     return (
-        <div className="dashboard-layout">
-            <main className="dashboard-main">
-                <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
-                    {/* Header */}
-                    <div style={{ marginBottom: '2rem' }}>
-                        <h1 style={{
-                            fontSize: '2rem',
-                            fontWeight: '800',
-                            background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            margin: 0
+        <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+            {/* Header */}
+            <div style={{ marginBottom: '2rem' }}>
+                <h1 style={{
+                    fontSize: '2rem',
+                    fontWeight: '800',
+                    background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    margin: 0
+                }}>
+                    Estadísticas
+                </h1>
+                <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>
+                    Resumen completo de tu rendimiento
+                </p>
+            </div>
+
+            {loading ? (
+                <div style={{ textAlign: 'center', padding: '4rem', color: '#9ca3af' }}>
+                    Cargando estadísticas...
+                </div>
+            ) : (
+                <div style={{ display: 'grid', gap: '2rem' }}>
+                    {/* Top Row - Performance & QBank */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '2rem' }}>
+                        {/* Performance Card */}
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '20px',
+                            padding: '2rem',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                            border: '1px solid var(--color-gray-200)'
                         }}>
-                            Estadísticas
-                        </h1>
-                        <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>
-                            Resumen completo de tu rendimiento
-                        </p>
-                    </div>
+                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                                <DonutChart percent={accuracy} label="Correctas" />
 
-                    {loading ? (
-                        <div style={{ textAlign: 'center', padding: '4rem', color: '#9ca3af' }}>
-                            Cargando estadísticas...
-                        </div>
-                    ) : (
-                        <div style={{ display: 'grid', gap: '2rem' }}>
-                            {/* Top Row - Performance & QBank */}
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '2rem' }}>
-                                {/* Performance Card */}
-                                <div style={{
-                                    background: 'white',
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                    border: '1px solid var(--color-gray-200)'
-                                }}>
-                                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                                        <DonutChart percent={accuracy} label="Correctas" />
-
-                                        <div style={{ flex: 1 }}>
-                                            <h3 style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: '700',
-                                                color: '#374151',
-                                                marginBottom: '1.5rem',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '0.5rem'
-                                            }}>
-                                                <TrendingUp size={24} color="#8b5cf6" />
-                                                Tu Rendimiento
-                                            </h3>
-
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
-                                                        <CheckCircle size={16} color="#10b981" />
-                                                        <span>Total Correctas</span>
-                                                    </div>
-                                                    <span style={{
-                                                        background: '#d1fae5',
-                                                        color: '#065f46',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.totalCorrect}
-                                                    </span>
-                                                </div>
-
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
-                                                        <XCircle size={16} color="#ef4444" />
-                                                        <span>Total Incorrectas</span>
-                                                    </div>
-                                                    <span style={{
-                                                        background: '#fee2e2',
-                                                        color: '#991b1b',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.totalIncorrect}
-                                                    </span>
-                                                </div>
-
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
-                                                        <Circle size={16} color="#9ca3af" />
-                                                        <span>Total Omitidas</span>
-                                                    </div>
-                                                    <span style={{
-                                                        background: '#f3f4f6',
-                                                        color: '#4b5563',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.totalOmitted}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* QBank Usage Card */}
-                                <div style={{
-                                    background: 'white',
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                    border: '1px solid var(--color-gray-200)'
-                                }}>
-                                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                                        <DonutChart percent={usagePercent} label="Usadas" color="url(#gradient-usage)" />
-
-                                        <div style={{ flex: 1 }}>
-                                            <h3 style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: '700',
-                                                color: '#374151',
-                                                marginBottom: '1.5rem',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '0.5rem'
-                                            }}>
-                                                <Target size={24} color="#06b6d4" />
-                                                Uso del QBank
-                                            </h3>
-
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <span style={{ color: '#6b7280' }}>Preguntas Usadas</span>
-                                                    <span style={{
-                                                        background: 'linear-gradient(135deg, #06b6d4, #14b8a6)',
-                                                        color: 'white',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.usedQuestions}
-                                                    </span>
-                                                </div>
-
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <span style={{ color: '#6b7280' }}>Preguntas Sin Usar</span>
-                                                    <span style={{
-                                                        background: '#f3f4f6',
-                                                        color: '#4b5563',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.unusedQuestions}
-                                                    </span>
-                                                </div>
-
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <span style={{ color: '#6b7280' }}>Total de Preguntas</span>
-                                                    <span style={{
-                                                        background: '#fef3c7',
-                                                        color: '#92400e',
-                                                        padding: '0.25rem 0.75rem',
-                                                        borderRadius: '12px',
-                                                        fontWeight: '700',
-                                                        fontSize: '0.9rem'
-                                                    }}>
-                                                        {stats.totalQuestions}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Bottom Row - Test Count & Percentile */}
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
-                                {/* Test Count Card */}
-                                <div style={{
-                                    background: 'white',
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                    border: '1px solid var(--color-gray-200)'
-                                }}>
+                                <div style={{ flex: 1 }}>
                                     <h3 style={{
                                         fontSize: '1.25rem',
                                         fontWeight: '700',
@@ -410,69 +256,78 @@ const Statistics = () => {
                                         alignItems: 'center',
                                         gap: '0.5rem'
                                     }}>
-                                        <Clock size={24} color="#f59e0b" />
-                                        Contador de Exámenes
+                                        <TrendingUp size={24} color="#8b5cf6" />
+                                        Tu Rendimiento
                                     </h3>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ color: '#6b7280' }}>Exámenes Creados</span>
-                                            <span style={{
-                                                background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-                                                color: 'white',
-                                                padding: '0.25rem 0.75rem',
-                                                borderRadius: '12px',
-                                                fontWeight: '700',
-                                                fontSize: '0.9rem',
-                                                minWidth: '50px',
-                                                textAlign: 'center'
-                                            }}>
-                                                {stats.testsCreated}
-                                            </span>
-                                        </div>
-
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ color: '#6b7280' }}>Exámenes Completados</span>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
+                                                <CheckCircle size={16} color="#10b981" />
+                                                <span>Total Correctas</span>
+                                            </div>
                                             <span style={{
                                                 background: '#d1fae5',
                                                 color: '#065f46',
                                                 padding: '0.25rem 0.75rem',
                                                 borderRadius: '12px',
                                                 fontWeight: '700',
-                                                fontSize: '0.9rem',
-                                                minWidth: '50px',
-                                                textAlign: 'center'
+                                                fontSize: '0.9rem'
                                             }}>
-                                                {stats.testsCompleted}
+                                                {stats.totalCorrect}
                                             </span>
                                         </div>
 
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ color: '#6b7280' }}>Exámenes Suspendidos</span>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
+                                                <XCircle size={16} color="#ef4444" />
+                                                <span>Total Incorrectas</span>
+                                            </div>
                                             <span style={{
-                                                background: '#fef3c7',
-                                                color: '#92400e',
+                                                background: '#fee2e2',
+                                                color: '#991b1b',
                                                 padding: '0.25rem 0.75rem',
                                                 borderRadius: '12px',
                                                 fontWeight: '700',
-                                                fontSize: '0.9rem',
-                                                minWidth: '50px',
-                                                textAlign: 'center'
+                                                fontSize: '0.9rem'
                                             }}>
-                                                {stats.suspendedTests}
+                                                {stats.totalIncorrect}
+                                            </span>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6b7280' }}>
+                                                <Circle size={16} color="#9ca3af" />
+                                                <span>Total Omitidas</span>
+                                            </div>
+                                            <span style={{
+                                                background: '#f3f4f6',
+                                                color: '#4b5563',
+                                                padding: '0.25rem 0.75rem',
+                                                borderRadius: '12px',
+                                                fontWeight: '700',
+                                                fontSize: '0.9rem'
+                                            }}>
+                                                {stats.totalOmitted}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                {/* Percentile Rank Card */}
-                                <div style={{
-                                    background: 'white',
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                    border: '1px solid var(--color-gray-200)'
-                                }}>
+                        {/* QBank Usage Card */}
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '20px',
+                            padding: '2rem',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                            border: '1px solid var(--color-gray-200)'
+                        }}>
+                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                                <DonutChart percent={usagePercent} label="Usadas" color="url(#gradient-usage)" />
+
+                                <div style={{ flex: 1 }}>
                                     <h3 style={{
                                         fontSize: '1.25rem',
                                         fontWeight: '700',
@@ -482,92 +337,235 @@ const Statistics = () => {
                                         alignItems: 'center',
                                         gap: '0.5rem'
                                     }}>
-                                        <Award size={24} color="#f59e0b" />
-                                        Ranking Percentil
+                                        <Target size={24} color="#06b6d4" />
+                                        Uso del QBank
                                     </h3>
 
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <div style={{
-                                                    width: '12px',
-                                                    height: '12px',
-                                                    borderRadius: '50%',
-                                                    background: 'linear-gradient(135deg, #10b981, #059669)'
-                                                }} />
-                                                <span style={{ color: '#6b7280' }}>Tu Puntuación (Percentil {stats.percentileRank})</span>
-                                            </div>
+                                            <span style={{ color: '#6b7280' }}>Preguntas Usadas</span>
                                             <span style={{
-                                                background: 'linear-gradient(135deg, #10b981, #059669)',
+                                                background: 'linear-gradient(135deg, #06b6d4, #14b8a6)',
                                                 color: 'white',
                                                 padding: '0.25rem 0.75rem',
                                                 borderRadius: '12px',
                                                 fontWeight: '700',
                                                 fontSize: '0.9rem'
                                             }}>
-                                                {accuracy}%
+                                                {stats.usedQuestions}
                                             </span>
                                         </div>
 
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <div style={{
-                                                    width: '12px',
-                                                    height: '12px',
-                                                    borderRadius: '50%',
-                                                    background: '#3b82f6'
-                                                }} />
-                                                <span style={{ color: '#6b7280' }}>Puntuación Mediana (Percentil 49)</span>
-                                            </div>
+                                            <span style={{ color: '#6b7280' }}>Preguntas Sin Usar</span>
                                             <span style={{
-                                                background: '#dbeafe',
-                                                color: '#1e40af',
+                                                background: '#f3f4f6',
+                                                color: '#4b5563',
                                                 padding: '0.25rem 0.75rem',
                                                 borderRadius: '12px',
                                                 fontWeight: '700',
                                                 fontSize: '0.9rem'
                                             }}>
-                                                {stats.medianScore}%
-                                            </span>
-                                        </div>
-
-                                        <div style={{ height: '1px', background: '#e5e7eb', margin: '0.5rem 0' }} />
-
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ color: '#6b7280', fontSize: '0.9rem' }}>Tu Tiempo Promedio (seg)</span>
-                                            <span style={{
-                                                background: '#f3f4f6',
-                                                color: '#374151',
-                                                padding: '0.25rem 0.75rem',
-                                                borderRadius: '12px',
-                                                fontWeight: '600',
-                                                fontSize: '0.85rem'
-                                            }}>
-                                                {stats.avgTimeSpent}
+                                                {stats.unusedQuestions}
                                             </span>
                                         </div>
 
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ color: '#6b7280', fontSize: '0.9rem' }}>Tiempo Promedio Otros (seg)</span>
+                                            <span style={{ color: '#6b7280' }}>Total de Preguntas</span>
                                             <span style={{
-                                                background: '#f3f4f6',
-                                                color: '#374151',
+                                                background: '#fef3c7',
+                                                color: '#92400e',
                                                 padding: '0.25rem 0.75rem',
                                                 borderRadius: '12px',
-                                                fontWeight: '600',
-                                                fontSize: '0.85rem'
+                                                fontWeight: '700',
+                                                fontSize: '0.9rem'
                                             }}>
-                                                {stats.othersAvgTime}
+                                                {stats.totalQuestions}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    )}
+                    </div>
+
+                    {/* Bottom Row - Test Count & Percentile */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+                        {/* Test Count Card */}
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '20px',
+                            padding: '2rem',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                            border: '1px solid var(--color-gray-200)'
+                        }}>
+                            <h3 style={{
+                                fontSize: '1.25rem',
+                                fontWeight: '700',
+                                color: '#374151',
+                                marginBottom: '1.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem'
+                            }}>
+                                <Clock size={24} color="#f59e0b" />
+                                Contador de Exámenes
+                            </h3>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ color: '#6b7280' }}>Exámenes Creados</span>
+                                    <span style={{
+                                        background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                                        color: 'white',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '700',
+                                        fontSize: '0.9rem',
+                                        minWidth: '50px',
+                                        textAlign: 'center'
+                                    }}>
+                                        {stats.testsCreated}
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ color: '#6b7280' }}>Exámenes Completados</span>
+                                    <span style={{
+                                        background: '#d1fae5',
+                                        color: '#065f46',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '700',
+                                        fontSize: '0.9rem',
+                                        minWidth: '50px',
+                                        textAlign: 'center'
+                                    }}>
+                                        {stats.testsCompleted}
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ color: '#6b7280' }}>Exámenes Suspendidos</span>
+                                    <span style={{
+                                        background: '#fef3c7',
+                                        color: '#92400e',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '700',
+                                        fontSize: '0.9rem',
+                                        minWidth: '50px',
+                                        textAlign: 'center'
+                                    }}>
+                                        {stats.suspendedTests}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Percentile Rank Card */}
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '20px',
+                            padding: '2rem',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                            border: '1px solid var(--color-gray-200)'
+                        }}>
+                            <h3 style={{
+                                fontSize: '1.25rem',
+                                fontWeight: '700',
+                                color: '#374151',
+                                marginBottom: '1.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem'
+                            }}>
+                                <Award size={24} color="#f59e0b" />
+                                Ranking Percentil
+                            </h3>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <div style={{
+                                            width: '12px',
+                                            height: '12px',
+                                            borderRadius: '50%',
+                                            background: 'linear-gradient(135deg, #10b981, #059669)'
+                                        }} />
+                                        <span style={{ color: '#6b7280' }}>Tu Puntuación (Percentil {stats.percentileRank})</span>
+                                    </div>
+                                    <span style={{
+                                        background: 'linear-gradient(135deg, #10b981, #059669)',
+                                        color: 'white',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '700',
+                                        fontSize: '0.9rem'
+                                    }}>
+                                        {accuracy}%
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <div style={{
+                                            width: '12px',
+                                            height: '12px',
+                                            borderRadius: '50%',
+                                            background: '#3b82f6'
+                                        }} />
+                                        <span style={{ color: '#6b7280' }}>Puntuación Mediana (Percentil 49)</span>
+                                    </div>
+                                    <span style={{
+                                        background: '#dbeafe',
+                                        color: '#1e40af',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '700',
+                                        fontSize: '0.9rem'
+                                    }}>
+                                        {stats.medianScore}%
+                                    </span>
+                                </div>
+
+                                <div style={{ height: '1px', background: '#e5e7eb', margin: '0.5rem 0' }} />
+
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ color: '#6b7280', fontSize: '0.9rem' }}>Tu Tiempo Promedio (seg)</span>
+                                    <span style={{
+                                        background: '#f3f4f6',
+                                        color: '#374151',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '600',
+                                        fontSize: '0.85rem'
+                                    }}>
+                                        {stats.avgTimeSpent}
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span style={{ color: '#6b7280', fontSize: '0.9rem' }}>Tiempo Promedio Otros (seg)</span>
+                                    <span style={{
+                                        background: '#f3f4f6',
+                                        color: '#374151',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '12px',
+                                        fontWeight: '600',
+                                        fontSize: '0.85rem'
+                                    }}>
+                                        {stats.othersAvgTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
+            )}
         </div>
+            </main >
+        </div >
     )
 }
 

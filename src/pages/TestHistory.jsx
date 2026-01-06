@@ -382,9 +382,7 @@ function TestHistory() {
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
-    )
+                )
 }
 
-export default TestHistory
+                export default TestHistory
