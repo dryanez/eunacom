@@ -23,7 +23,7 @@ const Sidebar = () => {
     const { signOut, user, isAdmin } = useAuth()
     const navigate = useNavigate()
     const [isMobileOpen, setIsMobileOpen] = React.useState(false)
-    const [examenesOpen, setExamenesOpen] = React.useState(true)
+    const [examenesOpen, setExamenesOpen] = React.useState(false)
 
     const handleLogout = async () => {
         await signOut()
