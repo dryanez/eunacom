@@ -23,41 +23,48 @@ const TestAnalysisModal = ({ testId, onClose }) => {
 
             if (testError) throw testError
 
-            // 2. Fetch user progress for this test (answers)
-            // We need question data too (topic)
+            // 2. Fetch user progress (answers)
             const { data: progressData, error: progressError } = await supabase
                 .from('user_progress')
-                .select('*, questions(topic)')
+                .select('*')
                 .eq('test_id', testId)
 
             if (progressError) throw progressError
 
+            // 3. Fetch topics for these questions (Two-step query to avoid JOIN issues)
+            const questionIds = progressData.map(p => p.question_id)
+            let questionMap = {}
+
+            if (questionIds.length > 0) {
+                const { data: questionData, error: qError } = await supabase
+                    .from('questions')
+                    .select('id, topic')
+                    .in('id', questionIds)
+
+                if (qError) throw qError
+
+                // Create lookup map
+                questionData.forEach(q => {
+                    questionMap[q.id] = q.topic
+                })
+            }
+
             // Calculate Stats
-            const totalQ = testData.total_questions
+            const totalQ = testData.total_questions || 0
             const correct = progressData.filter(p => p.is_correct).length
-            const incorrect = progressData.filter(p => p.is_correct === false).length // explicit false, not null
-            const omitted = totalQ - (correct + incorrect) // simplistic approximation (assuming all others are omitted)
+            const incorrect = progressData.filter(p => !p.is_correct).length
+            const omitted = totalQ - (correct + incorrect)
 
             // Calculate Topic Breakdown
-            const topicMap = {} // { 'Cardiology': { total: 0, correct: 0, incorrect: 0, omitted: 0 } }
-
-            // We iterate over progressData to enable topic mapping
-            // Note: If a question wasn't answered, it might not be in user_progress dependent on how we save "omitted".
-            // If user_progress only stores answered questions, we miss the omitted topics unless we fetch all questions for the test.
-            // For now, let's assume user_progress has entries or we calculate what we can. 
-            // Better approach: fetch ALL questions for this test ID if possible.
-            // Since we don't have a direct 'test_questions' table easily accessible without query, 
-            // we will rely on what's in 'submitted_questions' (from test json) or just use user_progress.
-            // Let's stick to user_progress for V1.
+            const topicMap = {}
 
             progressData.forEach(p => {
-                const topic = p.questions?.topic || 'General'
+                const topic = questionMap[p.question_id] || 'General' // Use the map
                 if (!topicMap[topic]) topicMap[topic] = { total: 0, correct: 0, incorrect: 0, omitted: 0 }
 
                 topicMap[topic].total += 1
                 if (p.is_correct) topicMap[topic].correct += 1
                 else topicMap[topic].incorrect += 1
-                // We can't easily track omitted per topic unless we know the topic of omitted questions.
             })
 
             setStats({
@@ -72,6 +79,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
 
         } catch (error) {
             console.error('Error analyzing test:', error)
+            setStats(null)
         } finally {
             setLoading(false)
         }
@@ -101,6 +109,8 @@ const TestAnalysisModal = ({ testId, onClose }) => {
 
                 {loading ? (
                     <div style={{ textAlign: 'center', padding: '3rem' }}>Cargando análisis...</div>
+                ) : !stats ? (
+                    <div style={{ textAlign: 'center', padding: '3rem', color: '#e53e3e' }}>Error al cargar los datos. Intenta nuevamente.</div>
                 ) : (
                     <>
                         <h2 style={{ color: '#1a3b5c', marginBottom: '2rem', textAlign: 'center' }}>Resultados del Examen</h2>
@@ -112,7 +122,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                                     <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="8" />
                                     <circle
                                         cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="8"
-                                        strokeDasharray={`${stats.score * 2.83} 283`}
+                                        strokeDasharray={`${(stats.score / 100) * 283} 283`}
                                         transform="rotate(-90 50 50)"
                                         strokeLinecap="round"
                                     />
@@ -156,8 +166,8 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                                     <tr style={{ borderBottom: '2px solid #f0f0f0', textAlign: 'left', color: '#777' }}>
                                         <th style={{ padding: '0.75rem' }}>Tema</th>
                                         <th style={{ padding: '0.75rem', textAlign: 'center' }}>Total P</th>
-                                        <th style={{ padding: '0.75rem', textAlign: 'center' }}>Correctas (100%)</th>
-                                        <th style={{ padding: '0.75rem', textAlign: 'center' }}>Incorrectas (0%)</th>
+                                        <th style={{ padding: '0.75rem', textAlign: 'center' }}>Correctas</th>
+                                        <th style={{ padding: '0.75rem', textAlign: 'center' }}>Incorrectas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,10 +176,10 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                                             <td style={{ padding: '0.75rem', fontWeight: '500', color: '#444' }}>{t.name}</td>
                                             <td style={{ padding: '0.75rem', textAlign: 'center' }}>{t.total}</td>
                                             <td style={{ padding: '0.75rem', textAlign: 'center', color: '#48bb78' }}>
-                                                {t.correct} ({Math.round((t.correct / t.total) * 100)}%)
+                                                {t.correct} ({t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0}%)
                                             </td>
                                             <td style={{ padding: '0.75rem', textAlign: 'center', color: '#f56565' }}>
-                                                {t.incorrect} ({Math.round((t.incorrect / t.total) * 100)}%)
+                                                {t.incorrect} ({t.total > 0 ? Math.round((t.incorrect / t.total) * 100) : 0}%)
                                             </td>
                                         </tr>
                                     ))}

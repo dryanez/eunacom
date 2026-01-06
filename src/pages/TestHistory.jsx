@@ -162,16 +162,28 @@ function TestHistory() {
                                                             ▶️
                                                         </button>
                                                     ) : (
-                                                        <button
-                                                            onClick={() => setAnalysisTestId(test.id)}
-                                                            style={{
-                                                                background: 'none', border: 'none', cursor: 'pointer',
-                                                                color: '#666', fontSize: '1.2rem', marginRight: '0.5rem'
-                                                            }}
-                                                            title="Ver Análisis"
-                                                        >
-                                                            📊
-                                                        </button>
+                                                        <>
+                                                            <button
+                                                                onClick={() => navigate(`/test-runner/${test.id}`)}
+                                                                style={{
+                                                                    background: 'none', border: 'none', cursor: 'pointer',
+                                                                    color: '#666', fontSize: '1.2rem', marginRight: '0.5rem'
+                                                                }}
+                                                                title="Revisar Respuestas"
+                                                            >
+                                                                👁️
+                                                            </button>
+                                                            <button
+                                                                onClick={() => setAnalysisTestId(test.id)}
+                                                                style={{
+                                                                    background: 'none', border: 'none', cursor: 'pointer',
+                                                                    color: '#4EBDDB', fontSize: '1.2rem', marginRight: '0.5rem'
+                                                                }}
+                                                                title="Ver Análisis"
+                                                            >
+                                                                📊
+                                                            </button>
+                                                        </>
                                                     )}
                                                     <button
                                                         onClick={(e) => handleDelete(e, test.id)}
