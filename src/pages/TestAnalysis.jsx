@@ -598,7 +598,6 @@ const TestAnalysis = () => {
                 </>
             )}
         </div>
-            </main >
         </div >
     )
 }

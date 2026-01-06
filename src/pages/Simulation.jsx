@@ -182,8 +182,7 @@ function Simulation() {
                     )}
                 </div>
             </div>
-        </main>
-        </div >
+        </div>
     )
 }
 
