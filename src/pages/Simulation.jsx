@@ -76,11 +76,7 @@ function Simulation() {
                     time_limit_seconds: 180 * 60, // 180 minutes total (1 min per question)
                     total_questions: 180,
                     questions: selected180.map(q => q.id),
-
-                    metadata: {
-                        section1: section1,
-                        section2: section2
-                    },
+                    // Metadata removed to prevent schema error
                     status: 'in_progress'
                 })
                 .select()
@@ -96,7 +92,7 @@ function Simulation() {
 
         } catch (error) {
             console.error('Error creating simulation:', error)
-            alert('Error al crear la simulación. Por favor intenta de nuevo.')
+            alert(`Error al crear la simulación: ${error.message || 'Por favor intenta de nuevo.'}`)
         } finally {
             setLoading(false)
         }

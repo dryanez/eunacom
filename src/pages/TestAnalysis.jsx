@@ -218,16 +218,49 @@ const TestAnalysis = () => {
 
     return (
         <div style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
-            <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div className="header-section" style={{ marginBottom: '3rem' }}>
                 <button
                     onClick={() => navigate('/history')}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: '#6b7280',
+                        fontSize: '0.95rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        marginBottom: '1rem',
+                        padding: 0,
+                        fontWeight: '500',
+                        transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = '#1a3b5c'}
+                    onMouseLeave={(e) => e.target.style.color = '#6b7280'}
                 >
-                    ←
+                    ← Volver al Historial
                 </button>
+
                 <div>
-                    <h1 style={{ fontSize: '2rem', color: '#1a3b5c', fontWeight: '700', margin: 0 }}>Análisis de Examen</h1>
-                    <p style={{ margin: 0, color: '#666' }}>Detalle de rendimiento por tema y código EUNACOM</p>
+                    <h1 style={{
+                        fontSize: '2.5rem',
+                        fontWeight: '800',
+                        background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        marginBottom: '0.5rem',
+                        lineHeight: '1.2'
+                    }}>
+                        Análisis de Examen
+                    </h1>
+                    <p style={{
+                        margin: 0,
+                        color: '#6b7280',
+                        fontSize: '1.1rem',
+                        fontWeight: '400'
+                    }}>
+                        Detalle de rendimiento por tema y código EUNACOM
+                    </p>
                 </div>
             </div>
 
