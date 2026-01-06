@@ -5,6 +5,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
     const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState(null)
     const [topicBreakdown, setTopicBreakdown] = useState([])
+    const [expandedTopics, setExpandedTopics] = useState(new Set())
 
     useEffect(() => {
         fetchAnalysis()
@@ -14,7 +15,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
         try {
             setLoading(true)
 
-            // 1. Fetch test details (including questions and answers)
+            // 1. Fetch test details
             const { data: testData, error: testError } = await supabase
                 .from('tests')
                 .select('*')
@@ -26,15 +27,15 @@ const TestAnalysisModal = ({ testId, onClose }) => {
             const questionIds = testData.questions || []
             const userAnswers = testData.answers || {}
 
-            // 2. Fetch question details (topic, correct_answer) for calculation
+            // 2. Fetch question details (adding eunacom_code)
             const { data: questionsData, error: qError } = await supabase
                 .from('questions')
-                .select('id, topic, correct_answer')
+                .select('id, topic, correct_answer, eunacom_code')
                 .in('id', questionIds)
 
             if (qError) throw qError
 
-            // 3. Compute Stats Locally (Test Table is the Source of Truth)
+            // 3. Compute Stats
             let correctCount = 0
             let incorrectCount = 0
             let omittedCount = 0
@@ -44,7 +45,13 @@ const TestAnalysisModal = ({ testId, onClose }) => {
             questionsData.forEach(q => {
                 const topic = q.topic || 'General'
                 if (!topicMap[topic]) {
-                    topicMap[topic] = { total: 0, correct: 0, incorrect: 0, omitted: 0 }
+                    topicMap[topic] = {
+                        total: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        omitted: 0,
+                        questions: [] // Store individual query details
+                    }
                 }
             })
 
@@ -52,13 +59,23 @@ const TestAnalysisModal = ({ testId, onClose }) => {
             questionsData.forEach(q => {
                 const topic = q.topic || 'General'
                 const userAns = userAnswers[q.id]
+                const isCorrect = userAns === q.correct_answer
+                const isOmitted = !userAns
 
                 topicMap[topic].total += 1
+                topicMap[topic].questions.push({
+                    id: q.id,
+                    code: q.eunacom_code || 'S/C', // Sin Codigo
+                    isCorrect,
+                    isOmitted,
+                    userAns,
+                    correctAns: q.correct_answer
+                })
 
-                if (!userAns) {
+                if (isOmitted) {
                     omittedCount++
                     topicMap[topic].omitted += 1
-                } else if (userAns === q.correct_answer) {
+                } else if (isCorrect) {
                     correctCount++
                     topicMap[topic].correct += 1
                 } else {
@@ -67,7 +84,15 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                 }
             })
 
-            // Calculate score purely based on this data (matches the table logic)
+            // Sort questions within each topic by EUNACOM code
+            Object.values(topicMap).forEach(topicData => {
+                topicData.questions.sort((a, b) => {
+                    // Try to extract numbers for better sorting (e.g. EUNA-2020 vs EUNA-2019)
+                    // Simple string sort for now usually works for EUNA-20XX format
+                    return a.code.localeCompare(b.code, undefined, { numeric: true, sensitivity: 'base' })
+                })
+            })
+
             const score = questionIds.length > 0
                 ? Math.round((correctCount / questionIds.length) * 100)
                 : 0
@@ -80,7 +105,10 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                 omitted: omittedCount
             })
 
-            setTopicBreakdown(Object.entries(topicMap).map(([name, data]) => ({ name, ...data })))
+            // Convert map to array and sort by Topic Name
+            setTopicBreakdown(Object.entries(topicMap)
+                .map(([name, data]) => ({ name, ...data }))
+                .sort((a, b) => a.name.localeCompare(b.name)))
 
         } catch (error) {
             console.error('Error analyzing test:', error)
@@ -88,6 +116,15 @@ const TestAnalysisModal = ({ testId, onClose }) => {
         } finally {
             setLoading(false)
         }
+    }
+
+    const toggleTopic = (topicName) => {
+        setExpandedTopics(prev => {
+            const newSet = new Set(prev)
+            if (newSet.has(topicName)) newSet.delete(topicName)
+            else newSet.add(topicName)
+            return newSet
+        })
     }
 
     if (!testId) return null
@@ -163,7 +200,7 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                                 <h3 style={{ fontSize: '1.2rem', color: '#1a3b5c', margin: 0 }}>Rendimiento por Tema</h3>
-                                <span style={{ fontSize: '0.8rem', color: '#777' }}>Mostrando todo</span>
+                                <span style={{ fontSize: '0.8rem', color: '#777' }}>Click para ver detalles</span>
                             </div>
 
                             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
@@ -173,23 +210,58 @@ const TestAnalysisModal = ({ testId, onClose }) => {
                                         <th style={{ padding: '0.75rem', textAlign: 'center' }}>Total P</th>
                                         <th style={{ padding: '0.75rem', textAlign: 'center' }}>Correctas</th>
                                         <th style={{ padding: '0.75rem', textAlign: 'center' }}>Incorrectas</th>
+                                        <th style={{ padding: '0.75rem', width: '30px' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {topicBreakdown.map((t, idx) => (
-                                        <tr key={idx} style={{ borderBottom: '1px solid #f5f5f5' }}>
-                                            <td style={{ padding: '0.75rem', fontWeight: '500', color: '#444' }}>{t.name}</td>
-                                            <td style={{ padding: '0.75rem', textAlign: 'center' }}>{t.total}</td>
-                                            <td style={{ padding: '0.75rem', textAlign: 'center', color: '#48bb78' }}>
-                                                {t.correct} ({t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0}%)
-                                            </td>
-                                            <td style={{ padding: '0.75rem', textAlign: 'center', color: '#f56565' }}>
-                                                {t.incorrect} ({t.total > 0 ? Math.round((t.incorrect / t.total) * 100) : 0}%)
-                                            </td>
-                                        </tr>
+                                        <React.Fragment key={idx}>
+                                            <tr
+                                                onClick={() => toggleTopic(t.name)}
+                                                style={{ borderBottom: '1px solid #f5f5f5', cursor: 'pointer', background: expandedTopics.has(t.name) ? '#f8fafc' : 'transparent' }}
+                                            >
+                                                <td style={{ padding: '0.75rem', fontWeight: '500', color: '#444' }}>{t.name}</td>
+                                                <td style={{ padding: '0.75rem', textAlign: 'center' }}>{t.total}</td>
+                                                <td style={{ padding: '0.75rem', textAlign: 'center', color: '#48bb78' }}>
+                                                    {t.correct} ({t.total > 0 ? Math.round((t.correct / t.total) * 100) : 0}%)
+                                                </td>
+                                                <td style={{ padding: '0.75rem', textAlign: 'center', color: '#f56565' }}>
+                                                    {t.incorrect} ({t.total > 0 ? Math.round((t.incorrect / t.total) * 100) : 0}%)
+                                                </td>
+                                                <td style={{ padding: '0.75rem', textAlign: 'center', color: '#aaa', fontSize: '0.8rem' }}>
+                                                    {expandedTopics.has(t.name) ? '▼' : '▶'}
+                                                </td>
+                                            </tr>
+                                            {/* Expanded Row Details */}
+                                            {expandedTopics.has(t.name) && (
+                                                <tr>
+                                                    <td colSpan="5" style={{ padding: '0', background: '#fcfcfc' }}>
+                                                        <div style={{ padding: '1rem 2rem', borderBottom: '1px solid #eee' }}>
+                                                            <h5 style={{ margin: '0 0 0.5rem 0', color: '#666', fontSize: '0.85rem' }}>Preguntas:</h5>
+                                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                                                {t.questions.map((q, qIdx) => (
+                                                                    <div key={qIdx} style={{
+                                                                        padding: '0.25rem 0.75rem',
+                                                                        borderRadius: '15px',
+                                                                        fontSize: '0.8rem',
+                                                                        background: q.isCorrect ? '#dcfce7' : q.isOmitted ? '#edf2f7' : '#fee2e2',
+                                                                        color: q.isCorrect ? '#166534' : q.isOmitted ? '#4a5568' : '#991b1b',
+                                                                        border: '1px solid',
+                                                                        borderColor: q.isCorrect ? '#bbf7d0' : q.isOmitted ? '#cbd5e0' : '#fecaca'
+                                                                    }}>
+                                                                        {q.code}
+                                                                        {q.userAns ? ` (${q.userAns})` : ''}
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </React.Fragment>
                                     ))}
                                     {topicBreakdown.length === 0 && (
-                                        <tr><td colSpan="4" style={{ padding: '2rem', textAlign: 'center', color: '#999' }}>No data available</td></tr>
+                                        <tr><td colSpan="5" style={{ padding: '2rem', textAlign: 'center', color: '#999' }}>No data available</td></tr>
                                     )}
                                 </tbody>
                             </table>
