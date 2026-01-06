@@ -154,6 +154,18 @@ function TestRunner() {
                     }
                 }).filter(Boolean)
                 setQuestionsData(sortedQuestions)
+
+                // If test is completed, generate feedback for all questions
+                if (testData.status === 'completed') {
+                    const params = {}
+                    sortedQuestions.forEach(q => {
+                        const userAns = testData.answers ? testData.answers[q.id] : null
+                        // If unanswered, userAns is null -> isCorrect false
+                        const isCorrect = userAns === q.correct_option
+                        params[q.id] = { isCorrect }
+                    })
+                    setFeedback(params)
+                }
             }
 
         } catch (error) {
@@ -492,7 +504,7 @@ function TestRunner() {
                     isFlagged={!!flags[currentQuestion.id]}
                     testMode={test.mode}
                     feedback={feedback[currentQuestion.id]}
-                    showFeedback={!!feedback[currentQuestion.id] || test.mode === 'review'}
+                    showFeedback={!!feedback[currentQuestion.id] || test.mode === 'review' || test.status === 'completed'}
                     answerStats={answerStats[currentQuestion.id]}
 
                     onNext={() => {
