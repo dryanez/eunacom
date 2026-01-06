@@ -35,7 +35,7 @@ body {
 
 /* === Glassmorphic Sidebar === */
 .sidebar {
-    width: 280px;
+    width: 260px;
     height: 100vh;
     position: sticky;
     top: 0;
@@ -48,13 +48,14 @@ body {
     color: white !important;
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     box-shadow: var(--shadow-xl), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     flex-shrink: 0;
     z-index: 100;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Sidebar glow effect */
@@ -112,8 +113,8 @@ body {
 .sidebar__item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md) var(--spacing-lg);
+    gap: var(--spacing-sm);
+    padding: 0.75rem 1rem;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     border-radius: var(--radius-lg);
@@ -598,7 +599,7 @@ body {
     .sidebar {
         position: fixed;
         transform: translateX(-100%);
-        width: 280px;
+        width: 260px;
         height: 100vh;
         z-index: 1000;
         transition: transform var(--transition-base);
