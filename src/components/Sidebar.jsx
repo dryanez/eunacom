@@ -67,6 +67,7 @@ const Sidebar = () => {
                         style={{
                             width: '64px',
                             height: '64px',
+                            borderRadius: '12px',
                             filter: 'drop-shadow(0 4px 12px rgba(139, 92, 246, 0.3))'
                         }}
                     />
