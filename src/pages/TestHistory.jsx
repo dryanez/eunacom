@@ -174,7 +174,7 @@ function TestHistory() {
                                                                 👁️
                                                             </button>
                                                             <button
-                                                                onClick={() => setAnalysisTestId(test.id)}
+                                                                onClick={() => navigate(`/analysis/${test.id}`)}
                                                                 style={{
                                                                     background: 'none', border: 'none', cursor: 'pointer',
                                                                     color: '#4EBDDB', fontSize: '1.2rem', marginRight: '0.5rem'
@@ -189,7 +189,7 @@ function TestHistory() {
                                                         onClick={(e) => handleDelete(e, test.id)}
                                                         style={{
                                                             background: 'none', border: 'none', cursor: 'pointer',
-                                                            color: '#ff4d4f', fontSize: '1.2rem'
+                                                            color: '#e53e3e', fontSize: '1.2rem'
                                                         }}
                                                         title="Eliminar"
                                                     >
@@ -204,14 +204,6 @@ function TestHistory() {
                         </div>
                     </div>
                 </div>
-
-                {/* Analysis Modal */}
-                {analysisTestId && (
-                    <TestAnalysisModal
-                        testId={analysisTestId}
-                        onClose={() => setAnalysisTestId(null)}
-                    />
-                )}
             </main>
         </div>
     )
