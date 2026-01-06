@@ -17,10 +17,11 @@ const LandingPage = () => {
     return (
         <div style={{
             minHeight: '100vh',
+            height: 'auto',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             position: 'relative',
-            overflow: 'auto',
-            paddingBottom: '4rem'
+            overflowX: 'hidden',
+            overflowY: 'auto'
         }}>
             {/* Animated background elements */}
             <div style={{
@@ -35,14 +36,15 @@ const LandingPage = () => {
                     radial-gradient(circle at 80% 80%, #ffffff 0%, transparent 50%),
                     radial-gradient(circle at 40% 20%, #ffffff 0%, transparent 50%)
                 `,
-                animation: 'pulse 8s ease-in-out infinite'
+                animation: 'pulse 8s ease-in-out infinite',
+                pointerEvents: 'none'
             }}></div>
 
             {/* Header */}
             <header style={{
                 position: 'relative',
                 zIndex: 10,
-                padding: 'clamp(1rem, 3vw, 1.5rem)',
+                padding: 'clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 2rem)',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
@@ -54,22 +56,24 @@ const LandingPage = () => {
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 'clamp(0.5rem, 2vw, 1rem)'
+                    gap: 'clamp(0.75rem, 2vw, 1rem)'
                 }}>
                     <img
-                        src="/logo.svg"
+                        src="/logo.png"
                         alt="Eunacom-Examen"
                         style={{
-                            width: 'clamp(40px, 8vw, 56px)',
-                            height: 'clamp(40px, 8vw, 56px)'
+                            width: 'clamp(48px, 8vw, 64px)',
+                            height: 'clamp(48px, 8vw, 64px)',
+                            borderRadius: '12px',
+                            boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
                         }}
                     />
                     <span style={{
-                        fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
+                        fontSize: 'clamp(1.2rem, 4vw, 1.75rem)',
                         fontWeight: '800',
                         color: 'white',
                         letterSpacing: '0.5px',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+                        textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                     }}>
                         Eunacom-Examen
                     </span>
@@ -79,17 +83,17 @@ const LandingPage = () => {
                     style={{
                         background: 'linear-gradient(135deg, #FFD700, #FFA500)',
                         border: '3px solid white',
-                        color: '#1a1a1a',
-                        padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 4vw, 2.5rem)',
+                        color: '#000',
+                        padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)',
                         borderRadius: '12px',
-                        fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
+                        fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
                         fontWeight: '800',
                         cursor: 'pointer',
                         transition: 'all 0.3s',
                         boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px',
-                        minHeight: '44px', // iOS touch target
+                        minHeight: '48px',
                         whiteSpace: 'nowrap'
                     }}
                     onMouseEnter={(e) => {
