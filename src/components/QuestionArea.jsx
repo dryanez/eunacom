@@ -25,30 +25,37 @@ const QuestionArea = ({
     }, [showFeedback])
 
     // Parse incorrect explanations
-    // Handles two formats:
-    // 1. "* **a) Option:** Explanation" (with asterisks)
-    // 2. "a) Option explanation" (simple format, robust for multiline)
+    // Needs to handle various formats from DB:
+    // 1. "a) Text"
+    // 2. "**A)** Text"
+    // 3. "* **B:** Text"
+    // 4. "**C) 9m, D) 10m:** Text" (Grouped inline)
     const getIncorrectExplanation = (optionKey) => {
         if (!question.incorrect_explanations || !showFeedback) return null
 
         const lowerKey = optionKey.toLowerCase()
         
-        // Try format 1: "* **a) Option:** Explanation"
-        let regex = new RegExp(`\\*\\s*\\*\\*${lowerKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
-        let match = question.incorrect_explanations.match(regex)
+        // Final Ultimate Regex:
+        // (?:^|[\n,\s]) -> Start, Newline, Comma, or Space (handles inline grouping)
+        // [\*\s]*       -> Optional bullets (*) or whitespace
+        // (?:\*\*)?     -> Optional bold start
+        //    -> The letter (a, b, c...)
+        // (?:\*\*)?     -> Optional bold end
+        // [\)\:]        -> Separator ( ) or : )
         
-        if (match && match[1]) {
-            return match[1].trim()
-        }
+        const regex = new RegExp(
+            `(?:^|[\\n,\\s])[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s\\S]*?(?=(?:\\n)[\\*\\s]*(?:\\*\\*)?[a-e](?:\\*\\*)?[\\)\\:]|$)`, 
+            'gi'
+        )
         
-        // Try format 2: "a) Option explanation" (simple format, robust for multiline)
-        // Matches "a) text..." until the start of another option " b)" or end of string
-        regex = new RegExp(`(?:^|\\n)\\s*${lowerKey}\\)[\\s\\S]*?(?=(?:\\n|^)\\s*[a-e]\\)|$)`, 'gi')
-        match = question.incorrect_explanations.match(regex)
+        const match = question.incorrect_explanations.match(regex)
         
         if (match && match[0]) {
-            // Remove the leading "a)" part
-            return match[0].replace(new RegExp(`(?:^|\\n)\\s*${lowerKey}\\)[\\s]*`, 'i'), '').trim()
+            // Clean up the prefix
+            return match[0].replace(
+                new RegExp(`^(?:[\\n,\\s])?[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s]*`, 'i'), 
+                ''
+            ).trim()
         }
         
         return null
