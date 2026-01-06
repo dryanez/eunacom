@@ -85,6 +85,17 @@ function TestRunner() {
         return () => clearInterval(timer)
     }, [isBreak, isSimulation, currentSection, loading, showSimulationResults])
 
+    // Heartbeat to save timer progress every 60 seconds
+    useEffect(() => {
+        if (!isSimulation || loading || showSimulationResults || isBreak) return
+
+        const heartbeat = setInterval(() => {
+            saveTime(sectionTimeLeft)
+        }, 60000) // Every minute
+
+        return () => clearInterval(heartbeat)
+    }, [isSimulation, loading, showSimulationResults, isBreak, sectionTimeLeft, saveTime])
+
 
     const fetchTestSession = async () => {
         try {
@@ -114,11 +125,12 @@ function TestRunner() {
                     setCurrentSection(1)
                 }
 
-                // Note: accurate time tracking per section would require server-side start time
-                // For this implementation, we reset the timer on load (MVP) or we could calculate diff from created_at
-                // Ideally we'd store 'section_start_time' in DB but we can't change schema right now.
-                // We'll leave the timer to reset to 1:45 on refresh for now unless we calculate elapsed.
-                setSectionTimeLeft(105 * 60)
+                // Restore saved time if available
+                if (testData.time_remaining_seconds !== null && testData.time_remaining_seconds !== undefined && testData.time_remaining_seconds > 0) {
+                    setSectionTimeLeft(testData.time_remaining_seconds)
+                } else {
+                    setSectionTimeLeft(105 * 60)
+                }
             }
 
             // Initialize local state from DB if resuming (answers are JSONB)
