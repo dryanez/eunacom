@@ -165,7 +165,7 @@ const TestAnalysis = () => {
             <Sidebar userName={userName} />
 
             <main className="dashboard-main">
-                <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+                <div style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
                     <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <button
                             onClick={() => navigate('/history')}
@@ -178,41 +178,37 @@ const TestAnalysis = () => {
                             <p style={{ margin: 0, color: '#666' }}>Detalle de rendimiento por tema y código EUNACOM</p>
                         </div>
                     </div>
-                    <div className="dashboard-content" style={{ padding: '0 2rem 2rem', flex: 1 }}>
-                        {loading ? (
-                            <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
-                        ) : !stats ? (
-                            <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
-                        ) : (
-                            <div style={{
-                                width: '100%',
-                                margin: '0',
-                                background: '#fff',
-                                borderRadius: '12px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                                padding: '2rem',
-                                minHeight: '80vh'
-                            }}>
 
-                                {/* Stats Section - Horizontal Layout */}
+                    {loading ? (
+                        <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
+                    ) : !stats ? (
+                        <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
+                    ) : (
+                        <>
+                            {/* Stats Grid - 2 Columns */}
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: '380px 1fr',
+                                gap: '2rem',
+                                marginBottom: '2rem',
+                                width: '100%'
+                            }}>
+                                {/* Left Column: Your Score */}
                                 <div style={{
-                                    display: 'flex',
-                                    gap: '4rem',
-                                    marginBottom: '3rem',
-                                    alignItems: 'center',
-                                    padding: '2rem',
                                     background: '#fff',
-                                    borderRadius: '12px',
-                                    border: '1px solid #f0f0f0'
+                                    borderRadius: '8px',
+                                    padding: '1.5rem',
+                                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
                                 }}>
-                                    {/* Left: Score Circle */}
-                                    <div style={{ flex: '0 0 auto' }}>
-                                        <h3 style={{ marginBottom: '1.5rem', color: '#1a3b5c', textAlign: 'center' }}>Puntaje Total</h3>
-                                        <div style={{ position: 'relative', width: '220px', height: '220px' }}>
-                                            <svg width="220" height="220" viewBox="0 0 100 100">
-                                                <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="8" />
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Your Score</h3>
+
+                                    {/* Score Circle */}
+                                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                                        <div style={{ position: 'relative', width: '160px', height: '160px' }}>
+                                            <svg width="160" height="160" viewBox="0 0 100 100">
+                                                <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="5" />
                                                 <circle
-                                                    cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="8"
+                                                    cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="5"
                                                     strokeDasharray={`${(stats.score / 100) * 283} 283`}
                                                     transform="rotate(-90 50 50)"
                                                     strokeLinecap="round"
@@ -222,155 +218,204 @@ const TestAnalysis = () => {
                                                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
                                                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
                                             }}>
-                                                <span style={{ fontSize: '3.5rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
-                                                <span style={{ fontSize: '1rem', color: '#777' }}>Correcto</span>
+                                                <span style={{ fontSize: '2.2rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
+                                                <span style={{ fontSize: '0.85rem', color: '#999' }}>Correct</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Right: Stats Breakdown */}
-                                    <div style={{ flex: 1 }}>
-                                        <h3 style={{ marginBottom: '2rem', color: '#1a3b5c' }}>Resumen de Preguntas</h3>
-
-                                        {/* Correctas */}
-                                        <div style={{ marginBottom: '2rem' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Correctas</span>
-                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#48bb78' }}>{stats.correct}</span>
-                                            </div>
-                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
-                                                <div style={{
-                                                    width: `${(stats.correct / stats.total) * 100}%`,
-                                                    height: '100%',
-                                                    background: 'linear-gradient(90deg, #48bb78 0%, #38a169 100%)',
-                                                    transition: 'width 0.3s ease'
-                                                }} />
-                                            </div>
+                                    {/* Stats List */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Correct</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.correct}</span>
                                         </div>
-
-                                        {/* Incorrectas */}
-                                        <div style={{ marginBottom: '2rem' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Incorrectas</span>
-                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f56565' }}>{stats.incorrect}</span>
-                                            </div>
-                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
-                                                <div style={{
-                                                    width: `${(stats.incorrect / stats.total) * 100}%`,
-                                                    height: '100%',
-                                                    background: 'linear-gradient(90deg, #f56565 0%, #e53e3e 100%)',
-                                                    transition: 'width 0.3s ease'
-                                                }} />
-                                            </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.incorrect}</span>
                                         </div>
-
-                                        {/* Omitidas */}
-                                        <div>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Omitidas</span>
-                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#a0aec0' }}>{stats.omitted}</span>
-                                            </div>
-                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
-                                                <div style={{
-                                                    width: `${(stats.omitted / stats.total) * 100}%`,
-                                                    height: '100%',
-                                                    background: 'linear-gradient(90deg, #a0aec0 0%, #718096 100%)',
-                                                    transition: 'width 0.3s ease'
-                                                }} />
-                                            </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Omitted</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.omitted}</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Topics List */}
-                                <div className="data-table-container" style={{ boxShadow: 'none', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
-                                    <h3 style={{ padding: '1.5rem', margin: 0, borderBottom: '1px solid #f0f0f0', color: '#1a3b5c' }}>Desglose por Tema</h3>
-                                    <div style={{ background: '#fff' }}>
-                                        {topicBreakdown.map((topic, idx) => (
-                                            <div key={idx} style={{ borderBottom: '1px solid #f0f0f0' }}>
-                                                {/* Topic Header Row */}
-                                                <div
-                                                    onClick={() => toggleTopic(topic.name)}
-                                                    style={{
-                                                        padding: '1.2rem 1.5rem',
+                                {/* Right Column: Answer Changes */}
+                                <div style={{
+                                    background: '#fff',
+                                    borderRadius: '8px',
+                                    padding: '1.5rem',
+                                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                                }}>
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Answer Changes</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Correct to Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Correct</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Subjects Table */}
+                            <div style={{
+                                background: '#fff',
+                                borderRadius: '8px',
+                                boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                                overflow: 'hidden'
+                            }}>
+                                <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Subjects</h3>
+                                    <button style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '1.2rem' }}>^</button>
+                                </div>
+
+                                {/* Table Header */}
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>NAME</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>TOTAL Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>CORRECT Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>INCORRECT Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>OMITTED Q</div>
+                                </div>
+
+                                {/* Table Rows */}
+                                {topicBreakdown.map((topic, idx) => (
+                                    <div key={idx}>
+                                        <div
+                                            onClick={() => toggleTopic(topic.name)}
+                                            style={{
+                                                display: 'grid',
+                                                gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
+                                                padding: '1rem 1.5rem',
+                                                borderBottom: '1px solid #f5f5f5',
+                                                cursor: 'pointer',
+                                                background: expandedTopics.has(topic.name) ? '#fafafa' : '#fff'
+                                            }}
+                                        >
+                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <span>{expandedTopics.has(topic.name) ? '▼' : '▶'}</span>
+                                                {topic.name}
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>{topic.total}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.correct} ({topic.total > 0 ? Math.round((topic.correct / topic.total) * 100) : 0}%)
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.incorrect} ({topic.total > 0 ? Math.round((topic.incorrect / topic.total) * 100) : 0}%)
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.omitted} ({topic.total > 0 ? Math.round((topic.omitted / topic.total) * 100) : 0}%)
+                                            </div>
+                                        </div>
+
+                                        {/* Expanded Codes */}
+                                        {expandedTopics.has(topic.name) && (
+                                            <div style={{ background: '#fcfcfc', padding: '1rem 3rem' }}>
+                                                {topic.codes.map((code, cIdx) => (
+                                                    <div key={cIdx} style={{
+                                                        padding: '0.75rem 0',
+                                                        borderBottom: cIdx === topic.codes.length - 1 ? 'none' : '1px solid #f0f0f0',
                                                         display: 'flex',
                                                         justifyContent: 'space-between',
-                                                        alignItems: 'center',
-                                                        cursor: 'pointer',
-                                                        background: expandedTopics.has(topic.name) ? '#f8fafc' : '#fff'
-                                                    }}
-                                                >
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                        <span style={{ fontWeight: '600', fontSize: '1.05rem', color: '#2d3748' }}>{topic.name}</span>
-                                                        <span style={{
-                                                            background: '#edf2f7', padding: '0.1rem 0.5rem', borderRadius: '10px',
-                                                            fontSize: '0.75rem', color: '#4a5568'
-                                                        }}>
-                                                            {topic.total} pregs
-                                                        </span>
-                                                    </div>
-                                                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                                                        <div style={{ width: '100px', textAlign: 'right' }}>
-                                                            <span style={{ color: '#48bb78', fontWeight: 'bold' }}>
-                                                                {topic.total > 0 ? Math.round((topic.correct / topic.total) * 100) : 0}%
-                                                            </span>
-                                                            <span style={{ fontSize: '0.8rem', color: '#cbd5e0', marginLeft: '0.25rem' }}>Correcto</span>
-                                                        </div>
-                                                        <div style={{ color: '#a0aec0' }}>
-                                                            {expandedTopics.has(topic.name) ? '▲' : '▼'}
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Expandable Codes List */}
-                                                {expandedTopics.has(topic.name) && (
-                                                    <div style={{ background: '#fcfcfc', borderTop: '1px solid #edf2f7' }}>
-                                                        {topic.codes.map((code, cIdx) => (
-                                                            <div key={cIdx} style={{
-                                                                padding: '1rem 1.5rem 1rem 3rem',
-                                                                borderBottom: cIdx === topic.codes.length - 1 ? 'none' : '1px solid #edf2f7',
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-                                                                alignItems: 'center'
-                                                            }}>
-                                                                <div>
-                                                                    <div style={{ fontWeight: '500', color: '#4a5568', marginBottom: '0.2rem' }}>
-                                                                        {code.name}
-                                                                    </div>
-                                                                    <div style={{ fontSize: '0.8rem', color: '#718096' }}>
-                                                                        {code.total} {code.total === 1 ? 'pregunta' : 'preguntas'}
-                                                                    </div>
-                                                                </div>
-
-                                                                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                                                    {/* Visual Pills for Questions */}
-                                                                    <div style={{ display: 'flex', gap: '0.25rem' }}>
-                                                                        {code.questions.map((q, qIdx) => (
-                                                                            <div key={qIdx}
-                                                                                title={`Tu respuesta: ${q.userAns || 'Omitida'}`}
-                                                                                style={{
-                                                                                    width: '12px', height: '12px', borderRadius: '50%',
-                                                                                    background: q.isCorrect ? '#48bb78' : q.isOmitted ? '#cbd5e0' : '#f56565'
-                                                                                }}
-                                                                            />
-                                                                        ))}
-                                                                    </div>
-                                                                    <div style={{ fontSize: '0.9rem', width: '60px', textAlign: 'right', fontWeight: '500', color: code.correct === code.total ? '#48bb78' : '#718096' }}>
-                                                                        {Math.round((code.correct / code.total) * 100)}%
-                                                                    </div>
-                                                                </div>
+                                                        alignItems: 'center'
+                                                    }}>
+                                                        <div>
+                                                            <div style={{ fontWeight: '500', color: '#4a5568', fontSize: '0.85rem', marginBottom: '0.2rem' }}>
+                                                                {code.name}
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                                            <div style={{ fontSize: '0.75rem', color: '#999' }}>
+                                                                {code.total} {code.total === 1 ? 'question' : 'questions'}
+                                                            </div>
+                                                        </div>
 
+                                                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                                            <div style={{ display: 'flex', gap: '0.25rem' }}>
+                                                                {code.questions.map((q, qIdx) => (
+                                                                    <div key={qIdx}
+                                                                        title={`Your answer: ${q.userAns || 'Omitted'}`}
+                                                                        style={{
+                                                                            width: '10px', height: '10px', borderRadius: '50%',
+                                                                            background: q.isCorrect ? '#48bb78' : q.isOmitted ? '#cbd5e0' : '#f56565'
+                                                                        }}
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                            <div style={{ fontSize: '0.85rem', fontWeight: '600', color: code.correct === code.total ? '#48bb78' : '#666' }}>
+                                                                {Math.round((code.correct / code.total) * 100)}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
-                        )}
-                    </div>
+                        </>
+                    )}
                 </div>
             </main>
         </div>
