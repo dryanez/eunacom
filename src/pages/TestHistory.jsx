@@ -4,10 +4,13 @@ import { supabase } from '../lib/supabase'
 import Sidebar from '../components/Sidebar'
 import '../styles/dashboard.css'
 
+import TestAnalysisModal from '../components/TestAnalysisModal'
+
 function TestHistory() {
     const navigate = useNavigate()
     const [tests, setTests] = useState([])
     const [loading, setLoading] = useState(true)
+    const [analysisTestId, setAnalysisTestId] = useState(null)
 
     useEffect(() => {
         fetchTests()
@@ -160,12 +163,12 @@ function TestHistory() {
                                                         </button>
                                                     ) : (
                                                         <button
-                                                            onClick={() => navigate(`/test-runner/${test.id}`)}
+                                                            onClick={() => setAnalysisTestId(test.id)}
                                                             style={{
                                                                 background: 'none', border: 'none', cursor: 'pointer',
                                                                 color: '#666', fontSize: '1.2rem', marginRight: '0.5rem'
                                                             }}
-                                                            title="Analizar"
+                                                            title="Ver Análisis"
                                                         >
                                                             📊
                                                         </button>
@@ -189,6 +192,14 @@ function TestHistory() {
                         </div>
                     </div>
                 </div>
+
+                {/* Analysis Modal */}
+                {analysisTestId && (
+                    <TestAnalysisModal
+                        testId={analysisTestId}
+                        onClose={() => setAnalysisTestId(null)}
+                    />
+                )}
             </main>
         </div>
     )
