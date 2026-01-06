@@ -53,10 +53,19 @@ const Sidebar = () => {
             <div className="sidebar__header-mobile" style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div className="sidebar__logo" style={{ marginBottom: 0, padding: 0 }}>
                     <span className="sidebar__logo-icon">
-                        <GraduationCap size={32} strokeWidth={2.5} />
+                        <img
+                            src="/logo.png"
+                            alt="Eunacom-Examen Logo"
+                            style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '8px',
+                                filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))'
+                            }}
+                        />
                     </span>
                     <span className="sidebar__logo-text">
-                        Eunacom<span style={{ fontWeight: '900' }}>Pro</span>
+                        Eunacom-<span style={{ fontWeight: '900' }}>Examen</span>
                     </span>
                 </div>
                 <button
