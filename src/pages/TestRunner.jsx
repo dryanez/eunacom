@@ -29,6 +29,7 @@ function TestRunner() {
     const [xpNotification, setXpNotification] = useState(null)
 
     const [showFinishModal, setShowFinishModal] = useState(false)
+    const [showPauseModal, setShowPauseModal] = useState(false)
 
     // Simulation State
     const [isSimulation, setIsSimulation] = useState(false)
@@ -516,6 +517,9 @@ function TestRunner() {
                             // In review mode - go back to results overview
                             setShowResultsOverview(true)
                             setReviewSection(null)
+                        } else if (isSimulation && test.status !== 'completed') {
+                            // Active simulation - show pause modal
+                            setShowPauseModal(true)
                         } else {
                             navigate('/dashboard')
                         }
@@ -612,6 +616,65 @@ function TestRunner() {
                     onSubmit={handleSubmitAnswer}
                 />
             </div>
+
+            {/* Pause Modal */}
+            {showPauseModal && (
+                <div style={{
+                    position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+                    background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 1000
+                }}>
+                    <div style={{
+                        background: 'white', padding: '2.5rem', borderRadius: '16px', width: '450px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.2)', textAlign: 'center'
+                    }}>
+                        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⏸️</div>
+                        <h3 style={{ marginTop: 0, fontSize: '1.5rem', color: '#1a3b5c', marginBottom: '0.5rem' }}>
+                            Pausar Simulación
+                        </h3>
+                        <p style={{ color: '#666', marginBottom: '2rem', lineHeight: 1.6 }}>
+                            Tu progreso y tiempo restante se guardarán. Podrás continuar desde donde lo dejaste.
+                        </p>
+                        <div style={{
+                            background: '#f0f9ff',
+                            padding: '1rem',
+                            borderRadius: '8px',
+                            marginBottom: '2rem',
+                            border: '1px solid #4EBDDB'
+                        }}>
+                            <div style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.25rem' }}>
+                                Tiempo restante
+                            </div>
+                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1a3b5c' }}>
+                                {formatTime(sectionTimeLeft)}
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                            <button
+                                onClick={() => setShowPauseModal(false)}
+                                style={{
+                                    padding: '0.75rem 1.5rem', background: '#f0f0f0', border: 'none',
+                                    borderRadius: '8px', color: '#555', fontWeight: '600', cursor: 'pointer'
+                                }}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                onClick={async () => {
+                                    await saveTime(sectionTimeLeft)
+                                    navigate('/dashboard')
+                                }}
+                                style={{
+                                    padding: '0.75rem 1.5rem', background: '#4EBDDB', border: 'none',
+                                    borderRadius: '8px', color: 'white', fontWeight: '600', cursor: 'pointer'
+                                }}
+                            >
+                                Pausar y Salir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Confirmation Modal */}
             {showFinishModal && (
