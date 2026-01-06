@@ -598,7 +598,7 @@ const TestAnalysis = () => {
                 </>
             )}
         </div>
-        </div >
+
     )
 }
 
