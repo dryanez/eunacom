@@ -178,38 +178,46 @@ const TestAnalysis = () => {
                     </div>
                 </header>
 
-                <div className="dashboard-content">
+                <div className="dashboard-content" style={{ padding: '0 2rem 2rem' }}>
                     {loading ? (
                         <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
                     ) : !stats ? (
                         <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
                     ) : (
-                        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+                        <div style={{
+                            maxWidth: '1000px',
+                            margin: '0 auto',
+                            background: '#fff',
+                            borderRadius: '12px',
+                            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+                            padding: '2rem',
+                            minHeight: '600px'
+                        }}>
 
                             {/* Stats Cards */}
-                            <div className="stats-grid" style={{ marginBottom: '2rem' }}>
-                                <div className="stat-card">
+                            <div className="stats-grid" style={{ marginBottom: '3rem', marginTop: '1rem' }}>
+                                <div className="stat-card" style={{ boxShadow: 'none', border: '1px solid #f0f0f0' }}>
                                     <h3>Puntaje Total</h3>
-                                    <div className="value" style={{ color: stats.score >= 51 ? '#48bb78' : '#f56565' }}>
+                                    <div className="value" style={{ color: stats.score >= 51 ? '#48bb78' : '#f56565', fontSize: '2.5rem' }}>
                                         {stats.score}%
                                     </div>
                                     <span className="trend">
                                         {stats.correct} / {stats.total} Correctas
                                     </span>
                                 </div>
-                                <div className="stat-card">
+                                <div className="stat-card" style={{ boxShadow: 'none', border: '1px solid #f0f0f0' }}>
                                     <h3>Respuestas</h3>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '1rem' }}>
                                         <div style={{ textAlign: 'center' }}>
-                                            <div style={{ color: '#48bb78', fontWeight: 'bold', fontSize: '1.2rem' }}>{stats.correct}</div>
+                                            <div style={{ color: '#48bb78', fontWeight: 'bold', fontSize: '1.5rem' }}>{stats.correct}</div>
                                             <div style={{ fontSize: '0.8rem', color: '#666' }}>Correctas</div>
                                         </div>
                                         <div style={{ textAlign: 'center' }}>
-                                            <div style={{ color: '#f56565', fontWeight: 'bold', fontSize: '1.2rem' }}>{stats.incorrect}</div>
+                                            <div style={{ color: '#f56565', fontWeight: 'bold', fontSize: '1.5rem' }}>{stats.incorrect}</div>
                                             <div style={{ fontSize: '0.8rem', color: '#666' }}>Incorrectas</div>
                                         </div>
                                         <div style={{ textAlign: 'center' }}>
-                                            <div style={{ color: '#a0aec0', fontWeight: 'bold', fontSize: '1.2rem' }}>{stats.omitted}</div>
+                                            <div style={{ color: '#a0aec0', fontWeight: 'bold', fontSize: '1.5rem' }}>{stats.omitted}</div>
                                             <div style={{ fontSize: '0.8rem', color: '#666' }}>Omitidas</div>
                                         </div>
                                     </div>
@@ -217,8 +225,8 @@ const TestAnalysis = () => {
                             </div>
 
                             {/* Topics List */}
-                            <div className="data-table-container">
-                                <h3 style={{ padding: '1.5rem', margin: 0, borderBottom: '1px solid #f0f0f0' }}>Desglose por Tema</h3>
+                            <div className="data-table-container" style={{ boxShadow: 'none', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+                                <h3 style={{ padding: '1.5rem', margin: 0, borderBottom: '1px solid #f0f0f0', color: '#1a3b5c' }}>Desglose por Tema</h3>
                                 <div style={{ background: '#fff' }}>
                                     {topicBreakdown.map((topic, idx) => (
                                         <div key={idx} style={{ borderBottom: '1px solid #f0f0f0' }}>
