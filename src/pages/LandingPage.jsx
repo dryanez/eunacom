@@ -374,12 +374,15 @@ const LandingPage = () => {
                 position: 'relative',
                 zIndex: 5,
                 textAlign: 'center',
-                padding: '3rem 2rem',
+                padding: '4rem 2rem',
                 color: 'rgba(255,255,255,0.7)',
                 borderTop: '1px solid rgba(255,255,255,0.1)',
-                marginTop: '4rem'
+                marginTop: '6rem',
+                marginBottom: '2rem'
             }}>
-                <p>© 2026 Eunacom-Examen - La mejor plataforma para aprobar tu EUNACOM</p>
+                <p style={{ fontSize: '1rem', margin: 0 }}>
+                    © 2026 Eunacom-Examen - La mejor plataforma para aprobar tu EUNACOM
+                </p>
             </footer>
         </div>
     );
