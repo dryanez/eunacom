@@ -564,8 +564,7 @@ const Statistics = () => {
                 </div>
             )}
         </div>
-            </main >
-        </div >
+
     )
 }
 

@@ -103,88 +103,87 @@ function Simulation() {
     }
 
     return (
-        <div className="dashboard-layout">
-            <main className="dashboard-main">
-                <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
-                    <h2 style={{ color: 'white', margin: 0, fontSize: '1.25rem' }}>Simulación EUNACOM</h2>
-                    <div className="header-user">
-                        <span>Usuario</span>
-                    </div>
-                </header>
-
-                <div className="dashboard-content">
-                    <div className="status-card-full" style={{
-                        background: 'white',
-                        borderRadius: '12px',
-                        padding: '2rem',
-                        maxWidth: '800px',
-                        margin: '0 auto',
-                        textAlign: 'center'
-                    }}>
-                        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎯</div>
-                        <h1 style={{ fontSize: '2rem', color: '#333', marginBottom: '1rem' }}>Simulación EUNACOM</h1>
-
-                        <div style={{
-                            background: '#f8f9fa',
-                            borderRadius: '8px',
-                            padding: '1.5rem',
-                            marginBottom: '2rem',
-                            textAlign: 'left'
-                        }}>
-                            <h3 style={{ color: '#4EBDDB', marginBottom: '1rem' }}>📋 Detalles de la Simulación</h3>
-                            <ul style={{ color: '#555', lineHeight: '1.8', paddingLeft: '1.5rem' }}>
-                                <li><strong>Total de preguntas:</strong> 180 preguntas</li>
-                                <li><strong>Sección 1:</strong> 90 preguntas aleatorias</li>
-                                <li><strong>Sección 2:</strong> 90 preguntas aleatorias</li>
-                                <li><strong>Tiempo total:</strong> 180 minutos (1 minuto por pregunta)</li>
-                                <li><strong>Modo:</strong> Simulación (sin feedback inmediato)</li>
-                            </ul>
-                        </div>
-
-                        <div style={{
-                            background: '#fff3cd',
-                            border: '1px solid #ffc107',
-                            borderRadius: '8px',
-                            padding: '1rem',
-                            marginBottom: '2rem',
-                            color: '#856404'
-                        }}>
-                            <strong>⚠️ Importante:</strong> Esta es una simulación completa del examen EUNACOM.
-                            No podrás ver las respuestas correctas hasta finalizar el examen.
-                        </div>
-
-                        <div style={{ marginBottom: '1.5rem', color: '#777' }}>
-                            <strong>Preguntas disponibles en el banco:</strong> {questionCount}
-                        </div>
-
-                        <button
-                            onClick={handleCreateSimulation}
-                            disabled={loading || questionCount < 180}
-                            style={{
-                                padding: '1.25rem 3rem',
-                                background: questionCount < 180 ? '#ccc' : '#4EBDDB',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '30px',
-                                fontWeight: '700',
-                                fontSize: '1.1rem',
-                                cursor: questionCount < 180 ? 'not-allowed' : 'pointer',
-                                boxShadow: questionCount < 180 ? 'none' : '0 4px 12px rgba(78, 189, 219, 0.3)',
-                                transition: 'all 0.3s'
-                            }}
-                        >
-                            {loading ? 'Creando simulación...' : 'INICIAR SIMULACIÓN'}
-                        </button>
-
-                        {questionCount < 180 && (
-                            <p style={{ color: '#d32f2f', marginTop: '1rem', fontSize: '0.9rem' }}>
-                                Se necesitan al menos 180 preguntas para crear una simulación.
-                            </p>
-                        )}
-                    </div>
+        <div className="simulation-container" style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
+            <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
+                <h2 style={{ color: 'white', margin: 0, fontSize: '1.25rem' }}>Simulación EUNACOM</h2>
+                <div className="header-user">
+                    <span>Usuario</span>
                 </div>
-            </main>
-        </div>
+            </header>
+
+            <div className="dashboard-content">
+                <div className="status-card-full" style={{
+                    background: 'white',
+                    borderRadius: '12px',
+                    padding: '2rem',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    textAlign: 'center'
+                }}>
+                    <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎯</div>
+                    <h1 style={{ fontSize: '2rem', color: '#333', marginBottom: '1rem' }}>Simulación EUNACOM</h1>
+
+                    <div style={{
+                        background: '#f8f9fa',
+                        borderRadius: '8px',
+                        padding: '1.5rem',
+                        marginBottom: '2rem',
+                        textAlign: 'left'
+                    }}>
+                        <h3 style={{ color: '#4EBDDB', marginBottom: '1rem' }}>📋 Detalles de la Simulación</h3>
+                        <ul style={{ color: '#555', lineHeight: '1.8', paddingLeft: '1.5rem' }}>
+                            <li><strong>Total de preguntas:</strong> 180 preguntas</li>
+                            <li><strong>Sección 1:</strong> 90 preguntas aleatorias</li>
+                            <li><strong>Sección 2:</strong> 90 preguntas aleatorias</li>
+                            <li><strong>Tiempo total:</strong> 180 minutos (1 minuto por pregunta)</li>
+                            <li><strong>Modo:</strong> Simulación (sin feedback inmediato)</li>
+                        </ul>
+                    </div>
+
+                    <div style={{
+                        background: '#fff3cd',
+                        border: '1px solid #ffc107',
+                        borderRadius: '8px',
+                        padding: '1rem',
+                        marginBottom: '2rem',
+                        color: '#856404'
+                    }}>
+                        <strong>⚠️ Importante:</strong> Esta es una simulación completa del examen EUNACOM.
+                        No podrás ver las respuestas correctas hasta finalizar el examen.
+                    </div>
+
+                    <div style={{ marginBottom: '1.5rem', color: '#777' }}>
+                        <strong>Preguntas disponibles en el banco:</strong> {questionCount}
+                    </div>
+
+                    <button
+                        onClick={handleCreateSimulation}
+                        disabled={loading || questionCount < 180}
+                        style={{
+                            padding: '1.25rem 3rem',
+                            background: questionCount < 180 ? '#ccc' : '#4EBDDB',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '30px',
+                            fontWeight: '700',
+                            fontSize: '1.1rem',
+                            cursor: questionCount < 180 ? 'not-allowed' : 'pointer',
+                            boxShadow: questionCount < 180 ? 'none' : '0 4px 12px rgba(78, 189, 219, 0.3)',
+                            transition: 'all 0.3s'
+                        }}
+                    >
+                        {loading ? 'Creando simulación...' : 'INICIAR SIMULACIÓN'}
+                    </button>
+
+                    {questionCount < 180 && (
+                        <p style={{ color: '#d32f2f', marginTop: '1rem', fontSize: '0.9rem' }}>
+                            Se necesitan al menos 180 preguntas para crear una simulación.
+                        </p>
+                    )}
+                </div>
+            </div>
+        </main>
+        </div >
     )
 }
 

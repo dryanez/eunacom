@@ -217,391 +217,389 @@ const TestAnalysis = () => {
     }
 
     return (
-        <div className="dashboard-layout">
-            <main className="dashboard-main">
-                <div style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
-                    <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ padding: '2rem', maxWidth: '100%', margin: '0 auto' }}>
+            <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <button
+                    onClick={() => navigate('/history')}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}
+                >
+                    ←
+                </button>
+                <div>
+                    <h1 style={{ fontSize: '2rem', color: '#1a3b5c', fontWeight: '700', margin: 0 }}>Análisis de Examen</h1>
+                    <p style={{ margin: 0, color: '#666' }}>Detalle de rendimiento por tema y código EUNACOM</p>
+                </div>
+            </div>
+
+            {loading ? (
+                <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
+            ) : !stats ? (
+                <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
+            ) : (
+                <>
+                    {/* Tab Navigation */}
+                    <div style={{
+                        display: 'flex',
+                        gap: '2rem',
+                        borderBottom: '2px solid #f0f0f0',
+                        marginBottom: '2rem'
+                    }}>
                         <button
-                            onClick={() => navigate('/history')}
-                            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}
+                            onClick={() => setActiveTab('results')}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: '1rem 0',
+                                fontSize: '1rem',
+                                fontWeight: '600',
+                                color: activeTab === 'results' ? '#1a3b5c' : '#999',
+                                borderBottom: activeTab === 'results' ? '3px solid #4EBDDB' : '3px solid transparent',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s'
+                            }}
                         >
-                            ←
+                            Test Results
                         </button>
-                        <div>
-                            <h1 style={{ fontSize: '2rem', color: '#1a3b5c', fontWeight: '700', margin: 0 }}>Análisis de Examen</h1>
-                            <p style={{ margin: 0, color: '#666' }}>Detalle de rendimiento por tema y código EUNACOM</p>
-                        </div>
+                        <button
+                            onClick={() => setActiveTab('analysis')}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: '1rem 0',
+                                fontSize: '1rem',
+                                fontWeight: '600',
+                                color: activeTab === 'analysis' ? '#1a3b5c' : '#999',
+                                borderBottom: activeTab === 'analysis' ? '3px solid #4EBDDB' : '3px solid transparent',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            Test Analysis
+                        </button>
                     </div>
 
-                    {loading ? (
-                        <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
-                    ) : !stats ? (
-                        <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
-                    ) : (
+                    {activeTab === 'analysis' && (
                         <>
-                            {/* Tab Navigation */}
+                            {/* Stats Grid - 2 Columns */}
                             <div style={{
-                                display: 'flex',
+                                display: 'grid',
+                                gridTemplateColumns: '380px 1fr',
                                 gap: '2rem',
-                                borderBottom: '2px solid #f0f0f0',
-                                marginBottom: '2rem'
+                                marginBottom: '2rem',
+                                width: '100%'
                             }}>
-                                <button
-                                    onClick={() => setActiveTab('results')}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        padding: '1rem 0',
-                                        fontSize: '1rem',
-                                        fontWeight: '600',
-                                        color: activeTab === 'results' ? '#1a3b5c' : '#999',
-                                        borderBottom: activeTab === 'results' ? '3px solid #4EBDDB' : '3px solid transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    Test Results
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('analysis')}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        padding: '1rem 0',
-                                        fontSize: '1rem',
-                                        fontWeight: '600',
-                                        color: activeTab === 'analysis' ? '#1a3b5c' : '#999',
-                                        borderBottom: activeTab === 'analysis' ? '3px solid #4EBDDB' : '3px solid transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    Test Analysis
-                                </button>
+                                {/* Left Column: Your Score */}
+                                <div style={{
+                                    background: '#fff',
+                                    borderRadius: '8px',
+                                    padding: '1.5rem',
+                                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                                }}>
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Your Score</h3>
+
+                                    {/* Score Circle */}
+                                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                                        <div style={{ position: 'relative', width: '160px', height: '160px' }}>
+                                            <svg width="160" height="160" viewBox="0 0 100 100">
+                                                <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="5" />
+                                                <circle
+                                                    cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="5"
+                                                    strokeDasharray={`${(stats.score / 100) * 283} 283`}
+                                                    transform="rotate(-90 50 50)"
+                                                    strokeLinecap="round"
+                                                />
+                                            </svg>
+                                            <div style={{
+                                                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                                                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+                                            }}>
+                                                <span style={{ fontSize: '2.2rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
+                                                <span style={{ fontSize: '0.85rem', color: '#999' }}>Correct</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Stats List */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Correct</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.correct}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.incorrect}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Omitted</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>{stats.omitted}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Column: Answer Changes */}
+                                <div style={{
+                                    background: '#fff',
+                                    borderRadius: '8px',
+                                    padding: '1.5rem',
+                                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                                }}>
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Answer Changes</h3>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Correct to Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Correct</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
+                                            <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Incorrect</span>
+                                            <span style={{
+                                                background: '#f5f5f5',
+                                                color: '#666',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '10px',
+                                                fontSize: '0.85rem',
+                                                fontWeight: '600',
+                                                minWidth: '30px',
+                                                textAlign: 'center'
+                                            }}>0</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            {activeTab === 'analysis' && (
-                                <>
-                                    {/* Stats Grid - 2 Columns */}
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: '380px 1fr',
-                                        gap: '2rem',
-                                        marginBottom: '2rem',
-                                        width: '100%'
-                                    }}>
-                                        {/* Left Column: Your Score */}
-                                        <div style={{
-                                            background: '#fff',
-                                            borderRadius: '8px',
-                                            padding: '1.5rem',
-                                            boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                                        }}>
-                                            <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Your Score</h3>
+                            {/* Subjects Table */}
+                            <div style={{
+                                background: '#fff',
+                                borderRadius: '8px',
+                                boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                                overflow: 'hidden'
+                            }}>
+                                <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Subjects</h3>
+                                    <button style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '1.2rem' }}>^</button>
+                                </div>
 
-                                            {/* Score Circle */}
-                                            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                                                <div style={{ position: 'relative', width: '160px', height: '160px' }}>
-                                                    <svg width="160" height="160" viewBox="0 0 100 100">
-                                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="5" />
-                                                        <circle
-                                                            cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="5"
-                                                            strokeDasharray={`${(stats.score / 100) * 283} 283`}
-                                                            transform="rotate(-90 50 50)"
-                                                            strokeLinecap="round"
-                                                        />
-                                                    </svg>
+                                {/* Table Header */}
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>NAME</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>TOTAL Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>CORRECT Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>INCORRECT Q</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>OMITTED Q</div>
+                                </div>
+
+                                {/* Table Rows */}
+                                {topicBreakdown.map((topic, idx) => (
+                                    <div key={idx}>
+                                        <div
+                                            onClick={() => toggleTopic(topic.name)}
+                                            style={{
+                                                display: 'grid',
+                                                gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
+                                                padding: '1rem 1.5rem',
+                                                borderBottom: '1px solid #f5f5f5',
+                                                cursor: 'pointer',
+                                                background: expandedTopics.has(topic.name) ? '#fafafa' : '#fff'
+                                            }}
+                                        >
+                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                                                    <span>{expandedTopics.has(topic.name) ? '▼' : '▶'}</span>
+                                                    {topic.name}
+                                                </div>
+                                                {/* Progress Bar */}
+                                                <div style={{ width: '90%', height: '6px', background: '#f0f0f0', borderRadius: '3px', overflow: 'hidden', marginLeft: '1.5rem' }}>
                                                     <div style={{
-                                                        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                                                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+                                                        width: `${topic.total > 0 ? (topic.correct / topic.total) * 100 : 0}%`,
+                                                        height: '100%',
+                                                        background: '#48bb78',
+                                                        transition: 'width 0.3s ease'
+                                                    }} />
+                                                </div>
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>{topic.total}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.correct} ({topic.total > 0 ? Math.round((topic.correct / topic.total) * 100) : 0}%)
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.incorrect} ({topic.total > 0 ? Math.round((topic.incorrect / topic.total) * 100) : 0}%)
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
+                                                {topic.omitted} ({topic.total > 0 ? Math.round((topic.omitted / topic.total) * 100) : 0}%)
+                                            </div>
+                                        </div>
+
+                                        {/* Expanded Codes */}
+                                        {expandedTopics.has(topic.name) && (
+                                            <div style={{ background: '#fcfcfc', padding: '1rem 3rem' }}>
+                                                {topic.codes.map((code, cIdx) => (
+                                                    <div key={cIdx} style={{
+                                                        padding: '0.75rem 0',
+                                                        borderBottom: cIdx === topic.codes.length - 1 ? 'none' : '1px solid #f0f0f0',
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        alignItems: 'center'
                                                     }}>
-                                                        <span style={{ fontSize: '2.2rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
-                                                        <span style={{ fontSize: '0.85rem', color: '#999' }}>Correct</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Stats List */}
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Correct</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>{stats.correct}</span>
-                                                </div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Incorrect</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>{stats.incorrect}</span>
-                                                </div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Total Omitted</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>{stats.omitted}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Right Column: Answer Changes */}
-                                        <div style={{
-                                            background: '#fff',
-                                            borderRadius: '8px',
-                                            padding: '1.5rem',
-                                            boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                                        }}>
-                                            <h3 style={{ fontSize: '1rem', color: '#1a3b5c', marginBottom: '1.5rem', fontWeight: '600' }}>Answer Changes</h3>
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Correct to Incorrect</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>0</span>
-                                                </div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Correct</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>0</span>
-                                                </div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0' }}>
-                                                    <span style={{ color: '#666', fontSize: '0.9rem' }}>Incorrect to Incorrect</span>
-                                                    <span style={{
-                                                        background: '#f5f5f5',
-                                                        color: '#666',
-                                                        padding: '0.2rem 0.6rem',
-                                                        borderRadius: '10px',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        minWidth: '30px',
-                                                        textAlign: 'center'
-                                                    }}>0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Subjects Table */}
-                                    <div style={{
-                                        background: '#fff',
-                                        borderRadius: '8px',
-                                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-                                        overflow: 'hidden'
-                                    }}>
-                                        <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Subjects</h3>
-                                            <button style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '1.2rem' }}>^</button>
-                                        </div>
-
-                                        {/* Table Header */}
-                                        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>
-                                            <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>NAME</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>TOTAL Q</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>CORRECT Q</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>INCORRECT Q</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#999', textAlign: 'center', fontWeight: '600' }}>OMITTED Q</div>
-                                        </div>
-
-                                        {/* Table Rows */}
-                                        {topicBreakdown.map((topic, idx) => (
-                                            <div key={idx}>
-                                                <div
-                                                    onClick={() => toggleTopic(topic.name)}
-                                                    style={{
-                                                        display: 'grid',
-                                                        gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
-                                                        padding: '1rem 1.5rem',
-                                                        borderBottom: '1px solid #f5f5f5',
-                                                        cursor: 'pointer',
-                                                        background: expandedTopics.has(topic.name) ? '#fafafa' : '#fff'
-                                                    }}
-                                                >
-                                                    <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                                                            <span>{expandedTopics.has(topic.name) ? '▼' : '▶'}</span>
-                                                            {topic.name}
-                                                        </div>
-                                                        {/* Progress Bar */}
-                                                        <div style={{ width: '90%', height: '6px', background: '#f0f0f0', borderRadius: '3px', overflow: 'hidden', marginLeft: '1.5rem' }}>
-                                                            <div style={{
-                                                                width: `${topic.total > 0 ? (topic.correct / topic.total) * 100 : 0}%`,
-                                                                height: '100%',
-                                                                background: '#48bb78',
-                                                                transition: 'width 0.3s ease'
-                                                            }} />
-                                                        </div>
-                                                    </div>
-                                                    <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>{topic.total}</div>
-                                                    <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
-                                                        {topic.correct} ({topic.total > 0 ? Math.round((topic.correct / topic.total) * 100) : 0}%)
-                                                    </div>
-                                                    <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
-                                                        {topic.incorrect} ({topic.total > 0 ? Math.round((topic.incorrect / topic.total) * 100) : 0}%)
-                                                    </div>
-                                                    <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
-                                                        {topic.omitted} ({topic.total > 0 ? Math.round((topic.omitted / topic.total) * 100) : 0}%)
-                                                    </div>
-                                                </div>
-
-                                                {/* Expanded Codes */}
-                                                {expandedTopics.has(topic.name) && (
-                                                    <div style={{ background: '#fcfcfc', padding: '1rem 3rem' }}>
-                                                        {topic.codes.map((code, cIdx) => (
-                                                            <div key={cIdx} style={{
-                                                                padding: '0.75rem 0',
-                                                                borderBottom: cIdx === topic.codes.length - 1 ? 'none' : '1px solid #f0f0f0',
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-                                                                alignItems: 'center'
-                                                            }}>
-                                                                <div>
-                                                                    <div style={{ fontWeight: '500', color: '#4a5568', fontSize: '0.85rem', marginBottom: '0.2rem' }}>
-                                                                        {code.name}
-                                                                    </div>
-                                                                    <div style={{ fontSize: '0.75rem', color: '#999' }}>
-                                                                        {code.total} {code.total === 1 ? 'question' : 'questions'}
-                                                                    </div>
-                                                                </div>
-
-                                                                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                                                    <div style={{ display: 'flex', gap: '0.25rem' }}>
-                                                                        {code.questions.map((q, qIdx) => (
-                                                                            <div key={qIdx}
-                                                                                title={`Your answer: ${q.userAns || 'Omitted'}`}
-                                                                                style={{
-                                                                                    width: '10px', height: '10px', borderRadius: '50%',
-                                                                                    background: q.isCorrect ? '#48bb78' : q.isOmitted ? '#cbd5e0' : '#f56565'
-                                                                                }}
-                                                                            />
-                                                                        ))}
-                                                                    </div>
-                                                                    <div style={{ fontSize: '0.85rem', fontWeight: '600', color: code.correct === code.total ? '#48bb78' : '#666' }}>
-                                                                        {Math.round((code.correct / code.total) * 100)}%
-                                                                    </div>
-                                                                </div>
+                                                        <div>
+                                                            <div style={{ fontWeight: '500', color: '#4a5568', fontSize: '0.85rem', marginBottom: '0.2rem' }}>
+                                                                {code.name}
                                                             </div>
-                                                        ))}
+                                                            <div style={{ fontSize: '0.75rem', color: '#999' }}>
+                                                                {code.total} {code.total === 1 ? 'question' : 'questions'}
+                                                            </div>
+                                                        </div>
+
+                                                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                                            <div style={{ display: 'flex', gap: '0.25rem' }}>
+                                                                {code.questions.map((q, qIdx) => (
+                                                                    <div key={qIdx}
+                                                                        title={`Your answer: ${q.userAns || 'Omitted'}`}
+                                                                        style={{
+                                                                            width: '10px', height: '10px', borderRadius: '50%',
+                                                                            background: q.isCorrect ? '#48bb78' : q.isOmitted ? '#cbd5e0' : '#f56565'
+                                                                        }}
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                            <div style={{ fontSize: '0.85rem', fontWeight: '600', color: code.correct === code.total ? '#48bb78' : '#666' }}>
+                                                                {Math.round((code.correct / code.total) * 100)}%
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-                            {/* Test Results Tab */}
-                            {activeTab === 'results' && (
-                                <div style={{ background: '#fff', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
-                                    <div style={{ padding: '1.5rem', borderBottom: '1px solid #f0f0f0' }}>
-                                        <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Individual Question Results</h3>
-                                    </div>
-
-                                    {/* Table Header */}
-                                    <div style={{ display: 'grid', gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>CODE</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>TAGS</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>VID</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>AVG %</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'right' }}>STS</div>
-                                    </div>
-
-                                    {/* Question Rows */}
-                                    {testQuestions.map((q, idx) => (
-                                        <div key={q.id} style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px',
-                                            padding: '1rem 1.5rem',
-                                            borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
-                                            alignItems: 'center',
-                                            gap: '1rem'
-                                        }}>
-                                            <div style={{ fontSize: '0.9rem', color: '#999' }}>{q.id}</div>
-                                            <div style={{ fontSize: '0.85rem', color: '#4EBDDB', fontWeight: '600' }}>{q.eunacom_code || '-'}</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={q.topic}>{q.topic || 'General'}</div>
-
-                                            {/* Tags */}
-                                            <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'nowrap', overflow: 'hidden' }}>
-                                                {q.tags && q.tags.slice(0, 3).map((tag, tIdx) => (
-                                                    <span key={tIdx} style={{
-                                                        background: '#edf2f7',
-                                                        color: '#4a5568',
-                                                        fontSize: '0.75rem',
-                                                        padding: '0.2rem 0.5rem',
-                                                        borderRadius: '4px'
-                                                    }}>
-                                                        {tag}
-                                                    </span>
                                                 ))}
                                             </div>
-
-                                            {/* Video Indicator */}
-                                            <div style={{ textAlign: 'center' }}>
-                                                {q.video_url ? (
-                                                    <span title="View Video" style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🎥</span>
-                                                ) : (
-                                                    <span style={{ color: '#e2e8f0' }}>-</span>
-                                                )}
-                                            </div>
-
-                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
-                                                {q.avgPercentage}%
-                                            </div>
-
-                                            <div style={{ textAlign: 'right' }}>
-                                                {q.isOmitted ? (
-                                                    <span style={{ fontSize: '1.2rem', color: '#cbd5e0' }}>⊝</span>
-                                                ) : q.isCorrect ? (
-                                                    <span style={{ fontSize: '1.2rem', color: '#48bb78' }}>✓</span>
-                                                ) : (
-                                                    <span style={{ fontSize: '1.2rem', color: '#f56565' }}>✗</span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
                         </>
                     )}
-                </div>
-            </main>
+                    {/* Test Results Tab */}
+                    {activeTab === 'results' && (
+                        <div style={{ background: '#fff', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+                            <div style={{ padding: '1.5rem', borderBottom: '1px solid #f0f0f0' }}>
+                                <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Individual Question Results</h3>
+                            </div>
+
+                            {/* Table Header */}
+                            <div style={{ display: 'grid', gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>CODE</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>TAGS</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>VID</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>AVG %</div>
+                                <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'right' }}>STS</div>
+                            </div>
+
+                            {/* Question Rows */}
+                            {testQuestions.map((q, idx) => (
+                                <div key={q.id} style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '60px 120px 1.5fr 2fr 60px 80px 60px',
+                                    padding: '1rem 1.5rem',
+                                    borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
+                                    alignItems: 'center',
+                                    gap: '1rem'
+                                }}>
+                                    <div style={{ fontSize: '0.9rem', color: '#999' }}>{q.id}</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#4EBDDB', fontWeight: '600' }}>{q.eunacom_code || '-'}</div>
+                                    <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={q.topic}>{q.topic || 'General'}</div>
+
+                                    {/* Tags */}
+                                    <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'nowrap', overflow: 'hidden' }}>
+                                        {q.tags && q.tags.slice(0, 3).map((tag, tIdx) => (
+                                            <span key={tIdx} style={{
+                                                background: '#edf2f7',
+                                                color: '#4a5568',
+                                                fontSize: '0.75rem',
+                                                padding: '0.2rem 0.5rem',
+                                                borderRadius: '4px'
+                                            }}>
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Video Indicator */}
+                                    <div style={{ textAlign: 'center' }}>
+                                        {q.video_url ? (
+                                            <span title="View Video" style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🎥</span>
+                                        ) : (
+                                            <span style={{ color: '#e2e8f0' }}>-</span>
+                                        )}
+                                    </div>
+
+                                    <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
+                                        {q.avgPercentage}%
+                                    </div>
+
+                                    <div style={{ textAlign: 'right' }}>
+                                        {q.isOmitted ? (
+                                            <span style={{ fontSize: '1.2rem', color: '#cbd5e0' }}>⊝</span>
+                                        ) : q.isCorrect ? (
+                                            <span style={{ fontSize: '1.2rem', color: '#48bb78' }}>✓</span>
+                                        ) : (
+                                            <span style={{ fontSize: '1.2rem', color: '#f56565' }}>✗</span>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </>
+            )}
         </div>
+            </main >
+        </div >
     )
 }
 
