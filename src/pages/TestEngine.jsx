@@ -91,7 +91,8 @@ function TestEngine() {
             }
 
             console.log('🔄 Fetching all questions (paginated)...')
-            const questions = await fetchAll('questions', 'id, topic, chapter', 'created_at')
+            // FETCH TEXT FOR DEDUPLICATION
+            const questions = await fetchAll('questions', 'id, topic, chapter, question_text', 'created_at')
             console.log(`✅ Loaded ${questions.length} questions.`)
 
             console.log('🔄 Fetching all progress (paginated)...')
@@ -316,19 +317,18 @@ function TestEngine() {
             const { data: { user } } = await supabase.auth.getUser()
             if (!user) throw new Error('No user found')
 
-            // 1. Filter Questions
-            const eligibleQuestionIds = []
 
-            // Re-run filtering logic to get IDs
+            // 1. Filter Questions
+            const eligibleCandidates = [] // Full objects, not just IDs
+
+            // Re-run filtering logic to get Candidates
             allQuestions.forEach(q => {
                 const topic = q.topic || 'Sin categoría'
 
                 // Subject Filter Logic:
-                // If ANY status filter is active AND no subjects are selected, include ALL subjects
-                // Otherwise, only include selected subjects
                 const shouldIncludeSubject = anyStatusFilterActive && !anySubjectSelected
-                    ? true  // Include all subjects if status filter is active
-                    : selectedSubjects[topic]  // Otherwise only include selected subjects
+                    ? true
+                    : selectedSubjects[topic]
 
                 if (!shouldIncludeSubject) return
 
@@ -353,15 +353,26 @@ function TestEngine() {
                 if (!anyFilterActive) isIncludedByFilter = false
 
                 if (isIncludedByFilter) {
-                    eligibleQuestionIds.push(q.id)
+                    eligibleCandidates.push(q)
                 }
             })
 
-            if (eligibleQuestionIds.length === 0) {
+            if (eligibleCandidates.length === 0) {
                 alert('No hay preguntas disponibles con los filtros seleccionados.')
                 setLoading(false)
                 return
             }
+
+            // DEDUPLICATE CANDIDATES BY TEXT
+            const uniqueMap = new Map()
+            eligibleCandidates.forEach(q => {
+                const text = q.question_text ? q.question_text.trim() : `MISSING_TEXT_${q.id}`
+                if (!uniqueMap.has(text)) {
+                    uniqueMap.set(text, q)
+                }
+            })
+            const uniqueCandidates = Array.from(uniqueMap.values())
+            const eligibleQuestionIds = uniqueCandidates.map(q => q.id)
 
             // 2. Select Random Questions
             // Shuffle array
@@ -473,60 +484,8 @@ function TestEngine() {
                     </div>
                 </header>
 
-                <div className="dashboard-content">
 
-                    {/* Recent Exams Accordion */}
-                    {recentTests.length > 0 && (
-                        <AccordionSection title="Exámenes Hechos (Recientes)">
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                {recentTests.map(test => (
-                                    <div key={test.id} style={{
-                                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                                        padding: '0.75rem', border: '1px solid #eee', borderRadius: '8px',
-                                        background: '#fcfcfc'
-                                    }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                            <div style={{
-                                                width: '32px', height: '32px', borderRadius: '50%',
-                                                background: test.status === 'completed' ? '#dcfce7' : '#e0f2fe',
-                                                color: test.status === 'completed' ? '#166534' : '#0369a1',
-                                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold'
-                                            }}>
-                                                {test.score || 0}%
-                                            </div>
-                                            <div>
-                                                <div style={{ fontWeight: '600', color: '#333', fontSize: '0.9rem' }}>Examen #{test.id.slice(0, 6)}</div>
-                                                <div style={{ fontSize: '0.8rem', color: '#777' }}>
-                                                    {new Date(test.created_at).toLocaleDateString()} • {test.total_questions} preguntas
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={() => navigate(`/test-runner/${test.id}`)}
-                                            style={{
-                                                background: 'transparent',
-                                                border: '1px solid #4EBDDB',
-                                                color: '#4EBDDB',
-                                                padding: '0.25rem 0.75rem',
-                                                borderRadius: '6px',
-                                                cursor: 'pointer',
-                                                fontSize: '0.8rem',
-                                                fontWeight: '600'
-                                            }}
-                                        >
-                                            {test.status === 'completed' ? 'Ver Resultados' : 'Continuar'}
-                                        </button>
-                                    </div>
-                                ))}
-                                <button
-                                    onClick={() => navigate('/history')}
-                                    style={{ marginTop: '0.5rem', alignSelf: 'center', border: 'none', background: 'none', color: '#4EBDDB', cursor: 'pointer', fontSize: '0.9rem' }}
-                                >
-                                    Ver Todos ➝
-                                </button>
-                            </div>
-                        </AccordionSection>
-                    )}
+                <div className="dashboard-content">
 
                     {/* Test Mode Accordion */}
 

@@ -32,21 +32,35 @@ function Simulation() {
             const { data: { user } } = await supabase.auth.getUser()
             if (!user) throw new Error('No user found')
 
-            // Fetch ALL questions
+
+            // Fetch ALL questions (ID and Text for deduplication)
             const { data: allQuestions, error: qError } = await supabase
                 .from('questions')
-                .select('id')
+                .select('id, question_text')
 
             if (qError) throw qError
 
-            if (allQuestions.length < 180) {
-                alert(`No hay suficientes preguntas. Se necesitan 180, pero solo hay ${allQuestions.length} disponibles.`)
+            // DEDUPLICATE: Ensure strictly unique questions by text
+            // This prevents "Cross-Topic" duplicates (e.g. Surgery/Urology split) from appearing twice in one exam
+            const uniqueMap = new Map()
+            allQuestions.forEach(q => {
+                if (q.question_text) {
+                    const text = q.question_text.trim()
+                    if (!uniqueMap.has(text)) {
+                        uniqueMap.set(text, q)
+                    }
+                }
+            })
+            const uniqueQuestions = Array.from(uniqueMap.values())
+
+            if (uniqueQuestions.length < 180) {
+                alert(`No hay suficientes preguntas únicas. Se necesitan 180, pero solo hay ${uniqueQuestions.length} disponibles.`)
                 setLoading(false)
                 return
             }
 
-            // Shuffle and select 180 random questions
-            const shuffled = allQuestions.sort(() => 0.5 - Math.random())
+            // Shuffle and select 180 random UNIQUE questions
+            const shuffled = uniqueQuestions.sort(() => 0.5 - Math.random())
             const selected180 = shuffled.slice(0, 180)
 
             // Split into two sections of 90 each
@@ -62,6 +76,7 @@ function Simulation() {
                     time_limit_seconds: 180 * 60, // 180 minutes total (1 min per question)
                     total_questions: 180,
                     questions: selected180.map(q => q.id),
+
                     metadata: {
                         section1: section1,
                         section2: section2
