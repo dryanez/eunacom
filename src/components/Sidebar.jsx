@@ -51,22 +51,35 @@ const Sidebar = () => {
     return (
         <aside className={`sidebar ${isMobileOpen ? 'mobile-open' : ''}`}>
             <div className="sidebar__header-mobile" style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="sidebar__logo" style={{ marginBottom: 0, padding: 0 }}>
-                    <span className="sidebar__logo-icon">
-                        <img
-                            src="/logo.png"
-                            alt="Eunacom-Examen Logo"
-                            style={{
-                                width: '40px',
-                                height: '40px',
-                                borderRadius: '8px',
-                                filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))'
-                            }}
-                        />
-                    </span>
-                    <span className="sidebar__logo-text">
-                        Eunacom-<span style={{ fontWeight: '900' }}>Examen</span>
-                    </span>
+                {/* Logo & Brand */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '1.5rem 1rem',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    marginBottom: '1rem'
+                }}>
+                    <img
+                        src="/logo.png"
+                        alt="Eunacom-Examen"
+                        style={{
+                            width: '64px',
+                            height: '64px',
+                            filter: 'drop-shadow(0 4px 12px rgba(139, 92, 246, 0.3))'
+                        }}
+                    />
+                    <div style={{
+                        fontSize: '1.25rem',
+                        fontWeight: '800',
+                        color: 'white',
+                        textAlign: 'center',
+                        letterSpacing: '0.5px',
+                        lineHeight: '1.2'
+                    }}>
+                        Eunacom-Examen
+                    </div>
                 </div>
                 <button
                     className="mobile-toggle"
