@@ -389,8 +389,7 @@ function AdminPanel() {
 
       {/* Modal */}
       {viewingQuestion && <QuestionDetailsModal question={viewingQuestion} onClose={() => setViewingQuestion(null)} />}
-    </main>
-    </div >
+    </div>
   )
 }
 
