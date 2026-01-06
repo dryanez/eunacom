@@ -13,6 +13,7 @@ import TestRunner from './pages/TestRunner'
 import TestAnalysis from './pages/TestAnalysis'
 import Simulation from './pages/Simulation'
 import Statistics from './pages/Statistics'
+import DashboardLayout from './layouts/DashboardLayout'
 import './App.css'
 
 function App() {
@@ -24,13 +25,15 @@ function App() {
           <Route path="/app-landing" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/test" element={<TestEngine />} />
-          <Route path="/simulation" element={<Simulation />} />
-          <Route path="/history" element={<TestHistory />} />
-          <Route path="/stats" element={<Statistics />} />
-          <Route path="/analysis/:id" element={<TestAnalysis />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/test" element={<TestEngine />} />
+            <Route path="/simulation" element={<Simulation />} />
+            <Route path="/history" element={<TestHistory />} />
+            <Route path="/stats" element={<Statistics />} />
+            <Route path="/analysis/:id" element={<TestAnalysis />} />
+            <Route path="/admin" element={<AdminPanel />} />
+          </Route>
           <Route path="/test-runner/:id" element={<TestRunner />} />
         </Routes>
       </AuthProvider>

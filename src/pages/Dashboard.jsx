@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
-import Sidebar from '../components/Sidebar'
 import { getAvatar, getAvatarUrl } from '../config/avatars'
 import { getLevelTitle, getXPForLevel, getLevelProgress, formatXP } from '../utils/xpSystem'
 import {
@@ -405,9 +404,7 @@ const Dashboard = () => {
                         </p>
                     </div>
                 </div>
-            </main>
-        </div>
-    )
+                )
 }
 
-export default Dashboard
+                export default Dashboard
