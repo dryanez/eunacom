@@ -21,6 +21,9 @@ function TestRunner() {
     const [feedback, setFeedback] = useState({}) // { questionId: { isCorrect: bool } } -> Tutor mode only
     const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: count, B: count, ... } }
 
+    // Time tracking
+    const [questionStartTime, setQuestionStartTime] = useState(Date.now())
+
     const [showFinishModal, setShowFinishModal] = useState(false)
 
     useEffect(() => {
@@ -143,8 +146,15 @@ function TestRunner() {
             navigate('/history')
         } finally {
             setLoading(false)
+            // Reset timer when test loads
+            setQuestionStartTime(Date.now())
         }
     }
+
+    // Reset timer when navigating between questions
+    useEffect(() => {
+        setQuestionStartTime(Date.now())
+    }, [currentQuestionIndex])
 
     // Auto-save interactions
     const saveProgress = useCallback(async (newAnswers, questionIndex = null) => {
@@ -187,13 +197,17 @@ function TestRunner() {
         const selected = answers[currentQ.id]
         if (!selected) return
 
+        // Calculate time spent on this question (in seconds)
+        const timeSpentSeconds = Math.floor((Date.now() - questionStartTime) / 1000)
+        console.log(`⏱️ Time spent on question: ${timeSpentSeconds}s`)
+
         const isCorrect = selected === currentQ.correct_option
         setFeedback(prev => ({
             ...prev,
             [currentQ.id]: { isCorrect }
         }))
 
-        // Save to user_progress with selected_answer
+        // Save to user_progress with selected_answer AND time_spent_seconds
         try {
             const { data: { user }, error: authError } = await supabase.auth.getUser()
             console.log('🔐 Auth user:', user?.id, authError)
@@ -205,7 +219,8 @@ function TestRunner() {
                     selected_answer: selected,
                     is_correct: isCorrect,
                     is_omitted: false,
-                    is_flagged: !!flags[currentQ.id]
+                    is_flagged: !!flags[currentQ.id],
+                    time_spent_seconds: timeSpentSeconds
                 }
                 console.log('📝 Attempting to insert:', insertData)
 

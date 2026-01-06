@@ -69,10 +69,57 @@ const Statistics = () => {
             const testsCompleted = tests?.filter(t => t.status === 'completed').length || 0
             const suspendedTests = tests?.filter(t => t.status === 'in_progress').length || 0
 
-            // Calculate percentile (simplified - in reality would compare to all users)
-            const accuracy = totalCorrect + totalIncorrect + totalOmitted > 0
+            // Calculate user's accuracy
+            const userAccuracy = totalCorrect + totalIncorrect + totalOmitted > 0
                 ? Math.round((totalCorrect / (totalCorrect + totalIncorrect + totalOmitted)) * 100)
                 : 0
+
+            // REAL PERCENTILE CALCULATION
+            // Fetch all users' scores
+            const { data: allUserScores, error: scoresError } = await supabase
+                .rpc('get_all_user_scores')
+
+            let percentileRank = 0
+            let medianScore = 63 // fallback
+
+            if (!scoresError && allUserScores && allUserScores.length > 0) {
+                // Calculate percentile: what % of users have lower score than current user
+                const lowerScores = allUserScores.filter(u => u.score < userAccuracy).length
+                percentileRank = Math.floor((lowerScores / allUserScores.length) * 100)
+
+                // Calculate median score
+                const sortedScores = allUserScores.map(u => u.score).sort((a, b) => a - b)
+                const midIndex = Math.floor(sortedScores.length / 2)
+                medianScore = sortedScores[midIndex]
+            } else {
+                console.warn('Could not fetch user scores for percentile, using user accuracy as percentile')
+                percentileRank = Math.min(userAccuracy, 99)
+            }
+
+            // REAL TIME CALCULATION
+            // User's average time
+            const { data: userTimes, error: userTimesError } = await supabase
+                .from('user_progress')
+                .select('time_spent_seconds')
+                .eq('user_id', user.id)
+                .not('time_spent_seconds', 'is', null)
+                .gt('time_spent_seconds', 0)
+                .lt('time_spent_seconds', 600) // Filter unrealistic times
+
+            let avgTimeSpent = 0
+            if (!userTimesError && userTimes && userTimes.length > 0) {
+                const totalTime = userTimes.reduce((sum, t) => sum + t.time_spent_seconds, 0)
+                avgTimeSpent = Math.floor(totalTime / userTimes.length)
+            }
+
+            // All users' average time
+            const { data: timeStats, error: timeStatsError } = await supabase
+                .rpc('get_time_statistics')
+
+            let othersAvgTime = 73 // fallback
+            if (!timeStatsError && timeStats && timeStats.length > 0) {
+                othersAvgTime = Math.floor(timeStats[0].avg_time_all_users || 73)
+            }
 
             setStats({
                 totalCorrect,
@@ -84,10 +131,10 @@ const Statistics = () => {
                 testsCreated,
                 testsCompleted,
                 suspendedTests,
-                percentileRank: Math.min(accuracy, 99), // Simplified
-                medianScore: 63, // Mock data
-                avgTimeSpent: 52, // Mock data  
-                othersAvgTime: 73 // Mock data
+                percentileRank,
+                medianScore: Math.round(medianScore),
+                avgTimeSpent,
+                othersAvgTime
             })
 
         } catch (error) {
