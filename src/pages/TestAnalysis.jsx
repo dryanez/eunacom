@@ -188,7 +188,7 @@ const TestAnalysis = () => {
                     isOmitted,
                     avgPercentage,
                     totalAnswers,
-                    tags: q.tags || [],
+                    tags: Array.isArray(q.tags) ? q.tags : [],
                     video_url: q.video_url,
                     eunacom_code: q.eunacom_code
                 }
