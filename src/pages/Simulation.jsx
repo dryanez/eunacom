@@ -72,7 +72,7 @@ function Simulation() {
                 .from('tests')
                 .insert({
                     user_id: user.id,
-                    mode: 'simulation',
+                    mode: 'timed', // Changed from 'simulation' to match DB constraint
                     time_limit_seconds: 180 * 60, // 180 minutes total (1 min per question)
                     total_questions: 180,
                     questions: selected180.map(q => q.id),
