@@ -38,6 +38,10 @@ function TestRunner() {
     const [sectionTimeLeft, setSectionTimeLeft] = useState(105 * 60) // 105 minutes per section
     const [showSimulationResults, setShowSimulationResults] = useState(false)
 
+    // Review State (for completed simulations)
+    const [reviewSection, setReviewSection] = useState(null) // null | 1 | 2
+    const [showResultsOverview, setShowResultsOverview] = useState(false)
+
     useEffect(() => {
         fetchTestSession()
     }, [id])
@@ -175,9 +179,10 @@ function TestRunner() {
         } finally {
             setLoading(false)
             setQuestionStartTime(Date.now())
-            if (testData?.status === 'completed') {
-                // If already completed, show results directly?
-                // For now, let's just let regular view handle it or redirect
+
+            // If this is a completed simulation, show results overview
+            if (testData?.status === 'completed' && testData?.total_questions === 180) {
+                setShowResultsOverview(true)
             }
         }
     }
@@ -342,8 +347,8 @@ function TestRunner() {
         )
     }
 
-    // Results Popup
-    if (showSimulationResults) {
+    // Results Popup (after finishing OR reviewing completed simulation)
+    if (showSimulationResults || showResultsOverview) {
         const s1 = getSectionStats(0, 90)
         const s2 = getSectionStats(90, 180)
         const overall = {
@@ -385,17 +390,70 @@ function TestRunner() {
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '3rem' }}>
-                        {/* Section 1 */}
-                        <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '12px' }}>
+                        {/* Section 1 - Clickable */}
+                        <div
+                            onClick={() => {
+                                setReviewSection(1)
+                                setShowResultsOverview(false)
+                                setShowSimulationResults(false)
+                                setCurrentQuestionIndex(0)
+                            }}
+                            style={{
+                                background: '#f8fafc',
+                                padding: '1.5rem',
+                                borderRadius: '12px',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                                border: '2px solid transparent'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = '#e0f2fe'
+                                e.currentTarget.style.borderColor = '#4EBDDB'
+                                e.currentTarget.style.transform = 'translateY(-2px)'
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = '#f8fafc'
+                                e.currentTarget.style.borderColor = 'transparent'
+                                e.currentTarget.style.transform = 'translateY(0)'
+                            }}
+                        >
                             <h3 style={{ margin: '0 0 1rem 0', color: '#64748b' }}>Sección 1</h3>
                             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#333' }}>{s1.percentage}%</div>
                             <div style={{ color: '#999' }}>{s1.correct}/{s1.total} Correctas</div>
+                            <div style={{ marginTop: '0.5rem', color: '#4EBDDB', fontSize: '0.9rem' }}>Click para revisar →</div>
                         </div>
-                        {/* Section 2 */}
-                        <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '12px' }}>
+
+                        {/* Section 2 - Clickable */}
+                        <div
+                            onClick={() => {
+                                setReviewSection(2)
+                                setShowResultsOverview(false)
+                                setShowSimulationResults(false)
+                                setCurrentQuestionIndex(90)
+                            }}
+                            style={{
+                                background: '#f8fafc',
+                                padding: '1.5rem',
+                                borderRadius: '12px',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                                border: '2px solid transparent'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = '#e0f2fe'
+                                e.currentTarget.style.borderColor = '#4EBDDB'
+                                e.currentTarget.style.transform = 'translateY(-2px)'
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = '#f8fafc'
+                                e.currentTarget.style.borderColor = 'transparent'
+                                e.currentTarget.style.transform = 'translateY(0)'
+                            }}
+                        >
                             <h3 style={{ margin: '0 0 1rem 0', color: '#64748b' }}>Sección 2</h3>
                             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#333' }}>{s2.percentage}%</div>
                             <div style={{ color: '#999' }}>{s2.correct}/{s2.total} Correctas</div>
+                            <div style={{ marginTop: '0.5rem', color: '#4EBDDB', fontSize: '0.9rem' }}>Click para revisar →</div>
                         </div>
                     </div>
 
@@ -418,14 +476,26 @@ function TestRunner() {
     const currentQuestion = questionsData[currentQuestionIndex]
     const unansweredCount = questionsData.length - Object.keys(answers).length
 
-    // Filter questions for sidebar based on section
-    const currentSectionQuestions = isSimulation
-        ? (currentSection === 1 ? questionsData.slice(0, 90) : questionsData.slice(90, 180))
-        : questionsData
+    // Filter questions for sidebar based on section (simulation or review mode)
+    let currentSectionQuestions, startIndex
 
-    // Adjust index relative for sidebar if strict
-    // Or just pass allowed IDs? The Sidebar likely takes index.
-    // Let's rely on onNavigate clamping.
+    if (reviewSection) {
+        // In review mode - filter by reviewSection
+        currentSectionQuestions = reviewSection === 1
+            ? questionsData.slice(0, 90)
+            : questionsData.slice(90, 180)
+        startIndex = reviewSection === 1 ? 0 : 90
+    } else if (isSimulation) {
+        // In active simulation - filter by currentSection
+        currentSectionQuestions = currentSection === 1
+            ? questionsData.slice(0, 90)
+            : questionsData.slice(90, 180)
+        startIndex = currentSection === 1 ? 0 : 90
+    } else {
+        // Regular test - show all questions
+        currentSectionQuestions = questionsData
+        startIndex = 0
+    }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', background: '#fff' }}>
@@ -441,17 +511,29 @@ function TestRunner() {
                 flexShrink: 0
             }}>
                 <button
-                    onClick={() => navigate('/dashboard')}
+                    onClick={() => {
+                        if (reviewSection) {
+                            // In review mode - go back to results overview
+                            setShowResultsOverview(true)
+                            setReviewSection(null)
+                        } else {
+                            navigate('/dashboard')
+                        }
+                    }}
                     style={{
                         background: 'none', border: 'none', cursor: 'pointer',
                         color: '#777', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem'
                     }}
                 >
-                    ← Volver
+                    ← {reviewSection ? 'Ver Resultados' : 'Volver'}
                 </button>
 
                 <div style={{ fontWeight: '600', color: '#333' }}>
-                    {test.status === 'completed' ? (
+                    {reviewSection ? (
+                        <span>
+                            Revisión: Sección <span style={{ color: '#4EBDDB' }}>{reviewSection}</span>
+                        </span>
+                    ) : test.status === 'completed' ? (
                         <span style={{ color: '#48bb78' }}>Modo: Revisión</span>
                     ) : isSimulation ? (
                         <span>
@@ -480,17 +562,13 @@ function TestRunner() {
             <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
                 {/* Left Sidebar */}
                 <TestSidebar
-                    questions={questionsData}
+                    questions={currentSectionQuestions}
+                    startIndex={startIndex}
                     currentQuestionIndex={currentQuestionIndex}
                     answers={answers}
                     flags={flags}
                     feedback={feedback}
                     onNavigate={(newIndex) => {
-                        // Enforce section boundaries
-                        if (isSimulation) {
-                            if (currentSection === 1 && newIndex >= 90) return
-                            if (currentSection === 2 && newIndex < 90) return
-                        }
                         setCurrentQuestionIndex(newIndex)
                     }}
                 />
