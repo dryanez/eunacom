@@ -12,7 +12,7 @@ const TestAnalysis = () => {
     const [topicBreakdown, setTopicBreakdown] = useState([])
     const [expandedTopics, setExpandedTopics] = useState(new Set())
     const [userName, setUserName] = useState('')
-    const [activeTab, setActiveTab] = useState('analysis') // 'results' or 'analysis'
+    const [activeTab, setActiveTab] = useState('results') // 'results' or 'analysis'
     const [testQuestions, setTestQuestions] = useState([]) // For Test Results tab
 
     useEffect(() => {
