@@ -24,6 +24,7 @@ function TestRunner() {
     const [showFinishModal, setShowFinishModal] = useState(false)
 
     useEffect(() => {
+        console.log('🚀 CODE UPDATED v2 - FIXED')
         fetchTestSession()
     }, [id])
 
