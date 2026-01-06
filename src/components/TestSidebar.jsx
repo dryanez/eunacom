@@ -33,10 +33,24 @@ const TestSidebar = ({
                     let bgColor = '#fff'
                     let textColor = '#555'
 
+                    if (qFeedback) {
+                        if (qFeedback.isCorrect) {
+                            borderColor = '#48bb78' // Green
+                            bgColor = '#f0fff4'
+                            textColor = '#2f855a'
+                        } else {
+                            borderColor = '#f56565' // Red
+                            bgColor = '#fff5f5'
+                            textColor = '#c53030'
+                        }
+                    }
+
                     if (index === currentQuestionIndex) {
                         borderColor = '#4EBDDB'
-                        textColor = '#4EBDDB'
-                        bgColor = '#eefcfd'
+                        // Keep the feedback bg color if available, otherwise blue tint
+                        bgColor = qFeedback ? bgColor : '#eefcfd'
+                        // Text color priority to current active
+                        textColor = '#1a3b5c'
                     }
 
                     // Truncate question text to ~60 characters
