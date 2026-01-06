@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { Analytics } from '@vercel/analytics/react'
 import LandingPage from './pages/LandingPage'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
@@ -33,6 +34,7 @@ function App() {
           <Route path="/test-runner/:id" element={<TestRunner />} />
         </Routes>
       </AuthProvider>
+      <Analytics />
     </BrowserRouter>
   )
 }
