@@ -355,9 +355,20 @@ const TestAnalysis = () => {
                                                 background: expandedTopics.has(topic.name) ? '#fafafa' : '#fff'
                                             }}
                                         >
-                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <span>{expandedTopics.has(topic.name) ? '▼' : '▶'}</span>
-                                                {topic.name}
+                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                                                    <span>{expandedTopics.has(topic.name) ? '▼' : '▶'}</span>
+                                                    {topic.name}
+                                                </div>
+                                                {/* Progress Bar */}
+                                                <div style={{ width: '90%', height: '6px', background: '#f0f0f0', borderRadius: '3px', overflow: 'hidden', marginLeft: '1.5rem' }}>
+                                                    <div style={{
+                                                        width: `${topic.total > 0 ? (topic.correct / topic.total) * 100 : 0}%`,
+                                                        height: '100%',
+                                                        background: '#48bb78',
+                                                        transition: 'width 0.3s ease'
+                                                    }} />
+                                                </div>
                                             </div>
                                             <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>{topic.total}</div>
                                             <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
