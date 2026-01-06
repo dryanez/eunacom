@@ -27,28 +27,30 @@ const QuestionArea = ({
     // Parse incorrect explanations
     // Handles two formats:
     // 1. "* **a) Option:** Explanation" (with asterisks)
-    // 2. "a) Option explanation" (simple format)
+    // 2. "a) Option explanation" (simple format, robust for multiline)
     const getIncorrectExplanation = (optionKey) => {
         if (!question.incorrect_explanations || !showFeedback) return null
 
         const lowerKey = optionKey.toLowerCase()
-
+        
         // Try format 1: "* **a) Option:** Explanation"
         let regex = new RegExp(`\\*\\s*\\*\\*${lowerKey}\\).*?\\*\\*\\s*(.+?)(?=\\n\\*\\s*\\*\\*|$)`, 'is')
         let match = question.incorrect_explanations.match(regex)
-
+        
         if (match && match[1]) {
             return match[1].trim()
         }
-
-        // Try format 2: "a) Option explanation" (simple format)
-        regex = new RegExp(`^${lowerKey}\\)\\s*(.+?)(?=\\n[a-e]\\)|$)`, 'ism')
+        
+        // Try format 2: "a) Option explanation" (simple format, robust for multiline)
+        // Matches "a) text..." until the start of another option " b)" or end of string
+        regex = new RegExp(`(?:^|\\n)\\s*${lowerKey}\\)[\\s\\S]*?(?=(?:\\n|^)\\s*[a-e]\\)|$)`, 'gi')
         match = question.incorrect_explanations.match(regex)
-
-        if (match && match[1]) {
-            return match[1].trim()
+        
+        if (match && match[0]) {
+            // Remove the leading "a)" part
+            return match[0].replace(new RegExp(`(?:^|\\n)\\s*${lowerKey}\\)[\\s]*`, 'i'), '').trim()
         }
-
+        
         return null
     }
 
