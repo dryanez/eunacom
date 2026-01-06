@@ -194,22 +194,22 @@ const TestAnalysis = () => {
                                 minHeight: '80vh'
                             }}>
 
-                                {/* Stats Grid - Now Full Width */}
-                                <div className="stats-grid" style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                                    gap: '2rem',
-                                    marginBottom: '3rem'
+                                {/* Stats Section - Horizontal Layout */}
+                                <div style={{
+                                    display: 'flex',
+                                    gap: '4rem',
+                                    marginBottom: '3rem',
+                                    alignItems: 'center',
+                                    padding: '2rem',
+                                    background: '#fff',
+                                    borderRadius: '12px',
+                                    border: '1px solid #f0f0f0'
                                 }}>
-                                    {/* Score Circle Card */}
-                                    <div className="stat-card" style={{
-                                        boxShadow: 'none', border: '1px solid #f0f0f0',
-                                        display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem'
-                                    }}>
-                                        <h3 style={{ marginBottom: '2rem' }}>Puntaje Total</h3>
-
-                                        <div style={{ position: 'relative', width: '200px', height: '200px' }}>
-                                            <svg width="200" height="200" viewBox="0 0 100 100">
+                                    {/* Left: Score Circle */}
+                                    <div style={{ flex: '0 0 auto' }}>
+                                        <h3 style={{ marginBottom: '1.5rem', color: '#1a3b5c', textAlign: 'center' }}>Puntaje Total</h3>
+                                        <div style={{ position: 'relative', width: '220px', height: '220px' }}>
+                                            <svg width="220" height="220" viewBox="0 0 100 100">
                                                 <circle cx="50" cy="50" r="45" fill="none" stroke="#f0f0f0" strokeWidth="8" />
                                                 <circle
                                                     cx="50" cy="50" r="45" fill="none" stroke="#48bb78" strokeWidth="8"
@@ -222,38 +222,61 @@ const TestAnalysis = () => {
                                                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
                                                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
                                             }}>
-                                                <span style={{ fontSize: '3rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
+                                                <span style={{ fontSize: '3.5rem', fontWeight: 'bold', color: '#1a3b5c' }}>{stats.score}%</span>
                                                 <span style={{ fontSize: '1rem', color: '#777' }}>Correcto</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Answers Summary Card */}
-                                    <div className="stat-card" style={{ boxShadow: 'none', border: '1px solid #f0f0f0', padding: '2rem' }}>
-                                        <h3 style={{ marginBottom: '2rem' }}>Resumen de Preguntas</h3>
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center', height: '100%' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.2rem' }}>
-                                                <span style={{ color: '#666' }}>Correctas</span>
-                                                <span style={{ fontWeight: 'bold', color: '#48bb78', fontSize: '1.5rem' }}>{stats.correct}</span>
-                                            </div>
-                                            <div style={{ width: '100%', height: '10px', background: '#f0f0f0', borderRadius: '5px', overflow: 'hidden' }}>
-                                                <div style={{ width: `${(stats.correct / stats.total) * 100}%`, height: '100%', background: '#48bb78' }} />
-                                            </div>
+                                    {/* Right: Stats Breakdown */}
+                                    <div style={{ flex: 1 }}>
+                                        <h3 style={{ marginBottom: '2rem', color: '#1a3b5c' }}>Resumen de Preguntas</h3>
 
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.2rem' }}>
-                                                <span style={{ color: '#666' }}>Incorrectas</span>
-                                                <span style={{ fontWeight: 'bold', color: '#f56565', fontSize: '1.5rem' }}>{stats.incorrect}</span>
+                                        {/* Correctas */}
+                                        <div style={{ marginBottom: '2rem' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Correctas</span>
+                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#48bb78' }}>{stats.correct}</span>
                                             </div>
-                                            <div style={{ width: '100%', height: '10px', background: '#f0f0f0', borderRadius: '5px', overflow: 'hidden' }}>
-                                                <div style={{ width: `${(stats.incorrect / stats.total) * 100}%`, height: '100%', background: '#f56565' }} />
+                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
+                                                <div style={{
+                                                    width: `${(stats.correct / stats.total) * 100}%`,
+                                                    height: '100%',
+                                                    background: 'linear-gradient(90deg, #48bb78 0%, #38a169 100%)',
+                                                    transition: 'width 0.3s ease'
+                                                }} />
                                             </div>
+                                        </div>
 
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.2rem' }}>
-                                                <span style={{ color: '#666' }}>Omitidas</span>
-                                                <span style={{ fontWeight: 'bold', color: '#a0aec0', fontSize: '1.5rem' }}>{stats.omitted}</span>
+                                        {/* Incorrectas */}
+                                        <div style={{ marginBottom: '2rem' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Incorrectas</span>
+                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f56565' }}>{stats.incorrect}</span>
                                             </div>
-                                            <div style={{ width: '100%', height: '10px', background: '#f0f0f0', borderRadius: '5px', overflow: 'hidden' }}>
-                                                <div style={{ width: `${(stats.omitted / stats.total) * 100}%`, height: '100%', background: '#a0aec0' }} />
+                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
+                                                <div style={{
+                                                    width: `${(stats.incorrect / stats.total) * 100}%`,
+                                                    height: '100%',
+                                                    background: 'linear-gradient(90deg, #f56565 0%, #e53e3e 100%)',
+                                                    transition: 'width 0.3s ease'
+                                                }} />
+                                            </div>
+                                        </div>
+
+                                        {/* Omitidas */}
+                                        <div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                                <span style={{ fontSize: '1.1rem', color: '#666', fontWeight: '500' }}>Omitidas</span>
+                                                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#a0aec0' }}>{stats.omitted}</span>
+                                            </div>
+                                            <div style={{ width: '100%', height: '12px', background: '#f0f0f0', borderRadius: '6px', overflow: 'hidden' }}>
+                                                <div style={{
+                                                    width: `${(stats.omitted / stats.total) * 100}%`,
+                                                    height: '100%',
+                                                    background: 'linear-gradient(90deg, #a0aec0 0%, #718096 100%)',
+                                                    transition: 'width 0.3s ease'
+                                                }} />
                                             </div>
                                         </div>
                                     </div>
