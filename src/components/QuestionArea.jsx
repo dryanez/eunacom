@@ -34,7 +34,7 @@ const QuestionArea = ({
         if (!question.incorrect_explanations || !showFeedback) return null
 
         const lowerKey = optionKey.toLowerCase()
-        
+
         // Final Ultimate Regex:
         // (?:^|[\n,\s]) -> Start, Newline, Comma, or Space (handles inline grouping)
         // [\*\s]*       -> Optional bullets (*) or whitespace
@@ -42,22 +42,22 @@ const QuestionArea = ({
         //    -> The letter (a, b, c...)
         // (?:\*\*)?     -> Optional bold end
         // [\)\:]        -> Separator ( ) or : )
-        
+
         const regex = new RegExp(
-            `(?:^|[\\n,\\s])[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s\\S]*?(?=(?:\\n)[\\*\\s]*(?:\\*\\*)?[a-e](?:\\*\\*)?[\\)\\:]|$)`, 
+            `(?:^|[\\n,\\s])[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s\\S]*?(?=(?:\\n)[\\*\\s]*(?:\\*\\*)?[a-e](?:\\*\\*)?[\\)\\:]|$)`,
             'gi'
         )
-        
+
         const match = question.incorrect_explanations.match(regex)
-        
+
         if (match && match[0]) {
             // Clean up the prefix
             return match[0].replace(
-                new RegExp(`^(?:[\\n,\\s])?[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s]*`, 'i'), 
+                new RegExp(`^(?:[\\n,\\s])?[\\*\\s]*(?:\\*\\*)?${lowerKey}(?:\\*\\*)?[\\)\\:][\\s]*`, 'i'),
                 ''
-            ).trim()
+            ).replace(/\*\*/g, '').trim()
         }
-        
+
         return null
     }
 
