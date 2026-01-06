@@ -239,6 +239,17 @@ function TestRunner() {
         if (error) console.error('Error saving progress:', error)
     }, [test])
 
+    const saveTime = useCallback(async (timeRemaining) => {
+        if (!test?.id) return
+
+        const { error } = await supabase
+            .from('tests')
+            .update({ time_remaining_seconds: timeRemaining })
+            .eq('id', test.id)
+
+        if (error) console.error('Error saving time:', error)
+    }, [test])
+
     // Handlers
     const handleSelectOption = (optionKey) => {
         const currentQ = questionsData[currentQuestionIndex]
