@@ -3,6 +3,7 @@ import React from 'react'
 const TestSidebar = ({
     questions = [],
     currentQuestionIndex,
+    startIndex = 0, // NEW PROP
     answers = {},
     flags = {},
     feedback = {}, // { questionId: { isCorrect: true/false } }
@@ -24,6 +25,7 @@ const TestSidebar = ({
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {questions.map((q, index) => {
+                    const globalIndex = startIndex + index // Calculate global index
                     const isFlagged = flags[q.id]
                     const isAnswered = answers[q.id] !== undefined
                     const qFeedback = feedback[q.id]
@@ -45,7 +47,7 @@ const TestSidebar = ({
                         }
                     }
 
-                    if (index === currentQuestionIndex) {
+                    if (globalIndex === currentQuestionIndex) {
                         borderColor = '#4EBDDB'
                         // Keep the feedback bg color if available, otherwise blue tint
                         bgColor = qFeedback ? bgColor : '#eefcfd'
@@ -61,7 +63,7 @@ const TestSidebar = ({
                     return (
                         <button
                             key={q.id}
-                            onClick={() => onNavigate(index)}
+                            onClick={() => onNavigate(globalIndex)}
                             style={{
                                 width: '100%',
                                 minHeight: '60px',
@@ -69,7 +71,7 @@ const TestSidebar = ({
                                 borderRadius: '8px',
                                 background: bgColor,
                                 color: textColor,
-                                fontWeight: index === currentQuestionIndex ? '600' : '400',
+                                fontWeight: globalIndex === currentQuestionIndex ? '600' : '400',
                                 fontSize: '0.85rem',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -95,7 +97,7 @@ const TestSidebar = ({
                                 flexShrink: 0,
                                 marginTop: '2px'
                             }}>
-                                {index + 1}
+                                {startIndex + index + 1}
                             </div>
 
                             {/* Question Preview Text */}
