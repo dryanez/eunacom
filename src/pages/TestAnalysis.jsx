@@ -528,7 +528,7 @@ const TestAnalysis = () => {
 
                                     {/* Table Header */}
                                     <div style={{ display: 'grid', gridTemplateColumns: '50px 100px 1fr 2fr 50px 80px 50px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>#</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>CODE</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>TAGS</div>
@@ -547,7 +547,7 @@ const TestAnalysis = () => {
                                             alignItems: 'center',
                                             gap: '1rem'
                                         }}>
-                                            <div style={{ fontSize: '0.9rem', color: '#999' }}>{idx + 1}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#999' }}>{q.id}</div>
                                             <div style={{ fontSize: '0.85rem', color: '#4EBDDB', fontWeight: '600' }}>{q.eunacom_code || '-'}</div>
                                             <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>{q.topic || 'General'}</div>
 
