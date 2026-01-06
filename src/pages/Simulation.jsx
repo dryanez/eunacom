@@ -104,7 +104,6 @@ function Simulation() {
 
     return (
         <div className="dashboard-layout">
-            <Sidebar />
             <main className="dashboard-main">
                 <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
                     <h2 style={{ color: 'white', margin: 0, fontSize: '1.25rem' }}>Simulación EUNACOM</h2>

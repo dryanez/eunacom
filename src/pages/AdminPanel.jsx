@@ -196,7 +196,6 @@ function AdminPanel() {
 
   return (
     <div className="dashboard-layout">
-      <Sidebar />
       <main className="dashboard-main">
         <header className="dashboard__header" style={{ justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

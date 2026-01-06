@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import Sidebar from '../components/Sidebar'
 import { Play, Eye, BarChart2, Trash2, Search, ChevronDown } from 'lucide-react'
 import '../styles/dashboard.css'
 
