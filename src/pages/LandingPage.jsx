@@ -19,7 +19,8 @@ const LandingPage = () => {
             minHeight: '100vh',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'auto',
+            paddingBottom: '4rem'
         }}>
             {/* Animated background elements */}
             <div style={{
@@ -41,32 +42,34 @@ const LandingPage = () => {
             <header style={{
                 position: 'relative',
                 zIndex: 10,
-                padding: '1.5rem 2rem',
+                padding: 'clamp(1rem, 3vw, 1.5rem)',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 maxWidth: '1200px',
-                margin: '0 auto'
+                margin: '0 auto',
+                flexWrap: 'wrap',
+                gap: '1rem'
             }}>
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '1rem'
+                    gap: 'clamp(0.5rem, 2vw, 1rem)'
                 }}>
                     <img
-                        src="/logo.png"
+                        src="/logo.svg"
                         alt="Eunacom-Examen"
                         style={{
-                            width: '48px',
-                            height: '48px',
-                            filter: 'drop-shadow(0 4px 12px rgba(255,255,255,0.3))'
+                            width: 'clamp(40px, 8vw, 56px)',
+                            height: 'clamp(40px, 8vw, 56px)'
                         }}
                     />
                     <span style={{
-                        fontSize: '1.5rem',
+                        fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
                         fontWeight: '800',
                         color: 'white',
-                        letterSpacing: '0.5px'
+                        letterSpacing: '0.5px',
+                        textShadow: '0 2px 10px rgba(0,0,0,0.2)'
                     }}>
                         Eunacom-Examen
                     </span>
@@ -74,24 +77,28 @@ const LandingPage = () => {
                 <button
                     onClick={handleLogin}
                     style={{
-                        background: 'rgba(255,255,255,0.2)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255,255,255,0.3)',
-                        color: 'white',
-                        padding: '0.75rem 2rem',
+                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                        border: '3px solid white',
+                        color: '#1a1a1a',
+                        padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 4vw, 2.5rem)',
                         borderRadius: '12px',
-                        fontSize: '1rem',
-                        fontWeight: '600',
+                        fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
+                        fontWeight: '800',
                         cursor: 'pointer',
-                        transition: 'all 0.3s'
+                        transition: 'all 0.3s',
+                        boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                        minHeight: '44px', // iOS touch target
+                        whiteSpace: 'nowrap'
                     }}
                     onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(255,255,255,0.3)';
-                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.transform = 'translateY(-3px) scale(1.05)';
+                        e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
                     }}
                     onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(255,255,255,0.2)';
-                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.transform = 'translateY(0) scale(1)';
+                        e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
                     }}
                 >
                     Iniciar Sesión
@@ -104,11 +111,11 @@ const LandingPage = () => {
                 zIndex: 5,
                 maxWidth: '1200px',
                 margin: '0 auto',
-                padding: '4rem 2rem'
+                padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem)'
             }}>
                 <div style={{
                     textAlign: 'center',
-                    marginBottom: '4rem'
+                    marginBottom: 'clamp(2rem, 5vw, 4rem)'
                 }}>
                     {/* Badge */}
                     <div style={{
@@ -118,24 +125,26 @@ const LandingPage = () => {
                         background: 'rgba(255,255,255,0.2)',
                         backdropFilter: 'blur(10px)',
                         border: '1px solid rgba(255,255,255,0.3)',
-                        padding: '0.5rem 1.5rem',
+                        padding: 'clamp(0.4rem, 1.5vw, 0.5rem) clamp(1rem, 3vw, 1.5rem)',
                         borderRadius: '50px',
-                        marginBottom: '2rem',
+                        marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
                         color: 'white',
-                        fontWeight: '600'
+                        fontWeight: '600',
+                        fontSize: 'clamp(0.85rem, 2vw, 1rem)'
                     }}>
-                        <Sparkles size={20} />
+                        <Sparkles size={window.innerWidth < 768 ? 16 : 20} />
                         Plataforma #1 para el EUNACOM 2026
                     </div>
 
                     {/* Main Headline */}
                     <h1 style={{
-                        fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                        fontSize: 'clamp(2rem, 8vw, 4.5rem)',
                         fontWeight: '900',
                         color: 'white',
                         lineHeight: '1.1',
-                        marginBottom: '1.5rem',
-                        textShadow: '0 4px 20px rgba(0,0,0,0.2)'
+                        marginBottom: 'clamp(1rem, 3vw, 1.5rem)',
+                        textShadow: '0 4px 20px rgba(0,0,0,0.2)',
+                        padding: '0 1rem'
                     }}>
                         Aprueba el EUNACOM<br />
                         con <span style={{
@@ -148,12 +157,13 @@ const LandingPage = () => {
 
                     {/* Subtitle */}
                     <p style={{
-                        fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                        fontSize: 'clamp(1rem, 3vw, 1.5rem)',
                         color: 'rgba(255,255,255,0.9)',
                         maxWidth: '700px',
-                        margin: '0 auto 3rem',
+                        margin: '0 auto clamp(2rem, 4vw, 3rem)',
                         lineHeight: '1.6',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                        textShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                        padding: '0 1rem'
                     }}>
                         Más de <strong>10,000 preguntas</strong> reconstruidas del examen real.
                         Sistema de gamificación que hace el estudio <strong>adictivo</strong>.
@@ -162,26 +172,31 @@ const LandingPage = () => {
                     {/* CTA Buttons */}
                     <div style={{
                         display: 'flex',
-                        gap: '1.5rem',
+                        gap: 'clamp(1rem, 3vw, 1.5rem)',
                         justifyContent: 'center',
-                        flexWrap: 'wrap'
+                        flexWrap: 'wrap',
+                        padding: '0 1rem'
                     }}>
                         <button
                             onClick={handleGetStarted}
                             style={{
                                 background: 'white',
                                 color: '#667eea',
-                                padding: '1.25rem 3rem',
+                                padding: 'clamp(1rem, 2.5vw, 1.25rem) clamp(2rem, 5vw, 3rem)',
                                 borderRadius: '16px',
-                                fontSize: '1.2rem',
+                                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                                 fontWeight: '700',
                                 border: 'none',
                                 cursor: 'pointer',
                                 boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
-                                display: 'flex',
+                                display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.75rem',
-                                transition: 'all 0.3s'
+                                transition: 'all 0.3s',
+                                minHeight: '50px',
+                                width: window.innerWidth < 768 ? '100%' : 'auto',
+                                maxWidth: window.innerWidth < 768 ? '100%' : '300px',
+                                justifyContent: 'center'
                             }}
                             onMouseEnter={(e) => {
                                 e.target.style.transform = 'translateY(-4px)';
@@ -202,15 +217,19 @@ const LandingPage = () => {
                                 backdropFilter: 'blur(10px)',
                                 border: '2px solid rgba(255,255,255,0.3)',
                                 color: 'white',
-                                padding: '1.25rem 3rem',
+                                padding: 'clamp(1rem, 2.5vw, 1.25rem) clamp(2rem, 5vw, 3rem)',
                                 borderRadius: '16px',
-                                fontSize: '1.2rem',
+                                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                                 fontWeight: '700',
                                 cursor: 'pointer',
-                                display: 'flex',
+                                display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.75rem',
-                                transition: 'all 0.3s'
+                                transition: 'all 0.3s',
+                                minHeight: '50px',
+                                width: window.innerWidth < 768 ? '100%' : 'auto',
+                                maxWidth: window.innerWidth < 768 ? '100%' : '300px',
+                                justifyContent: 'center'
                             }}
                             onMouseEnter={(e) => {
                                 e.target.style.background = 'rgba(255,255,255,0.25)';
