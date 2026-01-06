@@ -73,7 +73,7 @@ function Simulation() {
                 .insert({
                     user_id: user.id,
                     mode: 'timed', // Changed from 'simulation' to match DB constraint
-                    time_limit_seconds: 180 * 60, // 180 minutes total (1 min per question)
+                    time_limit_seconds: 210 * 60, // 210 minutes total (105 min per section)
                     total_questions: 180,
                     questions: selected180.map(q => q.id),
                     // Metadata removed to prevent schema error
