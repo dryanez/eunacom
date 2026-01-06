@@ -13,6 +13,7 @@ const TestAnalysis = () => {
     const [expandedTopics, setExpandedTopics] = useState(new Set())
     const [userName, setUserName] = useState('')
     const [activeTab, setActiveTab] = useState('analysis') // 'results' or 'analysis'
+    const [testQuestions, setTestQuestions] = useState([]) // For Test Results tab
 
     useEffect(() => {
         const getUser = async () => {
@@ -144,11 +145,55 @@ const TestAnalysis = () => {
 
             setTopicBreakdown(sortedTopics)
 
+            // Also fetch detailed questions for Test Results tab
+            await fetchTestQuestions(questionIds, userAnswers, questionsData)
+
         } catch (error) {
             console.error('Error analyzing test:', error)
             setStats(null)
         } finally {
             setLoading(false)
+        }
+    }
+
+    const fetchTestQuestions = async (questionIds, userAnswers, questionsData) => {
+        try {
+            // Fetch answer statistics for all questions
+            const { data: statsData, error: statsError } = await supabase
+                .from('answer_statistics')
+                .select('*')
+                .in('question_id', questionIds)
+
+            if (statsError) throw statsError
+
+            // Process each question with its stats
+            const questionsWithStats = questionsData.map(q => {
+                const userAnswer = userAnswers[q.id]
+                const isCorrect = userAnswer === q.correct_answer
+                const isOmitted = !userAnswer
+
+                // Calculate average from answer_statistics
+                const questionStats = statsData?.filter(s => s.question_id === q.id) || []
+                const totalAnswers = questionStats.reduce((sum, s) => sum + s.count, 0)
+                const correctAnswers = questionStats.find(s => s.option_selected === q.correct_answer)?.count || 0
+                const avgPercentage = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0
+
+                return {
+                    id: q.id,
+                    text: q.question_text,
+                    topic: q.topic,
+                    correctAnswer: q.correct_answer,
+                    userAnswer: userAnswer || null,
+                    isCorrect,
+                    isOmitted,
+                    avgPercentage,
+                    totalAnswers
+                }
+            })
+
+            setTestQuestions(questionsWithStats)
+        } catch (error) {
+            console.error('Error fetching question stats:', error)
         }
     }
 
