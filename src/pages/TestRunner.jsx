@@ -39,6 +39,11 @@ function TestRunner() {
                 .single()
 
             if (testError) throw testError
+
+            console.log('🔄 Resuming test session:', testData)
+            console.log('📌 Submitted questions:', testData.submitted_questions)
+            console.log('📌 Type of submitted:', typeof testData.submitted_questions)
+
             setTest(testData)
 
             // Initialize local state from DB if resuming (answers are JSONB)
