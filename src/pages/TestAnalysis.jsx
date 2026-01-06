@@ -50,7 +50,7 @@ const TestAnalysis = () => {
             // 2. Fetch question details
             const { data: questionsData, error: qError } = await supabase
                 .from('questions')
-                .select('id, topic, correct_answer, eunacom_code, question_text')
+                .select('id, topic, correct_answer, eunacom_code, question_text, tags, video_url')
                 .in('id', questionIds)
 
             if (qError) throw qError
@@ -187,7 +187,10 @@ const TestAnalysis = () => {
                     isCorrect,
                     isOmitted,
                     avgPercentage,
-                    totalAnswers
+                    totalAnswers,
+                    tags: q.tags || [],
+                    video_url: q.video_url,
+                    eunacom_code: q.eunacom_code
                 }
             })
 
@@ -524,38 +527,61 @@ const TestAnalysis = () => {
                                     </div>
 
                                     {/* Table Header */}
-                                    <div style={{ display: 'grid', gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '50px 100px 1fr 2fr 50px 80px 50px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0', gap: '1rem' }}>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>#</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>CODE</div>
                                         <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>YOUR ANSWER</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>CORRECT</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>% CORRECT OTHERS</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'right' }}>STATUS</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>TAGS</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>VID</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>AVG %</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'right' }}>STS</div>
                                     </div>
 
                                     {/* Question Rows */}
                                     {testQuestions.map((q, idx) => (
                                         <div key={q.id} style={{
                                             display: 'grid',
-                                            gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px',
+                                            gridTemplateColumns: '50px 100px 1fr 2fr 50px 80px 50px',
                                             padding: '1rem 1.5rem',
                                             borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            gap: '1rem'
                                         }}>
-                                            <div style={{ fontSize: '0.9rem', color: '#666' }}>{idx + 1}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#999' }}>{idx + 1}</div>
+                                            <div style={{ fontSize: '0.85rem', color: '#4EBDDB', fontWeight: '600' }}>{q.eunacom_code || '-'}</div>
                                             <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>{q.topic || 'General'}</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
-                                                {q.userAnswer || '-'}
+
+                                            {/* Tags */}
+                                            <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap' }}>
+                                                {q.tags && q.tags.slice(0, 3).map((tag, tIdx) => (
+                                                    <span key={tIdx} style={{
+                                                        background: '#edf2f7',
+                                                        color: '#4a5568',
+                                                        fontSize: '0.75rem',
+                                                        padding: '0.2rem 0.5rem',
+                                                        borderRadius: '4px'
+                                                    }}>
+                                                        {tag}
+                                                    </span>
+                                                ))}
                                             </div>
-                                            <div style={{ fontSize: '0.9rem', color: '#48bb78', textAlign: 'center', fontWeight: '600' }}>
-                                                {q.correctAnswer}
+
+                                            {/* Video Indicator */}
+                                            <div style={{ textAlign: 'center' }}>
+                                                {q.video_url ? (
+                                                    <span title="View Video" style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🎥</span>
+                                                ) : (
+                                                    <span style={{ color: '#e2e8f0' }}>-</span>
+                                                )}
                                             </div>
+
                                             <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
                                                 {q.avgPercentage}%
                                             </div>
+
                                             <div style={{ textAlign: 'right' }}>
                                                 {q.isOmitted ? (
-                                                    <span style={{ fontSize: '1.2rem' }}>⊝</span>
+                                                    <span style={{ fontSize: '1.2rem', color: '#cbd5e0' }}>⊝</span>
                                                 ) : q.isCorrect ? (
                                                     <span style={{ fontSize: '1.2rem', color: '#48bb78' }}>✓</span>
                                                 ) : (
