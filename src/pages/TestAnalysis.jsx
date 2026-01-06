@@ -161,35 +161,33 @@ const TestAnalysis = () => {
     }
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-layout">
             <Sidebar userName={userName} />
 
-            <main className="main-content">
-                <header className="dashboard-header">
-                    <div>
+            <main className="dashboard-main">
+                <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+                    <div className="header-section" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <button
                             onClick={() => navigate('/history')}
-                            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '0.9rem', marginBottom: '0.5rem' }}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}
                         >
-                            ← Volver al Historial
+                            ←
                         </button>
-                        <h1>Análisis de Examen</h1>
-                        <p>Detalle de rendimiento por tema y código EUNACOM</p>
+                        <div>
+                            <h1 style={{ fontSize: '2rem', color: '#1a3b5c', fontWeight: '700', margin: 0 }}>Análisis de Examen</h1>
+                            <p style={{ margin: 0, color: '#666' }}>Detalle de rendimiento por tema y código EUNACOM</p>
+                        </div>
                     </div>
-                </header>
 
-                <div className="dashboard-content" style={{ padding: '0 2rem 2rem' }}>
                     {loading ? (
                         <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando análisis...</div>
                     ) : !stats ? (
                         <div style={{ padding: '2rem', textAlign: 'center', color: '#e53e3e' }}>Error al cargar los datos.</div>
                     ) : (
                         <div style={{
-                            maxWidth: '1000px',
-                            margin: '0 auto',
                             background: '#fff',
                             borderRadius: '12px',
-                            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                             padding: '2rem',
                             minHeight: '600px'
                         }}>
