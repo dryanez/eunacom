@@ -245,10 +245,10 @@ const Dashboard = () => {
                     <div className="stats-row">
                         {/* Ranking */}
                         <div className="stat-card-new">
-                            <div className="stat-card-title">Ranking Mensual</div>
+                            <div className="stat-card-title">Tu Nivel</div>
                             <div className="stat-card-value">
                                 <Trophy className="stat-icon" size={40} color="#f59e0b" />
-                                {rank}
+                                {profile.level}
                             </div>
                         </div>
 
