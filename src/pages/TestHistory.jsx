@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import Sidebar from '../components/Sidebar'
 import '../styles/dashboard.css'
 
-import TestAnalysisModal from '../components/TestAnalysisModal'
+
 
 function TestHistory() {
     const navigate = useNavigate()
