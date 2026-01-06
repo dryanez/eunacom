@@ -486,16 +486,19 @@ function TestRunner() {
             ? questionsData.slice(0, 90)
             : questionsData.slice(90, 180)
         startIndex = reviewSection === 1 ? 0 : 90
+        console.log('[REVIEW] Section:', reviewSection, 'Showing:', currentSectionQuestions.length)
     } else if (isSimulation) {
         // In active simulation - filter by currentSection
         currentSectionQuestions = currentSection === 1
             ? questionsData.slice(0, 90)
             : questionsData.slice(90, 180)
         startIndex = currentSection === 1 ? 0 : 90
+        console.log('[SIMULATION] isSim:', isSimulation, 'Section:', currentSection, 'Showing:', currentSectionQuestions.length, 'of', questionsData.length)
     } else {
         // Regular test - show all questions
         currentSectionQuestions = questionsData
         startIndex = 0
+        console.log('[REGULAR] Showing all:', currentSectionQuestions.length)
     }
 
     return (
