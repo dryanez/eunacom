@@ -102,27 +102,22 @@ const Sidebar = () => {
             </div>
 
             <nav className="sidebar__nav">
-                {menuItems.map((item) => {
-                    const Icon = item.icon
-                    return (
-                        <NavLink
-                            key={item.path}
-                            to={item.path}
-                            className={({ isActive }) =>
-                                `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
-                            }
-                            onClick={() => setIsMobileOpen(false)}
-                        >
-                            <span className="sidebar__item-icon">
-                                <Icon size={20} />
-                            </span>
-                            <span className="sidebar__item-label">{item.label}</span>
-                        </NavLink>
-                    )
-                })}
+                {/* 1. Inicio */}
+                <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                    }
+                    onClick={() => setIsMobileOpen(false)}
+                >
+                    <span className="sidebar__item-icon">
+                        <Home size={20} />
+                    </span>
+                    <span className="sidebar__item-label">Inicio</span>
+                </NavLink>
 
-                {/* Exámenes Collapsible Section */}
-                <div style={{ marginTop: '0.5rem' }}>
+                {/* 2. Exámenes (Collapsible) - Moved here as requested */}
+                <div style={{ marginTop: '0.25rem', marginBottom: '0.25rem' }}>
                     <div
                         onClick={() => setExamenesOpen(!examenesOpen)}
                         className="sidebar__item"
@@ -173,6 +168,26 @@ const Sidebar = () => {
                         </div>
                     )}
                 </div>
+
+                {/* 3. Rest of the items */}
+                {menuItems.slice(1).map((item) => {
+                    const Icon = item.icon
+                    return (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                            }
+                            onClick={() => setIsMobileOpen(false)}
+                        >
+                            <span className="sidebar__item-icon">
+                                <Icon size={20} />
+                            </span>
+                            <span className="sidebar__item-label">{item.label}</span>
+                        </NavLink>
+                    )
+                })}
             </nav>
 
             <div className="sidebar__footer">
