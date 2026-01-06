@@ -249,8 +249,14 @@ const QuestionArea = ({
             {showFeedback && (
                 <div ref={explanationRef} style={{ marginTop: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                     <h4 style={{ margin: '0 0 1rem 0', color: '#1a3b5c' }}>Explicación</h4>
-                    <p style={{ lineHeight: '1.6', color: '#4a5568' }}>
-                        {question.explanation || "No hay explicación disponible para esta pregunta."}
+                    <p style={{ lineHeight: '1.8', color: '#4a5568', whiteSpace: 'pre-wrap' }}>
+                        {question.explanation
+                            ? question.explanation
+                                .replace(/\*\*/g, '') // Remove bold markers
+                                .replace(/(?:\s|^)(\d+\.\s)/g, '\n\n$1') // Double newline before "1. ", "2. "
+                                .replace(/(?:\s|^)(En resumen|Por lo tanto|Conclusión)/g, '\n\n$1') // Newline before summary phrases
+                            : "No hay explicación disponible para esta pregunta."
+                        }
                     </p>
                 </div>
             )}
