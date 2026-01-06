@@ -516,6 +516,57 @@ const TestAnalysis = () => {
                                     </div>
                                 </>
                             )}
+                            {/* Test Results Tab */}
+                            {activeTab === 'results' && (
+                                <div style={{ background: '#fff', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+                                    <div style={{ padding: '1.5rem', borderBottom: '1px solid #f0f0f0' }}>
+                                        <h3 style={{ fontSize: '1rem', color: '#1a3b5c', margin: 0, fontWeight: '600' }}>Individual Question Results</h3>
+                                    </div>
+
+                                    {/* Table Header */}
+                                    <div style={{ display: 'grid', gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px', padding: '0.75rem 1.5rem', background: '#fafafa', borderBottom: '1px solid #f0f0f0' }}>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>ID</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600' }}>SUBJECT</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>YOUR ANSWER</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>CORRECT</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'center' }}>% CORRECT OTHERS</div>
+                                        <div style={{ fontSize: '0.85rem', color: '#999', fontWeight: '600', textAlign: 'right' }}>STATUS</div>
+                                    </div>
+
+                                    {/* Question Rows */}
+                                    {testQuestions.map((q, idx) => (
+                                        <div key={q.id} style={{ 
+                                            display: 'grid', 
+                                            gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px', 
+                                            padding: '1rem 1.5rem', 
+                                            borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
+                                            alignItems: 'center'
+                                        }}>
+                                            <div style={{ fontSize: '0.9rem', color: '#666' }}>{idx + 1}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500' }}>{q.topic || 'General'}</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
+                                                {q.userAnswer || '-'}
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#48bb78', textAlign: 'center', fontWeight: '600' }}>
+                                                {q.correctAnswer}
+                                            </div>
+                                            <div style={{ fontSize: '0.9rem', color: '#666', textAlign: 'center', fontWeight: '600' }}>
+                                                {q.avgPercentage}%
+                                            </div>
+                                            <div style={{ textAlign: 'right' }}>
+                                                {q.isOmitted ? (
+                                                    <span style={{ fontSize: '1.2rem' }}>⊝</span>
+                                                ) : q.isCorrect ? (
+                                                    <span style={{ fontSize: '1.2rem', color: '#48bb78' }}>✓</span>
+                                                ) : (
+                                                    <span style={{ fontSize: '1.2rem', color: '#f56565' }}>✗</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
                         </div>
             </main>
         </div>
