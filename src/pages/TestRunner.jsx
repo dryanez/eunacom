@@ -96,8 +96,8 @@ function TestRunner() {
 
             setTest(testData)
 
-            // Determine if this is a Simulation (180 Qs + Timed)
-            const isSim = testData.total_questions === 180 && testData.mode === 'timed'
+            // Determine if this is a Simulation (180 Qs + Timed) AND not completed
+            const isSim = testData.total_questions === 180 && testData.mode === 'timed' && testData.status !== 'completed'
             setIsSimulation(isSim)
 
             if (isSim) {
@@ -439,7 +439,9 @@ function TestRunner() {
                 </button>
 
                 <div style={{ fontWeight: '600', color: '#333' }}>
-                    {isSimulation ? (
+                    {test.status === 'completed' ? (
+                        <span style={{ color: '#48bb78' }}>Modo: Revisión</span>
+                    ) : isSimulation ? (
                         <span>
                             Simulación: Sección <span style={{ color: '#4EBDDB' }}>{currentSection}</span>
                             <span style={{ margin: '0 1rem', color: '#e2e8f0' }}>|</span>
@@ -450,15 +452,17 @@ function TestRunner() {
                     )}
                 </div>
 
-                <button
-                    onClick={handleFinishAttempt}
-                    style={{
-                        background: '#e53e3e', color: 'white', border: 'none',
-                        padding: '0.5rem 1.5rem', borderRadius: '20px', fontWeight: 'bold', cursor: 'pointer'
-                    }}
-                >
-                    {isSimulation && currentSection === 1 ? 'Terminar Sección 1' : 'Finalizar Examen'}
-                </button>
+                {test.status !== 'completed' && (
+                    <button
+                        onClick={handleFinishAttempt}
+                        style={{
+                            background: '#e53e3e', color: 'white', border: 'none',
+                            padding: '0.5rem 1.5rem', borderRadius: '20px', fontWeight: 'bold', cursor: 'pointer'
+                        }}
+                    >
+                        {isSimulation && currentSection === 1 ? 'Terminar Sección 1' : 'Finalizar Examen'}
+                    </button>
+                )}
             </div>
 
             <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
