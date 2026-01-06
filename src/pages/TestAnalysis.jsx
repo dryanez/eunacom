@@ -535,10 +535,10 @@ const TestAnalysis = () => {
 
                                     {/* Question Rows */}
                                     {testQuestions.map((q, idx) => (
-                                        <div key={q.id} style={{ 
-                                            display: 'grid', 
-                                            gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px', 
-                                            padding: '1rem 1.5rem', 
+                                        <div key={q.id} style={{
+                                            display: 'grid',
+                                            gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 120px',
+                                            padding: '1rem 1.5rem',
                                             borderBottom: idx === testQuestions.length - 1 ? 'none' : '1px solid #f5f5f5',
                                             alignItems: 'center'
                                         }}>
@@ -566,8 +566,9 @@ const TestAnalysis = () => {
                                     ))}
                                 </div>
                             )}
-
-                        </div>
+                        </>
+                    )}
+                </div>
             </main>
         </div>
     )

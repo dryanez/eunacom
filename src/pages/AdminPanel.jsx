@@ -238,7 +238,7 @@ function AdminPanel() {
           {activeTab === 'console' && (
             <div style={{ background: '#1e1e1e', borderRadius: '8px', padding: '1rem', height: '70vh', overflowY: 'auto', fontFamily: 'monospace' }}>
               <div style={{ color: '#4EBDDB', marginBottom: '1rem', borderBottom: '1px solid #333', paddingBottom: '0.5rem' }}>
-                    > System Logs (Realtime Stream)
+                &gt; System Logs (Realtime Stream)
               </div>
               {logs.map(log => (
                 <div key={log.id} style={{ marginBottom: '0.5rem', fontSize: '0.9rem', borderLeft: '3px solid #555', paddingLeft: '0.5rem' }}>
