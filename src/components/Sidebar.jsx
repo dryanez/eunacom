@@ -37,8 +37,8 @@ const Sidebar = () => {
     const menuItems = [
         { path: '/dashboard', icon: Home, label: 'Inicio' },
         { path: '/history', icon: Clock, label: 'Historial Tests' },
-        { path: '/flashcards', icon: CreditCard, label: 'Flashcards' },
         { path: '/stats', icon: BarChart3, label: 'Estadísticas' },
+        { path: '/flashcards', icon: CreditCard, label: 'Flashcards' },
         { path: '/review', icon: RotateCcw, label: 'Repasar Errores' },
     ]
 

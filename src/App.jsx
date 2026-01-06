@@ -11,6 +11,7 @@ import AdminPanel from './pages/AdminPanel'
 import TestRunner from './pages/TestRunner'
 import TestAnalysis from './pages/TestAnalysis'
 import Simulation from './pages/Simulation'
+import Statistics from './pages/Statistics'
 import './App.css'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/test" element={<TestEngine />} />
           <Route path="/simulation" element={<Simulation />} />
           <Route path="/history" element={<TestHistory />} />
+          <Route path="/stats" element={<Statistics />} />
           <Route path="/analysis/:id" element={<TestAnalysis />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/test-runner/:id" element={<TestRunner />} />
