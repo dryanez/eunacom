@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import TestSidebar from '../components/TestSidebar'
 import QuestionArea from '../components/QuestionArea'
+import { XP_PER_CORRECT, XP_PER_INCORRECT } from '../utils/xpSystem'
 import '../styles/dashboard.css' // Ensure styles
 
 function TestRunner() {
@@ -23,6 +24,9 @@ function TestRunner() {
 
     // Time tracking
     const [questionStartTime, setQuestionStartTime] = useState(Date.now())
+
+    // XP notification
+    const [xpNotification, setXpNotification] = useState(null)
 
     const [showFinishModal, setShowFinishModal] = useState(false)
 
@@ -233,6 +237,29 @@ function TestRunner() {
                     throw upsertError
                 }
                 console.log('✅ Upsert successful:', upsertData)
+
+                // Award XP using database function
+                const xpAmount = isCorrect ? XP_PER_CORRECT : XP_PER_INCORRECT
+                const { data: xpResult, error: xpError } = await supabase
+                    .rpc('award_xp', {
+                        p_user_id: user.id,
+                        p_xp_amount: xpAmount
+                    })
+
+                if (!xpError && xpResult && xpResult.length > 0) {
+                    const { new_level, did_level_up } = xpResult[0]
+
+                    // Show XP notification
+                    setXpNotification({ xp: xpAmount, isCorrect })
+                    setTimeout(() => setXpNotification(null), 2000)
+
+                    // Show level up alert
+                    if (did_level_up) {
+                        alert(`🎉 ¡Subiste de nivel! Ahora eres Nivel ${new_level}!`)
+                    }
+                } else {
+                    console.log('XP award result:', xpResult, xpError)
+                }
 
                 // Wait for trigger to complete (small delay to ensure DB trigger has fired)
                 await new Promise(resolve => setTimeout(resolve, 500))
@@ -455,6 +482,28 @@ function TestRunner() {
                             </button>
                         </div>
                     </div>
+                </div>
+            )}
+
+            {/* XP Notification */}
+            {xpNotification && (
+                <div style={{
+                    position: 'fixed',
+                    top: '20px',
+                    right: '20px',
+                    background: xpNotification.isCorrect
+                        ? 'linear-gradient(135deg, #10b981, #059669)'
+                        : 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                    color: 'white',
+                    padding: '1rem 1.5rem',
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                    fontSize: '1.1rem',
+                    fontWeight: '700',
+                    zIndex: 10000,
+                    animation: 'slideInRight 0.3s ease-out'
+                }}>
+                    +{xpNotification.xp} XP {xpNotification.isCorrect ? '✨' : '💪'}
                 </div>
             )}
         </div>
