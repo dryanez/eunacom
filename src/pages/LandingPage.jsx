@@ -38,7 +38,6 @@ const LandingPage = () => {
                 pointerEvents: 'none'
             }}></div>
 
-            {/* Header */}
             <header style={{
                 position: 'relative',
                 zIndex: 10,
@@ -49,7 +48,9 @@ const LandingPage = () => {
                 maxWidth: '1200px',
                 margin: '0 auto',
                 flexWrap: 'wrap',
-                gap: '1rem'
+                gap: '1rem',
+                background: 'transparent',
+                border: 'none'
             }}>
                 <div style={{
                     display: 'flex',
