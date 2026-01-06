@@ -17,11 +17,9 @@ const LandingPage = () => {
     return (
         <div style={{
             minHeight: '100vh',
-            height: 'auto',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             position: 'relative',
-            overflowX: 'hidden',
-            overflowY: 'auto'
+            paddingBottom: '2rem'
         }}>
             {/* Animated background elements */}
             <div style={{
