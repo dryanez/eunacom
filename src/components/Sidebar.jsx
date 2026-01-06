@@ -1,6 +1,22 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import {
+    Home,
+    Clock,
+    CreditCard,
+    BarChart3,
+    RotateCcw,
+    FileText,
+    Stethoscope,
+    Target,
+    ChevronDown,
+    Settings,
+    LogOut,
+    Menu,
+    X,
+    GraduationCap
+} from 'lucide-react'
 import '../styles/neumorphism.css'
 
 const Sidebar = () => {
@@ -19,54 +35,68 @@ const Sidebar = () => {
     }
 
     const menuItems = [
-        { path: '/dashboard', icon: '🏠', label: 'Inicio' },
-        { path: '/history', icon: '🕒', label: 'Historial Tests' },
-        { path: '/flashcards', icon: '🃏', label: 'Flashcards' },
-        { path: '/stats', icon: '📊', label: 'Estadísticas' },
-        { path: '/review', icon: '🔄', label: 'Repasar Errores' },
+        { path: '/dashboard', icon: Home, label: 'Inicio' },
+        { path: '/history', icon: Clock, label: 'Historial Tests' },
+        { path: '/flashcards', icon: CreditCard, label: 'Flashcards' },
+        { path: '/stats', icon: BarChart3, label: 'Estadísticas' },
+        { path: '/review', icon: RotateCcw, label: 'Repasar Errores' },
     ]
 
     const examenesItems = [
-        { path: '/test', icon: '📝', label: 'Crear Examen' },
-        { path: '/reconstructions', icon: '🏥', label: 'Reconstrucciones' },
-        { path: '/simulation', icon: '🎯', label: 'Simulación' },
+        { path: '/test', icon: FileText, label: 'Crear Examen' },
+        { path: '/reconstructions', icon: Stethoscope, label: 'Reconstrucciones' },
+        { path: '/simulation', icon: Target, label: 'Simulación' },
     ]
 
     return (
         <aside className={`sidebar ${isMobileOpen ? 'mobile-open' : ''}`}>
             <div className="sidebar__header-mobile" style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div className="sidebar__logo" style={{ marginBottom: 0, padding: 0 }}>
-                    <span className="sidebar__logo-icon">🩺</span>
-                    <span className="sidebar__logo-text">Eunacom<span style={{ color: 'var(--color-primary-500)' }}>App</span></span>
+                    <span className="sidebar__logo-icon">
+                        <GraduationCap size={32} strokeWidth={2.5} />
+                    </span>
+                    <span className="sidebar__logo-text">
+                        Eunacom<span style={{ fontWeight: '900' }}>Pro</span>
+                    </span>
                 </div>
                 <button
                     className="mobile-toggle"
                     onClick={toggleMobileMenu}
                     style={{
-                        background: 'transparent',
+                        background: 'rgba(255, 255, 255, 0.2)',
                         border: 'none',
-                        fontSize: '1.5rem',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        color: 'white',
+                        padding: '0.5rem',
+                        borderRadius: '0.5rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
                 >
-                    {isMobileOpen ? '✕' : '☰'}
+                    {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
             <nav className="sidebar__nav">
-                {menuItems.map((item) => (
-                    <NavLink
-                        key={item.path}
-                        to={item.path}
-                        className={({ isActive }) =>
-                            `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
-                        }
-                        onClick={() => setIsMobileOpen(false)}
-                    >
-                        <span className="sidebar__item-icon">{item.icon}</span>
-                        <span className="sidebar__item-label">{item.label}</span>
-                    </NavLink>
-                ))}
+                {menuItems.map((item) => {
+                    const Icon = item.icon
+                    return (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                            }
+                            onClick={() => setIsMobileOpen(false)}
+                        >
+                            <span className="sidebar__item-icon">
+                                <Icon size={20} />
+                            </span>
+                            <span className="sidebar__item-label">{item.label}</span>
+                        </NavLink>
+                    )
+                })}
 
                 {/* Exámenes Collapsible Section */}
                 <div style={{ marginTop: '0.5rem' }}>
@@ -81,34 +111,42 @@ const Sidebar = () => {
                         }}
                     >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <span className="sidebar__item-icon">📋</span>
+                            <span className="sidebar__item-icon">
+                                <FileText size={20} />
+                            </span>
                             <span className="sidebar__item-label">Exámenes</span>
                         </div>
                         <span style={{
                             transform: examenesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                             transition: 'transform 0.2s',
-                            fontSize: '0.8rem'
+                            display: 'flex',
+                            alignItems: 'center'
                         }}>
-                            ▼
+                            <ChevronDown size={16} />
                         </span>
                     </div>
 
                     {examenesOpen && (
-                        <div style={{ paddingLeft: '1rem' }}>
-                            {examenesItems.map((item) => (
-                                <NavLink
-                                    key={item.path}
-                                    to={item.path}
-                                    className={({ isActive }) =>
-                                        `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
-                                    }
-                                    onClick={() => setIsMobileOpen(false)}
-                                    style={{ fontSize: '0.9rem' }}
-                                >
-                                    <span className="sidebar__item-icon">{item.icon}</span>
-                                    <span className="sidebar__item-label">{item.label}</span>
-                                </NavLink>
-                            ))}
+                        <div style={{ paddingLeft: '1rem', marginTop: '0.25rem' }}>
+                            {examenesItems.map((item) => {
+                                const Icon = item.icon
+                                return (
+                                    <NavLink
+                                        key={item.path}
+                                        to={item.path}
+                                        className={({ isActive }) =>
+                                            `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                                        }
+                                        onClick={() => setIsMobileOpen(false)}
+                                        style={{ fontSize: '0.9rem' }}
+                                    >
+                                        <span className="sidebar__item-icon">
+                                            <Icon size={18} />
+                                        </span>
+                                        <span className="sidebar__item-label">{item.label}</span>
+                                    </NavLink>
+                                )
+                            })}
                         </div>
                     )}
                 </div>
@@ -125,7 +163,9 @@ const Sidebar = () => {
                         onClick={() => setIsMobileOpen(false)}
                         style={{ marginBottom: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}
                     >
-                        <span className="sidebar__item-icon">⚙️</span>
+                        <span className="sidebar__item-icon">
+                            <Settings size={20} />
+                        </span>
                         <span className="sidebar__item-label">Admin</span>
                     </NavLink>
                 )}
@@ -140,7 +180,8 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <button onClick={handleLogout} className="sidebar__logout">
-                    🚪 Cerrar Sesión
+                    <LogOut size={18} />
+                    <span>Cerrar Sesión</span>
                 </button>
             </div>
         </aside>

@@ -3,6 +3,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
 import Sidebar from '../components/Sidebar'
+import {
+    Play,
+    HelpCircle,
+    FileText,
+    Puzzle,
+    PenTool,
+    RotateCcw,
+    Trophy,
+    Flame,
+    ChevronDown,
+    Target,
+    TrendingUp
+} from 'lucide-react'
 import '../styles/neumorphism.css'
 import '../styles/dashboard.css'
 
@@ -40,12 +53,11 @@ const Dashboard = () => {
 
             const total = data.length
             const correct = data.filter(q => q.is_correct).length
-            // Calculate streak logic here or fetch from user_stats table if exists
 
             setStats({
                 totalAnswered: total,
                 correctAnswers: correct,
-                streak: 0 // Placeholder
+                streak: 0
             })
         } catch (error) {
             console.error('Error fetching stats:', error)
@@ -58,13 +70,10 @@ const Dashboard = () => {
         ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100)
         : 0
 
-    // Mock data for display (mimicking the screenshot)
     const level = 1
     const xpCurrent = 0
     const xpMax = 100
     const rank = 0
-    const eunacoins = 0
-    const streak = "Compra una suscripción para comenzar" // Or mock number if active
 
     const userName = user?.user_metadata?.full_name || user?.email || 'Guest'
 
@@ -72,6 +81,45 @@ const Dashboard = () => {
         await signOut()
         navigate('/login')
     }
+
+    const actionCards = [
+        {
+            path: '/test',
+            icon: Play,
+            label: 'Continuar',
+            gradient: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+        },
+        {
+            path: '/history',
+            icon: HelpCircle,
+            label: 'Pregunta aleatoria',
+            gradient: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)'
+        },
+        {
+            path: '/test',
+            icon: FileText,
+            label: 'Crear Examen',
+            gradient: 'linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)'
+        },
+        {
+            path: '/reconstructions',
+            icon: Puzzle,
+            label: 'Reconstrucciones',
+            gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+        },
+        {
+            path: '/essays',
+            icon: PenTool,
+            label: 'Ensayos',
+            gradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)'
+        },
+        {
+            path: '/review',
+            icon: RotateCcw,
+            label: 'Repasar',
+            gradient: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)'
+        },
+    ]
 
     return (
         <div className="dashboard-layout">
@@ -84,9 +132,9 @@ const Dashboard = () => {
                             onClick={() => setShowUserMenu(!showUserMenu)}
                             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
                         >
-                            <img src={`https://ui-avatars.com/api/?name=${userName}&background=random`} alt="User" />
+                            <img src={`https://ui-avatars.com/api/?name=${userName}&background=8b5cf6&color=fff`} alt="User" />
                             <span>{userName}</span>
-                            <span>▼</span>
+                            <ChevronDown size={16} />
                         </div>
 
                         {showUserMenu && (
@@ -96,27 +144,30 @@ const Dashboard = () => {
                                 right: 0,
                                 marginTop: '0.5rem',
                                 background: 'white',
-                                borderRadius: '8px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                                minWidth: '180px',
-                                zIndex: 1000
+                                borderRadius: '12px',
+                                boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
+                                minWidth: '200px',
+                                zIndex: 1000,
+                                overflow: 'hidden'
                             }}>
                                 <button
                                     onClick={handleLogout}
                                     style={{
                                         width: '100%',
-                                        padding: '0.75rem 1rem',
+                                        padding: '0.875rem 1.25rem',
                                         border: 'none',
                                         background: 'transparent',
                                         textAlign: 'left',
                                         cursor: 'pointer',
                                         fontSize: '0.95rem',
-                                        color: '#d32f2f',
-                                        fontWeight: '500',
-                                        borderRadius: '8px',
-                                        transition: 'background 0.2s'
+                                        color: '#ef4444',
+                                        fontWeight: '600',
+                                        transition: 'background 0.2s',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem'
                                     }}
-                                    onMouseEnter={(e) => e.target.style.background = '#ffebee'}
+                                    onMouseEnter={(e) => e.target.style.background = '#fef2f2'}
                                     onMouseLeave={(e) => e.target.style.background = 'transparent'}
                                 >
                                     🚪 Cerrar Sesión
@@ -127,17 +178,18 @@ const Dashboard = () => {
                 </header>
 
                 <div className="dashboard-content">
-
-                    {/* FULL WIDTH PROFILE CARD */}
+                    {/* PROFILE CARD */}
                     <div className="profile-card">
                         <div className="profile-card-top">
                             <div className="profile-avatar-large">
                                 <img
-                                    src={`https://ui-avatars.com/api/?name=${userName}&background=0D8ABC&color=fff&size=128`}
+                                    src={`https://ui-avatars.com/api/?name=${userName}&background=8b5cf6&color=fff&size=128`}
                                     alt="Profile"
                                     style={{ width: '100%', height: '100%', borderRadius: '50%' }}
                                 />
-                                <div className="profile-avatar-badge">🔥</div>
+                                <div className="profile-avatar-badge">
+                                    <Flame size={20} color="#f97316" />
+                                </div>
                             </div>
                             <div className="profile-info">
                                 <div className="profile-name">Estudiante</div>
@@ -156,27 +208,28 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    {/* STATS ROW WITH PERFORMANCE CHART */}
-                    <div className="stats-row" style={{ gridTemplateColumns: '1fr 1.5fr 1fr', alignItems: 'stretch' }}>
-                        {/* 1. Ranking */}
+                    {/* STATS ROW */}
+                    <div className="stats-row">
+                        {/* Ranking */}
                         <div className="stat-card-new">
                             <div className="stat-card-title">Ranking Mensual</div>
                             <div className="stat-card-value">
-                                <span className="stat-icon">🏆</span> {rank}
+                                <Trophy className="stat-icon" size={40} color="#f59e0b" />
+                                {rank}
                             </div>
                         </div>
 
-                        {/* 2. Performance Breakdown (Donut Chart) */}
-                        <div className="stat-card-new" style={{ flexDirection: 'row', gap: '1.5rem', padding: '1rem' }}>
-                            {/* Donut Chart SVG */}
-                            <div style={{ position: 'relative', width: '100px', height: '100px' }}>
-                                <svg width="100" height="100" viewBox="0 0 36 36">
+                        {/* Performance Breakdown */}
+                        <div className="stat-card-new" style={{ flexDirection: 'row', gap: '1.5rem', padding: '2rem' }}>
+                            {/* Donut Chart */}
+                            <div style={{ position: 'relative', width: '120px', height: '120px', flexShrink: 0 }}>
+                                <svg width="120" height="120" viewBox="0 0 36 36">
                                     <path
                                         d="M18 2.0845
                                         a 15.9155 15.9155 0 0 1 0 31.831
                                         a 15.9155 15.9155 0 0 1 0 -31.831"
                                         fill="none"
-                                        stroke="#eee"
+                                        stroke="#e5e7eb"
                                         strokeWidth="3"
                                     />
                                     <path
@@ -184,10 +237,16 @@ const Dashboard = () => {
                                         a 15.9155 15.9155 0 0 1 0 31.831
                                         a 15.9155 15.9155 0 0 1 0 -31.831"
                                         fill="none"
-                                        stroke={accuracy >= 50 ? "#66bb6a" : "#ef5350"}
+                                        stroke="url(#gradient)"
                                         strokeWidth="3"
                                         strokeDasharray={`${accuracy}, 100`}
                                     />
+                                    <defs>
+                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#8b5cf6" />
+                                            <stop offset="100%" stopColor="#06b6d4" />
+                                        </linearGradient>
+                                    </defs>
                                 </svg>
                                 <div style={{
                                     position: 'absolute',
@@ -196,34 +255,72 @@ const Dashboard = () => {
                                     transform: 'translate(-50%, -50%)',
                                     textAlign: 'center'
                                 }}>
-                                    <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#333' }}>{accuracy}%</div>
-                                    <div style={{ fontSize: '0.6rem', color: '#999' }}>Correctas</div>
+                                    <div style={{
+                                        fontSize: '1.75rem',
+                                        fontWeight: 'bold',
+                                        background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent'
+                                    }}>
+                                        {accuracy}%
+                                    </div>
+                                    <div style={{ fontSize: '0.7rem', color: '#9ca3af', fontWeight: 600 }}>Correctas</div>
                                 </div>
                             </div>
 
                             {/* Stats List */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-                                <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#333', marginBottom: '0.25rem' }}>Tu Puntaje</div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1 }}>
+                                <div style={{ fontSize: '1.1rem', fontWeight: '700', color: '#374151', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <TrendingUp size={20} color="#8b5cf6" />
+                                    Tu Puntaje
+                                </div>
 
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#777', borderBottom: '1px solid #f0f0f0', paddingBottom: '4px' }}>
-                                    <span>Correctas</span>
-                                    <span style={{ background: '#f0f0f0', padding: '1px 6px', borderRadius: '4px' }}>{stats.correctAnswers}</span>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#6b7280', borderBottom: '1px solid #f3f4f6', paddingBottom: '0.5rem' }}>
+                                    <span style={{ fontWeight: 500 }}>Correctas</span>
+                                    <span style={{
+                                        background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+                                        color: 'white',
+                                        padding: '2px 10px',
+                                        borderRadius: '6px',
+                                        fontWeight: 700,
+                                        fontSize: '0.8rem'
+                                    }}>
+                                        {stats.correctAnswers}
+                                    </span>
                                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#777', borderBottom: '1px solid #f0f0f0', paddingBottom: '4px' }}>
-                                    <span>Incorrectas</span>
-                                    <span style={{ background: '#f0f0f0', padding: '1px 6px', borderRadius: '4px' }}>{stats.totalAnswered - stats.correctAnswers}</span>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#6b7280', borderBottom: '1px solid #f3f4f6', paddingBottom: '0.5rem' }}>
+                                    <span style={{ fontWeight: 500 }}>Incorrectas</span>
+                                    <span style={{
+                                        background: '#fef2f2',
+                                        color: '#ef4444',
+                                        padding: '2px 10px',
+                                        borderRadius: '6px',
+                                        fontWeight: 700,
+                                        fontSize: '0.8rem'
+                                    }}>
+                                        {stats.totalAnswered - stats.correctAnswers}
+                                    </span>
                                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#777' }}>
-                                    <span>Omitidas</span>
-                                    <span style={{ background: '#f0f0f0', padding: '1px 6px', borderRadius: '4px' }}>0</span>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#6b7280' }}>
+                                    <span style={{ fontWeight: 500 }}>Omitidas</span>
+                                    <span style={{
+                                        background: '#f3f4f6',
+                                        color: '#6b7280',
+                                        padding: '2px 10px',
+                                        borderRadius: '6px',
+                                        fontWeight: 700,
+                                        fontSize: '0.8rem'
+                                    }}>
+                                        0
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 3. Streak */}
+                        {/* Streak */}
                         <div className="stat-card-new">
                             <div className="stat-card-title">Racha</div>
-                            <div style={{ fontSize: '0.9rem', color: '#777', marginBottom: '0.5rem', textAlign: 'center' }}>
+                            <div style={{ fontSize: '0.9rem', color: '#6b7280', marginBottom: '1rem', textAlign: 'center', lineHeight: 1.5 }}>
                                 Compra una suscripción para comenzar la racha diaria
                             </div>
                             <button className="purchase-btn">Purchase</button>
@@ -232,42 +329,48 @@ const Dashboard = () => {
 
                     {/* ACTIONS GRID */}
                     <div className="actions-grid-custom">
-                        <Link to="/test" className="action-card-custom">
-                            <span className="action-icon-custom">▶️</span>
-                            <span className="action-label-custom">Continuar</span>
-                        </Link>
-                        <Link to="/history" className="action-card-custom">
-                            <span className="action-icon-custom">❓</span>
-                            <span className="action-label-custom">Pregunta aleatoria</span>
-                        </Link>
-                        <Link to="/test" className="action-card-custom">
-                            <span className="action-icon-custom">📄</span>
-                            <span className="action-label-custom">Crear Examen</span>
-                        </Link>
-                        <Link to="/reconstructions" className="action-card-custom">
-                            <span className="action-icon-custom">🧩</span>
-                            <span className="action-label-custom">Reconstrucciones</span>
-                        </Link>
-                        {/* Extra cards from screenshot logic */}
-                        <Link to="/essays" className="action-card-custom">
-                            <span className="action-icon-custom">✏️</span>
-                            <span className="action-label-custom">Ensayos</span>
-                        </Link>
-                        <Link to="/review" className="action-card-custom">
-                            <span className="action-icon-custom">↻</span>
-                            <span className="action-label-custom">Repasar</span>
-                        </Link>
+                        {actionCards.map((card) => {
+                            const Icon = card.icon
+                            return (
+                                <Link key={card.path + card.label} to={card.path} className="action-card-custom">
+                                    <span className="action-icon-custom">
+                                        <Icon size={48} strokeWidth={1.5} style={{
+                                            color: 'transparent',
+                                            stroke: 'url(#icon-gradient-' + card.label + ')'
+                                        }} />
+                                        <svg width="0" height="0">
+                                            <defs>
+                                                <linearGradient id={'icon-gradient-' + card.label} x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" stopColor="#8b5cf6" />
+                                                    <stop offset="100%" stopColor="#06b6d4" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                    </span>
+                                    <span className="action-label-custom">{card.label}</span>
+                                </Link>
+                            )
+                        })}
                     </div>
 
-                    {/* CHALLENGES / GRAPH PLACEHOLDER */}
-                    <div>
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem', fontWeight: '700', color: '#333' }}>
-                            <span style={{ color: '#4EBDDB' }}>🎯</span> Desafíos semanal
+                    {/* CHALLENGES SECTION */}
+                    <div style={{ marginTop: '2rem' }}>
+                        <h3 style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                            fontSize: '1.5rem',
+                            fontWeight: '800',
+                            color: '#1f2937',
+                            marginBottom: '1rem'
+                        }}>
+                            <Target size={28} style={{ color: '#8b5cf6' }} />
+                            <span className="gradient-text">Desafíos semanal</span>
                         </h3>
-                        <p style={{ color: '#777', marginLeft: '2rem' }}>Completa las tareas y gana puntos.</p>
-                        {/* ... challenges list ... */}
+                        <p style={{ color: '#6b7280', marginLeft: '2.5rem', fontSize: '0.95rem' }}>
+                            Completa las tareas y gana puntos.
+                        </p>
                     </div>
-
                 </div>
             </main>
         </div>
