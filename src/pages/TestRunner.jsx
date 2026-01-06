@@ -338,15 +338,17 @@ function TestRunner() {
                     {test.mode === 'timed' ? 'Modo: Con Tiempo' : 'Modo: Tutor'}
                 </div>
 
-                <button
-                    onClick={handleFinishAttempt}
-                    style={{
-                        background: '#e53e3e', color: 'white', border: 'none',
-                        padding: '0.5rem 1.5rem', borderRadius: '20px', fontWeight: 'bold', cursor: 'pointer'
-                    }}
-                >
-                    Finalizar Examen
-                </button>
+                {test.status !== 'completed' && (
+                    <button
+                        onClick={handleFinishAttempt}
+                        style={{
+                            background: '#e53e3e', color: 'white', border: 'none',
+                            padding: '0.5rem 1.5rem', borderRadius: '20px', fontWeight: 'bold', cursor: 'pointer'
+                        }}
+                    >
+                        Finalizar Examen
+                    </button>
+                )}
             </div>
 
             <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
