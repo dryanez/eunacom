@@ -515,220 +515,216 @@ function TestEngine() {
                     </div>
 
 
-                    <div className="dashboard-content">
+                    {/* Test Mode Accordion */}
 
-                        {/* Test Mode Accordion */}
-
-                        <AccordionSection title="Modo de Examen">
-                            <div style={{ display: 'flex', gap: '2rem' }}>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
-                                    <div
-                                        onClick={() => setTutorMode(!tutorMode)}
-                                        style={{
-                                            width: '40px', height: '24px', background: tutorMode ? '#4EBDDB' : '#ddd',
-                                            borderRadius: '20px', position: 'relative', transition: 'background 0.2s'
-                                        }}
-                                    >
-                                        <div style={{
-                                            width: '18px', height: '18px', background: 'white', borderRadius: '50%',
-                                            position: 'absolute', top: '3px', left: tutorMode ? '19px' : '3px', transition: 'left 0.2s'
-                                        }} />
-                                    </div>
-                                    <span style={{ color: '#555', fontWeight: '500' }}>Tutor</span>
-                                </label>
-
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
-                                    <div
-                                        onClick={() => setTimedMode(!timedMode)}
-                                        style={{
-                                            width: '40px', height: '24px', background: timedMode ? '#4EBDDB' : '#ddd',
-                                            borderRadius: '20px', position: 'relative', transition: 'background 0.2s'
-                                        }}
-                                    >
-                                        <div style={{
-                                            width: '18px', height: '18px', background: 'white', borderRadius: '50%',
-                                            position: 'absolute', top: '3px', left: timedMode ? '19px' : '3px', transition: 'left 0.2s'
-                                        }} />
-                                    </div>
-                                    <span style={{ color: '#555', fontWeight: '500' }}>Con tiempo</span>
-                                </label>
-                            </div>
-                        </AccordionSection>
-
-                        {/* Question Status Filters */}
-                        <AccordionSection title="Estado de Preguntas">
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center' }}>
-                                {/* Unused */}
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={statusFilters.unused}
-                                        onChange={() => toggleStatusFilter('unused')}
-                                        style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
-                                    />
-                                    <span style={{ color: '#555' }}>Sin usar</span>
-                                    <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#4EBDDB', fontWeight: 'bold' }}>{counts.unused}</span>
-                                </label>
-
-                                {/* Incorrect */}
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={statusFilters.incorrect}
-                                        onChange={() => toggleStatusFilter('incorrect')}
-                                        style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
-                                    />
-                                    <span style={{ color: '#555' }}>Incorrectas</span>
-                                    <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.incorrect}</span>
-                                </label>
-
-                                {/* Marked */}
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={statusFilters.marked}
-                                        onChange={() => toggleStatusFilter('marked')}
-                                        style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
-                                    />
-                                    <span style={{ color: '#555' }}>Marcadas</span>
-                                    <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.marked}</span>
-                                </label>
-
-                                {/* Omitted */}
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={statusFilters.omitted}
-                                        onChange={() => toggleStatusFilter('omitted')}
-                                        style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
-                                    />
-                                    <span style={{ color: '#555' }}>Omitidas</span>
-                                    <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.omitted}</span>
-                                </label>
-
-                                {/* Correct */}
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={statusFilters.correct}
-                                        onChange={() => toggleStatusFilter('correct')}
-                                        style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
-                                    />
-                                    <span style={{ color: '#555' }}>Correctas</span>
-                                    <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.correct}</span>
-                                </label>
-                            </div>
-                        </AccordionSection>
-
-
-                        {/* Subjects Accordion */}
-                        <AccordionSection
-                            title="Asignaturas"
-                            extraHeaderContent={
-                                <span style={{ fontSize: '0.9rem', color: '#777', fontWeight: '400' }}>
-                                    Total Filtrado <span style={{ background: '#eefcfd', color: '#4EBDDB', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: '600' }}>{totalAvailable}</span>
-                                </span>
-                            }
-                        >
-                            <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
-                                <button
-                                    onClick={handleSelectAll}
-                                    style={{ background: 'none', border: 'none', color: '#4EBDDB', fontWeight: '600', cursor: 'pointer', fontSize: '0.9rem' }}
-                                >
-                                    {allSelected ? 'Deseleccionar todo' : 'Seleccionar todo'}
-                                </button>
-                            </div>
-
-                            {loading ? (
-                                <div>Cargando asignaturas...</div>
-                            ) : (
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem 2rem' }}>
-                                    {subjects.map(subject => {
-                                        const isDisabled = subject.count === 0
-                                        return (
-                                            <label
-                                                key={subject.name}
-                                                style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '0.75rem',
-                                                    cursor: isDisabled ? 'not-allowed' : 'pointer',
-                                                    padding: '0.25rem 0',
-                                                    opacity: isDisabled ? 0.5 : 1
-                                                }}
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={!!selectedSubjects[subject.name] && !isDisabled}
-                                                    onChange={() => toggleSubject(subject.name)}
-                                                    disabled={isDisabled}
-                                                    style={{ width: '18px', height: '18px', accentColor: '#4EBDDB', cursor: isDisabled ? 'not-allowed' : 'pointer' }}
-                                                />
-                                                <span style={{ color: '#444', fontSize: '0.95rem', flex: 1 }}>{subject.name}</span>
-                                                <span style={{ background: isDisabled ? '#f0f0f0' : '#eefcfd', color: isDisabled ? '#999' : '#4EBDDB', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '600' }}>
-                                                    {subject.count}
-                                                </span>
-                                            </label>
-                                        )
-                                    })}
-                                </div>
-                            )}
-                        </AccordionSection>
-
-                        {/* Number of Questions Accordion */}
-                        <AccordionSection title="Nº de Preguntas">
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <input
-                                    type="number"
-                                    value={numQuestions}
-                                    onChange={(e) => setNumQuestions(e.target.value)}
+                    <AccordionSection title="Modo de Examen">
+                        <div style={{ display: 'flex', gap: '2rem' }}>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+                                <div
+                                    onClick={() => setTutorMode(!tutorMode)}
                                     style={{
-                                        padding: '0.75rem',
-                                        border: '2px solid #4EBDDB',
-                                        borderRadius: '8px',
-                                        width: '100px',
-                                        fontSize: '1.2rem',
-                                        fontWeight: 'bold',
-                                        color: '#333',
-                                        background: '#fff',
-                                        textAlign: 'center'
+                                        width: '40px', height: '24px', background: tutorMode ? '#4EBDDB' : '#ddd',
+                                        borderRadius: '20px', position: 'relative', transition: 'background 0.2s'
                                     }}
-                                />
-                                <span style={{ color: '#777', fontSize: '1rem' }}>
-                                    Max permitido: <span style={{ fontWeight: '600', color: '#333' }}>{maxQuestions}</span>
-                                </span>
-                            </div>
-                        </AccordionSection>
+                                >
+                                    <div style={{
+                                        width: '18px', height: '18px', background: 'white', borderRadius: '50%',
+                                        position: 'absolute', top: '3px', left: tutorMode ? '19px' : '3px', transition: 'left 0.2s'
+                                    }} />
+                                </div>
+                                <span style={{ color: '#555', fontWeight: '500' }}>Tutor</span>
+                            </label>
 
-                        {/* Submit Buttons */}
-                        <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+                                <div
+                                    onClick={() => setTimedMode(!timedMode)}
+                                    style={{
+                                        width: '40px', height: '24px', background: timedMode ? '#4EBDDB' : '#ddd',
+                                        borderRadius: '20px', position: 'relative', transition: 'background 0.2s'
+                                    }}
+                                >
+                                    <div style={{
+                                        width: '18px', height: '18px', background: 'white', borderRadius: '50%',
+                                        position: 'absolute', top: '3px', left: timedMode ? '19px' : '3px', transition: 'left 0.2s'
+                                    }} />
+                                </div>
+                                <span style={{ color: '#555', fontWeight: '500' }}>Con tiempo</span>
+                            </label>
+                        </div>
+                    </AccordionSection>
+
+                    {/* Question Status Filters */}
+                    <AccordionSection title="Estado de Preguntas">
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center' }}>
+                            {/* Unused */}
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={statusFilters.unused}
+                                    onChange={() => toggleStatusFilter('unused')}
+                                    style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
+                                />
+                                <span style={{ color: '#555' }}>Sin usar</span>
+                                <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#4EBDDB', fontWeight: 'bold' }}>{counts.unused}</span>
+                            </label>
+
+                            {/* Incorrect */}
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={statusFilters.incorrect}
+                                    onChange={() => toggleStatusFilter('incorrect')}
+                                    style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
+                                />
+                                <span style={{ color: '#555' }}>Incorrectas</span>
+                                <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.incorrect}</span>
+                            </label>
+
+                            {/* Marked */}
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={statusFilters.marked}
+                                    onChange={() => toggleStatusFilter('marked')}
+                                    style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
+                                />
+                                <span style={{ color: '#555' }}>Marcadas</span>
+                                <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.marked}</span>
+                            </label>
+
+                            {/* Omitted */}
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={statusFilters.omitted}
+                                    onChange={() => toggleStatusFilter('omitted')}
+                                    style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
+                                />
+                                <span style={{ color: '#555' }}>Omitidas</span>
+                                <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.omitted}</span>
+                            </label>
+
+                            {/* Correct */}
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={statusFilters.correct}
+                                    onChange={() => toggleStatusFilter('correct')}
+                                    style={{ width: '20px', height: '20px', accentColor: '#4EBDDB' }}
+                                />
+                                <span style={{ color: '#555' }}>Correctas</span>
+                                <span style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '1px 8px', fontSize: '0.8rem', color: '#999' }}>{counts.correct}</span>
+                            </label>
+                        </div>
+                    </AccordionSection>
+
+
+                    {/* Subjects Accordion */}
+                    <AccordionSection
+                        title="Asignaturas"
+                        extraHeaderContent={
+                            <span style={{ fontSize: '0.9rem', color: '#777', fontWeight: '400' }}>
+                                Total Filtrado <span style={{ background: '#eefcfd', color: '#4EBDDB', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: '600' }}>{totalAvailable}</span>
+                            </span>
+                        }
+                    >
+                        <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
                             <button
-                                onClick={handleCreateTest}
-                                style={{
-                                    padding: '1rem 3rem',
-                                    background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
-                                    color: 'white',
-                                    border: 'none',
-                                    borderRadius: '12px',
-                                    fontWeight: '700',
-                                    fontSize: '1rem',
-                                    cursor: 'pointer',
-                                    boxShadow: '0 4px 16px rgba(139, 92, 246, 0.4)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    transition: 'all 0.2s'
-                                }}
-                                onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-                                onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+                                onClick={handleSelectAll}
+                                style={{ background: 'none', border: 'none', color: '#4EBDDB', fontWeight: '600', cursor: 'pointer', fontSize: '0.9rem' }}
                             >
-                                <Play size={20} />
-                                CREAR EXAMEN
+                                {allSelected ? 'Deseleccionar todo' : 'Seleccionar todo'}
                             </button>
                         </div>
 
+                        {loading ? (
+                            <div>Cargando asignaturas...</div>
+                        ) : (
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem 2rem' }}>
+                                {subjects.map(subject => {
+                                    const isDisabled = subject.count === 0
+                                    return (
+                                        <label
+                                            key={subject.name}
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.75rem',
+                                                cursor: isDisabled ? 'not-allowed' : 'pointer',
+                                                padding: '0.25rem 0',
+                                                opacity: isDisabled ? 0.5 : 1
+                                            }}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={!!selectedSubjects[subject.name] && !isDisabled}
+                                                onChange={() => toggleSubject(subject.name)}
+                                                disabled={isDisabled}
+                                                style={{ width: '18px', height: '18px', accentColor: '#4EBDDB', cursor: isDisabled ? 'not-allowed' : 'pointer' }}
+                                            />
+                                            <span style={{ color: '#444', fontSize: '0.95rem', flex: 1 }}>{subject.name}</span>
+                                            <span style={{ background: isDisabled ? '#f0f0f0' : '#eefcfd', color: isDisabled ? '#999' : '#4EBDDB', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '600' }}>
+                                                {subject.count}
+                                            </span>
+                                        </label>
+                                    )
+                                })}
+                            </div>
+                        )}
+                    </AccordionSection>
+
+                    {/* Number of Questions Accordion */}
+                    <AccordionSection title="Nº de Preguntas">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <input
+                                type="number"
+                                value={numQuestions}
+                                onChange={(e) => setNumQuestions(e.target.value)}
+                                style={{
+                                    padding: '0.75rem',
+                                    border: '2px solid #4EBDDB',
+                                    borderRadius: '8px',
+                                    width: '100px',
+                                    fontSize: '1.2rem',
+                                    fontWeight: 'bold',
+                                    color: '#333',
+                                    background: '#fff',
+                                    textAlign: 'center'
+                                }}
+                            />
+                            <span style={{ color: '#777', fontSize: '1rem' }}>
+                                Max permitido: <span style={{ fontWeight: '600', color: '#333' }}>{maxQuestions}</span>
+                            </span>
+                        </div>
+                    </AccordionSection>
+
+                    {/* Submit Buttons */}
+                    <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+                        <button
+                            onClick={handleCreateTest}
+                            style={{
+                                padding: '1rem 3rem',
+                                background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '12px',
+                                fontWeight: '700',
+                                fontSize: '1rem',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 16px rgba(139, 92, 246, 0.4)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
+                            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+                        >
+                            <Play size={20} />
+                            CREAR EXAMEN
+                        </button>
                     </div>
-                </div>
+
             </main >
         </div >
     )
