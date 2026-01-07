@@ -59,6 +59,25 @@ function TestRunner() {
         fetchTestSession()
     }, [id])
 
+    // Define saveTime early so it can be used in effects below
+    const saveTime = useCallback(async (timeRemaining) => {
+        const targetId = testIdRef.current || id
+        if (!targetId) return
+
+        console.log(`[Timer Save] Attempting to save ${timeRemaining}s for test ${targetId}...`)
+
+        const { error } = await supabase
+            .from('tests')
+            .update({ time_remaining_seconds: timeRemaining })
+            .eq('id', targetId)
+
+        if (error) {
+            console.error('Error saving time:', error)
+        } else {
+            console.log(`[Timer Save] Successfully saved ${timeRemaining}s`)
+        }
+    }, [id])
+
     // Timer Logic for Sections & Break
     useEffect(() => {
         let timer = null
@@ -264,24 +283,6 @@ function TestRunner() {
 
         if (error) console.error('Error saving progress:', error)
     }, [test])
-
-    const saveTime = useCallback(async (timeRemaining) => {
-        const targetId = testIdRef.current || id
-        if (!targetId) return
-
-        console.log(`[Timer Save] Attempting to save ${timeRemaining}s for test ${targetId}...`)
-
-        const { error } = await supabase
-            .from('tests')
-            .update({ time_remaining_seconds: timeRemaining })
-            .eq('id', targetId)
-
-        if (error) {
-            console.error('Error saving time:', error)
-        } else {
-            console.log(`[Timer Save] Successfully saved ${timeRemaining}s`)
-        }
-    }, [id])
 
     // Handlers
     const handleSelectOption = (optionKey) => {
