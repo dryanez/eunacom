@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import TestSidebar from '../components/TestSidebar'
@@ -39,9 +39,21 @@ function TestRunner() {
     const [sectionTimeLeft, setSectionTimeLeft] = useState(105 * 60) // 105 minutes per section
     const [showSimulationResults, setShowSimulationResults] = useState(false)
 
-    // Review State (for completed simulations)
     const [reviewSection, setReviewSection] = useState(null) // null | 1 | 2
     const [showResultsOverview, setShowResultsOverview] = useState(false)
+
+    // Refs for stable state access in intervals
+    const timeLeftRef = useRef(105 * 60)
+    const testIdRef = useRef(id)
+
+    // Sync ref with state for use in intervals
+    useEffect(() => {
+        timeLeftRef.current = sectionTimeLeft
+    }, [sectionTimeLeft])
+
+    useEffect(() => {
+        testIdRef.current = id
+    }, [id])
 
     useEffect(() => {
         fetchTestSession()
@@ -90,11 +102,13 @@ function TestRunner() {
         if (!isSimulation || loading || showSimulationResults || isBreak) return
 
         const heartbeat = setInterval(() => {
-            saveTime(sectionTimeLeft)
+            const currentTime = timeLeftRef.current
+            console.log(`[Timer Heartbeat] Saving time: ${currentTime}s for test ${testIdRef.current}`)
+            saveTime(currentTime)
         }, 60000) // Every minute
 
         return () => clearInterval(heartbeat)
-    }, [isSimulation, loading, showSimulationResults, isBreak, sectionTimeLeft, saveTime])
+    }, [isSimulation, loading, showSimulationResults, isBreak, saveTime])
 
 
     const fetchTestSession = async () => {
@@ -252,15 +266,22 @@ function TestRunner() {
     }, [test])
 
     const saveTime = useCallback(async (timeRemaining) => {
-        if (!test?.id) return
+        const targetId = testIdRef.current || id
+        if (!targetId) return
+
+        console.log(`[Timer Save] Attempting to save ${timeRemaining}s for test ${targetId}...`)
 
         const { error } = await supabase
             .from('tests')
             .update({ time_remaining_seconds: timeRemaining })
-            .eq('id', test.id)
+            .eq('id', targetId)
 
-        if (error) console.error('Error saving time:', error)
-    }, [test])
+        if (error) {
+            console.error('Error saving time:', error)
+        } else {
+            console.log(`[Timer Save] Successfully saved ${timeRemaining}s`)
+        }
+    }, [id])
 
     // Handlers
     const handleSelectOption = (optionKey) => {
