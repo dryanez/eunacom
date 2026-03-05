@@ -1,0 +1,579 @@
+/* ============================================
+   STUDY CALENDAR — Styles
+   ============================================ */
+
+.study-calendar {
+  animation: fade-in 0.4s ease-out;
+}
+
+/* === Header === */
+.study-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.study-calendar__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.study-calendar__progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.study-calendar__progress-bar {
+  width: 200px;
+  height: 8px;
+  background: var(--color-gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.study-calendar__progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
+
+.study-calendar__progress-text {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  font-weight: 600;
+}
+
+/* === Week Nav === */
+.study-calendar__week-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.study-calendar__week-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+  border: 1px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.study-calendar__week-btn:hover {
+  background: var(--color-gray-200);
+  transform: translateY(-1px);
+}
+
+.study-calendar__week-btn--active {
+  background: var(--color-primary-600);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.study-calendar__week-btn--current {
+  border-color: var(--color-accent-500);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+}
+
+/* === Calendar Grid === */
+.study-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.study-calendar__day-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-400);
+  padding: 0.5rem 0;
+}
+
+.study-calendar__day {
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+  position: relative;
+  min-height: 70px;
+  background: var(--color-gray-50);
+}
+
+.study-calendar__day:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.study-calendar__day--empty {
+  background: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+.study-calendar__day--empty:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.study-calendar__day--today {
+  border-color: var(--color-accent-500);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25), var(--shadow-md);
+  animation: pulse-glow-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-subtle {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(6, 182, 212, 0.4);
+  }
+}
+
+.study-calendar__day--selected {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3), var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.study-calendar__day--past {
+  opacity: 0.6;
+}
+
+.study-calendar__day--exam {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+  border-color: #f59e0b;
+}
+
+.study-calendar__day-number {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-gray-700);
+}
+
+.study-calendar__day-emoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.study-calendar__day-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 6px;
+}
+
+/* === Day Detail Panel === */
+.study-calendar__panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in 0.2s ease-out;
+  padding: 1rem;
+}
+
+.study-calendar__panel {
+  background: white;
+  border-radius: var(--radius-2xl);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.study-calendar__panel-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.study-calendar__panel-date {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  font-weight: 500;
+}
+
+.study-calendar__panel-topic {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-top: 0.25rem;
+}
+
+.study-calendar__panel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.study-calendar__panel-close {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.study-calendar__panel-close:hover {
+  background: var(--color-gray-200);
+}
+
+.study-calendar__panel-body {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* === Videos Section === */
+.study-calendar__section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-400);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.study-calendar__video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-calendar__video-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-gray-50);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: 1px solid var(--color-gray-200);
+}
+
+.study-calendar__video-item:hover {
+  background: rgba(139, 92, 246, 0.05);
+  border-color: var(--color-primary-300);
+  transform: translateX(4px);
+}
+
+.study-calendar__video-item--playing {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: var(--color-primary-400);
+}
+
+.study-calendar__video-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.study-calendar__video-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* === Video Player === */
+.study-calendar__player {
+  border-bottom: 1px solid var(--color-gray-200);
+  background: #000;
+  flex-shrink: 0;
+}
+
+.study-calendar__player video {
+  width: 100%;
+  min-height: 280px;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+/* === Notes Section === */
+.study-calendar__notes textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: border-color var(--transition-base);
+  color: var(--color-gray-700);
+  background: var(--color-gray-50);
+  line-height: 1.6;
+}
+
+.study-calendar__notes textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.study-calendar__notes-saved {
+  font-size: 0.75rem;
+  color: var(--color-success-600);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* === Questions Section === */
+.study-calendar__questions-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(6, 182, 212, 0.08));
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.study-calendar__questions-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.study-calendar__questions-topic {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-gray-800);
+}
+
+.study-calendar__questions-count {
+  font-size: 0.8rem;
+  color: var(--color-gray-500);
+}
+
+.study-calendar__questions-btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  transition: all var(--transition-base);
+}
+
+.study-calendar__questions-btn:hover {
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+/* === Empty State === */
+.study-calendar__empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-gray-400);
+  font-size: 0.9rem;
+}
+
+.study-calendar__empty-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* === Month Header === */
+.study-calendar__month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.study-calendar__month-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gray-800);
+}
+
+.study-calendar__month-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.study-calendar__month-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.study-calendar__month-btn:hover {
+  background: var(--color-gray-200);
+}
+
+/* === Today's Summary Card === */
+.study-calendar__today-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-accent-700));
+  color: white;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+}
+
+.study-calendar__today-emoji {
+  font-size: 2.5rem;
+}
+
+.study-calendar__today-info h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.study-calendar__today-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.study-calendar__today-btn {
+  margin-left: auto;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.study-calendar__today-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .study-calendar__grid {
+    gap: 0.3rem;
+  }
+
+  .study-calendar__day {
+    min-height: 50px;
+    aspect-ratio: auto;
+  }
+
+  .study-calendar__day-number {
+    font-size: 0.8rem;
+  }
+
+  .study-calendar__day-emoji {
+    font-size: 0.75rem;
+  }
+
+  .study-calendar__panel {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    align-self: flex-end;
+  }
+
+  .study-calendar__today-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .study-calendar__today-btn {
+    margin-left: 0;
+  }
+
+  .study-calendar__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

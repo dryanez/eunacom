@@ -62,11 +62,11 @@ const Login = () => {
                             Email
                         </label>
                         <input
-                            type="email"
+                            type="text"
                             className="neu-input"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="tu@email.com"
+                            placeholder="tu@email.com o admin"
                             required
                         />
                     </div>

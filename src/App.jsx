@@ -12,6 +12,7 @@ import AdminPanel from './pages/AdminPanel'
 import TestRunner from './pages/TestRunner'
 import TestAnalysis from './pages/TestAnalysis'
 import Simulation from './pages/Simulation'
+import StudyCalendar from './pages/StudyCalendar'
 import Statistics from './pages/Statistics'
 import DashboardLayout from './layouts/DashboardLayout'
 import './App.css'
@@ -27,6 +28,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/study-plan" element={<StudyCalendar />} />
             <Route path="/test" element={<TestEngine />} />
             <Route path="/simulation" element={<Simulation />} />
             <Route path="/history" element={<TestHistory />} />

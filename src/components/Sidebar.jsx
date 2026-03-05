@@ -15,7 +15,8 @@ import {
     LogOut,
     Menu,
     X,
-    GraduationCap
+    GraduationCap,
+    CalendarDays
 } from 'lucide-react'
 import '../styles/neumorphism.css'
 
@@ -114,6 +115,20 @@ const Sidebar = () => {
                         <Home size={20} />
                     </span>
                     <span className="sidebar__item-label">Inicio</span>
+                </NavLink>
+
+                {/* Plan de Estudio */}
+                <NavLink
+                    to="/study-plan"
+                    className={({ isActive }) =>
+                        `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
+                    }
+                    onClick={() => setIsMobileOpen(false)}
+                >
+                    <span className="sidebar__item-icon">
+                        <CalendarDays size={20} />
+                    </span>
+                    <span className="sidebar__item-label">Plan de Estudio</span>
                 </NavLink>
 
                 {/* 2. Exámenes (Collapsible) - Moved here as requested */}
