@@ -1,0 +1,602 @@
+[
+  {
+    "question": "1. La segunda causa de muerte en la edad pediátrica es el cáncer. ¿Cuál es el tipo de cáncer más frecuente en esta edad (menores de 15 años)?",
+    "choices": [
+      "a.Leucemia linfática aguda",
+      "b.Leucemia linfática crónica",
+      "c.Leucemia mieloide aguda",
+      "d.Leucemia mieloide crónica",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Leucemia linfática aguda",
+    "explanation": "La LLA es el cáncer más frecuente de la infancia. Afortunadamente, las quimioterapias actuales permiten la curación de cerca del 90% de los casos. En los adolescentes, en cambio, el cáncer más frecuente es el linfoma de Hodgkin. Eso sí, en algunos estudios en otros países, aparecen más frecuentes los cánceres del sistema nervioso. La respuesta correcta es: Leucemia linfática aguda"
+  },
+  {
+    "question": "2. Identifique la asociación CORRECTA entre el cáncer y el factor pronóstico más importante:",
+    "choices": [
+      "a.El tamaño del tumor - Cáncer de tiroides",
+      "b.La presencia de adenopatías - Cáncer gástrico",
+      "c.El tamaño del tumor - Cáncer de mama",
+      "d.El grado histológico de diferenciación - Sarcoma",
+      "e.La presencia de metástasis a distancia - Linfoma de Hodgkin"
+    ],
+    "correctAnswer": "El grado histológico de diferenciación - Sarcoma",
+    "explanation": "El grado histológico de diferenciación es el factor pronóstico más importante, en el sarcoma de partes blandas. De hecho, se clasifican en G1, G2 y G3, siendo el G3 el menos diferenciado y más agresivo. Respecto a los demás, los factores pronósticos más importantes son: Cáncer de tiroides: tipo histológico. Cáncer gástrico: invasión transmural. Cáncer de mama: compromiso linfático (axila). Linfoma de Hodgkin: tipo histológico (depleción linfocitaria es el tipo de peor pronóstico). La respuesta correcta es: El grado histológico de diferenciación - Sarcoma"
+  },
+  {
+    "question": "3. Un paciente de 55 años consulta por epistaxis. Se realiza un hemograma con hematocrito: 50%, plaquetas: 800.000 por mm3 y blancos: 9.400 por mm3, con fórmula diferencial normal. ¿Cuál es el diagnóstico más probable?",
+    "choices": [
+      "a.Trombocitosis reactiva",
+      "b.Mielodisplasia",
+      "c.Púrpura trombocitopénico trombótico",
+      "d.Trombocitosis esencial",
+      "e.Macroglobulinemia de Waldestrom"
+    ],
+    "correctAnswer": "Trombocitosis esencial",
+    "explanation": "Tiene una trombocitosis mayor a 600.000 por mm3, sin otras alteraciones, por lo que lo más probable es que sea una trombocitosis esencial (TE). La epistaxis se explica porque las plaquetas pueden ser disfuncionales (la TE se presenta tanto hemorragias, como trombosis). La confirmación de la TE requiere de biopsia de médula ósea (aumento monoclonal de megacariocitos) y estudio inmunohistoquímico (excluir otros síndromes mieloproliferativos y confirmar la presencia del gen JAK2 u otro marcador. La forma más habitual de presentarse es como un hallazgo en el hemograma. Otros casos se presenta con síntomas inespecíficos (ej. mareos) o con hemorragias o trombosis. - La trombocitosis reactiva, estaría asociada a una infección, otra causa de respuesta inflamatoria sistémica o ferropenia y es raro que la trombocitosis sea tan elevada. Además, suele ser transitoria y mejora, al desaparecer la causa. - La mielodisplasia se presenta como una pancitopenia. - La PTT tiene trombopenia y anemia hemolítica. - La MGW hace trombosis y es una gamapatía monoclonal. La respuesta correcta es: Trombocitosis esencial"
+  },
+  {
+    "question": "4. Un paciente de 15 años presenta anemia crónica. En sus exámenes destaca un hemograma con anemia microcítica, con VCM de 66, con hematocrito de 33% y 5 millones de GR por mm3. Además, tiene ferritina ligeramente elevada. El diagnóstico de sospecha es:",
+    "choices": [
+      "a.Microesferocitosis familiar",
+      "b.Anemia ferropénica",
+      "c.Anemia drepanocítica (por células falciformes)",
+      "d.Anemia por enfermedades crónicas",
+      "e.Talasemia"
+    ],
+    "correctAnswer": "Talasemia",
+    "explanation": "Es una talasemia clásica: anemia microcítica (VCM menor a 80), con aumento del número de glóbulos rojos, más elevación de la ferritina. Si hubiese sido normocítica (VCM: 80 a 100), habría sido anemia por enfermedades crónicas. La anemia ferropénica es microcítica, pero con ferritina muy baja. La respuesta correcta es: Talasemia"
+  },
+  {
+    "question": "5. Un paciente de 50 años, sin antecedentes de importancia, presenta una TVP de extremidad inferior izquierda. Además de los signos de TVP, al examen físico se aprecia piel violácea. En sus exámenes destaca hemograma con hematocrito: 63%, Hb: 21 g/dl, plaquetas: 460.000 x mm3 y blancos: 9.000 x mm3, con fórmula diferencial normal. No fuma, no tiene enfermedades pulmonares y no ha vivido en altura. ¿Qué alteración es más probable de encontrar en este paciente?",
+    "choices": [
+      "a.Cromosoma Filadelfia",
+      "b.Esplenomegalia",
+      "c.Poliadenopatías",
+      "d.Positividad de la prueba de Coombs directo",
+      "e.Positividad de la prueba de Coombs indirecto"
+    ],
+    "correctAnswer": "Esplenomegalia",
+    "explanation": "Es una policitemia vera clásica. Se caracteriza por elevación del hematocrito, sin causa aparente y suele asociarse a trombocitosis (como en este caso) y a esplenomegalia. Se complica con trombosis. El cromosoma Filadelfia (translocación 9:22) se asocia a leucemia mieloide crónica (LMC) y, en menor medida, en niños se asocia a leucemias linfoblásticas agudas (LLA). La respuesta correcta es: Esplenomegalia"
+  },
+  {
+    "question": "6. Una mujer de 80 años se realiza un hemograma, que muestra leucocitosis de 40.000 x mm3, con 90% de linfocitos y anemia moderada. Al examen físico no se aprecian alteraciones y en un examen anterior, realizado hace un año, se constata leucocitosis de 30.000 x mm3, también de predominio linfocitario. El diagnóstico más probable es:",
+    "choices": [
+      "a.Leucocitosis reactiva a infección viral crónica",
+      "b.Leucemia linfática crónica",
+      "c.Mielofibrosis",
+      "d.Reacción leucemoide",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Leucemia linfática crónica",
+    "explanation": "No tiene clínica viral que lo explique y, además, es improbable que una infección viral dure un año y produzca anemia. Es una LLC clásica: adulto mayor con leucocitosis persistente y pocos o ningún síntoma. El hemograma muestra marcada leucocitosis, con linfocitosis y puede tener anemia y trombocitopenia, habitualmente leve o moderada al momento del diagnóstico. En los estadios tardíos puede tener síntomas B o los síntomas de insuficiencia medular (anemia, trombocitopenia o inmunodepresión). El diagnóstico actualmente se hace con pruebas de inmunohistoquímica, ya sea en sangre periférica, nódulos linfáticos o médula ósea, que muestran el crecimiento monoclonal de linfocitos B disfuncionales. El tratamiento de la LLC suele ser con la sola observación en las etapas iniciales. En los pacientes más avanzados, actualmente se usan múltiples y modernos fármacos y anticuerpos monoclonales específicos contra la LLC. La respuesta correcta es: Leucemia linfática crónica"
+  },
+  {
+    "question": "7. Un niño de 3 meses, asintomático, alimentado con leche materna, presenta hemograma con hemoglobina de 9,2 g/dl, sin alteración de las otras series de células sanguíneas. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar biopsia de médula ósea",
+      "b.Solicitar perfil de hierro, niveles de vitamina B12 y folatos",
+      "c.Iniciar tratamiento con hierro oral",
+      "d.Observar evolución",
+      "e.Solicitar pruebas de screening para talasemias"
+    ],
+    "correctAnswer": "Observar evolución",
+    "explanation": "La anemia en niños se define como hemoglobina menor a p3 para la edad y sexo (menor a 2 desviaciones estándar). A los 3 meses, es normal tener hemoglobina hasta 9 g/dl, por lo que está normal. A esto se le suele llamar \"anemia fisiológica\", que ocurre entre los 2 y 6 meses de edad (hasta 9 meses máximo), por el recambio de Hb fetal a Hb adulta. Por tanto, el diagnóstico es \"sano\" o \"anemia fisiológica de la infancia\". Se observa. Si la hemoglobina es menor a 9 g/dl o si hay signos de hemólisis (ictericia, orinas oscuras, LDH elevada, reticulocitos altos, etc.), se deben estudiar las causas patológicas. - Después de los 6 meses, lo más frecuente, en cambio, es la anemia ferropénica, en especial en niños en lactancia materna exclusiva y sin suplementos de hierro. La respuesta correcta es: Observar evolución"
+  },
+  {
+    "question": "8. El síndrome antifosfolípido se caracteriza por:",
+    "choices": [
+      "a.Alargamiento del tiempo de sangría",
+      "b.Alargamiento del tiempo de protrombina",
+      "c.Alargamiento del tiempo de tromboplastina parcial activada",
+      "d.Disminución del recuento de plaquetas",
+      "e.Alteración de las pruebas de agregación plaquetaria"
+    ],
+    "correctAnswer": "Alargamiento del tiempo de tromboplastina parcial activada",
+    "explanation": "El SAF es una enfermedad autoinmune, que puede ser primario o asociado a lupus sistémico y que produce 1. problemas relacionados al embarazo (abortos, preclamsia, insuficiencia placentaria) y 2. trombosis (tanto venosas como arteriales). Para ser un síndrome propiamente tal, requiere de eventos clínicos y no solo de la presencia de marcadores. Se caracteriza por tener los siguientes marcadores: - VDRL falsamente positivo. - Anticoagulante lúpico, que alarga el TTPA. - Anticuerpos más específicos: anticuerpos anticardiolipinas, anticuerpos antifosfolípidos y anticuerpos antibeta-2 glicoproteína. El tratamiento suele ser: - Con anticoagulación de por vida en todos los pacientes con eventos embólicos (se prefieren cumarínicos). - En los casos en que solo tiene historia de mal resultado obstétricos, se indica aspirina más heparina de bajo peso molecular durante el embarazo. - En los casos en que solo tiene los marcadores, sin síntomas, no se ha demostrado beneficio de los fármacos y se pueden observar. La respuesta correcta es: Alargamiento del tiempo de tromboplastina parcial activada"
+  },
+  {
+    "question": "9. Paciente de 60 años, operado por cáncer gástrico, hace 3 años, consulta por astenia, adinamia y debilidad. Al examen pálido, con escasas petequias en extremidades superiores. El hemograma muestra Hematocrito: 23%, VCM: 120, blancos: 3.000, con fórmula diferencial normal, plaquetas: 85.000. Al frotis se aprecia macrocitosis, macroplaquetas y aumento de la segmentación del núcleo de los neutrófilos. El examen más adecuado para continuar el estudio etiológico es:",
+    "choices": [
+      "a.Biopsia de médula ósea",
+      "b.Radiografía de calota",
+      "c.Electroforesis de proteínas en sangre y orina",
+      "d.Niveles de vitamina B12",
+      "e.Citometría de flujo en sangre periférica"
+    ],
+    "correctAnswer": "Niveles de vitamina B12",
+    "explanation": "Es un déficit de B12 clásico. El antecedente de gastrectomía, indica la falta de factor intrínseco, necesario para la absorción de la B12. El hemograma ahí descrito es característico: pancitopenia con anemia megaloblástica (VCM > 108) e hipersegmentación de los neutrófilos. Con frecuencia eleva la LDH y bilirrubina indirecta, pero se diferencia de la hemólisis, en que esta última tiene elevación de reticulocitos y, en cambio, el déficit de B12 es una anemia arregenerativa. La respuesta correcta es: Niveles de vitamina B12"
+  },
+  {
+    "question": "10. El tratamiento del púrpura trombocitopénico agudo, en un niño, con petequias en las EEII y 80.000 plaquetas por mm3, es:",
+    "choices": [
+      "a.Corticoides orales",
+      "b.Ácido acetil salicílico",
+      "c.Cumarínicos orales",
+      "d.Esplenectomía",
+      "e.Reposo y observación"
+    ],
+    "correctAnswer": "Reposo y observación",
+    "explanation": "IMPORTANTE APRENDER: Es importante recordar que el objetivo NO es normalizar las plaquetas, sino solo prevenir hemorragias severas. El PTI de los niños suele ser un cuadro autolimitado, que rara vez se complica. Por ello, el tratamiento general es conservador y basta con observar la evolución, indicando reposo físico, aunque el uso de corticoides es una opción midiendo riesgos y beneficios. - La observación suele ser el manejo de pacientes con equimosis, petequias. - Los corticoides orales son una alternativa y están indicados en algunos casos (gingivorragia, epistaxis, otras hemorragias sin urgencia, <20.000 plaquetas o <30.000 más un niño muy inquieto o padres que no tienen mucho acceso al sistema de salud). - Si hubiese hemorragias graves (ej. hemorragia digestiva u otra hemorragia interna que requiera atención médica de urgencia), se indica IgG EV en alta dosis o Ig anti-D, más corticoides endovenosos. - En hemorragias muy graves, con riesgo vital (ej. hemorragia cerebral, shock hipovolémico, etc.), se agregan las transfusiones de plaquetas más la IgG y más los corticoides ev. - El tratamiento de segunda línea solo se usa en PTI crónicos, que no logran un recuento de plaquetas estables >20.000, con el uso de corticoides y, actualmente, se utiliza, la esplenectomía (80-90% éxito, pero quirúrgica y con inmunodepresión secundaria) y el rituximab (50% de éxito, no quirúrgica y también con inmunodepresión secundaria). De los PTI de la infancia solo un 10-20% cronifica y, de esos, cerca de la mitad desaparece en 5 años. En los adultos, en cambio, el 80-90% cronifica. En los adultos, el tratamiento suele ser similar al ya explicado, aunque los corticoides se usan con mayor frecuencia que en los niños. En adultos, con PTI leves, la decisión de observar vs. usar fármacos se toma caso a caso y lo más importante es siempre la clínica. La respuesta correcta es: Reposo y observación"
+  },
+  {
+    "question": "11. Un paciente de 63 años, diagnosticado de artrosis, usuaria de paracetamol e ibuprofeno, consulta por aparición de múltiples petequias en las extremidades inferiores y en el tronco, asociado a epistaxis y algunas equimosis en EEII. Se solicita un hemograma que muestra hematocrito: 45%, hemoglobina: 15 g/dl, plaquetas: 30.000 por mm3, blancos: 7.200 por mm3, con fórmula diferencial normal. El diagnóstico más probable es:",
+    "choices": [
+      "a.Disfunción plaquetaria por ibuprofeno",
+      "b.Púrpura trombocitopénico inmune",
+      "c.Púrpura trombocitopénico trombótico",
+      "d.Hemofilia",
+      "e.Enfermedad de Von Willebrand"
+    ],
+    "correctAnswer": "Púrpura trombocitopénico inmune",
+    "explanation": "Tiene una alteración de la hemostasia primaria: petequias y hemorragias mucosas. El hemograma muestra trombocitopenia sola, por lo que es un PTI. La A (disfunción plaquetaria) y la E (EvW) tienen hemograma normal. La B (PTT) además tendría anemia hemolítica. La D (hemofilia) tendría alteración de la hemostasia secundaria (coagulación) y hemograma normal. La respuesta correcta es: Púrpura trombocitopénico inmune"
+  },
+  {
+    "question": "12. Un paciente de 70 años presenta astenia de algunas semanas de evolución, asociada a fiebre, por lo que se solicita un hemograma que muestra hematocrito: 27%, plaquetas: 70.000 por mm3 y glóbulos blancos: 45.000 por mm3, con 16% de segmentados, 0% de baciliformes, 0% de mielocitos, 40% de promielocitos, 37% de blastos, 0% eosinófilos, 0% de basófilos y 7% linfocitos. No ha presentado otros síntomas y su examen físico no aporta mayor información. El diagnóstico más probable es:",
+    "choices": [
+      "a.Infección viral",
+      "b.Infección bacteriana",
+      "c.Leucemia aguda",
+      "d.Leucemia mieloide crónica",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Leucemia aguda",
+    "explanation": "Tiene una bicitopenia, con leucocitosis, con alto número de blastos (mayor a 5%) y presencia de hiato leucémico (de los segmentados, se salta a los promielocitos y blastos, sin que haya baciliformes ni mielocitos). Por tanto, es una LMA clásica, de tipo promielocítica. Además, se caracteriza por los bastones de Auer, en el citoplasma. - La infección viral tendría linfocitosis, sin otras alteraciones. - La infección bacteriana tendría leucocitosis, con desviación izquierda, sin anemia ni trombopenia, ni blastos. - La LMC tendría leucocitosis, con marcada desviación izquierda, sin hiato leucémico, sin trombopenia (hacen trombocitosis) y con menos de 5% de blastos. - El linfoma tendría el hemograma normal y clínica de adenopatías. La respuesta correcta es: Leucemia aguda"
+  },
+  {
+    "question": "13. Un paciente de 45 años presenta un cuadro de fiebre y malestar general, de 5 días de evolución. Su hemograma muestra Hemoglobina: 14 g/dl, plaquetas: 400.000 por mm3, blancos: 16.000 por mm3, con 10% de linfocitos, 5% de monocitos y 70% de neutrófilos segmentados y 15% de baciliformes. El diagnóstico más probable es:",
+    "choices": [
+      "a.Infección viral",
+      "b.Infección bacteriana",
+      "c.Leucemia aguda",
+      "d.Leucemia mieloide crónica",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Infección bacteriana",
+    "explanation": "Es una infección bacteriana clásica: leucocitosis de tipo neutrofílico, con desviación izquierda (más de 10% de baciliformes). Además, solo lleva 5 días de evolución. La LMC podría ser similar, pero con más de 20.000 blancos y mayor desviación izquierda (ej. aparición de mielocitos o promielocitos). Tendría, además, un cuadro crónico, de varias semanas, al menos. La respuesta correcta es: Infección bacteriana"
+  },
+  {
+    "question": "14. Una paciente de 50 años presenta un cuadro de astenia y adinamia de dos meses de evolución, asociada a palidez de piel y mucosas. Se solicita un hemograma, que demuestra anemia normocítica, con hematocrito de 28%, hemoglobina: 9,1 g/dl y VCM de 80 fl. Se solicita perfil de hierro, que muestra ferritina disminuida y transferrina elevada, con ferremia disminuida. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar biopsia de médula ósea",
+      "b.Iniciar estudio, en busca de una enfermedad crónica, que explique la anemia",
+      "c.Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro",
+      "d.Iniciar tratamiento con sulfato ferroso, vitamina B12 y folatos",
+      "e.Hospitalizar y tratar con transfusiones de glóbulos rojos"
+    ],
+    "correctAnswer": "Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro",
+    "explanation": "Tiene una anemia ferropénica (suele ser microcítica, pero en este caso el VCM está normal, pero en el límite bajo). El perfil de hierro no deja dudas: ferritina baja y transferrina alta es lo característico. En la anemia de enfermedades crónicas, la ferritina está alta y la transferrina, baja. Vale la pena recalcar, que si fuera una mujer postmenopáusica o con sintomatología digestiva, no estaría de más hacer una colonoscopía, en busca de una causa que explique la ferropenia (ej. cáncer). Las transfusiones se reservan a los casos de anemia severa y muy sintomática. La respuesta correcta es: Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro"
+  },
+  {
+    "question": "15. ¿Cuál de las siguientes alteraciones es MENOS probable es un paciente con anemia hemolítica autoinmune?",
+    "choices": [
+      "a.Presencia de esquistocitos",
+      "b.Aumento de la bilirrubina indirecta",
+      "c.Aumento del lactato deshidrogenasa plasmática",
+      "d.Prueba de Coombs directa positiva",
+      "e.Disminución de los eritrobastos y otras formas inmaduras de glóbulos rojos, en la médula ósea"
+    ],
+    "correctAnswer": "Disminución de los eritrobastos y otras formas inmaduras de glóbulos rojos, en la médula ósea",
+    "explanation": "La anemia hemolítica se caracteriza por tener esquistocitos y/o fragmentocitos (restos del glóbulo rojo hemolizado), elevar la bilirrubina indirecta y la LDH. Además, por ser regenerativa, aumentan las formas inmaduras de glóbulos rojos: reticulocitos e incluso policromatófilos o eritroblastos, en los casos más graves. La prueba de Coombs directa solo está positiva en las hemólisis de causa inmune y no en todas las anemias hemolíticas. La respuesta correcta es: Disminución de los eritrobastos y otras formas inmaduras de glóbulos rojos, en la médula ósea"
+  },
+  {
+    "question": "16. Un paciente de 65 años, consulta por anemia. Al examen físico se constata palidez, y algunas petequias en las extremidades inferiores. Su examen físico no aporta mayor información. Se solicita un hemograma, que muestra Hematocrito: 25%, plaquetas: 20.000 por mm3 y blancos: 2.700 por mm, VCM: 108, VHS: 24 mm/h. Además, se solicita un perfil bioquímico, que destaca LDH elevada. Su recuento de reticulocitos es de 0,5% y sus niveles plasmáticos de ácido fólico y vitamina B12 están normales. El diagnóstico más probable es:",
+    "choices": [
+      "a.Mieloma múltiple",
+      "b.Mielofibrosis",
+      "c.Leucemia",
+      "d.Mielodisplasia",
+      "e.Anemia perniciosa"
+    ],
+    "correctAnswer": "Mielodisplasia",
+    "explanation": "Es una pregunta difícil. Tiene una pancitopenia, con elevación del VCM y de la LDH, lo que es compatible con una mielodisplasia. Sin embargo, también es compatible con un déficit de vitamina B12 (anemia perniciosa), pero esta causa se descartó, porque los niveles de B12 están normales. Vale la pena recordar que la LDH se eleva no solo en las hemólisis, sino en cualquier causa de mielopoyesis inefectiva (déficit de B12, mielodisplasia, leucemia) y, la verdad, se eleva con cualquier cosa, siendo de las pruebas menos específicas que existen. No es un mieloma, porque la VHS está apenas elevada (en el mieloma suele estar sobre 50 o incluso 100 mm/h) y le faltan los dolores óseos y el resto de las alteraciones del mieloma múltiple (falla renal, hipercalcemia, hiperproteinemia, etc). La respuesta correcta es: Mielodisplasia"
+  },
+  {
+    "question": "17. Un niño de 6 años presenta un cuadro de fiebre, baja de peso y sudoración nocturna, asociada a malestar general. Al examen físico, se palpa varias adenopatías inguinales y axilares indoloras. Su hemograma demuestra anemia normocítica leve, sin otras alteraciones. La conducta más adecuada es:",
+    "choices": [
+      "a.Realizar biopsia esplénica",
+      "b.Iniciar corticoides orales",
+      "c.Solicitar biopsia de médula ósea",
+      "d.Solicitar biopsia ganglionar",
+      "e.Solicitar hibridación in situ, en busca del Cromosoma Filadelfia."
+    ],
+    "correctAnswer": "Solicitar biopsia ganglionar",
+    "explanation": "La sospecha es un linfoma, ya que tiene los síntomas B (baja de peso, fiebre y sudoración) más las poliadenopatías características. El hemograma, no muestra nada más allá de una leve anemia, por lo que no parece ser leucemia. Lo más correcto es solicitar exámenes generales, como radiografía de tórax y luego proceder a la biopsia ganglionar, para confirmar el diagnóstico. El Cr. Filadelfia es de la LMC y algunas LLA. La biopsia debe realizarse antes de indicar corticoides. Cuando no hay sospecha de linfoma, sino solo una adenopatía periférica, se suelen observar por 3 a 4 semanas o tratar con antibióticos por 2 semanas, biopsiándolas solo si persisten. La biopsia de las adenopatías se prefiere que sea excisional (en las que son muy grandes, se hace excisional), ya que las por aguja fina tienen mal redimiento. La respuesta correcta es: Solicitar biopsia ganglionar"
+  },
+  {
+    "question": "18. Un paciente de 40 años presenta astenia, por lo que se solicita un hemograma que muestra hematocrito: 20%, hemoglobina: 6,5%, plaquetas: 32.000 por mm3, blancos, 3.200, con 55% de linfocitos, 15% de monocitos y 30% de neutrófilos. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar tratamiento con sulfato ferroso, folatos y vitamina B12 y controlar ambulatoriamente",
+      "b.Iniciar tratamiento con corticoides orales",
+      "c.Solicitar electroforesis de proteínas",
+      "d.Solicitar biopsia de médula ósea",
+      "e.Solicitar niveles plasmáticos de vitamina B12"
+    ],
+    "correctAnswer": "Solicitar biopsia de médula ósea",
+    "explanation": "Tiene una pancitopenia, sin mucha más información. Las pancitopenias se estudian con biopsia de médula ósea. La única excepción es cuando el cuadro es muy sugerente de un déficit de B12 (ej. antecedente de cirugía gástrica con pancitopenia y marcada elevación del VCM), en que se primero se solicitan los niveles de B12. La respuesta correcta es: Solicitar biopsia de médula ósea"
+  },
+  {
+    "question": "19. Un paciente presenta resistencia del factor V a la acción de la proteína C. Tendrá alto riesgo de:",
+    "choices": [
+      "a.Hemorragias",
+      "b.Infecciones",
+      "c.Leucemia",
+      "d.Linfoma",
+      "e.Trombosis"
+    ],
+    "correctAnswer": "Trombosis",
+    "explanation": "La resistencia a la proteína C o factor V de Leiden es la trombofilia congénita más frecuente (las adquiridas son más frecuentes aun). La respuesta correcta es: Trombosis"
+  },
+  {
+    "question": "20. Un niño de 3 años presenta una hemartrosis de rodilla, en relación a un golpe de moderada intensidad. Además, ha presentado varios hematomas profundos (musculares) y al examen físico se aprecian equimosis en varias zonas de la piel. ¿Qué diagnóstico es el más probable?",
+    "choices": [
+      "a.Púrpura trombocitopénico inmune",
+      "b.Enfermedad de Von Willebrand",
+      "c.Hemofilia",
+      "d.Leucemia aguda",
+      "e.Déficit de antitrombina III"
+    ],
+    "correctAnswer": "Hemofilia",
+    "explanation": "Es una hemofilia clásica: niño con clínica de alteración de la hemostasia secundaria (hemartrosis y hematomas profundos). El PTI, EvW y leucemia producen alteración de hemostasia primaria (petequias, espistaxis y hemorragias mucosas). El déficit de ATIII es una trombofilia (produce TVP y TEP). En algunos casos de EvW, más graves (infrecuentes), puede tener una clínica similar a la hemofilia e incluso puede tener disminución del F VIII de la coagulación, ya que el FvW y el FVIII suelen unirse. Por eso, se recomienda descartar EvW en toda hemofilia A. La respuesta correcta es: Hemofilia"
+  },
+  {
+    "question": "1. Un paciente de 63 años, diagnosticado de un púrpura trombocitopénico inmune crónico, en tratamiento con prednisona 40 mg al día, presenta hemorragia digestiva alta, asociada a epistaxis importante. Se inicia reposición de volumen y taponamiento nasal anterior y solicita hemograma, que muestra 3.000 plaquetas por mm3. Además del manejo de su hemorragia digestiva, la conducta más adecuada es:",
+    "choices": [
+      "a.Realizar transfusión de plaquetas",
+      "b.Administrar pulsos de metilprednisolona endovenosa",
+      "c.Realizar esplenectomía",
+      "d.Transfundir plasma fresco congelado",
+      "e.Administrar inmunoglobulina G endovenosa más pulsos de metilprednisolona"
+    ],
+    "correctAnswer": "Administrar inmunoglobulina G endovenosa más pulsos de metilprednisolona",
+    "explanation": "El tratamiento del PTI con hemorragias graves (independientemente de si es agudo o crónico; si es adulto o niño) es con IgG EV en dosis altas más corticoides endovenosos. Las transfusiones de plaquetas no son muy útiles (ya que tiene anticuerpos que las destruyen), por lo que solo se agregan en casos de urgencia vital o cuando todo lo demás ha fallado. La esplenectomía se indica en el PTI crónico refractario a corticoides orales (que no logra un recuento estable, mayor a 20.000 plaquetas por mm3), como tratamiento a largo plazo. Pero, en este caso, lo urgente es recuperar rápido el número de plaquetas, por lo que se debe administrar la IgG endovenosa (actualmente se recomienda dar también los pulsos de corticoides endovenosas). El rituximab es una alternativa a la esplenectomía, que aunque es menos eficaz, no tiene el riesgo quirúrgico. El rituximab son anticuerpos anti-linfocito B (anti-CD20) y su efecto demora varias semanas en establecerse. El plasma fresco congelado no tiene plaquetas, sino factores de coagulación (se usa en la coagulación intravascular diseminada, en algunos casos). La respuesta correcta es: Administrar inmunoglobulina G endovenosa más pulsos de metilprednisolona"
+  },
+  {
+    "question": "2. Un paciente de 70 años presenta astenia de algunas semanas de evolución, por lo que se solicita un hemograma que muestra hematocrito: 27%, plaquetas: 70.000 por mm3 y glóbulos blancos: 25.000 por mm3, con 95% de linfocitos. No ha presentado otros síntomas y su examen físico no aporta mayor información. El diagnóstico más probable es:",
+    "choices": [
+      "a.Infección viral",
+      "b.Infección bacteriana",
+      "c.Leucemia aguda",
+      "d.Leucemia linfática crónica",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Leucemia linfática crónica",
+    "explanation": "Es una LLC clásica: adulto mayor con linfocitosis, más anemia y trombopenia. Suele ser asintomática y diagnosticarse como un hallazgo en el hemograma, o bien tener pocos síntomas de anemia, síntomas B o infecciones (más raro hemorragias o petequias). Su tratamiento suele ser la observación, hasta que está en estadios avanzados en que se usan quimioterapias y anticuerpos monoclonales específicos (acalabrutinib, zanubrutinib, ibrutinib, venetoclax, etc., cuyos nombres no debe saberlos el médico general). La respuesta correcta es: Leucemia linfática crónica"
+  },
+  {
+    "question": "3. Un paciente de 45 años presenta un cuadro de fiebre y malestar general, de 5 días de evolución. Su hemograma muestra Hemoglobina: 14 g/dl, plaquetas: 400.000 por mm3, blancos: 18.000 por mm3, con 65% de neutrófilos segmentados, 20% de baciliformes, 15% de linfocitos. El diagnóstico más probable es:",
+    "choices": [
+      "a.Infección viral",
+      "b.Infección bacteriana",
+      "c.Leucemia aguda",
+      "d.Leucemia mieloide crónica",
+      "e.Linfoma"
+    ],
+    "correctAnswer": "Infección bacteriana",
+    "explanation": "Es una infección bacteriana clásica: leucocitosis de predominio neutrofílico, con desviación izquierda. Tiene normalidad de los glóbulos y plaquetas, aunque es frecuente que haya trombocitosis en los cuadros inflamatorios (trombocitosis reactiva). La LMC habría tenido mayor leucocitosis (mayor a 20.000), y un cuadro de más días de evolución. Vale la pena recordar que muchas veces es imposible diferenciar una LMC de una reacción leucemoide, secundaria a una infección bacteriana, razón por la cual se busca activamente el cromosoma Filadelfia con hibridación in situ o PCR para confirmar el diagnóstico de LMC. Eso sí, en este caso, la sospecha no es una LMC, sino solo una infección bacteriana. La respuesta correcta es: Infección bacteriana"
+  },
+  {
+    "question": "4. Una paciente de 40 años presenta un cuadro de astenia y adinamia de dos meses de evolución, asociada a palidez de piel y mucosas. Se solicita un hemograma, que demuestra anemia microcítica, con hematocrito de 25%, hemoglobina: 7,8% y VCM de 68 fl. Se solicita perfil de hierro, que confirma ferropenia. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar biopsia de médula ósea",
+      "b.Iniciar sulfato ferroso oral hasta normalizar el hematocrito",
+      "c.Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro",
+      "d.Iniciar tratamiento con sulfato ferroso, vitamina B12 y folatos, hasta normalizar el VCM",
+      "e.Hospitalizar y tratar con transfusiones de glóbulos rojos"
+    ],
+    "correctAnswer": "Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro",
+    "explanation": "El tratamiento de la anemia ferropénica es hierro oral hasta normalizar la ferritina (depósitos de hierro). La hemoglobina está bastante baja, pero para que fuera indicación de transfusión debería ser tratarse de una anemia severamente sintomática: ej. disnea de esfuerzos invalidante, descompensación de cardiopatías, isquemia cardíaca, etc. Recordar que por regla general solo se transfunden las anemias muy sintomáticas y no hay un corte de hemoglobina estricto (aunque bajo 7 g/dl suelen requerir transfusión). Además, se debe buscar una causa de la anemia (ej. pérdidas por menstruaciones abundantes) y, si no se identifica una causa clara, se debe buscar activamente la causa con colonoscopía y endoscopía digestiva alta. La respuesta correcta es: Iniciar sulfato ferroso oral hasta normalizar el perfil de fierro"
+  },
+  {
+    "question": "5. Una paciente presenta un cuadro de anemia, con marcada elevación de los reticulocitos y presencia de esquistocitos. ¿Qué examen es más adecuado para el estudio de esta paciente?",
+    "choices": [
+      "a.Prueba de Coombs directo",
+      "b.Niveles de vitamina B12",
+      "c.Biopsia de médula ósea",
+      "d.Ferritina y transferrina plasmáticas",
+      "e.Tiempo de sangría"
+    ],
+    "correctAnswer": "Prueba de Coombs directo",
+    "explanation": "Tiene una anemia hemolítica: elevación de reticulocitos (regenerativa) y presencia de esquistocitos (membranas de los glóbulos rojos hemolizados). Se solicita prueba de Coombs directo, para buscar la causa autoinmune: si está positiva, se debe a anticuerpos contra los glóbulos rojos; si está negativa, se debe a otras causas de hemólisis. La respuesta correcta es: Prueba de Coombs directo"
+  },
+  {
+    "question": "6. Un paciente de 65 años, es diagnosticado de cáncer gástrico, por lo que se le realiza una gastrectomía total y posterior quimioterapia. Evoluciona con baja de peso y anemia. Su hemograma muestra un hematocrito de 24%, hemoglobina de 8,7 g/dl, plaquetas: 80.000 y blancos: 3.200 por mm3. El volumen corpuscular medio es 118 fl y la concentración corpuscular media de hemoglobina es 36 pg. El diagnóstico más probable es:",
+    "choices": [
+      "a.Aplasia medular",
+      "b.Mieloptisis",
+      "c.Anemia ferropénica",
+      "d.Anemia por enfermedades crónica",
+      "e.Anemia por déficit de vitamina B12"
+    ],
+    "correctAnswer": "Anemia por déficit de vitamina B12",
+    "explanation": "Tiene una pancitopenia, con anemia megaloblástica (VCM mayor a 108), por lo que es un clásico déficit de B12. El antecedente de gastrectomía, lo hace aun más probable, dado que en el estómago se produce el factor intrínseco, necesario para la absorción de la B12. La respuesta correcta es: Anemia por déficit de vitamina B12"
+  },
+  {
+    "question": "7. Un paciente de 70 años se realiza un hemograma, que muestra anemia con hematocrito de 30%, Hemoglobina de 10 g/dl, VCM: 101 fL, VHS: 30 mm/h, blancos: 3.000 por mm3 y plaquetas: 90.000 por mm3. Se iniciar tratamiento con vitaminas del complejo B y se controla un mes después, persistiendo con un hemograma muy similar. La conducta más adecuada es:",
+    "choices": [
+      "a.Mantener el tratamiento y observar evolución",
+      "b.Iniciar corticoides orales",
+      "c.Solicitar perfil de hierro",
+      "d.Solicitar estudio de médula ósea",
+      "e.Solicitar niveles de ácido metilmalónico y homocisteína"
+    ],
+    "correctAnswer": "Solicitar estudio de médula ósea",
+    "explanation": "Se puede enfrentar de dos formas: 1. Es una pancitopenia y por tanto, se estudia con biopsia de médula ósea. 2. Se sospecha una mielodisplasia (adulto mayor con pancitopenia, elevación del VCM y ausencia de respuesta al tratamiento), por lo que también se debe hacer la biopsia de médula ósea. La respuesta correcta es: Solicitar estudio de médula ósea"
+  },
+  {
+    "question": "8. ¿Cuál de las siguientes alteraciones es más frecuente en los pacientes diagnosticados de linfoma?",
+    "choices": [
+      "a.Adenopatías",
+      "b.Anemia",
+      "c.Elevación de las proteínas plasmáticas",
+      "d.Dolores óseos",
+      "e.Esplenomegalia"
+    ],
+    "correctAnswer": "Adenopatías",
+    "explanation": "Los linfomas se caracterizan por poliadenopatías persistentes. Además, pueden tener síntomas B (baja de peso, fiebre y sudoración nocturna), aunque son síntomas inespecíficos y que no siempre están presentes. Salvo en las etapas más avanzadas, suelen cursar sin anemia; de hecho, su hemograma suele ser normal. La elevación de proteínas es característica de las mielopatías, como el mieloma (paraproteinemia monoclonal). Los dolores óseos son clásicos del mieloma, pero también se ven en las leucemias agudas. La esplenomegalia se ve en las leucemias mieloides, en los síndromes mieloproliferativos y en las mielodisplasias. La respuesta correcta es: Adenopatías"
+  },
+  {
+    "question": "9. Un paciente presenta un TEP, que es manejado con heparina endovenosa y posteriormente tratamiento anticoagulante oral, con acenocumarol. ¿Qué examen es el más adecuado para ajustar la dosis del acenocumarol?",
+    "choices": [
+      "a.Tiempo de sangría",
+      "b.Tiempo de tromboplastina parcial activada",
+      "c.INR (International Normalized Ratio)",
+      "d.Recuento de plaquetas",
+      "e.No necesita ningún examen, ya que la dosis se determina según el peso y la evolución clínica"
+    ],
+    "correctAnswer": "INR (International Normalized Ratio)",
+    "explanation": "La dosis de cumarínicos se ajusta según el INR, buscándose que esté entre 2 y 3. El INR es una forma estandarizada de mostrar el tiempo de protrombina (TP). El tiempo de sangría se alarga en las alteraciones de hemostasia primaria. El TTPA (opción B) se usa para ajustar la dosis de heparina no fraccionada, en cambio la de bajo peso molecular no requiere control (opción E). La respuesta correcta es: INR (International Normalized Ratio)"
+  },
+  {
+    "question": "10. Un niño presenta un púrpura petequial, asociado a aparición de equimosis en las extremidades inferiores. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar corticoides orales",
+      "b.Solicitar un hemograma y controlar ambulatoriamente con el resultadoc.",
+      "c.Solicitar una biopsia de médula ósea",
+      "d.Iniciar aspirina oral",
+      "e.Hospitalizar para estudio"
+    ],
+    "correctAnswer": "Solicitar un hemograma y controlar ambulatoriamente con el resultado",
+    "explanation": "Toda púrpura se debe estudiar inicialmente con un hemograma, ya que con ello se puede clasificar en trombocitopénica (ej. PTI) y no trombocitopénica (ej. P. Schönlein Henoch) y además, se pueden detectar algunas causas, como la leucemia aguda. Si hubiese tenido fiebre, la respuesta correcta habría sido hospitalizar para estudio, ya que el púrpura febril es una urgencia (sospecha de meningococcemia o leucemia). Una vez definida la causa, se manejará según diagnóstico (si termina siendo una PTI, probablemente se observará, ya que no tiene manifestaciones que requieran corticoides, a menos que las plaquetas estén muy bajas y sean menores a 30.000). La respuesta correcta es: Solicitar un hemograma y controlar ambulatoriamente con el resultado"
+  },
+  {
+    "question": "11. La trombofilia congénita más frecuente es:",
+    "choices": [
+      "a.Factor V de Leiden",
+      "b.Déficit de antitrobina III",
+      "c.Déficit de proteína C",
+      "d.Déficit de proteína S",
+      "e.Hiperhomocisteinemia"
+    ],
+    "correctAnswer": "Factor V de Leiden",
+    "explanation": "El factor V de Leiden, también se llama resistencia a la proteína C y es la más frecuente de las trombofilias congénitas. Sin embargo, no está de más recordar, que las trombofilias secundarias o adquiridas (cáncer, fármacos, síndrome antifosfolípidos, etc.) son todavía mucho más frecuentes que las trombofilias primarias o congénitas. La respuesta correcta es: Factor V de Leiden"
+  },
+  {
+    "question": "12. En una poliglobulia, todos los datos siguientes concuerdan con una policitemia vera, EXCEPTO uno. Señálelo:",
+    "choices": [
+      "a.Aumento de la masa de hematíes.",
+      "b.Esplenomegalia.",
+      "c.Leucocitosis y trombocitosis.",
+      "d.Eritropoyetina sérica alta.",
+      "e.Saturación arterial de oxígeno normal."
+    ],
+    "correctAnswer": "Eritropoyetina sérica alta.",
+    "explanation": "Si la eritropoyetina (EPO) está elevada, se presume que la causa de la poliglobulia es secundaria a hipoxia o a otra causa de elevación de la EPO. En cambio, la policitemia vera tiene EPO disminuida o dentro del rango normal. De todos modos, actualmente, lo más importante es ir a buscar la presencia del gen JAK2 o de alguna otra alteración genética asociada a la policitemia vera. La respuesta correcta es: Eritropoyetina sérica alta."
+  },
+  {
+    "question": "13. Un adolescente de 15 años consulta por fiebre y odinofagia, de 8 días de evolución. Al examen físico se aprecia con ictericia leve, T°: 38,5°C y se palpan múltiples adenopatías cervicales sensibles. La faringe está eritematosa, con aumento de volumen amigdalino y escaso exudado blanquecino. Además, es posible palpar el bazo. El diagnóstico más probable es:",
+    "choices": [
+      "a.Leucemia aguda",
+      "b.Linfoma",
+      "c.Mononucleosis infecciosa",
+      "d.Anemia hemolítica autoinmune",
+      "e.Leucemia linfática crónica"
+    ],
+    "correctAnswer": "Mononucleosis infecciosa",
+    "explanation": "Es una mononucleosis infecciosa clásica, con la triada de odinofagia, adenopatías y fiebre, más otros elementos sugerentes: la ictericia (hepatitis), exudado amigdalino y esplenomegalia. La leucemia tendría anemia, trombopenia y no tendría la odinofagia, el exudado, ni la ictericia (aunque en realidad la leucemia sí puede tenerlos, pero sugieren mucho más una mononucleosis). El hemograma de la mononucleosis suele mostrar leucocitosis con linfocitosis y linfocitos atípicos. Se diagnostica actualmente con serología para virus de Epstein Barr (se pide como IgM-VEB o IgM-VCA [viral capsid antigen]). Se maneja con tratamiento sintomático. El linfoma sí tiene adenopatías, pero nada de lo demás (ej. Es raro que tenga odinofagia). La respuesta correcta es: Mononucleosis infecciosa"
+  },
+  {
+    "question": "14. Un paciente de 67 años se realiza un perfil bioquímico que muestra elevación de las proteínas plasmáticas, con albúmina de 3,4 g/dl. Los exámenes generales son normales, al igual que el examen físico. Se solicita una electroforesis de proteínas en plasma, que constata un peak monoclonal de inmunoglobulina G, por lo que se realiza una realiza una biopsia de médula ósea que demuestra elevación del número de plasmocitos, compatible con un MGUS. La conducta más adecuada es:",
+    "choices": [
+      "a.Observar evolución",
+      "b.Indicar quimioterapia",
+      "c.Iniciar ácido acetil salicílico",
+      "d.Iniciar hidroxiurea",
+      "e.Realizar trasplante de médula ósea"
+    ],
+    "correctAnswer": "Observar evolución",
+    "explanation": "El tratamiento del MGUS (gamapatía monoclonal de significado incierto) es simplemente la observación, ya que en el 98% de los casos no tiene mayores complicaciones. Solo en el 2% restante existe evolución a mieloma múltiple y solo si ello ocurre, se tratará con quimioterapia. La respuesta correcta es: Observar evolución"
+  },
+  {
+    "question": "15. Paciente de 65 años presenta en su analítica creatinina de 2,1, anemia con Hb:9,7 e hipercalcemia de 11,1. El diagnóstico de sospecha es:",
+    "choices": [
+      "a.Insuficiencia renal crónica, con hiperparatiroidismo asociado",
+      "b.Anemia de enfermedades crónicas",
+      "c.Mieloma múltiple",
+      "d.Déficit de proteína C",
+      "e.Cáncer de próstata"
+    ],
+    "correctAnswer": "Mieloma múltiple",
+    "explanation": "El mieloma múltiple se caracteriza por anemia, hipercalcemia e insuficiencia renal. La PTH, está disminuida en la hipercalcemia de causa oncológica. En cambio, la IRC con hiperparatiroidismo secundario tiene también anemia, pero hipocalcemia, con PTH elevada. El cáncer de próstata sí podría manifestarse de esta forma, pero le falta la clínica de uropatía obstructiva o alguna otra cosa que oriente a dicho diagnóstico. La respuesta correcta es: Mieloma múltiple"
+  },
+  {
+    "question": "16. Paciente de 45 años, consulta porque le indicaron que padecía de anemia. El hemograma constata recuento de blancos y plaquetas normales, Hcto: 33%, Hb: 11 mg/dl, VCM: 70. En el frotis se aprecia anisocitosis con aumento del índice de dispersión eritrocítica. El diagnóstico más probable es:",
+    "choices": [
+      "a.Talasemia",
+      "b.Anemia ferropénica",
+      "c.Anemia de enfermedades crónicas",
+      "d.Anemia hemolítica crónica",
+      "e.Hemocromatosis"
+    ],
+    "correctAnswer": "Anemia ferropénica",
+    "explanation": "La anemia ferropénica se caracteriza por ser microcítica (VCM menor a 80) y por tener anisocitosis, es decir, células de distinto tamaño. La talasemia también es microcítica, pero hay isocitosis (todos los glóbulos rojos son del mismo tamaño). La anemia por enfermedades crónicas tiene VCM normal (normocítica). La anemia hemolítica suele tener VCM elevado, porque os reticulocitos son más grandes que los GR promedio. La hemocromatosis no tiene anemia, sino que es una enfermedad de depósito de hierro, que produce daño hepático, cardíaco, diabetes e hiperpigmentación. La respuesta correcta es: Anemia ferropénica"
+  },
+  {
+    "question": "17. Mujer de 24 años consulta por fiebre, baja de peso y sudoración nocturna. Al examen presenta poliadenopatías cervicales. El hemograma es normal. La radiografía de tórax muestra mediastino ensanchado. El diagnóstico más probable es:",
+    "choices": [
+      "a.Infección por Bartonella henselae",
+      "b.Tuberculosis",
+      "c.Linfoma",
+      "d.Leucemia",
+      "e.Timoma"
+    ],
+    "correctAnswer": "Linfoma",
+    "explanation": "Es un linfoma clásico: adenopatías más síntomas B (fiebre, baja de peso y sudoración nocturna). El mediastino ancho se debe a las adenopatías mediastínicas. Es importante recalcar que la tuberculosis podría presentarse igual, pero además tendría clínica respiratoria (ej. tos, expectoración, hemoptisis) y la radiografía de tórax mostraría afectación pulmonar (ej. retracción y fibrosis mayor en los ápices). La respuesta correcta es: Linfoma"
+  },
+  {
+    "question": "18. Un paciente de 55 años presenta una celulitis en el pie izquierdo, la que se trata con cloxacilina y ketoprofeno. Se solicita un hemograma que demuestra leucocitosis de 15.000 con desviación izquierda, sin embargo, llama la atención el número de plaquetas, que asciende a 550.000 por mm3. ¿Cuál es la causa más probable de su trombocitosis?:",
+    "choices": [
+      "a.Reactiva, secundaria a la inflamación",
+      "b.Autoinmune",
+      "c.Secundaria a la cloxacilina",
+      "d.Trombocitosis esencial",
+      "e.Secundaria al ketoprofeno"
+    ],
+    "correctAnswer": "Reactiva, secundaria a la inflamación",
+    "explanation": "La causa más frecuente de elevación de las plaquetas es de tipo reactiva, en especial, secundaria a la inflamación (las plaquetas son reactantes de fase aguda). Así que, si existe una causa evidente de inflamación, como en este caso, la trombocitosis reactiva debe ser sospechada en primer lugar. Vale la pena mencionar que reportes recientes demuestran que incluso los niveles de plaquetas muy elevados (ej. sobre 1.000.000 de plaquetas por mm3) siguen siendo causados, en primer lugar, por causas reactivas, por lo que lo primero siempre es tratar la causa de base. Solo cuando la trombocitosis persiste, cuando no hay una causa reactiva que la explique, o cuando hay otras alteraciones en el hemograma (ej. sugerentes de LMC), se estudian con mayor profundidad (descartar trombocitosis esencial, por ejemplo, con gen JAK2, biopsia de médula ósea, etc). Otra causa de trombocitosis reactiva es la ferropenia, por lo que siempre se debe pedir ferritina en los casos de trombocitosis que persiste después de tratar las posibles causas infecciosas o inflamatorias. Los AINES (Ketoprofeno) no producen alteración en el número de plaquetas, sino que producen una disfunción plaquetaria (alteran su funcionamiento). La respuesta correcta es: Reactiva, secundaria a la inflamación"
+  },
+  {
+    "question": "19. El factor pronóstico más importante del cáncer de laringe es:",
+    "choices": [
+      "a.Tipo histológico",
+      "b.Invasión de los ganglios linfáticos cervicales",
+      "c.Grado de diferenciación histológica",
+      "d.Presencia de metástasis a distancia",
+      "e.Tamaño del tumor"
+    ],
+    "correctAnswer": "Invasión de los ganglios linfáticos cervicales",
+    "explanation": "En general, el factor pronóstico más importante en todos los cánceres de cabeza y cuello es el compromiso ganglionar del cuello. Sin embargo, en el cáncer de laringe, en específico, también es muy relevante la ubicación del tumor, ya que el cáncer glótico tiene mejor pronóstico que el supraglótico e infraglótico, ya que da síntomas precoces y tiene una diseminación linfática más lenta. La respuesta correcta es: Invasión de los ganglios linfáticos cervicales"
+  },
+  {
+    "question": "20. Una paciente de 40 años se realiza una especuloscopía que resulta normal, tomándose un PAP que es informado como muestra satisfactoria, con presencia de células displásicas de alto grado. La conducta más adecuada es:",
+    "choices": [
+      "a.Derivar a patología cervical, para realización de colposcopía y biopsia de la lesión",
+      "b.Repetir el PAP en un año",
+      "c.Realizar cono cervical",
+      "d.Repetir el PAP inmediatamente",
+      "e.Repetir el PAP en 3 meses"
+    ],
+    "correctAnswer": "Derivar a patología cervical, para realización de colposcopía y biopsia de la lesión",
+    "explanation": "Por regla general, todo PAP con atipias debe derivarse a colposcopía y biopsia, para confirmar el diagnóstico. Esto se verá con profundidad en Ginecología, ya que existen muchos detalles importantes a conocer. Eso sí, esto es lo principal: PAP alterado = colposcopía y biopsia. La respuesta correcta es: Derivar a patología cervical, para realización de colposcopía y biopsia de la lesión"
+  },
+  {
+    "question": "1. Un niño de 8 años presenta fiebre y malestar general de dos semanas de evolución. Al examen se aprecia pálido, con algunas equimosis y petequias en las extremidades. Además, se palpa esplenomegalia moderada. El diagnóstico más probable es:",
+    "choices": [
+      "a.Púrpura trombocitopénico trombótico",
+      "b.Púrpura trombocitopénico inmune",
+      "c.Leucemia mieloide crónica",
+      "d.Linfoma no Hodgkin",
+      "e.Leucemia linfática aguda"
+    ],
+    "correctAnswer": "Leucemia linfática aguda",
+    "explanation": "Si bien las petequias y equimosis son compatibles con una PTI (púrpura trombocitopénica trombótica), la fiebre, palidez y esplenomegalia sugieren una leucemia, la que debe ser aguda, por el tiempo de evolución. La leucemia aguda más frecuente de la infancia es la LLA (leucemia linfática aguda). La PTT (púrpura trombocitopénica trombótica) tiene una presentación caracterizada por insuficiencia renal aguda, con plaquetopenia y anemia hemolítica, más compromiso del sistema nervioso central y periférico (similar al SHU de los niños). El linfoma se presenta con adenopatías y suele no tener petequias ni esplenomegalia. Los síntomas B (fiebre, baja de peso y sudoración nocturna) son clásicos del linfoma de Hodgkin, pero, en realidad se presentan en los demás linfomas, leucemias, infecciones como la tuberculosis y enfermedades inflamatorias como el lupus. La respuesta correcta es: Leucemia linfática aguda"
+  },
+  {
+    "question": "2. Un paciente de 80 años consulta por dolores óseos y astenia. Al examen físico está pálido, sin otras alteraciones. En sus exámenes generales destaca un hemograma con anemia y plaquetopenia, una creatinina de 2,4 mg/dl y un calcio de 13,6 mg/dl. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar radiografía de cráneo, electroforesis de proteínas y biopsia de médula ósea",
+      "b.Solicitar radiografía de tórax y biopsia de ganglio linfático",
+      "c.Iniciar prednisona oral y controlar ambulatoriamente",
+      "d.Realizar esplenectomía y solicitar hemograma de control",
+      "e.Observar evolución"
+    ],
+    "correctAnswer": "Solicitar radiografía de cráneo, electroforesis de proteínas y biopsia de médula ósea",
+    "explanation": "La sospecha es un mieloma múltiple (MM), que se suele presenta como un adulto mayor con anemia, hipercalcemia e insuficiencia renal por depósito de cadenas livianas de inmunoglobulina. Se diagnostica con la biopsia de médula ósea (muestra más de 10% de plasmocitos). Sin embargo, además se suele estudiar con radiografías de cráneo y la electroforesis de proteínas, tanto en sangre como en orina, más un sinnúmero de exámenes generales (albúmina, proteínas totales, inmunoglobulinas, electrolitos, función renal, hepática, etc.). Vale la pena mencionar que las MGUS (gamapatía monoclonal de significado incierto) puede tener una biopsia similar, ya que la diferencia con el mieloma la da precisamente la afección de los demás órganos o sistemas (el MGUS no las afecta, mientras que el MM sí). La respuesta correcta es: Solicitar radiografía de cráneo, electroforesis de proteínas y biopsia de médula ósea"
+  },
+  {
+    "question": "3. Una paciente de 25 años, sin antecedentes de importancia, es diagnosticada de anemia ferropénica, con hematocrito de 30%, hemoglobina de 8,6 mg/dl y perfil de fierro compatible. Ella refiere reglas regulares y abundantes y su examen físico no aporta mayor información. La conducta más adecuada es:",
+    "choices": [
+      "a.Indicar aumento de la ingesta de carnes rojas (Ej: vacuno e hígado) y vegetales color verde oscuro (Ej: acelgas y espinacas)",
+      "b.Indicar sulfato ferroso vía oral y vitamina B12 vía intramuscular",
+      "c.Iniciar sulfato ferroso por vía oral e indicar uso de anticonceptivos orales",
+      "d.Solicitar colonoscopía",
+      "e.Indicar biopsia de médula ósea"
+    ],
+    "correctAnswer": "Iniciar sulfato ferroso por vía oral e indicar uso de anticonceptivos orales",
+    "explanation": "El tratamiento de la anemia ferropénica es el hierro oral (solo en la IRC es endovenoso). Además, en una mujer en edad fértil, no es necesario estudiarla, sino que basta con tratarla (en adulto mayor, se debe hacer colonoscopía y eventualmente endoscopía, en busca de la causa). Finalmente, se debe indicar anticonceptivos, para evitar la pérdida de hierro. - Cabe recordar que el estudio ante una sospecha de anemia (ej. palidez y fatiga) comienza con un hemograma. - Las pruebas relacionadas al hierro se pueden pedir simultáneamente al hemograma o después. - Es correcto solicitar solo ferritina o bien un perfil de hierro completo, con ferritina, transferrina o TIBC y porcentaje de saturación de esta última. - Una vez confirmada la anemia ferropénica se debe tratar y no requiere estudios cuando la causa es evidente (ej. mujer con reglas abundantes, enfermedad celíaca, etc.). Pero sí se debe estudiar con colonoscopía y endoscopía cuando queda duda del diagnóstico (ej. mayores de 50 años, mujeres postmenopáusicas, pacientes que no responden al tratamiento con hierro). La respuesta correcta es: Iniciar sulfato ferroso por vía oral e indicar uso de anticonceptivos orales"
+  },
+  {
+    "question": "4. Un paciente presenta anemia, con hematocrito: 25%, VCM: 110 fl, plaquetas: 250.000 por mm3, blancos: 6.000 por mm3, reticulocitos: 10%. Además, se constata elevación de la bilirrubina plasmática de predominio indirecto y de la LDH (lactato deshidrogenasa). El diagnóstico más probable es:",
+    "choices": [
+      "a.Anemia hemolítica",
+      "b.Anemia por enfermedades crónicas",
+      "c.Mielodisplasia",
+      "d.Anemia perniciosa",
+      "e.Anemia por déficit de folatos"
+    ],
+    "correctAnswer": "Anemia hemolítica",
+    "explanation": "Dado que los reticulocitos están elevados, es una anemia hemolítica (recordar que solo la hemólisis y las hemorragias recientes son anemias regenerativas, es decir, tienen elevado el índice reticulocitario). La hemólisis además eleva la bilirrubina indirecta, la LDH y, además, puede elevar el VCM, porque los reticulocitos son más grandes que los glóbulos rojos promedio y elevan el VCM. Si hubiese tenido los reticulocitos bajos, el diagnóstico sería déficit de B12, por la elevación del VCM y porque la falta de B12 también eleva la bilirrubina y la LDH (por la eritropoyesis inefectiva a nivel de la médula ósea). La respuesta correcta es: Anemia hemolítica"
+  },
+  {
+    "question": "5. Una paciente de 50 años presenta epistaxis en varias oportunidades en el último mes, asociado a sangramiento de las encías al cepillarse los dientes. Al examen físico se aprecian múltiples petequias generalizadas, con algunas equimosis. No ha presentado otros síntomas. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar tiempos de coagulación",
+      "b.Solicitar hemograma",
+      "c.Solicitar biopsia de piel",
+      "d.Iniciar aspirina",
+      "e.Iniciar corticoides"
+    ],
+    "correctAnswer": "Solicitar hemograma",
+    "explanation": "Tiene clínica de una alteración de la hemostasia primaria (petequias, epistaxis y hemorragias mucosas). Se debe estudiar con un hemograma, para ver el recuento de plaquetas y ver las causas más frecuentes (PTI, leucemia). La respuesta correcta es: Solicitar hemograma"
+  },
+  {
+    "question": "6. Un paciente de 70 años consulta por astenia. Al examen físico se encuentra pálido, sin otras alteraciones, por lo que se solicita un hemograma que muestra Hematocrito: 27%, hemoglobina: 9 g/dL, VCM: 103 fL, plaquetas: 60.000 x mm3, blancos: 2.500 x mm3, con fórmula diferencial normal. Se inicia tratamiento con vitamina B12 y folatos por vía parenteral y se controla 3 meses después, sin presentar mejoría. El diagnóstico más probable es:",
+    "choices": [
+      "a.Mielofibrosis",
+      "b.Mieloma múltiple",
+      "c.Aplasia medular",
+      "d.Anemia perniciosa",
+      "e.Mielodisplasia"
+    ],
+    "correctAnswer": "Mielodisplasia",
+    "explanation": "Es una mielodisplasia clásica: adulto mayor con pancitopenia, VCM elevado y anemia refractaria al tratamiento. La respuesta correcta es: Mielodisplasia"
+  },
+  {
+    "question": "7. Un paciente de 60 años presenta anemia, con Hcto: 31% y VCM: 90 fl. Se solicita un perfil de hierro, que muestra ferremia baja, ferritina elevada y transferrina baja. El diagnóstico más probable es:",
+    "choices": [
+      "a.Anemia ferropénica",
+      "b.Talasemia",
+      "c.Anemia sideroblástica",
+      "d.Anemia de enfermedades crónicas",
+      "e.Asociación de anemia ferropénica y anemia por déficit de vitamina B12"
+    ],
+    "correctAnswer": "Anemia de enfermedades crónicas",
+    "explanation": "Es una anemia por enfermedades crónica clásica: VCM normal, ferritina alta y transferrina baja. La ferremia puede estar normal o baja. La ferropenia tiene VCM disminuido, ferritina baja y transferrina elevada. La talasemia tiene VCM disminuido y ferritina habitualmente alta. La anemia sideroblástica es un trastorno rarísimo, genético o asociado a mielodisplasias, en que hay anemia microcítica y sideroblastos (similar a glóbulo rojo, pero nucleado y con acúmulos de hierro en el citoplasma, en forma de anillo, alrededor del núcleo) La respuesta correcta es: Anemia de enfermedades crónicas"
+  },
+  {
+    "question": "8. ¿Cuál de las siguientes opciones orienta al diagnóstico de policitemia vera, en un paciente con poliglobulia?",
+    "choices": [
+      "a.Disminución de los reticulocitos",
+      "b.Disminución de la presión parcial de oxígeno",
+      "c.Elevación de la eritropoyetina",
+      "d.Trombocitopenia",
+      "e.Esplenomegalia"
+    ],
+    "correctAnswer": "Esplenomegalia",
+    "explanation": "La policitemia vera (PV) es un síndrome mieloproliferativo (SMP), que se caracteriza por elevación de los glóbulos rojos. Generalmente aumenta la cantidad de reticulocitos, pero mantienen una proporción normal. La PaO2 suele estar normal (si está baja, será la hipoxia la causa de la poliglobulia). La EPO (eritropoyetina) está baja o normal (si está alta, será la elevación de EPO la causa de la poliglobulia, la que sería secundaria a la patología que eleva la EPO, por ejemplo, el EPOC). Generalmente se asocia a trombocitosis (ya que los SMP suelen mezclarse entre ellos y uno de ellos es la trombocitosis esencial). La esplenomegalia es característica. La respuesta correcta es: Esplenomegalia"
+  },
+  {
+    "question": "9. ¿Cuál de los siguientes hemogramas le parece más sugerente de una leucemia linfoide crónica?",
+    "choices": [
+      "a.Hematocrito: 45%, hemoglobina: 15 g/dl, plaquetas: 250.000 x mm3, blancos: 7.500 x mm3, linfocitos: 50%, Monocitos: 4%, segmentados: 40%, baciliformes: 3%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 2%, basófilos: 1%",
+      "b.Hematocrito: 25%, hemoglobina: 8 g/dl, plaquetas: 50.000 x mm3, blancos: 27.500 x mm3, linfocitos: 88%, Monocitos: 0%, segmentados: 12%, baciliformes: 0%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 0%, basófilos: 0%",
+      "c.Hematocrito: 45%, hemoglobina: 15 g/dl, plaquetas: 250.000 x mm3, blancos: 17.500 x mm3, linfocitos: 13%, Monocitos: 5%, segmentados: 65%, baciliformes: 15%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 1%, basófilos: 1%",
+      "d.Hematocrito: 45%, hemoglobina: 15 g/dl, plaquetas: 500.000 x mm3, blancos: 32.500 x mm3, linfocitos: 10%, Monocitos: 5%, segmentados: 31%, baciliformes: 21%, mielocitos: 10%, promielocitos: 5%, blastos: 2%, eosinófilos: 6%, basófilos: 4%",
+      "e.Hematocrito: 45%, hemoglobina: 15 g/dl, plaquetas: 350.000 x mm3, blancos: 18.500 x mm3, linfocitos: 80%, Monocitos: 7%, segmentados: 12%, baciliformes: 1%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 0%, basófilos: 0%"
+    ],
+    "correctAnswer": "Hematocrito: 25%, hemoglobina: 8 g/dl, plaquetas: 50.000 x mm3, blancos: 27.500 x mm3, linfocitos: 88%, Monocitos: 0%, segmentados: 12%, baciliformes: 0%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 0%, basófilos: 0%",
+    "explanation": "Opción A = hemograma normal Opción B = Leucemia linfática crónica Opción C = Infección bacteriana Opción D = Leucemia mieloide crónica Opción E = Infección viral La respuesta correcta es: Hematocrito: 25%, hemoglobina: 8 g/dl, plaquetas: 50.000 x mm3, blancos: 27.500 x mm3, linfocitos: 88%, Monocitos: 0%, segmentados: 12%, baciliformes: 0%, mielocitos: 0%, promielocitos: 0%, blastos: 0%, eosinófilos: 0%, basófilos: 0%"
+  },
+  {
+    "question": "10. ¿Cuál de las siguientes opciones es más sugerente de hemofilia?",
+    "choices": [
+      "a.Hipermenorrea",
+      "b.Petequias y equimosis",
+      "c.Presencia de hemartrosis y hematomas profundos",
+      "d.Alargamiento del tiempo de protrombina",
+      "e.Alargamiento del tiempo de sangría"
+    ],
+    "correctAnswer": "Presencia de hemartrosis y hematomas profundos",
+    "explanation": "La hemofilia es una alteración de la hemostasia secundaria, es decir, de la coagulación, lo que se caracteriza por hematomas profundos y hemartrosis, además de equimosis espontáneas o ante traumas menores. Por ser una enfermedad genética en que falta el factor de coagulación VIII (hemofilia A) o IX (hemofilia B), puede presentarse desde el nacimiento mismo, con cefalohematomas, hemorragias intracraneales, equimosis. A largo plazo puede haber daño neurológico o articular, debido a las hemorragias cerebrales y articulares, respectivamente. Además, alarga el TTPA (tiempo de tromboplastina parcial activada). En cambio, el TP y el recuento de plaquetas están normales. La hipermenorrea, petequias y alargamiento del tiempo de sangría se ven en las alteraciones de la hemostasia primaria (plaquetas). El TP se alarga en el daño hepático crónico y en el uso de TACO (cumarínicos). La hemofilia se confirma con la medición del factor VIII y factor IX o con pruebas genéticas. Las mujeres portadoras (heterocigotas) no suelen tener síntomas y solo se les da consejería genética, respecto al riesgo de sus hijos: niños tendrán 50% de riesgo de tener hemofilia; y las niñas tendrán 0% de riesgo de tener hemofilia, pero, 50% de riesgo de ser portadoras. La respuesta correcta es: Presencia de hemartrosis y hematomas profundos"
+  }
+]

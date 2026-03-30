@@ -1,0 +1,590 @@
+[
+  {
+    "id": 1,
+    "question": "Un paciente de 20 años, diabético tipo 1, en tratamiento con una dosis de Lantus (insulina glargina) en la noche y tres dosis de insulina cristalina, previas al desayuno, almuerzo y cena, presenta la siguiente tabla de glicemias promedio: Desayuno HGT preprandial: 80, HGT postprandial: 120. Almuerzo HGT preprandial: 90, HGT postprandial: 190. Cena HGT preprandial: 100, HGT postprandial: 210. Además su hemoglobina glicosilada es de 8%. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Aumentar la dosis de Lantus"
+      },
+      {
+        "id": "B",
+        "text": "Aumentar la insulina cristalina del desayuno y del almuerzo"
+      },
+      {
+        "id": "C",
+        "text": "Aumentar la insulina cristalina del almuerzo y cena"
+      },
+      {
+        "id": "D",
+        "text": "Aumentar la dosis de Lantus y de las 3 insulinas cristalinas"
+      },
+      {
+        "id": "E",
+        "text": "Agregar una dosis matinal de Lantus"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "La glicemias preprandial dependen de la insulina lenta (NPH, glargina u otra ultralenta) recibida hace varias horas atrás (ej. la de ayuno depende de la NPH nocturna). En cambio, las glicemias postprandiales dependen de la insulina rápida (ultrarrápida o cristalina), aunque también dependen de la glicemia preprandial y de la comida misma. En este caso, las glicemias postalmuerzo y postcena son las que están elevadas, por lo que se debe aumentar la insulina cristalina de esos horarios. Recordar que el objetivo de glicemias es preprandiales menores a 130 mg/dl (idealmente menor a 100) y postprandiales menores a 180 mg/dl (idealmente menor a 130), pero que lo más importante es la hemoglobina glicosilada menor a 7%. La insulina lantus (glargina) se tendría que elevar si es que las glicemias precomidas estuvieran elevadas. La respuesta correcta es: Aumentar la insulina cristalina del almuerzo y cena"
+  },
+  {
+    "id": 2,
+    "question": "Un paciente diabético de 50 años, en tratamiento con dieta, se realiza una prueba de lípidos, que muestra Colesterol LDL de 120 mg/dl, TG: 600 mg/dl, HDL: 30 mg/dl. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Manejar con dieta"
+      },
+      {
+        "id": "B",
+        "text": "Iniciar insulina"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar una estatina"
+      },
+      {
+        "id": "D",
+        "text": "Iniciar un fibrato"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar ácido nicotínico"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Por ser diabético, la meta de LDL es menor a 70, por lo que está elevada. Además tiene TG elevados (> 150) y HDL bajo (<40), por lo que el diagnóstico es una dislipidemia mixta. Si bien la regla general es que el LDL es la prioridad, en este caso tiene TG mayores a 500, por lo que la hipertrigliceridemia pasa a ser la prioridad y se debe tratar con fibrato. Si los TG hubiesen sido menores a 500 (ej. 400), la respuesta habría sido la estatina. La respuesta correcta es: Iniciar un fibrato"
+  },
+  {
+    "id": 3,
+    "question": "Un paciente de 60 años se realiza una glicemia de ayuno, que resulta 120 mg/dl. No ha presentado síntomas y su examen físico es normal. ¿Qué examen es más adecuado para proseguir el estudio de este paciente?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Test de tolerancia a la glucosa"
+      },
+      {
+        "id": "B",
+        "text": "Glicemia de ayuno"
+      },
+      {
+        "id": "C",
+        "text": "Índice de HOMA"
+      },
+      {
+        "id": "D",
+        "text": "Hemoglobina glicosilada"
+      },
+      {
+        "id": "E",
+        "text": "Insulinemia basal"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Recordar que si la glicemia es menor a 100 se considera normal y se da de alta; si está entre 100 y 125 se pide un TTGO y si está mayor a 125, se repite, para confirmar el diagnóstico de diabetes mellitus. En el embarazo, en cambio, las glicemias mayores o iguales a 100, se repiten. La respuesta correcta es: Test de tolerancia a la glucosa"
+  },
+  {
+    "id": 4,
+    "question": "Una paciente de 65 años, sin antecedentes mórbidos conocidos presenta un cuadro de palpitaciones, malestar y sudoración, luego de estar 5 horas sin comer. El cuadro se repite varias veces, siempre en relación al ayuno, por lo que decide hacerse un hemoglucotest, que demuestra una glicemia de 45 mg/dl durante uno de los episodios. ¿Qué examen es el más adecuado para determinar la etiología de la hipoglicemia?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Glicemia de ayuno"
+      },
+      {
+        "id": "B",
+        "text": "Test de tolerancia a la glucosa"
+      },
+      {
+        "id": "C",
+        "text": "Niveles plasmáticos de insulina"
+      },
+      {
+        "id": "D",
+        "text": "Niveles plasmáticos de glucagón"
+      },
+      {
+        "id": "E",
+        "text": "Niveles plasmáticos de péptido C"
+      }
+    ],
+    "correctAnswer": "E",
+    "explanation": "Tiene hipoglicemias de ayuno (recordar que las causas son los insulinomas, el cáncer, enfermedades autoinmunes, la IRC y el DHC). Se estudian con péptido C, que refleja la producción de insulina endógena y que es más estable que la insulina, por lo que su medición es más precisa (aunque también se suele pedir la insulina, junto con el péptido C). Si está alto el péptido C, es un insulinoma u otra causa hiperproductora de insulina; si está bajo se buscan las otras causas; si el péptido C está bajo, pero la insulina está alta, se asume que hay una hipoglicemia facticia por inyecciones de insulina exógena. En cambio las hipoglicemias reactivas (2 a 4 horas postprandiales) se estudian con la prueba de tolerancia a la comida mixta, que desplazó al TTGO de larga duración. La respuesta correcta es: Niveles plasmáticos de péptido C"
+  },
+  {
+    "id": 5,
+    "question": "¿Qué tratamiento está indicado ante la aparición de microalbuminuria persistente en un paciente con diabetes mellitus tipo 2?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Insulina"
+      },
+      {
+        "id": "B",
+        "text": "Dieta hipoproteica"
+      },
+      {
+        "id": "C",
+        "text": "Dieta hiperproteica"
+      },
+      {
+        "id": "D",
+        "text": "IECAs"
+      },
+      {
+        "id": "E",
+        "text": "Atorvastatina"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "La microalbuminuria (mayor a 30 mg/día o RAC mayor a 0,03) persistente (mayor a 3 meses) es diagnóstica de nefropatía diabética inicial, que se maneja con IECA (enalapril, lisinopril; el captopril se usa menos, por tener que tomarse 3 veces al día). La insulina sí está indicada en la nefropatía diabética, pero en la nefropatía establecida, con caída del clearence de creatinina y creatininemia mayor a 1,4. También sirven los ARA2, como el losartán o valsartán. La respuesta correcta es: IECAs"
+  },
+  {
+    "id": 6,
+    "question": "Un paciente de 55 años, diabético tipo 2 en tratamiento con metformina 500 mg c/12 horas, presenta hemoglobina glicosilada de 8,5%, creatinina plasmática de 1,8 mg/dl y proteinuria de 24 horas de 500 mg. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Agregar glibenclamida"
+      },
+      {
+        "id": "B",
+        "text": "Aumentar la dosis de metformina"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar insulina"
+      },
+      {
+        "id": "D",
+        "text": "Iniciar hemodiálisis"
+      },
+      {
+        "id": "E",
+        "text": "Hacer énfasis en el seguimiento de la dieta y correcto uso de los hipoglicemiantes orales y controlar con"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Por tener una IRC, con creatinina mayor a 1,4, están contraindicados los HGO y de elección es la insulina. En este caso, además tiene proteinuria, por lo que se debe iniciar un IECA. La HbA1c está en 8,5%, lo que muestra un mal control metabólico, pero per sé no indica la insulina. En cambio, si fuera mayor o igual a 9%, sería indicación de insulina. Al iniciar la insulina NPH se suele mantener la metformina y se puede mantener o suspender la glibenclamida, pero en este caso se debe suspender la metformina, por tener IRC. La respuesta correcta es: Iniciar insulina"
+  },
+  {
+    "id": 7,
+    "question": "Un paciente de 65 años, diabético tipo 2, de larga data, con tratamiento irregular con metformina y glibenclamida consulta por dolor intenso de la extremidad inferior izquierda, de tipo neurálgico, que recorre el dermatomo L4. Al examen físico se observa enflaquecido, con disminución de la sensibilidad distal y sin alteraciones motoras. La hemoglobina glicosilada resulta 9,9%. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Reforzar el tratamiento con hipoglicemiantes orales y controlar en 3 meses"
+      },
+      {
+        "id": "B",
+        "text": "Suspender la glibenclamida y agregar insulina NPH nocturna"
+      },
+      {
+        "id": "C",
+        "text": "Indicar zapatos adecuados y revisión diaria de los pies y regularizar el tratamiento con hipoglicemiantes orales"
+      },
+      {
+        "id": "D",
+        "text": "Indicar un plan de ejercicios, reforzar la adhesión al tratamiento y controlar en 7 días"
+      },
+      {
+        "id": "E",
+        "text": "Hospitalizar, iniciar insulinoterapia y venlafaxina oral"
+      }
+    ],
+    "correctAnswer": "E",
+    "explanation": "Tiene una neuropatía diabética dolorosa, por lo que se trata con moduladores del dolor (antidepresivos duales: venlafaxina, duloxetina; fármacos gaba: gabapentina, pregabalina; o antidepresivos tricíclicos) e insulina (en especial cuando hay dolor y atrofia, en relación a las neuropatías). Además, por la HbA1c mayor a 9%, también está indicada la insulina. Probablemente se mantendrá la metformina. La hospitalización es discutible, pero se recomienda iniciar la insulinoterapia con una cuidadosa observación, para evitar hipoglicemias y asegurar una buena aplicación del tratamiento, por parte del paciente. La respuesta correcta es: Hospitalizar, iniciar insulinoterapia y venlafaxina oral"
+  },
+  {
+    "id": 8,
+    "question": "Un paciente diabético tipo 2, acude a control ambulatorio. Actualmente está en tratamiento con metformina 850 mg cada 8 horas, aspirina 100 mg al día y enalapril 20 mg c/12 horas. En sus exámenes destaca creatinina 2,0 mg/dl, proteinuria 350 mg/dl, glicemia de ayuno: 140 mg/dl y HbA1c: 8,5%. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Mantener el tratamiento y controlar en 3 meses"
+      },
+      {
+        "id": "B",
+        "text": "Aumentar la dosis de metformina"
+      },
+      {
+        "id": "C",
+        "text": "Agregar glibenclamida al tratamiento"
+      },
+      {
+        "id": "D",
+        "text": "Reemplazar la metformina común por metformina de liberación prolongada"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar insulina"
+      }
+    ],
+    "correctAnswer": "E",
+    "explanation": "Nuevamente, por la IRC (creatinina mayor a 1,4), están contraindicados los HGO e indicada la insulina. La proteinuria también está elevada (mayor a 300 mg/día), por lo que hay que iniciar un IECA, pero, en este caso, el clearence de creatinina está muy bajo y es posible que estén contraindicados los más usados y, en su lugar, se puede buscar un IECA con perfil renal más seguro o con una dosis baja, siguiendo muy de cerca el empeoramiento de la función renal y la aparición de hiperkalemia. La respuesta correcta es: Iniciar insulina"
+  },
+  {
+    "id": 9,
+    "question": "Un paciente de 60 años, hipertenso, sufrió un infarto de pared anterior hace 1 año, el que fue manejado con angioplastia. Acude a control, con un perfil lipídico, con los siguientes valores: colesterol total: 220 mg/dl, colesterol HDL: 40 mg/dl, colesterol LDL: 160 mg/dl, triglicéridos: 100 mg/dl. Refiere no tomar ningún medicamento hipolipemiante ni seguir ninguna dieta. La conducta más adecuada para el manejo de sus lípidos es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Observar evolución"
+      },
+      {
+        "id": "B",
+        "text": "Indicar dieta baja en grasas trans, grasas saturadas y colesterol y controlar en 3 meses"
+      },
+      {
+        "id": "C",
+        "text": "Indicar dieta e iniciar una estatina"
+      },
+      {
+        "id": "D",
+        "text": "Indicar dieta e iniciar un fibrato"
+      },
+      {
+        "id": "E",
+        "text": "Indicar dieta e iniciar una estatina, asociada a un fibrato"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Por tener un IAM previo, su riesgo cardiovascular es máximo y por tanto el objetivo de LDL es menor a 70 mg/dl. Además, tiene HDL bajo (menor a 40), pero TG normales (menores a 150). Por tanto, la prioridad será el manejo del LDL, lo que requiere una estatina, por tener riesgo cardiovascular máximo. Además, debe quedar con aspirina y evaluar la introducción de múltiples fármacos para su cardiopatía coronaria (IECAs, betabloqueantes, por ejemplo). La respuesta correcta es: Indicar dieta e iniciar una estatina"
+  },
+  {
+    "id": 10,
+    "question": "Una paciente ha presentado 5 hipoglicemias, las que han requerido hospitalización en varias oportunidades. Niega antecedentes de importancia, pero los familiares sospechan que está autoinduciéndose los síntomas. En la última hospitalización se realiza estudio que revela insulina de 55 UI/L y péptido C elevado. ¿Cuál de los siguientes diagnósticos es más probable?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Hipoglicemia facticia por insulina"
+      },
+      {
+        "id": "B",
+        "text": "Hipoglicemia facticia por metformina"
+      },
+      {
+        "id": "C",
+        "text": "Hipoglicemia facticia por glibenclamida"
+      },
+      {
+        "id": "D",
+        "text": "Hipoglicemia facticia por pioglitazona"
+      },
+      {
+        "id": "E",
+        "text": "Hipoglicemia de ayuno"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Que el péptido C esté elevado significa que su páncreas está produciendo mucha insulina (la que está elevada también). La glibenclamida es una sulfonilúrea, por lo que aumenta la secreción de insulina (secretagogo), lo que es compatible con el cuadro. La insulina exógena tendría insulina alta, pero péptido C bajo. La metformina y la pioglitazona suelen no producir hipoglicemias, porque solo disminuyen la resistencia a la insulina. De todos modos, en caso de producirla, sería con insulina y péptido C bajos. Las hipoglicemias de ayuno, también son con pépyido C e insulina bajos. La respuesta correcta es: Hipoglicemia facticia por glibenclamida"
+  },
+  {
+    "id": 11,
+    "question": "Un niño de 8 años presenta un cuadro de astenia y baja de peso, de cerca de 2 semanas de evolución. Además, presenta poliuria y polidipsia importante. Se solicita una glicemia de ayuno, que resulta 220 mg/dl. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Repetir la glicemia en 7 días"
+      },
+      {
+        "id": "B",
+        "text": "Iniciar insulina NPH en dos dosis"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar insulina es esquema intensificado, con una dosis de insulina ultralenta (glargina) más refuerzos con insulina cristalina"
+      },
+      {
+        "id": "D",
+        "text": "Solicitar test de tolerancia a la glucosa"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar dieta, ejercicio y metformina"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "El diagnóstico es una diabetes mellitus, ya que cumple con el criterio de una glicemia mayor o igual a 200 (ya sea de ayuno o no), más síntomas de diabetes (poliuria, polidipsia, baja de peso). Por se un niño, se asume que la diabetes es tipo 1, es decir autoinmune y se inicia el tratamiento con insulina en esquema intensificado, que es el tratamiento de elección para este tipo de diabetes (y también para la diabetes LADA del adulto). Si hubiese sido en un adulto, también estaría indicado el inicio de insulina, ya que la presencia de síntomas de diabetes obliga a estabilizar con insulina a los pacientes con DM2 también, aunque no necesariamente en esquema intensificado y se podría tratar con insulina NPH sola. La respuesta correcta es: Iniciar insulina es esquema intensificado, con una dosis de insulina ultralenta (glargina) más refuerzos con insulina cristalina"
+  },
+  {
+    "id": 12,
+    "question": "Un paciente de 56 años acude a control con el siguiente perfil lipídico: colesterol total: 348 mg/dl, colesterol HDL: 30 mg/dl, colesterol LDL: 190 mg/dl, triglicéridos: 640 mg/dl. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Iniciar dieta y ejercicio"
+      },
+      {
+        "id": "B",
+        "text": "Iniciar dieta y una estatina"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar dieta y un fibrato"
+      },
+      {
+        "id": "D",
+        "text": "Iniciar dieta y una asociación entre una estatina y un fibrato"
+      },
+      {
+        "id": "E",
+        "text": "Hospitalizar e iniciar insulina cristalina"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Tiene LDL elevado, TG elevados y HDL bajo. Por estar los TG sobre 500, pasan a ser la prioridad y se deben tratar con un fibrato. Recordar que los médicos generales nunca deben mezclar fibratos con estatinas, ya que por un lado se dispara el riesgo de rabdomiólisis y por otro lado, todos los hipolipemiantes sirven en cierta medida para el tratamiento de las tres dislipidemias. Solo los especialistas pueden, en casos seleccionados, mezclar estatinas con fenofibrato (no con gemfibrozilo). La respuesta correcta es: Iniciar dieta y un fibrato"
+  },
+  {
+    "id": 13,
+    "question": "Un paciente de 45 años diabético, tipo 2, en tratamiento con metformina en dosis máxima, acude a control con los siguientes registros de glicemias promedio: Predesayuno 90, Postdesayuno 140; Prealmuerzo 110, Postalmuerzo 190; Precena 135, Postcena 180. Además presenta una hemoglobina glicosilada de 7,5%. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Agregar glibenclamida y mantener la metformina"
+      },
+      {
+        "id": "B",
+        "text": "Iniciar glibenclamida y suspender la metformina"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar insulina NPH matinal"
+      },
+      {
+        "id": "D",
+        "text": "Iniciar insulina NPH nocturna"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar insulina cristalina junto con las 3 comidas"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Su control metabólico es insuficiente, ya que la HbA1c está mayor a 7% y tiene varias glicemias sobre los niveles recomendados (preprandiales < 130-100 y posprandiales < 180/130). Lo más importante es la hemoglobina glicosilada. No tiene ninguna indicación de insulina, ni contraindicación de los hipoglicemiantes orales. Además, está solo con metformina en dosis máximas, por lo que es posible agregar glibenclamida y, si está disponible, otro hipoglicemiante más seguro. En todo caso, por ser joven y sin comorbilidad, la glibenclamida no tiene mayores contraindicaciones. Si hubiese tenido más de 75 años, estaría bien controlado (objetivo HbA1c <8%) y se debería mantener el tratamiento; y si, además de 75 años, hubiese tenido la hemoglobina sobre 8%, no se debería iniciar glibenclamida, sino otro hipoglicemiante más seguro, con menor riesgo de hipoglicemia, como la sitagliptina o el liraglutide. La respuesta correcta es: Agregar glibenclamida y mantener la metformina"
+  },
+  {
+    "id": 14,
+    "question": "Un paciente diabético tipo 2, en tratamiento con dieta, el que sigue de manera irregular, consulta por dolor en ambas extremidades inferiores, que es de tipo urente y que es especialmente intenso en la noche. Al examen presenta alodinia, sin focalidad neurológica, ni lesiones en la piel. La conducta más adecuada es:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Iniciar metformina y AINEs"
+      },
+      {
+        "id": "B",
+        "text": "Iniciar glibenclamida y clomipramina"
+      },
+      {
+        "id": "C",
+        "text": "Iniciar metformina y gabapentina"
+      },
+      {
+        "id": "D",
+        "text": "Iniciar insulina y pregabalina"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar insulina y AINEs"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Tiene una neuropatía diabética dolorosa, por lo que se trata con moduladores del dolor como la pregabalina, gabapentina, antidepresivos duales (venlafaxina o duloxetina) o antidepresivos tricíclicos (clomipramina, Imipramina y amitriptilina), más insulina. Recordemos que el diagnóstico de la neuropatía dolorosa es clínico (dolor neuropático, urente, con alodinia). La gabapentina y la pregabalina son útiles, en particular en adultos mayores, en que están contraindicados los ADTC, que son fármacos que producen efectos adversos con mayor frecuencia. Sin embargo, los hipoglicemiantes orales no suelen ser suficientes y solo la insulina acelera la desaparición del dolor. La respuesta correcta es: Iniciar insulina y pregabalina"
+  },
+  {
+    "id": 15,
+    "question": "Un paciente de 50 años, diabético tipo 2, en tratamiento con metformina 500 mg cada 8 horas, acude a control. Trae una hemoglobina glicosilada de 10,3% y una proteinuria de 24 horas en 500 mg/dl. ¿Cuál es la conducta más adecuada para el control metabólico de este paciente?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Mantener la metformina y hacer hincapié en el cumplimiento de la dieta"
+      },
+      {
+        "id": "B",
+        "text": "Aumentar la dosis de metformina a 850 mg cada 8 horas y agregar enalapril"
+      },
+      {
+        "id": "C",
+        "text": "Agregar glibenclamida 5 mg cada 12 horas"
+      },
+      {
+        "id": "D",
+        "text": "Agregar sitagliptina"
+      },
+      {
+        "id": "E",
+        "text": "Iniciar insulina y valsartán"
+      }
+    ],
+    "correctAnswer": "E",
+    "explanation": "Tiene una hemoglobina glicosilada mayor o igual a 9%, por lo que tiene indicación de iniciar con insulina NPH nocturna (10 UI por lo general, aunque hay distintos esquemas). La metformina se recomienda mantener, porque no hay insuficiencia renal o daño hepático que la contraindique y porque está demostrado que el control metabólico es mejor al mantener los hipoglicemiantes orales. Además, por la proteinuria, se asume que hay nefropatía, por lo que deberá iniciar un IECA (ejemplo enalapril), siendo también aceptable indicar un ARA2 (valsartán). La respuesta correcta es: Iniciar insulina y valsartán"
+  },
+  {
+    "question": "1. Un paciente de 72 años, diabético tipo 2, en tratamiento con metformina, el que cumple de manera irregular, es traído al servicio de urgencia, por compromiso de conciencia. Los familiares refieren que desde hace 2 días está con tos con expectoración mucopurulenta y fiebre, pero que hoy empezó a decir palabras sin sentido y luego presentó tendencia a dormir. Al examen está en sopor profundo, sin signos focales, con signos de deshidratación, FC: 106x', PA: 100/60 mmHg, Tº: 38,7ºC y saturación arterial de oxígeno de 96%. Al examen pulmonar se auscultan crepitaciones en la base izquierda. Sus exámenes muestran hematocrito: 49%, blancos: 16.000 por mm3, plaquetas: 400.000 por mm3, glicemia 816 mg/dl, sodio: 143 mEq/L, potasio: 4,0 mEq/L, pH: 7,38 y bicarbonato: 23 mEq/L. La radiografía de tórax portátil muestra signos de condensación en el lóbulo inferior izquierdo. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar 1 litro de suero fisiológico + 1g de KCl endovenoso, iniciar insulina endovenosa y administrar bicarbonato por vía endovenosa",
+      "b.Administrar 1 litro de suero glucosado al 5% + 2g de NaCl + 1g de KCl, iniciar insulina endovenosa y administrar antibióticos endovenosos",
+      "c.Administrar 1 litro de suero fisiológico + 1g de KCl endovenoso, iniciar insulina endovenosa y administrar antibióticos por vía endovenosa",
+      "d.Administrar 1 litro de suero glucosado al 5% + 2g de NaCl + 1g de KCl, iniciar insulina endovenosa y administrar bicarbonato y antibióticos endovenosos",
+      "e.Administrar 1 litro de suero fisiológico, iniciar insulina endovenosa y administrar antibióticos por vía endovenosa"
+    ],
+    "correctAnswer": "c.Administrar 1 litro de suero fisiológico + 1g de KCl endovenoso, iniciar insulina endovenosa y administrar antibióticos por vía endovenosa",
+    "explanation": "Tiene un síndrome hiperglicémico hiperosmolar (glicemia mayor a 600 mg/dl y osmolaridad plasmática mayor a 320 mOsm/L; si bien no dan la osmolaridad, en general, toda glicemia sobre 600 tiene además osmolaridad sobre 320 y la clínica es compatible: compromiso de conciencia, deshidratación). Se trata con suero fisiológico, como primera medida. Además, requiere de insulina cristalina endovenosa, siempre y cuando el K+ sea mayor a 3,2 mEq/L. También requiere K+ endovenoso en goteo (1g de KCl si el K+ está sobre 3,2; y 3g, si está en 3,2 o menos; aunque no se da, si el K+ es mayor a 5,3 mEq/L). En resumen, se busca un K+ entre 3,3 y 5,3 mEq/L. Por regla general, el Sd. HGHO no requiere bicarbonato. Quien sí requiere bicarbonato es la cetoacidosis diabética y solo si el pH es menor a 6,9. Finalmente se debe tratar la causa de la descompensación, en este caso la neumonía, la que requerirá ceftriaxona endovenosa (por tratarse hospitalizado). La respuesta correcta es: Administrar 1 litro de suero fisiológico + 1g de KCl endovenoso, iniciar insulina endovenosa y administrar antibióticos por vía endovenosa"
+  },
+  {
+    "question": "2. Un paciente diabético tipo 1, presenta un cuadro de desorientación y luego convulsiones, que fue precedido por palpitaciones y temblor de las extremidades superiores. El diagnóstico más probable es:",
+    "choices": [
+      "a.Mielinolisis pontina",
+      "b.Accidente vascular encefálico",
+      "c.Encefalopatía de Wernicke",
+      "d.Cetoacidosis diabética",
+      "e.Hipoglicemia"
+    ],
+    "correctAnswer": "e.Hipoglicemia",
+    "explanation": "Es una hipoglicemia clásica: síntomas simpaticomiméticos (palpitaciones y temblor), seguidos de síntomas neuroglucopénicos (convulsiones y compromiso de conciencia). La mielinolisis pontina es un cuadro grave, asociado a la corrección rápida de la hiponatremia, con suero hipertónico. Se caracteriza por compromiso de conciencia y tetraparesia. El AVE se caracteriza por signos focales de inicio súbito. La encefalopatía de Wernicke se caracteriza por el COCA (confusión, oftalmoparesia, coma y ataxia) y se debe al déficit de tiamina (vitamina B1), generalmente en pacientes alcohólicos o muy desnutridos. La cetoacidosis sí puede tener compromiso de conciencia, pero se caracteriza por polipnea, fétor a manzana, dolor abdominal, náuseas y clínica de DM descompensada (poliuria, polidipsia, etc). La respuesta correcta es: Hipoglicemia"
+  },
+  {
+    "question": "3. ¿Cuál de los siguientes pacientes tiene diagnóstico de diabetes mellitus?",
+    "choices": [
+      "a.Paciente asintomático, con glicemia de ayuno de 290 mg/dl",
+      "b.Paciente con glicemia de ayuno de 198, que se repite a los dos días, resultando 138",
+      "c.Paciente con test de tolerancia a la glucosa, con glicemia basal de 110 mg/dl, que llega a los 180 mg/dl a las 2 horas postingesta de 75 gramos de glucosa",
+      "d.Paciente con hemoglobina glicosilada de 6%",
+      "e.Paciente con un hemoglucotest de 400 mg/dl"
+    ],
+    "correctAnswer": "b.Paciente con glicemia de ayuno de 198, que se repite a los dos días, resultando 138",
+    "explanation": "La del paciente asintomático, con glicemia de ayuno de 290, tiene una glicemia sobre 200, pero le faltan los síntomas. La con glicemias de ayuno de 198 y 138 cumple con el criterio de 2 glicemias mayores o iguales a 126 mg/dl, así que está hecho el diagnóstico. La del TTGO con glicemias basal de 110 y postcarga de 180 tiene una glicemia alterada de ayuno (basal entre 100 y 125) y además una intolerancia a la glucosa oral (postcarga entre 140 y 199). La hemoglobina glicosilada de 6% está normal. Hoy se acepta que la HbA1c mayor o igual a 6,5% es diagnóstica, pero en Chile no se utiliza ese criterio y la HbA1c solo se usa como el examen de elección para el seguimiento de la diabetes y no para su diagnóstico, con excepción de los casos en que están descompensados por otra patología y no es posible saber si las hiperglicemias se deben a un descompensante agudo (ej. infecciones, uso de corticoides) o a una diabetes crónica, por lo que pasa a ser de elección la HbA1c como elemento diagnóstico en estos casos (ej. paciente cursando con infección severa, con una glicemia de 190 mg/dl no sirve repetirla, sino que se debe pedir la HbA1c). La del hemoglucotest muy elevado no puede ser utilizada, porque el hemoglucotest no es un examen aceptado para el diagnóstico de diabetes. Por lo que debe solicitarse las glicemias venosas. La respuesta correcta es: Paciente con glicemia de ayuno de 198, que se repite a los dos días, resultando 138"
+  },
+  {
+    "question": "4. El hipotiroidismo suele presentar la siguiente alteración en el perfil lipídico",
+    "choices": [
+      "a.Colesterol LDL aumentado",
+      "b.Colesterol HDL aumentado",
+      "c.Colesterol HDL bajo",
+      "d.Triglicéridos aumentados",
+      "e.Colesterol LDL pequeño y denso"
+    ],
+    "correctAnswer": "a.Colesterol LDL aumentado",
+    "explanation": "EL hipoT4 se asocia a LDL aumentado. En cambio, la diabetes se asocia a HDL bajo, TG aumentados y LDL pequeño y denso (que es más aterogénico que el LDL común y corriente). La respuesta correcta es: Colesterol LDL aumentado"
+  },
+  {
+    "question": "5. Un paciente de 18 años, diabético tipo 1, en tratamiento con insulina es esquema intensificado con dos dosis de insulina NPH y tres refuerzos con insulina cristalina, presenta los siguientes controles promedio con Hemoglucotest: Predesayuno: 150, Postdesayuno: 210; Prealmuerzo: 90, Postalmuerzo: 120; Precena: 80, Postcena: 100. La conducta más adecuada es:",
+    "choices": [
+      "a.Aumentar la dosis de insulina NPH matinal",
+      "b.Aumentar la dosis de insulina NPH nocturna",
+      "c.Aumentar la dosis de insulina cristalina predesayuno",
+      "d.Aumentar la dosis de insulina cristalina prealmuerzo",
+      "e.Aumentar la dosis de insulina cristalina precena"
+    ],
+    "correctAnswer": "b.Aumentar la dosis de insulina NPH nocturna",
+    "explanation": "La glicemias preprandiales dependen de la insulina lenta (glargina o NPH) recibida hace varias horas atrás (ej. la de ayuno depende de la NPH nocturna). En cambio, las glicemias postprandiales dependen de la insulina rápida (ultrarrápida o cristalina), aunque también dependen de la glicemia preprandial y de la comida misma. En este caso, las glicemias predesayuno y postdesayuno son las que están elevadas, por lo que se debe aumentar la insulina NPH nocturna, para normalizar la glicemia predesayuno, lo que a su vez normalizará la postdesayuno. Recordar que el objetivo de glicemias es preprandiales menores a 100-130 mg/dl y postprandiales menores a 130-180 mg/dl (según qué tan estricto se quiera ser), pero que lo más importante es la hemoglobina glicosilada menor a 7%, así que si estuviera normal (lo que no se muestra en la pregunta), lo correcto sería mantener el tratamiento. La respuesta correcta es: Aumentar la dosis de insulina NPH nocturna"
+  },
+  {
+    "question": "6. Un paciente indigente, en situación de calle, ingresa al servicio de urgencia por un cuadro de desorientación y dificultades para caminar. Al examen físico se constata estrabismo divergente, por parálisis del tercer nervio craneal izquierdo, ataxia de la marcha y desorientación temporoespacial, sin otras alteraciones. El diagnóstico más probable es:",
+    "choices": [
+      "a.Hipoglicemia",
+      "b.Hipofosfemia",
+      "c.Síndrome hiperglicémico hiperosmolar",
+      "d.Encefalopatía de Wernicke",
+      "e.Encefalopatía de Korsakoff"
+    ],
+    "correctAnswer": "d.Encefalopatía de Wernicke",
+    "explanation": "Es una encefalopatía de Wernicke clásica, causada por déficit de tiamina (vitamina B1) y muy frecuente en los pacientes alcohólicos, que de hecho deben recibir la tiamina de manera profiláctica. Su diagnóstico es clínico y se caracteriza por el COCA (coma, oftalmoplejía, confusión y ataxia de la marcha). La hipoglicemia produce síntomas simpáticos/adrenérgicos (palpitaciones, sudoración, temblor), seguidos de síntomas neuroglucopénicos (convulsiones, compromiso de conciencia). La hipofosfemia produce un cuadro de compromiso de conciencia, con rabdomiólisis y anemia hemolítica. La encefalopatía de Korsakoff también es por déficit de B1, aunque es crónica y por daño permanente en los centros de la memoria, por lo que produce un cuadro de alteración de la memoria de corto plazo, pero también de largo plazo, lo que se caracteriza por la \"confabulación\", es decir, por rellenar los vacíos de la memoria con historias inventadas. La respuesta correcta es: Encefalopatía de Wernicke"
+  },
+  {
+    "question": "7. Un paciente de 50 años, diabético tipo 2, en tratamiento con metformina 500 mg cada 8 horas, acude a control. Trae una hemoglobina glicosilada de 6,3% y una proteinuria de 24 horas en 200 mg/dl. Sin embargo, refiere que desde que inició la metformina, presenta diarrea y dolor abdominal ¿Cuál es la conducta más adecuada para el control metabólico de este paciente?",
+    "choices": [
+      "a.Mantener la metformina y hacer hincapié en el cumplimiento de la dieta",
+      "b.Aumentar la dosis de metformina a 850 mg cada 8 horas",
+      "c.Agregar glibenclamida 5 mg cada 12 horas",
+      "d.Reemplazar la metformina por rosiglitazona",
+      "e.Reemplazar la metformina por glibenclamida"
+    ],
+    "correctAnswer": "e.Reemplazar la metformina por glibenclamida",
+    "explanation": "Tiene un buen control metabólico (HbA1c menor a 7%), por lo que está bien tratada su diabetes. Sin embargo, la diarrea y el dolor abdominal son parte de los efectos adversos clásicos de la metformina, por lo que es recomendable suspenderla y reemplazarla por otro fármaco. Eso sí, muchas recomendaciones proponen primero intentar usar metformina XR (de liberación prolongada) antes de reemplazarla. Antes, la metformina se reemplazaba por glitazonas (tiazoledinedionas), ya que ambas actúan disminuyendo la resistencia a la insulina, pero actualmente están obsoletas, por aumentar el riesgo cardiovascular. Por ello, de las opciones, la más aceptable es cambiarla por glibenclamida, aunque en estrito rigor, es mejor cambiarla por sitagliptina u otro DPP4. En cambio, cuando es la glibenclamida la que produce efectos adversos (normalmente hipoglicemias), se suele reemplazar por DPP4 sin mayores dudas. La respuesta correcta es: Reemplazar la metformina por glibenclamida"
+  },
+  {
+    "question": "8. Una paciente de 12 años, diabética tipo 1, en tratamiento con insulina, es traída al servicio de urgencia, por compromiso de conciencia. Los familiares refieren que desde hace 2 días está cursando con una infección urinaria, pero que hoy empezó a decir palabras sin sentido y luego presentó tendencia a dormir. Al examen está en sopor profundo, deshidratada, FC: 100x', PA: 90/60 mmHg, Tº: 38,7ºC y saturación arterial de oxígeno de 98%. Al examen pulmonar se aprecia polipnea. Sus exámenes muestran, glicemia 416 mg/dl, cetonas +++ en orina, sodio: 130 mEq/L, potasio: 4,6 mEq/L, pH: 7,18 y bicarbonato: 13 mEq/L. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar suero fisiológico + 1g de KCl endovenoso, iniciar insulina endovenosa y administrar bicarbonato por vía endovenosa",
+      "b.Administrar suero glucosado al 5% + KCl endovenoso e iniciar insulina endovenosa",
+      "c.Administrar suero fisiológico + KCl endovenoso e iniciar insulina endovenosa",
+      "d.Administrar suero glucosalino + KCl, iniciar insulina endovenosa y administrar bicarbonato endovenoso",
+      "e.Administrar suero fisiológico + bicarbonato e iniciar insulina endovenosa"
+    ],
+    "correctAnswer": "c.Administrar suero fisiológico + KCl endovenoso e iniciar insulina endovenosa",
+    "explanation": "Tiene una cetoacidosis diabética ya diagnosticada (cuerpos cetónicos positivos, acidosis metabólica, glicemia menor a 7,3), con la clínica característica. Como está normal el K+ está indicada la insulina y el K+ (recordar que para efectos del manejo de la cetoacidosis y el Sd. hiperglicémico hiperosmolar se considera que el K+ normal es 3,3 a 5,3 mEq/L). Y como el pH está sobre 6,9, no requiere bicarbonato. La primera medida debe ser el suero fisiológico (o ringer) 20 cc/Kg de peso. Luego se inicia insulina y potasio, aunque no se debe dar insulina si hay hipopotasemia, ni se debe dar potasio si hay hiperpotasemia (por eso siempre se espera el resultado del potasio, antes de iniciar la insulina y el potasio. Además, se debe dar bicarbonato de sodio, pero solo si el pH es menor a 6,9 (si es mayor, la misma insulina normaliza el pH, al hacer desaparecer los cetoácidos). La respuesta correcta es: Administrar suero fisiológico + KCl endovenoso e iniciar insulina endovenosa"
+  },
+  {
+    "question": "9. Un paciente diabético tipo 1, presenta un cuadro de desorientación y luego coma, que fue precedido por marcado malestar general, náuseas y dolor abdominal. El diagnóstico más probable es:",
+    "choices": [
+      "a.Síndrome hiperglicémico hiperosmolar",
+      "b.Encefalopatía de Korsakov",
+      "c.Encefalopatía de Wernicke",
+      "d.Cetoacidosis diabética",
+      "e.Hipoglicemia"
+    ],
+    "correctAnswer": "d.Cetoacidosis diabética",
+    "explanation": "Es una cetoacidosis clásica: diabético 1, con síntomas abdominales (dolor y náuseas/vómitos), que luego evoluciona a compromiso de conciencia, polipnea. Los demás cuadros clínicos se explican en otra pregunta de esta prueba. La respuesta correcta es: Cetoacidosis diabética"
+  },
+  {
+    "question": "10. Un paciente de 58 años, obeso, presenta un perfil lipídico con triglicéridos de 210 mg/dl, colesterol LDL: 180 mg/dl, colesterol HDL: 35 mg/dl y colesterol total: 257. Se inicia dieta y ejercicios y se controla tres meses después, sin lograr cambios. Su glicemia de ayunas es de 110 mg/dl y su TTGO resulta 150 mg/dl a las 2 horas postcarga de glucosa. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar una estatina y metformina",
+      "b.Iniciar un fibrato y metformina",
+      "c.Iniciar un fibrato y una estatina",
+      "d.Iniciar metformina",
+      "e.Mantener las indicaciones"
+    ],
+    "correctAnswer": "a.Iniciar una estatina y metformina",
+    "explanation": "Tiene varios diagnósticos: 1. Hipertrigliceridemia, 2. Hipercolesterolemia LDL, 3. HDL bajo, 4. Glicemia de ayuno alterada (GGA), 5. Intolerancia a la glucosa oral (IGO), 6. Obesidad y 7. Síndrome metabólico. Respecto a las dislipidemias, la prioridad es el LDL, porque los TG están bajo 500, por lo que se debe iniciar estatinas. Respecto al síndrome metabólico y a la GAA e IGO, todos se tratan con dieta y metformina. Recordemos los criterios diagnósticos del síndrome metabólico: al menos 3 de los siguientes: obesidad abdominal, HTA, hiperTG, HDL bajo, patologías derivadas de la resistencia a la insulina (GAA, IGO o DM2). No incluye alteraciones del LDL, que no se afecta cuantitativamente en la resistencia a la insulina, aunque sí se puede afectar cualitativamente, al volverse pequeño y denso y por tanto, más aterogénico. La respuesta correcta es: Iniciar una estatina y metformina"
+  },
+  {
+    "question": "11. Un paciente de 60 años, diabético tipo 2, en tratamiento con metformina 850 mg/8 horas y glibenclamida 5 mg en la mañana, acude a control, constatándose creatinina 1,0 mg/dl y hemoglobina glicosilada de 7,5%. La conducta más adecuada es:",
+    "choices": [
+      "a.Reemplazar la metformina por una glitazona",
+      "b.Subir la dosis de glibenclamida",
+      "c.Iniciar insulina",
+      "d.Mantener el tratamiento y controlar en 3 meses",
+      "e.Solicitar un test de tolerancia a la glucosa oral"
+    ],
+    "correctAnswer": "b.Subir la dosis de glibenclamida",
+    "explanation": "El control metabólico es insuficiente (HbA1c mayor a 7%), por lo que se debe avanzar en el tratamiento. No tienen ninguna indicación de insulina, ni contraindicaciones para los hipoglicemiantes orales. Dado que la metformina está en dosis elevadas, ya no se debe subir (en teoría se podría subir a 1g cada 8 horas, pero 850 mg es una dosis casi equivalente). La glibenclamida aún se puede subir, ya que la dosis máxima es 10 mg cada 12 horas. También se pueden usar otros hipoglicemiantes más seguros que la glibenclamida, en especial si tiene alto riesgo de hipoglicemias, pero, en este caso, es aceptable mantenerla. La respuesta correcta es: Subir la dosis de glibenclamida"
+  },
+  {
+    "question": "12. Un paciente de 58 años, diabético tipo 2 en tratamiento con glibenclamida y metformina en dosis máximas, acude a control. Presenta hemoglobina glicosilada de 6,8% y glicemias de ayuno entre 90 y 140 mg/dl. Su examen físico es normal y el resto de sus exámenes son normales. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar insulina NPH",
+      "b.Solicitar test de tolerancia a la glucosa",
+      "c.Suspender los hipoglicemiantes orales e iniciar insulina en esquema intensificado",
+      "d.Mantener el tratamiento",
+      "e.Agregar rosiglitazona al tratamiento"
+    ],
+    "correctAnswer": "d.Mantener el tratamiento",
+    "explanation": "Está bien controlado (HbA1c menor a 7%), por lo que no es necesario hacer ningún cambio. Que las glicemias de ayuno estén mayores a 100-130 mg/dl, no importa, mientras se mantenga el objetivo de la hemoglobina glicosilada. La respuesta correcta es: Mantener el tratamiento"
+  },
+  {
+    "question": "13. Un paciente de 45 años, con antecedente de lupus eritematoso sistémico, en tratamiento con prednisona, presenta glicemia de ayuno 180mg/dl y glicemias postprandiales sobre 210 mg/dl, siendo diagnosticada de diabetes mellitus. ¿Cuál es el tratamiento inicial en esta paciente?",
+    "choices": [
+      "a.Metformina",
+      "b.Glibenclamida",
+      "c.Pioglitazona",
+      "d.Sitagliptina",
+      "e.Insulina"
+    ],
+    "correctAnswer": "e.Insulina",
+    "explanation": "Es una diabetes asociada a uso de corticoides, con glicemias arriba de 200mg/dl, por lo que el tratamiento de elección es la Insulina. La respuesta correcta es: Insulina"
+  },
+  {
+    "question": "14. Paciente de 40 años, con antecedente de hipotiroidismo, presenta un cuadro de cetoacidosis diabética. No presenta antecedentes familiares de diabetes, sin antecedentes de importancia. Al examen físico, se encuentra IMC de 20,5. ¿Cuál es el diagnóstico más probable?",
+    "choices": [
+      "a.Diabetes mellitus 1",
+      "b.Diabetes mellitus 2",
+      "c.Diabetes mellitus LADA",
+      "d.Diabetes mellitus MODY",
+      "e.Cetoacidosis congénita"
+    ],
+    "correctAnswer": "c.Diabetes mellitus LADA",
+    "explanation": "La cetoacidosis hace pensar tato en diabetes mellitus 1 y LADA: ambas son autoinmunes y bastantes severas. El antecedente de hipotiroidismo hace pensar en una causa autoinmune. El peso normal hace muy poco probable que sea una DM2 (dado que es adulto la primera sospecha siempre es una DM2). La respuesta correcta es DM LADA, que es autoinmune de aparición tardía. Si hubiese sido un niño, la respuesta hubiera sido DM1. Si es que hubiese sido obeso y con acantosis nigricans, sería una DM2 ya que la acantosis nigricans muestra sugiere insulina alta, aunque sería raro que debutara con una cetoacidosis. La diabetes MODY, es una diabetes genética, de buen pronóstico, característica de los niños y personas jóvenes, con resistencia a la insulina de causa genética (similar a la DM2, pero de los niños) y con muchos casos de diabetes en la familia (por ser autosómica dominante). La respuesta correcta es: Diabetes mellitus LADA"
+  }
+]
