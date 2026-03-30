@@ -2,9 +2,9 @@
 // POST /api/tests  body: { id, userId, mode, timeLimitSeconds, totalQuestions, questions }
 // PATCH /api/tests body: { id, answers, currentIndex, status, score }
 // DELETE /api/tests?id=xxx
-const { getTurso } = require('./_turso.cjs')
+import { getTurso } from './_turso.js';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const db = getTurso()
 
   if (req.method === 'GET') {

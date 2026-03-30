@@ -1,5 +1,5 @@
 // Shared Turso client for Vercel API routes (server-side only)
-const { createClient } = require('@libsql/client')
+import { createClient } from '@libsql/client';
 
 let client = null
 
@@ -13,4 +13,4 @@ function getTurso() {
   return client
 }
 
-module.exports = { getTurso }
+export { getTurso };

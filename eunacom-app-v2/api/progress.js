@@ -1,9 +1,9 @@
 // GET /api/progress?userId=xxx → { data: [...] }
 // POST /api/progress  body: { userId, questionId, isCorrect, isOmitted }
-const { getTurso } = require('./_turso.cjs')
-const { randomUUID } = require('crypto')
+import { getTurso } from './_turso.js';
+import { randomUUID } from 'crypto';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const db = getTurso()
 
   if (req.method === 'GET') {
