@@ -64,10 +64,10 @@ const Login = () => {
                         <label>Email</label>
                         <div style={{ position: 'relative' }}>
                             <input
-                                type="text"
+                                type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="tu@email.com o admin"
+                                placeholder="tu@email.com"
                                 required
                             />
                             <Mail size={18} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />

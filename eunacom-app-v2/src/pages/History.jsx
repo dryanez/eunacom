@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Search, Filter, Play, Trash2 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import { fetchTests, deleteTest } from '../lib/api'
+import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import questionDB from '../data/questionDB.json'
@@ -77,20 +77,22 @@ const History = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (user) fetchTests()
+        if (user) loadTests()
     }, [user])
 
-    const fetchTests = async () => {
+    const loadTests = async () => {
         setLoading(true)
         try {
-            const data = await fetchTests(user.id)
+            const data = await apiFetchTests(user.id)
             const formatted = (data || []).map(t => ({
                 id: t.id,
                 date: new Date(t.created_at).toLocaleDateString(),
                 mode: t.mode === 'timed' ? 'Tiempo' : 'Tutor',
                 status: t.status === 'completed' ? 'Completado' : 'En Progreso',
                 score: t.score || 0,
-                questions: typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || [])
+                questions: typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || []),
+                savedAnswers: typeof t.answers === 'string' ? JSON.parse(t.answers) : (t.answers || {}),
+                currentQuestionIndex: t.current_question_index || 0
             }))
             setTests(formatted)
         } catch (error) {
@@ -111,15 +113,21 @@ const History = () => {
     }
 
     const handleContinue = (test) => {
-        // Find full question objects based on saved IDs
         const testQuestions = test.questions.map(id => questionDB.find(q => q.id === id)).filter(Boolean)
-        
+
         if (testQuestions.length === 0) {
             alert('No se pudieron cargar las preguntas originales.')
             return
         }
 
-        navigate('/test-runner', { state: { testId: test.id, questions: testQuestions } })
+        navigate('/test-runner', {
+            state: {
+                testId: test.id,
+                questions: testQuestions,
+                savedAnswers: test.savedAnswers || {},
+                savedIndex: test.currentQuestionIndex || 0
+            }
+        })
     }
 
     return (

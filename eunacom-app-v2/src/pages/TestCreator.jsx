@@ -178,7 +178,7 @@ const TestCreator = () => {
     }, [categories, selectedTopics])
 
     // --- Time estimation ---
-    const timeEstimateM = Math.max(1, numQuestions)
+    const timeEstimateM = Math.max(1, parseInt(numQuestions) || 1)
     const timeEstimateH = Math.floor(timeEstimateM / 60)
     const timeEstimateRem = timeEstimateM % 60
 

@@ -10,8 +10,9 @@ const TestRunner = () => {
     const location = useLocation()
     const questions = location.state?.questions || masterQuestionDB
 
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const [answers, setAnswers] = useState({})
+    const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
+    const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
+    const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
     const [isFinished, setIsFinished] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -183,7 +184,14 @@ const TestRunner = () => {
 
             {/* Floating buttons */}
             <div style={{ position: 'fixed', bottom: '2rem', right: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <button style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer' }}>
+                <button
+                    onClick={() => setFlaggedQuestions(prev => {
+                        const next = new Set(prev)
+                        if (next.has(currentQuestion.id)) next.delete(currentQuestion.id)
+                        else next.add(currentQuestion.id)
+                        return next
+                    })}
+                    style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-300)', border: `1px solid ${flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-700)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
                     <Flag size={20} />
                 </button>
                 <button onClick={handleTutorRequest} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: (isTutorLoading || tutorMessage) ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>

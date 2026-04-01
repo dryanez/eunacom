@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { fetchProgress } from '../lib/api'
+import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
@@ -11,6 +13,18 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin } = useAuth()
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
+    const [userLevel, setUserLevel] = useState(1)
+
+    useEffect(() => {
+        if (user) {
+            fetchProgress(user.id).then(data => {
+                const correct = data.filter(p => p.is_correct).length
+                const totalXP = (correct * XP_PER_CORRECT) + ((data.length - correct) * XP_PER_INCORRECT)
+                const { newLevel } = calculateLevelUp(totalXP, 1)
+                setUserLevel(newLevel)
+            }).catch(() => {})
+        }
+    }, [user])
 
     const handleLogout = async () => {
         await signOut()
@@ -83,7 +97,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     </div>
                     <div>
                         <div className="sidebar__user-name">{user?.email?.split('@')[0] || 'Usuario'}</div>
-                        <div className="sidebar__user-level">Nivel 1</div>
+                        <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
                     </div>
                 </div>
                 <button onClick={handleLogout} className="sidebar__logout">

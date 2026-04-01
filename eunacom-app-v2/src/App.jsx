@@ -11,6 +11,7 @@ import StudyPlan from './pages/StudyPlan'
 import Stats from './pages/Stats'
 import Simulation from './pages/Simulation'
 import TestRunner from './pages/TestRunner'
+import Register from './pages/Register'
 import './index.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           {/* Public Routes */}
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Route>
 
           {/* Protected Routes */}

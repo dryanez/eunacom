@@ -3,6 +3,7 @@ import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame } fr
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { fetchProgress } from '../lib/api'
+import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress } from '../utils/xpSystem'
 
 const Dashboard = () => {
     const { user } = useAuth()
@@ -26,17 +27,20 @@ const Dashboard = () => {
             const progressData = await fetchProgress(user.id)
             const total = progressData.length
             const correct = progressData.filter(p => p.is_correct).length
-            setStats({ totalAnswered: total, correctAnswers: correct, xp: total * 10, level: Math.floor(total / 50) + 1, streak: 0 })
+            const totalXP = (correct * XP_PER_CORRECT) + ((total - correct) * XP_PER_INCORRECT)
+            const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
+            setStats({ totalAnswered: total, correctAnswers: correct, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
         } catch (e) { console.error('Error fetching dashboard stats:', e) }
     }
 
-    const accuracy = stats.totalAnswered > 0 
-        ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100) 
+    const accuracy = stats.totalAnswered > 0
+        ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100)
         : 0
 
     // Gamification calc
-    const levelCapXP = 150 // fixed
-    const xpProgress = Math.min((stats.xp / levelCapXP) * 100, 100)
+    const levelCapXP = getXPForLevel(stats.level + 1)
+    const xpProgress = getLevelProgress(stats.xp, stats.level)
+    const levelTitle = getLevelTitle(stats.level)
     
     return (
         <div style={{ paddingBottom: '2rem' }}>
@@ -45,8 +49,9 @@ const Dashboard = () => {
 
             <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.5rem', marginBottom: '2rem', background: 'var(--surface-700)' }}>
                 <div style={{ flex: 1, marginRight: '2rem' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--primary-300)', fontWeight: 600, marginBottom: '0.25rem' }}>Nivel {stats.level} · {levelTitle}</div>
                     <div className="xp-labels">
-                        <span>{levelCapXP - stats.xp} XP para subir de nivel</span>
+                        <span>{Math.max(0, levelCapXP - stats.xp)} XP para subir de nivel</span>
                         <span>{stats.xp}/{levelCapXP} XP</span>
                     </div>
                     <div className="xp-bar">

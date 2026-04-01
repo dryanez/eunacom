@@ -1,14 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Clock, LightbulbOff, PlayCircle } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
+import { createTest, genId } from '../lib/api'
+import questionDB from '../data/questionDB.json'
 
 const Simulation = () => {
+    const navigate = useNavigate()
+    const [isStarting, setIsStarting] = useState(false)
+
     const blueprint = [
-        { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)' },
-        { name: 'Pediatría', qty: 36, percent: 20, color: 'var(--surface-400)' },
-        { name: 'Cirugía', qty: 27, percent: 15, color: 'var(--accent-amber)' },
-        { name: 'Ginecología y Obstetricia', qty: 27, percent: 15, color: 'var(--primary-400)' },
-        { name: 'Salud Pública y Psiquiatría', qty: 36, percent: 20, color: 'var(--accent-red)' },
+        { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)', category: 'Medicina Interna' },
+        { name: 'Pediatría', qty: 36, percent: 20, color: 'var(--surface-400)', category: 'Pediatría' },
+        { name: 'Cirugía', qty: 27, percent: 15, color: 'var(--accent-amber)', category: 'Cirugía' },
+        { name: 'Ginecología y Obstetricia', qty: 27, percent: 15, color: 'var(--primary-400)', category: 'Ginecología' },
+        { name: 'Salud Pública y Psiquiatría', qty: 36, percent: 20, color: 'var(--accent-red)', category: 'Salud Pública' },
     ]
+
+    const handleStartSimulation = async () => {
+        setIsStarting(true)
+        try {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (!user) throw new Error('Debes iniciar sesión.')
+
+            // Build 180-question exam from blueprint proportions
+            const picked = []
+            for (const area of blueprint) {
+                const categoryQuestions = questionDB.filter(q =>
+                    q.category && q.category.toLowerCase().includes(area.category.toLowerCase())
+                )
+                const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5)
+                picked.push(...shuffled.slice(0, area.qty))
+            }
+
+            // If we don't have enough questions, fill remaining from any category
+            if (picked.length < 180) {
+                const pickedIds = new Set(picked.map(q => q.id))
+                const remaining = questionDB.filter(q => !pickedIds.has(q.id)).sort(() => Math.random() - 0.5)
+                picked.push(...remaining.slice(0, 180 - picked.length))
+            }
+
+            // Final shuffle
+            const finalQuestions = picked.sort(() => Math.random() - 0.5).slice(0, 180)
+            const questionIds = finalQuestions.map(q => q.id)
+            const testId = genId()
+
+            await createTest({
+                id: testId,
+                userId: user.id,
+                mode: 'timed',
+                timeLimitSeconds: 4 * 60 * 60, // 4 hours
+                totalQuestions: finalQuestions.length,
+                questions: questionIds
+            })
+
+            navigate('/test-runner', { state: { testId, questions: finalQuestions, isSimulation: true } })
+        } catch (err) {
+            alert('Error al iniciar simulación: ' + (err.message || String(err)))
+        } finally {
+            setIsStarting(false)
+        }
+    }
 
     return (
         <div style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '4rem' }}>
@@ -56,8 +108,12 @@ const Simulation = () => {
                     </div>
                 </div>
 
-                <button className="btn-primary btn-primary--full" style={{ padding: '1.25rem', fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                    <PlayCircle size={22} /> Iniciar Simulación Oficial
+                <button
+                    onClick={handleStartSimulation}
+                    disabled={isStarting}
+                    className="btn-primary btn-primary--full"
+                    style={{ padding: '1.25rem', fontSize: '1.1rem', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', opacity: isStarting ? 0.7 : 1, cursor: isStarting ? 'wait' : 'pointer' }}>
+                    <PlayCircle size={22} /> {isStarting ? 'Preparando simulación...' : 'Iniciar Simulación Oficial'}
                 </button>
             </div>
         </div>
