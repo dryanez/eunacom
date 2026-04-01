@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Clock, LightbulbOff, PlayCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId } from '../lib/api'
 import questionDB from '../data/questionDB.json'
 
 const Simulation = () => {
     const navigate = useNavigate()
+    const { user } = useAuth()
     const [isStarting, setIsStarting] = useState(false)
 
     const blueprint = [
@@ -20,7 +21,6 @@ const Simulation = () => {
     const handleStartSimulation = async () => {
         setIsStarting(true)
         try {
-            const { data: { user } } = await supabase.auth.getUser()
             if (!user) throw new Error('Debes iniciar sesión.')
 
             // Build 180-question exam from blueprint proportions

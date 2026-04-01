@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, ChevronRight, RefreshCw, BookOpen } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, createTest, genId } from '../lib/api'
 import questionDB from '../data/questionDB.json'
 
 const TestCreator = () => {
     const navigate = useNavigate()
+    const { user } = useAuth()
     const [mode, setMode] = useState('tutor')
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
@@ -27,13 +28,12 @@ const TestCreator = () => {
 
     // --- Data Fetching ---
     useEffect(() => {
-        fetchData()
-    }, [])
+        if (user) fetchData()
+    }, [user])
 
     const fetchData = async () => {
         setLoading(true)
         try {
-            const { data: { user } } = await supabase.auth.getUser()
             if (!user) return
 
             const progress = await fetchProgress(user.id)
@@ -191,7 +191,6 @@ const TestCreator = () => {
         const n = Math.min(parseInt(numQuestions) || 1, maxQuestions)
         setIsCreating(true)
         try {
-            const { data: { user } } = await supabase.auth.getUser()
             if (!user) throw new Error('Debes iniciar sesión.')
 
             const shuffled = [...selectedQuestions].sort(() => 0.5 - Math.random())

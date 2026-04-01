@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, askTutor, genId } from '../lib/api'
 import masterQuestionDB from '../data/questionDB.json'
 
 const TestRunner = () => {
     const navigate = useNavigate()
     const location = useLocation()
+    const { user } = useAuth()
     const questions = location.state?.questions || masterQuestionDB
 
     const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
@@ -61,7 +62,6 @@ const TestRunner = () => {
 
         if (location.state?.testId) {
             try {
-                const { data: { user } } = await supabase.auth.getUser()
                 if (user) {
                     await completeTest(location.state.testId, answers, currentIndex, pct)
                     for (const q of questions) {
