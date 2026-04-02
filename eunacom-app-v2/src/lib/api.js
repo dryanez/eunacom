@@ -73,21 +73,37 @@ export async function askTutor(payload) {
 }
 
 // ── MIS CLASES (MedScribe) ───────────────────────────────────────────────────
+// In production: calls Vercel API (Turso). In dev: calls MedScribe backend (port 3001).
+
+const MEDSCRIBE_BASE = 'http://localhost:3001'
+
+async function clasesFetch(path, options = {}) {
+  // Try MedScribe backend first (local dev), fall back to Vercel API
+  try {
+    const res = await fetch(MEDSCRIBE_BASE + path, {
+      headers: { 'Content-Type': 'application/json' },
+      ...options
+    })
+    if (res.ok) return res.json()
+  } catch {}
+  // Fallback to Vercel API
+  return apiFetch(path, options)
+}
 
 export async function fetchClases(userId) {
-  const data = await apiFetch(`/api/clases?userId=${userId}`)
+  const data = await clasesFetch('/api/clases')
   return data.data || []
 }
 
 export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {
-  return apiFetch('/api/clases', {
+  return clasesFetch('/api/clases', {
     method: 'POST',
-    body: JSON.stringify({ id, userId, topic, summary, keyPoints, quiz })
+    body: JSON.stringify({ id, topic, summary, keyPoints, quiz })
   })
 }
 
 export async function deleteClase(id) {
-  return apiFetch(`/api/clases?id=${id}`, { method: 'DELETE' })
+  return clasesFetch(`/api/clases?id=${id}`, { method: 'DELETE' })
 }
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
