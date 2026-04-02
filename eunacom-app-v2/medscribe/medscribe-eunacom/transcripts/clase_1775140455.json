@@ -194,5 +194,7 @@
   "specialty": "Cirugía",
   "subsystem": "Cirugía General",
   "lessonNumber": 1,
-  "savedAt": "2026-04-02T11:34:00.000Z"
+  "savedAt": "2026-04-02T11:34:00.000Z",
+  "slidesFile": "slides_complicaciones_postqx.html",
+  "videoDir": "video-cirugia"
 }

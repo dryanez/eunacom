@@ -110,6 +110,11 @@ app.get('/api/clases', (_req, res) => {
         const data = JSON.parse(fs.readFileSync(path.join(TRANSCRIPTS_DIR, f), 'utf-8'));
         // Only return files that have the clase format (topic + quiz)
         if (data.topic && data.quiz) {
+          // Check for associated slides and video
+          const baseId = f.replace('.json', '').replace('clase_', '');
+          const slidesFiles = fs.readdirSync(TRANSCRIPTS_DIR).filter(sf => sf.endsWith('.html') && sf.includes(baseId.replace('clase_', '')));
+          const videoFiles = fs.readdirSync(TRANSCRIPTS_DIR).filter(vf => vf.startsWith('video-') && fs.statSync(path.join(TRANSCRIPTS_DIR, vf)).isDirectory());
+
           return {
             id: f.replace('.json', ''),
             saved_at: data.savedAt || fs.statSync(path.join(TRANSCRIPTS_DIR, f)).mtime.toISOString(),
@@ -120,6 +125,8 @@ app.get('/api/clases', (_req, res) => {
             summary: data.summary || '',
             key_points: JSON.stringify(data.keyPoints || []),
             quiz: JSON.stringify(data.quiz || []),
+            slides_file: data.slidesFile || null,
+            video_dir: data.videoDir || null,
           };
         }
       } catch {}
@@ -147,6 +154,9 @@ app.post('/api/clases', (req, res) => {
   fs.writeFileSync(filePath, JSON.stringify({ topic, summary, keyPoints, quiz, savedAt: new Date().toISOString() }, null, 2));
   res.json({ ok: true, id: fileName });
 });
+
+// Serve static slide HTML files
+app.use('/slides', express.static(TRANSCRIPTS_DIR));
 
 app.listen(PORT, () => {
   console.log(`[MedScribe Server] Running on http://localhost:${PORT}`);

@@ -4,7 +4,8 @@ import { fetchClases, saveClase, deleteClase, genId } from '../lib/api'
 import {
   Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle, Trash2,
   Upload, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
-  Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope
+  Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope,
+  Presentation, Play
 } from 'lucide-react'
 
 /* ════════════════════════════════════════════════════════════════
@@ -358,6 +359,41 @@ function ClaseDetail({ clase, onBack, onDelete }) {
           {clase.quiz?.length > 0 && <span>{clase.quiz.length} preguntas</span>}
           {clase.keyPoints?.length > 0 && <span>{clase.keyPoints.length} puntos clave</span>}
         </div>
+        {/* Slides & Video buttons */}
+        {(clase.slidesFile || clase.videoDir) && (
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
+            {clase.slidesFile && (
+              <a
+                href={`http://localhost:3001/slides/${clase.slidesFile}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '0.4rem',
+                  padding: '0.45rem 1rem', borderRadius: '8px', textDecoration: 'none',
+                  background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.25)',
+                  color: '#a855f7', fontSize: '0.8rem', fontWeight: 600,
+                }}
+              >
+                <Presentation size={15} /> Ver Slides
+              </a>
+            )}
+            {clase.videoDir && (
+              <a
+                href={`http://localhost:3001/slides/${clase.videoDir}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '0.4rem',
+                  padding: '0.45rem 1rem', borderRadius: '8px', textDecoration: 'none',
+                  background: 'rgba(236,72,153,0.1)', border: '1px solid rgba(236,72,153,0.25)',
+                  color: '#ec4899', fontSize: '0.8rem', fontWeight: 600,
+                }}
+              >
+                <Play size={15} /> Ver Video
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <StepBar steps={steps} current={step} onStep={setStep} />
@@ -433,6 +469,8 @@ const MisClases = () => {
         summary: r.summary || '',
         keyPoints: typeof r.key_points === 'string' ? JSON.parse(r.key_points) : (r.key_points || []),
         quiz: typeof r.quiz === 'string' ? JSON.parse(r.quiz) : (r.quiz || []),
+        slidesFile: r.slides_file || null,
+        videoDir: r.video_dir || null,
       })))
     } catch (err) {
       console.error('Error loading clases:', err)

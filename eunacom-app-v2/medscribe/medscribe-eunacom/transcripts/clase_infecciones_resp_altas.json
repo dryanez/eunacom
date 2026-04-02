@@ -20,33 +20,110 @@
     {
       "questionText": "Paciente de 28 años consulta por rinorrea acuosa, odinofagia, tos seca y fiebre de 38.2°C de 2 días de evolución. Al examen físico la faringe está eritematosa, hay adenopatías cervicales pequeñas y el examen pulmonar es normal. ¿Cuál es la conducta más adecuada?",
       "options": [
-        { "id": "A", "text": "Solicitar radiografía de tórax y hemograma", "isCorrect": false, "explanation": "En una infección respiratoria alta con examen pulmonar normal, los exámenes complementarios NO están indicados. El diagnóstico es clínico." },
-        { "id": "B", "text": "Indicar amoxicilina 500mg cada 8 horas por 7 días", "isCorrect": false, "explanation": "Las IRA son de etiología viral, por lo que los antibióticos no están indicados. El tratamiento es exclusivamente sintomático." },
-        { "id": "C", "text": "Tratamiento sintomático con paracetamol y descongestionantes", "isCorrect": true, "explanation": "Correcto. El cuadro corresponde a una infección respiratoria alta (resfrío común): clínica de vía aérea superior con examen pulmonar normal. El tratamiento es sintomático con paracetamol y eventualmente pseudoefedrina para la rinorrea." },
-        { "id": "D", "text": "Solicitar PCR para COVID-19 de forma obligatoria", "isCorrect": false, "explanation": "La PCR para COVID-19 solo está indicada en situaciones epidemiológicas excepcionales (brotes, pandemia), no de rutina ante un resfrío común." },
-        { "id": "E", "text": "Iniciar oseltamivir empírico por sospecha de influenza", "isCorrect": false, "explanation": "No hay indicación de iniciar oseltamivir empírico en un cuadro de resfrío común sin factores de riesgo ni contexto epidemiológico que lo justifique." }
+        {
+          "id": "A",
+          "text": "Solicitar radiografía de tórax y hemograma",
+          "isCorrect": false,
+          "explanation": "En una infección respiratoria alta con examen pulmonar normal, los exámenes complementarios NO están indicados. El diagnóstico es clínico."
+        },
+        {
+          "id": "B",
+          "text": "Indicar amoxicilina 500mg cada 8 horas por 7 días",
+          "isCorrect": false,
+          "explanation": "Las IRA son de etiología viral, por lo que los antibióticos no están indicados. El tratamiento es exclusivamente sintomático."
+        },
+        {
+          "id": "C",
+          "text": "Tratamiento sintomático con paracetamol y descongestionantes",
+          "isCorrect": true,
+          "explanation": "Correcto. El cuadro corresponde a una infección respiratoria alta (resfrío común): clínica de vía aérea superior con examen pulmonar normal. El tratamiento es sintomático con paracetamol y eventualmente pseudoefedrina para la rinorrea."
+        },
+        {
+          "id": "D",
+          "text": "Solicitar PCR para COVID-19 de forma obligatoria",
+          "isCorrect": false,
+          "explanation": "La PCR para COVID-19 solo está indicada en situaciones epidemiológicas excepcionales (brotes, pandemia), no de rutina ante un resfrío común."
+        },
+        {
+          "id": "E",
+          "text": "Iniciar oseltamivir empírico por sospecha de influenza",
+          "isCorrect": false,
+          "explanation": "No hay indicación de iniciar oseltamivir empírico en un cuadro de resfrío común sin factores de riesgo ni contexto epidemiológico que lo justifique."
+        }
       ]
     },
     {
       "questionText": "Paciente de 35 años con cuadro de 3 días de rinorrea, tos productiva y fiebre. Al examen presenta faringe eritematosa y examen pulmonar normal. Se solicita hemograma que muestra leucocitos 8.500/mm³ con 55% linfocitos. ¿Cuál es la interpretación más correcta?",
       "options": [
-        { "id": "A", "text": "Linfocitosis sugerente de leucemia linfocítica", "isCorrect": false, "explanation": "Una linfocitosis leve en contexto de un cuadro viral agudo es esperable y no sugiere patología hematológica." },
-        { "id": "B", "text": "Hemograma compatible con infección viral, aunque el examen no estaba indicado", "isCorrect": true, "explanation": "Correcto. La linfocitosis es el hallazgo esperable en infecciones virales. Sin embargo, el hemograma NO estaba indicado en una IRA con examen pulmonar normal. El diagnóstico es clínico." },
-        { "id": "C", "text": "Hemograma normal, se descarta infección", "isCorrect": false, "explanation": "El hemograma muestra linfocitosis relativa (55%), que es compatible con infección viral. Además, el hemograma no descarta ni confirma infección en una IRA." },
-        { "id": "D", "text": "Neutropenia que requiere estudio hematológico urgente", "isCorrect": false, "explanation": "No hay neutropenia. Los leucocitos totales son normales (8.500) con predominio linfocitario esperable en infección viral." },
-        { "id": "E", "text": "Leucocitosis con desviación izquierda sugerente de infección bacteriana", "isCorrect": false, "explanation": "No hay leucocitosis (8.500 es normal) ni desviación izquierda. El patrón es linfocitario, típico de infección viral." }
+        {
+          "id": "A",
+          "text": "Linfocitosis sugerente de leucemia linfocítica",
+          "isCorrect": false,
+          "explanation": "Una linfocitosis leve en contexto de un cuadro viral agudo es esperable y no sugiere patología hematológica."
+        },
+        {
+          "id": "B",
+          "text": "Hemograma compatible con infección viral, aunque el examen no estaba indicado",
+          "isCorrect": true,
+          "explanation": "Correcto. La linfocitosis es el hallazgo esperable en infecciones virales. Sin embargo, el hemograma NO estaba indicado en una IRA con examen pulmonar normal. El diagnóstico es clínico."
+        },
+        {
+          "id": "C",
+          "text": "Hemograma normal, se descarta infección",
+          "isCorrect": false,
+          "explanation": "El hemograma muestra linfocitosis relativa (55%), que es compatible con infección viral. Además, el hemograma no descarta ni confirma infección en una IRA."
+        },
+        {
+          "id": "D",
+          "text": "Neutropenia que requiere estudio hematológico urgente",
+          "isCorrect": false,
+          "explanation": "No hay neutropenia. Los leucocitos totales son normales (8.500) con predominio linfocitario esperable en infección viral."
+        },
+        {
+          "id": "E",
+          "text": "Leucocitosis con desviación izquierda sugerente de infección bacteriana",
+          "isCorrect": false,
+          "explanation": "No hay leucocitosis (8.500 es normal) ni desviación izquierda. El patrón es linfocitario, típico de infección viral."
+        }
       ]
     },
     {
       "questionText": "Paciente de 42 años con diagnóstico de resfrío común de 4 días de evolución, consulta nuevamente porque ahora presenta disnea, desaturación a 91% y crepitaciones bibasales al examen pulmonar. ¿Cuál es la sospecha diagnóstica?",
       "options": [
-        { "id": "A", "text": "Infección respiratoria alta en evolución normal", "isCorrect": false, "explanation": "Una IRA NO produce disnea, desaturación ni alteración del examen pulmonar. Estos hallazgos indican compromiso de la vía aérea baja." },
-        { "id": "B", "text": "Reacción alérgica a los descongestionantes", "isCorrect": false, "explanation": "La desaturación con crepitaciones bibasales no es compatible con una reacción alérgica a descongestionantes. Orienta a neumonía." },
-        { "id": "C", "text": "Neumonía viral como complicación de la IRA", "isCorrect": true, "explanation": "Correcto. La aparición de disnea, desaturación y crepitaciones bibasales en un paciente con IRA indica compromiso de la vía aérea baja, siendo la neumonía viral la complicación más probable." },
-        { "id": "D", "text": "Bronquitis aguda sin mayor importancia", "isCorrect": false, "explanation": "La desaturación a 91% con crepitaciones bibasales indica compromiso parenquimatoso pulmonar significativo, no una simple bronquitis." },
-        { "id": "E", "text": "Exacerbación de asma no diagnosticada", "isCorrect": false, "explanation": "Aunque es posible, el contexto clínico (IRA previa con aparición de crepitaciones y desaturación) orienta más a neumonía viral como complicación." }
+        {
+          "id": "A",
+          "text": "Infección respiratoria alta en evolución normal",
+          "isCorrect": false,
+          "explanation": "Una IRA NO produce disnea, desaturación ni alteración del examen pulmonar. Estos hallazgos indican compromiso de la vía aérea baja."
+        },
+        {
+          "id": "B",
+          "text": "Reacción alérgica a los descongestionantes",
+          "isCorrect": false,
+          "explanation": "La desaturación con crepitaciones bibasales no es compatible con una reacción alérgica a descongestionantes. Orienta a neumonía."
+        },
+        {
+          "id": "C",
+          "text": "Neumonía viral como complicación de la IRA",
+          "isCorrect": true,
+          "explanation": "Correcto. La aparición de disnea, desaturación y crepitaciones bibasales en un paciente con IRA indica compromiso de la vía aérea baja, siendo la neumonía viral la complicación más probable."
+        },
+        {
+          "id": "D",
+          "text": "Bronquitis aguda sin mayor importancia",
+          "isCorrect": false,
+          "explanation": "La desaturación a 91% con crepitaciones bibasales indica compromiso parenquimatoso pulmonar significativo, no una simple bronquitis."
+        },
+        {
+          "id": "E",
+          "text": "Exacerbación de asma no diagnosticada",
+          "isCorrect": false,
+          "explanation": "Aunque es posible, el contexto clínico (IRA previa con aparición de crepitaciones y desaturación) orienta más a neumonía viral como complicación."
+        }
       ]
     }
   ],
-  "savedAt": "2026-04-02T14:36:29.261Z"
+  "savedAt": "2026-04-02T14:36:29.261Z",
+  "slidesFile": "slides_infecciones_resp_altas.html",
+  "videoDir": "video-ira"
 }
