@@ -12,6 +12,7 @@ import Stats from './pages/Stats'
 import Simulation from './pages/Simulation'
 import TestRunner from './pages/TestRunner'
 import Register from './pages/Register'
+import MisClases from './pages/MisClases'
 import './index.css'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/stats" element={<Stats />} />
             <Route path="/flashcards" element={<div className="page"><h1 className="page__title">Flashcards</h1></div>} />
             <Route path="/review" element={<div className="page"><h1 className="page__title">Repasar Errores</h1></div>} />
+            <Route path="/mis-clases" element={<MisClases />} />
           </Route>
 
           {/* Default Route */}

@@ -72,6 +72,24 @@ export async function askTutor(payload) {
   return data.message || data.error
 }
 
+// ── MIS CLASES (MedScribe) ───────────────────────────────────────────────────
+
+export async function fetchClases(userId) {
+  const data = await apiFetch(`/api/clases?userId=${userId}`)
+  return data.data || []
+}
+
+export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {
+  return apiFetch('/api/clases', {
+    method: 'POST',
+    body: JSON.stringify({ id, userId, topic, summary, keyPoints, quiz })
+  })
+}
+
+export async function deleteClase(id) {
+  return apiFetch(`/api/clases?id=${id}`, { method: 'DELETE' })
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {

@@ -6,7 +6,7 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } fro
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, ChevronDown, Menu, X
+    LogOut, ChevronDown, Menu, X, Video
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
@@ -82,6 +82,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 </NavLink>
                 <NavLink to="/review" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <RotateCcw size={18} /> Repasar Errores
+                </NavLink>
+
+                <div className="sidebar__section-title">MedScribe</div>
+                <NavLink to="/mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Video size={18} /> Mis Clases
                 </NavLink>
             </nav>
 
