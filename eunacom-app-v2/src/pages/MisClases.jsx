@@ -4,10 +4,12 @@ import { fetchClases, saveClase, deleteClase, genId } from '../lib/api'
 import {
   Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle, Trash2,
   Upload, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
-  Target, Award, RotateCcw
+  Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope
 } from 'lucide-react'
 
-/* ─── Step Progress Bar ─── */
+/* ════════════════════════════════════════════════════════════════
+   STEP PROGRESS BAR
+   ════════════════════════════════════════════════════════════════ */
 function StepBar({ steps, current, onStep }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: '2rem' }}>
@@ -49,20 +51,22 @@ function StepBar({ steps, current, onStep }) {
   )
 }
 
-/* ─── Bold keywords helper ─── */
+/* ════════════════════════════════════════════════════════════════
+   BOLD TEXT HELPER
+   ════════════════════════════════════════════════════════════════ */
 function BoldText({ text }) {
-  // Bold text between ** ** and terms after : or terms in ALL CAPS
   const parts = text.split(/(\*\*[^*]+\*\*)/g)
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={i} style={{ color: 'var(--text-primary)' }}>{part.slice(2, -2)}</strong>
     }
-    // Bold medical terms (words before colons, and key patterns)
     return <span key={i}>{part}</span>
   })
 }
 
-/* ─── Resumen Section ─── */
+/* ════════════════════════════════════════════════════════════════
+   RESUMEN SECTION
+   ════════════════════════════════════════════════════════════════ */
 function ResumenSection({ summary }) {
   const paragraphs = summary.split('\n').filter(p => p.trim())
   return (
@@ -78,10 +82,7 @@ function ResumenSection({ summary }) {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {paragraphs.map((p, i) => (
-          <p key={i} style={{
-            fontSize: '0.93rem', lineHeight: 1.8, color: 'var(--text-secondary)',
-            paddingLeft: i > 0 ? '0' : '0',
-          }}>
+          <p key={i} style={{ fontSize: '0.93rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
             <BoldText text={p} />
           </p>
         ))}
@@ -90,7 +91,9 @@ function ResumenSection({ summary }) {
   )
 }
 
-/* ─── Puntos Clave Section ─── */
+/* ════════════════════════════════════════════════════════════════
+   PUNTOS CLAVE SECTION
+   ════════════════════════════════════════════════════════════════ */
 function PuntosClaveSection({ keyPoints }) {
   const colors = [
     { bg: 'rgba(19,91,236,0.08)', border: 'rgba(19,91,236,0.2)', icon: 'var(--primary-500)' },
@@ -117,7 +120,6 @@ function PuntosClaveSection({ keyPoints }) {
             <div key={i} className="card" style={{
               padding: '1.1rem 1.25rem', display: 'flex', alignItems: 'flex-start', gap: '1rem',
               background: c.bg, borderLeft: `3px solid ${c.border}`,
-              transition: 'transform 0.2s',
             }}>
               <div style={{
                 minWidth: 28, height: 28, borderRadius: '50%', background: c.border,
@@ -137,7 +139,9 @@ function PuntosClaveSection({ keyPoints }) {
   )
 }
 
-/* ─── Quiz Section — One question at a time ─── */
+/* ════════════════════════════════════════════════════════════════
+   QUIZ SECTION — One question at a time
+   ════════════════════════════════════════════════════════════════ */
 function QuizSection({ quiz }) {
   const [currentQ, setCurrentQ] = useState(0)
   const [selected, setSelected] = useState({})
@@ -151,38 +155,24 @@ function QuizSection({ quiz }) {
   const correctCount = Object.entries(selected).filter(
     ([qi, optId]) => quiz[Number(qi)]?.options.find(o => o.id === optId)?.isCorrect
   ).length
-
   const allAnswered = Object.keys(selected).length === total
 
-  const handleSelect = (optId) => {
-    if (answered) return
-    setSelected(prev => ({ ...prev, [currentQ]: optId }))
-  }
-
-  const goNext = () => {
-    if (currentQ < total - 1) setCurrentQ(currentQ + 1)
-    else if (allAnswered) setShowScore(true)
-  }
+  const handleSelect = (optId) => { if (!answered) setSelected(prev => ({ ...prev, [currentQ]: optId })) }
+  const goNext = () => { if (currentQ < total - 1) setCurrentQ(currentQ + 1); else if (allAnswered) setShowScore(true) }
   const goPrev = () => { if (currentQ > 0) setCurrentQ(currentQ - 1) }
+  const resetQuiz = () => { setSelected({}); setCurrentQ(0); setShowScore(false) }
 
-  const resetQuiz = () => {
-    setSelected({})
-    setCurrentQ(0)
-    setShowScore(false)
-  }
-
-  const questionColors = [
+  const qColors = [
     { accent: '#3b82f6', bg: 'rgba(59,130,246,0.06)' },
     { accent: '#8b5cf6', bg: 'rgba(139,92,246,0.06)' },
     { accent: '#ec4899', bg: 'rgba(236,72,153,0.06)' },
     { accent: '#f59e0b', bg: 'rgba(245,158,11,0.06)' },
     { accent: '#10b981', bg: 'rgba(16,185,129,0.06)' },
   ]
-  const qColor = questionColors[currentQ % questionColors.length]
+  const qColor = qColors[currentQ % qColors.length]
 
   if (showScore) {
     const pct = Math.round((correctCount / total) * 100)
-    const emoji = pct >= 80 ? 'Excelente' : pct >= 60 ? 'Bien' : 'Sigue practicando'
     return (
       <div className="card" style={{
         padding: '3rem 2rem', textAlign: 'center',
@@ -197,7 +187,9 @@ function QuizSection({ quiz }) {
         </div>
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>{pct}%</div>
-          <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.25rem' }}>{emoji}</div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+            {pct >= 80 ? 'Excelente' : pct >= 60 ? 'Bien' : 'Sigue practicando'}
+          </div>
           <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', marginTop: '0.5rem' }}>
             {correctCount} de {total} correctas
           </div>
@@ -216,7 +208,6 @@ function QuizSection({ quiz }) {
 
   return (
     <div>
-      {/* Progress dots */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
         <Target size={17} style={{ color: qColor.accent }} />
         <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
@@ -239,25 +230,15 @@ function QuizSection({ quiz }) {
         </div>
       </div>
 
-      {/* Question card */}
-      <div className="card" style={{
-        padding: '2rem', borderTop: `3px solid ${qColor.accent}`,
-        background: qColor.bg,
-      }}>
-        <p style={{
-          fontWeight: 700, fontSize: '1.05rem', marginBottom: '1.5rem',
-          lineHeight: 1.6, color: 'var(--text-primary)'
-        }}>
+      <div className="card" style={{ padding: '2rem', borderTop: `3px solid ${qColor.accent}`, background: qColor.bg }}>
+        <p style={{ fontWeight: 700, fontSize: '1.05rem', marginBottom: '1.5rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>
           {q.questionText}
         </p>
-
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
           {q.options.map(opt => {
             const isSelected = picked === opt.id
             const isCorrect = opt.isCorrect
-            let bg = 'var(--surface-700)'
-            let border = 'var(--border-color)'
-            let leftBar = 'transparent'
+            let bg = 'var(--surface-700)', border = 'var(--border-color)', leftBar = 'transparent'
             if (answered) {
               if (isCorrect) { bg = 'rgba(52,211,153,0.12)'; border = 'var(--success-500)'; leftBar = 'var(--success-500)' }
               else if (isSelected) { bg = 'rgba(248,113,113,0.12)'; border = 'var(--danger-500)'; leftBar = 'var(--danger-500)' }
@@ -265,28 +246,21 @@ function QuizSection({ quiz }) {
             }
             return (
               <div key={opt.id}>
-                <button
-                  onClick={() => handleSelect(opt.id)}
-                  disabled={answered}
-                  style={{
-                    width: '100%', textAlign: 'left', padding: '0.9rem 1.1rem',
-                    background: bg, border: `1px solid ${border}`,
-                    borderLeft: `4px solid ${leftBar}`,
-                    borderRadius: '10px', color: 'var(--text-primary)',
-                    cursor: answered ? 'default' : 'pointer',
-                    opacity: answered && !isCorrect && !isSelected ? 0.4 : 1,
-                    transition: 'all 0.2s', fontSize: '0.9rem',
-                    display: 'flex', alignItems: 'center', gap: '0.75rem',
-                  }}
-                >
+                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
+                  width: '100%', textAlign: 'left', padding: '0.9rem 1.1rem',
+                  background: bg, border: `1px solid ${border}`, borderLeft: `4px solid ${leftBar}`,
+                  borderRadius: '10px', color: 'var(--text-primary)',
+                  cursor: answered ? 'default' : 'pointer',
+                  opacity: answered && !isCorrect && !isSelected ? 0.4 : 1,
+                  transition: 'all 0.2s', fontSize: '0.9rem',
+                  display: 'flex', alignItems: 'center', gap: '0.75rem',
+                }}>
                   <div style={{
                     width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '0.8rem', fontWeight: 700,
-                    background: isSelected && answered
-                      ? (isCorrect ? 'var(--success-500)' : 'var(--danger-500)')
-                      : answered && isCorrect ? 'var(--success-500)'
-                      : `${qColor.accent}22`,
+                    background: (answered && (isSelected || isCorrect))
+                      ? (isCorrect ? 'var(--success-500)' : 'var(--danger-500)') : `${qColor.accent}22`,
                     color: (answered && (isSelected || isCorrect)) ? '#fff' : qColor.accent,
                   }}>
                     {answered && isCorrect ? <CheckCircle2 size={15} /> :
@@ -311,7 +285,6 @@ function QuizSection({ quiz }) {
         </div>
       </div>
 
-      {/* Nav buttons */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.25rem' }}>
         <button onClick={goPrev} disabled={currentQ === 0} style={{
           display: 'flex', alignItems: 'center', gap: '0.4rem',
@@ -338,15 +311,16 @@ function QuizSection({ quiz }) {
   )
 }
 
-/* ─── Single Class Detail View ─── */
+/* ════════════════════════════════════════════════════════════════
+   CLASS DETAIL VIEW
+   ════════════════════════════════════════════════════════════════ */
 function ClaseDetail({ clase, onBack, onDelete }) {
   const [step, setStep] = useState(0)
   const steps = [
-    { id: 'resumen', label: 'Resumen', icon: BookOpen },
-    { id: 'puntos', label: 'Puntos Clave', icon: Lightbulb },
-    { id: 'quiz', label: 'Quiz EUNACOM', icon: HelpCircle },
+    { id: 'resumen', label: 'Resumen' },
+    { id: 'puntos', label: 'Puntos Clave' },
+    { id: 'quiz', label: 'Quiz EUNACOM' },
   ]
-
   const goNext = () => { if (step < 2) setStep(step + 1) }
   const goPrev = () => { if (step > 0) setStep(step - 1) }
 
@@ -358,7 +332,7 @@ function ClaseDetail({ clase, onBack, onDelete }) {
           borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
           cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
         }}>
-          <ChevronLeft size={16} /> Mis Clases
+          <ChevronLeft size={16} /> Volver
         </button>
         <button onClick={() => onDelete(clase.id)} style={{
           background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)',
@@ -369,37 +343,29 @@ function ClaseDetail({ clase, onBack, onDelete }) {
         </button>
       </div>
 
-      {/* Header card */}
       <div className="card" style={{
         padding: '1.5rem 1.75rem', marginBottom: '1.5rem',
         background: 'linear-gradient(135deg, rgba(19,91,236,0.06) 0%, rgba(168,85,247,0.06) 100%)',
         borderLeft: '4px solid var(--primary-500)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-          <div style={{
-            width: 36, height: 36, borderRadius: 10, background: 'rgba(19,91,236,0.12)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center'
-          }}>
-            <Video size={18} style={{ color: 'var(--primary-500)' }} />
-          </div>
-          <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>{clase.topic}</h2>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-500)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          {clase.specialty} / {clase.subsystem}
         </div>
-        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-tertiary)', paddingLeft: '2.8rem' }}>
-          <span>{new Date(clase.savedAt).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+          Clase {clase.lessonNumber}: {clase.topic}
+        </h2>
+        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
           {clase.quiz?.length > 0 && <span>{clase.quiz.length} preguntas</span>}
           {clase.keyPoints?.length > 0 && <span>{clase.keyPoints.length} puntos clave</span>}
         </div>
       </div>
 
-      {/* Step navigation */}
       <StepBar steps={steps} current={step} onStep={setStep} />
 
-      {/* Content */}
       {step === 0 && <ResumenSection summary={clase.summary} />}
       {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
       {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} />}
 
-      {/* Section nav arrows */}
       {step < 2 && (
         <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
           {step > 0 && (
@@ -416,8 +382,7 @@ function ClaseDetail({ clase, onBack, onDelete }) {
             display: 'flex', alignItems: 'center', gap: '0.4rem',
             padding: '0.7rem 1.3rem', borderRadius: '10px', border: 'none',
             background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 600,
-            boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
+            fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
           }}>
             {steps[step + 1].label} <ArrowRight size={16} />
           </button>
@@ -427,12 +392,31 @@ function ClaseDetail({ clase, onBack, onDelete }) {
   )
 }
 
-/* ─── Main Page ─── */
+/* ════════════════════════════════════════════════════════════════
+   SPECIALTY ICONS
+   ════════════════════════════════════════════════════════════════ */
+const specialtyConfig = {
+  'Medicina Interna': { color: '#3b82f6', bg: 'rgba(59,130,246,0.1)' },
+  'Cirugía': { color: '#ef4444', bg: 'rgba(239,68,68,0.1)' },
+  'Pediatría': { color: '#10b981', bg: 'rgba(16,185,129,0.1)' },
+  'Ginecología': { color: '#ec4899', bg: 'rgba(236,72,153,0.1)' },
+  'Psiquiatría': { color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)' },
+  'Salud Pública': { color: '#f59e0b', bg: 'rgba(245,158,11,0.1)' },
+}
+function getSpecialtyStyle(name) {
+  return specialtyConfig[name] || { color: 'var(--primary-500)', bg: 'rgba(19,91,236,0.1)' }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MAIN PAGE — Folder Navigation
+   ════════════════════════════════════════════════════════════════ */
 const MisClases = () => {
   const { user } = useAuth()
   const [clases, setClases] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedId, setSelectedId] = useState(null)
+  const [currentSpecialty, setCurrentSpecialty] = useState(null)
+  const [currentSubsystem, setCurrentSubsystem] = useState(null)
   const fileInputRef = useRef(null)
 
   const loadData = async () => {
@@ -442,6 +426,9 @@ const MisClases = () => {
       setClases(rows.map(r => ({
         id: r.id,
         savedAt: r.saved_at,
+        specialty: r.specialty || 'General',
+        subsystem: r.subsystem || 'General',
+        lessonNumber: r.lesson_number || 1,
         topic: r.topic,
         summary: r.summary || '',
         keyPoints: typeof r.key_points === 'string' ? JSON.parse(r.key_points) : (r.key_points || []),
@@ -454,9 +441,7 @@ const MisClases = () => {
     }
   }
 
-  useEffect(() => {
-    loadData()
-  }, [user])
+  useEffect(() => { loadData() }, [user])
 
   const handleImport = (e) => {
     const file = e.target.files?.[0]
@@ -466,19 +451,10 @@ const MisClases = () => {
       try {
         const data = JSON.parse(reader.result)
         const id = genId()
-        await saveClase({
-          id,
-          userId: user.id,
-          topic: data.topic || 'Sin título',
-          summary: data.summary || '',
-          keyPoints: data.keyPoints || [],
-          quiz: data.quiz || [],
-        })
+        await saveClase({ id, userId: user.id, topic: data.topic || 'Sin título', summary: data.summary || '', keyPoints: data.keyPoints || [], quiz: data.quiz || [] })
         await loadData()
         setSelectedId(id)
-      } catch {
-        alert('Error: el archivo no tiene el formato correcto.')
-      }
+      } catch { alert('Error: el archivo no tiene el formato correcto.') }
     }
     reader.readAsText(file)
     e.target.value = ''
@@ -489,13 +465,11 @@ const MisClases = () => {
       await deleteClase(id)
       setClases(prev => prev.filter(c => c.id !== id))
       setSelectedId(null)
-    } catch (err) {
-      console.error('Error deleting clase:', err)
-    }
+    } catch (err) { console.error('Error deleting clase:', err) }
   }
 
+  // ─── Detail view ───
   const selectedClase = clases.find(c => c.id === selectedId)
-
   if (selectedClase) {
     return (
       <div style={{ paddingBottom: '2rem' }}>
@@ -509,38 +483,64 @@ const MisClases = () => {
   }
 
   if (loading) {
-    return (
-      <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-tertiary)' }}>
-        Cargando clases...
-      </div>
-    )
+    return <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-tertiary)' }}>Cargando clases...</div>
   }
+
+  // ─── Build folder tree ───
+  const tree = {}
+  clases.forEach(c => {
+    if (!tree[c.specialty]) tree[c.specialty] = {}
+    if (!tree[c.specialty][c.subsystem]) tree[c.specialty][c.subsystem] = []
+    tree[c.specialty][c.subsystem].push(c)
+  })
+  // Sort lessons by number
+  Object.values(tree).forEach(subs => Object.values(subs).forEach(lessons => lessons.sort((a, b) => a.lessonNumber - b.lessonNumber)))
+
+  const specialties = Object.keys(tree)
+
+  // ─── Breadcrumb ───
+  const breadcrumb = []
+  breadcrumb.push({ label: 'Mis Clases', onClick: () => { setCurrentSpecialty(null); setCurrentSubsystem(null) } })
+  if (currentSpecialty) breadcrumb.push({ label: currentSpecialty, onClick: () => setCurrentSubsystem(null) })
+  if (currentSubsystem) breadcrumb.push({ label: currentSubsystem, onClick: null })
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
         <h1 className="page__title">Mis Clases</h1>
-        <button
-          onClick={() => fileInputRef.current?.click()}
-          style={{
-            background: 'var(--primary-500)', border: 'none', borderRadius: '10px',
-            padding: '0.6rem 1.2rem', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem'
-          }}
-        >
-          <Upload size={16} /> Importar Clase
+        <button onClick={() => fileInputRef.current?.click()} style={{
+          background: 'var(--primary-500)', border: 'none', borderRadius: '10px',
+          padding: '0.6rem 1.2rem', color: '#fff', cursor: 'pointer',
+          fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem'
+        }}>
+          <Upload size={16} /> Importar
         </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleImport}
-          style={{ display: 'none' }}
-        />
+        <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} style={{ display: 'none' }} />
       </div>
-      <p className="page__subtitle" style={{ marginBottom: '1.5rem' }}>
-        Resúmenes, puntos clave y preguntas EUNACOM generados desde tus videos con MedScribe.
+      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
+        Resúmenes, puntos clave y preguntas EUNACOM generados desde tus videos.
       </p>
+
+      {/* Breadcrumb */}
+      {(currentSpecialty || currentSubsystem) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '1.25rem', fontSize: '0.82rem' }}>
+          {breadcrumb.map((b, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />}
+              {b.onClick ? (
+                <button onClick={b.onClick} style={{
+                  background: 'none', border: 'none', cursor: 'pointer', padding: '0.2rem 0.4rem',
+                  borderRadius: '4px', color: 'var(--primary-500)', fontWeight: 600,
+                }}>
+                  {b.label}
+                </button>
+              ) : (
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, padding: '0.2rem 0.4rem' }}>{b.label}</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
 
       {clases.length === 0 ? (
         <div className="card" style={{
@@ -548,60 +548,115 @@ const MisClases = () => {
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'
         }}>
           <Video size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.5 }} />
-          <div>
-            <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-              No tienes clases guardadas
-            </p>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)', maxWidth: 400 }}>
-              Usa MedScribe para analizar un video de clase y guarda los resultados aquí como archivo JSON.
-            </p>
-          </div>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            style={{
-              marginTop: '0.5rem', background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-              borderRadius: '10px', padding: '0.7rem 1.5rem', color: 'var(--text-primary)',
-              cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500
-            }}
-          >
-            Importar archivo JSON
-          </button>
+          <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>No tienes clases guardadas</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)', maxWidth: 400 }}>
+            Usa MedScribe para analizar un video y guarda los resultados aquí.
+          </p>
         </div>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {clases.map(clase => (
-            <div
-              key={clase.id}
-              className="card"
-              onClick={() => setSelectedId(clase.id)}
-              style={{
-                padding: '1.25rem 1.5rem', cursor: 'pointer',
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                transition: 'all 0.2s', borderLeft: '3px solid var(--primary-500)'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{
-                  width: 42, height: 42, borderRadius: 10,
-                  background: 'rgba(19,91,236,0.1)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
-                }}>
-                  <Video size={20} style={{ color: 'var(--primary-500)' }} />
+      ) : !currentSpecialty ? (
+        /* ─── Level 1: Specialties ─── */
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+          {specialties.map(spec => {
+            const style = getSpecialtyStyle(spec)
+            const subsCount = Object.keys(tree[spec]).length
+            const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
+            return (
+              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
+                padding: '1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                borderLeft: `4px solid ${style.color}`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12, background: style.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                  }}>
+                    <Stethoscope size={22} style={{ color: style.color }} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{spec}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                      {subsCount} {subsCount === 1 ? 'subsistema' : 'subsistemas'} · {lessonCount} {lessonCount === 1 ? 'clase' : 'clases'}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                    {clase.topic}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                    {new Date(clase.savedAt).toLocaleDateString('es-CL', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    {clase.quiz?.length > 0 && ` · ${clase.quiz.length} preguntas`}
-                    {clase.keyPoints?.length > 0 && ` · ${clase.keyPoints.length} puntos clave`}
-                  </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                  {Object.keys(tree[spec]).map(sub => (
+                    <span key={sub} style={{
+                      fontSize: '0.72rem', padding: '0.2rem 0.6rem', borderRadius: '50px',
+                      background: style.bg, color: style.color, fontWeight: 600,
+                    }}>
+                      {sub}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
-            </div>
-          ))}
+            )
+          })}
+        </div>
+      ) : !currentSubsystem ? (
+        /* ─── Level 2: Subsystems ─── */
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
+            const style = getSpecialtyStyle(currentSpecialty)
+            return (
+              <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
+                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                borderLeft: `3px solid ${style.color}`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10, background: style.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                  }}>
+                    <FolderOpen size={20} style={{ color: style.color }} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{sub}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                      {lessons.length} {lessons.length === 1 ? 'clase' : 'clases'}
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+              </div>
+            )
+          })}
+        </div>
+      ) : (
+        /* ─── Level 3: Lessons ─── */
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {tree[currentSpecialty][currentSubsystem].map(clase => {
+            const style = getSpecialtyStyle(currentSpecialty)
+            return (
+              <div key={clase.id} className="card" onClick={() => setSelectedId(clase.id)} style={{
+                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                borderLeft: `3px solid ${style.color}`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10, background: style.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '1rem', fontWeight: 800, color: style.color,
+                  }}>
+                    {clase.lessonNumber}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                      {clase.topic}
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
+                      {clase.quiz?.length > 0 && `${clase.quiz.length} preguntas`}
+                      {clase.quiz?.length > 0 && clase.keyPoints?.length > 0 && ' · '}
+                      {clase.keyPoints?.length > 0 && `${clase.keyPoints.length} puntos clave`}
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+              </div>
+            )
+          })}
         </div>
       )}
     </div>

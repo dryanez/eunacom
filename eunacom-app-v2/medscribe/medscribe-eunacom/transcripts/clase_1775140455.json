@@ -1,0 +1,198 @@
+{
+  "topic": "Complicaciones Postquirúrgicas",
+  "summary": "Esta clase aborda las complicaciones más frecuentes de las cirugías generales, un tema que representa aproximadamente 10 preguntas en el EUNACOM y que suelen ser de dificultad baja. La mayoría de las preguntas se concentran en cirugía digestiva y vascular, mientras que cirugía general aporta unas 5 preguntas sobre hernias, manejo de heridas, abscesos, flecmones y furúnculos. No se evalúa técnica quirúrgica, solo si el paciente se opera o no.\n\nEl primer gran tema es la fiebre postoperatoria, cuyas causas se memorizan con la mnemotecnia de las W: Wind (causas respiratorias como atelectasias, neumonía y TEP), Water (infección urinaria), Wound (infección de herida operatoria), Wonderful Drugs (reacciones adversas a medicamentos e hipertermia maligna) y Veins (trombosis venosa profunda, TEP y tromboflebitis). Las atelectasias son la causa más frecuente antes de las 24 horas, la infección de herida operatoria después de las 48 horas, y la hipertermia maligna es la causa de fiebre inmediata (asociada a succinilcolina o gases halogenados).\n\nEl segundo bloque cubre las complicaciones mecánicas de la herida quirúrgica: el seroma (edema con líquido serohemático, tratado con drenaje aspirativo), el hematoma (acumulación de sangre con aumento de volumen rápido, tratado con drenaje), la eventración o hernia incisional (protrusión de vísceras con saco peritoneal, aparición tardía, tratamiento quirúrgico electivo), la evisceración (protrusión aguda sin saco peritoneal, cirugía urgente) y la dehiscencia de anastomosis (filtración del tubo digestivo con signos peritoneales graves que requiere cirugía urgente).",
+  "keyPoints": [
+    "Cirugía aporta ~10 preguntas al EUNACOM, habitualmente fáciles. No se pregunta técnica quirúrgica, solo indicación operatoria.",
+    "Mnemotecnia fiebre postoperatoria (las W): Wind (atelectasia, neumonía, TEP), Water (ITU), Wound (infección herida), Wonderful Drugs (RAM, hipertermia maligna), Veins (TVP, TEP, tromboflebitis).",
+    "Atelectasia = causa más frecuente de fiebre postoperatoria antes de 24 horas. Si no describen herida infectada, pensar en atelectasia.",
+    "Infección de herida operatoria = causa más frecuente de fiebre después de 48 horas.",
+    "Hipertermia maligna = causa de fiebre inmediata postoperatoria. Asociada a succinilcolina y gases halogenados. Fiebre >41°C al salir de pabellón.",
+    "Estudio de fiebre postoperatoria: Rx tórax (Wind), examen de orina (Water), revisión de herida (Wound), revisión de fármacos (Drugs), examen de extremidades y vías venosas (Veins).",
+    "Seroma: edema + equimosis + salida de líquido serohemático. Diagnóstico clínico. Tratamiento: drenaje aspirativo con presión negativa.",
+    "Hematoma: aumento de volumen rápido por acumulación de sangre. Diagnóstico clínico (ecografía si hay duda). Tratamiento: drenaje quirúrgico para evitar sobreinfección.",
+    "Eventración = hernia incisional: protrusión tardía de vísceras CON saco peritoneal. Tratamiento quirúrgico electivo.",
+    "Evisceración: protrusión aguda de vísceras SIN saco peritoneal. Es una urgencia quirúrgica.",
+    "Dehiscencia de anastomosis: filtración del tubo digestivo con dolor, vómitos y signos peritoneales (Blumberg, abdomen en tabla, silencio abdominal). Cirugía urgente o el paciente muere."
+  ],
+  "quiz": [
+    {
+      "questionText": "Paciente de 58 años, sometido a colecistectomía abierta hace 6 horas, presenta fiebre de 38.5°C. Al examen físico se auscultan crepitaciones bibasales, la herida operatoria se ve limpia sin signos de infección. ¿Cuál es la causa más probable de la fiebre?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Infección de herida operatoria",
+          "isCorrect": false,
+          "explanation": "La infección de herida operatoria es la causa más frecuente de fiebre después de las 48 horas, no a las 6 horas. Además, la herida se describe limpia sin signos de infección."
+        },
+        {
+          "id": "B",
+          "text": "Atelectasia pulmonar",
+          "isCorrect": true,
+          "explanation": "Correcto. Las atelectasias son la causa más frecuente de fiebre postoperatoria antes de las 24 horas. Los crepitaciones bibasales apoyan el diagnóstico y la herida no muestra signos de infección."
+        },
+        {
+          "id": "C",
+          "text": "Infección del tracto urinario",
+          "isCorrect": false,
+          "explanation": "La ITU puede causar fiebre postoperatoria, pero no es la causa más frecuente en las primeras horas. Además, no se describen síntomas urinarios."
+        },
+        {
+          "id": "D",
+          "text": "Trombosis venosa profunda",
+          "isCorrect": false,
+          "explanation": "La TVP puede causar fiebre postoperatoria, pero habitualmente se presenta más tardíamente y con signos en las extremidades inferiores."
+        },
+        {
+          "id": "E",
+          "text": "Hipertermia maligna",
+          "isCorrect": false,
+          "explanation": "La hipertermia maligna produce fiebre inmediata (>41°C al salir de pabellón), no a las 6 horas. Además, la temperatura de 38.5°C es más baja de lo esperado para hipertermia maligna."
+        }
+      ]
+    },
+    {
+      "questionText": "Paciente de 45 años, en el postoperatorio inmediato de una hemicolectomía derecha, presenta fiebre de 41.2°C justo al llegar a recuperación desde pabellón. Durante la cirugía se utilizó succinilcolina para la intubación. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atelectasia pulmonar",
+          "isCorrect": false,
+          "explanation": "Aunque las atelectasias son frecuentes, la fiebre inmediata al salir de pabellón con temperatura >41°C orienta a hipertermia maligna, no a atelectasia."
+        },
+        {
+          "id": "B",
+          "text": "Neumonía aspirativa",
+          "isCorrect": false,
+          "explanation": "La neumonía aspirativa puede ocurrir en el postoperatorio pero no produce fiebre inmediata de esta magnitud al salir de pabellón."
+        },
+        {
+          "id": "C",
+          "text": "Infección de herida operatoria",
+          "isCorrect": false,
+          "explanation": "La infección de herida operatoria aparece después de 48 horas como mínimo, no inmediatamente al salir de cirugía."
+        },
+        {
+          "id": "D",
+          "text": "Hipertermia maligna",
+          "isCorrect": true,
+          "explanation": "Correcto. La hipertermia maligna es la causa más frecuente de fiebre inmediata postoperatoria. Fiebre >41°C al salir de pabellón + uso de succinilcolina (agente desencadenante clásico junto a gases halogenados) confirman el diagnóstico."
+        },
+        {
+          "id": "E",
+          "text": "Reacción transfusional",
+          "isCorrect": false,
+          "explanation": "No se menciona transfusión sanguínea durante la cirugía. La asociación con succinilcolina apunta directamente a hipertermia maligna."
+        }
+      ]
+    },
+    {
+      "questionText": "Mujer de 52 años, operada de cesárea hace 2 años, consulta por aumento de volumen blando en la zona de la cicatriz quirúrgica abdominal. Al examen se palpan ruidos hidroaéreos en la masa. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Seroma",
+          "isCorrect": false,
+          "explanation": "El seroma es una acumulación de líquido serohemático que aparece en el postoperatorio agudo, no 2 años después. Además, no se auscultan ruidos intestinales en un seroma."
+        },
+        {
+          "id": "B",
+          "text": "Hematoma de pared abdominal",
+          "isCorrect": false,
+          "explanation": "El hematoma es una acumulación de sangre que aparece en el postoperatorio reciente, no años después de la cirugía."
+        },
+        {
+          "id": "C",
+          "text": "Eventración (hernia incisional)",
+          "isCorrect": true,
+          "explanation": "Correcto. La eventración o hernia incisional es la protrusión de vísceras a través de la herida operatoria con formación de saco peritoneal. Aparece tiempo después de la cirugía y se auscultan ruidos hidroaéreos en la masa, lo que confirma contenido intestinal."
+        },
+        {
+          "id": "D",
+          "text": "Evisceración",
+          "isCorrect": false,
+          "explanation": "La evisceración es una protrusión aguda SIN saco peritoneal que ocurre en el postoperatorio reciente, no 2 años después. Es una emergencia quirúrgica."
+        },
+        {
+          "id": "E",
+          "text": "Dehiscencia de anastomosis",
+          "isCorrect": false,
+          "explanation": "La dehiscencia de anastomosis es una filtración del tubo digestivo que se presenta con signos peritoneales agudos, no con un aumento de volumen crónico."
+        }
+      ]
+    },
+    {
+      "questionText": "Paciente de 67 años, al tercer día postoperatorio de una gastrectomía subtotal, inicia con dolor abdominal intenso, vómitos y fiebre. Al examen presenta abdomen en tabla, signo de Blumberg positivo y silencio abdominal. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Solicitar ecografía abdominal y observar evolución",
+          "isCorrect": false,
+          "explanation": "La presentación clínica con signos peritoneales marcados (abdomen en tabla, Blumberg, silencio abdominal) después de una cirugía digestiva es altamente sugerente de dehiscencia de anastomosis. No hay tiempo para observar, requiere cirugía urgente."
+        },
+        {
+          "id": "B",
+          "text": "Iniciar antibióticos endovenosos de amplio espectro y reevaluar en 12 horas",
+          "isCorrect": false,
+          "explanation": "Si bien los antibióticos son parte del manejo, la conducta principal es la cirugía urgente. Esperar 12 horas puede ser fatal por peritonitis progresiva."
+        },
+        {
+          "id": "C",
+          "text": "Cirugía urgente",
+          "isCorrect": true,
+          "explanation": "Correcto. La dehiscencia de anastomosis con signos peritoneales (abdomen en tabla, Blumberg, silencio abdominal) requiere cirugía urgente. La filtración del tubo digestivo genera una peritonitis grave y si no se opera de urgencia, el paciente puede morir."
+        },
+        {
+          "id": "D",
+          "text": "Colocar sonda nasogástrica y régimen cero",
+          "isCorrect": false,
+          "explanation": "Estas medidas son complementarias pero no resuelven el problema de fondo. La dehiscencia de anastomosis con peritonitis requiere resolución quirúrgica urgente."
+        },
+        {
+          "id": "E",
+          "text": "Solicitar TAC de abdomen con contraste oral",
+          "isCorrect": false,
+          "explanation": "Si bien el TAC puede confirmar el diagnóstico, ante un cuadro clínico tan claro con signos peritoneales marcados, la conducta es cirugía urgente sin retrasar con estudios adicionales."
+        }
+      ]
+    },
+    {
+      "questionText": "Paciente de 40 años, al segundo día postoperatorio de una hernioplastía inguinal, presenta edema en la zona quirúrgica con equimosis y salida de líquido serohemático transparente por la herida. No tiene fiebre ni signos de infección. ¿Cuál es el tratamiento más apropiado?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibióticos endovenosos por sospecha de infección de herida",
+          "isCorrect": false,
+          "explanation": "No hay signos de infección (no hay fiebre, eritema ni pus). El cuadro corresponde a un seroma, no a una infección de herida operatoria."
+        },
+        {
+          "id": "B",
+          "text": "Reoperación urgente para explorar la herida",
+          "isCorrect": false,
+          "explanation": "El seroma no requiere reoperación. Es una complicación menor que se maneja de forma conservadora con curaciones y drenaje aspirativo."
+        },
+        {
+          "id": "C",
+          "text": "Curaciones y drenaje aspirativo",
+          "isCorrect": true,
+          "explanation": "Correcto. El seroma (edema + equimosis + salida de líquido serohemático sin signos de infección) se trata con curaciones locales y drenaje aspirativo con presión negativa. Tiene buen pronóstico."
+        },
+        {
+          "id": "D",
+          "text": "Observación sin intervención y control ambulatorio en 2 semanas",
+          "isCorrect": false,
+          "explanation": "Aunque el seroma tiene buen pronóstico, requiere manejo activo con drenaje aspirativo para aliviar los síntomas y prevenir complicaciones."
+        },
+        {
+          "id": "E",
+          "text": "Drenaje quirúrgico abierto en pabellón",
+          "isCorrect": false,
+          "explanation": "El drenaje quirúrgico abierto en pabellón se reserva para hematomas. El seroma se maneja con drenaje aspirativo cerrado con presión negativa, que es menos invasivo."
+        }
+      ]
+    }
+  ],
+  "specialty": "Cirugía",
+  "subsystem": "Cirugía General",
+  "lessonNumber": 1,
+  "savedAt": "2026-04-02T11:34:00.000Z"
+}

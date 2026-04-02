@@ -113,6 +113,9 @@ app.get('/api/clases', (_req, res) => {
           return {
             id: f.replace('.json', ''),
             saved_at: data.savedAt || fs.statSync(path.join(TRANSCRIPTS_DIR, f)).mtime.toISOString(),
+            specialty: data.specialty || 'General',
+            subsystem: data.subsystem || 'General',
+            lesson_number: data.lessonNumber || 1,
             topic: data.topic,
             summary: data.summary || '',
             key_points: JSON.stringify(data.keyPoints || []),
