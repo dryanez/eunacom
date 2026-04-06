@@ -75,7 +75,7 @@ export async function askTutor(payload) {
 // ── MIS CLASES (MedScribe) ───────────────────────────────────────────────────
 // In production: calls Vercel API (Turso). In dev: calls MedScribe backend (port 3001).
 
-const MEDSCRIBE_BASE = 'http://localhost:3001'
+const MEDSCRIBE_BASE = import.meta.env.PROD ? '' : `http://${window.location.hostname}:3001`
 
 async function clasesFetch(path, options = {}) {
   // Try MedScribe backend first (local dev), fall back to Vercel API
@@ -91,7 +91,7 @@ async function clasesFetch(path, options = {}) {
 }
 
 export async function fetchClases(userId) {
-  const data = await clasesFetch('/api/clases')
+  const data = await clasesFetch(`/api/clases?userId=${userId}`)
   return data.data || []
 }
 

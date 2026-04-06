@@ -15,9 +15,21 @@ export default async function handler(req, res) {
       summary TEXT,
       key_points TEXT,
       quiz TEXT,
+      specialty TEXT,
+      subsystem TEXT,
+      lesson_number INTEGER,
+      slides_file TEXT,
+      video_dir TEXT,
       saved_at TEXT NOT NULL DEFAULT (datetime('now'))
     )`
   })
+
+  // Add migration for old table
+  try { await db.execute('ALTER TABLE clases ADD COLUMN specialty TEXT'); } catch (e) {}
+  try { await db.execute('ALTER TABLE clases ADD COLUMN subsystem TEXT'); } catch (e) {}
+  try { await db.execute('ALTER TABLE clases ADD COLUMN lesson_number INTEGER'); } catch (e) {}
+  try { await db.execute('ALTER TABLE clases ADD COLUMN slides_file TEXT'); } catch (e) {}
+  try { await db.execute('ALTER TABLE clases ADD COLUMN video_dir TEXT'); } catch (e) {}
 
   if (req.method === 'GET') {
     const { userId } = req.query
@@ -30,18 +42,26 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { id, userId, topic, summary, keyPoints, quiz } = req.body
+    const { id, userId, topic, summary, keyPoints, quiz, specialty, subsystem, lessonNumber, slidesFile, videoDir } = req.body
     if (!userId || !topic) return res.status(400).json({ error: 'userId and topic required' })
     await db.execute({
-      sql: `INSERT INTO clases (id, user_id, topic, summary, key_points, quiz, saved_at)
-            VALUES (?, ?, ?, ?, ?, ?, datetime('now'))`,
+      sql: `INSERT INTO clases (id, user_id, topic, summary, key_points, quiz, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now')) ON CONFLICT(id) DO UPDATE SET 
+            topic=excluded.topic, summary=excluded.summary, key_points=excluded.key_points, quiz=excluded.quiz,
+            specialty=excluded.specialty, subsystem=excluded.subsystem, lesson_number=excluded.lesson_number,
+            slides_file=excluded.slides_file, video_dir=excluded.video_dir`,
       args: [
         id || crypto.randomUUID(),
         userId,
         topic,
         summary || '',
         JSON.stringify(keyPoints || []),
-        JSON.stringify(quiz || [])
+        JSON.stringify(quiz || []),
+        specialty || 'General',
+        subsystem || 'General',
+        lessonNumber || 1,
+        slidesFile || null,
+        videoDir || null
       ]
     })
     return res.json({ ok: true, id })
