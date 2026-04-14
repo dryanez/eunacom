@@ -46,12 +46,11 @@ export default async function handler(req, res) {
       return res.json({ data: result.rows[0] || null })
     }
 
-    if (!userId) return res.status(400).json({ error: 'userId required' })
-
-    // List mode: only return lightweight fields
+    // List mode: return ALL classes (shared catalog for all users)
+    // Progress is tracked per-user in clase_progress table, not here
     const result = await db.execute({
-      sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases WHERE user_id = ? ORDER BY specialty, subsystem, lesson_number',
-      args: [userId]
+      sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases ORDER BY specialty, subsystem, lesson_number',
+      args: []
     })
     return res.json({ data: result.rows })
   }

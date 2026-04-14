@@ -79,8 +79,8 @@ async function clasesFetch(path, options = {}) {
   return apiFetch(path, options)
 }
 
-export async function fetchClases(userId) {
-  const data = await clasesFetch(`/api/clases?userId=${userId}`)
+export async function fetchClases() {
+  const data = await clasesFetch('/api/clases')
   return data.data || []
 }
 

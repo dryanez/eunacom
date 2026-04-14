@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchClases, fetchClase, saveClase, deleteClase, genId, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
+import { fetchClases, fetchClase, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
 import { getVideoUrl } from '../lib/videoMap'
 import VideoPlayer from '../components/VideoPlayer'
 import {
-  Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle, Trash2,
-  Upload, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
+  Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle,
+  CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
   Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope,
   Presentation, Play, ClipboardList, BarChart3, Trophy, Clock, Hash,
   HeartPulse, Brain, Droplets, FlaskConical, Wind, Bone, Microscope,
@@ -889,7 +889,7 @@ function PerfilBadge({ label, prefix }) {
   )
 }
 
-function ClaseDetail({ clase, onBack, onDelete, onNavigateToTopic, onTrackProgress, onQuizComplete, onVideoWatched, progressMap }) {
+function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuizComplete, onVideoWatched, progressMap }) {
   const [step, setStep] = useState(0)
   const [showQuizPrompt, setShowQuizPrompt] = useState(false)
   const hasTranscript = !!clase.cleanTranscript
@@ -931,13 +931,6 @@ function ClaseDetail({ clase, onBack, onDelete, onNavigateToTopic, onTrackProgre
           cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
         }}>
           <ChevronLeft size={16} /> Volver
-        </button>
-        <button onClick={() => onDelete(clase.id)} style={{
-          background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)',
-          borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--danger-500)',
-          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
-        }}>
-          <Trash2 size={14} /> Eliminar
         </button>
       </div>
 
@@ -1661,7 +1654,6 @@ const MisClases = () => {
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
   const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
-  const fileInputRef = useRef(null)
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
   const normalizeQuiz = (rawQuiz) => {
@@ -1708,12 +1700,13 @@ const MisClases = () => {
   const [aggregateQuiz, setAggregateQuiz] = useState(null) // { subsystem, questions: [{...q, claseId, claseTopic}] }
 
   // List: only fetches lightweight metadata (no summary/quiz/keyPoints)
+  // Classes are shared catalog — available to ALL users
+  // Progress is per-user and loaded separately
   const loadData = async () => {
-    if (!user) { setLoading(false); return }
     try {
       const [rows, progress] = await Promise.all([
-        fetchClases(user.id),
-        fetchClaseProgress(user.id).catch(() => [])
+        fetchClases(),
+        user ? fetchClaseProgress(user.id).catch(() => []) : Promise.resolve([])
       ])
       setClases(rows.map(r => ({
         id: r.id,
@@ -1873,31 +1866,6 @@ const MisClases = () => {
 
   useEffect(() => { loadData() }, [user])
 
-  const handleImport = (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = async () => {
-      try {
-        const data = JSON.parse(reader.result)
-        const id = genId()
-        await saveClase({ id, userId: user.id, topic: data.topic || 'Sin título', summary: data.summary || '', keyPoints: data.keyPoints || [], quiz: data.quiz || [] })
-        await loadData()
-        openClase(id)
-      } catch { alert('Error: el archivo no tiene el formato correcto.') }
-    }
-    reader.readAsText(file)
-    e.target.value = ''
-  }
-
-  const handleDelete = async (id) => {
-    try {
-      await deleteClase(id)
-      setClases(prev => prev.filter(c => c.id !== id))
-      closeDetail()
-    } catch (err) { console.error('Error deleting clase:', err) }
-  }
-
   // ─── Aggregate Quiz view ───
   if (aggregateQuiz) {
     const { subsystem, questions } = aggregateQuiz
@@ -1981,7 +1949,6 @@ const MisClases = () => {
         <ClaseDetail
           clase={selectedClase}
           onBack={closeDetail}
-          onDelete={handleDelete}
           onNavigateToTopic={navigateToTopic}
           onTrackProgress={trackProgress}
           progressMap={progressMap}
@@ -2063,7 +2030,6 @@ const MisClases = () => {
       <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
         {clases.length} clases disponibles · Tu progreso se guarda automáticamente.
       </p>
-      <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} style={{ display: 'none' }} />
 
       {/* Breadcrumb */}
       {(currentSpecialty || currentSubsystem) && (
@@ -2091,11 +2057,20 @@ const MisClases = () => {
           padding: '3rem 2rem', textAlign: 'center',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'
         }}>
-          <Video size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.5 }} />
-          <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>No tienes clases guardadas</p>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)', maxWidth: 400 }}>
-            Usa MedScribe para analizar un video y guarda los resultados aquí.
-          </p>
+          {loading ? (
+            <>
+              <div className="spinner" style={{ width: 40, height: 40, border: '3px solid var(--border-color)', borderTop: '3px solid var(--primary-500)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-tertiary)' }}>Cargando clases...</p>
+            </>
+          ) : (
+            <>
+              <Video size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.5 }} />
+              <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>No hay clases disponibles</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)', maxWidth: 400 }}>
+                Las clases estarán disponibles pronto. Mientras tanto, puedes practicar con las Pruebas EUNACOM.
+              </p>
+            </>
+          )}
         </div>
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */

@@ -311,10 +311,10 @@ function clasesApiPlugin() {
 
             if (!userId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId required' })) }
 
-            // List mode: only return lightweight fields
+            // List mode: return ALL classes (shared catalog for all users)
             const result = await db.execute({
-              sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases WHERE user_id = ? ORDER BY specialty, subsystem, lesson_number',
-              args: [userId]
+              sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases ORDER BY specialty, subsystem, lesson_number',
+              args: []
             })
             return res.end(JSON.stringify({ data: result.rows }))
           }
