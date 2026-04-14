@@ -1,5 +1,5 @@
 // Shared Turso client for Vercel API routes (server-side only)
-import { createClient } from '@libsql/client/web';
+import { createClient } from '@libsql/client';
 
 let client = null
 

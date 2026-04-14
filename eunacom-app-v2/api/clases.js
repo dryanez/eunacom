@@ -4,6 +4,7 @@
 import { getTurso } from './_turso.js';
 
 export default async function handler(req, res) {
+  try {
   const db = getTurso()
 
   // Ensure table exists (idempotent)
@@ -89,4 +90,8 @@ export default async function handler(req, res) {
   }
 
   return res.status(405).json({ error: 'Method not allowed' })
+  } catch (err) {
+    console.error('clases handler error:', err)
+    return res.status(500).json({ error: err.message, stack: err.stack })
+  }
 }
