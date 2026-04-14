@@ -22,7 +22,8 @@ export default async function handler(req, res) {
       slides_file TEXT,
       video_dir TEXT,
       saved_at TEXT NOT NULL DEFAULT (datetime('now'))
-    )`
+    )`,
+    args: []
   })
 
   // Add migration for old table

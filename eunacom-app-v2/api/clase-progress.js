@@ -22,7 +22,8 @@ export default async function handler(req, res) {
       video_watched INTEGER DEFAULT 0,
       updated_at TEXT NOT NULL DEFAULT (datetime('now')),
       UNIQUE(user_id, clase_id)
-    )`
+    )`,
+    args: []
   })
   // Migrations for old tables missing columns
   try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN video_watched INTEGER DEFAULT 0', args: [] }) } catch {}
