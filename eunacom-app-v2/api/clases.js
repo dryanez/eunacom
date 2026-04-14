@@ -26,11 +26,11 @@ export default async function handler(req, res) {
   })
 
   // Add migration for old table
-  try { await db.execute('ALTER TABLE clases ADD COLUMN specialty TEXT'); } catch (e) {}
-  try { await db.execute('ALTER TABLE clases ADD COLUMN subsystem TEXT'); } catch (e) {}
-  try { await db.execute('ALTER TABLE clases ADD COLUMN lesson_number INTEGER'); } catch (e) {}
-  try { await db.execute('ALTER TABLE clases ADD COLUMN slides_file TEXT'); } catch (e) {}
-  try { await db.execute('ALTER TABLE clases ADD COLUMN video_dir TEXT'); } catch (e) {}
+  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN specialty TEXT', args: [] }) } catch (e) {}
+  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN subsystem TEXT', args: [] }) } catch (e) {}
+  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN lesson_number INTEGER', args: [] }) } catch (e) {}
+  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN slides_file TEXT', args: [] }) } catch (e) {}
+  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN video_dir TEXT', args: [] }) } catch (e) {}
 
   if (req.method === 'GET') {
     const { userId, id } = req.query

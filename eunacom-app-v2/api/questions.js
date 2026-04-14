@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const db = getTurso()
 
   // Ensure table exists (idempotent – safe if already created by upload script)
-  await db.execute(`
+  await db.execute({ sql: `
     CREATE TABLE IF NOT EXISTS eunacom_questions (
       id TEXT PRIMARY KEY,
       eunacom_code TEXT,
@@ -27,10 +27,10 @@ export default async function handler(req, res) {
       clase_id TEXT,
       saved_at TEXT DEFAULT (datetime('now'))
     )
-  `)
-  try { await db.execute('CREATE INDEX IF NOT EXISTS idx_eq_code ON eunacom_questions(eunacom_code)') } catch {}
-  try { await db.execute('CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)') } catch {}
-  try { await db.execute('CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)') } catch {}
+  `, args: [] })
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_code ON eunacom_questions(eunacom_code)', args: [] }) } catch {}
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)', args: [] }) } catch {}
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)', args: [] }) } catch {}
 
   const { clase_id, eunacom_code, specialty, limit = '50', offset = '0' } = req.query
   const lim = Math.min(parseInt(limit) || 50, 200)

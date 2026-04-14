@@ -25,10 +25,10 @@ export default async function handler(req, res) {
     )`
   })
   // Migrations for old tables missing columns
-  try { await db.execute('ALTER TABLE clase_progress ADD COLUMN video_watched INTEGER DEFAULT 0') } catch {}
-  try { await db.execute('ALTER TABLE clase_progress ADD COLUMN quiz_correct INTEGER DEFAULT 0') } catch {}
-  try { await db.execute('ALTER TABLE clase_progress ADD COLUMN quiz_total INTEGER DEFAULT 0') } catch {}
-  try { await db.execute('ALTER TABLE clase_progress ADD COLUMN quiz_answers TEXT') } catch {}
+  try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN video_watched INTEGER DEFAULT 0', args: [] }) } catch {}
+  try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_correct INTEGER DEFAULT 0', args: [] }) } catch {}
+  try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_total INTEGER DEFAULT 0', args: [] }) } catch {}
+  try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_answers TEXT', args: [] }) } catch {}
 
   if (req.method === 'GET') {
     const { userId } = req.query
