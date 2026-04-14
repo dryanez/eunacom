@@ -3,7 +3,6 @@ import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, Chevro
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, createTest, genId } from '../lib/api'
-import questionDB from '../data/questionDB.json'
 
 const TestCreator = () => {
     const navigate = useNavigate()
@@ -14,6 +13,7 @@ const TestCreator = () => {
     const [isCreating, setIsCreating] = useState(false)
     const [userProgress, setUserProgress] = useState({})
     const [recentTests, setRecentTests] = useState([])
+    const [questionDB, setQuestionDB] = useState([])
 
     const [statusFilters, setStatusFilters] = useState({
         unused: true,
@@ -36,7 +36,11 @@ const TestCreator = () => {
         try {
             if (!user) return
 
-            const progress = await fetchProgress(user.id)
+            const [progress, db] = await Promise.all([
+                fetchProgress(user.id),
+                fetch('/data/questionDB.json').then(r => r.json())
+            ])
+            setQuestionDB(db)
             const progressMap = {}
             progress.forEach(p => {
                 progressMap[p.question_id] = {
