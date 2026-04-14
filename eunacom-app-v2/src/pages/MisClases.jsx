@@ -1760,16 +1760,243 @@ function getSubsystemStyle(name) {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   PRUEBAS BROWSER — Standalone topic selector for /banco-eunacom
+   ════════════════════════════════════════════════════════════════ */
+function PruebasBrowser() {
+  const [index, setIndex] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [selectedModule, setSelectedModule] = useState(null)
+  const [selectedTopic, setSelectedTopic] = useState(null) // { specialty, subsystem }
+
+  useEffect(() => {
+    fetch('/data/pruebas/index.json')
+      .then(r => r.json())
+      .then(idx => { setIndex(idx); setLoading(false) })
+      .catch(() => setLoading(false))
+  }, [])
+
+  // If a topic is selected, render PruebasView
+  if (selectedTopic) {
+    return (
+      <PruebasView
+        specialty={selectedTopic.specialty}
+        subsystem={selectedTopic.subsystem}
+        subsystemStyle={getSubsystemStyle(selectedTopic.subsystem)}
+        onBack={() => setSelectedTopic(null)}
+      />
+    )
+  }
+
+  if (loading) {
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        <h1 className="page__title">Banco EUNACOM</h1>
+        <p className="page__subtitle" style={{ marginBottom: '1.5rem' }}>Cargando pruebas...</p>
+        <div style={{ display: 'grid', gap: '0.75rem' }}>
+          {[1,2,3,4].map(i => (
+            <div key={i} className="card" style={{ padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ width: 42, height: 42, borderRadius: 10, background: 'var(--surface-600)', animation: 'pulse 1.5s infinite' }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ width: `${50 + i * 10}%`, height: 14, borderRadius: 6, background: 'var(--surface-600)', marginBottom: 8, animation: 'pulse 1.5s infinite' }} />
+                <div style={{ width: '30%', height: 10, borderRadius: 6, background: 'var(--surface-600)', animation: 'pulse 1.5s infinite' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <style>{`@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }`}</style>
+      </div>
+    )
+  }
+
+  if (!index) {
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        <h1 className="page__title">Banco EUNACOM</h1>
+        <div className="card" style={{ padding: '3rem 2rem', textAlign: 'center' }}>
+          <HelpCircle size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.5 }} />
+          <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: '1rem' }}>No se pudieron cargar las pruebas</p>
+        </div>
+      </div>
+    )
+  }
+
+  const modules = Object.keys(index)
+  const pruebaProgress = loadPruebaProgress()
+
+  // Breadcrumb
+  const breadcrumb = [
+    { label: 'Banco EUNACOM', onClick: selectedModule ? () => setSelectedModule(null) : null },
+  ]
+  if (selectedModule) breadcrumb.push({ label: selectedModule, onClick: null })
+
+  // Module colors
+  const moduleStyles = {
+    'Módulo 1': { color: '#3b82f6', bg: 'rgba(59,130,246,0.1)', icon: <Stethoscope size={22} /> },
+    'Módulo 2': { color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)', icon: <Scissors size={22} /> },
+    'Módulo 3': { color: '#ec4899', bg: 'rgba(236,72,153,0.1)', icon: <Baby size={22} /> },
+  }
+
+  return (
+    <div style={{ paddingBottom: '2rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+        <h1 className="page__title">Banco EUNACOM</h1>
+        {(() => {
+          let totalPruebas = 0, completedPruebas = 0
+          Object.values(index).forEach(topics => {
+            Object.values(topics).forEach(t => {
+              t.pruebas.forEach(p => {
+                totalPruebas++
+                if (pruebaProgress[p.id]?.completed) completedPruebas++
+              })
+            })
+          })
+          const pct = totalPruebas ? Math.round((completedPruebas / totalPruebas) * 100) : 0
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textAlign: 'right' }}>
+                <span style={{ fontWeight: 700, color: pct > 0 ? '#10b981' : 'var(--text-secondary)' }}>{completedPruebas}</span>/{totalPruebas} pruebas
+              </div>
+              <ProgressRing percent={pct} size={40} stroke={3} />
+            </div>
+          )
+        })()}
+      </div>
+      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
+        Sets de preguntas tipo examen con explicaciones detalladas.
+      </p>
+
+      {/* Breadcrumb */}
+      {selectedModule && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '1.25rem', fontSize: '0.82rem' }}>
+          {breadcrumb.map((b, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />}
+              {b.onClick ? (
+                <button onClick={b.onClick} style={{
+                  background: 'none', border: 'none', cursor: 'pointer', padding: '0.2rem 0.4rem',
+                  borderRadius: '4px', color: 'var(--primary-500)', fontWeight: 600,
+                }}>
+                  {b.label}
+                </button>
+              ) : (
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, padding: '0.2rem 0.4rem' }}>{b.label}</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+
+      {!selectedModule ? (
+        /* ─── Module cards ─── */
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
+          {modules.map(mod => {
+            const style = moduleStyles[mod] || { color: '#3b82f6', bg: 'rgba(59,130,246,0.1)', icon: <FileText size={22} /> }
+            const topics = Object.keys(index[mod])
+            let totalQ = 0, totalP = 0, completedP = 0
+            Object.values(index[mod]).forEach(t => {
+              t.pruebas.forEach(p => {
+                totalP++
+                totalQ += p.questionCount
+                if (pruebaProgress[p.id]?.completed) completedP++
+              })
+            })
+            const pct = totalP ? Math.round((completedP / totalP) * 100) : 0
+            return (
+              <div key={mod} className="card" onClick={() => setSelectedModule(mod)} style={{
+                padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
+                borderLeft: `4px solid ${style.color}`,
+                background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{
+                    width: 48, height: 48, borderRadius: 14, background: style.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: style.color, border: `1px solid ${style.color}25`,
+                  }}>
+                    {style.icon}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{mod}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                      {totalP} pruebas · {totalQ} preguntas · {topics.length} temas
+                    </div>
+                  </div>
+                  <ProgressRing percent={pct} size={42} stroke={3} />
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                  {topics.map(topic => {
+                    const subStyle = getSubsystemStyle(topic)
+                    return (
+                      <span key={topic} style={{
+                        fontSize: '0.72rem', padding: '0.2rem 0.6rem', borderRadius: '50px',
+                        background: subStyle.bg, color: subStyle.color, fontWeight: 600,
+                        display: 'flex', alignItems: 'center', gap: '0.3rem',
+                      }}>
+                        {React.cloneElement(subStyle.icon, { size: 11 })} {topic}
+                      </span>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      ) : (
+        /* ─── Topic cards for selected module ─── */
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {Object.entries(index[selectedModule]).map(([topic, meta]) => {
+            const subStyle = getSubsystemStyle(topic)
+            const totalP = meta.pruebas.length
+            const completedP = meta.pruebas.filter(p => pruebaProgress[p.id]?.completed).length
+            const totalQ = meta.pruebas.reduce((s, p) => s + p.questionCount, 0)
+            const pct = totalP ? Math.round((completedP / totalP) * 100) : 0
+            return (
+              <div key={topic} className="card" onClick={() => setSelectedTopic({ specialty: selectedModule, subsystem: topic })} style={{
+                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                borderLeft: `3px solid ${subStyle.color}`,
+                background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{
+                      width: 44, height: 44, borderRadius: 12, background: subStyle.bg,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: subStyle.color, border: `1px solid ${subStyle.color}25`,
+                    }}>
+                      {subStyle.icon}
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{topic}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                        {totalP} pruebas · {totalQ} preguntas · {completedP} completadas
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <ProgressRing percent={pct} size={36} stroke={3} />
+                    <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
    MAIN PAGE — Folder Navigation
    ════════════════════════════════════════════════════════════════ */
-const MisClases = () => {
+const MisClases = ({ initialView = null }) => {
   const { user } = useAuth()
   const [clases, setClases] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedId, setSelectedId] = useState(null)
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
-  const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
+  const [subView, setSubView] = useState(initialView) // null | 'clases' | 'pruebas'
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
   const normalizeQuiz = (rawQuiz) => {
@@ -1981,6 +2208,11 @@ const MisClases = () => {
   }
 
   useEffect(() => { loadData() }, [user])
+
+  // ─── Banco EUNACOM direct access ───
+  if (initialView === 'pruebas') {
+    return <PruebasBrowser />
+  }
 
   // ─── Aggregate Quiz view ───
   if (aggregateQuiz) {
