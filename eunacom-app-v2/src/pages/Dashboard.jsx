@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { supabase } from '../lib/supabase'
 import { fetchProgress } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress } from '../utils/xpSystem'
 
@@ -44,7 +43,7 @@ const Dashboard = () => {
     
     return (
         <div style={{ paddingBottom: '2rem' }}>
-            <h1 className="page__title">User Dashboard</h1>
+            <h1 className="page__title">Dashboard</h1>
             <p className="page__subtitle">Tu progreso general</p>
 
             <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.5rem', marginBottom: '2rem', background: 'var(--surface-700)' }}>
@@ -73,7 +72,7 @@ const Dashboard = () => {
                         <div style={{ padding: '0.5rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}>
                             <PieChart size={20} color="var(--primary-300)" />
                         </div>
-                        Current Score
+                        Puntaje Actual
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', padding: '1rem 0' }}>
                          <div className="donut-wrapper">
@@ -105,7 +104,7 @@ const Dashboard = () => {
                         <div style={{ padding: '0.5rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}>
                             <FileText size={20} color="var(--primary-300)" />
                         </div>
-                        Questions Answered
+                        Preguntas Respondidas
                     </div>
                     <div style={{ padding: '1rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100px' }}>
                         <div className="stat-card__value">{stats.totalAnswered}</div>
@@ -118,13 +117,13 @@ const Dashboard = () => {
                         <div style={{ padding: '0.5rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}>
                             <Target size={20} color="var(--primary-300)" />
                         </div>
-                        Daily Goal
+                        Meta Diaria
                     </div>
                     <div style={{ padding: '1rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100px' }}>
                         <div className="stat-card__value" style={{ color: 'var(--surface-50)', WebkitTextFillColor: 'initial', background: 'none' }}>
                             0<span style={{ color: 'var(--surface-400)', fontSize: '1.5rem', fontWeight: 600 }}>/50</span>
                         </div>
-                        <div className="stat-card__sub">Questions</div>
+                        <div className="stat-card__sub">Preguntas</div>
                     </div>
                 </div>
             </div>

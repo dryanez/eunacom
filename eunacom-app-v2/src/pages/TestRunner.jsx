@@ -100,15 +100,84 @@ const TestRunner = () => {
 
     if (isFinished) {
         let score = 0
-        questions.forEach(q => { if (answers[q.id]?.toLowerCase() === q.correctAnswer?.toLowerCase()) score++ })
+        const results = questions.map(q => {
+            const userAns = answers[q.id]
+            const correct = userAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
+            if (correct) score++
+            const userChoice = q.choices?.find(c => c.id === userAns)
+            const correctChoice = q.choices?.find(c => c.id.toLowerCase() === q.correctAnswer?.toLowerCase())
+            return { q, userAns, correct, omitted: !userAns, userChoice, correctChoice }
+        })
+        const pct = Math.round((score / totalQuestions) * 100)
+        const wrongResults = results.filter(r => !r.correct)
+
         return (
-            <div style={{ background: 'var(--surface-900)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="card" style={{ maxWidth: '600px', width: '100%', padding: '3rem', textAlign: 'center' }}>
-                    <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>¡Examen Finalizado!</h1>
-                    <p style={{ color: 'var(--surface-300)', marginBottom: '2rem' }}>Tiempo: {formatTime(timeElapsed)}</p>
-                    <div style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--primary-400)', marginBottom: '1rem' }}>{score}/{totalQuestions}</div>
-                    <p style={{ marginBottom: '3rem', color: 'var(--surface-300)' }}>{Math.round((score / totalQuestions) * 100)}%</p>
-                    <button className="btn-primary" onClick={() => navigate('/dashboard')}>Volver al Dashboard</button>
+            <div style={{ background: 'var(--surface-900)', minHeight: '100vh', padding: '2rem 1rem', paddingBottom: '4rem' }}>
+                <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+                    <div className="card" style={{ padding: '2.5rem', textAlign: 'center', marginBottom: '1.5rem' }}>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>¡Examen Finalizado!</h1>
+                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>Tiempo: {formatTime(timeElapsed)}</p>
+                        <div style={{ fontSize: '4rem', fontWeight: 800, color: pct >= 60 ? 'var(--accent-green)' : 'var(--accent-red)', marginBottom: '0.5rem' }}>
+                            {pct}%
+                        </div>
+                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>
+                            {score} de {totalQuestions} correctas
+                        </p>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(52,211,153,0.1)', borderRadius: 'var(--radius)' }}>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-green)' }}>{score}</div>
+                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Correctas</div>
+                            </div>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(248,113,113,0.1)', borderRadius: 'var(--radius)' }}>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-red)' }}>{results.filter(r => !r.correct && !r.omitted).length}</div>
+                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Incorrectas</div>
+                            </div>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(251,191,36,0.1)', borderRadius: 'var(--radius)' }}>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-amber)' }}>{results.filter(r => r.omitted).length}</div>
+                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Omitidas</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {wrongResults.length > 0 && (
+                        <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: '1.5rem' }}>
+                            <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--surface-700)' }}>
+                                <h3 style={{ margin: 0, fontSize: '1rem' }}>Preguntas para Repasar ({wrongResults.length})</h3>
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                                {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => (
+                                    <div key={q.id} style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                                        <p style={{ margin: '0 0 0.75rem', fontSize: '0.93rem', lineHeight: 1.5, color: 'var(--surface-100)' }}>
+                                            <strong style={{ color: 'var(--surface-400)', marginRight: '0.5rem' }}>{i + 1}.</strong>
+                                            {q.question}
+                                        </p>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.85rem' }}>
+                                            {!omitted && (
+                                                <div style={{ color: 'var(--accent-red)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                                                    <span style={{ flexShrink: 0 }}>✗ Tu respuesta:</span>
+                                                    <span>{userChoice ? `${userChoice.id}. ${userChoice.text}` : userChoice?.id}</span>
+                                                </div>
+                                            )}
+                                            {omitted && <div style={{ color: 'var(--accent-amber)' }}>⊘ Omitida</div>}
+                                            <div style={{ color: 'var(--accent-green)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                                                <span style={{ flexShrink: 0 }}>✓ Correcta:</span>
+                                                <span>{correctChoice ? `${correctChoice.id}. ${correctChoice.text}` : q.correctAnswer}</span>
+                                            </div>
+                                            {q.explanation && (
+                                                <div style={{ marginTop: '0.5rem', padding: '0.75rem', background: 'rgba(255,255,255,0.04)', borderRadius: '6px', color: 'var(--surface-300)', lineHeight: 1.5 }}>
+                                                    💡 {q.explanation}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    <button className="btn-primary btn-primary--full" onClick={() => navigate('/dashboard')} style={{ padding: '1rem' }}>
+                        Volver al Dashboard
+                    </button>
                 </div>
             </div>
         )

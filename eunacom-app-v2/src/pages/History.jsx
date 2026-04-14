@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Search, Filter, Play, Trash2 } from 'lucide-react'
-import { supabase } from '../lib/supabase'
 import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
