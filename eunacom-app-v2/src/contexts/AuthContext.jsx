@@ -3,15 +3,6 @@ import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext({})
 
-// Hardcoded local admin user object
-const LOCAL_ADMIN_USER = {
-    id: 'local-admin-001',
-    email: 'dr.felipeyanez@gmail.com',
-    user_metadata: { full_name: 'Admin Local' },
-    _isLocalAdmin: true,
-}
-const LOCAL_ADMIN_KEY = 'eunacom_local_admin'
-
 export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
@@ -25,13 +16,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        // Check for persisted local admin session first
-        if (localStorage.getItem(LOCAL_ADMIN_KEY) === 'true') {
-            setUser(LOCAL_ADMIN_USER)
-            setLoading(false)
-            return
-        }
-
         // Check active sessions and sets the user
         supabase.auth.getSession().then(({ data: { session } }) => {
             setUser(session?.user ?? null)
@@ -40,9 +24,7 @@ export const AuthProvider = ({ children }) => {
 
         // Listen for changes on auth state (sign in, sign out, etc.)
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            if (!localStorage.getItem(LOCAL_ADMIN_KEY)) {
-                setUser(session?.user ?? null)
-            }
+            setUser(session?.user ?? null)
             setLoading(false)
         })
 
@@ -58,13 +40,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signIn = async (email, password) => {
-        // Hardcoded local admin bypass
-        if (email === 'admin' || email === 'admin@admin.com') {
-            localStorage.setItem(LOCAL_ADMIN_KEY, 'true')
-            setUser(LOCAL_ADMIN_USER)
-            return { data: { user: LOCAL_ADMIN_USER }, error: null }
-        }
-
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -86,15 +61,12 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signOut = async () => {
-        // Clear local admin session
-        localStorage.removeItem(LOCAL_ADMIN_KEY)
-        setUser(null)
         const { error } = await supabase.auth.signOut()
         return { error }
     }
 
     const isAdmin = () => {
-        return user?.email === 'dr.felipeyanez@gmail.com' || user?._isLocalAdmin === true
+        return user?.email === 'dr.felipeyanez@gmail.com'
     }
 
     const value = {

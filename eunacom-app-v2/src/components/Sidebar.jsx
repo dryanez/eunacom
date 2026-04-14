@@ -6,7 +6,7 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } fro
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, ChevronDown, Menu, X, Video
+    LogOut, ChevronDown, Menu, X, Video, Shield
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
@@ -84,9 +84,12 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     <RotateCcw size={18} /> Repasar Errores
                 </NavLink>
 
-                <div className="sidebar__section-title">MedScribe</div>
+                <div className="sidebar__section-title">Aprendizaje</div>
                 <NavLink to="/mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Video size={18} /> Mis Clases
+                </NavLink>
+                <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Shield size={18} /> Biblioteca EUNACOM
                 </NavLink>
             </nav>
 

@@ -32,10 +32,25 @@ export default async function handler(req, res) {
   try { await db.execute('ALTER TABLE clases ADD COLUMN video_dir TEXT'); } catch (e) {}
 
   if (req.method === 'GET') {
-    const { userId } = req.query
+    const { userId, id } = req.query
+
+    // Single class detail (normalize Unicode for macOS NFC/NFD compat)
+    if (id) {
+      let result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id] })
+      if (!result.rows.length) {
+        result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id.normalize('NFD')] })
+      }
+      if (!result.rows.length) {
+        result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id.normalize('NFC')] })
+      }
+      return res.json({ data: result.rows[0] || null })
+    }
+
     if (!userId) return res.status(400).json({ error: 'userId required' })
+
+    // List mode: only return lightweight fields
     const result = await db.execute({
-      sql: 'SELECT * FROM clases WHERE user_id = ? ORDER BY saved_at DESC',
+      sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases WHERE user_id = ? ORDER BY specialty, subsystem, lesson_number',
       args: [userId]
     })
     return res.json({ data: result.rows })

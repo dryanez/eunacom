@@ -64,7 +64,7 @@ const Login = () => {
                         <label>Email</label>
                         <div style={{ position: 'relative' }}>
                             <input
-                                type="email"
+                                type="text"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="tu@email.com"

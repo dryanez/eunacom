@@ -75,24 +75,18 @@ export async function askTutor(payload) {
 // ── MIS CLASES (MedScribe) ───────────────────────────────────────────────────
 // In production: calls Vercel API (Turso). In dev: calls MedScribe backend (port 3001).
 
-const MEDSCRIBE_BASE = import.meta.env.PROD ? '' : `http://${window.location.hostname}:3001`
-
 async function clasesFetch(path, options = {}) {
-  // Try MedScribe backend first (local dev), fall back to Vercel API
-  try {
-    const res = await fetch(MEDSCRIBE_BASE + path, {
-      headers: { 'Content-Type': 'application/json' },
-      ...options
-    })
-    if (res.ok) return res.json()
-  } catch {}
-  // Fallback to Vercel API
   return apiFetch(path, options)
 }
 
 export async function fetchClases(userId) {
   const data = await clasesFetch(`/api/clases?userId=${userId}`)
   return data.data || []
+}
+
+export async function fetchClase(id) {
+  const data = await clasesFetch(`/api/clases?id=${id}`)
+  return data.data || null
 }
 
 export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {
@@ -104,6 +98,42 @@ export async function saveClase({ id, userId, topic, summary, keyPoints, quiz })
 
 export async function deleteClase(id) {
   return clasesFetch(`/api/clases?id=${id}`, { method: 'DELETE' })
+}
+
+// ── CLASE PROGRESS ──────────────────────────────────────────────
+
+export async function fetchClaseProgress(userId) {
+  const data = await apiFetch(`/api/clase-progress?userId=${userId}`)
+  return data.data || []
+}
+
+export async function saveClaseProgress(payload) {
+  // payload may include: userId, claseId, readClase, readPuntos,
+  // quizCompleted, quizScore, quizCorrect, quizTotal, quizAnswers, videoWatched
+  return apiFetch('/api/clase-progress', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+}
+
+// ── EUNACOM QUESTIONS ────────────────────────────────────────────
+
+export async function fetchEunacomQuestions({ claseId, eunacomCode, specialty, limit = 50, offset = 0 } = {}) {
+  const params = new URLSearchParams()
+  if (claseId) params.set('clase_id', claseId)
+  else if (eunacomCode) params.set('eunacom_code', eunacomCode)
+  else if (specialty) params.set('specialty', specialty)
+  params.set('limit', String(limit))
+  params.set('offset', String(offset))
+  const data = await apiFetch(`/api/questions?${params.toString()}`)
+  return data.data || []
+}
+
+// ── PERFIL EUNACOM (Biblioteca) ──────────────────────────────────
+
+export async function fetchPerfil(params = {}) {
+  const qs = new URLSearchParams(params).toString()
+  return apiFetch(`/api/perfil${qs ? '?' + qs : ''}`)
 }
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────

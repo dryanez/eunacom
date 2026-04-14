@@ -13,6 +13,8 @@ import Simulation from './pages/Simulation'
 import TestRunner from './pages/TestRunner'
 import Register from './pages/Register'
 import MisClases from './pages/MisClases'
+import Biblioteca from './pages/Biblioteca'
+import ScriptProgress from './pages/ScriptProgress'
 import './index.css'
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
             <Route path="/flashcards" element={<div className="page"><h1 className="page__title">Flashcards</h1></div>} />
             <Route path="/review" element={<div className="page"><h1 className="page__title">Repasar Errores</h1></div>} />
             <Route path="/mis-clases" element={<MisClases />} />
+            <Route path="/biblioteca" element={<Biblioteca />} />
+            <Route path="/script-progress" element={<ScriptProgress />} />
           </Route>
 
           {/* Default Route */}
