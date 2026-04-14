@@ -1106,10 +1106,12 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const [topicData, setTopicData] = useState(null)
   const [activePrueba, setActivePrueba] = useState(null) // prueba object being taken
   const [currentQ, setCurrentQ] = useState(0)
-  const [answers, setAnswers] = useState({})        // { qIndex: 'A'|'B'|… }
+  const [answers, setAnswers] = useState({})        // { qIndex: 'A'|'B'|… } — final correct answer
   const [showResult, setShowResult] = useState(false)
   const [pruebaProgress, setPruebaProgress] = useState(loadPruebaProgress())
-  const [revealed, setRevealed] = useState({})       // { qIndex: true } — per-question reveal
+  const [attempts, setAttempts] = useState({})       // { qIndex: ['C','D'] } — wrong attempts
+  const [correctFound, setCorrectFound] = useState({}) // { qIndex: true } — correct answer found
+  const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: 5, B: 3 } }
 
   // Load pruebas index
   useEffect(() => {
@@ -1146,19 +1148,56 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const startPrueba = async (pruebaMeta) => {
     const data = topicData || await loadTopic()
     if (!data) return
-    const p = Object.values(data.pruebas).find(pp => pp.id === pruebaMeta.id)
+    const pruebas = data.pruebas
+    const p = Array.isArray(pruebas)
+      ? pruebas.find(pp => pp.id === pruebaMeta.id)
+      : Object.values(pruebas).find(pp => pp.id === pruebaMeta.id)
     if (!p) return
     setActivePrueba(p)
     setCurrentQ(0)
     setAnswers({})
     setShowResult(false)
-    setRevealed({})
+    setAttempts({})
+    setCorrectFound({})
+    // Pre-fetch answer stats for all questions in this prueba
+    const qIds = p.questions.map(q => `${p.id}_${q.numero}`)
+    fetch('/api/answer-stats', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionIds: qIds })
+    }).then(r => r.json()).then(d => setAnswerStats(d.data || {})).catch(() => {})
   }
 
   const selectAnswer = (qIdx, optId) => {
-    if (answers[qIdx] !== undefined) return // already answered
-    setAnswers(prev => ({ ...prev, [qIdx]: optId }))
-    setRevealed(prev => ({ ...prev, [qIdx]: true }))
+    if (correctFound[qIdx]) return // already got it right
+    const q = activePrueba.questions[qIdx]
+    const questionId = `${activePrueba.id}_${q.numero}`
+
+    // Record this pick in answer stats (fire and forget)
+    fetch('/api/answer-stats', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionId, optionId: optId })
+    }).then(r => r.json()).then(() => {
+      // Update local stats cache
+      setAnswerStats(prev => {
+        const qStats = { ...(prev[questionId] || {}) }
+        qStats[optId] = (qStats[optId] || 0) + 1
+        return { ...prev, [questionId]: qStats }
+      })
+    }).catch(() => {})
+
+    if (optId === q.respuestaCorrecta) {
+      // Correct!
+      setAnswers(prev => ({ ...prev, [qIdx]: optId }))
+      setCorrectFound(prev => ({ ...prev, [qIdx]: true }))
+    } else {
+      // Wrong — record this attempt
+      setAttempts(prev => ({
+        ...prev,
+        [qIdx]: [...(prev[qIdx] || []), optId]
+      }))
+    }
   }
 
   const finishPrueba = () => {
@@ -1166,10 +1205,10 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     const qs = activePrueba.questions
     let correct = 0
     qs.forEach((q, i) => {
-      if (answers[i] === q.respuestaCorrecta) correct++
+      if (correctFound[i]) correct++
     })
-    const answered = Object.keys(answers).length
-    const score = answered > 0 ? Math.round((correct / answered) * 100) : 0
+    const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
+    const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
     const pct = Math.round((answered / qs.length) * 100)
     const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, total: qs.length, answered })
     setPruebaProgress(updated)
@@ -1180,23 +1219,24 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     setCurrentQ(0)
     setAnswers({})
     setShowResult(false)
-    setRevealed({})
+    setAttempts({})
+    setCorrectFound({})
   }
 
   // ─── If taking a prueba ───
   if (activePrueba) {
     const qs = activePrueba.questions
     const q = qs[currentQ]
-    const answered = Object.keys(answers).length
     const totalQ = qs.length
 
     // ─── Results screen ───
     if (showResult) {
       let correct = 0
-      qs.forEach((qq, i) => { if (answers[i] === qq.respuestaCorrecta) correct++ })
-      const score = answered > 0 ? Math.round((correct / answered) * 100) : 0
-      const wrong = qs.map((qq, i) => ({ ...qq, idx: i, userAnswer: answers[i] })).filter(qq => answers[qq.idx] !== undefined && answers[qq.idx] !== qq.respuestaCorrecta)
-      const omitted = qs.length - answered
+      qs.forEach((qq, i) => { if (correctFound[i]) correct++ })
+      const attempted = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
+      const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
+      const wrong = qs.map((qq, i) => ({ ...qq, idx: i })).filter(qq => !correctFound[qq.idx] && (attempts[qq.idx]?.length > 0))
+      const omitted = qs.length - attempted
 
       return (
         <div style={{ paddingBottom: '2rem' }}>
@@ -1219,7 +1259,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
               {activePrueba.name} — {score}%
             </h2>
             <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-              {correct} correctas · {answered - correct} incorrectas · {omitted} omitidas
+              {correct} correctas · {wrong.length} incorrectas · {omitted} omitidas
             </p>
 
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -1247,24 +1287,29 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
                 <XCircle size={18} style={{ color: '#ef4444' }} /> Respuestas Incorrectas ({wrong.length})
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {wrong.map((wq) => (
+                {wrong.map((wq) => {
+                  const wrongAttempts = attempts[wq.idx] || []
+                  return (
                   <div key={wq.idx} className="card" style={{ padding: '1.25rem', borderLeft: '3px solid #ef4444' }}>
                     <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.6rem' }}>
                       {wq.numero}. {wq.pregunta}
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#ef4444', marginBottom: '0.25rem' }}>
-                      ✗ Tu respuesta: {wq.userAnswer}) {wq.opciones?.find(o => o.id === wq.userAnswer)?.text || ''}
-                    </div>
+                    {wrongAttempts.map((wa, wi) => (
+                      <div key={wi} style={{ fontSize: '0.8rem', color: '#ef4444', marginBottom: '0.25rem' }}>
+                        ✗ Intento {wi + 1}: {wa}) {wq.opciones?.find(o => o.id === wa)?.text || ''}
+                      </div>
+                    ))}
                     <div style={{ fontSize: '0.8rem', color: '#10b981', marginBottom: '0.5rem' }}>
                       ✓ Correcta: {wq.respuestaCorrecta}) {wq.opciones?.find(o => o.id === wq.respuestaCorrecta)?.text || ''}
                     </div>
                     {wq.explicacion && (
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', lineHeight: 1.6, background: 'var(--surface-700)', borderRadius: 8, padding: '0.75rem', marginTop: '0.4rem' }}>
-                        {wq.explicacion.slice(0, 400)}{wq.explicacion.length > 400 ? '…' : ''}
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', lineHeight: 1.6, background: 'var(--surface-700)', borderRadius: 8, padding: '0.75rem', marginTop: '0.4rem', whiteSpace: 'pre-wrap' }}>
+                        {wq.explicacion}
                       </div>
                     )}
                   </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           )}
@@ -1273,8 +1318,13 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     }
 
     // ─── Question view ───
-    const isRevealed = revealed[currentQ]
+    const isCorrect = correctFound[currentQ]
+    const wrongAttempts = attempts[currentQ] || []
     const selectedOpt = answers[currentQ]
+    const questionId = `${activePrueba.id}_${q.numero}`
+    const qStats = answerStats[questionId] || {}
+    const statsTotal = Object.values(qStats).reduce((s, v) => s + v, 0)
+    const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
     return (
       <div style={{ paddingBottom: '2rem' }}>
         {/* Top bar */}
@@ -1310,65 +1360,131 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {(q.opciones || []).map(opt => {
-              const isSelected = selectedOpt === opt.id
-              const isCorrect = opt.id === q.respuestaCorrecta
+              const isThisCorrect = opt.id === q.respuestaCorrecta
+              const wasAttempted = wrongAttempts.includes(opt.id)
+              const isSelectedCorrect = isCorrect && opt.id === selectedOpt
               let bg = 'var(--surface-700)'
               let border = 'var(--border-color)'
               let color = 'var(--text-primary)'
-              if (isRevealed) {
-                if (isCorrect) { bg = 'rgba(16,185,129,0.12)'; border = '#10b981'; color = '#10b981' }
-                else if (isSelected && !isCorrect) { bg = 'rgba(239,68,68,0.12)'; border = '#ef4444'; color = '#ef4444' }
-              } else if (isSelected) {
-                bg = 'rgba(59,130,246,0.12)'; border = 'var(--primary-500)'; color = 'var(--primary-500)'
+              let disabled = false
+
+              if (isCorrect) {
+                // Question solved — show correct in green, wrong attempts in red, rest neutral
+                if (isThisCorrect) { bg = 'rgba(16,185,129,0.12)'; border = '#10b981'; color = '#10b981' }
+                else if (wasAttempted) { bg = 'rgba(239,68,68,0.08)'; border = '#ef4444'; color = '#ef4444' }
+                disabled = true
+              } else if (wasAttempted) {
+                // Wrong attempt — grey it out
+                bg = 'rgba(239,68,68,0.06)'; border = '#ef444480'; color = 'var(--text-tertiary)'
+                disabled = true
               }
+
               return (
-                <button key={opt.id} onClick={() => selectAnswer(currentQ, opt.id)} disabled={isRevealed} style={{
+                <button key={opt.id} onClick={() => selectAnswer(currentQ, opt.id)} disabled={disabled} style={{
                   display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
                   padding: '0.85rem 1rem', borderRadius: 10,
                   background: bg, border: `1.5px solid ${border}`,
-                  cursor: isRevealed ? 'default' : 'pointer',
+                  cursor: disabled ? 'default' : 'pointer',
                   textAlign: 'left', transition: 'all 0.2s', color,
+                  opacity: disabled && !isThisCorrect && !wasAttempted ? 0.5 : 1,
                 }}>
                   <span style={{
                     minWidth: 26, height: 26, borderRadius: '50%',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '0.78rem', fontWeight: 800, flexShrink: 0,
-                    background: isRevealed && isCorrect ? '#10b981' : isRevealed && isSelected ? '#ef4444' : 'var(--surface-600)',
-                    color: isRevealed && (isCorrect || isSelected) ? '#fff' : 'var(--text-secondary)',
+                    background: isCorrect && isThisCorrect ? '#10b981' : wasAttempted ? '#ef4444' : 'var(--surface-600)',
+                    color: (isCorrect && isThisCorrect) || wasAttempted ? '#fff' : 'var(--text-secondary)',
                   }}>
-                    {isRevealed && isCorrect ? <CheckCircle2 size={14} /> : isRevealed && isSelected ? <XCircle size={14} /> : opt.id}
+                    {isCorrect && isThisCorrect ? <CheckCircle2 size={14} /> : wasAttempted ? <XCircle size={14} /> : opt.id}
                   </span>
-                  <span style={{ fontSize: '0.88rem', lineHeight: 1.5, fontWeight: isRevealed && isCorrect ? 700 : 400 }}>
+                  <span style={{ fontSize: '0.88rem', lineHeight: 1.5, fontWeight: isCorrect && isThisCorrect ? 700 : 400, flex: 1 }}>
                     {opt.text}
                   </span>
+                  {/* Show answer stats percentages when correct found AND 10+ total responses */}
+                  {isCorrect && statsTotal >= 10 && (
+                    <span style={{
+                      fontSize: '0.72rem', fontWeight: 700, flexShrink: 0,
+                      color: isThisCorrect ? '#10b981' : 'var(--text-tertiary)',
+                      background: isThisCorrect ? 'rgba(16,185,129,0.1)' : 'var(--surface-600)',
+                      padding: '2px 8px', borderRadius: 999,
+                    }}>
+                      {statsTotal > 0 ? Math.round(((qStats[opt.id] || 0) / statsTotal) * 100) : 0}%
+                    </span>
+                  )}
                 </button>
               )
             })}
           </div>
 
-          {/* Explanation shown after answering */}
-          {isRevealed && q.explicacion && (
+          {/* Wrong attempt feedback */}
+          {wrongAttempts.length > 0 && !isCorrect && (() => {
+            const lastWrong = wrongAttempts[wrongAttempts.length - 1]
+            const lastWrongOpt = (q.opciones || []).find(o => o.id === lastWrong)
+            // Try to find per-option explanation from explicacionIncorrectas
+            const wrongExplanation = q.explicacionIncorrectas
+              ? (() => {
+                  // Try to extract explanation for the specific option
+                  const regex = new RegExp(`(?:${lastWrong}\\)|${lastWrong}\\.|${lastWrong}\\s*[-–—])\\s*(.+?)(?=\\s*(?:[A-E]\\)|[A-E]\\.|$))`, 'is')
+                  const match = q.explicacionIncorrectas.match(regex)
+                  return match ? match[1].trim() : null
+                })()
+              : null
+            return (
+              <div style={{
+                marginTop: '1rem', padding: '1rem', borderRadius: 10,
+                background: 'rgba(239,68,68,0.06)', borderLeft: '3px solid #ef4444',
+              }}>
+                <div style={{ fontWeight: 700, color: '#ef4444', marginBottom: '0.4rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <XCircle size={15} /> Incorrecto
+                </div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  <strong>{lastWrong}) {lastWrongOpt?.text || ''}</strong> no es la respuesta correcta.
+                  {wrongExplanation && <span style={{ display: 'block', marginTop: '0.4rem', color: 'var(--text-tertiary)' }}>{wrongExplanation}</span>}
+                  <span style={{ display: 'block', marginTop: '0.5rem', color: 'var(--primary-400)', fontWeight: 600, fontSize: '0.8rem' }}>
+                    Intenta de nuevo · {q.opciones.length - wrongAttempts.length - 1} opciones restantes
+                  </span>
+                </div>
+              </div>
+            )
+          })()}
+
+          {/* Full explanation shown when correct answer is found */}
+          {isCorrect && q.explicacion && (
             <div style={{
               marginTop: '1rem', padding: '1rem', borderRadius: 10,
-              background: 'var(--surface-700)', borderLeft: '3px solid var(--primary-500)',
+              background: 'var(--surface-700)', borderLeft: '3px solid #10b981',
               fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
             }}>
-              <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <Lightbulb size={14} style={{ color: '#f59e0b' }} /> Explicación
+              <div style={{ fontWeight: 700, color: '#10b981', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <CheckCircle2 size={14} /> {wrongAttempts.length === 0 ? '¡Correcto!' : '¡Correcto al intento ' + (wrongAttempts.length + 1) + '!'}
               </div>
-              {q.explicacion}
+              <div style={{ whiteSpace: 'pre-wrap' }}>{q.explicacion}</div>
             </div>
           )}
 
-          {/* Show why incorrect */}
-          {isRevealed && q.explicacionIncorrectas && answers[currentQ] !== q.respuestaCorrecta && (
+          {/* Show why other options are incorrect — only after getting correct */}
+          {isCorrect && q.explicacionIncorrectas && (
             <div style={{
               marginTop: '0.75rem', padding: '1rem', borderRadius: 10,
-              background: 'rgba(239,68,68,0.04)', borderLeft: '3px solid #ef4444',
+              background: 'rgba(245,158,11,0.04)', borderLeft: '3px solid #f59e0b',
               fontSize: '0.8rem', lineHeight: 1.6, color: 'var(--text-tertiary)',
             }}>
-              <div style={{ fontWeight: 700, color: '#ef4444', marginBottom: '0.4rem', fontSize: '0.82rem' }}>¿Por qué las otras opciones son incorrectas?</div>
-              {q.explicacionIncorrectas.slice(0, 500)}{q.explicacionIncorrectas.length > 500 ? '…' : ''}
+              <div style={{ fontWeight: 700, color: '#f59e0b', marginBottom: '0.4rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <Lightbulb size={14} /> ¿Por qué las otras opciones son incorrectas?
+              </div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>{q.explicacionIncorrectas}</div>
+            </div>
+          )}
+
+          {/* Answer stats summary when correct + 10+ respondents */}
+          {isCorrect && statsTotal >= 10 && (
+            <div style={{
+              marginTop: '0.75rem', padding: '0.75rem 1rem', borderRadius: 10,
+              background: 'var(--surface-700)', fontSize: '0.78rem', color: 'var(--text-tertiary)',
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+            }}>
+              <BarChart3 size={14} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+              <span>{statsTotal} personas han respondido esta pregunta</span>
             </div>
           )}
         </div>
@@ -1412,16 +1528,16 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           justifyContent: 'center',
         }}>
           {qs.map((_, i) => {
-            const isAnswered = answers[i] !== undefined
+            const isAnsweredCorrect = correctFound[i]
+            const hasWrongAttempts = (attempts[i]?.length || 0) > 0
             const isCurrent = i === currentQ
-            const wasCorrect = isAnswered && answers[i] === qs[i].respuestaCorrecta
             return (
               <button key={i} onClick={() => setCurrentQ(i)} style={{
                 width: 28, height: 28, borderRadius: '50%', border: 'none', cursor: 'pointer',
                 fontSize: '0.65rem', fontWeight: 700,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: isCurrent ? 'var(--primary-500)' : isAnswered ? (wasCorrect ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)') : 'var(--surface-600)',
-                color: isCurrent ? '#fff' : isAnswered ? (wasCorrect ? '#10b981' : '#ef4444') : 'var(--text-tertiary)',
+                background: isCurrent ? 'var(--primary-500)' : isAnsweredCorrect ? 'rgba(16,185,129,0.2)' : hasWrongAttempts ? 'rgba(239,68,68,0.2)' : 'var(--surface-600)',
+                color: isCurrent ? '#fff' : isAnsweredCorrect ? '#10b981' : hasWrongAttempts ? '#ef4444' : 'var(--text-tertiary)',
                 outline: isCurrent ? '2px solid var(--primary-500)' : 'none',
                 outlineOffset: 2,
               }}>
