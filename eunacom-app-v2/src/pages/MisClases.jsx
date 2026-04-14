@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchClases, fetchClase, saveClase, deleteClase, genId, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
 import { getVideoUrl } from '../lib/videoMap'
@@ -7,7 +7,7 @@ import {
   Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle, Trash2,
   Upload, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
   Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope,
-  Presentation, Play,
+  Presentation, Play, ClipboardList, BarChart3, Trophy, Clock, Hash,
   HeartPulse, Brain, Droplets, FlaskConical, Wind, Bone, Microscope,
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
@@ -1089,6 +1089,528 @@ function ClaseDetail({ clase, onBack, onDelete, onNavigateToTopic, onTrackProgre
 }
 
 /* ════════════════════════════════════════════════════════════════
+   PRUEBAS PROGRESS HELPERS  (localStorage)
+   ════════════════════════════════════════════════════════════════ */
+const PRUEBA_KEY = 'eunacom_prueba_progress'
+function loadPruebaProgress() {
+  try { return JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch { return {} }
+}
+function savePruebaProgress(pruebaId, data) {
+  const all = loadPruebaProgress()
+  all[pruebaId] = { ...all[pruebaId], ...data, updatedAt: Date.now() }
+  localStorage.setItem(PRUEBA_KEY, JSON.stringify(all))
+  return all
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PRUEBAS VIEW — shown when user picks "Pruebas" on a subsystem
+   Shows all available Pruebas with progress + score, and runs the
+   test inline when one is selected.
+   ════════════════════════════════════════════════════════════════ */
+function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
+  const [index, setIndex] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [topicData, setTopicData] = useState(null)
+  const [activePrueba, setActivePrueba] = useState(null) // prueba object being taken
+  const [currentQ, setCurrentQ] = useState(0)
+  const [answers, setAnswers] = useState({})        // { qIndex: 'A'|'B'|… }
+  const [showResult, setShowResult] = useState(false)
+  const [pruebaProgress, setPruebaProgress] = useState(loadPruebaProgress())
+  const [revealed, setRevealed] = useState({})       // { qIndex: true } — per-question reveal
+
+  // Load pruebas index
+  useEffect(() => {
+    fetch('/data/pruebas/index.json')
+      .then(r => r.json())
+      .then(idx => { setIndex(idx); setLoading(false) })
+      .catch(() => setLoading(false))
+  }, [])
+
+  // Match subsystem name to pruebas index key (fuzzy)
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
+  const findTopicKey = () => {
+    if (!index || !index[specialty]) return null
+    const topics = index[specialty]
+    const target = norm(subsystem)
+    // exact match first
+    if (topics[subsystem]) return subsystem
+    // fuzzy
+    return Object.keys(topics).find(k => norm(k) === target) || Object.keys(topics).find(k => norm(k).includes(target) || target.includes(norm(k))) || null
+  }
+
+  const topicKey = index ? findTopicKey() : null
+  const topicMeta = topicKey ? index[specialty][topicKey] : null
+
+  // Lazy-load topic questions when entering a prueba
+  const loadTopic = async () => {
+    if (topicData || !topicMeta) return topicData
+    const r = await fetch(`/data/pruebas/${topicMeta.slug}.json`)
+    const d = await r.json()
+    setTopicData(d)
+    return d
+  }
+
+  const startPrueba = async (pruebaMeta) => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const p = Object.values(data.pruebas).find(pp => pp.id === pruebaMeta.id)
+    if (!p) return
+    setActivePrueba(p)
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setRevealed({})
+  }
+
+  const selectAnswer = (qIdx, optId) => {
+    if (answers[qIdx] !== undefined) return // already answered
+    setAnswers(prev => ({ ...prev, [qIdx]: optId }))
+    setRevealed(prev => ({ ...prev, [qIdx]: true }))
+  }
+
+  const finishPrueba = () => {
+    if (!activePrueba) return
+    const qs = activePrueba.questions
+    let correct = 0
+    qs.forEach((q, i) => {
+      if (answers[i] === q.respuestaCorrecta) correct++
+    })
+    const answered = Object.keys(answers).length
+    const score = answered > 0 ? Math.round((correct / answered) * 100) : 0
+    const pct = Math.round((answered / qs.length) * 100)
+    const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, total: qs.length, answered })
+    setPruebaProgress(updated)
+    setShowResult(true)
+  }
+
+  const resetPrueba = () => {
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setRevealed({})
+  }
+
+  // ─── If taking a prueba ───
+  if (activePrueba) {
+    const qs = activePrueba.questions
+    const q = qs[currentQ]
+    const answered = Object.keys(answers).length
+    const totalQ = qs.length
+
+    // ─── Results screen ───
+    if (showResult) {
+      let correct = 0
+      qs.forEach((qq, i) => { if (answers[i] === qq.respuestaCorrecta) correct++ })
+      const score = answered > 0 ? Math.round((correct / answered) * 100) : 0
+      const wrong = qs.map((qq, i) => ({ ...qq, idx: i, userAnswer: answers[i] })).filter(qq => answers[qq.idx] !== undefined && answers[qq.idx] !== qq.respuestaCorrecta)
+      const omitted = qs.length - answered
+
+      return (
+        <div style={{ paddingBottom: '2rem' }}>
+          <button onClick={() => setActivePrueba(null)} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+            marginBottom: '1.25rem'
+          }}>
+            <ChevronLeft size={16} /> Volver a Pruebas
+          </button>
+
+          <div className="card" style={{
+            padding: '2rem', textAlign: 'center',
+            background: score >= 70 ? 'linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(59,130,246,0.06) 100%)' : 'linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(245,158,11,0.06) 100%)',
+            borderTop: `4px solid ${score >= 70 ? '#10b981' : '#f59e0b'}`
+          }}>
+            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{score >= 70 ? '🎉' : '📝'}</div>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+              {activePrueba.name} — {score}%
+            </h2>
+            <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+              {correct} correctas · {answered - correct} incorrectas · {omitted} omitidas
+            </p>
+
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button onClick={resetPrueba} style={{
+                padding: '0.6rem 1.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+                background: 'var(--primary-500)', color: '#fff', fontWeight: 600, fontSize: '0.9rem',
+                display: 'flex', alignItems: 'center', gap: '0.4rem'
+              }}>
+                <RotateCcw size={15} /> Repetir
+              </button>
+              <button onClick={() => setActivePrueba(null)} style={{
+                padding: '0.6rem 1.5rem', borderRadius: 10, border: '1px solid var(--border-color)',
+                background: 'var(--surface-700)', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem',
+                cursor: 'pointer'
+              }}>
+                Volver a Pruebas
+              </button>
+            </div>
+          </div>
+
+          {/* Wrong answers review */}
+          {wrong.length > 0 && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <XCircle size={18} style={{ color: '#ef4444' }} /> Respuestas Incorrectas ({wrong.length})
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {wrong.map((wq) => (
+                  <div key={wq.idx} className="card" style={{ padding: '1.25rem', borderLeft: '3px solid #ef4444' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.6rem' }}>
+                      {wq.numero}. {wq.pregunta}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: '#ef4444', marginBottom: '0.25rem' }}>
+                      ✗ Tu respuesta: {wq.userAnswer}) {wq.opciones?.find(o => o.id === wq.userAnswer)?.text || ''}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: '#10b981', marginBottom: '0.5rem' }}>
+                      ✓ Correcta: {wq.respuestaCorrecta}) {wq.opciones?.find(o => o.id === wq.respuestaCorrecta)?.text || ''}
+                    </div>
+                    {wq.explicacion && (
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', lineHeight: 1.6, background: 'var(--surface-700)', borderRadius: 8, padding: '0.75rem', marginTop: '0.4rem' }}>
+                        {wq.explicacion.slice(0, 400)}{wq.explicacion.length > 400 ? '…' : ''}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    // ─── Question view ───
+    const isRevealed = revealed[currentQ]
+    const selectedOpt = answers[currentQ]
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        {/* Top bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <button onClick={() => { if (window.confirm('¿Salir de la prueba? Tu progreso parcial se guardará.')) { finishPrueba(); setActivePrueba(null) }}} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
+          }}>
+            <ChevronLeft size={16} /> Salir
+          </button>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            {activePrueba.name}
+          </div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
+            {answered}/{totalQ}
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ height: 4, background: 'var(--surface-600)', borderRadius: 2, marginBottom: '1.5rem', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: `${(answered / totalQ) * 100}%`, background: 'var(--primary-500)', borderRadius: 2, transition: 'width 0.3s' }} />
+        </div>
+
+        {/* Question card */}
+        <div className="card" style={{ padding: '1.5rem', marginBottom: '1rem' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--primary-500)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+            Pregunta {currentQ + 1} de {totalQ}
+          </div>
+          <p style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.7, color: 'var(--text-primary)', marginBottom: '1.25rem', whiteSpace: 'pre-wrap' }}>
+            {q.pregunta}
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {(q.opciones || []).map(opt => {
+              const isSelected = selectedOpt === opt.id
+              const isCorrect = opt.id === q.respuestaCorrecta
+              let bg = 'var(--surface-700)'
+              let border = 'var(--border-color)'
+              let color = 'var(--text-primary)'
+              if (isRevealed) {
+                if (isCorrect) { bg = 'rgba(16,185,129,0.12)'; border = '#10b981'; color = '#10b981' }
+                else if (isSelected && !isCorrect) { bg = 'rgba(239,68,68,0.12)'; border = '#ef4444'; color = '#ef4444' }
+              } else if (isSelected) {
+                bg = 'rgba(59,130,246,0.12)'; border = 'var(--primary-500)'; color = 'var(--primary-500)'
+              }
+              return (
+                <button key={opt.id} onClick={() => selectAnswer(currentQ, opt.id)} disabled={isRevealed} style={{
+                  display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
+                  padding: '0.85rem 1rem', borderRadius: 10,
+                  background: bg, border: `1.5px solid ${border}`,
+                  cursor: isRevealed ? 'default' : 'pointer',
+                  textAlign: 'left', transition: 'all 0.2s', color,
+                }}>
+                  <span style={{
+                    minWidth: 26, height: 26, borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.78rem', fontWeight: 800, flexShrink: 0,
+                    background: isRevealed && isCorrect ? '#10b981' : isRevealed && isSelected ? '#ef4444' : 'var(--surface-600)',
+                    color: isRevealed && (isCorrect || isSelected) ? '#fff' : 'var(--text-secondary)',
+                  }}>
+                    {isRevealed && isCorrect ? <CheckCircle2 size={14} /> : isRevealed && isSelected ? <XCircle size={14} /> : opt.id}
+                  </span>
+                  <span style={{ fontSize: '0.88rem', lineHeight: 1.5, fontWeight: isRevealed && isCorrect ? 700 : 400 }}>
+                    {opt.text}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Explanation shown after answering */}
+          {isRevealed && q.explicacion && (
+            <div style={{
+              marginTop: '1rem', padding: '1rem', borderRadius: 10,
+              background: 'var(--surface-700)', borderLeft: '3px solid var(--primary-500)',
+              fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
+            }}>
+              <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <Lightbulb size={14} style={{ color: '#f59e0b' }} /> Explicación
+              </div>
+              {q.explicacion}
+            </div>
+          )}
+
+          {/* Show why incorrect */}
+          {isRevealed && q.explicacionIncorrectas && answers[currentQ] !== q.respuestaCorrecta && (
+            <div style={{
+              marginTop: '0.75rem', padding: '1rem', borderRadius: 10,
+              background: 'rgba(239,68,68,0.04)', borderLeft: '3px solid #ef4444',
+              fontSize: '0.8rem', lineHeight: 1.6, color: 'var(--text-tertiary)',
+            }}>
+              <div style={{ fontWeight: 700, color: '#ef4444', marginBottom: '0.4rem', fontSize: '0.82rem' }}>¿Por qué las otras opciones son incorrectas?</div>
+              {q.explicacionIncorrectas.slice(0, 500)}{q.explicacionIncorrectas.length > 500 ? '…' : ''}
+            </div>
+          )}
+        </div>
+
+        {/* Navigation */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.75rem' }}>
+          <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} style={{
+            flex: 1, padding: '0.7rem', borderRadius: 10, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: currentQ === 0 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: currentQ === 0 ? 'default' : 'pointer', fontWeight: 600, fontSize: '0.85rem',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+            opacity: currentQ === 0 ? 0.4 : 1,
+          }}>
+            <ArrowLeft size={15} /> Anterior
+          </button>
+          {currentQ < totalQ - 1 ? (
+            <button onClick={() => setCurrentQ(currentQ + 1)} style={{
+              flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none',
+              background: 'var(--primary-500)', color: '#fff',
+              cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem'
+            }}>
+              Siguiente <ArrowRight size={15} />
+            </button>
+          ) : (
+            <button onClick={finishPrueba} style={{
+              flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none',
+              background: '#10b981', color: '#fff',
+              cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem'
+            }}>
+              <Trophy size={15} /> Finalizar Prueba
+            </button>
+          )}
+        </div>
+
+        {/* Question dots navigator */}
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: '1rem',
+          padding: '0.75rem', borderRadius: 10, background: 'var(--surface-700)',
+          justifyContent: 'center',
+        }}>
+          {qs.map((_, i) => {
+            const isAnswered = answers[i] !== undefined
+            const isCurrent = i === currentQ
+            const wasCorrect = isAnswered && answers[i] === qs[i].respuestaCorrecta
+            return (
+              <button key={i} onClick={() => setCurrentQ(i)} style={{
+                width: 28, height: 28, borderRadius: '50%', border: 'none', cursor: 'pointer',
+                fontSize: '0.65rem', fontWeight: 700,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: isCurrent ? 'var(--primary-500)' : isAnswered ? (wasCorrect ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)') : 'var(--surface-600)',
+                color: isCurrent ? '#fff' : isAnswered ? (wasCorrect ? '#10b981' : '#ef4444') : 'var(--text-tertiary)',
+                outline: isCurrent ? '2px solid var(--primary-500)' : 'none',
+                outlineOffset: 2,
+              }}>
+                {i + 1}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // ─── Pruebas list ───
+  if (loading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid var(--primary-500)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite', margin: '0 auto' }} />
+        <p style={{ color: 'var(--text-tertiary)', marginTop: '1rem' }}>Cargando pruebas...</p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    )
+  }
+
+  if (!topicMeta) {
+    return (
+      <div>
+        <button onClick={onBack} style={{
+          background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+          borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+          marginBottom: '1.25rem'
+        }}>
+          <ChevronLeft size={16} /> Volver
+        </button>
+        <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+          <ClipboardList size={40} style={{ color: 'var(--text-tertiary)', opacity: 0.5, marginBottom: '0.75rem' }} />
+          <p style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>No hay pruebas disponibles para {subsystem}</p>
+          <p style={{ color: 'var(--text-tertiary)', fontSize: '0.82rem', marginTop: '0.5rem' }}>Estamos preparando las pruebas para este tema.</p>
+        </div>
+      </div>
+    )
+  }
+
+  const pruebas = topicMeta.pruebas
+  const totalQs = pruebas.reduce((s, p) => s + p.questionCount, 0)
+  const doneCount = pruebas.filter(p => (pruebaProgress[p.id]?.done || 0) >= 100).length
+  const overallPct = pruebas.length ? Math.round((doneCount / pruebas.length) * 100) : 0
+  const avgScore = (() => {
+    const done = pruebas.filter(p => pruebaProgress[p.id]?.score !== undefined)
+    if (done.length === 0) return null
+    return Math.round(done.reduce((s, p) => s + pruebaProgress[p.id].score, 0) / done.length)
+  })()
+
+  return (
+    <div style={{ paddingBottom: '2rem' }}>
+      <button onClick={onBack} style={{
+        background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+        borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+        cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+        marginBottom: '1.25rem'
+      }}>
+        <ChevronLeft size={16} /> Volver
+      </button>
+
+      {/* Overview card */}
+      <div className="card" style={{
+        padding: '1.5rem', marginBottom: '1.25rem',
+        background: `linear-gradient(135deg, ${subsystemStyle.bg} 0%, transparent 100%)`,
+        borderLeft: `4px solid ${subsystemStyle.color}`,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 12, background: subsystemStyle.bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: subsystemStyle.color, border: `1px solid ${subsystemStyle.color}25`,
+              }}>
+                {subsystemStyle.icon}
+              </div>
+              <div>
+                <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  Pruebas de {subsystem}
+                </h2>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                  {pruebas.length} pruebas · {totalQs} preguntas
+                </div>
+              </div>
+            </div>
+          </div>
+          <ProgressRing percent={overallPct} size={50} stroke={4} />
+        </div>
+
+        {/* Stats row */}
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
+            <CheckCircle2 size={14} style={{ color: '#10b981' }} />
+            <span style={{ color: 'var(--text-secondary)' }}>{doneCount}/{pruebas.length} completadas</span>
+          </div>
+          {avgScore !== null && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
+              <BarChart3 size={14} style={{ color: avgScore >= 70 ? '#10b981' : '#f59e0b' }} />
+              <span style={{ color: 'var(--text-secondary)' }}>Promedio: <strong style={{ color: avgScore >= 70 ? '#10b981' : '#f59e0b' }}>{avgScore}%</strong></span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Pruebas grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+        {pruebas.map((p, i) => {
+          const prog = pruebaProgress[p.id] || {}
+          const done = prog.done || 0
+          const score = prog.score
+          const hasScore = score !== undefined
+          return (
+            <div key={p.id} className="card" onClick={() => startPrueba(p)} style={{
+              padding: '1.1rem 1.25rem', cursor: 'pointer', transition: 'all 0.25s',
+              borderLeft: `3px solid ${done >= 100 ? '#10b981' : hasScore ? '#f59e0b' : subsystemStyle.color}`,
+              position: 'relative', overflow: 'hidden',
+            }}>
+              {/* Completed badge */}
+              {done >= 100 && (
+                <div style={{
+                  position: 'absolute', top: 8, right: 8,
+                  background: 'rgba(16,185,129,0.12)', borderRadius: '50%',
+                  width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <CheckCircle2 size={14} style={{ color: '#10b981' }} />
+                </div>
+              )}
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{
+                  width: 38, height: 38, borderRadius: 10,
+                  background: done >= 100 ? 'rgba(16,185,129,0.12)' : subsystemStyle.bg,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.85rem', fontWeight: 800,
+                  color: done >= 100 ? '#10b981' : subsystemStyle.color,
+                }}>
+                  {i + 1}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                    {p.name}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: '0.15rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <Hash size={11} /> {p.questionCount} preguntas
+                    </span>
+                    {hasScore && (
+                      <span style={{
+                        display: 'flex', alignItems: 'center', gap: '0.25rem',
+                        fontWeight: 700, color: score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444'
+                      }}>
+                        <Target size={11} /> {score}%
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <ChevronRight size={16} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
+              </div>
+
+              {/* Mini progress bar */}
+              {done > 0 && (
+                <div style={{ height: 3, background: 'var(--surface-600)', borderRadius: 2, marginTop: '0.75rem', overflow: 'hidden' }}>
+                  <div style={{
+                    height: '100%', borderRadius: 2, transition: 'width 0.3s',
+                    width: `${done}%`,
+                    background: done >= 100 ? '#10b981' : '#f59e0b',
+                  }} />
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
    SPECIALTY ICONS
    ════════════════════════════════════════════════════════════════ */
 const specialtyConfig = {
@@ -1138,6 +1660,7 @@ const MisClases = () => {
   const [selectedId, setSelectedId] = useState(null)
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
+  const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
   const fileInputRef = useRef(null)
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
@@ -1514,9 +2037,10 @@ const MisClases = () => {
 
   // ─── Breadcrumb ───
   const breadcrumb = []
-  breadcrumb.push({ label: 'Mis Clases', onClick: () => { setCurrentSpecialty(null); setCurrentSubsystem(null) } })
-  if (currentSpecialty) breadcrumb.push({ label: currentSpecialty, onClick: () => setCurrentSubsystem(null) })
-  if (currentSubsystem) breadcrumb.push({ label: currentSubsystem, onClick: null })
+  breadcrumb.push({ label: 'Mis Clases', onClick: () => { setCurrentSpecialty(null); setCurrentSubsystem(null); setSubView(null) } })
+  if (currentSpecialty) breadcrumb.push({ label: currentSpecialty, onClick: () => { setCurrentSubsystem(null); setSubView(null) } })
+  if (currentSubsystem) breadcrumb.push({ label: currentSubsystem, onClick: () => setSubView(null) })
+  if (subView) breadcrumb.push({ label: subView === 'clases' ? 'Clases' : 'Pruebas', onClick: null })
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
@@ -1630,12 +2154,12 @@ const MisClases = () => {
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round((completed / lessons.length) * 100) : 0
             return (
-              <div key={sub} className="card" style={{
-                padding: '1.25rem 1.5rem', transition: 'all 0.2s',
+              <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
+                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                 borderLeft: `3px solid ${subStyle.color}`,
                 background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }} onClick={() => setCurrentSubsystem(sub)}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <div style={{
                       width: 44, height: 44, borderRadius: 12, background: subStyle.bg,
@@ -1647,7 +2171,7 @@ const MisClases = () => {
                     <div>
                       <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{sub}</div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
-                        {completed}/{lessons.length} completadas
+                        {lessons.length} clases · {completed} completadas
                       </div>
                     </div>
                   </div>
@@ -1656,57 +2180,175 @@ const MisClases = () => {
                     <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
                   </div>
                 </div>
-                {/* Hacer Quiz button */}
-                <button onClick={(e) => { e.stopPropagation(); startAggregateQuiz(sub) }} style={{
-                  display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem',
-                  padding: '0.5rem 1rem', borderRadius: 8, border: 'none', width: '100%', justifyContent: 'center',
-                  background: 'rgba(16,185,129,0.1)', color: '#10b981', cursor: 'pointer',
-                  fontSize: '0.82rem', fontWeight: 600, transition: 'background 0.2s',
-                }}>
-                  <Target size={15} /> Hacer Quiz de {sub} ({lessons.length * 3}+ preguntas)
-                </button>
               </div>
             )
           })}
+        </div>
+      ) : subView === 'pruebas' ? (
+        /* ─── Pruebas View ─── */
+        <PruebasView
+          specialty={currentSpecialty}
+          subsystem={currentSubsystem}
+          subsystemStyle={getSubsystemStyle(currentSubsystem)}
+          onBack={() => setSubView(null)}
+        />
+      ) : subView === 'clases' ? (
+        /* ─── Level 3: Lessons ─── */
+        <div style={{ paddingBottom: '2rem' }}>
+          <button onClick={() => setSubView(null)} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+            marginBottom: '1.25rem'
+          }}>
+            <ChevronLeft size={16} /> Volver
+          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {tree[currentSpecialty][currentSubsystem].map(clase => {
+              const style = getSpecialtyStyle(currentSpecialty)
+              const pct = getProgress(clase.id)
+              return (
+                <div key={clase.id} className="card" onClick={() => openClase(clase.id)} style={{
+                  padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1rem', fontWeight: 800, color: pct >= 100 ? '#10b981' : style.color,
+                    }}>
+                      {pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {clase.topic}
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
+                        {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
+                        Clase {clase.lessonNumber}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
+                    <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       ) : (
-        /* ─── Level 3: Lessons ─── */
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {tree[currentSpecialty][currentSubsystem].map(clase => {
-            const style = getSpecialtyStyle(currentSpecialty)
-            const pct = getProgress(clase.id)
-            return (
-              <div key={clase.id} className="card" onClick={() => openClase(clase.id)} style={{
-                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
+        /* ─── Choice Screen: Clases vs Pruebas ─── */
+        (() => {
+          const subStyle = getSubsystemStyle(currentSubsystem)
+          const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
+          const completed = lessons.filter(l => getProgress(l.id) >= 100).length
+          const subPct = lessons.length ? Math.round((completed / lessons.length) * 100) : 0
+          // Get prueba stats from localStorage
+          const pruebaProgress = loadPruebaProgress()
+          const pruebaIndex = (() => {
+            try { return JSON.parse(sessionStorage.getItem('_prueba_idx') || 'null') } catch { return null }
+          })()
+          // We'll show a simple count hint
+          return (
+            <div style={{ paddingBottom: '2rem' }}>
+              {/* Subject header */}
+              <div className="card" style={{
+                padding: '1.5rem', marginBottom: '1.5rem',
+                background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
+                borderLeft: `4px solid ${subStyle.color}`,
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
+                    width: 48, height: 48, borderRadius: 14, background: subStyle.bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1rem', fontWeight: 800, color: pct >= 100 ? '#10b981' : style.color,
+                    color: subStyle.color, border: `1px solid ${subStyle.color}25`,
                   }}>
-                    {pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
+                    {subStyle.icon}
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                      {clase.topic}
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                      {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
-                      Clase {clase.lessonNumber}
+                  <div style={{ flex: 1 }}>
+                    <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                      {currentSubsystem}
+                    </h2>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
+                      {currentSpecialty} · {lessons.length} clases
                     </div>
                   </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
-                  <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+                  <ProgressRing percent={subPct} size={46} stroke={3} />
                 </div>
               </div>
-            )
-          })}
-        </div>
+
+              {/* Two big cards: Clases and Pruebas */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                {/* Clases card */}
+                <div className="card" onClick={() => setSubView('clases')} style={{
+                  padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
+                  borderTop: `4px solid ${subStyle.color}`,
+                  textAlign: 'center',
+                }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: 16, margin: '0 auto 1rem',
+                    background: subStyle.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: subStyle.color,
+                  }}>
+                    <Presentation size={26} />
+                  </div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                    Clases
+                  </h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
+                    Videos, resúmenes y puntos clave de cada tema
+                  </p>
+                  <div style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    padding: '0.4rem 1rem', borderRadius: 50, fontSize: '0.78rem', fontWeight: 600,
+                    background: completed === lessons.length && lessons.length > 0 ? 'rgba(16,185,129,0.12)' : subStyle.bg,
+                    color: completed === lessons.length && lessons.length > 0 ? '#10b981' : subStyle.color,
+                  }}>
+                    {completed === lessons.length && lessons.length > 0 ? (
+                      <><CheckCircle2 size={13} /> Completadas</>
+                    ) : (
+                      <>{completed}/{lessons.length} completadas</>
+                    )}
+                  </div>
+                </div>
+
+                {/* Pruebas card */}
+                <div className="card" onClick={() => setSubView('pruebas')} style={{
+                  padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
+                  borderTop: '4px solid #10b981',
+                  textAlign: 'center',
+                }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: 16, margin: '0 auto 1rem',
+                    background: 'rgba(16,185,129,0.1)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: '#10b981',
+                  }}>
+                    <ClipboardList size={26} />
+                  </div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                    Pruebas EUNACOM
+                  </h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
+                    Sets de preguntas tipo examen con explicaciones
+                  </p>
+                  <div style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    padding: '0.4rem 1rem', borderRadius: 50, fontSize: '0.78rem', fontWeight: 600,
+                    background: 'rgba(16,185,129,0.12)', color: '#10b981',
+                  }}>
+                    <Target size={13} /> Practica ahora
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })()
       )}
     </div>
   )

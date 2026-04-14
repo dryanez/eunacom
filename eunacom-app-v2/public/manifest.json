@@ -1,0 +1,32 @@
+{
+    "name": "Eunacom-Examen",
+    "short_name": "Eunacom",
+    "description": "Plataforma de preparación para el Examen Único Nacional de Conocimientos de Medicina (EUNACOM)",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#8b5cf6",
+    "theme_color": "#8b5cf6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "education",
+        "medical",
+        "productivity"
+    ],
+    "lang": "es-CL",
+    "dir": "ltr",
+    "screenshots": []
+}

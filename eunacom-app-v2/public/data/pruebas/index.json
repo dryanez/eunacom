@@ -1,0 +1,1878 @@
+{
+  "Módulo 1": {
+    "Cardiología": {
+      "slug": "modulo-1-cardiologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-cardiologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-7",
+          "name": "Prueba 7",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-1-cardiologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-cardiologia-12",
+          "name": "Prueba 12",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-cardiologia-13",
+          "name": "Prueba 13",
+          "questionCount": 27
+        },
+        {
+          "id": "modulo-1-cardiologia-14",
+          "name": "Prueba 14",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-cardiologia-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-17",
+          "name": "Prueba 17",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-18",
+          "name": "Prueba 18",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-cardiologia-19",
+          "name": "Prueba 19",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Endocrinología": {
+      "slug": "modulo-1-endocrinologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-endocrinologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-15",
+          "name": "Prueba 15",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-endocrinologia-16",
+          "name": "Prueba 16",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-endocrinologia-17",
+          "name": "Prueba 17",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-endocrinologia-18",
+          "name": "Prueba 18",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-endocrinologia-19",
+          "name": "Prueba 19",
+          "questionCount": 9
+        },
+        {
+          "id": "modulo-1-endocrinologia-20",
+          "name": "Prueba 20",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-21",
+          "name": "Prueba 21",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-22",
+          "name": "Prueba 22",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-23",
+          "name": "Prueba 23",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-24",
+          "name": "Prueba 24",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-endocrinologia-25",
+          "name": "Prueba 25",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Gastroenterología": {
+      "slug": "modulo-1-gastroenterologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-gastroenterologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-12",
+          "name": "Prueba 12",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-gastroenterologia-13",
+          "name": "Prueba 13",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-gastroenterologia-14",
+          "name": "Prueba 14",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-gastroenterologia-15",
+          "name": "Prueba 15",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-gastroenterologia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-17",
+          "name": "Prueba 17",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-18",
+          "name": "Prueba 18",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-gastroenterologia-19",
+          "name": "Prueba 19",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Hematología": {
+      "slug": "modulo-1-hematologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-hematologia-1",
+          "name": "Prueba 1",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-1-hematologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-10",
+          "name": "Prueba 10",
+          "questionCount": 29
+        },
+        {
+          "id": "modulo-1-hematologia-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-hematologia-12",
+          "name": "Prueba 12",
+          "questionCount": 29
+        },
+        {
+          "id": "modulo-1-hematologia-13",
+          "name": "Prueba 13",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-hematologia-14",
+          "name": "Prueba 14",
+          "questionCount": 10
+        },
+        {
+          "id": "modulo-1-hematologia-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-17",
+          "name": "Prueba 17",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-hematologia-18",
+          "name": "Prueba 18",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Infectología": {
+      "slug": "modulo-1-infectologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-infectologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-12",
+          "name": "Prueba 12",
+          "questionCount": 60
+        },
+        {
+          "id": "modulo-1-infectologia-13",
+          "name": "Prueba 13",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-infectologia-14",
+          "name": "Prueba 14",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-infectologia-15",
+          "name": "Prueba 15",
+          "questionCount": 10
+        },
+        {
+          "id": "modulo-1-infectologia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-infectologia-17",
+          "name": "Prueba 17",
+          "questionCount": 19
+        }
+      ]
+    },
+    "Medicina Interna": {
+      "slug": "modulo-1-medicina-interna",
+      "pruebas": [
+        {
+          "id": "modulo-1-medicina-interna-1",
+          "name": "Prueba 1",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-2",
+          "name": "Prueba 2",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-3",
+          "name": "Prueba 3",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-4",
+          "name": "Prueba 4",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-5",
+          "name": "Prueba 5",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-6",
+          "name": "Prueba 6",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-7",
+          "name": "Prueba 7",
+          "questionCount": 100
+        },
+        {
+          "id": "modulo-1-medicina-interna-8",
+          "name": "Prueba 8",
+          "questionCount": 100
+        },
+        {
+          "id": "modulo-1-medicina-interna-9",
+          "name": "Prueba 9",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-medicina-interna-10",
+          "name": "Prueba 10",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-medicina-interna-11",
+          "name": "Prueba 11",
+          "questionCount": 90
+        },
+        {
+          "id": "modulo-1-medicina-interna-12",
+          "name": "Prueba 12",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-medicina-interna-13",
+          "name": "Prueba 13",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-medicina-interna-14",
+          "name": "Prueba 14",
+          "questionCount": 89
+        },
+        {
+          "id": "modulo-1-medicina-interna-15",
+          "name": "Prueba 15",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-1-medicina-interna-16",
+          "name": "Prueba 16",
+          "questionCount": 70
+        }
+      ]
+    },
+    "Nefrología": {
+      "slug": "modulo-1-nefrologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-nefrologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-5",
+          "name": "Prueba 5",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-1-nefrologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-10",
+          "name": "Prueba 10",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-nefrologia-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-nefrologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-nefrologia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Neurología": {
+      "slug": "modulo-1-neurologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-neurologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-10",
+          "name": "Prueba 10",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-neurologia-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-neurologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-neurologia-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Respiratorio": {
+      "slug": "modulo-1-respiratorio",
+      "pruebas": [
+        {
+          "id": "modulo-1-respiratorio-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-4",
+          "name": "Prueba 4",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-1-respiratorio-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-10",
+          "name": "Prueba 10",
+          "questionCount": 25
+        },
+        {
+          "id": "modulo-1-respiratorio-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-respiratorio-12",
+          "name": "Prueba 12",
+          "questionCount": 29
+        },
+        {
+          "id": "modulo-1-respiratorio-13",
+          "name": "Prueba 13",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-respiratorio-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-respiratorio-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Reumatología": {
+      "slug": "modulo-1-reumatologia",
+      "pruebas": [
+        {
+          "id": "modulo-1-reumatologia-1",
+          "name": "Prueba 1",
+          "questionCount": 2
+        },
+        {
+          "id": "modulo-1-reumatologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-10",
+          "name": "Prueba 10",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-reumatologia-11",
+          "name": "Prueba 11",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-1-reumatologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-1-reumatologia-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        }
+      ]
+    }
+  },
+  "Módulo 2": {
+    "Cirugía y Anestesia": {
+      "slug": "modulo-2-cirugia-y-anestesia",
+      "pruebas": [
+        {
+          "id": "modulo-2-cirugia-y-anestesia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-15",
+          "name": "Prueba 15",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-16",
+          "name": "Prueba 16",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-cirugia-y-anestesia-17",
+          "name": "Prueba 17",
+          "questionCount": 10
+        }
+      ]
+    },
+    "Dermatología": {
+      "slug": "modulo-2-dermatologia",
+      "pruebas": [
+        {
+          "id": "modulo-2-dermatologia-1",
+          "name": "Prueba 1",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-2-dermatologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-dermatologia-10",
+          "name": "Prueba 10",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-2-dermatologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Especialidades": {
+      "slug": "modulo-2-especialidades",
+      "pruebas": [
+        {
+          "id": "modulo-2-especialidades-1",
+          "name": "Prueba 1",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-2",
+          "name": "Prueba 2",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-3",
+          "name": "Prueba 3",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-4",
+          "name": "Prueba 4",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-5",
+          "name": "Prueba 5",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-6",
+          "name": "Prueba 6",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-2-especialidades-7",
+          "name": "Prueba 7",
+          "questionCount": 90
+        },
+        {
+          "id": "modulo-2-especialidades-8",
+          "name": "Prueba 8",
+          "questionCount": 70
+        }
+      ]
+    },
+    "Oftalmología": {
+      "slug": "modulo-2-oftalmologia",
+      "pruebas": [
+        {
+          "id": "modulo-2-oftalmologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-10",
+          "name": "Prueba 10",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-2-oftalmologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-oftalmologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Otorrinolaringología": {
+      "slug": "modulo-2-otorrinolaringologia",
+      "pruebas": [
+        {
+          "id": "modulo-2-otorrinolaringologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-10",
+          "name": "Prueba 10",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-otorrinolaringologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Psiquiatría": {
+      "slug": "modulo-2-psiquiatria",
+      "pruebas": [
+        {
+          "id": "modulo-2-psiquiatria-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-9",
+          "name": "Prueba 9",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-2-psiquiatria-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-psiquiatria-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Salud Pública": {
+      "slug": "modulo-2-salud-publica",
+      "pruebas": [
+        {
+          "id": "modulo-2-salud-publica-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-4",
+          "name": "Prueba 4",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-2-salud-publica-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-salud-publica-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Traumatología": {
+      "slug": "modulo-2-traumatologia",
+      "pruebas": [
+        {
+          "id": "modulo-2-traumatologia-1",
+          "name": "Prueba 1",
+          "questionCount": 21
+        },
+        {
+          "id": "modulo-2-traumatologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-traumatologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Urología": {
+      "slug": "modulo-2-urologia",
+      "pruebas": [
+        {
+          "id": "modulo-2-urologia-1",
+          "name": "Prueba 1",
+          "questionCount": 8
+        },
+        {
+          "id": "modulo-2-urologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-2-urologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    }
+  },
+  "Módulo 3": {
+    "Ginecología": {
+      "slug": "modulo-3-ginecologia",
+      "pruebas": [
+        {
+          "id": "modulo-3-ginecologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-5",
+          "name": "Prueba 5",
+          "questionCount": 19
+        },
+        {
+          "id": "modulo-3-ginecologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-ginecologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Neonatología": {
+      "slug": "modulo-3-neonatologia",
+      "pruebas": [
+        {
+          "id": "modulo-3-neonatologia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-7",
+          "name": "Prueba 7",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-3-neonatologia-8",
+          "name": "Prueba 8",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-3-neonatologia-9",
+          "name": "Prueba 9",
+          "questionCount": 24
+        },
+        {
+          "id": "modulo-3-neonatologia-10",
+          "name": "Prueba 10",
+          "questionCount": 30
+        },
+        {
+          "id": "modulo-3-neonatologia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-neonatologia-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Obstetricia": {
+      "slug": "modulo-3-obstetricia",
+      "pruebas": [
+        {
+          "id": "modulo-3-obstetricia-1",
+          "name": "Prueba 1",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-obstetricia-12",
+          "name": "Prueba 12",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Pediatría": {
+      "slug": "modulo-3-pediatria",
+      "pruebas": [
+        {
+          "id": "modulo-3-pediatria-1",
+          "name": "Prueba 1",
+          "questionCount": 50
+        },
+        {
+          "id": "modulo-3-pediatria-2",
+          "name": "Prueba 2",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-3",
+          "name": "Prueba 3",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-4",
+          "name": "Prueba 4",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-5",
+          "name": "Prueba 5",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-6",
+          "name": "Prueba 6",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-7",
+          "name": "Prueba 7",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-8",
+          "name": "Prueba 8",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-9",
+          "name": "Prueba 9",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-10",
+          "name": "Prueba 10",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-11",
+          "name": "Prueba 11",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-12",
+          "name": "Prueba 12",
+          "questionCount": 11
+        },
+        {
+          "id": "modulo-3-pediatria-13",
+          "name": "Prueba 13",
+          "questionCount": 20
+        },
+        {
+          "id": "modulo-3-pediatria-14",
+          "name": "Prueba 14",
+          "questionCount": 20
+        }
+      ]
+    },
+    "Pediatría y Ginecología": {
+      "slug": "modulo-3-pediatria-y-ginecologia",
+      "pruebas": [
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-1",
+          "name": "Prueba 1",
+          "questionCount": 50
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-2",
+          "name": "Prueba 2",
+          "questionCount": 50
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-3",
+          "name": "Prueba 3",
+          "questionCount": 50
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-4",
+          "name": "Prueba 4",
+          "questionCount": 50
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-5",
+          "name": "Prueba 5",
+          "questionCount": 69
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-6",
+          "name": "Prueba 6",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-7",
+          "name": "Prueba 7",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-8",
+          "name": "Prueba 8",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-9",
+          "name": "Prueba 9",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-10",
+          "name": "Prueba 10",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-11",
+          "name": "Prueba 11",
+          "questionCount": 110
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-12",
+          "name": "Prueba 12",
+          "questionCount": 90
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-13",
+          "name": "Prueba 13",
+          "questionCount": 90
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-14",
+          "name": "Prueba 14",
+          "questionCount": 74
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-15",
+          "name": "Prueba 15",
+          "questionCount": 70
+        },
+        {
+          "id": "modulo-3-pediatria-y-ginecologia-16",
+          "name": "Prueba 16",
+          "questionCount": 70
+        }
+      ]
+    }
+  }
+}
