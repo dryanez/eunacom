@@ -68,7 +68,7 @@ const TestCreator = () => {
             map[cat][topic].push(q.id)
         })
         return map
-    }, [])
+    }, [questionDB])
 
     // --- Status counts & filtered questions ---
     const { counts, filteredByStatus, subjects } = useMemo(() => {
@@ -126,7 +126,7 @@ const TestCreator = () => {
         }, [])
 
         return { counts, filteredByStatus: filteredIds, subjects }
-    }, [userProgress, statusFilters])
+    }, [questionDB, userProgress, statusFilters])
 
     // --- Questions currently selected by tab + topic checkboxes ---
     const selectedQuestions = useMemo(() => {
