@@ -2,13 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { ChevronDown, AlertCircle, TrendingUp } from 'lucide-react'
 import { fetchProgress, fetchTests } from '../lib/api'
 import { useAuth } from '../contexts/AuthContext'
-import questionDB from '../data/questionDB.json'
+import { getQuestionDB } from '../lib/questionDB'
 
 const Stats = () => {
     const { user } = useAuth()
     const [progressData, setProgressData] = useState([])
     const [testHistory, setTestHistory] = useState([])
     const [loading, setLoading] = useState(true)
+    const [questionDB, setQuestionDB] = useState([])
 
     useEffect(() => {
         if (user) loadAll()
@@ -17,10 +18,12 @@ const Stats = () => {
     const loadAll = async () => {
         setLoading(true)
         try {
-            const [progress, tests] = await Promise.all([
+            const [progress, tests, db] = await Promise.all([
                 fetchProgress(user.id),
-                fetchTests(user.id)
+                fetchTests(user.id),
+                getQuestionDB()
             ])
+            setQuestionDB(db)
             setProgressData(progress || [])
             setTestHistory((tests || []).filter(t => t.status === 'completed').sort((a, b) => new Date(a.created_at) - new Date(b.created_at)))
         } catch (error) {

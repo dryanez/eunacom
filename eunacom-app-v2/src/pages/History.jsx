@@ -3,7 +3,7 @@ import { Search, Filter, Play, Trash2 } from 'lucide-react'
 import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import questionDB from '../data/questionDB.json'
+import { getQuestionDB } from '../lib/questionDB'
 
 const HistoryCard = ({ test }) => {
     return (
@@ -111,8 +111,9 @@ const History = () => {
         }
     }
 
-    const handleContinue = (test) => {
-        const testQuestions = test.questions.map(id => questionDB.find(q => q.id === id)).filter(Boolean)
+    const handleContinue = async (test) => {
+        const db = await getQuestionDB()
+        const testQuestions = test.questions.map(id => db.find(q => q.id === id)).filter(Boolean)
 
         if (testQuestions.length === 0) {
             alert('No se pudieron cargar las preguntas originales.')

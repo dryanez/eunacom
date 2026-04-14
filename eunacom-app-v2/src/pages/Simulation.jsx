@@ -3,7 +3,7 @@ import { Clock, LightbulbOff, PlayCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId } from '../lib/api'
-import questionDB from '../data/questionDB.json'
+import { getQuestionDB } from '../lib/questionDB'
 
 const Simulation = () => {
     const navigate = useNavigate()
@@ -22,6 +22,7 @@ const Simulation = () => {
         setIsStarting(true)
         try {
             if (!user) throw new Error('Debes iniciar sesión.')
+            const questionDB = await getQuestionDB()
 
             // Build 180-question exam from blueprint proportions
             const picked = []

@@ -3,13 +3,12 @@ import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight } from 'luci
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, askTutor, genId } from '../lib/api'
-import masterQuestionDB from '../data/questionDB.json'
 
 const TestRunner = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { user } = useAuth()
-    const questions = location.state?.questions || masterQuestionDB
+    const questions = location.state?.questions || []
 
     const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
