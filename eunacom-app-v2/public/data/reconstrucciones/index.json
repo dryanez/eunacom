@@ -52,8 +52,8 @@
       "name": "EUNACOM Diciembre 2018",
       "month": "Diciembre",
       "year": 2018,
-      "total_questions": 178,
-      "questions_with_answers": 178,
+      "total_questions": 180,
+      "questions_with_answers": 180,
       "file": "eunacom-dic-2018.json"
     },
     {
@@ -70,8 +70,8 @@
       "name": "EUNACOM Diciembre 2019",
       "month": "Diciembre",
       "year": 2019,
-      "total_questions": 178,
-      "questions_with_answers": 173,
+      "total_questions": 180,
+      "questions_with_answers": 180,
       "file": "eunacom-dic-2019.json"
     },
     {

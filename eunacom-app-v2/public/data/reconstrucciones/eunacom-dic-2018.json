@@ -1,10 +1,8 @@
 {
   "id": "eunacom-dic-2018",
-  "name": "EUNACOM Diciembre 2018",
-  "month": "Diciembre",
-  "year": 2018,
-  "total_questions": 178,
-  "questions_with_answers": 178,
+  "titulo": "EUNACOM Diciembre 2018",
+  "año": 2018,
+  "mes": "Diciembre",
   "questions": [
     {
       "id": 1,
@@ -16,7 +14,8 @@
         "Hipertensión renovascular",
         "Accidente vascular encefálico"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "D",
+      "explanation": "Es una HTA renovascular clásica, tanto por el soplo renal, como por la clínica de hipertensión secundaria (joven, severa),"
     },
     {
       "id": 2,
@@ -28,7 +27,8 @@
         "Insuficiencia aórtica",
         "Miocardiopatía hipertrófica Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una insuﬁciencia aórtica clásica (ver resumen de semiología cardíaca)."
     },
     {
       "id": 3,
@@ -40,7 +40,8 @@
         "Estenosis aórtica",
         "Coartación aórtica supravalvular"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una CIA clásica (ver resumen de semiología cardíaca)."
     },
     {
       "id": 4,
@@ -52,7 +53,8 @@
         "Desfibrilación",
         "Cardioversión eléctrica"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Por tener compromiso hemodinámico, da igual de qué taquiarritmia se trate y se debe cardiovertir eléctricamente (no confundir con la desﬁbrilación, que se usa en el paro con FV o TVSP)."
     },
     {
       "id": 5,
@@ -64,7 +66,8 @@
         "Clearence de creatinina",
         "Radiografía de tórax"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Por las náuseas, más la descompensación de la insuﬁciencia cardíaca, parece una intoxicación digitálica."
     },
     {
       "id": 6,
@@ -76,7 +79,8 @@
         "Agregar salbutamol",
         "Agregar codeína Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La tos es la reacción adversa más frecuente de los IECA y es la razón principal para reemplazarlos por inhibidores de la angiotensina II. !"
     },
     {
       "id": 7,
@@ -88,7 +92,8 @@
         "Captopril oral",
         "Labetalol endovenoso"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El tratamiento de la crisis hipertensiva, sin compromiso de órgano banco (urgencia hipertensiva) es el captopril oral. Sin embargo, la evidencia es errática y permite usar otros antihipertensivos."
     },
     {
       "id": 8,
@@ -100,7 +105,8 @@
         "Solicitar TAC de tórax",
         "Esperar el resultado del cultivo de Koch y decidir conducta según resultado Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La radiografía no se veía bien, pero tanto por la PCR + para TBC, como por el quamtiferón positivo, probablemente se trata de una TBC, aunque las baciloscopías estén negativas y se debe iniciar el tratamiento habitual."
     },
     {
       "id": 9,
@@ -112,7 +118,8 @@
         "Solicitar TAC de tórax",
         "Realizar toracocentesis evacuadora y diagnóstica"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene un derrame pleural izquierdo, por lo que se debe evacuar y estudiar. La clínica orienta a nuemonía o tuberculosis, sin dejar claro cuál es la causa."
     },
     {
       "id": 10,
@@ -124,7 +131,8 @@
         "Claritromicina",
         "Prednisona Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Parece una inﬂuenza u otra infección respiratoria alta, por lo que se trata con paracetamol o acetaminofeno."
     },
     {
       "id": 11,
@@ -136,7 +144,8 @@
         "PET",
         "Resonancia magnética de tórax"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una pregunta discutible. Lo primero a revisar siempre son las radiografías previas. Luego, el TAC es el examen de elección para el enfrentamieinto del nódulo pulmonar. Sin embargo, el PET/TC ha demostrado ser de gran utilidad (a pesar de falsos positivos), por lo que también es una respuesta potencialmente correcta. Luego se hace la biopsia por broncoscopía."
     },
     {
       "id": 12,
@@ -148,7 +157,8 @@
         "Colonoscopía",
         "Parasitológico de deposiciones y coprocultivo Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "No queda claro cuál es el diagnóstico, pero parece una enfermedad de Cröhn, por lo que se estudia con colonoscopía. También podría ser un linfoma MALT, que se estudia igual."
     },
     {
       "id": 13,
@@ -160,7 +170,8 @@
         "Coledocolitiasis",
         "Cirrosis biliar primaria"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una colangitis esclerosante primaria clásica (se asocia a colitis ulcerosa y tiene patrón colestásico)."
     },
     {
       "id": 14,
@@ -172,7 +183,8 @@
         "Angiografía mesentérica",
         "Enteroscopía"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una pregunta discutible. La hematoquecia con compromiso hemodinámico (HDB masiva) siempre se debe estudiar con EDA (en este caso falta el compromiso hemodinámico, pero creemos que es la respuesta correcta igual). La colonoscopía es el examen de elección en la HDB (y acá se hizo) y si no localiza, se sigue estudiando con pruebas radiológicas (cintigrafía o angiogiografía)."
     },
     {
       "id": 15,
@@ -184,7 +196,8 @@
         "Endoscopía digestiva alta",
         "TAC de abdomen y pelvis"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Se sospecha una úlcera gastroduodenal (aunque el dolor suele ser más intenso en ayunas). Se estudia con EDA."
     },
     {
       "id": 16,
@@ -196,7 +209,8 @@
         "Diabetes insípida descompensada",
         "Coma hiperosmolar Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una cetoacidosis diabética clásica (acidosis metabólica y diabetes tipo 1)."
     },
     {
       "id": 17,
@@ -208,7 +222,8 @@
         "Liraglutide",
         "Glibenclamida"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tanto por los síntomas de diabetes (baja de peso y polidipsia), como por la HbA1c mayor a 9%, está indicada la insulina."
     },
     {
       "id": 18,
@@ -220,7 +235,8 @@
         "Cortisol libre urinario de 24 horas",
         "Prueba de estimulación con ACTH"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El síndrome de Cushing se estudia de elección con el cortisol libre urinario de 24 horas."
     },
     {
       "id": 19,
@@ -232,7 +248,8 @@
         "Amenorrea hipotalámica",
         "Síndrome de ovario poliquístico"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene un hipogonadismo hipogonadotróﬁco (las gonadotropinas normales se consideran como hipogonadotróﬁco), por lo que es de causa hipotalámica o hipoﬁsiaria (el hipo- hipo es hipo-hipo)."
     },
     {
       "id": 20,
@@ -244,7 +261,8 @@
         "Insuficiencia suprarrenal aguda",
         "Accidente vascular hemorrágico Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene una crisis suprarrenal clásica: shock refractario, hiponatremia, hipoglicemia e hiperkalemia (el K+ está normal en este caso, pero en el límite alto). Sin embargo, también tiene una insuﬁciencia renal aguda (creatinina elevada), pero el diagnóstico más importante es la insuﬁciencia suprarrenal."
     },
     {
       "id": 21,
@@ -256,7 +274,8 @@
         "Solicitar ecografía tiroidea",
         "Solicitar cintigrafía tiroidea con yodo radiactivo"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un hipotiroidismo subclínico, sin complicaciones, por lo que no requiere tratamiento y se debe observar."
     },
     {
       "id": 22,
@@ -268,7 +287,8 @@
         "Polimialgia reumática",
         "Miopatía por cuerpos de inclusión"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una anfermedad de Parkinson clásico: temblor de reposo, bradicinesia y problemas de inicio de marcha."
     },
     {
       "id": 23,
@@ -280,7 +300,8 @@
         "Mielopatía por influenza",
         "Miositis viral"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un síndrome de Guillain Barré clásico"
     },
     {
       "id": 24,
@@ -292,7 +313,8 @@
         "Accidente vascular hemorrágico del puente",
         "Hemorragia subaracnoidea Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "En la práctica no es fácil diferenciar los distitos tipos de AVE con la sola clínica. La cefalea orienta más a hemorrágico, pero en el puente, habría tenido compromiso de conciencia y afectación de pares craneanos. El de arteria cerebral media tendría alteraciones del habla y sensitivas. Una AVE lacunar clásico es el con hemiparesia pura, sin afectación del habla ni conciencia. Suelen no tener cefalea, pero el 10% sí tiene."
     },
     {
       "id": 25,
@@ -304,7 +326,8 @@
         "Suero Ringer endovenoso",
         "Hidrocortisona endovenosa"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene una hipocalcemia aguda grave clínica. Se debe tratar con gluconato de calcio urgente."
     },
     {
       "id": 26,
@@ -316,7 +339,8 @@
         "Nefropatía a cambios mínimos",
         "Nefropatía por IgA"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un síndrome nefrótico clásico (edema, proteinuria, hipoalbuminemia y dislipidemia), que en los adultos suele ser causado por la nefropatía membranosa. Vale la pena mencionar que la proteinuria debe ser mayor a 3 gramos al día y acá solo se dice que es de 500 mg/dl, lo que es muy alto (si hace un litro de orina al día, sería de 5 gramos al día)."
     },
     {
       "id": 27,
@@ -328,7 +352,8 @@
         "Mielograma",
         "Cuantificación de inmunoglobulinas Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene una probable leucemia aguda. Si bien el examen inicial es el mielograma, el que conﬁrma (lo que se pregunta) es la biopsia de médula ósea y también sirve el mielograma (frotis de médula ósea)."
     },
     {
       "id": 28,
@@ -340,7 +365,8 @@
         "Vasculitis",
         "Dermatomiositis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene muchas cosas de lupus sistémico: ólceras orales, rash malar, linfocitos bajo, ANA+, anti-DNA+, hipocomplementemia."
     },
     {
       "id": 29,
@@ -352,7 +378,8 @@
         "Gotosa",
         "Lúpica"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una artritis psoriática clásica (con los picotazos ungueales)."
     },
     {
       "id": 30,
@@ -364,7 +391,8 @@
         "Prednisona",
         "Clindamicina Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La gota aguda se trata con AINEs (la HCTZ es un desencadenante). También sirve la colchicina. El alopurinol jamás se inicia en agudo."
     },
     {
       "id": 31,
@@ -376,7 +404,8 @@
         "Lupus eritematoso sistémico",
         "Enfermedad mixta del tejido conectivo"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un síndrome de CREST clásico (Solo falta la calcinosis, pero tiene Raynaud, Esofagopatía, eSclerodactilia y Telangiectasias, más la Tirantez e la cara)."
     },
     {
       "id": 32,
@@ -388,7 +417,8 @@
         "Tamsulosina",
         "Atenolol"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Ahora ya saben, el atenolol puede producir impotencia sexual."
     },
     {
       "id": 33,
@@ -400,7 +430,8 @@
         "Preservativo",
         "Dispositivo intrauterino"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Por el VIH está obligada a usar métodos de barrera."
     },
     {
       "id": 34,
@@ -412,7 +443,8 @@
         "Trastorno depresivo mayor",
         "Trastorno de estrés postraumático Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un TOC clásico (obsesión de dañar y compulsión de no exponerse a la posibilidad). Igual era difícil, porque probablemente se había complicado con una depresión."
     },
     {
       "id": 35,
@@ -424,7 +456,8 @@
         "Trastorno esquizotípico",
         "Trastorno de estrés postraumático"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un trastorno de estrés postraumático, con síntomas disociativos. Era una pregunta difícil, pero cumple con los criterios del CIE-10."
     },
     {
       "id": 36,
@@ -436,7 +469,8 @@
         "Disquinesia tardía",
         "Parkinsonismo farmacológico"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una acatisia clásica."
     },
     {
       "id": 37,
@@ -448,7 +482,8 @@
         "Clonazepam 6 mg",
         "Clorpromazina 300"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un trastorno de pánico clásico, que se trata con antidepresivos IRS, como la sertralina."
     },
     {
       "id": 38,
@@ -460,7 +495,8 @@
         "Disquinesia tardía",
         "Parkinsonismo farmacológico Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una distonía clásica: la tortícolis espasmódica."
     },
     {
       "id": 39,
@@ -472,7 +508,8 @@
         "Trastorno depresivo mayor",
         "Trastorno esquizotípico de la personalidad"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Parece una esquizofrenia por las alucinaciones auditivas y el inicio en la adolescencia."
     },
     {
       "id": 40,
@@ -484,7 +521,8 @@
         "Opiáceos",
         "Antidepresivos tricíclicos"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una intoxicación por tricíclicos por el compromiso de conciencia, taquicardia y pupilas arreactivas (en midriasis). No puede ser benzodiacepinas ni opiáceos, porque no tenía disminución de la frecuencia respiratoria. AINEs y salicilatos no afectan las pupilas."
     },
     {
       "id": 41,
@@ -496,7 +534,8 @@
         "Identificar y controlar situaciones epidémicas",
         "Reunir información estadística completa y confiable, para determinar las políticas de salud"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La vigilancia activa (notiﬁcación obligatoria) busca identiﬁcar los brotes de manera rápida, para poder contenerlo, haciendo un adecuado manejo de los casos (aislamiento y tratamineto) y de los contactos (proﬁlaxis y observación)."
     },
     {
       "id": 42,
@@ -508,7 +547,8 @@
         "Elevado valor predictivo positivo",
         "Baja especificidad"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una pregunta difícil, ya que tanto alta sensbilidad, como alto valor predictivo negativo son respuestas correctas y, de hecho, se relacionan entre sí. Sin embargo, en estricto rigor, es el alto VPN lo que hace que se descarte una enfermedad al resultar negativo el examen."
     },
     {
       "id": 43,
@@ -520,7 +560,8 @@
         "Bajo valor predictivo negativo y reproductibilidad",
         "Bajo costo y baja sensibilidad Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La sensibilidad debe ser alta, para detectar todos los casos, aunque la especiﬁcidad no sea tan alta (por ello, luego se conﬁrma con otros exámenes más especíﬁcos)."
     },
     {
       "id": 44,
@@ -532,7 +573,8 @@
         "Estudios de prevalencia",
         "Estudios experimentales"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La vigilancia por centros centinelas se usa en las siguientes enfermedades: infecciones respiratorias altas, diarreas, varicela y las infecciones de trasmisión sexual (excepto la síﬁlis y gonorrea, que son de notiﬁcación obligatoria)."
     },
     {
       "id": 45,
@@ -544,7 +586,8 @@
         "Observacional",
         "Experimental"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un estudio ecológico clásico, sin embargo, vale la pena mencionar que también es un estudio de tipo observacional (ya que no es experimental)."
     },
     {
       "id": 46,
@@ -556,7 +599,8 @@
         "Odds ratio",
         "Incidencia"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un estudio de casos y controles, por lo que se calcula el OR, como medida de asociación. El riesgo relativo también era una medida de asociación (las demás no)."
     },
     {
       "id": 47,
@@ -568,7 +612,8 @@
         "Estudio experimental",
         "Estudio ecológico Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "[Pregunta disputada] Es una mala pregunta, ya que hay más de un tipo de estudio que se puede utilizar para ello (además que no queda claro a qué tipo de intervenciones focalizadas se reﬁere). Sin embargo, el estudio de casos y controles suele dar información rápida y barata, que permite identiﬁcar los factores de riesgo, para controlarlos. Los ecológicos son baratos, pero abarcan toda la población (no son focalizados)."
     },
     {
       "id": 48,
@@ -580,7 +625,8 @@
         "Nitrofurantoína",
         "Doxiciclina"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "No queda claro si es una prostatitis aguda o una ITU, pero el ciproﬂoxacino las cubre a ambas."
     },
     {
       "id": 49,
@@ -592,7 +638,8 @@
         "Prótesis peneana",
         "Psicoterapia"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una pregunta difícil, ya que el sildenaﬁl está contraindicado por el infarto reciente. De primera línea está el sildenaﬁl, la apomorﬁna y los dispositivos de vacío (no recuerdo si salía apomorﬁna). De segunda línea, están las inyecciones intracavernosas de papaverina o prostaglandina. La última línea es la prótesis peneana. La yohimbina y la protsglandina tópica sirven, pero poco."
     },
     {
       "id": 50,
@@ -604,7 +651,8 @@
         "Fractura de pelvis",
         "Fractura vertebral con lesión del plexo lumbar"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una fractura de cadera clásica, con la posición impúdica."
     },
     {
       "id": 51,
@@ -616,7 +664,8 @@
         "Instalar sábana pélvica",
         "Solicitar TAC de pelvis Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene una probable fractura de pelvis, pero por tener compromiso hemodinámico, lo más urgente es poner una vía venosa, administrar ﬂuidos y estabilizar la pelvis (por ejemplo con una sábana pélvica)."
     },
     {
       "id": 52,
@@ -628,7 +677,8 @@
         "Bursitis trocantérica",
         "Síndrome de la fascia lata rígida"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Parece una bursitis trocantérica clásica."
     },
     {
       "id": 53,
@@ -640,7 +690,8 @@
         "Colecistitis aguda",
         "Obstrucción intestinal por bridas"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una obstrucción intestinal clásica, cuya causa más frecuente son las bridas (en especial en pacientes con antecedente de cirugía abdominal previa)."
     },
     {
       "id": 54,
@@ -652,7 +703,8 @@
         "Realizar colecistectomía laparoscópica",
         "Realizar punción del quiste hepático"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "El hígado graso se trata con ejercicio, dieta y metformina. Los quistes simples son algo normal y frecuente. Los pólipos vesiculares menores a 1 cm se observan."
     },
     {
       "id": 55,
@@ -664,7 +716,8 @@
         "Realizar gastrectomía paliativa",
         "Realizar derivación gastrointestinal Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La derivación gastroyeyunal es menos agresiva que la hgastrectomía y permite retablecer el tránsito gastrointestinal."
     },
     {
       "id": 56,
@@ -676,7 +729,8 @@
         "Detección de anticuerpos antitransglutaminasa en sangre",
         "Test de sangre oculta en deposiciones"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Lo primero a descartar es el cáncer de colon (después la enfermedad celíaca)."
     },
     {
       "id": 57,
@@ -688,7 +742,8 @@
         "Obstrucción intestinal",
         "Diverticulitis aguda"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una diverticulitis clásica."
     },
     {
       "id": 58,
@@ -700,7 +755,8 @@
         "Ecografía de cuello",
         "TAC de cuello"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La disfonía crónica se estudia con nasoﬁbroscopía (más aún cuando se sospecha un cáncer de laringe, como en este caso)."
     },
     {
       "id": 59,
@@ -712,7 +768,8 @@
         "Iniciar amoxicilina oral",
         "Solicitar radiografía de tórax y baciloscopías Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una sinusitis aguda, que se trata con amoxicilina."
     },
     {
       "id": 60,
@@ -724,7 +781,8 @@
         "Queratitis por Chlamydia trachomatis",
         "Dacriocele"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una atresia lagrimal clásica. No tien buftalmo ni opacidad corneal, como para pensar en glaucoma congénito."
     },
     {
       "id": 61,
@@ -736,7 +794,8 @@
         "Erupción polimorfa solar",
         "Lupus cutáneo crónico"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una rosácea clásica: aumenta con la exposición solar. El lupus sistémico también puede afectar las mejillas y aumentar con el sol, pero no tiene tantas pústulas. Además, el lupus cutáneo crónico es una o más placas, sin pústulas, de curso crónico."
     },
     {
       "id": 62,
@@ -748,7 +807,8 @@
         "Melanoma amelanótico",
         "Carcinoma basocelular Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un granuloma piógeno clásico. Eso sí, la foto era distinta."
     },
     {
       "id": 63,
@@ -760,7 +820,8 @@
         "Carcinoma basocelular",
         "Chalazión"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un cáncer basocelular clásico."
     },
     {
       "id": 64,
@@ -772,7 +833,8 @@
         "Dermatitis de contacto",
         "Queloide"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un queloide clásico (cicatriz patológica, grande, que sobrepasa los límites de la herida)."
     },
     {
       "id": 65,
@@ -784,7 +846,8 @@
         "Solicitar radiografías contrastadas de esófago-estómago-duodeno",
         "Solicitar TAC de cuello Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Parece una disfonía por reﬂujo (mayor en la mañana). Se puede hacer una prueba terapéutica, aunque lo mejor suele ser solicitar una pH-metría para conﬁrmar el diagnóstico."
     },
     {
       "id": 66,
@@ -796,7 +859,8 @@
         "Sinusitis maxilar",
         "Absceso frontal"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "[Pregunta disputada] Es una mala pregunta. En estricto rigor parece una celulitis preorbitaria, que no estaba en las opciones, secundaria a una sinusitis (no queda claro si es maxilar, etmoidal o frontal). Tampoco parace un absceso orbitario (no existe el concepto periorbitario), por no tener limitación a la movilización de los movimientos, proptosis o otras alteraciones similares."
     },
     {
       "id": 67,
@@ -808,7 +872,8 @@
         "Toxoide tetánico",
         "Toxoide diftérico"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La vacuna contra el rotavirus se ha asociado a la invaginación intestinal."
     },
     {
       "id": 68,
@@ -820,7 +885,8 @@
         "Esperar a los 4 años para administrarla",
         "Esperar a que esté en primero básico para administrarla"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La alergia al huevo no contraindica ninguna vacuna."
     },
     {
       "id": 69,
@@ -832,7 +898,8 @@
         "Reacción adversa al ibuprofeno",
         "Mononucleosis infecciosa Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un eritema infeccioso clásico. El exantema puede durar hasta 30 días."
     },
     {
       "id": 70,
@@ -844,7 +911,8 @@
         "Enfermedad de Kawasaki",
         "Síndrome de piel escaldada"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un exantema súbito clásico, por virus herpes 6."
     },
     {
       "id": 71,
@@ -856,7 +924,8 @@
         "Virus rubéola",
         "Estafilococo aúreo"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una escarlatina clásica por S. pyogenes (EBHGA)."
     },
     {
       "id": 72,
@@ -868,7 +937,8 @@
         "Buen incremento ponderal",
         "Mal incremento ponderal Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Considerando que es normal que bajen de peso, hasta un 10% del peso y que lo recuperen a los 7 días, su incremento de peso es del todo normal."
     },
     {
       "id": 73,
@@ -880,7 +950,8 @@
         "Abrazarlo por detrás y realizar compresiones subxifoideas",
         "Realizar compresiones en el pecho, en decúbito supino"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Después de los 12 meses se hace la maniobra de Heimlich. Bajo los 12 meses de edad, se dan los golpes interescapulares."
     },
     {
       "id": 74,
@@ -892,7 +963,8 @@
         "Compresión del ventrículo izquierdo",
         "Hipoplasia pulmonar"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La hernia diafragmática congénita se complica con hipoplasia pulmonar que puede ser muy grave."
     },
     {
       "id": 75,
@@ -904,7 +976,8 @@
         "Infección por Streptococcus pneumoniae",
         "Infección por adenovirus"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una infección clásica por adenovirus: recordar que antes de los 3 años son muy raras las amigdalitis bacterianas."
     },
     {
       "id": 76,
@@ -916,7 +989,8 @@
         "Síndrome de Marfán",
         "Síndrome de Ehler Dahnlos Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un síndrome de Marfán clásico (afecta tanto a hombre, como a mujeres y es genético, autosómico dominante)."
     },
     {
       "id": 77,
@@ -928,7 +1002,8 @@
         "Treponema pallidum",
         "Estreptococo betahemolítico grupo B"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un TORCH clásico (pequeño para la edad gestacional), cuya causa más frecuente es el CMV. La sepsis (por SGB) puede tener un cuadro similar, pero le sobra lo pequeño para la edad gestacional."
     },
     {
       "id": 78,
@@ -940,7 +1015,8 @@
         "Realizar tipificación del virus papiloma humano",
         "Derivar a colposcopía y eventual biopsia"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La vacuna está pensada para niñas y niños que no han iniciado su actividad sexual (además que no ha demostrado ser mejor que el PAP). Por eso, el PAP de control es lo más importante. Eso sí, en la vida real, si es virgen al virus, igual serviría la vacuna."
     },
     {
       "id": 79,
@@ -952,7 +1028,21 @@
         "Tricomoniasis",
         "Cervicitis gonocócica"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una cervicitis aguda clásica, cuyas causas más frecuentes son la gonorrea y la clamidia."
+    },
+    {
+      "id": 80,
+      "pregunta": "Una paciente de mantiene actividad sexual, sin método anticonceptivo, consulta por fiebre, asociada a dolor abdominal de 3 días de evolución. Al examen físico presenta abdomen sensible y al examen ginecológico destaca útero doloroso, tanto a la palpación, como a la movilización. Se solicitan exámenes, que muestran test de embarazo negativo, hemograma con leucocitos: 18.000 por campo y PCR: 8,0 mg/L. La ecografía transvaginal muestra presencia de líquido libre escaso en la cavidad peritoneal, sin otras alteraciones. La conducta más adecuada es:",
+      "opciones": [
+        "Iniciar tratamiento sintomático con ácido mefenámico",
+        "Realizar cultivo endocervical",
+        "Indicar anticonceptivos orales",
+        "Iniciar tratamiento antibiótico",
+        "Realizar laparotomía exploradora Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Tiene un proceso inﬂamatorio pélvico, no complicado, por lo que se trata con antibióticos de amplio espectro."
     },
     {
       "id": 81,
@@ -964,7 +1054,8 @@
         "Laparoscopía exploradora",
         "Hemograma y PCR"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Se sospecha un embarazo ectópico y es lo primero a descartarse."
     },
     {
       "id": 82,
@@ -976,7 +1067,8 @@
         "Retirar el DIU",
         "Realizar ecografía transvaginal"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El DIU es causa de aumento del ﬂujo menstrual y de dismenorrea. Se debe retirar y s epuede cambiar por un DIU medicado."
     },
     {
       "id": 83,
@@ -988,7 +1080,8 @@
         "Realizar cesárea al momento del trabajo de parto",
         "Inducir el parto a las 41 semanas"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "El oligoamnio se maneja según la causa (no aparecía bucar la causa). El idiopático puede manejarse como un embarazo normal y no contraindica el parto vaginal. Se suele interrumpir al llegar a término y máximo a las 40 semanas, por el riesgo de óbito fetal."
     },
     {
       "id": 84,
@@ -1000,7 +1093,8 @@
         "Hospitalizar y conducir el trabajo de parto",
         "Realizar test de tolerancia a las contracciones Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Le faltan las modiﬁcaciones cervicales, por lo que aún no inicia el trabajo de parto. Es más, si tuviese dilatación hasta 3 cm, estaría en fase latente y también se envía a domicilio, indicando recontrol en una horas)."
     },
     {
       "id": 85,
@@ -1012,7 +1106,8 @@
         "Fosfatasas alcalinas",
         "Bilirrubina total y diferenciada"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El diagnóstico de la colestasia intrahepática es clínico y no requiere de exámenes. Sin embargo, las fosfatasas alcalinas se elevan con mucha frecuencia, mientras que la bilirrubina puede ser normal."
     },
     {
       "id": 86,
@@ -1024,7 +1119,8 @@
         "Colestasia intrahepática del embarazo",
         "Coledocolitiasis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La astenia, la hipoglicemia y la clínica inespecíﬁca son clásicas del hígado graso agudo del embarazo. No es HELLP, a pesar de la LDH alta, por la PA normal."
     },
     {
       "id": 87,
@@ -1036,7 +1132,8 @@
         "Cáncer de colon",
         "Endometriosis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un cáncer de ovario clásico."
     },
     {
       "id": 88,
@@ -1048,7 +1145,8 @@
         "Estrógenos solos continuos",
         "Progestágenos solos continuos Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La TRH comúnmente indicada es la combinada (estrógeno más progestágeno) continua. Si hubiese sido histerectomizada, se indican estrógenos solos."
     },
     {
       "id": 89,
@@ -1060,7 +1158,8 @@
         "Iniciar valaciclovir",
         "Observar evolución"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Se debe solicitar la serología: IgG antivaricela. Si está positiva, no hay riesgo. Si está negativa, se indica la gamaglobulina hiperinmune, por tener menos de 20 semanas."
     },
     {
       "id": 90,
@@ -1072,7 +1171,8 @@
         "Medición ecográfica del saco gestacional",
         "Medición ecográfica de la longitud cráneo-nalgas Fin de la primera parte Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl SEGUNDA PARTE RECONSTRUCCIÓN EUNACOM DICEMBRE 2018"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La FUR no es conﬁable (por ser irregular) por lo que no sirve. Aún así, la ecografía es el mejor indicador y a esa edad gestacional manda la longitud céfalo-nalgas. SEGUNDA PARTE"
     },
     {
       "id": 91,
@@ -1084,7 +1184,8 @@
         "Miocardiopatía hipertrófica obstructiva",
         "Miocardiopatía dilatada"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "También era una insuﬁciencia aórtica clásica (ver resumen de semiología cardíaca)."
     },
     {
       "id": 92,
@@ -1096,7 +1197,8 @@
         "Acenocumarol",
         "Betabloqueantes Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene una ﬁbrilación auricular paroxística. Tiene baja frecuencia cardíaca, por lo que no se debe iniciar verapamilo ni betabloqueo. Por ser hipertenso y diabético, tien 2 puntos del CHADS2, por lo que se debe anticoagular."
     },
     {
       "id": 93,
@@ -1108,7 +1210,8 @@
         "Espironolactona",
         "Digoxina"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La espironolactona aumenta la sobrevida en la insuﬁciencia cardíaca (no era necesario un enunciado tan grande para preguntar eso)."
     },
     {
       "id": 94,
@@ -1120,7 +1223,8 @@
         "Infarto miocárdico con supradesnivel del segmento ST de la pared inferior",
         "Infarto miocárdico con supradesnivel del segmento ST de la pared inferolateral Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una pericarditis clásica, tanto por la clínica, como por el EKG con SDST en J en casi todas las derivaciones."
     },
     {
       "id": 95,
@@ -1132,7 +1236,8 @@
         "Síndrome de Wolff Parkinson White",
         "Taquicardia auricular Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Con las maniobras vagales baja la frecuencia, se ven las ondas de serrucho y luego vuelve a aumentar la frecuencia. Es lo clásico del ﬂutter auricular."
     },
     {
       "id": 96,
@@ -1144,7 +1249,8 @@
         "Bloqueo aurículo-ventricular completo",
         "Enfermedad del nodo sinusal"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "[Pregunta disputada] Es un bloqueo AV de segundo grado, con bloqueo 2:1. Por lo tanto es imposible hacer la diferencia entre Mobitz I y II, por lo que es una mala pregunta. Yo marqué B."
     },
     {
       "id": 97,
@@ -1156,7 +1262,8 @@
         "Tromboembolismo pulmonar",
         "Distrés respiratorio Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un TEP clásico."
     },
     {
       "id": 98,
@@ -1168,7 +1275,8 @@
         "Enfermedad pulmonar obstructiva crónica",
         "Fibrosis pulmonar idiopática"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tanto por la clínica, como por la radiografía es una ﬁbrosis pulmonar clásica."
     },
     {
       "id": 99,
@@ -1180,7 +1288,8 @@
         "Ecocardiograma",
         "AngioTAC de tórax Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un TEP masivo (compromiso hemodinámico), por lo que se estudia con ecocardiograma (para evaluar la disfunción del ventrículo derecho), y no con el angioTAC (de elección en el TEP no masivo)."
     },
     {
       "id": 100,
@@ -1192,7 +1301,8 @@
         "Clindamicina",
         "Azitromicina"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene una neumonía del lóbulo superior derecho. En estricto rigor, se puede tratar con amoxicilina, ya que no tiene indicación de ácido clavulánico. Pero de las opciones, la mejor era la A."
     },
     {
       "id": 101,
@@ -1204,7 +1314,8 @@
         "Diazepam",
         "Vareniclina Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una mala pregunta, ya que lo más correcto es indicar psicoterapia cognitivo conductual (es lo más importante y asumo que se incluye dentro de la entrevista motivacional), sin embargo, también se deben indicar fármacos de apoyo, como la B, C y E."
     },
     {
       "id": 102,
@@ -1216,7 +1327,8 @@
         "Coledocolitiasis",
         "Síndrome de Gilbert"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un síndrome de Gilbert clásico (hiperbilirrubinemia de predominio no conjugado, sin otras alteraciones)."
     },
     {
       "id": 103,
@@ -1228,7 +1340,8 @@
         "Megacolon amebiano",
         "Cáncer de colon"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una colitis ulcerosa clásica. No tiene elementos que hagan elegir a la enfermedad de Cröhn."
     },
     {
       "id": 104,
@@ -1240,7 +1353,8 @@
         "Enfermedad de Cröhn",
         "Enteropatía perdedora de proteínas"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una enfermedad celíaca clásica del adulto (diarrea y ferropenia)."
     },
     {
       "id": 105,
@@ -1252,7 +1366,8 @@
         "Iniciar corticoides orales",
         "Iniciar levotiroxina oral 75 ug/día Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un hipotiroidismo subclínico o clínico (no daban la T4 libre, por lo que no se puede saber). Sin embargo, de las opciones, la única que tenía sentido era iniciar levotiroxina y, por ser una adulto mayor, se debe iniciar con una dosis más baja."
     },
     {
       "id": 106,
@@ -1264,7 +1379,8 @@
         "Prueba HOMA > 2,6",
         "Albuminuria/creatininuria > 0,3"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "[Pregunta disputada] Tanto B, como C cumples criterios de diabetes. No queda claro qué es lo que se quiere preguntar. Como ahora está con una neumonía, la PTGO puede salir falsamente alterada, en cambio la HbA1c es más estable (por lo que la consideraremos correcta). Sin embargo, la HbA1c no está dentro de los critesios diagnósticos de la guía Minsal. Es una mala pregunta."
     },
     {
       "id": 107,
@@ -1276,7 +1392,8 @@
         "Reemplazar la metformina por sitagliptina",
         "Aumentar la dosis de metformina"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene efectos adversos, por lo que se debe suspender la metformina y cambiar a sitagliptina (por lo frágil: adulto mayor con infarto reciente, se preﬁere la sitagliptina sobre la glibenclamida). No tenía indicaciones evidentes de insulina."
     },
     {
       "id": 108,
@@ -1288,7 +1405,8 @@
         "Iniciar ezetimibe",
         "Reforzar la dieta"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "El LDL debe ser menor a 70, por ser de alto riesgo coronario. Por ello, se preﬁeren las estatinas. Eso sí, por haber tenido mialgias, se debe iniciar con una dosis más baja y controlar con CK, para asegurarse que no haya miopatía por estatinas."
     },
     {
       "id": 109,
@@ -1300,7 +1418,8 @@
         "Polimiositis",
         "Polimialgia reumática Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una miopatía pos estatinas clásica."
     },
     {
       "id": 110,
@@ -1312,7 +1431,8 @@
         "Prolactina",
         "17-hidroxi-progesterona"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "[Pregunta disputada] No se entiende qué es lo que se quería pregunta. La 17-OH progesterona permite diagnosticar la hiperplasia suprarrenal congénita, que es el diagnóstico diferencial del SOP más importante y que también tiene mucho hirsutismo. Por otro lado, la relación LH/FSH elevada sugiere un SOP, aunque no se usa como criterio, por tener muchos falsos negativos."
     },
     {
       "id": 111,
@@ -1324,7 +1444,8 @@
         "Fondo de ojo",
         "TAC de cerebro"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un tumor hipoﬁsiario clásico, con síntomas compresivos del quiasma e hipopituitarismo. Se estudia con RMN de silla turca."
     },
     {
       "id": 112,
@@ -1336,7 +1457,8 @@
         "Atrapamiento cubital",
         "Compresión del plexo braquial"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un atrapamiento cubital clásico."
     },
     {
       "id": 113,
@@ -1348,7 +1470,8 @@
         "Glomerulonefritis postestreptocócica",
         "Glomerulopatía por cambios mínimos Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un lupus sistémico clásico, con afectación renal."
     },
     {
       "id": 114,
@@ -1360,7 +1483,8 @@
         "Mantener las indicaciones",
         "Reemplazar la hidroclorotiazida por furosemida"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tanto por ser diabético (en HTA), como por la proteinuria, como por tener PA mayor a 130/80 (en falla renal), está indicado iniciar un IECA."
     },
     {
       "id": 115,
@@ -1372,11 +1496,12 @@
         "Hemoglobinopatía",
         "Microesferocitosis familiar"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una anemia ferropénica clásica, tanto por la edad, como por la microcitosis."
     },
     {
-      "id": 150,
-      "pregunta": "000 por mm3. ¿El déficit de qué elemento puede explicar los síntomas y hallazgos de laboratorio?",
+      "id": 116,
+      "pregunta": "Una paciente de 27 años, vegana estricta, con antecedente de cirugía bariátrica, presenta astenia y disnea de esfuerzos, asociado a palidez, por lo que se solicita un hemograma, con hematocrito: 23%, hemoglobina: 7,1 g/dl, VCM: 122 fl, blancos: 4.100 por mm3 y plaquetas: 150.000 por mm3. ¿El déficit de qué elemento puede explicar los síntomas y hallazgos de laboratorio?",
       "opciones": [
         "Hierro",
         "Folatos",
@@ -1384,7 +1509,8 @@
         "Vitamina B12",
         "Vitamina D"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "D",
+      "explanation": "Tanto por ser vegetariana, como por la cirugía bariátrica, como por el VCM mayor a 108, es un déﬁct de B12."
     },
     {
       "id": 117,
@@ -1396,7 +1522,8 @@
         "Síndrome leucoeritroblástico",
         "Anemia hemolítica autoinmune Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tanto por la afectación neurológica, como por la pancitopenia con VCM tan elevado, es una anemia perniciosa, por déﬁcit de B12."
     },
     {
       "id": 118,
@@ -1408,7 +1535,8 @@
         "Miopatía por cuerpos de inclusión",
         "Dermatomiositis"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "[Pregunta disputada] Por la edad, lo más probable es la polimialgia reumática, aunque generalmente no eleva tanto las CK y suele cursar sin debilidad, sino solo con las mialgias. Por otro lado, tanto polimiositis (PM), como la miositis por cuerpos de inclusión (MCI) calzan con el cuadro y las alteraciones, aunque la MCI tiene atroﬁa de cuádriceps y del antebrazo, como cosa característica (pero es más frecuente a esa edad que la PM). No sé cual es la respuesta correcta (esperemos que se elimine)."
     },
     {
       "id": 119,
@@ -1420,7 +1548,8 @@
         "Demencia vascular",
         "Delírium"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un síndrome confusional agudo o delirium clásico."
     },
     {
       "id": 120,
@@ -1432,7 +1561,8 @@
         "Amitriptilina",
         "Clonazepam"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La depresión en el adulto mayor se trata con IRS, en especial la sertralina y el citalopram/escitalopram."
     },
     {
       "id": 121,
@@ -1444,7 +1574,8 @@
         "Disminuir la dosis de donepecilo",
         "Aumentar la dosis de levotiroxina Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El síndrome colinérgico: diarrea e incontinencia urinaria es una complicación frecuente del donepecilo. La metformina solo produce diarrea."
     },
     {
       "id": 122,
@@ -1456,7 +1587,8 @@
         "Observar evolución",
         "Derivar a cirugía abierta de la uropatía obstructiva"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene una bacteriuria asintomática, por lo que no es necesario hacer ningún cambio."
     },
     {
       "id": 123,
@@ -1468,7 +1600,8 @@
         "Ceftazidima",
         "Gentamicina"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene una endocarditis subaguda por Streptococcus viridans, que se trata con ampicilina o penicilina sódica."
     },
     {
       "id": 124,
@@ -1480,7 +1613,8 @@
         "Mucor",
         "Pseudomona aureginosa"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una mucormicosis clásica."
     },
     {
       "id": 125,
@@ -1492,7 +1626,8 @@
         "Coprocultivo",
         "Medición de eosinófilos en sangre Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La oxiuriasis se diagnostica con el test de Graham."
     },
     {
       "id": 126,
@@ -1504,7 +1639,8 @@
         "Meningitis viral",
         "Meningitis bacteriana aguda"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una encefalitis herpética clásica: anteraciones conductuales, convulsiones, compromiso de conciencia, líquido cefalorraquídeo compatible con meningitis viral, pero hemorrágico. Lo unico raro era la edad, ya que suele afectar a personas más jóvenes."
     },
     {
       "id": 127,
@@ -1516,7 +1652,8 @@
         "Valganciclovir",
         "Azitromicina"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un herpes zóster, que se trata con aciclovir o valaciclovir. El valganciclovir se usa en las infecciones por CMV."
     },
     {
       "id": 128,
@@ -1528,7 +1665,8 @@
         "Distima",
         "Trastorno por déficit atencional"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene una manía aguda, por lo que tiene un trastorno bipolar."
     },
     {
       "id": 129,
@@ -1540,7 +1678,8 @@
         "Trastorno delirante crónico",
         "Trastorno esquizotípico Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene síntomas anímicos y psicóticos. Además, por la severidad del cuadro y haber tenido síntomas psicóticos sin compromiso anímico, es más probable que tenga un trastorno esquizoafectivo, en la variante bipolar."
     },
     {
       "id": 130,
@@ -1552,7 +1691,8 @@
         "Trastorno somatomorfo",
         "Trastorno facticio"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una fuga disociativa clásica."
     },
     {
       "id": 131,
@@ -1564,7 +1704,8 @@
         "Trastorno disociativo",
         "Trastorno hipocondriaco"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La sospecha de manipulación de los exámenes, hace que sea facticio."
     },
     {
       "id": 132,
@@ -1576,7 +1717,8 @@
         "Trastorno delirante",
         "Trastorno depresivo mayor"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un TP limítrofe clásico."
     },
     {
       "id": 133,
@@ -1588,7 +1730,8 @@
         "Agorafobia",
         "Trastorno de angustia generalizada Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una agorafobia clásica."
     },
     {
       "id": 134,
@@ -1600,7 +1743,8 @@
         "Trastorno de angustia",
         "Trastorno de angustia generalizada"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una depresión clásica (cumple criterios: si bien no tiene tristeza, sí tiene anhedonia)."
     },
     {
       "id": 135,
@@ -1612,7 +1756,8 @@
         "El número de partos históricos en el plantel",
         "La tasa de fertilidad de la población"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Si hay más partos en el hospital, se necestan más obstetras y matronas."
     },
     {
       "id": 136,
@@ -1624,7 +1769,8 @@
         "La definición de estrategias de intervención, priorizadas",
         "Realización de estudios experimentales"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Lo umportante es que se interactúa con la comunidad y se van escogiendo las patologías y factores de riesgo más importantes para la salud pública y para la comunidad, de manera de intevernir sobre ellas, haciendo una priorizació previamente."
     },
     {
       "id": 137,
@@ -1636,7 +1782,8 @@
         "Exploración quirúrgica",
         "Ecografía escrotal Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Puede se runa torsión testicular, por lo que se debe explorar de inmediato."
     },
     {
       "id": 138,
@@ -1648,7 +1795,8 @@
         "Ceftazidima",
         "Cefotaximo"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Si bien no tiene indicación evidente de hospitalización, a pesar de ser una pielonrfritis aguda, de las opciones, la más acertada parecía ser el cefotaximo, que cubre muy bien a los gram negativos."
     },
     {
       "id": 139,
@@ -1660,7 +1808,8 @@
         "El tobillo",
         "La articulación astragalotarsiana"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Recordar que la patología de cadera puede producir gonalgia (dolor de rodilla)."
     },
     {
       "id": 140,
@@ -1672,7 +1821,8 @@
         "Tendinopatía de la cabeza larga del bíceps braquial",
         "Artrosis de la articulación glenohumeral"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un síndrome de manguito rotador clásico."
     },
     {
       "id": 141,
@@ -1684,7 +1834,8 @@
         "Luxofractura de Monteggia",
         "Fractura de escafoides carpiano Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una fractura de muñeca clásica."
     },
     {
       "id": 142,
@@ -1696,7 +1847,8 @@
         "Inmovilización por 7 días con cabestrillo bloqueado",
         "Reducción ortopédica de inmediato"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La luxación anterior de hombro se reduce ortopédicamente, de inmediato. Si recurre, se trata con cirugía."
     },
     {
       "id": 143,
@@ -1708,7 +1860,8 @@
         "Drenaje con tubo pleural",
         "Videotoracoscopía Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Por la clínica era un neumotórax. La radiografía era muy oscura, pero con imaginación y paciencia, se veía el neumotórax derecho (acá se ve más que en el real). Por ser mayor a 15%, se trata con tubo pleural."
     },
     {
       "id": 144,
@@ -1720,7 +1873,8 @@
         "Hernia femoral",
         "Sarcoma de partes blandas"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una hernia femoral clásica (bajo el ligamento inguinal). Es más frecuente en mujeres."
     },
     {
       "id": 145,
@@ -1732,7 +1886,8 @@
         "Colangitis aguda",
         "Colédocolitiasis"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene la triada de Charcot: dolor, ictericia y ﬁebre, más el compromiso hemodinámico clásico de la colangitis."
     },
     {
       "id": 146,
@@ -1744,7 +1899,8 @@
         "Resolver quirúrgicamente",
         "Indicar tratamiento analgésico y antibiótico endovenoso Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Parece una coledocolitiasis. Se debe estudiar inicialmente con una colangioresonancia y luego (si la colangioRMN ve los cálculos), se procede a la CPRE (también se hace la CPRE si tiene clínica de colangitis o si la eco ve los cálculos en el colédoco)."
     },
     {
       "id": 147,
@@ -1756,7 +1912,8 @@
         "Colonoscopía",
         "Angiografía mesentérica"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La colonoscopía es el examen de elección para enfrentar la HDB. La EDA se hizo, porque tenía hemodinamia inestable (siempre se debe hacer en ese caso). No importa que hace un mes tuviese una colonoscopía normal. Si no localiza, se procede a la cintigrafía con GR marcados o a la angiografía mesentérica."
     },
     {
       "id": 148,
@@ -1768,7 +1925,8 @@
         "Dehiscencia de la base apendicular",
         "Tromboembolismo pulmonar masivo"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "[Pregunta disputada] Es una pregunta difícil, ya que el compromiso hemodinámico y los signos peritoneales pueden corresponder tanto a un hemoperitoneo, como a la dehiscencia de la base apendicular. Sin embargo, por predominar el compromiso hemodinámico, nos inclinamos a marcar hemoperitoneo. Si, en cambio, hubiese tenido predominancia de los signos peritoneales, nos habríamos inclinado a la dehiscencia."
     },
     {
       "id": 149,
@@ -1780,7 +1938,21 @@
         "Trombosis de la vena central de la retina",
         "Glaucoma agudo Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un glaucoma agudo clásico: antecedente de hipermetropía, ojo rojo central y midriasis arreactiva."
+    },
+    {
+      "id": 150,
+      "pregunta": "Un paciente de 77 años, con antecedente de hipertensión arterial crónica, presenta visión distorsionada de las letras y refiere que las líneas se ven onduladas. Actualmente tiene un escotoma central. Se hace un fondo de ojo, que se muestra a continuación: Foto 14 (https://www.elmundo.es/elmundosalud/2007/01/25/medicina/1169733276.html). El diagnóstico más probable es:",
+      "opciones": [
+        "Desprendimiento de retina",
+        "Retinopatía hipertensiva",
+        "Trombosis de la vena central de la retina",
+        "Catarata",
+        "Degeneración macular relacionada con la edad"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Es un DMRE clásica, tanto por la clínica (metamorfopsias y escotoma central), como por el fondo de ojo (aunque se veían exudados y hemorragias maculares y no solo drusas)."
     },
     {
       "id": 151,
@@ -1792,7 +1964,8 @@
         "Tricotilomanía",
         "Tiña capitis Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una alopecia areata clásica."
     },
     {
       "id": 152,
@@ -1804,7 +1977,8 @@
         "Neomicina más mupirocina",
         "Furazolidona"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene un granuloma umbilical. En general se observa (por lo que el NiTrato de tocarlo es mejor que el nitrato de plata), pero de las opciones era la mejor."
     },
     {
       "id": 153,
@@ -1816,7 +1990,8 @@
         "Virus pox",
         "Staphilococcus aureus"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un impétigo buloso, causado por S. aureus."
     },
     {
       "id": 154,
@@ -1828,7 +2003,8 @@
         "Síndrome de Crigler Najjar",
         "Hipotiroidismo congénito Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una atresia biliar primaria clásica: ictericia tardía y acolia."
     },
     {
       "id": 155,
@@ -1840,7 +2016,8 @@
         "Colonoscopía con biopsia de la pared intestinal",
         "Radiografía simple toracoabdominal"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene una estenosis hipertróﬁca del píloro, que se estudia con ecografía abdominal."
     },
     {
       "id": 156,
@@ -1852,7 +2029,8 @@
         "Electrolitos en sudor",
         "Hemograma y pruebas de función renal"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Se sospecha una ﬁbrosis quística, que se estudia con el test del sudor, que mide cloro en el sudor."
     },
     {
       "id": 157,
@@ -1864,7 +2042,8 @@
         "Virus parainfluenza",
         "Virus respiratorio sincicial"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una neumonía atípica, que suelen ser causadas por mycoplasma y son muy frecuentes en la edad escolar."
     },
     {
       "id": 158,
@@ -1876,7 +2055,8 @@
         "Realizar nebulizaciones con bromuro de ipatropio al 0,5%",
         "Realizar nebulizaciones con adrenalina racémica al 0,1% Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La laringitis obstructiva, se trata con O2, adrenalina racémica en nebulización y corticoides sistémicos (en ese orden de administración)."
     },
     {
       "id": 159,
@@ -1888,7 +2068,8 @@
         "Hemofilia",
         "Enfermedad de Von Willebrand"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un PTI clásico: alteración de hemostasia primaria, con trombocitopenia aislada."
     },
     {
       "id": 160,
@@ -1900,7 +2081,8 @@
         "Diarrea viral",
         "Crisis celiaca"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una crisis celíaca clásica: historia compatible con enfermedad celíaca previa, que se descompensa. En los exámenes tiene signos carenciales: hipoalbuminemia, hipokalemia y ferropenia."
     },
     {
       "id": 161,
@@ -1912,7 +2094,8 @@
         "Suero glucosalino",
         "Albúmina endovenosa"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tanto por el compromiso de conciencia, como por el compromiso hemodinámico (signos de shock hipovolémico: palidez y llene capilar lento) tiene indicación de hidratación endovenosa con suero ﬁsiológico (plan C)."
     },
     {
       "id": 162,
@@ -1924,7 +2107,8 @@
         "Hendidura laríngea",
         "Fístula traqueoesofágica Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La laringomalacia es la causa más frecuente de estridor congénito."
     },
     {
       "id": 163,
@@ -1936,7 +2120,8 @@
         "Megacolon aganglionótico",
         "Malrotación intestinal"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene una constipación funcional clásica, probablemente complicada con un fecaloma (por la incontinencia fecal). Es la causa más frecuente de constipación en niños y se mejora con laxantes y formación de hábitos de defecación."
     },
     {
       "id": 164,
@@ -1948,7 +2133,8 @@
         "A los 4 meses de edad",
         "No debe administrarse"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La vacuna antineumocócica se administra a los 2, 4 y 12 meses. No se ajusta por edad gestacional. Además, el ajuste solo se hace en menores de 32 semanas (y aunque así fuera, esta vacuna no se ajusta)."
     },
     {
       "id": 165,
@@ -1960,7 +2146,8 @@
         "Administrar terapia antirretroviral durante el trabajo de parto",
         "Realizar cesárea al llegar a las 38 semanas"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La triterapia se inicia a las 20 semanas y es la medida más importante, ya que baja la carga viral, que es el predictor de trasmisibilidad."
     },
     {
       "id": 166,
@@ -1972,7 +2159,8 @@
         "Placenta previa",
         "Hipotensión secundaria a la anestesia Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una rotura uterina clásica: antecedente de cesárea, contracciones dolorosas que ceden, metrorragia intraparto y sufrimiento fetal."
     },
     {
       "id": 167,
@@ -1984,7 +2172,8 @@
         "Hospitalizar",
         "Citar a control en 48 horas"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Lo primero es localizar el DIU, para saber dónde está (incluso puede estar dentro de un vaso sanguíneo). La localización se hace con ecografía o con radiografía. Luego se ve si se deja o se saca."
     },
     {
       "id": 168,
@@ -1996,7 +2185,8 @@
         "Iniciar antibióticos orales y esperar el drenaje espontáneo",
         "Bartholinocistostomía"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una pregunta discutible, pero desde hace algunos años se recomienda de entrada la marsupialización del absceso de Bartholino (Bartholinocistostomía) por tener menos recurrencia y ser técnicamente muy simple (yo la tuve mala, porque marué drenaje simple)."
     },
     {
       "id": 169,
@@ -2008,7 +2198,8 @@
         "Chancro sifilítico",
         "Condiloma acuminado"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "[Pregunta disputada] Es un herpes genital clásico."
     },
     {
       "id": 170,
@@ -2020,7 +2211,8 @@
         "Mastitis derecha",
         "Cáncer inflamatorio de mama Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Por no ser ﬂuctuante, parece un ﬂegmón mamario. Aunque en estricto rigor igual es una mastitis. Sin embargo, se hacía mucho hincapié en la lesión no ﬂuctuante, por lo que dejaremos ﬂegmón como respuesta correcta. Es una mala pregunta."
     },
     {
       "id": 171,
@@ -2032,7 +2224,8 @@
         "Estreptococo betahemolítico grupo B",
         "Chlamydia trachomatis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Por no haber respondido, lo más probable es que sea un anaerobio (por eso se deja penicilina + gentamicina + clindamicina). Las demás opciones estaban cubiertas con el esquema indicado."
     },
     {
       "id": 172,
@@ -2044,7 +2237,8 @@
         "Realizar ecografía pelviana",
         "Solicitar 17-OH-progesterona"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una telarquia normal (inicio puberal), que puede ser asimétrica al inicio."
     },
     {
       "id": 173,
@@ -2056,7 +2250,8 @@
         "Indicar anticonceptivos orales de progestágeno solo",
         "Indicar anticonceptivos combinados inyectables"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene una jaqueca premenstrual, que se desencadena por la caída de los niveles de estrógeno. Por ello, se indican ACO de ciclo extendido, que tienen niveles más homogéneos de estrógeno. Sin embargo, la evidencia dice que se debe tratar como toda jaqueca común y corriente."
     },
     {
       "id": 174,
@@ -2068,7 +2263,8 @@
         "Quimioterapia profiláctica",
         "Realizar histerectomía Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Lo más importante es la HCG seriada, para detectar precozmente la aparición de una neoplasia trofoblástica gestacional. Sin embargo, también deberá quedar con ACO, para evitar un embarazo que eleva la HCG y alterará el seguimiento."
     },
     {
       "id": 175,
@@ -2080,7 +2276,8 @@
         "Torsión anexial",
         "Pelviperitonitis"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Parece una torsión ovárica clásica: dolor intenso, asociado a vómitos, de inicio súbito."
     },
     {
       "id": 176,
@@ -2092,7 +2289,8 @@
         "Diabetes mellitus pregestacional",
         "Intolerancia a la glucosa oral"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Si bien le falta otra glicemia de ayuno mayor o igual a 126, para conﬁrmar el diagnóstico, sobre dicho valor se sospecha una diabetes pregestacional."
     },
     {
       "id": 177,
@@ -2104,7 +2302,8 @@
         "Realizar biopsia endometrial",
         "Observar evolución"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Por tener metrorragia postmenopáusica, más un endometrio mayor o igual a 5 mm, se debe biopsiar (con TRH es mayor o igual a 9 mm)."
     },
     {
       "id": 178,
@@ -2116,7 +2315,8 @@
         "Realizar biopsia con aguja gruesa",
         "Realizar biopsia estereotáxica Cursos Dr. Guevara www.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. Teléfono: (56) 2 2326 2291 WhatsApp: +56 9 3376 5254 contacto@doctorguevara.cl"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Birrads 4 se biopsia. Tanto aguja gruesa, como biopsia estereotáxica son respuestas aceptables. Sin embargo, la biopsia estereotáxica suele ser mas ﬁdedigna."
     },
     {
       "id": 179,
@@ -2128,7 +2328,8 @@
         "Iniciar ácido tranexámico",
         "Iniciar tratamiento anticoagulante oral"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "[Pregunta disputada] Es una mala pregunta, ya que lo ideal es contar con un estudio de tromboﬁlia (las guías gringas lo recomiendan, aunque en el embarazo es un mal mometo para hacerlo). Sin embargo, por haber sido una TVP relacionada a los estrógenos, creo que lo mejor será anticoagularla durante el embarazo, con heparina de bajo peso."
     },
     {
       "id": 180,
@@ -2138,9 +2339,10 @@
         "Realizar microscopía en búsqueda de Trichomonas vaginalis",
         "Iniciar anticonceptivos combinados orales",
         "Realizar búsqueda de “clue cells”",
-        "Indicar lubricante íntimo genital Fin del examen ¡Les deseamos el mayor de los éxitos! Pauta Eunacom Diciembre 2018 PRIMERA PARTE 0 A Sin duda es el mejor curso, además de ser el más completo y actualizado. 1 D Es una HTA renovascular clásica, tanto por el soplo renal, como por la clínica de hipertensión secundaria (joven, severa), 2 D Es una insuﬁciencia aórtica clásica (ver resumen de semiología cardíaca). 3 A Es una CIA clásica (ver resumen de semiología cardíaca). 4 E Por tener compromiso hemodinámico, da igual de qué taquiarritmia se trate y se debe cardiovertir eléctricamente (no confundir con la desﬁbrilación, que se usa en el paro con FV o TVSP). 5 B Por las náuseas, más la descompensación de la insuﬁciencia cardíaca, parece una intoxicación digitálica. 6 A La tos es la reacción adversa más frecuente de los IECA y es la razón principal para reemplazarlos por inhibidores de la angiotensina II. ! DR. GUEVARA Preparación EUNACOM EMAIL contacto@doctorguevara.cl \" http://pruebas.drguevara.cl/pauta-dic-2018/"
+        "Indicar lubricante íntimo genital Fin del examen ¡Les deseamos el mayor de los éxitos! Pauta Eunacom Diciembre 2018 PRIMERA PARTE 0 A Sin duda es el mejor curso, además de ser el más completo y actualizado."
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene una atroﬁa vaginal, por hipoestrogenismo ﬁsiológico. Se trata de primera línea, con lubricación genital. Guillermo Guevara | Scholarship Theme por Mystery Themes."
     }
   ]
 }
