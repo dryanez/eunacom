@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import Sidebar from '../components/Sidebar'
 import DashboardHeader from '../components/DashboardHeader'
 import Onboarding from '../components/Onboarding'
+import DonatePopup from '../components/DonatePopup'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 const DashboardLayout = () => {
@@ -50,6 +51,7 @@ const DashboardLayout = () => {
             {profileChecked && showOnboarding && (
                 <Onboarding user={user} onComplete={handleOnboardingComplete} />
             )}
+            <DonatePopup />
         </div>
     )
 }

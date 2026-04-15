@@ -45,10 +45,10 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             </div>
 
             <nav className="sidebar__nav">
-                <NavLink to="/dashboard" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                <NavLink to="/dashboard" data-tour="dashboard" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Home size={18} /> Inicio
                 </NavLink>
-                <NavLink to="/study-plan" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                <NavLink to="/study-plan" data-tour="study-plan" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <CalendarDays size={18} /> Plan de Estudio
                 </NavLink>
 
@@ -65,7 +65,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 </div>
                 {examenesOpen && (
                     <div style={{ paddingLeft: '1rem' }}>
-                        <NavLink to="/test" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                        <NavLink to="/test" data-tour="test" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                             <FileText size={16} /> Crear Examen
                         </NavLink>
                         <NavLink to="/reconstructions" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
@@ -80,7 +80,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/history" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Clock size={18} /> Historial Tests
                 </NavLink>
-                <NavLink to="/stats" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                <NavLink to="/stats" data-tour="stats" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <BarChart3 size={18} /> Estadísticas
                 </NavLink>
                 <NavLink to="/flashcards" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
@@ -91,7 +91,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 </NavLink>
 
                 <div className="sidebar__section-title">Aprendizaje</div>
-                <NavLink to="/mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Video size={18} /> Mis Clases
                 </NavLink>
                 <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>

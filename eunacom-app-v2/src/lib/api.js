@@ -136,6 +136,28 @@ export async function fetchPerfil(params = {}) {
   return apiFetch(`/api/perfil${qs ? '?' + qs : ''}`)
 }
 
+// ── LEADERBOARD & STREAKS ────────────────────────────────────────────────────
+
+export async function fetchLeaderboard(period = 'all', userId = null) {
+  const params = new URLSearchParams({ period })
+  if (userId) params.set('userId', userId)
+  return apiFetch(`/api/leaderboard?${params.toString()}`)
+}
+
+// ── STUDY PLAN SETTINGS ──────────────────────────────────────────────────────
+
+export async function fetchStudyPlanSettings(userId) {
+  const data = await apiFetch(`/api/study-plan?userId=${userId}`)
+  return data.data || null
+}
+
+export async function saveStudyPlanSettings(payload) {
+  return apiFetch('/api/study-plan', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+}
+
 // ── USER PROFILES (Onboarding) ──────────────────────────────────────────────
 
 export async function fetchUserProfile(userId) {
