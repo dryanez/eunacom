@@ -1,10 +1,8 @@
 {
   "id": "eunacom-dic-2017",
-  "name": "EUNACOM Diciembre 2017",
-  "month": "Diciembre",
-  "year": 2017,
-  "total_questions": 180,
-  "questions_with_answers": 174,
+  "titulo": "EUNACOM Diciembre 2017",
+  "año": 2017,
+  "mes": "Diciembre",
   "questions": [
     {
       "id": 1,
@@ -16,7 +14,8 @@
         "Estenosis mitral",
         "Ductus arterioso persistente"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "A",
+      "explanation": "Clínicamente parece un soplo funcional, pero aparecía en las alternativas. De las opciones, por la ubicación del soplo, la CIA es la respuesta más aceptable."
     },
     {
       "id": 2,
@@ -28,7 +27,8 @@
         "Realizar cardioversión eléctrica",
         "Administrar nitritos y morfina"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una FA con hemodinamia inestable y como toda taquiarritmia hemodinámicamente inestable, se debe cardiovertir, de inmediato."
     },
     {
       "id": 3,
@@ -40,7 +40,8 @@
         "Infarto agudo al miocardio",
         "Taponamiento cardíaco 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 3/58"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una clínica de taponamiento clásico"
     },
     {
       "id": 4,
@@ -52,7 +53,8 @@
         "Coronariografía",
         "Cintigrafía de perfesión miocárdica"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La angina estable con test de esfuerzo alterado, se estudia con coronariografía."
     },
     {
       "id": 5,
@@ -64,7 +66,8 @@
         "TILT test",
         "Monitorización electrocardiográfica de 24 horas"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La sospecha es un TEP."
     },
     {
       "id": 6,
@@ -76,7 +79,8 @@
         "AngioTAC de tórax",
         "Cultivos de expectoración"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La sospecha también es un TEP."
     },
     {
       "id": 7,
@@ -88,7 +92,8 @@
         "Tilt test",
         "Monitoreo electrocardiográfico de 24 horas"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La sospecha es una enfermedad del nodo sinusal, en contexto de un síndrome taquicardia/bradicardia (FA + ENS)."
     },
     {
       "id": 8,
@@ -100,7 +105,8 @@
         "Agregar hidralazina",
         "Agregar espironolactona"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La espironolactona aumenta la sobrevida en la ICC."
     },
     {
       "id": 9,
@@ -112,7 +118,8 @@
         "Iniciar hidralazina",
         "Iniciar atenolol"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La HTA en un diabético se trata con IECAs como primera línea. También la proteinuria."
     },
     {
       "id": 10,
@@ -124,7 +131,8 @@
         "Furosemida",
         "Hidroclorotiazida"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "El betabloqueo aumenta la sobrevida. El losartán también, pero estaba con enalapril."
     },
     {
       "id": 11,
@@ -136,7 +144,8 @@
         "Atenolol e hidroclorotiazida",
         "Digoxina y enalapril"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un síndrome coronario agudo. El BCRI es equivalente a un SDST."
     },
     {
       "id": 12,
@@ -148,7 +157,8 @@
         "Disección aórtica",
         "Neumotórax"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una disección clásica por la asimetría de pulsos."
     },
     {
       "id": 13,
@@ -160,7 +170,8 @@
         "Espironolactona",
         "Digoxina"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "El asma contraindica los betabloqueantes. La IRC y la caída en la fracción de eyección contraindican los digitálicos."
     },
     {
       "id": 14,
@@ -172,7 +183,8 @@
         "Fluticasona inhalada",
         "Tiotropio inhalado 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 6/58"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene el diagnóstico de EPOC (con espirometría obstructiva, que no mejora con BD). Lo más correcto es que inicie BD de larga acción, más BD de corta acción por horario, pero esto no aparecía en las opciones. Sin embargo, la base del tratamiento del EPOC estable es suspender el cigarrillo y los broncodilatadores de larga acción, como tratamiento sintomático."
     },
     {
       "id": 15,
@@ -184,7 +196,8 @@
         "Cloxacilina",
         "Ciprofloxacino"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Lo más correcto era dejar amoxicilina, pero de las opciones, el macrólido era la mejor opción, para una NAC de bajo riesgo. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 46/58"
     },
     {
       "id": 16,
@@ -196,7 +209,8 @@
         "Administrar la vacuna BCG",
         "Indicar profilaxis con isoniazida por 6 meses"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una pregunta demasiado específica y no debería preguntarse. Sin embargo, una embarazada con contacto con un paciente bacilífero y PPD positivo, tiene indicación de profilaxis para TBC."
     },
     {
       "id": 17,
@@ -208,7 +222,8 @@
         "Cultivo de expectoración",
         "Hemocultivos"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene clínica de TBC y la RxTx era sugerente."
     },
     {
       "id": 18,
@@ -220,7 +235,8 @@
         "TAC de tórax",
         "Baciloscopías de expectoración"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La clínica es de bronquiectasias, que se diagnostican preferentemente con un TAC de tórax."
     },
     {
       "id": 19,
@@ -232,7 +248,8 @@
         "Iniciar fluticasona 2 puff cada 12 horas",
         "Iniciar terapia de desensibilización a los alergenos"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Lo más correcto es indicar corticoides inhalados cada 12 horas, más salbutamol SOS, pero de las opciones, la D era la más aceptable."
     },
     {
       "id": 20,
@@ -244,7 +261,8 @@
         "Mesotelioma",
         "Silicosis"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene un derrame canceroso (exudado mononuclear con ADA baja) y el antecedente de exposición a asbesto está muy relacionado a mesotelioma."
     },
     {
       "id": 21,
@@ -256,7 +274,8 @@
         "Solicitar angioTAC de tórax",
         "Solicitar colangiopancreatografía retrógrada endoscópica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 8/58"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La sospecha es un TEP."
     },
     {
       "id": 22,
@@ -268,7 +287,8 @@
         "Cáncer de laringe",
         "Acalasia esofágica"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un divertículo de Zenker clásico."
     },
     {
       "id": 23,
@@ -280,7 +300,8 @@
         "Síndrome de Gilbert",
         "Síndrome de Crigler Najjar"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es un síndrome de Gilbert clásico."
     },
     {
       "id": 24,
@@ -292,7 +313,8 @@
         "Hiperplasia nodular",
         "Adenoma hepático"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La asociación a DHC es tanto de adenoma, como de hepatocarcinoma, pero la hipervascularización orienta a hepatocarcinoma. Sin embargo, esta es una pregunta de radiología, que excede las competencias que debe tener un médico general."
     },
     {
       "id": 25,
@@ -304,7 +326,8 @@
         "Solicitar ecografía abdominal",
         "Solicitar anticuerpos antitransglutaminasa"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La sospecha es una enfermedad celíaca y aunque sobra la hepatitis, es lo más probable."
     },
     {
       "id": 26,
@@ -316,7 +339,8 @@
         "Parasitosis intestinal",
         "Colitis por Clostridium difficile"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una enfermedad inflamatoria, y por no afectar el recto y tener afectación discontinua, no puede ser colitis ulcerosa, sino enfermedad de Cröhn."
     },
     {
       "id": 27,
@@ -328,7 +352,8 @@
         "Examen parasitológico seriado de deposiciones",
         "Toxinas de Clostridium difficile en deposiciones"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una enfermedad inflamatoria intestinal, que se estudia con colonoscopía."
     },
     {
       "id": 28,
@@ -340,7 +365,8 @@
         "Tomografía axial computarizada de abdomen y pelvis",
         "Test de sangre oculta en deposiciones"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La sospecha es un cáncer de colon."
     },
     {
       "id": 29,
@@ -352,7 +378,8 @@
         "Anticuerpos antinucleares y anticitoplasma de neutrófilo",
         "Anticuerpos totales contra VHC"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene una hepatitis crónica. El antecedente de transfusión orienta a hepatitis C, pero la verdad es que debe estudiarse con más exámenes, como por ejemplo el Ag VHBs, por lo que es una mala pregunta. Antes del año 2000, los casos de hepatitis B eran casi cero, por lo que no puede ser."
     },
     {
       "id": 30,
@@ -364,7 +391,8 @@
         "Enfermedad de Cröhn",
         "Colitis isquémica"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "En mi opinión es una simple diarrea aguda."
     },
     {
       "id": 31,
@@ -376,7 +404,8 @@
         "Síndrome de Mallory Weiss",
         "Esofagitis erosiva"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene clínica y exámenes de DHC, además de una HDA masiva, lo que orienta a várices esofágicos. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 47/58"
     },
     {
       "id": 32,
@@ -388,7 +417,8 @@
         "Hiperparatiroidismo terciario",
         "Hipercalcemia familiar"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Calcio alto y PTH alta son característicos del HPP."
     },
     {
       "id": 33,
@@ -400,7 +430,8 @@
         "Biopsia de médula ósea",
         "Índice proteinuria / creatininuria"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La hipercalcemia se estudia con PTH. Además, la hipofosfemia orienta a un HPP."
     },
     {
       "id": 34,
@@ -412,7 +443,8 @@
         "TAC de cuello",
         "Resonancia magnética nuclear de cuello"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "A? Por regla general, la ecografía cervical es el primer examen para un nódulo tiroideo y por eso creo que es la respuesta correcta. Sin embargo, ya cumple criterios de punción con aguja fina (mayor a 15 mm con TSH normal o alta)."
     },
     {
       "id": 35,
@@ -424,7 +456,8 @@
         "Cintigrafía tiroidea",
         "Anticuerpos antitiroglobulina"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El hipertiroidismo se estudia con cintigrafía con I131 para determinar su etiología."
     },
     {
       "id": 36,
@@ -436,7 +469,8 @@
         "Piel seca",
         "Acantosis nigricans"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "El hipotiroidismo se caracteriza por la piel seca. El mixedema pretibial y exoftalmo son de la enfermedad de Basedow Graves, las melanoplaquias de la enfermedad de Addison y la acantosis nigricans, de la resistencia a la insulina."
     },
     {
       "id": 37,
@@ -448,7 +482,8 @@
         "Calcio",
         "Raloxifeno"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene osteoporosis: T score menor a -2,5."
     },
     {
       "id": 38,
@@ -460,7 +495,8 @@
         "Solicitar cintigrafía con yodo radiactivo",
         "Realizar seguimiento ecográfico"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Al ser un nódulo tan pequeño, no está indicada la punción (mayor a 10 mm se puncionan)."
     },
     {
       "id": 39,
@@ -472,7 +508,8 @@
         "Insulinoma",
         "Hipoglicemia reactiva idiopática"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene hipoglicemias de ayuno y no reactiva. La insulina alta es compatible con B, C y D, pero el péptido C suprimido no es compatible con insulinoma ni sulfonilúreas, por lo que obligatoriamente es por insulina exógena."
     },
     {
       "id": 40,
@@ -484,7 +521,8 @@
         "Reemplazar la glibenclamida por sitagliptina",
         "Reemplazar la metformina por pioglitazona"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene clínica de hipoglicemias, que probablemente son causadas por la glibenclamida. Por eso se debe cambiar por otro hipoglicemiante. Como tiene un mal control metabólico (HbA1c alta), no se debe agregar la colación"
     },
     {
       "id": 41,
@@ -496,7 +534,8 @@
         "Agregar ezetimibe al tratamiento",
         "Reemplazar la atorvastatina por gemfibrozilo 900 mg/día"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La prioridad son los triglicéridos, por estar mayores a 500 mg/dl. No se pueden mezclar los fibratos con las estatinas, por el riesgo de rabdomiolisis (solo lo puede hacer el especialista)."
     },
     {
       "id": 42,
@@ -508,7 +547,8 @@
         "Insuficiencia suprarrenal",
         "Resistencia a la insulina"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene acantosis nigricans, clásico de la RI."
     },
     {
       "id": 43,
@@ -520,7 +560,8 @@
         "Lupus",
         "Endocarditis aguda"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una arteritis de la temporal o de células gigantes clásica."
     },
     {
       "id": 44,
@@ -532,7 +573,8 @@
         "Vasculitis ANCA positiva",
         "Púrpura trombocitopénico trombótico"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una poliangeítis microscópica clásica."
     },
     {
       "id": 45,
@@ -544,7 +586,8 @@
         "Enfermedad mixta del tejido conectivo",
         "Artritis reumatoide"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un CREST clásico."
     },
     {
       "id": 46,
@@ -556,7 +599,8 @@
         "Anticuerpos contra el receptor de TNF alfa",
         "Plaquinol 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 14/58"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La AR se trata con infliximab en el embarazo. De todos modos, es una pregunta específica, que excede lo que un médico general debe saber. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 48/58"
     },
     {
       "id": 47,
@@ -568,7 +612,8 @@
         "Suspender la colchicina",
         "Agregar prednisona en baja dosis"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "La colchicina tiene muchos efectos adversos, por lo que se prefiere no dejarla como tratamiento profiláctico, sino solo en las crisis agudas (en agudo los AINEs son de elección). EL alopurinol debe mantenerse, ya que tuvo más de 2 crisis en 1 año y actualmente tiene buenos niveles de ácido úrico."
     },
     {
       "id": 48,
@@ -580,7 +625,8 @@
         "Cintigrafía DMSA",
         "TAC renal"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "D?. Tiene una insuficiencia renal recién diagnosticada y para diferenciar una IRA de una IRC, lo más adecuado es la ecografía renal. Sin embargo, la cintigrafía podría ser útil, dado el antecedente de la TBC renal."
     },
     {
       "id": 49,
@@ -592,7 +638,8 @@
         "Insuficiencia suprarrenal",
         "Hipotiroidismo descompensado"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un probable SSIADH (hiponatremia, con sodio urinario alto). El citalopram puede causarlo."
     },
     {
       "id": 50,
@@ -604,7 +651,8 @@
         "Bajar la dosis de enalapril",
         "Iniciar hidroclorotiazida"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una pregunta muy difícil, pero su clínica es de hipokalemia y el K está en el límite bajo. El consumo excesivo de sal, mezclado con el uso de tiazidas (como la clortalidona) producen hipokalemia."
     },
     {
       "id": 51,
@@ -616,7 +664,8 @@
         "Sífilis secundaria",
         "Enfermedad de Von Willebrand"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La clínica de TVP, más el TTPA alargado y el VDRL+ es clásico del SAF."
     },
     {
       "id": 52,
@@ -628,7 +677,8 @@
         "Recuento de reticulocitos",
         "Biopsia de médula ósea"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "C, D? Tiene clínica de una anemia, probablemente hemolítica. Al preguntarse el diagnóstico etiológico, probablemente la prueba de Coombs sea la respuesta correcta, ya que diagnostica la anemia hemolítica autoinmune. Sin embargo, los distractores son muy fuertes, ya que aún no hay claridad sobre la etiología de la anemia en sí y los reticulocitos, así como la LDH y bilirrubina indirecta ayudan al diagnóstico de la hemólisis. Es una mala pregunta en mi opinión."
     },
     {
       "id": 53,
@@ -640,7 +690,8 @@
         "Leucemia linfática aguda",
         "Leucemia linfática crónica"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una LMC clásica."
     },
     {
       "id": 54,
@@ -652,7 +703,8 @@
         "Sangre fresca",
         "Plasma fresco congelado"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una coagulación intravascular diseminada clásica."
     },
     {
       "id": 55,
@@ -664,7 +716,8 @@
         "Hematoma intraparenquimatoso",
         "Crisis de migraña"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La clínica es compatible con una trombosis de seno cavernoso. Tiene signos de alarma (no es migraña), no tiene signos focales (no es AVE lacunar ni hemorrágico) y lleva 5 días (no es HSA). Por tanto, solo queda marcar la A."
     },
     {
       "id": 56,
@@ -676,7 +729,8 @@
         "Angiografía aortofemoral",
         "Pletismografía de volumen del pulso de extremidades inferiores"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una polineuropatía. La verdad es que el diagnóstico es clínico y no requiere ningún examen, pero de las opciones que aparecen, la B es la única aceptable."
     },
     {
       "id": 57,
@@ -685,8 +739,10 @@
         "Polineuropatía diabética",
         "Distrofia muscular",
         "Esclerosis múltiple",
-        "Esclerosis lateral amiotrófica"
-      ]
+        "e) Esclerosis lateral amiotrófica"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Es una ELA clásica. La espirometría mostraba un patrón restrictivo."
     },
     {
       "id": 58,
@@ -698,7 +754,8 @@
         "Síndrome de atrapamiento cubital",
         "Neuropatía radial"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "A, C?. Pésima pregunta. Con una clínica tan escasa, se induce a error, ya que no especifican qué sector de las manos son las con parestesias (es lo más importante en este caso). Que se irradie a los codos, hace improbable que sea un túnel carpiano. Que sea bilateral, orienta a una polineuropatía diabetica, pero falta la afectación de los pies. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 49/58"
     },
     {
       "id": 59,
@@ -710,7 +767,8 @@
         "Cefalea por hipertensión endocraneana",
         "Neuralgia de Arnold"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una cefalea tensional clásica (como la que da al salir del Eunacom)."
     },
     {
       "id": 60,
@@ -722,7 +780,8 @@
         "Mycoplasma pneumoniae",
         "Pneumocystis jiroveci"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "La clínica y la radiografía orientaban mucho a un paciente VIH con infección por PJ."
     },
     {
       "id": 61,
@@ -734,7 +793,8 @@
         "Tuberculosis meníngea",
         "Infección por Listeria monocytogenes"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una meningoencefalitis viral clásica. No tenía ningún criterio de sospecha de herpes."
     },
     {
       "id": 62,
@@ -746,7 +806,8 @@
         "Sífilis secundaria",
         "Reacción adversa a la triterapia antirretroviral"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una sífilis secundaria clásica. Además recordar que el principal factor de riesgo para tener una ETS, es tener otra ETS."
     },
     {
       "id": 63,
@@ -758,7 +819,8 @@
         "Coronariografía",
         "ANA y complemento"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una endocarditis subaguda. Como se pregunta el diagnóstico etiológico, la respuesta son los hemocultivos. Sin embargo, la ecocardiografía, también es un examen importante."
     },
     {
       "id": 64,
@@ -770,7 +832,8 @@
         "Enfermedad de Berger",
         "Arteritis de la temporal"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una amiloidosis con compromiso renal (síndrome nefrótico). Orienta a ella la VHS alta y la hipoalbuminemia. Igual es una pregunta muy específica."
     },
     {
       "id": 65,
@@ -782,7 +845,8 @@
         "Agregar hidroclorotiazida 25 mg/día",
         "Mantener el tratamienti"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Por su edad, está bien controlado, ya que la meta es que sea menor a 150/90 mmHg."
     },
     {
       "id": 66,
@@ -794,7 +858,8 @@
         "El hospital autogestionado",
         "La Dirección de Salud Comunal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 19/58"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La Subsecretaría de Redes Asistenciales es parte del Minsal, que delega sus funciones en la Seremi de Salud, a nivel regional."
     },
     {
       "id": 67,
@@ -805,7 +870,9 @@
         "Tasa de letalidad",
         "Tasa de incidencia",
         "Tasa de ataque"
-      ]
+      ],
+      "respuesta_correcta": "A",
+      "explanation": ", C?. La letalidad es un indicador clásico de gravedad, pero los años de vida saludables perdidos también lo son, e incluso es mejor, cuando se trata de enfermedades graves, pero que no causan la muerte, sino que dejan secuelas y causan invalidez. Yo marqué C."
     },
     {
       "id": 68,
@@ -817,7 +884,8 @@
         "Secuencia temporal",
         "Asociación estadística"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Si no se da que la causa aparece antes que el efecto, definitivamente no puede ser la causa. No deberían preguntar filosofía en el Eunacom."
     },
     {
       "id": 69,
@@ -829,7 +897,8 @@
         "Tasa de mortalidad",
         "Tasa de cobertura de vacunación"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La tasa de incidencia debería bajar, si la campaña es exitosa."
     },
     {
       "id": 70,
@@ -841,7 +910,8 @@
         "Sesgo de selección",
         "Sesgo del entrevistador"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Los sesgos de información o medida se previenen con el doble ciego y con instrumentos de medición validados y calibrados."
     },
     {
       "id": 71,
@@ -853,7 +923,8 @@
         "Exposición a radiación: OR: 1,52 ; IC [0,91 – 2,01]",
         "Tiroiditis de Hashimoto: OR: 4,6 ; IC [0,7 – 6,2]"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La opción C era la única estadísticamente significativa, ya que el OR no pasaba por el 1."
     },
     {
       "id": 72,
@@ -865,7 +936,8 @@
         "Prevención secundaria",
         "Prevención terciaria"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Las pruebas de screening son una clásica medida de prevención secundaria."
     },
     {
       "id": 73,
@@ -877,7 +949,8 @@
         "Cesación de la exposición",
         "Congruencia con el conocimiento científico existente"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "De las opciones es la única aceptable."
     },
     {
       "id": 74,
@@ -889,7 +962,8 @@
         "Lupus",
         "Insuficiencia renal"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La balanopostitis (en especial la candidiásica) se asocia a diabetes."
     },
     {
       "id": 75,
@@ -901,7 +975,8 @@
         "Cultivo de líquido seminal",
         "Ecografía testicular"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "El primer estudio de infertilidad masculina es el espermiograma."
     },
     {
       "id": 76,
@@ -913,7 +988,8 @@
         "Pesticidas",
         "Plomo"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Pésima pregunta. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 50/58"
     },
     {
       "id": 77,
@@ -925,7 +1001,8 @@
         "Cáncer de próstata",
         "Cistitis intersticial"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La hematuria monosintomática del adulto sugiere un cáncer de vejiga. El antecedente de fumar, también."
     },
     {
       "id": 78,
@@ -937,7 +1014,8 @@
         "Resección transuretral",
         "Biopsia prostática"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tanto por el nódulo, como por el APE mayor a 4, está indicada la biopsia."
     },
     {
       "id": 79,
@@ -949,7 +1027,8 @@
         "Indicar ejercicios de piso pélvico",
         "Realizar cirugía abierta de piso pélvico"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Parece una incontinencia de orina de urgencia, que se trata preferentemente con anticolinérgicos, como la oxibutinina. 80 La verdad es que esta pregunta no la recuerdo bien. Sí recuerdo que tenía una HPB y una clínica de IOU. En general, la HPB con complicaciones, se trata con RTU (creo que no aparecía en las alternativas) y el tratamiento de primera línea de la HPB suele ser la tamsulosina. Además, la IOU se trata con anticolinérgicos (oxibutinina, cloruro de trospio y tolteridina), pero como aparecía más de uno, creo que querían que se marcara la tamsulisina. Insisto, no recuerdo bien esta pregunta."
     },
     {
       "id": 80,
@@ -960,7 +1039,9 @@
         "Amitriptilina oral",
         "Tolterodina oral",
         "Cloruro de trospio"
-      ]
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "HPB con complicaciones + incontinencia de urgencia. El alfa-bloqueante (tamsulosina) es el tratamiento de primera línea para la HPB con síntomas obstructivos y residuo postmiccional. (Nota: la pauta original no recuerda bien esta pregunta, pero apunta a tamsulosina.)"
     },
     {
       "id": 81,
@@ -972,7 +1053,8 @@
         "Endoftalmitis",
         "Hemorragia vítrea"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una uveítis anterior clásica."
     },
     {
       "id": 82,
@@ -984,7 +1066,8 @@
         "Desprendimiento de retina",
         "Neuritis óptica"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una neuritis óptica tanto por el antecedente de EM, como por la cínica, aunque tenía AV normal y no mencionaban el RFM."
     },
     {
       "id": 83,
@@ -996,7 +1079,8 @@
         "Glaucoma congénito",
         "Infección por Chlamydia trachomatis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "El retinoblastoma suele tener agregación familiar (gen Rb) y además es causa de leucocoria. La catarata habría tenido leucocoria desde el inicio."
     },
     {
       "id": 84,
@@ -1008,7 +1092,8 @@
         "Catarata",
         "Desprendimiento de retina"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un glaucoma crónico clásico, tanto por la PIO mayor a 20, como por la excavación papilar mayor a 0,3."
     },
     {
       "id": 85,
@@ -1020,7 +1105,8 @@
         "Fluconazol oral",
         "Ketoconazol tópico"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene un intétrigo candidiásico. Por el antecedente de IRC y hepatopatía, se prefieren los antimicóticos tópicos."
     },
     {
       "id": 86,
@@ -1032,7 +1118,8 @@
         "Cefoperazona",
         "Ciprofloxacino"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tiene un impétigo. Cloxacilina o cefadroxilo habrían sido de elección, pero la amoxicilina más ácido clavulánico cubren bien al S. Aureus y al S. Pyogenes, que son los agentes etiológicos."
     },
     {
       "id": 87,
@@ -1044,7 +1131,8 @@
         "Biopsiar",
         "Derivar a cirujano plástico infantil"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La primera medida ante los hemangiomas infantiles es dar propanolol. Si no involucionan, en casos como este está indicada la cirugía (porque deforma la cara, produce ambliopía, etc)."
     },
     {
       "id": 88,
@@ -1056,7 +1144,8 @@
         "Granuloma piógeno",
         "Melanoma acrómico"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Si bien la imagen no era un cáncer basocelular clásico, esa era la única respuesta aceptable."
     },
     {
       "id": 89,
@@ -1068,7 +1157,8 @@
         "Pioderma gangrenoso",
         "Fasceítis necrotizante 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 24/58"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un loxsocelismo cutáneo clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 51/58"
     },
     {
       "id": 90,
@@ -1080,7 +1170,8 @@
         "Realizar resección quirúrgica del quiste",
         "Puncionar la lesión"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene un quiste epidérmico abscedado, lo que se trata con antibióticos (antiestafilocócicos: ej. cloxacilina) más drenaje quirúrgico. Eventualmente, el quiste sí se debe resecar, pero no mientras está infectado."
     },
     {
       "id": 91,
@@ -1092,7 +1183,8 @@
         "Apendicitis aguda",
         "Enfermedad de Cröhn"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una diverticulitis aguda clásica."
     },
     {
       "id": 92,
@@ -1104,7 +1196,8 @@
         "Mononucleosis infecciosa",
         "Síndrome de vena cava superior"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un síndrome de VCI clásico, probablemente secundario a un linfoma, dada la edad y las adenopatías."
     },
     {
       "id": 93,
@@ -1116,7 +1209,8 @@
         "Vacunar al niño solo si el perro muere",
         "Administrar inmunoglobulina antirrábica al niño"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La normativa actual dice que se debe vacunar en caso de que la mordedura sea por un animal que no es observable (independiente de si hay o no provocación). También se vacuna en caso de contacto con murciélagos (no necesariamente mordedura) y en mordeduras por animales rabiosos, sintomáticos, que mueren inexplicadamente o que se trata de animales diferentes a las mascotas habituales."
     },
     {
       "id": 94,
@@ -1128,7 +1222,8 @@
         "Cuerpo extraño laríngeo",
         "Cuerpo extraño esofágico"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "E? Por la tos áfona y el estridor es un cuerpo extraño laríngeo, pero por la sialorrea y la reticencia a comer era esofágico. Esta pregunta inducía a error. Yo marqué laríngeo, porque le di más importancia a los síntomas laríngeos."
     },
     {
       "id": 95,
@@ -1140,7 +1235,8 @@
         "Control con TAC cada 3 meses",
         "Colecistectomía radical"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Lo correcto es hacer una cirugía abierta, con cuña hepática y linfadenectomía y no una colecistectomía radical, ya que la vesícula ya se extirpó. Sin embargo, de las alternativas que había, era la más aceptable."
     },
     {
       "id": 96,
@@ -1152,7 +1248,8 @@
         "Solicitar TAC de abdomen y pelvis",
         "Realizar colecistectomía más coledocostomía"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene criterios de colangitis aguda (dolor, fiebre, ictericia y compromiso hemodinámico), por lo que se debe proceder al drenaje por CPRE."
     },
     {
       "id": 97,
@@ -1164,7 +1261,8 @@
         "Contusión encefálica frontal",
         "Contusión encefálica temporal"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un hematoma epidural clásico, tanto por la fractura, como por la clínica de HTEC grave, como por el breve intervalo lúcido."
     },
     {
       "id": 98,
@@ -1176,7 +1274,8 @@
         "Luxación anterior de cadera",
         "Luxación posterior de cadera"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una luxación posterior clásica, con la posición impúdica."
     },
     {
       "id": 99,
@@ -1188,7 +1287,8 @@
         "Fractura del extremo distal del radio",
         "Esguince de la primera articulación metacarpofalángica"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un fractura de escafoides clásica."
     },
     {
       "id": 100,
@@ -1200,7 +1300,8 @@
         "Yeso toracobraquial",
         "Cabestrillo"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": ", ¿B?. El cabestrillo y el vendaje en 8 son los más usados en las fracturas del tercio medio de clavícula. Sin embargo, también se pueden usar otros tipos de inmovilización, según la valoración por el especialista. El vendaje en 8 se asocia a mayores molestias, por compresión cutánea y del complejo neurovascular axilar, así que el cabestrillo suele ser lo más recomendado. De todos, modos, es una pregunta de especialista."
     },
     {
       "id": 101,
@@ -1212,7 +1313,8 @@
         "Tendinitis de la cabeza larga del bíceps",
         "Capsulitis adhesiva de hombro"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Era una tendinitis del manguito rotador clásica."
     },
     {
       "id": 102,
@@ -1224,7 +1326,8 @@
         "Episodio psicótico breve",
         "Trastorno facticio"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Al hacerlo intencionalmente, es un trastorno facticio clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 52/58"
     },
     {
       "id": 103,
@@ -1236,7 +1339,8 @@
         "Trastorno de pánico",
         "Trastorno conversivo"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Por las crisis de pánico reiteradas, es un trastorno de pánico clásico."
     },
     {
       "id": 104,
@@ -1248,7 +1352,8 @@
         "Reacción adversa a las benzodiazepinas",
         "Trastorno de ansiedad generalizada"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene distinas preocupaciones, de distintos tipos, por lo que es un TAG clásico."
     },
     {
       "id": 105,
@@ -1260,7 +1365,8 @@
         "Acatisia",
         "Manía aguda"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una acatisia clásica."
     },
     {
       "id": 106,
@@ -1272,7 +1378,8 @@
         "Esquizofrenia",
         "Trastorno delirante crónico"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Esta estaba más difícil, pero sigue siendo una buena pregunta. En mi opinión era una fobia social generalizada y bastante grave. Tal vez tenía de base un trastorno de personalidad evitativo además, pero no aparecía en las alternativas."
     },
     {
       "id": 107,
@@ -1284,7 +1391,8 @@
         "Trastorno adaptativo",
         "Trastorno disociativo"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un trastorno conversivo clásico."
     },
     {
       "id": 108,
@@ -1296,7 +1404,8 @@
         "Trastorno delirante crónico",
         "Trastorno bipolar"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene un clásico TDC, con delirio de celos."
     },
     {
       "id": 109,
@@ -1308,7 +1417,8 @@
         "Psicosis inducida por drogas",
         "Trastorno bipolar"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un TDC, con delirio paranoide."
     },
     {
       "id": 110,
@@ -1320,7 +1430,8 @@
         "Esquizofrenia",
         "Trastorno esquizoide de la personalidad"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "A, B?. Esta está muy difícil, ya que en la práctica misma es muy difícil hacer el diagnóstico diferencial en los casos en que hay una clara mezcla de síntomas anímicos (tristeza, etc.) y psicóticos (delirio y alucinaciones). Sin embargo, me parece un trastorno esquizoafectivo, por la falta de predominancia de uno de estos tipos de síntomas y porque no daban un perfil temporal, en que hubiese iniciado con un tipo de síntomas y luego se hubiesen agregado los otros."
     },
     {
       "id": 111,
@@ -1332,7 +1443,8 @@
         "Trastorno de estrés postraumático",
         "Ciclotimia"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Parece un trastorno por déficit atencional del adulto, aunque era una pregunta algo rara. Además, parecía que actualmente tenía algún grado de trastorno de personalidad, aunque no era evitativo (para empezar se casó 3 veces)."
     },
     {
       "id": 112,
@@ -1344,7 +1456,8 @@
         "Distimia",
         "Depresión mayor"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un clásico trastorno limítrofe de la personalidad."
     },
     {
       "id": 113,
@@ -1356,7 +1469,8 @@
         "Disminución de la motivación escolar",
         "Desarrollo de alcoholismo"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Pregunta difícil."
     },
     {
       "id": 114,
@@ -1368,7 +1482,8 @@
         "Trastorno adaptativo",
         "Trastorno disociativo"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una amnesia disociativa clásica."
     },
     {
       "id": 115,
@@ -1380,7 +1495,8 @@
         "Trastorno facticio",
         "Depresión"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es un trastorno de somatización clásico."
     },
     {
       "id": 116,
@@ -1392,7 +1508,8 @@
         "Trastorno de personalidad esquizoide",
         "Trastorno de conducta"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una EQZ clásica."
     },
     {
       "id": 117,
@@ -1404,7 +1521,8 @@
         "Indicar tratamiento antibiótico",
         "Iniciar antihistamínicos orales"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Parecía una rinitis crónica, con predominio de síntomas obstructivos, por lo que de primera línea se deben indicar corticoides tópicos."
     },
     {
       "id": 118,
@@ -1416,7 +1534,8 @@
         "Realizar cirugía endoscópica nasal",
         "Solicitar niveles plasmáticos de inmunoglobulinas"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La poliposis nasal se trata con corticoides orales."
     },
     {
       "id": 119,
@@ -1428,7 +1547,8 @@
         "Absceso parafaríngeo",
         "Absceso retrofaríngeo"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un absceso periamigdalino clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 53/58"
     },
     {
       "id": 120,
@@ -1440,7 +1560,8 @@
         "Prueba de reacción cutánea a la escoriación (Prick test)",
         "Recuento de inmunoglobulina E específica"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Parece una oxiuriasis, que se diagnostica con el test de Graham."
     },
     {
       "id": 121,
@@ -1452,7 +1573,8 @@
         "Shigella",
         "Adenovirus"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "El rotavirus es la causa más frecuente de diarrea acuosa febril en lactantes."
     },
     {
       "id": 122,
@@ -1464,7 +1586,8 @@
         "Pseudotumor orbitario",
         "Etmoiditis aguda"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La proptosis hace que sea orbitaria. En este caso es secundaria a una sinusitis."
     },
     {
       "id": 123,
@@ -1476,7 +1599,8 @@
         "Hepatitis A",
         "Trivírica"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La varicela y hepatitis A sí se recomiendan, pero al año de edad. La neumocócica polisacárida, no sirve en niños menores de 2 años (por eso se da la conjugada)."
     },
     {
       "id": 124,
@@ -1488,7 +1612,8 @@
         "Sutura intradérmica",
         "Dejar que cure por segunda intención"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Si bien también se puede afrontar con punto separado, en pediatría y también en adultos, se prefiere la sutura intradérmica para las heridas grandes de la cara, por su mejor resultado estético."
     },
     {
       "id": 125,
@@ -1500,7 +1625,8 @@
         "Biopsia por succión",
         "Radiografía de abdomen simple"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Era una enfermedad de Hirschsprüng, que se diagnostica con biopsia colorrectal (busca la aganglionosis del plexo nervioso submucoso o mientérico)."
     },
     {
       "id": 126,
@@ -1512,7 +1638,8 @@
         "Riesgo de obesidad",
         "Obesidad"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "En menores de 1 año se usa el IPE para el diagnóstico de desnutrición y el IPT para el de sobrepeso. Como tiene IPE normal, no hay desnutrición. Como su IPT es +1, tiene sobrepeso."
     },
     {
       "id": 127,
@@ -1524,7 +1651,8 @@
         "Streptococcus pyogenes",
         "Virus herpes 6 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 33/58"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un eritema infeccioso, por PVB19 clásico."
     },
     {
       "id": 128,
@@ -1536,7 +1664,8 @@
         "Sarampión",
         "Enfermedad de Kawasaki"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Es una enfermedad de Kawasaki clásica."
     },
     {
       "id": 129,
@@ -1548,7 +1677,8 @@
         "Hepatitis neonatal",
         "Ictericia por lactancia materna"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una ictericia precoz (menor a 24 horas), indirecta, por lo que lo más probable es que sea hemolítica. Además, por los grupos sanguíneos, solo puede ser por incompatibilidad de grupo clásico (madre O e hijo A o B)."
     },
     {
       "id": 130,
@@ -1560,7 +1690,8 @@
         "Realizar pilorotomía de Ramstedt",
         "Realizar funduplicatura gástrica"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Tiene clínica de una estenosis hipertrófica del píloro. Por tanto lo más correcto era solicitar una ecografía abdominal, para confirmar el diagnóstico. Sin embargo, de las opciones, la pilorotomía es el tratamiento de elección."
     },
     {
       "id": 131,
@@ -1572,7 +1703,8 @@
         "Lindano tópico",
         "No tratar, mientras no se visualicen piojos"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tanto los piojos, como las liendres, son diagnósticas de pediulosis (a menos que las liendres estén muy alejadas del cuero cabelludo, ya que serían antiguas). La pediculosis se trata con permetrina al 1%."
     },
     {
       "id": 132,
@@ -1584,7 +1716,8 @@
         "Anticuerpos antiendomisio",
         "Prueba de la D-xilosa"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Los anticuerpos antitransglutaminasa y antiendomisio son de elección tanto para el diagnóstico, como para confirmar la adherencia a la dieta (negativizan luego de varios meses sin consumo de gluten)."
     },
     {
       "id": 133,
@@ -1596,7 +1729,8 @@
         "Epilepsia focal",
         "Crisis convulsiva por privación de sueño"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es una epilepsia mioclónica clásica."
     },
     {
       "id": 134,
@@ -1608,7 +1742,8 @@
         "Amoxicilina",
         "Cefoperazona"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La ITU baja en pediatría se trata con cefalosporinas de primera generación o con nitrofurantoína. No se usan quinolonas, por su potencial afectación del cartílago de 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 54/58 crecimiento."
     },
     {
       "id": 135,
@@ -1620,7 +1755,8 @@
         "Gentamicina",
         "Cefoperazona"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La ITU baja en pediatría se trata con cefalosporinas de primera o segunda generación. Tampoco se usan las quinolonas, por lo mismo."
     },
     {
       "id": 136,
@@ -1632,7 +1768,8 @@
         "Denudación venosa",
         "Osteoclisis"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "En los niños, al fallar la vía venosa, se prefiere la osteoclisis. En los adultos, la denudacion venosa."
     },
     {
       "id": 137,
@@ -1644,7 +1781,8 @@
         "Hemorragia intracerebral",
         "Bolsa serosanguínea"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un cefalohematoma clásico."
     },
     {
       "id": 138,
@@ -1656,7 +1794,8 @@
         "Estenosis mitral",
         "Atresia tricuspidea"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una CIV clásica"
     },
     {
       "id": 139,
@@ -1668,7 +1807,8 @@
         "Rubéola",
         "Escarlatina"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un eritema unfeccioso clásico, por PVB19."
     },
     {
       "id": 140,
@@ -1680,7 +1820,8 @@
         "Parálisis cerebral",
         "Síndrome de West"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es un TEA clásico."
     },
     {
       "id": 141,
@@ -1692,7 +1833,8 @@
         "Radiografía de mano",
         "17 – OH – progesterona"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tanto por la edad, como por la clínica, parecía una enfermedad celíaca. No tenía síntomas respiratorios, como para sospechar una FQ."
     },
     {
       "id": 142,
@@ -1704,7 +1846,8 @@
         "Staphilococcus aureus",
         "Escherichia coli"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Parecía una adenitis supurada o una sialoadenitis submandibular. Ambas son por S. aureus y S. Pyogenes, pero al abscedarse, lo más probable es S. aureus."
     },
     {
       "id": 143,
@@ -1716,7 +1859,8 @@
         "Clindamicina",
         "Metronidazol"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La amoxicilina es el tratamiento de elección de la amigdalitis estreptococócica."
     },
     {
       "id": 144,
@@ -1728,7 +1872,8 @@
         "Solicitar pruebas hepáticas al niño",
         "Observar evolución"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Esa es la conducta."
     },
     {
       "id": 145,
@@ -1740,7 +1885,8 @@
         "Hipotiroidismo congénito",
         "Hepatitis neonatal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 37/58"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene una ictericia tardía y directa, por lo que la atresia biliar primaria es la principal sospecha."
     },
     {
       "id": 146,
@@ -1752,7 +1898,8 @@
         "Vitamina D",
         "Ácido fólico"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "En la práctica también recibe vitamina A (vitaminas ACD), pero es la vitamina D la importante."
     },
     {
       "id": 147,
@@ -1764,7 +1911,8 @@
         "Diclofenaco oral",
         "Azitromicina oral"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Es un resfrío común. No aparecía paracetamol SOS, así que la respuesta más adecuada es el SF intranasal."
     },
     {
       "id": 148,
@@ -1776,7 +1924,8 @@
         "Realizar biopsia testicular",
         "Solicitar cariograma y niveles de testosterona, LH y FSH"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene indicación de ligadura del plexo pampiniforme, tanto por la atrofia testicular, como por el dolor."
     },
     {
       "id": 149,
@@ -1788,7 +1937,8 @@
         "Realizar laparoscopía",
         "Realizar laparotomía exploradora"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene un posible embarazo ectópico y dado el buen estado de la paciente, no parece estar roto, a pesar de la metrorragia escasa. Sin embargo, por tener HCG menor a 1.500, se debe observar y repetir en 48 horas, de modo de confirmar el diagnóstico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 55/58"
     },
     {
       "id": 150,
@@ -1800,7 +1950,8 @@
         "Iniciar anticonceptivos orales",
         "Realizar seguimiento ecográfico en 3 meses"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": ", ¿A? Es una pregunta muy difícil y en mi opinión es de manejo de especialista y tiene más de una opción de tratamiento. Tiene un quiste simple, en una mujer postmenopáusica. Se puede observar y controlar en 3 meses, dado que probablemente es benigno y actualmente muchos recomiendan observar los quistes simples de menos de 10 cm y solo operarlos si persisten sobre 5 cm a los 3 meses, por el riesgo de rotura y torsión. Sin embargo, algunos opinan que por tener más de 3 cm y ser postmenopáusica, también puede sacarse por laparoscopía. Yo marqué observar, a pesar del tamaño, dado que la pregunta hacía mucho énfasis en las características benignas del mismo."
     },
     {
       "id": 151,
@@ -1812,7 +1963,8 @@
         "Iniciar anticonceptivos orales",
         "Antifibrinolíticos"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "La miomatosis sintomática, se opera. Si ya tiene paridad cumplida, se prefiere la HT."
     },
     {
       "id": 152,
@@ -1824,7 +1976,8 @@
         "Estreptococo grupo A",
         "Gonococo"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Tiene un PIP clínico, cuya causa clásica es el gonococo."
     },
     {
       "id": 153,
@@ -1836,7 +1989,8 @@
         "Suspender la fluoxetina",
         "Mantener los medicamentos, sin cambios 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 39/58"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Por ser diabética, debe recibir dosis de 4 mg de ácido fólico al día. Si bien la recomendación chilena, dice que se prefiere la insulina, por sobre los HGO, la evidencia ha demostrado que tanto MTF, como GBC son tan seguros como la insulina. Además, debe suspender el enalapril y cualquier otro antihipertensivo y cambiarlo por alfametildopa."
     },
     {
       "id": 154,
@@ -1848,7 +2002,8 @@
         "Mantener el control normal del embarazo",
         "Administrar corticoides"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Por ser una paciente de alto riesgo, debe recibir profilaxis de PE con aspirina."
     },
     {
       "id": 155,
@@ -1860,7 +2015,8 @@
         "Indicar ácidos grasos omega 3",
         "Indicar dexametasona"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Ídem."
     },
     {
       "id": 156,
@@ -1872,7 +2028,8 @@
         "Solicitar doppler umbilical y decidir según resultados",
         "Realizar test de tolerancia a las contracciones"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un RCIU, con criterios de interrupción (mayor a 37 semanas y además OHA y además detención del crecimiento). Se prefiere la cesárea para evitar el estrés del trabajo de parto."
     },
     {
       "id": 157,
@@ -1884,7 +2041,8 @@
         "Solicitar una ecografía obstétrica",
         "Realizar un tacto vaginal"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Las metrorragias de la segunda mitad del embarazo, se estudian con ecografía."
     },
     {
       "id": 158,
@@ -1896,7 +2054,8 @@
         "Realizar seguimiento con relación férmoro / craneana",
         "Realizar el control normal del embarazo"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "El estudio de ADN fetal libre ha revolucionado el manejo de la detección de aneuploidías, por ser de mínimo riesgo y tener excelentes resultados (muy alta sensibilidad y muy bajos falsos positivos). Por tanto, en mi opinión es la respuesta correcta. Aunque sigue siendo algo que el médico general no tiene por qué hacer."
     },
     {
       "id": 159,
@@ -1908,7 +2067,8 @@
         "Realizar laparoscopía",
         "Dar metotrexato"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene una amenaza de aborto, sin modificaciones cervicales, por lo que hay que observar. Además, la ecografía era normal, ya que el saco gestacional era menor a 18mm. Se controla con una EcoTV en 7 días, o antes, si empeoran los síntomas."
     },
     {
       "id": 160,
@@ -1919,7 +2079,9 @@
         "Punción de la lesión",
         "Drenaje quirúrgico",
         "Uso de pezonera"
-      ]
+      ],
+      "respuesta_correcta": "A",
+      "explanation": ", C? Tiene un punto blanco o perla láctea, que se produce porque se obstruye la salida de uno de los conductos galactóforos. Su tratamiento es discutible, ya que responde a distintos tratamientos y además, puede estar infectado. El calor local es lo clásico, pero también se suelen puncionar, ya que así se soluciona el problema. En mi opinión, es una mala pregunta, ya que tiene más de una respuesta correcta. Yo marqué puncionar, pero probablemente la respuesta que consideren como correcta es la del calor local. De verdad que Asofamech debería publicar sus preguntas y respuestas, para poder solucionar este tipo de preguntas. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 56/58"
     },
     {
       "id": 161,
@@ -1931,7 +2093,8 @@
         "Dar antibióticos profilácticos en este momento",
         "Realizar cesárea electiva al término"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es una paciente de alto riesgo, por lo que se debe dar profilaxis en el parto y no se solicita el cultivo. En las de bajo riesgo, sí se solicita el cultivo para decidir."
     },
     {
       "id": 162,
@@ -1943,7 +2106,8 @@
         "Metformina",
         "Progesterona 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 41/58"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "La infertilidad del SOP es por anovulación, que se trata con inductores, como el clomifeno."
     },
     {
       "id": 163,
@@ -1955,7 +2119,8 @@
         "Solicitar un test de tolerancia a las contracciones",
         "Realizar cesárea de urgencia"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "E? Es una pésima pregunta. Todo el mundo sabe que una preclamsia grave, con probable HELLP y exaltación neurológica, se debe interrumpir o si no, se muere (es lo más importante). Además todos sabemos que primero se administra el sulfato de magnesio, mientras se prepara el pabellón para la cesárea. Como se pregunta la conducta inmediata, probablemente quien redactó esta pregunta quiere que se marque el sulfato de magnesio, pero también se debe hacer la cesárea de manera inmediata, por lo que insisto, es una mala pregunta, que induce a error. Además, no es primera vez que se pregunta, por lo que es molesto volver a encontrarse con ella, ya que no es una pregunta que mida conocimiento, sino que suerte al elegir la alternativa correcta y no evalúa medicina, sino la opinión de quien la redactó, que considera que lo más urgente es el MgSO4 o bien considera que lo fundamental es la interrupción."
     },
     {
       "id": 164,
@@ -1967,7 +2132,8 @@
         "Antibióticos",
         "Progesterona"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "A?. Nuevamente una pregunta conflictiva. Como ya está en fase activa, no sirven los tocolíticos y tampoco alcanzarán a actuar los corticoides. El sulfato de magnesio, tiene un rol neuroprotector, por lo que se administran en los casos de parto prematuro inminente (yo marqué esa, aunque el año pasado marqué corticoides), sin embargo, los corticoides igualmente se dan en una única dosis en los partos prematuros inminentes, y además, en general son lo que más incide en la prevención de morbimortalidad del RN pretérmino. Los obstetras que están redactando las preguntas del Eunacom deben recordar que este examen busca medir los conocimientos de un médico general y que están haciendo preguntas de selección múltiple, por lo que no pueden hacer preguntas que induzcan a error, sino que deben ser preguntas claras, que no dejen lugar a dudas de que evalúan un conocimiento importante que debe tener un médico general."
     },
     {
       "id": 165,
@@ -1979,7 +2145,8 @@
         "Realizar cesárea",
         "Realizar amniocentesis"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Al fallar los tocolíticos de primera línea, lo primero es descartar una infección con la amniocentesis."
     },
     {
       "id": 166,
@@ -1991,7 +2158,8 @@
         "Realizar amniocentesis",
         "Realizar amnioinfusión, con surfactante intramniótico 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 42/58"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una pregunta difícil, con mucha información. Era una RPO de 32 semanas, con edad gestacional incierta (puede ser aún menor) y con sospecha de infección ovular. Según recuerdo, no cumplía criterios de corioamnionitis clínica, por lo que la respuesta era la amniocentesis, en mi opinión. Sin embargo no recuerdo 100% bien esta pregunta y si hubiese tenido taquicardia materna y fetal, sí estaría indicada la interrupción por cesárea (alguien me dijo que tenía más criterios, pero según recuerdo, no los tenía)."
     },
     {
       "id": 167,
@@ -2003,7 +2171,8 @@
         "Administrar metotrexato",
         "Realizar histeroscopía"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Se debe solicitar la ecografía, no solo para ver la relación entre el DIU y el saco gestacional, sino además, para asegurarse que no sea un embarazo ectópico (alto riesgo en DIU). 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 57/58"
     },
     {
       "id": 168,
@@ -2015,7 +2184,8 @@
         "Relación femoro/abdominal mayor a 0,25",
         "Ducto venoso con flujo ausente en diástole, al doppler"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "El doppler ducto venoso alterado es ominoso (también el OHA severo y el doppler umbilical con flujo ausente o reverso en diástole)."
     },
     {
       "id": 169,
@@ -2027,7 +2197,8 @@
         "Dar oxígeno a la madre",
         "Administrar tocolíticos"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene un registro ominoso, con taquisistolía, así que lo primero a hacer es suspender la oxitocina. Sin embargo, también hay que lateralizar, dar O2, etc, por lo que es una mala pregunta."
     },
     {
       "id": 170,
@@ -2038,7 +2209,9 @@
         "Realizar ecodoppler de arterias uterinas",
         "Realizar monitoreo electrónico de la frecuencia cardiaca fetal",
         "Descartar infección con amniocentesis"
-      ]
+      ],
+      "respuesta_correcta": "D",
+      "explanation": ", B? Por regla general, antes de dar los tocolíticos, se debe evaluar si están contraindicados (ej. Óbito fetal, alteración grave del bienestar fetal, dilatación mayor a 3 o 6 cm, etc.). Tanto el registro, como la Ecografía se suelen solicitar. Yo marqué el registro, ya que es lo que suele estar disponible y es más rápido de hacer en ese momento."
     },
     {
       "id": 171,
@@ -2050,7 +2223,8 @@
         "Iniciar terapia de reemplazo hormonal",
         "Realizar histeroscopía"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Tiene una metrorragia postmenopáusica, con endometrio menor a 5 mm, por lo que probablemente es por atrofia endometrial, la que se suele observar."
     },
     {
       "id": 172,
@@ -2062,7 +2236,8 @@
         "Legrado",
         "Colposcopía"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Tiene un endometrio grueso para su edad, por lo que podría tener una hiperplasia endometrial y eventualmente desarrollar un cáncer. Sin embargo, por estar asintomática, se debe observar. De las opciones, la C era la más aceptable."
     },
     {
       "id": 173,
@@ -2074,7 +2249,8 @@
         "Histerectomía",
         "Curetaje endocervical"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "Tanto NIE 1, como condilomas, se tratan con crioterapia como primera línea."
     },
     {
       "id": 174,
@@ -2086,7 +2262,8 @@
         "Restos ovulares",
         "Miometritis"
       ],
-      "respuesta_correcta": 2
+      "respuesta_correcta": "C",
+      "explanation": "Es una endometritis puerperal clásica."
     },
     {
       "id": 175,
@@ -2097,7 +2274,9 @@
         "Solicitar estudio endocrinológico",
         "Solicitar test de tolerancia a la glucosa",
         "Solicitar estudio de la hemostasia 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 44/58"
-      ]
+      ],
+      "respuesta_correcta": "C",
+      "explanation": ", E? Nuevamente es una mala pregunta. Por un lado, tiene la hipermenorrea, sin una causa anatómica, por lo que se debe estudiar la hemostasia. Por otro lado, tiene el criterio ecográfico de SOP, por lo que se debe buscar el criterio endocrinológico, con el índice de andrógenos libres. Yo marqué C, pero como el Eunacom no tiene transparencia, nunca sabremos cuál es la respuesta."
     },
     {
       "id": 176,
@@ -2109,7 +2288,8 @@
         "TAC de tórax",
         "Biopsia"
       ],
-      "respuesta_correcta": 1
+      "respuesta_correcta": "B",
+      "explanation": "Es un fibroadenoma clásico, que se estudia con ecografía mamaria."
     },
     {
       "id": 177,
@@ -2121,7 +2301,8 @@
         "Hiperemesis gravídica",
         "Síndrome de HELLP"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una hiperemesis gravísica clásica."
     },
     {
       "id": 178,
@@ -2133,7 +2314,8 @@
         "Metoclopramida",
         "Ondasentrón sublingual"
       ],
-      "respuesta_correcta": 0
+      "respuesta_correcta": "A",
+      "explanation": "La doxilamina (antihistamínico) son el tratamiento de primera línea en la hiperemesis gravídica."
     },
     {
       "id": 179,
@@ -2145,7 +2327,8 @@
         "Repetir el PAP",
         "Colposcopía"
       ],
-      "respuesta_correcta": 4
+      "respuesta_correcta": "E",
+      "explanation": "Por se atipías glandulares, lo más correcto es derivar a colposcopía y biopsia más curetaje endocervical."
     },
     {
       "id": 180,
@@ -2155,9 +2338,10 @@
         "Intolerancia a la glucosa 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 45/58",
         "Diabetes mellitus gestacional",
         "Diabetes mellitus pregestacional",
-        "Prediabetes PAUTA 1 A. Clínicamente parece un soplo funcional, pero aparecía en las alternativas. De las opciones, por la ubicación del soplo, la CIA es la respuesta más aceptable. 2 D. Es una FA con hemodinamia inestable y como toda taquiarritmia hemodinámicamente inestable, se debe cardiovertir, de inmediato. 3 E. Es una clínica de taponamiento clásico 4 D. La angina estable con test de esfuerzo alterado, se estudia con coronariografía. 5 C. La sospecha es un TEP. 6 D. La sospecha también es un TEP. 7 E. La sospecha es una enfermedad del nodo sinusal, en contexto de un síndrome taquicardia/bradicardia (FA + ENS). 8 E. La espironolactona aumenta la sobrevida en la ICC. 9 C. La HTA en un diabético se trata con IECAs como primera línea. También la proteinuria. 10 B. El betabloqueo aumenta la sobrevida. El losartán también, pero estaba con enalapril. 11 A. Es un síndrome coronario agudo. El BCRI es equivalente a un SDST. 12 D. Es una disección clásica por la asimetría de pulsos. 13 E. El asma contraindica los betabloqueantes. La IRC y la caída en la fracción de eyección contraindican los digitálicos. 14 E. Tiene el diagnóstico de EPOC (con espirometría obstructiva, que no mejora con BD). Lo más correcto es que inicie BD de larga acción, más BD de corta acción por horario, pero esto no aparecía en las opciones. Sin embargo, la base del tratamiento del EPOC estable es suspender el cigarrillo y los broncodilatadores de larga acción, como tratamiento sintomático. 15 A. Lo más correcto era dejar amoxicilina, pero de las opciones, el macrólido era la mejor opción, para una NAC de bajo riesgo. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 46/58 16 E. Es una pregunta demasiado específica y no debería preguntarse. Sin embargo, una embarazada con contacto con un paciente bacilífero y PPD positivo, tiene indicación de profilaxis para TBC. 17 B. Tiene clínica de TBC y la RxTx era sugerente. 18 D. La clínica es de bronquiectasias, que se diagnostican preferentemente con un TAC de tórax. 19 D. Lo más correcto es indicar corticoides inhalados cada 12 horas, más salbutamol SOS, pero de las opciones, la D era la más aceptable. 20 D. Tiene un derrame canceroso (exudado mononuclear con ADA baja) y el antecedente de exposición a asbesto está muy relacionado a mesotelioma. 21 D. La sospecha es un TEP. 22 B. Es un divertículo de Zenker clásico. 23 D. Es un síndrome de Gilbert clásico. 24 B. La asociación a DHC es tanto de adenoma, como de hepatocarcinoma, pero la hipervascularización orienta a hepatocarcinoma. Sin embargo, esta es una pregunta de radiología, que excede las competencias que debe tener un médico general. 25 E. La sospecha es una enfermedad celíaca y aunque sobra la hepatitis, es lo más probable. 26 B. Es una enfermedad inflamatoria, y por no afectar el recto y tener afectación discontinua, no puede ser colitis ulcerosa, sino enfermedad de Cröhn. 27 B. Es una enfermedad inflamatoria intestinal, que se estudia con colonoscopía. 28 A. La sospecha es un cáncer de colon. 29 E. Tiene una hepatitis crónica. El antecedente de transfusión orienta a hepatitis C, pero la verdad es que debe estudiarse con más exámenes, como por ejemplo el Ag VHBs, por lo que es una mala pregunta. Antes del año 2000, los casos de hepatitis B eran casi cero, por lo que no puede ser. 30 B. En mi opinión es una simple diarrea aguda. 31 A. Tiene clínica y exámenes de DHC, además de una HDA masiva, lo que orienta a várices esofágicos. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 47/58 32 B. Calcio alto y PTH alta son característicos del HPP. 33 A. La hipercalcemia se estudia con PTH. Además, la hipofosfemia orienta a un HPP. 34 B; ¿A? Por regla general, la ecografía cervical es el primer examen para un nódulo tiroideo y por eso creo que es la respuesta correcta. Sin embargo, ya cumple criterios de punción con aguja fina (mayor a 15 mm con TSH normal o alta). 35 D. El hipertiroidismo se estudia con cintigrafía con I131 para determinar su etiología. 36 D. El hipotiroidismo se caracteriza por la piel seca. El mixedema pretibial y exoftalmo son de la enfermedad de Basedow Graves, las melanoplaquias de la enfermedad de Addison y la acantosis nigricans, de la resistencia a la insulina. 37 A. Tiene osteoporosis: T score menor a -2,5. 38 E. Al ser un nódulo tan pequeño, no está indicada la punción (mayor a 10 mm se puncionan). 39 B. Tiene hipoglicemias de ayuno y no reactiva. La insulina alta es compatible con B, C y D, pero el péptido C suprimido no es compatible con insulinoma ni sulfonilúreas, por lo que obligatoriamente es por insulina exógena. 40 D. Tiene clínica de hipoglicemias, que probablemente son causadas por la glibenclamida. Por eso se debe cambiar por otro hipoglicemiante. Como tiene un mal control metabólico (HbA1c alta), no se debe agregar la colación 41 E. La prioridad son los triglicéridos, por estar mayores a 500 mg/dl. No se pueden mezclar los fibratos con las estatinas, por el riesgo de rabdomiolisis (solo lo puede hacer el especialista). 42 E. Tiene acantosis nigricans, clásico de la RI. 43 B. Es una arteritis de la temporal o de células gigantes clásica. 44 D. Es una poliangeítis microscópica clásica. 45 B. Es un CREST clásico. 46 D. La AR se trata con infliximab en el embarazo. De todos modos, es una pregunta específica, que excede lo que un médico general debe saber. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 48/58 47 D. La colchicina tiene muchos efectos adversos, por lo que se prefiere no dejarla como tratamiento profiláctico, sino solo en las crisis agudas (en agudo los AINEs son de elección). EL alopurinol debe mantenerse, ya que tuvo más de 2 crisis en 1 año y actualmente tiene buenos niveles de ácido úrico. 48 B ¿D?. Tiene una insuficiencia renal recién diagnosticada y para diferenciar una IRA de una IRC, lo más adecuado es la ecografía renal. Sin embargo, la cintigrafía podría ser útil, dado el antecedente de la TBC renal. 49 B. Tiene un probable SSIADH (hiponatremia, con sodio urinario alto). El citalopram puede causarlo. 50 B. Es una pregunta muy difícil, pero su clínica es de hipokalemia y el K está en el límite bajo. El consumo excesivo de sal, mezclado con el uso de tiazidas (como la clortalidona) producen hipokalemia. 51 C. La clínica de TVP, más el TTPA alargado y el VDRL+ es clásico del SAF. 52 A ¿C, D? Tiene clínica de una anemia, probablemente hemolítica. Al preguntarse el diagnóstico etiológico, probablemente la prueba de Coombs sea la respuesta correcta, ya que diagnostica la anemia hemolítica autoinmune. Sin embargo, los distractores son muy fuertes, ya que aún no hay claridad sobre la etiología de la anemia en sí y los reticulocitos, así como la LDH y bilirrubina indirecta ayudan al diagnóstico de la hemólisis. Es una mala pregunta en mi opinión. 53 B. Es una LMC clásica. 54 E. Es una coagulación intravascular diseminada clásica. 55 A. La clínica es compatible con una trombosis de seno cavernoso. Tiene signos de alarma (no es migraña), no tiene signos focales (no es AVE lacunar ni hemorrágico) y lleva 5 días (no es HSA). Por tanto, solo queda marcar la A. 56 B. Es una polineuropatía. La verdad es que el diagnóstico es clínico y no requiere ningún examen, pero de las opciones que aparecen, la B es la única aceptable. 57 E. Es una ELA clásica. La espirometría mostraba un patrón restrictivo. 58 D ¿A, C?. Pésima pregunta. Con una clínica tan escasa, se induce a error, ya que no especifican qué sector de las manos son las con parestesias (es lo más importante en este caso). Que se irradie a los codos, hace improbable que sea un túnel carpiano. Que sea bilateral, orienta a una polineuropatía diabetica, pero falta la afectación de los pies. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 49/58 59 A. Es una cefalea tensional clásica (como la que da al salir del Eunacom). 60 E. La clínica y la radiografía orientaban mucho a un paciente VIH con infección por PJ. 61 C. Es una meningoencefalitis viral clásica. No tenía ningún criterio de sospecha de herpes. 62 D. Es una sífilis secundaria clásica. Además recordar que el principal factor de riesgo para tener una ETS, es tener otra ETS. 63 B. Es una endocarditis subaguda. Como se pregunta el diagnóstico etiológico, la respuesta son los hemocultivos. Sin embargo, la ecocardiografía, también es un examen importante. 64 C. Es una amiloidosis con compromiso renal (síndrome nefrótico). Orienta a ella la VHS alta y la hipoalbuminemia. Igual es una pregunta muy específica. 65 E. Por su edad, está bien controlado, ya que la meta es que sea menor a 150/90 mmHg. 66 B. La Subsecretaría de Redes Asistenciales es parte del Minsal, que delega sus funciones en la Seremi de Salud, a nivel regional. 67 ¿A, C?. La letalidad es un indicador clásico de gravedad, pero los años de vida saludables perdidos también lo son, e incluso es mejor, cuando se trata de enfermedades graves, pero que no causan la muerte, sino que dejan secuelas y causan invalidez. Yo marqué C. 68 D. Si no se da que la causa aparece antes que el efecto, definitivamente no puede ser la causa. No deberían preguntar filosofía en el Eunacom. 69 A. La tasa de incidencia debería bajar, si la campaña es exitosa. 70 B. Los sesgos de información o medida se previenen con el doble ciego y con instrumentos de medición validados y calibrados. 71 C. La opción C era la única estadísticamente significativa, ya que el OR no pasaba por el 1. 72 D. Las pruebas de screening son una clásica medida de prevención secundaria. 73 D. De las opciones es la única aceptable. 74 C. La balanopostitis (en especial la candidiásica) se asocia a diabetes. 75 C. El primer estudio de infertilidad masculina es el espermiograma. 76 C. Pésima pregunta. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 50/58 77 B. La hematuria monosintomática del adulto sugiere un cáncer de vejiga. El antecedente de fumar, también. 78 E. Tanto por el nódulo, como por el APE mayor a 4, está indicada la biopsia. 79 C. Parece una incontinencia de orina de urgencia, que se trata preferentemente con anticolinérgicos, como la oxibutinina. 80 La verdad es que esta pregunta no la recuerdo bien. Sí recuerdo que tenía una HPB y una clínica de IOU. En general, la HPB con complicaciones, se trata con RTU (creo que no aparecía en las alternativas) y el tratamiento de primera línea de la HPB suele ser la tamsulosina. Además, la IOU se trata con anticolinérgicos (oxibutinina, cloruro de trospio y tolteridina), pero como aparecía más de uno, creo que querían que se marcara la tamsulisina. Insisto, no recuerdo bien esta pregunta. 81 A. Es una uveítis anterior clásica. 82 E. Es una neuritis óptica tanto por el antecedente de EM, como por la cínica, aunque tenía AV normal y no mencionaban el RFM. 83 C. El retinoblastoma suele tener agregación familiar (gen Rb) y además es causa de leucocoria. La catarata habría tenido leucocoria desde el inicio. 84 C. Es un glaucoma crónico clásico, tanto por la PIO mayor a 20, como por la excavación papilar mayor a 0,3. 85 E. Tiene un intétrigo candidiásico. Por el antecedente de IRC y hepatopatía, se prefieren los antimicóticos tópicos. 86 A. Tiene un impétigo. Cloxacilina o cefadroxilo habrían sido de elección, pero la amoxicilina más ácido clavulánico cubren bien al S. Aureus y al S. Pyogenes, que son los agentes etiológicos. 87 B. La primera medida ante los hemangiomas infantiles es dar propanolol. Si no involucionan, en casos como este está indicada la cirugía (porque deforma la cara, produce ambliopía, etc). 88 A. Si bien la imagen no era un cáncer basocelular clásico, esa era la única respuesta aceptable. 89 A. Es un loxsocelismo cutáneo clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 51/58 90 C. Tiene un quiste epidérmico abscedado, lo que se trata con antibióticos (antiestafilocócicos: ej. cloxacilina) más drenaje quirúrgico. Eventualmente, el quiste sí se debe resecar, pero no mientras está infectado. 91 B. Es una diverticulitis aguda clásica. 92 E. Es un síndrome de VCI clásico, probablemente secundario a un linfoma, dada la edad y las adenopatías. 93 C. La normativa actual dice que se debe vacunar en caso de que la mordedura sea por un animal que no es observable (independiente de si hay o no provocación). También se vacuna en caso de contacto con murciélagos (no necesariamente mordedura) y en mordeduras por animales rabiosos, sintomáticos, que mueren inexplicadamente o que se trata de animales diferentes a las mascotas habituales. 94 D ¿E? Por la tos áfona y el estridor es un cuerpo extraño laríngeo, pero por la sialorrea y la reticencia a comer era esofágico. Esta pregunta inducía a error. Yo marqué laríngeo, porque le di más importancia a los síntomas laríngeos. 95 E. Lo correcto es hacer una cirugía abierta, con cuña hepática y linfadenectomía y no una colecistectomía radical, ya que la vesícula ya se extirpó. Sin embargo, de las alternativas que había, era la más aceptable. 96 B. Tiene criterios de colangitis aguda (dolor, fiebre, ictericia y compromiso hemodinámico), por lo que se debe proceder al drenaje por CPRE. 97 B. Es un hematoma epidural clásico, tanto por la fractura, como por la clínica de HTEC grave, como por el breve intervalo lúcido. 98 E. Es una luxación posterior clásica, con la posición impúdica. 99 B. Es un fractura de escafoides clásica. 100 E, ¿B?. El cabestrillo y el vendaje en 8 son los más usados en las fracturas del tercio medio de clavícula. Sin embargo, también se pueden usar otros tipos de inmovilización, según la valoración por el especialista. El vendaje en 8 se asocia a mayores molestias, por compresión cutánea y del complejo neurovascular axilar, así que el cabestrillo suele ser lo más recomendado. De todos, modos, es una pregunta de especialista. 101 A. Era una tendinitis del manguito rotador clásica. 102 E. Al hacerlo intencionalmente, es un trastorno facticio clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 52/58 103 D. Por las crisis de pánico reiteradas, es un trastorno de pánico clásico. 104 E. Tiene distinas preocupaciones, de distintos tipos, por lo que es un TAG clásico. 105 D. Es una acatisia clásica. 106 B. Esta estaba más difícil, pero sigue siendo una buena pregunta. En mi opinión era una fobia social generalizada y bastante grave. Tal vez tenía de base un trastorno de personalidad evitativo además, pero no aparecía en las alternativas. 107 A. Es un trastorno conversivo clásico. 108 D. Tiene un clásico TDC, con delirio de celos. 109 B. Tiene un TDC, con delirio paranoide. 110 D ¿A, B?. Esta está muy difícil, ya que en la práctica misma es muy difícil hacer el diagnóstico diferencial en los casos en que hay una clara mezcla de síntomas anímicos (tristeza, etc.) y psicóticos (delirio y alucinaciones). Sin embargo, me parece un trastorno esquizoafectivo, por la falta de predominancia de uno de estos tipos de síntomas y porque no daban un perfil temporal, en que hubiese iniciado con un tipo de síntomas y luego se hubiesen agregado los otros. 111 C. Parece un trastorno por déficit atencional del adulto, aunque era una pregunta algo rara. Además, parecía que actualmente tenía algún grado de trastorno de personalidad, aunque no era evitativo (para empezar se casó 3 veces). 112 B. Es un clásico trastorno limítrofe de la personalidad. 113 D. Pregunta difícil. 114 E. Es una amnesia disociativa clásica. 115 E. Es un trastorno de somatización clásico. 116 B. Es una EQZ clásica. 117 A. Parecía una rinitis crónica, con predominio de síntomas obstructivos, por lo que de primera línea se deben indicar corticoides tópicos. 118 B. La poliposis nasal se trata con corticoides orales. 119 A. Es un absceso periamigdalino clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 53/58 120 B. Parece una oxiuriasis, que se diagnostica con el test de Graham. 121 A. El rotavirus es la causa más frecuente de diarrea acuosa febril en lactantes. 122 B. La proptosis hace que sea orbitaria. En este caso es secundaria a una sinusitis. 123 A. La varicela y hepatitis A sí se recomiendan, pero al año de edad. La neumocócica polisacárida, no sirve en niños menores de 2 años (por eso se da la conjugada). 124 D. Si bien también se puede afrontar con punto separado, en pediatría y también en adultos, se prefiere la sutura intradérmica para las heridas grandes de la cara, por su mejor resultado estético. 125 D. Era una enfermedad de Hirschsprüng, que se diagnostica con biopsia colorrectal (busca la aganglionosis del plexo nervioso submucoso o mientérico). 126 C. En menores de 1 año se usa el IPE para el diagnóstico de desnutrición y el IPT para el de sobrepeso. Como tiene IPE normal, no hay desnutrición. Como su IPT es +1, tiene sobrepeso. 127 C. Es un eritema infeccioso, por PVB19 clásico. 128 E. Es una enfermedad de Kawasaki clásica. 129 A. Es una ictericia precoz (menor a 24 horas), indirecta, por lo que lo más probable es que sea hemolítica. Además, por los grupos sanguíneos, solo puede ser por incompatibilidad de grupo clásico (madre O e hijo A o B). 130 D. Tiene clínica de una estenosis hipertrófica del píloro. Por tanto lo más correcto era solicitar una ecografía abdominal, para confirmar el diagnóstico. Sin embargo, de las opciones, la pilorotomía es el tratamiento de elección. 131 B. Tanto los piojos, como las liendres, son diagnósticas de pediulosis (a menos que las liendres estén muy alejadas del cuero cabelludo, ya que serían antiguas). La pediculosis se trata con permetrina al 1%. 132 D. Los anticuerpos antitransglutaminasa y antiendomisio son de elección tanto para el diagnóstico, como para confirmar la adherencia a la dieta (negativizan luego de varios meses sin consumo de gluten). 133 A. Es una epilepsia mioclónica clásica. 134 A. La ITU baja en pediatría se trata con cefalosporinas de primera generación o con nitrofurantoína. No se usan quinolonas, por su potencial afectación del cartílago de 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 54/58 crecimiento. 135 B. La ITU baja en pediatría se trata con cefalosporinas de primera o segunda generación. Tampoco se usan las quinolonas, por lo mismo. 136 E. En los niños, al fallar la vía venosa, se prefiere la osteoclisis. En los adultos, la denudacion venosa. 137 B. Es un cefalohematoma clásico. 138 B. Es una CIV clásica 139 B. Es un eritema unfeccioso clásico, por PVB19. 140 C. Es un TEA clásico. 141 A. Tanto por la edad, como por la clínica, parecía una enfermedad celíaca. No tenía síntomas respiratorios, como para sospechar una FQ. 142 D. Parecía una adenitis supurada o una sialoadenitis submandibular. Ambas son por S. aureus y S. Pyogenes, pero al abscedarse, lo más probable es S. aureus. 143 A. La amoxicilina es el tratamiento de elección de la amigdalitis estreptococócica. 144 A. Esa es la conducta. 145 C. Tiene una ictericia tardía y directa, por lo que la atresia biliar primaria es la principal sospecha. 146 D. En la práctica también recibe vitamina A (vitaminas ACD), pero es la vitamina D la importante. 147 A. Es un resfrío común. No aparecía paracetamol SOS, así que la respuesta más adecuada es el SF intranasal. 148 B. Tiene indicación de ligadura del plexo pampiniforme, tanto por la atrofia testicular, como por el dolor. 149 C. Tiene un posible embarazo ectópico y dado el buen estado de la paciente, no parece estar roto, a pesar de la metrorragia escasa. Sin embargo, por tener HCG menor a 1.500, se debe observar y repetir en 48 horas, de modo de confirmar el diagnóstico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 55/58 150 E, ¿A? Es una pregunta muy difícil y en mi opinión es de manejo de especialista y tiene más de una opción de tratamiento. Tiene un quiste simple, en una mujer postmenopáusica. Se puede observar y controlar en 3 meses, dado que probablemente es benigno y actualmente muchos recomiendan observar los quistes simples de menos de 10 cm y solo operarlos si persisten sobre 5 cm a los 3 meses, por el riesgo de rotura y torsión. Sin embargo, algunos opinan que por tener más de 3 cm y ser postmenopáusica, también puede sacarse por laparoscopía. Yo marqué observar, a pesar del tamaño, dado que la pregunta hacía mucho énfasis en las características benignas del mismo. 151 B. La miomatosis sintomática, se opera. Si ya tiene paridad cumplida, se prefiere la HT. 152 E. Tiene un PIP clínico, cuya causa clásica es el gonococo. 153 C. Por ser diabética, debe recibir dosis de 4 mg de ácido fólico al día. Si bien la recomendación chilena, dice que se prefiere la insulina, por sobre los HGO, la evidencia ha demostrado que tanto MTF, como GBC son tan seguros como la insulina. Además, debe suspender el enalapril y cualquier otro antihipertensivo y cambiarlo por alfametildopa. 154 A. Por ser una paciente de alto riesgo, debe recibir profilaxis de PE con aspirina. 155 A. Ídem. 156 B. Es un RCIU, con criterios de interrupción (mayor a 37 semanas y además OHA y además detención del crecimiento). Se prefiere la cesárea para evitar el estrés del trabajo de parto. 157 D. Las metrorragias de la segunda mitad del embarazo, se estudian con ecografía. 158 C. El estudio de ADN fetal libre ha revolucionado el manejo de la detección de aneuploidías, por ser de mínimo riesgo y tener excelentes resultados (muy alta sensibilidad y muy bajos falsos positivos). Por tanto, en mi opinión es la respuesta correcta. Aunque sigue siendo algo que el médico general no tiene por qué hacer. 159 C. Tiene una amenaza de aborto, sin modificaciones cervicales, por lo que hay que observar. Además, la ecografía era normal, ya que el saco gestacional era menor a 18mm. Se controla con una EcoTV en 7 días, o antes, si empeoran los síntomas. 160 ¿A, C? Tiene un punto blanco o perla láctea, que se produce porque se obstruye la salida de uno de los conductos galactóforos. Su tratamiento es discutible, ya que responde a distintos tratamientos y además, puede estar infectado. El calor local es lo clásico, pero también se suelen puncionar, ya que así se soluciona el problema. En mi opinión, es una mala pregunta, ya que tiene más de una respuesta correcta. Yo marqué puncionar, pero probablemente la respuesta que consideren como correcta es la del calor local. De verdad que Asofamech debería publicar sus preguntas y respuestas, para poder solucionar este tipo de preguntas. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 56/58 161 B. Es una paciente de alto riesgo, por lo que se debe dar profilaxis en el parto y no se solicita el cultivo. En las de bajo riesgo, sí se solicita el cultivo para decidir. 162 C. La infertilidad del SOP es por anovulación, que se trata con inductores, como el clomifeno. 163 C ¿E? Es una pésima pregunta. Todo el mundo sabe que una preclamsia grave, con probable HELLP y exaltación neurológica, se debe interrumpir o si no, se muere (es lo más importante). Además todos sabemos que primero se administra el sulfato de magnesio, mientras se prepara el pabellón para la cesárea. Como se pregunta la conducta inmediata, probablemente quien redactó esta pregunta quiere que se marque el sulfato de magnesio, pero también se debe hacer la cesárea de manera inmediata, por lo que insisto, es una mala pregunta, que induce a error. Además, no es primera vez que se pregunta, por lo que es molesto volver a encontrarse con ella, ya que no es una pregunta que mida conocimiento, sino que suerte al elegir la alternativa correcta y no evalúa medicina, sino la opinión de quien la redactó, que considera que lo más urgente es el MgSO4 o bien considera que lo fundamental es la interrupción. 164 B ¿A?. Nuevamente una pregunta conflictiva. Como ya está en fase activa, no sirven los tocolíticos y tampoco alcanzarán a actuar los corticoides. El sulfato de magnesio, tiene un rol neuroprotector, por lo que se administran en los casos de parto prematuro inminente (yo marqué esa, aunque el año pasado marqué corticoides), sin embargo, los corticoides igualmente se dan en una única dosis en los partos prematuros inminentes, y además, en general son lo que más incide en la prevención de morbimortalidad del RN pretérmino. Los obstetras que están redactando las preguntas del Eunacom deben recordar que este examen busca medir los conocimientos de un médico general y que están haciendo preguntas de selección múltiple, por lo que no pueden hacer preguntas que induzcan a error, sino que deben ser preguntas claras, que no dejen lugar a dudas de que evalúan un conocimiento importante que debe tener un médico general. 165 E. Al fallar los tocolíticos de primera línea, lo primero es descartar una infección con la amniocentesis. 166 D. Es una pregunta difícil, con mucha información. Era una RPO de 32 semanas, con edad gestacional incierta (puede ser aún menor) y con sospecha de infección ovular. Según recuerdo, no cumplía criterios de corioamnionitis clínica, por lo que la respuesta era la amniocentesis, en mi opinión. Sin embargo no recuerdo 100% bien esta pregunta y si hubiese tenido taquicardia materna y fetal, sí estaría indicada la interrupción por cesárea (alguien me dijo que tenía más criterios, pero según recuerdo, no los tenía). 167 B. Se debe solicitar la ecografía, no solo para ver la relación entre el DIU y el saco gestacional, sino además, para asegurarse que no sea un embarazo ectópico (alto riesgo en DIU). 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 57/58 168 E. El doppler ducto venoso alterado es ominoso (también el OHA severo y el doppler umbilical con flujo ausente o reverso en diástole). 169 B. Tiene un registro ominoso, con taquisistolía, así que lo primero a hacer es suspender la oxitocina. Sin embargo, también hay que lateralizar, dar O2, etc, por lo que es una mala pregunta. 170 ¿D, B? Por regla general, antes de dar los tocolíticos, se debe evaluar si están contraindicados (ej. Óbito fetal, alteración grave del bienestar fetal, dilatación mayor a 3 o 6 cm, etc.). Tanto el registro, como la Ecografía se suelen solicitar. Yo marqué el registro, ya que es lo que suele estar disponible y es más rápido de hacer en ese momento. 171 B. Tiene una metrorragia postmenopáusica, con endometrio menor a 5 mm, por lo que probablemente es por atrofia endometrial, la que se suele observar. 172 C. Tiene un endometrio grueso para su edad, por lo que podría tener una hiperplasia endometrial y eventualmente desarrollar un cáncer. Sin embargo, por estar asintomática, se debe observar. De las opciones, la C era la más aceptable. 173 A. Tanto NIE 1, como condilomas, se tratan con crioterapia como primera línea. 174 C. Es una endometritis puerperal clásica. 175 ¿C, E? Nuevamente es una mala pregunta. Por un lado, tiene la hipermenorrea, sin una causa anatómica, por lo que se debe estudiar la hemostasia. Por otro lado, tiene el criterio ecográfico de SOP, por lo que se debe buscar el criterio endocrinológico, con el índice de andrógenos libres. Yo marqué C, pero como el Eunacom no tiene transparencia, nunca sabremos cuál es la respuesta. 176 B. Es un fibroadenoma clásico, que se estudia con ecografía mamaria. 177 D. Es una hiperemesis gravísica clásica. 178 A. La doxilamina (antihistamínico) son el tratamiento de primera línea en la hiperemesis gravídica. 179 E. Por se atipías glandulares, lo más correcto es derivar a colposcopía y biopsia más curetaje endocervical. 180 D. Es una mala pregunta, porque solo dan 1 glicemia, lo que no diagnostica nada. Sin embargo, se considera diabetes pregestacional que haya 2 glicemias de ayuno mayores o iguales a 126, a inicio del embarazo. Así mismo, se considera diabetes gestacional, si las dos glicemias son mayores o iguales a 100, pero menores a 126. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 58/58 Todos los Derechos Reservados para DrGuevara Espero sinceramente que les haya ido muy bien en este examen."
+        "Prediabetes"
       ],
-      "respuesta_correcta": 3
+      "respuesta_correcta": "D",
+      "explanation": "Es una mala pregunta, porque solo dan 1 glicemia, lo que no diagnostica nada. Sin embargo, se considera diabetes pregestacional que haya 2 glicemias de ayuno mayores o iguales a 126, a inicio del embarazo. Así mismo, se considera diabetes gestacional, si las dos glicemias son mayores o iguales a 100, pero menores a 126. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 58/58 Todos los Derechos Reservados para DrGuevara Espero sinceramente que les haya ido muy bien en este examen."
     }
   ]
 }
