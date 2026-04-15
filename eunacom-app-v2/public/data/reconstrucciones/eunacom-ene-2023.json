@@ -1,1657 +1,2348 @@
 {
   "id": "eunacom-ene-2023",
-  "name": "EUNACOM Enero 2023",
-  "month": "Enero",
-  "year": 2023,
-  "total_questions": 180,
-  "questions_with_answers": 81,
+  "titulo": "EUNACOM Enero 2023",
+  "año": 2023,
+  "mes": "Enero",
   "questions": [
     {
       "id": 1,
       "pregunta": "¿Cuál corresponde a un indicador de demografía dinámica?",
       "opciones": [
-        "Esperanza de vida al nacer",
-        "Tasa de fecundidad",
-        "Índice de envejecimiento",
         "Tasa de mortalidad infantil",
-        "Tasa de natalidad"
+        "Tasa de prevalencia de diabetes",
+        "Índice de masa corporal poblacional",
+        "Tasa de alfabetismo",
+        "Porcentaje de cobertura vacunal"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Tasa de mortalidad infantil"
+      "respuesta_correcta": "A",
+      "explanation": "Tasa de mortalidad infantil"
     },
     {
       "id": 2,
       "pregunta": "¿Cuál es el mejor indicador para evaluar la efectividad de una campaña de vacunación contra la influenza?",
       "opciones": [
+        "Tasa de mortalidad por influenza",
+        "Cobertura vacunal alcanzada",
         "Tasa de incidencia semanal",
-        "Tasa de ataque",
-        "Tasa de prevalencia",
-        "Odds ratio",
-        "Riesgo relativo"
+        "Número de hospitalizaciones evitadas",
+        "Porcentaje de población inmunizada"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Tasa de incidencia semanal"
+      "respuesta_correcta": "C",
+      "explanation": "Tasa de incidencia semanal"
     },
     {
       "id": 3,
-      "pregunta": "¿A qué corresponde el siguiente indicador “Muertes antes de los 28 días / Total de nacidos vivos”?",
+      "pregunta": "¿A qué corresponde el siguiente indicador: \"Muertes antes de los 28 días / Total de nacidos vivos\"?",
       "opciones": [
-        "Tasa de letalidad",
-        "Tasa de mortalidad infantil",
-        "Tasa de mortalidad postneonatal",
+        "Tasa de mortalidad perinatal",
         "Tasa de mortalidad neonatal",
-        "Tasa de mortalidad perinatal"
+        "Tasa de mortalidad infantil",
+        "Tasa de mortalidad posneonatal",
+        "Índice de mortalidad materna"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Tasa de mortalidad neonatal"
+      "respuesta_correcta": "B",
+      "explanation": "Tasa de mortalidad neonatal"
     },
     {
       "id": 4,
-      "pregunta": "Un paciente con antecedente de cáncer de próstata sufre un cuadro de disnea y dolor torácico súbito, se diagnostica tromboembolismo pulmonar, el paciente sufre de falla respiratoria, paro cardíaco y finalmente muerte. ¿Cuál es la causa inmediata de muerte que pondrá en el certificado de defunción?",
+      "pregunta": "Un paciente con antecedente de cáncer de próstata sufre un TEP, falla respiratoria, paro cardíaco y muerte. ¿Cuál es la causa inmediata de muerte en el certificado de defunción?",
       "opciones": [
-        "Falla respiratoria",
+        "Cáncer de próstata",
         "Tromboembolismo pulmonar",
         "Paro cardíaco",
-        "Metástasis pulmonar",
-        "Cáncer de próstata"
+        "Falla respiratoria",
+        "Trombosis venosa profunda"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Falla respiratoria"
+      "respuesta_correcta": "D",
+      "explanation": "Falla respiratoria"
     },
     {
       "id": 5,
-      "pregunta": "¿Cuál de las siguientes enfermedades corresponde a una licencia médica tipo I (enfermedad o accidente común?",
-      "opciones": [],
-      "respuesta_texto": "Amigdalitis aguda"
+      "pregunta": "¿Cuál de las siguientes enfermedades corresponde a una licencia médica tipo I (enfermedad o accidente común)?",
+      "opciones": [
+        "Amigdalitis aguda",
+        "Accidente laboral con fractura",
+        "Enfermedad profesional por ruido",
+        "Reposo por embarazo de alto riesgo",
+        "Licencia por maternidad"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Amigdalitis aguda"
     },
     {
       "id": 6,
-      "pregunta": "Una embarazada de 28 semanas, Isapre, sufre un cuadro de síntomas de aborto por lo cual se emite licencia por 2 semanas. ¿Quién está encargado de pagarle la licencia?",
-      "opciones": [],
-      "respuesta_texto": "Isapre"
+      "pregunta": "Una embarazada de 28 semanas, afiliada a Isapre, presenta síntomas de aborto y se emite licencia por 2 semanas. ¿Quién debe pagarle la licencia?",
+      "opciones": [
+        "El empleador directamente",
+        "FONASA",
+        "Isapre",
+        "Mutualidad de seguridad",
+        "Caja de compensación"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Isapre"
     },
     {
       "id": 7,
-      "pregunta": "Se tiene una población con la siguiente pirámide poblacional. ¿En qué tipo de medidas debe enfocarse la salud pública?",
-      "opciones": [],
-      "respuesta_texto": "Planificación familiar, saneamiento básico y vacunación"
+      "pregunta": "Se tiene una población con pirámide poblacional de base ancha y vértice angosto. ¿En qué tipo de medidas debe enfocarse la salud pública?",
+      "opciones": [
+        "Manejo de enfermedades crónicas y oncológicas",
+        "Planificación familiar, saneamiento básico y vacunación",
+        "Rehabilitación y cuidados paliativos",
+        "Prevención cardiovascular en adultos mayores",
+        "Tamizaje de cáncer en adultos"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Planificación familiar, saneamiento básico y vacunación"
     },
     {
       "id": 8,
-      "pregunta": "Niño recién nacido, pequeño para la edad gestacional (2500 g). ¿Qué conducta se debe tomar en relación a la alimentación?",
+      "pregunta": "Recién nacido pequeño para la edad gestacional (2.500 g). ¿Qué conducta tomar en relación a la alimentación?",
       "opciones": [
-        "Pecho materno precoz y control de glicemia a las 2 horas de recién nacido",
-        "Cintigrafía",
-        "Radiografía",
-        "Ecografía",
-        "Resonancia magnética"
+        "Iniciar fórmula láctea hipercalórica",
+        "Instalar sonda nasogástrica para alimentación",
+        "Ayuno 6 horas y luego fórmula de prematuro",
+        "Pecho materno precoz y control de glicemia a las 2 horas",
+        "Suero glucosado al 10% endovenoso"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Pecho materno precoz y control de glicemia a las 2 horas de recién nacido"
+      "respuesta_correcta": "D",
+      "explanation": "Pecho materno precoz y control de glicemia a las 2 horas"
     },
     {
       "id": 9,
-      "pregunta": "Recién nacido que nace hipotónico, poco reactivo y con cianosis, se visualiza meconio espeso. ¿Cuál debe ser la conducta inicial?",
-      "opciones": [],
-      "respuesta_texto": "Poner en calor radiante, aspirar vía aérea superior y estimular"
+      "pregunta": "Recién nacido hipotónico, poco reactivo, cianótico, con meconio espeso. ¿Cuál debe ser la conducta inicial?",
+      "opciones": [
+        "Poner en calor radiante, aspirar vía aérea superior y estimular",
+        "Intubación orotraqueal inmediata",
+        "Ventilación con presión positiva de inmediato",
+        "Compresiones torácicas y adrenalina",
+        "Aspirar meconio con sonda y ventilar"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Poner en calor radiante, aspirar vía aérea superior y estimular"
     },
     {
       "id": 10,
-      "pregunta": "¿Cuál es la complicación más probable que puede tener un recién nacido pequeño para la edad gestacional (2500 g), de término, en las primeras horas?",
+      "pregunta": "¿Cuál es la complicación más probable en un recién nacido pequeño para la edad gestacional (2.500 g) de término en las primeras horas?",
       "opciones": [
-        "Resonancia magnética",
-        "Cintigrafía",
-        "Radiografía",
-        "Ecografía",
+        "Hiperbilirrubinemia",
+        "Hipocalcemia",
+        "Policitemia",
+        "Sepsis neonatal",
         "Hipoglicemia"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Hipoglicemia"
+      "respuesta_correcta": "E",
+      "explanation": "Hipoglicemia"
     },
     {
       "id": 11,
-      "pregunta": "Recién nacido de 4-5 semanas que comienza con cuadro de vómitos post prandiales (lácteos), enflaquecido, deshidratado con irritabilidad. ¿Cuál es el examen inicial para comenzar el estudio?",
+      "pregunta": "Recién nacido de 4-5 semanas con vómitos postprandiales lácteos, enflaquecido y deshidratado. ¿Cuál es el examen inicial para el estudio?",
       "opciones": [
-        "TAC",
+        "Radiografía de abdomen simple",
         "Ecografía abdominal",
-        "Radiografía",
-        "Cintigrafía",
-        "Resonancia magnética"
+        "TAC de abdomen con contraste",
+        "Endoscopía digestiva alta",
+        "Tránsito esofagogastroduodenal"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Ecografía abdominal"
+      "respuesta_correcta": "B",
+      "explanation": "Ecografía abdominal"
     },
     {
       "id": 12,
-      "pregunta": "Niño que luego de los 6 meses comienza con cuadro de candidiasis bucal, otitis media aguda recurrente y 2 neumonías que han requerido hospitalización. ¿Cuál es la inmunodeficiencia más probable?",
-      "opciones": [],
-      "respuesta_texto": "¿Inmunodeficiencia humoral vs celular?"
+      "pregunta": "Niño que después de los 6 meses presenta candidiasis bucal, otitis media recurrente y 2 neumonías hospitalizadas. ¿Cuál es la inmunodeficiencia más probable?",
+      "opciones": [
+        "Inmunodeficiencia celular (DiGeorge)",
+        "Déficit de complemento",
+        "Inmunodeficiencia humoral (agammaglobulinemia)",
+        "Inmunodeficiencia combinada severa (SCID)",
+        "Enfermedad granulomatosa crónica"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Inmunodeficiencia humoral (agammaglobulinemia)"
     },
     {
       "id": 13,
-      "pregunta": "Niño que presenta cuadro de rinorrea purulenta, posteriormente comienza con fiebre y aumento de volumen palpebral. ¿Cuál es el diagnóstico más probable?",
-      "opciones": [],
-      "respuesta_texto": "Absceso periorbitario"
+      "pregunta": "Niño con rinorrea purulenta que desarrolla fiebre y aumento de volumen palpebral. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Celulitis preseptal",
+        "Dacriocistitis aguda",
+        "Conjuntivitis bacteriana",
+        "Absceso periorbitario",
+        "Sinusitis etmoidal sin complicación"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Absceso periorbitario"
     },
     {
       "id": 14,
-      "pregunta": "Niño con cuadro de 10 días de evolución de congestión nasal y rinorrea, hace 2 días febril, rinorrea mucopurulenta, descarga posterior. ¿Cuál es el tratamiento más adecuado?",
+      "pregunta": "Niño con 10 días de congestión nasal y rinorrea, hace 2 días con fiebre y rinorrea mucopurulenta. ¿Cuál es el tratamiento más adecuado?",
       "opciones": [
-        "Cefalexina",
-        "Azitromicina",
-        "Ciprofloxacino",
-        "Clindamicina",
-        "Amoxicilina por 10 días vía oral"
+        "Amoxicilina por 10 días vía oral",
+        "Azitromicina por 5 días",
+        "Cotrimoxazol por 7 días",
+        "Tratamiento sintomático (suero fisiológico nasal)",
+        "Amoxicilina-clavulánico por 14 días"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Amoxicilina por 10 días vía oral"
+      "respuesta_correcta": "A",
+      "explanation": "Amoxicilina por 10 días vía oral"
     },
     {
       "id": 15,
-      "pregunta": "Niña escolar con cuadro de tos seca diurna y nocturna, al examen físico crepitaciones bilaterales, radiografía de tórax visualiza infiltrados intersticiales bilaterales y atelectasias lineales. ¿Cuál es el agente etiológico más probable?",
+      "pregunta": "Niña escolar con tos seca, crepitaciones bilaterales e infiltrados intersticiales en la radiografía de tórax. ¿Cuál es el agente etiológico más probable?",
       "opciones": [
-        "Ecografía",
-        "Cintigrafía",
+        "Streptococcus pneumoniae",
         "Mycoplasma pneumoniae",
-        "Radiografía",
-        "Resonancia magnética"
+        "Virus sincicial respiratorio",
+        "Haemophilus influenzae",
+        "Chlamydia trachomatis"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Mycoplasma pneumoniae"
+      "respuesta_correcta": "B",
+      "explanation": "Mycoplasma pneumoniae"
     },
     {
       "id": 16,
-      "pregunta": "Niño de 2 meses de edad, a los 12 días tuvo cuadro de conjuntivitis de causa no precisada. Actualmente con cuadro de tos seca, crepitaciones bilaterales y sibilancias. ¿Cuál es el agente etiológico más probable?",
+      "pregunta": "Niño de 2 meses con conjuntivitis a los 12 días, luego tos seca, crepitaciones y sibilancias. ¿Cuál es el agente etiológico más probable?",
       "opciones": [
-        "Cintigrafía",
-        "Resonancia magnética",
-        "Ecografía",
-        "Neumonía por Chlamydia trachomatis",
-        "Radiografía"
+        "Streptococcus pneumoniae",
+        "Mycoplasma pneumoniae",
+        "Virus sincicial respiratorio",
+        "Ureaplasma urealyticum",
+        "Chlamydia trachomatis"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Neumonía por Chlamydia trachomatis"
+      "respuesta_correcta": "E",
+      "explanation": "Chlamydia trachomatis"
     },
     {
       "id": 17,
-      "pregunta": "Niño con cuadro de fiebre de 7 días de evolución, ojo y lengua roja, adenopatías cervicales y exantema maculopapular. ¿Cuál es la complicación más probable?",
-      "opciones": [],
-      "respuesta_texto": "Aneurismas coronarios"
+      "pregunta": "Niño con fiebre de 7 días, ojo rojo, lengua roja, adenopatías cervicales y exantema maculopapular. ¿Cuál es la complicación más probable?",
+      "opciones": [
+        "Artritis reactiva",
+        "Miocarditis aguda",
+        "Aneurismas coronarios",
+        "Meningitis aséptica",
+        "Uveítis anterior"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Aneurismas coronarios"
     },
     {
       "id": 18,
-      "pregunta": "Niño con cuadro de adenopatías cervicales, ecografía abdominal visualiza granulomas hepatoesplénicos. ¿Cuál es el agente etiológico más probable?",
+      "pregunta": "Niño con adenopatías cervicales y granulomas hepatoesplénicos en la ecografía abdominal. ¿Cuál es el agente etiológico más probable?",
       "opciones": [
-        "Radiografía",
-        "Cintigrafía",
-        "Bartonella",
-        "TAC",
-        "Resonancia magnética"
+        "Bartonella henselae",
+        "Toxoplasma gondii",
+        "Epstein-Barr virus",
+        "Mycobacterium tuberculosis",
+        "Leishmania sp."
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Bartonella"
+      "respuesta_correcta": "A",
+      "explanation": "Bartonella henselae"
     },
     {
       "id": 19,
-      "pregunta": "Niño que presenta 6 hemangiomas en tronco y extremidades. ¿Qué examen debe solicitar inicialmente?",
+      "pregunta": "Niño con 6 hemangiomas en tronco y extremidades. ¿Qué examen solicitar inicialmente?",
       "opciones": [
-        "Cintigrafía",
-        "Resonancia magnética",
-        "TAC",
+        "RNM de cerebro",
+        "TAC de tórax",
+        "Gammagrafía ósea",
         "Ecografía abdominal",
-        "Radiografía"
+        "Angiografía por resonancia"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Ecografía abdominal"
+      "respuesta_correcta": "D",
+      "explanation": "Ecografía abdominal"
     },
     {
       "id": 20,
-      "pregunta": "Recién nacido de término al cual no se le palpan los testículos, pene de 2 cm, además de solicitar ecografía, ¿Cual es la conducta más adecuada?",
+      "pregunta": "Recién nacido de término sin testículos palpables, pene de 2 cm. Además de solicitar ecografía, ¿cuál es la conducta más adecuada?",
       "opciones": [
-        "Resonancia magnética",
-        "TAC",
+        "Derivar a urología de inmediato",
         "Control en un mes",
-        "Radiografía",
-        "Cintigrafía"
+        "Iniciar testosterona tópica",
+        "Derivar a genética para cariotipo urgente",
+        "Cirugía correctiva a los 3 meses"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Control en un mes"
+      "respuesta_correcta": "B",
+      "explanation": "Control en un mes"
     },
     {
       "id": 21,
-      "pregunta": "Niño de 3 años que presenta prepucio estrecho, hace 6 meses logró controlar esfínteres. ¿Cuál es la conducta más adecuada?",
-      "opciones": [],
-      "respuesta_texto": "Control en un año"
+      "pregunta": "Niño de 3 años con prepucio estrecho, con control de esfínteres hace 6 meses. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Circuncisión inmediata",
+        "Aplicar corticoide tópico",
+        "Control en un año",
+        "Dilatación manual bajo anestesia",
+        "Derivar a urología pediátrica urgente"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Control en un año"
     },
     {
       "id": 22,
-      "pregunta": "Niño con cuadro de fiebre, odinofagia, ojo rojo bilateral y conjuntivitis. ¿Cuál es el tratamiento más adecuado?",
-      "opciones": [],
-      "respuesta_texto": "Aseo ocular con suero fisiológico"
+      "pregunta": "Niño con fiebre, odinofagia, ojo rojo bilateral y conjuntivitis. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Aseo ocular con suero fisiológico",
+        "Colirio antibiótico tópico",
+        "Aciclovir oftálmico",
+        "Azitromicina oral",
+        "Clorfenamina oral"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Aseo ocular con suero fisiológico"
     },
     {
       "id": 23,
-      "pregunta": "Niño que presenta cuadro de fiebre de 10 días de evolución, cefalea, náuseas, mialgias y malestar general. Tuvo 2 episodios de diarrea y luego ha presentado 2 episodios de heces duras en 1 semana. Al examen físico presenta faringe levemente eritematosa, adenopatías cervicales < 0.5 cm, hígado y bazo palpables y abdomen sensible a la palpación. ¿Cuál es el examen más adecuado para iniciar estudio?",
+      "pregunta": "Niño con fiebre de 10 días, cefalea, mialgias, diarrea y luego heces duras, hígado y bazo palpables. ¿Cuál es el examen más adecuado para iniciar estudio?",
       "opciones": [
-        "Urocultivo",
-        "PCR viral",
-        "Cultivo de LCR",
+        "Coproparasitológico seriado",
         "Coprocultivo",
-        "Hemocultivo"
+        "Serología para Epstein-Barr",
+        "Hemocultivo",
+        "Prueba de Widal"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Hemocultivo"
+      "respuesta_correcta": "D",
+      "explanation": "Hemocultivo"
     },
     {
       "id": 24,
-      "pregunta": "Niño con antecedente de reacción anafiláctica al huevo hace 1 mes. ¿Qué vacuna está contraindicada?",
-      "opciones": [],
-      "respuesta_texto": "Fiebre amarilla"
+      "pregunta": "Niño con reacción anafiláctica al huevo hace 1 mes. ¿Qué vacuna está contraindicada?",
+      "opciones": [
+        "Triple viral (SRP)",
+        "Influenza inactivada",
+        "Hepatitis A",
+        "Varicela",
+        "Fiebre amarilla"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Fiebre amarilla"
     },
     {
       "id": 25,
-      "pregunta": "Niño de 9 meses que gatea pero no camina sin apoyo, toma dos cubos con pinza intermedia, dice bisílabos, se siente incómodo con extraños. ¿Cuál es el diagnóstico?",
+      "pregunta": "Niño de 9 meses que gatea, toma cubos con pinza intermedia, dice bisílabos, se incomoda con extraños. ¿Cuál es el diagnóstico?",
       "opciones": [
-        "Preeclampsia",
-        "Infección urinaria",
+        "Retraso global del desarrollo",
         "Desarrollo normal",
-        "Diabetes gestacional",
-        "Hallazgo patológico"
+        "Retraso del lenguaje",
+        "Trastorno del espectro autista",
+        "Retraso motor leve"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Desarrollo normal"
+      "respuesta_correcta": "B",
+      "explanation": "Desarrollo normal"
     },
     {
       "id": 26,
-      "pregunta": "Niño de 1 mes que presenta cuadro de desviación de la mirada de manera intermitente. ¿Cuál es la conducta más adecuada?",
-      "opciones": [],
-      "respuesta_texto": "Mantener controles habituales de niño sano"
+      "pregunta": "Niño de 1 mes con desviación de la mirada de manera intermitente. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Derivar a oftalmología de urgencia",
+        "Solicitar TAC de cerebro",
+        "Mantener controles habituales de niño sano",
+        "Iniciar parche ocular",
+        "Solicitar fondo de ojo urgente"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Mantener controles habituales de niño sano"
     },
     {
       "id": 27,
-      "pregunta": "Niño que presenta cuadro de estrabismo fijo asociado a pérdida del rojo pupilar, el diagnóstico más probable es",
+      "pregunta": "Niño con estrabismo fijo asociado a pérdida del rojo pupilar. El diagnóstico más probable es:",
       "opciones": [
+        "Retinoblastoma",
         "Catarata congénita",
         "Glaucoma congénito",
-        "Toxoplasmosis ocular",
-        "Retinoblastoma",
-        "Retinopatía del prematuro"
+        "Hemangioma retinal",
+        "Uveítis anterior"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Retinoblastoma"
+      "respuesta_correcta": "A",
+      "explanation": "Retinoblastoma"
     },
     {
       "id": 28,
-      "pregunta": "Niño que presenta las siguientes lesiones de la imagen: ¿Cuál es el agente causal más probable?",
-      "opciones": [],
-      "respuesta_texto": "Staphylococcus Aureus"
+      "pregunta": "Niño con lesiones costrosas amarillentas periorifaciales. ¿Cuál es el agente causal más probable?",
+      "opciones": [
+        "Streptococcus pyogenes",
+        "Herpes simplex virus",
+        "Candida albicans",
+        "Staphylococcus aureus",
+        "Molluscum contagiosum"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Staphylococcus aureus"
     },
     {
       "id": 29,
-      "pregunta": "Niño de 8 meses que presenta cuadro de fiebre y malestar general. Se toma un examen de orina por recolector que demuestra leucocituria y abundantes bacterias, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Repetir el examen de orina por sondeo vesical"
+      "pregunta": "Niño de 8 meses con fiebre, orina por recolector con leucocituria y bacterias abundantes. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar antibiótico oral de inmediato",
+        "Repetir el examen de orina por sondeo vesical",
+        "Hospitalizar y tratar ITU febril",
+        "Solicitar ecografía renal y vesical",
+        "Derivar a nefrología pediátrica"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Repetir el examen de orina por sondeo vesical"
     },
     {
       "id": 30,
-      "pregunta": "Niña escolar que presenta cuadro de fiebre y un exantema en mejillas y tronco como muestra la imagen, el agente más probable es",
-      "opciones": [],
-      "respuesta_texto": "Parvovirus B19"
+      "pregunta": "Niña escolar con fiebre y exantema en mejillas y tronco (aspecto de 'bofetada'). ¿Cuál es el agente más probable?",
+      "opciones": [
+        "Virus del sarampión",
+        "Virus de la rubéola",
+        "Herpes virus 6",
+        "Enterovirus",
+        "Parvovirus B19"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Parvovirus B19"
     },
     {
       "id": 31,
-      "pregunta": "Lactante menor que presenta cuadro de fiebre alta, cuando cede aparece un rash maculopapular en tronco y extremidades, el agente más probable es",
-      "opciones": [],
-      "respuesta_texto": "Virus herpes 6"
+      "pregunta": "Lactante menor con fiebre alta; cuando cede aparece rash maculopapular en tronco y extremidades. ¿Cuál es el agente más probable?",
+      "opciones": [
+        "Parvovirus B19",
+        "Enterovirus",
+        "Virus herpes 6",
+        "Adenovirus",
+        "Virus varicela-zóster"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Virus herpes 6"
     },
     {
       "id": 32,
-      "pregunta": "Niño de 4 años que presenta orinas oscuras, al examen físico hay masa palpable en flanco izquierdo y examen de orina con hematuria sin leucocituria, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Tumor de Wilms"
+      "pregunta": "Niño de 4 años con orinas oscuras, masa palpable en flanco izquierdo y hematuria sin leucocituria. ¿El diagnóstico más probable es?",
+      "opciones": [
+        "Tumor de Wilms",
+        "Neuroblastoma",
+        "Quiste renal simple",
+        "Hidronefrosis severa",
+        "Linfoma retroperitoneal"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Tumor de Wilms"
     },
     {
       "id": 33,
-      "pregunta": "Niño que ha presentado mal incremento pondoestatural, se cansa al alimentarse y presenta un soplo holosistólico III en mesocardio, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Comunicación interventricular"
+      "pregunta": "Niño con mal incremento pondoestatural, se cansa al alimentarse y presenta soplo holosistólico III en mesocardio. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Estenosis pulmonar",
+        "Comunicación interauricular",
+        "Tetralogía de Fallot",
+        "Comunicación interventricular",
+        "Coartación de aorta"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Comunicación interventricular"
     },
     {
       "id": 34,
-      "pregunta": "Niño de 3 meses con radiografía AP de pelvis con ángulos acetabulares ambos bajo 30º, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Mantener controles habituales"
+      "pregunta": "Niño de 3 meses con radiografía de pelvis con ángulos acetabulares bajo 30° bilaterales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar arnés de Pavlik de inmediato",
+        "Mantener controles habituales",
+        "Derivar a traumatología pediátrica urgente",
+        "Solicitar ecografía de caderas",
+        "Iniciar tracción cutánea"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Mantener controles habituales"
     },
     {
       "id": 35,
-      "pregunta": "Niño que presenta cuadro de equimosis frecuentes, tuvo un hematoma en el muslo por punción y tiene antecedente de hermano que murió de hemorragia intracraneal, TTPA prolongado (al triple) y TP bajo (50-60%), el examen para el diagnóstico es",
-      "opciones": [],
-      "respuesta_texto": "Factores de coagulación VIII y XI"
+      "pregunta": "Niño con equimosis frecuentes, TTPA prolongado al triple, hermano fallecido por hemorragia intracraneal. ¿Cuál es el examen para el diagnóstico?",
+      "opciones": [
+        "Tiempo de hemorragia (Duke)",
+        "Recuento de plaquetas y función plaquetaria",
+        "Factor de Von Willebrand y cofactor de ristocetina",
+        "Proteínas C y S",
+        "Factores de coagulación VIII y IX"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Factores de coagulación VIII y IX"
     },
     {
       "id": 36,
-      "pregunta": "Niño hijo de madre vegana que actualmente no quiere recibir almuerzo sino solo alimentarse del pecho de la madre, en sus exámenes destaca pancitopenia, al frotis macrocitosis y anisocitosis, el diagnóstico más probable es",
+      "pregunta": "Niño hijo de madre vegana, solo pecho materno, con pancitopenia y macrocitosis en el frotis. ¿Diagnóstico más probable?",
       "opciones": [
-        "Radiografía",
-        "Resonancia magnética",
-        "Cintigrafía",
-        "Ecografía",
-        "Déficit de B12"
+        "Déficit de vitamina B12",
+        "Anemia ferropénica",
+        "Anemia hemolítica autoinmune",
+        "Leucemia linfoblástica aguda",
+        "Déficit de ácido fólico"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Déficit de B12"
+      "respuesta_correcta": "A",
+      "explanation": "Déficit de vitamina B12"
     },
     {
       "id": 37,
-      "pregunta": "Niña que no quiere comunicarse con los compañeros, cuando alguien le saca de sus rutinas responde agresivo. Tiene muñecas que tiene guardadas y no juega con ellas, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno del espectro autista"
+      "pregunta": "Niña que no se comunica con compañeros, responde agresivamente ante cambios en sus rutinas y guarda muñecas sin jugar con ellas. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Trastorno por déficit atencional con hiperactividad",
+        "Trastorno de ansiedad generalizada",
+        "Trastorno del espectro autista",
+        "Trastorno de conducta",
+        "Retraso global del desarrollo"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Trastorno del espectro autista"
     },
     {
       "id": 38,
-      "pregunta": "Mujer que quiere embarazo, antecedente de hijo con anencefalia, TSH levemente elevada, cuál es la conducta más adecuada",
+      "pregunta": "Mujer que quiere embarazo, con antecedente de hijo con anencefalia y TSH levemente elevada. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Aspirina",
-        "Progesterona",
-        "Calcio",
-        "Iniciar ácido fólico 4 mg/día 3 meses previo",
-        "Hierro"
+        "Tratar hipotiroidismo y luego iniciar ácido fólico 0,4 mg/día",
+        "Ácido fólico 0,4 mg/día desde ahora",
+        "Derivar a neurología fetal antes de planificar embarazo",
+        "Iniciar ácido fólico 4 mg/día 3 meses previo al embarazo",
+        "Solicitar TORCH y estudio genético previo"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Iniciar ácido fólico 4 mg/día 3 meses previo"
+      "respuesta_correcta": "D",
+      "explanation": "Iniciar ácido fólico 4 mg/día 3 meses previo al embarazo"
     },
     {
       "id": 39,
-      "pregunta": "Mujer cursando embarazo de 35 semanas, tiene cultivo para Estreptococo grupo B positivo, cuál es la conducta más adecuada",
-      "opciones": [],
-      "respuesta_texto": "Iniciar penicilina endovenosa durante el trabajo de parto"
+      "pregunta": "Embarazada de 35 semanas con cultivo para Estreptococo grupo B positivo. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar amoxicilina oral por 10 días ahora",
+        "Iniciar penicilina endovenosa durante el trabajo de parto",
+        "Erradicar con clindamicina vaginal",
+        "Repetir cultivo a las 37 semanas",
+        "No requiere tratamiento adicional"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Iniciar penicilina endovenosa durante el trabajo de parto"
     },
     {
       "id": 40,
-      "pregunta": "Mujer que presenta úlcera indolora en la horquilla vulvar y adenopatías inguinales, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Penicilina benzatina"
+      "pregunta": "Mujer con úlcera indolora en la horquilla vulvar y adenopatías inguinales. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Penicilina benzatina",
+        "Aciclovir oral",
+        "Metronidazol oral",
+        "Doxiciclina por 21 días",
+        "Ceftriaxona IM dosis única"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Penicilina benzatina"
     },
     {
       "id": 41,
-      "pregunta": "Embarazada con antecedente de cesárea, durante el trabajo de parto presenta cese de las contracciones uterinas, sangrado y bradicardia fetal, el diagnóstico más probable es",
+      "pregunta": "Embarazada con antecedente de cesárea previa, durante el parto presenta cese de contracciones, sangrado y bradicardia fetal. ¿Diagnóstico más probable?",
       "opciones": [
-        "Fórceps",
-        "Espera activa",
-        "Conducción oxitócica",
-        "Vacuum",
+        "Desprendimiento prematuro de placenta",
+        "Placenta previa sangrante",
+        "Prolapso de cordón umbilical",
+        "Embolia de líquido amniótico",
         "Rotura uterina"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Rotura uterina"
+      "respuesta_correcta": "E",
+      "explanation": "Rotura uterina"
     },
     {
       "id": 42,
-      "pregunta": "Embarazo de término, fisiológico, presenta eliminación de escasa sangre y mucosidad, presentación cefálica, LCF 150 lpm, 4 cm de dilatación, cuello 100% borrado, MEFI en imagen (con aceleraciones) la conducta más adecuada es",
+      "pregunta": "Embarazo de término, 4 cm de dilatación, cuello 100% borrado, MEFI con aceleraciones. ¿Cuál es la conducta?",
       "opciones": [
-        "Resonancia magnética",
-        "Radiografía",
-        "Ecografía",
+        "Cesárea de urgencia",
+        "Amniotomía y oxitocina",
         "Controlar en 2 horas",
-        "Cintigrafía"
+        "Aplicar gel de misoprostol intravaginal",
+        "Solicitar pH en calota fetal"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Controlar en 2 horas"
+      "respuesta_correcta": "C",
+      "explanation": "Controlar en 2 horas"
     },
     {
       "id": 43,
-      "pregunta": "Embarazada de 36 semanas, antecedente de cesárea previa, refiere disminución de movimientos fetales, cuenta con RBNE no reactivo, se realiza un PBF que visualiza bolsillo de LA 1x1 cm y se realiza otro RBNE que resulta no reactivo, presenta un cuello uterino con Bishop 3, la conducta más adecuada es",
+      "pregunta": "Embarazada 36 semanas, cesárea previa, disminución de MF, RBNE no reactivo, bolsillo de LA 1x1 cm, Bishop 3. ¿Cuál es la conducta?",
       "opciones": [
-        "Espera activa",
-        "Fórceps",
-        "Conducción oxitócica",
-        "Vacuum",
-        "Interrumpir por cesárea"
+        "Interrumpir por cesárea",
+        "Maduración cervical con misoprostol e inducción",
+        "Hospitalizar y repetir PBF en 24 horas",
+        "Administrar betametasona y esperar 48 horas",
+        "Corticoide pulmonar y control ambulatorio"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Interrumpir por cesárea"
+      "respuesta_correcta": "A",
+      "explanation": "Interrumpir por cesárea"
     },
     {
       "id": 44,
-      "pregunta": "Paciente que tuvo relaciones sexuales hace 96 horas sin protección y acude para solicitar anticoncepción de emergencia, se debe indicar",
-      "opciones": [],
-      "respuesta_texto": "Levonorgestrel 0,750 mg cada 12 horas vía oral"
+      "pregunta": "Paciente que tuvo relaciones sexuales hace 96 horas sin protección, solicita anticoncepción de emergencia. ¿Qué indicar?",
+      "opciones": [
+        "Mifepristona 200 mg vía oral dosis única",
+        "DIU de cobre inmediato",
+        "Ulipristal acetato 30 mg vía oral",
+        "Levonorgestrel 0,750 mg cada 12 horas vía oral",
+        "Etinilestradiol 50 mcg + levonorgestrel (Yuzpe)"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Levonorgestrel 0,750 mg cada 12 horas vía oral"
     },
     {
       "id": 45,
-      "pregunta": "Paciente con hijo de 8 meses, aún en lactancia, cuál es el método anticonceptivo más adecuado",
+      "pregunta": "Paciente con hijo de 8 meses, aún en lactancia. ¿Cuál es el método anticonceptivo más adecuado?",
       "opciones": [
-        "Leucemia aguda",
-        "Coagulación intravascular diseminada",
-        "Púrpura trombótica trombocitopénica",
-        "Síndrome hemolítico urémico",
-        "Dispositivo intrauterino con levonorgestrel"
+        "Anticonceptivos orales combinados",
+        "Dispositivo intrauterino con levonorgestrel",
+        "Anillo vaginal mensual",
+        "Parche anticonceptivo transdérmico",
+        "Implante subdérmico de etonorgestrel"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Dispositivo intrauterino con levonorgestrel"
+      "respuesta_correcta": "B",
+      "explanation": "Dispositivo intrauterino con levonorgestrel"
     },
     {
       "id": 46,
-      "pregunta": "Mujer en la menopausia, con bochornos y sudoración, antecedente de IAM a los 49 años, cuál es la terapia más adecuada",
+      "pregunta": "Mujer en menopausia con bochornos y sudoración, antecedente de IAM a los 49 años. ¿Cuál es la terapia más adecuada?",
       "opciones": [
-        "Clonidina",
-        "Terapia hormonal de reemplazo",
-        "Gabapentina",
-        "Fluoxetina",
-        "¿Tibolona vs Escitalopram?"
+        "Terapia hormonal con estrógenos solos",
+        "Terapia hormonal combinada (estrógeno + progestina)",
+        "Tibolona oral",
+        "Clonidina transdérmica",
+        "Escitalopram 10 mg/día"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "¿Tibolona vs Escitalopram?"
+      "respuesta_correcta": "E",
+      "explanation": "Escitalopram 10 mg/día"
     },
     {
       "id": 47,
-      "pregunta": "Mujer en la menopausia que presenta sequedad vaginal y dispareunia, tiene atrofia de la mucosa vaginal, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Promestrieno tópico"
+      "pregunta": "Mujer en menopausia con sequedad vaginal y dispareunia, atrofia de la mucosa vaginal. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Lubricante vaginal sin hormonas",
+        "Terapia hormonal sistémica",
+        "Promestrieno tópico vaginal",
+        "Estriol oral",
+        "Tibolona oral"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Promestrieno tópico vaginal"
     },
     {
       "id": 48,
-      "pregunta": "Mujer joven que presenta cuadro de metrorragia importante, está pálida, hipotensa, taquicárdica, se visualiza sangrado proveniente del OCE, a la ecografía transvaginal se visualiza saco gestacional con embrión sin LCF, la conducta más adecuada es",
+      "pregunta": "Mujer joven con metrorragia importante, hipotensa, taquicárdica, sangrado del OCE y saco gestacional sin LCF en ecografía. ¿Cuál es la conducta?",
       "opciones": [
-        "TAC",
-        "Cintigrafía",
-        "Radiografía",
         "Legrado uterino",
-        "Resonancia magnética"
+        "Misoprostol vaginal y observación",
+        "Metotrexato IM y control",
+        "Laparotomía exploradora de urgencia",
+        "Hospitalizar y esperar expulsión espontánea"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Legrado uterino"
+      "respuesta_correcta": "A",
+      "explanation": "Legrado uterino"
     },
     {
       "id": 49,
-      "pregunta": "Mujer que presenta sangrado intermenstrual, se realiza ecografía transvaginal que visualiza pólipo endometrial de 15 mm, la conducta más adecuada es",
+      "pregunta": "Mujer con sangrado intermenstrual; ecografía muestra pólipo endometrial de 15 mm. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Resonancia magnética",
+        "Legrado uterino diagnóstico-terapéutico",
+        "Anticonceptivos orales para control del sangrado",
+        "Seguimiento ecográfico en 6 meses",
         "Realizar histeroscopia",
-        "Cintigrafía",
-        "TAC",
-        "Radiografía"
+        "Histerectomía"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Realizar histeroscopia"
+      "respuesta_correcta": "D",
+      "explanation": "Realizar histeroscopia"
     },
     {
       "id": 50,
-      "pregunta": "Embarazada sobre 20 semanas que presenta cuadro de dolor epigástrico e hipocondrio derecho, al examen físico hipertensa, dentro de exámenes destaca transaminasas elevadas, trombocitopenia, glicemia dentro de rango normal, el diagnóstico más probable es",
+      "pregunta": "Embarazada sobre 20 semanas con dolor epigástrico, hipertensión, transaminasas elevadas y trombocitopenia. ¿Diagnóstico más probable?",
       "opciones": [
-        "Radiografía",
-        "Ecografía",
-        "Resonancia magnética",
+        "Preeclampsia severa sin criterios de HELLP",
         "Síndrome de HELLP",
-        "Cintigrafía"
+        "Colestasia intrahepática del embarazo",
+        "Hepatitis aguda viral",
+        "Hígado graso agudo del embarazo"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Síndrome de HELLP"
+      "respuesta_correcta": "B",
+      "explanation": "Síndrome de HELLP"
     },
     {
       "id": 51,
-      "pregunta": "Puérpera que presenta cuadro de fiebre y malestar general, la mama se evidencia con eritema, calor local y aumento de volumen fluctuante, la conducta más adecuada es",
+      "pregunta": "Puérpera con fiebre, eritema mamario, calor local y aumento de volumen fluctuante. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Punción aspirativa",
-        "Observación",
-        "Drenaje y antibióticos",
-        "Antibióticos orales",
-        "Compresas frías"
+        "Antibiótico oral y continuar lactancia",
+        "Antibiótico endovenoso y suspender lactancia",
+        "Antiinflamatorios y masaje local",
+        "Antibiótico y bromocriptina para suspender lactancia",
+        "Drenaje quirúrgico y antibióticos"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Drenaje y antibióticos"
+      "respuesta_correcta": "E",
+      "explanation": "Drenaje quirúrgico y antibióticos"
     },
     {
       "id": 52,
-      "pregunta": "Mujer con antecedente de múltiples abscesos de Bartolino tratados con punción y drenaje, actualmente presenta cuadro de aumento de volumen y dolor de glándula de Bartolino, sin eritema ni fiebre, la conducta más adecuada es",
+      "pregunta": "Mujer con múltiples abscesos de Bartolino tratados con punción, ahora con aumento de volumen doloroso sin eritema ni fiebre. ¿Cuál es la conducta?",
       "opciones": [
-        "Bartholinoneocistostomía",
-        "Compresas frías",
-        "Observación",
-        "Antibióticos orales",
-        "Punción aspirativa"
+        "Punción y drenaje nuevamente",
+        "Antibioterapia oral por 10 días",
+        "Bartholinoneocistostomía (marsupialización)",
+        "Exéresis de la glándula",
+        "Antibiótico endovenoso hospitalizada"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Bartholinoneocistostomía"
+      "respuesta_correcta": "C",
+      "explanation": "Bartholinoneocistostomía (marsupialización)"
     },
     {
       "id": 53,
-      "pregunta": "Mujer de 22 años, usuaria de anticonceptivos orales hace 3 meses, hace 2 semanas presenta menstruación y desde entonces genitorragia persistente, desde hace 3 días presenta dolor hipogástrico. Al examen físico hipogastrio sensible, endometrio de 15 mm. ¿Cuál es la conducta más adecuada?",
+      "pregunta": "Mujer de 22 años con ACO, metrorragia persistente 2 semanas y dolor hipogástrico hace 3 días, endometrio 15 mm. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Coagulación intravascular diseminada",
-        "Solicitar B-HCG",
-        "Púrpura trombótica trombocitopénica",
-        "Leucemia aguda",
-        "Síndrome hemolítico urémico"
+        "Solicitar β-HCG",
+        "Ecografía transvaginal urgente",
+        "Legrado uterino diagnóstico",
+        "Suspender ACO y observar",
+        "Solicitar hemograma y coagulación"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Solicitar B-HCG"
+      "respuesta_correcta": "A",
+      "explanation": "Solicitar β-HCG"
     },
     {
       "id": 54,
-      "pregunta": "Embarazada sobre 20 semanas con cefalea y fotopsias, reflejos normales, presenta presión sobre 160/110 mmHg, el tratamiento inicial más adecuado es",
+      "pregunta": "Embarazada sobre 20 semanas con cefalea, fotopsias y presión 160/110 mmHg. ¿Cuál es el tratamiento inicial más adecuado?",
       "opciones": [
-        "Diabetes gestacional",
-        "Preeclampsia",
+        "Nifedipino 10 mg sublingual",
+        "Hidralazina 5 mg EV",
+        "Sulfato de magnesio 4 g EV",
         "Labetalol 20 mg EV",
-        "Hallazgo patológico",
-        "Infección urinaria"
+        "Metildopa 500 mg oral"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Labetalol 20 mg EV"
+      "respuesta_correcta": "D",
+      "explanation": "Labetalol 20 mg EV"
     },
     {
       "id": 55,
-      "pregunta": "Puérpera que cursa su 10º día con PCR Sars Cov 2 positiva, con síntomas leves, cuál es la conducta respecto a la lactancia",
-      "opciones": [],
-      "respuesta_texto": "Mantener la lactancia con uso de mascarilla"
+      "pregunta": "Puérpera en su 10° día con PCR SARS-CoV-2 positivo y síntomas leves. ¿Cuál es la conducta respecto a la lactancia?",
+      "opciones": [
+        "Suspender lactancia hasta completar 10 días de aislamiento",
+        "Mantener la lactancia con uso de mascarilla",
+        "Extraer leche y pasteurizar antes de dar al bebé",
+        "Suspender lactancia y cambiar a fórmula",
+        "Mantener lactancia sin restricciones"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Mantener la lactancia con uso de mascarilla"
     },
     {
       "id": 56,
-      "pregunta": "Embarazada con cuadro de náuseas y vómitos importantes que impacta su calidad de vida, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Doxilamina y Piridoxina"
+      "pregunta": "Embarazada con náuseas y vómitos importantes que impactan su calidad de vida. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Metoclopramida oral",
+        "Ondansetrón endovenoso",
+        "Dieta fraccionada y observación",
+        "Dimenhidrinato oral",
+        "Doxilamina y piridoxina"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Doxilamina y piridoxina"
     },
     {
       "id": 57,
-      "pregunta": "Mujer que hace 3 años presenta un PAP con NIE III, sin controles posteriores. Actualmente se visualiza lesión exofítica en cuello uterino, ulcerada, cuál es la conducta más adecuada",
-      "opciones": [],
-      "respuesta_texto": "Biopsia cervical"
+      "pregunta": "Mujer con PAP con NIE III hace 3 años, sin controles, ahora con lesión exofítica ulcerada en cuello uterino. ¿Cuál es la conducta?",
+      "opciones": [
+        "Colposcopía y tratamiento inmediato",
+        "CONO diagnóstico-terapéutico",
+        "Biopsia cervical",
+        "Histerectomía total",
+        "Repetir PAP y controlar en 3 meses"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Biopsia cervical"
     },
     {
       "id": 58,
-      "pregunta": "Mujer que presenta PAP con NIE III y colposcopía normal con legrado endocervical normal, la conducta más adecuada es",
+      "pregunta": "Mujer con PAP con NIE III y colposcopía normal con legrado endocervical normal. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Biopsia endometrial",
-        "Conización cervical",
-        "Repetir PAP en 6 meses",
         "Cono cervical",
-        "Histerectomía"
+        "Crioterapia cervical",
+        "Seguimiento con PAP en 6 meses",
+        "Histerectomía simple",
+        "LEEP inmediato"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Cono cervical"
+      "respuesta_correcta": "A",
+      "explanation": "Cono cervical"
     },
     {
       "id": 59,
-      "pregunta": "Mujer usuaria de DIU hace 5 años, desde hace 8 meses en amenorrea y actualmente galactorrea bilateral, examen ginecológico normal, la conducta más adecuada es solicitar",
+      "pregunta": "Usuaria de DIU hace 5 años, amenorrea de 8 meses y galactorrea bilateral, examen ginecológico normal. ¿Qué solicitar?",
       "opciones": [
+        "β-HCG sérico",
+        "Ecografía transvaginal",
+        "FSH y LH",
         "Prolactinemia",
-        "Preeclampsia",
-        "Diabetes gestacional",
-        "Infección urinaria",
-        "Hallazgo patológico"
+        "TSH y T4 libre"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Prolactinemia"
+      "respuesta_correcta": "D",
+      "explanation": "Prolactinemia"
     },
     {
       "id": 60,
-      "pregunta": "Mujer con antecedente de múltiples cesáreas, consulta por inicio de dismenorrea e hipermenorrea, al examen físico útero levemente aumentado de tamaño, blando, móvil, el diagnóstico más probable es",
+      "pregunta": "Mujer con múltiples cesáreas previas, dismenorrea e hipermenorrea, útero aumentado de tamaño, blando y móvil. ¿Diagnóstico más probable?",
       "opciones": [
-        "Hiperplasia endometrial",
-        "Pólipo endometrial",
-        "Mioma uterino",
+        "Miomatosis uterina",
         "Adenomiosis",
-        "Endometriosis"
+        "Endometriosis pélvica",
+        "Enfermedad inflamatoria pélvica crónica",
+        "Síndrome adherencial postoperatorio"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Adenomiosis"
+      "respuesta_correcta": "B",
+      "explanation": "Adenomiosis"
     },
     {
       "id": 61,
-      "pregunta": "Postmenopáusica con metrorragia y endometrio de 18 mm, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Solicitar biopsia endometrial"
+      "pregunta": "Postmenopáusica con metrorragia y endometrio de 18 mm. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Ecografía transvaginal en 3 meses",
+        "Histeroscopía diagnóstica",
+        "Legrado uterino bajo anestesia",
+        "Iniciar gestágenos y controlar",
+        "Solicitar biopsia endometrial"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Solicitar biopsia endometrial"
     },
     {
       "id": 62,
-      "pregunta": "Mujer joven que comienza con cuadro súbito de dolor en fosa ilíaca derecha, al ingreso súbitamente presenta hipotensión y taquicardia, se encuentra pálida y con dolor en ambas fosas ilíacas, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Embarazo ectópico roto"
+      "pregunta": "Mujer joven con dolor súbito en FID, hipotensión y taquicardia súbitas, dolor en ambas fosas ilíacas. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Apendicitis aguda complicada",
+        "Quiste ovárico torcido",
+        "Embarazo ectópico roto",
+        "Salpingitis aguda con absceso tubo-ovárico",
+        "Rotura folicular hemorrágica"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Embarazo ectópico roto"
     },
     {
       "id": 63,
-      "pregunta": "Mujer joven que comienza con cuadro súbito de dolor pélvico, naúseas y vómitos, al examen físico se palpa masa anexial dura de 7 cm, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Quiste ovárico torcido"
+      "pregunta": "Mujer joven con dolor pélvico súbito, náuseas, vómitos y masa anexial dura de 7 cm al examen. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Quiste ovárico torsionado",
+        "Embarazo ectópico roto",
+        "Absceso tubo-ovárico",
+        "Mioma pediculado torsionado",
+        "Endometrioma roto"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Quiste ovárico torsionado"
     },
     {
       "id": 64,
-      "pregunta": "Mujer de edad que presenta cuadro de baja de peso y dolor abdominal, al examen físico se palpa masa anexial, cuál es el examen inicial más adecuado",
+      "pregunta": "Mujer mayor con baja de peso, dolor abdominal y masa anexial palpable. ¿Cuál es el examen inicial más adecuado?",
       "opciones": [
-        "Radiografía",
-        "Cintigrafía",
-        "Resonancia magnética",
-        "TAC",
-        "Ecografía transvaginal"
+        "TAC de abdomen y pelvis",
+        "RNM de pelvis con contraste",
+        "Marcadores tumorales (CA-125, HE4)",
+        "Ecografía transvaginal",
+        "PET-CT"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Ecografía transvaginal"
+      "respuesta_correcta": "D",
+      "explanation": "Ecografía transvaginal"
     },
     {
       "id": 65,
-      "pregunta": "Paciente con antecedente de pirosis y regurgitación, la endoscopía digestiva alta visualiza línea Z a 20 cm y la impresión diafragmática a 30 cm, cuál es el diagnóstico más probable",
+      "pregunta": "Paciente con pirosis y regurgitación, EDA muestra línea Z a 20 cm e impresión diafragmática a 30 cm. ¿Diagnóstico más probable?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
-        "Hernia hiatal directa",
-        "Cintigrafía",
-        "Resonancia magnética"
+        "Esófago de Barrett",
+        "Hernia hiatal por deslizamiento (tipo I)",
+        "Hernia hiatal paraesofágica (tipo II)",
+        "Acalasia",
+        "Esofagitis erosiva grado B"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Hernia hiatal directa"
+      "respuesta_correcta": "B",
+      "explanation": "Hernia hiatal por deslizamiento (tipo I)"
     },
     {
       "id": 66,
-      "pregunta": "Adulto con antecedente de tabaquismo, ictericia, coluria, prurito y acolia. Presenta patrón colestásico en pruebas hepáticas. El diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Cáncer de páncreas"
+      "pregunta": "Adulto fumador con ictericia, coluria, prurito y acolia, con patrón colestásico. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Coledocolitiasis",
+        "Colangitis esclerosante primaria",
+        "Hepatitis viral colestásica",
+        "Colangiocarcinoma",
+        "Cáncer de páncreas"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Cáncer de páncreas"
     },
     {
       "id": 67,
-      "pregunta": "Paciente con dolor abdominal en hipocondrio derecho y coluria, presenta patrón colestásico en pruebas hepáticas y dolor a la palpación del hipocondrio derecho, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Coledocolitiasis aguda"
+      "pregunta": "Paciente con dolor en hipocondrio derecho y coluria, patrón colestásico y dolor a la palpación del hipocondrio. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Colecistitis aguda",
+        "Colangitis aguda (Charcot)",
+        "Coledocolitiasis aguda",
+        "Hepatitis alcohólica",
+        "Cólico biliar simple"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Coledocolitiasis aguda"
     },
     {
       "id": 68,
-      "pregunta": "Paciente con dolor en hipocondrio derecho, fiebre, ictericia, coluria, presenta patrón colestásico en pruebas hepáticas, la conducta más adecuada es",
+      "pregunta": "Paciente con dolor en HCD, fiebre, ictericia y coluria, con patrón colestásico. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Cintigrafía",
-        "TAC",
-        "Radiografía",
-        "Resonancia magnética",
-        "Solicitar ecografía abdominal (No aparecía drenaje de vía biliar)"
+        "Solicitar ecografía abdominal",
+        "CPRE de urgencia",
+        "Colecistectomía laparoscópica inmediata",
+        "Colangiografía intraoperatoria",
+        "Antibióticos y drenaje percutáneo"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Solicitar ecografía abdominal (No aparecía drenaje de vía biliar)"
+      "respuesta_correcta": "A",
+      "explanation": "Solicitar ecografía abdominal"
     },
     {
       "id": 69,
-      "pregunta": "Hombre con cuadro de diarrea disentérica, tiene aftas bucales y hace poco fue tratado por fístula perianal, el diagnóstico más probable es",
+      "pregunta": "Hombre con diarrea disentérica, aftas bucales y antecedente de fístula perianal tratada. ¿Diagnóstico más probable?",
       "opciones": [
-        "Linfoma intestinal",
-        "Tuberculosis intestinal",
-        "Síndrome de intestino irritable",
         "Colitis ulcerosa",
-        "Enfermedad de Crohn"
+        "Síndrome de intestino irritable",
+        "Colitis infecciosa por Shigella",
+        "Enfermedad de Crohn",
+        "Colitis isquémica"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Enfermedad de Crohn"
+      "respuesta_correcta": "D",
+      "explanation": "Enfermedad de Crohn"
     },
     {
       "id": 70,
-      "pregunta": "Paciente con antecedente de artritis reumatoide, con crisis de dolor por lo cual se trata de AINES, comienza con cuadro de melena, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Úlcera gastroduodenal"
+      "pregunta": "Paciente con artritis reumatoide en tratamiento con AINEs, presenta melena. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Cáncer gástrico",
+        "Úlcera gastroduodenal",
+        "Angiodisplasia gástrica",
+        "Esofagitis erosiva",
+        "Síndrome de Mallory-Weiss"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Úlcera gastroduodenal"
     },
     {
       "id": 71,
-      "pregunta": "Paciente con antecedente de úlcera gastroduodenal, actualmente con anemia ferropénica, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Solicitar endoscopía digestiva alta"
+      "pregunta": "Paciente con antecedente de úlcera gastroduodenal y anemia ferropénica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar hierro oral y controlar hemograma",
+        "Solicitar estudio de deposiciones para sangre oculta",
+        "Biopsias gástricas y test de ureasa",
+        "Erradicar H. pylori empíricamente",
+        "Solicitar endoscopía digestiva alta"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Solicitar endoscopía digestiva alta"
     },
     {
       "id": 72,
-      "pregunta": "Paciente con dolor en fosa ilíaca izquierda, febril, con Blumberg en FII, el examen de elección es",
+      "pregunta": "Paciente con dolor en FII, febril y signo de Blumberg en FII. ¿Cuál es el examen de elección?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
-        "Cintigrafía",
+        "Ecografía abdominal",
+        "Colonoscopía",
         "TAC de abdomen y pelvis",
-        "Resonancia magnética"
+        "Enema baritado",
+        "Laparoscopia diagnóstica"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "TAC de abdomen y pelvis"
+      "respuesta_correcta": "C",
+      "explanation": "TAC de abdomen y pelvis"
     },
     {
       "id": 73,
-      "pregunta": "Paciente con antecedente de hipotiroidismo, comienza con diarrea acuosa hace algunos meses y presenta palidez, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Enfermedad celíaca"
+      "pregunta": "Paciente con hipotiroidismo, diarrea acuosa de meses y palidez. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Enfermedad celíaca",
+        "Colitis microscópica",
+        "Hipotiroidismo como causa directa de diarrea",
+        "Síndrome de intestino irritable",
+        "Gastroenteritis crónica eosinofílica"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Enfermedad celíaca"
     },
     {
       "id": 74,
-      "pregunta": "Paciente con diarrea disentérica, baja de peso, el examen de elección es",
-      "opciones": [],
-      "respuesta_texto": "Colonoscopía"
+      "pregunta": "Paciente con diarrea disentérica y baja de peso. ¿Cuál es el examen de elección?",
+      "opciones": [
+        "Coprocultivo y coproparasitológico",
+        "TAC de abdomen con contraste",
+        "Tránsito de intestino delgado",
+        "Colonoscopía con biopsias",
+        "Cápsula endoscópica"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Colonoscopía con biopsias"
     },
     {
       "id": 75,
-      "pregunta": "Paciente que presenta hemorragia digestiva importante, en la colonoscopía se visualiza coágulos por todo el marco colónico y se visualiza flujo activo de sangre fresca por la válvula ileocecal, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Divertículo de Meckel"
+      "pregunta": "Paciente con hemorragia digestiva masiva; colonoscopía muestra flujo activo de sangre fresca por válvula ileocecal. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Hemorragia por angiodisplasia cecal",
+        "Divertículo de Meckel",
+        "Enfermedad de Crohn ileal complicada",
+        "Intususcepción íleo-cólica",
+        "Carcinoma de ciego sangrante"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Divertículo de Meckel"
     },
     {
       "id": 76,
-      "pregunta": "Paciente con diarrea aguda disentérica con panel gastrointestinal de deposiciones positivo para Campylobacter, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Iniciar azitromicina vía oral"
+      "pregunta": "Paciente con diarrea disentérica aguda y panel gastrointestinal positivo para Campylobacter. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Ciprofloxacino oral por 3 días",
+        "Metronidazol oral por 7 días",
+        "Cotrimoxazol oral por 5 días",
+        "Amoxicilina oral por 7 días",
+        "Azitromicina vía oral"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Azitromicina vía oral"
     },
     {
       "id": 77,
-      "pregunta": "Niño que presenta quemadura en palmas y dedos, con importante eritema y ampollas, en urgencias se encuentra inquieto e irritable, la conducta inicial más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Indicar analgesia endovenosa"
+      "pregunta": "Niño con quemadura en palmas y dedos, eritema importante y ampollas, inquieto e irritable en urgencias. ¿Cuál es la conducta inicial?",
+      "opciones": [
+        "Aplicar apósitos de plata y hospitalizar",
+        "Enfriar con agua fría y cubrir con gasa estéril",
+        "Indicar analgesia endovenosa",
+        "Hospitalizar para manejo de quemaduras",
+        "Debridación bajo anestesia general inmediata"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Indicar analgesia endovenosa"
     },
     {
       "id": 78,
-      "pregunta": "Paciente con daño hepático crónico, ingresa en sopor, febril, ictérico, con ascitis a tensión, levemente hipotenso, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Estudio de líquido ascítico"
+      "pregunta": "Paciente con daño hepático crónico, sopor, fiebre, ictericia y ascitis a tensión. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Estudio de líquido ascítico (paracentesis diagnóstica)",
+        "Iniciar antibiótico de amplio espectro empírico",
+        "Hospitalizar y tratar encefalopatía hepática",
+        "TAC de abdomen urgente",
+        "Transfundir y corregir coagulación"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Estudio de líquido ascítico (paracentesis diagnóstica)"
     },
     {
       "id": 79,
-      "pregunta": "Paciente con cirrosis hepática, presenta dos lesiones hepáticas hipoecogénicas de 2 cm aproximadamente, heterogéneas, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Carcinoma hepatocelular"
+      "pregunta": "Paciente con cirrosis hepática y dos lesiones hepáticas hipoecogénicas de 2 cm heterogéneas en ecografía. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Metástasis hepáticas",
+        "Absceso hepático piógeno",
+        "Hemangioma hepático",
+        "Carcinoma hepatocelular",
+        "Colangiocarcinoma intrahepático"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Carcinoma hepatocelular"
     },
     {
       "id": 80,
-      "pregunta": "Adulto joven con masa blanda palpable entre mentón y cartílago tiroides, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Quiste tirogloso"
+      "pregunta": "Adulto joven con masa blanda palpable entre el mentón y el cartílago tiroides. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Adenoma tiroideo",
+        "Quiste tirogloso",
+        "Quiste branquial",
+        "Linfadenitis cervical",
+        "Lipoma cervical"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Quiste tirogloso"
     },
     {
       "id": 81,
-      "pregunta": "Paciente de 40 años que está en tratamiento con enalapril 20 mg/día, amlodipino 10 mg al día e hidroclorotiazida 25 mg al día, a pesar de ello persiste con presiones elevadas, la conducta más adecuada es",
+      "pregunta": "Paciente con HTA en tratamiento triple (enalapril, amlodipino e hidroclorotiazida) con presiones elevadas persistentes. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Losartán",
-        "Hidroclorotiazida",
-        "Atenolol",
-        "Iniciar espironolactona y solicitar estudio de hipertensión arterial secundaria",
-        "Amlodipino"
+        "Aumentar dosis de enalapril al máximo",
+        "Agregar beta-bloqueador oral",
+        "Suspender hidroclorotiazida y agregar furosemida",
+        "Derivar a nefrología de urgencia",
+        "Agregar espironolactona e iniciar estudio de HTA secundaria"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Iniciar espironolactona y solicitar estudio de hipertensión arterial secundaria"
+      "respuesta_correcta": "E",
+      "explanation": "Agregar espironolactona e iniciar estudio de HTA secundaria"
     },
     {
       "id": 82,
-      "pregunta": "Paciente con hipertensión de difícil control que presenta cuadro de cefalea, palpitaciones, se realiza TAC de abdomen que visualiza lesión suprarrenal derecha de 5 cm, el diagnóstico más probable es",
+      "pregunta": "Paciente con HTA de difícil control, cefalea, palpitaciones y lesión suprarrenal derecha de 5 cm en TAC. ¿Diagnóstico más probable?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
-        "Cintigrafía",
+        "Adenoma suprarrenal productor de aldosterona",
+        "Carcinoma suprarrenal",
         "Feocromocitoma",
-        "Resonancia magnética"
+        "Quiste suprarrenal simple",
+        "Hiperplasia suprarrenal nodular"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Feocromocitoma"
+      "respuesta_correcta": "C",
+      "explanation": "Feocromocitoma"
     },
     {
       "id": 83,
-      "pregunta": "Paciente con hipertensión arterial de difícil control que presenta creatinina levemente elevada e hiperkalemia, el estudio a solicitar es",
+      "pregunta": "Paciente con HTA de difícil control, creatinina levemente elevada e hiperkalemia. ¿Cuál es el estudio a solicitar?",
       "opciones": [
-        "Resonancia magnética",
-        "Cintigrafía",
-        "TAC",
-        "Radiografía",
-        "Ecografía doppler de arterias renales"
+        "Ecografía Doppler de arterias renales",
+        "Renograma isotópico con captopril",
+        "Arteriografía renal selectiva",
+        "AngioTAC renal",
+        "Biopsia renal"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Ecografía doppler de arterias renales"
+      "respuesta_correcta": "A",
+      "explanation": "Ecografía Doppler de arterias renales"
     },
     {
       "id": 84,
-      "pregunta": "Diabético con nefropatía, hipertensión arterial recientemente diagnosticada, creatinina 1.5 mg/dl y proteinuria, el tratamiento de elección es",
+      "pregunta": "Diabético con nefropatía, HTA reciente, creatinina 1,5 mg/dL y proteinuria. ¿Cuál es el tratamiento de elección?",
       "opciones": [
         "Amlodipino",
-        "Enalapril",
-        "Losartán",
+        "Atenolol",
         "Hidroclorotiazida",
-        "Atenolol"
+        "Enalapril",
+        "Losartán"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Enalapril"
+      "respuesta_correcta": "D",
+      "explanation": "Enalapril"
     },
     {
       "id": 85,
-      "pregunta": "Paciente que está en tratamiento para la hipertensión arterial con IECA, amlodipino e hidroclorotiazida, presenta edema e hinchazón de extremidades inferiores, presiones de 120/70 mmHg, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Suspender amlodipino"
+      "pregunta": "Paciente con HTA en triple terapia (IECA, amlodipino, HCTZ), con edema en extremidades inferiores y presión 120/70. ¿Cuál es la conducta?",
+      "opciones": [
+        "Agregar furosemida oral",
+        "Suspender amlodipino",
+        "Reducir dosis de IECA",
+        "Agregar espironolactona",
+        "Derivar a cardiología por insuficiencia cardíaca"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Suspender amlodipino"
     },
     {
       "id": 86,
-      "pregunta": "Adulto mayor hipertenso, con cardiopatía coronaria, en tratamiento con carvedilol, atorvastatina e hidroclorotiazida, presenta presiones elevadas, creatinina y potasio dentro de rango normal, el tratamiento de elección es",
+      "pregunta": "Adulto mayor hipertenso con cardiopatía coronaria, en tratamiento con carvedilol, atorvastatina e HCTZ, presiones elevadas con función renal y potasio normales. ¿Cuál es el tratamiento de elección?",
       "opciones": [
-        "Hallazgo patológico",
-        "Losartán",
-        "Diabetes gestacional",
-        "Infección urinaria",
-        "Preeclampsia"
+        "Amlodipino",
+        "Hidralazina",
+        "Metildopa",
+        "Nifedipino de liberación prolongada",
+        "Losartán"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Losartán"
+      "respuesta_correcta": "E",
+      "explanation": "Losartán"
     },
     {
       "id": 87,
-      "pregunta": "Paciente con antecedente de infecciones respiratorias recurrentes, presenta expectoración matinal aproximadamente de 200 ml al día. La radiografía de tórax visualiza lo siguiente. El examen de elección para continuar el estudio es",
+      "pregunta": "Paciente con infecciones respiratorias recurrentes y expectoración matinal de 200 mL al día. ¿Cuál es el examen de elección para el estudio?",
       "opciones": [
-        "TAC de tórax",
-        "Radiografía",
-        "Resonancia magnética",
-        "Cintigrafía",
-        "Ecografía"
+        "Broncoscopía con lavado broncoalveolar",
+        "Espirometría con test de reversibilidad",
+        "TAC de tórax de alta resolución",
+        "Radiografía de tórax seriada",
+        "Cultivo de esputo"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "TAC de tórax"
+      "respuesta_correcta": "C",
+      "explanation": "TAC de tórax de alta resolución"
     },
     {
       "id": 88,
-      "pregunta": "Paciente con expectoración hemoptoica que presenta eliminación de contenido como de uvas, la radiografía de tórax visualiza lo siguiente, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Quiste hidatídico"
+      "pregunta": "Paciente con expectoración hemoptoica y eliminación de contenido 'en uvas'. Radiografía con imagen compatible. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Quiste hidatídico pulmonar",
+        "Absceso pulmonar",
+        "Bronquiectasias",
+        "Cáncer pulmonar cavitado",
+        "Aspergilosis pulmonar invasiva"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Quiste hidatídico pulmonar"
     },
     {
       "id": 89,
-      "pregunta": "Paciente que trabajó en la minería, fumador de 3 cig/día, presenta cuadro de disnea de esfuerzos, sibilancias bilaterales e hiperinsuflación. Tiene espirometría obstructiva no reversible. La radiografía de tórax visualiza lo siguiente. El diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Silicosis pulmonar"
+      "pregunta": "Trabajador de la minería, fumador leve, con disnea, sibilancias, hiperinsuflación y espirometría obstructiva no reversible. ¿Diagnóstico más probable?",
+      "opciones": [
+        "EPOC por tabaquismo",
+        "Asma ocupacional",
+        "Fibrosis pulmonar idiopática",
+        "Silicosis pulmonar",
+        "Neumoconiosis por carbón (antracosis)"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Silicosis pulmonar"
     },
     {
       "id": 90,
-      "pregunta": "Paciente fumador con baja de peso, expectoración en ocasiones hemoptoicas, dolor costal derecho, la radiografía de tórax visualiza lo siguiente. El diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Cáncer pulmonar"
+      "pregunta": "Paciente fumador con baja de peso, hemoptisis ocasional y dolor costal. Radiografía con masa pulmonar. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Tuberculosis pulmonar cavitada",
+        "Cáncer pulmonar",
+        "Absceso pulmonar",
+        "Sarcoidosis pulmonar",
+        "Linfoma pulmonar primario"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Cáncer pulmonar"
     },
     {
       "id": 91,
-      "pregunta": "Paciente con antecedente de VIH, sin tratamiento anti retro viral hace 1 año. Presenta cuadro de fiebre, baja de peso, expectoración mucopurulenta en ocasiones hemoptoica. Exámenes con baciloscopías de expectoración negativa, cultivo MGIT (+), PPD 5 mm. Radiografía de tórax visualiza lo siguiente. La conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Tratamiento estándar para la tuberculosis"
+      "pregunta": "Paciente con VIH sin TARV, fiebre, baja de peso, hemoptisis, baciloscopías negativas y cultivo MGIT positivo. ¿Cuál es la conducta?",
+      "opciones": [
+        "Iniciar TARV e investigar otras infecciones oportunistas",
+        "Solicitar broncoscopía y biopsia transbronquial",
+        "Iniciar profilaxis con isoniazida y observar",
+        "Repetir baciloscopías y esperar resultado de cultivo",
+        "Iniciar tratamiento estándar para tuberculosis"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Iniciar tratamiento estándar para tuberculosis"
     },
     {
       "id": 92,
-      "pregunta": "Paciente con cuadro de expectoración mucopurulenta en ocasiones hemoptoica, enflaquecido, baja de peso, febril, tiene baciloscopía de expectoración negativas, el examen más adecuado para continuar el estudio es",
-      "opciones": [],
-      "respuesta_texto": "Reacción en cadena de polimerasa para Mycobacterium tuberculosis"
+      "pregunta": "Paciente enflaquecido, febril, con hemoptisis y baciloscopías negativas. ¿Cuál es el examen más adecuado para continuar el estudio?",
+      "opciones": [
+        "Cultivo en medio Löwenstein-Jensen",
+        "Broncoscopía con lavado broncoalveolar",
+        "PCR para Mycobacterium tuberculosis",
+        "Adenosina deaminasa (ADA) en esputo",
+        "Biopsia pulmonar por toracoscopía"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "PCR para Mycobacterium tuberculosis"
     },
     {
       "id": 93,
-      "pregunta": "Paciente con disnea de esfuerzos progresiva y tos, usuario de amiodarona, la radiografía evidencia lo siguiente, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Suspender amiodarona"
+      "pregunta": "Paciente usuario de amiodarona con disnea progresiva y tos; radiografía con infiltrados bilaterales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Suspender amiodarona",
+        "Iniciar corticoides sistémicos",
+        "Agregar antibiótico de amplio espectro",
+        "Solicitar broncoscopía diagnóstica",
+        "Aumentar dosis de amiodarona y agregar corticoide"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Suspender amiodarona"
     },
     {
       "id": 94,
-      "pregunta": "Paciente con cuadro de dolor articular de articulaciones metacarpofalángicas e interfalángicas proximales, con rigidez matinal importante, cuál es el examen específico a solicitar",
+      "pregunta": "Paciente con dolor articular en MCF e IFP, con rigidez matinal importante. ¿Cuál es el examen específico a solicitar?",
       "opciones": [
-        "Ecografía",
-        "Resonancia magnética",
-        "Radiografía",
-        "Anticuerpos anti CCP",
-        "Cintigrafía"
+        "Factor reumatoide (IgM)",
+        "ANA y anti-DNA doble cadena",
+        "Ácido úrico sérico",
+        "Anticuerpos anti-CCP",
+        "HLA-B27"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Anticuerpos anti CCP"
+      "respuesta_correcta": "D",
+      "explanation": "Anticuerpos anti-CCP"
     },
     {
       "id": 95,
-      "pregunta": "Paciente con cuadro de artralgias de articulaciones interfalángicas distales y proximales, rigidez matinal de 3 a 5 minutos, dolor aumenta con actividad (por ejemplo al amasar). Tiene disminución de espacios articulares, esclerosis subcondral y osteofitos. El diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Artrosis"
+      "pregunta": "Paciente con artralgias en IFD e IFP, rigidez matinal de 3-5 minutos, dolor que aumenta con actividad. Radiografía: disminución de espacio articular, esclerosis subcondral y osteofitos. ¿Diagnóstico?",
+      "opciones": [
+        "Artritis reumatoide",
+        "Artrosis",
+        "Artritis psoriásica",
+        "Artritis gotosa crónica",
+        "Espondilitis anquilosante"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Artrosis"
     },
     {
       "id": 96,
-      "pregunta": "Paciente con antecedente de varios episodios de artritis de rodilla, en uno de ellos se punciona y se evidencian cristales de pirofosfato de calcio intracelulares, el tratamiento más adecuado para prevenir nuevas crisis es",
-      "opciones": [],
-      "respuesta_texto": "¿AINES vs Colchicina?"
+      "pregunta": "Paciente con varios episodios de artritis de rodilla; punción muestra cristales de pirofosfato de calcio intracelulares. ¿Tratamiento para prevenir nuevas crisis?",
+      "opciones": [
+        "AINES a demanda",
+        "Alopurinol",
+        "Metotrexato oral semanal",
+        "Infiltración con corticoides",
+        "Colchicina profiláctica"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Colchicina profiláctica"
     },
     {
       "id": 97,
-      "pregunta": "Paciente con parestesias en una mano, principalmente nocturnas que ceden al sacudir las manos, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Síndrome de túnel carpiano"
+      "pregunta": "Paciente con parestesias nocturnas en una mano que ceden al sacudir las manos. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Neuropatía cubital",
+        "Síndrome de Raynaud",
+        "Síndrome del túnel carpiano",
+        "Radiculopatía C6",
+        "Polineuropatía diabética"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Síndrome del túnel carpiano"
     },
     {
       "id": 98,
-      "pregunta": "Paciente con antecedente de enfermedades autoinmunes (psoriasis), presenta cuadro de disminución de agudeza visual, ojo rojo profundo y fotofobia importante, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Uveítis aguda"
+      "pregunta": "Paciente con psoriasis, disminución de agudeza visual, ojo rojo profundo y fotofobia importante. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Uveítis anterior aguda",
+        "Epiescleritis",
+        "Glaucoma agudo de ángulo cerrado",
+        "Conjuntivitis bacteriana aguda",
+        "Queratitis herpética"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Uveítis anterior aguda"
     },
     {
       "id": 99,
-      "pregunta": "Paciente con antecedente de HTA, que presenta dificultad para la lectura pese a cambio de lentes recientes y ve los objetos deformados, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Degeneración macular relacionada con la edad"
+      "pregunta": "Paciente hipertenso con dificultad para la lectura y visión deformada de objetos pese a lentes recientes. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Retinopatía hipertensiva",
+        "Oclusión de vena central de la retina",
+        "Neuropatía óptica isquémica anterior",
+        "Degeneración macular relacionada con la edad (DMRE)",
+        "Catarata nuclear"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Degeneración macular relacionada con la edad (DMRE)"
     },
     {
       "id": 100,
-      "pregunta": "Hombre que presenta cuadro de dolor abdominal súbito en flanco izquierdo, se realiza imagen que visualiza cálculo de 4 mm en el uréter que genera hidroutereteronefrosis ipsilateral y edema perirrenal, asociado a orina inflamatoria y fiebre. La conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Instalar catéter doble jota"
+      "pregunta": "Paciente con cálculo de 4 mm en uréter, hidroureteronefrosis, orina inflamatoria y fiebre. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Litotripsia extracorpórea de urgencia",
+        "Instalar catéter doble jota",
+        "Manejo ambulatorio con hidratación y analgesia",
+        "Antibiótico oral y control en 48 horas",
+        "Nefrolitotomía percutánea"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Instalar catéter doble jota"
     },
     {
       "id": 101,
-      "pregunta": "Paciente con cuadro de litiasis a repetición, orina inflamatoria y cristales de fosfato manganeso, presenta a la imagen litiasis coraliforme bilateral, el agente que crecerá en el urocultivo con mayor probabilidad es",
-      "opciones": [],
-      "respuesta_texto": "Proteus Mirabilis"
+      "pregunta": "Paciente con litiasis a repetición, orina inflamatoria y cristales de fosfato magnesio amónico con litiasis coraliforme. ¿Qué microorganismo crecerá en el urocultivo?",
+      "opciones": [
+        "Escherichia coli",
+        "Klebsiella pneumoniae",
+        "Pseudomonas aeruginosa",
+        "Staphylococcus saprophyticus",
+        "Proteus mirabilis"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Proteus mirabilis"
     },
     {
       "id": 102,
-      "pregunta": "Paciente institucionalizado, con Alzheimer, postrado, que se cambia sonda cada 30 días, se cambió sonda hace 2 semanas y se tomó urocultivo donde creció E. Coli multisensible, la conducta más adecuada es",
+      "pregunta": "Paciente institucionalizado con Alzheimer, postrado, con sonda vesical cambiada hace 2 semanas, urocultivo con E. coli multisensible asintomática. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Cirugía de urgencia",
-        "Cirugía electiva",
-        "Antibióticos profilácticos",
-        "Derivación a especialista",
-        "Mantener observación"
+        "Tratar con ciprofloxacino oral por 7 días",
+        "Cambiar la sonda y tratar 3 días",
+        "Mantener observación sin tratar",
+        "Tratar con nitrofurantoína oral por 5 días",
+        "Hospitalizar para antibiótico endovenoso"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Mantener observación"
+      "respuesta_correcta": "C",
+      "explanation": "Mantener observación sin tratar"
     },
     {
       "id": 103,
-      "pregunta": "Paciente de 83 años que presenta APE de 10 por lo cual se realiza biopsia prostática que presenta Adenocarcinoma de próstata Gleason 3+3 en el 0.3% de la muestra, estudio de diseminación negativo, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Controlar en 3 meses"
+      "pregunta": "Paciente de 83 años con APE 10, adenocarcinoma de próstata Gleason 3+3 en 0,3% de la muestra, estudio de diseminación negativo. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Vigilancia activa con control en 3 meses",
+        "Prostatectomía radical",
+        "Radioterapia de haz externo",
+        "Braquiterapia prostática",
+        "Deprivación androgénica"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Vigilancia activa con control en 3 meses"
     },
     {
       "id": 104,
-      "pregunta": "Adulto mayor con astenia, adinamia, disnea. Exámenes presenta anemia, trombocitopenia y leucopenia, LDH elevada, VCM 123, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Anemia megaloblástica"
+      "pregunta": "Adulto mayor con astenia, anemia, trombocitopenia, leucopenia, LDH elevada y VCM 123. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Leucemia aguda",
+        "Síndrome mielodisplásico",
+        "Anemia aplásica",
+        "Anemia megaloblástica",
+        "Linfoma no Hodgkin con compromiso medular"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Anemia megaloblástica"
     },
     {
       "id": 105,
-      "pregunta": "Paciente con antecedente de cáncer de próstata con calcio de 14 mg/dl, la conducta inicial más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Suero fisiológico endovenoso"
+      "pregunta": "Paciente con cáncer de próstata y calcio de 14 mg/dL. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Bifosfonatos endovenosos (ácido zoledrónico)",
+        "Suero fisiológico endovenoso (hidratación agresiva)",
+        "Calcitonina intranasal",
+        "Prednisona oral 40 mg/día",
+        "Diálisis de urgencia"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Suero fisiológico endovenoso (hidratación agresiva)"
     },
     {
       "id": 106,
-      "pregunta": "Paciente con hemograma con leucocitosis, blastos 80% linfocitos, hiperuricemia, hipocalcemia, fósforo límite alto y leve hiperkalemia, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Suero fisiológico endovenoso"
+      "pregunta": "Paciente con leucocitosis, 80% blastos linfoides, hiperuricemia, hipocalcemia y fósforo límite alto. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Quimioterapia de inducción inmediata",
+        "Rasburicasa e iniciar quimioterapia",
+        "Transfusión de glóbulos rojos y plaquetas",
+        "Hemodiálisis urgente",
+        "Suero fisiológico endovenoso y alopurinol (prevención de síndrome de lisis tumoral)"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Suero fisiológico endovenoso y alopurinol (prevención de síndrome de lisis tumoral)"
     },
     {
       "id": 107,
-      "pregunta": "Paciente con bradicardia 30 por minuto, hiperkalemia 8.3 mEq/L, la conducta inicial más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Gluconato de calcio EV"
+      "pregunta": "Paciente con bradicardia de 30 lpm e hiperkalemia de 8,3 mEq/L. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Bicarbonato de sodio endovenoso",
+        "Insulina + glucosa endovenosa",
+        "Gluconato de calcio endovenoso",
+        "Kayexalate oral",
+        "Hemodiálisis de urgencia"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Gluconato de calcio endovenoso"
     },
     {
       "id": 108,
-      "pregunta": "Paciente que es encontrada en el baño con compromiso de conciencia, calefont apagado, en urgencias presenta saturación de oxígeno normal, el examen de elección es",
+      "pregunta": "Paciente encontrada en el baño con compromiso de conciencia y calefont apagado, saturación O2 normal en urgencias. ¿Cuál es el examen de elección?",
       "opciones": [
-        "Diabetes gestacional",
-        "Infección urinaria",
-        "Hallazgo patológico",
-        "Preeclampsia",
-        "Carboxihemoglobina"
+        "Carboxihemoglobina",
+        "Gases arteriales convencionales",
+        "TAC de cerebro sin contraste",
+        "Niveles de cianuro en sangre",
+        "Hemograma y electrolitos"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Carboxihemoglobina"
+      "respuesta_correcta": "A",
+      "explanation": "Carboxihemoglobina"
     },
     {
       "id": 109,
-      "pregunta": "Paciente en tratamiento por esquizofrenia con Flufenazina, presenta cuadro de alteración de conciencia, febril, rigidez de extremidades superiores, FC 102 lpm, PA 145/85 mmHg, el diagnóstico más probable es",
+      "pregunta": "Paciente en tratamiento con flufenazina, presenta alteración de conciencia, fiebre, rigidez de extremidades y taquicardia. ¿Diagnóstico más probable?",
       "opciones": [
-        "Púrpura trombótica trombocitopénica",
+        "Hipertermia maligna anestésica",
+        "Síndrome serotoninérgico",
+        "Crisis distónica aguda",
         "Síndrome neuroléptico maligno",
-        "Leucemia aguda",
-        "Coagulación intravascular diseminada",
-        "Síndrome hemolítico urémico"
+        "Encefalitis autoinmune"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Síndrome neuroléptico maligno"
+      "respuesta_correcta": "D",
+      "explanation": "Síndrome neuroléptico maligno"
     },
     {
       "id": 110,
-      "pregunta": "Paciente con antecedente de tiroidectomía total con hipoparatiroidismo en suplementación con calcio, vitamina D y levotiroxina. Presenta cuadro de debilidad, parestesias y signo de Chvostek positivo. El tratamiento inicial es",
+      "pregunta": "Paciente con tiroidectomía total e hipoparatiroidismo, presenta debilidad, parestesias y signo de Chvostek positivo. ¿Cuál es el tratamiento inicial?",
       "opciones": [
-        "Resonancia magnética",
-        "Radiografía",
-        "Ecografía",
+        "Calcitriol oral más calcio oral",
         "Gluconato de calcio endovenoso",
-        "Cintigrafía"
+        "Carbonato de calcio 1 g oral",
+        "PTH recombinante subcutáneo",
+        "Terlipresina endovenosa"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Gluconato de calcio endovenoso"
+      "respuesta_correcta": "B",
+      "explanation": "Gluconato de calcio endovenoso"
     },
     {
       "id": 111,
-      "pregunta": "Hombre joven con cuadro de rinorrea serosa, congestión nasal y descarga posterior, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Antihistamínicos vía oral"
+      "pregunta": "Hombre joven con rinorrea serosa, congestión nasal y descarga posterior. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Corticoide intranasal",
+        "Descongestionantes tópicos nasales (oximetazolina)",
+        "Amoxicilina oral por 7 días",
+        "Solución salina hipertónica nasal",
+        "Antihistamínicos vía oral"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Antihistamínicos vía oral"
     },
     {
       "id": 112,
-      "pregunta": "Paciente adulto que consulta por lesión pruriginosa de 3 meses de evolución en párpado inferior derecho que aumentó de volumen, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Carcinoma basocelular"
+      "pregunta": "Adulto que consulta por lesión pruriginosa de 3 meses en párpado inferior que aumentó de volumen. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Chalazión crónico",
+        "Orzuelo interno",
+        "Carcinoma basocelular",
+        "Carcinoma espinocelular",
+        "Melanoma ocular"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Carcinoma basocelular"
     },
     {
       "id": 113,
-      "pregunta": "Paciente que se coloca piercing en oreja, presenta aumento de volumen y eritema en la zona, luego de retirarlo esta persiste, como se observa en la siguiente imagen, el agente etiológico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Pseudomona Aeruginosa"
+      "pregunta": "Paciente con piercing en oreja; al retirarlo persiste aumento de volumen y eritema en la zona. ¿Cuál es el agente etiológico más probable?",
+      "opciones": [
+        "Pseudomonas aeruginosa",
+        "Staphylococcus aureus",
+        "Streptococcus pyogenes",
+        "Candida albicans",
+        "Mycobacterium fortuitum"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Pseudomonas aeruginosa"
     },
     {
       "id": 114,
-      "pregunta": "Adulto mayor con antecedente de Alzheimer, presenta las siguientes lesiones en la pierna, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Tomar biopsia de las lesiones"
+      "pregunta": "Adulto mayor con Alzheimer presenta lesiones ulceradas en la pierna de aspecto sospechoso. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar antibiótico tópico y cubrir",
+        "Curación avanzada con alginato de calcio",
+        "Solicitar Doppler venoso de extremidades",
+        "Tomar biopsia de las lesiones",
+        "Derivar a dermatología en control habitual"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Tomar biopsia de las lesiones"
     },
     {
       "id": 115,
-      "pregunta": "Paciente de 90 años que hace 1 año presenta crecimiento progresivo de 3 lesiones pigmentadas en la pierna, en la imagen se muestra la de mayor tamaño, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Melanoma con satelitosis"
+      "pregunta": "Paciente de 90 años con 3 lesiones pigmentadas de crecimiento progresivo en la pierna. La mayor se muestra en imagen. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Queratosis seborreica pigmentada",
+        "Melanoma con satelitosis",
+        "Carcinoma basocelular pigmentado",
+        "Nevo melanocítico displásico",
+        "Dermatofibroma pigmentado"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Melanoma con satelitosis"
     },
     {
       "id": 116,
-      "pregunta": "Adulto mayor que presenta dolor en zona del cuero cabelludo y luego aparecen las siguientes lesiones, el tratamiento más adecuado es",
+      "pregunta": "Adulto mayor con dolor en cuero cabelludo seguido de vesículas en esa zona. ¿Cuál es el tratamiento más adecuado?",
       "opciones": [
-        "Fluconazol",
-        "Valaciclovir 1 g cada 8 horas vía oral por 7 días",
-        "Oseltamivir",
-        "Ganciclovir",
-        "Amoxicilina"
+        "Aciclovir tópico 5% en crema",
+        "Famciclovir 500 mg cada 8 horas por 7 días",
+        "Prednisona oral 40 mg/día por 5 días",
+        "Gabapentina 300 mg cada 8 horas",
+        "Valaciclovir 1 g cada 8 horas vía oral por 7 días"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Valaciclovir 1 g cada 8 horas vía oral por 7 días"
+      "respuesta_correcta": "E",
+      "explanation": "Valaciclovir 1 g cada 8 horas vía oral por 7 días"
     },
     {
       "id": 117,
-      "pregunta": "Embarazada < 20 semanas, parvularia, que tiene contacto con niño con varicela, la conducta más adecuada es",
+      "pregunta": "Embarazada menor de 20 semanas, parvularia, con contacto con niño con varicela. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Cintigrafía",
-        "Radiografía",
-        "Resonancia magnética",
-        "Ecografía",
-        "Solicitar serología materna"
+        "Administrar inmunoglobulina antivaricela de inmediato",
+        "Administrar vacuna de varicela",
+        "Solicitar serología materna (IgG anti-varicela)",
+        "Indicar aciclovir oral profiláctico",
+        "Hospitalizar y observar"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Solicitar serología materna"
+      "respuesta_correcta": "C",
+      "explanation": "Solicitar serología materna (IgG anti-varicela)"
     },
     {
       "id": 118,
-      "pregunta": "Lactante que presenta eritema de la zona del pañal, se trató con óxido de zinc pero persiste con las lesiones de la foto, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Clotrimazol"
+      "pregunta": "Lactante con eritema del pañal que no responde a óxido de zinc y muestra lesiones satélite. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Clotrimazol tópico",
+        "Mupirocina tópica",
+        "Hidrocortisona tópica 1%",
+        "Óxido de zinc en mayor concentración",
+        "Fluconazol oral"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Clotrimazol tópico"
     },
     {
       "id": 119,
-      "pregunta": "Paciente que presenta 4 meses de evolución de eritema, úlceras en areola mamaria tal como se muestra la siguiente imagen, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Enfermedad de Paget"
+      "pregunta": "Paciente con eritema y úlceras en areola mamaria de 4 meses de evolución. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Eczema atópico del pezón",
+        "Dermatitis de contacto",
+        "Carcinoma inflamatorio de mama",
+        "Enfermedad de Paget del pezón",
+        "Psoriasis invertida"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Enfermedad de Paget del pezón"
     },
     {
       "id": 120,
-      "pregunta": "Paciente diabético, hipertenso, que en el servicio de urgencias presenta cuadro de dolor torácico retroesternal súbito, posteriormente presenta compromiso de conciencia, ausencia de respuesta y pulso, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Iniciar compresiones torácicas externas"
+      "pregunta": "Diabético hipertenso con dolor torácico súbito, luego compromiso de conciencia y ausencia de pulso. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Desfibrilación inmediata sin RCP previa",
+        "Iniciar compresiones torácicas externas (RCP)",
+        "Intubación orotraqueal inmediata",
+        "Administrar adrenalina 1 mg EV de inmediato",
+        "Acceso venoso y carga de volumen"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Iniciar compresiones torácicas externas (RCP)"
     },
     {
       "id": 121,
-      "pregunta": "Paciente que presenta cuadro de cefalea súbita, con hemiplejia del hemicuerpo izquierdo, sin alteraciones de la sensibilidad ni el habla, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Infarto lacunar"
+      "pregunta": "Paciente con cefalea súbita y hemiplejia del hemicuerpo izquierdo, sin alteraciones sensitivas ni del habla. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Hemorragia intracerebral en cápsula interna",
+        "AVE isquémico de territorio carotídeo",
+        "Hematoma subdural agudo",
+        "AVE isquémico de territorio basilar",
+        "Infarto lacunar"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Infarto lacunar"
     },
     {
       "id": 122,
-      "pregunta": "Paciente que durante el sueño se levanta, grita y tira golpes, cuando despierta dice que soñaba que peleaba y que se estaba defendiendo, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno conductual del sueño REM"
+      "pregunta": "Paciente que durante el sueño se levanta, grita y golpea, al despertar refiere que soñaba que se defendía. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Sonambulismo",
+        "Terror nocturno (pavor nocturnus)",
+        "Trastorno conductual del sueño REM",
+        "Pesadillas recurrentes",
+        "Epilepsia nocturna del lóbulo frontal"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Trastorno conductual del sueño REM"
     },
     {
       "id": 123,
-      "pregunta": "Paciente que presenta cuadro de astenia, disminución de la líbido y disfunción eréctil progresivas, presenta alteración de la visión en zonas temporales, el examen de elección es",
+      "pregunta": "Paciente con astenia, disminución de la libido, disfunción eréctil progresiva y alteración visual en zonas temporales. ¿Cuál es el examen de elección?",
       "opciones": [
-        "Cintigrafía",
-        "Radiografía",
         "RNM de silla turca",
-        "Ecografía",
-        "TAC"
+        "Campo visual computarizado",
+        "TAC de cerebro con contraste",
+        "Testosterona total sérica y FSH/LH",
+        "Ecografía testicular bilateral"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "RNM de silla turca"
+      "respuesta_correcta": "A",
+      "explanation": "RNM de silla turca"
     },
     {
       "id": 124,
-      "pregunta": "Paciente pediátrico que es operado de cirugía cerebral, posteriormente comienza con cuadro de hipernatremia y poliuria, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Diabetes insípida"
+      "pregunta": "Niño operado de cirugía cerebral, luego presenta hipernatremia y poliuria. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Síndrome de secreción inadecuada de ADH (SIADH)",
+        "Diabetes mellitus tipo 1",
+        "Hiperaldosteronismo secundario",
+        "Diabetes insípida central",
+        "Polidipsia psicogénica"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Diabetes insípida central"
     },
     {
       "id": 125,
-      "pregunta": "Paciente usuaria de lamotrigina, ácido valproico y litio, presenta diuresis de 12.600 ml al día y deshidratación progresiva, en exámenes destaca hipernatremia, la causa más probable del cuadro es",
+      "pregunta": "Paciente usuaria de lamotrigina, ácido valproico y litio, presenta diuresis de 12.600 mL/día, deshidratación e hipernatremia. ¿Cuál es la causa más probable?",
       "opciones": [
-        "Resonancia magnética",
-        "Cintigrafía",
-        "Ecografía",
-        "Carbonato de litio",
-        "Radiografía"
+        "Ácido valproico",
+        "Carbonato de litio (diabetes insípida nefrogénica)",
+        "Lamotrigina",
+        "Polidipsia psicogénica inducida por antipsicóticos",
+        "Hiperglicemia osmótica"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Carbonato de litio"
+      "respuesta_correcta": "B",
+      "explanation": "Carbonato de litio (diabetes insípida nefrogénica)"
     },
     {
       "id": 126,
-      "pregunta": "Paciente usuaria de litio, presenta sopor profundo, se constata litemia de 2.6, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Hemodiálisis de urgencia"
+      "pregunta": "Paciente usuaria de litio en sopor profundo, litemia de 2,6 mEq/L. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Lavado gástrico y carbón activado",
+        "Solución salina 0,9% endovenosa",
+        "Suspender litio y observar",
+        "Diuresis forzada con furosemida",
+        "Hemodiálisis de urgencia"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Hemodiálisis de urgencia"
     },
     {
       "id": 127,
-      "pregunta": "Adulta mayor con antecedente de Enfermedad de Parkinson hace 8 años, hospitalizada por infección urinaria, presenta desorientación e ideas deliriosas, además de tratar la infección urinaria el tratamiento más adecuado es",
+      "pregunta": "Adulta mayor con Parkinson hospitalizada por ITU, presenta desorientación e ideas deliriosas. ¿Cuál es el tratamiento más adecuado (además de tratar la ITU)?",
       "opciones": [
-        "Risperidona",
-        "Resonancia magnética",
-        "Cintigrafía",
-        "Ecografía",
-        "Radiografía"
+        "Haloperidol IM",
+        "Lorazepam oral",
+        "Risperidona a bajas dosis",
+        "Quetiapina oral",
+        "Contención física y ambiental"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Risperidona"
+      "respuesta_correcta": "C",
+      "explanation": "Risperidona a bajas dosis"
     },
     {
       "id": 128,
-      "pregunta": "Adulto mayor con Alzheimer, durante la noche presenta cuadros de agitación e insomnio, durante el día se mantiene tranquilo, la conducta más adecuada es",
+      "pregunta": "Adulto mayor con Alzheimer con agitación nocturna e insomnio, tranquilo durante el día. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
-        "Resonancia magnética",
         "Risperidona 8-10 gotas en la noche",
-        "Cintigrafía"
+        "Zolpidem 10 mg al acostarse",
+        "Haloperidol 5 mg IM nocturno",
+        "Clonazepam 0,5 mg oral en la noche",
+        "Melatonina 3 mg al acostarse"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Risperidona 8-10 gotas en la noche"
+      "respuesta_correcta": "A",
+      "explanation": "Risperidona 8-10 gotas en la noche"
     },
     {
       "id": 129,
-      "pregunta": "Paciente que hace 1 año presenta cuadro progresivo de alucinaciones visuales, pérdida de memoria progresiva, rigidez, hipocinesia y alteración de la marcha, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Demencia por cuerpos de Lewy"
+      "pregunta": "Paciente con 1 año de alucinaciones visuales, pérdida de memoria progresiva, rigidez, hipocinesia y alteración de la marcha. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Enfermedad de Parkinson con demencia",
+        "Enfermedad de Alzheimer",
+        "Demencia frontotemporal",
+        "Demencia por cuerpos de Lewy",
+        "Parálisis supranuclear progresiva"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Demencia por cuerpos de Lewy"
     },
     {
       "id": 130,
-      "pregunta": "Paciente que es ingreso a urgencias luego de realizar disturbios en la calle, a la entrevista está poco cooperador, agrede verbalmente al personal y se encuentra con movimientos inquietos de manos y pies, la conducta inicial más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "¿Contención verbal vs Haloperidol 5 mg IM?"
+      "pregunta": "Paciente ingresado con agitación, agresión verbal y movimientos inquietos de manos y pies. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Haloperidol 5 mg IM inmediato",
+        "Contención verbal y ambiental",
+        "Lorazepam 2 mg IM",
+        "Contención física",
+        "Olanzapina 10 mg IM"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Contención verbal y ambiental"
     },
     {
       "id": 131,
-      "pregunta": "Paciente ingresa a urgencias por compromiso de conciencia, con hálito alcohólico, TAC de cerebro descarta lesiones agudas, a las 48 horas despierta con agitación psicomotora y desorientación, el tratamiento más adecuado es",
+      "pregunta": "Paciente con hálito alcohólico en urgencias; TAC descarta lesiones. A las 48 horas, agitación y desorientación. ¿Cuál es el tratamiento más adecuado?",
       "opciones": [
-        "Cintigrafía",
-        "Radiografía",
-        "Ecografía",
-        "Lorazepam EV",
-        "Resonancia magnética"
+        "Haloperidol 5 mg IM",
+        "Tiamina 100 mg EV",
+        "Suero glucosado 10% endovenoso",
+        "Metadona oral",
+        "Lorazepam endovenoso (manejo de síndrome de abstinencia alcohólica)"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Lorazepam EV"
+      "respuesta_correcta": "E",
+      "explanation": "Lorazepam endovenoso (manejo de síndrome de abstinencia alcohólica)"
     },
     {
       "id": 132,
-      "pregunta": "Paciente que luego de presenciar un asalto con arma de fuego donde una persona resultó herida hace 2 semanas, presenta cuadro de angustia, irritabilidad, insomnio y estado hiperalerta, el diagnóstico más probable es",
+      "pregunta": "Paciente que presenció un asalto hace 2 semanas, ahora con angustia, irritabilidad, insomnio y estado de hiperalerta. ¿Diagnóstico más probable?",
       "opciones": [
-        "Trastorno de ansiedad generalizada",
-        "Depresión mayor",
-        "Trastorno de pánico",
+        "Trastorno por estrés postraumático (TEPT)",
+        "Trastorno adaptativo con ansiedad",
         "Trastorno por estrés agudo",
-        "Trastorno de adaptación"
+        "Trastorno de pánico",
+        "Trastorno depresivo mayor"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Trastorno por estrés agudo"
+      "respuesta_correcta": "C",
+      "explanation": "Trastorno por estrés agudo"
     },
     {
       "id": 133,
-      "pregunta": "Paciente con cuadro compatible con trastorno de pánico, el tratamiento más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Sertralina 50 mg al día"
+      "pregunta": "Paciente con trastorno de pánico. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Sertralina 50 mg/día",
+        "Alprazolam 0,5 mg cada 8 horas",
+        "Litio 300 mg cada 12 horas",
+        "Haloperidol 5 mg/día",
+        "Valproato 500 mg/día"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Sertralina 50 mg/día"
     },
     {
       "id": 134,
-      "pregunta": "Paciente que refiere que presentó un episodio de “sensación de que los músculos no le responden” y “convulsiones, con cuadros de palpitaciones y sensación de que se iba a morir”. Presenta angustia importante porque el siempre ha sido un hombre trabajador. El diagnóstico más probable es",
+      "pregunta": "Paciente que refiere episodios de 'músculos que no responden', palpitaciones y sensación de muerte inminente. Hombre trabajador angustiado. ¿Diagnóstico más probable?",
       "opciones": [
-        "Resonancia magnética",
-        "Radiografía",
-        "Cintigrafía",
-        "Ecografía",
-        "Trastorno de pánico"
+        "Trastorno de ansiedad generalizada",
+        "Arritmia cardíaca paroxística",
+        "Epilepsia parcial compleja",
+        "Trastorno de pánico",
+        "Trastorno de somatización"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Trastorno de pánico"
+      "respuesta_correcta": "D",
+      "explanation": "Trastorno de pánico"
     },
     {
       "id": 135,
-      "pregunta": "Paciente que tiene trabajo y buena relación con amigos y familiares, presenta ideas de que sus vecinos la quieren perjudicar, incluso cuando ella no está en casa estos entran y duermen en su cama, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno delirante"
+      "pregunta": "Paciente con trabajo y buenas relaciones, pero cree que sus vecinos entran a su casa mientras ella no está. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Esquizofrenia paranoide",
+        "Trastorno delirante",
+        "Trastorno esquizoafectivo",
+        "Trastorno de personalidad paranoide",
+        "Trastorno bipolar con síntomas psicóticos"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Trastorno delirante"
     },
     {
       "id": 136,
-      "pregunta": "Paciente que presenta cuadro de hipoacusia y tinnitus, examen otoneurológico normal, el examen a solicitar es",
+      "pregunta": "Paciente con hipoacusia y tinnitus, examen otoneurológico normal. ¿Cuál es el examen a solicitar?",
       "opciones": [
-        "Infección urinaria",
-        "Diabetes gestacional",
-        "Hallazgo patológico",
-        "Preeclampsia",
+        "Potenciales evocados auditivos del tronco cerebral",
+        "Impedanciometría",
+        "RNM de ángulo pontocerebeloso",
+        "TAC de peñascos",
         "Audiometría"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Audiometría"
+      "respuesta_correcta": "E",
+      "explanation": "Audiometría"
     },
     {
       "id": 137,
-      "pregunta": "Paciente que presenta cuadro de vértigo con los movimientos de la cabeza y presenta maniobra de Dix Hallpike positiva para canal semicircular posterior izquierdo, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Maniobras de reposición"
+      "pregunta": "Paciente con vértigo posicional y maniobra de Dix-Hallpike positiva para canal posterior izquierdo. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Betahistina oral por 4 semanas",
+        "Dimenhidrinato oral por 7 días",
+        "Maniobras de reposición canalicular (Epley)",
+        "Derivar a neurología urgente",
+        "Prednisona oral 1 mg/kg/día"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Maniobras de reposición canalicular (Epley)"
     },
     {
       "id": 138,
-      "pregunta": "Paciente usuaria de cotonito, presenta perforación timpánica, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Control en un mes"
+      "pregunta": "Paciente usuaria de cotonito con perforación timpánica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Control en un mes (resolución espontánea)",
+        "Tapón de algodón y antibiótico tópico ótico",
+        "Miringoplastia inmediata",
+        "TAC de hueso temporal",
+        "Derivar a ORL urgente"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Control en un mes (resolución espontánea)"
     },
     {
       "id": 139,
-      "pregunta": "Paciente con cuadro de dolor torácico retroesternal, antecedente de RGE que cede con omeprazol, en buenas condiciones generales. ECG se muestra en la imagen. El diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Pericarditis aguda"
+      "pregunta": "Paciente con dolor torácico retroesternal, antecedente de RGE, en buenas condiciones. ECG con elevación difusa del ST en silla de montar. ¿Diagnóstico más probable?",
+      "opciones": [
+        "SCA con elevación del ST (SCACEST)",
+        "Angina inestable",
+        "Miocarditis aguda viral",
+        "Pericarditis aguda",
+        "Espasmo coronario (angina de Prinzmetal)"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Pericarditis aguda"
     },
     {
       "id": 140,
-      "pregunta": "Paciente que presenta cuadros repetidos de palpitaciones, se realizan maniobras vagales y se obtiene el siguiente ECG. El diagnóstico más probable es",
+      "pregunta": "Paciente con palpitaciones paroxísticas; luego de maniobras vagales el ECG muestra intervalo PR corto y onda delta. ¿Diagnóstico más probable?",
       "opciones": [
-        "Resonancia magnética",
-        "Radiografía",
-        "Ecografía",
+        "Taquicardia ventricular paroxística",
         "Síndrome de Wolff-Parkinson-White",
-        "Cintigrafía"
+        "Flutter auricular con conducción variable",
+        "Taquicardia supraventricular por reentrada nodal",
+        "Síndrome de Brugada"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Síndrome de Wolff-Parkinson-White"
+      "respuesta_correcta": "B",
+      "explanation": "Síndrome de Wolff-Parkinson-White"
     },
     {
       "id": 141,
-      "pregunta": "Paciente con cuadro de palpitaciones regulares, se obtiene el siguiente ECG, el tratamiento más adecuado es",
+      "pregunta": "Paciente con palpitaciones regulares y taquicardia supraventricular en el ECG. ¿Cuál es el tratamiento más adecuado?",
       "opciones": [
-        "Radiografía",
-        "Adenosina 6 mg IV",
-        "Ecografía",
-        "Resonancia magnética",
-        "Cintigrafía"
+        "Verapamilo 5 mg EV lento",
+        "Amiodarona 300 mg EV",
+        "Cardioversión eléctrica sincronizada",
+        "Metoprolol 5 mg EV",
+        "Adenosina 6 mg IV en bolo rápido"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Adenosina 6 mg IV"
+      "respuesta_correcta": "E",
+      "explanation": "Adenosina 6 mg IV en bolo rápido"
     },
     {
       "id": 142,
-      "pregunta": "Paciente con antecedente de resección transuretral hace 10 años, hace unas horas comienza con dificultad para la micción y no ha orinado hace 8 horas, se intenta pasar sonda Foley que solo llega a la uretra bulbar y luego presenta dolor y uretrorragia, no presenta globo vesical al examen físico. El examen de elección es",
+      "pregunta": "Paciente con RTU hace 10 años, sin micción hace 8 horas, sonda que no avanza más allá de uretra bulbar con uretrorragia, sin globo vesical. ¿Cuál es el examen de elección?",
       "opciones": [
-        "Cintigrafía",
-        "¿Ecografía pelviana vs UroTAC?",
-        "Radiografía",
-        "Resonancia magnética",
-        "TAC"
+        "Ecografía pelviana",
+        "UroTAC sin contraste",
+        "Uretrografía retrógrada",
+        "Cistouretrografía miccional",
+        "Cistoscopía flexible"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "¿Ecografía pelviana vs UroTAC?"
+      "respuesta_correcta": "C",
+      "explanation": "Uretrografía retrógrada"
     },
     {
       "id": 143,
-      "pregunta": "Paciente que presenta cuadro de mirada hacia la derecha súbita, luego alteraciones de la hemicara ipsilateral, luego presenta movimientos de sacudidas de las cuatro extremidades, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Crisis focal secundariamente generalizada"
+      "pregunta": "Paciente con mirada forzada hacia la derecha, luego espasmo hemifacial, luego movimientos de sacudidas en las 4 extremidades. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Crisis focal con generalización secundaria",
+        "Crisis tónico-clónica generalizada primaria",
+        "Estatus epiléptico no convulsivo",
+        "Accidente isquémico transitorio (AIT)",
+        "Crisis mioclónica juvenil"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Crisis focal con generalización secundaria"
     },
     {
       "id": 144,
-      "pregunta": "Paciente que luego de hacer ejercicio empieza con dolor cervical súbito derecho con irradiación a hemicráneo ipsilateral, asociado a ptosis y miosis, el diagnóstico más probable es",
+      "pregunta": "Paciente con dolor cervical súbito derecho con irradiación a hemicráneo ipsilateral tras ejercicio, más ptosis y miosis. ¿Diagnóstico más probable?",
       "opciones": [
-        "Disección de arteria carotídea derecha",
-        "Insulina",
-        "Metformina",
-        "Dieta estricta",
-        "Orlistat"
+        "Neuralgia del trigémino (rama V1)",
+        "Migraña con aura",
+        "Cefalea en racimos (cluster)",
+        "Disección de arteria carótida interna derecha",
+        "Síndrome de Horner idiopático"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Disección de arteria carotídea derecha"
+      "respuesta_correcta": "D",
+      "explanation": "Disección de arteria carótida interna derecha"
     },
     {
       "id": 145,
-      "pregunta": "Paciente con antecedente de EPOC, presenta cuadro de aumento de disnea, expectoración mucopurulenta, se inician medidas con O2 30%, broncodilatadores, antibióticos y corticoides endovenosos. Gases de control presentan pH < 7.30 y pCO2 < 49 mmHg, la conducta más adecuada es",
+      "pregunta": "Paciente con EPOC exacerbado con pH <7,30 y pCO2 >49 mmHg tras O2, broncodilatadores, antibióticos y corticoides. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Concentrado de plaquetas",
-        "Inmunosupresores",
-        "Conectar a ventilación mecánica no invasiva",
-        "Antibióticos",
-        "Plasma fresco"
+        "Intubación orotraqueal e inicio de VMI",
+        "Ventilación mecánica no invasiva (VNI/BIPAP)",
+        "Aumentar FiO2 a 60%",
+        "Heliox y magnesio endovenoso",
+        "Traslado a UCI sin cambiar manejo"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Conectar a ventilación mecánica no invasiva"
+      "respuesta_correcta": "B",
+      "explanation": "Ventilación mecánica no invasiva (VNI/BIPAP)"
     },
     {
       "id": 146,
-      "pregunta": "Diabético, fumador, presenta cuadro de dolor en pantorrillas al caminar 120 metros por lo cual debe detenerse. Al examen físico presenta ausencia de reflejos patelares, hipoestesia táctil y dolorosa en ambos pies, y pulsos pedios débiles. El examen de elección para el diagnóstico es",
-      "opciones": [],
-      "respuesta_texto": "¿Electromiografía de pierna?"
+      "pregunta": "Diabético fumador con dolor en pantorrillas al caminar 120 metros, ausencia de reflejos patelares, hipoestesia y pulsos pedios débiles. ¿Cuál es el examen de elección?",
+      "opciones": [
+        "Electromiografía y velocidad de conducción nerviosa",
+        "AngioTAC de extremidades inferiores",
+        "Arteriografía de extremidades inferiores",
+        "Doppler venoso de extremidades inferiores",
+        "Índice tobillo-brazo (ITB)"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Índice tobillo-brazo (ITB)"
     },
     {
       "id": 147,
-      "pregunta": "Paciente adulto con disnea de esfuerzos progresiva, diferencia PAS y PAD amplia, pulsos amplios y soplo diastólico aspirativo, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Insuficiencia aórtica"
+      "pregunta": "Adulto con disnea de esfuerzos progresiva, diferencia PA sistólica-diastólica amplia, pulsos amplios y soplo diastólico aspirativo. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Estenosis aórtica severa",
+        "Estenosis mitral con hipertensión pulmonar",
+        "Insuficiencia aórtica",
+        "Insuficiencia mitral crónica",
+        "Comunicación interventricular del adulto"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Insuficiencia aórtica"
     },
     {
       "id": 148,
-      "pregunta": "Paciente adulto que presenta cuadro de disnea de esfuerzos progresiva, crepitaciones pulmonares, soplos sistólico con desdoblamiento fijo del segundo ruido, el diagnóstico más probable es",
+      "pregunta": "Adulto con disnea de esfuerzos, crepitaciones pulmonares, soplo sistólico con desdoblamiento fijo del segundo ruido. ¿Diagnóstico más probable?",
       "opciones": [
         "Comunicación interauricular",
-        "Ductus arterioso persistente",
-        "Tetralogía de Fallot",
-        "Comunicación interventricular",
-        "Estenosis pulmonar"
+        "Estenosis pulmonar moderada",
+        "Comunicación interventricular pequeña",
+        "Insuficiencia tricuspídea",
+        "Bloqueo de rama derecha sin cardiopatía"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "Comunicación interauricular"
+      "respuesta_correcta": "A",
+      "explanation": "Comunicación interauricular"
     },
     {
       "id": 149,
-      "pregunta": "Paciente adulta que presenta cuadro de dolor en zona escapular izquierda, se aprecia la siguiente lesión, el agente causal más probable es",
-      "opciones": [],
-      "respuesta_texto": "Loxosceles Laeta"
+      "pregunta": "Paciente con dolor en zona escapular izquierda y lesión ulcerada con halo violáceo. ¿Cuál es el agente causal más probable?",
+      "opciones": [
+        "Latrodectus mactans (araña del trigo)",
+        "Paederus irritans (bicho candela)",
+        "Miasis cutánea",
+        "Loxosceles laeta (araña de rincón)",
+        "Picadura de abeja con reacción local"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Loxosceles laeta (araña de rincón)"
     },
     {
       "id": 150,
-      "pregunta": "Paciente que presenta cuadro de polidipsia, poliuria, baja de peso y glicemia > 300 mg/dl, el tratamiento inicial más adecuado es",
+      "pregunta": "Paciente con polidipsia, poliuria, baja de peso y glicemia >300 mg/dL. ¿Cuál es el tratamiento inicial más adecuado?",
       "opciones": [
-        "Glibenclamida",
-        "Pioglitazona",
+        "Metformina 850 mg cada 12 horas",
         "Iniciar insulina",
-        "Metformina",
-        "Sitagliptina"
+        "Empagliflozina 10 mg/día",
+        "Liraglutida 0,6 mg subcutáneo",
+        "Sitagliptina 100 mg/día"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Iniciar insulina"
+      "respuesta_correcta": "B",
+      "explanation": "Iniciar insulina"
     },
     {
       "id": 151,
-      "pregunta": "Paciente diabético en tratamiento con metformina, presenta Hb1Ac > 9%, el tratamiento más adecuado es",
+      "pregunta": "Diabético en tratamiento con metformina, Hb1Ac >9%. ¿Cuál es el tratamiento más adecuado?",
       "opciones": [
-        "Glibenclamida",
-        "Metformina",
-        "Insulina NPH",
-        "Sitagliptina",
-        "Pioglitazona"
+        "Agregar glibenclamida 5 mg/día",
+        "Agregar sitagliptina 100 mg/día",
+        "Agregar liraglutida 1,2 mg SC",
+        "Aumentar metformina al máximo",
+        "Insulina NPH"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Insulina NPH"
+      "respuesta_correcta": "E",
+      "explanation": "Insulina NPH"
     },
     {
       "id": 152,
-      "pregunta": "Paciente diabético en tratamiento con hipoglicemiantes orales, Hb1Ac en buen rango, LDL 135 mg/dl, TG 330 mg/dl, el tratamiento inicial más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Atorvastatina"
+      "pregunta": "Diabético con HbA1c en buen rango, LDL 135 mg/dL y TG 330 mg/dL. ¿Cuál es el tratamiento inicial más adecuado?",
+      "opciones": [
+        "Fenofibrato",
+        "Gemfibrozilo",
+        "Atorvastatina",
+        "Omega-3 en dosis farmacológica",
+        "Ezetimibe"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Atorvastatina"
     },
     {
       "id": 153,
-      "pregunta": "Paciente que presenta cuadro de falta de energía, piel seca, bradicardia, hipotensión, compromiso de conciencia, exámenes destaca TSH 100 y T4 libre muy baja, el diagnóstico es",
+      "pregunta": "Paciente con piel seca, bradicardia, hipotensión, compromiso de conciencia, TSH 100 y T4 libre muy baja. ¿Diagnóstico?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
         "Coma mixedematoso",
-        "Resonancia magnética",
-        "Cintigrafía"
+        "Hipotiroidismo subclínico severo",
+        "Insuficiencia suprarrenal aguda",
+        "Encefalopatía hipoglucémica",
+        "Hipotiroidismo primario descompensado"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Coma mixedematoso"
+      "respuesta_correcta": "A",
+      "explanation": "Coma mixedematoso"
     },
     {
       "id": 154,
-      "pregunta": "Paciente con antecedente de AVE isquémico, durante ecografía doppler carotídea se visualiza nódulo tiroideo de 10 mm, quístico, bordes regulares sin vascularización, la conducta más adecuada es",
+      "pregunta": "Paciente con antecedente de AVE isquémico; en ecografía Doppler carotídeo se ve nódulo tiroideo de 10 mm, quístico, bordes regulares, sin vascularización. ¿Cuál es la conducta?",
       "opciones": [
-        "Cintigrafía",
-        "Resonancia magnética",
-        "TAC",
-        "Controlar en un año",
-        "Radiografía"
+        "PAAF del nódulo",
+        "Cintigrafía tiroidea",
+        "Derivar a cirugía de cuello",
+        "Controlar con ecografía en un año",
+        "TSH y T4 libre"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Controlar en un año"
+      "respuesta_correcta": "D",
+      "explanation": "Controlar con ecografía en un año"
     },
     {
       "id": 155,
-      "pregunta": "Paciente joven que presenta nódulo de 5 cm móvil, blando, sensible en mama derecha, se realiza ecografía que visualiza nódulo sólido descrito, BIRADS-US 2, la conducta más adecuada es",
+      "pregunta": "Mujer joven con nódulo mamario de 5 cm, móvil, blando, sensible. Ecografía BIRADS-US 2. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "Resonancia magnética",
-        "TAC",
-        "Ecotomografía en 6 meses",
-        "Radiografía",
-        "Cintigrafía"
+        "Biopsia core guiada por ecografía",
+        "Ecotomografía de control en 6 meses",
+        "Mamografía bilateral",
+        "Resonancia magnética mamaria",
+        "Exéresis quirúrgica"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Ecotomografía en 6 meses"
+      "respuesta_correcta": "B",
+      "explanation": "Ecotomografía de control en 6 meses"
     },
     {
       "id": 156,
-      "pregunta": "Paciente que presenta en mamografía microcalcificaciones agrupadas, que no se palpan al examen físico y no se visualizan en la ecografía, BIRADS-4, la conducta más adecuada es",
+      "pregunta": "Mujer con microcalcificaciones agrupadas en mamografía (no palpables, no visibles en ECO), BIRADS-4. ¿Cuál es la conducta más adecuada?",
       "opciones": [
-        "TAC",
-        "Resonancia magnética",
-        "Biopsia estereotáxica",
-        "Radiografía",
-        "Cintigrafía"
+        "Seguimiento mamográfico en 6 meses",
+        "Ecografía mamaria dirigida",
+        "RNM mamaria bilateral",
+        "Cuadrantectomía diagnóstica",
+        "Biopsia estereotáxica"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Biopsia estereotáxica"
+      "respuesta_correcta": "E",
+      "explanation": "Biopsia estereotáxica"
     },
     {
       "id": 157,
-      "pregunta": "Paciente con dolor torácico súbito EVA 10/10 retroesternal con irradiación a dorso, pulso radial izquierdo débil con llene capilar enlentecido, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Disección aórtica"
+      "pregunta": "Paciente con dolor torácico EVA 10/10 retroesternal con irradiación a dorso, pulso radial izquierdo débil y llene capilar enlentecido. ¿Diagnóstico más probable?",
+      "opciones": [
+        "SCA con elevación del ST",
+        "Tromboembolismo pulmonar masivo",
+        "Disección aórtica",
+        "Rotura esofágica (Boerhaave)",
+        "Neumotórax a tensión"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Disección aórtica"
     },
     {
       "id": 158,
-      "pregunta": "Paciente con fractura de muñeca, se pone yeso braquiopalmar, a las 5 horas presenta dolor intenso en la zona de fractura asociado a hipoestesia y llene capilar enlentecido, el diagnóstico más probable es",
+      "pregunta": "Paciente con fractura de muñeca enyesada; 5 horas después presenta dolor intenso, hipoestesia y llene capilar enlentecido. ¿Diagnóstico más probable?",
       "opciones": [
-        "Fractura no diagnosticada",
-        "Trombosis venosa profunda",
-        "Celulitis",
-        "Neuropatía compresiva",
-        "Síndrome compartimental"
+        "Síndrome compartimental agudo",
+        "Trombosis venosa profunda del miembro superior",
+        "Lesión arterial por el yeso",
+        "Compresión del nervio radial",
+        "Reacción alérgica al yeso"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Síndrome compartimental"
+      "respuesta_correcta": "A",
+      "explanation": "Síndrome compartimental agudo"
     },
     {
       "id": 159,
-      "pregunta": "Paciente con obesidad presenta dolor en la cara externa de la cadera y claudicación, al examen físico presenta dolor en la cara externa de la cadera y limitación a la rotación interna, el diagnóstico más probable es",
+      "pregunta": "Paciente obeso con dolor en la cara externa de la cadera, claudicación y dolor a la palpación lateral con limitación a la rotación interna. ¿Diagnóstico más probable?",
       "opciones": [
-        "Resonancia magnética",
-        "Ecografía",
-        "Radiografía",
+        "Coxartrosis (artrosis de cadera)",
+        "Síndrome de la banda iliotibial",
+        "Tendinopatía del glúteo medio",
         "Bursitis trocantérica",
-        "Cintigrafía"
+        "Fractura de estrés del cuello femoral"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "Bursitis trocantérica"
+      "respuesta_correcta": "D",
+      "explanation": "Bursitis trocantérica"
     },
     {
       "id": 160,
-      "pregunta": "Paciente que luego de un traumatismo en la rodilla persiste con síntomas, en la radiografía se visualiza reacción perióstica, aumento de densidad ósea en relación a tibia proximal, el diagnóstico más probable es",
+      "pregunta": "Paciente con traumatismo de rodilla persistente; radiografía muestra reacción perióstica y aumento de densidad en tibia proximal. ¿Diagnóstico más probable?",
       "opciones": [
-        "Fractura patológica",
-        "Sarcoma de Ewing",
-        "Condrosarcoma",
-        "Osteomielitis",
-        "Osteosarcoma"
+        "Fractura de estrés tibial",
+        "Osteosarcoma",
+        "Osteomielitis crónica",
+        "Encondroma",
+        "Quiste óseo simple"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Osteosarcoma"
+      "respuesta_correcta": "B",
+      "explanation": "Osteosarcoma"
     },
     {
       "id": 161,
-      "pregunta": "Paciente que luego de un traumatismo de la rodilla persiste con sintomatología, se realiza radiografía que visualiza reacción perióstica, lisis de la cortical en forma de triángulo y aumento de densidad ósea en partes blandas, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Tumor óseo maligno"
+      "pregunta": "Paciente con traumatismo de rodilla; radiografía muestra reacción perióstica, lisis cortical triangular y aumento de densidad en partes blandas. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Metástasis ósea",
+        "Linfoma óseo primario",
+        "Condrosarcoma",
+        "Osteomielitis aguda",
+        "Tumor óseo maligno primario"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Tumor óseo maligno primario"
     },
     {
       "id": 162,
-      "pregunta": "Paciente que presenta aumento de volumen en muslo derecho, se realiza ecografía que visualiza lesión sólida en relación al recto anterior, la conducta más adecuada es solicitar",
+      "pregunta": "Paciente con aumento de volumen en muslo derecho; ecografía visualiza lesión sólida en relación al recto anterior. ¿Cuál es el examen a solicitar?",
       "opciones": [
-        "Cintigrafía",
-        "Ecografía",
+        "Biopsia incisional inmediata",
+        "TAC de muslo con contraste",
         "RNM de muslo",
-        "Radiografía",
-        "TAC"
+        "PET-CT corporal total",
+        "Arteriografía de extremidad inferior"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "RNM de muslo"
+      "respuesta_correcta": "C",
+      "explanation": "RNM de muslo"
     },
     {
       "id": 163,
-      "pregunta": "Paciente con dolor retroesternal que se irradia a dorso y luego cede 7/10, al momento de la consulta con tendencia a la hipertensión, sudoroso, pulsos distales débiles, el examen de elección es",
+      "pregunta": "Paciente con dolor retroesternal irradiado a dorso que cedió, presión elevada, sudoración y pulsos distales débiles. ¿Cuál es el examen de elección?",
       "opciones": [
-        "Radiografía simple",
-        "Ecografía Doppler",
-        "Resonancia magnética",
-        "Angiografía convencional",
-        "AngioTAC de tórax y abdomen"
+        "AngioTAC de tórax y abdomen",
+        "Ecocardiografía transtorácica urgente",
+        "Coronariografía urgente",
+        "Radiografía de tórax anteroposterior",
+        "Resonancia magnética cardíaca"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "AngioTAC de tórax y abdomen"
+      "respuesta_correcta": "A",
+      "explanation": "AngioTAC de tórax y abdomen"
     },
     {
       "id": 164,
-      "pregunta": "Paciente que presenta cuadro de epistaxis, equimosis y gingivorragias frecuentes, su madre tiene antecedente de epistaxis y menstruaciones abundantes, tiene un TTPA levemente prolongado, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Enfermedad de Von Willebrand"
+      "pregunta": "Paciente con epistaxis, equimosis, gingivorragias frecuentes, antecedente familiar de epistaxis y menorragias, TTPA levemente prolongado. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Trombocitopenia inmune primaria (PTI)",
+        "Hemofilia A",
+        "Déficit de factor XI",
+        "Enfermedad de Von Willebrand",
+        "Coagulación intravascular diseminada (CID)"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Enfermedad de Von Willebrand"
     },
     {
       "id": 165,
-      "pregunta": "Paciente que comienza hace poco con irritabilidad y discusiones frecuentes con familiares, presenta conductas sexuales de riesgo y disminución de la necesidad de dormir, más habladora de lo habitual, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno bipolar"
+      "pregunta": "Paciente con irritabilidad, conductas sexuales de riesgo, disminución de necesidad de dormir, más habladora de lo habitual. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Trastorno de personalidad histriónica",
+        "Trastorno bipolar (episodio maníaco)",
+        "Trastorno por déficit atencional",
+        "Hipomanía inducida por sustancias",
+        "Trastorno ciclotímico"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Trastorno bipolar (episodio maníaco)"
     },
     {
       "id": 166,
-      "pregunta": "¿Cuál de los siguientes corresponde a un centro de atención secundario?",
-      "opciones": [],
-      "respuesta_texto": "COSAM (Otras alternativas: CECOSF, CESFAM, Posta de salud rural, Hospital comunitario)"
+      "pregunta": "¿Cuál de los siguientes corresponde a un centro de atención secundaria?",
+      "opciones": [
+        "CESFAM",
+        "CECOSF",
+        "Posta de salud rural",
+        "Hospital comunitario de familia",
+        "COSAM"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "COSAM"
     },
     {
       "id": 167,
-      "pregunta": "Paciente que presenta cuadro de angustia, insomnio de conciliación luego de enterarse que debe cambiarse de ciudad por su trabajo, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno adaptativo"
+      "pregunta": "Paciente con angustia e insomnio de conciliación luego de enterarse que debe cambiarse de ciudad por trabajo. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Trastorno de ansiedad generalizada",
+        "Trastorno depresivo mayor",
+        "Trastorno adaptativo",
+        "Trastorno por estrés agudo",
+        "Trastorno de pánico"
+      ],
+      "respuesta_correcta": "C",
+      "explanation": "Trastorno adaptativo"
     },
     {
       "id": 168,
-      "pregunta": "Paciente con cáncer de mama que es sometida a quimioterapia hace 9 días, hace 3 días comienza con cuadro febril, que examen inicial debe solicitar para iniciar el estudio",
-      "opciones": [],
-      "respuesta_texto": "Hemograma"
+      "pregunta": "Paciente con cáncer de mama en quimioterapia hace 9 días, hace 3 días comienza con fiebre. ¿Cuál es el examen inicial para iniciar estudio?",
+      "opciones": [
+        "Hemograma",
+        "Hemocultivos periféricos x2",
+        "TAC de tórax-abdomen-pelvis",
+        "PCR y procalcitonina",
+        "Uroanálisis y urocultivo"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Hemograma"
     },
     {
       "id": 169,
-      "pregunta": "Paciente hospitalizada que se inicia tratamiento con hidrocortisona endovenosa, presenta glicemias elevadas de manera persistente, el examen que permite realizar el diagnóstico es",
+      "pregunta": "Paciente hospitalizada con hidrocortisona endovenosa y glicemias elevadas persistentes. ¿Cuál es el examen para el diagnóstico?",
       "opciones": [
-        "Metilprednisolona",
-        "Dexametasona",
-        "Fludrocortisona",
-        "Prednisona",
-        "Hemoglobina glicosilada"
+        "Glicemia en ayunas",
+        "Test de tolerancia oral a la glucosa",
+        "Insulinemia basal",
+        "Hemoglobina glicosilada (HbA1c)",
+        "Péptido C"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Hemoglobina glicosilada"
+      "respuesta_correcta": "D",
+      "explanation": "Hemoglobina glicosilada (HbA1c)"
     },
     {
       "id": 170,
-      "pregunta": "Paciente que hace poco comenzó a trotar presenta dolor en el pie y formación de callosidades, al examen físico se visualiza un pronunciamiento del arco plantar e hiperqueratosis en zona anterior, la alteración descrita corresponde a un pie",
-      "opciones": [],
-      "respuesta_texto": "Cavo"
+      "pregunta": "Paciente que comenzó a trotar, presenta dolor en el pie y callosidades; arco plantar pronunciado e hiperqueratosis anterior. ¿A qué corresponde esta alteración?",
+      "opciones": [
+        "Pie plano",
+        "Pie cavo",
+        "Pie equino",
+        "Pie varo",
+        "Hallux valgus"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Pie cavo"
     },
     {
       "id": 171,
-      "pregunta": "Paciente con cuadro de dolores óseos, anemia normocítica normocrómica, VHS sobre 90 y elevación de la creatinina, el estudio para confirmar el diagnóstico es",
-      "opciones": [],
-      "respuesta_texto": "Estudio citogenético de médula ósea"
+      "pregunta": "Paciente con dolores óseos, anemia normocítica, VHS >90 y creatinina elevada. ¿Cuál es el estudio para confirmar el diagnóstico?",
+      "opciones": [
+        "Proteína de Bence-Jones en orina",
+        "Electroforesis de proteínas séricas",
+        "TAC de cuerpo completo dosis baja",
+        "Biopsia ósea de lesión lítica",
+        "Aspirado y biopsia de médula ósea con estudio citogenético"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Aspirado y biopsia de médula ósea con estudio citogenético"
     },
     {
       "id": 172,
-      "pregunta": "Adulto mayor hospitalizado por cuadro infeccioso, comienza con cuadro de desorientación temporoespacial, inatención e ideas deliriosas, el diagnóstico más probable es",
+      "pregunta": "Adulto mayor hospitalizado por infección, comienza con desorientación temporoespacial, inatención e ideas deliriosas. ¿Diagnóstico más probable?",
       "opciones": [
-        "Cintigrafía",
+        "Demencia de inicio agudo",
+        "Trastorno psicótico breve",
         "Delirium",
-        "Ecografía",
-        "Radiografía",
-        "Resonancia magnética"
+        "Encefalopatía hepática",
+        "Trastorno disociativo agudo"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Delirium"
+      "respuesta_correcta": "C",
+      "explanation": "Delirium"
     },
     {
       "id": 173,
-      "pregunta": "Paciente con antecedente de apendicectomía, que comienza con cuadro de dolor abdominal tipo cólico, asociado a distensión abdominal progresiva, sin eliminación de gases ni heces por ano, al examen físico se aprecia abdomen distendido, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Obstrucción intestinal"
+      "pregunta": "Paciente con apendicectomía previa, ahora con dolor abdominal cólico, distensión progresiva y sin eliminación de gases ni heces. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Obstrucción intestinal por bridas",
+        "Vólvulo de colon sigmoide",
+        "Ileo paralítico postoperatorio",
+        "Hernia inguinal incarcerada",
+        "Cáncer de colon obstructivo"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Obstrucción intestinal por bridas"
     },
     {
       "id": 174,
-      "pregunta": "Paciente que comienza con cuadro de distensión abdominal progresiva, dolor abdominal tipo cólico y ausencia de eliminación de gases, al examen físico destaca dolor a la palpación epigástrica, cicatriz de laparotomía de Pfannenstiel y pérdida de matidez hepática, el diagnóstico más probable es",
+      "pregunta": "Paciente con distensión abdominal progresiva, dolor cólico, sin gases, dolor epigástrico, cicatriz de Pfannenstiel y pérdida de matidez hepática. ¿Diagnóstico más probable?",
       "opciones": [
-        "Ecografía",
-        "Radiografía",
+        "Obstrucción intestinal por adherencias",
+        "Vólvulo cecal agudo",
+        "Íleo biliar",
         "Perforación intestinal",
-        "Cintigrafía",
-        "Resonancia magnética"
+        "Hemoperitoneo"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Perforación intestinal"
+      "respuesta_correcta": "D",
+      "explanation": "Perforación intestinal"
     },
     {
       "id": 175,
-      "pregunta": "Paciente mayor de 50 años, que durante la colonoscopía se visualiza un pólipo el cual es resecado siendo compatible con adenoma velloso con displasia de bajo grado, la conducta es",
-      "opciones": [],
-      "respuesta_texto": "Pedir colonoscopía en 5 años"
+      "pregunta": "Paciente mayor de 50 años con pólipo resecado en colonoscopía: adenoma velloso con displasia de bajo grado. ¿Cuál es la conducta?",
+      "opciones": [
+        "Colonoscopía de control en 1 año",
+        "Colonoscopía de control en 3 años",
+        "Colonoscopía de control en 5 años",
+        "Hemicolectomía profiláctica",
+        "Colonoscopía de control en 10 años"
+      ],
+      "respuesta_correcta": "B",
+      "explanation": "Colonoscopía de control en 3 años"
     },
     {
       "id": 176,
-      "pregunta": "Paciente que en la universidad presenta dificultad para prestar atención en clases, se siente angustiada por eso, tiene historia pasada de dificultad para realizar o concretar sus tareas y al hablar con personas a veces le cuesta seguir el hilo de conversación, el diagnóstico más probable es",
-      "opciones": [],
-      "respuesta_texto": "Trastorno por déficit atencional"
+      "pregunta": "Universitaria con dificultad para prestar atención, historia de dificultad para concretar tareas y para seguir el hilo de conversación. ¿Diagnóstico más probable?",
+      "opciones": [
+        "Trastorno de ansiedad generalizada",
+        "Trastorno depresivo mayor",
+        "Trastorno de personalidad limítrofe",
+        "Trastorno del espectro autista (TEA)",
+        "Trastorno por déficit de atención (TDA)"
+      ],
+      "respuesta_correcta": "E",
+      "explanation": "Trastorno por déficit de atención (TDA)"
     },
     {
       "id": 177,
-      "pregunta": "La siguiente definición consistente en el número de casos nuevos de casos de una enfermedad en la población que es susceptible de enfermar en un determinado tiempo corresponde a",
+      "pregunta": "\"Número de casos nuevos de una enfermedad en la población susceptible en un determinado tiempo.\" ¿A qué corresponde esta definición?",
       "opciones": [
-        "Riesgo relativo",
-        "Tasa de ataque",
+        "Tasa de prevalencia",
+        "Tasa de mortalidad específica",
         "Tasa de incidencia",
-        "Odds ratio",
-        "Tasa de prevalencia"
+        "Tasa de ataque secundario",
+        "Odds ratio"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Tasa de incidencia"
+      "respuesta_correcta": "C",
+      "explanation": "Tasa de incidencia"
     },
     {
       "id": 178,
-      "pregunta": "Paciente pediátrico que comienza con cuadro de rash urticaria, edema de labios, taquicardia y sensibilidad abdominal, el tratamiento inicial más adecuado es",
-      "opciones": [],
-      "respuesta_texto": "Adrenalina"
+      "pregunta": "Niño con rash urticarial, edema de labios, taquicardia y sensibilidad abdominal. ¿Cuál es el tratamiento inicial más adecuado?",
+      "opciones": [
+        "Adrenalina 0,01 mg/kg IM",
+        "Difenhidramina EV",
+        "Hidrocortisona 5 mg/kg EV",
+        "Clorfeniramina oral",
+        "Salbutamol inhalado"
+      ],
+      "respuesta_correcta": "A",
+      "explanation": "Adrenalina 0,01 mg/kg IM"
     },
     {
       "id": 179,
-      "pregunta": "Paciente que a la mamografía se visualiza una lesión clasificada como BIRADS 3, la conducta más adecuada es",
-      "opciones": [],
-      "respuesta_texto": "Solicitar mamografía en 6 meses"
+      "pregunta": "Paciente con lesión mamográfica BIRADS 3. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Biopsia core guiada por imagen",
+        "Ecografía mamaria dirigida",
+        "RNM mamaria bilateral",
+        "Mamografía de control en 6 meses",
+        "Control en 1 año sin exámenes"
+      ],
+      "respuesta_correcta": "D",
+      "explanation": "Mamografía de control en 6 meses"
     },
     {
       "id": 180,
-      "pregunta": "Paciente con cuadro de hipertensión arterial que está sobre el rango normal, el medicamento más adecuado a agregar es",
+      "pregunta": "Paciente con HTA sobre el rango normal en tratamiento actual, ¿cuál es el medicamento más adecuado a agregar?",
       "opciones": [
-        "Infección urinaria",
-        "Valsartán",
-        "Hallazgo patológico",
-        "Preeclampsia",
-        "Diabetes gestacional"
+        "Amlodipino",
+        "Valsartán (ARA II)",
+        "Hidroclorotiazida",
+        "Carvedilol",
+        "Furosemida"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "Valsartán"
+      "respuesta_correcta": "B",
+      "explanation": "Valsartán (ARA II)"
     }
   ]
 }
