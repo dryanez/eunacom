@@ -4,10 +4,8 @@ import { ChevronDown, Menu, Heart, X } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
 const DONATION_LINKS = [
-  { name: 'PayPal', url: 'https://www.paypal.com/donate/?hosted_button_id=YOUR_PAYPAL_ID', emoji: '💳' },
-  { name: 'Mercado Pago', url: 'https://link.mercadopago.cl/eunacom', emoji: '🟡' },
-  { name: 'Cafecito (AR)', url: 'https://cafecito.app/eunacom', emoji: '☕' },
-  { name: 'Buy Me a Coffee', url: 'https://buymeacoffee.com/eunacom', emoji: '🧉' },
+  { name: 'PayPal', url: 'https://www.paypal.com/donate/?hosted_button_id=R8LN5TXP8XYNG', emoji: '💳' },
+  { name: 'Mercado Pago (Chile)', url: 'https://link.mercadopago.cl/donacioneunacom', emoji: '🟡' },
 ]
 
 const DashboardHeader = ({ onMenuToggle }) => {
