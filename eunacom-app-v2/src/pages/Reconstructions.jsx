@@ -8,8 +8,9 @@ const LETTERS = ['A', 'B', 'C', 'D', 'E']
 
 /**
  * Convert a reconstruction JSON question to the TestRunner format.
- * Reconstruction format:
- *   { id, pregunta, opciones: [], respuesta_correcta?: number, respuesta_texto?, explicacion? }
+ * Reconstruction format (supports both old and new):
+ *   Old: { id, pregunta, opciones: [], respuesta_correcta?: number, respuesta_texto?, explicacion? }
+ *   New: { id, pregunta, opciones: [], respuesta_correcta?: 'A'|'B'|..., explanation? }
  * TestRunner format:
  *   { id, question, choices: [{id, text}], correctAnswer, explanation }
  */
@@ -19,17 +20,24 @@ function toTestRunnerFormat(q, examId) {
     text
   }))
 
-  const correctAnswer =
-    q.respuesta_correcta != null && q.respuesta_correcta < choices.length
-      ? LETTERS[q.respuesta_correcta]
-      : null
+  let correctAnswer = null
+  const rc = q.respuesta_correcta
+  if (rc != null) {
+    if (typeof rc === 'string' && /^[A-Ea-e]$/.test(rc)) {
+      // Letter format: 'A', 'B', 'C', 'D', 'E'
+      correctAnswer = rc.toUpperCase()
+    } else if (typeof rc === 'number' && rc < choices.length) {
+      // Index format: 0, 1, 2, 3, 4
+      correctAnswer = LETTERS[rc]
+    }
+  }
 
   return {
     id: `${examId}_q${q.id}`,
     question: q.pregunta,
     choices,
     correctAnswer,
-    explanation: q.explicacion || q.respuesta_texto || ''
+    explanation: q.explanation || q.explicacion || q.respuesta_texto || ''
   }
 }
 
