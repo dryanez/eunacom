@@ -41,7 +41,6 @@ function App() {
             <Route path="/flashcards" element={<div className="page"><h1 className="page__title">Flashcards</h1></div>} />
             <Route path="/review" element={<div className="page"><h1 className="page__title">Repasar Errores</h1></div>} />
             <Route path="/mis-clases" element={<MisClases />} />
-            <Route path="/banco-eunacom" element={<MisClases initialView="pruebas" />} />
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
           </Route>
