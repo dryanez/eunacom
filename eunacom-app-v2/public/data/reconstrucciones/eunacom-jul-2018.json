@@ -1,0 +1,950 @@
+{
+  "id": "eunacom-jul-2018",
+  "name": "EUNACOM Julio 2018",
+  "month": "Julio",
+  "year": 2018,
+  "total_questions": 80,
+  "questions_with_answers": 60,
+  "questions": [
+    {
+      "id": 2,
+      "pregunta": "Una paciente de 15 a Una paciente de 15 años, sin antecedentes de importancia, presenta dolor pélvico muy ños, sin antecedentes de importancia, presenta dolor pélvico muy intenso, en relación a la menstruación, que la hace faltar al colegio. Su menarquia fue hace intenso, en relación a la menstruación, que la hace faltar al colegio. Su menarquia fue hace un año y presenta reglas III‐V / 30‐35. El tratamiento de elección es: un año y presenta reglas III‐V / 30‐35. El tratamiento de elección es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Ácido mefenámico",
+        "Ácido mefenámico",
+        "Anticonceptivos orales",
+        "Anticonceptivos orales",
+        "Dienogest"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 3,
+      "pregunta": "es s e e iagnóstico o más s pro a e? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Enterocolitis por Shigella",
+        "Enterocolitis por Shigella",
+        "Endocarditis bacteriana",
+        "Endocarditis bacteriana",
+        "Fiebre tifoidea"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 5,
+      "pregunta": "Un paciente se realiza una Un paciente se realiza una cirugía transuretral hace 7 días. cirugía transuretral hace 7 días. Evoluciona con disuria dolorosa, Evoluciona con disuria dolorosa, asociada a malestar general y fiebre hasta 38,7 grados Celsius. Se realiza un sedimento de asociada a malestar general y fiebre hasta 38,7 grados Celsius. Se realiza un sedimento de orina con leucocituria de 50 por orina con leucocituria de 50 por campo y abundantes bacterias, y un campo y abundantes bacterias, y un urocultivo, que resulta urocultivo, que resulta positivo para Pseudomona aureginosa y el antibiograma está pendiente. El tratamiento de positivo para Pseudomona aureginosa y el antibiograma está pendiente. El tratamiento de elección es: elección es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Amoxicilina‐clavulánico",
+        "Amoxicilina‐clavulánico",
+        "Nitrofurantoína",
+        "Nitrofurantoína",
+        "Cotrimoxazol"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 9,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Observar evolución",
+        "Observar evolución",
+        "Solicitar estradiol plasmático",
+        "Solicitar estradiol plasmático",
+        "Solicitar LH y FSH plasmática"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 10,
+      "pregunta": "Una mujer embarazada, de 8 Una mujer embarazada, de 8 semanas, se realiza un VDRL que semanas, se realiza un VDRL que resulta positivo en dilución resulta positivo en dilución 1/64. Tiene antecedente de alergia a 1/64. Tiene antecedente de alergia a la amoxicilina. El tratamiento antibiótico de la amoxicilina. El tratamiento antibiótico de elección es: elección es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Penicilina",
+        "Penicilina",
+        "Clindamicina",
+        "Clindamicina",
+        "Ceftriaxona"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 12,
+      "pregunta": "El Doppler de uterinas alterado es indicación El Doppler de uterinas alterado es indicación de aspirina para reducir el riesgo de de aspirina para reducir el riesgo de preclamsia. preclamsia. Una mujer de 25 años, cursando un Una mujer de 25 años, cursando un embarazo de 38 semanas, se realiza embarazo de 38 semanas, se realiza ecografía ecografía obstétrica, con feto creciendo en percentil 5 para la obstétrica, con feto creciendo en percentil 5 para la edad gestacional y oligoamnios. La edad gestacional y oligoamnios. La ecografía Doppler muestra dilatación de la arteria ecografía Doppler muestra dilatación de la arteria cerebral media, sin otras alteraciones de cerebral media, sin otras alteraciones de la hemodinamia fetal. ¿Cuál es la conducta más adecuada? la hemodinamia fetal. ¿Cuál es la conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Inducir el parto",
+        "Inducir el parto",
+        "Realizar cesárea",
+        "Realizar cesárea",
+        "Realizar monitoreo fetal no estresante"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 13,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Cambiar la terapia de reemplazo combinada cíclica",
+        "Cambiar la terapia de reemplazo combinada cíclica",
+        "Solicitar una resonancia magnética nuclear",
+        "Solicitar una resonancia magnética nuclear de pelvis de pelvis",
+        "Realizar histeroscopía"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 15,
+      "pregunta": "Un paciente de 78 años Un paciente de 78 años consulta por dolor en ambas ingles, irradiado a consulta por dolor en ambas ingles, irradiado a los muslos, que los muslos, que inició hace 5 años y que es más intenso al caminar, lo que ha limitado su movilidad en el inició hace 5 años y que es más intenso al caminar, lo que ha limitado su movilidad en el último tiempo. Se solicita una radiografía AP último tiempo. Se solicita una radiografía AP de pelvis, que se muestra a continuación: de pelvis, que se muestra a continuación: ¿Cuál es el diagnóstico más probable? ¿Cuál es el diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Displasia de caderas",
+        "Displasia de caderas",
+        "Mestástasis óseas",
+        "Mestástasis óseas",
+        "Necrosis avascular de la cabeza femoral bilateral"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 18,
+      "pregunta": "Un paciente está en tratamiento con sertralina, desde hace Un paciente está en tratamiento con sertralina, desde hace 1 mes, por un episodio depresivo 1 mes, por un episodio depresivo mayor. Desde hace 2 semanas anda mayor. Desde hace 2 semanas anda más irritable y agresivo, con peleas frecuentes con sus más irritable y agresivo, con peleas frecuentes con sus familiares. Además, fue despedido de su trabajo porque insultó a su familiares. Además, fue despedido de su trabajo porque insultó a su jefe y se ha involucrado jefe y se ha involucrado con 4 parejas sexuales. con 4 parejas sexuales. ¿Cuál es el diagnóstico más probable? ¿Cuál es el diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Esquizofrenia",
+        "Esquizofrenia",
+        "Trastorno bipolar",
+        "Trastorno bipolar",
+        "Trastorno esquizoafectivo"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 20,
+      "pregunta": "La respuesta correcta es: CItalopram La respuesta correcta es: CItalopram Un paciente de 71 años, viudo, presenta cuadro Un paciente de 71 años, viudo, presenta cuadro de ánimo bajo y disminución de sus de ánimo bajo y disminución de sus actividades. Él refiere que se siente bien, sin actividades. Él refiere que se siente bien, sin embargo, la hija refiere que puede estar embargo, la hija refiere que puede estar deprimido. Se realiza un test de deprimido. Se realiza un test de Minimental, que resulta normal y una prueba GDS Minimental, que resulta normal y una prueba GDS que resulta 12/15 puntos. ¿Cuál es el fármaco resulta 12/15 puntos. ¿Cuál es el fármaco de elección? de elección? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Fluoxetina",
+        "Fluoxetina",
+        "Sertralina",
+        "Sertralina",
+        "Mirtazapina"
+      ]
+    },
+    {
+      "id": 22,
+      "pregunta": "Se realiza un estudio que muestra que en la comuna A, el Se realiza un estudio que muestra que en la comuna A, el consumo de drogas es de un 40%, consumo de drogas es de un 40%, mientras que en la comuna B, es de 10%. mientras que en la comuna B, es de 10%. El diseño de estudio más adecuado, para El diseño de estudio más adecuado, para determinar las causas de estas diferencias, es: determinar las causas de estas diferencias, es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Ecológico",
+        "Ecológico",
+        "Descriptivo",
+        "Descriptivo",
+        "Analítico"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 24,
+      "pregunta": "Las frecuencias, son parte de Las frecuencias, son parte de la epidemiología descriptiva. la epidemiología descriptiva. La respuesta correcta es: Estudio descriptivo La respuesta correcta es: Estudio descriptivo Un paciente de 42 años, que trabaja en un aserradero, comienza con un cuadro de dificultad Un paciente de 42 años, que trabaja en un aserradero, comienza con un cuadro de dificultad respiratoria, con tos y expectoración, asociada a respiratoria, con tos y expectoración, asociada a respiración sibilante. Luego de estudiarlo, respiración sibilante. Luego de estudiarlo, es diagnosticado de asma no laboral. Sin embargo, él discrepa de este diagnóstico, ya que es diagnosticado de asma no laboral. Sin embargo, él discrepa de este diagnóstico, ya que lo considera de origen laboral. ¿A lo considera de origen laboral. ¿A qué institución puede apelar contra esta determinación? qué institución puede apelar contra esta determinación? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Superintendencia de Seguridad Social",
+        "Superintendencia de Seguridad Social",
+        "Servicio de Salud de su comuna",
+        "Servicio de Salud de su comuna",
+        "Instituto de Salud Pública"
+      ]
+    },
+    {
+      "id": 25,
+      "pregunta": "paciente? paciente? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Prick test",
+        "Prick test",
+        "TAC de tórax",
+        "TAC de tórax",
+        "Espirometría basal"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 28,
+      "pregunta": "Un paciente de 42 Un paciente de 42 años, con cardiopatía alcohólica, presenta disnea de esfuerzos, ortopnea años, con cardiopatía alcohólica, presenta disnea de esfuerzos, ortopnea y disnea paroxística nocturna, que trata y disnea paroxística nocturna, que trata con diuréticos. Los síntomas han progresado en el con diuréticos. Los síntomas han progresado en el último tiempo ¿Cuál es el fármaco de elección para este paciente? último tiempo ¿Cuál es el fármaco de elección para este paciente? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Enalapril",
+        "Enalapril",
+        "Diltiazem",
+        "Diltiazem",
+        "Espironolactona"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 30,
+      "pregunta": "IECA más diurético. IECA más diurético. La respuesta correcta es: Enalapril ‐ La respuesta correcta es: Enalapril ‐ furosemida furosemida Un paciente diabético tipo 2, en tratamiento con metformina 1,7 gramos al día y enalapril 20 Un paciente diabético tipo 2, en tratamiento con metformina 1,7 gramos al día y enalapril 20 mg cada 12 horas, asintomático, acude a control. Se solicitan exámenes, entre los que mg cada 12 horas, asintomático, acude a control. Se solicitan exámenes, entre los que destacan HbA1c: 6,7%, colesterol total: 265 mg/dl, colesterol HDL: 34 mg/dl y destacan HbA1c: 6,7%, colesterol total: 265 mg/dl, colesterol HDL: 34 mg/dl y triglicéridos: triglicéridos: 344 mg/dl. ¿Qué 344 mg/dl. ¿Qué fármaco se debe agregar al tratamiento? fármaco se debe agregar al tratamiento? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Fenofibrato",
+        "Fenofibrato",
+        "Gemfibrozilo",
+        "Gemfibrozilo",
+        "Atorvastatina"
+      ]
+    },
+    {
+      "id": 31,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Metformina más glibenclamida con las comidas",
+        "Metformina más glibenclamida con las comidas",
+        "Sitagliptina",
+        "Sitagliptina",
+        "Dieta"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 33,
+      "pregunta": "Una paciente de 40 años, consulta por un cuadro, de algunos meses de evolución, de disnea Una paciente de 40 años, consulta por un cuadro, de algunos meses de evolución, de disnea de esfuerzos, progresiva, asociada a ortopnea y edema de de esfuerzos, progresiva, asociada a ortopnea y edema de extremidades inferiores. Al extremidades inferiores. Al examen físico se auscultan crepitaciones pulmonares bilaterales, con un soplo examen físico se auscultan crepitaciones pulmonares bilaterales, con un soplo en la zona en la zona paraesternal izquierda, en el segundo espacio intercostal. Su radiografía muestra signos de paraesternal izquierda, en el segundo espacio intercostal. Su radiografía muestra signos de hiperflujo pulmonar, con botón pulmonar hiperflujo pulmonar, con botón pulmonar prominente. Su electrocardiograma muestra un prominente. Su electrocardiograma muestra un patrón rSr. El diagnóstico más probable es: patrón rSr. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Comunicación interauricular",
+        "Comunicación interauricular",
+        "Dustus arterioso persistente",
+        "Dustus arterioso persistente",
+        "Estenosis aórtica"
+      ]
+    },
+    {
+      "id": 36,
+      "pregunta": "físico se observan habones en el tórax y dermatografismo en las extremidades. ¿Cuál es la físico se observan habones en el tórax",
+      "opciones": [
+        "Indicar corticoides orales",
+        "Indicar corticoides orales",
+        "Solicitar prick test",
+        "Solicitar prick test",
+        "Indicar antihistamínicos orales"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 38,
+      "pregunta": "Un paciente de 64 Un paciente de 64 años consulta por dolores óseos. Se realiza un años consulta por dolores óseos. Se realiza un hemograma que muestra hemograma que muestra hematocrito: 24%, con hemoglobina: 8g/dl, VC;: 85 fl, plaquetas: 180.000 por mm3 y hematocrito: 24%, con hemoglobina: 8g/dl, VC;: 85 fl, plaquetas: 180.000 por mm3 y blancos: 5.800 por mm3, con VHS: 90 blancos: 5.800 por mm3, con VHS: 90 mm/h. En los otros exámenes, destaca mm/h. En los otros exámenes, destaca hipogamaglobu hipogamaglobulinemia y en linemia y en el análisis de el análisis de proteínas séricas se objetiva elevación monoclonal proteínas séricas se objetiva elevación monoclonal de proteínas, en la de proteínas, en la zona Kappa. ¿Cuál es el zona Kappa. ¿Cuál es el diagnóstico más probable? diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Macroglobulinemia de Waldeström",
+        "Macroglobulinemia de Waldeström",
+        "Gamapatía monoclonal incierta",
+        "Gamapatía monoclonal incierta",
+        "Mieloma múltiple"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 42,
+      "pregunta": "Una paciente de 59 años inicia un cuadro de Una paciente de 59 años inicia un cuadro de 3 semanas de evolución de pirosis y dolor 3 semanas de evolución de pirosis y dolor epigástrico, con episodios diurnos y nocturnos. Su examen físico es normal. ¿Cuál es la epigástrico, con episodios diurnos y nocturnos. Su examen físico es normal. ¿Cuál es la conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Realizar endoscopía digestiva alta",
+        "Realizar endoscopía digestiva alta",
+        "Solicitar ecografía abdominal",
+        "Solicitar ecografía abdominal",
+        "Solicitar TAC de abdomen"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 44,
+      "pregunta": ". . ar ng ngos osco cop a a re rec a",
+      "opciones": [
+        "TAC de cuello",
+        "TAC de cuello La sospecha es un cáncer de laringe, que se estudia con nasofibroscopía, o bien, con la La sospecha es un cáncer de laringe, que se estudia con nasofibroscopía, o bien, con la laringoscopía directa, para tomar biopsias. laringoscopía directa, para tomar biopsias.",
+        "Paresia cocleovestibular",
+        "Paresia cocleovestibular",
+        "Vértigo postural"
+      ]
+    },
+    {
+      "id": 45,
+      "pregunta": "Pre unta 46 Seleccion",
+      "opciones": [
+        "Realizar lavado gástrico con carbón activado",
+        "Realizar lavado gástrico con carbón activado",
+        "Administrar bicarbonato",
+        "Administrar bicarbonato",
+        "Administrar suero"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 47,
+      "pregunta": "Un paciente de 80 años, consulta por dolor abdominal de 2 días de Un paciente de 80 años, consulta por dolor abdominal de 2 días de evolución, tipo cólico, evolución, tipo cólico, intenso, al que se intenso, al que se han agregado vómitos alimentarios importantes. El dolor es más intenso han agregado vómitos alimentarios importantes. El dolor es más intenso en el hemiabdomen superior. Al examen físico se aprecia paciente adolorido, con PA: 110/68 en el hemiabdomen superior. Al examen físico se aprecia paciente adolorido, con PA: 110/68 mmHg, FC: 110x’, T°: mmHg, FC: 110x’, T°: 37,4. Abdomen doloroso a la 37,4. Abdomen doloroso a la palpación, con distensión abdominal, palpación, con distensión abdominal, ruidos hidroaéreos aumentados y sin signos de ruidos hidroaéreos aumentados y sin signos de irritación peritoneal. Se solicitan exámenes irritación peritoneal. Se solicitan exámenes entre los que destaca PCR: 10 mg/dl, hematocrito: 37%, blancos: 11.000 por mm3, entre los que destaca PCR: 10 mg/dl, hematocrito: 37%, blancos: 11.000 por mm3, plaquetas: 340.000, GOT: 66 UI/L. El plaquetas: 340.000, GOT: 66 UI/L. El diagnóstico más probable es: diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Colitis isquémica",
+        "Colitis isquémica",
+        "Trombosis de la",
+        "Trombosis de la vena mesentérica vena mesentérica",
+        "Perforación gástrica"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 50,
+      "pregunta": "pleurítico. Al examen físico tiene pleurítico. Al examen físico tiene disminución del murmullo pulmonar izquierdo, con disminución del murmullo pulmonar izquierdo, con respiración soplante y crépitos. Se solicita respiración soplante y crépitos. Se solicita una radiografía de tórax que muestra una una radiografía de tórax que muestra una pleuroneumonía izquierd pleuroneumonía izquierda, por lo a, por lo que se punciona el que se punciona el derrame pleural, dando salida a un derrame pleural, dando salida a un líquido turbio, con LDH: 250 UI/L, proteínas: 5,0 g/dl, c líquido turbio, con LDH: 250 UI/L, proteínas: 5,0 g/dl, con PMN: 60% y MN: 40%, on PMN: 60% y MN: 40%, pH: 7,1, pH: 7,1, lactato: 6 mmol/L, ADA: 8 UI/L. La lactato: 6 mmol/L, ADA: 8 UI/L. La conducta más adecuada es: conducta más adecuada es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Tomar biopsias pleurales",
+        "Tomar biopsias pleurales",
+        "Instalar un tubo pleural, con trampa de agua",
+        "Instalar un tubo pleural, con trampa de agua",
+        "Administrar fibrinolíticos"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 52,
+      "pregunta": "en e or g na a se e par arec ec a a mu muc o a un , , e e ant ntece ce ent nte e e e un IAM antiguo y la taquicardia con QRS ancho, hace que la IAM antiguo y la taquicardia con QRS ancho, hace que la respuesta sea una taquicardia respuesta sea una taquicardia ventricular. ventricular. La respuesta correcta es: Taquicardia ventricular La respuesta correcta es: Taquicardia ventricular Un niño de 11 años, presenta un cuadro de 2 Un niño de 11 años, presenta un cuadro de 2 horas de evolución de disnea y dolor torácico. horas de evolución de disnea y dolor torácico. Su frecuencia cardíaca es 200 a 240 Su frecuencia cardíaca es 200 a 240 lpm, PA: 120/80. Se solicita un lpm, PA: 120/80. Se solicita un electrocardiogram electrocardiograma, que a, que se muestra a continuación: se muestra a continuación: La conducta inicial es: La conducta inicial es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Aplicar hielo en el abdomen",
+        "Aplicar hielo en el abdomen",
+        "Adenosina endovenosa",
+        "Adenosina endovenosa",
+        "Amiodarona endovenosa"
+      ]
+    },
+    {
+      "id": 53,
+      "pregunta": "tobillo y durante su tobillo y durante su hospitalización evoluciona con malestar e inquietud, diciendo que hospitalización evoluciona con malestar e inquietud, diciendo que quiere que le den el alta, para poder salir a quiere que le den el alta, para poder salir a tomarse una cerveza. ¿Cuál de las siguientes tomarse una cerveza. ¿Cuál de las siguientes opciones es un mayor indicador de que es adicto? opciones es un mayor indicador de que es adicto? Seleccione una: Seleccione una:",
+      "opciones": [
+        "La edad de inicio del",
+        "La edad de inicio del consumo consumo",
+        "La embriaguez frecuente",
+        "La embriaguez frecuente",
+        "La cantidad de alcohol consumida"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 55,
+      "pregunta": "Una paciente de 45 años consulta por astenia de 8 meses de Una paciente de 45 años consulta por astenia de 8 meses de evolución, asociada a prurito. evolución, asociada a prurito. Hace 2 meses se agrega ictericia y Hace 2 meses se agrega ictericia y acumulación de grasa en los pliegues cubitales, poplíteos acumulación de grasa en los pliegues cubitales, poplíteos y alrededor de los y alrededor de los ojos. Se solicitan pruebas hepáticas que muestran bilirrubina: 4,9 ojos. Se solicitan pruebas hepáticas que muestran bilirrubina: 4,9 mg/dl, mg/dl, fosfatasas alcalinas fosfatasas alcalinas: 655 UI/L, GOT: : 655 UI/L, GOT: 88 UI/L, GPT: 76 88 UI/L, GPT: 76 UI/L, GGT: 230 UI/L. El UI/L, GGT: 230 UI/L. El diagnóstico más diagnóstico más probable es: probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Hepatitis autoinmune",
+        "Hepatitis autoinmune",
+        "Cirrosis idiopática",
+        "Cirrosis idiopática",
+        "Colédocolitiasis"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 58,
+      "pregunta": "izquierda. Tiene antecedente de aparición de lesiones papulares eritematosas, mayores en izquierda. Tiene antecedente de aparición de lesiones papulares eritematosas, mayores en las rodillas y cara anterior de las piernas. En su las rodillas y cara anterior de las piernas. En su examen físico presenta dactilitis de 3 dedos, examen físico presenta dactilitis de 3 dedos, edema de la zona distal de ambos pies, aumento de volumen y eritema en varias de las edema de la zona distal de ambos pies, aumento de volumen y eritema en varias de las articulaciones descritas y depresiones ungueales en las manos y articulaciones descritas y depresiones ungueales en las manos y ortejos. El diagnóstico más ortejos. El diagnóstico más probable es: probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Artritis psoriática",
+        "Artritis psoriática",
+        "Artritis reactiva",
+        "Artritis reactiva",
+        "Artritis reumatoide"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 62,
+      "pregunta": "Una paciente de 23 años, con antecedente de 2 abortos previos de primer trimestre. Una paciente de 23 años, con antecedente de 2 abortos previos de primer trimestre. Actualmente cursa un nuevo embarazo de 8 Actualmente cursa un nuevo embarazo de 8 semanas, siendo diagnosticada de aborto semanas, siendo diagnosticada de aborto retenido, mediante ecografía transvaginal. ¿Cuál es el estudio inicial retenido, mediante ecografía transvaginal. ¿Cuál es el estudio inicial para esta paciente? para esta paciente? Seleccione una: Seleccione una:",
+      "opciones": [
+        "a. Histerosalpingog Histerosalpingografía rafía",
+        "Cariograma al padre y a la madre",
+        "Cariograma al padre y a la madre",
+        "Histeroscopía",
+        "Histeroscopía"
+      ],
+      "respuesta_correcta": 7
+    },
+    {
+      "id": 65,
+      "pregunta": "Una adolescente de 16 años, presenta un cuadro de astenia y malestar general, asociada a Una adolescente de 16 años, presenta un cuadro de astenia y malestar general, asociada a debilidad muscular, amenorrea, aparición de acné y obesidad. Al debilidad muscular, amenorrea, aparición de acné y obesidad. Al examen físico tiene examen físico tiene hipertensión arterial, hirsutismo moderado, acné en la cara y hipertensión arterial, hirsutismo moderado, acné en la cara y espalda, obesidad abdominal, espalda, obesidad abdominal, con estrías vinosas. ¿Cuál es el examen de elección para confirmar el diagnóstica? con estrías vinosas. ¿Cuál es el examen de elección para confirmar el diagnóstica? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Cortisol matinal y",
+        "Cortisol matinal y vespertino vespertino",
+        "Cortisol basal y",
+        "Cortisol basal y post‐ACTH post‐ACTH",
+        "TAC de la región selar"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 67,
+      "pregunta": "Un hombre de 34 años presenta erección dolorosa, desde hace 8 horas. Al examen tiene Un hombre de 34 años presenta erección dolorosa, desde hace 8 horas. Al examen tiene cuerpos cavernosos duros, pero con glande y cuerpos cavernosos duros, pero con glande y cuerpos esponjosos blandos. ¿Cuál es la cuerpos esponjosos blandos. ¿Cuál es la conducta inicial más adecuada? conducta inicial más adecuada? Seleccione una o más de una: Seleccione una o más de una:",
+      "opciones": [
+        "Aplicar paños fríos en la zona genital",
+        "Aplicar paños fríos en la zona genital",
+        "Fenilefrina endovenosa",
+        "Fenilefrina endovenosa",
+        "Vaciamiento quirúrgico de los"
+      ]
+    },
+    {
+      "id": 70,
+      "pregunta": "Un recién nacido de Un recién nacido de 3 días de 3 días de vida, presenta múltiples lesiones amarillentas, pequeñas, vida, presenta múltiples lesiones amarillentas, pequeñas, apenas solevantadas en ambas alas nasales. La conducta más adecuada es: apenas solevantadas en ambas alas nasales. La conducta más adecuada es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Corticoides tópicos",
+        "Corticoides tópicos",
+        "Antimicóticos tópicos",
+        "Antimicóticos tópicos",
+        "Vaselina líquida tópica"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 72,
+      "pregunta": "Una paciente de 81 Una paciente de 81 años consulta por disnea de años consulta por disnea de esfuerzos, progresiva esfuerzos, progresiva, asociada a , asociada a paroxística nocturna y ortopnea. Al examen físico se objetiva PA: 160/60 mmHg, con pulso paroxística nocturna y ortopnea. Al examen físico se objetiva PA: 160/60 mmHg, con pulso regular, amplio, a 72 regular, amplio, a 72 lpm. Su examen cardíaco muestra desplazamiento del choque cardíaco, lpm. Su examen cardíaco muestra desplazamiento del choque cardíaco, con presencia de un soplo intenso, entre el segundo y el con presencia de un soplo intenso, entre el segundo y el primer ruido cardíaco, que se primer ruido cardíaco, que se irradia al cuello. El irradia al cuello. El examen pulmonar muestra crepitaciones escasas, en ambas bases. El examen pulmonar muestra crepitaciones escasas, en ambas bases. El diagnóstico de sospecha es: diagnóstico de sospecha es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Insuficiencia tricuspídea",
+        "Insuficiencia tricuspídea",
+        "Estenosis aórtica",
+        "Estenosis aórtica",
+        "Insuficiencia aórtica"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 75,
+      "pregunta": "Un hombre de 31 años consulta por aumento de volumen en el cuello, que Un hombre de 31 años consulta por aumento de volumen en el cuello, que se palpa como se palpa como un nódulo tiroideo de consistencia firme. un nódulo tiroideo de consistencia firme. Es estudiado con ecografía, que muestra un Es estudiado con ecografía, que muestra un nódulo hiopoecogénico nódulo hiopoecogénico, sólido, heterogéneo, de 1,3 cm. La TSH: resulta 3,0 , sólido, heterogéneo, de 1,3 cm. La TSH: resulta 3,0 UI/L. ¿Cuál es el UI/L. ¿Cuál es el examen más adecuado para continuar el estudio? examen más adecuado para continuar el estudio? Seleccione una: Seleccione una:",
+      "opciones": [
+        "TAC de cuello",
+        "TAC de cuello",
+        "Biopsia excisional del nódulo",
+        "Biopsia excisional del nódulo",
+        "Biopsia citológica"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 77,
+      "pregunta": "Una paciente de 30 años se realiza un PAP, Una paciente de 30 años se realiza un PAP, que resulta atípico de alto grado, por lo que se que resulta atípico de alto grado, por lo que se realiza una colposcopía y biopsia, que realiza una colposcopía y biopsia, que es informada como NIE‐1 , es informada como NIE‐1 , de localización exocervical. de localización exocervical. ¿Cuál es la ¿Cuál es la conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Seguimiento con PAP",
+        "Seguimiento con PAP",
+        "Crioterapia",
+        "Crioterapia",
+        "Cono cervical"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 80,
+      "pregunta": "Un paciente de 35 años presenta un cuadro de 5 Un paciente de 35 años presenta un cuadro de 5 días de tos con expectoración días de tos con expectoración mucopurulenta, asociada a malestar general, fiebre y dolor torácico con mucopurulenta, asociada a malestar general, fiebre y dolor torácico con tope inspiratorio. Al tope inspiratorio. Al examen físico presenta T°: 38,9°C, FR: 23 rpm, PA: 120/82 examen físico presenta T°: 38,9°C, FR: 23 rpm, PA: 120/82 mmHg y al examen pulmonar se mmHg y al examen pulmonar se ausculta respiración soplante y crépitaciones en el ausculta respiración soplante y crépitaciones en el lóbulo inferior derecho, con broncofonía. lóbulo inferior derecho, con broncofonía. Se realiza una radiografía de tórax, que Se realiza una radiografía de tórax, que muestra una condensación en el lóbulo muestra una condensación en el lóbulo inferior inferior derecho y un hemograma, que presenta hemoglobina: 13 derecho y un hemograma, que presenta hemoglobina: 13 g/dl, plaquetas: 350.000 por mm3, g/dl, plaquetas: 350.000 por mm3, blancos: 60.000 por mm3, 80% de neutrófilos, 10% de blancos: 60.000 por mm3, 80% de neutrófilos, 10% de baciliformes y 3% de mielocitos. El baciliformes y 3% de mielocitos. El diagnóstico más probable es: diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Leucemia mielode crónica",
+        "Leucemia mielode crónica",
+        "Leucemia mieloide aguda",
+        "Leucemia mieloide aguda",
+        "Mielodisplasia en"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 82,
+      "pregunta": "Una paciente de 26 Una paciente de 26 años, con atraso menstrual de 3 años, con atraso menstrual de 3 semanas, consulta por metrorragia semanas, consulta por metrorragia escasa, sin dolor. Al escasa, sin dolor. Al examen físico. Se realiza ecografía transvaginal, que muestra tumor examen físico. Se realiza ecografía transvaginal, que muestra tumor anexial de 3 cm, sin líquido li anexial de 3 cm, sin líquido libre. Los niveles de HCG resultan 3.400 UI/L. ¿Cuál es bre. Los niveles de HCG resultan 3.400 UI/L. ¿Cuál es lala conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Controlar con ecografía en 48",
+        "Controlar con ecografía en 48 horas horas",
+        "Adminstrar metotrexato",
+        "Adminstrar metotrexato",
+        "Controlar con HCG en 48 horas"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 85,
+      "pregunta": "Una niña de 13 años es encontrada inconsciente en el baño de su Una niña de 13 años es encontrada inconsciente en el baño de su casa, con el Calefont casa, con el Calefont apagado. Presenta FC: 70x’, PA: 120/80 mmHg, FR: 25x’, saturación arterial de 97%, sin apagado. Presenta FC: 70x’, PA: 120/80 mmHg, FR: 25x’, saturación arterial de 97%, sin cianosis. ¿Cuál es la cianosis. ¿Cuál es la conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Administrar oxígeno al 100%",
+        "Administrar oxígeno al 100%",
+        "Administrar carbón activado",
+        "Administrar carbón activado",
+        "Administrar suero"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 87,
+      "pregunta": "¿Cuál es la estrategia más efectiva para evitar la transmisión vertical del VIH, desde la madre ¿Cuál es la estrategia más efectiva",
+      "opciones": [
+        "Tratamiento a la madre durante el embarazo y el parto",
+        "Tratamiento a la madre durante el embarazo y el parto",
+        "Cesárea electiva",
+        "Cesárea electiva",
+        "Contraindicación de la lactancia materna"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 91,
+      "pregunta": "físico tiene FC: 118x’, PA: 90/50 físico tiene FC: 118x’, PA: 90/50 mmHg y se observa pálida. Se palpa el útero por 3 mmHg y se observa pálida. Se palpa el útero por 3 cm sobre cm sobre el ombligo. El el ombligo. El diagnóstico más probable es: diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Laceración del canal del parto",
+        "Laceración del canal del parto",
+        "Restos ovulares",
+        "Restos ovulares",
+        "Acretismo placentario"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 92,
+      "pregunta": "Un cirujano no controla a su paciente al día siguiente de haberlo operado, ya que tuvo que Un cirujano no controla a su paciente al día siguiente de haberlo operado, ya que tuvo que salir, excusándose por “motivos personales”. El paciente sufrió complicaciones y salir, excusándose por “motivos personales”. El paciente sufrió complicaciones y falleció falleció posteriormente. ¿A qué tipo de posteriormente. ¿A qué tipo de culpa corresponde esto? culpa corresponde esto? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Negligencia",
+        "Negligencia",
+        "Impericia",
+        "Impericia",
+        "Imprudencia"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 94,
+      "pregunta": "La respuesta correcta es: Estudio de La respuesta correcta es: Estudio de cohortes cohortes ¿Mediante qué estrategia de vigilancia se lleva a cabo la investigación en una inoxicación ¿Mediante qué estrategia de vigilancia se lleva a cabo la investigación en una inoxicación alimentaria? alimentaria? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Vigilancia activa",
+        "Vigilancia activa",
+        "Vigilancia de centros centinela",
+        "Vigilancia de centros centinela",
+        "Vigilancia pasiva"
+      ]
+    },
+    {
+      "id": 97,
+      "pregunta": "Un niño de Un niño de 6 años, presenta odinofagia intensa, con fiebre y 6 años, presenta odinofagia intensa, con fiebre y decaimiento. decaimiento. Además, aparece luego un exantema eritematoso, generalizado, que es más marcado en Además, aparece luego un exantema eritematoso, generalizado, que es más marcado en los pliegues inguinales y axilares. Al examen físico, está febril, con temperatura de 38.7°C, pliegues inguinales y axilares. Al examen físico, está febril, con temperatura de 38.7°C, faringe eritematosa. Tiene adenopatías cervicales bilaterales, sensibles y la piel faringe eritematosa. Tiene adenopatías cervicales bilaterales, sensibles y la piel se palpa se palpa áspera al tacto. ¿Qué tipo áspera al tacto. ¿Qué tipo de complicación puede desarrollar este paciente? de complicación puede desarrollar este paciente? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Aneurismas coronarios",
+        "Aneurismas coronarios",
+        "Meningitis",
+        "Meningitis",
+        "Fasceítis necrotizante"
+      ]
+    },
+    {
+      "id": 100,
+      "pregunta": "Un paciente de 53 Un paciente de 53 años, con antecedente de úlcera gastroduodenal recurrente, desde hace años, con antecedente de úlcera gastroduodenal recurrente, desde hace una semana empieza con sensación de plenitud precoz, asociada a una semana empieza con sensación de plenitud precoz, asociada a vómitos alimentarios vómitos alimentarios frecuentes, mayores postprandiales. Evoluciona con malestar general, frecuentes, mayores postprandiales. Evoluciona con malestar general, mareos y marcado mareos y marcado decaimiento. Su examen físico muestra FC:120x’, PA: 90/60 mmHg y se aprecia decaído. Se decaimiento. Su examen físico muestra FC:120x’, PA: 90/60 mmHg y se aprecia decaído. Se solicitan exámenes que muestran creatinina plasmática: 2,1; uremia: 80 solicitan exámenes que muestran creatinina plasmática: 2,1; uremia: 80 mg/dl, Na+ mg/dl, Na+ plasmático: 125 mEq/L, K+ plasmático: 125 mEq/L, K+ plasmático:4,5 mEq/L, Cl‐ plasmático:120, bicarbonato plasmático:4,5 mEq/L, Cl‐ plasmático:120, bicarbonato plasmático: 40 mEq/L, K+ urinario: 25 mEq/L, Na+ urinario: 8 mEq/L. La medida inicial más plasmático: 40 mEq/L, K+ urinario: 25 mEq/L, Na+ urinario: 8 mEq/L. La medida inicial más adecuada es: adecuada es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Administrar acetazolamida",
+        "Administrar acetazolamida",
+        "Administrar suero glucosado al 5%",
+        "Administrar suero glucosado al 5% endovenosa endovenosa",
+        "Administrar solución salina al"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 102,
+      "pregunta": "Un niño de 8 años, inmigrante, que no ha recibido la Un niño de 8 años, inmigrante, que no ha recibido la vacuna BCG. Está asintomático y su vacuna BCG. Está asintomático y su examen físico es normal. Su padre está siendo tratado para la tuberculosis en su país de examen físico es normal. Su padre está siendo tratado para la tuberculosis en su país de origen. ¿Cuál es la origen. ¿Cuál es la conducta inicial más adecuada? conducta inicial más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Solicitar PPD",
+        "Solicitar PPD",
+        "Solicitar radiografía de tórax",
+        "Solicitar radiografía de tórax",
+        "Solicitar baciloscopías"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 103,
+      "pregunta": "¿Cuál es el examen más adecuado para continuar el estudio en este paciente? ¿Cuál es el exa",
+      "opciones": [
+        "TAC de tórax",
+        "TAC de tórax",
+        "Broncoscopía",
+        "Broncoscopía",
+        "Cultivo de"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 105,
+      "pregunta": "Era una rinitis alérgica Era una rinitis alérgica clásica. La radiografía está normal. clásica. La radiografía está normal. La respuesta correcta es: Loratadina La respuesta correcta es: Loratadina Un paciente de 70 años consulta por astenia, malestar general y baja de peso, con dolor Un paciente de 70 años consulta por astenia, malestar general y baja de peso, con dolor lumbar importante y progresivo. Al examen físico lumbar importante y progresivo. Al examen físico se palpa próstata indurada y aumentada se palpa próstata indurada y aumentada de tamaño, bilateral. Se solicita APE, que resulta 125 ng/ml y de tamaño, bilateral. Se solicita APE, que resulta 125 ng/ml y se realiza una cintigrafía ósea, se realiza una cintigrafía ósea, que muestra múltiples metástasis óseas, mayormente en las vértebras lumbares. ¿Cuál es que muestra múltiples metástasis óseas, mayormente en las vértebras lumbares. ¿Cuál es elel tratamiento más adecuado? tratamiento más adecuado? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Prostatectomía radical",
+        "Prostatectomía radical",
+        "Radioterapia",
+        "Radioterapia",
+        "Cuidados paliativos"
+      ]
+    },
+    {
+      "id": 107,
+      "pregunta": ". . Epi i imititis s crónica",
+      "opciones": [
+        "Cáncer del epidídimo",
+        "Cáncer del epidídimo",
+        "Cáncer testicular",
+        "Cáncer testicular",
+        "Espermatocele"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 109,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Hepatitis A",
+        "Hepatitis A",
+        "Varicela",
+        "Varicela",
+        "Trivírica"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 110,
+      "pregunta": "Una niña de 9 años sufre traumatismo de tobillo, por lo que se Una niña de 9 años sufre traumatismo de tobillo, por lo que se realiza una radiografía, que realiza una radiografía, que se muestra a continuación se muestra a continuación la radiografía no es igual a la original, per la radiografía no es igual a la original, pero es la más parecida o es la más parecida que encontré que encontré ¿Cuál es el ¿Cuál es el diagnóstico más probable? diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Fractura en tallo verde",
+        "Fractura en tallo verde",
+        "Disyunción‐fractura",
+        "Disyunción‐fractura",
+        "Fractura cabalgada"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 113,
+      "pregunta": "n pac en e a os s consu a a por r p op a a n erm en e e evo uc n. . em s, refiere que, al tomar líquidos, estos se devuelven por la nariz. Al examen físico hay refiere que, al tomar líquidos, estos se devuelven por la nariz. Al examen físico hay dificultades en la convergencia ocular y el párpado izquierdo cubre la pupila en un 50% y dificultades en la convergencia ocular y el párpado izquierdo cubre la pupila en un 50% y alal levantarlo con el dedo del levantarlo con el dedo del examinador, aparece ptosis del ojo derecho. Refiere debilidad examinador, aparece ptosis del ojo derecho. Refiere debilidad variable y que debe variable y que debe permanecer más tiempo sentado, ya que está permanecer más tiempo sentado, ya que está más cansado. No puede más cansado. No puede silbar. El diagnóstico más probable es: silbar. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Parálisis facial recurrente",
+        "Parálisis facial recurrente",
+        "Variante del síndrome de",
+        "Variante del síndrome de Guillain Barré Guillain Barré",
+        "Miastenia gravis"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 115,
+      "pregunta": "Un paciente de 32 años, normopeso, diagnosticado de diabetes desde los 20 años, en Un paciente de 32 años, normopeso, diagnosticado de diabetes desde los 20 años, en tratamiento. Su padre, su hermano y su tratamiento. Su padre, su hermano y su abuelo son diabéticos. ¿Cuál es el abuelo son diabéticos. ¿Cuál es el diagnóstico más diagnóstico más probable? probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "DM tipo 1",
+        "DM tipo 1",
+        "DM tipo 2",
+        "DM tipo 2",
+        "DM LADA"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 118,
+      "pregunta": "Una paciente de 16 años, con antecedente de menarquia a los 14 años, presenta reglas Una paciente de 16 años, con antecedente de menarquia a los 14 años, presenta reglas irregulares. Consulta por acné en la cara y espalda. Al examen tiene piel grasa, con irregulares. Consulta por acné en la cara y espalda. Al examen tiene piel grasa, con abundantes comedones y pápulas. Tiene sobrepeso e hirsutismo moderado. ¿Cuál es la abundantes comedones y pápulas. Tiene sobrepeso e hirsutismo moderado. ¿Cuál es la conducta más adecuada? conducta más adecuada? Al examen físico presenta Al examen físico presenta Seleccione una: Seleccione una:",
+      "opciones": [
+        "Realizar tratamiento tópico con queratolíticos",
+        "Realizar tratamiento tópico con queratolíticos",
+        "Realizar estudio de",
+        "Realizar estudio de hiperandrogenism hiperandrogenismo",
+        "Iniciar anticonceptivos orales"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 120,
+      "pregunta": "Es una endometriosis que se Es una endometriosis que se estudia con laparoscopía. estudia con laparoscopía. La respuesta correcta es: La respuesta correcta es: Laparoscopía diagnóstica Laparoscopía diagnóstica Una paciente de 24 años, con dismenorrea en estudio, de 6 meses de Una paciente de 24 años, con dismenorrea en estudio, de 6 meses de evolución, progresiva. evolución, progresiva. En su examen ginecológico se palpa un tumor anexial derecho, por lo que se solicita una En su examen ginecológico se palpa un tumor anexial derecho, por lo que se solicita una ecografía transvaginal, que muestra un tumor anexial derecho, con contenido espeso y ecografía transvaginal, que muestra un tumor anexial derecho, con contenido espeso y homogéneo. ¿Cuál es el diagnóstico más probable? homogéneo. ¿Cuál es el diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Quiste folicular",
+        "Quiste folicular",
+        "Tumor dermoides",
+        "Tumor dermoides",
+        "Endometrioma"
+      ]
+    },
+    {
+      "id": 122,
+      "pregunta": "Una paciente de 28 años, multípara de 2, con un Una paciente de 28 años, multípara de 2, con un parto nacido por cesárea y el segundo parto nacido por cesárea y el segundo nacido por vía vaginal. Consulta por pérdida de líquido claro por genitales. La nacido por vía vaginal. Consulta por pérdida de líquido claro por genitales. La especuloscopía no muestra alteraciones, por lo que se especuloscopía no muestra alteraciones, por lo que se realiza un test de realiza un test de nitrazina, con pH: nitrazina, con pH: 5,5. La ecografía obstétrica muestra feto en cefálica, con peso acorde para la edad 5,5. La ecografía obstétrica muestra feto en cefálica, con peso acorde para la edad gestacional, con índice de líquido amniótico de 2,2 y 12 gestacional, con índice de líquido amniótico de 2,2 y 128 latidos cardiofetales por minuto. 8 latidos cardiofetales por minuto. ¿Cuál es la ¿Cuál es la conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Inducir el parto",
+        "Inducir el parto",
+        "Realizar amniocentesis",
+        "Realizar amniocentesis",
+        "Solicitar Doppler fetal"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 125,
+      "pregunta": "Una paciente de 28 Una paciente de 28 años, diagnosticada de trastorno esquizoafectivo hace poco, está años, diagnosticada de trastorno esquizoafectivo hace poco, está recibiendo hace 7 días risperidona 5 mg al día. Evoluciona con marcada inquietud e recibiendo hace 7 días risperidona 5 mg al día. Evoluciona con marcada inquietud e incomodidad al permanecer en una posición, por lo que debe cambiar de posición con incomodidad al permanecer en una posición, por lo que debe cambiar de posición con frecuencia. ¿Cuál es el frecuencia. ¿Cuál es el diagnóstico más probable? diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Parkinsonismo por fármacos",
+        "Parkinsonismo por fármacos",
+        "Distonía aguda",
+        "Distonía aguda",
+        "Discinesia tardía"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 127,
+      "pregunta": "La respuesta correcta es: Anorexia nervosa La respuesta correcta es: Anorexia nervosa Una paciente de 26 años, atleta, está en amenorrea hace 8 meses. Se realiza test de Una paciente de 26 años, atleta, está en amenorrea hace 8 meses. Se realiza test de embarazo, que resulta negativo. Sus niveles de prolactina y embarazo, que resulta negativo. Sus niveles de prolactina y TSH son normales. Se solicita TSH son normales. Se solicita FSH: 80 FSH: 80 UI/L UI/L VN: me VN: menor a nor a 18 VN: 20‐150 pg/m 20‐150 pg/ml alteraciones. El diagnóstico más probable es: alteraciones. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Hipogonadismo de causa central",
+        "Hipogonadismo de causa central",
+        "Falla ovárica primaria",
+        "Falla ovárica primaria",
+        "Amenorrea por ejercicio"
+      ]
+    },
+    {
+      "id": 129,
+      "pregunta": "Se ecc eccion ione una: e una:",
+      "opciones": [
+        "Episodio depresivo mayor",
+        "Episodio depresivo mayor",
+        "Trastorno conversivo",
+        "Trastorno conversivo",
+        "Trastorno hipocondríaco"
+      ]
+    },
+    {
+      "id": 130,
+      "pregunta": "Un paciente de 36 años, soltero, que aún vive con sus Un paciente de 36 años, soltero, que aún vive con sus padres. Casi no sale de la casa, porque padres. Casi no sale de la casa, porque se siente observado en la se siente observado en la calle. Además, tiene dificultades para dormir, porque siente calle. Además, tiene dificultades para dormir, porque siente que sus vecinos se pueden apoderar de sus vecinos se pueden apoderar de sus pensamientos. El diagnóstico más probable es: sus pensamientos. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Trastorno evitativo de la",
+        "Trastorno evitativo de la personalidad personalidad",
+        "Trastorno esquizotípico de la personalidad",
+        "Trastorno esquizotípico de la personalidad",
+        "Trastorno"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 132,
+      "pregunta": "Una paciente de 19 años, ha sido hospitalizada 8 veces por hipoglicemias, sin una causa Una paciente de 19 años, ha sido hospitalizada 8 veces por hipoglicemias, sin una causa clara, que han requerido hospitalización y que se resuelven fácilmente. En la última clara, que han requerido hospitalización y que se resuelven fácilmente. En la última hospitalización, fue sorprendida inyectándos hospitalización, fue sorprendida inyectándose una dosis e una dosis de insulina en el de insulina en el baño. Sin baño. Sin embargo, ella niega abiertamente este hecho. ¿Cuál es embargo, ella niega abiertamente este hecho. ¿Cuál es el diagnóstico más probable? el diagnóstico más probable? Seleccione una o más de una: Seleccione una o más de una:",
+      "opciones": [
+        "Trastorno disociativo",
+        "Trastorno disociativo",
+        "Trastorno conversivo",
+        "Trastorno conversivo",
+        "Trastorno"
+      ]
+    },
+    {
+      "id": 135,
+      "pregunta": "iniciar los síntomas, tuvo relaciones sexuales, sin iniciar los síntomas, tuvo relaciones sexuales, sin protección. Al examen físico, se protección. Al examen físico, se aprecia aprecia secreción uretral mucosa, escasa. El examen más secreción uretral mucosa, escasa. El examen más adecuado para el diagnóstico es: adecuado para el diagnóstico es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Reacción en cadena de",
+        "Reacción en cadena de polimerasa, en orina polimerasa, en orina",
+        "Cultivo corriente de secreción",
+        "Cultivo corriente de secreción uretral uretral",
+        "Tinción de Gram de secreción uretral"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 137,
+      "pregunta": "Una paciente cursando un embarazo de 7 Una paciente cursando un embarazo de 7 semanas de evolución, presenta prurito vaginal semanas de evolución, presenta prurito vaginal desde hace 7 días, con leucorrea de aspecto grumoso. Se realiza un cultivo vaginal, que desde hace 7 días, con leucorrea de aspecto grumoso. Se realiza un cultivo vaginal, que muestra desarrollo de Streptococcus betahemolítico grupo B y Candida albicans. ¿Cuál muestra desarrollo de Streptococcus betahemolítico grupo B y Candida albicans. ¿Cuál es el es el tratamiento de elección? tratamiento de elección? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Clotrimazol tópico",
+        "Clotrimazol tópico",
+        "Ampicilina oral",
+        "Ampicilina oral",
+        "Azitromicina oral"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 140,
+      "pregunta": "exam examen en ísico ísico se se apre aprecia cia niño niño taqu taquipnei ipneico, co, con con estri estri or or insp inspirato iratorio, rio, uso uso e e muscu muscu atura atura accesoria, sin cianosis. La auscultación pulmonar es normal. El accesoria, sin cianosis. La auscultación pulmonar es normal. El diagnóstico más probable es: diagnóstico más probable es: Seleccione una o más de una: Seleccione una o más de una:",
+      "opciones": [
+        "Laringitis aguda viral",
+        "Laringitis aguda viral",
+        "Croup espasmódico",
+        "Croup espasmódico",
+        "Cuerpo extraño"
+      ]
+    },
+    {
+      "id": 142,
+      "pregunta": "Un niño de Un niño de 6 años consulta por epistaxis 6 años consulta por epistaxis bilateral frecuente. Además, tiene antecedente de bilateral frecuente. Además, tiene antecedente de ser respirador bucal, roncar en la ser respirador bucal, roncar en la noche y presentar infecciones respiratorias altas a noche y presentar infecciones respiratorias altas a repetición. El diagnóstico más probable es: repetición. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Rinofibroangioma bilateral",
+        "Rinofibroangioma bilateral",
+        "Rinitis alérgica",
+        "Rinitis alérgica",
+        "Enfermedad de von Willebrand"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 145,
+      "pregunta": "Una paciente de 24 Una paciente de 24 años, presenta metrorragia importante en el puerperio inmediato, años, presenta metrorragia importante en el puerperio inmediato, dando salida a un flujo importante de sangre roja. Se palpa el fondo del útero por sobre el dando salida a un flujo importante de sangre roja. Se palpa el fondo del útero por sobre el ombligo. ¿Cuál es la ombligo. ¿Cuál es la medida inicial más adecuada? medida inicial más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Metilergonovina",
+        "Metilergonovina",
+        "Misoprostol",
+        "Misoprostol",
+        "Masaje uterino"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 148,
+      "pregunta": "Un paciente de 65 años, con antecedente de hemorroides, consulta por dolor anal de tres Un paciente de 65 años, con antecedente de hemorroides, consulta por dolor anal de tres días de evolución, que aparece en días de evolución, que aparece en relación a la defecación. Además, presenta rectorragia relación a la defecación. Además, presenta rectorragia escasa, que sigue a la defecación. Refiere que sus deposiciones han sido duras. El escasa, que sigue a la defecación. Refiere que sus deposiciones han sido duras. El diagnóstico más probable es: diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Cáncer rectal",
+        "Cáncer rectal",
+        "Fístula anal",
+        "Fístula anal",
+        "Hemorroides internos"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 150,
+      "pregunta": "La respuesta correcta es: Fístula perianal La respuesta correcta es: Fístula perianal Una paciente de 23 años, está en trabajo de parto. Está con Una paciente de 23 años, está en trabajo de parto. Está con dilatación completa, buena dilatación completa, buena dinámica uterina, membrana dinámica uterina, membranas rotas y cabeza fetal 3 cm s rotas y cabeza fetal 3 cm por sobre las espinas ciáticas. Desde por sobre las espinas ciáticas. Desde hace 4 horas ha permanecido sin cambios. El monitoreo fetal es normal ¿Cuál es la conducta hace 4 horas ha permanecido sin cambios. El monitoreo fetal es normal ¿Cuál es la conducta más adecuada? más adecuada? Seleccione una o más de una: Seleccione una o más de una:",
+      "opciones": [
+        "Dejar evolución",
+        "Dejar evolución espontánea espontánea",
+        "Administrar tocolisis con nifedipino",
+        "Administrar tocolisis con nifedipino",
+        "Realizar cesárea"
+      ]
+    },
+    {
+      "id": 153,
+      "pregunta": "Una paciente de 17 Una paciente de 17 años, consultó por epigastralgia recurrente, que en algunas ocasiones se años, consultó por epigastralgia recurrente, que en algunas ocasiones se había asociado a melena. Se realiza endoscopía digestiva alta, había asociado a melena. Se realiza endoscopía digestiva alta, que muestra una úlcera y que muestra una úlcera y erosiones en la primera porción del erosiones en la primera porción del duodeno. Como antecedente refiere cefalea ocasional, duodeno. Como antecedente refiere cefalea ocasional, que trata con paracetamol. Su padre fue tratado de úlcera duodenal. ¿Cuál es la causa más que trata con paracetamol. Su padre fue tratado de úlcera duodenal. ¿Cuál es la causa más probable de sus alteraciones? probable de sus alteraciones? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Enfermedad celíaca",
+        "Enfermedad celíaca",
+        "Enfermedad de Cröhn",
+        "Enfermedad de Cröhn",
+        "Síndrome de Zollinger Ellison"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 155,
+      "pregunta": "La Encuesta Nacional de Salud es un estudio de prevalencia muy grande, que se realiza para La Encuesta Nacional de Salud es un estudio de prevalencia muy grande, que se realiza para hacer el seguimiento de las hacer el seguimiento de las frecuencias de las patologías crónicas no transmisibles. No frecuencias de las patologías crónicas no transmisibles. No tiene tiene una función terapéutica, sino solo de una función terapéutica, sino solo de vigilancia. vigilancia. La respuesta correcta es: Para realizar la La respuesta correcta es: Para realizar la vigilancia sanitaria de las patologías más importante vigilancia sanitaria de las patologías más importante de la población de la población Una paciente con antecedente de fibrilación auricular paróxística, la Una paciente con antecedente de fibrilación auricular paróxística, la que trata con que trata con amiodarona, digoxina, enalapril e hidroclorotiazida, desde hace 6 meses. amiodarona, digoxina, enalapril e hidroclorotiazida, desde hace 6 meses. Evoluciona desde hace 1 mes, Evoluciona desde hace 1 mes, con disnea, ortopnea y palpitaciones. Además, refiere baja de con disnea, ortopnea y palpitaciones. Además, refiere baja de peso de 4 kilogramos y temblor. Actualmente está en fibrilación auricular, con FC: 112 x’, se peso de 4 kilogramos y temblor. Actualmente está en fibrilación auricular, con FC: 112 x’, se auscultan crépitos pulmonares bilaterales y su radiografía de tórax auscultan crépitos pulmonares bilaterales y su radiografía de tórax muestra congestión muestra congestión pulmonar, con líneas B de Kerley. El diagnóstico más probable es: pulmonar, con líneas B de Kerley. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Insuficiencia cardíaca secundaria a cardiopatía coronaria",
+        "Insuficiencia cardíaca secundaria a cardiopatía coronaria",
+        "Cardiopatía isquémica",
+        "Cardiopatía isquémica",
+        "Hipertiroidismo por"
+      ]
+    },
+    {
+      "id": 157,
+      "pregunta": "con uc a a m s s a ecua a Seleccione una: Seleccione una:",
+      "opciones": [
+        "Antiagregantes",
+        "Antiagregantes",
+        "Acenocumarol",
+        "Acenocumarol",
+        "Ecocardiografía transesofágica"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 158,
+      "pregunta": "Un lactante de 20 meses dice 4 Un lactante de 20 meses dice 4 a 5 palabras con sentido. Apunta con el dedo y a 5 palabras con sentido. Apunta con el dedo y no ha no ha logrado aún marcha espontánea. Al examen físico tiene logrado aún marcha espontánea. Al examen físico tiene hipotonía, reflejos normales y hipotonía, reflejos normales y debilidad muscular. Lo cuida su abuela, de 70 años, con movilidad reducida por artrosis de debilidad muscular. Lo cuida su abuela, de 70 años, con movilidad reducida por artrosis de caderas. ¿Cuál es el caderas. ¿Cuál es el diagnóstico más probable? diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Falta de estimulación",
+        "Falta de estimulación",
+        "Neuropatía",
+        "Neuropatía",
+        "Miopatía"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 162,
+      "pregunta": "Un paciente de 60 años, diabético, Un paciente de 60 años, diabético, consulta por dolor lumbar intenso, de 5 días de consulta por dolor lumbar intenso, de 5 días de evolución, asociado a malestar general y fiebre hasta evolución, asociado a malestar general y fiebre hasta 38,9°C. Al examinarlo, presenta 38,9°C. Al examinarlo, presenta marcado dolor al presionar la zona marcado dolor al presionar la zona vertebral lumbar, con una contractura de la vertebral lumbar, con una contractura de la musculatura musculatura paravertebral. El diagnóstico más probable es: paravertebral. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Espondilitis anquilosante",
+        "Espondilitis anquilosante",
+        "Aplastamiento vertebral",
+        "Aplastamiento vertebral",
+        "Lumbago mecánico"
+      ],
+      "respuesta_correcta": 8
+    },
+    {
+      "id": 165,
+      "pregunta": "Un paciente de 80 años, hospitalizado por Un paciente de 80 años, hospitalizado por fractura de cadera, presenta agitación fractura de cadera, presenta agitación psicomotora, con alucinaciones visuales y agresividad, especialmente durante la noche. En psicomotora, con alucinaciones visuales y agresividad, especialmente durante la noche. En cambio, durante el día se muestra a cambio, durante el día se muestra adecuado y muy avergonzado por su comportamiento. decuado y muy avergonzado por su comportamiento. ¿Cuál es el diagnóstico más probable? ¿Cuál es el diagnóstico más probable? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Demencia tipo Alzheimer",
+        "Demencia tipo Alzheimer",
+        "Demencia vascular",
+        "Demencia vascular",
+        "Accidente vascular encefálico"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 167,
+      "pregunta": "Una paciente de 30 a Una paciente de 30 años, embarazada con 32 semanas de ños, embarazada con 32 semanas de gestación presenta un episodio gestación presenta un episodio depresivo mayor, sin síntomas psicóticos ni ideación suicida. ¿Cuál es el depresivo mayor, sin síntomas psicóticos ni ideación suicida. ¿Cuál es el tratamiento de tratamiento de elección? elección? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Terapia electroconvulsiva",
+        "Terapia electroconvulsiva",
+        "Sertralina",
+        "Sertralina",
+        "Mirtazapina"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 170,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Calcio iónico",
+        "Calcio iónico",
+        "Paratohormona",
+        "Paratohormona",
+        "Calcitonina"
+      ]
+    },
+    {
+      "id": 172,
+      "pregunta": "Una paciente de 78 a Una paciente de 78 años presenta disminución de la visión del ojo derecho, de 4 ños presenta disminución de la visión del ojo derecho, de 4 meses de meses de evolución. Al examen tiene caída de la evolución. Al examen tiene caída de la agudeza visual de dicho ojo, con agudeza visual de dicho ojo, con disminución de la disminución de la visión del contraste y afectación del rojo visión del contraste y afectación del rojo pupilar. El diagnóstico más probable es: pupilar. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Glaucoma crónico",
+        "Glaucoma crónico",
+        "Catarata",
+        "Catarata",
+        "Degeneración macular relacionada con la"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 176,
+      "pregunta": "rojo, con una úlcera corneal en la rojo, con una úlcera corneal en la mitad inferior. El diagnóstico más probable es: mitad inferior. El diagnóstico más probable es: Seleccione una: Seleccione una:",
+      "opciones": [
+        "Cuerpo extraño tarsal",
+        "Cuerpo extraño tarsal",
+        "Conjuntivitis alérgica",
+        "Conjuntivitis alérgica",
+        "Escleritis"
+      ],
+      "respuesta_correcta": 6
+    },
+    {
+      "id": 177,
+      "pregunta": "Un recién nacido de término presenta ictericia a los 7 días de vida. Se solicita bilirrubina Un recién nacido de término presenta ictericia a los 7 días de vida. Se solicita bilirrubina total: 14,2 mg/dl y bilirrubina directa: 4,0 mg/dl. ¿Cuál es la conducta más adecuada? total: 14,2 mg/dl y bilirrubina directa: 4,0 mg/dl. ¿Cuál es la conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Solicitar hemograma, grupo‐Rh y prueba de Coombs directo al",
+        "Solicitar hemograma, grupo‐Rh y prueba de Coombs directo al recién nacido recién nacido",
+        "Solicitar hemograma, grupo‐Rh y prueba de Coombs directo a la",
+        "Solicitar hemograma, grupo‐Rh y prueba de Coombs directo a la madre madre",
+        "Solicitar pruebas hepáticas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 179,
+      "pregunta": "Tiene un RCIU, que se estudia con Doppler fetal, Tiene un RCIU, que se estudia con Doppler fetal, dentro del cual el principal indicador es dentro del cual el principal indicador es elel flujo de las arterias umbilicales. flujo de las arterias umbilicales. La respuesta correcta es: Ecografía Doppler de arterias La respuesta correcta es: Ecografía Doppler de arterias umbilicales umbilicales Una mujer de 20 años, con atraso menstrual de 21 días, se realiza un test de embarazo, que Una mujer de 20 años, con atraso menstrual de 21 días, se realiza un test de embarazo, que está positivo, por lo que se hace está positivo, por lo que se hace una ecografía transvaginal, que muestra un saco una ecografía transvaginal, que muestra un saco gestacional intrauterino, de 10 mm, sin embrión. La HCG gestacional intrauterino, de 10 mm, sin embrión. La HCG está en 4.200 UI/L. ¿Cuál está en 4.200 UI/L. ¿Cuál es la es la conducta más adecuada? conducta más adecuada? Seleccione una: Seleccione una:",
+      "opciones": [
+        "Administrar metotrexato",
+        "Administrar metotrexato",
+        "Administrar misoprostol",
+        "Administrar misoprostol",
+        "Realizar legrado"
+      ]
+    },
+    {
+      "id": 180,
+      "pregunta": "Seleccione una: Seleccione una:",
+      "opciones": [
+        "Ecografía obstétrica transvaginal",
+        "Ecografía obstétrica transvaginal",
+        "Tacto vaginal",
+        "Tacto vaginal",
+        "Ecografía Doppler fetal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2122 @@
+{
+  "id": "eunacom-jul-2016",
+  "name": "EUNACOM Julio 2016",
+  "month": "Julio",
+  "year": 2016,
+  "total_questions": 176,
+  "questions_with_answers": 176,
+  "questions": [
+    {
+      "id": 1,
+      "pregunta": "Un paciente hipertenso bien controlado, con antecedente de EPOC, presenta un cuadro de palpitaciones y disnea, siendo diagnosticado de fibrilación auricular. ¿Qué fármaco está contraindicado?",
+      "opciones": [
+        "Atenolol",
+        "Digoxina",
+        "Enalapril",
+        "Acenocumarol",
+        "Amlodipino"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 2,
+      "pregunta": "Una paciente de 27 años de edad, con antecedente de parto hace 9 meses, dando lactancia materna parcial, consulta porque no ha iniciado sus menstruaciones aún. Está usando medroxiprogesterona inyectable intramuscular 150 mg cada 3 meses, como anticonceptivo. Su test de embarazo ha resultado negativo en más de una oportunidad. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar prueba de progesterona",
+        "Solicitar TSH y prolactina",
+        "Solicitar niveles HCG en sangre venosa",
+        "Mantener el tratamiento",
+        "Solicitar ecografía transvaginal"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 3,
+      "pregunta": "Una paciente consulta por atraso menstrual de 7 semanas y trae test de embarazo en orina, que resulta positivo. Se realiza una ecografía transvaginal, que no visualiza embarazo intrauterino y que constata la presencia de un tumor anexial derecho, complejo. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar niveles de HCG en sangre",
+        "Solicitar una nueva ecografía transvaginal en 7 días",
+        "Solicitar marcadores tumorales en sangre",
+        "Solicitar proteína plasmática asociada al embarazo",
+        "Solicitar niveles de progesterona y estradiol"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 4,
+      "pregunta": "Una paciente de 22 años presenta un cuadro de fiebre nocturna, asociada a baja de peso de 3 meses de evolución y astenia. Además refiere aumento de volumen cervical. Al examen físico se aprecia palidez de piel y mucosas y una masa de 6 cm de diámetro en la cara lateral derecha del cuello. En la radiografía de tórax, se constata ensanchamiento del mediastino. El diagnóstico más probable es:",
+      "opciones": [
+        "Leucemia linfática crónica",
+        "Infección por VIH",
+        "Tuberculosis ganglionar",
+        "Linfoma de Hodgkin",
+        "Linfoma no Hodgkin Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 5,
+      "pregunta": "Una paciente de 26 años, con antecedente de esclerosis múltiple consulta por disminución de la agudeza visual derecha, de 2 días de evolución, asociado a leve dolor retroocular derecho, que aumenta con los movimientos. Al examen físico se aprecia rojo pupilar y movimientos normales, escape pupilar, con defecto pupilar aferente en el ojo derecho y presencia de un escotoma derecho. ¿Cuál es el diagnóstico más probale?",
+      "opciones": [
+        "Desprendimiento de retina",
+        "Trombosis de la vena central de la retina",
+        "Trombosis de arteria central de la retina",
+        "Neuritis óptica",
+        "Absceso orbitario"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 6,
+      "pregunta": "Un paciente de 35 años, colecistectomizado hace meses, consulta por dolor epigástrico, progresivo, que inició hace 24 horas y que se ha asociado a ictericia y acolia. Al examen físico está afebril, con FC: 80x' y PA: 120/76 mmHg y se aprecia dolor a la palpación del hemiabdomen superior e ictericia de piel y mucosas. Se solicitan pruebas hepáticas que muestran GOT: 42 UI/L, GPT: 63 UI/L, FA: 430 UI/L, GGT: 566 UI/L y bilirrubina de 6,4 mg/dl. ¿Cuál es el examen de elección para confirmar el diagnóstico?",
+      "opciones": [
+        "TAC de abdomen",
+        "Ecografía abdominal",
+        "Endoscopía digestiva alta y biopsia",
+        "Colangioresonancia",
+        "Colangiopancreatografía retrógrada endoscópica"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 7,
+      "pregunta": "Una paciente de 30 años, con antecedente de un quiste mamario izquierdo, consulta por dolor en la mama izquierda, asociada a fiebre y eritema. Al examen físico se constata eritema, aumento de volumen y dolor en la mama izquierda, con un nódulo doloroso a la palpación. Se solicita una ecografía que muestra una imagen quística de 5 cm de diámetro, con signos inflamatorios en las partes blandas. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar seguimiento ecográfico",
+        "Iniciar tratamiento con AINES",
+        "Realizar punción y drenaje",
+        "Drenar mediante cirugía",
+        "Solicitar resonancia magnética nuclear de mamas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 8,
+      "pregunta": "Mujer de 81 años, hospitalizada por neumonía, presenta agitación psicomotora en las noches, agrediendo al personal hospitalario y no reconoce a sus familiares. En el día, por el contrario, está en buenas condiciones, tranquila y no recuerda lo sucedido. ¿Cuál es el diagnostico más probable?",
+      "opciones": [
+        "Esquizofrenia",
+        "Accidente vascular encefálico",
+        "Delirium",
+        "Demencia",
+        "Trastorno delirante Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 9,
+      "pregunta": "Paciente 80 años con antecedente de artrosis en tratamiento con paracetamol 1 gr c/8 horas, con control parcial del dolor. Realiza adecuadamente sus actividades de la vida diaria, usa bastón y sale acompañada. Tiene antecedente de HTA e Insuficiencia cardíaca congestiva en capacidad funcional III. ¿Cuál es el mejor fármaco a agregar para continuar el manejo del dolor?",
+      "opciones": [
+        "Ibuprofeno v.o.",
+        "Pregabalina v.o.",
+        "Ketorolaco v.o.",
+        "Lidocaína en parches",
+        "Tramadol v.o."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 10,
+      "pregunta": "Un paciente de 24 años, sufre una caída a nivel, mientras jugaba básquetbol, cayendo con el hombro izquierdo, contra el suelo. Presenta impotencia funcional y al examen físico destaca dolor a la movilización del hombro izquierdo. Se solicita una radiografía AP de hombro y axial de escápula, que se muestran a continuación: El diagnóstico más probable es:",
+      "opciones": [
+        "Luxación anterior de hombro",
+        "Fractura de escápula",
+        "Luxación acromioclavicular",
+        "Fractura de clavícula",
+        "Lesión del tendón del manguito rotador"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 11,
+      "pregunta": "Una paciente de 48 años, se somete a una gastrectomía total. Al segundo día postoperatoria presenta fiebre y taquicardia, con FC: 100x' y PA: 140/90. Al examen físico presenta herida operatoria sin alteraciones, con abdomen sensible a la palpación. El examen pulmonar muestra hipoventilación basal. ¿Cuál es la causa más probable de la fiebre?",
+      "opciones": [
+        "Infección urinaria",
+        "Filtración de la anastomosis",
+        "Reacción adversa a medicamentos",
+        "Tromboembolismo pulmonar",
+        "Atelectasia infectada Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 12,
+      "pregunta": "Un niño de 20 días de edad, presenta lesiones eritematosas, con descamación en la cabeza y la zona interciliar, con descamación amarilla, de aspecto oleoso. Se ve de buen aspecto y ha subido de peso. La indicación más adecuada es:",
+      "opciones": [
+        "Administrar fórmula, con proteína hidrolizada, como alimentación",
+        "Crema de betametasona tópica",
+        "Crema de clotrimazol tópico",
+        "Vaselina topica",
+        "Antibióticos tópicos"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 13,
+      "pregunta": "En un estudio de cohortes sobre el tabaco y cáncer de pulmón, luego de 20 años, se determinad que 65 de 2.000 pacientes fumadores enfermaron de cáncer. ¿Qué medida es posible calcular con esta información?",
+      "opciones": [
+        "Incidencia acumulada en los pacientes fumadores",
+        "Prevalencia en los pacientes fumadores",
+        "Riesgo relativo",
+        "Odds ratio",
+        "Tasa de ataque en los pacientes fumadores"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 14,
+      "pregunta": "Una paciente de 53 años, diabética tipo 2, es diagnosticada recientemente de hipertensión. Sus exámenes generales, incluyendo un electrocardiograma, no muestran alteraciones ¿Qué fármaco es más adecuado para su tratamiento?",
+      "opciones": [
+        "Atenolol",
+        "Hidroclorotiazida",
+        "Carvedilol",
+        "Amlodipino",
+        "Enalapril"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 15,
+      "pregunta": "Paciente masculino, de 50 años de edad, consulta por prurito intenso en el glande y al examen físico se constata eritema y edema en el glande y el prepucio, asociado a un anillo fibrótico en el prepucio. Refiere que ha tenido varios episodios similares antes. ¿A qué enfermedad se puede atribuir el cuadro?",
+      "opciones": [
+        "Alcoholismo",
+        "Diabetes mellitus",
+        "VIH",
+        "Esclerodermia",
+        "Lupus"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 16,
+      "pregunta": "Una paciente de 34 años, multípara, embarazada de 36 semanas, presenta pérdida de líquido amniótico hace una hora, confirmándose rotura de membranas, con la prueba de microglobulina placentaria. La ecografía obstétrica muestra disminución del líquido amniótico, con presentación cefálica, y con bienestar fetal ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cesárea",
+        "Administrar corticoides",
+        "Inducir el parto",
+        "Esperar 48 horas para inicio espontáneo del trabajo de parto",
+        "Administrar antibióticos Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 17,
+      "pregunta": "Un lactante de 11 meses acude a control de niño sano, constatándose que no tiene aún ningún diente. El resto de su examen físico, así como su desarrollo psicomotor es normal. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Derivar al odontopediatra",
+        "Solicitar radiografía panorámica dentaria",
+        "Solicitar TSH plasmática",
+        "Solicitar niveles plasmáticos de vitamina D",
+        "Observar evolución y controlar en 2 meses"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 18,
+      "pregunta": "Una paciente de 40 años, cursando un embarazo de 24 semanas, se realiza ecografía obstétrica, que visualiza a los vasos umbilicales en las membranas amnióticas y al cordón umbilical, que se inserta en la zona marginal inferior de la placenta. La conducta más adecuada es:",
+      "opciones": [
+        "Solicitar una nueva ecografía el tercer trimestre",
+        "Observar evolución",
+        "Realizar rotura de membranas tardía",
+        "Realizar cesárea de inmediato",
+        "Administrar corticoides e interrumpir el embarazo en 48 horas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 19,
+      "pregunta": "Un niño de 2 años, presenta deposiciones abundantes y pastosas, de 1 año de evolución. Además ha subido poco de peso en ese tiempo, teniendo actualmente un índice peso/talla de -1 DS y peso/edad de -2 DS. No ha tenido cuadros febriles. El diagnóstico más probable es:",
+      "opciones": [
+        "Enfermedad celíaca",
+        "Fibrosis quística",
+        "Diarrea crónica inespecífica",
+        "Intolerancia a la lactosa",
+        "Alergia a la proteína de vaca"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 20,
+      "pregunta": "Un recién nacido, con antecedente de pielectasia bilateral, diagnosticada por ecografía obstétrica, presenta retraso en la eliminación de orina, por lo que se realiza una ecografía abdominal al tercer día de vida, que visualiza hidroureteronefrosis bilateral, asociada a una vejiga de paredes engrosadas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Valvas uretrales posteriores",
+        "Síndrome de Prune Belly",
+        "Reflujo vésico-ureteral",
+        "Vejiga neurogénica",
+        "Megauréter congénito Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 21,
+      "pregunta": "Paciente femenina de 35 añoos, quien evidencia masa en cuadrante superoexterno de mama izquierda, no doloroso, de consistencia lisa y no adherido a planos profundos. Tiene una tía fallecida de cáncer de mama a los 71 años y usa anticonceptivos orales. La conducta más apropiada es:",
+      "opciones": [
+        "Realizar ecotomografía de mamas",
+        "Realizar mamografía",
+        "Punción con aguja fina",
+        "Realizar tumorectomía y biopsia",
+        "Solicitar resonancia magnética nuclear de mamas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 22,
+      "pregunta": "Un niño de 4 años, presenta un cuadro de 10 días de evolución de edema bipalpebral, a lo que se ha agregado, en los últimos dos días, oliguria y orinas espumosas. Al examen físico presenta presión arterial 102/62 mmHg, FC: 80x', edema facial y de extremidades inferiores. En sus exámenes destaca examen de orina con proteínas ++, creatininemia 0,9 mg/dl y BUN: 20 mg/dl. El diagnóstico más probable es:",
+      "opciones": [
+        "Síndrome nefrótico",
+        "Glomerulonefritis aguda",
+        "Insuficiencia renal crónica",
+        "Síndrome hemolítico urémico",
+        "Nefritis intersticial"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 23,
+      "pregunta": "Una niña de 5 años, en tratamiento con amoxicilina por una amigdalitis, evoluciona al séptimo día con fiebre y lesiones cutáneas generalizadas. Al examen físico se aprecian lesiones en tiro al blanco, asociadas a úlceras en las mucosas oral, rectal y vaginal. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Urticaria aguda",
+        "Gingivoestomatitis herpética",
+        "Síndrome de Steven Johnson",
+        "Escarlatina",
+        "Mononucleosis infecciosa"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 24,
+      "pregunta": "¿Cuál es la mejor estrategia de vigilancia para una enfermedad infectocontagiosa, que se transmite a través de la contaminación de acuíferos?",
+      "opciones": [
+        "Vigilancia activa",
+        "Vigilancia pasiva",
+        "Vigilancia estacional",
+        "Encuestas",
+        "Centros centinelas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 25,
+      "pregunta": "Una paciente de 25 años presenta un nódulo tiroideo de 2 cm de diámetro, a la palpación. Se solicita TSH t T4 libre, que resultan normales. ¿Cuál es el examen de elección para continuar el estudio de esta paciente?",
+      "opciones": [
+        "Ecografía cervical",
+        "Punción aspiración con aguja fina",
+        "Anticuerpos antiroideos",
+        "Cintigrafía con yodo radiactivo",
+        "TAC cervical Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 26,
+      "pregunta": "Un paciente de 30 años sufre una caída de altura, desde 15 metros, golpéandose contra el suelo. Al examen físico está orientado, con FC: 80x' y PA: 120/80 mmHg, con mucho dolor a la compresión de la pelvis, mayor a izquierda. Se solicita una radiografía de pelvis AP, que se muestra a continuación: ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Pasar una sonda Foley",
+        "Indicar reposo en hamaca",
+        "Administrar antibióticos",
+        "Realizar cirugía",
+        "Solicitar ecografía de abdomen y pelvis"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 27,
+      "pregunta": "Un lactante de 10 meses de edad, presenta un cuadro de fiebre hasta 37,8 grados Celsius, asociado a aparición de un exantema generalizado, de timo macular eritematoso, de aspecto tenue. Al examen físico destacan adenopatías retroauriculares y cervicales posteriores, sensibles a la palpación. El diagnóstico más probable es:",
+      "opciones": [
+        "Exantema súbito",
+        "Eritema infeccioso",
+        "Rubeola",
+        "Sarampión",
+        "Exantema por citomegalovirus"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 28,
+      "pregunta": "Si se quiere determinar la utilidad de una prueba diagnóstica, ¿Qué técnica es la más adecuada?",
+      "opciones": [
+        "Elaboración de curvas de ROC",
+        "Determinar la sensibilidad y especificidad de la prueba",
+        "Determinar la sensibilidad de la prueba y la prevalencia de la enfermedad",
+        "Determinar la especificidad y el valor predictivo negativo de la prueba",
+        "Determinar el número necesario para tratar (NNT) Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 29,
+      "pregunta": "Un hombre de 29 años, presenta un cuadro de tos seca, de 5 semanas de evolución, a lo que se ha agregado disnea y malestar general. Al examen físico destaca FC: 100x', PA: 110/70 mmHg, temperatura: 37,5 grados Celsius y FR: 30x'. El examen cardiopulmonar, así como la radiografía de tórax son normales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Infección por adenovirus",
+        "Infección por virus influenza",
+        "Infección por Bordetella pertusis",
+        "Infección por Pneumocystis jiroveci",
+        "Infección por Mycobacterium tuberculosis"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 30,
+      "pregunta": "Un paciente de 65 años, alcohólico inveterado, se queda dormido sobre el costado derecho, mientras estaba borracho. Al despertar, al día siguiente, no puede mover la mano derecha. Al examen neurológico, no puede extender los dedos ni la muñeca, aunque puede flectarlos sin problemas. Además no tiene alteraciones visuales ni afasia. El diagnóstico más probable es:",
+      "opciones": [
+        "Hematoma subdural izquierdo",
+        "Trombosis de la vena subclavia",
+        "Neuropatía compresiva del nervio radial",
+        "Trombosis de la arteria subclavia",
+        "Hematoma capsular izquierdo"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 31,
+      "pregunta": "Un paciente de 70 años, diabético tipo 2 e hipertenso, en tratamiento con metformina, losartán e hidroclorotiazida, presenta un cuadro de 4 días de vómitos alimentarios y diarrea, evolucionando con malestar general y disminución del volumen urinario. Al examen físico está bradipsíquico, con presión arterial de 100/50 mmHg, frecuencia cardíaca de 110x'. En sus exámenes de laboratorio destaca creatinina: 2,0 mg/dl, BUN: 78 mg/dl, FeNa: 0,5%, sodio: 130 mEq/L, potasio: 2,0 mEq/L y cloro: 110 mEq/L . ¿Qué fluido debe administrarse inicialmente?",
+      "opciones": [
+        "Solución glucosada al 5%",
+        "Solución ringer lactato",
+        "Albúmina al 5%",
+        "Solución glucosalina isotónica",
+        "Solución de bicarbonato al 2/3 molar"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 32,
+      "pregunta": "Una paciente de 14 años aún no ha tenido su menarquia. Presenta desarrollo puberal Tanner 2, mamario y pubiano, con vello axilar. No tiene otras alteraciones en el examen físico. La conducta más adecuada es:",
+      "opciones": [
+        "Solicitar ecografía ginecológica",
+        "Solicitar cariotipo",
+        "Solicitar niveles plasmáticos de estradiol, LH y FSH",
+        "Realizar prueba de progesterona",
+        "Controlar en un año Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 33,
+      "pregunta": "Un paciente de 32 años presenta un cuadro de cólico renal, asociado a microhematuria en el sedimento de orina. ¿Cuál es el examen de elección para el estudio de este paciente?",
+      "opciones": [
+        "UroTAC",
+        "PieloTAC",
+        "Pielografía de eliminación intravenosa",
+        "Ecografía",
+        "Radiografía simple"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 34,
+      "pregunta": "Un niño de 2 años presenta estrabismo divergente, con desviación del ojo derecho hacia temporal, que apareció hace pocos meses y que ha ido progresando. Al examen físico, además se constata ausencia del rojo pupilar de ese ojo. El diagnóstico más probable es:",
+      "opciones": [
+        "Glaucoma congénito",
+        "Retinoblastoma",
+        "Catarata congénita",
+        "Leucoma",
+        "Estrabismo esencial"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 35,
+      "pregunta": "Una paciente de 20 años, universitaria, tiene escasa interacción con sus compañeros, porque la inhibe el juicio que ellos puedan tener sobre su desempeño. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno de personalidad esquizoide",
+        "Trastorno de ansiedad",
+        "Fobia social",
+        "Trastorno del espectro autista",
+        "Esquizofrenia"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 36,
+      "pregunta": "Una mujer de 33 años, cursando con un embarazo de 26 semanas, sufre un accidente de tránsito, por lo que es llevada al servicio de urgencias, constatándose metrorragia moderada. Desde el punto de vista obstétrico, lo primero que se debe evaluar es:",
+      "opciones": [
+        "La vitalidad fetal",
+        "La ubicación placentaria",
+        "La dilatación cervical",
+        "La dinámica uterina",
+        "La integridad de las membranas"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 37,
+      "pregunta": "Mujer de 25 años, con embarazo de 15 semanas, presenta un VDRL positivo en dilución 1/16. Refiere ser alérgica a la amoxicilina, con una reacción alérgica, que requirió hospitalización, cuando presentó una infección faríngea en la infancia. La conducta más adecuada es:",
+      "opciones": [
+        "Tratar con penicilina benzatina, administrando una dosis ahora y otra en una semana.",
+        "Pedir ANA y anticuerpos anti-DNA",
+        "Solicitar FTA-abs",
+        "Tratar con eritromicina",
+        "Tratar con cefriaxona Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 38,
+      "pregunta": "Una paciente de 31 años, cursando un embarazo de 28 semanas, sin alteraciones hasta el momento, se realiza un test de tolerancia a la glucosa oral, con 75 gramos de glucosa, que resulta 75 mg/dl basal y 160 mg/dl a las 2 horas de la carga de glucosa. El diagnóstico más probable es:",
+      "opciones": [
+        "Intolerancia a la glucosa",
+        "Diabetes gestacional",
+        "Diabetes pregestacional",
+        "Djabetes mellitus 2",
+        "Resistencia a la insulina"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 39,
+      "pregunta": "Una paciente de 67 años consulta por un cuadro de dolor e impotencia funcional del codo derecho, asociado a fiebre, que inició hace 2 días. Al examen físico tiene temperatura de 39 grados Celsius, FC: 100x' y PA: 110/70 mmHg, asociado a aumento de volumen del codo derecho, con eritema y aumento de la temperatura local. Además, tanto la movilidad pasiva, como la activa, son muy dolorosas. ¿Cual es el diagnóstico más probable?",
+      "opciones": [
+        "Artritis reactiva",
+        "Artritis séptica",
+        "Artritis gotosa",
+        "Condrocalcinosis",
+        "Artritis reumatoide"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 40,
+      "pregunta": "Una paciente multípara, con un parto anterior por cesárea, cursando con un nuevo embarazo de 35 semanas, consulta por metrorragia moderada. Al examen físico presenta una contracción uterina cada diez minutos y se realiza ecografía que visualiza una placenta posterior que sobrepasa en dos centímetros al orificio cervical. El ecodoppler materno-fetal es normal. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Administrar tocolíticos",
+        "Inducir el parto con misoprostol",
+        "Administrar corticoides para maduración pulmonar",
+        "Repetir la ecografía a las 37 semanas",
+        "Realizar cesárea"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 41,
+      "pregunta": "Un paciente de 40 años consulta por un síncope, mientras jugaba fútbol, con recuperación completa. Además refiere disnea de esfuerzos que inició hace 3 meses y que ha aumentado lentamente. Su hermano murió súbitamente a los 25 años. Al examen físico se constata un soplo sistólico eyectivo, sin otras alteraciones. El diagnóstico más probable es:",
+      "opciones": [
+        "Tromboembolismo pulmonar",
+        "Síndrome de Brugada",
+        "Miocardiopatía hipertrófica",
+        "Síncome disautonómico",
+        "Síndrome de QT largo Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 42,
+      "pregunta": "En Chile, el financiamiento de la seguridad social relacionada a los accidentes del trabajo y las enfermedades profesionales viene dado principalmente por:",
+      "opciones": [
+        "El aporte de Fonasa y las Isapres",
+        "Financiamiento tripartito (Estado, trabajadores y empleadores)",
+        "El 7% de aporte de los trabajadores",
+        "El aporte estatal directo",
+        "Aporte patronal de 0,85% del sueldo del trabajador"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 43,
+      "pregunta": "Un paciente adulto mayor, diabético, consulta por un cuadro de 3 días de evolución de aparición de una lesión eritematosa en el tronco, como se ve en la siguiente imagen: El tratamiento más adecuado es:",
+      "opciones": [
+        "Aciclovir 400 mg cada 8 horas, por 5 días",
+        "Valaciclovir 1g cada 8 horas, por 5 días",
+        "Aciclovir tópico",
+        "Loratadina 10 mg al día por 5 días",
+        "Flucloxacilina 500 mg cada 8 horas por 10 días"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 44,
+      "pregunta": "Paciente masculino de 27 años de edad , quien presenta desde hace 1 año temor a volar, por lo que prefiere desplazarse por tierra siempre. Incluso ha dejado de asistir a congresos y visitar a familiares en el extranjero. Siente mucha angustia y palpitaciones, cada vez que sabe que debe tomar un avión, desde los días antes y en dos oportunidades, previo a los vuelos, ha tomado benzodiacepinas con respuesta parcial. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno de ansiedad generalizada",
+        "Fobia especifica",
+        "Agorafobia",
+        "Trastorno de pánico",
+        "Trastorno por ansiedad de separación Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 45,
+      "pregunta": "Paciente de 23 años, que desde hace 6 meses experimenta desánimo, que ella dice que es causado por estar muy disconforme con su figura. Refiere que experimenta momentos en que come muchas galletas, sin parar, hasta ser imposible seguir comiendo, en especial cuando está ansiosa. Además, tiene miedo de reprobar en la universidad. Refiere que 3 veces por semana, puede trotar 5 horas y comer menos de 200 Calorías al día. Niega provocarse vómitos, ya que refiere que no puede inducírselos, aunque ha intentado. ¿Cuál es el diagnóstico de sospecha?",
+      "opciones": [
+        "Anorexia nervosa",
+        "Trastorno por atracones",
+        "Depresión mayor",
+        "Bulimia nervosa",
+        "Trastorno de ansiedad generalizada"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 46,
+      "pregunta": "Recién nacido de término, con peso bajo para edad gestacional, tiene perímetro cefálico menor a percentil 3 para la edad gestacional y evoluciona después de nacer con ictericia progresiva, más hepatomegalia. ¿Cuál es el agente causal más probable?",
+      "opciones": [
+        "Citomegalovirus",
+        "Virus papiloma humano",
+        "VIH",
+        "Virus Zika",
+        "Chlamydia trachomatis"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 47,
+      "pregunta": "Una paciente de 35 años, usuaria de dispositivo intrauterino, hace 9 años, consulta por un cuadro de dolor pélvico, que aumentó en la última menstruación. Se realiza ecografía transvaginal, que muestra una lesión quística de 6 cm en el ovario derecho, con contenido denso. Se solicitan niveles de Ca-125 que resultan 160 UI/ml (VN: menor a 35). ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Quiste folicular",
+        "Cáncer de ovario inicial",
+        "Quiste endometriósico",
+        "Cáncer de ovario avanzado",
+        "Teratoma ovárico Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 48,
+      "pregunta": "Una paciente de 26 años, se realiza una colecistectomía laparoscópica hace 2 semanas. Inicialmente evoluciona bien, pero hace 12 horas presenta un cuadro de fiebre y dolor cutáneo generalizado, con eritema generalizado de la piel y compromiso de las mucosas. Hace algunas horas comienza con aparición de ampollas generalizadas. Al examen físico se observa lo mostrado en la siguiente imagen: El diagnóstico más probable es:",
+      "opciones": [
+        "Psoriasis eritrodérmica",
+        "Escarlatina quirúrgica",
+        "Pustulosis exantemática",
+        "Necrosis epidermolítica tóxica",
+        "Pénfigo"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 49,
+      "pregunta": "Paciente masculino de 42 años, cursa desde hace 1 año con disfagia asociada a regurgitación ocasional de alimentos no digeridos, por lo que necesita tomar agua con las comidas, para poder tragar. Además refiere baja de peso en los últimos meses. El diagnóstico más probable es:",
+      "opciones": [
+        "Cáncer esófago",
+        "Cáncer gástrico de cardias",
+        "Estenosis esofágica, secundaria a esofagitis por reflujo gastroesofágico",
+        "Acalasia esofágica",
+        "Esofagitis por Cándida albicans"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 50,
+      "pregunta": "Un paciente de 70 años, consulta por un cuadro de varios meses de evolución de constipación, alternado con diarrea. Su examen físico no aporta mayor información. En sus exámenes destaca hematocrito: 36% y hemoglobina de 12 g/dl. ¿Qué examen debe solicitarse a continuación?",
+      "opciones": [
+        "Test de sangre oculta en deposiciones",
+        "Ecografía abdominal",
+        "TAC de abdomen y pelvis",
+        "Colonoscopía",
+        "Rectosigmoidoscopía Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 51,
+      "pregunta": "Una paciente de 20 años, consulta por dolor intenso en la fosa iliaca izquierda, de 3 horas de evolución, que se ha asociado a vómitos. Al examen físico está afebril, con signos vitales normales y al examen abdominal presenta intenso dolor a la palpación de la fosa iliaca izquierda, con signo de Blumberg y resistencia muscular. No presenta atraso menstrual. Se solicita ecografía ginecológica, que muestra útero y ovario derecho normales y ovario izquierdo, con aumento de tamaño y presencia de un quiste de 6 x 4 cm, sin flujo al doppler y sin visualización de líquido peritoneal libre. El diagnóstico más probable es:",
+      "opciones": [
+        "Endometrioma",
+        "Cuerpo lúteo hemorrágico",
+        "Quiste ovárico torcido",
+        "Teratoma ovárico",
+        "Embarazo ectópico"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 52,
+      "pregunta": "Un paciente de 49 años, fumador, presenta un cuadro de dispepsia postprandial de 4 meses de evolución, asociado a astenia, palidez, ictericia y prurito, que aumenta en las noches. Se solicitan exámenes que muestran hemograma normal y pruebas hepáticas que resultan GOT: 23 UI/L, GPT: 28 UI/L, bilirrubina total: 9,7 mg/dl, bilirrubina directa: 8,5 mg/dl, fosfatasas alcalinas: 322 UI/L y GGT: 131 UI/L, con protrombinemia 80% y albúmina: 3,2 g/dl. El examen de elección para el estudio de este paciente es:",
+      "opciones": [
+        "Endoscopía digestiva alta",
+        "Ecotomografía abdominal",
+        "TAC abdominal",
+        "Colangiografía por RMN",
+        "Colangiografía endoscópica retrógrada"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 53,
+      "pregunta": "Un niño de 8 años de edad presenta un cuadro de aparición de lesiones eritematosas en las extremidades inferiores y en los glúteos, asociado a dolor en ambos tobillos, a lo que luego se agrega dolor abdominal y vómitos. Al examen presenta lesiones eritematosas solevantadas en las zonas descritas, aumento de volumen en ambos tobillos y dolor abdominal difuso a la palpación. ¿Qué examen es más adecuado para definir el pronóstico de esta enfermedad?",
+      "opciones": [
+        "Hemograma",
+        "Sedimento de orina",
+        "LDH",
+        "Perfil bioquímico",
+        "VHS"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 54,
+      "pregunta": "Un paciente de 20 años presenta un cuadro de poliuria y polidipsia, de 2 días de evolución, a lo que se ha agregado dolor abdominal y vómitos hace pocas horas. Se solicita una glicemia, que resulta 360 mg/dl. ¿Qué examen es más adecuado para proseguir con el estudio de este paciente?",
+      "opciones": [
+        "Cetonemia",
+        "Creatininemia",
+        "Perfil lipídico",
+        "Hemoglobina glicosilada",
+        "Hemograma Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 55,
+      "pregunta": "Paciente de 63 años, fumador y diabético, que hace una hora comienza con dolor torácico opresivo, intenso, que se irradia a cuello, con diaforesis y sensación de angustia. Se solicita un electrocardiograma, que muestra ritmo sinusal, a 80 lpm, con bloqueo completo de rama izquierda, que no se había visualizado en electrocardiogramas previos. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar enzimas cardíacas",
+        "Solicitar angiografía pulmonar",
+        "Solicitar ecocardiograma transesofágico",
+        "Instalar marcapaso externo transitorio",
+        "Iniciar terapia de reperfusión miocárdica precoz"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 56,
+      "pregunta": "Una paciente multípara, de 40 años, cursando un embarazo de 32 semanas, se realiza una ecografía obstétrica, que muestra líquido amniótico sin alteraciones, con un feto creciendo en percentil 10 para la edad gestacional, con un peso fetal estimado de 1.320 gramos. ¿Cuál es la actitud más adecuada?",
+      "opciones": [
+        "Observar evolución",
+        "Solicitar ecodoppler uterina",
+        "Solicitar ecodoppler umbilical",
+        "Repetir la ecografía obstétrica en 2 semanas",
+        "Inducir maduración pulmonar con corticoides"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 57,
+      "pregunta": "Una paciente femenina de 33 años, que hace 5 años comienza con síntomas recurrentes y variables de molestias genitourinarias, y gastrointestinales, asociados a mareos y prurito, ha consultado en reiteradas ocasiones a especialistas los cuales han descartado enfermedad órganica, llegando incluso a realizarse una laparoscopía exploradora, que no tenía alteraciones. Sus síntomas le impiden trabajar. ¿Cuál es el diagnostico más probable?",
+      "opciones": [
+        "Hipocondria",
+        "Trastorno facticio",
+        "Trastorno de personalidad",
+        "Trastorno de somatización",
+        "Simulación"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 58,
+      "pregunta": "Una mujer de 23 años quien, desde la niñez es extremadamente introvertida y con baja autoestima por lo que se le es difícil conseguir amigos, por miedo a que pensarán de ella, esto la hace infeliz. En cambio, con su familia es muy cariñosa. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno evitativo de la personalidad",
+        "Síndrome de Asperger",
+        "Depresión mayor",
+        "Distimia",
+        "Fobia social Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 59,
+      "pregunta": "Una paciente de 60 años presenta cefalea, astenia y calambres en extremidades inferiores. Al examen físico destaca PA: 170/95 mmHg, FC: 80 lpm y en sus exámenes destaca Na: 150 mEq/L, K:2.6 mEq/L, Cl:90 mEq/L y TSH: 4.0 UI/L. La causa más probable de la hipertensión es:",
+      "opciones": [
+        "Hipertensión renovascular",
+        "Feocromocitoma",
+        "Hipotiroidismo",
+        "Hiperaldosteronismo",
+        "Hipertensión esencial"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 60,
+      "pregunta": "Un niño de 4 años presenta un cuadro de 2 días de evolución de aparición de múltiples lesiones eritematosas en las extremidades inferiores, palpables, asociado a dolor abdominal difuso y dolor de ambos tobillos. Al examen físico se palpa abdomen blando, depresible, doloroso leve, de manera difusa, sin signos peritoneales y los tobillos se aprecian aumentados de volumen, con dolor a la movilización. ¿Qué examen es más adecuado para definir el pronóstico de la enfermedad descrita?",
+      "opciones": [
+        "Perfil bioquímico",
+        "Biopsia de médula ósea",
+        "Hemograma",
+        "Sedimento de orina",
+        "LDH"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 61,
+      "pregunta": "Un paciente de 24 años, con antecedente de retraso mental severo, en tratamiento con clorpromazina, aumenta la dosis de 100 mg al día, a 300 mg al día. Evoluciona con mayor agresividad, asociada a retención urinaria y constipación. Al examen destacan mucosas secas y midriasis. El diagnóstico más probable es:",
+      "opciones": [
+        "Síndrome colinérgico",
+        "Síndrome anticolinérgico",
+        "Síndrome neuroléptico maligno",
+        "Síndrome serotoninérgico",
+        "Síndrome adrenérgico"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 62,
+      "pregunta": "Un joven 17 años, comienza tratamiento con risperidona 3mg al día, hace 1 semana, por esquizofrenia primer brote. Presenta contracción cervical, mantenida y recurrente, que se acompaña de dolor. El diagnóstico más probable es:",
+      "opciones": [
+        "Distonía aguda",
+        "Disquinesia tardía",
+        "Acatisia",
+        "Trastorno conversivo",
+        "Parkinsonismo por drogas Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 63,
+      "pregunta": "Una niña 14 años consulta por talla baja. Tiene IMC/edad: p65, Talla/edad: - 2 DS, cabello de implantación baja, cuello alado, mamas y vello púbico en Tanner 1. Trae radiografía de mano, con edad ósea de 11 años. ¿Con que examen debe continuar el estudio?",
+      "opciones": [
+        "Hemograma",
+        "Cariotipo",
+        "Anticuerpos antitransglutaminasa",
+        "LDH",
+        "Hormona de crecimiento"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 64,
+      "pregunta": "Una mujer de 28 años, puérpera de 2 meses, con 3 semanas de diarreas con presencia de sangre y dolor abdominal difuso leve. Al examen físico está en buenas condiciones generales, con abdomen blando, sensible a la palpación profunda, sin signos de irritación peritoneal, con meteorismo. El diagnóstico más probable es:",
+      "opciones": [
+        "Diarrea debida a Clostridium difficile",
+        "Colitis ulcerativa",
+        "Enfermedad de Cröhn",
+        "Colitis inespecífica",
+        "Shigellosis"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 65,
+      "pregunta": "Una paciente de 65 años sufre caída a nivel, apoyando la mano derecha contra el suelo, en extensión de la extremidad. Evoluciona con dolor intenso en la muñeca, que le impide realizar movimientos. Al examen físico se aprecia deformidad de la muñeca y dolor epicrítico a la presión del radio distal. El diagnóstico más probable es:",
+      "opciones": [
+        "Fractura de escafoides",
+        "Fractura de epifisis distal del radio",
+        "Disyunción-fractura de radio distal",
+        "Luxofractura de Monteggia",
+        "Luxación de cúpula radial"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 66,
+      "pregunta": "Paciente de 35 años, multípara, con un nuevo embarazo de 32 semanas, presenta salida de líquido amniótico por genitales. El test de cristalización confirma rotura prematura ovular. Al examen físico se constata taquicardia materna y fetal, asociada a contracciones uterinas dolorosas y útero doloroso a la palpación. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Inducir el parto",
+        "Realizar cesárea",
+        "Administrar corticoides",
+        "Administrar antibióticos",
+        "Administrar tocolíticos Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 110,
+      "pregunta": "000 por mm3; glóbulos blancos: 3.400 x mm3; fórmula diferencial: neutrófilos: 74 %, linfocitos: 20 %, eosinófilos: 5 % y baciliformes: 1 %. El examen para confirmar el diagnóstico es:",
+      "opciones": [
+        "Mielograma",
+        "Citometría de flujo",
+        "Prueba de Coombs",
+        "Niveles de Eritropoyetina.",
+        "Niveles de vitamina B12 y Ácido fólico."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 68,
+      "pregunta": "Niña de 7 años de edad, quien consulta por cuadro de 12 horas de evolución, caracterizada por fiebre y dolor hipogástrico. Al examen físico tiene temperatura: 38,7 grados, FC: 100x', PA: 100/60, dolor a la palpación de hipogastrio, con signo de Blumberg positivo y resistencia en la pared abdominal. Exámenes de laboratorio; 18.000 glóbulos blancos. Sedimento urinario muestra 20 leucocitos por campo. Proteína C reactiva: 15. El diagnóstico más probable es:",
+      "opciones": [
+        "Pielonefritis aguda",
+        "Apendicitis aguda",
+        "ITU baja",
+        "Torsión ovárica",
+        "Plastrón apendicular"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 69,
+      "pregunta": "¿Cuál de las siguientes enfermedades corresponde con mayor probabilidad a una enfermedad laboral?",
+      "opciones": [
+        "Dermatitis de contacto alérgica",
+        "Asma",
+        "Mesotelioma",
+        "Síndrome del manguito rotador",
+        "Trastorno adaptativo Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 70,
+      "pregunta": "Un lactante de 10 meses de edad, con antecedente de dermatitis del pañal presenta aparición de lesiones eritematosas y pruriginosas en los muslos, que se muestran en la imagen: El tratamiento más adecuado es:",
+      "opciones": [
+        "Antimicóticos tópicos en crema",
+        "Corticoides tópicos en crema",
+        "Antibióticos tópicos en crema",
+        "Aciclovir tópico",
+        "Vaselina tópica"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 71,
+      "pregunta": "Un paciente de 38 años con cuadro de 6 meses con aumento de volumen en región preauricular derecha. Al examen físico se constata nódulo en región preauricular de 4 cm de diámetro, de consistencia blanda, indoloro a la palpación y fija, sin afectación de la piel que lo recubre. El diagnóstico más probable:",
+      "opciones": [
+        "Adenopatia tuberculosa",
+        "Adenoma pleomorfo",
+        "Lipoma",
+        "Quiste sebáceo",
+        "Sarcoma"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 72,
+      "pregunta": "Un hombre de 40 años presenta un cuadro de dolor abdominal, de 3 meses de evolución, leve, intermitente. Al examen físico presenta leve dolor a la palpación del hipocrondrio derecho, por lo que se solicita una ecografía de abdomen, que visualiza una lesión hepática quística, con paredes visibles y gruesas, de 8 cm. En sus exámenes destaca hemograma con hematocrito y plaquetas normales, con 8.000 blancos, 50% de neutrófilos, 40% de linfocitos, 3% de eosinófilos y 7% de monocitos. ¿Qué examen es el más adecuado para confirmar el diagnóstico?",
+      "opciones": [
+        "IgG para Toxoplasma gondii",
+        "Serología para hidatidosis",
+        "Serología para Triquinella spiralis",
+        "IgG para Fasciola hepática (Distoma)",
+        "Examen parasitológico seriado de deposiciones Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 73,
+      "pregunta": "Paciente con diagnóstico de una leucemia mieloide aguda, en su cuarto ciclo de quimioterapia, se encuentra hospitalizado por fiebre sin foco, asociado a neutropenia (neutropenia febril), por lo que está en tratamiento con ceftazidima, amykacina y vancomicina, sin mayor respuesta. En sus exámenes de laboratorio presenta neutrófilos 100 por mm3 y en la radiografía de tórax se observa una imagen apical derecha radiopaca, de 3 cm de diámetro, espiculada y con bordes difusos. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Tuberculosis",
+        "Neumonía intrahospitalaria",
+        "Aspergilosis invasiva",
+        "Nocardosis",
+        "Neumonía por Pneumocystis jiroveci"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 74,
+      "pregunta": "Si se mejorara el tratamiento de una enfermedad crónica, y se mantiene la incidencia, ¿que pasaría con la prevalencia?",
+      "opciones": [
+        "Aumenta",
+        "No se modifica",
+        "Disminuye",
+        "No se puede saber",
+        "Depende de la enfermedad"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 75,
+      "pregunta": "Una paciente de 32 años, con antecedentes de asma y rosácea, usuaria de corticoides inhalados, presenta un cuadro de algunos meses de evolución de ojo rojo bilateral, asociado a ardor, epifora y secreción mucosa, que a veces se vuelve purulenta. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Glaucoma agudo",
+        "Blefaritis",
+        "Uveítis",
+        "Dacriocistitis",
+        "Conjuntivitis bacteriana crónica"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 76,
+      "pregunta": "Una mujer de 65 años de edad, multípara de 4, con todos los partos por vía vaginal, con menopausia a 50 años, sin terapia de reemplazo hormonal, presenta escape de pequeñas cantidades de orinal, al realizar esfuerzos, así como al toser o reírse, lo que la obliga a usar protectores. No tiene urgencia miccional. Su examen físico no aporta mayor información, pero es posible visualizar leve escape de orina, al toser. ¿Cuál es el tratamiento de primera línea para esta paciente?",
+      "opciones": [
+        "Cirugía (TVT)",
+        "Anticolinérgicos",
+        "Alfa adrenérgicos",
+        "Kinesioterapia del piso pélvico",
+        "Antibióticos, como profilaxis de ITU Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 77,
+      "pregunta": "Una lactante de 8 meses de edad, con antecedente de prematurez, presenta un cuadro de 12 horas de evolución, de irritabilidad, llanto y dolor abdominal, asociado a dos de posiciones sanguinolentas. Al examen físico presenta abdomen blando y doloroso a la palpación. En su analítica destaca hematocrito de 34%, con Hemoglobina de 11,2 g/dl, leucocitos: 14.500 por mm3 y plaquetas: 230.000 por mm3. El diagnóstico más probable es:",
+      "opciones": [
+        "Enterocolitis necrotizante",
+        "Divertículo de Meckel complicado",
+        "Atresia esófagica",
+        "Invaginacion intestinal",
+        "Shigellosis"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 78,
+      "pregunta": "Un niño de 7 años es traído por su madre, porque presenta mal rendimiento escolar. Tiene un hermano con déficit atencional diagnosticado. Durante el examen, presenta un breve episodio de desconexión con el medio. ¿Con que examen se debe continuar el estudio de este paciente?",
+      "opciones": [
+        "Psicometría",
+        "Evaluación psicopedagógica",
+        "Electroencefalograma",
+        "TAC cerebral",
+        "Audiometría"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 79,
+      "pregunta": "Adolescente de 15 años con cuadro de 5 días de evolución con fiebre, astenia, náuseas, ictericia, a lo que últimamente se ha agregado prurito. Ha tomado Paracetamol (500 mg), un total de 6 tabletas. Al examen físico, hipocondrio derecho levemente sensible a la palpación. Tiene antecedente de haber estado en un campamento hace 1 mes. En sus exámenes tiene fosfatasas alcalinas y GGT: 8 veces por encima del valor normal; y transaminasas: 20 veces por encima del valor normal; bilirrubinemia aumentada. ¿Cuál es el diagnóstico probable?",
+      "opciones": [
+        "Colecodolitiasis",
+        "Hepatitis A",
+        "Hepatitis C",
+        "Hepatitis por fármacos",
+        "Hepatitis autoinmune"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 80,
+      "pregunta": "¿A qué indicador corresponde la siguiente afirmación \"De 100 pacientes tuberculosos, 13 fallecen\"?",
+      "opciones": [
+        "Valor absoluto",
+        "Razón",
+        "Frecuencia relativa",
+        "Índice",
+        "Tasa Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 82,
+      "pregunta": "Una niña de 5 años, con antecedentes de atopia, consulta por presentar lesiones hipo pigmentadas en el rostro, no pruriginosas, ni dolorosas con descamación amarilla como se muestra en la siguiente imagen: La indicación más adecuada es:",
+      "opciones": [
+        "Crema de hidricortisona tópica",
+        "Crema de betametasona tópica",
+        "Crema de clotrimazol tópico",
+        "Griseofulvina oral",
+        "Bloqueador solar Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 83,
+      "pregunta": "Un hombre de 46 años refiere que las mujeres de su trabajo se le insinúan y quieren tener una relación con él. Sin embargo, no hay testigos de esos hechos y al interrogar a sus compañeras de trabajo, lo niegan. Al confrontar al paciente, se enoja, ya que le molesta que no crean en lo que él dice. El diagnóstico más probable es:",
+      "opciones": [
+        "Hipomanía",
+        "Esquizofrenia",
+        "Trastorno delirante crónico",
+        "Dismorfofobia",
+        "Trastorno de personalidad narcisista"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 84,
+      "pregunta": "Un paciente de 55 años, con antecedente de diabetes mellitus 2, consulta por un cuadro de hematemesis, seguida de malestar general. Al examen físico está pálido, con FC:110x', PA: 100/60 mmHg, constatándose obesidad. En sus exámenes destaca álbúmina: 3,0 g/dl; INR: 1,3; hematocrito: 30%, plaquetas: 77.000 por mm3, VCM: 105 fl y VHS: 20 mm/h. El diagnóstico más probable es:",
+      "opciones": [
+        "Síndrome de Mallory Weiss",
+        "Úlcera gástrica",
+        "Úlcera duodenal",
+        "Várices esofágicas",
+        "Gastriris crónica atrófica"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 85,
+      "pregunta": "Una paciente de 15 años, consulta por hipermenorrea y menometrorragia, de Se solicita una ecografía transvaginal, que no muestra lesiones, ni alteraciones uterinas ni ováricas. El endometrio tiene 5 mm de grosor. Su hemograma muestra anemia leve, con glóbulos blancos: 7.000 por mm3 y plaquetas: 250.000 por mm3. La conducta más adecuada es:",
+      "opciones": [
+        "Realizar biopsia de endometrio",
+        "Solicitar estudio de alteraciones de la hemostasia",
+        "Solicitar estudio de trombofilias",
+        "Solicitar resonancia magnética nuclear abdominopélvica",
+        "Solicitar endosonografía uterina (histerosonografía)"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 86,
+      "pregunta": "Un hombre de 40 años consulta por disnea y palpitaciones ocasionales. Al examen físico presenta un soplo sistólico basal, con desdoblamiento fijo del segundo ruido. Se solicita un electrocardiograma, que muestra un bloqueo completo de rama derecha. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Comunicación interauricular",
+        "Ductus arteriosos persistente",
+        "Comunicación interventricular",
+        "Estenosis aórtica",
+        "Estenosis pulmonar Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 87,
+      "pregunta": "Un lactante de 12 meses de edad, que a los 9 meses presentó un exantema, al introducir huevo a su alimentación por lo que fue suspendido, sin haberlo comido de nuevo. ¿Cuál es la conducta a tomar con repecho a la vacuna trivírica?",
+      "opciones": [
+        "Aplicar a los 12 meses",
+        "Contraindicar la vacuna",
+        "Aplicar a los 18 meses",
+        "Diferir hasta los 2 años",
+        "Realizar IgE específica del huevo y decidir según resultado"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 88,
+      "pregunta": "Paciente de 30 años, multípara de 1 parto vaginal, presenta parto de término, con 4 cm de dilatación, membranas rotas, se administra anestesia peridural, presentando PA 100/65 mmHg, LCF 90/min y 6 contracciones uterinas cada 10 minutos. La conducta más adecuada es:",
+      "opciones": [
+        "Administrar volumen y monitorizacion fetal",
+        "Realizar cesárea de urgencia",
+        "Iniciar tocolisis de urgencia",
+        "Realizar fórceps",
+        "Iniciar amniotransfusión"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 89,
+      "pregunta": "Un paciente de 45 años, diagnosticado de VIH, presenta sangrado rectal ocasional. Al examen físico, se observa lesión solevantada en los margenes anales, de 4 cm, que se introduce en el recto, sobrepasando la línea pectínea, con una con una ulceración central, con escaso sangrado. El diagnóstico más probable es:",
+      "opciones": [
+        "Hemorroide externa trombosado",
+        "Condiloma acuminado",
+        "Sífilis",
+        "Cáncer epidermoide",
+        "Enfermedad de Cröhn"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 90,
+      "pregunta": "Cuando se realiza una intubación orotraqueal en un paciente que se esta reanimando, ¿cuál es la conducta es parámetro ideal para confirmar que está adecuadamente intubado?",
+      "opciones": [
+        "Pulsometría",
+        "Auscultación pulmonar",
+        "Capnografía",
+        "Oximetría",
+        "Expansión torácica Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870, Local 9, Las Condes. contacto@doctorguevara.cl SEGUNDA PARTE"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 91,
+      "pregunta": "Adolescente de 13 años quien consulta por dolor inguinal y testicular izquierdo, intenso, de 45 minutos de evolución, irradiado a hipogastrio y acompañado de náuseas y vómitos. Al examen físico está afebril, con escroto enrojecido, testículo retraído y doloroso a la palpación. ¿Cuál es la conducta a seguir?",
+      "opciones": [
+        "Administrar AINES",
+        "Administrar antibióticos",
+        "Cirugía",
+        "Realizar suspensión testicular",
+        "Solicitar ecografía testicular"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 92,
+      "pregunta": "Hombre de 75 años que hace 4 años tuvo un infarto y actualmente presenta palpitaciones intensas y compromiso de conciencia que se recupera después de reanimación cardiopulmonar ¿Qué arritmia debe descartarse en primer lugar?",
+      "opciones": [
+        "Fibrilación Auricular",
+        "Taquicardia Ventricular",
+        "Taquicardia paroxística supraventricular",
+        "Bloqueo A-V de segundo grado mobitz 1",
+        "Flutter auricular"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 93,
+      "pregunta": "Una paciente de 70 años de edad, con antecedente de cirrosis hepática, sin hábito alcohólico actual, VHBsAg (-) y Anticuerpos anti-VHC (-), Child Pugh clase A, MELDS: 8 puntos, se realiza una ecografía abdominal, que muestra una lesión sólida, en el lóbulo hepático derecho, de 3,5 cm y aspecto hipoecogénico. En su laboratorio destaca alfafetoproteína de 5,3 ng/ml (VN: 0-7 ng/ml) El diagnóstico más probable es:",
+      "opciones": [
+        "Metastásis hepática",
+        "Adenoma hepático",
+        "Carcinoma hepatocelular",
+        "Quiste hepático",
+        "Hemangioma hepático"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 94,
+      "pregunta": "Paciente mujer de 74 años, hipertensa controlada. Presenta dolor de tipo \"eléctrico\" lascinante en la mejilla y ala nasal izquierda, que compromete la arcada dentaria superior y la encía, así como la zona maxilar superior del lado izquierdo. Además presenta dolor retro ocular izquierdo. El dolor es de escasos segundos, pero intenso EVA 10/10, que se al tacto y al realizar actividades, como cepillarse los dientes e incluso una suave brisa puede desencadenarlo. ¿Cuál es el tratamiento de primera línea para este cuadro?",
+      "opciones": [
+        "Pregabalina",
+        "Tramadol",
+        "Prednisona",
+        "Carbamazepina",
+        "Paracetamol y AINEs Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 95,
+      "pregunta": "Una niña de 5 años, ingiere accidentalmente soda cáustica, hace 45 minutos. Evoluciona con sialorrea y dolor abdominal y torácico. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Administrar carbon activado",
+        "Solicitar endoscopía digestiva alta",
+        "Administrar agente alcalinizante",
+        "Instalar una sonda nasogástrica y aspirar el contenido",
+        "Inducir los vómitos"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 96,
+      "pregunta": "Un hombre de 32 años presenta dolor muscular y oliguria, 24 horas después de realizar ejercicio intenso, a lo que se agrega malestar general. En sus exámenes destaca creatininemia de 5 mg/dl, uremia de 9 mg/dl y potasemia de 5,4 mEq/L, con natremia: 140 UI/L. ¿Qué examen debe pedirse a continuación?",
+      "opciones": [
+        "Creatininkinasa",
+        "Proteinuria de 24 horas",
+        "Hemograma",
+        "Sedimento de orina",
+        "Clearence de creatinina"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 97,
+      "pregunta": "Mujer 54 años obesa, diabética e hipertensa, presenta hace 3 meses genitorragia intermitente, con antecedentes de menopausia a los 50 años, sin terapia hormonal de reemplazo y PAP normal de este año. El examen físico y ginecológico es normal. Se realiza una Ecografía tranvaginal, que muestra: útero en anteversoflexión, con tamaño normal, endometrio homogéneo de 3 mm de grosor, con anexos normales, sin liquido libre. ¿Cual es el diagnóstico más probable?",
+      "opciones": [
+        "Hiperplasia endometrial.",
+        "Cáncer endometrial",
+        "Pólipo endometrial",
+        "Atrofia endometrial.",
+        "Sarcoma uterino Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 98,
+      "pregunta": "Mujer de 56 años cardiópata y con fibrilación auricular crónica, en tratamiento con espironolactona, isosorbide, hidralazina, amiodarona y anticoagulante oral. Inicia hace 6 meses un cuadro de disnea y tos seca. A la exploración pulmonar tiene crépitos bibasales. Se solicita una radiografía de tórax, que se muestra a continuación: ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Suspender amiodarona",
+        "Solicitar TAC de tórax",
+        "Aumentar diurético",
+        "Solicitar ecocardiograma",
+        "Solicitar fibrobroncoscopia"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 99,
+      "pregunta": "Un paciente de 64 años, con antecedente de cirrosis por NASH, con Child Pugh C, en tratamiento con carvedilol. Hace 1 semana presenta ascitis a tensión, por lo que se indica furosemida y espironolactona. Desde entonces, ha subido 4 kg de peso y al examen físico presenta FC: 90 por minuto, PAM: 72 mmHg, ascitis grado III. En sus exámenes destaca bilirrubina 2,5 mg/dl, INR 1,34, cretininemia: 3,1 mg/dl, Na: 122 mEq/L, K 5.5: mEq/L, Cl: 100 mEq/L y polimorfonucleares: 230 por mm3 en el líquido ascítico. ¿Cuál es la conducta más adeudada?",
+      "opciones": [
+        "Administrar ceftriaxona i.v.",
+        "Administrar solución fisiológica i.v.",
+        "Aumentar la dosis de diuréticos",
+        "Realizar paracentesis evacuadora y administrar albúmina i.v.",
+        "Suspender el carvedilol Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 100,
+      "pregunta": "Una paciente primigesta, cursando un embarazo de 38 semanas, presenta presiones arteriales cercanas a 150/90 mmHg. Está en buenas condiciones generales, sin exaltación neurológica, ni otros síntomas. Se solicita proteinuria de 24 horas, que resulta 400 mg. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar ecodoppler de arterias umbilicales",
+        "Realizar operación cesárea",
+        "Solicitar monitoreo fetal no estresante",
+        "Inducir el parto",
+        "Repetir la proteinuria en 2 semanas"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 101,
+      "pregunta": "Un paciente de 18 años, consulta porque desde hace un año presenta aumento de volumen progresivo en la cara anterior del muslo derecho, que recientemente se ha vuelto dolorosa. Al examen físico se palpa una masa de 10 cm de diámetro, de consistencia dura, no pétrea, sin afectación de la piel. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar resección y biopsia",
+        "Observar evolución",
+        "Solicitar ecografía de partes blandas",
+        "Solicitar radiografía de fémur",
+        "Realizar punción y drenaje"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 102,
+      "pregunta": "Una paciente de 61 años consulta por dolor articular de ambas manos. Al examen se aprecia aumento de volumen de las articulaciones interfalángicas proximales y distales. Se solicita radiografía de manos, que muestra disminución simétrica del espacio interarticular de las articulaciones interfalángicas, con compromiso de la primera articulación carpometacarpiana bilateral, con presencia de quistes subcondrales. Los ANA y FR resultan positivos. El diagnóstico más probable es:",
+      "opciones": [
+        "Artritris psoriática",
+        "Artriris reumatoide",
+        "Artritis reactiva",
+        "Condrocalcinosis",
+        "Artrosis"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 103,
+      "pregunta": "Una paciente de 61 años, hipertensa y diabética, en tratamiento regular con hipoglicemiantes orales y antihipertensivos, desde hace 3 días presenta dolor y aumento de volumen en hombro derecho. Al examen físico presenta temperatura 38,2 ºC, eritema, rubor y aumento de volumen del hombro derecho y limitación funcional, que impide el movimiento. El diagnóstico más probable es:",
+      "opciones": [
+        "Gota",
+        "Condrocalcinosis",
+        "Artritis reumatoidea",
+        "Artritis séptica",
+        "Artritis reactiva Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 104,
+      "pregunta": "Una paciente de 64 años, con antecedente de by-pass gástrico, por obesidad mórbida, presenta un cuadro de dificultad a la marcha, asociado a astenia y malestar general. En sus exámenes destaca anemia macrocítica, plaquetas: 100.000 por mm3, blancos: 6.000 por mm3, ferritina 56 ug/dl y saturación de transferrina de 18%. ¿Cuál es el tratamiento más adecuado en este caso?",
+      "opciones": [
+        "Fierro",
+        "Ácido fólico",
+        "Cianocobalamina",
+        "Zinc",
+        "Tiamina"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 105,
+      "pregunta": "Una niña de 5 años presenta dolor en muslo izquierdo, que luego se ubica en la cadera izquierda y que limita su movimiento. Al examen físico está en buenas condiciones. El diagnóstico más probable es:",
+      "opciones": [
+        "Sinovitis transitoria",
+        "Atritis séptica",
+        "Artritis reumatoidea",
+        "Osteomielitis",
+        "Tumor de Ewing"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 106,
+      "pregunta": "Una paciente primigesta de 40 años, con amenorrea de 8 semanas, se realiza un test de embarazo en orina, que resulta positivo. Se realiza ecografía transvaginal, que visualiza saco generacional de 15 mm diámetro, con saco vitelino, pero no se observa embrión. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Repetir la ecografía en 7 días",
+        "Observar evolución por 30 días",
+        "Realizar legrado",
+        "Administrar misoprostol",
+        "Solicitar betaHCG y niveles de progesterona"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 107,
+      "pregunta": "Una paciente de 56 años de edad presenta metrorragia abundante, que requiere de legrado. Se envía a biopsia, que es informada, como hiperplasia endometrial atípica y compleja. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Anticonceptivos combinados",
+        "Solicitar niveles de estradiol y FSH",
+        "Progestágenos orales en altas dosis",
+        "Histerectomía total",
+        "Progestágenos endovaginales Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 108,
+      "pregunta": "Un lactante de 4 meses de edad presenta una diarrea grave, abundante, asociada a deterioro del estado general y sopor. Sus exámenes muestran elevación de la creatinina, hiponatremia e hipokalemia. Es imposible encontrar una vía venosa para para administrar fluidos, ¿cuál es el medio de hidratación más adecuada?",
+      "opciones": [
+        "Catéter femoral",
+        "Catéter subclavio",
+        "Denudación safena",
+        "Vía intraósea",
+        "Sonda nasogástrica"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 109,
+      "pregunta": "Un lactante de 3 meses de edad pesa 7 kg. Se alimenta con lactancia materna exclusiva a libre demanda. Tiene peso para la edad en +1 DS y el índice peso/talla en +2 DS. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Dar formula de relleno",
+        "Amamantar cada 4 horas",
+        "Dar agua entre cada toma",
+        "Mantener la lactancia materna a libre demanda",
+        "Supender la lactancia nocturna"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 111,
+      "pregunta": "Un adolescente, con diagnóstico de linfoma de Hodgkin, se realiza un ciclo de quimioterapia El diagnóstico más probable es:",
+      "opciones": [
+        "Reacción adversa a medicamentos",
+        "Infiltración cutánea por linfoma",
+        "Prurito paraneoplásico",
+        "Mononucleosis infecciosa",
+        "Meningococcemia"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 112,
+      "pregunta": "Un paciente de 75 años presenta un cuadro de dolor lumbar de 3 meses de evolución, asociado a pérdida de peso y astenia. En sus exámenes tiene hemograma con hemoglobina: 9,2 g/dl, Plauqetas: 92.000 por mm3, blancos: 5000 por mm3, VHS:103 mm/h, creatinina: 1,7 mg/dl, albúmina: 3,2 g/dl, proteínas plasmáticas: 9,8 g/dl. ¿Cuál es el examen de elección para confirmar la sospecha diagnóstica?",
+      "opciones": [
+        "Radiografía de huesos largos",
+        "Radiografía de cráneo",
+        "Recuento de inmunoglobulinas",
+        "Mielograma",
+        "Calcemia"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 113,
+      "pregunta": "Una paciente de 43 años es diagnosticada de bronquitis, iniciándose tratamiento con amoxicilina oral por 14 días, con buena respuesta. Al décimo día de tratamiento antibiótico evoluciona con dolor abdominal y diarrea, que en oportunidades es sanguinolenta. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Agregar sales de rehidratación oral",
+        "Solicitar parasitológico seriado de deposiciones",
+        "Agregar ciprofloxacino al tratamiento",
+        "Solicitar colonoscopía",
+        "Suspender el tratamiento antibiótico y solicitar toxinas de Clostridium difficile en deposiciones Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 114,
+      "pregunta": "Un paciente de 43 años acude al servicio de urgencia, luego de 7 días de ingesta alcohólica, porque presentó vómitos alimentarios intensos, seguidos de hematemesis. Al examen físico está en buenas condiciones, con dolor a la palpación epigástrica y en sus exámenes destaca hematocrito: 32%, GOT: 180UI/L, GPT: 130 UI/L, protrombinemia: 78%. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Úlcera gástrica",
+        "Úlcera duodenal",
+        "Síndrome de Mallory Weiss",
+        "Gastritis erosiva",
+        "Várices esofágicas"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 115,
+      "pregunta": "Paciente masculino de 45 años, presenta súbitamente hemiparesia derecha, refiere historia de 2 meses de evolución de astenia, compromiso del estado general y fiebre de predominio nocturno. Al examen físico presenta hemiparesia derecha, fiebre de 37,8 grados celsius y la auscultación cardiaca muestra un ritmo regular en 2 tiempos, con un soplo sistólico IV/VI en el ápex. Su sedimento de orina muestra hematuria microscópica. El diagnóstico más probable es:",
+      "opciones": [
+        "Absceso cerebral",
+        "Tuberculosis meníngea",
+        "Meningitis bacteriana",
+        "Endocarditis bacteriana",
+        "Leucemia mieloide aguda"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 116,
+      "pregunta": "Un paciente de 25 años de edad, sin patologías previas, presenta desde hace 4 años aumento de volumen cervical lateral, que ha ido creciendo. Al examen se constata una masa palpable, de 3 cm, en la zona lateral del cuello, de ubicación submandibular. Se solicita una ecografía cervical, que muestra un nódulo hipoecogénico, de bordes bien delimitados. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Nódulo tiroideo",
+        "Quiste branquial",
+        "Quiste tirogloso",
+        "Linfadenopatía tuberculosa",
+        "Tumor de glándula salival secundaria"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 117,
+      "pregunta": "En un paciente adulto mayor, que presenta síncopes, ¿cuál de las siguientes arritmias requiere un marcapaso definitivo?",
+      "opciones": [
+        "Fibrilación auricular crónica",
+        "Bloqueo auriculoventricular de primer grado",
+        "Flutter auricular 2-3 a 1",
+        "Enfermedad del nodo sinusal",
+        "Bloqueo completo de rama izquierda Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 118,
+      "pregunta": "Un paciente es diagnosticado de tuberculosis pulmonar, por lo que se inicia tratamiento con antibióticos asociados. Sus baciloscopías mensuales de control resultan: mes 1 (+), mes 2 (-), mes 3 (-), mes 4 (-), mes 5 (+) y mes 6 (+). ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Recaída",
+        "Eliminación esporádica",
+        "Fracaso",
+        "Contaminación",
+        "Nocardiosis pulmonar"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 119,
+      "pregunta": "Un paciente de 26 años de edad presenta un cuadro de tos con expectoración de algunos años de evolución, mayor en las mañana y que ha presentado hemoptisis. Su examen físico presenta acropaquias y a la auscultación pulmonar hay crepitaciones y estertores bilaterales. El diagnóstico más probable es:",
+      "opciones": [
+        "Bronquiectasias",
+        "Cáncer pulmonar",
+        "Tuberculosis pulmonar",
+        "Asma",
+        "EPOC"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 120,
+      "pregunta": "Niño con lesiones eritematosas en miembros inferiores (foto) con artralgias de tobillos de 2 días de evolución y dolor abdominal. Al examen físico presenta edema de ambos tobillos, con lesiones en las piernas, como las que se muestran en la siguiente imagen: Considerando las complicaciones frecuentes del cuadro, es importante solicitar:",
+      "opciones": [
+        "Creatininemia",
+        "Hematocrito",
+        "Plaquetas",
+        "Protombinemia",
+        "Proteina C reactiva Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 121,
+      "pregunta": "Paciente 36 años, sin antecedentes de importancia, cursa con un cuadro de un mes de evolución de edema de EEII que posteriormente se agrega edema bipalpebral que aparece en las mañanas. Al examen físico, presenta FC: 96'x, TA: 130/70 mmHg, se constata edema de miembros inferiores, en ambos tobillos, que asciende hasta la pierna. Se solicitan exámenes de laboratorio, que muestran creatininemia 1,7 mg/dl, BUN 20 mg/dl, albúmina: 3,0 g/dl, examen de orina con densidad: 1020 g/L, glucosuria (-), nitritos (-), proteínas (++), eritrocitos: 2-3 x campo, leucocitos 3-5 x campo. El diagnóstico más probable es:",
+      "opciones": [
+        "Síndrome nefrítico",
+        "Síndrome nefrótico",
+        "Síndrome cardiorrenal",
+        "Injuria renal aguda",
+        "Hiperaldosteronismo primario"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 123,
+      "pregunta": "¿Qué tipo estudio es el más adecuado para determinar el desarrollo de obesidad en un grupo de escolares a lo largo de un determinado tiempo?",
+      "opciones": [
+        "Estudio de prevalencia",
+        "Estudio de incidencia",
+        "Estudio de caso control",
+        "Estudio de cohortes",
+        "Ensayo clínico controlado"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 124,
+      "pregunta": "Una paciente, cursando embarazo de término, inicia contracciones uterinas intensas. Al examen obstétrico, se palpan 3 contracciones cada 10 minutos y dilatación cervical de 5 cm. Al romper las membranas, se produce metrorragia moderada, seguida de bradicardia fetal. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Rotura uterina",
+        "Desprendimiento de placenta normoinserta",
+        "Placenta previa",
+        "Rotura de vasa previa",
+        "Procidencia de cordón umbilical Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 125,
+      "pregunta": "Una paciente de 45 años, fumadora de 25 paquetes-año, fuma al despertarse, y fuma más durante la mañana, con grandes bocanadas. Evita lugares donde no se puede fumar y fuma a pesar de enfermarse. La ansiedad es el principal desencadenante para furmar. Ella refiere que no desea dejar de fumar. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Vareniclina",
+        "Bupropión oral",
+        "Parches de nicotina",
+        "Tratar la ansiedad",
+        "Entrevista motivacional"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 126,
+      "pregunta": "Un hombre de 30 años, con rinorrea frecuente, se realiza prueba cutánea (prick test), que muestra reacción de 5mm a pólenes y de 0 mm al control histamina. ¿Cuál es la interpretación más adecuada de esta prueba?",
+      "opciones": [
+        "Es alérgico",
+        "Está sensibilizado a pólenes",
+        "Tiene rinitis vasomotora",
+        "Tiene sinusitis crónica",
+        "Anergia cutánea"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 127,
+      "pregunta": "Un lactante de 1 año de presenta un ataque súbito de tos, sofocamiento y dificultad respiratoria. Al examen presenta sibilancias y disminución del murmullo pulmonar, con FR: 34x'. El diagnóstico más probable es:",
+      "opciones": [
+        "Neumotórax",
+        "Laringitis aguda",
+        "Bronquitis obstructiva",
+        "Cuerpo extraño bronquial",
+        "Angioedema"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 128,
+      "pregunta": "Un paciente de 28 años presenta ánimo bajo e irritable, desde hace 2 meses, fecha en que murió su hermano. Se siente ansioso e intranquilo, sin cambios en el peso. Los síntomas interfieren moderadamente con sus actividades laborales. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno de estrés agudo",
+        "Trastorno de adaptación",
+        "Episodio depresivo mayor",
+        "Trastorno de ansiedad generalizada",
+        "Distimia"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 129,
+      "pregunta": "Una mujer de 34 años se siente muy ansiosa al realizar actividades como hacer presentaciones o hablar en reuniones de trabajo. Por ello evita ese tipo de situaciones y asigna dichas tareas a sus subalternos, sobrecargándolos. Incluso dejó de asistir a un congreso de ejecutivos, en el que tendría que exponer. El diagnóstico más probable es:",
+      "opciones": [
+        "Fobia social",
+        "Trastorno de ansiedad generalizada",
+        "Trastorno de personalidad antisocial",
+        "Trastorno de personalidad evitativo",
+        "Trastorno de pánico Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 130,
+      "pregunta": "Una paciente de 70 años acude por cuadro clínico de doce horas de evolución caracterizada por dolor en hemiabdomen inferior, que ha ido en aumento, siendo mayor en el hemiabdomen izquierdo. Al examen físico, presenta frecuencia cardíaca de 96 lpm, PA: 90/60 mmHg, temperatura 38,5 grados, sudoración y palidez, y examen abdominal con abdomen doloroso a la palpación, con Blumberg (+) y signos de irritación peritoneal en la fosa iliaca izquierda. El diagnóstico más probable es:",
+      "opciones": [
+        "Diverticulitis aguda",
+        "Cáncer colorectal complicado",
+        "Vólvulo sigmoideo",
+        "Obstrucción intestinal",
+        "Cáncer de ovario complicado"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 131,
+      "pregunta": "Mujer de 85 años tiene el diagnóstico de incontinencia urinaria de urgencia. Su examen ginecológico es normal, y trae un examen de orina, que resulta normal. ¿Cuál de los siguientes fármacos es el mas indicado para el manejo de esta paciente?",
+      "opciones": [
+        "Amitriptilina",
+        "Imipramina",
+        "Oxibutinina",
+        "Tolterodina",
+        "Trazodona"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 132,
+      "pregunta": "Una paciente de 54 años ha presentado dolores simétricos en pequeñas y grandes articulaciones, con compromiso de las articulaciones metacarpofalángicas e interfalángicas proximales, que iniciaron hace un año, y que se asocian a rigidez matinal de más de una hora y a sensación de arenilla y sequedad ocular. Se solicitan exámenes que muestran PCR: 10, factor reumatoideo: negativo, anticuerpos antinucleares: negativo y anticuerpos anti- CCP negativos. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Artritis reumatoidea",
+        "Artritis reactiva",
+        "Artrosis",
+        "Atritis psoriatica.",
+        "Síndrome de Sjörgren primario"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 133,
+      "pregunta": "Una mujer de 34 años, cursando un embarazo de 24 semanas, se realiza un test de tolerancia a la glucosa oral, con 75 gramos de glucosa, que resulta 205 a las 2 horas. Además de dieta y ejercicio, el tratamiento de elección es:",
+      "opciones": [
+        "Acarbosa",
+        "Sitaglipina",
+        "Metformina",
+        "Insulina",
+        "Glibenclamida Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 134,
+      "pregunta": "Una mujer de 55 años se realiza una mamografía, que es informada como Birrads 4, con microcalcificaciones agrupadas. ¿Cuál es la conducta mas adecuada?",
+      "opciones": [
+        "Ecotmografía mamaria",
+        "Biopsia estereotáxtica.",
+        "Resonancia magnética",
+        "Control mamográfico en 6 meses",
+        "mastectomía parcial"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 135,
+      "pregunta": "Niño de 8 meses que sufre desde hace 6 meses diarrea pastosa, abundante. Tiene también antecedente de episodios bronquiales obstructivos y 4 cuadros de infecciones respiratorias, que han requerido de hospitalización. Cuál es el diagnóstico de sospecha?",
+      "opciones": [
+        "Enfermedad celiaca",
+        "Enteropatía perdedora de proteínas",
+        "Enfermedad de cilio inmóvil",
+        "Fibrosis quística",
+        "Alergia a la proteína de la leche de vaca"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 136,
+      "pregunta": "Un paciente de 64 años consulta por astenia y mialgias de 3 meses de evolución. Se solicita TSH, que resulta 5,6 UI/L y T4 libre, que resulta 1,2 ug/ml (Valor Normal: 0,95 a 1,75 ug/ml). La conducta más adecuada es:",
+      "opciones": [
+        "Solicitar ecografía cervical",
+        "Iniciar levotiroxina",
+        "Solicitar TSH y T4 libre en 3 meses",
+        "Indicar punción tiroidea",
+        "Solicitar cintigrafía tiroidea"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 137,
+      "pregunta": "Una paciente de 23 años, cursando un embarazo de 7 semanas, presenta un cuadro de disuria y polaquiuria, por lo que se realiza un urocultivo, que resulta positivo para Escherichia coli sensible, con más de 100.000 UFC. El tratamiento más adecuado es:",
+      "opciones": [
+        "Cotrimoxazol",
+        "Flucloxacilina",
+        "Nitrofurantoína",
+        "Levofloxacino",
+        "Ciprofloxacino"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 138,
+      "pregunta": "Una paciente de 78 años, diabética e hipertensa, es hospitalizada por una pielonefritis aguda. Estaba en tratamiento con enalapril, hidroclorotiazida y metformina. Durante el día está tranquila, pero en la noche se agita y dice que la tienen secuestrada. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Indicar benzodiacepinas en la noche",
+        "Indicar haloperidol oral",
+        "Agregar glibenclamida al tratamiento",
+        "Disminuir la dosis de metformina",
+        "Administrar suero fisiológico Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 139,
+      "pregunta": "Un paciente de 60 años presenta un cuadro de malestar general, fiebre y tos, asociada a expectoración mucopurulenta. Evoluciona con dificultad respiratoria, por lo que es llevado al servicio de urgencia. Al examen físico tiene FC: 113x', PA: 100/60 mmHg, FR: 33x' y al examen pulmonar presenta crepitaciones inspiratorias, en el hemicampo pulmonar derecho. La radiografía de tórax muestra condensación en los lóbulos medio e inferior derecho y satura 83%, con FiO2 ambiental, que sube a 90%, con oxígeno al 40%, por mascarilla de recirculación. ¿Cuál es el tratamiento antibiótico de elección para este paciente?",
+      "opciones": [
+        "Cefepime más amykacina",
+        "Ceftriaxona más clindamicina",
+        "Cloxacilina más metronidazol",
+        "Cefotaximo más moxifloxacino",
+        "Piperacilina más tazobactam"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 140,
+      "pregunta": "Puérpera de 15 días, inicia disnea y tos, asociada a expectoración, hemoptoica. Al examen pulmonar tiene murmullo pulmonar presente, con escasos crépitos y satura 90% a FiO2 ambiental. El diagnóstico más probable es:",
+      "opciones": [
+        "Tromboembolismo pulmonar",
+        "Neumonía adquirida en la comunidad",
+        "Neumonía intrahospitalaria",
+        "Tuberculosis pulmonar",
+        "VIH"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 141,
+      "pregunta": "Un hombre de 48 años, diagnosticado de esquizofrenia, presenta episodio agitación, por lo cual se aumenta la dosis de haloperidol de 10 a 20 mg al día, evolucionando con malestar general, dificultad para la marcha y disminución del nivel de conciencia. Al examen físico, tiene FC: 100x', PA: 140/90 mmHg, temperatura 38 grados Celsius y rigidez de las extremidades. Se solicitan exámenes, en los que destaca leucocitosis de 19.000 blancos por mm3 y CPK de 1200 UI/L. El diagnóstico más probable es:",
+      "opciones": [
+        "Distonía",
+        "Síndrome neuroléptico maligno",
+        "Síndrome anticolinérgico",
+        "Síndrome adrenérgico",
+        "Distrofia muscular de Duchenne"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 142,
+      "pregunta": "En la vigilancia de las enfermedades transmisibles, ¿cuál es el parámetro que se utiliza para definir si la notificación de los casos de dicha enfermedad es de tipo diaria o inmediata?",
+      "opciones": [
+        "Periodo de incubación",
+        "Oportunidad de control y prevención",
+        "Letalidad y prevalencia",
+        "Número de casos",
+        "Disponibilidad de vacuna Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 143,
+      "pregunta": "Una mujer de 26 años, presenta un cuadro de 5 días de rinorrea, que a los dos días se vuelve mucopurulenta, agregándose odinofagia, y congestión nasal. Al examen físico se aprecia rinorrea, asociada a eritema y congestión faríngea. Se solicita una radiografía de senos paranasales que muestra velamiento de ambos senos maxilares. El tratamiento más adecuado es:",
+      "opciones": [
+        "Amoxicilina oral",
+        "Amoxicilina más ácido clavulánico oral",
+        "Corticoide tópico",
+        "Descongestionantes tópicos",
+        "Antihistamínicos orales"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 144,
+      "pregunta": "Una adolescente de 15 años presenta lesiones en ambas orejas, que se extienden hasta el cuello. Tiene antecedente de hacerse piercings, hace una semana. Al examen físico se observa la siguiente imagen: El diagnóstico más probable es:",
+      "opciones": [
+        "Celulitis",
+        "Erisipela",
+        "Dermatitis de contacto alérgica",
+        "Dermatitis de contacto irritativa",
+        "Piodermitis superficial Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 145,
+      "pregunta": "Una paciente de sexo femenino de 17 años de edad, con antecedente de relaciones sexuales sin protección, consulta prurito vulvar, asociado a ardor progresivo. Refiere sensación de aumento del volumen de la vulva, que luego fue seguido por los síntomas actuales. Al examen físico se observa lo expuesto en la siguiente imagen. Se trata de una infección por:",
+      "opciones": [
+        "Treponema pallidum",
+        "Virus herpes simplex",
+        "Chlamydia tracomatis",
+        "Virus papiloma humano",
+        "Ureaplasma urealyticum"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 147,
+      "pregunta": "Una paciente de 78 años, con antecedente de hipertensión arterial, en tratamiento con hidroclorotiazida, presenta un cuadro de diarrea y vómitos, seguido de compromiso de conciencia. Al examen físico está en sopor profundo, con PA: 80/50 y frecuencia cardiaca de 120x', regular, con sequedad de mucosas. Se solicitan exámenes de laboratorio que muestran natremia: 156. mEq/L, cloremia: 114 mEq/L, potasemia: 3,1 mEq/L, pH: 7,40, bicarbonato: 14 mmol/L, CO2: 20 mmHg. ¿Cuál de los siguientes fluidos se debe administrar en primer lugar?",
+      "opciones": [
+        "Suero glucosado al 5% ev",
+        "Suero fisiológico al 0,9% ev",
+        "Solución de bicarbonato al 2/3 molar ev",
+        "Agua por sonda nasogástrica",
+        "Sales de rehidratación oral"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 148,
+      "pregunta": "Una paciente de 42 años se realiza un histerectomía radical, por un cáncer de cuello uterino. Evoluciona con bochornos, cefalea y dispareunia profunda, por resequedad vaginal. Al examen físico tiene sobrepeso y presi´pon arterial normal. Además trae exámenes en los que destaca Colesterol total: 204 mg/dl, Colesterol HDL: 54 mg/dl, Triglicéridos: 405 mg/dl. ¿Qué tratamiento es el más adecuado?",
+      "opciones": [
+        "Estrógenos más progestágenos orales",
+        "Estrógenos orales",
+        "Estrógenos en parches",
+        "Progestágenos endovaginales",
+        "Sertralina"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 149,
+      "pregunta": "Una paciente de 25 años, con atraso menstrual de 3 semanas, consulta por dolor abdominal de 5 días de evolución, que ha ido en aumento. Al examen físico presenta abdomen doloroso a la palpación abdominal baja, mayor en la fosa iliaca izquierda, sin signos peritoneales. Además se realiza una HCG, que resulta 5.500 UI/L y se solicita una Ecografía Transvaginal, que visualiza útero sin gestación intrauterina, con endometrio de 15 mm, y un tumor anexial izquierdo de 53 mm de diámetro, de aspecto complejo, sin líquido libre. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar laparoscopía exploradora",
+        "Ralizar laparotomía exploradora",
+        "Indicar metotrexato",
+        "Solicitar ecografía en 7 días",
+        "Solicitar niveles de HCG y ecografía en 48 horas Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 150,
+      "pregunta": "Una paciente de 46 años, nulípara, sin método anticonceptivo, presenta una metrorragia, que es manejada con legrado uterino. La biopsia demuestra presencia de hiperplasia endometrial atípica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Repetir el legrado en 3 meses",
+        "Implantar DIU medicado con progestágenos",
+        "Realizar histerectomía total",
+        "Indicar progestágenos cíclicos",
+        "Indicar progestágenos continuos"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 151,
+      "pregunta": "Un niño de 5 meses de edad presenta un cuadro de rinorrea y tos, que va en aumento, hasta presentar accesos de tos y dificultar la alimentación. Al examen físico está en buenas condicioness generales, afebril y sin alteraciones en el examen cardiopulmonar. Se solicita un hemograma, que muestra leucocitosis de 17.000, con 78% de linfocitos y 22% de neutrófilos. La PCR y VHS están levemente elevadas. Se solicita una radiografía de tórax, que muestra un patrón intersticial leve. El diagnóstico más probable es:",
+      "opciones": [
+        "Neumonía atípica",
+        "Infección por virus influenza",
+        "Infección por adenovirus",
+        "Coqueluche",
+        "Bronquiolitis aguda"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 152,
+      "pregunta": "Un paciente de 42 años, fumador de 2,6 paquetes-año, presenta un cuadro de 3 meses de compromiso del estado general, astenia y baja de peso de 3 kilogramos, asociado a tos y expectoración mucopurulenta, que en ocasiones es hemoptoica. Su examen físico no aporta mayor información. Se solicita una radiografía de tórax, que muestra zonas de relleno alveolar en el lóbulo superior derecho. ¿Con qué examen(es) se debe proseguir el estudio?",
+      "opciones": [
+        "Baciloscopías de expectoración y cultivo para mycobacterias",
+        "Elisa VIH",
+        "Biopsia pulmonar por videtoracoscopía",
+        "Lavado bronquioalveolar por broncoscopía",
+        "TAC de tórax"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 153,
+      "pregunta": "Un paciente de 64 años, con antecedente de hipertensión arterial, dislipidemia y tabaquismo, presenta pérdida de la visión del ojo izquierdo, con instalación súbita. Al examen, es capaz de distinguir la luz de la sombra y contar dedos y destaca defecto pupilar aferente relativo. El diagnóstico más probable es:",
+      "opciones": [
+        "Glaucoma agudo",
+        "Glaucoma crónico terminal",
+        "Neuritis óptica",
+        "Neuropatía óptica isquémica",
+        "Desprendimiento de retina Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 154,
+      "pregunta": "Paciente femenina, de 17 años presenta astenia, decaimiento, dolores óseos y pérdida de peso, de 2 meses evolución. Al examen físico se constatan múltiples adenopatías cervicales y axilares, con bazo palpable 3 cm debajo del reborde costal. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Linfoma de Hodgkin",
+        "Leucemia mieloide aguda",
+        "Leucemia linfática aguda",
+        "Síndrome mononucleósico",
+        "Leucemia linfática crónica"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 155,
+      "pregunta": "Un paciente de 66 años, fumador de 40 paquetes-año presenta tos con expectoración mucosa, de 4 años de evolución. Tiene broncorrea, mayor en la mañana y presenta 2 infecciones respiratorias al año, que requieren de antibióticos. Su radiografía de tórax y espirometría son normales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Cáncer de pulmón",
+        "Tuberculosis pulmonar",
+        "Fibrosis pulmonar",
+        "EPOC",
+        "Bronquitis crónica"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 156,
+      "pregunta": "Un paciente de 64 años, con antecedente de haber sido tratado por un mieloma, con buena respuesta, consulta ahora por cuadro de astenia, con constipación y aumento del volumen urinario, a lo que luego se le agrega desorientación. Al examen físico se aprecia soporoso, pálido. En sus exámenes presenta hematocrito 27%, con Hb: 9 g/dl, VHS: 93 mm/h, proteínas plasmáticas: 7,8 g/dl, albúmina: 3,7 g/dl, sodio: 140 mEq/L, potasio: 4,8 mEq/L, calcio: 14,3 mg/dl. En este momento debe recibir:",
+      "opciones": [
+        "Calcitonina",
+        "Solución salina al 0,9%",
+        "Vitamina D",
+        "Bifosfonatos",
+        "Corticoides"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 157,
+      "pregunta": "Mujer de 88 años de edad, quien presenta clínica un día de evolución caracterizada por fiebre, diarrea y dolor en hipogastrio. Refiere evacuaciones sin otras alteraciones. Al examen físico presenta temperatura en 38,5 grados, presión arterial de 90/50 mmHg y al examen abdominal presenta dolor y sensibilidad a la palpación en fosa ilíaca izquierda, sin signos de irritación peritoneal. El diagnóstico más probable es:",
+      "opciones": [
+        "Diverticulitis aguda",
+        "Colitis isquémica",
+        "Pielonefritis aguda",
+        "Enfermedad inflamatoria intestinal",
+        "Rectocolitis bacteriana Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 158,
+      "pregunta": "Mujer asintomática de 46 años de edad, con IMC de 24. Tiene antecedente de diabetes gestacional con su último embarazo. Se practica una glicemia en ayunas que resulta en 112 mg/dl. La conducta más adecuada es:",
+      "opciones": [
+        "Repetir la glicemia en ayunas",
+        "Practicar niveles de hemoglobina glicosilada",
+        "Indicar metformina",
+        "Realizar control de glicemia en 6 meses",
+        "Solicitar curva de tolerancia a la glucosa"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 159,
+      "pregunta": "Paciente femenina, fumadora de 30 paquetes/año, presenta hematuria, con abundante coágulos de sangre. No presenta dolor, fiebre, ni otros síntomas. Se solicita un sedimento de orina, que muestra abundantes eritrocitos, sin bacterias. El diagnóstico más probable es:",
+      "opciones": [
+        "Cistitis hemorrágica",
+        "Cáncer de vejiga",
+        "Cáncer renal.",
+        "Tuberculosis renal",
+        "Infección urinaria"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 160,
+      "pregunta": "Una mujer de 86 años, con múltiples patologías crónicas, en tratamiento farmacológico, acude a control, constatándose IMC: 23,frecuencia cardíaca: 76 lpm, presión arterial: 110/70 mmHg. Además trae exámenes, que muestran TSH: 2,65 UI/L, LDH: 152 UI/L, hemoglobina glicosilada: 5,2%, colesterol HDL: 35 mg/dl, colesterol total: 205 mg/dl. ¿Qué fármaco debería suspenderse?",
+      "opciones": [
+        "Losartán",
+        "Atorvastatina",
+        "Levotiroxina",
+        "Carvedilol",
+        "Glibenclamida"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 161,
+      "pregunta": "Paciente masculino, de 71 años de edad, con un cuadro de 2 años de evolución de temblor de ambas extremidades superiores, lo cual le sucede al escribir, tomar un objeto, o al usar cubiertos. Toma alprazolam 0,5 mg/dl, dos veces por día por cuadro ansioso. Al examen físico no tiene temblor de reposo y se observan reflejos osteotendíneos conservados, con tono muscular y sensibilidad normal. El temblor se acentúa al tratar de tomar un objeto. El diagnóstico más probable es:",
+      "opciones": [
+        "Hipertiroidismo",
+        "Enfermedad de Parkinson",
+        "Temblor esencial",
+        "Temblor por ansiedad",
+        "Temblor por medicamentos Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 162,
+      "pregunta": "Un niño de 24 meses ha presentado 3 episodios de llanto de breve duración, seguido de apena y luego pérdida de conciencia, recuperándose al poco tiempo. Al examen físico no tiene alteraciones. La conducta más adecuada es:",
+      "opciones": [
+        "Instruir a los padres en reanimación cardiopulmonar",
+        "Solicitar TAC de cerebro",
+        "Educar a los padres en el manejo de las emociones del niño",
+        "Solicitar electroencefalograma",
+        "Indicar monitor cardíaco"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 163,
+      "pregunta": "¿Cuál es el diagnóstico que se visualiza en el siguiente electrocardiograma?",
+      "opciones": [
+        "Bloqueo AV completo",
+        "Fibrilación auricular lenta",
+        "Bloqueo AV de 2do grado",
+        "Bradicardia sinusal",
+        "Paro sinusal"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 164,
+      "pregunta": "Paciente de 17 años presenta un cuadro de fiebre, malestar general y odinofagia, de 7 días de evolución. Al examen, presenta lesiones blanquecinas en las amígdalas y congestión de la orofaringe, adenopatías cervicales y se palpa el bazo moderadamente aumentado de tamaño. ¿Cuál es el agente causal más probable?",
+      "opciones": [
+        "Adenovirus",
+        "Virus influenza",
+        "Virus de Ebstein Barr",
+        "Citomegalovirus",
+        "Estreptococo A"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 165,
+      "pregunta": "Una paciente se realiza un PAP, que es informado como probable lesión de bajo grado y presencia de virus papiloma humano. ¿Cuál es la conducta mas adecuada?",
+      "opciones": [
+        "Vacunar contra virus papiloma humano",
+        "Realizar colposcopía y biopsia",
+        "Repetir el PAP en 6 meses",
+        "Realizar hibridación para serotipos oncogénicos de virus papiloma",
+        "Realizar PAP en fase líquida en 1 a 3 meses Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 166,
+      "pregunta": "paciente de 28 años de edad, con 34 semanas de gestación consulta por metrorragia moderada. Al examen físico tiene presión arterial: 130/70 mmHG y FC: 107x', útero doloroso e hipertónico y metrorragia escasa en la especuloscopía. Se realiza ecografía obstétrica que resulta normal, con placenta posterior, sin signos de desprendimiento. El doppler maternofetal resulta normal normal y el cuello tiene 30 mm de longitud. La conducta mas adecuada con la paciente es:",
+      "opciones": [
+        "Administrar nifedipino",
+        "Inducción de parto",
+        "Repetir el doppler fetal en 7 días",
+        "Realizar rotura de membranas",
+        "Realizar cesárea"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 167,
+      "pregunta": "Paciente de 36 años con fiebre y la presencia de una lesión en miembro inferior, en forma de una placa de eritematosa, con bordes definidos de aproximadamente 15 x 8 cm, que responde bien al tratamiento con cloxacilina. Al quinto día comienza con náuseas, vómitos, diuresis adecuada, con leucocitosis de 15.000 por mm3, con 10% de eosinófilos, 40% de neutrófilos y 48% de linfocitos, uremia en 50 mg/dl, creatinina en 3 mg/dl, hematuria microscópica, leucocituria, y proteinuria de 0,8 g/día. Identificar el posible diagnóstico:",
+      "opciones": [
+        "Glomerulonefritis post estreptocócica",
+        "Vasculitis de vasos pequeños",
+        "Injuria renal pre renal",
+        "Endocarditis infecciosa",
+        "Nefritis intersticial"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 168,
+      "pregunta": "Un paciente de 80 años, hipertenso en tratamiento hace 10 años, consulta por disnea de esfuerzos, que inició hace 6 meses. Al examen físico destaca PA 150/90, ritmo regular, con ausencia del segundo ruido, asociado a soplo mesosistólico III/VI en margen esternal izquierdo, pulso carotídeo de ascenso lento y choque punta en el quinto espacio intercostal izquierdo. El diagnóstico más probable es:",
+      "opciones": [
+        "Estenosis mitral",
+        "Estenosis aórtica",
+        "Insuficiencia aórtica",
+        "Insuficiencia mitral",
+        "Miocardiopatía dilatada"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 169,
+      "pregunta": "Una mujer de 34 años, con amenorrea de 6 meses, presenta un cuadro de astenia y malestar general. Además refiere equimosis ante mínimos traumatismos. Actualmente tiene PA: 150/90 mmHg, acné facial, cuello ancho, obesidad centrípeta y estrías violáceas. Tiene prueba de embarazo negativa. ¿Cuál es la prueba a realizar en primer lugar?",
+      "opciones": [
+        "Cortisol plasmático basal",
+        "FSH y estradiol plasmático",
+        "Cortisol libre urinario",
+        "Prueba de estimulación con ACTH",
+        "Resonancia magnética de silla turca Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 170,
+      "pregunta": "Paciente de 45 años presenta paresia facial bilateral de instalación progresiva, en 2 semanas, a lo que luego se agrega parálisis del sexto par craneal. Al examen físico, el tono muscular está disminuido de forma simétrica en las cuatro extremidades, con reflejos osteotendinosos abolidos. El diagnóstico más probable es:",
+      "opciones": [
+        "Accidente vascular tronco encefálico",
+        "Miastenia gravis",
+        "Sd. de Guillain Barre",
+        "Botulismo",
+        "Hemorragia intracraneana"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 171,
+      "pregunta": "Un paciente de 32 años consulta por un cuadro de disfunción sexual asociado a disminución del vello facial. Al examen físico presenta disminución del vello corporal y disminución del tamaño testicular bilateral. ¿Cuál es el estudio más adecuado para proseguir el enfrentamiento de este paciente?",
+      "opciones": [
+        "Prolactina",
+        "Testosterona y LH",
+        "Espermiograma y FSH",
+        "Ecografía testicular",
+        "HCG y estradiol"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 172,
+      "pregunta": "Un paciente masculino, de 22 años, desde hace más de 6 meses ha dejado de compartir con su familia y casi no sale de su pieza. Además, ha descuidando su aspecto personal. Sus familiares refieren que en ocasiones lo escuchan musitar, hablar y reírse solo. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Ezquizofrenia",
+        "Depresión psicótica",
+        "Trastorno delirante crónico",
+        "Trastorno de personalidad esquizoide",
+        "Trastorno bipolar"
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 173,
+      "pregunta": "Paciente femenina con artritis reumatoide, en tratamiento con metrotexate y prednisona desde hace 4 años, es diagnosticada de diabetes mellitus, por lo que se inicia metformina como tratamiento. ¿Que examen es perentorio realizarle, como seguimiento a esta paciente?",
+      "opciones": [
+        "Hemograma, con recuento de plaquetas",
+        "Radiografía atlantoaxoidea",
+        "Insulinemia",
+        "LDH",
+        "Densitometría ósea Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 174,
+      "pregunta": "Una paciente de 54 años, se realiza exámenes como parte de chequeo médico, que muestran SGOT: 43 UI/L, SGPT: 70 UI/L, GGT: 433 UI/L, FA: 531 UI/L, bilirrubina total: 3,0 mg/dl, albúmina: 3,7 g/dl y protrombinemia: 88%. ¿Cuál es el diagnóstico de sospecha?",
+      "opciones": [
+        "Colestasia por esteatosis hepática",
+        "Cirrosis biliar primaria",
+        "Colestasia por compresión externa",
+        "Colangitis esclerosante primaria",
+        "Colangitis esclerosante secundaria"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 175,
+      "pregunta": "Una mujer de 65 años, nulípara, con IMC de 33, sin síntomas, se realiza un PAP que muestra abundantes células endometriales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Controlar con nuevo PAP en un año",
+        "Indicar estrógenos tópicos",
+        "Solicitar colposcopía y biopsia",
+        "Realizar curejate endocervical",
+        "Solicitar ecografía transvaginal"
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 176,
+      "pregunta": "Una paciente de 43 años, multípara de 3, con antecedente de oligomenorrea, presenta metrorragia abundante, por lo que se realiza una ecografía transvaginal, que muestra endometrio engrosado, por lo que se realiza una biopsia endometrial por técnica de Pipelle, que demuestra presencia de hiperplasia endometrial compleja, con células atípicas. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar anticonceptivos combinados orales",
+        "Indicar progestágenos orales en altas dosis",
+        "Realizar histerectomía total",
+        "Repetir el legrado",
+        "Indicar estrógenos orales en altas dosis"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 177,
+      "pregunta": "Un recién nacido de 36 semanas de edad gestacional, nacido por cesárea, presenta dificultad respiratoria, luego de nacer, con taquipnea, retracción subcostal y crepitantes basales. Se solicita una radiografía de tórax, que muestra ambos campos pulmonares con hiperinsuflación, reforzamiento hiliar, aplanamiento del diafragmas y silueta cardiaca normal. El diagnóstico más probable es:",
+      "opciones": [
+        "Neumomediastino",
+        "Neumonía connatal",
+        "Taquipnea transitoria",
+        "Enfermedad de membrana hialina",
+        "Cardiopatía congénita Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 178,
+      "pregunta": "Niño de 12 años, obeso, refiere dolor de 3 meses en cadera izquierda y claudicación progresiva, que actualmente impide la marcha. Al examen físico presenta dolor a la rotación interna y externa de la cadera izquierda. Se realiza radiografía AP pelvis y caderas, que se muestra a continuación: El diagnóstico es:",
+      "opciones": [
+        "Displasia del desarrollo de la cadera",
+        "Epifisiolisis",
+        "Fractura del cuello del fémur",
+        "Luxacion de la Cadera izquierda",
+        "Necrosis avascular de la cabeza del fémur"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 179,
+      "pregunta": "Mujer de 54 años, con antecedente de síndrome de intestino irritable, que presenta un cuadro de astenia, debilidad de las extremidades superiores y mialgias. Además refiere sequedad ocular y cefalea. Al examen físico presenta movilidad articular normal, sin alteraciones de la sensibilidad, ni paresias evidentes. Presenta dolor a la presión de ambos epicóndilos y a la palpación de los músculos de la espalda. En sus exámenes presenta hemograma normal, con anticuerpos antinucleares positivos, en titulación 1/40, con factor reumatoide negativo y anticuerpos contra antígenos nucleares extractables negativos. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Administrar hidrocortisona endovenosa y reevaluar en una semana",
+        "Indicar pregabalina y ejercicios suaves de elongación",
+        "Iniciar prednisona oral",
+        "Solicitar biopsia de glándula salival secundaria",
+        "Iniciar metotrexato y antiinflamatorios no esteroidales Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl"
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 180,
+      "pregunta": "Mujer de 51 años consulta por metrorragia moderada de 10 días de evolución. Su última menstruación fue hace 6 meses. ¿Cuál es la causa mas probable de su hemorragia?",
+      "opciones": [
+        "Atrofia vaginal",
+        "Hiperplasia endometrial",
+        "Cáncer de endometrio",
+        "Cáncer cervicouterino",
+        "Metrorragia disfuncional FIN DEL EXAMEN La pauta de esta prueba estará disponible en el siguiente enlace: http://pruebas.drguevara.cl/pauta-julio-2016 Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl Cursos Dr. Guevara WWW.drguevara.cl Alonso de Córdova 5870,Local 9, Las Condes. contacto@doctorguevara.cl Cursos Dr. Guevara www.drguevara.cl PAUTA PRUEBA DIAGNÓSTICA (Eunacom julio 2016) PARTE 1"
+      ],
+      "respuesta_correcta": 4
+    }
+  ]
+}

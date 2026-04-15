@@ -1,0 +1,168 @@
+{
+  "total_exams": 18,
+  "total_questions": 2420,
+  "exams": [
+    {
+      "id": "eunacom-2013",
+      "name": "EUNACOM 2013",
+      "month": "Julio",
+      "year": 2013,
+      "total_questions": 90,
+      "questions_with_answers": 90,
+      "file": "eunacom-2013.json"
+    },
+    {
+      "id": "eunacom-jul-2015",
+      "name": "EUNACOM Julio 2015",
+      "month": "Julio",
+      "year": 2015,
+      "total_questions": 180,
+      "questions_with_answers": 180,
+      "file": "eunacom-jul-2015.json"
+    },
+    {
+      "id": "eunacom-jul-2016",
+      "name": "EUNACOM Julio 2016",
+      "month": "Julio",
+      "year": 2016,
+      "total_questions": 176,
+      "questions_with_answers": 176,
+      "file": "eunacom-jul-2016.json"
+    },
+    {
+      "id": "eunacom-dic-2017",
+      "name": "EUNACOM Diciembre 2017",
+      "month": "Diciembre",
+      "year": 2017,
+      "total_questions": 180,
+      "questions_with_answers": 174,
+      "file": "eunacom-dic-2017.json"
+    },
+    {
+      "id": "eunacom-jul-2017",
+      "name": "EUNACOM Julio 2017",
+      "month": "Julio",
+      "year": 2017,
+      "total_questions": 178,
+      "questions_with_answers": 167,
+      "file": "eunacom-jul-2017.json"
+    },
+    {
+      "id": "eunacom-dic-2018",
+      "name": "EUNACOM Diciembre 2018",
+      "month": "Diciembre",
+      "year": 2018,
+      "total_questions": 178,
+      "questions_with_answers": 178,
+      "file": "eunacom-dic-2018.json"
+    },
+    {
+      "id": "eunacom-jul-2018",
+      "name": "EUNACOM Julio 2018",
+      "month": "Julio",
+      "year": 2018,
+      "total_questions": 80,
+      "questions_with_answers": 60,
+      "file": "eunacom-jul-2018.json"
+    },
+    {
+      "id": "eunacom-dic-2019",
+      "name": "EUNACOM Diciembre 2019",
+      "month": "Diciembre",
+      "year": 2019,
+      "total_questions": 178,
+      "questions_with_answers": 173,
+      "file": "eunacom-dic-2019.json"
+    },
+    {
+      "id": "eunacom-jul-2019",
+      "name": "EUNACOM Julio 2019",
+      "month": "Julio",
+      "year": 2019,
+      "total_questions": 176,
+      "questions_with_answers": 175,
+      "file": "eunacom-jul-2019.json"
+    },
+    {
+      "id": "eunacom-ago-2021",
+      "name": "EUNACOM Agosto 2021",
+      "month": "Agosto",
+      "year": 2021,
+      "total_questions": 177,
+      "questions_with_answers": 0,
+      "file": "eunacom-ago-2021.json"
+    },
+    {
+      "id": "eunacom-2022-p1",
+      "name": "EUNACOM 2022 Parte 1",
+      "month": "Diciembre",
+      "year": 2022,
+      "total_questions": 90,
+      "questions_with_answers": 1,
+      "file": "eunacom-2022-p1.json"
+    },
+    {
+      "id": "eunacom-2022-p2",
+      "name": "EUNACOM 2022 Parte 2",
+      "month": "Diciembre",
+      "year": 2022,
+      "total_questions": 89,
+      "questions_with_answers": 0,
+      "file": "eunacom-2022-p2.json"
+    },
+    {
+      "id": "eunacom-ene-2023",
+      "name": "EUNACOM Enero 2023",
+      "month": "Enero",
+      "year": 2023,
+      "total_questions": 180,
+      "questions_with_answers": 81,
+      "file": "eunacom-ene-2023.json"
+    },
+    {
+      "id": "eunacom-dic-2024",
+      "name": "EUNACOM Diciembre 2024",
+      "month": "Diciembre",
+      "year": 2024,
+      "total_questions": 86,
+      "questions_with_answers": 0,
+      "file": "eunacom-dic-2024.json"
+    },
+    {
+      "id": "eunacom-jul-2024-p1",
+      "name": "EUNACOM Julio 2024 Parte 1",
+      "month": "Julio",
+      "year": 2024,
+      "total_questions": 52,
+      "questions_with_answers": 52,
+      "file": "eunacom-jul-2024-p1.json"
+    },
+    {
+      "id": "eunacom-jul-2024-p2",
+      "name": "EUNACOM Julio 2024 Parte 2",
+      "month": "Julio",
+      "year": 2024,
+      "total_questions": 50,
+      "questions_with_answers": 50,
+      "file": "eunacom-jul-2024-p2.json"
+    },
+    {
+      "id": "eunacom-dic-2025",
+      "name": "EUNACOM Diciembre 2025",
+      "month": "Diciembre",
+      "year": 2025,
+      "total_questions": 113,
+      "questions_with_answers": 0,
+      "file": "eunacom-dic-2025.json"
+    },
+    {
+      "id": "eunacom-jul-2025",
+      "name": "EUNACOM Julio 2025",
+      "month": "Julio",
+      "year": 2025,
+      "total_questions": 167,
+      "questions_with_answers": 65,
+      "file": "eunacom-jul-2025.json"
+    }
+  ]
+}

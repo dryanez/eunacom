@@ -1,0 +1,634 @@
+{
+  "id": "eunacom-jul-2024-p1",
+  "name": "EUNACOM Julio 2024 Parte 1",
+  "month": "Julio",
+  "year": 2024,
+  "total_questions": 52,
+  "questions_with_answers": 52,
+  "questions": [
+    {
+      "id": 1,
+      "pregunta": "Un paciente de 57 años consulta por dolor lumbar progresivo de 5 meses de evolución. Su examen físico muestra algún grado de limitación a la flexoextensión lumbar, sin otras alteraciones. Se solicita una radiografía de columna lumbar, que muestra espondilosis moderada, con presencia de discopatía en el segmento L5-S1, con visualización de osteofitos en ambos cuerpos vertebrales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Espondilitis anquilosante",
+        "Espondilitis psoriática",
+        "Osteoporosis",
+        "Espondilodiscitis",
+        "Espondiloartrosis Espondiloartrosis: La espondilosis a veces se usa como sinónimo de espondiloartrosis. Sin embargo, en otros contextos, se refiere a la disminución del grosor del disco intervertebral. Los osteofitos son propios de la artrosis."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 3,
+      "pregunta": "Una paciente de 35 años, primípara, está en su cuarto día postparto vaginal. Su embarazo fue adecuadamente controlado, siendo normal durante toda la gestación. Consulta por un cuadro de disnea que ha aumentado significativamente en los últimos días, siendo actualmente de reposo. Al examen físico presenta frecuencia cardíaca de 102 latidos por minuto y presión arterial de 110/60 mmHg, con auscultación cardíaca que muestra un ritmo de galope por presencia de R3 y examen pulmonar que demuestra la presencia de crépitos basales bilaterales. Satura 94% a FiO2 ambiental y se observa edema de extremidades inferiores fóvea ++. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Edema pulmonar no cardiogénico",
+        "Miocardiopatía periparto",
+        "Tromboembolismo pulmonar",
+        "Embolia de líquido amniótico",
+        "Neumonía Miocardiopatía periparto: El cuadro clínico sugiere insuficiencia cardíaca congestiva con disfunción sistólica (tercer ruido). La desaturación y las crepitaciones pulmonares sugieren un edema pulmonar cardiogénico. El contexto de la paciente puérpera obliga a pensar en una miocardiopatía periparto. Si no hubiese estado embarazada, sería miocardiopatía dilatada. El tromboembolismo pulmonar presentaría un inicio súbito."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 5,
+      "pregunta": "Una mujer de 64 años consulta por dolor intercostal intenso de 3 semanas de evolución, que fue antecedido por la aparición de lesiones vesiculares en esa zona. En el examen físico se observa curación de las lesiones, algunas de las que dejaron cicatrices, sin otras alteraciones. ¿Cuál es el tratamiento de elección para el manejo del dolor?",
+      "opciones": [
+        "Pregabalina",
+        "Galantamina",
+        "Amitriptilina",
+        "Carbamazepina",
+        "Fluoxetina Neuritis posherpética: La sospecha clínica es de neuritis posherpética. El tratamiento de primera línea es la pregabalina o la gabapentina, siendo la pregabalina la más utilizada. La carbamazepina o los antidepresivos tricíclicos, que antes eran el tratamiento de primera línea, ahora se consideran de segunda línea."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 7,
+      "pregunta": "Una paciente de 68 años hace dos días sufre torsión del tobillo derecho, mientras bajaba escaleras. Evoluciona con intenso dolor, que le dificulta caminar. Al examen físico presenta edema de tobillo derecho, con equimosis bimaleolar, asociado a dolor a la palpación fibular ipsilateral. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Indicar inmovilizador de tobillo",
+        "Inmovilizar con bota larga de yeso",
+        "Solicitar radiografías de tobillo",
+        "Solicitar TAC de tobillo",
+        "Indicar reposo y analgesia, con elevación de la extremidad Sospecha de fractura de tobillo: La soepecha es una fractura de tobillo, principalmente por el dolor a la palpación ósea. Sin embargo, tanto en un esguince como en una sospecha de fractura, la conducta inicial es descartar la fractura con radiografías de tobillo (AP, lateral y oblicua)."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 9,
+      "pregunta": "Una paciente embarazada de 32 semanas, con altura uterina: 38 cm e IMC: 33 se realiza una ecografía obstétrica, que muestra feto creciendo en percentil 93, con ILA: 12. Se solicita test de tolerancia a la glucosa oral, que resulta 92 mg/dl basal y 170 mg/dl a las dos horas postcarga de glucosa. ¿Cuál es la causa más probable de la condición fetal?",
+      "opciones": [
+        "Diabetes mellitus gestacional",
+        "Obesidad materna",
+        "Diabetes mellitus pregestacional",
+        "Incompatibilidad de grupo Rh",
+        "Síndrome hipertensivo del embarazo Diabetes gestacional: El feto presenta un tamaño grande para la edad gestacional, definido como un percentil mayor a 90 en el peso/edad. El líquido amniótico es normal (polihidramnios: ILA > 20; oligohidramnios: ILA < 8). El test de tolerancia a la glucosa oral diagnostica diabetes gestacional. El test normal es menor a 100 en ayunas (normal en este caso) y menor a 140 después de la carga (170 en este caso). En una mujer no embarazada, el diagnóstico sería intolerancia a la glucosa oral (glicemia poscarga 140-199); en cambio la diabetes en no embarazadas se diagnostica con glicemia poscarga mayor o igual a 200."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 11,
+      "pregunta": "Una paciente de 35 años consulta por dolor abdominal epigástrico recurrente, por lo que se realiza una ecografía abdominal, que muestra múltiples cálculos al interior de la vesícula biliar. Se decide realizar una colecistectomía laparoscópica electiva para su manejo. ¿Cuál de los siguientes esquemas antibióticos es de elección para ser administrado durante la cirugía como profilaxis de infección de la herida operatoria?",
+      "opciones": [
+        "Amoxiclina más ácido clavulánico",
+        "Ceftriaxona",
+        "Clindamicina",
+        "Cloxacilina",
+        "Cefazolina Profilaxis de la infección de la herida operatoria: La profilaxis con antibióticos durante la cirugía se realiza en heridas limpias contaminadas y contaminadas. Las heridas sucias o infectadas requieren tratamiento antibiótico, mientras que las heridas limpias no suelen necesitarlo (excepto en ciertas cirugías de alto riesgo: prótesis u órganos muy importantes). El esquema debe cubrir Staphylococcus y los microorganismos de la mucosa abierta en la heridas limpias contaminadas. La cefazolina es el fármaco de elección en la mayoría de los casos, incluyendo la colecistectomía electiva (cubre bien Gram+ y enterobacterias)."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 13,
+      "pregunta": "Un niño de 3 años presenta un cuadro de 5 días de evolución de rinorrea, fiebre y odinofagia, al que, hace dos días se le agrega otalgia, por lo que se realiza otoscopía que muestra tímpano abombado y eritematoso. Se inicia amoxicilina 50 mg/kg al día, sin embargo, a las 48 horas no ha mostrado ningún tipo de mejoría. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Aumentar la dosis a 100 mg/Kg al día",
+        "Cambiar el tratamiento a azitromicina oral 10 mg/Kg al día",
+        "Agregar ácido clavulánico al tratamiento oral",
+        "Solicitar una TAC de peñasco",
+        "Iniciar ceftriaxona endovenosa Tratamiento en Otitis Media Aguda: La dosis recomendada de amoxicilina para esta condición es de 80 a 100 mg por kilogramo al día. Si en 48-72 horas no responde a la dosis adecuada, se debe agregar ácido clavulánico. En este caso, la dosis dada fue inferior, por lo que una respuesta potencialmente correcta también sería indicar la dosis recomendada actualmente. Es más, en la práctica médica, probablemente se hagan ambas cosas. Debido a que los gérmenes más frecuentes son neumococo, que en las infecciones extrameníngeas tiene muy baja tasa de resistencia a penicilinas y luego Moraxella y Haemophilus, que producen betalactamasas, recomendamos agregar el ácido clavulánico. Sin embargo, es una pregunta muy difícil."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 15,
+      "pregunta": "Una paciente de 86 años, viuda desde hace 2 años, consulta porque ha notado olvidos frecuentes de eventos recientes en el último año, que han aumentado en los últimos dos meses. Presenta temor de estar iniciando una enfermedad de Alzheimer. En la evaluación se muestra atenta, orientada, cooperadora. Además, puede invertir series y recuerda 2 de 3 palabras que se le comunican durante la entrevista. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Enfermedad de Alzheimer",
+        "Duelo patológico",
+        "Trastorno neurocognitivo menor",
+        "Accidente vascular encefálico",
+        "Delirium Trastorno Neurocognitivo Menor: Este trastorno se caracteriza por un deterioro cognitivo inicial en adultos mayores sin llegar a cumplir los criterios de demencia . El manejo se centra en mantener la autonomía del paciente y monitorear la posible evolución a demencia en los próximos años."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 16,
+      "pregunta": "Una paciente de 47 años consulta por pirosis y regurgitación de dos años de evolución, asociada a disfagia alta intermitente, que ha ido en aumento. Al examen físico, presenta signos vitales normales, se observan telangiectasias en el tórax y esclerosis de la piel de los dedos. Su examen cardiopulmonar y abdominal es normal. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Acalasia esofágica",
+        "Esclerosis sistémica progresiva",
+        "Lupus eritematoso sistémico",
+        "Dermatomiositis",
+        "Polimiositis Esclerosis Sistémica Progresiva (Síndrome de CREST): Este síndrome se caracteriza por calcinosis, fenómeno de Raynaud, compromiso esofágico, esclerodactilia y telangiectasias. A largo plazo, puede desarrollar hipertensión pulmonar. El compromiso esofágico suele presentarse como disfagia ilógica y pirosis."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 17,
+      "pregunta": "Un paciente de 35 años consulta por intenso prurito en la zona genital de una semana de evolución. Al examen físico, se observan lesiones escrotales, que se muestran en la imagen (fuente: https://rafalafena.wordpress.com/wp- content/uploads/2022/03/....). ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Prúrigo nodular",
+        "Infección por virus papiloma humano",
+        "Sífilis primaria",
+        "Escabiosis",
+        "Sífilis secundaria Sarna Nodular: La presencia de prurito en la zona genital puede ser compatible con escabiosis (sarna) o infestación por ladillas (Phthirus pubis). Sin embargo, si las imágenes muestran lesiones nodulares características, se confirma el diagnóstico de sarna nodular."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 19,
+      "pregunta": "¿A qué tipo de garantía corresponde el registro de los profesionales de la salud en el Registro de Prestadores Individuales, llevado por la Superintendencia de Salud, en contexto del programa de Garantías Explícitas de Salud (GES)?",
+      "opciones": [
+        "Garantía de acceso universal",
+        "Garantía de protección financiera",
+        "Garantía de calidad en la atención",
+        "Garantía de oportunidad en la atención",
+        "Garantía de acceso a la información Garantías GES (Garantías Explícitas en Salud): En Chile, estas garantías son: garantía de acceso universal (acceso a la cobertura GES tanto a los afiliados a FONASA como a ISAPRE); garantía de protección financiera (subsidio estatal para acceso a prestaciones a un precio más bajo); garantía de calidad (asegurada por la fiscalización de la Superintendencia de Salud, que se traduce en la acreditación y el registro de prestadores individuales e institucionales); y garantía de oportunidad (asegura el cumplimiento de plazos para la entrega de las prestaciones GES de forma oportuna). Es importante destacar que el acceso a la información no forma parte de las garantías GES, sino que está en la ley de Derechos y Deberes del Paciente. No se debe confundir la acreditación que da la SIS y que certifica la calidad para ser prestador Fonasa y GES, con la autorización sanitaria que da la Seremi de Salud y que permite el funcionamiento, una vez que se cumplen con los requisitos sanitarios."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 21,
+      "pregunta": "Una mujer de 28 años, trabajadora del área de la salud, es encontrada inconsciente por su pareja en el baño de su casa. Al examen físico, está comprometida de conciencia, tiene frecuencia cardíaca de 60 por minuto, frecuencia respiratoria de 8 por minuto y se observan pupilas mióticas, sin focalidad neurológica. ¿Qué tipo de fármaco es el responsable del cuadro de intoxicación de esta paciente?",
+      "opciones": [
+        "Benzodiacepinas",
+        "Barbitúricos",
+        "Antidepresivos tricíclicos",
+        "Opioides",
+        "Hipoglicemiantes Síndrome Opioide: Este síndrome se caracteriza por compromiso de la conciencia, depresión respiratoria y miosis puntiforme (pupilas contraídas). Es importante diferenciarlo de otros síndromes: el síndrome por benzodiazepinas también presenta compromiso de conciencia y depresión respiratoria, pero sin alteración pupilar significativa; los síndromes adrenérgico y anticolinérgico causan midriasis (pupilas dilatadas); y el síndrome colinérgico, al igual que el opioide, se caracteriza por miosis (pupilas contraídas)."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 23,
+      "pregunta": "Una paciente de 28 años consulta ya que lleva varios días eliminando restos de un parásito en sus deposiciones. Se solicita examen parasitológico de deposiciones, que muestra presencia de huevos operculados. ¿Cuál es el antecedente que debe preguntarse dirigidamente para establecer el diagnóstico?",
+      "opciones": [
+        "Consumo de mariscos crudos",
+        "Consumo de sushi de salmón",
+        "Consumo de carne de vaca cruda",
+        "Viaje al caribe",
+        "Contacto con roedores Teniasis: La presencia de restos del parásito sugiere una infestación por una tenia. De las tenias, solo el Difilobotrium latum tiene huevos operculados y se transmite por el consumo de pescado crudo. El consumo de carne de vaca cruda puede producir una infestación por Taenia saginata, mientras que la carne de cerdo cruda puede transmitir la Taenia solium. Ambas tienen huevos no operculados."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 25,
+      "pregunta": "Una paciente de 33 años consulta porque desde hace 95 días que no ha menstruado. Sus reglas previas eran regulares, es sexualmente activa y usa preservativo como método anticonceptivo. Hace dos semanas se realizó un test de embarazo en orina, que resultó negativo. ¿Cuál es el examen de elección para iniciar el estudio?",
+      "opciones": [
+        "Subunidad beta HCG",
+        "Niveles plasmáticos de FSH",
+        "Ecografía transvaginal",
+        "Niveles plasmáticos de prolactina",
+        "Niveles plasmáticos de TSH Estudio de la amenorrea: El estudio de la amenorrea debe comenzar descartando el embarazo. Aunque la paciente se realizó una prueba de embarazo en orina hace dos semanas, es recomendable iniciar el estudio con una nueva prueba de embarazo, antes de continuarla con TSH, prolactina y FSH (en la práctica se pide todo junto)."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 27,
+      "pregunta": "Una paciente de 19 años, con antecedentes de sangrado menstrual abundante desde su menarquia a los 12 años y de una cirugía de by pass gástrico realizado hace un año, consulta por un cuadro de disnea e intolerancia al ejercicio, de 4 meses de evolución, que ha ido en aumento. Se solicitan exámenes, entre los que destaca un hemograma con hemoglobina: 9,1 g/dl, hematocrito 28%, blancos: 6.200 por mm3, plaquetas 300.000 por mm3; ferritina plasmática: 9 ng/ml (VN: 12 – 150 ng/ml) y saturación de transferrina 12%. La conducta más adecuada es:",
+      "opciones": [
+        "Indicar hierro por vía oral",
+        "Administrar hierro por vía endovenosa",
+        "Administrar folatos orales",
+        "Administrar vitamina B12 por vía intra muscular",
+        "Transfundir glóbulos rojos Anemia ferropénica con indicación de hierro endovenoso: El diagnóstico es una anemia moderada ferropénica, confirmada por la ferritina plasmática baja (reflejo de los depósitos de hierro) y la saturación de transferrina menor al 20%. La paciente requiere suplementación de hierro, y en este caso, la vía debe ser endovenosa debido a la cirugía de bypass gástrico, un factor de riesgo para la malabsorción de hierro, ya que se absorbe principalmente en el duodeno, por lo que las cirugías en esta área pueden afectar su absorción, similar a lo que ocurre en la enfermedad celíaca, donde el duodeno suele ser el segmento intestinal más afectado."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 29,
+      "pregunta": "Una paciente de 24 años presenta amenorrea de 7 semanas de evolución, por lo que consulta. Su examen físico muestra FC: 80x’, PA: 120/80 mmHg, sin alteraciones en su examen ginecológico. Se solicitan niveles plasmáticos de HCG, que resultan 4.000 UI/L y se realiza ecografía transvaginal que muestra una masa anexial derecha de 3 cm de diámetro, sin líquido libre. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Repetir los niveles de HCG en 48 horas",
+        "Realizar salpingotomía por laparotomía",
+        "Realizar salpingectomía por vía laparoscópica",
+        "Indicar metotrexato por vía intramuscular",
+        "Controlar con una ecografía en 10 días Embarazo ectópico no complicado: El diagnóstico es un embarazo ectópico no complicado, basado en los niveles de hCG mayores a 3500 y la ausencia de un saco gestacional visible en la ecografía transvaginal. La paciente no tiene contraindicaciones para el metotrexato, ya que el tumor anexial es menor a 4 cm y los niveles de hCG son menores a 5000. El tratamiento de elección en este caso es el metotrexato. Si los niveles de hCG hubieran sido inferiores a 3500, la respuesta habría sido repetir los niveles de hCG en 48 horas. Si el tumor anexial hubiera sido mayor a 4 cm o la hCG mayor a 5000, la respuesta habría sido una salpingectomía por laparoscopía. Si la paciente hubiera estado en shock, la respuesta correcta habría sido la salpingectomía inmediata, ya sea por vía abierta o laparoscópica."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 31,
+      "pregunta": "Un paciente de 45 años nota cambio en el hábito intestinal desde hace dos meses, requiriendo mayor esfuerzo defecatorio. Además, ha notado presencia ocasional de mucosidad y sangre en las deposiciones. Su examen físico muestra signos vitales normales y la exploración abdominal no presenta alteraciones ¿Cuál de las siguientes es la conducta más adecuada para iniciar su estudio?",
+      "opciones": [
+        "Ecografía abdominal",
+        "TAC abdominal",
+        "Colonoscopía",
+        "Rectosigmoidoscopía",
+        "Test de sangre oculta en deposiciones Cáncer colorrectal: La sospecha diagnóstica es un cáncer colorrectal. Si bien se puede iniciar el estudio con una colonoscopía o una rectosigmoidoscopía, se recomienda la exploración de todo el colon, por lo que la colonoscopía es la respuesta correcta."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 33,
+      "pregunta": "Usted evalúa a un recién nacido de término, con antecedente de síndrome de Down, quien, desde el segundo día de vida, presenta vómitos abundantes y explosivos, que impiden su adecuada alimentación. Al examen físico se observa irritable, con distensión abdominal, por lo que se solicita radiografía abdominal que muestra imagen de doble burbuja, siendo de mayor tamaño la burbuja del lado izquierdo. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Atresia yeyunal",
+        "Atresia duodenal",
+        "Enterocolitis necrotizante",
+        "Estenosis hipertrófica del píloro",
+        "Malrotación intestinal Atresia Duodenal: La imagen de \"doble burbuja\" y el cuadro clínico apuntan a una atresia duodenal. La enterocolitis necrotizante sí puede tener vómitos, pero se manifestaría con antecedentes de prematurez o asfixia, heces con sangre y neumatosis intestinal en la radiografía. La estenosis hipertrófica del píloro, aunque presenta síntomas similares, suele aparecer más tarde, entre las 2 y 6 semanas de vida."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 35,
+      "pregunta": "Una paciente de 48 años consulta por hipoacusia bilateral de 10 años de evolución, progresiva, que aumentó especialmente durante su último embarazo. Su otoscopía es normal y el examen neurológico no muestra alteraciones vestibulares ni cerebelosas. Se realiza test de diapasones, que muestra prueba de Rinne negativo bilateral y prueba de Weber que no lateraliza. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Hipoacusia genética neurosensorial",
+        "Ototoxicidad",
+        "Otoesclerosis",
+        "Hipoacusia hormonal",
+        "Otitis media con efusión Otoesclerosis: La prueba de Rinne es positiva en hipoacusias sensorioneurales y negativa en hipoacusias de conducción, como en este caso. La prueba de Weber lateraliza al lado afectado en la hipoacusia de conducción y al lado sano en la sensorioneural; pero si la hipoacusia es bilateral y simétrica, no lateraliza. La otoesclerosis y la otitis media con efusión son hipoacusias de conducción, pero el curso crónico por 10 años y el empeoramiento durante el embarazo son característicos de la otoesclerosis. Esta última es la causa más común de hipoacusia de conducción con tímpano normal, a diferencia de la otitis media crónica que presenta alteraciones timpánicas. Las hipoacusias sensorioneurales, en cambio, tienen tímpano sano en la otoscopía."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 37,
+      "pregunta": "Un hombre de 30 años presenta aumento de volumen en el cuello, desde hace dos meses, que ha progresado desde ese entonces. Además, ha presentado sudoración nocturna y fiebre ocasional. Al examen físico, tiene signos vitales normales y se constata presencia de una adenopatía de 3 x 2 cm, ubicada en el triángulo anterior del cuello. Su examen cardiopulmonar no muestra alteraciones. ¿Cuál es la conducta más adecuada para confirmar el diagnóstico?",
+      "opciones": [
+        "Hemograma VHS",
+        "Biopsia de médula ósea",
+        "Serología para citomegalovirus",
+        "Biopsia ganglionar",
+        "Serología para virus de Epstein Barr Linfoma de Hodgkin: La sospecha clínica es un linfoma de Hodgkin, debido a la presencia de síntomas B y la adenopatía. El diagnóstico se confirma mediante biopsia excisional de uno de los ganglios."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 38,
+      "pregunta": "Una paciente de 58 años, hipertensa, en tratamiento con enalapril e hidroclorotiazida, consulta por un cuadro de 2 años de evolución de disnea progresiva, que ha aumentado en el último tiempo, volviéndose de pequeños esfuerzos. Además, refiere expectoración mucosa, que suele ser mayor en las mañanas. Evita realizar actividad física, transportar carga y subir escaleras, debido a la disnea. Como antecedente, fumó 4 cigarrillos al día, hasta hace un año. En el examen físico, tiene frecuencia cardíaca: 86 lpm, presión arterial: 120/70 mmHg, frecuencia respiratoria basal: 15 rpm, saturación arterial de oxígeno: 93% a FiO2 ambiental. La auscultación cardíaca muestra ritmo regular en dos tiempos, sin presencia de soplos y la auscultación pulmonar muestra murmullo pulmonar presente, disminuido de manera global, con presencia de crepitaciones bilaterales. Además, tiene hipocratismo digital. Se solicita una radiografía de tórax, que se muestra a continuación (fuente: Radiopaedia): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Asma alérgica",
+        "Enfermedad pulmonar obstructiva crónica",
+        "Bronquitis crónica por cigarrillo",
+        "Fibrosis pulmonar idiopática",
+        "Insuficiencia cardíaca congestiva Fibrosis Pulmonar Idiopática: Tanto la historia clínica como la radiografía son compatibles con una fibrosis pulmonar idiopática."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 40,
+      "pregunta": "Una paciente de 67 años consulta por dolor de espalda, que inició de manera súbita, en relación a actividades en las que levantaba peso en flexión. El dolor es intenso, por lo que limita sus actividades de la vida diaria. Al examen físico, se observa dolor a los movimientos de flexoextensión de la columna y se observa tórax encorvado, pero sin cifosis. Su examen neurológico es normal y presenta dolor a la palpación vertebral. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Lumbago mecánico",
+        "Lumbociática mecánica",
+        "Fractura de cuerpo vertebral",
+        "Espondiloartrosis lumbar",
+        "Espondilitis anquilosante Fractura Vertebral: Aunque inicialmente parece un lumbago mecánico, la edad, la curvatura torácica y el dolor a la palpación vertebral sugieren una fractura vertebral como diagnóstico más probable."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 42,
+      "pregunta": "Una paciente de 42 años, embarazada de término ingresa en trabajo de parto. Durante el expulsivo aparecen múltiples desaceleraciones tardías en el registro cardiaco fetal y el líquido amniótico se tiñe de meconio. El recién nacido nace hipotónico, cianótico y no reactivo, con meconio espeso. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Aspirar la boca del recién nacido ante la salida de la cabeza por el canal de parto, antes de su expulsión completa",
+        "Realizar intubación orotraqueal y aspirar secreciones traqueales antes de que el recién nacido llore",
+        "Realizar intubación orotraqueal y conectar al ventilador mecánico invasivo",
+        "Secar, poner en calor radiante, administrar oxígeno y estimular al recién nacido",
+        "Administrar adrenalina endovenosa Manejo del Recién Nacido con Meconio: El manejo ha cambiado. Si el recién nacido está vigoroso, no se necesita un manejo diferente al de un recién nacido. Si nace deprimido y con meconio, las recomendaciones antiguas eran intubar y aspirar las secreciones con meconio antes de la reanimación. Actualmente, las recomendaciones internacionales indican proceder directamente a la reanimación estándar. La respuesta correcta para el examen probablemente sea el manejo antiguo, pero la evidencia clínica actual apoya la reanimación estándar."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 43,
+      "pregunta": "Un paciente de 70 años consulta por dificultad para tragar de 2 años de evolución, que se presenta tanto al ingerir alimentos sólidos como líquidos. Además, presenta pirosis y regurgitación frecuente postprandial. Ha bajado un total de 20 kilogramos desde el inicio de sus síntomas y su IMC actual es de 22,2. Al examen físico, tiene un abdomen excavado, sin palpación de masas, con ruidos hidroaéreos presentes y sin signos peritoneales. El resto de su examen físico no aporta mayor información. Se solicitan radiografías contrastadas de esófago, estómago y duodeno, que se muestra a continuación (fuente: Radiopaedia): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Síndrome pilórico",
+        "Acalasia esofágica",
+        "Esclerodermia sistémica",
+        "Cáncer gástrico",
+        "Divertículo esofágico Disfagia en Adulto Mayor: Aunque la disfagia en un adulto mayor puede indicar cáncer de esófago, en este caso se observa una disfagia ilógica que afecta tanto a sólidos como a líquidos. La radiografía muestra la imagen clásica de acalasia esofágica con obstrucción distal y sin irregularidades en la pared del esófago, a diferencia del cáncer."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 45,
+      "pregunta": "Un paciente diabético de larga data, mal controlado, en tratamiento con metformina y empaglifozina. Consulta por ptosis y molestias visuales en el ojo derecho. Al examen físico, tiene ptosis del ojo derecho, que se asocia a diplopía al abrir manualmente el párpado. Además, tiene dificultades en la aducción y elevación del ojo derecho. Su agudeza visual se constata como 20/25 bilateral. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Accidente vascular encefálico",
+        "Tumor cerebral",
+        "Cáncer de pulmón con compromiso del ganglio estrellado",
+        "Ptosis aponeurótica",
+        "Parálisis del tercer nervio craneal Parálisis del Tercer Nervio Craneal: Se trata de una parálisis del tercer nervio craneal (oculomotor) clásica. Se recomienda revisar el resumen de semiología neurológica."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 47,
+      "pregunta": "Un niño de 14 años, con antecedente de síndrome de QT largo, con historia familiar positiva, consulta por cuadro de fiebre, dolor abdominal y deposiciones líquidas de 5 de evolución, persistentes, que hace dos días se han vuelto sanguinolentas. Además de la hidratación, ¿qué antibiótico debe indicarse?",
+      "opciones": [
+        "Ciprofloxacino",
+        "Azitromicina",
+        "Metronidazol",
+        "Sulfametoxazol con trimetoprim",
+        "Ampicilina Antibiótico y QT largo: Las disenterías se pueden tratar con antibióticos que cubran Shigella y otras enterobacterias. El ciprofloxacino, la azitromicina y el sulfametoxazol con trimetoprim son opciones aceptables, al igual que las cefalosporinas orales. En casos graves, se pueden usar cefalosporinas endovenosas. En el síndrome de QT largo, el ciprofloxacino y la azitromicina están contraindicados. De las opciones, solo el sulfametoxazol con trimetoprim sería adecuado. El metronidazol cubre anaerobios, no los gramnegativos. La ampicilina puede cubrir algunas enterobacterias, pero su espectro es insuficiente."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 48,
+      "pregunta": "Un paciente de 83 años, diabético e hipertenso, consulta por dolor en el flanco derecho, asociado a 2 episodios de vómitos alimentarios. En su examen físico, tiene frecuencia cardíaca: 80x’, PA: 120/80 mmHg y abdomen sin signos peritoneales. Se solicita TAC de abdomen y pelvis que se muestra a continuación (fuente: Radiopaedia): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Colitis isquémica",
+        "Pancreatitis aguda",
+        "Litiasis ureteral",
+        "Diverticulitis aguda",
+        "Infarto esplénico Diagnóstico Diferencial de Cólico Renal: El cuadro clínico sugiere un cólico renal. Sin embargo, en un paciente adulto mayor con factores de riesgo cardiovascular, se debe considerar un aneurisma aórtico abdominal roto. En la imagen, se observa un cálculo en el uréter, confirmando el diagnóstico de urolitiasis."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 50,
+      "pregunta": "Un niño de 3 años, con antecedente de fimosis, presenta fiebre alta, hasta 39,5°C, desde hace 48 horas, asociada a vómitos y malestar general. Su examen físico muestra frecuencia cardíaca: 130x’, T°: 39,0°C, faringe congestiva, examen cardiopulmonar y abdominal sin alteraciones relevantes. Se solicitan exámenes, entre los que se informa sedimento de orina con 20 glóbulos rojos por campo, 50 glóbulos blancos por campo, bacterias en moderada cantidad; además, tiene hemograma con hematocrito: 42%, hemoglobina: 13 g/dl, leucocitos: 14.000 por mm3 y plaquetas: 228.000 por mm3, con VSG: 42 mm/h. Hemocultivos pendientes. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Balanopostitis",
+        "Neumonía adquirida en la comunidad",
+        "Influenza",
+        "Síndrome hemolítico urémico",
+        "Pielonefritis aguda Pielonefritis aguda: La fimosis puede orientar a balanopostitis o pielonefritis aguda. La balanopostitis presenta alteraciones cutáneas en el prepucio y glande, sin fiebre. La pielonefritis aguda se presenta con fiebre. En este caso, la leucocituria elevada (50 glóbulos blancos por campo) indica pielonefritis."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 52,
+      "pregunta": "Un lactante de 14 meses de edad presenta un cuadro febril de 4 días de evolución, con fiebre hasta 39,2°C, la que desaparece abruptamente, dado paso a la aparición de un rash eritematoso maculopapular, que afecta la cara, el tronco y las cuatro extremidades. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Eritema infeccioso",
+        "Síndrome de pie mano boca",
+        "Síndrome de Kawasaki",
+        "Exantema súbito",
+        "Rubéola Exantema súbito (Roséola infantil): Es un exantema súbito clásico, que afecta principalmente a niños entre 6 y 12 meses de edad. Se caracteriza por una fiebre muy alta que cesa repentinamente, seguida de la aparición de un rash generalizado."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 54,
+      "pregunta": "Una mujer de 27 años, cursando un embarazo de 25 semanas, acude a control de su embarazo. Se solicita una ecografía obstétrica, que muestra feto creciendo en percentil 50, con líquido amniótico normal y sin alteraciones morfológicas, observándose que el borde inferior de la placenta se encuentra en contacto con el orificio cervical interno. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Inducir el parto",
+        "Realizar operación cesárea",
+        "Controlar con ecografía en el tercer trimestre",
+        "Administrar tocolíticos desde las 32 semanas",
+        "Solicitar Doppler de arterias uterinas Placenta previa: Se diagnostica con la ecografía, cuando la placenta cubre completamente el orificio cervical interno. El diagnóstico generalmente se realiza a las 32 semanas de gestación, ya que antes de esa edad gestacional es frecuente que la placenta se desplace hacia arriba, resolviendo la condición. Sin embargo, si la placenta previa persiste, contraindica absolutamente el parto vaginal y se interrumpe con una cesárea electiva entre las 36 y 37 semanas de gestación. Si se presenta un sangrado significativo, se debe interrumpir el embarazo de inmediato. Es importante destacar que el término \"placenta previa marginal\" ya no se utiliza. En cambio, se habla de \"placenta de inserción baja\" cuando la placenta se encuentra a menos de 2 cm del orificio cervical interno sin cubrirlo. En este caso, el parto vaginal suele ser posible, aunque si la distancia es menor a 1 cm, se debe evaluar la conveniencia de una cesárea."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 56,
+      "pregunta": "Una paciente de 33 años, VIH positivo, cursa un embarazo bien controlado, con tratamiento antirretroviral y cargas virales indetectables. El recién nacido nace a las 38 semanas, por parto vaginal, sin complicaciones. ¿Cuál de los siguientes es el tratamiento antirretroviral de elección para el recién nacido?",
+      "opciones": [
+        "Zidovudina (AZT)",
+        "Lamivudina (3TC)",
+        "Nevirapina (NVP)",
+        "Lopinavir (LPV)",
+        "Abacavir (ABC) Prevención de la transmisión del VIH de madre a hijo: Para evitar la transmisión del virus de inmunodeficiencia humana (VIH) al recién nacido, la madre debe recibir terapia antirretroviral durante todo el embarazo (medida más importante). El objetivo es lograr cargas virales indetectables, lo que permite un parto vaginal. Si no se logran cargas virales indetectables, se debe realizar una cesárea. El recién nacido debe recibir terapia antirretroviral por varias semanas después del nacimiento. Además, la lactancia materna está absolutamente contraindicada. Para el seguimiento del recién nacido se utiliza la prueba de reacción en cadena de la polimerasa (PCR) para detectar el VIH, ya que las pruebas de ELISA y Western blot pueden dar resultados falsos positivos debido a la presencia de anticuerpos maternos. El esquema de terapia antirretroviral para el recién nacido varía según el riesgo de infección. En recién nacidos de bajo riesgo (por ejemplo, nacidos a término de madres con cargas virales indetectables durante el embarazo) se utiliza zidovudina como monoterapia. En recién nacidos de alto riesgo (por ejemplo, aquellos cuyas madres tenían cargas virales elevadas durante el embarazo) se utiliza una terapia triple que combina zidovudina, lamivudina y nevirapina."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 58,
+      "pregunta": "Una paciente de 30 años consulta por dolor en la fosa iliaca derecha, que se ha asociado a vómitos alimentarios y que inició hace 48 horas. Al examen físico T°: 36°C, FC: 110x’, PA: 110/70 mmHg. El examen abdominal muestra resistencia muscular involuntaria a la palpación de la fosa ilíaca derecha, con ruidos hidroaéreos conservados. Se realiza tacto vaginal, que resulta inconcluso debido a resistencia muscular. Se solicita una ecografía ginecológica transvaginal, que visualiza un tumor anexial derecho quístico multiloculado, de 10 cm de diámetro, con ausencia de flujo al Doppler color. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Apendicitis aguda",
+        "Embarazo ectópico",
+        "Proceso inflamatorio pélvico",
+        "Tumor anexial torcido",
+        "Cáncer de ovario Torsión ovárica: Aunque el cuadro clínico inicial puede asemejarse al de una apendicitis aguda, la presencia de un tumor anexial en la ecografía sugiere una torsión ovárica. El tamaño del tumor es un factor de riesgo importante: los tumores de más de 10 cm presentan el mayor riesgo, mientras que los que miden más de 5 cm tienen un riesgo intermedio. En este caso, incluso si el flujo Doppler color en la ecografía hubiera sido normal, la presencia de un tumor anexial grande en el contexto clínico descrito obliga a realizar una laparoscopía urgente, de modo de destorsionar el ovario inmediatamente y prevenir la necrosis ovárica."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 60,
+      "pregunta": "Usted atiende a 5 pacientes que consultan por vómitos y diarrea de inicio agudo en el mismo servicio de urgencia. Todos ellos son compañeros de trabajo, que almuerzan en el mismo comedor, por lo que se sospecha una intoxicación alimentaria. Además del manejo específico de los síntomas y patología de cada uno de ellos, la medida más adecuada es:",
+      "opciones": [
+        "Notificar al encargado de epidemiología del Hospital",
+        "Realizar un interrogatorio detallado a cada uno de los pacientes, para identificar el agente causal",
+        "Notificar a la Seremi de Salud",
+        "Notificar al Director del Hospital",
+        "Notificar a la Superintendencia de Salud Notificación obligatoria de enfermedades: Los tres tipos de vigilancia epidemiológica son activa, centinela y pasiva. La notificación obligatoria es una estrategia de vigilancia activa. En Chile, existen dos tipos de notificación: inmediata y diaria. La notificación inmediata se utiliza para las enfermedades más virulentas y poco frecuentes. La notificación diaria se utiliza para enfermedades menos virulentas. En ambos casos, la notificación se realiza a la Secretaría Regional Ministerial (Seremi) de Salud ante la sola sospecha de la enfermedad. Esta notificación permite a las autoridades sanitarias tomar medidas urgentes para contener el contagio."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 61,
+      "pregunta": "Un paciente de 58 años, con antecedente de várices en ambas piernas, de gran tamaño, consulta porque hace dos semanas sufrió un pequeño trauma en su extremidad inferior izquierda, evolucionando con una lesión ulcerada que ha aumentado de tamaño, hasta alcanzar 1,5 cm y que se ubica a 2 cm del maléolo interno. Al examen físico, se aprecia oscurecimiento de la piel circundante, más la presencia de las várices descritas. ¿Cuál es la etiología más probable de su lesión?",
+      "opciones": [
+        "Infecciosa",
+        "Isquémica",
+        "Venosa",
+        "Neuropática",
+        "Por presión Úlcera venosa: Las úlceras venosas suelen ser poco dolorosas o incluso indoloras. Se ubican generalmente en el maléolo interno y se asocian al síndrome postflebítico, que se caracteriza por hiperpigmentación de la piel. En contraste, las úlceras arteriales son dolorosas y se ubican con mayor frecuencia en el maléolo externo, los ortejos o los talones. El fondo de las úlceras arteriales es isquémico, de color pálido o blanco, mientras que el fondo de las úlceras venosas es hiperémico y violáceo."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 62,
+      "pregunta": "Un paciente de 37 años consulta por fiebre y malestar general de dos días de evolución, asociado a odinofagia. Al examen físico, tiene FC: 96x’, PA: 110/70 mmHg, T°: 38,0°C. Se observan úlceras orales, se palpan adenopatías cervicales bilaterales y se observa un exantema maculopapular eritematoso con distribución predominante en el tronco. Su examen cardiopulmonar es normal. Al examen neurológico, presenta algún grado de confusión y se palpa rigidez de nuca esbozada. Presenta serología negativa para VIH y para virus de Epstein Barr y se realiza una punción lumbar, que da salida a líquido cefalorraquídeo con pleocitosis de predominio mononuclear y glucorraquia de 55 mg/dl. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Primoinfección por VIH",
+        "Meningoencefalitis por citomegalovirus",
+        "Meningitis bacteriana aguda",
+        "Neurosífilis",
+        "Mononucleosis infecciosa Síndrome retroviral agudo o primoinfección por VIH: El síndrome retroviral agudo es la primera etapa de la infección por VIH. Se manifiesta clínicamente como un síndrome mononucleósico, que suele incluir fiebre, dolor de garganta, inflamación de los ganglios linfáticos y fatiga. A menudo se acompaña de un exantema rosado. En algunos casos, el síndrome retroviral agudo puede complicarse con meningitis aséptica, de tipo viral, con líquido cefalorraquídeo de predominio de células mononucleares y glucorraquia superior a 40 mg/dL. Durante el período de ventana, que es el tiempo que transcurre entre la infección por VIH y la aparición de anticuerpos detectables en la sangre, la serología para VIH puede ser negativa. Por lo tanto, el examen de elección para diagnosticar el síndrome retroviral agudo es la PCR para VIH o la detección de antígenos del VIH, ya que estas pruebas detectan directamente el virus. En cambio, en la infección crónica por VIH, el diagnóstico se realiza mediante serología (ELISA) y se confirma con Western blot, ya que en esta etapa los anticuerpos contra el VIH ya son detectables en la sangre."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 64,
+      "pregunta": "Durante una evaluación de calidad en un hospital se constata que un anestesista, en conjunto con un técnico en anestesia, utilizan tres pabellones de manera simultánea. El informe del hospital comunica que aquella es la práctica habitual. ¿A qué tipo de práctica corresponde este caso?",
+      "opciones": [
+        "Error médico",
+        "Impericia",
+        "Negligencia médica",
+        "Eficiencia",
+        "Imprudencia Imprudencia médica: En el contexto médico, la imprudencia se define como la realización de acciones temerarias que aumentan innecesariamente el riesgo de complicaciones y problemas para los pacientes. La impericia se refiere a la falta de conocimientos o habilidades necesarios para realizar una actividad o procedimiento médico. La negligencia es la falta del debido cuidado, generalmente por omisión. La eficiencia, por otro lado, busca optimizar el uso de los recursos, pero siempre debe hacerse de manera diligente y sin poner en riesgo la salud del paciente."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 65,
+      "pregunta": "Un paciente de 50 años consulta porque notó aumento de volumen en la zona anterior de su cuello. Al examen físico se palpa un nódulo de 2 cm de diámetro y consistencia dura. Se solicitan exámenes, entre los que destaca una TSH: 6,2 UI/L. ¿Cuál es el examen más adecuado para proseguir con el estudio?",
+      "opciones": [
+        "T4 libre",
+        "Ecografía cervical",
+        "Cintigrafía tiroidea",
+        "Estudio citológico por punción",
+        "Anticuerpos antitiroideos Estudio del nódulo tiroideo: El algoritmo para el estudio de un nódulo tiroideo comienza con la medición de la hormona estimulante de la tiroides (TSH). Si la TSH está suprimida, lo que indica hipertiroidismo, el siguiente paso es realizar una gammagrafía tiroidea para determinar si el nódulo es la causa del hipertiroidismo. Un nódulo caliente en la gammagrafía confirma el diagnóstico de adenoma tóxico. Si la TSH es normal o elevada, como en este caso, se debe realizar una ecografía cervical para evaluar las características anatómicas del nódulo. La ecografía permite clasificar el nódulo según el sistema TI-RADS. Un TI-RADS 1 indica un nódulo normal, un TI-RADS 2 indica un nódulo benigno, un TI-RADS 3 o 4 indica un nódulo sospechoso (con mayor grado de sospecha en el TI-RADS 4) y un TI-RADS 5 indica un nódulo altamente sospechoso de malignidad. Los nódulos sospechosos (TI-RADS 3 o 4) mayores a 10 mm se estudian mediante punción aspiración con aguja fina (PAAF), que es lo mismo que biopsia citológica. Los nódulos altamente sospechosos de malignidad (TI-RADS 5) se deben biopsiar independientemente de su tamaño, aunque la biopsia puede ser difícil de realizar en nódulos menores a 5 mm. Los TI-RADS 2 se observan, independientemente del tamaño."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 67,
+      "pregunta": "Un paciente de 75 años, con diagnóstico de cáncer de células pequeñas, presenta un cuadro de 2 días de aumento de volumen de la cara, asociado a confusión mental y tos. Al examen físico está desorientado en tiempo y espacio, tiene eritema y cianosis de la cara y se observa dilatación de las venas del cuello. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar resonancia magnética nuclear de tórax",
+        "Administrar diuréticos por vía endovenosa",
+        "Realizar quimioterapia de urgencia",
+        "Realizar radioterapia de urgencia",
+        "Realizar broncoscopía de urgencia Síndrome de vena cava superior: El síndrome de vena cava superior se caracteriza por la obstrucción del flujo sanguíneo a través de la vena cava superior, lo que produce una serie de síntomas como edema facial, distensión de las venas del cuello, tos y disnea. El diagnóstico es principalmente clínico, aunque se puede complementar con TAC de tórax. Las recomendaciones actuales sugieren el uso de corticoides endovenosos en los casos de linfoma (la segunda causa más frecuente de síndrome de vena cava superior, después del cáncer de pulmón de células pequeñas) más la colocación de un stent venoso o la realización de una trombectomía para desobstruir mecánicamente la vena cava superior si hay un trombo presente. Tras la estabilización del paciente, se debe iniciar un tratamiento oncológico urgente basado en la biopsia del tumor. En el pasado, el tratamiento de elección era la radioterapia urgente (probablemente es lo que evaluaba esta pregunta), pero actualmente no se recomienda."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 68,
+      "pregunta": "Una paciente de 31 años multípara de uno, cursando un embarazo de 34 semanas, sin patología previa, acude a control, objetivándose lesiones vaginales, que se muestran a continuación: ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cesárea electiva",
+        "Aplicación local de podofilino",
+        "Iniciar aciclovir oral",
+        "Realizar tocaciones con ácido tricloroacético",
+        "Inducir el parto en este momento Condilomas acuminados genitales en embarazo: La imagen muestra condilomas acuminados, causados por el virus del papiloma humano (VPH), serotipos 6 y 11. A diferencia del herpes genital, los condilomas acuminados no contraindican el parto vaginal. El tratamiento de elección durante el embarazo es el ácido tricloroacético tópico. Otros tratamientos tópicos como el imiquimod y el podofilino, aunque eficaces para tratar los condilomas acuminados, están contraindicados durante el embarazo."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 70,
+      "pregunta": "Una paciente de 25 años, embarazada, con 12 semanas contadas desde la FUR segura y confiable, se realiza exámenes, entre los que trae un VDRL, que resulta “no reactivo” y un MHA-TP, que resulta “reactivo”. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Administrar penicilina benzatina de inmediato",
+        "Realizar VDRL mensual durante el resto del embarazo",
+        "Controlar con VDRL a las 30 semanas",
+        "Solicitar un FTA-ABS",
+        "Indicar doxiciclina vía oral Sífilis tratada: Para el diagnóstico de sífilis se utilizan dos tipos de pruebas serológicas: pruebas no treponémicas y pruebas treponémicas. Las pruebas no treponémicas, como el VDRL (Venereal Disease Research Laboratory) y el RPR (Rapid Plasma Reagin), suelen negativizarse después del tratamiento exitoso de la sífilis. Las pruebas treponémicas, como el FTA-ABS (Fluorescent Treponemal Antibody Absorption) y el MHA-TP (Micro-Hemagglutination Assay for Treponema pallidum), permanecen positivas de por vida, incluso después del tratamiento. En el caso descrito, los resultados sugieren que la paciente tuvo sífilis en el pasado y se curó con tratamiento. Por lo tanto, la conducta a seguir es realizar el control prenatal habitual, incluyendo una nueva prueba de VDRL entre las 28 y 30 semanas de gestación."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 71,
+      "pregunta": "Un paciente de 66 años, hipertenso, fumador de 40 paquetes-año consulta por un cuadro de tos, de 2 meses de evolución, con expectoración mucosa o mucopurulenta, en ocasiones hemoptoica asociados a baja de peso. Al examen físico, tiene disminución del murmullo pulmonar bilateral, mayor a derecha, con crepitaciones pulmonar en el lado derecho. Se palpan adenopatías supraclaviculares bilaterales y se constata hipocratismo digital. Se solicita hemograma que muestra hematocrito: 29%, hemoglobina: 9,5 g/dl, leucocitos: 11.000 por mm3, plaquetas: 140.000 por mm3. Se solicita radiografía de tórax, que se muestra a continuación (fuente: www.medicinainternaaldia.com): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Neumonía multifocal",
+        "Quiste hidatídico",
+        "Atelectasia",
+        "Derrame pleural",
+        "Cáncer pulmonar Cáncer de Pulmón: El cuadro clínico y la radiografía sugerían un cáncer de pulmón, pero ninguna de las opciones del Eunacom real tenían dicha respuesta. Así es el Eunacom y no se puede reclamar. Para efectos de subirlo a la plataforma, incluimos la opción."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 73,
+      "pregunta": "Una paciente de 27 años, cursando un embarazo de 32 semanas consulta en el servicio de urgencias, debido a que presenta contracciones uterinas dolorosas en su domicilio. Al examen físico se constatan contracciones uterinas de 3 en 10 minutos y se palpa el cuello uterino borrado en 50%, con dilatación de 1 cm. El registro fetal muestra frecuencia cardíaca fetal basal de 130 latidos por minutos, con buena variabilidad. ¿Cuál de los siguientes fármacos es el más adecuado para el manejo inicial de esta paciente?",
+      "opciones": [
+        "Ampicilina",
+        "Indometacina",
+        "Nifedipino",
+        "Sulfato de magnesio",
+        "Atosibán Manejo del Trabajo de Parto Prematuro: En un trabajo de parto prematuro menor a 34 semanas, se usan corticoides y tocolíticos. La indometacina se recomienda en menores de 32 semanas y el nifedipino desde las 32 semanas en adelante. El atosibán es un tocolítico de segunda línea, mientras que la ampicilina sí está indicada cuando avance el trabajo de parto, ya que se usa como profilaxis para el estreptococo del grupo B."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 75,
+      "pregunta": "Una paciente de 51 años, obesa, con antecedente de menopausia a los 48 años, consulta por síntomas vasomotores intensos caracterizados por enrojecimiento y calor de la cara y pecho, mayores en la noche y que son muy molestos. Hace un año se realizó una histerectomía total, debido a diagnóstico de hiperplasia endometrial atípica. ¿Cuál es la conducta más adecuada para el manejo de sus síntomas?",
+      "opciones": [
+        "Estradiol más dienogest por vía oral",
+        "Estriol por vía vaginal",
+        "Estradiol gel, por vía transdérmica",
+        "Anticonceptivos orales combinados",
+        "Venlafaxina vía oral Terapia de Reemplazo Hormonal: Los síntomas vasomotores de la menopausia se tratan con terapia de reemplazo hormonal (TRH), a menos que esté contraindicada. Un antecedente de hiperplasia endometrial atípica no contraindica la TRH si ya fue tratada, pero sí lo haría si estuviera activa. La histerectomía implica que la TRH se realice solo con estrógeno, a diferencia de las pacientes con útero que reciben estrógeno y progestágeno. La vía de administración suele ser oral, pero se prefiere la vía transdérmica en casos de dislipidemia o factores de riesgo cardiovascular importantes, aunque la evidencia es limitada. En este caso, la paciente era obesa, por lo que la vía transdérmica es aceptable. El estriol u otros estrógenos tópicos vaginales se usan solo para síntomas genitales sin síntomas vasomotores, si no responden a lubricación."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 77,
+      "pregunta": "Un paciente de 45 años, obeso (con IMC:35) y diabético, en tratamiento con metformina y empaglifozina y con antecedente de consumo de 4 cervezas diarias, acude a chequeo. Trae múltiples exámenes, entre los que destaca perfil lipídico con colesterol LDL: 135 mg/dl, colesterol HDL: 27 mg/dl y triglicéridos: 1.000 mg/dl. ¿Cuál es la conducta más adecuada para el manejo de este paciente en este momento?",
+      "opciones": [
+        "Enviar al servicio de urgencias",
+        "Iniciar gemfibrozilo 900 mg/día",
+        "Iniciar rosuvastatina 40 mg/día",
+        "Iniciar ezetimibe 10 mg/día",
+        "Iniciar dieta estricta Manejo de Hipertrigliceridemia Severa: En un paciente con dislipidemia mixta el objetivo suele ser bajar el colesterol LDL, a menos que los triglicéridos sean > 500 mg/dL, en que la prioridad es bajar los triglicéridos. Con niveles > 1000 mg/dL, hay alto riesgo de pancreatitis, por lo que se debe manejar urgentemente. Hace años incluso se recomendaba hospitalizarlos para el manejo, sin embargo esa recomendación actualmente está obsoleta (tal vez el Eunacom aún la considera). La medida más importante o urgente es la suspensión inmediata del consumo de alcohol y una dieta estricta baja en glúcidos y baja en grasas. En paralelo, se inician los fibratos (gemfibrozilo).."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 79,
+      "pregunta": "Un lactante de 1 mes comienza con cuadros de vómitos explosivos, después de cada toma de leche. La madre, además, nota que está irritable y hambriento. Al examen físico, se observa leve ictericia de piel y escleras, sin otras alteraciones. Se solicitan exámenes de laboratorio, entre los que destacan sodio plasmático: 140 mEq/l, potasio plasmático: 3,2 mEq/L, pH plasmático: 7,47. ¿Cuál es el examen más adecuado para proseguir el estudio?",
+      "opciones": [
+        "Radiografía abdominal",
+        "Colonoscopía",
+        "17-hidroxi-progesterona",
+        "Ecografía abdominal",
+        "TAC de glándulas suprarrenales Estenosis Hipertrófica del Píloro: La sospecha clínica es una estenosis hipertrófica del píloro, que se estudia con ecografía abdominal y se trata con la piloromiotomía de Ramstedt. Los exámenes son compatibles con vómitos que causan pérdida de ácido y potasio, lo que lleva a una alcalosis metabólica e hipopotasemia. Si los exámenes hubieran sugerido insuficiencia suprarrenal (hiponatremia, hiperpotasemia, acidosis metabólica), la sospecha habría sido hiperplasia suprarrenal, que se estudia con la 17-hidroxiprogesterona."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 81,
+      "pregunta": "Un adolescente de 16 años presenta, desde hace 3 meses, anhedonia, disminución en su rendimiento escolar y presencia de pensamientos negativos sobre sí mismo y su situación, con aislamiento social. Además, relata dificultades para concentrarse en sus actividades académicas e insomnio tanto de inicio como de mantención. Ha subido 5 kilogramos de peso en los últimos meses. Niega autoagresiones y no tiene ideación suicida actual. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Distimia",
+        "Trastorno del espectro autista",
+        "Episodio depresivo mayor",
+        "Trastorno por déficit atencional",
+        "Trastorno de personalidad Depresión en Adolescentes: El cuadro clínico corresponde a una depresión o episodio depresivo mayor. La distimia se diagnostica en adolescentes tras un año de ánimo bajo y disforia sin cumplir criterios de depresión. En este caso, sí hay criterios de depresión porque se afecta el peso, el sueño, el rendimiento escolar y la vida social."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 83,
+      "pregunta": "Un lactante de 5 meses, con antecedente de haber nacido a las 35 semanas, presenta cambios en el aspecto de sus ojos, sin otros síntomas. Se realiza medición del diámetro corneal, que resulta 14 mm (VN: 10 a 12 mm) y prueba de fluoresceína, con aclaramiento de 5 minutos. ¿Cuál es el diagnóstico más adecuado?",
+      "opciones": [
+        "Glaucoma congénito",
+        "Atresia de la vía lagrimal",
+        "Conjuntivitis por Chlamydia trachomatis",
+        "Ambliopía",
+        "Retinopatía del prematuro Glaucoma Congénito: La epífora, megalocórnea y buftalmos sugieren glaucoma congénito. La prueba de fluoresceína con aclaramiento lento es compatible con dacriocistitis congénita y glaucoma congénito. El valor normal del aclaramiento de fluoresceína es menor a 5 minutos."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 85,
+      "pregunta": "Un paciente de 72 años consulta por temblor ambas extremidades, que aparece al realizar sus actividades habituales. Al examen físico se observa el mencionado temblor, sin otras alteraciones en la exploración neurológica. ¿Cuál es el fármaco más adecuado para el manejo de sus síntomas?",
+      "opciones": [
+        "Diazepam",
+        "Alprazolam",
+        "Propranolol",
+        "Levodopa",
+        "Sertralina Temblor Esencial: El cuadro clínico describe un temblor esencial, caracterizado por una exploración neurológica normal, salvo por temblor que aumenta con la postura o actividad. El tratamiento de elección es propranolol oral."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 86,
+      "pregunta": "Una mujer de 32 años consulta por debilidad progresiva en ambas piernas, que inició hace 5 días y ha avanzado a las extremidades superiores en las últimas 48 horas. Refiere sensación de hormigueo en manos y pies, pero sin alteración sensorial significativa. No presenta fiebre ni dolor. Hace dos semanas tuvo un cuadro de infección respiratoria con tos y congestión nasal. Al examen físico, destaca debilidad simétrica en las extremidades, arreflexia global y marcha inestable. No hay signos de afectación de los pares craneales.",
+      "opciones": [
+        "Realizar resonancia magnética de columna",
+        "Iniciar tratamiento con inmunoglobulina intravenosa",
+        "Solicitar resonancia magnética de cerebro",
+        "Administrar corticosteroides endovenosos",
+        "Iniciar aciclovir endovenoso Síndrome de Guillain-Barré: La sospecha es un síndrome de Guillain-Barré, que se diagnostica principalmente por la clínica. Se recomienda complementar con punción lumbar (disociación albuminocitológica) o electromiografía. El tratamiento, además del soporte, es inmunoglobulina G intravenosa o plasmaféresis."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 87,
+      "pregunta": "Un hombre de 62 años, con antecedentes de hipertensión arterial y tabaquismo, consulta por dolor torácico opresivo de 3 horas de evolución, irradiado al brazo izquierdo, acompañado de náuseas y malestar general. Al ingreso, sus signos vitales son: presión arterial 140/85 mmHg, frecuencia cardíaca 95 latidos por minuto, frecuencia respiratoria 18 respiraciones por minuto, saturación de oxígeno 96% con aire ambiente, y temperatura 36,8 °C. El examen cardiopulmonar muestra ruidos cardíacos regulares sin soplos y campos pulmonares limpios sin crépitos ni sibilancias. Se solicita electriocardiograma, que se muestra a continuación (fuente: www.urgenciasyemergen.com): La conducta más adecuada es:",
+      "opciones": [
+        "Solicitar angioTAC de tórax",
+        "Solicitar enzimas cardíacas seriadas",
+        "Realizar angiografía coronaria de emergencia",
+        "Anticoagular con heparina y solicitar ecocardiograma transesofágico",
+        "Iniciar indometacina Síndrome Coronario Agudo con Bloqueo de Rama Izquierda: El cuadro clínico sugiere un síndrome coronario agudo. El ECG muestra un BCRI, por lo que se maneja como un SCA con supradesnivel del ST, con angiografía coronaria de urgencia y angioplastia o con trombólisis urgente si la angioplastia no está disponible."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 89,
+      "pregunta": "Un niño de 8 años acude a consulta por dificultad para seguir el ritmo en actividades físicas en la escuela. No tiene antecedentes médicos relevantes, salvo infecciones respiratorias recurrentes en los últimos años. Sus signos vitales son normales, al igual que su auscultación pulmonar. A la auscultación cardiaca, se detecta un soplo continuo de intensidad III/VI en la región paraesternal e infraclavicular izquierda. El niño presenta una talla de -1 desviaciones estándar para su edad y un peso adecuado para su talla. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Miocardiopatía hipertrófica",
+        "Comunicación interventricular",
+        "Comunicación interauricular",
+        "Ductus arterioso persistente",
+        "Soplo funcional Ductus Arterioso Persistente: El soplo continuo es característico del ductus arterioso persistente. Se recomienda revisar el resumen de semiología cardíaca."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 90,
+      "pregunta": "Una paciente de 33 años, consulta por otalgia y sensación de oído tapado, mayor a derecha. Refiere que el día anterior estuvo nadando, sumergiéndose a 1,5 metros de profundidad. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Otitis media aguda",
+        "Otitis media con efusión",
+        "Perforación timpánica",
+        "Otitis externa",
+        "Barotrauma Barotrauma: El caso describe un barotrauma típico, que se presenta en situaciones con cambios de presión atmosférica, como el buceo, viajes en avión, cambios bruscos de altitud, etc."
+      ],
+      "respuesta_correcta": 4
+    }
+  ]
+}

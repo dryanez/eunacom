@@ -1,0 +1,906 @@
+{
+  "id": "eunacom-dic-2025",
+  "name": "EUNACOM Diciembre 2025",
+  "month": "Diciembre",
+  "year": 2025,
+  "total_questions": 113,
+  "questions_with_answers": 0,
+  "questions": [
+    {
+      "id": 1,
+      "pregunta": "Mujer de 40 años, presentación personal descuidada, con alucinaciones auditivas desde la adolescencia. Ahora las voces le dicen que se suicide. Diagnóstico más probable",
+      "opciones": [
+        "Esquizofrenia",
+        "Trastorno Bipolar",
+        "Trastorno Disociativo",
+        "Trastorno Delirante crónico"
+      ]
+    },
+    {
+      "id": 2,
+      "pregunta": "Dificultades desde la niñez para concentrarse, ahora de adulta tiene que anotar todas las cosas en libretas para no olvidar hacerlas",
+      "opciones": [
+        "Trastorno de Déficit Atencional con hiperactividad",
+        "TOC"
+      ]
+    },
+    {
+      "id": 3,
+      "pregunta": "Caso de acné con inflamación y cicatrices atróficas. Manejo más adecuado: Isotretinoina oral",
+      "opciones": [
+        "Peróxido de Benzoilo tópico",
+        "Doxiciclina"
+      ]
+    },
+    {
+      "id": 4,
+      "pregunta": "Caso de tipo de cicatriz en esternón solevantada, de extensión mayor a la lesión original, dolorosa a la palpación y con eritema. A qué tipo de cicatriz corresponde",
+      "opciones": [
+        "Hipertrófica",
+        "Queloide",
+        "Cuerpo extraño"
+      ]
+    },
+    {
+      "id": 5,
+      "pregunta": "Mujer con mamografía normal. Imagen compatible con enfermedad de Paget",
+      "opciones": []
+    },
+    {
+      "id": 6,
+      "pregunta": "Madre con varicela diagnosticada 2 días antes del parto vaginal y su recién nacido está asintomático. Manejo más adecuado",
+      "opciones": [
+        "no dar lactancia (dar leche del banco de leche)",
+        "vacunar contra varicela",
+        "inmunoglobulina VHZ",
+        "aciclovir"
+      ]
+    },
+    {
+      "id": 7,
+      "pregunta": "Imagen de radiografía de fractura de tobillo (maléolo medial tibial fracturado y el peroné con fractura desplazada). Manejo inicial",
+      "opciones": [
+        "analgesia y elevación de la extremidad",
+        "reducción cerrada y yeso",
+        "Reducción y valva",
+        "férula"
+      ]
+    },
+    {
+      "id": 8,
+      "pregunta": "Paciente con luxación de hombro. Cuál es la lesión a descartar antes de realizar reducción",
+      "opciones": [
+        "equimosis",
+        "alteración de la sensibilidad deltoidea",
+        "signo de charretera",
+        "impotencia funcional",
+        "aumento de volumen"
+      ]
+    },
+    {
+      "id": 9,
+      "pregunta": "Paciente de 73 años sin controles con diabetes y ERC con TFG 12. Cuál es el tratamiento más adecuado para la diabetes",
+      "opciones": [
+        "glibenclamida",
+        "dapagliflozina",
+        "vildagliptina",
+        "semaglutida"
+      ]
+    },
+    {
+      "id": 10,
+      "pregunta": "Disfagia lógica con baja de peso AM →",
+      "opciones": [
+        "Ca de esofago"
+      ]
+    },
+    {
+      "id": 11,
+      "pregunta": "Paciente con HTA en tto con doxazosina y litio en rango terapéutico con temblor en reposo",
+      "opciones": [
+        "- suspender litio / disminuir dosisj",
+        "-suspender doxazosina,",
+        "Doxzosina puede dar temblores, sobre todo porque estaba bien controlado por el litio (dosis adecuada y estado de ánimo estable) como para bajarle la dosis."
+      ]
+    },
+    {
+      "id": 12,
+      "pregunta": "Paciente que es operado anteriormente por válvula de IM y ahora esta por una hernia inguinal es dado de alta pero vuelve por malestar color rubo etc sin levantar fiebre",
+      "opciones": [
+        "Hematoma inguinal"
+      ]
+    },
+    {
+      "id": 13,
+      "pregunta": "Hombre con acantosis, acrocordones y glicemia de ayuno en 120mg/dl. Conducta a seguir",
+      "opciones": [
+        "Glicemia nueva de ayuno en 3 meses",
+        "HOMA",
+        "Realizar PTGO",
+        "Iniciar metformina"
+      ]
+    },
+    {
+      "id": 14,
+      "pregunta": "Lactante de 2 meses con Ortolani positivo. Cuál es la conducta",
+      "opciones": [
+        "Solicitar eco de caderas",
+        "Solicitar Rx de pelvis ahora",
+        "Solicitar Rx de pelvis a los 3 meses"
+      ]
+    },
+    {
+      "id": 15,
+      "pregunta": "Padre lleva a su hija a consulta por bajo peso. Ella refiere que se siente bien y que todas sus amigas hacen lo mismo solo le preocupa su papá. El papá refiere que consume ¼ de la porción de comida, prefiere comer en su pieza y realiza ejercicio intenso y toma mucha agua. Diagnóstico",
+      "opciones": [
+        "Anorexia nerviosa",
+        "Bulimia",
+        "Dismorfia corporal"
+      ]
+    },
+    {
+      "id": 16,
+      "pregunta": "Lactante con úvula bífida. Qué lesión buscar: Paladar hendido submucoso",
+      "opciones": []
+    },
+    {
+      "id": 17,
+      "pregunta": "La notificación de casos de intoxicación alimentaria a qué tipo de vigilancia pertenece",
+      "opciones": [
+        "Vigilancia pasiva",
+        "Centinela",
+        "Vigilancia activa z"
+      ]
+    },
+    {
+      "id": 18,
+      "pregunta": "Lactante con infecciones a repetición, deposiciones pastosas. Padre refiere que sudor le sabe salado: ¿examen diagnóstico?",
+      "opciones": [
+        "Electrolitos en sudor",
+        "17-OH-Progesterona"
+      ]
+    },
+    {
+      "id": 19,
+      "pregunta": "Mujer con antecedente reciente de requerimiento de maniobra de Heimlich por atragantarse con comida. Presenta actualmente disfonía y carraspera. Examen de elección",
+      "opciones": [
+        "Nasofibroscopia",
+        "EDA",
+        "Estudio de deglución"
+      ]
+    },
+    {
+      "id": 20,
+      "pregunta": "Caso de lactante con invaginación intestinal. Cuál es el examen de elección",
+      "opciones": [
+        "Colonoscopía",
+        "Enema baritado",
+        "Cintigrafía con Tecnecio 99",
+        "Estudio de tránsito intestinal"
+      ]
+    },
+    {
+      "id": 21,
+      "pregunta": "Palpitaciones súbitas. ECG con TPSV en paciente estable",
+      "opciones": [
+        "Adenosina",
+        "Amiodarona",
+        "Conversión eléctrica"
+      ]
+    },
+    {
+      "id": 22,
+      "pregunta": "Mamografía con calcificaciones BIRADS 0 y ecografía mamaria BIRADS 2. Cuál es la conducta",
+      "opciones": [
+        "mamografía en 6 meses",
+        "RMN",
+        "(no había opción de eco en 6 meses)",
+        "Mamografía con magnificación"
+      ]
+    },
+    {
+      "id": 23,
+      "pregunta": "Paciente con antecedente de exposición a fábrica de fibrocemento. Imagen con derrame pleural severo derecho (ocupaba cerca de ⅔ del pulmón). Diagnóstico",
+      "opciones": [
+        "Mesotelioma maligno",
+        "Cáncer broncogénico"
+      ]
+    },
+    {
+      "id": 24,
+      "pregunta": "Paciente femenina de 53 años, con menopausia hace 4 años, en tratamiento con estrógeno tópico una vez al día. Presenta sangrado genital desde hace 4 días. Al examen físico, no se aprecia salida de sangre por orificio cervical, sin dolor a la palpación y útero de tamaño normal. ¿Qué conducta es la más adecuada¡",
+      "opciones": [
+        "Biopsia endometrial",
+        "Usar ácido tranexámico en caso de nuevo sangrado",
+        "Aumentar uso de estrógeno a dos aplicaciones diarias",
+        "(no había opción de hacer eco)"
+      ]
+    },
+    {
+      "id": 25,
+      "pregunta": "Niño hospitalizado por neumonía por neumococo, 72 horas de evolución, oliguria. Anemia hemolítica, plaquetopenia, creatinina alta, C3 y C4 bajos, TP 15 segundos. Diagnóstico",
+      "opciones": [
+        "SHU",
+        "CID",
+        "Sepsis por neumococo",
+        "GNAPE",
+        "IgA"
+      ]
+    },
+    {
+      "id": 26,
+      "pregunta": "Mujer que ocupó fármaco y evoluciona con lesiones. Imagen con bulas en tronco y extremidad superior derecha. Diagnóstico",
+      "opciones": [
+        "SSJ",
+        "NET",
+        "Penfigoide bulloso",
+        "DRESS"
+      ]
+    },
+    {
+      "id": 27,
+      "pregunta": "Hombre con antecedente de OH crónico suspendido hace 1 años. Ahora con astenia de meses de evolución. Se observa enflaquecido, sin estigmas de DHC, con ascitis a tensión. Paracentesis diagnóstico con 500 GB, predominio mononuclear 80%, ADA 3.5, GASA >1.1. Diagnóstico",
+      "opciones": [
+        "carcinomatosis peritoneal",
+        "ascitis no complicada",
+        "PBE",
+        "TBC"
+      ]
+    },
+    {
+      "id": 28,
+      "pregunta": "Hombre de 22 años con epididimitis (describía aumento de volumen, eritema y dolor en epidídimo y testículo). Cuál es el tratamiento",
+      "opciones": [
+        "Ceftriaxona IM",
+        "Doxiciclina VO",
+        "Ciprofloxacino VO"
+      ]
+    },
+    {
+      "id": 29,
+      "pregunta": "Caso de absceso de Bartolino de 4 cm con varias recidivas y tratamientos previos. Además del manejo quirúrgico, cuál es el ATB de elección",
+      "opciones": [
+        "Amoxiclav",
+        "Ceftriaxona",
+        "Cefazolina",
+        "Metronidazol",
+        "Ciprofloxacino"
+      ]
+    },
+    {
+      "id": 30,
+      "pregunta": "Lactante de 1 año en tratamiento con corticoides (Prednisona) a alta dosis. Cuál es la vacuna contraindicada",
+      "opciones": [
+        "SRP",
+        "Tres vírica",
+        "Meningococo",
+        "Neumococo"
+      ]
+    },
+    {
+      "id": 31,
+      "pregunta": "Trabajo de parto en mujer con 1 CCA, presenta dolor súbito con elevación de la presentación fetal y bradicardia fetal en el MEFI. Conducta",
+      "opciones": [
+        "Cesárea de urgencia",
+        "Fórceps"
+      ]
+    },
+    {
+      "id": 32,
+      "pregunta": "Mujer con antecedente de retención de hombros con RN de 3.900 g. Ahora en trabajo de parto con feto de término y peso estimado de 4.200 g. Conducta: va",
+      "opciones": [
+        "Cesárea",
+        "Instrumentalización"
+      ]
+    },
+    {
+      "id": 33,
+      "pregunta": "Embarazo de 35 semanas con hipertensión, madre y feto estables, anemia hemolítica, plaquetopenia, transaminitis (HELLP). Conducta",
+      "opciones": [
+        "Cesárea inmediata",
+        "Cesárea en las próximas 24 horas"
+      ]
+    },
+    {
+      "id": 34,
+      "pregunta": "Hay un accidente múltiple en horario no laboral, y los afectados son trasladados al centro de salud más cercano, a ese lugar llega la prensa y quieren información sobre los pacientes, quién es el encargado de dar la información",
+      "opciones": [
+        "Director del hospital",
+        "Encargado de relaciones públicas",
+        "Jefe de turno",
+        "Médico tratante",
+        "Trabajador del SAPU que trasladó a los pacientes"
+      ]
+    },
+    {
+      "id": 35,
+      "pregunta": "Mujer hipotiroidea, usuaria de lentes de contacto por miopía, presenta dolor ocular, enrojecimiento, visión borrosa. Examen a realizar",
+      "opciones": [
+        "Tinción con fluoresceína",
+        "Ecografía de Ojo"
+      ]
+    },
+    {
+      "id": 36,
+      "pregunta": "Edad 50-60 años, fumador, con ictericia,prurito, coluria y ecografía con vesícula de 16x8 cm y dilatación de la vía intra y extrahepática. Diagnóstico",
+      "opciones": [
+        "Tumor de páncreas",
+        "Colangiocarcinoma"
+      ]
+    },
+    {
+      "id": 37,
+      "pregunta": "Caso de mujer joven que hace ITUs a repetición: Profilaxis ATB postcoital",
+      "opciones": [
+        "Sugerirle usar preservativo",
+        "Óvulos vaginales"
+      ]
+    },
+    {
+      "id": 38,
+      "pregunta": "Mujer con secreción vaginal y dolor a la palpación en la pared vaginal anterior. Conducta",
+      "opciones": [
+        "Solicitar PCR para ITS",
+        "Eco tocoginecologics"
+      ]
+    },
+    {
+      "id": 39,
+      "pregunta": "Embarazada con dolor en dedo índice, medio y anular (síndrome del túnel carpiano) bilateral. Exámen",
+      "opciones": [
+        "Ecografía de partes blandas",
+        "Electromiografía",
+        "Hemograma"
+      ]
+    },
+    {
+      "id": 40,
+      "pregunta": "Niño que ronca, respirador bucal y mucha clínica de obstrucción y rinitis. Examen",
+      "opciones": [
+        "Radiografía de cavum",
+        "Tac de senos paranasales"
+      ]
+    },
+    {
+      "id": 41,
+      "pregunta": "Caso de pérdida de visión en hemicampo inferior en un paciente con antecedente de reperfusión con angioplastia (el paciente refería no ver su pierna derecha)",
+      "opciones": [
+        "Neuropatía isquémica"
+      ]
+    },
+    {
+      "id": 42,
+      "pregunta": "Hombre con signos de acromegalia (prognatia y manos grandes). Lesión de pocos milímetros en RM. Cuál es el exámen más probablemente alterado",
+      "opciones": [
+        "IGF-1",
+        "TSH"
+      ]
+    },
+    {
+      "id": 43,
+      "pregunta": "Prematuro de 4 meses de edad cronológica, nacido a las 34 semanas de gestación. Tenía sonrisa social, no ríe a carcajadas, sostén cefálico, sin apoyo en antebrazos en prono, lleva cosas hasta la línea media, no se lleva cosas a la boca. Cuál es el diagnóstico en cuanto a su desarrollo psicomotor",
+      "opciones": [
+        "Desarrollo normal",
+        "anormal (decía retraso desarrollo motor, o del habla o ambos o global)"
+      ]
+    },
+    {
+      "id": 44,
+      "pregunta": "Caso de TEP masivo. Cuál es el manejo",
+      "opciones": [
+        "Trombolisis con tenecteplasa***",
+        "Trombolisis con estreptoquinasa",
+        "Heparina de bajo peso molecular",
+        "Embolectomía mecánica"
+      ]
+    },
+    {
+      "id": 45,
+      "pregunta": "Paciente masculino de 70 años que presenta desorientación. En los exámenes destaca glucemia muy elevada (980), pH en 7,36, cetonemia (-), cetonuria (+). Cuál es el diagnóstico más probable",
+      "opciones": [
+        "Síndrome hiperglucémico hiperosmolar (decía en la alternativa “no cetósico”)",
+        "Cetoacidosis diabética",
+        "Síndrome mixto"
+      ]
+    },
+    {
+      "id": 46,
+      "pregunta": "Paciente femenina de 46 años, con antecedentes de obesidad y HTA controlada con enalapril. Presenta síntomas como bochornos y diaforesis nocturna que alteran su calidad de vida, y reglas irregulares desde hace 4 meses. Cuál es la conducta más adecuada",
+      "opciones": [
+        "Paroxetina",
+        "Anticonceptivos combinados",
+        "Estrógenos transdérmicos + progesterona",
+        "Estrógenos orales + progesterona",
+        "Estrógenos tópicos vaginales"
+      ]
+    },
+    {
+      "id": 47,
+      "pregunta": "Paciente femenina de 20 y tantos años, con dolor hipogástrico desde hace 4 horas. Al examen físico sin sangrado, sin signos de irritación peritoneal, SV normales. B-HCG en 1000. Qué conducta, aparte de hospitalizar, sería la más adecuada",
+      "opciones": [
+        "Repetir B-HCG en 48 horas",
+        "Metotrexato vaginal",
+        "Laparoscopia exploratoria"
+      ]
+    },
+    {
+      "id": 48,
+      "pregunta": "Paciente femenina en fase activa de trabajo de parto desde hace 3 horas, con anestesia epidural, dilatación de 5 cm., dinámica uterina de 4 contracciones de 50 segundos cada 10 minutos y posición occipito iliaca posterior derecha. Qué explicaría la detención del trabajo de parto",
+      "opciones": [
+        "Distocia de posición",
+        "Desproporción cefalopélvica.",
+        "Dinámica uterina insuficiente",
+        "anestesia"
+      ]
+    },
+    {
+      "id": 49,
+      "pregunta": "En una paciente embarazada con HTA, qué tratamiento se dejaría",
+      "opciones": [
+        "Amlodipino",
+        "Atenolol",
+        "Hidroclorotiazida"
+      ]
+    },
+    {
+      "id": 50,
+      "pregunta": "Paciente de 20 y tantos años con uso de DIU de cobre, con dolor hipogástrico. Se constata al examen físico presencia de guías del DIU, dolor a la movilización cervical de ambos anexos y salida de secreción gris de mal olor y Blumberg (+). Cuál es el diagnóstico más probable",
+      "opciones": [
+        "Endometritis",
+        "Pelviperitonitis",
+        "Absceso tuboovárico",
+        "Embarazo ectópico"
+      ]
+    },
+    {
+      "id": 51,
+      "pregunta": "Paciente de 17 años con tos y dificultad respiratoria hace algunos días, actualmente con síndrome de vena cava superior. Imagen con ensanchamiento de mediastino anterior. Cuál sería el diagnóstico más probable",
+      "opciones": [
+        "Linfoma de Hodgkin",
+        "Timoma",
+        "Teratoma"
+      ]
+    },
+    {
+      "id": 52,
+      "pregunta": "Mujer con artritis, preguntaban el tipo de artritis. Destacan lesiones ungueales (pits), dedo en salchicha y uñas de los pies gruesas",
+      "opciones": [
+        "- Artritis Psioratica"
+      ]
+    },
+    {
+      "id": 53,
+      "pregunta": "Hombre con antecedente de RTU por HPB, actualmente con dolor abdominal en hipogastrio, intentan foley 18 fr pero falló y hubo uretrorragia leve. ¿Conducta a seguir?",
+      "opciones": [
+        "Cistostomia percutanea",
+        "Cistostomía suprapúbica",
+        "UroTAC",
+        "Segundo intento con sonda más pequeña",
+        "54 . Paciente con antecedente de artritis reumatoide en tratamiento, trabaja como auxiliar de aseo. Inicia con cuadro de 6 semanas de dolor ocular progresivo bilateral asociado a sensación de arenilla y fotofobia. Usuaria de lentes de contacto. Diagnóstico más probable:"
+      ]
+    },
+    {
+      "id": 55,
+      "pregunta": "Paciente femenina es encontrada por su pareja desmayada. Llevada al servicio de urgencias con midriasis, hipertermia, taquicardia, sudorosa. Qué fármaco cree usted que fue el causante",
+      "opciones": [
+        "Anfetaminas",
+        "Opioides"
+      ]
+    },
+    {
+      "id": 56,
+      "pregunta": "Mujer alcohólica desde hace varios años. Toma 3L diarios, pero desea dejar de beber. Actualmente sobria, serena y colaboradora. La conducta a seguir es",
+      "opciones": [
+        "Terapia Cognitiva",
+        "Charla motivacional",
+        "Disulfiram",
+        "Hospitalizar para desintoxicación"
+      ]
+    },
+    {
+      "id": 57,
+      "pregunta": "Niño con cuadros de resfriado común de 10 días.Hace 4 días inicia cefalea frontal. EF normal, descarga posterior mucosa y dolor a la palpación de los senos paranasales. Conducta",
+      "opciones": [
+        "Rx de senos",
+        "TAC de senos",
+        "Amoxicilina VO",
+        "NFC",
+        "Prednisona"
+      ]
+    },
+    {
+      "id": 58,
+      "pregunta": "RN con temperatura 35.5° que persiste después de 2 hrs. Conducta",
+      "opciones": [
+        "Colocar manta",
+        "Colocar en incubadora y subir temperatura gradualmente",
+        "Colocar completamente desnudo en cuna radiante sin colchón",
+        "Colocar en incubadora a 38C"
+      ]
+    },
+    {
+      "id": 59,
+      "pregunta": "Conjunto de acciones que disminuyen la aparición de una enfermedad",
+      "opciones": [
+        "Prevención Primordial",
+        "Prevención Primaria",
+        "Prevención Secundaria",
+        "Prevención Terciaria"
+      ]
+    },
+    {
+      "id": 60,
+      "pregunta": "Mujer consulta por pirosis que aumenta después de comer comida picante y después de usar AINES. Diagnóstico más probable",
+      "opciones": [
+        "Ulcera peptica",
+        "Gastritis aguda por AINES"
+      ]
+    },
+    {
+      "id": 61,
+      "pregunta": "Embarazada con prurito en manos, surcos en muñecas (sarna) e interdigital. Manejo",
+      "opciones": [
+        "Vaselina azufrada***",
+        "Permetrina tópica",
+        "Benzoilo"
+      ]
+    },
+    {
+      "id": 62,
+      "pregunta": "Paciente joven con HTA severa y con electrolitos normales. Método diagnóstico",
+      "opciones": [
+        "- doppler renal",
+        "- determinación de aldosterona (o similar)",
+        "- metanefrinas en orina"
+      ]
+    },
+    {
+      "id": 63,
+      "pregunta": "Paciente puérpera de mortinato por anencefalia y peso de 800 gramos. Cuánto tiempo le daría de licencia",
+      "opciones": [
+        "4 semanas",
+        "6 semanas",
+        "12 semanas",
+        "1 año",
+        "18 semanas"
+      ]
+    },
+    {
+      "id": 64,
+      "pregunta": "Mujer con antecedente migraña. Recientemente cambió anticonceptivos. Usuaria de AINES y ergotamina. Evoluciona con vértigo, nistagmo multidireccional y ataxia. Diagnóstico y conducta más adecuados",
+      "opciones": [
+        "Cambiar ACO",
+        "Mejorar analgesia y no dejar aco",
+        "Vértigo central, Hacer TC",
+        "Reacción por ergotamínicos, suspenderlos"
+      ]
+    },
+    {
+      "id": 65,
+      "pregunta": "Lactante con vómitos explosivos y poco aumento de peso, natremia normal, kalemia normal. Diagnóstico más probable",
+      "opciones": [
+        "Estenosis hipertrofica piloro",
+        "Hiperplasia suprarrenal",
+        "RGE"
+      ]
+    },
+    {
+      "id": 66,
+      "pregunta": "Paciente que se hacía un cedazo con resultado promedio de PA 140/90. Tratamiento de primera línea",
+      "opciones": [
+        "ARAII",
+        "Antagonista receptores aldosterona",
+        "Diurético",
+        "Calcioantagonista",
+        "Beta bloqueador"
+      ]
+    },
+    {
+      "id": 67,
+      "pregunta": "Feto con translucencia nucal alterada e hipoplasia del hueso nasal. Examen a solicitar",
+      "opciones": [
+        "ADN en sangre materna",
+        "biopsia de vellosidades coriales (tenía 17 semanas, por lo tanto no podía ser biopsia de VC)",
+        "Cariotipo de feto",
+        "Cariotipo de líquido amniótico"
+      ]
+    },
+    {
+      "id": 68,
+      "pregunta": "Lactante de 10 meses consulta por gastroenteritis aguda de 2 días de evolución, con vómitos frecuentes y diarrea líquida abundante. Evoluciona con compromiso del estado general, taquicardia, mucosas secas, llanto sin lágrimas y llenado capilar enlentecido. ¿Cuál es la conducta más adecuada? (ERA QUE BAJÓ DE 10 KG A 9.3 KG, NO SE DECIDE VOLEMIZACION EV, PREGUNTA CONDUCTA)",
+      "opciones": [
+        "Hidratación oral fraccionada",
+        "Bolo de suero fisiológico endovenoso",
+        "Bolo de suero Ringer lactato endovenoso",
+        "Suero glucosado al 5% endovenoso",
+        "Observación clínica sin fluidos"
+      ]
+    },
+    {
+      "id": 69,
+      "pregunta": "Hombre con impotencia genial y parestesia en pierna",
+      "opciones": [
+        "Síndrome de ciatico",
+        "De cauda EQUINA"
+      ]
+    },
+    {
+      "id": 70,
+      "pregunta": "Paciente que toma jarabe para la tos y se intoxica…",
+      "opciones": []
+    },
+    {
+      "id": 71,
+      "pregunta": "Embarazada con hipertensión de 175/100 que se le da labetalol y luego convulsiona",
+      "opciones": [
+        "-Dar sulfato magnesio",
+        "-Cesárea de urgencia",
+        "- dar nuevamente labetalol"
+      ]
+    },
+    {
+      "id": 72,
+      "pregunta": "Parasitosis, mialgias, dolor articular y eosinofilia →",
+      "opciones": [
+        "-Triquinosis"
+      ]
+    },
+    {
+      "id": 73,
+      "pregunta": "Caso epidemiología con migrantes",
+      "opciones": [
+        "Empadronar a inmigrantes",
+        "Control de sanidad básica"
+      ]
+    },
+    {
+      "id": 74,
+      "pregunta": "Pacientes de 69 con antecedente de múltiples itu y piso pélvico débil, incontinencia que puede tomar farmacológicamente ?",
+      "opciones": [
+        "Alfaadrenergicos",
+        "Beta bloqueantes",
+        "Anticolinérgicos"
+      ]
+    },
+    {
+      "id": 75,
+      "pregunta": "Pregunta de salud pública donde tabla aumentan las enfermedades cardíacas con el tiempo",
+      "opciones": []
+    },
+    {
+      "id": 76,
+      "pregunta": "Pene erecto con glande flácido caso priapismo. dolor",
+      "opciones": [
+        "Fenilefrina en cuerpos cavernosos"
+      ]
+    },
+    {
+      "id": 77,
+      "pregunta": "Niño de 2 meses + hepatoesplenomegalia + TAC que muestra granulomas hepáticos con microabscesos y adenopatía cervical",
+      "opciones": [
+        "Bartonella"
+      ]
+    },
+    {
+      "id": 78,
+      "pregunta": "Niña dos años con faringoamigdalitis fiebre y crépitos",
+      "opciones": [
+        "Amoxicilina",
+        "Amoxic clavulanico",
+        "PENICILINA EV"
+      ]
+    },
+    {
+      "id": 79,
+      "pregunta": "Paciente con disfagia intermitente de meses de evolución, que comienza con dolor torácico opresivo tras presenciar una discusión familiar, cuál es el examen adecuado para continuar el estudio?",
+      "opciones": [
+        "TAC",
+        "Phmetría",
+        "EDA",
+        "Manometría esofágica**** (No se hace una manometría como primer estudio en un paciente con sospecha de trastorno motor, porque primero se tiene que descartar componente anatómico)",
+        "Ecocardio trans esofágico"
+      ]
+    },
+    {
+      "id": 80,
+      "pregunta": "Imagen de un paciente de 65 años que presenta antecedente de trasplante, Monorrena con plaquetopenia y detenidamente es una zona alopecia con cambios de coloración blanquecina",
+      "opciones": [
+        "Lupus discoide",
+        "Enfermedad de bowen"
+      ]
+    },
+    {
+      "id": 81,
+      "pregunta": "Paciente con estrías violáceas y cara redonda con que se hace el diagnóstico",
+      "opciones": [
+        "Pulsos de cortisol plasmático a las 08:00 y 16:00",
+        "Pulsos de cortisol plasmático con dexametasona",
+        "ACTH"
+      ]
+    },
+    {
+      "id": 82,
+      "pregunta": "Paciente con soplo sistólico + diastólico",
+      "opciones": []
+    },
+    {
+      "id": 83,
+      "pregunta": "Paciente joven con soplo III/IV pulso lento?",
+      "opciones": []
+    },
+    {
+      "id": 84,
+      "pregunta": "Si viene una empresa extranjera a hacer unos estudios sobre marcas farmacológicas más importantes a quien dirigirse",
+      "opciones": [
+        "Cenabast",
+        "Ministerio de salud",
+        "ISP",
+        "SEREMI",
+        "85 .- Paciente que sufre un escape de gas en su baño ( algo así) que hay que solicitar medir"
+      ]
+    },
+    {
+      "id": 86,
+      "pregunta": "Paciente de 40 años con desasosiego e insomnio de conciliación de dos meses de evolución, relacionado con cambios en el trabajo de siente muy preocupado sin ideas suicidas",
+      "opciones": [
+        "Depresión mayor",
+        "TAG",
+        "Trastorno adaptativo"
+      ]
+    },
+    {
+      "id": 87,
+      "pregunta": "Mujer que se perdió y la encuentran vagando en otra ciudad ella está como si nada y responde que no se acuerda de nadda",
+      "opciones": [
+        "Trastorno disociativo",
+        "PARTE 1 DR GUEVARA:"
+      ]
+    },
+    {
+      "id": 92,
+      "pregunta": "Isotretinoína",
+      "opciones": []
+    },
+    {
+      "id": 93,
+      "pregunta": "Hematoma inguinal",
+      "opciones": []
+    },
+    {
+      "id": 94,
+      "pregunta": "Queloide",
+      "opciones": []
+    },
+    {
+      "id": 95,
+      "pregunta": "Bowen",
+      "opciones": []
+    },
+    {
+      "id": 96,
+      "pregunta": "Carboxihemoglobina",
+      "opciones": []
+    },
+    {
+      "id": 97,
+      "pregunta": "Tasas mortalidad cáncer y otros constantes",
+      "opciones": []
+    },
+    {
+      "id": 98,
+      "pregunta": "Desfibrilación",
+      "opciones": []
+    },
+    {
+      "id": 99,
+      "pregunta": "Licencia mortinato 12 semanas",
+      "opciones": []
+    },
+    {
+      "id": 100,
+      "pregunta": "IGF-1",
+      "opciones": []
+    },
+    {
+      "id": 101,
+      "pregunta": "Paget (pezón)",
+      "opciones": []
+    },
+    {
+      "id": 102,
+      "pregunta": "Semaglutide",
+      "opciones": []
+    },
+    {
+      "id": 103,
+      "pregunta": "Anfetamina",
+      "opciones": []
+    },
+    {
+      "id": 104,
+      "pregunta": "Ecografía (AAA roto)",
+      "opciones": []
+    },
+    {
+      "id": 106,
+      "pregunta": "Dermatitis atópica",
+      "opciones": []
+    },
+    {
+      "id": 107,
+      "pregunta": "T. déficit atencional hiperactivo",
+      "opciones": []
+    },
+    {
+      "id": 108,
+      "pregunta": "Entrevista motivacional",
+      "opciones": []
+    },
+    {
+      "id": 109,
+      "pregunta": "IgG hiperinmune antivaricela",
+      "opciones": []
+    },
+    {
+      "id": 110,
+      "pregunta": "SHU (S. pneumoniae)",
+      "opciones": []
+    },
+    {
+      "id": 111,
+      "pregunta": "Corticoides (Sd. Nefrótico puro 2 años)",
+      "opciones": []
+    },
+    {
+      "id": 112,
+      "pregunta": "Escitalopram (12 meses)",
+      "opciones": []
+    },
+    {
+      "id": 113,
+      "pregunta": "Dermatitis atópica",
+      "opciones": []
+    },
+    {
+      "id": 114,
+      "pregunta": "ATB amplio espectro EV (Neutropenia)",
+      "opciones": []
+    },
+    {
+      "id": 115,
+      "pregunta": "TAC de cerebro (vértigo central)",
+      "opciones": []
+    },
+    {
+      "id": 116,
+      "pregunta": "Queratitis (AR)",
+      "opciones": []
+    },
+    {
+      "id": 117,
+      "pregunta": "Carbamazepina (Neuralgia V)",
+      "opciones": []
+    },
+    {
+      "id": 118,
+      "pregunta": "ITU (Enuresis)",
+      "opciones": []
+    },
+    {
+      "id": 119,
+      "pregunta": "Aumento tasa bruta de natalidad",
+      "opciones": []
+    },
+    {
+      "id": 120,
+      "pregunta": "Aumento recursos atención maternoinfantil Niño que de 10 kilos bajaba a 9,3 kilos, 3 vómitos llanto sin lágrimas, diarrea, oliguria, boca seca → SF EV/ Suero oral fraccionado (disminución de peso 5-10% plan b) ITU recurrente een joven sexualmente activa examen a seguir → cistoscopia / Profilaxis post coital, no amerita estudio anatómico si tiene desencadenante claro. HTA en tto con doxazosina y litio en rango terapéutico con temblor en reposo → suspender litio / suspender doxazosina, que puede dar temblores, sobre todo porque estaba bien controlado por el litio (dosis adecuada y estado de ánimo estable) como para bajarle la dosis. Adolescente con dismenorrea primaria con ibuprofeno cada 12 hrs sin respuesta → ACO / AINEs 2 a 3 días previos a la menstruación Quién debe salir a declarar ante un accidente masivo en hospital → Vocero público del hospital / Jefe de turno en horario no hábil Soplo en infancia sistólico en adultez con soplo diastólico → Insuficiencia aórtica",
+      "opciones": [
+        "TTO HTA en embarazada → amlodipino",
+        "Eclampsia → Sulfato de magnesio",
+        "DPNI → Cesárea de urgencia",
+        "Enterocolitis necrotizantes tto → ATB EV",
+        "Paciente que pierde súbitamente la visión de la pierna derecha → ACV isquémico ACM / Neuritis óptica isquémica?"
+      ]
+    }
+  ]
+}

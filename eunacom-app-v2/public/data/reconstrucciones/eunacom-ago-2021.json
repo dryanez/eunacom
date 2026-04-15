@@ -1,0 +1,1957 @@
+{
+  "id": "eunacom-ago-2021",
+  "name": "EUNACOM Agosto 2021",
+  "month": "Agosto",
+  "year": 2021,
+  "total_questions": 177,
+  "questions_with_answers": 0,
+  "questions": [
+    {
+      "id": 1,
+      "pregunta": "Un paciente de 20 años presenta episodios de descontrol y agresividad, en los que rompe objetos, grita, amenaza con agredir y con autoagredirse. Se molesta mucho cuando le cambian sus cosas de lugar y tiene rutinas muy marcadas, las que le cuesta mucho modificar. Abandonó la secundaria, ya que reprobó dos veces primero medio. Además, tiene muy buena memoria, al punto que puede memorizar los códigos de barras de distintos productos. Desde niño que fue considerado como raro, no entablaba amistades y jugaba solo siempre con el mismo juguete, además de ver repetidamente sus dos películas favoritas. Saluda a las personas de una manera extraña, con aleteo de sus extremidades superiores. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Esquizofrenia",
+        "Trastorno bipolar",
+        "Trastorno de personalidad limítrofe",
+        "Trastorno del especto autista",
+        "Trastorno estereotipado del movimiento"
+      ]
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cuál es el mejor indicador para medir la efectividad de la campaña de vacunación contra la influenza?",
+      "opciones": [
+        "La tasa de mortalidad por influenza",
+        "La tasa de letalidad de la influenza",
+        "La tasa de incidencia de influenza",
+        "La tasa de prevalencia de influenza",
+        "La tasa de cobertura de vacunación contra la influenza"
+      ]
+    },
+    {
+      "id": 3,
+      "pregunta": "El indicador de letalidad de la influenza corresponde a lo siguiente:",
+      "opciones": [
+        "Casos de influenza / población general",
+        "Casos de influenza / muertes influenza",
+        "Casos de influenza / población expuesta",
+        "Muertes por influenza / Casos de influenza",
+        "Muertes por influenza / población general"
+      ]
+    },
+    {
+      "id": 4,
+      "pregunta": "Una población presenta la siguiente pirámide poblacional: ¿En qué tipo de medidas deben enfocarse sus políticas de salud pública?",
+      "opciones": [
+        "Prevención y manejo de patologías crónicas no transmisibles",
+        "Prevención y tratamiento de patologías de salud mental",
+        "Saneamiento básico, planificación familiar y vacunación",
+        "Prevención de tabaquismo, alcoholismo y consumo de drogas",
+        "Promoción de actividad física y alimentación saludable"
+      ]
+    },
+    {
+      "id": 5,
+      "pregunta": "La notificación obligatoria de algunas enfermedades transmisibles tiene como objetivo:",
+      "opciones": [
+        "Evaluar la efectividad de las vacunas administradas a la población",
+        "Identificar las principales enfermedades transmisibles en la población",
+        "Determinar la propagación de las enfermedades infecciosas más importantes",
+        "Ayudar a identificar y controlar situaciones epidémicas",
+        "Reunir información estadística completa y confiable, para determinar las políticas de salud"
+      ]
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cuál es el mejor indicador para determinar si un programa de tamizaje del cáncer de mama es efectivo?",
+      "opciones": [
+        "Tasa de incidencia de cáncer de mama",
+        "Tasa de prevalencia de cáncer de mama",
+        "Tasa de letalidad de cáncer de mama",
+        "Tasa de mortalidad de cáncer de mama",
+        "Tasa de positividad de las pruebas de tamizaje del cáncer de mama"
+      ]
+    },
+    {
+      "id": 7,
+      "pregunta": "Un estudio investiga la correlación entre el desarrollo de alteraciones cognitivas en los niños y el uso de drogas durante el embarazo. Para ello, se selecciona a un grupo de niños con discapacidad cognitiva y se compara con otro grupo de niños sanos, realizándole una entrevista a los padres, sobre la exposición a distintos factores de riesgo, durante el embarazo. ¿Qué medida de asociación es la más adecuada para utilizar en este estudio?",
+      "opciones": [
+        "Riesgo relativo",
+        "Riesgo atribuible",
+        "Riesgo atribuible poblacional",
+        "Odds ratio",
+        "Incidencia"
+      ]
+    },
+    {
+      "id": 8,
+      "pregunta": "En un estudio se realiza medición de los niveles plasmáticos de pesticidas a personas de distintos países, obteniéndose los niveles promedios para la población de cada país. Luego, se correlaciona con las tasas de mortalidad por cáncer de cada país. ¿A qué tipo de estudio corresponde?",
+      "opciones": [
+        "Observacional",
+        "Cohortes",
+        "Experimental",
+        "Ecológico",
+        "De contraste de hipótesis"
+      ]
+    },
+    {
+      "id": 9,
+      "pregunta": "Un paciente de 65 años presenta un cuadro de 7 días de dificultades para mover pierna derecha. En su examen físico se aprecia que al caminar arrastra ostentosamente la pierna derecha y se constata tono muscular y reflejos normales, por lo que se descarta patología orgánica. Refiere que los síntomas comenzaron luego de presenciar un accidente de tránsito, en el que hubo múltiples heridos de gravedad. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno conversivo",
+        "Trastorno disociativo",
+        "Trastorno de somatización",
+        "Trastorno facticio",
+        "Episodio psicótico"
+      ]
+    },
+    {
+      "id": 10,
+      "pregunta": "Una paciente de 52 años, con antecedente de abuso sexual reiterado por un familiar, entre los 12 y los 15 años, del que aún mantiene recuerdos y pesadillas, refiere episodios de algunos días de duración ánimo irritable y lábil, asociada a ira y peleas con sus familiares, con llanto y agresividad. En ocasiones, presenta episodios de hasta dos días de duración de descontrol y rabia, en los que rompe ropa y electrodomésticos de su marido. Estos episodios le traen problemas con sus cercanos y, en algunas ocasiones, son muy intensos, en especial cuando se expone a conversaciones relacionadas con el tema, en los que llora, siente intensa angustia, grita e incluso ha presentado momentos en que actúa como una niña, con lenguaje y entonación de una menor de edad. Estos episodios cursan con amnesia de lo sucedido. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno bipolar",
+        "Trastorno delirante",
+        "Trastorno esquizoafectivo",
+        "Trastorno conversivo",
+        "Trastorno de estrés postraumático"
+      ]
+    },
+    {
+      "id": 11,
+      "pregunta": "Una paciente de 32 años presenta imágenes recurrentes, en que se ve a sí misma cortando a su hijo de 12 meses, con un cuchillo. Aquello le genera mucha angustia y miedo de dañar a su hijo. Por ello, nunca se queda a solas con el niño y sacó todos los cuchillos de los cajones de la casa. Está muy angustiada y triste, porque no quiere que le pase nada malo a su hijo y teme tener problemas con sus familiares o perder la tuición del niño, por lo que no le ha contado su problema a nadie. Ha pensado incluso en morir, con tal de proteger a su familia. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno bipolar",
+        "Episodio psicótico",
+        "Trastorno obsesivo compulsivo",
+        "Trastorno depresivo mayor",
+        "Trastorno de adaptación"
+      ]
+    },
+    {
+      "id": 12,
+      "pregunta": "Una paciente de 28 años presenta un episodio de rápida instalación de marcada angustia y variados síntomas como disnea con “imposibilidad de sacar el aire”, vértigo, parestesias en las extremidades, imposibilidad de tragar, opresión en el pecho, náuseas, visión borrosa y miedo a morir. En las últimas 4 semanas ha presentado varios episodios similares, por lo que teme salir de su casa. Su examen físico es normal y los exámenes generales descartan patología orgánica. ¿Cuál es el tratamiento más adecuado para esta paciente?",
+      "opciones": [
+        "Amitriptilina 25 mg/día",
+        "Sertralina 50 mg/día",
+        "Risperidona 3 mg/día",
+        "Clonazepam 2 mg/día",
+        "Clorpromazina 300 mg/día"
+      ]
+    },
+    {
+      "id": 13,
+      "pregunta": "Un paciente esquizofrénico, recién diagnosticado, inicia tratamiento con risperidona 2 mg/día hace 5 días. Al tercer día, inicia un cuadro de disestesias en las extremidades inferiores, asociadas a angustia, inquietud y cambio continuo de posición. Se muestra muy incómodo y angustiado. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno de adaptación",
+        "Distonía aguda",
+        "Disquinesia aguda",
+        "Acatisia",
+        "Hipomanía"
+      ]
+    },
+    {
+      "id": 14,
+      "pregunta": "Un paciente de 18 años, adicto a la pasta base, presenta un episodio psicótico, en relación al consumo, el que es manejado con haloperidol 5 mg por vía intramuscular. Al día siguiente presenta contracción tónica del cuello, que desvía la cabeza hacia la izquierda, con intenso dolor. El diagnóstico más probable es:",
+      "opciones": [
+        "Distonía aguda",
+        "Acatisia",
+        "Síndrome neuroléptico maligno",
+        "Disquinesia tardía",
+        "Parkinsonismo farmacológico"
+      ]
+    },
+    {
+      "id": 15,
+      "pregunta": "Una paciente de 27 años, en amenorrea por lactancia, presenta un cuadro de astenia y malestar general, constipación y dificultades para concentrarse, asociado a intolerancia al frío. Además, refiere que no ha podido bajar de peso. Al examen físico tiene FC: 67x’, PA: 120/80 mmHg, se aprecia piel seca y cabello ralo, sin otras alteraciones en el examen físico segmentario. Se solicitan exámenes de laboratorio que muestran TSH: 14,7 UI/L, T4 libre: 0,6 ng/dl, T3: 46 ng/dl. ¿Cuál es la conducta más adecuada en este momento?",
+      "opciones": [
+        "Iniciar tratamiento con levotiroxina oral",
+        "Solicitar ecografía tiroidea",
+        "Solicitar cintigrafía tiroidea",
+        "Solicitar prueba de captación de yodo radiactivo",
+        "Repetir los exámenes en 6 semanas"
+      ]
+    },
+    {
+      "id": 16,
+      "pregunta": "Un paciente de 32 años, con antecedente de familiar con cáncer de tiroides, acude a la consulta. Trae una ecografía cervical, que muestra un nódulo tiroideo de 7 mm de diámetro de aspecto quístico, sin calcificaciones, con presencia de adenopatías inespecíficas pequeñas. Su TSH y T4 libre son normales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar punción aspiración con aguja fina",
+        "Solicitar cintigrafía tiroidea",
+        "Solicitar captación de yodo radiactivo",
+        "Solicitar nueva ecografía en 6 meses",
+        "Realizar tiroidectomía"
+      ]
+    },
+    {
+      "id": 17,
+      "pregunta": "Un paciente de 30 años presenta un cuadro de astenia y piel seca. Al examen se detecta un nódulo tiroideo, que se palpa de 15 mm de diámetro, en relación al lóbulo derecho. Se solicita TSH, que resulta: 3,5 UI/L y T4 libre de 1,2 ng/dl. ¿Cuál es el examen de elección para continuar el estudio de esta paciente?",
+      "opciones": [
+        "Ecografía cervical",
+        "Biopsia citológica por punción con aguja fina",
+        "Resonancia magnética nuclear de cuello",
+        "Cintigrafía tiroidea",
+        "TAC de cuello"
+      ]
+    },
+    {
+      "id": 18,
+      "pregunta": "Una paciente de 17 años consulta por amenorrea de 4 meses de evolución. Su examen físico no muestra alteraciones. Se realiza exámenes, que muestran test de embarazo negativo, TSH y prolactina dentro de rangos normales. Se solicita prueba de progesterona, que resulta negativa y prueba de estrógeno y progesterona, que resulta positiva. Además, se solicita LH y FSH, que están normales, dentro del límite bajo. El diagnóstico más probable es:",
+      "opciones": [
+        "Macroadenoma hipofisiario",
+        "Falla ovárica primaria",
+        "Embarazo ectópico",
+        "Amenorrea hipotalámica",
+        "Síndrome de ovario poliquístico"
+      ]
+    },
+    {
+      "id": 19,
+      "pregunta": "Un paciente de 68 años, con antecedente de diabetes e hipertensión, en tratamiento con metformina, glibenclamida y enalapril, consulta por dolor abdominal, de 24 horas de evolución, localizado en el hipogastrio y la fosa iliaca izquierda, asociado a sensación malestar general. Al examen físico presenta T°: 37,8°C, PA: 100/60 mmHg, FC: 88x’, abdomen doloroso a la palpación superficial y profunda, mayor en la zona descrita, con signos peritoneales localizados en dicha área y disminución de los ruidos hidroaéreos. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Infarto epiploico apendicular",
+        "Embolia mesentérica",
+        "Vólvulo de sigmoides",
+        "Obstrucción intestinal",
+        "Diverticulitis aguda"
+      ]
+    },
+    {
+      "id": 20,
+      "pregunta": "Un paciente de 38 años, con antecedente de colitis ulcerosa, desde hace 5 años con buen control, consulta por astenia y prurito de 2 meses de evolución, que han ido en aumento y que se ha asociado a ictericia de piel y mucosas. Se solicitan pruebas hepáticas, que muestran Bilirrubina: 3,3 mg/dl, bilirrubina directa: 2,4 mg/dl, FA: 512 UI/L, gama glutamil-peptidasa: 617 UI/L, GOT: 180 UI/L, GPT: 110 UI/L. El diagnóstico más probable es:",
+      "opciones": [
+        "Colangitis esclerosante primaria",
+        "Colangiocarcinoma",
+        "Hepatitis autoinmune",
+        "Coledocolitiasis",
+        "Colangitis biliar primaria"
+      ]
+    },
+    {
+      "id": 21,
+      "pregunta": "Un paciente de 45 años, con antecedente de colitis ulcerosa, diagnosticada a los 20 años, inactiva hace 10 años, desde hace una semana ha presentado episodios de deposiciones blandas, con presencia de sangre en escasa cantidad. Su examen físico no aporta mayor información. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar rectosigmoidoscopía",
+        "Solicitar TAC de abdomen y pelvis",
+        "Solicitar parasitológico de deposiciones",
+        "Solicitar colonoscopía",
+        "Iniciar corticoides orales"
+      ]
+    },
+    {
+      "id": 22,
+      "pregunta": "Una paciente de 17 años, que desde los cinco años presenta epistaxis con frecuencia y equimosis ante pequeños traumatismos, desde los 14 años tiene su menarquia con sangrado menstrual abundantes. Se solicita hemograma que muestra hematocrito 45%, VCM: 90fl, leucocitos 6.000/mm3, plaquetas 250.000/mm3, TTPA normal, protrombinemia 85% y tiempo de sangría mayor a 8 minutos. ¿Cuál es el examen de elección para proseguir con el estudio en este caso?",
+      "opciones": [
+        "Mielograma",
+        "Citometría de flujo para receptor de la glicoproteína IIb IIIa",
+        "Estudio de enfermedad de Von Willebrand",
+        "Niveles plasmáticos de factor VIII y factor IX de la coagulación",
+        "Electroforesis de proteínas en sangre"
+      ]
+    },
+    {
+      "id": 23,
+      "pregunta": "Una paciente de 64 años, con antecedente de by-pass gástrico, por obesidad mórbida, presenta un cuadro de dificultad a la marcha, asociado a astenia y malestar general. En sus exámenes destaca anemia macrocítica, plaquetas: 100.000 por mm3, blancos: 6.000 por mm3, ferritina 56 ug/dl y saturación de transferrina de 18%. ¿El déficit de qué nutriente explica mejor este caso?",
+      "opciones": [
+        "Fierro",
+        "Ácido fólico",
+        "Cianocobalamina",
+        "Zinc",
+        "Tiamina"
+      ]
+    },
+    {
+      "id": 24,
+      "pregunta": "Un niño de 8 años presenta dolores óseos, asociados a malestar general y fiebre de 3 semanas de evolución. Al examen físico se palpa el bazo aumentado de tamaño, por 3 cm bajo el reborde costal de consistencia indurada, se constatan poliadenopatías indoloras y se observan petequias y equimosis generalizadas, mayores en las extremidades inferiores ¿Cuál es el examen de elección para confirmar el diagnóstico?",
+      "opciones": [
+        "Cintigrafía ósea",
+        "Hemograma",
+        "Biopsia esplénica",
+        "Electroforesis de proteínas en sangre",
+        "Mielograma"
+      ]
+    },
+    {
+      "id": 25,
+      "pregunta": "Un paciente de 34 años, consulta por cuadro de 5 semanas de tos irritativa con expectoración escasa, que ha ido empeorando, agregándose disnea de medianos esfuerzos en los últimos días. Al examen físico, se aprecia enflaquecido, con frecuencia respiratoria de 27 por minuto, frecuencia cardiaca de 90 por minuto, presión arterial de 100/70 mmHg y saturación de 92% con FiO2 ambiental. Examen pulmonar muestra crepitaciones bilaterales difusas, con estertores y algunas sibilancias en ambos campos pulmonares. Se solicita radiografía de tórax que se muestra a continuación (fuente: radiopaedia.org): El diagnóstico más probable es:",
+      "opciones": [
+        "Fibrosis pulmonar",
+        "Asma bronquial",
+        "Neumonitis viral",
+        "Neumonía por Mycoplasma pneumoniae",
+        "Neumonía por Pneumocystis jiroveci"
+      ]
+    },
+    {
+      "id": 26,
+      "pregunta": "Un paciente de 39 años, VIH positivo, que abandonó el tratamiento antiviral hace varios meses, consulta por un cuadro de tos de 2 meses de evolución, asociado a expectoración mucopurulenta, que en ocasiones es hemoptoica, más sensación febril y baja de peso de 3 kilogramos. Al examen físico, se aprecia enflaquecido, con FC: 100x’, PA: 110/60 mmHg, FR: 22x’, saturación de oxígeno: 93%, Tº: 37,5ºC y, en el examen pulmonar, se auscultan crepitaciones y estertores bilaterales. Se solicita radiografía de tórax que se muestra zonas de relleno bilaterales y se solicitan baciloscopías de expectoración que resultan negativas, con muestra hemorrágica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar TAC de tórax",
+        "Realizar lavado bronquioalveolear",
+        "Realizar broncoscopía",
+        "Solicitar reacción en cadena de polimerasa para tuberculosis en expectoración",
+        "Iniciar tratamiento con ceftriaxona endovenosa"
+      ]
+    },
+    {
+      "id": 27,
+      "pregunta": "Una mujer embarazada de 8 semanas se toma un VDRL, que resulta positivo en dilución 1/64. Tiene antecedente de alergia a la amoxicilina. El tratamiento de elección es:",
+      "opciones": [
+        "Penicilina",
+        "Clindamicina",
+        "Ceftriaxona",
+        "Eritromicina",
+        "Doxiciclina"
+      ]
+    },
+    {
+      "id": 28,
+      "pregunta": "Un niño de 8 años presenta odinofagia intensa, de 48 horas de evolución, asociada a malestar general, fiebre hasta 39ºC, dolor abdominal y vómitos. Al examen físico está hidratado, con FC: 100x’, FR: 15x’, Tº: 38,7ºC; se aprecia faringe congestiva y eritematosa, amígdalas con exudado blanquecino y se palpan múltiples adenopatías dolorosas en la cara anterior del cuello. El examen pulmonar es normal. Se solicita test pack rápido para estreptococo A, que resulta positivo. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Penicilina sódica",
+        "Cefadroxilo",
+        "Ciprofloxacino",
+        "Amoxicilina",
+        "Clindamicina"
+      ]
+    },
+    {
+      "id": 29,
+      "pregunta": "Un niño de 7 años presenta lesiones pruriginosas en la nariz y la cara de 3 días de evolución. Al examen físico se aprecia lo siguiente (fuente: paperblog): ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Curaciones con suero fisiológico",
+        "Curaciones con povidona yodada",
+        "Aciclovir oral por 5 días",
+        "Prednisona oral por 7 días",
+        "Flucloxacilina oral por 7 días"
+      ]
+    },
+    {
+      "id": 30,
+      "pregunta": "Un niño de 8 años presenta lesiones dolorosas en la espalda (pregunta original estaban en el cuello y zona dorsal alta), de 2 días de evolución, que se muestran a continuación (fuente: alamy stock photo): ¿Qué tratamiento es más adecuado?",
+      "opciones": [
+        "Mupirocina tópica",
+        "Aciclovir oral",
+        "Betametasona tópica",
+        "Fluconazol tópico",
+        "Cloxacilina oral"
+      ]
+    },
+    {
+      "id": 31,
+      "pregunta": "Una paciente de 28 años, embarazada de 28 semanas, consulta por aparición de una lesión cutánea en el dedo medio, de algunas semanas de evolución, friable, que ha sangrado en varias oportunidades. Al examen físico, se observa la siguiente fotografía (fuente: sanchezcarpinterodermatologo.blogspot.com): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Verruga vulgar",
+        "Granuloma piógeno",
+        "Molusco contagioso",
+        "Melanoma amelanótico",
+        "Carcinoma basocelular"
+      ]
+    },
+    {
+      "id": 32,
+      "pregunta": "Un adolescente de 14 años consulta por una lesión de color rojo, en el tórax, que apareció hace algunas semanas y que ha sangrado varias veces, en relación al roce de la ropa. Se muestra a continuación: ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Pioderma gangrenoso",
+        "Hemangioma infantil",
+        "Nevo atípico inflamatorio",
+        "Granuloma telangiectásico",
+        "Melanoma maligno"
+      ]
+    },
+    {
+      "id": 33,
+      "pregunta": "Un niño de 5 años presenta un exantema pruriginoso, desde hace 4 días, generalizado y pleomorfo, consistente en máculas, pápulas, vesículas, que inició en el cuero cabelludo y la cara, a lo que luego se extendió al tronco y las extremidades, de proximal a distal. Fue precedido por un cuadro febril. ¿Cuál es el tratamiento más adecuado?",
+      "opciones": [
+        "Aciclovir",
+        "Valaciclovir",
+        "Prednisona",
+        "Clorfenamina maleato",
+        "Talco mentolado"
+      ]
+    },
+    {
+      "id": 34,
+      "pregunta": "Un niño de 4 años presenta aparición de ronchas evanescentes en el tronco y extremidades, desde hace 4 días. Además, desde hace algunos días presentaba congestión nasal, con coriza y estornudos. Al examen físico se observan habones en el tórax y dermatografismo en las extremidades inferiores. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Indicar corticoides orales",
+        "Solicitar prick test",
+        "Indicar antihistamínicos orales",
+        "Solicitar IgE sérica total",
+        "Solicitar test de parches"
+      ]
+    },
+    {
+      "id": 35,
+      "pregunta": "Un niño de 18 meses presenta, desde hace 5 días irritabilidad y fiebre, cuantificada hasta 38,8°. Se inicia amoxicilina, cediendo la fiebre fiebre hace 48 horas y apareciendo un exantema eritematoso generalizado hace 24 horas, que se muestra en la siguiente imagen (fuente: wikipedia): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Eritema infeccioso",
+        "Exantema súbito",
+        "Reacción cutánea a medicamentos",
+        "Enfermedad de Kawasaki",
+        "Rubéola"
+      ]
+    },
+    {
+      "id": 36,
+      "pregunta": "Un adolescente de 14 años presenta un cuadro de fiebre de 39ºC, desde hace 3 días, asociado a malestar general, dolor abdominal, vómitos y diarrea, seguido de marcado compromiso, por lo que acude al servicio de urgencia. Al examen físico está con compromiso hemodinámico, con frecuencia cardíaca de 120x’ y PA: 90/50 mmHg, por lo que que es manejado con suero fisiológico endovenoso, con respuesta parcial. Tiene antecedente de PCR positiva para Covid-19 hace 30 días y se solicitan nuevos exámenes, que muestran hematocrito: 33%, blancos: 14.000 por mm3, plaquetas: 80.000 por mm3, VHS: 76 mmHg, PCR: 15,5 mg/L, dímero D: 670 ng/ml y troponinas elevadas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Sepsis bacteriana",
+        "Síndrome inflamatorio multisistémico",
+        "Insuficiencia suprarrenal aguda",
+        "Reinfección por Covid-19",
+        "Enfermedad de Kawasaki"
+      ]
+    },
+    {
+      "id": 37,
+      "pregunta": "67) Un lactante de 4 meses acude a su control de niño sano. Tiene antecedente de una invaginación intestinal a los 2 meses, ¿cuál de las siguientes vacunas está contraindicada en este paciente?",
+      "opciones": [
+        "VPO",
+        "VPI",
+        "Rotavirus oral",
+        "Toxoide tetánico",
+        "Toxoide diftérico"
+      ]
+    },
+    {
+      "id": 38,
+      "pregunta": "Un niño de 2 meses presenta estrabismo bilateral, fluctuante y que aparece con bastante frecuencia. Ha incrementado bien de peso y no tiene otros síntomas. Se realiza examen ocular, que muestra rojo pupilar presente bilateral, sin defectos y movilidad ocular sin alteraciones. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar fondo de ojo",
+        "Derivar a oftalmólogo pediátrico",
+        "Indicar parches oculares intermitentes",
+        "Solicitar TAC de órbitas",
+        "Mantener el control habitual del niño sano"
+      ]
+    },
+    {
+      "id": 39,
+      "pregunta": "Un recién nacido de 20 días de vida, cuyo embarazo no fue controlado y que tiene antecedente de haber nacido por parto vaginal en su casa, es traído por presentar secreción ocular bilateral, desde hace 5 días. Al examen físico se aprecia eritema conjuntival bilateral con escasa secreción. ¿Cuál es el agente etiológico más probable?",
+      "opciones": [
+        "Neisseria meningitidis",
+        "Neisseria gonorrhoeae",
+        "Streptococcus pneumoniae",
+        "Streptococcus agalactiae",
+        "Chlamydia trachomatis"
+      ]
+    },
+    {
+      "id": 40,
+      "pregunta": "Un niño de 3 meses de edad se realiza radiografía anteroposterior de pelvis, como screening para displasia de cadera. El ángulo acetabular se informa como 26º a derecha y 28º a izquierda. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Derivar a traumatología infantil",
+        "Indicar doble pañal",
+        "Indicar arnés de Pavlik",
+        "Realizar ecografía de cadera",
+        "Mantener los controles habituales de niño sano"
+      ]
+    },
+    {
+      "id": 41,
+      "pregunta": "Usted evalúa a una niña de 4 meses, cuyos índices antropométricos muestran índice peso/edad: normal, índice talla/edad: normal e índice peso/talla: +1. De acuerdo a las recomendaciones de diagnóstico nutricional infantil de la OMS – Ministerio de Salud, el diagnóstico más adecuado es:",
+      "opciones": [
+        "Desnutrición",
+        "Riesgo de desnutrición",
+        "Eutrofia",
+        "Riesgo de obesidad",
+        "Obesidad"
+      ]
+    },
+    {
+      "id": 42,
+      "pregunta": "Una paciente de 30 años, con antecedente de abscesos a repetición de la glándula de Bartholino derecha, que han sido drenados mediante punción o incisión, consulta nuevamente por dolor vulvar. Al examen físico se aprecia aumento de volumen, de 5 cm de diámetro, doloroso a la palpación, en relación a la zona posterior del labio mayor derecho. La conducta terapéutica más adecuada es:",
+      "opciones": [
+        "Cistectomía de Bartholino",
+        "Drenaje por punción",
+        "Drenaje quirúrgico simple",
+        "Iniciar antibióticos orales y esperar el drenaje espontáneo",
+        "Bartholinoneocistostomía"
+      ]
+    },
+    {
+      "id": 43,
+      "pregunta": "Una paciente de 20 años presenta aumento de volumen eritematoso y doloroso, en la zona interglútea, ubicado a dos centímetros de la línea media, sobre el coxis. Al examen físico, se observa aumento de volumen de 5 cm, doloroso, con presencia de dos orificios negros en la piel, cerca de la lesión. El diagnóstico más probable es:",
+      "opciones": [
+        "Linfoma",
+        "Sarcoma",
+        "Quiste pilonidal",
+        "Absceso anorrectal",
+        "Lipoma"
+      ]
+    },
+    {
+      "id": 44,
+      "pregunta": "Un paciente de 23 años consulta en el servicio de urgencia, por dolor torácico de 2 horas de evolución, intenso, asociado a diaforesis y palpitaciones, que inició algunos minutos después de haber inhalado cocaína. Al examen físico presenta FC: 120x’, PA: 190/120 mmHg, ritmo regular en dos tonos, sin soplos. Su electrocardiograma muestra supradesnivel de segmento ST en las derivaciones de la pared anterior. ¿Qué fármaco está contraindicado en el manejo de este paciente?",
+      "opciones": [
+        "Estreptoquinasa",
+        "Clopidogrel",
+        "Nitroglicerina",
+        "Atenolol",
+        "Diazepam"
+      ]
+    },
+    {
+      "id": 45,
+      "pregunta": "Una paciente de 32 años, primigesta, cursando un embarazo de 33 semanas presenta presión arterial de 162/113 mmHg en el control. Se encuentra asintomática y los latidos cardiofetales se auscultan normales. ¿Cuál es el fármaco más adecuado para iniciar el tratamiento?",
+      "opciones": [
+        "Enalapril",
+        "Sulfato de magnesio",
+        "Metildopa",
+        "Labetalol",
+        "Hidralazina"
+      ]
+    },
+    {
+      "id": 46,
+      "pregunta": "Una paciente de 34 años, cursando embarazo de 32 semanas inicia prurito de palmas y plantas, que es más intenso en la noche y se asocia a astenia y vómitos. Al examen físico tiene signos vitales normales y se constata leve ictericia de escleras, sin alteraciones en las extremidades ni lesiones cutáneas. Su altura uterina es de 27 cm. Se solicitan exámenes, entre los que destacan bilirrubina: 1,5 mg/dl, fosfatasas alcalinas: 411 UI/L, SGOT: 32 UI/L, SGPT: 38 UI/L, gamaglutamiltransferasa: 398 UI/L. El diagnóstico más probable es:",
+      "opciones": [
+        "Colestasia intrahepática",
+        "Colangitis biliar primaria",
+        "Ictericia por hiperémesis gravídica",
+        "Hígado graso agudo del embarazo",
+        "Coledocolitiasis"
+      ]
+    },
+    {
+      "id": 47,
+      "pregunta": "Una paciente de 32 años, cursando un embarazo de 33 semanas, consulta por malestar general, asociado a dolor en el epigastrio e hipocondrio derecho de 3 días de evolución, que ha aumentado. Además, tiene astenia, cefalea y náuseas, asociadas a algunos episodios de vómitos alimentarios. Su examen físico muestra FC: 67x’, PA: 120/80 mmHg, edema de extremidades inferiores y abdomen doloroso en el hipocondrio derecho, palpándose el hígado bajo el reborde costal. Entre sus exámenes destacan glicemia: 58 mg/dl, creatinina plasmática: 1,3 mg/dl, hemoglobina: 10,6 g/dl, plaquetas: 110.000 por mm3, LDH: 420 UI/L, PCR: 3 (VN: menor a 1), bilirrubina: 2,8 mg/dl, SGPT: 260 UI/L y SGOT: 340 UI/L. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Síndrome de HELLP",
+        "Hepatitis viral",
+        "Hígado graso agudo del embarazo",
+        "Colestasia intrahepática del embarazo",
+        "Coledocolitiasis"
+      ]
+    },
+    {
+      "id": 48,
+      "pregunta": "Una paciente de 25 años, primigesta, cursa un embarazo de 29 semanas. Consulta por dolor abdominal de 2 días de evolución, de localización epigástrica, asociada a vómitos y malestar general. En su examen físico presenta FC: 90x’, PA: 147/100 mmHg, FR: 12x’, abdomen depresible, doloroso en la palpación epigástrica y más intenso en hipocondrio derecho. Sus exámenes muestran creatinina plasmática: 1,2 mg/dl, electrolitos plasmáticos normales, hemoglobina: 10,6 g/dl, plaquetas: 90.000 por mm3, blancos: 12.000 por mm3, LDH: 720 UI/L, PCR: 5,0, bilirrubina: 1,4 mg/dl, SGPT: 248 UI/L y SGOT: 277 UI/L. Su ecografía abdominal muestra cálculos biliares. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Síndrome de HELLP",
+        "Colecistitis aguda",
+        "Hígado graso agudo del embarazo",
+        "Colestasia intrahepática del embarazo",
+        "Colangitis"
+      ]
+    },
+    {
+      "id": 49,
+      "pregunta": "Una paciente de 41 años se realiza una mamografía, que es informada como Birrads 0, por presencia de opacidades fibronodulares bilaterales, bien delimitadas y sin calcificaciones. La conducta más adecuada es:",
+      "opciones": [
+        "Control mamográfico en 6 meses",
+        "Ecotomografía mamaria",
+        "Biopsia guiada por rayos X",
+        "Mamografía en 1 año",
+        "Resonancia magnética nuclear de mama"
+      ]
+    },
+    {
+      "id": 50,
+      "pregunta": "Un paciente de 35 años presenta un nódulo mamario, desde hace 8 meses. Su ecografía mamaria muestra un tumor de aspecto sólido, bordes bien delimitados, sin refuerzo posterior y con un índice ultrasonográfico Birrads 3. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Mastopatía fibroquística",
+        "Papiloma ductal",
+        "Fibroadenoma",
+        "Tumor phylloides",
+        "Carcinoma ductal"
+      ]
+    },
+    {
+      "id": 51,
+      "pregunta": "Una paciente de 25 años, con antecedente de haber iniciado su vida sexual a los 14 años y, desde entonces, mantener relaciones sexuales, con múltiples parejas, sin utilización de métodos de barrera, se realiza un PAP que es informado como lesión de alto grado. Además, se realiza tipificación de virus papiloma humano, que muestra serotipo de bajo grado. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar nuevo PAP en 6 meses",
+        "Solicitar nuevo PAP en 1 año",
+        "Realizar colposcopía y eventual biopsia",
+        "Realizar cono LEEP",
+        "Realizar histerectomía"
+      ]
+    },
+    {
+      "id": 52,
+      "pregunta": "Una paciente de 24 años se realiza un PAP, que es informado como lesión de bajo grado y probable infección de virus papiloma humano. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar PAP en 1 año",
+        "Realizar colposcopía y biopsia",
+        "Repetir el PAP en 6 meses",
+        "Realizar tipificación de virus papiloma humano",
+        "Realizar PAP en 3 meses"
+      ]
+    },
+    {
+      "id": 53,
+      "pregunta": "Una mujer de 42 años, diagnosticada de cáncer de cuello uterino en etapa IIIB, en tratamiento con quimioterapia y radioterapia combinada, consulta por abundante genitorragia. A su ingreso presenta PA: 100/60 mmHg y FC: 100x’ y se realiza especuloscopía que confirma que el sangrado proviene de la lesión tumoral. Su hemograma muestra hemoglobina: 10 g/dl y hematocrito: 29%, con plaquetas de 170.000 por mm3. Se administra ácido tranexámico endovenoso y suero fisiológico. Sin embargo, la paciente continúa con abundante hemorragia. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar histerectomía",
+        "Administrar plasma fresco endovenoso",
+        "Realizar taponamiento vaginal",
+        "Realizar ligadura de las arterias cervicales",
+        "Realizar diatermocoagulación cervical"
+      ]
+    },
+    {
+      "id": 54,
+      "pregunta": "Una paciente de 30 años, cursando un embarazo de 40 semanas, consulta por ausencia de movimientos fetales, por lo que se realiza un perfil biofísico, que resulta 8/10, con presencia de oligoamnios. La conducta más adecuada es:",
+      "opciones": [
+        "Dejar a evolución espontánea",
+        "Interrumpir ahora por cesárea",
+        "Inducir el parto en este momento",
+        "Realizar cesárea al momento del trabajo de parto",
+        "Inducir el parto a las 41 semanas"
+      ]
+    },
+    {
+      "id": 55,
+      "pregunta": "Un paciente de 60 años, con antecedentes de hipertensión arterial, dislipidemia, diabetes mellitus tipo 2 y tabaquismo de 20 paquetes año, consulta en el servicio de urgencia, por dolor precordial opresivo. Luego de su ingreso, presenta compromiso de conciencia, sin respuesta. Al examen físico no respira y es imposible palpar el pulso carotídeo. Además de solicitar ayuda, la conducta inicial más adecuada es:",
+      "opciones": [
+        "Realizar compresiones toráxicas",
+        "Realizar intubación orotraqueal",
+        "Dar golpe toráxico",
+        "Desfibrilar",
+        "Administrar adrenalina endovenosa"
+      ]
+    },
+    {
+      "id": 56,
+      "pregunta": "Una mujer de 23 años está en trabajo de parto. Al momento de romperse las membranas, se observa salida de meconio espeso. El recién nacido nace cianótico, hipotónico, sin esfuerzos respiratorio. La conducta inicial debe ser:",
+      "opciones": [
+        "Aspirar vía aérea con sonda",
+        "Dar ventilación a presión positiva",
+        "Administrar adrenalina endotraqueal",
+        "Realizar intubación orotraqueal",
+        "Realizar masaje cardíaco"
+      ]
+    },
+    {
+      "id": 57,
+      "pregunta": "Un recién nacido nace por cesárea de urgencia, debido a un registro fetal con signos de hipoxia. Al examen físico tiene cianosis generalizada e hipotonía, sin esfuerzo respiratorio, por lo que se seca y se pone bajo calor radiante, en posición de olfateo, con aporte de oxígeno. A los 50 segundos persiste en apnea y se constata pulso carotideo a 30 latidos por minuto. ¿Cuál es la conducta más adecuada en este momento?",
+      "opciones": [
+        "Conectar a ventilación mecánica",
+        "Administrar bicarbonato endovenoso",
+        "Administrar adrenalina por vía orotraqueal",
+        "Dar ventilación a presión positiva con mascarilla facial",
+        "Realizar masaje cardíaco"
+      ]
+    },
+    {
+      "id": 58,
+      "pregunta": "Un niño de 8 años ingresa por un cuadro de decaimiento y malestar general, con diarrea y vómitos. Está somnoliento y con compromiso hemodinámico, con FC: 120x’ y PA: 70/30 mmHg. Se administran dos bolos de suero fisiológico de 20 cc/kg de peso, sin lograr estabilizarlo. En sus exámenes destaca glicemia 62 mg/dl y pH: 7,29, con exceso de base: -16. ¿Cuál es la conducta inmediata más adecuada?",
+      "opciones": [
+        "Administrar hidrocortisona endovenosa 2mg/kg de peso",
+        "Administrar un tercer bolo de suero fisiológico 20 cc/Kg de peso",
+        "Administrar solución glucosalina 1.700 cc/m2 de superficie corporal",
+        "Administrar plasma fresco 20 cc/kg de peso",
+        "Administrar bicarbonato de sodio 2 mEq/Kg de peso"
+      ]
+    },
+    {
+      "id": 59,
+      "pregunta": "Una paciente de 27 años, diabética tipo 1, con mal control metabólico, consulta por edema de las extremidades inferiores y orinas espumosas. Al examen físico se constata edema palpebral y facial, edema blando de extremidades inferiores. En sus exámenes destaca hemoglobina glicosilada de 8,2%, ANA negativos, sedimento de orina con abundantes cuerpos ovales grasos, 2-3 glóbulos rojos por campo y 2-4 glóbulos blancos por campo, creatinina: 1,2 mg/dl y proteinuria cuantitativa de 9 g en 24 horas. ¿Cuál es la conducta de elección para proseguir el manejo de esta paciente?",
+      "opciones": [
+        "Electroforesis de proteínas en sangre",
+        "Biopsia renal",
+        "Inmunofijación de proteínas en orina",
+        "Prednisona oral",
+        "Solicitar ANCA, C3 y C4"
+      ]
+    },
+    {
+      "id": 60,
+      "pregunta": "Un paciente de 78 años, diabético, hipertenso y dislipidémico está en tratamiento con metformina, glibenclamida, enalapril, hidroclorotiazida, aspirina y atorvastatina. Se realiza exámenes de laboratorio, entre los que destacan sodio plasmático: 130 mEq/L, potasio plasmático: 3,4 mEq/L, creatinina plasmática: 1,1 mg/dl. ¿Cuál es la causa más probable de sus alteraciones?",
+      "opciones": [
+        "Nefroesclerosis hipertensiva",
+        "Uso de hidroclorotiazida",
+        "Nefropatía diabética",
+        "Uso de enalapril",
+        "Uso de aspirina"
+      ]
+    },
+    {
+      "id": 61,
+      "pregunta": "Un paciente de 24 años sufre un accidente de tránsito a alta velocidad. Ingresa adolorido, con sangre fresca por uretra. Está en buenas condiciones, con estabilidad hemodinámica y sin signos de fracturas en el examen físico. La tomografía axial computada de tórax abdomen y pelvis muestra fractura de pelvis no desplazada, vejiga distendida, sin líquido libre peritoneal. ¿Cuál es el examen más adecuado para proseguir el estudio?",
+      "opciones": [
+        "Pielografía de eliminación",
+        "UroTAC",
+        "Uretrocistografía retrógrada",
+        "Ecotomografía pélvica",
+        "Resonancia magnética nuclear de pelvis"
+      ]
+    },
+    {
+      "id": 62,
+      "pregunta": "Un hombre de 34 años presenta erección dolorosa, desde hace 8 horas. Al examen se corrobora que tiene erección completa, pero turgencia solo de los cuerpos cavernosos, con glande y cuerpos esponjosos blandos. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Aplicar hielo en la zona genital",
+        "Realizar derivación cavernoesponjosa de urgencia",
+        "Administrar atropina intracavernosa",
+        "Administrar analgésicos endovenosos",
+        "Administrar fenilefrina intracavernosa"
+      ]
+    },
+    {
+      "id": 63,
+      "pregunta": "Un paciente de 87 años, institucionalizado por una demencia tipo Alzheimer y que es portador de sonda Foley a permanencia, presenta orinas turbias, por lo que se realiza un urocultivo, que resulta positivo para Escherichia coli sensible a nitrofurantoína, amikacina e imipenem. El paciente está en buenas condiciones, asintomático y sin mayor confusión de la habitual. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Retirar la sonda",
+        "Iniciar amikacina",
+        "Iniciar imipenem",
+        "Iniciar nitrofurantoína",
+        "Mantener sin tratamiento antibiótico"
+      ]
+    },
+    {
+      "id": 64,
+      "pregunta": "Un paciente de 34 años presenta su primer episodio de cólico renal. Presenta eliminación espontánea de un pequeño cálculo, el que no es preservado para estudio citoquímico. Actualmente está asintomático y el pieloTAC no observa otras litiasis. ¿Cuál es la conducta más adecuada en este paciente?",
+      "opciones": [
+        "Indicar dieta baja en lácteos",
+        "Iniciar hidroclorotiazida",
+        "Aumentar la ingesta de agua",
+        "Realizar litotripsia extracorpórea",
+        "Realizar estudio metabólico de urolitiasis"
+      ]
+    },
+    {
+      "id": 65,
+      "pregunta": "Un paciente de 60 años, fumador de 40 paquetes años, consulta por disnea de 3 meses de evolución, asociado a tos con expectoración mucosa, que en ocasiones es hemoptoica y que se ha asociado a baja de peso no cuantificada. Al examen físico tiene FC: 72x’, PA: 110/70 mmHg, FR: 15x’, saturación O2: 95%. A la auscultación pulmonar se constatan escasos crépitos y algunas sibilancias, que son mayores en el campo pulmonar izquierdo. Se realiza una radiografía, que se muestra a continuación (fuente: radiopaedia): ¿Cuál es el examen de elección para proseguir el estudio?",
+      "opciones": [
+        "Biopsia pulmonar por fibrobroncoscopía",
+        "TAC de tórax con contraste",
+        "Fibrobroncoscopía con lavado bronquioalveolar",
+        "Biopsias por videotoracoscopía",
+        "Resonancia magnética nuclear de tórax"
+      ]
+    },
+    {
+      "id": 66,
+      "pregunta": "Una paciente de 21 años presenta rinorrea, congestión nasal, disnea, tos, con expectoración mucosa y sibilancias, que aparecen especialmente luego de realizar ejercicio y durante las infecciones respiratorias, siendo mayores en primavera. Su examen físico tiene frecuencia respiratoria 12x’, frecuencia cardíaca 73x’, PA: 120/70 mmHg, examen cardiopulmonar normal. Se solicitar un PEF, que resulta 580 L/min, que equivale al 98% del valor esperado. Se solicita una radiografía, que resulta normal. ¿Cuál de los siguientes es el examen más adecuado para proseguir con el estudio en esta paciente?",
+      "opciones": [
+        "Prick test",
+        "TAC de tórax",
+        "Espirometría basal y postbroncodilatador",
+        "Prueba de eosinófilos nasales",
+        "Prueba de provocación bronquial"
+      ]
+    },
+    {
+      "id": 67,
+      "pregunta": "Un paciente de 58 años, fumador de 20 paquetes año, consulta por disfonía de 3 semanas de evolución, asociada a ligera odinofagia. Al examen físico, además, se palpa una adenopatía submandibular, de consistencia aumentada. ¿Cuál es el examen más adecuado para proseguir el estudio?",
+      "opciones": [
+        "TAC de cuello",
+        "TAC de tórax",
+        "Ecografía de cuello",
+        "Nasofibrolaringoscopía",
+        "Endoscopía digestiva alta"
+      ]
+    },
+    {
+      "id": 69,
+      "pregunta": "Una paciente de 43 años presenta obstrucción nasal marcada, asociada a rinorrea de 5 años de evolución, con sensación de presión facial, cefalea e hiposmia. Se solicita radiografía de cavidades paranasales, que muestra velamiento de ambos senos maxilares. La TAC de cavidades paranasales muestra secreciones e inflamación de la mucosa de ambos senos maxilares y de celdillas etmoidales bilaterales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Fluticasona nasal",
+        "Azitromicina",
+        "Cirugía endoscópica nasal",
+        "Rinomanometría",
+        "Resonancia magnética nuclear de cavidades paranasales"
+      ]
+    },
+    {
+      "id": 70,
+      "pregunta": "Un paciente de 34 años presenta un episodio de tos intensa, con salida de abundante líquido salobre, con presencia de membranas blanquecinas y restos hemoptoicos. Su examen físico es normal. ¿Cuál es el examen más adecuado para iniciar el estudio de este paciente?",
+      "opciones": [
+        "TAC de tórax y abdomen",
+        "Parasitológico de deposiciones",
+        "Radiografía de tórax",
+        "Ecografía abdominal",
+        "Colonoscopía"
+      ]
+    },
+    {
+      "id": 71,
+      "pregunta": "Un recién nacido nace por parto vaginal a las 40 semanas y pesa 2.600 gramos. ¿Cuál de las siguientes complicaciones se presentará con mayor riesgo en las primeras horas de vida?",
+      "opciones": [
+        "Síndrome de dificultad respiratoria del recién nacido",
+        "Hiperbilirrubinemia",
+        "Anemia",
+        "Hiperkalemia",
+        "Hipoglicemia"
+      ]
+    },
+    {
+      "id": 72,
+      "pregunta": "Un paciente de 78 años, diabético, en tratamiento con glibenclamida 15 mg/día, presenta convulsiones tónico-clónicas subintrantes desde hace algunos minutos. Hace 3 días se realizó control de exámenes, con glicemia de ayuno de 185 mg/dl y electrolitos plasmáticos dentro de rangos normales. ¿Cuál es la causa más probable de sus convulsiones?",
+      "opciones": [
+        "Hipomagnesemia",
+        "Hipernatremia",
+        "Hipoglicemia",
+        "Hipocalcemia",
+        "Cetoacidosis"
+      ]
+    },
+    {
+      "id": 73,
+      "pregunta": "Una paciente de 37 años, cursando embarazo de 29 semanas, se realiza un test de tolerancia a la glucosa oral, de 75 gramos, que muestra glicemia basal de 86 mg/dl y postcarga de 139 mg/dl. La conducta más adecuada es:",
+      "opciones": [
+        "Iniciar dieta hipoglucídica y controlar con glicemias seriadas",
+        "Solicitar hemoglobina glicosilada",
+        "Iniciar metformina",
+        "Repetir el examen a las 32 semanas",
+        "Mantener el control habitual del embarazo"
+      ]
+    },
+    {
+      "id": 74,
+      "pregunta": "Una paciente de 23 años, primigesta, cursando embarazo de 13 semanas, se realiza determinación de grupo sanguíneo, que es informada como AB, Rh(-), Du (+). ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar doppler de arteria cerebral media fetal",
+        "Solicitar Coombs indirecto a las 18 semanas",
+        "Administrar Rhogam a las 28 semanas",
+        "Determinar grupo y Rh del padre",
+        "Mantener control habitual del embarazo"
+      ]
+    },
+    {
+      "id": 75,
+      "pregunta": "Una paciente de 41 años, cursando un embarazo de 11 semanas, se realiza una ecografía transvaginal, que muestra translucencia nucal de 6 mm (VN: menor a 3 mm) y ausencia de hueso nasal. ¿Cuál es la conducta más adecuada para proseguir el estudio?",
+      "opciones": [
+        "Biopsia de vellosidad corial",
+        "Mediciones ecográficas seriadas de férmur",
+        "Repetir el examen a las 14 semanas",
+        "Estudio genético de DNA fetal libre en sangre materna",
+        "Niveles plasmáticos de HCG"
+      ]
+    },
+    {
+      "id": 76,
+      "pregunta": "Un paciente de 32 años presenta dolor cervical intenso, mientras realizaba deporte, que se irradia hacia la cara, zona temporal y se asocia a cefalea intensa. Al examen físico se observa ptosis y miosis derechas. El diagnóstico más probable es:",
+      "opciones": [
+        "Parálisis del tercer nervio craneal",
+        "Aneurisma cerebral anterior, con compromiso del tercer nervio craneal",
+        "Infarto vertebrobasilar",
+        "Migraña hemipléjica",
+        "Disección carotidea"
+      ]
+    },
+    {
+      "id": 77,
+      "pregunta": "Una paciente de 30 años, con antecedente de embarazo de 7 semanas de amenorrea, se realiza una ecografía transvaginal, que muestra útero con presencia de saco gestacional de 18 mm de diámetro, sin presencia de embrión. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar laparoscopía",
+        "Solicitar nueva ecografía en 7 días",
+        "Solicitar niveles seriados de HCG",
+        "Realizar legrado uterino",
+        "Administrar progesterona"
+      ]
+    },
+    {
+      "id": 78,
+      "pregunta": "Una mujer de 52 años presenta reglas irregulares, desde hace 8 meses, asociadas a bochornos frecuentes, con calor, enrojecimiento de la cara, sudoración nocturna y dificultades para dormir. ¿Cuál es la indicación más adecuada para el manejo de los síntomas de esta paciente?",
+      "opciones": [
+        "Fitoestrógenos",
+        "Terapia de reemplazo hormonal combinada continua",
+        "Terapia de reemplazo hormonal combinada cíclica",
+        "Estrógenos solos continuos",
+        "Progestágenos solos continuos"
+      ]
+    },
+    {
+      "id": 79,
+      "pregunta": "Una paciente de 35 años, multípara de dos, se realiza una cesárea por presentación podálica. Luego de la extracción del recién nacido y del legrado uterino, se observan múltiples miomas uterinos subserosos de variados tamaños. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar miomectomía múltiple",
+        "Realizar histerectomía subtotal",
+        "Realizar miomectomía selectiva de los tumores mayores a 5 cm",
+        "Realizar histerectomía obstétrica",
+        "Realizar el cierre habitual de la cesárea"
+      ]
+    },
+    {
+      "id": 80,
+      "pregunta": "Un niño de 12 años, con antecedente de un meduloblastoma de fosa posterior, tratado con quimioterapia y radioterapia cerebral, en remisión completa, desde hace 5 años; consulta por talla baja. Su curva de crecimiento demuestra que ha estado creciendo en una talla equivalente al percentil 2 para la edad y, en su examen físico, presenta desarrollo genital en Tanner 3, con vello púbico en Tanner 4. La talla parental estimada es de 170 cm. ¿Cuál es la causa más probable de su talla baja?",
+      "opciones": [
+        "Retraso pubertad",
+        "Recidiva tumoral",
+        "Hipogonadismo",
+        "Déficit de hormona de crecimiento",
+        "Talla baja familiar"
+      ]
+    },
+    {
+      "id": 81,
+      "pregunta": "Una paciente de 56 años, en tratamiento con tamoxifeno 20 mg/día, por un cáncer de mama, diagnosticado hace 9 años, presenta metrorragia escasa desde hace 5 días, por lo que se solicita una ecografía transvaginal, que muestra un endometrio de 8 mm, sin alteraciones anexiales. La conducta más adecuada es:",
+      "opciones": [
+        "Iniciar terapia de reemplazo hormonal oral",
+        "Instalar dispositivo intrauterino medicado",
+        "Disminuir la dosis de tamoxifeno",
+        "Solicitar biopsia endometrial",
+        "Realizar histerectomía"
+      ]
+    },
+    {
+      "id": 82,
+      "pregunta": "Una paciente de 43 años, secretaria, consulta porque, desde hace dos semanas, presenta dolor en el hombro derecho, que es más intenso durante la noche y que empeora con los movimientos del mismo, por lo que ha ido limitando sus actividades normales. El dolor aumenta con la abducción y con la elevación del brazo derecho, por sobre el hombro. Al examen físico tiene movilidad completa del hombro, con dolor en las maniobras descritas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Capsulitis adhesiva de hombro",
+        "Tendinopatía del manguito rotador",
+        "Disyunción acromioclavicular",
+        "Tendinopatía de la cabeza larga del bíceps braquial",
+        "Hernia cervical con compresión radicular"
+      ]
+    },
+    {
+      "id": 83,
+      "pregunta": "Un recién nacido de 10 días presenta un hemangioma en el párpado derecho, de 3 cm de diámetro, que cubre parcialmente la visión. ¿Cuál es la conducta más adecuada en este momento?",
+      "opciones": [
+        "Administrar propanolol",
+        "Administrar betametasona",
+        "Realizar embolización",
+        "Derivar a cirujano plástico",
+        "Observar evolución"
+      ]
+    },
+    {
+      "id": 84,
+      "pregunta": "3) Una paciente de 72 años de edad, con antecedente de cirrosis hepática por consumo de alcohol, suspendido hace 5 años acude a control médico. Trae VHBsAg (-) y Anticuerpos anti- VHC (-), Child Pugh clase A, MELDS: 8 puntos, se realiza una ecografía abdominal, que muestra una lesión sólida, en el lóbulo hepático derecho, de 3,5 cm y aspecto hipoecogénico, que en la tomografía se aprecia sólido e hipervascular en la fase arterial. El diagnóstico más probable es:",
+      "opciones": [
+        "Colangiocarcinoma",
+        "Adenoma hepático",
+        "Carcinoma hepatocelular",
+        "Quiste hepático",
+        "Hemangioma hepático"
+      ]
+    },
+    {
+      "id": 85,
+      "pregunta": "Una niña de dos años presenta un episodio brusco de tos intensa, asociado a cianosis y disnea, que remite luego de pocos minutos. Persiste luego con tos en salvas y expectoración. Al examen pulmonar se auscultan roncus y sibilancias, mayores en el lado derecho. La conducta más adecuada es:",
+      "opciones": [
+        "Solicitar PCR para Bordetella pertusis",
+        "Solicitar TAC de tórax",
+        "Solicitar broncoscopía",
+        "Realizar laringoscopía rígida",
+        "Iniciar antibióticos"
+      ]
+    },
+    {
+      "id": 86,
+      "pregunta": "Un paciente de 78 años, con sobrepeso, presenta alteraciones de la memoria y dificultades para concentrarse, que iniciaron hace 2 años y que han progresado, asociado a hipersomnia y cansancio. ¿Cuál es el examen de elección para iniciar el estudio?",
+      "opciones": [
+        "Electrocardiograma",
+        "Ecocardiograma",
+        "Polisomnografía",
+        "RMN de cerebro",
+        "TAC de cerebro"
+      ]
+    },
+    {
+      "id": 87,
+      "pregunta": "Una adolescente de 15 años se intenta suicidar, ingiriendo 600 miligramos de amitriptilina. ¿Cuál es el examen más adecuado para determinar su riesgo?",
+      "opciones": [
+        "Gases arteriales",
+        "Bilirrubinemia",
+        "Electrocardiograma",
+        "Creatinfosfoquinasa",
+        "Pruebas hepáticas"
+      ]
+    },
+    {
+      "id": 88,
+      "pregunta": "Una paciente de 43 años presenta vértigo de 5 días de evolución, intenso, asociado a vómitos, lo que limita sus actividades. No tiene síntomas auditivos. El diagnóstico más probable es:",
+      "opciones": [
+        "Parálisis cocleovestibular",
+        "Vértigo postural",
+        "Hídrops endolinfático",
+        "Neuronitis vestibular",
+        "Neurinoma del acústico"
+      ]
+    },
+    {
+      "id": 89,
+      "pregunta": "Paciente de 62 años, diabético diagnosticado hace 3 meses, en tratamiento con hipoglicemiantes orales, como parte de un chequeo se realiza exámenes de chequeo donde se aprecia creatinina de 0,9 mg/dL, hemoglobina glicosilada menor a 7% y un perfil lipídico que muestra triglicéridos: 250 mg/dL, colesterol total: 253 mg/dL, HDL: 51 mg/dL, LDL: 152 mg/dL. No presenta síntomas. El tratamiento más adecuado para disminuir su riesgo cardiovascular es:",
+      "opciones": [
+        "Fibratos",
+        "Estatinas",
+        "Dieta baja en ácidos grasos saturados",
+        "Ácido nicotínico",
+        "Ezetimibe"
+      ]
+    },
+    {
+      "id": 90,
+      "pregunta": "Un paciente de 35 años está convencido que las vacunas contra la Covid-19 contienen un chip para rastrear a las personas y que hay un acuerdo entre Bill Gates y muchos de los gobiernos para controlar las mentes de la población, tal como lo ha hecho con muchas personas, a las que califica de “borregos”. Cree que la mayoría de los médicos son parte de este complot, porque están financiados por las farmacéuticas y el Gobierno. Si bien se desenvuelve normalmente en su trabajo, ha tenido varios problemas con compañeros de trabajo y con sus familiares, cuando se toca el tema de las vacunas, en el que habla con gran vehemencia y certeza, criticando duramente a quienes le recomiendan vacunarse. También pierde mucho tiempo discutiendo sobre el tema en redes sociales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Esquizofrenia",
+        "Trastorno delirante",
+        "Trastorno del espectro autista en el adulto",
+        "Trastorno bipolar",
+        "Trastorno de personalidad paranoide (Nota: pregunta añadida a la reconstrucción) RECONSTRUCCIÓN EUNACOM AGOSTO 2021 Dr. Guillermo Guevara Aliaga SEGUNDA PARTE Instrucciones:"
+      ]
+    },
+    {
+      "id": 91,
+      "pregunta": "Un recién nacido sufre la caída del cordón umbilical, presentado a los pocos días una lesión redondeada y solevantada, no pediculada, de color rosado brillante y aspecto húmedo, de 1 cm de diámetro. ¿Cuál es la conducta más adecuada para su manejo?",
+      "opciones": [
+        "Corticoides tópicos",
+        "Resolución quirúrgica",
+        "Nitrógeno líquido",
+        "Aplicación de nitrato de plata",
+        "Antibióticos tópicos"
+      ]
+    },
+    {
+      "id": 92,
+      "pregunta": "Un paciente de 76 años, con antecedente de hipertensión arterial, diabetes y dislipidemia, en tratamiento con enalapril, hidroclorotiazida, aspirina, metformina y atorvastatina, fumador de 10 paquetes año, consulta por un cuadro de tos, expectoración y disnea, de 2 días de evolución, por lo que consulta al servicio de urgencia. Al examen físico presenta FR: 25x’, PA: 150/100 mmHg, FC: 90x’, saturación oxígeno: 86%. Su examen pulmonar muestra murmullo pulmonar simétrico, con crepitaciones intensas bilaterales, mayores en las bases y algunas sibilancias. Se solicita radiografía de tórax, que se muestra a continuación (fuente: radiopaedia): El diagnóstico más probable es:",
+      "opciones": [
+        "Neumonía bilateral",
+        "Insuficiencia cardíaca descompensada",
+        "Bronquiectasias",
+        "Enfermedad pulmonar obstructiva crónica",
+        "Fibrosis pulmonar"
+      ]
+    },
+    {
+      "id": 93,
+      "pregunta": "Un paciente de 28 años consulta por dolor torácico derecho, de 2 días de evolución, que aumenta con la inspiración y con la actividad física. Al examen físico está eupneico, con FR: 15x’, saturación de oxígeno normal, se aprecia disminución del murmullo pulmonar mayor en el lado derecho. Se solicita una radiografía, que se muestra a continuación (Fuente: imgur.com): ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Control radiológico en 24 horas",
+        "Solicitar TAC de tórax",
+        "Realizar cirugía abierta",
+        "Drenaje con tubo pleural",
+        "Realizar videotoracoscopía"
+      ]
+    },
+    {
+      "id": 94,
+      "pregunta": "Un niño de 6 años consulta por dolor en el codo derecho, de dos días de evolución, asociado a impotencia funcional y fiebre de hasta 39ºC. Al examen físico, se observa codo eritematoso y aumentado de volumen, con dolor intenso a la movilización activa y pasiva. ¿Cuál es el agente etiológico más probable?",
+      "opciones": [
+        "Staphilococcus aureus",
+        "Haemophilus influenzae",
+        "Streptococcus agalactiae",
+        "Neisseria meningitidis",
+        "Streptococcus pyogenes"
+      ]
+    },
+    {
+      "id": 95,
+      "pregunta": "Un paciente de 68 años presenta monoartritis de rodilla izquierda, desde hace 48 horas. Al examen físico se observa aumento de volumen con signos de derrame articular, por lo que se punciona, dando salida a un líquido articular poco filante, con 50.000 glóbulos blancos por mm3, sin presencia de cristales. Lo más probable es que se trate de una artritis:",
+      "opciones": [
+        "Reactiva",
+        "Seronegativa",
+        "Reumatoide",
+        "Séptica",
+        "Psoriática"
+      ]
+    },
+    {
+      "id": 96,
+      "pregunta": "Una paciente de 50 años consulta por artralgias y edema de las manos, especialmente en las articulaciones metacarpofalángicas, interfalángicas proximales y en las muñecas de ambas manos. Refiere fenómeno de Raynaud y rigidez matinal de 1 hora de duración. Además, relata sensación de arenilla ocular, hipolacrimia y xerostomía. Se solicitan exámenes, que muestran hemograma normal, VHS: 52 mm/h, PCR: 2,8 mg/dl, ENA (-), AntiDNA 2h (-) y anticuerpos anti- CCP mayores a 200 UI/ml. La radiografía de manos muestra edema de partes blandas y osteopenia yuxtarticular de los huesos metacarpianos. El diagnóstico más probable es:",
+      "opciones": [
+        "Lupus eritematoso sistémico",
+        "Artritis reumatoide",
+        "Artritis psoriática",
+        "Esclerosis sistémica",
+        "Síndrome de Sjörgren primario"
+      ]
+    },
+    {
+      "id": 97,
+      "pregunta": "Un paciente de 23 años consulta por dolor lumbar y en la zona glútea, de 1 año de evolución, que es mayor en las mañanas y al dormir y que va cediendo a medida que realiza sus actividades durante el día. Además, ha presentado dolor y aumento de volumen de la rodilla derecha, que luego desapareció espontáneamente. Al examen físico tiene placas descamativas en las rodillas, depresiones ungueales, dolor a la compresión prueba de Lasegue negativa, prueba de Schöbber 2 cm. En sus exámenes destaca ANA negativos y factor reumatoide, dentro de límites normales. ¿Cuál es el examen de elección para proseguir el estudio?",
+      "opciones": [
+        "Radiografía de columna lumbosacra",
+        "Tomografía de columna dorsolumbar",
+        "Radiografía de tórax",
+        "Resonancia magnética nuclear de articulaciones sacroilíacas",
+        "ANCA, C3 y C4"
+      ]
+    },
+    {
+      "id": 98,
+      "pregunta": "Una paciente de 23 años presenta aparición súbita de lesiones eritematosas en las mejillas, que iniciaron luego de exponerse al sol y se asocian a malestar general, caída de cabello y artralgias de manos. En el examen físico destaca eritema malar y edema de extremidades inferiores. Se solicitan exámenes que muestran hemograma con hemoglobina: 9,8 g/dl, hematocrito 29%, glóbulos blancos: 3500 por mm3 y plaquetas: 90.000 por mm3, más examen de orina con proteinuria +++ y hematuria. ¿Cuál es el examen más sensible para el diagnóstico de la patología descrita?",
+      "opciones": [
+        "Factor reumatoide",
+        "Anticuerpos anti-Ro",
+        "Anticuerpos anti-Sm",
+        "Anticuerpos antinucleares",
+        "Anticuerpos antifosfolípidos"
+      ]
+    },
+    {
+      "id": 99,
+      "pregunta": "Un paciente de 26 años, sufre un accidente automovilístico de alta energía, como conductor. Llega a la urgencia entablillado y con hemodinamia estable. Destaca la extremidad inferior derecha en flexión y aducción, dolorosa, con imposibilidad de caminar. Se realiza radiografía anteroposterior de pelvis, que se muestra a continuación (fuente: radiopaedia): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Fractura de la cabeza femoral derecha",
+        "Fractura de zona posterior del cotilo derecho",
+        "Luxofractura posterior de cadera derecha",
+        "Fractura de pelvis inestable",
+        "Fractura extracapsular de cadera derecha"
+      ]
+    },
+    {
+      "id": 100,
+      "pregunta": "Un paciente de 26 años presenta un cuadro de dolor lumbar, asociado a inquietud motora de 5 día de evolución. Hace 2 días se agrega fiebre y compromiso del estado general, más vómitos alimentarios. Al examen físico se aprecia FC: 105x’, PA: 100/70 mmHg, Tº: 38ºC, puño percusión positiva a izquierda. Se solicita pieloTAC que muestra imagen cálcica en el tercio medio del uréter izquierdo, con dilatación de la vía urinaria proximal y edema perirrenal. Su sedimento de orina muestra 40 leucocitos por campo, bacterias y cristales en moderada cantidad. Se inicia tratamiento antibiótico endovenoso y se administran cristaloides. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Litotripsia extracorpórea",
+        "Nefrolitotomía percutánea",
+        "Extracción quirúrgica abierta",
+        "Catéter doble jota",
+        "Litotomía ureteroscópica"
+      ]
+    },
+    {
+      "id": 101,
+      "pregunta": "Un paciente de 56 años consulta por disminución del calibre miccional, asociado a disuria de esfuerzos de 3 meses de evolución. Hace 7 días se agrega disuria, polaquiuria y malestar. Se solicita APE, que resulta 14,7 ng/ml (valor normal: menor a 4 ng/ml). El tratamiento inicial más adecuado es:",
+      "opciones": [
+        "Tamsulosina",
+        "Nitrofurantoína",
+        "Ciprofloxacino",
+        "Dutasteride",
+        "Doxazosina"
+      ]
+    },
+    {
+      "id": 102,
+      "pregunta": "Una paciente de 56 años, diabética tipo 2, de larga data, consulta por dolor y parestesias en ambas manos, mayores en la noche, que se irradian hacia los codos. El diagnóstico más probable es:",
+      "opciones": [
+        "Síndrome de túnel carpiano",
+        "Síndrome del opérculo torácico",
+        "Neuropatía por atrapamiento del nervio cubital",
+        "Polineuropatía diabética",
+        "Síndrome de compresión radicular cervical"
+      ]
+    },
+    {
+      "id": 103,
+      "pregunta": "Un paciente sufre una fractura de húmero derecho, que es manejada mediante reducción quirúrgica y osteosíntesis. Al quinto día, evoluciona con parestesias y dolor de la extremidad, asociada a imposibilidad de extender la muñeca. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Síndrome compartimental",
+        "Compresión del nervio mediano",
+        "Lesión del nervio musculocutáneo",
+        "Atrapamiento del nervio cubital",
+        "Lesión del nervio radial"
+      ]
+    },
+    {
+      "id": 104,
+      "pregunta": "Un hombre de 68 años, diabético mal controlado, consulta por mialgias generalizadas de 2 semanas de evolución, mayores en los muslos, asociadas a debilidad, mayor en la cintura pélvica y astenia. En el último tiempo refiere dificultades para ponerse de pie, desde una silla o desde la cama. Al examen físico se objetiva debilidad muscular de predominio proximal, sin alteraciones sensitivas. Se solicitan exámenes, entre los que destacan hemograma con hemoglobina: 12,1 g/dl, hematocrito: 37%, blancos: 7.000 por mm3, plaquetas: 250.000 por mm3, VHS: 10 mm/hora. Además, trae glicemia: 150 mg/dl, creatinfosfoquinasa: 1.760 UI/L, LDH: 1.050 UI/L, PCR: 4,3 mg/L, SGOT: 250 UI/L, SGPT: 170 UI/L. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Polimiositis",
+        "Polimialgia reumática",
+        "Polineuropatía diabética",
+        "Miopatía por cuerpos de inclusión",
+        "Síndrome de Guillain Barré"
+      ]
+    },
+    {
+      "id": 105,
+      "pregunta": "Un paciente de 71 años, con antecedente de diabetes, hipertensión arterial y lumbago crónico, en tratamiento con hipoglicemiantes orales, atorvastatina y losartán, presenta un cuadro de 1 mes de debilidad de las 4 extremidades, mayor en los muslos, asociadas a mialgias, que en el último tiempo le han dificultado la marcha. Al examen físico se constata paresia M4 de ambas extremidades inferiores, mayor en los cuádriceps, sin alteraciones sensitivas ni focalidad neurológica. Se solicitan exámenes que muestran hemoglobina: 12,1 g/dl, hematocrito: 33%, blancos: 6.200 por mm3, plaquetas: 180.000 por mm3, VHS: 50 mm/hora, SGOT: 210 UI/L, SGPT: 110 UI/L, CPK: 3.760 UI/L, LDH: 1.050 UI/L, PCR: 4,3 mg/L y hemoglobina glicosilada: 7,5%. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Miopatía por estatinas",
+        "Polimialgia reumática",
+        "Polimiositis",
+        "Miositis por cuerpos de inclusión",
+        "Raquiestenosis medular"
+      ]
+    },
+    {
+      "id": 106,
+      "pregunta": "Un niño de 4 años, con antecedente de ictericia neonatal, que requirió fototerapia, es traído a la urgencia por dolor abdominal y náuseas de 4 días de evolución. Al examen físico destaca ictericia de piel y mucosas, asociado a palidez y en el examen abdominal se objetiva esplenomegalia, con bazo por 3 cm bajo el reborde costal. Su hemograma muestra hematocrito de 20%, hemoglobina de 6,9 g/dl, VCM: 70 fl, 17% de reticulocitos, blancos: 8.000 por mm3 y plaquetas: 200.000 por mm3. El frotis sanguíneo muestra macrocitosis, poiquilocitosis y anisocitosis. En sus pruebas hepáticas destaca bilirrubina 6 mg/dl, con bilirrubina directa de 0,9 mg/dl. El diagnóstico más probable:",
+      "opciones": [
+        "Anemia hemolítica",
+        "Leucemia aguda",
+        "Anemia ferropénica",
+        "Anemia por déficit de vitamina B12",
+        "Anemia de Fanconi"
+      ]
+    },
+    {
+      "id": 108,
+      "pregunta": "Un paciente de 65 años, diabético, presenta un cuadro de astenia y sensación febril de 4 semanas de evolución, asociado a baja de peso de 3 kilogramos, no explicado. Además, refiere dolor abdominal epigástrico y en el hipocondrio izquierdo. Al examen físico tiene ligera palidez de mucosas y se palpa el bazo por 13 cm bajo el reborde costal. Se solicita un hemograma que muestra hematocrito: 32%, hemoglobina: 10,6 g/dl, VCM: 90 fl, blancos: 65.000 por mm3, con 15% de juveniles, 20% mielocitos, 13% promielocitos y 5% de blastos, con plaquetas: 450.000 por mm3. El diagnóstico más probable es:",
+      "opciones": [
+        "Leucemia mieloide aguda",
+        "Leucemia linfática crónica",
+        "Leucemia mieloide crónica",
+        "Mielodisplasia",
+        "Mielofibrosis"
+      ]
+    },
+    {
+      "id": 109,
+      "pregunta": "Un niño de 7 años presenta orinas oscuras, desde hace 5 días, sin otros síntomas. Al examen físico se palpa una masa abdominal en el flanco derecho de 10 cm de diámetro. Se solicitan exámenes entre los que destacan bilirrubina: 1,0 mg/dl, creatinina: 1,1 mg/dl, sedimento de orina con 30-40 glóbulos rojos por campo. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Riñón poliquístico",
+        "Neuroblastoma",
+        "Hapatoblastoma",
+        "Tumor de Wilms",
+        "Linfoma"
+      ]
+    },
+    {
+      "id": 110,
+      "pregunta": "Un paciente de 25 años presenta un cuadro de 3 semanas de dolor abdominal tipo cólico y diarrea acuosa, que en ocasiones es sanguinolenta. Además, ha presentado úlceras orales recidivantes y ha bajado de peso. Al examen físico tiene abdomen blando y depresible, doloroso a la palpación profunda y sin signos de irritación peritoneal y con ruidos hidroaéreos conservados. Hace 4 semanas se realizó manejo quirúrgico de una fístula anorrectal. El diagnóstico más probable es:",
+      "opciones": [
+        "Colitis parasitaria",
+        "Enfermedad de Cröhn",
+        "Enfermedad celíaca",
+        "Colitis ulcerosa",
+        "Colitis pseudomembranosa"
+      ]
+    },
+    {
+      "id": 111,
+      "pregunta": "Una paciente de 23 años, vegetariana estricta, consulta por diarrea de algunos meses de evolución, asociada a baja de peso. Además, trae exámenes, entre los que destaca anemia microcítica e hipoalbuminemia. Su examen físico no aporta mayor información. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Parasitosis intestinal",
+        "Enfermedad celíaca",
+        "Colitis ulcerosa",
+        "Enfermedad de Cröhn",
+        "Enteropatía perdedora de proteínas"
+      ]
+    },
+    {
+      "id": 112,
+      "pregunta": "Un paciente de 23 años, con antecedente de relación sexual sin protección, consulta porque hace 3 días notó aparición de una úlcera en el pene, ubicada en el glande, indolora, de 1 cm de diámetro, de aspecto indurado. Además, se palpa una adenopatía inguinal derecha indolora. Se solicita VDRL y FTA-ABS, resultando ambos negativos. El diagnóstico más probable es:",
+      "opciones": [
+        "Sífilis primaria",
+        "Chancroide",
+        "Enfermedad de Behcet",
+        "Herpes genital",
+        "Linfogranuloma venéreo"
+      ]
+    },
+    {
+      "id": 113,
+      "pregunta": "Una niña de 18 meses de edad presenta un cuadro de diarrea de 3 semanas de evolución, abundante, que ha empeorado en el último tiempo y se ha asociado a náuseas y vómitos alimentarios. Al examen físico está deshidratada y decaída, sin compromiso hemodinámico evidente y su examen abdominal muestra abdomen sensible, con ruidos hidroaéreos conservados. Se solicitan exámenes, que muestran Na+: 130 mEq/L, K+: 3,4 mEq/L, glicemia: 65 mg/dl, creatinina: 1,2 mg/dl, ferritina: 10 ug/L y hematocrito: 29%, VCM: 70 fl. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Diarrea por rotavirus",
+        "Crisis celíaca",
+        "Hiperplasia suprarrenal congénita",
+        "Diarrea crónica inespecífica",
+        "Giardiasis intestinal"
+      ]
+    },
+    {
+      "id": 114,
+      "pregunta": "Un niño de 7 años consulta por dolor abdominal y vómitos de 3 días de evolución, con tendencia a la deshidratación. Hace dos meses estuvo hospitalizado por un cuadro similar, para hidratación endovenosa. Al examen físico tiene FC: 110x’, PA: 110/70 mmHg, T°: 36,8°C. Se solicitan exámenes, que muestran glicemia: 46 g/dl, sodio: 130 mEq/L, potasio: 5,8 mEq/L, pH: 7,32, bicarbonato: 16 mEq/L. El examen de elección para confirmar el diagnóstico es:",
+      "opciones": [
+        "Niveles plasmáticos de cortisol basal",
+        "Insulinemia basal",
+        "Creatinina plasmática",
+        "Amilasemia",
+        "Cetonemia"
+      ]
+    },
+    {
+      "id": 115,
+      "pregunta": "Una paciente de 17 años, con antecedente se haber tenido su menarquia a los 16 años, con reglas que ocurren cada 3 a 4 meses. Tiene vello en el mentón, los brazos, el pecho, los muslos y la línea media abdominal, tanto infraumbilical, como supraumbilical, con un índice de Ferriman-Gallwey > 15. Su examen mamario y genital son normales. ¿Cuál es el examen de elección para hacer el diagnóstico diferencial con el síndrome de ovario poliquístico?",
+      "opciones": [
+        "Relación FSH/LH",
+        "Cariograma",
+        "Curva de insulina",
+        "Niveles plasmáticos de prolactina",
+        "17-hidroxi-progesterona"
+      ]
+    },
+    {
+      "id": 116,
+      "pregunta": "Una paciente de 40 años, multípara de 3, con el último parto por cesárea hace 1 año, consulta por dolor pélvico, en relación a la menstruación, asociado a flujo más abundante de lo habitual, que ha ido en aumento desde hace algunos meses. Al examen físico y ginecológico, se observan paredes vaginales normales y se palpa útero liso, de tamaño ligeramente aumentado, con anexos normales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Miomatosis uterina",
+        "Endometriosis",
+        "Hiperplasia endometrial",
+        "Adenomiosis",
+        "Dismenorrea primaria"
+      ]
+    },
+    {
+      "id": 117,
+      "pregunta": "Una paciente de 32 años, nulípara, consulta por atraso menstrual de 7 semanas, por lo que solicita se corrobore si está embarazada. A la especuloscopía se observa moco cervical abundante, transparente y filante. Al tacto vaginal se objetiva útero de tamaño normal con una masa anexial de 7 cm, indolora y móvil. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Embarazo ectópico",
+        "Aborto retenido",
+        "Quiste folicular",
+        "Embarazo molar",
+        "Torsión ovárica"
+      ]
+    },
+    {
+      "id": 118,
+      "pregunta": "Un paciente de 85 años, con antecedente de deterioro funcional y cognitivo inicial y diagnóstico de diabetes mellitus tipo 2, en tratamiento con metformina 850 mg dos veces al día y glibenclamida 5 mg cada 12 horas, se realiza exámenes de control entre los que destaca una creatinina de 1,0 mg/dL y una hemoglobina glicosilada de 6,9%. Su examen físico no muestra alteraciones. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Suspender la glibenclamida",
+        "Disminuir la dosis de glibenclamida a 5 mg una vez al día",
+        "Suspender metformina",
+        "Disminuir dosis de metformina",
+        "Mantener el tratamiento sin cambios"
+      ]
+    },
+    {
+      "id": 119,
+      "pregunta": "Un paciente de 60 años, con antecedente de diabetes mellitus 2 insulinodependiente, en tratamiento con insulina NPH 30 U en la mañana y 20 U en la noche, presenta un cuadro de malestar, sudoración y palpitaciones intensas a las 3 de la madrugada, que respondió a la ingesta de azúcar, constatándose un hemoglucotest de 50 mg/dL. Su examen físico no muestra alteraciones. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Disminuir la insulina NPH matinal",
+        "Modificar los horarios de las insulinas",
+        "Disminuir la insulina NPH nocturna",
+        "Suspender la insulina NPH nocturna",
+        "Disminuir ambas dosis de insulina NPH"
+      ]
+    },
+    {
+      "id": 120,
+      "pregunta": "Un paciente de 26 años consulta por pirosis y regurgitación de varios meses de evolución. Su examen físico no aporta mayor información. Se realiza una endoscopía digestiva alta que muestra mucosa de aspecto normal, línea Z a 28 cm de la arcada dentaria e impresión hiatal diafragmática a 37 cm de la arcada dentaria. El diagnóstico más probable es:",
+      "opciones": [
+        "Acalasia esofágica",
+        "Hernia hiatal directa",
+        "Hernia paraesofágica",
+        "Esófago de Barret",
+        "Divertículo esofágico"
+      ]
+    },
+    {
+      "id": 121,
+      "pregunta": "Un paciente de 67 años consulta por dolores óseos en múltiples zonas. Se realiza exámenes, entre los que destaca calcemia corregida de 14,4 mg/dl, con pruebas de función renal normales. Además, se solicitan radiografías que muestran imágenes sugerentes de metástasis óseas. ¿Cuál es la conducta más adecuada para proseguir el estudio?",
+      "opciones": [
+        "Calciuria de 24 horas",
+        "Niveles plasmáticos de 25-OH vitamina D",
+        "Niveles plasmáticos de paratohormona",
+        "Cintigrafía ósea",
+        "Niveles plasmáticos de calcio iónico"
+      ]
+    },
+    {
+      "id": 122,
+      "pregunta": "Una paciente de 63 años presenta dolor dorsal intenso, que inició hace 5 días, en relación a un esfuerzo en flexión y que ha aumentado, limitando significativamente sus actividades de la vida diaria. Tiene antecedente de una fractura de muñeca hace un año, que requirió tratamiento quirúrgico. Al examen físico se aprecia adolorida, con signos vitales normales, dolor a la movilización activa y pasiva de su columna dorsal, que limita los movimientos de flexo-extensión. A la inspección la curvatura dorsal se observa redonda, sin cifosis. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Hernia del núcleo pulposo",
+        "Tuberculosis vertebral",
+        "Espondilolistesis dorsal",
+        "Espondilosis dorsal",
+        "Fractura vertebral"
+      ]
+    },
+    {
+      "id": 123,
+      "pregunta": "Un paciente de 17 años, apendictomizado hace 6 horas, evoluciona con malestar general y dolor abdominal intenso. Su pulso es regular a 120 latidos por minuto, su presión arterial es 90/50 mmHg y su temperatura es 37,7ºC. En el examen abdominal presenta dolor a la palpación profunda y superficial, con signos peritoneales difusos, mayores en el hemiabdomen inferior. El diagnóstico más probable es:",
+      "opciones": [
+        "Hemoperitoneo",
+        "Evisceración",
+        "Trombosis de la vena porta",
+        "Dehiscencia de la base apendicular",
+        "Tromboembolismo pulmonar masivo"
+      ]
+    },
+    {
+      "id": 124,
+      "pregunta": "Un paciente de 54 años consulta por dolor abdominal epigástrico intenso, tipo cólico, asociado a náuseas de 6 horas de evolución, por lo que consulta en el servicio de urgencia. Recibe hidratación y analgésicos por vía endovenosa, con respuesta parcial, por lo que es dado de alta. Al día siguiente evoluciona con aumento del dolor, agregándose calofríos y vómitos alimentarios. Al examen físico, tiene FC: 90x’, PA: 120/80 mmHg, Tº: 38ºC y en el examen abdominal presenta dolor intenso a la palpación del abdomen superior, en especial en el hipocondrio derecho. Sus exámenes muestran hematocrito: 43%, blancos: 13.000 por mm3, GOT: 56 UI/L, bilirrubina: 1,1 mg/dl. ¿Cuál es la conducta más adecuada para proseguir el estudio?",
+      "opciones": [
+        "TAC de abdomen",
+        "Endoscopía digestiva alta",
+        "Colangioresonancia",
+        "Ecografía abdominal",
+        "Radiografía de abdomen simple"
+      ]
+    },
+    {
+      "id": 125,
+      "pregunta": "Una paciente de 40 años, IMC: 30, presenta episodios de dolor tipo cólico en el hipocondrio derecho, desde hace 3 meses, que cede espontáneamente luego de algunos minutos. Se realiza una ecografía, que se muestra a continuación (fuente: radiopaedia): El diagnóstico más probable es:",
+      "opciones": [
+        "Colelitiasis",
+        "Coledocolitiasis",
+        "Colecistitis crónica",
+        "Cáncer de vesícula",
+        "Colecistitis aguda"
+      ]
+    },
+    {
+      "id": 126,
+      "pregunta": "Un paciente de 54 años ha presentado varios episodios de cólico renal, con eliminación reiterada de cálculos urinarios. Su examen físico no tiene alteraciones. En sus exámenes destaca creatinina: 1,4 mg/dl y examen de orina con pH: 7,9, glóbulos rojos: 15 x campo, glóbulos blancos: 15 por campo, bacterias en moderada cantidad y cristales de fosfato amónico magnésico (estruvita). El pieloTAC muestra presencia de cálculos coraliformes bilaterales. ¿Qué germen es el agente etiológico, con mayor probabilidad?",
+      "opciones": [
+        "Proteus mirabilis",
+        "Klebsiella oxytoca",
+        "Pseudomona aureginosa",
+        "Campilobacter jejuni",
+        "Escherichia coli"
+      ]
+    },
+    {
+      "id": 127,
+      "pregunta": "¿Qué institución del sistema de salud chileno es la encargada de cursar las autorizaciones sanitarias para el funcionamiento de los establecimientos de salud?",
+      "opciones": [
+        "Instituto de Salud Pública",
+        "Secretaría Regional Ministerial de Salud",
+        "Superintendencia de Seguridad Social",
+        "Superintendencia de Salud",
+        "Servicio de Salud"
+      ]
+    },
+    {
+      "id": 128,
+      "pregunta": "¿Cómo se financia el Plan de Salud Familiar, ofrecido por el sistema de atención primaria de salud de Chile?",
+      "opciones": [
+        "Transferencias por prestaciones otorgadas",
+        "Aportes de fondos municipales",
+        "Transferencias por plan de salud",
+        "Aporte per cápita, en razón del número de inscritos",
+        "Copago de los usuarios"
+      ]
+    },
+    {
+      "id": 129,
+      "pregunta": "Un paciente de 35 años refiere sensación de angustia e inquietud, de un mes de evolución, asociado a insomnio de conciliación y cefalea diaria, de localización occipital, que se irradia hacia los hombros. Refiere que los síntomas iniciaron en relación a la necesidad de cambiarse de casa, ya que fue asignado a nuevo cargo en su trabajo, en una ciudad distinta. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno por somatización",
+        "Depresión mayor",
+        "Trastorno conversivo",
+        "Trastorno adaptativo",
+        "Trastorno disociativo"
+      ]
+    },
+    {
+      "id": 130,
+      "pregunta": "Una paciente de 50 años presenta un cuadro de 5 meses de evolución de dificultades para concentrarse, asociadas a desgano, ánimo bajo y tristeza, síntomas que se acentúan en el periodo premenstrual. Sale muy poco de su casa y ha disminuido la interacción con otras personas, comentando que disfruta poco o nada con las actividades que habitualmente le eran placenteras. Refiere que duerme cerca de 2 horas menos que antes y que ha subido una talla de ropa. Sus exámenes generales descartan patología orgánica. El diagnóstico más probable es:",
+      "opciones": [
+        "Trastorno adaptativo",
+        "Episodio depresivo mayor",
+        "Trastorno de angustia generalizada",
+        "Trastorno de ansiedad social",
+        "Trastorno disfórico premenstrual"
+      ]
+    },
+    {
+      "id": 131,
+      "pregunta": "Una paciente de 75 años, con historia de enfermedad de Alzheimer de 3 años de evolución, con buena funcionalidad presenta un cuadro en que agrede a otras personas y se muestra muy angustiada. Al examen físico le cuesta nombrar algunos objetos, no puede decir los días de la semana de manera invertida y se muestra poco atenta. Además, refiere que su padre ya fallecido está presente en la sala. Se hospitaliza para estudio y manejo y, al inicio, se muestra cooperadora y amable, pero luego exige que la dejen ir e intenta escapar del hospital y agredir al personal de salud. ¿Cuál es el fármaco inicial para el manejo de esta paciente?",
+      "opciones": [
+        "Clorpromazina",
+        "Diazepam",
+        "Mirtazapina",
+        "Alprazolam",
+        "Haloperidol"
+      ]
+    },
+    {
+      "id": 132,
+      "pregunta": "Una mujer de 45 años, hace 6 semanas mientras compraba, presenta un episodio de opresión en el pecho, disnea, vértigo, temor a morir, palpitaciones, disfagia, sensación de lipotimia, visión borrosa y disestesias de las extremidades superiores, asociado a marcada angustia. Desde entonces ha presentado un episodio de similares características cada semana. No tiene otros síntomas y su examen físico es normal, al igual que sus exámenes generales de laboratorio. ¿Cuál es el tratamiento de elección en el largo plazo?",
+      "opciones": [
+        "Inhibidores de la monoaminoxidasa",
+        "Benzodiacepinas",
+        "Antipsicóticos atípicos",
+        "Antidepresivos tricíclicos",
+        "Inhibidores de la recaptura de serotonina"
+      ]
+    },
+    {
+      "id": 133,
+      "pregunta": "Un paciente de 20 años, fumador y consumidor de alcohol, desde hace un mes presenta consumo diario de alcohol. Decide suspenderlo hace algunos días, sin embargo, evoluciona con intranquilidad, sudoración, palpitaciones y angustia, asociado a insomnio y malestar general, que han ido empeorando. Sus padres refieren que está muy asustado y que ha fumado marihuana en los últimos dos días, para disminuir su ansiedad. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Delirium tremens",
+        "Síndrome de abstinencia de alcohol",
+        "Síndrome de abstinencia de marihuana",
+        "Esquizofrenia",
+        "Intoxicación por canabis"
+      ]
+    },
+    {
+      "id": 134,
+      "pregunta": "122) Un paciente de 69 años, con antecedente de diabetes, hipertensión e insuficiencia cardíaca, en tratamiento con aspirina, losartán, amlodipino, furosemida y metformina, consulta por sensación de molestias en las extremidades inferiores, las que describe como pesadas e hinchadas. Se aprecia en buenas condiciones generales, no tiene otros síntomas, sus presiones arteriales están dentro de rangos normales, al igual que su hemoglobina glicosilada. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Suspender el amlodipino",
+        "Aumentar la dosis de furosemida",
+        "Disminuir la dosis de metformina",
+        "Suspender el losartán",
+        "Aumentar la dosis de aspirina"
+      ]
+    },
+    {
+      "id": 135,
+      "pregunta": "Un paciente de 71 años, con antecedente de hipertensión arterial, diabetes e insuficiencia cardíaca, en tratamiento con losartán, metformina, aspirina, nifedipino e hidroclorotiazida consulta por progresión de su disnea de esfuerzos, que aparece al caminar 1 cuadra. Al examen físico, tiene edema de extremidades inferiores, se palpa el choque de la punta en la línea axilar media y se ausculta ritmo cardíaco regular, sin soplos, con crépitos bilaterales en la auscultación pulmonar. Se realiza ecocardiografía que muestra disfunción ventricular, con fracción de eyección de 23%. ¿Qué fármaco debe suspenderse?",
+      "opciones": [
+        "Losartán",
+        "Metformina",
+        "Aspirina",
+        "Nifedipino",
+        "Hidroclorotiazida"
+      ]
+    },
+    {
+      "id": 136,
+      "pregunta": "Un paciente de 38 años, diagnosticado de hipertensión arterial, está en tratamiento con enalapril 20 mg c/12 horas, hidroclorotiazida 25 mg/d y amlodipino 10 mg/día. Se realiza control con monitoreo de 24 horas de presión arterial que muestra presiones arteriales diurnas promedio de 152/100 mmHg, con sobrecarga tensional de 60% sistólica y 43% diastólica y presiones arteriales nocturnas de 140/92 mmHg, con sobrecarga tensional de 25% sistólica y 27% diastólica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Aumentar la dosis de hidroclorotiazida",
+        "Aumentar la dosis de enalapril",
+        "Iniciar inhibidor del receptor de aldosterona y descartar hipertensión secundaria",
+        "Reemplazar el enalapril por losartán",
+        "Reemplazar la hidroclorotiazida por un inhibidor del receptor de aldosterona"
+      ]
+    },
+    {
+      "id": 137,
+      "pregunta": "Un paciente de 71 años, con antecedente de reemplazo valvular tricuspídeo, secundario a una endocarditis bacteriana, con prótesis biológica in situ consulta por consulta por palpitaciones muy intensas, asociadas a disnea. Al examen físico tiene un pulso a 140 latidos por minutos, regular. Se realizan maniobras vagales (masaje carotídeo) y se observa el siguiente electrocardiograma (fuente: slideshare): El diagnóstico más probable es:",
+      "opciones": [
+        "Taquicardia paroxística supraventricular",
+        "Fibrilación auricular",
+        "Flutter auricular",
+        "Síndrome de Wolff Parkinson White",
+        "Taquicardia auricular"
+      ]
+    },
+    {
+      "id": 138,
+      "pregunta": "Un paciente de 70 años presenta astenia, intolerancia al ejercicio y disnea de 3 meses de evolución. Además, presenta lipotimias luego de levantarse de la cama. Al examen físico tiene FC: 45 x’, regular. Se realiza un electrocardiograma, que se muestra a continuación (fuente: cardioparamap.com): El diagnóstico más probable es:",
+      "opciones": [
+        "Bloqueo aurículo-ventricular de primer grado",
+        "Bloqueo aurículo-ventricular de segundo grado, Mobitz I",
+        "Bloqueo aurículo-ventricular de segundo grado, Mobitz II",
+        "Bloqueo aurículo-ventricular completo",
+        "Enfermedad del nodo sinusal"
+      ]
+    },
+    {
+      "id": 139,
+      "pregunta": "Un paciente de 64 años, con antecedente de un infarto al miocardio de pared anterior, hace 1 año, consulta por dolor torácico y disnea de reposo de 40 minutos de duración, asociado a palpitaciones. Al examen físico presenta FC: 200x’ y se realiza un electrocardiograma, que se muestra a continuación (fuente: cardioteca.com): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Taquicardia paroxística supraventricular",
+        "Flutter auricular",
+        "Síndrome de Wolff Parkinson White",
+        "Taquicardia ventricular",
+        "Fibrilación auricular"
+      ]
+    },
+    {
+      "id": 140,
+      "pregunta": "Un paciente de 56 años, hipertenso, en tratamiento con enalapril e hidroclorotiazida presenta irregularidad en sus presiones arteriales, por lo que se decide reemplazar el diurético por clortalidona, con buena respuesta. Se solicitan exámenes de control, entre los que destacan creatinina: 1,0 mg/dl, potasemia: 3,3 mEq/L y natremia: 140 mEq/L. La conducta más adecuada es:",
+      "opciones": [
+        "Reemplazar el enalapril por losartán",
+        "Disminuir cloruro de sodio",
+        "Reemplazar la clortalidona por furosemida",
+        "Administrar suero fisiológico",
+        "Disminuir la dosis de enalapril"
+      ]
+    },
+    {
+      "id": 141,
+      "pregunta": "Una paciente de 29 años, primigesta, cursando un embarazo de 26 semanas, con feto creciendo bajo el percentil 10 para la edad gestacional, se realiza una ecografía-doppler para evaluar el bienestar fetal. ¿Qué alteración obligaría a interrumpir el embarazo de inmediato?",
+      "opciones": [
+        "Aumento del índice cerebroplacentario",
+        "Aumento de resistencia de las arterias uterinas",
+        "Ducto venoso reverso en diástole",
+        "Flujo umbilical ausente en diástole",
+        "Alteración del índice de pulsatilidad de la arteria cerebral media"
+      ]
+    },
+    {
+      "id": 142,
+      "pregunta": "Una paciente de 26 años, multípara de 1, con parto anterior por cesárea, está cursando un nuevo embarazo de 33 semanas, acude a control obstétrico, asintomática y presenta presiones arteriales de 140/90, que no descienden luego de 6 horas de reposo. Además, presenta edema de extremidades inferiores. Se solicita un registro basal no estresante, por 20 minutos, el que se informa como no reactivo. Por ello, se solicita un perfil biofísico que visualiza movimientos respiratorios normales y postura adecuada, con un único bolsillo de líquido amniótico, menor a 1 x 1 cm. Se repite el registro basal no estresante, que vuelve a resultar no reactivo. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cesárea en este momento",
+        "Repetir el perfil biofísico en 7 días",
+        "Realizar test de tolerancia a las contracciones",
+        "Dejar a evolución espontánea",
+        "Inducir el parto con misoprostol"
+      ]
+    },
+    {
+      "id": 1413,
+      "pregunta": "Una paciente de 32 años, cursando embarazo gemelar bicorial y biamniótico de 31 semanas se realiza control con ecografía-doppler, que muestra discordancia de crecimiento de 28%, perfil biofísico tranquilizador y doppler con aumento de la resistencia umbilical y flujo presente en diástole. Ambos fetos se encuentran en posición cefálica. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cesárea ahora",
+        "Inducir el parto ahora",
+        "Realizar control seriado con doppler fetal",
+        "Administrar corticoides antenatales",
+        "Repetir el perfil biofísico"
+      ]
+    },
+    {
+      "id": 144,
+      "pregunta": "Un paciente de 63 años, con antecedente de hipertensión y dislipidemia, en tratamiento con losartán, hidroclorotiazida y atorvastatina consulta en el servicio de urgencia por dolor torácico intenso, EVA 9/10, irradiado al dorso. Al examen físico está diaforético y angustiado, con FC: 115x’, PA: 220/117 mmHg, examen pulmonar con crépitos escasos bibasales y examen cardíaco con choque de la punta no desplazado y auscultación con ritmo regular, en dos tiempos con ruidos apagados. Se solicita un electrocardiograma que muestra taquicardia sinusal y troponinas plasmáticas, que resultan negativas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Neumotórax",
+        "Infarto agudo al miocardio",
+        "Taponamiento pericárdico",
+        "Tromboembolismo pulmonar",
+        "Disección aórtica"
+      ]
+    },
+    {
+      "id": 145,
+      "pregunta": "Un paciente de 67 años, usuario de sildenafil, que se automedica como tratamiento de impotencia sexual, presenta dolor torácico intenso, que inició una hora después de haber consumido dicho medicamento. Se solicita un electrocardiograma, que muestra suprdesnivel del segmento ST en las derivaciones inferiores. ¿Qué fármaco está contraindicado en el manejo de este paciente?",
+      "opciones": [
+        "Clopidogrel",
+        "Aspirina",
+        "Atenolol",
+        "Nitroglicerina",
+        "Estreptoquinasa"
+      ]
+    },
+    {
+      "id": 146,
+      "pregunta": "Una paciente de 38 años consulta porque lleva dos años intentando embarazarse, junto a su pareja. Sus reglas son regulares, su examen físico es normal y cuentan con múltiples exámenes hormonales que dan cuenta que tiene ciclos ovulatorios. Su pareja, de 28 años se realizó un espermiograma, que resultó normal. ¿Cuál es la conducta más adecuada para proseguir el estudio?",
+      "opciones": [
+        "Histeroscopía",
+        "Laparoscopía",
+        "Histerosalpingografía",
+        "Niveles plasmáticos de hormona anti-mülleriana",
+        "Seguimiento folicular ecográfico"
+      ]
+    },
+    {
+      "id": 1417,
+      "pregunta": "Un paciente de 67 años, diabético e hipertenso, presenta un cuadro de 2 meses de evolución de tos persistente, con expectoración mucosa, que en ocasiones es hemoptoica, asociado a disnea de esfuerzos. Además, ha bajado de peso 4 kilogramos y presenta dolor torácico, con tope inspiratorio. Al examen físico FC: 110 x’, PA: 100/60 mmHg, ritmo regular en dos tiempos, con ruidos cardíacos apagados, asimetría del murmullo pulmonar y crépitos escasos bilaterales, mayores a izquierda. En sus exámenes de laboratorio destaca hematocrito: 30%, hemoglobina: 9,9 g/dl, blancos: 10.000 por mm3, dímero D: 649 ng/ml (valor normal: menor a 100), LDH: 760 UI/L. Se realiza radiografía de tórax, que se muestra a continuación (fuente: researchgate.net): ¿Cuál la conducta diagnóstica más adecuada a seguir?",
+      "opciones": [
+        "Broncoscopía",
+        "TAC de tórax",
+        "Videotoracoscopía",
+        "Baciloscopías de expectoración",
+        "AngioTAC de tórax"
+      ]
+    },
+    {
+      "id": 148,
+      "pregunta": "Un paciente de 72 años es hospitalizado por fractura de cadera, manejada con cirugía de prótesis parcial. Al quinto día presenta pérdida de conciencia, luego de ponerse de pie, con recuperación completa algunos minutos después. Luego de ello presenta lipotimias y episodios similares al incorporarse desde la cama. Al examen físico está con FC: 120x’, presión arterial: 100/50 mmHg, extremidades inferiores frías y con cianosis distal y ritmo cardíaco regular, sin soplos y murmullo pulmonar presente. ¿Cuál es el examen más adecuado para confirmar el diagnóstico?",
+      "opciones": [
+        "TAC de cerebro",
+        "Ecocardiograma",
+        "RMN de cerebro",
+        "Electrocardiograma",
+        "AngioTAC de tórax"
+      ]
+    },
+    {
+      "id": 149,
+      "pregunta": "Un paciente de 35 años, en situación de calle, presenta un cuadro de 6 meses de evolución de tos con expectoración mucosa y mucopurulenta, en ocasiones hemoptoica, asociada a malestar general, disnea de esfuerzos, baja de peso y sensación febril. Al examen físico, está enflaquecido, pálido, con T°: 37,5°C, FC: 87x’, PA: 110/70 mmHg, FR: 18x’. Su examen pulmonar muestra crépitos bilaterales y algunas sibilancias. Su hemograma muestra hematocrito: 32%, hemoglobina: 10,6 g/dl, leucocitos: 15.600 por mm3, VHS: 60 mm/h, PCR: 120 mg/L y elisa VIH negativo, PCR covid-19 negativa, baciloscopías de expectoración negativas, con muestra hemorrágica y PPD: 20mm. Se realiza una radiografía de tórax, que se muestra a continuación (fuente radiopaedia): ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar TAC de tórax",
+        "Solicitar cultivo para bacillus tuberculosis en medio sólido",
+        "Solicitar reacción en cadena de polimerasa para tuberculosis en expectoración",
+        "Repetir la PCR de covid-19 en muestra nasofaríngea",
+        "Realizar fibrobroncoscopía con lavado bronquioalveolar"
+      ]
+    },
+    {
+      "id": 150,
+      "pregunta": "Un lactante de 12 meses ha presentado un exantema eritematoso generalizado, en las dos ocasiones en que se ha introducido huevo a su dieta. No tiene otros antecedentes. ¿Qué conducta es la más adecuada, respecto a la vacuna trivírica?",
+      "opciones": [
+        "Administrarla en este momento",
+        "Eliminarla de su esquema de vacunación",
+        "Administrarla a los 18 meses",
+        "Esperar a los 4 años para administrarla",
+        "Esperar a que esté en primero básico para administrarla"
+      ]
+    },
+    {
+      "id": 151,
+      "pregunta": "Un niño de 2 meses, con antecedente de haber nacido a las 34 semanas de gestación, acude a control. ¿En qué momento debe administrarse la vacuna antineumocócica conjugada?",
+      "opciones": [
+        "En este momento",
+        "En 4 semanas más",
+        "En 6 semanas más",
+        "A los 12 meses de edad",
+        "No debe administrarse"
+      ]
+    },
+    {
+      "id": 152,
+      "pregunta": "Un paciente de 42 años consulta por tos de un mes de evolución, sin expectoración. Su esposa está en tratamiento antituberculoso. Su examen físico muestra crépitos escasos bilaterales. Se realizaron baciloscopías de expectoración, que resultan negativas; quantiferón para tuberculosis, que resulta positivo; y radiografía de tórax, que se muestra a continuación (fuente: radiopaedia): La conducta más adecuada es:",
+      "opciones": [
+        "Iniciar profilaxis antituberculosa",
+        "Solicitar reacción de cadena de polimerasa para tuberculosis en expectoración",
+        "Iniciar tratamiento antibiótico antituberculoso",
+        "Solicitar cultivo de Koch",
+        "Solicitar PPD"
+      ]
+    },
+    {
+      "id": 153,
+      "pregunta": "Un adolescente de 17 años presenta un cuadro de 5 días de evolución de tos con expectoración mucosa, al que se le ha agregado fiebre hasta 37,6ºC. Al examen físico está en buenas condiciones, con FR: 15x’, saturación oxígeno: 95% y examen pulmonar con murmullo pulmonar presente, auscultándose crepitaciones y sibilancias bilaterales. ¿Cuál es el agente etiológico más probable?",
+      "opciones": [
+        "Streptococcus pneumoniae",
+        "Mycoplasma pneumoniae",
+        "Chlamydia trachomatis",
+        "Virus influenza",
+        "Pneumocystis jiroveci"
+      ]
+    },
+    {
+      "id": 154,
+      "pregunta": "Una niña de 4 años presenta sinequia vulvar que une gran parte de los labios menores, por lo que impide ver el introito y el himen. No tiene desarrollo puberal, ni antecedentes de infecciones urinarias, ni genitales. El resto de su examen físico es normal. La conducta más adecuada es:",
+      "opciones": [
+        "Realizar lavados con ácido acético",
+        "Aplicar corticoides tópicos",
+        "Remover las sinequias de manera quirúrgica",
+        "Realizar separación manual bajo anestesia local",
+        "Indicar lubricación diaria con vaselina"
+      ]
+    },
+    {
+      "id": 155,
+      "pregunta": "Una paciente de 67 años, con antecedente de artritis reumatoide, en tratamiento con metotrexato y prednisona, consulta por dificultades para ver. Tiene historia de cirugía de cataratas hace dos años. Al examen oftalmológico se constata agudeza vidual 20/25 a derecha y 20/30 a izquierda y, en la campimetría visual, se observa afectación de la zona medial del campo visual derecho y de la zona superior del campo visual izquierdo. El diagnóstico más probable es:",
+      "opciones": [
+        "Desprendimiento de retina",
+        "Lesión del quiasma óptico",
+        "Glaucoma crónico",
+        "Neuritis óptica",
+        "Degeneración macular relacionada con la edad"
+      ]
+    },
+    {
+      "id": 156,
+      "pregunta": "Un paciente de 65 años, con antecedente de revascularización miocárdica hace un año y cirugía de cataratas, consulta porque hace algunas horas dejó de ver su pie derecho. No ha presentado otros síntomas. Al examen físico se aprecia oculomotilidad normal, inspección normal y defecto pupilar aferente relativo en el ojo derecho. La campimetría muestra pérdida del campo visual inferior del ojo derecho. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Neuritis óptica",
+        "Degeneración macular relacionada con la edad",
+        "Accidente vascular encefálico occipital",
+        "Edema macular",
+        "Neuropatía óptica isquémica"
+      ]
+    },
+    {
+      "id": 157,
+      "pregunta": "Una paciente de 56 años, diabética de larga data, mal controlada, con nefropatía diabética en etapa IV, presenta pérdida súbita e indolora de la visión del ojo izquierdo. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Glaucoma",
+        "Edema macular",
+        "Uveítis",
+        "Trombosis de la vena central de la retina",
+        "Hemorragia vítrea"
+      ]
+    },
+    {
+      "id": 158,
+      "pregunta": "Un paciente de 58 años presenta disnea de medianos esfuerzos y astenia. Al examen físico tiene FC: 70 lpm, PA: 120/80 mmHg, examen cardíaco con choque de la punta en el quinto espacio intercostal, línea medioclavicular y auscultación con un soplo diastólico. Al examen pulmonar se constata murmullo pulmonar presente, con crepitaciones basales escasas. Su electrocardiograma muestra fibrilación auricular, con respuesta ventricular de 70 latidos por minuto. El diagnóstico más probable es:",
+      "opciones": [
+        "Estenosis aórtica",
+        "Insuficiencia aórtica",
+        "Estenosis tricuspídea",
+        "Estenosis mitral",
+        "Comunicación interventricular"
+      ]
+    },
+    {
+      "id": 159,
+      "pregunta": "Un paciente de 67 años, con antecedente de una enfermedad pulmonar obstructiva crónica, en tratamiento con broncodilatadores inhalados, evoluciona con aumento importante de su disnea basal, asociado a cianosis y angustia. El paciente está vigil y orientado y en su examen físico tiene FR: 35x’, PA: 110/76 mmHg, FC: 110x’ y al examen pulmonar se aprecia uso de musculatura accesoria, cianosis, aumento del diámetro anteroposterior y sibilancias y roncus intensos bilaterales. Su radiografía de tórax se muestra más abajo (fuente: radiopaedia). Se ingresa al servicio de urgencia, recibiendo antibióticos y nebulizaciones con broncodilatadores por una hora, sin mejoría clínica. Se solicitan gases arteriales, que resultan PaCO2: 62 mmHg, PaO2: 56 mmHg, pH:7,29 y HCO3: 27 mEq/L. La conducta más adecuada, a continuación, es:",
+      "opciones": [
+        "Ventilación mecánica invasiva",
+        "Aminofilina endovenosa",
+        "Oxígeno por cánula nasal de alto flujo",
+        "Ventilación no invasiva",
+        "Bicarbonato de sodio endovenoso"
+      ]
+    },
+    {
+      "id": 160,
+      "pregunta": "Un paciente de 55 años presenta cambio del hábito intestinal, caracterizado por diarrea acuosa, de 3 meses de evolución, asociada a dolor abdominal ocasional. Además, ha bajado 4 kilogramos de peso, desde el inicio de los síntomas. Se realizan exámenes de sangre, entre los que destacan hematocrito: 30%, Hemoglobina: 9,7 g/dl y VCM: 69 fl, albúmina: 2,8 g/dl y GOT: 40 UI/L. Tiene antecedente de un hijo con enfermedad celíaca. ¿Cuál es el examen de elección para proseguir el estudio en esta paciente?",
+      "opciones": [
+        "Prueba terapéutica con dieta sin gluten",
+        "Ecografía abdominal",
+        "Colonoscopía",
+        "Detección de anticuerpos antitransglutaminasa en sangre",
+        "Test de sangre oculta en deposiciones"
+      ]
+    },
+    {
+      "id": 161,
+      "pregunta": "Un paciente de 52 años, con una gran cicatriz de una quemadura antigua, de gran tamaño, en el muslo derecho, que cicatrizó por segunda intención, refiere que, desde hace dos años, presenta una úlcera en relación a la cicatriz. Al examen físico se observa una úlcera de 2 cm en medio de la cicatriz. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Tratamiento con nitrógeno líquido",
+        "Aseo quirúrgico",
+        "Resección amplia",
+        "Biopsia incisional",
+        "Curaciones con povidona y suero fisiológico"
+      ]
+    },
+    {
+      "id": 162,
+      "pregunta": "Un paciente de 78 años, postrado, presenta una lesión en la zona sacra, de 12 cm de diámetro, que afecta la piel y dermis y que en una zona deja entrever el músculo. Tiene necrosis en el borde y mal olor. ¿Cuál es el tratamiento de elección?",
+      "opciones": [
+        "Antibióticos tópicos",
+        "Debridamiento químico",
+        "Curaciones con suero fisiológico",
+        "Colgajo",
+        "Cámara hiperbárica"
+      ]
+    },
+    {
+      "id": 163,
+      "pregunta": "Una paciente de 22 años es hospitalizada por un cuadro de diarrea, vómitos y dolor abdominal de difícil manejo. Durante la hospitalización es sorprendida ingiriendo laxantes, autoinduciéndose vómitos y adulterando la temperatura del termómetro. Se solicitan exámenes, descartándose patología orgánica. Además, luego de indagar, no se encuentra ninguna ganancia evidente con estos síntomas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno conversivo",
+        "Trastorno facticio",
+        "Trastorno delirante",
+        "Trastorno bipolar",
+        "Trastorno de la conducta alimentaria"
+      ]
+    },
+    {
+      "id": 164,
+      "pregunta": "Una paciente de 23 años, usuaria de anticonceptivos orales, desde hace 8 meses, consulta por cefalea intensa premenstrual, de 3 meses de evolución, y que dura hasta el segundo día de la menstruación. Su examen físico y neurológico es normal. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Anticonceptivos combinados orales de ciclo extendido",
+        "Anticonceptivos combinados con menor dosis de estrógeno",
+        "Anticonceptivos combinados con menor dosis de progestágeno",
+        "Indicar anticonceptivos orales de progestágeno solo",
+        "Indicar anticonceptivos combinados inyectables"
+      ]
+    },
+    {
+      "id": 165,
+      "pregunta": "¿Qué antecedente es indicación del uso de estrógenos orales solos, en la terapia de reemplazo hormonal?",
+      "opciones": [
+        "Cáncer de mama",
+        "Dislipidemia",
+        "Histerectomía total",
+        "Osteoporosis",
+        "Menopausia precoz"
+      ]
+    },
+    {
+      "id": 166,
+      "pregunta": "Una mujer de 53 años, con antecedente de reglas irregulares, está en amenorrea desde hace 9 meses. Su examen ginecológico es normal y cuenta con mamografía y Papanicolau recientes, sin alteraciones. Se realiza una ecografía transvaginal que muestra endometrio fino y miometrio con múltiples nódulos hipoecogénicos subserosos y transmurales de entre 2 y 4 cm de diámetro. La indicación más adecuada es:",
+      "opciones": [
+        "Histerectomía total",
+        "Tumorectomía",
+        "Análogos de GnRH",
+        "Anticonceptivos orales",
+        "Observar evolución"
+      ]
+    },
+    {
+      "id": 167,
+      "pregunta": "Una paciente de 25 años presenta dolor epigástrico intenso, asociado a vómitos, de 2 días de evolución, que inició luego de comer ceviche. Al examen físico tiene signos vitales normales y su examen abdominal muestra dolor a la palpación epigástrica. ¿Cuál es el agente etiológico más probable?",
+      "opciones": [
+        "Ascaris lumbricoides",
+        "Entoamoeba histolytica",
+        "Anisakis simplex",
+        "Fasciola hepatica",
+        "Enterobius vermicularis"
+      ]
+    },
+    {
+      "id": 168,
+      "pregunta": "Una adolescente de 14 años presenta cefalea de una semana de evolución. Es traído al servicio de urgencia, tras presentar una convulsión tónico-clónica de 10 minutos de duración, luego de lo que quedó con confusión postictal. Su examen físico no tiene signos focales y al fondo de ojo, se observa una lesión blanquecina, redonda e hiperreflectante en la retina derecha, de 3 mm de diámetro. Se solicita una tomografía axial computada de cerebro, que muestra dos lesiones quísticas de 1 y 3 cm, ubicadas en la zona frontotemporal. Se realiza una punción lumbar, que muestra líquido claro, con proteínas 60 mg/dl, 70 células por mm3, con 80% de mononucleares y presencia de abundantes eosinófilos. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Quiste aracnoidal",
+        "Hidatidosis cerebral",
+        "Encefalitis por virus herpes simplex",
+        "Encefalitis por virus varicela zóster",
+        "Neurocisticercosis"
+      ]
+    },
+    {
+      "id": 169,
+      "pregunta": "Una paciente de 43 años, multípara, presenta dolor abdominal difuso, intenso y vómitos, con marcado meteorismo. Al examen, tiene FC: 110x’, PA: 100/60 mmHg y al examen abdominal se observa cicatriz de cesárea Pfannestiel, y se palpa abdomen muy doloroso tanto a la palpación superficial como profunda, con distensión de la pared abdominal, pérdida de la matidez hepática a la percusión y abolición de los ruidos hidroaéreos a la auscultación. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Obstrucción intestinal",
+        "Pancreatitis aguda",
+        "Perforación intestinal",
+        "Megacolon",
+        "Embolia mesentérica"
+      ]
+    },
+    {
+      "id": 170,
+      "pregunta": "Un niño de 9 años presenta otalgia de dos días de evolución, con secreción por el conducto auditivo, sin mal olor. Al examen físico se aprecia dolor a la tracción del pabellón auricular, con conducto auditivo estrecho, que dificulta la otoscopía, siendo imposible visualizar el tímpano. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Otitis externa",
+        "Tapón de cerumen",
+        "Otitis media crónica",
+        "Cuerpo extraño ótico",
+        "Otitis media aguda perforada"
+      ]
+    },
+    {
+      "id": 171,
+      "pregunta": "Un paciente de 72 años consulta por dificultades en la lectura, que han empeorado en el último mes, a pesar de que realizó un cambio de lentes hace 6 meses. No presenta otros síntomas, tiene agudeza visual 20/80 en el ojo derecho y 20/40 en el ojo izquierdo y refiere que ve algunos objetos deformados. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Degeneración macular relacionada con la edad",
+        "Glaucoma crónico",
+        "Cataratas",
+        "Desprendimiento de retina",
+        "Edema macular"
+      ]
+    },
+    {
+      "id": 172,
+      "pregunta": "Un paciente de 53 años, diabético mal controlado, presenta una lesión en la pierna derecha, desde hace 2 días, que se ha extendido hasta alcanzar un gran tamaño y se ha asociado a malestar general y fiebre. Al examen físico tiene T°: 39,0°C, FC: 115x’, PA: 90/60 mmHg. Además, se aprecia la lesión eritematosa de 20 cm, con zonas violáceas y bulas en su superficie. El diagnóstico más probable es:",
+      "opciones": [
+        "Erisipela",
+        "Herpes zóster",
+        "Pioderma gangrenoso",
+        "Fasceítis necrotizante",
+        "Celulitis bacteriana"
+      ]
+    },
+    {
+      "id": 173,
+      "pregunta": "Un paciente consulta en el servicio de urgencia, dado que hace 20 minutos le saltó una solución de soda cáustica en la cara, la que entró a los ojos, presentando intenso dolor y dificultades para ver. Al examen físico tiene ojo rojo profundo, córneas opacas y con el ojo derecho solo es capaz de contar dedos, mientras que con el ojo izquierdo tiene agudeza visual 20/80. La conducta más adecuada es:",
+      "opciones": [
+        "Ungüento antibiótico y parche ocular",
+        "Lavado con suero fisiológico abundante por 30 minutos",
+        "Hielo local",
+        "Corticoides tópicos",
+        "Analgésicos"
+      ]
+    },
+    {
+      "id": 175,
+      "pregunta": "Un niño de 48 horas de vida, con antecedente de Síndrome de Down, presenta vómitos alimentarios explosivos, asociados a irritabilidad y decaimiento. Al examen abdominal se palpa abdomen blando, doloroso, con distensión epigástrica, que desaparece después de vomitar. El diagnóstico más probable es:",
+      "opciones": [
+        "Atresia esofágica",
+        "Hiperplasia suprarrenal congénita",
+        "Enterocolitis necrotizante",
+        "Atresia duodenal",
+        "Estenosis hipertrófica del píloro"
+      ]
+    },
+    {
+      "id": 176,
+      "pregunta": "Una paciente de 34 años, puérpera hace 15 días, dando lactancia materna, presenta dolor en la mama derecha, de 3 días de evolución, que ha aumentado y se ha acompañado de eritema y malestar general. Al examen físico tiene FC: 78x’, PA: 120/82 mmHg, Tº: 38,0ºC y se observa mama derecha dolor a la palpación de los cuadrantes superiores, los que se palpan indurados y con aumento de la temperatura local, asociado a eritema de la piel de dicha zona. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar drenaje mamario quirúrgico",
+        "Suspender la lactancia materna",
+        "Iniciar antibióticos",
+        "Indicar analgésicos",
+        "Aplicar frío local y luego calor local, alternadamente"
+      ]
+    },
+    {
+      "id": 177,
+      "pregunta": "Un paciente de 23 años consulta por aparición de lesiones dolorosas y pruriginosas en los pies, que aparecieron hace un mes y han aumentado. Al examen físico, se aprecia lo siguiente (fuente: podologíapriego): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Tiña pedis",
+        "Verrugas plantares",
+        "Granuloma piógeno",
+        "Queratosis seborreica",
+        "Molusco contagioso"
+      ]
+    },
+    {
+      "id": 178,
+      "pregunta": "Una paciente de 42 años, hipertensa, presenta cefalea intensa, que inició súbitamente hace 6 horas, mientras realizaba ejercicio y se ha acompañado de vómitos alimentarios. Al examen físico está vigil y orientada, adolorida, con FC: 70x’, PA: 140/90 mmHg, en el examen neurológico tiene signos meníngeos presentes, sin alteraciones motoras ni sensitivas. Se solicita TAC de cerebro sin contraste, que muestra hiperdensidad del espacio intercomisural frontal y del espacio subaracnoideo basal. ¿Cuál es el examen de elección para proseguir el estudio?",
+      "opciones": [
+        "Resonancia magnética nuclear de cerebro",
+        "Punción lumbar",
+        "TAC de cerebro con contraste",
+        "Angiografía cerebral",
+        "Ecocardiograma"
+      ]
+    },
+    {
+      "id": 179,
+      "pregunta": "Una paciente de 21 años, primigesta, cursando embarazo de 24 semanas, se realiza control ecográfico que muestra feto creciendo en percentil 50 para la edad gestacional, con pruebas de bienestar fetales normales. Cuello uterino de 20 mm de longitud. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cerclaje cervical",
+        "Realizar test de tolerancia a las contracciones",
+        "Realizar amniocentesis",
+        "Iniciar progesterona",
+        "Mantener controles habituales del embarazo"
+      ]
+    },
+    {
+      "id": 180,
+      "pregunta": "Un paciente de 65 años, hipertenso y diabético, consulta por disnea y dolor de precordial, que aparece en relación al ejercicio. Es usuario de aspirina, enalapril, metformina, glibenclamida y atorvastatina. Refiere que le es imposible subir más de dos pisos en su edificio o caminar más de dos cuadras sin detenerse, debido al dolor. Su examen físico es normal, al igual que su electrocardiograma. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Derivar a unidad de salud mental",
+        "Solicitar test de esfuerzo",
+        "Solicitar troponinas",
+        "Indicar programa de ejercicios supervisados, con aumento progresivo",
+        "Iniciar anticoagulación oral Nota: pregunta añadida a la reconstrucción."
+      ]
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
 import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
+import Reconstructions from './pages/Reconstructions'
 import './index.css'
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
             <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/reconstructions" element={<Reconstructions />} />
           </Route>
 
           {/* Default Route */}

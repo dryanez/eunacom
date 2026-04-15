@@ -1,0 +1,610 @@
+{
+  "id": "eunacom-jul-2024-p2",
+  "name": "EUNACOM Julio 2024 Parte 2",
+  "month": "Julio",
+  "year": 2024,
+  "total_questions": 50,
+  "questions_with_answers": 50,
+  "questions": [
+    {
+      "id": 1,
+      "pregunta": "Una paciente de 35 años, multípara de 1, se realiza PAP de control, que es informado como presencia de atipias escamosas de significado incierto (ASC-US). Su especuloscopía es normal. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar colposcopía y biopsia cervical",
+        "Solicitar reacción de cadena de polimerasa para virus papiloma humano",
+        "Realizar diatermocoagulación cervical",
+        "Realizar histerectomía",
+        "Realizar biopsia de endometrio Manejo de ASCUS (Células Escamosas Atípicas de Significado Incierto): Vale la pena recordar que las indicaciones más importantes para realizar una colposcopía y biopsia cervical son: Lesión cervical independiente del resultado de la prueba de Papanicolaou (PAP). PAP de tipo glandular, independientemente del grado. PAP escamoso de alto grado. Presencia del virus del papiloma humano (VPH) de alto grado, independientemente del resultado del PAP. PAP escamoso de bajo grado con VPH de bajo grado. Con lo anterior, se puede deducir el manejo de las ASCUS: existes 3 opciones: observar, controlar en 1 año y solicitar una prueba de VPH (la más aceptada). Si VPH(+): Se realiza colposcopía y biopsia, ya que cumple con el criterio de PAP de bajo grado más VPH de bajo grado. Si VPH(-): Se puede optar por la observación o un nuevo PAP en 6 a 12 meses. La opción más recomendada por las guías internacionales es solicitar un nuevo PAP. En menores de 25 años con ASCUS, también se solicita la prueba de VPH, pero se sigue en 1 (si VPH+) o 3 años (si VPH-)."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 2,
+      "pregunta": "Un paciente de 72 años, fumador de 40 paquetes/año, con diagnóstico de cáncer pulmonar de células pequeñas sin tratamiento actual, presenta un cuadro de 7 días de evolución de cefalea y tendencia a la desorientación. En sus exámenes destaca una concentración sérica de sodio de 121 mEq/L, sin focalidad neurológica. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "SIADH (Síndrome de secreción inapropiada de hormona antidiurética)",
+        "Metástasis cerebrales",
+        "Síndrome carcinoide",
+        "Accidente vascular encefálico",
+        "Hipercalcemia Síndrome de Secreción Inapropiada de Hormona Antidiurética (SIADH): El caso describe un SIADH clásico con hiponatremia severa y compromiso neurológico. La causa en este caso es el cáncer de pulmón, ya que las alteraciones del sistema nervioso central y las alteraciones pulmonares son las causas más frecuentes de SIADH. Por el compromiso neurológico, se debe tratar con suero hipertónico a pasar muy lento, para evitar la mielinolisis pontina. Si hubiese estado bien, se maneja solo con restricción de agua libre."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 3,
+      "pregunta": "Un paciente hipertenso en tratamiento con losartán e hidroclorotiazida, y con antecedentes de asma en tratamiento con inhaladores, consulta por palpitaciones, asociadas a disnea y angustia. Al examen físico se constata taquicardia con frecuencia cardíaca de 124 latidos por minuto y presión arterial de 80/40 mmHg. Se solicita un electrocardiograma que se muestra a continuación (fuente: myekg.com): ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Desfibrilación",
+        "Amiodarona endovenosa",
+        "Propranolol endovenoso",
+        "Adenosina endovenosa",
+        "Cardioversión eléctrica Manejo de la Fibrilación Auricular Hemodinámicamente Inestable: En el caso de una fibrilación auricular con respuesta ventricular rápida que cause inestabilidad hemodinámica, se debe realizar cardioversión eléctrica inmediata (no confundirla con la desfibrilación eléctrica, que se usa en el paro). Este manejo se aplica a cualquier tipo de taquiarritmia con hemodinamia inestable. Si la fibrilación auricular hubiera presentado una hemodinamia estable, el manejo inicial habría sido disminuir la frecuencia cardíaca con propranolol endovenoso."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 5,
+      "pregunta": "Un niño de 5 años, nacido a las 32 semanas por parto vaginal, es llevado a control porque se acerca mucho a la pantalla cuando ve televisión. La inspección ocular es normal. La agudeza visual es de 20/25 en el ojo derecho y 20/80 en el ojo izquierdo, la cual mejora a 20/25 al usar un agujero estenopeico. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Ambliopía",
+        "Microftalmia",
+        "Ametropía",
+        "Glaucoma congénito",
+        "Retinopatía del prematuro Vicios de Refracción y Agudeza Visual: La mejora de la agudeza visual al mirar a través de un agujero estenopeico es característica de los vicios de refracción, también conocidos como ametropías. En este caso, no hay ambliopía porque la agudeza visual se corrige completamente. Si la agudeza visual solo hubiera mejorado parcialmente con la corrección de la ametropía, el diagnóstico también habría incluido ambliopía anisometrópica."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuál de las siguientes medidas se considera más adecuada para prevenir el deterioro cognitivo en adultos mayores entre 60 y 75 años?",
+      "opciones": [
+        "Higiene del sueño",
+        "Terapia de relajación",
+        "Ejercicio físico y estudio activo",
+        "Actividades manuales frecuentes",
+        "Administración oral de vitamina C y folatos Mantenimiento de la Salud en Adultos Mayores: El ejercicio físico y el estudio activo son las medidas que han demostrado mayor impacto en mantener la salud física, cognitiva y mental de los adultos mayores.."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 9,
+      "pregunta": "Usted atiende a un recién nacido de 10 días de vida, junto a su madre. Nació por parto vaginal sin complicaciones, pesando 3.200 gramos al nacer y 3.050 gramos al momento del alta. La madre refiere que presenta llanto frecuente y permanece constantemente prendido al pecho, por lo que sospecha que tiene dolor abdominal. Al examen físico, el niño llora vigorosamente y se observa en buen estado general. Su peso actual es de 3.350 gramos. ¿Cuál es la conducta más adecuada en este caso?",
+      "opciones": [
+        "Agregar fórmula láctea después de cada toma",
+        "Indicar a la madre que suspenda el consumo de lácteos y reevaluar al niño",
+        "Citar a control en 24 horas",
+        "Reforzar la técnica de lactancia materna",
+        "Prescribir lactobacillus reuteri Peso en Recién Nacidos: Es normal que un recién nacido pierda hasta un 10% de su peso durante los primeros días de vida, el cual se recupera al cumplir los 7 días. Luego de la baja inicial, el incremento norma es de 20 a 25 g al día o más. En este caso, el recién nacido ha subido de peso adecuadamente, lo que sugiere que es un recién nacido normal. Por estar prendido al pecho todo el día, se asume que la técnica de lactancia no es óptima. Si no hubiese subido de peso, sería correcto mejorar la técnica de lactancia y, además, citar a control en 24 horas. El Lactobacillus reuteri se indica en los cólicos, pero son poco probables a esta edad.."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 11,
+      "pregunta": "Una paciente de 32 años presenta vértigo intenso de 2 días de evolución, el que dificulta la marcha y se asocia a vómitos en múltiples oportunidades. Al examen físico se encuentra audición conservada y se objetiva un nistagmo unidireccional horizontal a derecha y lateropulsiones a izquierda. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Vértigo postural paroxístico benigno",
+        "Migraña vertebrobasilar",
+        "Parálisis vestibular periférica",
+        "Accidente vascular encefálico de fosa posterior",
+        "Enfermedad de Ménière Vértigo Periférico: El caso describe un vértigo con características de vértigo periférico sin signos de alarma. La intensidad y duración de los síntomas sugieren una parálisis vestibular periférica o neuronitis vestibular. La enfermedad de Meniere presentaría síntomas auditivos. El vértigo postural paroxístico benigno suele durar solo unos segundos y se desencadena con los movimientos de la cabeza."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 12,
+      "pregunta": "Una paciente de 56 años ingresa al servicio de urgencias tras sufrir un accidente automovilístico de alta energía. Presenta múltiples lesiones, hemorragia masiva, taquicardia, hipotensión e inestabilidad hemodinámica. Se sospecha una fractura de pelvis en el examen físico. Se solicitan imágenes, entre las que se informan una TAC cerebral con un hematoma subdural izquierdo con desplazamiento de 11 mm desde la línea media de la masa encefálica; una TAC de tórax revela múltiples fracturas costales, neumotórax izquierdo con desplazamiento de la tráquea hacia la derecha; TAC de abdomen y pelvis con fractura de pelvis desplazada. ¿Cuál de las siguientes medidas terapéuticas es la más urgente?",
+      "opciones": [
+        "Intubación orotraqueal",
+        "Laparotomía exploradora",
+        "Evacuación quirúrgica del hematoma subdural",
+        "Pleurostomía izquierda",
+        "Estabilización de la fractura de pelvis con un dispositivo de compresión neumática Neumotórax a Tensión: El paciente presenta múltiples lesiones, pero la más urgente de atender es un neumotórax a tensión (desplazamiento de la tráquea e hipotensión arterial). En este contexto, la pleurostomía se presenta como el procedimiento más urgente."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 14,
+      "pregunta": "Un paciente de 29 años, tratado con amoxicilina por amigdalitis pultácea diagnosticada hace 14 días, presenta desde hace 3 días ardor en los ojos, lesiones en la boca, malestar general y aparición de un rash cutáneo. Al examen físico se aprecia eritema conjuntival bilateral, úlceras orales y un exantema con pápulas y placas eritematosas en tronco y extremidades. La inspección facial muestra lo siguiente (fuente: prontopele.com.br): ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Síndrome de Stevens-Johnson",
+        "Gingivoestomatitis herpética",
+        "Necrólisis epidérmica tóxica",
+        "Pénfigo",
+        "Escarlatina Síndrome de Stevens-Johnson: El cuadro clínico presentado, junto con la imagen, son característicos del síndrome de Stevens-Johnson."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 15,
+      "pregunta": "Una mujer de 30 años presenta un cuadro de un mes de evolución de tos con expectoración mucopurulenta, asociada a sudoración nocturna, pérdida de peso y fiebre intermitente. Al examen físico tiene T°: 37,1°C, PA: 130/82 mmHg, FC: 96x’, saturación O2: 96% y a la auscultación pulmonar se oyen estertores y crépitos bilaterales. Se solicita radiografía de tórax, que se muestra más abajo (fuente: Radiopaedia). Se solicitan baciloscopías de expectoración, que resultan negativas y prueba de quantiferón-TB, que también resulta negativa. Su marido está en tratamiento antituberculoso por tuberculosis pulmonar activa. ¿Cuál es la conducta más adecuada para el manejo de esta paciente?",
+      "opciones": [
+        "Solicitar PCR para Mycobacterium tuberculosis",
+        "Solicitar prueba de IGRA (ensayo de liberación de interferón gamma)",
+        "Realizar lavado bronquioalveolar",
+        "Solicitar TAC de tórax",
+        "Iniciar tratamiento antituberculoso Manejo de la Tuberculosis: El paciente presenta un cuadro clínico y radiográfico compatible con una infección tuberculosa. Si bien las baciloscopías resultaron negativas, los antecedentes epidemiológicos (el marido tiene tuberculosis activa), sumados a la clínica y la radiografía, son suficientes para iniciar el tratamiento antituberculoso de inmediato. Se puede solicitar una PCR para Mycobacterium tuberculosis para confirmar el diagnóstico, pero no es necesario esperar los resultados para comenzar el tratamiento, ya que la probabilidad es muy alta y se trata de una patología grave. El quantiferón y los IGRAs sirven para el diagnóstico de tuberculosis latente y no para la sospecha de tuberculosis activa."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 17,
+      "pregunta": "Una paciente de 20 años consulta por aumento de volumen en el cuello de 2 meses de evolución, asociado, en el último tiempo, a leve malestar general, fiebre ocasional y sudoración nocturna. Al examen físico, se palpan adenopatías submandibulares y cervicales bilaterales de consistencia aumentada. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Tuberculosis ganglionar",
+        "Linfoma",
+        "Infección por VIH",
+        "Sarcoidosis",
+        "Mononucleosis infecciosa Linfoma de Hodgkin: La historia clínica sugiere un linfoma, probablemente un linfoma de Hodgkin, debido a la presencia de síntomas B y la edad. Sin embargo, estos síntomas no son específicos de este tipo de cáncer. El diagnóstico definitivo se realiza mediante una biopsia ganglionar excisional."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 19,
+      "pregunta": "Una paciente de 31 años con 28 semanas de gestación y antecedente de asma severo, presenta un cuadro de cefalea intensa asociada a tinitus. Al examen físico se constata presión arterial de 160/110 mmHg. El registro fetal muestra una frecuencia cardíaca de 135 latidos por minuto. No tiene focalidad neurológica. ¿Cuál es la conducta inicial más adecuada para esta paciente?",
+      "opciones": [
+        "Administrar labetalol endovenoso",
+        "Administrar nifedipino oral",
+        "Administrar sulfato de magnesio endovenoso",
+        "Solicitar TAC de cerebro",
+        "Administrar misoprostol intrarrectal Manejo de Crisis Hipertensiva en el Embarazo: La paciente presenta una crisis hipertensiva del embarazo. El tratamiento habitual en estos casos es con labetalol intravenoso. Sin embargo, en esta paciente en particular, el uso de betabloqueadores está absolutamente contraindicado debido a su historial de asma severo. La alternativa de tratamiento en este caso es el nifedipino, que generalmente se administra por vía oral."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 21,
+      "pregunta": "Un paciente de 55 años con diabetes mellitus mal controlada con metformina consulta por disestesias y sensación de aumento de volumen o edema en ambas manos, de predominio nocturno, que disminuyen con el movimiento y ceden al iniciar sus actividades diarias. El examen físico muestra movilidad y sensibilidad conservadas, con leve atrofia de la eminencia tenar. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Neuropatía diabética simétrica sensitiva",
+        "Contractura de Dupuytren",
+        "Atrapamiento de los dedos flexores de la mano",
+        "Artritis reumatoide",
+        "Síndrome del túnel carpiano Síndrome del Túnel Carpiano vs. Neuropatía Diabética: El paciente presenta un cuadro clínico compatible con síndrome del túnel carpiano. Se asocia a diabetes. El dolor nocturno y la desaparición de los síntomas con las actividades de la vida diaria son características distintivas del síndrome del túnel carpiano. En contraste, la neuropatía diabética simétrica sensitiva suele afectar primero a los pies y solo en etapas más avanzadas a las manos."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 23,
+      "pregunta": "Una paciente de 40 años se realiza una mamografía que reporta BIRADS 0 (insuficiente). Posteriormente, se realiza una ecografía mamaria con resultado BIRADS 2. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Repetir la mamografía en 6 meses",
+        "Repetir la ecotomografía mamaria en 6 meses",
+        "Solicitar una mamografía con compresión lateralizada",
+        "Solicitar una resonancia magnética nuclear de mamas",
+        "Realizar biopsia estereotáxica Manejo de Mamografías BIRADS 0: Las mamografías clasificadas como BIRADS 0 requieren estudios adicionales para su evaluación, siendo la ecografía mamaria la técnica de elección. En el caso de las ecografías mamarias BIRADS 2, la lesión es benigna. Sin embargo, se recomienda repetir la ecografía en 6 meses para confirmar su estabilidad. Un ejemplo de lesión BIRADS 2 en la ecografía es el fibroadenoma, que requiere de seguimiento en 6 meses."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 25,
+      "pregunta": "Una paciente usuaria de anticonceptivos y con antecedentes familiares de hipotiroidismo, consulta por aumento de volumen en el cuello. Al examen físico, la tiroides se palpa aumentada de tamaño, sin nódulos. Los exámenes revelan una TSH: 2,0 UI/L, T4: 14,0 ug/dl (valor normal: 4,5 a 9,5), anticuerpos antitiroglobulina: 48 UI/ml (valor normal: <35) y anticuerpos antiperoxidasa tiroidea: 320 UI/ml (valor normal: <35). ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Solicitar T4 libre",
+        "Solicitar ecografía tiroidea",
+        "Solicitar una cintigrafía tiroidea",
+        "Realizar control de TSH y T4 en un año",
+        "Realizar biopsia tiroidea por punción Tiroiditis de Hashimoto Eutiroidea: El diagnóstico más probable en esta paciente es tiroiditis de Hashimoto, ya que presenta bocio y elevación de los anticuerpos antiperoxidasa tiroidea. Si bien la T4 está elevada, esto se debe al uso de anticonceptivos, que elevan la TBG. En las pacientes que utilizan anticonceptivos, se debe utilizar la T4 libre en lugar de la T4 total. El valor normal de la TSH descarta la presencia de hipertiroidismo. El manejo de la tiroiditis de Hashimoto eutiroidea, como en este caso, consiste en realizar un control frecuente con pruebas tiroideas anuales para detectar y tratar precozmente el eventual hipotiroidismo."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 27,
+      "pregunta": "Un paciente de 40 años con antecedente de cirugía bariátrica presenta un cuadro de 24 horas de dolor abdominal muy intenso, tipo cólico, asociado a múltiples episodios de vómitos alimentarios. Al examen físico presenta T°: 38,5°C, frecuencia cardiaca regular a 108 lpm, presión arterial de 100/60 mmHg. Al examen abdominal, se observa abdomen distendido, doloroso a la palpación, con resistencia muscular difusa, se ausculta bazuqueo intestinal y ruidos hidroaéreos intensos. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Íleo mecánico por bridas",
+        "Perforación intestinal",
+        "Isquemia mesentérica",
+        "Colitis isquémica",
+        "Gastroenteritis aguda Obstrucción Intestinal por Bridas: El paciente presenta un cuadro clínico de obstrucción intestinal, caracterizado por la tríada de dolor cólico, vómitos y distensión abdominal. En este caso, la causa más probable de la obstrucción son las bridas, debido al antecedente de cirugía abdominal previa."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 29,
+      "pregunta": "Una paciente de 58 años presenta dolor en el hombro derecho desde hace 4 meses, que aumenta con la actividad física. Refiere que es intenso, con EVA 6/10, empeorando en la noche. Al examen físico, la movilidad pasiva está conservada, pero presenta limitación en la movilidad activa, especialmente para elevar el brazo por encima del hombro y en los movimientos de rotación interna. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Artrosis acromioclavicular",
+        "Artrosis glenohumeral",
+        "Síndrome del manguito rotador",
+        "Capsulitis adhesiva",
+        "Tendinopatía bicipital Síndrome de Manguito Rotador: El paciente presenta un síndrome de manguito rotador clásico. La capsulitis adhesiva, en cambio, se caracteriza por la limitación tanto de la movilidad pasiva como activa."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 31,
+      "pregunta": "Una paciente de 65 años, menopáusica hace 15 años, sufrió una fractura de muñeca derecha hace un año y recientemente sufrió una fractura de cadera derecha. La densitometría ósea muestra un T-score de -3 en la zona lumbar, -2.7 en la cadera derecha y -2.5 en la cadera izquierda. Además de indicar una adecuada ingesta de calcio y vitamina D, ¿cuál es el tratamiento farmacológico más adecuado?",
+      "opciones": [
+        "Alendronato 70 mg semanal",
+        "Risedronato 150 mg semanal",
+        "Ácido zoledrónico 5 mg cada 6 meses",
+        "Terapia de reemplazo hormonal",
+        "Denosumab endovenoso Tratamiento de la Osteoporosis: El tratamiento de la osteoporosis generalmente incluye la ingesta de calcio, vitamina D y bifosfonatos. No se han encontrado diferencias estadísticamente significativas entre los distintos tipos de bifosfonatos, y la principal diferencia entre ellos radica en la periodicidad con la que se administran. El alendronato se administra semanalmente, el ibandronato mensualmente, y el ácido zoledrónico semestral o anualmente. Sin embargo, en casos de osteoporosis severa, definida por un T-score menor a -3 o por la presencia de fracturas osteoporóticas (como en este caso), se recomienda el tratamiento con anabólicos óseos, en lugar de bifosfonatos (teriparatida y romosozumab). El denosumab es una opción aceptable en estos casos. El denosumab es un anticuerpo monoclonal que inhibe la acción de los osteoclastos."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 33,
+      "pregunta": "Un hombre de 21 años experimenta dificultades para realizar presentaciones en público, que han afectado su rendimiento académico. Además, refiere enrojecimiento facial y torpeza en situaciones sociales. Recientemente no pudo terminar una presentación oral frente a su curso, ya que refiere que su mente se quedó en blanco en un momento. Todo esto le ha generado angustia y tristeza. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Fobia específica",
+        "Agorafobia",
+        "Trastorno de ansiedad generalizada",
+        "Trastorno de ansiedad social",
+        "Trastorno de personalidad evitativa Fobia Social: El cuadro clínico presentado describe una fobia social, también llamada trastorno de ansiedad social."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 34,
+      "pregunta": "Un paciente de 43 años, con antecedentes de tabaquismo y consumo excesivo de alcohol, consulta por un cuadro de 5 días de evolución caracterizado por sensación febril, tos con expectoración mucopurulenta y en ocasiones hemoptoica. Al examen físico, se observa delgado, con T°: 38,5°C, frecuencia cardíaca: 100x’, PA: 118/76 mmHg, saturación arterial de 95% y frecuencia respiratoria: 17x’. Su examen pulmonar muestra crepitaciones y algunos estertores bilaterales y su examen cardíaco muestra ritmo regular en dos tiempos, sin soplos. Se solicita una radiografía de tórax, que se muestra a continuación: ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar una prueba de quantiferón para tuberculosis",
+        "Realizar una broncoscopia",
+        "Solicitar una prueba de elisa de cuarta generación para VIH",
+        "Realizar una toracocentesis diagnóstica y evacuadora",
+        "Solicitar una tomografía axial computarizada (TAC) de tórax Derrame Pleural: El cuadro clínico sugiere una tuberculosis activa en la infección inicial o bien una neumonía bacteriana, en ambos casos con derrame pleural izquierdo visible en la radiografía. La toracentesis diagnóstica y evacuadora es la medida más importante. Se debe solicitar PCR para Mycobacterium tuberculosis o, al menos, baciloscopías. El quantiferón-TB solo es útil para la tuberculosis latente, que no se sospecha en este caso al haber síntomas."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 36,
+      "pregunta": "Un lactante de 6 meses presenta ocho hemangiomas infantiles localizados en el tronco, principalmente en la espalda. ¿Cuál es la conducta más adecuada para el manejo de este paciente?",
+      "opciones": [
+        "Solicitar ecografía abdominal",
+        "Iniciar propranolol oral",
+        "Iniciar corticoides intralesionales",
+        "Solicitar una resonancia magnética nuclear de cerebro",
+        "Solicitar estudio de neurofibromatosis Hemangiomas Infantiles: La presencia de múltiples hemangiomas infantiles obliga a descartar hemangiomas viscerales con una ecografía abdominal. El propranolol oral es el tratamiento de elección para los hemangiomas complicados o deformantes."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 38,
+      "pregunta": "Un paciente de 70 años consulta por disnea de medianos esfuerzos progresiva, asociada a ortopnea. Al examen físico tiene frecuencia cardíaca: 78 lpm, presión arterial: 130/80 mmHg, examen pulmonar con murmullo vesicular conservado y presencia de crépitos bibasales, examen cardíaco con ritmo irregular en dos tiempos, con presencia de soplo diastólico. Se palpa el choque de la punta en el quinto espacio intercostal línea medioclavicular y se observa edema en extremidades inferiores con signo de la fóvea. Su electrocardiograma muestra fibrilación auricular con respuesta ventricular controlada. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Estenosis aórtica",
+        "Estenosis pulmonar",
+        "Estenosis mitral",
+        "Insuficiencia aórtica",
+        "Insuficiencia pulmonar Estenosis Mitral: El cuadro clínico es compatible con estenosis mitral. Se recomienda repasar la semiología cardíaca."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 40,
+      "pregunta": "Una paciente de 35 años con antecedente de enfermedad inflamatoria pélvica previa tratada, consulta por un cuadro de 24 horas de evolución de sangrado genital escaso y dolor abdominal bajo asociado a un test de embarazo en orina positivo. Refiere 6 semanas de amenorrea. Al examen físico sus signos vitales muestran FC: 82x’, PA: 110/74 mmHg y se encuentra en buenas condiciones generales, sin alteraciones en el examen abdominal. Su especuloscopía muestra escaso sangrado uterino. ¿Cuál es la conducta inicial más adecuada?",
+      "opciones": [
+        "Solicitar ecografía y niveles plasmáticos de gonadotropina coriónica humana",
+        "Control con ecografía en 7 días",
+        "Realizar una laparoscopía exploradora inmediata",
+        "Realizar legrado uterino.",
+        "Solicitar una resonancia magnética nuclear de pelvis Metrorragia en el Embarazo: En una paciente con metrorragia en la primera mitad del embarazo (por las 6 semanas de amenorrea con prueba de embarazo positiva), se debe solicitar una ecografía para diferenciar entre aborto, embarazo ectópico y mola. Los niveles de gonadotropina coriónica humana ayudan a identificar embarazos ectópicos, con valores superiores a 3.500 UI/L y ecografía negativa para gestación intrauterina. La paciente presenta estabilidad hemodinámica, lo que reduce la sospecha de un embarazo ectópico roto."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 42,
+      "pregunta": "Un paciente es hospitalizado durante 10 días por causa de una neumonía neumocócica adquirida en la comunidad. Algunos días después de haber sido dado de alta, presenta diarrea líquida abundante, con 5 a 6 evacuaciones al día, asociada a dolor abdominal, malestar general y febrículas hasta 37.3°C. ¿Cuál es el examen de elección para continuar el estudio?",
+      "opciones": [
+        "Colonoscopía",
+        "Parasitológico ampliado de deposiciones",
+        "Coprocultivo",
+        "Reacción en cadena de la polimerasa (PCR) para Clostridium difficile",
+        "Ecografía abdominal Diarrea por Clostridioides (Clostridium) Difficile: Tras recibir antibióticos, se debe descartar diarrea por Clostridioides difficile mediante PCR, que ha reemplazado las pruebas de toxinas A y B en heces."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 44,
+      "pregunta": "Una paciente consulta al servicio de urgencias por disnea y malestar de 2 horas de evolución. Refiere un viaje reciente en avión desde Europa hace 12 horas y es usuaria de anticonceptivos orales. Al examen físico, tiene presión arterial: 110/70 mmHg, frecuencia cardíaca: 100x’ y saturación arterial de oxígeno: 90%, su auscultación cardiopulmonar es normal, al igual que el resto de su examen físico. Se solicita un electrocardiograma que muestra taquicardia sinusal a 120 latidos por minuto. ¿Cuál es el examen de elección para continuar con el estudio?",
+      "opciones": [
+        "Dímero D",
+        "Ecocardiograma",
+        "AngioTAC de tórax",
+        "Péptido natriurético cerebral",
+        "Electrocardiograma Holter de 24 horas Score de Wells para TEP: La paciente presenta dos criterios del score de Wells para TEP: taquicardia y cuadro clínico sugestivo de TEP sin otro diagnóstico más probable. Esto implica un riesgo intermedio que obliga a descartar la condición con imágenes. El angioTAC de tórax es la prueba de elección, ya que la paciente está hemodinámicamente estable. La otra forma de ver el caso es directamente ver que tiene un cuadro clínico compatible, con factores de riesgo y alteraciones en el examen físico, lo que da una probabilidad al menos intermedia de TEP, lo que obliga a solicitar un angioTAC en lugar de sólo un dímero D."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 46,
+      "pregunta": "Un paciente de 79 años, con antecedente de cáncer de pulmón en espera de tratamiento, presenta un cuadro de 5 días de malestar general, disnea y episodios de pérdida de conocimiento de pocos segundos de duración, con recuperación completa. El examen físico muestra presión arterial: 80/60 mmHg, frecuencia cardíaca: 110x’ regular, cuello con ingurgitación yugular a 50 grados. El examen pulmonar muestra murmullo pulmonar presente, sin otros ruidos agregados y la auscultación cardíaca es difícil de realizar, ya que los ruidos cardíacos se encuentran apagados. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Tromboembolismo pulmonar",
+        "Taponamiento cardíaco",
+        "Derrame pleural",
+        "Síndrome de la vena cava superior",
+        "Insuficiencia tricuspídea Taponamiento Cardíaco: Aunque el antecedente de cáncer, la hipotensión y la disnea sugieren un tromboembolismo pulmonar, la disminución de la intensidad de los ruidos cardíacos apunta a derrame pericárdico con taponamiento, también compatible con el antecedente de cáncer y el resto de la clínica. Se recomienda revisar el resumen de semiología cardíaca."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 48,
+      "pregunta": "Un paciente de 60 años, gran fumador y con antecedentes de consumo excesivo de alcohol, hasta hace 6 meses en que suspendió el cigarrillo y la ingesta de alcohol, consulta por episodios de dolor abdominal epigástrico intenso, asociado a vómitos alimentarios. Refiere también episodios de diarrea abundante, que han ido en aumento. Se solicitan exámenes, entre los que muestra hemograma con hematocrito: 39%, blancos: 9.000 por mm3, plaquetas: 250.000 por mm3; glicemia de ayuno: 122 mg/dL, lipasa plasmática: 210 UI/L, amilasa plasmática: 90 UI/L, fosfatasa alcalina: 210 UI/L, GOT: 32 UI/L, GPT: 40 U/L y GGT: 70 UI/L. Se realiza ecografía abdominal, que se describe como “ventana ecográfica insuficiente por meteorismo”. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Pancreatitis aguda",
+        "Colecistitis aguda",
+        "Cáncer de páncreas",
+        "Coledocolitiasis",
+        "Pancreatitis crónica Pancreatitis Crónica: El caso describe una pancreatitis crónica con complicaciones típicas como diabetes (tien glicemia de ayuno alterada y no aún diabetes) y síndrome de mala absorción. Se caracteriza por dolor abdominal, generalmente después de ingerir alimentos o alcohol. La causa más frecuente es el alcoholismo."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 50,
+      "pregunta": "Un paciente con diagnóstico de tuberculosis activa inicia tratamiento antituberculoso con un esquema primario. Al tercer mes de tratamiento, se realiza un control y se observa que las baciloscopías mensuales han permanecido positivas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Respuesta clínica esperable",
+        "Fracaso del tratamiento",
+        "Recaída de la tuberculosis",
+        "Infección por micobacterias atípicas",
+        "Aspergilosis pulmonar Control de Tratamiento de Tuberculosis: Es normal que las baciloscopías se mantengan positivas hasta el tercer mes de tratamiento para la tuberculosis. El diagnóstico de fracaso al tratamiento se realiza con un cultivo positivo a partir del cuarto mes y se sospecha si la baciloscopía continúa positiva hasta el cuarto mes."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 52,
+      "pregunta": "Una paciente de 41 años que trabaja como ejecutiva en una empresa, consulta por cefalea, náuseas y mareos frecuentes y recurrentes. Su examen físico es normal y refiere sentirse estresada y exigida en su trabajo, ya que los resultados de la empresa dependen de su desempeño. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno somatomorfo",
+        "Trastorno disociativo",
+        "Trastorno conversivo",
+        "Trastorno facticio",
+        "Trastorno adaptativo de tipo ansioso Trastorno Somatomorfo: Este audio describe un trastorno somatomorfo, caracterizado por síntomas físicos sin una causa orgánica subyacente."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 54,
+      "pregunta": "Un paciente diabético de larga data en tratamiento con empagliflozina 10 mg al día, metformina 1.000 mg cada 8 horas y atorvastatina 20 mg al día, presenta presiones arteriales de 140/90 mmHg y 158/87 mmHg en dos controles diferentes. El resto de su examen físico es normal y trae exámenes, entre los que destaca hemoglobina glicosilada de 6.9%. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Iniciar terapia depletiva de potasio",
+        "Iniciar tratamiento antihipertensivo",
+        "Solicitar un monitoreo ambulatorio de presión arterial (MAPA)",
+        "Iniciar terapia antiagregante plaquetaria",
+        "Iniciar insulina Hipertensión en Paciente Diabético: Aunque se recomiendan tres tomas de presión arterial o un monitoreo ambulatorio de 24 horas para diagnosticar hipertensión, dos tomas pueden ser suficientes en pacientes diabéticos si hay alta sospecha. El objetivo de presión arterial en estos pacientes es menor a 130/80 mmHg, por lo que está claramente sobre esos valores. El tratamiento inicial recomendado en diabéticos son los antihipertensivos IECA o ARA II."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 56,
+      "pregunta": "Un hombre de 45 años consulta por ánimo deprimido, anhedonia, alteraciones del sueño y dificultades para concentrarse, los cuales han afectado su desempeño laboral y social durante los últimos 4 meses. No refiere antecedentes de episodios maníacos ni psicosis, pero sí un episodio depresivo mayor hace cinco años, tratado con éxito con fluoxetina. En esta ocasión, se inició tratamiento con escitalopram (20 mg/día) durante 4 semanas, pero no ha mostrado mejoría significativa en sus síntomas. No refiere efectos secundarios importantes con el medicamento y su función tiroidea y niveles de vitamina B12 y ácido fólico son normales. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Aumentar la dosis de escitalopram",
+        "Cambiar el tratamiento a venlafaxina",
+        "Iniciar terapia electroconvulsiva (TEC)",
+        "Agregar un antipsicótico atípico como quetiapina",
+        "Cambiar el tratamiento a fluoxetina Tratamiento de la Depresión: El tratamiento de elección para un episodio depresivo mayor unipolar son los antidepresivos ISRS, especialmente si el paciente ya ha respondido a este tipo de medicamento. Si no hay respuesta después de 4 semanas, se recomienda cambiar a un antidepresivo dual como venlafaxina o duloxetina."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 58,
+      "pregunta": "Una lactante de 2 meses de edad presenta un cuadro de fiebre hasta 39°C, de 24 horas de evolución. Es llevada al servicio de urgencias debido a que ha evolucionado con deterioro del estado general y tendencia a la letargia. Al examen físico se observa soporosa, con un llenado capilar de 5 segundos, deshidratada y taquicárdica a 158 latidos por minuto. La temperatura es de 39,3°C. Además de administrar oxígeno, ¿cuál es la primera medida a tomar?",
+      "opciones": [
+        "Administrar solución fisiológica por vía endovenosa",
+        "Administrar bicarbonato por vía endovenosa",
+        "Administrar adrenalina por vía endovenosa",
+        "Administrar hidrocortisona por vía endovenosa",
+        "Administrar glucosa por vía endovenosa Manejo de Sepsis en Lactantes: En casos de sepsis en lactantes, la prioridad es la reanimación y la administración de antibióticos. Si el lactante presenta shock o signos de deshidratación, la primera medida es la hidratación intravenosa con solución salina."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 60,
+      "pregunta": "Un paciente de 45 años presenta un cuadro de cólico renal derecho que es manejado con analgesia. Se realiza una pieloTAC, que muestra la presencia de un cálculo de 4 mm en el uréter derecho, el cual se maneja inicialmente con observación. Sin embargo, luego de 4 semanas no ha presentado expulsión del cálculo a pesar de haberse indicado terapia expulsiva con alfabloqueantes hace dos semanas. La pieloTAC de control muestra mayor dilatación de la vía urinaria en dicha zona, con presencia del cálculo descrito, de 4 mm en el uréter distal, que se informa con una dureza de 800 unidades de Hounsfield. La creatinina de control está en 1,38 mg/dL. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Mantener terapia farmacológica expulsiva y controlar en 2 semanas",
+        "Realizar la instalación de un catéter “doble J”",
+        "Administrar antibióticos endovenosos",
+        "Realizar una ureteroscopía",
+        "Realizar litotricia (litotripsia) extracorpórea Manejo de Litiasis Urológica: El manejo de la litiasis urológica varía según el tamaño del cálculo: Menor a 5 mm: Observación. Entre 5 y 10 mm: Alfabloqueantes para facilitar la expulsión. Mayor a 10 mm: Litotricia extracorpórea o ureteroscopía. La ureteroscopía se prefiere para cálculos en el uréter distal, cálculos muy duros y en casos donde la litotricia extracorpórea está contraindicada (embarazo, alteraciones de la hemostasia). La litotricia extracorpórea (LEC) se prefiere para cálculos de dureza moderada a baja, en el uréter alto o medio, menores a 2 cm, sin contraindicaciones de LEC."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 62,
+      "pregunta": "Una paciente de 70 años sufrió una caída a nivel hace un mes, que resultó en una fractura de tobillo derecho. Al examen físico, se encuentra un diámetro de pierna de 33 cm (valor normal: mayor a 31 cm), una prueba de unipedestación con un tiempo de 2 segundos (valor normal: mayor a 5 segundos) y una velocidad de marcha de 0.4 m/s (valor normal: mayor a 0.8 m/s). La densitometría ósea muestra un T-score de -1.9 en la columna lumbar y -2.1 en las caderas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Osteoporosis",
+        "Sarcopenia",
+        "Osteosarcopenia",
+        "Fragilidad",
+        "Alto riesgo de caídas Osteopenia, Osteoporosis y Sarcopenia: Osteopenia: T-score menor o igual a -1. Osteoporosis: T-score menor o igual a -2.5 (no en este caso). Sarcopenia: Se diagnostica con base en atrofia muscular y/o debilidad muscular, evidenciada en este caso por alteraciones en la velocidad de la marcha y en el test de unipedestación."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 64,
+      "pregunta": "Un neonato de 21 días de vida, con incremento ponderal deficiente, presenta ictericia que se extiende hasta las piernas. El parto fue por vía vaginal y el embarazo transcurrió sin complicaciones. Su bilirrubina total es de 11,2 mg/dL, con una bilirrubina directa de 7,0 mg/dL. El neonato se encuentra alimentándose con lactancia materna exclusiva y no presenta otros síntomas. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Atresia de vías biliares",
+        "Hipotiroidismo congénito",
+        "Ictericia fisiológica",
+        "Ictericia por leche materna",
+        "Síndrome de Gilbert Ictericia Neonatal Directa: En un caso de ictericia neonatal tardía de predominio directo, el diagnóstico más probable es atresia de vías biliares. Se debe realizar una ecografía abdominal para confirmar el diagnóstico. Se trata con la cirugía de Kasai."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 66,
+      "pregunta": "Un paciente de 50 años presenta un cuadro clínico de 7 días de evolución, caracterizado por tos con expectoración mucopurulenta abundante y fiebre de hasta 38,7°C. El examen físico muestra disminución del murmullo pulmonar, con abolición del murmullo pulmonar en la base derecha. La radiografía de tórax muestra signos de condensación en el lado derecho y derrame pleural de tamaño moderado Se inicia tratamiento con ceftriaxona 2g al día y se realiza toracocentesis, obteniéndose un líquido pleural con 2.000 células/mm3, 85% de polimorfonucleares, colesterol: 70 mg/dL, LDH: 220 U/L, pH: 7.26 y lactato de 6.1 mmol/L. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar drenaje completo del derrame pleural",
+        "Agregar metronidazol al tratamiento",
+        "Solicitar TAC de tórax",
+        "Solicitar baciloscopías de expectoración",
+        "Realizar broncoscopia y biopsia Neumonía con Derrame Paraneumónico: El manejo de una neumonía con derrame paraneumónico complicado (por el lactato pleural > 5 mmol/L) incluye drenaje completo del derrame pleural (medida más importante), tubo pleural y metronidazol para cubrir bacterias anaerobias."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 68,
+      "pregunta": "Un lactante de 8 meses presenta fiebre y rinorrea de 48 horas de evolución, con dificultad respiratoria en las últimas horas. Al examen físico presenta retracción subcostal e intercostal moderada, frecuencia cardíaca: 120x’, frecuencia respiratoria: 35x’, saturación de oxígeno del 93%s. En el examen pulmonar se auscultan sibilancias y crépitos bilaterales. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Bronquiolitis",
+        "Asma del lactante",
+        "Neumonía multifocal",
+        "Neumonía atípica",
+        "Cardiopatía congénita Bronquiolitis: Es un caso clásico de bronquiolitis, causada generalmente por el virus respiratorio sincitial (VRS) y que se define como el primer episodio de síndrome bronquial obstructivo en un lactante."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 69,
+      "pregunta": "Una paciente de 32 años, con antecedente de un parto prematuro previo a las 30 semanas de gestación, cursa un nuevo embarazo de 13 semanas. Se realiza una ecografía transvaginal, que muestra una longitud cervical de 28mm. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Realizar cerclaje cervical",
+        "Iniciar tocolíticos a las 28 semanas",
+        "Indicar progesterona endovaginal y realizar cervicometrías seriadas",
+        "Indicar aspirina oral",
+        "Realizar el control habitual del embarazo Cuello Uterino Corto: Un cuello uterino corto se define como una longitud cervical menor o igual a 25 mm. La progesterona endovaginal se recomienda en pacientes con cuello uterino corto o con antecedentes de parto prematuro (discutible). Además, el cerclaje se indica si la paciente presenta ambas condiciones."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 70,
+      "pregunta": "Un niño de 5 años presenta bajo incremento ponderal, con talla y peso menores a -1 desviación estándar para su edad. Se observa una radiografía de mano, que se muestra a continuación. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Raquitismo",
+        "Displasia ósea",
+        "Osteogénesis imperfecta",
+        "Osteomalacia",
+        "Osteoporosis Raquitismo: La radiografía muestra un retraso severo en la calcificación de los huesos del carpo y otros huesos de la mano, lo que es compatible con raquitismo causado por deficiencia de vitamina D."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 72,
+      "pregunta": "Una paciente de 33 años consulta por un cuadro de 6 meses de evolución de dolor durante la penetración en las relaciones sexuales, por lo cual se ha negado a mantenerlas en el último mes. Su examen físico no muestra alteraciones. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        "Trastorno orgásmico femenino",
+        "Trastorno por dolor genito-pélvico/penetración",
+        "Trastorno depresivo mayor",
+        "Trastorno por somatización",
+        "Trastorno del deseo sexual hipoactivo Dispareunia Superficial: La dispareunia superficial, también conocida como vaginismo o síndrome de dolor genitopélvico penetración, se caracteriza por la contracción involuntaria de los músculos vaginales, causando dolor durante la penetración. Es importante diferenciarla del trastorno orgásmico femenino (ausencia de orgasmo) y el trastorno del deseo sexual hipoactivo (disminución del deseo sexual), que no presentan dolor."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 74,
+      "pregunta": "Una niña de 7 años con antecedente de leucemia aguda en tratamiento con quimioterapia presenta fiebre de 24 horas de evolución hasta 38,7°C. Su última quimioterapia se realizó hace 10 días. Al examen físico está en buenas condiciones generales, sin alteraciones que identifiquen un foco infeccioso. Tiene una temperatura de 38,5°C y se solicita un hemograma que muestra 800 leucocitos por mm?, con un recuento absoluto de neutrófilos de 450 por mm?, 95.000 plaquetas por mm? y un hematocrito del 35%. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Indicar paracetamol por vía oral más reposo relativo y observación",
+        "Administrar ceftriaxona endovenosa durante la primera hora de atención",
+        "Realizar TAC de tórax y abdomen",
+        "Esperar el resultado del estudio etiológico antes de iniciar antibióticos",
+        "Administrar esquema de cefotaxima y anfotericina B por vía endovenosa Manejo de la Neutropenia Febril: La neutropenia febril es una emergencia médica que requiere tratamiento inmediato con antibióticos, idealmente dentro de los primeros 30 a 60 minutos del ingreso. El régimen de antibióticos debe cubrir Gram negativos y las guías internacionales recomiendan que se cubra también Pseudomonas aeruginosa, siendo cefepime o un carbapenémico las opciones preferidas. En Chile, si se trata de una neutropenia de bajo riesgo (clásico ejemplo los pacientes en quimioterapia con buen aspecto), se acepta tratarlo con cefalosporinas de tercera generación convencionales como la ceftriaxona o el cefotaximo. Los antifúngicos se consideran si hay sospecha de infección fúngica, falta de respuesta a los antibióticos, o fiebre prolongada."
+      ],
+      "respuesta_correcta": 1
+    },
+    {
+      "id": 76,
+      "pregunta": "Una paciente de 28 años se encuentra en su quinto día postparto, tras el cual presentó atonía uterina que se manejó farmacológicamente. En el examen físico, presenta palidez de piel y mucosas, por lo que se solicita hemograma, que muestra hemoglobina: 8.6 g/dL y hematocrito: 25%. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Administrar hierro por vía oral",
+        "Administrar hierro por vía endovenosa",
+        "Realizar una transfusión de glóbulos rojos",
+        "Administrar un uterotónico",
+        "Administrar ácido fólico y vitamina B12 Suplementación de Hierro en Anemia Posparto: En una paciente con anemia moderada secundaria a hemorragia posparto, se recomienda la suplementación con hierro para compensar las pérdidas, incluso si no se ha confirmado la deficiencia de hierro. La vía de administración puede ser oral o intravenosa. La vía oral suele ser suficiente para una recuperación completa, por lo que suele ser la de elección, mientras que la vía intravenosa ofrece una recuperación más rápida del hematocrito y es una alternativa del todo aceptable."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 78,
+      "pregunta": "Una paciente de 78 años con diagnóstico de enfermedad de Alzheimer es hospitalizada tras desorientarse y agredir a sus cuidadores. En el examen mental se encuentra desorientada en tiempo y espacio, no puede decir los días de la semana en orden inverso y no es capaz de recordar tres palabras que se le dicen en voz alta. Dice ver a su padre en la habitación y, tras el ingreso al hospital, comienza a gritar, exigiendo que la suelten y que se quiere ir del hospital. ¿Cuál es el fármaco de elección para su manejo inicial?",
+      "opciones": [
+        "Clonazepam",
+        "Carbamazepina",
+        "Haloperidol",
+        "Mirtazapina",
+        "Diazepam Manejo del Delirium: El tratamiento principal del delirium o síndrome confusional agudo es abordar la causa subyacente. El manejo sintomático puede incluir haloperidol en dosis bajas (0,5 a 1 mg) por vía oral o intramuscular."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 80,
+      "pregunta": "Un paciente de 42 años presenta eliminación de un cálculo en orina, el cual no pudo recuperar para análisis. Se realiza estudio metabólico en orina de 24 horas con calcio, fósforo, citrato y uratos, todos dentro del rango normal, al igual que su perfil bioquímico en sangre. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Aumentar la ingesta de agua",
+        "Iniciar alopurinol oral",
+        "Realizar litrotricia extracorpórea",
+        "Indicar dieta baja en lácteos",
+        "Indicar dieta rica en vegetales Prevención de la Litiasis Urinaria: La medida más importante para prevenir la formación de cálculos renales es aumentar la ingesta de agua. Dependiendo del tipo de cálculo y las alteraciones metabólicas, se pueden recomendar medidas adicionales como tiazidas para la hipercalciuria, alopurinol para la hiperuricemia/hiperuricosuria, y una dieta baja en proteínas animales para la hiperoxaluria."
+      ],
+      "respuesta_correcta": 0
+    },
+    {
+      "id": 81,
+      "pregunta": "Un niño de 7 años es hospitalizado para manejo quirúrgico de una osteomielitis. El antibiograma informa desarrollo de Staphylococcus aureus con el siguiente antibiograma: ¿Cuál de los siguientes antibióticos es de elección para el manejo inicial?",
+      "opciones": [
+        "Flucloxacilina",
+        "Cefazolina",
+        "Vancomicina",
+        "Tetraciclina",
+        "Cotrimoxazol Tratamiento de Staphylococcus aureus Resistente a la Meticilina: Un antibiograma que muestra Staphylococcus aureus resistente a la meticilina (SARM), siendo resistente a los betalactámicos en general, incluyendo oxacilina y cefalosporinas. El tratamiento de elección para el SARM es la vancomicina."
+      ],
+      "respuesta_correcta": 2
+    },
+    {
+      "id": 83,
+      "pregunta": "Una paciente de 27 años consulta por un cuadro clínico de un año de evolución caracterizado por astenia, adinamia, malestar general. Además, ha aumentado 8 kg de peso y, en el último mes presenta sensación de frío, constipación y mialgias. Al examen físico presenta lentitud en el lenguaje verbal y razonamiento, piel seca y fría con vitíligo en la cara y manos y alopecia moderada en el cuero cabelludo. Su frecuencia cardíaca es de 60 latidos por minuto y su presión arterial, de 130/80 mmHg. Se constata edema bilateral de extremidades inferiores, sin fóvea. ¿Cuál es el examen de elección para iniciar el estudio?",
+      "opciones": [
+        "Hemograma - VHS",
+        "Colonoscopía",
+        "Niveles de cortisol",
+        "TAC de cerebro",
+        "TSH Evaluación del Hipotiroidismo Severo: En un paciente con sospecha de hipotiroidismo severo, la evaluación inicial debe incluir la medición de la hormona estimulante de la tiroides (TSH) y, idealmente, también la T4 libre. El manejo del coma mixedematoso (una complicación grave del hipotiroidismo) consiste en la administración de corticosteroides y levotiroxina intravenosos. En este caso, aún no tiene un coma mixedematoso."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 85,
+      "pregunta": "Un paciente con antecedente de cirrosis hepática por consumo de alcohol, suspendido hace algún tiempo, hipertensión arterial, diabetes mellitus y tabaquismo, consulta por un cuadro de 7 días de evolución, caracterizado por desorientación, dolor abdominal, vómitos e ictericia. Al examen físico, presenta desorientación y lentitud del lenguaje, tiene frecuencia cardíaca: 89x’, presión arterial 100/60 mmHg y asterixis. Al examen abdominal se evidencia ascitis grado 2 y dolor a la palpación abdominal. Sus pruebas hepáticas muestran: GOT 192 U/L, GPT 107 U/L, bilirrubina total 4 mg/dL y GGT 220 U/L. La protrombinemia es del 60%. ¿Cuál es la conducta diagnóstica más adecuada para continuar con el estudio?",
+      "opciones": [
+        "Solicitar amonemia",
+        "Solicitar TAC de cerebro",
+        "Solicitar endoscopía digestiva alta",
+        "Realizar paracentesis diagnóstica",
+        "Solicitar ecografía abdominal Evaluación de la Descompensación en Pacientes Cirróticos con Ascitis: En pacientes cirróticos con ascitis que experimentan cualquier tipo de descompensación, la evaluación diagnóstica debe comenzar con una paracentesis diagnóstica para descartar la peritonitis bacteriana espontánea."
+      ],
+      "respuesta_correcta": 3
+    },
+    {
+      "id": 87,
+      "pregunta": "Una paciente de 58 años, menopáusica desde hace 10 años, sin terapia de reemplazo hormonal, consulta por metrorragia de 5 días de evolución, de intensidad variable, con una cuantía total de 100 ml. Al examen físico se observa pálida, con PA: 100/60 mmHg y FC: 90x’. Se realiza especuloscopía, que muestra salida continua de sangre desde el orificio cervical externo. ¿Cuál de las siguientes es la conducta más adecuada?",
+      "opciones": [
+        "Administrar anticonceptivos orales en alta dosis",
+        "Realizar legrado uterino de urgencia",
+        "Realizar histerectomía",
+        "Administrar ácido tranexámico",
+        "Realizar biopsia de endometrio Estudio de la Metrorragia Posmenopáusica: La metrorragia posmenopáusica se puede evaluar inicialmente mediante ecografía transvaginal o con biopsia endometrial. Si la ecografía muestra un endometrio menor o igual a 4 mm, se presume atrofia endometrial y no se realiza biopsia. Sin embargo, si el sangrado persiste o el endometrio es mayor a 4 mm, se indica la biopsia."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 89,
+      "pregunta": "Una niña de 2 años de edad es traída por su madre a control de niño sano. Al examen físico se objetivan genitales con labios menores completamente adheridos entre sí en la línea media, lo que impide la visualización de la vagina y el meato urinario. ¿Cuál es la conducta más adecuada?",
+      "opciones": [
+        "Resección quirúrgica de las adherencias",
+        "Realizar avulsión digital, bajo anestesia local con lidocaína",
+        "Indicar aseo genital diario con vaselina líquida",
+        "Aplicar pantenol tópico en la zona perineal por 15 días",
+        "Aplicar betametasona tópica en la zona afectada por 10 días Manejo de las Sinequias Vulvares: El tratamiento de las sinequias vulvares (adherencias labiales) es controvertido. La mayoría de los casos son asintomáticas y solo requieren observación. Sin embargo, el tratamiento tópico con estrógenos o corticosteroides se considera para las sinequias extensas (este caso), las que desvían el flujo urinario, causan dolor, o se asocian con flujo o infecciones recurrentes (vaginales o urinarias). Si en estos casos no hay mejoría después del tratamiento tópico, se puede considerar la cirugía. La cirugía también está indicada si las sinequias obstruyen completamente el flujo urinario."
+      ],
+      "respuesta_correcta": 4
+    },
+    {
+      "id": 90,
+      "pregunta": "Un paciente de 70 años, sin antecedentes de importancia presenta un síncope de reposo sin pródromo, con recuperación completa. Al examen físico se encuentra orientado, en Glasgow 15, con frecuencia cardíaca de 40 latidos por minuto. ¿Cuál es el examen de elección para iniciar el estudio?",
+      "opciones": [
+        "Monitoreo electrocardiográfico de 24 horas",
+        "Ecocardiograma",
+        "TAC de cerebro",
+        "Resonancia magnética de cerebro",
+        "Electrocardiograma Evaluación del Síncope Cardiogénico: En un paciente con sospecha de síncope cardiogénico debido a una bradiarritmia, el electrocardiograma (ECG) es el examen inicial esencial. El ECG puede identificar bloqueos auriculoventriculares, enfermedad del nodo sinusal y alteraciones hidroelectrolíticas como la hiperpotasemia, que se asocian con este tipo de arritmias."
+      ],
+      "respuesta_correcta": 4
+    }
+  ]
+}
