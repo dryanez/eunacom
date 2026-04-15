@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchProgress } from '../lib/api'
+import { fetchProgress, fetchUserProfile } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, ChevronDown, Menu, X, Video, Shield
+    LogOut, ChevronDown, Menu, X, Video, Shield, Users
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
@@ -14,6 +14,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
+    const [displayName, setDisplayName] = useState(null)
 
     useEffect(() => {
         if (user) {
@@ -22,6 +23,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 const totalXP = (correct * XP_PER_CORRECT) + ((data.length - correct) * XP_PER_INCORRECT)
                 const { newLevel } = calculateLevelUp(totalXP, 1)
                 setUserLevel(newLevel)
+            }).catch(() => {})
+            fetchUserProfile(user.id).then(profile => {
+                if (profile?.first_name) {
+                    setDisplayName(`${profile.first_name} ${profile.last_name || ''}`.trim())
+                }
             }).catch(() => {})
         }
     }, [user])
@@ -95,16 +101,19 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
 
             <div className="sidebar__footer">
                 {isAdmin() && (
-                    <NavLink to="/admin" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}>
-                        <Settings size={18} /> Admin
-                    </NavLink>
+                    <>
+                        <div className="sidebar__section-title" style={{ marginTop: 0 }}>Admin</div>
+                        <NavLink to="/admin/users" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                            <Users size={18} /> Usuarios
+                        </NavLink>
+                    </>
                 )}
                 <div className="sidebar__user">
                     <div className="sidebar__avatar">
-                        {user?.email?.charAt(0).toUpperCase() || 'U'}
+                        {(displayName || user?.email || 'U').charAt(0).toUpperCase()}
                     </div>
                     <div>
-                        <div className="sidebar__user-name">{user?.email?.split('@')[0] || 'Usuario'}</div>
+                        <div className="sidebar__user-name">{displayName || user?.email?.split('@')[0] || 'Usuario'}</div>
                         <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
                     </div>
                 </div>

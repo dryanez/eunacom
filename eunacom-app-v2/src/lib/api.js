@@ -136,6 +136,27 @@ export async function fetchPerfil(params = {}) {
   return apiFetch(`/api/perfil${qs ? '?' + qs : ''}`)
 }
 
+// ── USER PROFILES (Onboarding) ──────────────────────────────────────────────
+
+export async function fetchUserProfile(userId) {
+  const data = await apiFetch(`/api/user-profiles?userId=${userId}`)
+  return data.data || null
+}
+
+export async function saveUserProfile(profile) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify(profile)
+  })
+}
+
+// ── ADMIN: ALL USERS ─────────────────────────────────────────────────────────
+
+export async function fetchAdminUsers(adminEmail) {
+  const data = await apiFetch(`/api/admin-users?adminEmail=${encodeURIComponent(adminEmail)}`)
+  return data.data || []
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {

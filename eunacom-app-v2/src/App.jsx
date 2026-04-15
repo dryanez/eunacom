@@ -15,6 +15,7 @@ import Register from './pages/Register'
 import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
 import ScriptProgress from './pages/ScriptProgress'
+import AdminUsers from './pages/AdminUsers'
 import './index.css'
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/mis-clases" element={<MisClases />} />
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
           </Route>
 
           {/* Default Route */}
