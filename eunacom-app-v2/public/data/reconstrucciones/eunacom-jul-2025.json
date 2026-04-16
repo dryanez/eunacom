@@ -8,1422 +8,1562 @@
   "questions": [
     {
       "id": 1,
-      "pregunta": "paciente con signos icc",
-      "opciones": [
+      "question": "paciente con signos icc",
+      "options": [
         "Hidroclorotiazida",
         "Indapamida",
         "Clortalidona",
         "Espironolactona",
         "furosemida y enalapril"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "furosemida y enalapril"
+      "correctAnswer": 4,
+      "explanation": "furosemida y enalapril"
     },
     {
       "id": 2,
-      "pregunta": "paciente rn con hernia diafragmática",
-      "opciones": [
+      "question": "paciente rn con hernia diafragmática",
+      "options": [
         "Ventilación con bolsa-mascarilla",
         "Aspiración orofaríngea",
         "Oxígeno por cánula nasal",
         "intubación",
         "CPAP nasal"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "intubación"
+      "correctAnswer": 3,
+      "explanation": "intubación"
     },
     {
       "id": 3,
-      "pregunta": "paciente rn con hernia umbilical",
-      "opciones": [
+      "question": "paciente rn con hernia umbilical",
+      "options": [
         "Cirugía electiva",
         "Cirugía de urgencia",
         "Derivación a especialista",
         "Antibióticos profilácticos",
         "observación"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "observación"
+      "correctAnswer": 4,
+      "explanation": "observación"
     },
     {
       "id": 4,
-      "pregunta": "paciente con anorexia",
-      "opciones": []
+      "question": "paciente con anorexia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 5,
-      "pregunta": "paciente con angina mesentérica pero “estable”",
-      "opciones": [
+      "question": "paciente con angina mesentérica pero “estable”",
+      "options": [
         "angiotac",
         "Resonancia magnética",
         "Angiografía convencional",
         "Ecografía Doppler",
         "Radiografía simple"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "angiotac"
+      "correctAnswer": 0,
+      "explanation": "angiotac"
     },
     {
       "id": 6,
-      "pregunta": "paciente con fibrosis quística?",
-      "opciones": [
+      "question": "paciente con fibrosis quística?",
+      "options": [
         "Broncoscopía",
         "test sudor",
         "Test de metacolina",
         "TAC de tórax",
         "Espirometría"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "test sudor"
+      "correctAnswer": 1,
+      "explanation": "test sudor"
     },
     {
       "id": 7,
-      "pregunta": "paciente con hantavirus",
-      "opciones": []
+      "question": "paciente con hantavirus",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 8,
-      "pregunta": "paciente con hipercalcemia estudio de elección",
-      "opciones": [
+      "question": "paciente con hipercalcemia estudio de elección",
+      "options": [
         "PTH",
         "Fósforo sérico",
         "Calcitonina",
         "Calcio sérico",
         "Vitamina D"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "PTH"
+      "correctAnswer": 0,
+      "explanation": "PTH"
     },
     {
       "id": 9,
-      "pregunta": "paciente adolescente con antecedente de golpe y que rx que mostraba un TU en metafisis fémur",
-      "opciones": [
+      "question": "paciente adolescente con antecedente de golpe y que rx que mostraba un TU en metafisis fémur",
+      "options": [
         "Fractura patológica",
         "Osteomielitis",
         "Sarcoma de Ewing",
         "osteosarcoma",
         "Condrosarcoma"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "osteosarcoma"
+      "correctAnswer": 3,
+      "explanation": "osteosarcoma"
     },
     {
       "id": 10,
-      "pregunta": "paciente adulto con sx nefrotico puro",
-      "opciones": []
+      "question": "paciente adulto con sx nefrotico puro",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 11,
-      "pregunta": "paciente de 8 años con fiebre, exantema, adenopatías de 7 días evolución",
-      "opciones": [
+      "question": "paciente de 8 años con fiebre, exantema, adenopatías de 7 días evolución",
+      "options": [
         "kawasaki",
         "Mononucleosis infecciosa",
         "Escarlatina",
         "Artritis idiopática juvenil",
         "Sarampión"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "kawasaki"
+      "correctAnswer": 0,
+      "explanation": "kawasaki"
     },
     {
       "id": 12,
-      "pregunta": "paciente adulta mayor con alzheimer y alteraciones de la conducta",
-      "opciones": [
+      "question": "paciente adulta mayor con alzheimer y alteraciones de la conducta",
+      "options": [
         "Donepezilo",
         "Haloperidol",
         "Risperidona",
         "Memantina",
         "quetiapina"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "quetiapina"
+      "correctAnswer": 4,
+      "explanation": "quetiapina"
     },
     {
       "id": 13,
-      "pregunta": "Lactante 8 meses con fiebre 5 días y exantema súbito",
-      "opciones": [],
-      "respuesta_texto": "herpes 6"
+      "question": "Lactante 8 meses con fiebre 5 días y exantema súbito",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 14,
-      "pregunta": "paciente con imagen calvicie",
-      "opciones": [
+      "question": "paciente con imagen calvicie",
+      "options": [
         "Tinea capitis",
         "Alopecia androgénica",
         "Tricotilomanía",
         "Lupus discoide",
         "alopecia areata"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "alopecia areata"
+      "correctAnswer": 4,
+      "explanation": "alopecia areata"
     },
     {
       "id": 15,
-      "pregunta": "paciente dx asma por meticolina",
-      "opciones": []
+      "question": "paciente dx asma por meticolina",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 16,
-      "pregunta": "paciente asma por rx",
-      "opciones": []
+      "question": "paciente asma por rx",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 17,
-      "pregunta": "paciente asma por espirometria",
-      "opciones": []
+      "question": "paciente asma por espirometria",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 18,
-      "pregunta": "paciente torch por citomegalovirus",
-      "opciones": []
+      "question": "paciente torch por citomegalovirus",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 19,
-      "pregunta": "paciente con retención urinaria aguda",
-      "opciones": [
+      "question": "paciente con retención urinaria aguda",
+      "options": [
         "sonda foley",
         "Diurético",
         "Alfa-bloqueador",
         "Cistostomía suprapúbica",
         "Cateterismo intermitente"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "sonda foley"
+      "correctAnswer": 0,
+      "explanation": "sonda foley"
     },
     {
       "id": 20,
-      "pregunta": "paciente con urticaria era levocetirizina",
-      "opciones": []
+      "question": "paciente con urticaria era levocetirizina",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 21,
-      "pregunta": "paciente con tbc",
-      "opciones": [],
-      "respuesta_texto": "tenia fracaso tratamiento"
+      "question": "paciente con tbc",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 22,
-      "pregunta": "paciente con disección aortica stanford b",
-      "opciones": [],
-      "respuesta_texto": "tto medico con antihipertensivos"
+      "question": "paciente con disección aortica stanford b",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 23,
-      "pregunta": "paciente ttgo 140 embarazada 8 semanas",
-      "opciones": [
+      "question": "paciente ttgo 140 embarazada 8 semanas",
+      "options": [
         "Resistencia a la insulina",
         "Normal",
         "diabetes pregestacional",
         "Diabetes gestacional",
         "Intolerancia a la glucosa"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "diabetes pregestacional"
+      "correctAnswer": 2,
+      "explanation": "diabetes pregestacional"
     },
     {
       "id": 24,
-      "pregunta": "Paciente recibe esteroides y es diabética",
-      "opciones": [
+      "question": "Paciente recibe esteroides y es diabética",
+      "options": [
         "iniciar insulina",
         "Metformina",
         "Pioglitazona",
         "Glibenclamida",
         "Sitagliptina"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "iniciar insulina"
+      "correctAnswer": 0,
+      "explanation": "iniciar insulina"
     },
     {
       "id": 25,
-      "pregunta": "RN por parto distocico y que requirió reanimación, presenta astenia, hipotonía y otros síntomas horas después",
-      "opciones": [
+      "question": "RN por parto distocico y que requirió reanimación, presenta astenia, hipotonía y otros síntomas horas después",
+      "options": [
         "Sepsis neonatal",
         "encefalopatia hipoxico isquemica",
         "Meningitis neonatal",
         "Hipoglicemia neonatal",
         "Hemorragia intraventricular"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "encefalopatia hipoxico isquemica"
+      "correctAnswer": 1,
+      "explanation": "encefalopatia hipoxico isquemica"
     },
     {
       "id": 26,
-      "pregunta": "paciente con varices",
-      "opciones": [
+      "question": "paciente con varices",
+      "options": [
         "Insulina",
         "Metformina",
         "Orlistat",
         "Dieta estricta",
         "ejercicio y medias"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "ejercicio y medias"
+      "correctAnswer": 4,
+      "explanation": "ejercicio y medias"
     },
     {
       "id": 27,
-      "pregunta": "paciente con hemorroides trombosadas (violáceas y no podían retraerse)",
-      "opciones": []
+      "question": "paciente con hemorroides trombosadas (violáceas y no podían retraerse)",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 28,
-      "pregunta": "paciente embarazada con hemograma patológico, enzimas hepáticas elevadas, litisis vesicular, hta, hipoglicemia, dolor y fiebre",
-      "opciones": [
+      "question": "paciente embarazada con hemograma patológico, enzimas hepáticas elevadas, litisis vesicular, hta, hipoglicemia, dolor y fiebre",
+      "options": [
         "sd hellp o higado graso agudo (en discusión)",
         "Hepatitis viral",
         "Preeclampsia severa",
         "Colestasia intrahepática",
         "Hígado graso agudo del embarazo"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "sd hellp o higado graso agudo (en discusión)"
+      "correctAnswer": 0,
+      "explanation": "sd hellp o higado graso agudo (en discusión)"
     },
     {
       "id": 29,
-      "pregunta": "paciente con imagen de cancer espinocelular",
-      "opciones": []
+      "question": "paciente con imagen de cancer espinocelular",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 30,
-      "pregunta": "paciente con glicemia ayuno alterada, medida mas importante",
-      "opciones": [
+      "question": "paciente con glicemia ayuno alterada, medida mas importante",
+      "options": [
         "Dieta estricta",
         "Metformina",
         "ejercicio 150 min semana",
         "Orlistat",
         "Insulina"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "ejercicio 150 min semana"
+      "correctAnswer": 2,
+      "explanation": "ejercicio 150 min semana"
     },
     {
       "id": 31,
-      "pregunta": "paciente 6/8 meses perdida rojo pupilar",
-      "opciones": [
+      "question": "paciente 6/8 meses perdida rojo pupilar",
+      "options": [
         "Toxoplasmosis ocular",
         "Catarata congénita",
         "retinoblastoma",
         "Retinopatía del prematuro",
         "Glaucoma congénito"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "retinoblastoma"
+      "correctAnswer": 2,
+      "explanation": "retinoblastoma"
     },
     {
       "id": 32,
-      "pregunta": "paciente con tos sin otros síntomas y en tto con enalapril",
-      "opciones": [
+      "question": "paciente con tos sin otros síntomas y en tto con enalapril",
+      "options": [
         "Amlodipino",
         "Hidroclorotiazida",
         "Losartán",
         "Atenolol",
         "suspender enalapril"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "suspender enalapril"
+      "correctAnswer": 4,
+      "explanation": "suspender enalapril"
     },
     {
       "id": 33,
-      "pregunta": "paciente adulto mayor usuario sonda con urocultivo positivo",
-      "opciones": [],
-      "respuesta_texto": "bacteiuria asintomatica no tratar a menos que síntomas"
+      "question": "paciente adulto mayor usuario sonda con urocultivo positivo",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 34,
-      "pregunta": "embarazada con itu",
-      "opciones": [
+      "question": "embarazada con itu",
+      "options": [
         "Cefalexina",
         "Amoxicilina",
         "Trimetoprim-sulfametoxazol",
         "Ciprofloxacino",
         "nitrofurantoina"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "nitrofurantoina"
+      "correctAnswer": 4,
+      "explanation": "nitrofurantoina"
     },
     {
       "id": 35,
-      "pregunta": "paciente timpano perforado",
-      "opciones": [],
-      "respuesta_texto": "no mojar oido"
+      "question": "paciente timpano perforado",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 36,
-      "pregunta": "paciente gonorrea",
-      "opciones": [
+      "question": "paciente gonorrea",
+      "options": [
         "Azitromicina",
         "Doxiciclina",
         "Ciprofloxacino",
         "Amoxicilina",
         "ceftriaxona IM"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "ceftriaxona IM"
+      "correctAnswer": 4,
+      "explanation": "ceftriaxona IM"
     },
     {
       "id": 37,
-      "pregunta": "paciente con ulcera glande",
-      "opciones": [],
-      "respuesta_texto": "sifilis"
+      "question": "paciente con ulcera glande",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 38,
-      "pregunta": "paciente videojuegos y asocial",
-      "opciones": [
+      "question": "paciente videojuegos y asocial",
+      "options": [
         "Discapacidad intelectual",
         "TDAH",
         "Trastorno de conducta",
         "tea",
         "Fobia social"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "tea"
+      "correctAnswer": 3,
+      "explanation": "tea"
     },
     {
       "id": 39,
-      "pregunta": "paciente que dejaba carrera y hablaba solo",
-      "opciones": [
+      "question": "paciente que dejaba carrera y hablaba solo",
+      "options": [
         "esquizofrenia",
         "Trastorno esquizoafectivo",
         "Trastorno de personalidad",
         "Trastorno bipolar",
         "Trastorno delirante crónico"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "esquizofrenia"
+      "correctAnswer": 0,
+      "explanation": "esquizofrenia"
     },
     {
       "id": 40,
-      "pregunta": "embarzada convulsiona calle",
-      "opciones": [
+      "question": "embarzada convulsiona calle",
+      "options": [
         "Fenitoína",
         "sulfato magnesio",
         "Diazepam",
         "Nifedipino",
         "Labetalol"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "sulfato magnesio"
+      "correctAnswer": 1,
+      "explanation": "sulfato magnesio"
     },
     {
       "id": 41,
-      "pregunta": "mama eco birads 0",
-      "opciones": [],
-      "respuesta_texto": "ecografia"
+      "question": "mama eco birads 0",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 42,
-      "pregunta": "paciente estrogeno dos veces al dia",
-      "opciones": [],
-      "respuesta_texto": "cambiar a una vez"
+      "question": "paciente estrogeno dos veces al dia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 43,
-      "pregunta": "paciente menopausica y sequedad vaginal",
-      "opciones": [],
-      "respuesta_texto": "estrogenos topico"
+      "question": "paciente menopausica y sequedad vaginal",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 44,
-      "pregunta": "joven con TPSV (respondía maniobras valsalba)",
-      "opciones": []
+      "question": "joven con TPSV (respondía maniobras valsalba)",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 45,
-      "pregunta": "joven con ginecomastia puberal",
-      "opciones": []
+      "question": "joven con ginecomastia puberal",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 46,
-      "pregunta": "paciente 1 año y tres meses, que camina, habla dice 3 palabras torre 3 cubos",
-      "opciones": [
+      "question": "paciente 1 año y tres meses, que camina, habla dice 3 palabras torre 3 cubos",
+      "options": [
         "Preeclampsia",
         "Infección urinaria",
         "desarrollo normal",
         "Hallazgo patológico",
         "Diabetes gestacional"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "desarrollo normal"
+      "correctAnswer": 2,
+      "explanation": "desarrollo normal"
     },
     {
       "id": 47,
-      "pregunta": "paciente con quiste tirogloso",
-      "opciones": []
+      "question": "paciente con quiste tirogloso",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 48,
-      "pregunta": "paciente desviación faringe o algo asi",
-      "opciones": [
+      "question": "paciente desviación faringe o algo asi",
+      "options": [
         "Angina de Ludwig",
         "Faringitis estreptocócica",
         "absceso periamigdalino",
         "Mononucleosis infecciosa",
         "Epiglotitis"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "absceso periamigdalino"
+      "correctAnswer": 2,
+      "explanation": "absceso periamigdalino"
     },
     {
       "id": 49,
-      "pregunta": "paciente con meconio sin signos de asfixia",
-      "opciones": [],
-      "respuesta_texto": "cuidados y estimulación, si no respondia o estaba mal es VPP (ya no se aspiran ni se intuban solo por eso)"
+      "question": "paciente con meconio sin signos de asfixia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 50,
-      "pregunta": "Recién nacido rosadito y todo bien",
-      "opciones": [
+      "question": "Recién nacido rosadito y todo bien",
+      "options": [
         "Aspiración de vías aéreas",
         "apego precoz",
         "Vitamina K intramuscular",
         "Profilaxis ocular",
         "Oxígeno por cánula"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "apego precoz"
+      "correctAnswer": 1,
+      "explanation": "apego precoz"
     },
     {
       "id": 51,
-      "pregunta": "determinante social salud",
-      "opciones": [
+      "question": "determinante social salud",
+      "options": [
         "educacion",
         "Vivienda",
         "Alimentación",
         "Ingreso económico",
         "Acceso a salud"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "educacion"
+      "correctAnswer": 0,
+      "explanation": "educacion"
     },
     {
       "id": 52,
-      "pregunta": "paciente sudoracion y dolor, ekg",
-      "opciones": []
+      "question": "paciente sudoracion y dolor, ekg",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 53,
-      "pregunta": "embarazada anemica 9g/dl",
-      "opciones": [
+      "question": "embarazada anemica 9g/dl",
+      "options": [
         "hierro oral",
         "Transfusión de glóbulos rojos",
         "Hierro endovenoso",
         "Vitamina B12",
         "Ácido fólico"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "hierro oral"
+      "correctAnswer": 0,
+      "explanation": "hierro oral"
     },
     {
       "id": 54,
-      "pregunta": "Paciente con aumento de flujo menstrual, dispareurea",
-      "opciones": [
+      "question": "Paciente con aumento de flujo menstrual, dispareurea",
+      "options": [
         "Endometriosis",
         "Pólipo endometrial",
         "Hiperplasia endometrial",
         "Mioma uterino",
         "adenomiosis"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "adenomiosis"
+      "correctAnswer": 4,
+      "explanation": "adenomiosis"
     },
     {
       "id": 55,
-      "pregunta": "vacuna contraindicada en lactante 8 meses",
-      "opciones": [
+      "question": "vacuna contraindicada en lactante 8 meses",
+      "options": [
         "Hepatitis B",
         "Polio oral",
         "rotavirus (por riesgo invaginacion intestinal)",
         "BCG",
         "Pentavalente"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "rotavirus (por riesgo invaginacion intestinal)"
+      "correctAnswer": 2,
+      "explanation": "rotavirus (por riesgo invaginacion intestinal)"
     },
     {
       "id": 56,
-      "pregunta": "casos de covid",
-      "opciones": [
+      "question": "casos de covid",
+      "options": [
         "Profilaxis antibiótica",
         "Desinfección ambiental",
         "Cuarentena de contactos",
         "Vacunación masiva",
         "aislamiento positivos"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "aislamiento positivos"
+      "correctAnswer": 4,
+      "explanation": "aislamiento positivos"
     },
     {
       "id": 57,
-      "pregunta": "mujer mayor con yeso pierna, desarrolla dolor horas después",
-      "opciones": [],
-      "respuesta_texto": "sx compartimental (lo más probable)"
+      "question": "mujer mayor con yeso pierna, desarrolla dolor horas después",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 58,
-      "pregunta": "rx parecia cancer",
-      "opciones": [
+      "question": "rx parecia cancer",
+      "options": [
         "Resonancia magnética",
         "Radiografía",
         "pedir tac",
         "Cintigrafía",
         "Ecografía"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "pedir tac"
+      "correctAnswer": 2,
+      "explanation": "pedir tac"
     },
     {
       "id": 59,
-      "pregunta": "paciente con pap glandulares",
-      "opciones": [
+      "question": "paciente con pap glandulares",
+      "options": [
         "colpo",
         "Biopsia endometrial",
         "Conización cervical",
         "Histerectomía",
         "Repetir PAP en 6 meses"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "colpo"
+      "correctAnswer": 0,
+      "explanation": "colpo"
     },
     {
       "id": 60,
-      "pregunta": "paciente con vph 18. colpo",
-      "opciones": []
+      "question": "paciente con vph 18. colpo",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 61,
-      "pregunta": "paciente neutropenia, en tto con atb amplio espectro pero mantiene fiebre a las 48 o 72 horas",
-      "opciones": [],
-      "respuesta_texto": "hongos"
+      "question": "paciente neutropenia, en tto con atb amplio espectro pero mantiene fiebre a las 48 o 72 horas",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 62,
-      "pregunta": "paciente con fimosis pediatria",
-      "opciones": [],
-      "respuesta_texto": "control"
+      "question": "paciente con fimosis pediatria",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 63,
-      "pregunta": "paciente con sindrome de lisis tumoral",
-      "opciones": []
+      "question": "paciente con sindrome de lisis tumoral",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 64,
-      "pregunta": "cuerpo extraño pediatria",
-      "opciones": [
+      "question": "cuerpo extraño pediatria",
+      "options": [
         "Fibrobroncoscopía virtual",
         "broncoscopia",
         "Espirometría",
         "TAC de tórax",
         "Radiografía de tórax"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "broncoscopia"
+      "correctAnswer": 1,
+      "explanation": "broncoscopia"
     },
     {
       "id": 65,
-      "pregunta": "caso de estudio ecológico",
-      "opciones": []
+      "question": "caso de estudio ecológico",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 66,
-      "pregunta": "paciente con clínica de ecv isquémico pero con tac normal",
-      "opciones": [
+      "question": "paciente con clínica de ecv isquémico pero con tac normal",
+      "options": [
         "Antiagregación plaquetaria",
         "trombolizar",
         "Trombectomía mecánica",
         "Observación",
         "Anticoagulación"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "trombolizar"
+      "correctAnswer": 1,
+      "explanation": "trombolizar"
     },
     {
       "id": 67,
-      "pregunta": "tasa natalidad",
-      "opciones": []
+      "question": "tasa natalidad",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 68,
-      "pregunta": "paciente abortos y mucho sangrado",
-      "opciones": [],
-      "respuesta_texto": "sinequias"
+      "question": "paciente abortos y mucho sangrado",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 69,
-      "pregunta": "bb 2 meses con anemia fisiologica",
-      "opciones": []
+      "question": "bb 2 meses con anemia fisiologica",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 70,
-      "pregunta": "paciente lesion húmero, no flexta muñeca",
-      "opciones": [],
-      "respuesta_texto": "nervio radial"
+      "question": "paciente lesion húmero, no flexta muñeca",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 71,
-      "pregunta": "paciente accidente transito con timpanismo en el tórax",
-      "opciones": [],
-      "respuesta_texto": "neumotorax"
+      "question": "paciente accidente transito con timpanismo en el tórax",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 72,
-      "pregunta": "Lactante con emesis pero que “no tenía relación con la alimentación” pero tenía oliva pilorica y otros signos sugerentes",
-      "opciones": [
+      "question": "Lactante con emesis pero que “no tenía relación con la alimentación” pero tenía oliva pilorica y otros signos sugerentes",
+      "options": [
         "Alergia a proteína de leche",
         "estenosis hipertrofica piloro",
         "Atresia pilórica",
         "Invaginación intestinal",
         "Reflujo gastroesofágico"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "estenosis hipertrofica piloro"
+      "correctAnswer": 1,
+      "explanation": "estenosis hipertrofica piloro"
     },
     {
       "id": 73,
-      "pregunta": "paciente con bypass y clínica hipoglicemia luego comer",
-      "opciones": [
+      "question": "paciente con bypass y clínica hipoglicemia luego comer",
+      "options": [
         "Úlcera marginal",
         "Obstrucción intestinal",
         "dumping",
         "Hipoglicemia reactiva",
         "Síndrome de asa aferente"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "dumping"
+      "correctAnswer": 2,
+      "explanation": "dumping"
     },
     {
       "id": 74,
-      "pregunta": "Niño con intoxicacion alimentaria y sin signos deshidratación severa",
-      "opciones": [
+      "question": "Niño con intoxicacion alimentaria y sin signos deshidratación severa",
+      "options": [
         "Resonancia magnética",
         "sales rehidratación oral (pero creo que salía era probar tolerancia oral o algo asi)",
         "Cintigrafía",
         "Ecografía",
         "Radiografía"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "sales rehidratación oral (pero creo que salía era probar tolerancia oral o algo asi)"
+      "correctAnswer": 1,
+      "explanation": "sales rehidratación oral (pero creo que salía era probar tolerancia oral o algo asi)"
     },
     {
       "id": 75,
-      "pregunta": "Niño con púrpura y plaquetas en 10.000",
-      "opciones": [
+      "question": "Niño con púrpura y plaquetas en 10.000",
+      "options": [
         "PTI",
         "Púrpura trombótica trombocitopénica",
         "Síndrome hemolítico urémico",
         "Coagulación intravascular diseminada",
         "Leucemia aguda"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "PTI"
+      "correctAnswer": 0,
+      "explanation": "PTI"
     },
     {
       "id": 76,
-      "pregunta": "paciente recién nacido con pie equino varo",
-      "opciones": []
+      "question": "paciente recién nacido con pie equino varo",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 77,
-      "pregunta": "paciente con B-hcg 100, pero que no se observaba saco gestacional",
-      "opciones": [
+      "question": "paciente con B-hcg 100, pero que no se observaba saco gestacional",
+      "options": [
         "Radiografía",
         "había que pedir hcg en 48 h",
         "Ecografía",
         "Resonancia magnética",
         "Cintigrafía"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "había que pedir hcg en 48 h"
+      "correctAnswer": 1,
+      "explanation": "había que pedir hcg en 48 h"
     },
     {
       "id": 78,
-      "pregunta": "Escolar femenina con clínica de lupus, proteinuria y otras alteraciones",
-      "opciones": [],
-      "respuesta_texto": "nefritis lupica"
+      "question": "Escolar femenina con clínica de lupus, proteinuria y otras alteraciones",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 79,
-      "pregunta": "paciente hipercalcemia sintomática",
-      "opciones": [
+      "question": "paciente hipercalcemia sintomática",
+      "options": [
         "Resonancia magnética",
         "Cintigrafía",
         "hidratacion ev",
         "Radiografía",
         "Ecografía"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "hidratacion ev"
+      "correctAnswer": 2,
+      "explanation": "hidratacion ev"
     },
     {
       "id": 80,
-      "pregunta": "paciente escolar con meningitis atb empírico de eleccion",
-      "opciones": [
+      "question": "paciente escolar con meningitis atb empírico de eleccion",
+      "options": [
         "ceftriaxona y vancomicina",
         "Ciprofloxacino",
         "Doxiciclina",
         "Azitromicina",
         "Amoxicilina"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "ceftriaxona y vancomicina"
+      "correctAnswer": 0,
+      "explanation": "ceftriaxona y vancomicina"
     },
     {
       "id": 81,
-      "pregunta": "niño intoxicado",
-      "opciones": [],
-      "respuesta_texto": "amiptrilina???"
+      "question": "niño intoxicado",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 82,
-      "pregunta": "paciente que tenía cuadro depresivo pero luego con episodios de euforia etc",
-      "opciones": [],
-      "respuesta_texto": "se trata como trastorno bipolar"
+      "question": "paciente que tenía cuadro depresivo pero luego con episodios de euforia etc",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 83,
-      "pregunta": "Estudio hipogonadismo hombre adulto",
-      "opciones": [],
-      "respuesta_texto": "resonancia magnética"
+      "question": "Estudio hipogonadismo hombre adulto",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 84,
-      "pregunta": "Paciente con antecedentes de CA mama, presenta birads 4 y birads 0",
-      "opciones": [],
-      "respuesta_texto": "Biopsia estereotaxica"
+      "question": "Paciente con antecedentes de CA mama, presenta birads 4 y birads 0",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 85,
-      "pregunta": "rpm 35 sem hace 48 h",
-      "opciones": [],
-      "respuesta_texto": "interrumpir por parto"
+      "question": "rpm 35 sem hace 48 h",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 86,
-      "pregunta": "Paciente operada rodilla hace dos días presenta signos de TEP",
-      "opciones": [
+      "question": "Paciente operada rodilla hace dos días presenta signos de TEP",
+      "options": [
         "Resonancia magnética",
         "Angiografía convencional",
         "Angiotac",
         "Radiografía simple",
         "Ecografía Doppler"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "Angiotac"
+      "correctAnswer": 2,
+      "explanation": "Angiotac"
     },
     {
       "id": 87,
-      "pregunta": "Pte que de niño tuvo leucemia ahora se lavaba mucho las manos y eso",
-      "opciones": [],
-      "respuesta_texto": "TOC"
+      "question": "Pte que de niño tuvo leucemia ahora se lavaba mucho las manos y eso",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 88,
-      "pregunta": "paciente depresion con dosis maxima tto por dos meses",
-      "opciones": [],
-      "respuesta_texto": "cambiar antidepresivo"
+      "question": "paciente depresion con dosis maxima tto por dos meses",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 89,
-      "pregunta": "escitalopram en paciente con miedo hablar publico",
-      "opciones": []
+      "question": "escitalopram en paciente con miedo hablar publico",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 90,
-      "pregunta": "paciente dolor lumbar y uroanalisis no patológico, a espera urocultivo",
-      "opciones": [
+      "question": "paciente dolor lumbar y uroanalisis no patológico, a espera urocultivo",
+      "options": [
         "Ecografía",
         "Resonancia magnética",
         "pielotac---------------------nose este señor era el mismo que tenia ca prostata??",
         "Radiografía",
         "Cintigrafía"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "pielotac---------------------nose este señor era el mismo que tenia ca prostata??"
+      "correctAnswer": 2,
+      "explanation": "pielotac---------------------nose este señor era el mismo que tenia ca prostata??"
     },
     {
       "id": 91,
-      "pregunta": "Lactante dos meses con clinica alergia proteina de leche",
-      "opciones": [],
-      "respuesta_texto": "madre suspender lacteos"
+      "question": "Lactante dos meses con clinica alergia proteina de leche",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 92,
-      "pregunta": "pte bipolar con mania aguda",
-      "opciones": [],
-      "respuesta_texto": "haloperidol"
+      "question": "pte bipolar con mania aguda",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 93,
-      "pregunta": "paciente con ITU recurrente y fibrosis pulmonar",
-      "opciones": [
+      "question": "paciente con ITU recurrente y fibrosis pulmonar",
+      "options": [
         "Amoxicilina",
         "Cefalexina",
         "Trimetoprim-sulfametoxazol",
         "supender nitrofurantoina",
         "Ciprofloxacino"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "supender nitrofurantoina"
+      "correctAnswer": 3,
+      "explanation": "supender nitrofurantoina"
     },
     {
       "id": 94,
-      "pregunta": "derrame pleural estudio líquido",
-      "opciones": [],
-      "respuesta_texto": "era derrame paraneumonico??"
+      "question": "derrame pleural estudio líquido",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 95,
-      "pregunta": "Señor con lumbalgia mecanica, era analgesia y kine",
-      "opciones": []
+      "question": "Señor con lumbalgia mecanica, era analgesia y kine",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 96,
-      "pregunta": "IAM con disponibilidad angioplastia a 1 hora, referir",
-      "opciones": []
+      "question": "IAM con disponibilidad angioplastia a 1 hora, referir",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 97,
-      "pregunta": "FA en adulta mayor",
-      "opciones": [],
-      "respuesta_texto": "anticoagular"
+      "question": "FA en adulta mayor",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 98,
-      "pregunta": "paciente inquieto al dormir y que daba golpes",
-      "opciones": [],
-      "respuesta_texto": "alteración sueño rem"
+      "question": "paciente inquieto al dormir y que daba golpes",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 99,
-      "pregunta": "paciente con depresion post parto",
-      "opciones": []
+      "question": "paciente con depresion post parto",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 100,
-      "pregunta": "paciente superando michi",
-      "opciones": [
+      "question": "paciente superando michi",
+      "options": [
         "Ecografía",
         "Radiografía",
         "Cintigrafía",
         "adaptación",
         "Resonancia magnética"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "adaptación"
+      "correctAnswer": 3,
+      "explanation": "adaptación"
     },
     {
       "id": 101,
-      "pregunta": "paciente colonoscopia imágenes con parasitos",
-      "opciones": [
+      "question": "paciente colonoscopia imágenes con parasitos",
+      "options": [
         "Ecografía abdominal",
         "Test de sangre oculta",
         "TAC abdominopélvico",
         "era trichomona",
         "Enema baritado"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "era trichomona"
+      "correctAnswer": 3,
+      "explanation": "era trichomona"
     },
     {
       "id": 102,
-      "pregunta": "paciente pediátrico asma crisis",
-      "opciones": [],
-      "respuesta_texto": "salbutamol en aerocamara"
+      "question": "paciente pediátrico asma crisis",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 103,
-      "pregunta": "paciente alcoholico con delirium tremens",
-      "opciones": [],
-      "respuesta_texto": "Lorazepam"
+      "question": "paciente alcoholico con delirium tremens",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 104,
-      "pregunta": "paciente adulto mayor, cefalea y ataxia de meses, tac",
-      "opciones": [
+      "question": "paciente adulto mayor, cefalea y ataxia de meses, tac",
+      "options": [
         "Cintigrafía",
         "Radiografía",
         "Resonancia magnética",
         "Ecografía",
         "hematoma subdural cronico"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "hematoma subdural cronico"
+      "correctAnswer": 4,
+      "explanation": "hematoma subdural cronico"
     },
     {
       "id": 105,
-      "pregunta": "paciente que se golpeaba la cabeza",
-      "opciones": [],
-      "respuesta_texto": "cefalea cluster"
+      "question": "paciente que se golpeaba la cabeza",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 106,
-      "pregunta": "pregunta sobre seremi",
-      "opciones": []
+      "question": "pregunta sobre seremi",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 107,
-      "pregunta": "pregunta DIEP",
-      "opciones": []
+      "question": "pregunta DIEP",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 108,
-      "pregunta": "paciente con itu recurrencia sexo",
-      "opciones": [],
-      "respuesta_texto": "cranberry"
+      "question": "paciente con itu recurrencia sexo",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 109,
-      "pregunta": "paciente sintomática con aparente colelitisis residual",
-      "opciones": [],
-      "respuesta_texto": "colecistectomia"
+      "question": "paciente sintomática con aparente colelitisis residual",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 110,
-      "pregunta": "puerpera con diarrea y disentería",
-      "opciones": [],
-      "respuesta_texto": "probablemente clostridum dificile"
+      "question": "puerpera con diarrea y disentería",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 111,
-      "pregunta": "niño con tres lesiones en abdomen, no parecía grave pero había 5 opciones de ATB tópicos/orales",
-      "opciones": [],
-      "respuesta_texto": "no entendi"
+      "question": "niño con tres lesiones en abdomen, no parecía grave pero había 5 opciones de ATB tópicos/orales",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 112,
-      "pregunta": "disfuncion erectil",
-      "opciones": [],
-      "respuesta_texto": "sildenafil y psicoterapia"
+      "question": "disfuncion erectil",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 113,
-      "pregunta": "eyaculacion precoz",
-      "opciones": [],
-      "respuesta_texto": "no recuerdo las opciones"
+      "question": "eyaculacion precoz",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 114,
-      "pregunta": "Paciente con ojo rojo, sensación arenilla y síntomas hace meses",
-      "opciones": [],
-      "respuesta_texto": "ojo seco"
+      "question": "Paciente con ojo rojo, sensación arenilla y síntomas hace meses",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 115,
-      "pregunta": "crisis hipertensiva en embarazada",
-      "opciones": [],
-      "respuesta_texto": "labetalol endovenoso"
+      "question": "crisis hipertensiva en embarazada",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 116,
-      "pregunta": "grafico salud publica 1",
-      "opciones": []
+      "question": "grafico salud publica 1",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 117,
-      "pregunta": "grafico salud publica 2",
-      "opciones": []
+      "question": "grafico salud publica 2",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 118,
-      "pregunta": "aborto 18 semanas",
-      "opciones": [],
-      "respuesta_texto": "microcesarea"
+      "question": "aborto 18 semanas",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 119,
-      "pregunta": "mononeuritis multiple",
-      "opciones": [],
-      "respuesta_texto": "no recuerdo"
+      "question": "mononeuritis multiple",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 120,
-      "pregunta": "paciente psoriasis 10% cuerpo",
-      "opciones": [],
-      "respuesta_texto": "clobetasol topico"
+      "question": "paciente psoriasis 10% cuerpo",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 121,
-      "pregunta": "paciente con dolor a la penetracion y signos vaginosis",
-      "opciones": [],
-      "respuesta_texto": "metronidazol vo"
+      "question": "paciente con dolor a la penetracion y signos vaginosis",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 122,
-      "pregunta": "paciente con miomatosis uterina sintomatica, post menopausia e inestable hemodinámicamente",
-      "opciones": [],
-      "respuesta_texto": "histerectomia"
+      "question": "paciente con miomatosis uterina sintomatica, post menopausia e inestable hemodinámicamente",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 123,
-      "pregunta": "pte hipoacusia subita de dos dias",
-      "opciones": [],
-      "respuesta_texto": "no recuerdo"
+      "question": "pte hipoacusia subita de dos dias",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 124,
-      "pregunta": "pte diabetico con fondo de ojo alterado tenia buen control metabolico, cual era la medida mas adecuada",
-      "opciones": [
+      "question": "pte diabetico con fondo de ojo alterado tenia buen control metabolico, cual era la medida mas adecuada",
+      "options": [
         "Pioglitazona",
         "Sitagliptina",
         "Insulina NPH",
         "Glibenclamida",
         "subir metformina??"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "subir metformina??"
+      "correctAnswer": 4,
+      "explanation": "subir metformina??"
     },
     {
       "id": 125,
-      "pregunta": "ventilacion en niño hospitalizado con neumonía",
-      "opciones": [],
-      "respuesta_texto": "saturaba bien y no estaba inestable, naricera"
+      "question": "ventilacion en niño hospitalizado con neumonía",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 126,
-      "pregunta": "paciente con dolor e inflamación en la rodilla",
-      "opciones": [],
-      "respuesta_texto": "estudio liquido articular"
+      "question": "paciente con dolor e inflamación en la rodilla",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 127,
-      "pregunta": "paciente con patología que parecía manguito rotador?",
-      "opciones": []
+      "question": "paciente con patología que parecía manguito rotador?",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 128,
-      "pregunta": "paciente ekg arritmia, pregunta tto salían solo farmacos",
-      "opciones": [],
-      "respuesta_texto": "la opcion parecia ser amiodarona?"
+      "question": "paciente ekg arritmia, pregunta tto salían solo farmacos",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 129,
-      "pregunta": "pte con ascitis, recibiendo atb y cuadro pbe",
-      "opciones": [],
-      "respuesta_texto": "paracentesis evacuadora (Nota admin: yo marque albúmina, para profilaxis SHR y en ese caso se puede colocar así sin paracentesis, la cual estába contraindicada por no haber mejoría y el liquido estaba con 250 pmn aun)"
+      "question": "pte con ascitis, recibiendo atb y cuadro pbe",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 130,
-      "pregunta": "paciente niño 9 años con necrosis cabeza femoral",
-      "opciones": []
+      "question": "paciente niño 9 años con necrosis cabeza femoral",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 131,
-      "pregunta": "pregunta sobre pte con alteraciones coagulación",
-      "opciones": [],
-      "respuesta_texto": "EvW???"
+      "question": "pregunta sobre pte con alteraciones coagulación",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 132,
-      "pregunta": "pte en trabajo parto con dolor utero y cesarea previa",
-      "opciones": [
+      "question": "pte en trabajo parto con dolor utero y cesarea previa",
+      "options": [
         "Fórceps",
         "Conducción oxitócica",
         "Vacuum",
         "cesárea",
         "Espera activa"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "cesárea"
+      "correctAnswer": 3,
+      "explanation": "cesárea"
     },
     {
       "id": 133,
-      "pregunta": "estudios feto down",
-      "opciones": []
+      "question": "estudios feto down",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 134,
-      "pregunta": "dx en una paciente joven con arritmias",
-      "opciones": [],
-      "respuesta_texto": "holter de ritmo"
+      "question": "dx en una paciente joven con arritmias",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 135,
-      "pregunta": "pregunta sobre coco gram positivos y su forma (alguien edite no recuerdo)",
-      "opciones": []
+      "question": "pregunta sobre coco gram positivos y su forma (alguien edite no recuerdo)",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 136,
-      "pregunta": "paciente con endocarditis bacteriana después cirugía cardiaca",
-      "opciones": [],
-      "respuesta_texto": "stafilococo aureus"
+      "question": "paciente con endocarditis bacteriana después cirugía cardiaca",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 137,
-      "pregunta": "meningitis lactante 3 meses",
-      "opciones": [],
-      "respuesta_texto": "listeria"
+      "question": "meningitis lactante 3 meses",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 138,
-      "pregunta": "atb en neumonia pte adulto mayor",
-      "opciones": [
+      "question": "atb en neumonia pte adulto mayor",
+      "options": [
         "amoxicilina con ac clavulanico",
         "Ciprofloxacino",
         "Clindamicina",
         "Cefalexina",
         "Azitromicina"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "amoxicilina con ac clavulanico"
+      "correctAnswer": 0,
+      "explanation": "amoxicilina con ac clavulanico"
     },
     {
       "id": 139,
-      "pregunta": "Paciente con antecedentes por consumo de cocaína, y usuario de carbamacepina, que examen pedir, intoxicación",
-      "opciones": []
+      "question": "Paciente con antecedentes por consumo de cocaína, y usuario de carbamacepina, que examen pedir, intoxicación",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 140,
-      "pregunta": "Paciente alcohólico y fumador, con dolor ingesta alimentos y enzimas hepáticas alteradas",
-      "opciones": [
+      "question": "Paciente alcohólico y fumador, con dolor ingesta alimentos y enzimas hepáticas alteradas",
+      "options": [
         "Úlcera perforada",
         "Obstrucción intestinal",
         "pancreatitis crónica (o aguda era opción que salía no recuerdo)",
         "Colecistitis aguda",
         "Hepatitis alcohólica"
       ],
-      "respuesta_correcta": 2,
-      "explicacion": "pancreatitis crónica (o aguda era opción que salía no recuerdo)"
+      "correctAnswer": 2,
+      "explanation": "pancreatitis crónica (o aguda era opción que salía no recuerdo)"
     },
     {
       "id": 141,
-      "pregunta": "Embarazada en trabajo parto hace 4 horas y no avanza",
-      "opciones": [
+      "question": "Embarazada en trabajo parto hace 4 horas y no avanza",
+      "options": [
         "Fórceps",
         "Conducción oxitócica",
         "Espera activa",
         "cesárea",
         "Vacuum"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "cesárea"
+      "correctAnswer": 3,
+      "explanation": "cesárea"
     },
     {
       "id": 142,
-      "pregunta": "Paciente con INR muy prolongado en tto cumarinicos",
-      "opciones": [],
-      "respuesta_texto": "suspender y vit K"
+      "question": "Paciente con INR muy prolongado en tto cumarinicos",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 143,
-      "pregunta": "Paciente con sarcopenia",
-      "opciones": [],
-      "respuesta_texto": "ejércicio de fuerza"
+      "question": "Paciente con sarcopenia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 144,
-      "pregunta": "Niño con lesiones en manos, pies y axilas",
-      "opciones": [],
-      "respuesta_texto": "escabiosis"
+      "question": "Niño con lesiones en manos, pies y axilas",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 145,
-      "pregunta": "Paciente con abortos a repetición con deseos de nuevo embarazo, conducta inicial",
-      "opciones": [
+      "question": "Paciente con abortos a repetición con deseos de nuevo embarazo, conducta inicial",
+      "options": [
         "Calcio",
         "ácido fólico.",
         "Progesterona",
         "Hierro",
         "Aspirina"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "ácido fólico."
+      "correctAnswer": 1,
+      "explanation": "ácido fólico."
     },
     {
       "id": 146,
-      "pregunta": "Lactante con diarrea, que mejoró luego de hidratación",
-      "opciones": [
+      "question": "Lactante con diarrea, que mejoró luego de hidratación",
+      "options": [
         "Diabetes gestacional",
         "Hallazgo patológico",
         "Infección urinaria",
         "Preeclampsia",
         "Na bajo, Glicemia baja, K normal: Enf Celiaca?, Sd retroalimentación?, insf suprarrenal?"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "Na bajo, Glicemia baja, K normal: Enf Celiaca?, Sd retroalimentación?, insf suprarrenal?"
+      "correctAnswer": 4,
+      "explanation": "Na bajo, Glicemia baja, K normal: Enf Celiaca?, Sd retroalimentación?, insf suprarrenal?"
     },
     {
       "id": 147,
-      "pregunta": "Paciente que le diagnosticaron un soplo hace 20 años durante un embarazo",
-      "opciones": [
+      "question": "Paciente que le diagnosticaron un soplo hace 20 años durante un embarazo",
+      "options": [
         "Tetralogía de Fallot",
         "Ductus arterioso persistente",
         "Estenosis pulmonar",
         "comunicación interauricular.",
         "Comunicación interventricular"
       ],
-      "respuesta_correcta": 3,
-      "explicacion": "comunicación interauricular."
+      "correctAnswer": 3,
+      "explanation": "comunicación interauricular."
     },
     {
       "id": 148,
-      "pregunta": "Paciente con aumento de volumen en labios vaginales",
-      "opciones": [
+      "question": "Paciente con aumento de volumen en labios vaginales",
+      "options": [
         "Compresas frías",
         "drenaje y atb era",
         "Antibióticos orales",
         "Punción aspirativa",
         "Observación"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "drenaje y atb era"
+      "correctAnswer": 1,
+      "explanation": "drenaje y atb era"
     },
     {
       "id": 149,
-      "pregunta": "paciente con exoftalmo?",
-      "opciones": [],
-      "respuesta_texto": "oftalmopatia de graves?"
+      "question": "paciente con exoftalmo?",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 150,
-      "pregunta": "señor desdentado se hizo endoscopia para retirar cuerpo extraño (carne)",
-      "opciones": [],
-      "respuesta_texto": "hay que hacerle endoscopia control luego"
+      "question": "señor desdentado se hizo endoscopia para retirar cuerpo extraño (carne)",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 151,
-      "pregunta": "colecistectomia en una colecistitis aguda",
-      "opciones": []
+      "question": "colecistectomia en una colecistitis aguda",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 152,
-      "pregunta": "un caso de colangitis",
-      "opciones": []
+      "question": "un caso de colangitis",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 153,
-      "pregunta": "pte con otitis cronica",
-      "opciones": [],
-      "respuesta_texto": "parecia otomicosis"
+      "question": "pte con otitis cronica",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 154,
-      "pregunta": "pte con vertigo y tinitus, disponible audiometria en una semana",
-      "opciones": []
+      "question": "pte con vertigo y tinitus, disponible audiometria en una semana",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 155,
-      "pregunta": "paciente que presencio un accidente en el cual salió su amigo herido y tenia 2 semanas con sintomas",
-      "opciones": [
+      "question": "paciente que presencio un accidente en el cual salió su amigo herido y tenia 2 semanas con sintomas",
+      "options": [
         "Trastorno de pánico",
         "Trastorno de ansiedad generalizada",
         "Trastorno de adaptación",
         "Depresión mayor",
         "estrés posttraumatico agudo"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "estrés posttraumatico agudo"
+      "correctAnswer": 4,
+      "explanation": "estrés posttraumatico agudo"
     },
     {
       "id": 156,
-      "pregunta": "pte 20/40 que no mejora con agujero estenopeico",
-      "opciones": [],
-      "respuesta_texto": "degeneracion macular?"
+      "question": "pte 20/40 que no mejora con agujero estenopeico",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 157,
-      "pregunta": "paciente que parecia cuadro sop y tenia amenorrea",
-      "opciones": [],
-      "respuesta_texto": "primero pedir bhcg"
+      "question": "paciente que parecia cuadro sop y tenia amenorrea",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 158,
-      "pregunta": "paciente con hidronefrosis izquierda y nefrectomia derecha",
-      "opciones": [
+      "question": "paciente con hidronefrosis izquierda y nefrectomia derecha",
+      "options": [
         "cateter doble j",
         "Nefrectomía",
         "Nefrostomía percutánea",
         "Litotricia",
         "Antibióticos"
       ],
-      "respuesta_correcta": 0,
-      "explicacion": "cateter doble j"
+      "correctAnswer": 0,
+      "explanation": "cateter doble j"
     },
     {
       "id": 159,
-      "pregunta": "caso pte ortopedia se preguntaba sí mantener control habitual, indicar plantillas o derivar a especialista",
-      "opciones": []
+      "question": "caso pte ortopedia se preguntaba sí mantener control habitual, indicar plantillas o derivar a especialista",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 160,
-      "pregunta": "pte adulta mayor 74 años, epigastralgia y antecedentes de dispepsia",
-      "opciones": [],
-      "respuesta_texto": "cáncer?"
+      "question": "pte adulta mayor 74 años, epigastralgia y antecedentes de dispepsia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 161,
-      "pregunta": "paciente diabética que había que ajustar esquema insulina",
-      "opciones": [
+      "question": "paciente diabética que había que ajustar esquema insulina",
+      "options": [
         "Glibenclamida",
         "Sitagliptina",
         "Pioglitazona",
         "Metformina",
         "ajustar dosis nph nocturna"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "ajustar dosis nph nocturna"
+      "correctAnswer": 4,
+      "explanation": "ajustar dosis nph nocturna"
     },
     {
       "id": 162,
-      "pregunta": "paciente que jugando futbol se lesiono la rodilla, habia que elegir que ligamento se lesionó y decia un signo característico",
-      "opciones": [],
-      "respuesta_texto": "no recuerdo cual ni las opciones"
+      "question": "paciente que jugando futbol se lesiono la rodilla, habia que elegir que ligamento se lesionó y decia un signo característico",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 163,
-      "pregunta": "caso enfermedad crohn",
-      "opciones": [
+      "question": "caso enfermedad crohn",
+      "options": [
         "Síndrome de intestino irritable",
         "presentaba úlceras orales, pérdida de peso y diarrea crónica",
         "Colitis ulcerosa",
         "Tuberculosis intestinal",
         "Linfoma intestinal"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "presentaba úlceras orales, pérdida de peso y diarrea crónica"
+      "correctAnswer": 1,
+      "explanation": "presentaba úlceras orales, pérdida de peso y diarrea crónica"
     },
     {
       "id": 164,
-      "pregunta": "caso colitis ulcerosa",
-      "opciones": [
+      "question": "caso colitis ulcerosa",
+      "options": [
         "Colitis isquémica",
         "presentaba diarrea crónica a veces hematoquecia, pérdida de peso, pujo y tenesmo",
         "Síndrome de intestino irritable",
         "Colitis infecciosa",
         "Enfermedad de Crohn"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "presentaba diarrea crónica a veces hematoquecia, pérdida de peso, pujo y tenesmo"
+      "correctAnswer": 1,
+      "explanation": "presentaba diarrea crónica a veces hematoquecia, pérdida de peso, pujo y tenesmo"
     },
     {
       "id": 165,
-      "pregunta": "paciente adulta mayor con signos de fractura de pie, aumento de volumen, limitación funcional y con mucho dolor al apoyar pie, decía cual era estudio dx de elección",
-      "opciones": [
+      "question": "paciente adulta mayor con signos de fractura de pie, aumento de volumen, limitación funcional y con mucho dolor al apoyar pie, decía cual era estudio dx de elección",
+      "options": [
         "Ecografía",
         "Resonancia magnética",
         "Cintigrafía",
         "TAC",
         "RX"
       ],
-      "respuesta_correcta": 4,
-      "explicacion": "RX"
+      "correctAnswer": 4,
+      "explanation": "RX"
     },
     {
       "id": 166,
-      "pregunta": "paciente con diabetes gestacional 28 semanas, con tto metformina pero con cifras elevadas de glicemia, se preguntaba cómo continuar tto",
-      "opciones": [
+      "question": "paciente con diabetes gestacional 28 semanas, con tto metformina pero con cifras elevadas de glicemia, se preguntaba cómo continuar tto",
+      "options": [
         "Pioglitazona",
         "agregar insulina",
         "Glibenclamida",
         "Sitagliptina",
         "Metformina"
       ],
-      "respuesta_correcta": 1,
-      "explicacion": "agregar insulina"
+      "correctAnswer": 1,
+      "explanation": "agregar insulina"
     },
     {
       "id": 167,
-      "pregunta": "pregunta que daban calcio y otros valores, parecia un hiperparatiroidismo primario.",
-      "opciones": []
+      "question": "pregunta que daban calcio y otros valores, parecia un hiperparatiroidismo primario.",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     }
   ]
 }

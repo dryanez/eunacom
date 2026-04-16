@@ -8,732 +8,895 @@
   "questions": [
     {
       "id": 1,
-      "pregunta": "Niño con aumento volumen de párpado, eritema, y secreción purulenta, no puede abrir el ojo",
-      "opciones": [
+      "question": "Niño con aumento volumen de párpado, eritema, y secreción purulenta, no puede abrir el ojo",
+      "options": [
         "Celulitis periorbitaria",
         "celulitis orbitaria",
         "Chalazion infectado"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 2,
-      "pregunta": "Mujer 30 años con aparición de Placa eritematodescamativa de 2 meses de evolución en pómulo derecho de 3 cm de diámetro y otra similar en cuero cabelludo (zona parietal izquierda) con alopecia central.",
-      "opciones": [
+      "question": "Mujer 30 años con aparición de Placa eritematodescamativa de 2 meses de evolución en pómulo derecho de 3 cm de diámetro y otra similar en cuero cabelludo (zona parietal izquierda) con alopecia central.",
+      "options": [
         "Lupus cutáneo crónico",
         "Dermatitis seborreica",
         "Psoriasis",
         "Liquen plano",
         "Rosácea"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 3,
-      "pregunta": "Vacuna embarazada para prevenir enfermedad de hijo en los primeros meses de nacimiento",
-      "opciones": [
+      "question": "Vacuna embarazada para prevenir enfermedad de hijo en los primeros meses de nacimiento",
+      "options": [
         "influenza",
         "Varicela",
         "Tres virica",
         "Fiebre amarilla",
         "Meningococo conjugada"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 4,
-      "pregunta": "Clínica de Sarna (perlada) con acarotest negativo manejo",
-      "opciones": [
+      "question": "Clínica de Sarna (perlada) con acarotest negativo manejo",
+      "options": [
         "Permetrina",
         "Ivermectina",
         "Repetir acarotest",
         "Vaselina azufrada"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 5,
-      "pregunta": "Niño adenopatía, fiebre, lesiones focales esplénicas a. Estudio bartonella henselae",
-      "opciones": []
+      "question": "Niño adenopatía, fiebre, lesiones focales esplénicas a. Estudio bartonella henselae",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 6,
-      "pregunta": "Veterinario expuesto a ganado, dolor articular. Artrocentesis con PMN 70%",
-      "opciones": [
+      "question": "Veterinario expuesto a ganado, dolor articular. Artrocentesis con PMN 70%",
+      "options": [
         "brucelosis",
         "Fiebre Q",
         "Cultivo de gonococo",
         "Hemocultivo"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 7,
-      "pregunta": "IMAGEN",
-      "opciones": [],
-      "respuesta_texto": "Persona en situación de calle con hemitórax radiopaco: a. Derrame pleural masivo"
+      "question": "IMAGEN",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 8,
-      "pregunta": "Guagua de 2 meses con ITU x atipico (nitritos (-)), fiebre, irritabilidad, con 60 blancos, bacterias abundantes",
-      "opciones": [
+      "question": "Guagua de 2 meses con ITU x atipico (nitritos (-)), fiebre, irritabilidad, con 60 blancos, bacterias abundantes",
+      "options": [
         "Hospitalizar + ATB amplio espectro.",
         "ATB vo y control con UC"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 9,
-      "pregunta": "Postmenopáusica con antecedente de IAM y bochornos",
-      "opciones": [
+      "question": "Postmenopáusica con antecedente de IAM y bochornos",
+      "options": [
         "iniciar Escitalopram",
         "Resto opciones tenian estradiol",
         "Estrógenos vo",
         "Estrógenos intradérmicos",
         "Progestágenos vo"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 82,
-      "pregunta": "Paciente que decía que le “temblaba el cuerpo” y en ocasiones se quedaba paralizada porque se subia al auto “no quería ir al trabajo y músculos no le respondian” y que fue estudiada por varios médicos (neurólogos e internistas) sin hallazgos y ya está cansada y quiere que la dejen morir, su familia o amigos estan preocupados porque siempre ha sido una trabajadora ejemplar",
-      "opciones": [
+      "question": "Paciente que decía que le “temblaba el cuerpo” y en ocasiones se quedaba paralizada porque se subia al auto “no quería ir al trabajo y músculos no le respondian” y que fue estudiada por varios médicos (neurólogos e internistas) sin hallazgos y ya está cansada y quiere que la dejen morir, su familia o amigos estan preocupados porque siempre ha sido una trabajadora ejemplar",
+      "options": [
         "Conversivo",
         "Hipocondria",
         "Depresión.",
         "Facticio",
         "urotac"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 100,
-      "pregunta": "Cabro chico dm 1 con CAD, PA 90/60, FC 80, conducta inicial",
-      "opciones": [
+      "question": "Cabro chico dm 1 con CAD, PA 90/60, FC 80, conducta inicial",
+      "options": [
         "bolo 20mg kg en 30 min",
         "bolo 10ml/kg en 1 horas",
         "Insulina"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 101,
-      "pregunta": "Cetoacidosis cetonas (+) pH 7.1 K 3 conducta inicial hidratar SF",
-      "opciones": []
+      "question": "Cetoacidosis cetonas (+) pH 7.1 K 3 conducta inicial hidratar SF",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 102,
-      "pregunta": "Mujer obesa 2-3 copas de vino sólo el fin de semana en tratamiento con estatinas, transaminasas con doble del valor normal",
-      "opciones": [
+      "question": "Mujer obesa 2-3 copas de vino sólo el fin de semana en tratamiento con estatinas, transaminasas con doble del valor normal",
+      "options": [
         "esteatohepatitis no alcoholica",
         "esteatohepatitis alcohólica",
         "hepatitis por fármacos",
         "hepatitis por VHC",
         "Hepatitis AI"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 103,
-      "pregunta": "Px trasplante renal hace 9 años, usuario de tacrolimus, hace una semana de compromiso del estai.do general, dolor en zona injerto. Exs de rutina hace 10 días muestran niveles plasmaticos de tacrolimus >5 (estaba en rango normal), crea en 0.9. Exs actuales: crea 2.3, orina completa leucocitos y bacterias. ¿Diagnóstico? Alternativas",
-      "opciones": [
+      "question": "Px trasplante renal hace 9 años, usuario de tacrolimus, hace una semana de compromiso del estai.do general, dolor en zona injerto. Exs de rutina hace 10 días muestran niveles plasmaticos de tacrolimus >5 (estaba en rango normal), crea en 0.9. Exs actuales: crea 2.3, orina completa leucocitos y bacterias. ¿Diagnóstico? Alternativas",
+      "options": [
         "Rechazo agudo",
         "rechazo crónico",
         "intoxicación por tacrolimus",
         "pielonefritis del injerto",
         "pielonefritis"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 104,
-      "pregunta": "Que se da solo después de los 12 meses",
-      "opciones": [
+      "question": "Que se da solo después de los 12 meses",
+      "options": [
         "miel",
         "huevo",
         "pescado",
         "carne de cerdo",
         "carne de vacuno"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 105,
-      "pregunta": "Paro, en una reanimación, en condiciones idóneas como verifico que una IOT está bien hecha",
-      "opciones": [
+      "question": "Paro, en una reanimación, en condiciones idóneas como verifico que una IOT está bien hecha",
+      "options": [
         "Capnografia",
         "Auscultación pulmonar",
         "Saturación de o2",
         "Expansión torácica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 106,
-      "pregunta": "Asmática con crisis tratada con corticoides VO por 5 días, al 5to día se le solicita seguimiento con exámenes, presenta glicemia 130. Cuál es la conducta más apropiada",
-      "opciones": [
+      "question": "Asmática con crisis tratada con corticoides VO por 5 días, al 5to día se le solicita seguimiento con exámenes, presenta glicemia 130. Cuál es la conducta más apropiada",
+      "options": [
         "Repetir glicemia en 1 semana",
         "Pedir hemoglobina glicosilada",
         "Solicitar PTGO"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 107,
-      "pregunta": "Paciente adulto mayor que no lograba erección, libido se conservaba, temor a que su pareja lo deje ya que antes tenían encuentros 1-2 por semana. Conducta",
-      "opciones": [
+      "question": "Paciente adulto mayor que no lograba erección, libido se conservaba, temor a que su pareja lo deje ya que antes tenían encuentros 1-2 por semana. Conducta",
+      "options": [
         "Sildenafil",
         "Búsqueda de causa 2ria: tenía líbido conservada, no describe ansiedad ante su performance, me parece relevante descartar causas secundarias",
         "Terapia psicológica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 108,
-      "pregunta": "Embarazada 24 semanas con glicemia post 75gr de glucosa en 200 ¿Cual es el manejo?",
-      "opciones": [
+      "question": "Embarazada 24 semanas con glicemia post 75gr de glucosa en 200 ¿Cual es el manejo?",
+      "options": [
         "Iniciar insulina",
         "Metformina",
         "Glibenclamida"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 109,
-      "pregunta": "IC en tratamiento con carvedilol e hidroclorotiazida, con HTA de reciente dg, Na normal, K en 4.0 , que fármaco se debe agregar",
-      "opciones": [
+      "question": "IC en tratamiento con carvedilol e hidroclorotiazida, con HTA de reciente dg, Na normal, K en 4.0 , que fármaco se debe agregar",
+      "options": [
         "Diltiazem",
         "Losartán",
         "BB"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 110,
-      "pregunta": "Paciente 27 años con espondilopatia o era sacroileítis?’?, cual es el tratamiento inicial",
-      "opciones": [
+      "question": "Paciente 27 años con espondilopatia o era sacroileítis?’?, cual es el tratamiento inicial",
+      "options": [
         "Ibuprofeno",
         "Prednisona",
         "Paracetamol"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 111,
-      "pregunta": "IMAGEN",
-      "opciones": [],
-      "respuesta_texto": "Calvo con antecedente de queratosis actínica, muestran lesión en cabeza: a. Carcinoma espinocelular"
+      "question": "IMAGEN",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 112,
-      "pregunta": "Paciente adulta mayor con cuadro clásico de incontinencia urinaria de esfuerzo, conducta",
-      "opciones": [],
-      "respuesta_texto": "a. Kinesioterapia pélvica"
+      "question": "Paciente adulta mayor con cuadro clásico de incontinencia urinaria de esfuerzo, conducta",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 113,
-      "pregunta": "Paciente con prurito, aumento grosor uñas en manos y pies, aumento volumen inguinal bilateral, foto de unas manos eritematosas, descamando",
-      "opciones": [
+      "question": "Paciente con prurito, aumento grosor uñas en manos y pies, aumento volumen inguinal bilateral, foto de unas manos eritematosas, descamando",
+      "options": [
         "Linfoma cutáneo",
         "Sarna noruega",
         "Psoriasis",
         "Dermatitis crónica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 114,
-      "pregunta": "Paciente con glaucoma crónico, con ojo izquierdo con visión en túnel y ojo derecho con el signo de humo de chimenea, al evaluar el ojo con glaucoma crónico, ¿qué hallazgo tendría?",
-      "opciones": [
+      "question": "Paciente con glaucoma crónico, con ojo izquierdo con visión en túnel y ojo derecho con el signo de humo de chimenea, al evaluar el ojo con glaucoma crónico, ¿qué hallazgo tendría?",
+      "options": [
         "Midriasis arreflectica",
         "Reflejo ?/",
         "Miosis",
         "Defecto pupilar aferente"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 115,
-      "pregunta": "Paciente con clínica y rayo de TBC, ¿Cual es el primer estudio que se debe realizar?",
-      "opciones": [
+      "question": "Paciente con clínica y rayo de TBC, ¿Cual es el primer estudio que se debe realizar?",
+      "options": [
         "Iniciar tratamiento",
         "PCR",
         "Baciloscopias por que PCR si era caso sospechoso? si hubiera sido contacto de alguien con TBC, se trata de entrada,"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 116,
-      "pregunta": "Cómo medir la efectividad de una campaña de vacunación contra sarampión",
-      "opciones": [
+      "question": "Cómo medir la efectividad de una campaña de vacunación contra sarampión",
+      "options": [
         "prevalencia",
         "Casos sospechosos nuevos notificados",
         "Seguimiento de los vacunados",
         "Estudio de casos de la eficacia",
         "Serología Ac de los casos sospechosos"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 117,
-      "pregunta": "Mujer 43 años con sangrado intermenstrual sin dolor, activa sexualmente con preservativo, cómo continuar el estudio",
-      "opciones": [
+      "question": "Mujer 43 años con sangrado intermenstrual sin dolor, activa sexualmente con preservativo, cómo continuar el estudio",
+      "options": [
         "BHCG y eco TV",
         "TSH y T4",
         "FSH y LH",
         "Biopsia Yo puse biopsia QUE PUSIERON?, no convencía BHCG. Sg yo la beta era solo porque estaba en edad fertil"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 118,
-      "pregunta": "Adolescente con antecedente de trauma nasal hace 5-7 días, que consulta por fiebre y obstrucción nasal bilateral",
-      "opciones": [
+      "question": "Adolescente con antecedente de trauma nasal hace 5-7 días, que consulta por fiebre y obstrucción nasal bilateral",
+      "options": [
         "Hematoma septal",
         "Absceso septal"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 119,
-      "pregunta": "Niño que consulta por sangrado post extracción dental (creo que tenía otros sangrados mucosos) con TTPA aumentado, plq normales, madre tenía reglas abundantes",
-      "opciones": [
+      "question": "Niño que consulta por sangrado post extracción dental (creo que tenía otros sangrados mucosos) con TTPA aumentado, plq normales, madre tenía reglas abundantes",
+      "options": [
         "Enfermedad de Von Willebrand",
         "Hemofilia",
         "Déficit de Vitamina K Era hemofilia ??? - es una EVW EVW aumenta el ttpa si severa"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 120,
-      "pregunta": "RNPT que a los 6 días inicia con vómitos importantes y deposiciones con sangre, abdomen timpánico con RHA disminuidos o ausentes (no recuerdo cual), que se vería en la radiografía",
-      "opciones": [
+      "question": "RNPT que a los 6 días inicia con vómitos importantes y deposiciones con sangre, abdomen timpánico con RHA disminuidos o ausentes (no recuerdo cual), que se vería en la radiografía",
+      "options": [
         "Asas dilatadas con niveles hidroaéreos",
         "Aire libre intraperitoneal",
         "Pared intestinal engrosada",
         "Signo de doble burbuja"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 121,
-      "pregunta": "Adulto con PTI sin sangrado grave, plaquetas en 5.000",
-      "opciones": [
+      "question": "Adulto con PTI sin sangrado grave, plaquetas en 5.000",
+      "options": [
         "Corticoides 1mg/kg",
         "Transfusión de plaquetas",
         "Terapia biológica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 122,
-      "pregunta": "Qué leche le das a un RN prematuro que ya tiene 12 meses",
-      "opciones": [
+      "question": "Qué leche le das a un RN prematuro que ya tiene 12 meses",
+      "options": [
         "Fórmula 3 de continuación",
         "leche de vaca",
         "Fórmula para prematuros",
         "Leche semidescremada"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 123,
-      "pregunta": "Eco Ginecológica con líquido libre conducta e inestabilidad HD a. Cirugía de urgencia",
-      "opciones": []
+      "question": "Eco Ginecológica con líquido libre conducta e inestabilidad HD a. Cirugía de urgencia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 124,
-      "pregunta": "Pcte de 39 años con metrorragia e hipermenorrea, eco con endometrio homogéneo y masa en fondo uterino, conducta",
-      "opciones": [
+      "question": "Pcte de 39 años con metrorragia e hipermenorrea, eco con endometrio homogéneo y masa en fondo uterino, conducta",
+      "options": [
         "histeroscopia",
         "biopsia endometrial"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 125,
-      "pregunta": "Lactante con bronquitis a repetición, esteatorrea y anemia ferropénica",
-      "opciones": [
+      "question": "Lactante con bronquitis a repetición, esteatorrea y anemia ferropénica",
+      "options": [
         "Fibrosis Quística",
         "Enfermedad celiaca",
         "Inmunodeficiencia primaria"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 126,
-      "pregunta": "Paciente con antecedente de diverticulitis hace 10-15 días tratada con ATB oral (ciprofloxacino + metronidazol), consulta SU por diarrea múltiples episodios, con pujo y tenesmo, fiebre? dolor y sangrado",
-      "opciones": [
+      "question": "Paciente con antecedente de diverticulitis hace 10-15 días tratada con ATB oral (ciprofloxacino + metronidazol), consulta SU por diarrea múltiples episodios, con pujo y tenesmo, fiebre? dolor y sangrado",
+      "options": [
         "Diarrea por clostridium",
         "Reagudización de diverticulitis por rectitis",
         "Absceso diverticular no puede ser CU? - el pujo y tenesmo no orientaría a CU? Vi una similar en una reconstrucción y era CU x eso,, era muy vieja para ser CU"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 127,
-      "pregunta": "Paciente EPOC TBQ activo, con disnea, se va a hacer un EMPA y la enfermera le hace consejería para que deje de fumar para que mejore la disnea ¿Que tipo de prevención es?",
-      "opciones": [
+      "question": "Paciente EPOC TBQ activo, con disnea, se va a hacer un EMPA y la enfermera le hace consejería para que deje de fumar para que mejore la disnea ¿Que tipo de prevención es?",
+      "options": [
         "Prevención 1°",
         "Prevención 2°",
         "Prevención 3°",
         "Promoción de la salud",
         "Prevención 4 Pero da la razon de consejeria, es para mejorar disnea de enfermedad que ya tiene. Era prevencion terciaria porque el paciente ya estaba sintomatico, en fase de rehab."
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 128,
-      "pregunta": "Niño con antecedente de resfrío de 1 semana que inicia con otorrea y otalgia, a la otoscopia secreción purulenta, no se visualiza tímpano",
-      "opciones": [
+      "question": "Niño con antecedente de resfrío de 1 semana que inicia con otorrea y otalgia, a la otoscopia secreción purulenta, no se visualiza tímpano",
+      "options": [
         "Amoxicilina",
         "Amoxicilina/ Ac. clavulánico",
         "Ciprofloxacino tópico"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 129,
-      "pregunta": "Si se quiere hacer un estudio donde se describe en un grupo de niños cuales son los FR, edad, enfermedades?, cómo se llamaría",
-      "opciones": [
+      "question": "Si se quiere hacer un estudio donde se describe en un grupo de niños cuales son los FR, edad, enfermedades?, cómo se llamaría",
+      "options": [
         "Analitico",
         "Ecológico",
         "Descriptivo"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 130,
-      "pregunta": "Paciente con antecedente de dolor en espalda, irradiado a glúteos, contractura paravertebral. dolor a la palpación de la columna lumbar y claudicación de la marcha y al estar mucho tiempo de pie, Lasegue negativo, rx de columna lumbar con pinzamiento discal y artrosis lumbar de L3-L4-L5 cuál era",
-      "opciones": [
+      "question": "Paciente con antecedente de dolor en espalda, irradiado a glúteos, contractura paravertebral. dolor a la palpación de la columna lumbar y claudicación de la marcha y al estar mucho tiempo de pie, Lasegue negativo, rx de columna lumbar con pinzamiento discal y artrosis lumbar de L3-L4-L5 cuál era",
+      "options": [
         "Claudicación neural intermitente",
         "Fractura por compresión",
         "Pelviespondilopatía",
         "Hernia lumbar",
         "Sacroileítis"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 131,
-      "pregunta": "Valvulopatía en paciente joven con síncope a. Estenosis aórtica",
-      "opciones": []
+      "question": "Valvulopatía en paciente joven con síncope a. Estenosis aórtica",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 132,
-      "pregunta": "IMAGEN: Paciente 66 años con neumonía (clínica e imágen de neumonía monolobar) saturando 94% ¿Cual es el tratamiento?",
-      "opciones": [
+      "question": "IMAGEN: Paciente 66 años con neumonía (clínica e imágen de neumonía monolobar) saturando 94% ¿Cual es el tratamiento?",
+      "options": [
         "Ceftriaxona",
         "Amoxicilina con Ac. clavulánico"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 133,
-      "pregunta": "Caída en paracaídas, se observa deformidad en valgo",
-      "opciones": [
+      "question": "Caída en paracaídas, se observa deformidad en valgo",
+      "options": [
         "Fractura platillo tibial lateral",
         "Fractura cóndilo medial fémur",
         "Rotura menisco anterior",
         "Ligamento cruzado anterior"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 134,
-      "pregunta": "Paciente joven hiperventilando saturando 75%",
-      "opciones": [
+      "question": "Paciente joven hiperventilando saturando 75%",
+      "options": [
         "Venturi al 40 %",
         "Venturi al 24%",
         "Ventilación mecánica invasiva",
         "Naricera flujo 0.2 ml/kg",
         "Naricera flujo 2 ml/kg"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 135,
-      "pregunta": "Cáncer vs TBC, tenia baja de peso, hipocratismo digital ¿Cuál es el exámen a realizar?",
-      "opciones": [
+      "question": "Cáncer vs TBC, tenia baja de peso, hipocratismo digital ¿Cuál es el exámen a realizar?",
+      "options": [
         "TC con contraste",
         "Broncoscopía tb"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 136,
-      "pregunta": "Paciente femenina 50 años aprox o 38 años (alguien recuerda?), tiene antecedente de esterilización y adenomiosis ¿Cual es el manejo? a. Histerectomía con preservación de ovarios",
-      "opciones": []
+      "question": "Paciente femenina 50 años aprox o 38 años (alguien recuerda?), tiene antecedente de esterilización y adenomiosis ¿Cual es el manejo? a. Histerectomía con preservación de ovarios",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 137,
-      "pregunta": "Pediátrico, 2 días de dolor abdominal, diarrea líquida 10-15 episodios/día, 3 máculas que blanquean a la presión en abdomen, hepatomegalia, hemograma con Eosinofilos en 0, Anemia, coprocultivo negativo.",
-      "opciones": [
+      "question": "Pediátrico, 2 días de dolor abdominal, diarrea líquida 10-15 episodios/día, 3 máculas que blanquean a la presión en abdomen, hepatomegalia, hemograma con Eosinofilos en 0, Anemia, coprocultivo negativo.",
+      "options": [
         "Salmonella tiphy",
         "Campylobacter",
         "Salmonella enteritidi",
         "Shigella",
         "E. Coli entero hemorrágica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 138,
-      "pregunta": "Si aumenta la velocidad de envejecimiento en la población que pasara en temas de salud publica",
-      "opciones": [
+      "question": "Si aumenta la velocidad de envejecimiento en la población que pasara en temas de salud publica",
+      "options": [
         "Aumento de cobertura de adultos mayores en APS",
         "Aumento de personas con fragilidad",
         "Aumento en la variabilidad de morbilidad o mortalidad"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 139,
-      "pregunta": "Mujer con cefalea súbita e intensa + signos meníngeos esbozados, con antecedente de pansinusitis cronica y migraña, al control de signos vitales con PA 170/100 ¿Cual es la conducta inicial mas importante?",
-      "opciones": [
+      "question": "Mujer con cefalea súbita e intensa + signos meníngeos esbozados, con antecedente de pansinusitis cronica y migraña, al control de signos vitales con PA 170/100 ¿Cual es la conducta inicial mas importante?",
+      "options": [
         "TAC de cerebro",
         "Control de crisis hipertensiva"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 140,
-      "pregunta": "Niño o adolescente con conducta disruptiva + crisis de ausencia ¿Como estudiarlo?",
-      "opciones": [
+      "question": "Niño o adolescente con conducta disruptiva + crisis de ausencia ¿Como estudiarlo?",
+      "options": [
         "Electroencefalograma",
         "TAC",
         "RNM",
         "Psicometria"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 141,
-      "pregunta": "Femenina con atracones, luego salía a correr 5 hrs y consumía 200 kcal/día, intentaba vomitar pero no podía",
-      "opciones": [
+      "question": "Femenina con atracones, luego salía a correr 5 hrs y consumía 200 kcal/día, intentaba vomitar pero no podía",
+      "options": [
         "Bulimia nerviosa",
         "Anorexia",
         "Trastorno por atracones"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 142,
-      "pregunta": "Paciente pierde el trabajo hace 4 semanas, y hace 3 semanas inicia con los siguientes síntomas: subido de peso y tenía insomnio, pero después decía sin anhedonia - depresión o distimia?",
-      "opciones": [
+      "question": "Paciente pierde el trabajo hace 4 semanas, y hace 3 semanas inicia con los siguientes síntomas: subido de peso y tenía insomnio, pero después decía sin anhedonia - depresión o distimia?",
+      "options": [
         "Trastorno adaptativo porque no cumplia el mes para ser depresivo",
         "Trastorno depresivo mayor"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 143,
-      "pregunta": "Mujer que ha sido muy aprehensiva con los estudios y preocupada por su familia, pareja y relaciones amorosas, al punto de estar todo el tiempo estresada y con problemas digestivos , ella refiere sentirse asi desde la perdida de su abuelo (que murió hace 5 años), los padres refieren que ha sido asi desde chica",
-      "opciones": [
+      "question": "Mujer que ha sido muy aprehensiva con los estudios y preocupada por su familia, pareja y relaciones amorosas, al punto de estar todo el tiempo estresada y con problemas digestivos , ella refiere sentirse asi desde la perdida de su abuelo (que murió hace 5 años), los padres refieren que ha sido asi desde chica",
+      "options": [
         "Trastorno ansiedad generalizada",
         "Ts de la personalidad obsesivo compulsivo?"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 144,
-      "pregunta": "Paciente encontrada en el baño, tenía carboxiHb de 12% tto de elección",
-      "opciones": [
+      "question": "Paciente encontrada en el baño, tenía carboxiHb de 12% tto de elección",
+      "options": [
         "O2 mascarilla",
         "Cámara hiperbarica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 145,
-      "pregunta": "Era una clínica de ojo rojo, pero con temblor en las manos y baja de peso, al examen físico se observa retracción palpebral",
-      "opciones": [],
-      "respuesta_texto": "a. TSH y T4 libre"
+      "question": "Era una clínica de ojo rojo, pero con temblor en las manos y baja de peso, al examen físico se observa retracción palpebral",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 146,
-      "pregunta": "Paciente con apnea del sueño, tenía polisomnografía con 65 episodios por hora, hipertrofia de cornetes conducta",
-      "opciones": [
+      "question": "Paciente con apnea del sueño, tenía polisomnografía con 65 episodios por hora, hipertrofia de cornetes conducta",
+      "options": [
         "CPAP",
         "Cirugía de cornetes"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 147,
-      "pregunta": "Adulto mayor con temblor al escribir, un temblor esencial ¿Con que se trata? a. Propanolol",
-      "opciones": []
+      "question": "Adulto mayor con temblor al escribir, un temblor esencial ¿Con que se trata? a. Propanolol",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 148,
-      "pregunta": "Paciente con contractura de músculos masticatorios con úvula desplazada. rigidez de nuca esbozada, dolor cervical, gran exudado de amígdalas bilaterales",
-      "opciones": [
+      "question": "Paciente con contractura de músculos masticatorios con úvula desplazada. rigidez de nuca esbozada, dolor cervical, gran exudado de amígdalas bilaterales",
+      "options": [
         "Absceso retrofaringeo",
         "Flegmon periamigdalina",
         "Absceso peritonsila",
         "Absceso retrotonsilar"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 149,
-      "pregunta": "Mujer joven, aborto hace 3 meses, tiene anemia, hace una TVP confirmada por eco doppler, estudio etiológico",
-      "opciones": [
+      "question": "Mujer joven, aborto hace 3 meses, tiene anemia, hace una TVP confirmada por eco doppler, estudio etiológico",
+      "options": [
         "SAF",
         "Estudio Lupus",
         "Pedir antitrombina III",
         "Estudio TVP??"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 150,
-      "pregunta": "Paciente con ERC, con TVP poplítea, cual es la mejor terapia anticoagulante",
-      "opciones": [
+      "question": "Paciente con ERC, con TVP poplítea, cual es la mejor terapia anticoagulante",
+      "options": [
         "Heparina no fraccionada",
         "Enoxaparina",
         "Dabigatran",
         "Rivaroxaban",
         "Acenocumarol"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 151,
-      "pregunta": "Mujer fumadora, hipertensa, con historia de ICC, pero que ahora estaba como desde hace unos 3 meses? Con disnea de esfuerzo, y al examen pulmonar estaba con sibilancias espiratorias,, y preguntaban por la causa del empeoramiento de los síntomas?",
-      "opciones": [
+      "question": "Mujer fumadora, hipertensa, con historia de ICC, pero que ahora estaba como desde hace unos 3 meses? Con disnea de esfuerzo, y al examen pulmonar estaba con sibilancias espiratorias,, y preguntaban por la causa del empeoramiento de los síntomas?",
+      "options": [
         "TEP",
         "Fibrosis pulmonar",
         "IC",
         "Cor pulmonale ???"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 152,
-      "pregunta": "Paciente que tenía una insuficiencia cardiaca aguda, con tercer ruido y todo? ***NO RECUERDO ESTA PREGUNTA QUE ALGUIEN LA COMPLEMENTE*",
-      "opciones": [
+      "question": "Paciente que tenía una insuficiencia cardiaca aguda, con tercer ruido y todo? ***NO RECUERDO ESTA PREGUNTA QUE ALGUIEN LA COMPLEMENTE*",
+      "options": [
         "CORE Pulmonar del EPOC",
         "ICD"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 153,
-      "pregunta": "Mujer cursando embarazo de 37 semanas, consulta por prurito palmo-plantar. En los exámenes destacan ácidos biliares de 110- 112, conducta",
-      "opciones": [
+      "question": "Mujer cursando embarazo de 37 semanas, consulta por prurito palmo-plantar. En los exámenes destacan ácidos biliares de 110- 112, conducta",
+      "options": [
         "Interrupción del embarazo",
         "Ácido ursoderxecolico",
         "Antihistamínicos"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 154,
-      "pregunta": "Paciente con sd nefrotico y hipergammaglobulinemia policlonal, complemento bajo. Diagnóstico",
-      "opciones": [
+      "question": "Paciente con sd nefrotico y hipergammaglobulinemia policlonal, complemento bajo. Diagnóstico",
+      "options": [
         "Lupus",
         "Amiloidosis",
         "Mieloma múltiple"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 155,
-      "pregunta": "Test de esfuerzo alterado cual era el siguiente paso?",
-      "opciones": [],
-      "respuesta_texto": "a. Coronariografía"
+      "question": "Test de esfuerzo alterado cual era el siguiente paso?",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 156,
-      "pregunta": "Estudiante 4to año medicina, con miedo hablar en público y quedarse en blanco- a. Fobia social",
-      "opciones": []
+      "question": "Estudiante 4to año medicina, con miedo hablar en público y quedarse en blanco- a. Fobia social",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 157,
-      "pregunta": "ECG con supra st DII, DIII y aVF- medida inicial más adecuada",
-      "opciones": [
+      "question": "ECG con supra st DII, DIII y aVF- medida inicial más adecuada",
+      "options": [
         "Reperfusión",
         "Doble antiagregación"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 158,
-      "pregunta": "Clínica de taponamiento, hipotensión, pulsos disminuidos como realizo el diagnóstico",
-      "opciones": [],
-      "respuesta_texto": "a. Ecocardiograma"
+      "question": "Clínica de taponamiento, hipotensión, pulsos disminuidos como realizo el diagnóstico",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 159,
-      "pregunta": "Paciente presenta bradicardia de hasta 35, Hipotensa, K 8, Cual es la primera medida",
-      "opciones": [
+      "question": "Paciente presenta bradicardia de hasta 35, Hipotensa, K 8, Cual es la primera medida",
+      "options": [
         "Gluconato de Ca → Una paciente con bradicardia y potasio como 7-8",
         "Diálisis de urgencia",
         "MCP transitorio"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 160,
-      "pregunta": "Había un intestino irritable ?? - sii una señora con antecedente de SII, con cambio en patrón evacuatorio, sospechar neoplasia. Decia que tenia aumento de la severidad de los sintomas, y en explicito que no tenia baja de peso ni otros signos de alarma, yo puse una que decia hemograma y algo mas. Era Colono, es una bandera roja tener diarrea/cambio en deposiciones en AM →Colono → NO SE ENTIENDA LA REDACCION DE ESTA PREGUNTA Y NO RECUERDO ALGUIEN QUE LA MEJORE",
-      "opciones": []
+      "question": "Había un intestino irritable ?? - sii una señora con antecedente de SII, con cambio en patrón evacuatorio, sospechar neoplasia. Decia que tenia aumento de la severidad de los sintomas, y en explicito que no tenia baja de peso ni otros signos de alarma, yo puse una que decia hemograma y algo mas. Era Colono, es una bandera roja tener diarrea/cambio en deposiciones en AM →Colono → NO SE ENTIENDA LA REDACCION DE ESTA PREGUNTA Y NO RECUERDO ALGUIEN QUE LA MEJORE",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 161,
-      "pregunta": "Paciente que empieza con ictericia 7 días post colecistectomía",
-      "opciones": [
+      "question": "Paciente que empieza con ictericia 7 días post colecistectomía",
+      "options": [
         "litiasis en vía biliar comun",
         "lesión vía biliar iatrogenica"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 162,
-      "pregunta": "Paciente femenina, en su día 10 de ciclo menstrual, dolor abdominal súbito, con tumor anexial 7 cm, diagnóstico mas probable",
-      "opciones": [
+      "question": "Paciente femenina, en su día 10 de ciclo menstrual, dolor abdominal súbito, con tumor anexial 7 cm, diagnóstico mas probable",
+      "options": [
         "Torsión ovárica",
         "Endometrioma",
         "Diverticulitis aguda"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 163,
-      "pregunta": "Paciente con vision tubular, y un signo de humo de chimenea en el ojo _. Visión derecho digital? e izq 20/20. Reflejo fotomotor alterno/RFM alterado creo . ¿Cuál es el diagnóstico? ALGUIEN QUE MEJORE ESTA PREGUNTA A LAS ALTERNATIVAS: me parece que esta tenía glaucoma de ángulo abierto en las alternativas?",
-      "opciones": []
+      "question": "Paciente con vision tubular, y un signo de humo de chimenea en el ojo _. Visión derecho digital? e izq 20/20. Reflejo fotomotor alterno/RFM alterado creo . ¿Cuál es el diagnóstico? ALGUIEN QUE MEJORE ESTA PREGUNTA A LAS ALTERNATIVAS: me parece que esta tenía glaucoma de ángulo abierto en las alternativas?",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 164,
-      "pregunta": "Paciente mujer joven sodio bajo osmolaridad sanguínea baja, sodio urinario sobre 100, osmolaridad urinaria 520 (VN 50-1200), VEC normal",
-      "opciones": [
+      "question": "Paciente mujer joven sodio bajo osmolaridad sanguínea baja, sodio urinario sobre 100, osmolaridad urinaria 520 (VN 50-1200), VEC normal",
+      "options": [
         "SIADH",
         "Uso de diuréticos",
         "Insuficiencia suprarrenal",
         "Hipotiroidismo"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 165,
-      "pregunta": "Paciente de 18 años con púrpura palpable (no trombocotipémico??) que no desaparece a la digitopresión",
-      "opciones": [],
-      "respuesta_texto": "a. Purpura henoch schonlein"
+      "question": "Paciente de 18 años con púrpura palpable (no trombocotipémico??) que no desaparece a la digitopresión",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 166,
-      "pregunta": "Paciente de 40 y tantos años con uso de ACO, suspendidos hace 2 semanas por gastritis. Inicia con sangrado hace 3 días?, eco con endometrio de 10 mm heterogéneo. Conducta más adecuada",
-      "opciones": [
+      "question": "Paciente de 40 y tantos años con uso de ACO, suspendidos hace 2 semanas por gastritis. Inicia con sangrado hace 3 días?, eco con endometrio de 10 mm heterogéneo. Conducta más adecuada",
+      "options": [
         "Suspender ACO y controlar en 3 meses",
         "Legrado biópsico en pabellón",
         "Biopsia aspirativa de forma ambulatoria."
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 167,
-      "pregunta": "Señora asintomática en control, sin anemia ni leucopenia, pero con trombocitopenia",
-      "opciones": [],
-      "respuesta_texto": "a. Repetir hemograma"
+      "question": "Señora asintomática en control, sin anemia ni leucopenia, pero con trombocitopenia",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 168,
-      "pregunta": "Niño con historia de malestar general y fiebre 37.5°C-37.9°C de una semana de evolución, manejado con ibuprofeno. Le aparecia rash eritematoso en mejillas y Extremidades",
-      "opciones": [
+      "question": "Niño con historia de malestar general y fiebre 37.5°C-37.9°C de una semana de evolución, manejado con ibuprofeno. Le aparecia rash eritematoso en mejillas y Extremidades",
+      "options": [
         "Eritema infeccioso",
         "RAM",
         "KAWASAKI"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 169,
-      "pregunta": "Paciente 18 años con +7 días? faringe eritematosa, adenopatías, múltiples consultas por el cuadro, le dieron amoxicilina. Al examen físico persiste con adenopatías, tenía un exantema rosado??. Conducta",
-      "opciones": [
+      "question": "Paciente 18 años con +7 días? faringe eritematosa, adenopatías, múltiples consultas por el cuadro, le dieron amoxicilina. Al examen físico persiste con adenopatías, tenía un exantema rosado??. Conducta",
+      "options": [
         "Solicitar Elisa VIH",
         "IGM anti cápside epstein barr"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 170,
-      "pregunta": "Cancer ileo cecal algo asii no recuerdo la pregunta (no estaaa)",
-      "opciones": []
+      "question": "Cancer ileo cecal algo asii no recuerdo la pregunta (no estaaa)",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 171,
-      "pregunta": "(178) Paciente de 78 años con antecedentes de HTA DM2 vértigo recurrente en tratamiento con Losartán Metformina y Cinarizina. Consulta por 3 meses de temblor en EESS y caídas frecuentes. Al examen físico temblor de reposo en EESS bilateral y simétrico, leve rigidez y marcha enlentecida. Sin focalidad, sin alteraciones en la sensibilidad, Minimental 30/30",
-      "opciones": [
+      "question": "(178) Paciente de 78 años con antecedentes de HTA DM2 vértigo recurrente en tratamiento con Losartán Metformina y Cinarizina. Consulta por 3 meses de temblor en EESS y caídas frecuentes. Al examen físico temblor de reposo en EESS bilateral y simétrico, leve rigidez y marcha enlentecida. Sin focalidad, sin alteraciones en la sensibilidad, Minimental 30/30",
+      "options": [
         "Temblor esencial",
         "Neuropatía DM",
         "Hidrocefalia normotensiva",
         "Parkinsonismo por fármacos",
         "Enfermedad de Parkinson"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 172,
-      "pregunta": "¿Cual es el estudio de Hipercalcemia ? a. Calcemia y PTH",
-      "opciones": []
+      "question": "¿Cual es el estudio de Hipercalcemia ? a. Calcemia y PTH",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 173,
-      "pregunta": "Había un AM con alteraciones de memoria creo, con VCM > 100",
-      "opciones": [],
-      "respuesta_texto": "B12 (ALGUIEN RECUERDA ALGO DE ESTO)"
+      "question": "Había un AM con alteraciones de memoria creo, con VCM > 100",
+      "options": [],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 174,
-      "pregunta": "FORUNCULO QUE HACER",
-      "opciones": [
+      "question": "FORUNCULO QUE HACER",
+      "options": [
         "ATB",
         "Drenar"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     },
     {
       "id": 175,
-      "pregunta": "Espirometría con VEF1/CVC 0,35% no mejorá post broncodilatador y el VEF1 50%",
-      "opciones": [
+      "question": "Espirometría con VEF1/CVC 0,35% no mejorá post broncodilatador y el VEF1 50%",
+      "options": [
         "Fibrosis pulmonar",
         "Insuficiencia cardiaca derecha ECG:"
-      ]
+      ],
+      "correctAnswer": "",
+      "explanation": ""
     }
   ]
 }
