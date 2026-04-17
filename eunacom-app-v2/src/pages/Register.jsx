@@ -10,8 +10,21 @@ const Register = () => {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
-    const { signUp } = useAuth()
+    const { signUp, signInWithGoogle } = useAuth()
     const navigate = useNavigate()
+
+    const handleGoogleRegister = async () => {
+        setError(null)
+        setLoading(true)
+        try {
+            const { error } = await signInWithGoogle()
+            if (error) setError(error.message)
+        } catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -119,6 +132,13 @@ const Register = () => {
                         {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
                     </button>
                 </form>
+
+                <div className="login-divider">o continúa con</div>
+
+                <button onClick={handleGoogleRegister} className="btn-google" disabled={loading}>
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style={{ width: 18, height: 18 }} />
+                    Continuar con Google
+                </button>
 
                 <div className="login-footer">
                     ¿Ya tienes cuenta? <a href="/login">Iniciar Sesión</a>
