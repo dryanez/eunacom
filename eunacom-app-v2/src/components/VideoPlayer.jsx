@@ -80,7 +80,9 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
   const openFullscreen = () => {
     const v = videoRef.current
     if (!v) return
-    if (v.requestFullscreen) v.requestFullscreen()
+    if (v.webkitEnterFullscreen) v.webkitEnterFullscreen() // iOS
+    else if (v.requestFullscreen) v.requestFullscreen()
+    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen()
   }
 
   return (
@@ -164,6 +166,8 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
         <video
           ref={videoRef}
           src={src}
+          playsInline
+          webkit-playsinline="true"
           style={{ width: '100%', display: error ? 'none' : 'block', maxHeight: 480, background: '#000' }}
           onLoadedMetadata={(e) => { setDuration(e.target.duration); setLoading(false) }}
           onCanPlay={() => setLoading(false)}
