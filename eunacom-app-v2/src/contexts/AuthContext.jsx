@@ -3,6 +3,11 @@ import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext({})
 
+// Bump this number any time you need to force-logout ALL users globally.
+// Current bump: April 17 2026 — force re-login to trigger onboarding check.
+const SESSION_VERSION = '2'
+const SESSION_KEY = 'eunacom_session_v'
+
 export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
@@ -16,6 +21,17 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        // Force-logout if session version has changed (e.g. to trigger onboarding re-check)
+        const storedVersion = localStorage.getItem(SESSION_KEY)
+        if (storedVersion !== SESSION_VERSION) {
+            supabase.auth.signOut().finally(() => {
+                localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+                setUser(null)
+                setLoading(false)
+            })
+            return
+        }
+
         // Check active sessions and sets the user
         supabase.auth.getSession().then(({ data: { session } }) => {
             setUser(session?.user ?? null)
@@ -24,6 +40,10 @@ export const AuthProvider = ({ children }) => {
 
         // Listen for changes on auth state (sign in, sign out, etc.)
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                // Stamp the current version so they won't be kicked out again
+                localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+            }
             setUser(session?.user ?? null)
             setLoading(false)
         })

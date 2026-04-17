@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { saveUserProfile } from '../lib/api'
-import { ChevronRight, ChevronLeft, X, User, Calendar, Globe, Phone, Stethoscope, Sparkles } from 'lucide-react'
+import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles } from 'lucide-react'
 
 // ─── TOUR SLIDES ─────────────────────────────────────────────────────────
 const SLIDES = [
@@ -53,7 +53,18 @@ const Onboarding = ({ user, onComplete }) => {
 
   const slide = SLIDES[slideIdx]
 
-  // ─── Highlight sidebar element ───
+  // Register the user in admin as soon as onboarding opens (onboarding_done: false)
+  // so they're visible in Usuarios even before they finish filling the form
+  useEffect(() => {
+    if (!user?.id || !user?.email) return
+    saveUserProfile({
+      id: user.id,
+      email: user.email,
+      first_name: '',
+      last_name: '',
+      onboarding_done: false,
+    }).catch(() => {})
+  }, [user])
   const updateHighlight = useCallback(() => {
     if (!slide.selector) {
       setHighlightRect(null)
@@ -174,14 +185,6 @@ const Onboarding = ({ user, onComplete }) => {
           boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
           transition: 'all 0.35s ease',
         }}>
-          {/* Skip button */}
-          <button onClick={() => setPhase('form')} style={{
-            position: 'absolute', top: 10, right: 10, background: 'none',
-            border: 'none', color: 'var(--surface-400)', cursor: 'pointer',
-          }}>
-            <X size={16} />
-          </button>
-
           {/* Slide content */}
           {slideIdx === 0 && (
             <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>

@@ -78,8 +78,9 @@ const DashboardHeader = ({ onMenuToggle }) => {
 
             {/* Header bar */}
             <header className="header">
-                <button className="mobile-menu-btn" onClick={onMenuToggle}>
-                    <Menu size={24} />
+                <button className="mobile-menu-btn" onClick={onMenuToggle} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <Menu size={20} />
+                    <span style={{ fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.03em', color: 'var(--surface-200)' }}>Menú</span>
                 </button>
 
                 {/* Compact donate button if banner dismissed */}

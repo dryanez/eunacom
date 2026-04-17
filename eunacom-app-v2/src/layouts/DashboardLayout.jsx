@@ -28,6 +28,8 @@ const DashboardLayout = () => {
             }
             setProfileChecked(true)
         }).catch(() => {
+            // On error, assume not completed — always show onboarding, never let through
+            setShowOnboarding(true)
             setProfileChecked(true)
         })
     }, [user])
@@ -38,6 +40,8 @@ const DashboardLayout = () => {
     }
 
     if (authLoading || !user) return null
+    // Don't render the app until we know whether onboarding is needed
+    if (!profileChecked) return null
 
     return (
         <div className="app-layout">
@@ -55,7 +59,7 @@ const DashboardLayout = () => {
                     <Outlet />
                 </div>
             </div>
-            {profileChecked && showOnboarding && (
+            {showOnboarding && (
                 <Onboarding user={user} onComplete={handleOnboardingComplete} />
             )}
             <DonatePopup />
