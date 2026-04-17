@@ -8,2339 +8,2340 @@
       "id": 1,
       "question": "Una adolescente de 17 años se somete a una evaluación para realizar actividades de alto rendimiento deportivo. Se encuentra asintomática y en su examen físico se pesquisa la presencia de un soplo sistólico de intensidad III/VI en la zona paraesternal izquierda. Su electrocardiograma es normal. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Comunicación interauricular",
-        "Hipertensión pulmonar primaria",
-        "Comunicación interventricular",
-        "Estenosis mitral",
-        "Ductus arterioso persistente"
+        "a. Comunicación interauricular",
+        "b. Hipertensión pulmonar primaria",
+        "c. Comunicación interventricular",
+        "d. Estenosis mitral",
+        "e. Ductus arterioso persistente"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Clínicamente parece un soplo funcional, pero aparecía en las alternativas. De las opciones, por la ubicación del soplo, la CIA es la respuesta más aceptable."
     },
     {
       "id": 2,
       "question": "Una paciente de 68 años, con antecedente de diabetes, hipertensión arterial, en tratamiento con enalapril, metformina y aspirina, consulta por un cuadro de palpitaciones, asociado a malestar general y disnea de reposo. Tiene frecuencia cardíaca irregular de 160 lpm, PA: 85/40 mmHg, extremidades pálidas y frías en la zona distal. Su electrocardiograma muestra una fibrilación auricular rápida. ¿Cuál es la conducta inicial más adecuada?",
       "options": [
-        "Administrar amiodarona",
-        "Administrar verapamilo",
-        "Administrar heparina y clopidogrel",
-        "Realizar cardioversión eléctrica",
-        "Administrar nitritos y morfina"
+        "a. Administrar amiodarona",
+        "b. Administrar verapamilo",
+        "c. Administrar heparina y clopidogrel",
+        "d. Realizar cardioversión eléctrica",
+        "e. Administrar nitritos y morfina"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una FA con hemodinamia inestable y como toda taquiarritmia hemodinámicamente inestable, se debe cardiovertir, de inmediato."
     },
     {
       "id": 3,
       "question": "Un paciente con antecedente de ser fumador de 30 paquetes año, suspendido hace 5 años, consulta por un cuadro de 24 horas de disnea de mínimos esfuerzos, asociada a intolerancia al ejercicio y malestar general. Al examen físico su PA: 90/60 y su FC: 110x’. Además destacan yugulares ingurgitadas a 45 grados y ruidos cardíacos apagados a la auscultación. Su electrocardiograma muestra disminución difusa del voltaje. El diagnóstico más probable es:",
       "options": [
-        "Tromboembolismo pulmonar",
-        "Neumotórax",
-        "Derrame pleural",
-        "Infarto agudo al miocardio",
-        "Taponamiento cardíaco 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 3/58"
+        "a. Tromboembolismo pulmonar",
+        "b. Neumotórax",
+        "c. Derrame pleural",
+        "d. Infarto agudo al miocardio",
+        "e. Taponamiento cardíaco 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 3/58"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una clínica de taponamiento clásico"
     },
     {
       "id": 4,
       "question": "Un paciente con antecedente de hipertensión arterial, dislipidemia y diabetes, usuario de aspirina, metformina, hidroclorotiazida y atorvastatina, presenta dolor torácico opresivo, que aparece al caminar 2 cuadras y alcanza un EVA de 5/10. Se solicita un test de esfuerzo que demuestra aparición de un infradesnivel del segmento ST, de 2 mm en las derivadas anteriores. El examen más adecuado para proseguir el estudio es:",
       "options": [
-        "Ecocardiograma",
-        "TAC de tórax",
-        "Ecocardiografía de esfuerzo",
-        "Coronariografía",
-        "Cintigrafía de perfesión miocárdica"
+        "a. Ecocardiograma",
+        "b. TAC de tórax",
+        "c. Ecocardiografía de esfuerzo",
+        "d. Coronariografía",
+        "e. Cintigrafía de perfesión miocárdica"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La angina estable con test de esfuerzo alterado, se estudia con coronariografía."
     },
     {
       "id": 5,
       "question": "Un paciente de 68 años presenta una fractura de cadera, de la que es operado. Al segundo día, presenta un síncope, que se recupera al a los pocos segundos. Su presión arterial es de 100/60 mmHg y su frecuencia cardíaca es 110. Además satura 91% a FiO2 ambiental. Su examen físico muestra murmullo pulmonar presente, sin ruidos agregados y un ritmo regular en 2 tiempos, sin soplos. ¿Cuál es el examen más adecuado para proseguir con el estudio?",
       "options": [
-        "Ecocardiograma",
-        "Radiografía de tórax",
-        "AngioTAC de tórax",
-        "TILT test",
-        "Monitorización electrocardiográfica de 24 horas"
+        "a. Ecocardiograma",
+        "b. Radiografía de tórax",
+        "c. AngioTAC de tórax",
+        "d. TILT test",
+        "e. Monitorización electrocardiográfica de 24 horas"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La sospecha es un TEP."
     },
     {
       "id": 6,
       "question": "Un paciente de 71 años, con antecedente de tabaquismo de 30 paquetes año, presenta tos de 2 meses de evolución de tos, asociado a baja de peso. Hace 2 días inició con disnea, asociada a dolor con tope inspiratorio. Hoy se agregó fiebre y expectoración hemoptoica. Al examen físico tiene FR: 20x’, PA: 110/70 mmHg, FC: 96x’, murmullo pulmonar presente, simétrico, con escasos crépitos bilaterales y ritmo regular en 2 tonos, sin ruidos agregados. ¿Cuál es el estudio más adecuado para el enfrentamiento de este paciente?",
       "options": [
-        "Radiografía de tórax",
-        "Ecocardiografía",
-        "Hemograma y hemocultivos",
-        "AngioTAC de tórax",
-        "Cultivos de expectoración"
+        "a. Radiografía de tórax",
+        "b. Ecocardiografía",
+        "c. Hemograma y hemocultivos",
+        "d. AngioTAC de tórax",
+        "e. Cultivos de expectoración"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La sospecha también es un TEP."
     },
     {
       "id": 7,
       "question": "Una paciente de 67 años, con antecedente de hipertensión arterial y fibrilación auricular, en tratamiento con atenolol, verapamilo y acenocumarol, consulta porque presenta repetidos episodios de malestar, sudoración y ortostatismo, que duran algunos segundos y revierten espontáneamente. Al examen físico destaca frecuencia cardiaca de 60 lpm, irregular y presión arterial 110/70 mmHg. Su examen cardiopulmonar es normal. ¿Cuál es el examen más adecuado para confirmar la sospecha diagnóstica?",
       "options": [
-        "Test de esfuerzo",
-        "Ecocardiograma 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 4/58",
-        "Ecografía doppler de extremidades inferiores",
-        "Tilt test",
-        "Monitoreo electrocardiográfico de 24 horas"
+        "a. Test de esfuerzo",
+        "b. Ecocardiograma 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 4/58",
+        "c. Ecografía doppler de extremidades inferiores",
+        "d. Tilt test",
+        "e. Monitoreo electrocardiográfico de 24 horas"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "La sospecha es una enfermedad del nodo sinusal, en contexto de un síndrome taquicardia/bradicardia (FA + ENS)."
     },
     {
       "id": 8,
       "question": "Un paciente de 50 años, con antecedente de miocardiopatía dilatada, en tratamiento con enalapril, carvedilol y furosemida, presenta disnea que aparece al realizar esfuerzos moderados, asociado a ortopnea. Su examen físico demuestra desplazamiento del choque de la punta, con crepitaciones de ambas bases pulmonares. Además se solicita una ecocardiografía que muestra una fracción de eyección de 24%. ¿Qué cambio recomendaría a este paciente?",
       "options": [
-        "Reemplazar la furosemida por hidroclorotiazida",
-        "Reemplazar el enalapril por losartán",
-        "Reemplazar el carvedilol por atenolol",
-        "Agregar hidralazina",
-        "Agregar espironolactona"
+        "a. Reemplazar la furosemida por hidroclorotiazida",
+        "b. Reemplazar el enalapril por losartán",
+        "c. Reemplazar el carvedilol por atenolol",
+        "d. Agregar hidralazina",
+        "e. Agregar espironolactona"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "La espironolactona aumenta la sobrevida en la ICC."
     },
     {
       "id": 9,
       "question": "Un paciente de 63 años, diabético y dislipidémico, en tratamiento con metformina, atorvastatina y aspirina, se realiza varias tomas de presión arterial, que resultan 170/100 mmHg en promedio. Se realiza exámenes que muestran creatinina: 1,1 mg/dl, proteinuria (+), glucosuria (++), potasemia: 4,0 mEq/L, natremia: 142 mEq/L, glicemia: 115 mg/dl. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Iniciar amlodipino",
-        "Iniciar hidroclorotiazida",
-        "Iniciar enalapril",
-        "Iniciar hidralazina",
-        "Iniciar atenolol"
+        "a. Iniciar amlodipino",
+        "b. Iniciar hidroclorotiazida",
+        "c. Iniciar enalapril",
+        "d. Iniciar hidralazina",
+        "e. Iniciar atenolol"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La HTA en un diabético se trata con IECAs como primera línea. También la proteinuria."
     },
     {
       "id": 10,
       "question": "Un hombre de 66 años, hipertenso e insuficiente cardíaco, en tratamiento con enalapril e hidroclorotiazida, consulta por disnea de grandes esfuerzos, asociada a ortopnea de 2 almohadas y escaso edema de extremidades inferiores. Su electrocardiograma tiene signos de hipertrofia del ventrículo izquierdo. ¿Cuál fármaco es más importante agregar?",
       "options": [
-        "Isosorbide",
-        "Carvedilol",
-        "Losartán",
-        "Furosemida",
-        "Hidroclorotiazida"
+        "a. Isosorbide",
+        "b. Carvedilol",
+        "c. Losartán",
+        "d. Furosemida",
+        "e. Hidroclorotiazida"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "El betabloqueo aumenta la sobrevida. El losartán también, pero estaba con enalapril."
     },
     {
       "id": 11,
       "question": "Un paciente de 60 años, diabético e hipertenso en tratamiento con dieta, consulta por dolor torácico incitrante, intenso, asociado a sudoración y malestar general. Al examen físico está sudoroso, inquieto, con FC: 70x’, PA: 120/80 mmHg, RR2T sin soplos. Se solicita un electrocardiograma que muestra un bloqueo completo de rama izquierda. ¿Qué tratamiento se debe indicar en este momento?",
       "options": [
-        "Aspirina y clopidogrel 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 5/58",
-        "Lidocaína y heparina",
-        "Morfina y nitritos",
-        "Atenolol e hidroclorotiazida",
-        "Digoxina y enalapril"
+        "a. Aspirina y clopidogrel 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 5/58",
+        "b. Lidocaína y heparina",
+        "c. Morfina y nitritos",
+        "d. Atenolol e hidroclorotiazida",
+        "e. Digoxina y enalapril"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es un síndrome coronario agudo. El BCRI es equivalente a un SDST."
     },
     {
       "id": 12,
       "question": "Un paciente de 75 años, diabético e hipertenso, consulta por dolor torácico intenso, de inicio súbito, que alcanza un EVA 7/10, de 2 horas de evolución. El dolor tenía una localización retroesternal, pero luego migra a la zona dorsolumbar. Al examen físico destaca disminución de los pulsos de las extremidades inferiores. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Infarto agudo al miocardio",
-        "Aneurisma de la aorta abdominal complicado",
-        "Tromboembolismo pulmonar masivo",
-        "Disección aórtica",
-        "Neumotórax"
+        "a. Infarto agudo al miocardio",
+        "b. Aneurisma de la aorta abdominal complicado",
+        "c. Tromboembolismo pulmonar masivo",
+        "d. Disección aórtica",
+        "e. Neumotórax"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una disección clásica por la asimetría de pulsos."
     },
     {
       "id": 13,
       "question": "Una paciente de 40 años, con antecedente de asma e insuficiencia cardíaca, consulta por aumento de su disnea basal, por lo que se realizan algunos exámenes. Se solicita una ecocardiografía, que muestra cardiomegalia, con paredes finas y una fracción de eyección ventricular de 28%. Además se solicitan exámenes de laboratorio que muestran creatinina: 1,8 mg/dl, Na: 140 mEq/L, K: 3,8 mEq/L, Cl: 106 mEq/L. ¿Qué fármaco está contraindicado en esta paciente?",
       "options": [
-        "Enalapril",
-        "Losartán",
-        "Furosemida",
-        "Espironolactona",
-        "Digoxina"
+        "a. Enalapril",
+        "b. Losartán",
+        "c. Furosemida",
+        "d. Espironolactona",
+        "e. Digoxina"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "El asma contraindica los betabloqueantes. La IRC y la caída en la fracción de eyección contraindican los digitálicos."
     },
     {
       "id": 14,
       "question": "Un paciente de 65 años, fumador de 40 paquetes año, consulta por disnea de algunos meses de evolución, progresiva, que actualmente le dificulta caminar más de 3 cuadras. Su examen físico demuestra espiración prolongada y algunas sibilancias en ambos campos pulmonares. Actualmente ya no fuma. Se solicita espirometría que muestra lo siguiente: Basal Litros % Post SBT Litros % CVF 2,68 90 CVF 2,96 102 VEF1 1,35 50 VEF1 1,38 51 VEF1/CVF 55 VEF1/CVF 57 FEF25-75 FEF25-75 ¿Cuál es el tratamiento inicial?",
       "options": [
-        "Salbutamol inhalado",
-        "Budesonida inhalada",
-        "Ipatropio inhalado",
-        "Fluticasona inhalada",
-        "Tiotropio inhalado 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 6/58"
+        "a. Salbutamol inhalado",
+        "b. Budesonida inhalada",
+        "c. Ipatropio inhalado",
+        "d. Fluticasona inhalada",
+        "e. Tiotropio inhalado 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 6/58"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene el diagnóstico de EPOC (con espirometría obstructiva, que no mejora con BD). Lo más correcto es que inicie BD de larga acción, más BD de corta acción por horario, pero esto no aparecía en las opciones. Sin embargo, la base del tratamiento del EPOC estable es suspender el cigarrillo y los broncodilatadores de larga acción, como tratamiento sintomático."
     },
     {
       "id": 15,
       "question": "Un paciente de 21 años presenta un cuadro de malestar general, fiebre y tos con expectoración mucopurulenta, de 2 días de evolución. Al examen físico presenta FC: 70x’, PA: 120/80 mmHg, FR: 17x’ y en la auscultación pulmonar se escuchan crepitaciones en la mitad inferior del campo pulmonar derecho. Satura 93% a FiO2 ambiental y se solicita una radiografía de tórax que se muestra a continuación: FOTO (Radiografía lateral de tórax con condensación del lóbulo inferior). ¿Cuál es el tratamiento antibiótico más adecuado?",
       "options": [
-        "Claritromicina",
-        "Cefadroxilo",
-        "Clindamicina",
-        "Cloxacilina",
-        "Ciprofloxacino"
+        "a. Claritromicina",
+        "b. Cefadroxilo",
+        "c. Clindamicina",
+        "d. Cloxacilina",
+        "e. Ciprofloxacino"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Lo más correcto era dejar amoxicilina, pero de las opciones, el macrólido era la mejor opción, para una NAC de bajo riesgo. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 46/58"
     },
     {
       "id": 16,
       "question": "Una paciente de 30 años, asintomática, está cursando un embarazo de 20 semanas. Su marido fue recientemente diagnosticado de tuberculosis pulmonar, mediante baciloscopías de expetoración que resultaron (+++). La mujer se realiza baciloscopías, que son negativas y un PPD que resulta 26 mm. ¿Cuál es la conducta más adecuada para con ella?",
       "options": [
-        "Mantener una conducta expectante como protección fetal",
-        "Iniciar tratamiento con 4 fármacos (isoniazida, rifampicina, pirazinamida y etambutol).",
-        "Repetir las baciloscopías periódicamente",
-        "Administrar la vacuna BCG",
-        "Indicar profilaxis con isoniazida por 6 meses"
+        "a. Mantener una conducta expectante como protección fetal",
+        "b. Iniciar tratamiento con 4 fármacos (isoniazida, rifampicina, pirazinamida y etambutol).",
+        "c. Repetir las baciloscopías periódicamente",
+        "d. Administrar la vacuna BCG",
+        "e. Indicar profilaxis con isoniazida por 6 meses"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una pregunta demasiado específica y no debería preguntarse. Sin embargo, una embarazada con contacto con un paciente bacilífero y PPD positivo, tiene indicación de profilaxis para TBC."
     },
     {
       "id": 17,
       "question": "Un paciente 2 meses de malestar general, tos con expectoración, sensación febril, baja de peso y sudoración. Además, en el último tiempo ha aumentado la tos y ha presnetado expectoración hemoptoica. Solicita un hemograma que muestra leucocitosis de 15.000 glóbulos blancos por mm3 y se solicita una radiografía que se muestra a continuación: FOTO (Radiografía de tórax AP, con afectación de ambos lóbulos superiores, mayor al lado izquierdo, con una banda atelectásica en el ápice izquierdo). ¿Cuál es el examen más adecuado ante la sospecha diagnóstica?",
       "options": [
-        "Broncoscopía",
-        "Baciloscopías de expectoración más cultivo de Koch",
-        "TAC de tórax",
-        "Cultivo de expectoración",
-        "Hemocultivos"
+        "a. Broncoscopía",
+        "b. Baciloscopías de expectoración más cultivo de Koch",
+        "c. TAC de tórax",
+        "d. Cultivo de expectoración",
+        "e. Hemocultivos"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene clínica de TBC y la RxTx era sugerente."
     },
     {
       "id": 18,
       "question": "Una paciente de 23 años, que desde la infancia tiene tos frecuente, con expectoración abundante, mayor en la mañana, que en ocasiones es hemoptoica. Además una o dos veces al año, se exacerba los síntomas, con necesidad de uso de antibióticos. Se solicita una radiografía de tórax que se muestra a continuación: FOTO (radiografía de tórax AP con afectación en ambas bases, en patrón broncointersticial). ¿Cuál es el examen más adecuado para proseguir el estudio?",
       "options": [
-        "Recuento de inmunoglobulinas 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 7/58",
-        "Test del sudor",
-        "Resonancia magnética de tórax",
-        "TAC de tórax",
-        "Baciloscopías de expectoración"
+        "a. Recuento de inmunoglobulinas 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 7/58",
+        "b. Test del sudor",
+        "c. Resonancia magnética de tórax",
+        "d. TAC de tórax",
+        "e. Baciloscopías de expectoración"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La clínica es de bronquiectasias, que se diagnostican preferentemente con un TAC de tórax."
     },
     {
       "id": 19,
       "question": "Una paciente con antecedente de rinitis alérgica y asma consulta por disnea frecuente, asociada a respiración sibilante y tos, que aparece con frecuencia luego de exponerse a los alergenos, en la noche, cuando cursa con alguna infección respiratoria alta o después de realizar ejercicio. Al examen físico tiene FR: 13 rpm, satura 96% a FiO2 ambiental y en su examen pulmonar destacan sibilancias espiratorias bilaterales. ¿Cuál es la conducta más adecuada con ella?",
       "options": [
-        "Evitar los alergenos por 3 meses",
-        "Iniciar salmeterol 2 puff cada 12 horas",
-        "Iniciar salbutamol 2 puff cada 6 horas",
-        "Iniciar fluticasona 2 puff cada 12 horas",
-        "Iniciar terapia de desensibilización a los alergenos"
+        "a. Evitar los alergenos por 3 meses",
+        "b. Iniciar salmeterol 2 puff cada 12 horas",
+        "c. Iniciar salbutamol 2 puff cada 6 horas",
+        "d. Iniciar fluticasona 2 puff cada 12 horas",
+        "e. Iniciar terapia de desensibilización a los alergenos"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Lo más correcto es indicar corticoides inhalados cada 12 horas, más salbutamol SOS, pero de las opciones, la D era la más aceptable."
     },
     {
       "id": 20,
       "question": "Un paciente de 60 años, fumador de 5 cigarrillos al día, consulta por disnea de esfuerzos que ha aumentado en el último tiempo. Ha bajado de peso cerca de 6 kilogramos en los últimos 3 meses. Como antecedente, trabajó durante 30 años en una fábrica de producción de pizarras de asbesto para la construcción. Al examen físico presenta signos vitales normales, edema de extremidades inferiores, yugulares visibles al decúbito y examen pulmonar con MP presente, disminuido a derecha. Se solicita una radiografía de tórax que muestra derrame pleural marcado en el lado derecho, por lo que se realiza punción pleural, que da salida a líquido con 300 células por mm3, con 90% de mononucleares, ADA: 22 UI/L, proteínas: 6 g/dL, estudio citológico negativo, pH: 7,37, lactato: 3 mmol/L. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Carcinoma pavimentoso",
-        "Adenocarcinoma",
-        "Tuberculosis pleural",
-        "Mesotelioma",
-        "Silicosis"
+        "a. Carcinoma pavimentoso",
+        "b. Adenocarcinoma",
+        "c. Tuberculosis pleural",
+        "d. Mesotelioma",
+        "e. Silicosis"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Tiene un derrame canceroso (exudado mononuclear con ADA baja) y el antecedente de exposición a asbesto está muy relacionado a mesotelioma."
     },
     {
       "id": 21,
       "question": "Un paciente de 55 años, está hospitalizado por una pancreatitis aguda, de diez días de evolución. Presenta un cuadro de fiebre, malestar general y taquipnea de 1 día de evolución. ¿Qué conducta es más adecuada?",
       "options": [
-        "Solicitar radiografía de tórax",
-        "Solicitar TAC de abdomen y pelvis",
-        "Solicitar ecografía abdominal",
-        "Solicitar angioTAC de tórax",
-        "Solicitar colangiopancreatografía retrógrada endoscópica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 8/58"
+        "a. Solicitar radiografía de tórax",
+        "b. Solicitar TAC de abdomen y pelvis",
+        "c. Solicitar ecografía abdominal",
+        "d. Solicitar angioTAC de tórax",
+        "e. Solicitar colangiopancreatografía retrógrada endoscópica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 8/58"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La sospecha es un TEP."
     },
     {
       "id": 22,
       "question": "Un paciente de 71 años consulta por dificultad para tragar de 1 mes de evolución. Además presenta halitosis que antes no tenía, asociada a regurgitación de alimentos recién ingeridos",
       "options": [
-        "Estenosis péptica esofágica",
-        "Divertículo de Zenker",
-        "Cáncer de esófago",
-        "Cáncer de laringe",
-        "Acalasia esofágica"
+        "a. Estenosis péptica esofágica",
+        "b. Divertículo de Zenker",
+        "c. Cáncer de esófago",
+        "d. Cáncer de laringe",
+        "e. Acalasia esofágica"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un divertículo de Zenker clásico."
     },
     {
       "id": 23,
       "question": "Un paciente de 18 años tiene tendencia a tener una coloración ictérica de la piel. Al examen físico presenta escleras de tinte subictérico, sin otras alteraciones. Se solicitan pruebas hepáticas, que muestran bilirrubina total: 2,3 mg/dl, bilirrubina directa: 0,3 mg/dl, FA: 70 UI/L, GGT: 50 UI/L, SGOT: 35 UI/L, SGPT: 40 UI/L. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Hepatitis",
-        "Anemia hemolítica",
-        "Síndrome de Dubin Johnson",
-        "Síndrome de Gilbert",
-        "Síndrome de Crigler Najjar"
+        "a. Hepatitis",
+        "b. Anemia hemolítica",
+        "c. Síndrome de Dubin Johnson",
+        "d. Síndrome de Gilbert",
+        "e. Síndrome de Crigler Najjar"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es un síndrome de Gilbert clásico."
     },
     {
       "id": 24,
       "question": "Un paciente con antecedente de daño hepático crónico, por consumo de alcohol, se realiza un TAC abdominal de control, que muestra un tumor sólido en el lóbulo hepático derecho, de 3 cm de diámetro, que es hipervascular en la fase arterial. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Nódulo de regeneración",
-        "Hepatocarcinoma",
-        "Hemangioma hepático",
-        "Hiperplasia nodular",
-        "Adenoma hepático"
+        "a. Nódulo de regeneración",
+        "b. Hepatocarcinoma",
+        "c. Hemangioma hepático",
+        "d. Hiperplasia nodular",
+        "e. Adenoma hepático"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La asociación a DHC es tanto de adenoma, como de hepatocarcinoma, pero la hipervascularización orienta a hepatocarcinoma. Sin embargo, esta es una pregunta de radiología, que excede las competencias que debe tener un médico general."
     },
     {
       "id": 25,
       "question": "Una paciente de 24 años, presenta un cuadro de amenorrea y baja de peso, asociada a náuseas y dolor abdominal de varios meses de evolución. Tiene antecedente de una hermana gemela con hipotiroidismo. Se solicitan exámenes, entre los que destacan hematocrito: 28%, balncos: 9.600 por mm3, plaquetas: 340.000 por mm3, bilirrubina: 1,1 mg/dl, GOT: 155 UI/L, GPT: 120 UI/L. ¿Cuál es la conducta diagnóstica más adecuada?",
       "options": [
-        "Solicitar IgM para VHA",
-        "Realizar biosia hepática",
-        "Solicitar colonoscopía",
-        "Solicitar ecografía abdominal",
-        "Solicitar anticuerpos antitransglutaminasa"
+        "a. Solicitar IgM para VHA",
+        "b. Realizar biosia hepática",
+        "c. Solicitar colonoscopía",
+        "d. Solicitar ecografía abdominal",
+        "e. Solicitar anticuerpos antitransglutaminasa"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "La sospecha es una enfermedad celíaca y aunque sobra la hepatitis, es lo más probable."
     },
     {
       "id": 26,
       "question": "Un hombre de 25 años consulta por un cuadro de 1 mes de evolución de diarrea, dolor abdominal y malestar general. Además ha tenido disentería en algunas ocasiones y ha bajado 4 kilogramos de peso. Se solicita una colonoscopía, que muestra signos de inflamación en el colon, con zonas de mucosa indemne y sin afectación del recto. ¿Cuál es el diagnóstico más 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 9/58 probable?",
       "options": [
-        "Colitis ulcerosa",
-        "Enfermedad de Cröhn",
-        "Colitis isquémica",
-        "Parasitosis intestinal",
-        "Colitis por Clostridium difficile"
+        "a. Colitis ulcerosa",
+        "b. Enfermedad de Cröhn",
+        "c. Colitis isquémica",
+        "d. Parasitosis intestinal",
+        "e. Colitis por Clostridium difficile"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una enfermedad inflamatoria, y por no afectar el recto y tener afectación discontinua, no puede ser colitis ulcerosa, sino enfermedad de Cröhn."
     },
     {
       "id": 27,
       "question": "Un paciente de 23 años presenta dolor abdominal de 2 meses de evolución, asociado a deposiciones acuosas, que han ido en aumento, hasta presentar diarrea varias veces al día. Además ha tenido sensación de fiebre, y ha perdido 3 kilos de peso. Refiere también que en la última semana presentó un cuadro de hematoquezia abundante, con coágulos. ¿Qué examen es el más adecuado para iniciar el estudio de este paciente?",
       "options": [
-        "TAC de abdomen y pelvis",
-        "Colonoscopía",
-        "Coprocultivo y leucocitos fecales",
-        "Examen parasitológico seriado de deposiciones",
-        "Toxinas de Clostridium difficile en deposiciones"
+        "a. TAC de abdomen y pelvis",
+        "b. Colonoscopía",
+        "c. Coprocultivo y leucocitos fecales",
+        "d. Examen parasitológico seriado de deposiciones",
+        "e. Toxinas de Clostridium difficile en deposiciones"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una enfermedad inflamatoria intestinal, que se estudia con colonoscopía."
     },
     {
       "id": 28,
       "question": "Un paciente de 64 años presenta dolor abdominal desde hace un mes, asociado a cambio en el hábito intestinal. Su examen físico no aporta mayor información. Se había realizado un hemograma que muestra una anemia microcítica. ¿Qué examen se debe solicitar?",
       "options": [
-        "Colonoscopía",
-        "Radiografía simple de abdomen y pelvis",
-        "Ecografía abdominal",
-        "Tomografía axial computarizada de abdomen y pelvis",
-        "Test de sangre oculta en deposiciones"
+        "a. Colonoscopía",
+        "b. Radiografía simple de abdomen y pelvis",
+        "c. Ecografía abdominal",
+        "d. Tomografía axial computarizada de abdomen y pelvis",
+        "e. Test de sangre oculta en deposiciones"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La sospecha es un cáncer de colon."
     },
     {
       "id": 29,
       "question": "Un paciente asintomático se realiza pruebas hepáticas como parte de un chequeo médico, que muestran una SGOT: 432 UI/L y SGPT: 310 UI/L. No refiere hábitos tóxicos. Como antecedente, tuvo un hemoperitoneo el año 1992, que requirió de transfusiones. ¿Qué examen se debe solicitar ante la sospecha diagnóstica?",
       "options": [
-        "Antígeno de superficie de VHB",
-        "IgM para VHA",
-        "Test de HOMA",
-        "Anticuerpos antinucleares y anticitoplasma de neutrófilo",
-        "Anticuerpos totales contra VHC"
+        "a. Antígeno de superficie de VHB",
+        "b. IgM para VHA",
+        "c. Test de HOMA",
+        "d. Anticuerpos antinucleares y anticitoplasma de neutrófilo",
+        "e. Anticuerpos totales contra VHC"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene una hepatitis crónica. El antecedente de transfusión orienta a hepatitis C, pero la verdad es que debe estudiarse con más exámenes, como por ejemplo el Ag VHBs, por lo que es una mala pregunta. Antes del año 2000, los casos de hepatitis B eran casi cero, por lo que no puede ser."
     },
     {
       "id": 30,
       "question": "Un paciente de 34 años lleva 48 horas con dolor abdominal tipo cólico, que ha ido en aumento, asociado a deposiciones líquidas abundantes y sensación febril. Al examen físico tiene temperatura axilar: 37,1 grados Celsius, FC: 80x’, PA: 120/80 mmHg, presenta dolor a la palpación del abdomen, mayor en la fosa iliaca derecha. No tiene signo de Blumberg. Se solicita una ecografía abdominal que muestra inflamación del íleon distal y del colon derecho y se ve el apéndice con leve edema de la pared y un coprolito en su base. ¿Cuál es el 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 10/58 diagnóstico más probables?",
       "options": [
-        "Apendicitis aguda",
-        "Enteritis infecciosa",
-        "Diverticulitis aguda",
-        "Enfermedad de Cröhn",
-        "Colitis isquémica"
+        "a. Apendicitis aguda",
+        "b. Enteritis infecciosa",
+        "c. Diverticulitis aguda",
+        "d. Enfermedad de Cröhn",
+        "e. Colitis isquémica"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "En mi opinión es una simple diarrea aguda."
     },
     {
       "id": 31,
       "question": "Una paciente diabética, presenta hematemesis en 3 oportunidades. Su frecuencia cardíaca es 117x’, su presión arterial es 90/60 mmHg. Al examen físico presenta arañas vasculares en la cara, ictericia en las escleras, abdomen blando depresivo e indoloro, con signos de ascitis. Se solicitan exámenes que muestran bilirrubina total: 4,3 mg/dl, hematocrito: 39%, INR: 1,8. La causa más probable de su hemorragia digestiva es:",
       "options": [
-        "Várices esofágicos",
-        "Úlcera gastroduodenal",
-        "Gastriris erosiva",
-        "Síndrome de Mallory Weiss",
-        "Esofagitis erosiva"
+        "a. Várices esofágicos",
+        "b. Úlcera gastroduodenal",
+        "c. Gastriris erosiva",
+        "d. Síndrome de Mallory Weiss",
+        "e. Esofagitis erosiva"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Tiene clínica y exámenes de DHC, además de una HDA masiva, lo que orienta a várices esofágicos. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 47/58"
     },
     {
       "id": 32,
       "question": "En el estudio de una osteoporosis de una paciente, se pesquisa tiene calcemia de 11 mg/dl, niveles de paratohormona de 155 UI/L (VN: 15 a 55), niveles de vitamina D: (VN: ) y albúmina de 3,8 g/dl. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Hipercalcemia idiopática",
-        "Hiperparatiroidismo primario",
-        "Hiperparatiroidismo secundario",
-        "Hiperparatiroidismo terciario",
-        "Hipercalcemia familiar"
+        "a. Hipercalcemia idiopática",
+        "b. Hiperparatiroidismo primario",
+        "c. Hiperparatiroidismo secundario",
+        "d. Hiperparatiroidismo terciario",
+        "e. Hipercalcemia familiar"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Calcio alto y PTH alta son característicos del HPP."
     },
     {
       "id": 33,
       "question": "Una paciente presenta su sexta litiasis urológica, por lo que se realizan exámenes, entre los que destacan creatinina: 1,2 mg/dl, BUN: 30 mg/dl, calcio: 11 mg/dl, fósforo: 2,3 mg/dl, natremia normal, potasemia normal. ¿Cuál es el examen más adecuado para proseguir el estudio diagnóstico?",
       "options": [
-        "Paratohormona",
-        "LH y FSH",
-        "25 OH vitamina D",
-        "Biopsia de médula ósea",
-        "Índice proteinuria / creatininuria"
+        "a. Paratohormona",
+        "b. LH y FSH",
+        "c. 25 OH vitamina D",
+        "d. Biopsia de médula ósea",
+        "e. Índice proteinuria / creatininuria"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La hipercalcemia se estudia con PTH. Además, la hipofosfemia orienta a un HPP."
     },
     {
       "id": 34,
       "question": "Un paciente de 36 años consulta por aumento de volumen en la zona anterior del cuello. Al examen físico tiene un nódulo duro, de 2 cm de diámetro, asociado a una adenopatía cervical anterior de consistencia dura. Se solicita una TSH que resulta 6,1 UI/L. ¿Cuál es el examen más adecuado para continuar el estudio?",
       "options": [
-        "Punción con aguja fina",
-        "Ecografía tiroidea 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 11/58",
-        "Cintigrafía con yodo radiactivo",
-        "TAC de cuello",
-        "Resonancia magnética nuclear de cuello"
+        "a. Punción con aguja fina",
+        "b. Ecografía tiroidea 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 11/58",
+        "c. Cintigrafía con yodo radiactivo",
+        "d. TAC de cuello",
+        "e. Resonancia magnética nuclear de cuello"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "A? Por regla general, la ecografía cervical es el primer examen para un nódulo tiroideo y por eso creo que es la respuesta correcta. Sin embargo, ya cumple criterios de punción con aguja fina (mayor a 15 mm con TSH normal o alta)."
     },
     {
       "id": 35,
       "question": "Una paciente presenta un cuadro de 2 meses de evolución de sensación de calor mayor al habitual y sudoración. Se palpa su tiroides de tamaño normal y no presenta exoftalmo. Se solicitan pruebas tiroideas que demuestran TSH: 0,01 UI/L y T4 libre: 3,9 ng/ml. ¿Cuál es el examen de elección para determinar el diagnóstico etiológico?",
       "options": [
-        "Captación de yodo 131",
-        "Ecografía de tiroides",
-        "Punción aspirativa con aguja fina de tiroides",
-        "Cintigrafía tiroidea",
-        "Anticuerpos antitiroglobulina"
+        "a. Captación de yodo 131",
+        "b. Ecografía de tiroides",
+        "c. Punción aspirativa con aguja fina de tiroides",
+        "d. Cintigrafía tiroidea",
+        "e. Anticuerpos antitiroglobulina"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "El hipertiroidismo se estudia con cintigrafía con I131 para determinar su etiología."
     },
     {
       "id": 36,
       "question": "Un paciente se realiza una tiroidectomía total hace varios años, por un carcinoma tiroideo. Suspende el tratamiento con levotiroxina hace 6 meses. ¿Qué alteración tendrá con mayor probabilidad en su examem físico?",
       "options": [
-        "Mixedema pretibial",
-        "Exoftalmo",
-        "Melanoplaquias",
-        "Piel seca",
-        "Acantosis nigricans"
+        "a. Mixedema pretibial",
+        "b. Exoftalmo",
+        "c. Melanoplaquias",
+        "d. Piel seca",
+        "e. Acantosis nigricans"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "El hipotiroidismo se caracteriza por la piel seca. El mixedema pretibial y exoftalmo son de la enfermedad de Basedow Graves, las melanoplaquias de la enfermedad de Addison y la acantosis nigricans, de la resistencia a la insulina."
     },
     {
       "id": 37,
       "question": "¿Cuál es el tratamiento más adecuado para una paciente que se realiza una densitometría ósea con T score de -2,7 en las vértebras lumbares y -2,9 en la cadera izquierda?",
       "options": [
-        "Bifosfonatos",
-        "Calcitriol",
-        "Vitamina D",
-        "Calcio",
-        "Raloxifeno"
+        "a. Bifosfonatos",
+        "b. Calcitriol",
+        "c. Vitamina D",
+        "d. Calcio",
+        "e. Raloxifeno"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Tiene osteoporosis: T score menor a -2,5."
     },
     {
       "id": 38,
       "question": "Un paciente se realiza una ecografía de cuello, como parte del estudio de un nódulo cervical, que visualiza un tumor sólido y redondeado, localizado en el istmo, de 4 mm de diámetro, sin presencia de adenopatías. Sus pruebas tiroideas muestram TSH y T4 libre dentro de rangos normales. ¿Cuál es la conducta más adecuada?.",
       "options": [
-        "Iniciar tratamiento levotiroxina",
-        "Iniciar levotiroxina en dosis de supresión",
-        "Realizar punción con aguja fina",
-        "Solicitar cintigrafía con yodo radiactivo",
-        "Realizar seguimiento ecográfico"
+        "a. Iniciar tratamiento levotiroxina",
+        "b. Iniciar levotiroxina en dosis de supresión",
+        "c. Realizar punción con aguja fina",
+        "d. Solicitar cintigrafía con yodo radiactivo",
+        "e. Realizar seguimiento ecográfico"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Al ser un nódulo tan pequeño, no está indicada la punción (mayor a 10 mm se puncionan)."
     },
     {
       "id": 39,
       "question": "Un paciente presentó varios episodios de mareos y sudoraciones, objetivándose una hipoglicemia severa de 35 mg/dl en la más grave. Se realiza un test de ayuno y a las 9 horas 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 12/58 presenta una hipoglicemia de 45 mg/dl. Se solicitan exámenes que muestran insulina de 65 UI/L y péptido C indetectable. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Hepatoma",
-        "Hipoglicemia facticia por insulina",
-        "Hipoglicemia facticia por sulfonilúreas",
-        "Insulinoma",
-        "Hipoglicemia reactiva idiopática"
+        "a. Hepatoma",
+        "b. Hipoglicemia facticia por insulina",
+        "c. Hipoglicemia facticia por sulfonilúreas",
+        "d. Insulinoma",
+        "e. Hipoglicemia reactiva idiopática"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene hipoglicemias de ayuno y no reactiva. La insulina alta es compatible con B, C y D, pero el péptido C suprimido no es compatible con insulinoma ni sulfonilúreas, por lo que obligatoriamente es por insulina exógena."
     },
     {
       "id": 40,
       "question": "Un paciente de 67 años, diabético, tipo 2, en tratamiento con metformina 1700 mg/día y glibenclamida 20 mg/día, ambos separados en dos dosis diarias consulta por episodios repetidos de mareos, malestar y sudoración, asociado a temblor, que ocurren al final de la mañana o antes de almuerzo. Han coincidido con glicemias capilares de 65 mg/dl. Su IMC es 32 Kg/m2. Su hemoglobina A1c resulta 8,1. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Suspender la glibenclamida",
-        "Agregar una colación con 25 gramos de hidrato de carbono antes del almuerzo",
-        "Suspender la glibenclamida",
-        "Reemplazar la glibenclamida por sitagliptina",
-        "Reemplazar la metformina por pioglitazona"
+        "a. Suspender la glibenclamida",
+        "b. Agregar una colación con 25 gramos de hidrato de carbono antes del almuerzo",
+        "c. Suspender la glibenclamida",
+        "d. Reemplazar la glibenclamida por sitagliptina",
+        "e. Reemplazar la metformina por pioglitazona"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Tiene clínica de hipoglicemias, que probablemente son causadas por la glibenclamida. Por eso se debe cambiar por otro hipoglicemiante. Como tiene un mal control metabólico (HbA1c alta), no se debe agregar la colación"
     },
     {
       "id": 41,
       "question": "Un paciente dislipidémico, está en tratamiento con atorvastatina 10 mg/día y se realiza un perfil lipídico de control con colesterol total: 183 mg/dl, colesterol HDL: 32 triglicéridos: 860 mg/dl. ¿Cuál es la dosis más adecuada?",
       "options": [
-        "Subir la dosis de la atorvastatina a 40 mg/día",
-        "Cambiar la atorvastatina por rosivastatina",
-        "Agregar gemfobrozilo 900 mg/día",
-        "Agregar ezetimibe al tratamiento",
-        "Reemplazar la atorvastatina por gemfibrozilo 900 mg/día"
+        "a. Subir la dosis de la atorvastatina a 40 mg/día",
+        "b. Cambiar la atorvastatina por rosivastatina",
+        "c. Agregar gemfobrozilo 900 mg/día",
+        "d. Agregar ezetimibe al tratamiento",
+        "e. Reemplazar la atorvastatina por gemfibrozilo 900 mg/día"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "La prioridad son los triglicéridos, por estar mayores a 500 mg/dl. No se pueden mezclar los fibratos con las estatinas, por el riesgo de rabdomiolisis (solo lo puede hacer el especialista)."
     },
     {
       "id": 42,
       "question": "Un paciente de 30 años, con IMC: 30 Kg/m2 consulta por hoperpigmentación de la piel de las axilas y el cuello, asociado a aparición de acrocórdones en plieguen inglinales, cervicales y en las axilar. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Enfermedad de Cushing",
-        "Hipotiroidismo",
-        "Síndrome paraneoplásico",
-        "Insuficiencia suprarrenal",
-        "Resistencia a la insulina"
+        "a. Enfermedad de Cushing",
+        "b. Hipotiroidismo",
+        "c. Síndrome paraneoplásico",
+        "d. Insuficiencia suprarrenal",
+        "e. Resistencia a la insulina"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene acantosis nigricans, clásico de la RI."
     },
     {
       "id": 43,
       "question": "Un paciente de 75 añosconsulta por cefalea de 2 semanas de evolución, holocránea, intensa, que ha ido en aumento. En el último tiempo refiere además dolor al tocarse el cuero cabelludo y dolor en la rodilla derecha. Al examen físico se constatan signos de derrame articular de la rodilla derecha. Se realiza exámenes, entre los que figura un hemograma, con hemoglobina: 12,0 g/dl, blancos: 9.600 por mm3 y VHS: 76 mm/h. ¿Cuál es el diagnóstico más probable? 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 13/58",
       "options": [
-        "Artritis seronegativa",
-        "Arteritis de células gigantes",
-        "Artritis reactiva",
-        "Lupus",
-        "Endocarditis aguda"
+        "a. Artritis seronegativa",
+        "b. Arteritis de células gigantes",
+        "c. Artritis reactiva",
+        "d. Lupus",
+        "e. Endocarditis aguda"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una arteritis de la temporal o de células gigantes clásica."
     },
     {
       "id": 44,
       "question": "Una paciente de 67 años, presenta un cuadro de malestar general, asociado a febrículas y edema de las extremidades inferiores. Al examen físico, su presión arterial es 180/110 mmHg y se constata el edema blando, con signo de la fóvea. En sus exámenes de sangre destaca creatininemia de 4,1 mg/dl, BUN de 60 mg/dl y sedimento de orina con 60 eritrocitos por campo, con 80% de dismorfia y leucocitos de 10 a 15 por campo y cilindros hemáticos. Su hemograma muestra hemoglobina: 11,8 mg/dl, hematocrito: 36%, blancos: 10.000 por mm3, plaquetas: 160.000 por mm3. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Glomerulonefritis postestreptocócica",
-        "Nefropatía diabética",
-        "Lesión glomerular mínima",
-        "Vasculitis ANCA positiva",
-        "Púrpura trombocitopénico trombótico"
+        "a. Glomerulonefritis postestreptocócica",
+        "b. Nefropatía diabética",
+        "c. Lesión glomerular mínima",
+        "d. Vasculitis ANCA positiva",
+        "e. Púrpura trombocitopénico trombótico"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una poliangeítis microscópica clásica."
     },
     {
       "id": 45,
       "question": "Una paciente de 50 años, con antecedente de fenómeno de Raynaud frecuente, desde hace 5 años consulta por edema de los dedos y artritis de algunas articulaciones interfalángicas. Se solicitan exámenes inmunológicos que resultan ANA: positivos 1/320, en patrón anticentrómero; antiDNA: negativos; Anti Sm: negativos; Anti Ro negativo; Anti La: negativo; Factor reumatoide: negativo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Artritis psoriática",
-        "Esclerosis sistémica",
-        "Lupus",
-        "Enfermedad mixta del tejido conectivo",
-        "Artritis reumatoide"
+        "a. Artritis psoriática",
+        "b. Esclerosis sistémica",
+        "c. Lupus",
+        "d. Enfermedad mixta del tejido conectivo",
+        "e. Artritis reumatoide"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un CREST clásico."
     },
     {
       "id": 46,
       "question": "Una paciente de 39 años consulta por deseos de embarazo. Tiene antecedente de artritis reumatoide, en tratamiento con paracetamol. Refiere artralgias de manos con frecuencia. Al examen físico no tiene signos inflamatorios, salvo en una de las articulaciones metacarpofalángicas derechas. Trae factor reumatoideo y anticuerpos antiCCP positivos a títulos elevados y una radiogargía de manos, con lesiones erosivas en algunas articulaciones interfalángicas proximales. ¿Cuál es el tratamiento más indicado en esta paciente?",
       "options": [
-        "Metotrexato",
-        "Leflunomide",
-        "Azulfidine",
-        "Anticuerpos contra el receptor de TNF alfa",
-        "Plaquinol 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 14/58"
+        "a. Metotrexato",
+        "b. Leflunomide",
+        "c. Azulfidine",
+        "d. Anticuerpos contra el receptor de TNF alfa",
+        "e. Plaquinol 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 14/58"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La AR se trata con infliximab en el embarazo. De todos modos, es una pregunta específica, que excede lo que un médico general debe saber. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 48/58"
     },
     {
       "id": 47,
       "question": "Un paciente de 45 años ha presentado 3 episodios de gota en el último año, por lo que se inició tratamiento colchicina y luego se agregó alopurinol 100 mg/día. Actualmente está asintomático, sin signos de artritis y se controlar uricemia de 7 mg/dl. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Suspender el tratamiento",
-        "Aumetar la dosis de alopurinol a 300 mg/día",
-        "Agregar probenecid al tratamiento",
-        "Suspender la colchicina",
-        "Agregar prednisona en baja dosis"
+        "a. Suspender el tratamiento",
+        "b. Aumetar la dosis de alopurinol a 300 mg/día",
+        "c. Agregar probenecid al tratamiento",
+        "d. Suspender la colchicina",
+        "e. Agregar prednisona en baja dosis"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "La colchicina tiene muchos efectos adversos, por lo que se prefiere no dejarla como tratamiento profiláctico, sino solo en las crisis agudas (en agudo los AINEs son de elección). EL alopurinol debe mantenerse, ya que tuvo más de 2 crisis en 1 año y actualmente tiene buenos niveles de ácido úrico."
     },
     {
       "id": 48,
       "question": "Un paciente de 28 años, con antecedente de tuberculosis renal a los 16 años, tratada a esa edad, presenta edema blando de extremidades inferiores mayor en las tardes, asociada a hipertensión arterial de 150/90 mmHg. En sus exámenes destaca creatinina plasmática: 2,8 mg/dl, BUN: 40 mg/dl, Na+: 132 mEq/L, K+: 5,0 mEq/L, orina completa con proteinuria ++ y sedimento de orina normal. ¿Cuál es el examen de elección para continuar el estudio diagnóstico?",
       "options": [
-        "Pielografía de eliminación",
-        "Ecografía abdominal",
-        "Índice proteinuria / creatininuria",
-        "Cintigrafía DMSA",
-        "TAC renal"
+        "a. Pielografía de eliminación",
+        "b. Ecografía abdominal",
+        "c. Índice proteinuria / creatininuria",
+        "d. Cintigrafía DMSA",
+        "e. TAC renal"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "D?. Tiene una insuficiencia renal recién diagnosticada y para diferenciar una IRA de una IRC, lo más adecuado es la ecografía renal. Sin embargo, la cintigrafía podría ser útil, dado el antecedente de la TBC renal."
     },
     {
       "id": 49,
       "question": "Una paciente de 60 años, con antecedente de hipotiroidismo, hipertensión y depresión, en tratamiento con levotiroxina, enalapril y citalopram se realiza exámenes de control, entre los que destacan sodio plasmático de 127 mEq/L, potasio plasmático de 4,1 mEq/L, creatinina plasmática de 0,9 mg/dl y sodio urinario de 60 mEq/L. ¿Cuál es la causa más probable de su hiponatremia?",
       "options": [
-        "Uso del enalapril",
-        "Reacción secundaria al citalopram",
-        "Síndrome paraneoplásico",
-        "Insuficiencia suprarrenal",
-        "Hipotiroidismo descompensado"
+        "a. Uso del enalapril",
+        "b. Reacción secundaria al citalopram",
+        "c. Síndrome paraneoplásico",
+        "d. Insuficiencia suprarrenal",
+        "e. Hipotiroidismo descompensado"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene un probable SSIADH (hiponatremia, con sodio urinario alto). El citalopram puede causarlo."
     },
     {
       "id": 50,
       "question": "Un paciente de 60 años, con antecedente de hipertensión arterial crónica e insuficiencia cardíaca, en tratamiento con enalapril, amllodipino, furosemida y carvedilol. Realiza un cambio de diurético por clartadilona, con buena respuesta clínica, reduciendo de la disnea. Sin embargo evolucionando con debilidad de las extremidades inferiores, por lo que se solicitan exámenes que muestran creatinina plasmática: 1,0 mg/dl y electrolitos plasmáticos, que resultan Na+:132 mEq/L y K+: 3,5 mEq/L. ¿Cuál es la indicación más adecuada?",
       "options": [
-        "Aumentar el consumo de agua",
-        "Restringir el consumo de cloruro de sodio",
-        "Suspender la clortadinona 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 15/58",
-        "Bajar la dosis de enalapril",
-        "Iniciar hidroclorotiazida"
+        "a. Aumentar el consumo de agua",
+        "b. Restringir el consumo de cloruro de sodio",
+        "c. Suspender la clortadinona 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 15/58",
+        "d. Bajar la dosis de enalapril",
+        "e. Iniciar hidroclorotiazida"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una pregunta muy difícil, pero su clínica es de hipokalemia y el K está en el límite bajo. El consumo excesivo de sal, mezclado con el uso de tiazidas (como la clortalidona) producen hipokalemia."
     },
     {
       "id": 51,
       "question": "Un paciente de 32 años, presenta una trombosis venosa profunda femoropoplítea. Como antecedente, su abuelo falleció a los 80 años, por un accidente vascular encefálico y su padre falleció a los 60 años por un infarto agudo al miocardio. En sus exámenes destacan TTPA: 39 segundos (valor normal: 25 a 35) y VDRL (+). ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Déficit de antitrombina III",
-        "Déficit de factor VIII",
-        "Síndrome antifosfolípidos",
-        "Sífilis secundaria",
-        "Enfermedad de Von Willebrand"
+        "a. Déficit de antitrombina III",
+        "b. Déficit de factor VIII",
+        "c. Síndrome antifosfolípidos",
+        "d. Sífilis secundaria",
+        "e. Enfermedad de Von Willebrand"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La clínica de TVP, más el TTPA alargado y el VDRL+ es clásico del SAF."
     },
     {
       "id": 52,
       "question": "Una mujer de 40 años consulta por astenia, asociada a adinamia y disnea de medianos esfuerzos progresivas, desde hace una semana. Al examen físico tiene palidez de piel y mucosas. Se solicita un hemograma que muestra hematocrito: 24%, hemoglobina: 8 mg/dl, VCM elevado; glóbulos blancos: 9.800 por mm3, plaquetas: 160.000 por mm3. El frotis sanguíneo demuestra macrocitosis y policromasia. ¿Cuál es el examen más adecuado para confirmar el diagnóstico?",
       "options": [
-        "Prueba de Coombs",
-        "Niveles plasmáticos de B12",
-        "LDH y bilirrubina directa",
-        "Recuento de reticulocitos",
-        "Biopsia de médula ósea"
+        "a. Prueba de Coombs",
+        "b. Niveles plasmáticos de B12",
+        "c. LDH y bilirrubina directa",
+        "d. Recuento de reticulocitos",
+        "e. Biopsia de médula ósea"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "C, D? Tiene clínica de una anemia, probablemente hemolítica. Al preguntarse el diagnóstico etiológico, probablemente la prueba de Coombs sea la respuesta correcta, ya que diagnostica la anemia hemolítica autoinmune. Sin embargo, los distractores son muy fuertes, ya que aún no hay claridad sobre la etiología de la anemia en sí y los reticulocitos, así como la LDH y bilirrubina indirecta ayudan al diagnóstico de la hemólisis. Es una mala pregunta en mi opinión."
     },
     {
       "id": 53,
       "question": "Un paciente consulta por fiebre, malestar general y astenia. Al examen físico tiene esplenomegalia de 15 cm bajo el reborde costal. Se solicita un hemograma que muestra plaquetas: 450.000 por mm3, hematocrito: 39%, glóbulos blancos: 60.000 por mm3, con 20% de juveniles, 15% de mielocitos, 20% de baciliformes y 5% de blastos. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Leucemia mieloide aguda",
-        "Leucemia mieloide crónica",
-        "Mielofibrosis",
-        "Leucemia linfática aguda",
-        "Leucemia linfática crónica"
+        "a. Leucemia mieloide aguda",
+        "b. Leucemia mieloide crónica",
+        "c. Mielofibrosis",
+        "d. Leucemia linfática aguda",
+        "e. Leucemia linfática crónica"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una LMC clásica."
     },
     {
       "id": 54,
       "question": "Una mujer puérpera, preseenta hemorragia postparto importante. En sus exámenes destacan hemograma con hematocrito: 28%, hemoglobina: 9,3 g/dl, glóbulos blancos: 8.000 por mm3, plaquetas: 80.000 y además tiene TTPA y TP alargados y fibrinógeno 90 mg/dl (VN: 200 a 400) ¿Cuál es la mejor indicación transfusional?",
       "options": [
-        "Crioprecipitado",
-        "Glóbulos rojos",
-        "Plaquetas 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 16/58",
-        "Sangre fresca",
-        "Plasma fresco congelado"
+        "a. Crioprecipitado",
+        "b. Glóbulos rojos",
+        "c. Plaquetas 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 16/58",
+        "d. Sangre fresca",
+        "e. Plasma fresco congelado"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una coagulación intravascular diseminada clásica."
     },
     {
       "id": 55,
       "question": "Una paciente de 40 años, usuaria de anticonceptivos orales, consulta por cefalea holocránea, muy intensa, de 5 días de evolución, que se ha asociado a vómitos alimentarios, mayores en la mañana, y que no ha respondido al uso de analgésicos orales. En su examen físico no hay signos neurológicos focales. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trombosis venosa profunda de seno encefálico",
-        "Hemorragia subaracnoidea",
-        "Infarto lacunar",
-        "Hematoma intraparenquimatoso",
-        "Crisis de migraña"
+        "a. Trombosis venosa profunda de seno encefálico",
+        "b. Hemorragia subaracnoidea",
+        "c. Infarto lacunar",
+        "d. Hematoma intraparenquimatoso",
+        "e. Crisis de migraña"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La clínica es compatible con una trombosis de seno cavernoso. Tiene signos de alarma (no es migraña), no tiene signos focales (no es AVE lacunar ni hemorrágico) y lleva 5 días (no es HSA). Por tanto, solo queda marcar la A."
     },
     {
       "id": 56,
       "question": "Un paciente diabético tipo 2, de 58 años, mal controlado, consulta por dolor en las extremidades inferiores, de tipo urente y que es más intenso en la noche. Al examen físico se aprecia ausencia de la sensibilidad de las extremidades con el uso de monofilamento. ¿Cuál es el examen más adecuado para confirmar el diagnóstico?",
       "options": [
-        "Ecodoppler de extremidades inferiores",
-        "Electromiografía",
-        "Resonancia magnética nuclear de columna lumbosacra",
-        "Angiografía aortofemoral",
-        "Pletismografía de volumen del pulso de extremidades inferiores"
+        "a. Ecodoppler de extremidades inferiores",
+        "b. Electromiografía",
+        "c. Resonancia magnética nuclear de columna lumbosacra",
+        "d. Angiografía aortofemoral",
+        "e. Pletismografía de volumen del pulso de extremidades inferiores"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una polineuropatía. La verdad es que el diagnóstico es clínico y no requiere ningún examen, pero de las opciones que aparecen, la B es la única aceptable."
     },
     {
       "id": 57,
       "question": "Un hombre de 58 años presenta un cuadro de 3 años de evolución de debilidad progresiva de las extremidades, que trae problemas para caminar, hasta no poder hacerlo, a lo que luego se agrega dificultad para tragar. Evoluciona finalmente con dificultad respiratoria y necesidad de traqueostomía. No tiene alteración sensitiva. Se solicita espirometría que se muestra a continuación ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Polineuropatía diabética",
-        "Distrofia muscular",
-        "Esclerosis múltiple",
-        "e) Esclerosis lateral amiotrófica"
+        "a. Polineuropatía diabética",
+        "b. Distrofia muscular",
+        "c. Esclerosis múltiple",
+        "e. Esclerosis lateral amiotrófica",
+        "e. Hemograma y VHS"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una ELA clásica. La espirometría mostraba un patrón restrictivo."
     },
     {
       "id": 58,
       "question": "Un paciente de 63 años, diabético mal controlado, presenta parestesias, asociada a dolor en ambas manos, que es mayor en la noche y que se irradia a ambos codos. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Polineuropatía diabética",
-        "Hernia del núcleo pulposo",
-        "Síndrome de túnel carpiano 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 17/58",
-        "Síndrome de atrapamiento cubital",
-        "Neuropatía radial"
+        "a. Polineuropatía diabética",
+        "b. Hernia del núcleo pulposo",
+        "c. Síndrome de túnel carpiano 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 17/58",
+        "d. Síndrome de atrapamiento cubital",
+        "e. Neuropatía radial"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "A, C?. Pésima pregunta. Con una clínica tan escasa, se induce a error, ya que no especifican qué sector de las manos son las con parestesias (es lo más importante en este caso). Que se irradie a los codos, hace improbable que sea un túnel carpiano. Que sea bilateral, orienta a una polineuropatía diabetica, pero falta la afectación de los pies. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 49/58"
     },
     {
       "id": 59,
       "question": "Un paciente de 40 años consulta por cefalea holocránea, mayor en la zona occipital, que se irradia al cuello. Suele iniciarse a medio día y alcanza su máxima intensidad al llegar a su casa, después del trabajo. Su examen neurológico no tiene signos focales ni meníngeos. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Cefalea tensional",
-        "Migraña",
-        "Cefalea en racimo o cluster",
-        "Cefalea por hipertensión endocraneana",
-        "Neuralgia de Arnold"
+        "a. Cefalea tensional",
+        "b. Migraña",
+        "c. Cefalea en racimo o cluster",
+        "d. Cefalea por hipertensión endocraneana",
+        "e. Neuralgia de Arnold"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es una cefalea tensional clásica (como la que da al salir del Eunacom)."
     },
     {
       "id": 60,
       "question": "Un paciente de 36 años presenta desde hace un mes tos irritativa, que se ha vuelto productiva, con expectoración mucosa y últimamente mucopurulenta, asociada a fiebre y malesar general. Al examen está enflaquecido, satura 93% a FiO2 ambiental, tiene FC: 80x’, PA: 110/60 mmHg y FR: 21 rpm. A su examen pulmonar, se auscultan crépitos difusos en ambos campos pulmonares, más algunas sibilancias. Se solicita una radiografía de tórax que se muestra a continuación: FOTO (Radiografía de tórax AP, con patrón alveolointersticial bilateral difuso). ¿Cuál es el agente etiológico más probable?",
       "options": [
-        "Streptococcus pneumoniae",
-        "Mycobacterium tuberculosis",
-        "Staphilococcus aureus",
-        "Mycoplasma pneumoniae",
-        "Pneumocystis jiroveci"
+        "a. Streptococcus pneumoniae",
+        "b. Mycobacterium tuberculosis",
+        "c. Staphilococcus aureus",
+        "d. Mycoplasma pneumoniae",
+        "e. Pneumocystis jiroveci"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "La clínica y la radiografía orientaban mucho a un paciente VIH con infección por PJ."
     },
     {
       "id": 61,
       "question": "Un paciente consulta por 5 días de cefalea holocránea intensa, asociada a fiebre hasta 38 grados. En su examen físico se aprecia rigidez de nuca y signo de Brudzinsky esbozados, por lo que se realiza punción lumbar, que da salida a un líquido con 60 células por mm3, 86% mononucleares, glucorraquia: 0,67 y proteínas de 66 mg/dl. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Meningitis bacterial",
-        "Encefalitis herpética",
-        "Meningitis viral",
-        "Tuberculosis meníngea",
-        "Infección por Listeria monocytogenes"
+        "a. Meningitis bacterial",
+        "b. Encefalitis herpética",
+        "c. Meningitis viral",
+        "d. Tuberculosis meníngea",
+        "e. Infección por Listeria monocytogenes"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es una meningoencefalitis viral clásica. No tenía ningún criterio de sospecha de herpes."
     },
     {
       "id": 62,
       "question": "Un paciente es diagnosticado de infección por VIH, hace 3 meses. Está en etapa A3 e inició tratamiento con triterapia antirretroviral al momento del diagnóstico. Consulta ahora por aparición de placas pruriginosas en el tronco, más algunas lesiones similares en las palmas y plantas. Además tiene una lesión parecida en la cara interna de la mejilla derecha. ¿Cuál es el diagnóstico más probable? 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 18/58",
       "options": [
-        "Pitiriasis rosada",
-        "Pitiriasis versicolor",
-        "Síndrome pie mano boca",
-        "Sífilis secundaria",
-        "Reacción adversa a la triterapia antirretroviral"
+        "a. Pitiriasis rosada",
+        "b. Pitiriasis versicolor",
+        "c. Síndrome pie mano boca",
+        "d. Sífilis secundaria",
+        "e. Reacción adversa a la triterapia antirretroviral"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una sífilis secundaria clásica. Además recordar que el principal factor de riesgo para tener una ETS, es tener otra ETS."
     },
     {
       "id": 63,
       "question": "Un paciente de 57 años consulta por un cuadro de 7 días de astenia, malestar general, fiebre hasta 39 grados celsius. Al examen físico tiene un soplo pansistólico III/VI en el precordio izquierdo, además de apreciarse petequias en los pulpejos y alguna petequias subconjuntivales. ¿Cuál es el examen de elección para el diagnóstico etiológico?",
       "options": [
-        "Ecocardiograma",
-        "Hemocultivos",
-        "Hemograma",
-        "Coronariografía",
-        "ANA y complemento"
+        "a. Ecocardiograma",
+        "b. Hemocultivos",
+        "c. Hemograma",
+        "d. Coronariografía",
+        "e. ANA y complemento"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una endocarditis subaguda. Como se pregunta el diagnóstico etiológico, la respuesta son los hemocultivos. Sin embargo, la ecocardiografía, también es un examen importante."
     },
     {
       "id": 64,
       "question": "Un paciente de 80 años consulta por equimosis periorbitaria, sin antecedente traumático, asociado a astenia y edema de extremidades inferiores. Se solicitan exámenes, entre los que destacan creatinina: 2,6 mg/dl, proteinuria de 24 horas: 8,4 gramos/día, albuminemia: 1,4 g/dl. Su hemograma es normal y su VHS: 96 mmHg. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Nefrosis lipoidea",
-        "Nefropatía diabética",
-        "Amiloidosis primaria",
-        "Enfermedad de Berger",
-        "Arteritis de la temporal"
+        "a. Nefrosis lipoidea",
+        "b. Nefropatía diabética",
+        "c. Amiloidosis primaria",
+        "d. Enfermedad de Berger",
+        "e. Arteritis de la temporal"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es una amiloidosis con compromiso renal (síndrome nefrótico). Orienta a ella la VHS alta y la hipoalbuminemia. Igual es una pregunta muy específica."
     },
     {
       "id": 65,
       "question": "Un paciente de 85 años, hipertenso, está en tratamiento con losartan 50 mg/12 horas y amlodipino 2,5 mg/día. Acude a control y refiere múltiples tomas de presión arterial, las que promedian 145/75 mmHg ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Aumentar la dosis de losartán a 100 mg/12 horas",
-        "Aumentar el amlodipino a 5 mg/día",
-        "Agregar atenolol 12,5 mg/día",
-        "Agregar hidroclorotiazida 25 mg/día",
-        "Mantener el tratamienti"
+        "a. Aumentar la dosis de losartán a 100 mg/12 horas",
+        "b. Aumentar el amlodipino a 5 mg/día",
+        "c. Agregar atenolol 12,5 mg/día",
+        "d. Agregar hidroclorotiazida 25 mg/día",
+        "e. Mantener el tratamienti"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Por su edad, está bien controlado, ya que la meta es que sea menor a 150/90 mmHg."
     },
     {
       "id": 66,
       "question": "La Subsecretaría de Redes Asistenciales delega sus funciones a nivel territorial en:",
       "options": [
-        "La Superintendencia de Salud",
-        "La Secretaría Regional Ministerial de Salud",
-        "La Dirección del Servicio de Salud",
-        "El hospital autogestionado",
-        "La Dirección de Salud Comunal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 19/58"
+        "a. La Superintendencia de Salud",
+        "b. La Secretaría Regional Ministerial de Salud",
+        "c. La Dirección del Servicio de Salud",
+        "d. El hospital autogestionado",
+        "e. La Dirección de Salud Comunal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 19/58"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La Subsecretaría de Redes Asistenciales es parte del Minsal, que delega sus funciones en la Seremi de Salud, a nivel regional."
     },
     {
       "id": 67,
       "question": "¿Cuál de los siguientes parámetros es más adecuado para determinar la gravedad de una enfermedad?",
       "options": [
-        "Años de vida saludable perdidos",
-        "Tasa de mortalidad",
-        "Tasa de letalidad",
-        "Tasa de incidencia",
-        "Tasa de ataque"
+        "a. Años de vida saludable perdidos",
+        "b. Tasa de mortalidad",
+        "c. Tasa de letalidad",
+        "d. Tasa de incidencia",
+        "e. Tasa de ataque"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": ", C?. La letalidad es un indicador clásico de gravedad, pero los años de vida saludables perdidos también lo son, e incluso es mejor, cuando se trata de enfermedades graves, pero que no causan la muerte, sino que dejan secuelas y causan invalidez. Yo marqué C."
     },
     {
       "id": 68,
       "question": "Según los criterios de causalidad de Hills Bradtford, ¿cuál es requisito para establecer una asociación causal?",
       "options": [
-        "Fuerza de asociación",
-        "Plausibilidad biológica",
-        "Respuesta dosis dependiente",
-        "Secuencia temporal",
-        "Asociación estadística"
+        "a. Fuerza de asociación",
+        "b. Plausibilidad biológica",
+        "c. Respuesta dosis dependiente",
+        "d. Secuencia temporal",
+        "e. Asociación estadística"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Si no se da que la causa aparece antes que el efecto, definitivamente no puede ser la causa. No deberían preguntar filosofía en el Eunacom."
     },
     {
       "id": 69,
       "question": "¿Cuál es el mejor indicador para determinar el éxito de una campaña de vacunación?",
       "options": [
-        "Tasa de incidencia",
-        "Tasa de prevalencia",
-        "Tasa de hospitalizaciones",
-        "Tasa de mortalidad",
-        "Tasa de cobertura de vacunación"
+        "a. Tasa de incidencia",
+        "b. Tasa de prevalencia",
+        "c. Tasa de hospitalizaciones",
+        "d. Tasa de mortalidad",
+        "e. Tasa de cobertura de vacunación"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La tasa de incidencia debería bajar, si la campaña es exitosa."
     },
     {
       "id": 70,
       "question": "¿Qué tipo de sesgo se trata de evitar, al validar previamente los cuestionarios en un estudio?",
       "options": [
-        "Sesgo de memoria",
-        "Sesgo de información",
-        "Sesgo de confusión",
-        "Sesgo de selección",
-        "Sesgo del entrevistador"
+        "a. Sesgo de memoria",
+        "b. Sesgo de información",
+        "c. Sesgo de confusión",
+        "d. Sesgo de selección",
+        "e. Sesgo del entrevistador"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Los sesgos de información o medida se previenen con el doble ciego y con instrumentos de medición validados y calibrados."
     },
     {
       "id": 71,
       "question": "Se busca la asociación entre distintos parámetros con el cáncer de tiroides, en un estudio de caso – control, con el Odds Ratio (OR), más un intervalo de confianza (IC) al 95%. ¿Qué factor es más importante en esta asociación?",
       "options": [
-        "Antecedentes familiares: OR: 1,88 ; IC [0,56 – 4,01]",
-        "Edad: OR: 2,6 ; IC [0,95 – 3,17]",
-        "Sexo masculino: OR: 0,56 ; IC [0,33 – 0,87]",
-        "Exposición a radiación: OR: 1,52 ; IC [0,91 – 2,01]",
-        "Tiroiditis de Hashimoto: OR: 4,6 ; IC [0,7 – 6,2]"
+        "a. Antecedentes familiares: OR: 1,88 ; IC [0,56 – 4,01]",
+        "b. Edad: OR: 2,6 ; IC [0,95 – 3,17]",
+        "c. Sexo masculino: OR: 0,56 ; IC [0,33 – 0,87]",
+        "d. Exposición a radiación: OR: 1,52 ; IC [0,91 – 2,01]",
+        "e. Tiroiditis de Hashimoto: OR: 4,6 ; IC [0,7 – 6,2]"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La opción C era la única estadísticamente significativa, ya que el OR no pasaba por el 1."
     },
     {
       "id": 72,
       "question": "¿A qué tipo de medida corresponde el screening de fenilcetonuria que se hace a todos los recién nacidos en Chile?",
       "options": [
-        "Promoción de la salud 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 20/58",
-        "Protección de la salud",
-        "Prevención primaria",
-        "Prevención secundaria",
-        "Prevención terciaria"
+        "a. Promoción de la salud 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 20/58",
+        "b. Protección de la salud",
+        "c. Prevención primaria",
+        "d. Prevención secundaria",
+        "e. Prevención terciaria"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Las pruebas de screening son una clásica medida de prevención secundaria."
     },
     {
       "id": 73,
       "question": "La erradicación del Helicobacter pylori reduce significativamente la recidiva de la úlcera gastroduodenal, en comparación a aquellos casos en que no se erradica. Este es uno de los principales argumentos para afirmar la relación causal entre esta bacteria y dicha patología. ¿A qué criterio de causalidad de Bradtford Hills corresponde?",
       "options": [
-        "Asociación",
-        "Relación dosis efecto",
-        "Plausibilidad biológica",
-        "Cesación de la exposición",
-        "Congruencia con el conocimiento científico existente"
+        "a. Asociación",
+        "b. Relación dosis efecto",
+        "c. Plausibilidad biológica",
+        "d. Cesación de la exposición",
+        "e. Congruencia con el conocimiento científico existente"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "De las opciones es la única aceptable."
     },
     {
       "id": 74,
       "question": "Un paciente de 60 años consulta por eritema y prurito en el glande y el prepucio. Al examen físico se constatan signos inflamatorios en dicha zona. Además de tratar la enfermedad descrita, ¿qué enfermedad sistémica se debe descartar?",
       "options": [
-        "Cáncer",
-        "Daño hepático crónico",
-        "Diabetes",
-        "Lupus",
-        "Insuficiencia renal"
+        "a. Cáncer",
+        "b. Daño hepático crónico",
+        "c. Diabetes",
+        "d. Lupus",
+        "e. Insuficiencia renal"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La balanopostitis (en especial la candidiásica) se asocia a diabetes."
     },
     {
       "id": 75,
       "question": "Un hombre de 33 años, lleva 18 años intentando concebir un hijo con su pareja. Ella tiene reglas regulares y él tiene un examen físico y genital normal. ¿Con qué examen debemos iniciar el estudio en este paciente?",
       "options": [
-        "LH",
-        "FSH",
-        "Espermiograma",
-        "Cultivo de líquido seminal",
-        "Ecografía testicular"
+        "a. LH",
+        "b. FSH",
+        "c. Espermiograma",
+        "d. Cultivo de líquido seminal",
+        "e. Ecografía testicular"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "El primer estudio de infertilidad masculina es el espermiograma."
     },
     {
       "id": 76,
       "question": "¿Cuál de las siguientes exposiciones laborales se asocian al desarrollo de cáncer de vejiga?",
       "options": [
-        "Solventes",
-        "Mercurio",
-        "Anilinas",
-        "Pesticidas",
-        "Plomo"
+        "a. Solventes",
+        "b. Mercurio",
+        "c. Anilinas",
+        "d. Pesticidas",
+        "e. Plomo"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Pésima pregunta. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 50/58"
     },
     {
       "id": 77,
       "question": "Un paciente de 67 años, fumador de 20 cigarrillos diarios, consulta por hematuria de 4 días de evolución, abundante, con coágulos. No ha presentado disuria, ni poliaquiuria, ni mal olor en la orina, ni dolor. Su examen de orina muestra abundantes eritrocitos por campo, sin 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 21/58 dismorfia. El diagnóstico más probable es:",
       "options": [
-        "Cáncer renal",
-        "Cáncer de vejiga",
-        "Cáncer de uréter",
-        "Cáncer de próstata",
-        "Cistitis intersticial"
+        "a. Cáncer renal",
+        "b. Cáncer de vejiga",
+        "c. Cáncer de uréter",
+        "d. Cáncer de próstata",
+        "e. Cistitis intersticial"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La hematuria monosintomática del adulto sugiere un cáncer de vejiga. El antecedente de fumar, también."
     },
     {
       "id": 78,
       "question": "Un paciente de 60 años, que durante una infección urinaria, se detectó APE de 14,2 ng/ml y un tacto rectal, con presencia de un nódulo prostático duro. Una vez tratada con éxito su infección, el APE es bajó a 12 ng/ml. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Prostatectomía radical",
-        "Seguimiento con APE y tacto en 1 año",
-        "Ecografía de próstata",
-        "Resección transuretral",
-        "Biopsia prostática"
+        "a. Prostatectomía radical",
+        "b. Seguimiento con APE y tacto en 1 año",
+        "c. Ecografía de próstata",
+        "d. Resección transuretral",
+        "e. Biopsia prostática"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tanto por el nódulo, como por el APE mayor a 4, está indicada la biopsia."
     },
     {
       "id": 79,
       "question": "Una mujer de 73 años, presenta escapes de orina, precedidos por grandes e incontrolables deseos de orinar. Además, ha tenido escapes de orina en la noche. Al examen físico, no hay mayores alteraciones. Se solicita una ecografía vesical, que visualiza una vejiga urinaria de paredes delgadas, sin litiasis y sin residuo postmiccional significativo. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar cistoscopía",
-        "Realizar suspensión uretral con cinta transvaginal",
-        "Iniciar oxibutinina",
-        "Indicar ejercicios de piso pélvico",
-        "Realizar cirugía abierta de piso pélvico"
+        "a. Realizar cistoscopía",
+        "b. Realizar suspensión uretral con cinta transvaginal",
+        "c. Iniciar oxibutinina",
+        "d. Indicar ejercicios de piso pélvico",
+        "e. Realizar cirugía abierta de piso pélvico"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Parece una incontinencia de orina de urgencia, que se trata preferentemente con anticolinérgicos, como la oxibutinina. 80 La verdad es que esta pregunta no la recuerdo bien. Sí recuerdo que tenía una HPB y una clínica de IOU. En general, la HPB con complicaciones, se trata con RTU (creo que no aparecía en las alternativas) y el tratamiento de primera línea de la HPB suele ser la tamsulosina. Además, la IOU se trata con anticolinérgicos (oxibutinina, cloruro de trospio y tolteridina), pero como aparecía más de uno, creo que querían que se marcara la tamsulisina. Insisto, no recuerdo bien esta pregunta."
     },
     {
       "id": 80,
       "question": "Un paciente de 70 años, con antecedente de hiperplasia prostática benigna, consulta por escapes de grandes cantidades de orina, asociada a deseos intensos de ir al baño. Se solicita una ecografía vesicoprostática que visualiza adenoma prostático de 50 cc de volumen, vejiga urinaria con paredes engrosadas y residuo postmiccional significativo ¿Cuál es la indicación más adecuada?",
       "options": [
-        "Imipramina oral",
-        "Tamsulosina oral",
-        "Amitriptilina oral",
-        "Tolterodina oral",
-        "Cloruro de trospio"
+        "a. Imipramina oral",
+        "b. Tamsulosina oral",
+        "c. Amitriptilina oral",
+        "d. Tolterodina oral",
+        "e. Cloruro de trospio"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "HPB con complicaciones + incontinencia de urgencia. El alfa-bloqueante (tamsulosina) es el tratamiento de primera línea para la HPB con síntomas obstructivos y residuo postmiccional. (Nota: la pauta original no recuerda bien esta pregunta, pero apunta a tamsulosina.)"
     },
     {
       "id": 81,
       "question": "Un paciente de 30 años, con antecedente de espondilitis anquilosante consulta por ojo rojo izquierdo con dolor, desde hace 24 horas, asociado a disminución de la agudeza visual. Hace 2 años presentó un episodio similar autolimitado, por el que no había consultado. Al examen físico, se muestra lo siguiente: FOTO (Ojo examinado con la luz de hendidura que muestra discoria). 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 22/58 El diagnóstico más probable es:",
       "options": [
-        "Uveítis anterior",
-        "Catarata",
-        "Disgenesia pupilar",
-        "Endoftalmitis",
-        "Hemorragia vítrea"
+        "a. Uveítis anterior",
+        "b. Catarata",
+        "c. Disgenesia pupilar",
+        "d. Endoftalmitis",
+        "e. Hemorragia vítrea"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es una uveítis anterior clásica."
     },
     {
       "id": 82,
       "question": "Una paciente, con antecedente de esclerosis múltiple, consulta por dolor ocular derecho, de 2 días de evolución, a lo que se le ha agregado visión borrosa. Tiene agudeza visual de 0,9 en el lado derecho y 1 en el lado izquierdo, que no cambia al mirar por un agujero estenopeico. Además se constata que en el ojo derecho está muy afectada la visión de colores. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Discromatopsia",
-        "Retinitis pigmentosa",
-        "Coriorretinitis",
-        "Desprendimiento de retina",
-        "Neuritis óptica"
+        "a. Discromatopsia",
+        "b. Retinitis pigmentosa",
+        "c. Coriorretinitis",
+        "d. Desprendimiento de retina",
+        "e. Neuritis óptica"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una neuritis óptica tanto por el antecedente de EM, como por la cínica, aunque tenía AV normal y no mencionaban el RFM."
     },
     {
       "id": 83,
       "question": "Un niño de 8 meses presenta leucocoria del ojo derecho. Como antecedente, su madre usa una prótesis ocular, por una pérdida ocular en su infancia, por una causa no precisada. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Retinopatía del prematuro",
-        "Catarata congénita",
-        "Retinoblastoma",
-        "Glaucoma congénito",
-        "Infección por Chlamydia trachomatis"
+        "a. Retinopatía del prematuro",
+        "b. Catarata congénita",
+        "c. Retinoblastoma",
+        "d. Glaucoma congénito",
+        "e. Infección por Chlamydia trachomatis"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "El retinoblastoma suele tener agregación familiar (gen Rb) y además es causa de leucocoria. La catarata habría tenido leucocoria desde el inicio."
     },
     {
       "id": 84,
       "question": "Una paciente de 50 años se realiza una tonomotría ocular, que muestra una presión intraocular de 28 mmHg en el ojo derecho. La inspección ocular no tiene alteracios. La agudeza visual es 1,0 en ambos ojos y se constata una excavación papilar es de 0,7 a derecha. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Degeneración macular relacionada con la edad",
-        "Neuropatía óptica",
-        "Glaucoma crónico",
-        "Catarata",
-        "Desprendimiento de retina"
+        "a. Degeneración macular relacionada con la edad",
+        "b. Neuropatía óptica",
+        "c. Glaucoma crónico",
+        "d. Catarata",
+        "e. Desprendimiento de retina"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es un glaucoma crónico clásico, tanto por la PIO mayor a 20, como por la excavación papilar mayor a 0,3."
     },
     {
       "id": 85,
       "question": "Una paciente de 50 años, diabética, con antecedente de insuficiencia renal e hígado graso, consulta por lesiones pruriginosas y eritematosas debajo de las mamas, en la región inguinal y debajo del abdomen. El tratamiento más adecuado es:",
       "options": [
-        "Mupirocina tópica",
-        "Cefadroxilo oral",
-        "Griseofulvina oral 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 23/58",
-        "Fluconazol oral",
-        "Ketoconazol tópico"
+        "a. Mupirocina tópica",
+        "b. Cefadroxilo oral",
+        "c. Griseofulvina oral 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 23/58",
+        "d. Fluconazol oral",
+        "e. Ketoconazol tópico"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene un intétrigo candidiásico. Por el antecedente de IRC y hepatopatía, se prefieren los antimicóticos tópicos."
     },
     {
       "id": 86,
       "question": "Un adolescente consulta por aparición de lesiones en zona nasogeniana, eritematosas, pruginosas, desde hace una semana. Al examen físico se aprecian costras mielicéricas en la zona descrita. ¿Cuál es el tratamiento de elección?",
       "options": [
-        "Amoxicilina más ácido clavulánico",
-        "Macrólidos",
-        "Betametasona",
-        "Cefoperazona",
-        "Ciprofloxacino"
+        "a. Amoxicilina más ácido clavulánico",
+        "b. Macrólidos",
+        "c. Betametasona",
+        "d. Cefoperazona",
+        "e. Ciprofloxacino"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Tiene un impétigo. Cloxacilina o cefadroxilo habrían sido de elección, pero la amoxicilina más ácido clavulánico cubren bien al S. Aureus y al S. Pyogenes, que son los agentes etiológicos."
     },
     {
       "id": 87,
       "question": "Un recién nacido de 5 días de vida tiene un hemangioma en el párpado izquierdo, de 1 cm de diámetro, que cubre parcialmente el iris. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Observar evolución",
-        "Indicar propanolol oral",
-        "Indicar corticoides orales",
-        "Biopsiar",
-        "Derivar a cirujano plástico infantil"
+        "a. Observar evolución",
+        "b. Indicar propanolol oral",
+        "c. Indicar corticoides orales",
+        "d. Biopsiar",
+        "e. Derivar a cirujano plástico infantil"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La primera medida ante los hemangiomas infantiles es dar propanolol. Si no involucionan, en casos como este está indicada la cirugía (porque deforma la cara, produce ambliopía, etc)."
     },
     {
       "id": 88,
       "question": "Una paciente de 84 años consulta por aparición de una lesión en la zona supraciliar izquierda, hace 12 meses, pruriginosa, que en ocasiones se ulcera y sangra. Al examen físico se observa lo siguiente: FOTO (Mujer adulta mayor con lesión ulcerada en la zona supraciliar, borde eritematoso, de 1 cm de diámetro aprox.). El diagnóstico más probable es:",
       "options": [
-        "Carcinoma basocelular",
-        "Queratosis actínica",
-        "Queratosis seborreica",
-        "Granuloma piógeno",
-        "Melanoma acrómico"
+        "a. Carcinoma basocelular",
+        "b. Queratosis actínica",
+        "c. Queratosis seborreica",
+        "d. Granuloma piógeno",
+        "e. Melanoma acrómico"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Si bien la imagen no era un cáncer basocelular clásico, esa era la única respuesta aceptable."
     },
     {
       "id": 89,
       "question": "Una paciente consulta por aparición de una lesión en el atebrazo, que inicialmente era dolorosa y eritematosa, pero que luego de 6 horas se volvió más oscura y más grande. Al examen físico, se aprecia lo siguiente: FOTO (típica placa livedoide en el antebrazo).",
       "options": [
-        "Loxsocelismo cutáneo",
-        "Necrosis grasa",
-        "Ectima",
-        "Pioderma gangrenoso",
-        "Fasceítis necrotizante 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 24/58"
+        "a. Loxsocelismo cutáneo",
+        "b. Necrosis grasa",
+        "c. Ectima",
+        "d. Pioderma gangrenoso",
+        "e. Fasceítis necrotizante 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 24/58"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es un loxsocelismo cutáneo clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 51/58"
     },
     {
       "id": 90,
       "question": "Un paciente de 28 años tiene un quiste epidérmico en el cuello y consulta porque ahora aumentó de volumen y se ha vuelto doloroso y eritematoso. Al examen físico se lo aprecia según la imagen: FOTO (absceso en el cuello, con algo de eritema alrededor y se ve de aspecto amarillo). La conducta más adecuada es:",
       "options": [
-        "Observar evolución",
-        "Indicar corticoides tópicos",
-        "Indicar antibióticos más drenaje quirúrgico",
-        "Realizar resección quirúrgica del quiste",
-        "Puncionar la lesión"
+        "a. Observar evolución",
+        "b. Indicar corticoides tópicos",
+        "c. Indicar antibióticos más drenaje quirúrgico",
+        "d. Realizar resección quirúrgica del quiste",
+        "e. Puncionar la lesión"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Tiene un quiste epidérmico abscedado, lo que se trata con antibióticos (antiestafilocócicos: ej. cloxacilina) más drenaje quirúrgico. Eventualmente, el quiste sí se debe resecar, pero no mientras está infectado."
     },
     {
       "id": 91,
       "question": "Una paciente de 60 años presenta dolor abdominal de 2 días de evolución, mayor en el abdomen bajo. Al examen físico tiene dolor a la palpación abdominal, especialmente en la fosa iliaca izquierda, con signo de Blumberg positivo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Enfermedad inflamatoria pélvica",
-        "Diverticulitis aguda",
-        "Colitis isquémica",
-        "Apendicitis aguda",
-        "Enfermedad de Cröhn"
+        "a. Enfermedad inflamatoria pélvica",
+        "b. Diverticulitis aguda",
+        "c. Colitis isquémica",
+        "d. Apendicitis aguda",
+        "e. Enfermedad de Cröhn"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una diverticulitis aguda clásica."
     },
     {
       "id": 92,
       "question": "Un paciente de 35 años, consulta por un cuadro de 1 semana de malestar general, sensación de edema de la cara en la mañana y tos que ha ido aumentando. Al examen físico se constata una adenopatía cervical, yugulares ingurgitadas y edema facial y de las manos. Además tiene signos de derrame pleural bilateral. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Tuberculosis",
-        "Hipotiroidismo",
-        "Taponamiento cardíaco",
-        "Mononucleosis infecciosa",
-        "Síndrome de vena cava superior"
+        "a. Tuberculosis",
+        "b. Hipotiroidismo",
+        "c. Taponamiento cardíaco",
+        "d. Mononucleosis infecciosa",
+        "e. Síndrome de vena cava superior"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es un síndrome de VCI clásico, probablemente secundario a un linfoma, dada la edad y las adenopatías."
     },
     {
       "id": 93,
       "question": "Un niño de 7 años es mordido por un perro callejero en el brazo derecho. Además del manejo de la herida, ¿cuál es la conducta más adecuada respecto a la profilaxis de la rabia?",
       "options": [
-        "Observar al niño por 10 días",
-        "Vacunar al niño solo si el perro presenta síntomas",
-        "Administrar la vacuna antirrábica al niño",
-        "Vacunar al niño solo si el perro muere",
-        "Administrar inmunoglobulina antirrábica al niño"
+        "a. Observar al niño por 10 días",
+        "b. Vacunar al niño solo si el perro presenta síntomas",
+        "c. Administrar la vacuna antirrábica al niño",
+        "d. Vacunar al niño solo si el perro muere",
+        "e. Administrar inmunoglobulina antirrábica al niño"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La normativa actual dice que se debe vacunar en caso de que la mordedura sea por un animal que no es observable (independiente de si hay o no provocación). También se vacuna en caso de contacto con murciélagos (no necesariamente mordedura) y en mordeduras por animales rabiosos, sintomáticos, que mueren inexplicadamente o que se trata de animales diferentes a las mascotas habituales."
     },
     {
       "id": 94,
       "question": "Un paciente de 26 años, con antecedente de daño cerebral severo, desde hace 2 días presenta sialorrea, tos áfona, estridor inspiratorio y reticencia a alimentarse. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Neumonía aspirativa",
-        "Epiglotitis por Haemophilus influenzae tipo B 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 25/58",
-        "Crisis epiléptica focal",
-        "Cuerpo extraño laríngeo",
-        "Cuerpo extraño esofágico"
+        "a. Neumonía aspirativa",
+        "b. Epiglotitis por Haemophilus influenzae tipo B 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 25/58",
+        "c. Crisis epiléptica focal",
+        "d. Cuerpo extraño laríngeo",
+        "e. Cuerpo extraño esofágico"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "E? Por la tos áfona y el estridor es un cuerpo extraño laríngeo, pero por la sialorrea y la reticencia a comer era esofágico. Esta pregunta inducía a error. Yo marqué laríngeo, porque le di más importancia a los síntomas laríngeos."
     },
     {
       "id": 95,
       "question": "Una paciente de 60 años, se realiza una colecistectomía laparoscópica electiva, por una colelitiasis. La biopsia es informada como presencia adenocarcinoma invasor en el fondo de la vesícula, subseroso. Se solicta un TAC de abdomen y pelvis con contraste, que no visualiza metástasis. ¿Cuál es la conducta?",
       "options": [
-        "Quimioterapia",
-        "Radioterapia",
-        "Cuidados paliativo",
-        "Control con TAC cada 3 meses",
-        "Colecistectomía radical"
+        "a. Quimioterapia",
+        "b. Radioterapia",
+        "c. Cuidados paliativo",
+        "d. Control con TAC cada 3 meses",
+        "e. Colecistectomía radical"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Lo correcto es hacer una cirugía abierta, con cuña hepática y linfadenectomía y no una colecistectomía radical, ya que la vesícula ya se extirpó. Sin embargo, de las alternativas que había, era la más aceptable."
     },
     {
       "id": 96,
       "question": "Una paciente de 50 años consulta por dolor abdominal de 12 horas de evolución, intenso y asociado a vómitos. Además ha presentado fiebre hasta 38,8 grados y aumento del dolor abdominal, en especial en el hemiabdomen superior. Al examen físico tiene ictericia de piel y mucosas, PA: 90/60 mmHg y FC: 116x’. Se realiza una ecografía abdominal que muestra colédoco de 11 mm de dilatación y litiasis en la vesícula biliar. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar colecistectomía laparoscópica",
-        "Realizar drenaje endoscópico de la vía biliar",
-        "Solicitar colangioresonancia magnética nuclear",
-        "Solicitar TAC de abdomen y pelvis",
-        "Realizar colecistectomía más coledocostomía"
+        "a. Realizar colecistectomía laparoscópica",
+        "b. Realizar drenaje endoscópico de la vía biliar",
+        "c. Solicitar colangioresonancia magnética nuclear",
+        "d. Solicitar TAC de abdomen y pelvis",
+        "e. Realizar colecistectomía más coledocostomía"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene criterios de colangitis aguda (dolor, fiebre, ictericia y compromiso hemodinámico), por lo que se debe proceder al drenaje por CPRE."
     },
     {
       "id": 97,
       "question": "Un adolescente de 17 años sufre un accidente de tránsito, en bicicleta, con golpe en la cabeza. Inicialmente está sin signos neurológicos focales, con escala de Glasgow de 15. Se solicita una radiografía de cráneo que muestra una fractura de la escama del temporal. A las 2 horas evoluciona con cefalea intensa y vómitos, seguido de compromiso de conciencia. Se aprecia midriasis derecha, arreactiva. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Hematoma subdural derecho",
-        "Hematoma epidural derecho",
-        "Hemorragia subaracnoidea",
-        "Contusión encefálica frontal",
-        "Contusión encefálica temporal"
+        "a. Hematoma subdural derecho",
+        "b. Hematoma epidural derecho",
+        "c. Hemorragia subaracnoidea",
+        "d. Contusión encefálica frontal",
+        "e. Contusión encefálica temporal"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un hematoma epidural clásico, tanto por la fractura, como por la clínica de HTEC grave, como por el breve intervalo lúcido."
     },
     {
       "id": 98,
       "question": "Un hombre protagoniza un accidente de tránsito, chocando de manera frontal, contra otro automóvil. Presenta intenso dolor en la cadera derecha, que le impide caminar. En su examen tiene una rotación fija hacia interno, con aducción del muslo. El diagnóstico más probable es:",
       "options": [
-        "Fractura de cuello femoral",
-        "Fractura de cotilo",
-        "Esguince grado 3 de cadera 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 26/58",
-        "Luxación anterior de cadera",
-        "Luxación posterior de cadera"
+        "a. Fractura de cuello femoral",
+        "b. Fractura de cotilo",
+        "c. Esguince grado 3 de cadera 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 26/58",
+        "d. Luxación anterior de cadera",
+        "e. Luxación posterior de cadera"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una luxación posterior clásica, con la posición impúdica."
     },
     {
       "id": 99,
       "question": "Un paciente de 28 años sufre una caída a nivel, cayendo sobre la mano izquierda, con extremidad superior izquierda en extensión. Al examen físico presenta dolor a la compresión axial del pulgar y al presionar la tabaquera anatómica. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Fractura de la base de la primera falange proximal",
-        "Fractura de escafoides",
-        "Fractura perilunar",
-        "Fractura del extremo distal del radio",
-        "Esguince de la primera articulación metacarpofalángica"
+        "a. Fractura de la base de la primera falange proximal",
+        "b. Fractura de escafoides",
+        "c. Fractura perilunar",
+        "d. Fractura del extremo distal del radio",
+        "e. Esguince de la primera articulación metacarpofalángica"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un fractura de escafoides clásica."
     },
     {
       "id": 100,
       "question": "Un paciente sufre una caída a nivel, con golpe en el hombro derecho, evolucionando con dolor e impotencia funcional. Se realizan radiografías de hombro, una de las que se muestra a continuación: FOTO (Radiografía AP de hombro, con fractura del tercio medio de la clavícula derecha, con ligero desplazamiento, sin conminución) ¿Qué tipo de inmovilización es la más adecuada?",
       "options": [
-        "Vendaje axial de hombro",
-        "Vendaje en ocho",
-        "Yeso Velpeau",
-        "Yeso toracobraquial",
-        "Cabestrillo"
+        "a. Vendaje axial de hombro",
+        "b. Vendaje en ocho",
+        "c. Yeso Velpeau",
+        "d. Yeso toracobraquial",
+        "e. Cabestrillo"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": ", ¿B?. El cabestrillo y el vendaje en 8 son los más usados en las fracturas del tercio medio de clavícula. Sin embargo, también se pueden usar otros tipos de inmovilización, según la valoración por el especialista. El vendaje en 8 se asocia a mayores molestias, por compresión cutánea y del complejo neurovascular axilar, así que el cabestrillo suele ser lo más recomendado. De todos, modos, es una pregunta de especialista."
     },
     {
       "id": 101,
       "question": "Una paciente de 31 años, secretaria, consulta por dolor en el hombro derecho, que ha aumentado en el último tiempo. Ella refiere que es más intenso en la noche y que aparece especialmente al levantar el codo por sobre el hombro. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Tendinitis del manguito rotador",
-        "Hernia del núcleo pulposo cervical",
-        "Artrosis glenohumeral",
-        "Tendinitis de la cabeza larga del bíceps",
-        "Capsulitis adhesiva de hombro"
+        "a. Tendinitis del manguito rotador",
+        "b. Hernia del núcleo pulposo cervical",
+        "c. Artrosis glenohumeral",
+        "d. Tendinitis de la cabeza larga del bíceps",
+        "e. Capsulitis adhesiva de hombro"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Era una tendinitis del manguito rotador clásica."
     },
     {
       "id": 102,
       "question": "Un paciente presenta dolor abdominal y vómitos desde hace 5 días, y tiene una actitud muy demandante y agresiva, solicitando la realización de exámenes y administración de medicamentos. En una ocasión fue sorprendido tomando laxantes y adulterando la temperatura del termómetro. Además, hace un año estuvo hospitalizado por un cuadro similar, hecho que él no refirió en la consulta. Al indagar un poco más, se concluye que no tiene una causa orgánica que explique sus síntomas, pero que tampoco hay una ganancia evidente para él. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno por hipocondría",
-        "Trastorno de somatización",
-        "Trastorno delirante crónico 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 27/58",
-        "Episodio psicótico breve",
-        "Trastorno facticio"
+        "a. Trastorno por hipocondría",
+        "b. Trastorno de somatización",
+        "c. Trastorno delirante crónico 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 27/58",
+        "d. Episodio psicótico breve",
+        "e. Trastorno facticio"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Al hacerlo intencionalmente, es un trastorno facticio clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 52/58"
     },
     {
       "id": 103,
       "question": "Una paciente presenta sensación de opresión precordial intensa, asociada a disnea, vértigo y dificultad para ver, que sucede de manera episódica, con varias recurrencias en el último tiempo. Está muy preocupada y además tiene mucho miedo a morir de un infarto. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno de ansiedad social",
-        "Trastorno de ansiedad generalizada",
-        "Agorafobia",
-        "Trastorno de pánico",
-        "Trastorno conversivo"
+        "a. Trastorno de ansiedad social",
+        "b. Trastorno de ansiedad generalizada",
+        "c. Agorafobia",
+        "d. Trastorno de pánico",
+        "e. Trastorno conversivo"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Por las crisis de pánico reiteradas, es un trastorno de pánico clásico."
     },
     {
       "id": 104,
       "question": "Una mujer de 30 años se preocupa mucho por las finanzas y la salud de su familia. Además, le angustia que alguno de sus familiares pudiera quedarse sin trabajo o que la economía decayera. Refiere estar pasando por un periodo de estrés laboral y estar estresada porque muchas cosas dependen de ella, tanto en su trabajo, como en su familia. Refiere que en el último tiempo, lo único que la mantiene más tranquila es tomar un poco de clonazepam, el que consume 2 a 3 veces por semana. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno obsesivo compulsivo",
-        "Trastorno de pánico",
-        "Trastorno de personalidad dependiente",
-        "Reacción adversa a las benzodiazepinas",
-        "Trastorno de ansiedad generalizada"
+        "a. Trastorno obsesivo compulsivo",
+        "b. Trastorno de pánico",
+        "c. Trastorno de personalidad dependiente",
+        "d. Reacción adversa a las benzodiazepinas",
+        "e. Trastorno de ansiedad generalizada"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene distinas preocupaciones, de distintos tipos, por lo que es un TAG clásico."
     },
     {
       "id": 105,
       "question": "Un paciente esquizofrénico, recién diagnósticado, inicia tratamiento con risperidona. Al tercer día, inicia un cuadro de disestesias en las extremidades inferiores, asociadas a temblor, inquietud y cambio continuo de posición. Se muestra muy incómodo y angustiado. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Parkinsonismo por fármacos",
-        "Distonía aguda",
-        "Disquinesia aguda",
-        "Acatisia",
-        "Manía aguda"
+        "a. Parkinsonismo por fármacos",
+        "b. Distonía aguda",
+        "c. Disquinesia aguda",
+        "d. Acatisia",
+        "e. Manía aguda"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una acatisia clásica."
     },
     {
       "id": 106,
       "question": "Un paciente de 21 años no sale de su casa por miedo a encontrarse con alguien que conozca y que le haga preguntas sobre su vida. Incluso desconecta el teléfono, para evitar que sus familiares lo llamen y le hagan preguntas. Se siente muy incómodo por lo que pudieran pensar de él las demás personas. Desde el colegio era muy tímido, pero esto empeoró al entrar a estudiar sus estudios superiores y actualmente afecta significativamente su vida. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Depresión psicótica",
-        "Trastorno de ansiedad social 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 28/58",
-        "Trastorno obsesivo compulsivo",
-        "Esquizofrenia",
-        "Trastorno delirante crónico"
+        "a. Depresión psicótica",
+        "b. Trastorno de ansiedad social 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 28/58",
+        "c. Trastorno obsesivo compulsivo",
+        "d. Esquizofrenia",
+        "e. Trastorno delirante crónico"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Esta estaba más difícil, pero sigue siendo una buena pregunta. En mi opinión era una fobia social generalizada y bastante grave. Tal vez tenía de base un trastorno de personalidad evitativo además, pero no aparecía en las alternativas."
     },
     {
       "id": 107,
       "question": "Un paciente es despedido de su trabajo, luego de ser sorprendido robando. Evoluciona con paresia de ambas manos. Al examen neurológico no tiene alteraciones. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno conversivo",
-        "Trastorno facticio",
-        "Trastorno de somatización",
-        "Trastorno adaptativo",
-        "Trastorno disociativo"
+        "a. Trastorno conversivo",
+        "b. Trastorno facticio",
+        "c. Trastorno de somatización",
+        "d. Trastorno adaptativo",
+        "e. Trastorno disociativo"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es un trastorno conversivo clásico."
     },
     {
       "id": 108,
       "question": "Un paciente de 54 años está seguro de que su esposa lo engaña, lo que confirma con un cambio de actitud que ella ha tenido en el último tiempo. Además cree saber con quién lo engaña, ya que se ha encontrado con el sujeto en la calle y siempre mira para abajo. La esposa y los familiares niegan los hechos, pero están preocupados por lo que pasa. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno de personalidad esquizoide",
-        "Esquizofrenia",
-        "Trastorno obsesivo compulsivo",
-        "Trastorno delirante crónico",
-        "Trastorno bipolar"
+        "a. Trastorno de personalidad esquizoide",
+        "b. Esquizofrenia",
+        "c. Trastorno obsesivo compulsivo",
+        "d. Trastorno delirante crónico",
+        "e. Trastorno bipolar"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Tiene un clásico TDC, con delirio de celos."
     },
     {
       "id": 109,
       "question": "Una paciente de 58 años ha tenido gran conflicto con la comunidad del edificio en que vive y también con la administración. Además, se la ha visto vociferando en los pasillos. Ella refiere que existe una asociación ilícita para explotar personas, en la que estarían involucrados el conserje, el administrador y varios de los copropietarios del edificio. Fuera de eso, no hay mayor afectación y se desenvuelve normalmente en su trabajo. Los familiares niegan las acusaciones. Al ser consultada dirigidamente, ella refiere el antecedente de consumir marihuana alrededor de una vez al mes. El diagnóstico más probable es:",
       "options": [
-        "Depresión psicótica",
-        "Trastorno delirante crónico",
-        "Esquizofrenia",
-        "Psicosis inducida por drogas",
-        "Trastorno bipolar"
+        "a. Depresión psicótica",
+        "b. Trastorno delirante crónico",
+        "c. Esquizofrenia",
+        "d. Psicosis inducida por drogas",
+        "e. Trastorno bipolar"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene un TDC, con delirio paranoide."
     },
     {
       "id": 110,
       "question": "Una paciente de 42 años, que 2 meses después de una separación conyugal, evoluciona con un cuadro de delirio paranoide y alucinaciones auditivas. Además presenta marcada tristeza, anhedonia, irritabilidad y culpa patológica. Como antecedentes psiquiátricos, ella sufrió una depresión postparto y uno de sus tíos está en tratamiento con litio. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Depresión psicótica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 29/58",
-        "Trastorno bipolar",
-        "Trastorno esquizoafectivo",
-        "Esquizofrenia",
-        "Trastorno esquizoide de la personalidad"
+        "a. Depresión psicótica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 29/58",
+        "b. Trastorno bipolar",
+        "c. Trastorno esquizoafectivo",
+        "d. Esquizofrenia",
+        "e. Trastorno esquizoide de la personalidad"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "A, B?. Esta está muy difícil, ya que en la práctica misma es muy difícil hacer el diagnóstico diferencial en los casos en que hay una clara mezcla de síntomas anímicos (tristeza, etc.) y psicóticos (delirio y alucinaciones). Sin embargo, me parece un trastorno esquizoafectivo, por la falta de predominancia de uno de estos tipos de síntomas y porque no daban un perfil temporal, en que hubiese iniciado con un tipo de síntomas y luego se hubiesen agregado los otros."
     },
     {
       "id": 111,
       "question": "Un hombre de 40 años acaba de terminar su tercer matrimonio, por lo que está pasando por un mal momento. Tiene además algunos problemas en su trabajo y su historial académico, laboral y también familiar siempre ha tenido dificultades. Como antecedente, refiere que cuando niño sufrió un accidente en que él resultó herido y su padre falleció. Él refiere que no le gustan los desafíos a largo plazo, y prefiere enfocarse en tareas a corto plazo, ya que las cosas a largo plazo no le resultan bien. El diagnóstico más probable es:",
       "options": [
-        "Trastorno de personalidad evitativo",
-        "Trastorno de conducta",
-        "Trastorno por déficit atencional",
-        "Trastorno de estrés postraumático",
-        "Ciclotimia"
+        "a. Trastorno de personalidad evitativo",
+        "b. Trastorno de conducta",
+        "c. Trastorno por déficit atencional",
+        "d. Trastorno de estrés postraumático",
+        "e. Ciclotimia"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Parece un trastorno por déficit atencional del adulto, aunque era una pregunta algo rara. Además, parecía que actualmente tenía algún grado de trastorno de personalidad, aunque no era evitativo (para empezar se casó 3 veces)."
     },
     {
       "id": 112,
       "question": "Una paciente de 28 años tiene problemas frecuentes con sus familiares, con quienes suele pelearse y distanciarse, pero luego de algunos meses retoma la relación, como si nada hubiese pasado. Además tiene antecedente de haber ingerido medicamentos con intención suicida y haberse autoagredido. Además ha cambiado varias veces de trabajo, ya que le cuesta atenerse a las normas, lo que le ha generado problemas. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno adaptativo",
-        "Trastorno de personalidad limítrofe",
-        "Trastorno bipolar",
-        "Distimia",
-        "Depresión mayor"
+        "a. Trastorno adaptativo",
+        "b. Trastorno de personalidad limítrofe",
+        "c. Trastorno bipolar",
+        "d. Distimia",
+        "e. Depresión mayor"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un clásico trastorno limítrofe de la personalidad."
     },
     {
       "id": 113,
       "question": "¿Cuál es el riesgo principal del consumo de marihuana entre los 12 y los 18 años de edad?",
       "options": [
-        "Riesgo de dependencia a la marihuana",
-        "Riesgo de intoxicación aguda",
-        "Desarrollo de esquizofrenia",
-        "Disminución de la motivación escolar",
-        "Desarrollo de alcoholismo"
+        "a. Riesgo de dependencia a la marihuana",
+        "b. Riesgo de intoxicación aguda",
+        "c. Desarrollo de esquizofrenia",
+        "d. Disminución de la motivación escolar",
+        "e. Desarrollo de alcoholismo"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Pregunta difícil."
     },
     {
       "id": 114,
       "question": "Una mujer de 18 años subió a un taxi, en el que el taxista se desvió del camino que debía tomar, siendo luego agredida por él. Es encontrada por terceras personas en un sitio eriazo, con evidentes signos de haber sido abusada sexualmente. Fue trasladada al Servicio Médico Legal, donde se constató la violación. Sin embargo, ella no recuerda nada de los sucedido, recordando solo cuando estaba en el taxi y luego cuando estaba en el Servicio Médico Legal. Ella se muestra muy preocupada, pero no logra recordar nada de lo que aconteció entremedio. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno conversivo 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 30/58",
-        "Trastorno de estrés postraumático",
-        "Trastorno facticio",
-        "Trastorno adaptativo",
-        "Trastorno disociativo"
+        "a. Trastorno conversivo 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 30/58",
+        "b. Trastorno de estrés postraumático",
+        "c. Trastorno facticio",
+        "d. Trastorno adaptativo",
+        "e. Trastorno disociativo"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una amnesia disociativa clásica."
     },
     {
       "id": 115,
       "question": "Una paciente de 50 años consulta por dolor abdominal, asociado a náuseas y malestar general. Además ha tenido disestesias en la piernas y sensación de frío, más otras molestias inespecíficas. Refiere estar angustiada por lo que le sucede y relata que está pasando por un periodo de estrés. Se solicitan exámenes que descartan patología orgánica. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno somatomorfo",
-        "Trastorno conversivo",
-        "Trastorno hipocondriaco",
-        "Trastorno facticio",
-        "Depresión"
+        "a. Trastorno somatomorfo",
+        "b. Trastorno conversivo",
+        "c. Trastorno hipocondriaco",
+        "d. Trastorno facticio",
+        "e. Depresión"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es un trastorno de somatización clásico."
     },
     {
       "id": 116,
       "question": "Un paciente de 21 años, abandonó a los 18 años su hogar, viviendo solo en la calle. Tiene la idea de ser un enviado de Dios, con la misión de salvar al mundo y dice que los ángeles le susurran al oído diciéndole cómo hacerlo. Los familiares refieren que empezó hace 3 años con esto y que no ha cambiado mucho desde entonces. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Trastorno delirante crónico",
-        "Esquizofrenia",
-        "Trastorno bipolar",
-        "Trastorno de personalidad esquizoide",
-        "Trastorno de conducta"
+        "a. Trastorno delirante crónico",
+        "b. Esquizofrenia",
+        "c. Trastorno bipolar",
+        "d. Trastorno de personalidad esquizoide",
+        "e. Trastorno de conducta"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una EQZ clásica."
     },
     {
       "id": 117,
       "question": "Una paciente con un cuadro de 5 años de evolución de marcada obstrucción nasal y rinorrea acuosa. Se realiza una radiografía de cavidades paranasales, que muestra velamiento de los senos maxilares. Se solicita un TAC de cavidades paranasales que muestra engrosamiento de la mucosa de los senos etmoidales y maxilares. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Iniciar fluticasona tópica",
-        "Realizar cirugía endoscópica nasal",
-        "Solicitar rinomanometría",
-        "Indicar tratamiento antibiótico",
-        "Iniciar antihistamínicos orales"
+        "a. Iniciar fluticasona tópica",
+        "b. Realizar cirugía endoscópica nasal",
+        "c. Solicitar rinomanometría",
+        "d. Indicar tratamiento antibiótico",
+        "e. Iniciar antihistamínicos orales"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Parecía una rinitis crónica, con predominio de síntomas obstructivos, por lo que de primera línea se deben indicar corticoides tópicos."
     },
     {
       "id": 118,
       "question": "Un paciente, con antecedente de rinitis alérgica, presenta marcada obstrucción nasal marcada, asociada varios episodios de sinusitis en el último tiempo. En la rinoscopía anterior, se visualizan numerosos pólipos en la mucosa, de aspecto pálido y brillante. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Iniciar fluticasona tópica",
-        "Iniciar prednisona oral 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 31/58",
-        "Solicitar TAC de cavidades paranasales",
-        "Realizar cirugía endoscópica nasal",
-        "Solicitar niveles plasmáticos de inmunoglobulinas"
+        "a. Iniciar fluticasona tópica",
+        "b. Iniciar prednisona oral 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 31/58",
+        "c. Solicitar TAC de cavidades paranasales",
+        "d. Realizar cirugía endoscópica nasal",
+        "e. Solicitar niveles plasmáticos de inmunoglobulinas"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La poliposis nasal se trata con corticoides orales."
     },
     {
       "id": 119,
       "question": "Un paciente está en el tercer día de tratamiento con azitromicina, por una amigdalitis con exudado. Consulta por aumento de la odinofagia, asociada a imposibilidad de comer por trismo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Absceso periamigdalino",
-        "Angina de Ludwig",
-        "Mononucleosis infecciosa",
-        "Absceso parafaríngeo",
-        "Absceso retrofaríngeo"
+        "a. Absceso periamigdalino",
+        "b. Angina de Ludwig",
+        "c. Mononucleosis infecciosa",
+        "d. Absceso parafaríngeo",
+        "e. Absceso retrofaríngeo"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es un absceso periamigdalino clásico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 53/58"
     },
     {
       "id": 120,
       "question": "Un niño de 4 años presenta intenso prurito anal, desde hace varios días, lo que se ha asociado a dificultades para dormir y bruxismo. ¿Cuál es el examen más adecuado para proseguir el estudio?",
       "options": [
-        "Parasitológico de deposiciones",
-        "Test de Graham",
-        "Hemograma",
-        "Prueba de reacción cutánea a la escoriación (Prick test)",
-        "Recuento de inmunoglobulina E específica"
+        "a. Parasitológico de deposiciones",
+        "b. Test de Graham",
+        "c. Hemograma",
+        "d. Prueba de reacción cutánea a la escoriación (Prick test)",
+        "e. Recuento de inmunoglobulina E específica"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Parece una oxiuriasis, que se diagnostica con el test de Graham."
     },
     {
       "id": 121,
       "question": "Un niño de 11 meses de edad presenta un cuadro de fiebre, hasta 38,7 grados celsius, asociado a diarrea acuosa abundante, con deposiciones explosivas, ácidas, más irritabilidad importante.",
       "options": [
-        "Rotavirus",
-        "Enterovirus",
-        "Escherichia coli",
-        "Shigella",
-        "Adenovirus"
+        "a. Rotavirus",
+        "b. Enterovirus",
+        "c. Escherichia coli",
+        "d. Shigella",
+        "e. Adenovirus"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "El rotavirus es la causa más frecuente de diarrea acuosa febril en lactantes."
     },
     {
       "id": 122,
       "question": "Una niña de 4 años presenta un cuadro catarral, con abundante rinorrea. Evoluciona con eritema y, dolor periocular derecho, asociado a proptosis. ¿Cuál es el diagnóstico más probablem?",
       "options": [
-        "Celulitis preorbitaria",
-        "Celulitis orbitaria",
-        "Orbitopatía distiroidea",
-        "Pseudotumor orbitario",
-        "Etmoiditis aguda"
+        "a. Celulitis preorbitaria",
+        "b. Celulitis orbitaria",
+        "c. Orbitopatía distiroidea",
+        "d. Pseudotumor orbitario",
+        "e. Etmoiditis aguda"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La proptosis hace que sea orbitaria. En este caso es secundaria a una sinusitis."
     },
     {
       "id": 123,
       "question": "Un niño de 2 meses, es traído por su madre a vacunarse. ¿Qué vacuna, fuera de las del Plan Nacional de Inmunizaciones, se le puede recomendar?",
       "options": [
-        "Rotavirus 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 32/58",
-        "Varicela",
-        "Pneumocócica polisacárida",
-        "Hepatitis A",
-        "Trivírica"
+        "a. Rotavirus 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 32/58",
+        "b. Varicela",
+        "c. Pneumocócica polisacárida",
+        "d. Hepatitis A",
+        "e. Trivírica"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La varicela y hepatitis A sí se recomiendan, pero al año de edad. La neumocócica polisacárida, no sirve en niños menores de 2 años (por eso se da la conjugada)."
     },
     {
       "id": 124,
       "question": "Un niño de 6 años sufre un accidente en el campo, golpeándose con un palo en la cabeza y resultando con una herida supraciliar derecha de 5 cm de longitud. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Afrontamiento con cianoacrilato",
-        "Afrontamiento con tela adhesiva",
-        "Sutura con punto separado",
-        "Sutura intradérmica",
-        "Dejar que cure por segunda intención"
+        "a. Afrontamiento con cianoacrilato",
+        "b. Afrontamiento con tela adhesiva",
+        "c. Sutura con punto separado",
+        "d. Sutura intradérmica",
+        "e. Dejar que cure por segunda intención"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Si bien también se puede afrontar con punto separado, en pediatría y también en adultos, se prefiere la sutura intradérmica para las heridas grandes de la cara, por su mejor resultado estético."
     },
     {
       "id": 125,
       "question": "Un recién nacido de 5 días, aún no ha eliminado meconio. Además presenta irritabilidad, vómitos postprandiales frecuentes y distensión abdominal. Se realiza un enema baritado, que muestra un ano permeable, con colon proximal dilatado y colon distal estrecho. El examen más adecuado para confirmar el diagnóstico es:",
       "options": [
-        "TAC abdominal",
-        "Ecografía abdominal",
-        "Test del sudor",
-        "Biopsia por succión",
-        "Radiografía de abdomen simple"
+        "a. TAC abdominal",
+        "b. Ecografía abdominal",
+        "c. Test del sudor",
+        "d. Biopsia por succión",
+        "e. Radiografía de abdomen simple"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Era una enfermedad de Hirschsprüng, que se diagnostica con biopsia colorrectal (busca la aganglionosis del plexo nervioso submucoso o mientérico)."
     },
     {
       "id": 126,
       "question": "Un lactante de 4 meses, alimentado con lactancia materna exclusiva, tiene índice talla edad: normal, índice peso edad: normal e índice peso talla: +1. ¿Cuál es el diagnóstico nutricional de acuerdo a la OMS y el Minsal?",
       "options": [
-        "Desnutrición",
-        "Riesgo de desnutrición",
-        "Eutrófico",
-        "Riesgo de obesidad",
-        "Obesidad"
+        "a. Desnutrición",
+        "b. Riesgo de desnutrición",
+        "c. Eutrófico",
+        "d. Riesgo de obesidad",
+        "e. Obesidad"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "En menores de 1 año se usa el IPE para el diagnóstico de desnutrición y el IPT para el de sobrepeso. Como tiene IPE normal, no hay desnutrición. Como su IPT es +1, tiene sobrepeso."
     },
     {
       "id": 127,
       "question": "Un prescolar de 4 años presenta un cuadro de fiebre hasta 38 grados, asociado a eritema en las mejillas, que aumenta en los periodo de fiebre y con el calor y se vuelve más pálido cuando no hay fiebre. Luego se agrega un exantema reticular en el tronco. ¿Cuál es el agente etiológico más probable?",
       "options": [
-        "Virus rubéola",
-        "Virus Coxsackie",
-        "Parvovirus B19",
-        "Streptococcus pyogenes",
-        "Virus herpes 6 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 33/58"
+        "a. Virus rubéola",
+        "b. Virus Coxsackie",
+        "c. Parvovirus B19",
+        "d. Streptococcus pyogenes",
+        "e. Virus herpes 6 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 33/58"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es un eritema infeccioso, por PVB19 clásico."
     },
     {
       "id": 128,
       "question": "Un prescolar de 2 años, presenta un cuadro de fiebre alta, desde hace 5 días, asociado marcado decaimiento. Al examen físico presenta un exantema eritematoso en el tronco, asociado a eritema de las manos y ojo rojo. La boca muestra amígdalas congestivas y lengua enrojecida. El diagnóstico más probable es:",
       "options": [
-        "Síndrome pie mano boca",
-        "Eritema infeccioso",
-        "Escarlatina",
-        "Sarampión",
-        "Enfermedad de Kawasaki"
+        "a. Síndrome pie mano boca",
+        "b. Eritema infeccioso",
+        "c. Escarlatina",
+        "d. Sarampión",
+        "e. Enfermedad de Kawasaki"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Es una enfermedad de Kawasaki clásica."
     },
     {
       "id": 129,
       "question": "Un recién nacido de 18 horas de vida, desarrolla ictericia hasta los muslos. Se solicitan niveles plasmáticos de bilirrubina que resulta 15,3 mg/dl, con fracción indirecta de 15 mg/dl. La madre era O-IV Rh positiva y el niño es B-I Rh negativo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Ictericia hemolítica por incompatibilidad de grupo clásico",
-        "Ictericia hemolítica por incompatibilidad Rh",
-        "Ictericia fisiológica",
-        "Hepatitis neonatal",
-        "Ictericia por lactancia materna"
+        "a. Ictericia hemolítica por incompatibilidad de grupo clásico",
+        "b. Ictericia hemolítica por incompatibilidad Rh",
+        "c. Ictericia fisiológica",
+        "d. Hepatitis neonatal",
+        "e. Ictericia por lactancia materna"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es una ictericia precoz (menor a 24 horas), indirecta, por lo que lo más probable es que sea hemolítica. Además, por los grupos sanguíneos, solo puede ser por incompatibilidad de grupo clásico (madre O e hijo A o B)."
     },
     {
       "id": 130,
       "question": "Un recién nacido de 4 semanas de vida presenta un cuadro de vómitos postprandiales abundantes, desde hace una semana, asociada a detención del incremento ponderal. La madre refiere que lo nota hambriento y toma leche ávidamente. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Solicitar radiografía de abdomen simple",
-        "Realizar tratamiento endoscópico",
-        "Observar evolución",
-        "Realizar pilorotomía de Ramstedt",
-        "Realizar funduplicatura gástrica"
+        "a. Solicitar radiografía de abdomen simple",
+        "b. Realizar tratamiento endoscópico",
+        "c. Observar evolución",
+        "d. Realizar pilorotomía de Ramstedt",
+        "e. Realizar funduplicatura gástrica"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Tiene clínica de una estenosis hipertrófica del píloro. Por tanto lo más correcto era solicitar una ecografía abdominal, para confirmar el diagnóstico. Sin embargo, de las opciones, la pilorotomía es el tratamiento de elección."
     },
     {
       "id": 131,
       "question": "Una prescolar de 4 años presenta prurito en la cabeza. Al examen físico se ven abundantes liendres, a menos de 3 cm del cuero cabelludo, sin visualizar piojos. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Ivermectina oral",
-        "Permetrina tópica al 1%",
-        "Permetrina tópica al 5%",
-        "Lindano tópico",
-        "No tratar, mientras no se visualicen piojos"
+        "a. Ivermectina oral",
+        "b. Permetrina tópica al 1%",
+        "c. Permetrina tópica al 5%",
+        "d. Lindano tópico",
+        "e. No tratar, mientras no se visualicen piojos"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tanto los piojos, como las liendres, son diagnósticas de pediulosis (a menos que las liendres estén muy alejadas del cuero cabelludo, ya que serían antiguas). La pediculosis se trata con permetrina al 1%."
     },
     {
       "id": 132,
       "question": "Una niña de 4 años, celiaca desde hace 2 años, en tratamiento con dieta, desde el diagnóstico. En el último tiempo ha presentado diarrea y metorismo, por lo que los padres sospechan que está incumpliendo la dieta en el jardín infantil. ¿Cuál es el examen inicial para confirmar la sospecha diagnóstica? 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 34/58",
       "options": [
-        "Endoscopía digestiva alta, con biopsia de duodeno",
-        "Anticuerpos antigliadina clásicos",
-        "Anticuerpos antireticulina",
-        "Anticuerpos antiendomisio",
-        "Prueba de la D-xilosa"
+        "a. Endoscopía digestiva alta, con biopsia de duodeno",
+        "b. Anticuerpos antigliadina clásicos",
+        "c. Anticuerpos antireticulina",
+        "d. Anticuerpos antiendomisio",
+        "e. Prueba de la D-xilosa"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Los anticuerpos antitransglutaminasa y antiendomisio son de elección tanto para el diagnóstico, como para confirmar la adherencia a la dieta (negativizan luego de varios meses sin consumo de gluten)."
     },
     {
       "id": 133,
       "question": "Una paciente de 14 años sufre una convulsión tónico clónica, luego de una noche con privación de sueño y exposición a pantallas. Previo a esto, presentaba movimientos bruscos, como sacudidos, de manera involuntaria. Sus amigas relatan que en ocasiones “se queda pegada” por algunos segundos. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Epilepsia mioclónica juvenil",
-        "Epilepsia de ausencia juvenil",
-        "Epilepsia tónicoclónica",
-        "Epilepsia focal",
-        "Crisis convulsiva por privación de sueño"
+        "a. Epilepsia mioclónica juvenil",
+        "b. Epilepsia de ausencia juvenil",
+        "c. Epilepsia tónicoclónica",
+        "d. Epilepsia focal",
+        "e. Crisis convulsiva por privación de sueño"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es una epilepsia mioclónica clásica."
     },
     {
       "id": 134,
       "question": "Una niña de 5 años consulta por disuria dolorosa, asociado a orinas turbias y de mal olor, sin fiebre. Se solicita un examen de orina por sondeo, que muestra 20 a 30 leucocitos por campo, con 3 a 4 glóbulos rojos por campo y bacterias abundantes. El urocultivo está pendiente. ¿Cuál es el tratamiento antibiótico de elección?",
       "options": [
-        "Nitrofurantoína",
-        "Ciprofloxacino",
-        "Metronidazol",
-        "Amoxicilina",
-        "Cefoperazona"
+        "a. Nitrofurantoína",
+        "b. Ciprofloxacino",
+        "c. Metronidazol",
+        "d. Amoxicilina",
+        "e. Cefoperazona"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La ITU baja en pediatría se trata con cefalosporinas de primera generación o con nitrofurantoína. No se usan quinolonas, por su potencial afectación del cartílago de 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 54/58 crecimiento."
     },
     {
       "id": 135,
       "question": "Un niño de 18 meses presenta un cuadro de fiebre hasta 39 grados, asociado a decaimiento e irritabilidad. La madre refiere orinas de mal olor, por lo que se realiza un examen de orina por sondeo, que da salida a un líquido con abundante bacterias, 50 piocitos por campo y escasa hematuria. ¿Cuál es el tratamiento de elección?",
       "options": [
-        "Ciprofloxacino",
-        "Cefadroxilo",
-        "Nitrofurantoína",
-        "Gentamicina",
-        "Cefoperazona"
+        "a. Ciprofloxacino",
+        "b. Cefadroxilo",
+        "c. Nitrofurantoína",
+        "d. Gentamicina",
+        "e. Cefoperazona"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La ITU baja en pediatría se trata con cefalosporinas de primera o segunda generación. Tampoco se usan las quinolonas, por lo mismo."
     },
     {
       "id": 136,
       "question": "Un lactante de 1 años de vida ingresa al servicio de urgencia en malas condiciones generales, soporoso, con extremidades pálidas y frías en la zona distal. Se indica hidratación endovenosa, pero, a pesar de intentarlo, es imposible acceder a un vía venosa. ¿Cuál es la vía de elección para admninistrar fluidos en este paciente?",
       "options": [
-        "Catéter venoso central",
-        "Línea arterial",
-        "Sonda nasogástrica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 35/58",
-        "Denudación venosa",
-        "Osteoclisis"
+        "a. Catéter venoso central",
+        "b. Línea arterial",
+        "c. Sonda nasogástrica 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 35/58",
+        "d. Denudación venosa",
+        "e. Osteoclisis"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "En los niños, al fallar la vía venosa, se prefiere la osteoclisis. En los adultos, la denudacion venosa."
     },
     {
       "id": 137,
       "question": "Un recién nacido presenta aumento de volumen en la cabeza. Al examen físico se aprecia blando y fluctuante, sin sobrepasar la línea media. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Absceso de cuero cabelludo",
-        "Cefalohematoma subperióstico",
-        "Meningocele",
-        "Hemorragia intracerebral",
-        "Bolsa serosanguínea"
+        "a. Absceso de cuero cabelludo",
+        "b. Cefalohematoma subperióstico",
+        "c. Meningocele",
+        "d. Hemorragia intracerebral",
+        "e. Bolsa serosanguínea"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un cefalohematoma clásico."
     },
     {
       "id": 138,
       "question": "Un recién nacido presenta un soplo pansistólico, que se escucha entre el tercer y cuarto espacio intercostal. Además presenta algunas crepitaciones escasas en ambos campos pulmonares. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Comunicación interauricular",
-        "Comunicación interventricular",
-        "Ductus arterioso persistente",
-        "Estenosis mitral",
-        "Atresia tricuspidea"
+        "a. Comunicación interauricular",
+        "b. Comunicación interventricular",
+        "c. Ductus arterioso persistente",
+        "d. Estenosis mitral",
+        "e. Atresia tricuspidea"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una CIV clásica"
     },
     {
       "id": 139,
       "question": "Un niño de 5 años presenta fiebre no cuantificada, asociada a un exantema que inicia en las mejillas y que luego se extiende a la zona proximal de las extremidades, con una disposición, en encaje. Al examen físico tiene 37,1 grados de temperatura y se aprecia la faringe congestiva, con amígdalas rosadas y el exantema descrito. El diagnóstico más probable es:",
       "options": [
-        "Exantema súbito",
-        "Eritema infeccioso",
-        "Exantema por virus Coxsackie",
-        "Rubéola",
-        "Escarlatina"
+        "a. Exantema súbito",
+        "b. Eritema infeccioso",
+        "c. Exantema por virus Coxsackie",
+        "d. Rubéola",
+        "e. Escarlatina"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un eritema unfeccioso clásico, por PVB19."
     },
     {
       "id": 140,
       "question": "Un niño de 4 años presenta retraso generalizado del desarrollo psicomotor. Solo dice 4 palabras inteligibles. Además realiza movimientos estereotipados de rotación y manierismo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Distrofia muscular de Duchenne",
-        "Síndrome de Gilles de la Tourette",
-        "Trastorno del espectro autista",
-        "Parálisis cerebral",
-        "Síndrome de West"
+        "a. Distrofia muscular de Duchenne",
+        "b. Síndrome de Gilles de la Tourette",
+        "c. Trastorno del espectro autista",
+        "d. Parálisis cerebral",
+        "e. Síndrome de West"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es un TEA clásico."
     },
     {
       "id": 141,
       "question": "Una niña de 13 meses de edad, desde hace 4 meses ha detenido su crecimiento. Además presenta diarrea, con deposiciones pastosas y tendencia al meteorismo. En sus exámenes destaca anemia ferropénica. ¿Cuál es el examen de elección para iniciar el estudio? 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 36/58",
       "options": [
-        "Anticuerpos IgA antiendomisio",
-        "Recuento total de inmunoglobulinas",
-        "Test del sudor",
-        "Radiografía de mano",
-        "17 – OH – progesterona"
+        "a. Anticuerpos IgA antiendomisio",
+        "b. Recuento total de inmunoglobulinas",
+        "c. Test del sudor",
+        "d. Radiografía de mano",
+        "e. 17 – OH – progesterona"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Tanto por la edad, como por la clínica, parecía una enfermedad celíaca. No tenía síntomas respiratorios, como para sospechar una FQ."
     },
     {
       "id": 142,
       "question": "Un escolar de 6 años presenta aumento de volumen submandibular derecho, doloroso. Al examen físico se aprecia dicho aumento de volumen, de aspecto eritematoso, de 3 cm de diámetro, doloroso a la palpación. ¿Cuál es el agente etiológico más probable?",
       "options": [
-        "Bacteroides fragillis",
-        "Peptoestreptococo",
-        "Streptococcus tipo A",
-        "Staphilococcus aureus",
-        "Escherichia coli"
+        "a. Bacteroides fragillis",
+        "b. Peptoestreptococo",
+        "c. Streptococcus tipo A",
+        "d. Staphilococcus aureus",
+        "e. Escherichia coli"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Parecía una adenitis supurada o una sialoadenitis submandibular. Ambas son por S. aureus y S. Pyogenes, pero al abscedarse, lo más probable es S. aureus."
     },
     {
       "id": 143,
       "question": "Un paciente de 8 años consulta por fiebre alta, asociada a odinofagia intensa. En su examen físico se aprecia faringe eritematosa, asociada a exudado bilateral. Se solicita una prueba rápida de detección de antígenos estreptocócicos, la que resulta positiva. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Amoxicilina",
-        "Amoxicilina + ácido clavulánico",
-        "Azitromicina",
-        "Clindamicina",
-        "Metronidazol"
+        "a. Amoxicilina",
+        "b. Amoxicilina + ácido clavulánico",
+        "c. Azitromicina",
+        "d. Clindamicina",
+        "e. Metronidazol"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La amoxicilina es el tratamiento de elección de la amigdalitis estreptococócica."
     },
     {
       "id": 144,
       "question": "¿Cuál es la conducta más adecuada ante un recién nacido, cuya madre tiene el diagnóstico de hepatitis B?",
       "options": [
-        "Administrar la vacuna anti-VHB e inmunoglobulina anti-VHB al niño",
-        "Prohibir la lactancia materna",
-        "Dar antivirales al niño",
-        "Solicitar pruebas hepáticas al niño",
-        "Observar evolución"
+        "a. Administrar la vacuna anti-VHB e inmunoglobulina anti-VHB al niño",
+        "b. Prohibir la lactancia materna",
+        "c. Dar antivirales al niño",
+        "d. Solicitar pruebas hepáticas al niño",
+        "e. Observar evolución"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Esa es la conducta."
     },
     {
       "id": 145,
       "question": "Un niño de 27 días de vida presenta ictericia, que inició hace una semana. Se alimenta con lactancia materna exclusiva y no ha tenido otros síntomas. Se solicitan exámenes que muestran una bilirrubina total de 18,8 mg/dl y una bilirrubina directa de 18,0 mg/d. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Ictericia por leche materna",
-        "Ictericia fisiológica",
-        "Atresia primaria de las vías biliares",
-        "Hipotiroidismo congénito",
-        "Hepatitis neonatal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 37/58"
+        "a. Ictericia por leche materna",
+        "b. Ictericia fisiológica",
+        "c. Atresia primaria de las vías biliares",
+        "d. Hipotiroidismo congénito",
+        "e. Hepatitis neonatal 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 37/58"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Tiene una ictericia tardía y directa, por lo que la atresia biliar primaria es la principal sospecha."
     },
     {
       "id": 146,
       "question": "Una lactante de 7 meses se alimenta con 4 mamaderas al día, de leche purita fortificada al 7,5% más cereal al 5%, más 1 sopa puré. ¿Qué suplemento alimenticio debería estar recibiendo?",
       "options": [
-        "Tiamina",
-        "Zink",
-        "Vitamina A",
-        "Vitamina D",
-        "Ácido fólico"
+        "a. Tiamina",
+        "b. Zink",
+        "c. Vitamina A",
+        "d. Vitamina D",
+        "e. Ácido fólico"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "En la práctica también recibe vitamina A (vitaminas ACD), pero es la vitamina D la importante."
     },
     {
       "id": 147,
       "question": "Un niño de 3 años presenta un cuadro de congestión nasal, con rinorrea serosa, asociada a tos y ligera odinofagia. Al examen físico tiene temperatura 37,3 grados celsius, faringe congestiva, rosada y nariz con rinorrea abundante. ¿Cuál es el tratamiento más adecuado?",
       "options": [
-        "Solución salina intranasal",
-        "Amoxicilina oral",
-        "Corticoides nasales",
-        "Diclofenaco oral",
-        "Azitromicina oral"
+        "a. Solución salina intranasal",
+        "b. Amoxicilina oral",
+        "c. Corticoides nasales",
+        "d. Diclofenaco oral",
+        "e. Azitromicina oral"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Es un resfrío común. No aparecía paracetamol SOS, así que la respuesta más adecuada es el SF intranasal."
     },
     {
       "id": 148,
       "question": "Un adolescente de 15 años presenta dolor frecuente del testículo izquierdo. Al examen físico se palpa aumento de volumen perotesticular, compatible con un varicocele y además se palpa el testículo izquierdo de menor tamaño que el testículo derecho. Se solicita una ecografía testicular que muestra una dilatación patológica del plexo pampiniforme.",
       "options": [
-        "Observa evolución hasta que complete su desarrollo puberal",
-        "Realizar varicosectomía",
-        "Solicitar espermiograma",
-        "Realizar biopsia testicular",
-        "Solicitar cariograma y niveles de testosterona, LH y FSH"
+        "a. Observa evolución hasta que complete su desarrollo puberal",
+        "b. Realizar varicosectomía",
+        "c. Solicitar espermiograma",
+        "d. Realizar biopsia testicular",
+        "e. Solicitar cariograma y niveles de testosterona, LH y FSH"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene indicación de ligadura del plexo pampiniforme, tanto por la atrofia testicular, como por el dolor."
     },
     {
       "id": 149,
       "question": "Una paciente con antecedente de atraso menstrual, consulta por metrorragia. Su última regla fue hace 3 meses. A la especuloscopía se constata metrorragia. Su PA: 132/ 84 mmHg, FC: 80x’, temperatura normal. Se solicitan niveles plasmáticos deHCG, que resultan 960 UI/L. Se solicita una ecografía transvaginal, que muestra útero con endometrio refringente de 17 mm, sin visualización de saco gestacional ni masas anexialies, ni tampoco líquido libre. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Observa evolución y controlar en 2 semanas",
-        "Solicitar ecografía en 7 días",
-        "Solicitar nueva HCG y ecografía en 48 horas",
-        "Realizar laparoscopía",
-        "Realizar laparotomía exploradora"
+        "a. Observa evolución y controlar en 2 semanas",
+        "b. Solicitar ecografía en 7 días",
+        "c. Solicitar nueva HCG y ecografía en 48 horas",
+        "d. Realizar laparoscopía",
+        "e. Realizar laparotomía exploradora"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Tiene un posible embarazo ectópico y dado el buen estado de la paciente, no parece estar roto, a pesar de la metrorragia escasa. Sin embargo, por tener HCG menor a 1.500, se debe observar y repetir en 48 horas, de modo de confirmar el diagnóstico. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 55/58"
     },
     {
       "id": 150,
       "question": "Una paciente de 55 años se realiza una ecografía transvaginal, como parte de un chequeo ginecológico, que visualiza una lesión anexial derecha, quística, de 4,5 cm de diámetro, con una pared fina y sin tabiques ni excescencias. Su última regla fue hace 5 años. ¿Cuál es la 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 38/58 conducta más adecuada?",
       "options": [
-        "Realizar laparoscopía",
-        "Iniciar análogos de la GnRH",
-        "Realizar bipsia de la lesión por punción, guiada por ecografía",
-        "Iniciar anticonceptivos orales",
-        "Realizar seguimiento ecográfico en 3 meses"
+        "a. Realizar laparoscopía",
+        "b. Iniciar análogos de la GnRH",
+        "c. Realizar bipsia de la lesión por punción, guiada por ecografía",
+        "d. Iniciar anticonceptivos orales",
+        "e. Realizar seguimiento ecográfico en 3 meses"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": ", ¿A? Es una pregunta muy difícil y en mi opinión es de manejo de especialista y tiene más de una opción de tratamiento. Tiene un quiste simple, en una mujer postmenopáusica. Se puede observar y controlar en 3 meses, dado que probablemente es benigno y actualmente muchos recomiendan observar los quistes simples de menos de 10 cm y solo operarlos si persisten sobre 5 cm a los 3 meses, por el riesgo de rotura y torsión. Sin embargo, algunos opinan que por tener más de 3 cm y ser postmenopáusica, también puede sacarse por laparoscopía. Yo marqué observar, a pesar del tamaño, dado que la pregunta hacía mucho énfasis en las características benignas del mismo."
     },
     {
       "id": 151,
       "question": "Una paciente de 43 años, multípara de 4, consulta por que en el último tiempo se ha sentido más cansada de lo normal y además presenta disnea de grandes esfuerzos. Refiere también como antecedente, que sus reglas son abundantes. En su examen ginecológico, destaca útero en ateversoflexión, irregular y anexos sin alteraciones palpables. En sus exámenes de laboratorio destaca un hemograma, con Hb: 8 g/dl, Hcto: 23%, blancos: 6.500 por mm3 y plaquetas: 260.000 por mm3, que en el frotis muestra hipocromía y microcitosis. Se solicita una ecografía transvaginal, que muestra múltiples miomas intramurales de hasta 5 cm de diámetro, más un mioma submucoso de 4 cm de diámetro. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar histeroscopía",
-        "Realizar histerectomía total",
-        "Administrar análogos de la GnRH",
-        "Iniciar anticonceptivos orales",
-        "Antifibrinolíticos"
+        "a. Realizar histeroscopía",
+        "b. Realizar histerectomía total",
+        "c. Administrar análogos de la GnRH",
+        "d. Iniciar anticonceptivos orales",
+        "e. Antifibrinolíticos"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "La miomatosis sintomática, se opera. Si ya tiene paridad cumplida, se prefiere la HT."
     },
     {
       "id": 152,
       "question": "Una paciente de 25 años, sexualmente activa, que no utiliza métodos de barrera, consulta por fiebre, asociada a dolor abdominal, disuria, polaquiuria y leucorrea. Al examen físico presenta temperatura 38 grados, dolor a la palpación abdominal, mayor en la fosa ilíaca derecha. Además, en el examen ginecológico se observa leucorrea y tiene dolor a la palpación bimanual. El agente etiológico más probable es:",
       "options": [
-        "Escherichia coli",
-        "Gardnerlla vaginalis",
-        "Trichomona vaginalis",
-        "Estreptococo grupo A",
-        "Gonococo"
+        "a. Escherichia coli",
+        "b. Gardnerlla vaginalis",
+        "c. Trichomona vaginalis",
+        "d. Estreptococo grupo A",
+        "e. Gonococo"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Tiene un PIP clínico, cuya causa clásica es el gonococo."
     },
     {
       "id": 153,
       "question": "Una mujer de 35 años desea embarazarse. Como antecedentes es hipertensa, diabética, hipotiroidea y depresiva. Está en tratamiento con enalapril, levotiroxina, fluoxetina, metformina y ácido fólico. ¿Cuál es el consejo preconcepcional más adecuada?",
       "options": [
-        "Suspender la metformina",
-        "Aumentar la dosis de levotiroxina",
-        "Cambiar el enalapril por otro antihipertensivo",
-        "Suspender la fluoxetina",
-        "Mantener los medicamentos, sin cambios 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 39/58"
+        "a. Suspender la metformina",
+        "b. Aumentar la dosis de levotiroxina",
+        "c. Cambiar el enalapril por otro antihipertensivo",
+        "d. Suspender la fluoxetina",
+        "e. Mantener los medicamentos, sin cambios 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 39/58"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Por ser diabética, debe recibir dosis de 4 mg de ácido fólico al día. Si bien la recomendación chilena, dice que se prefiere la insulina, por sobre los HGO, la evidencia ha demostrado que tanto MTF, como GBC son tan seguros como la insulina. Además, debe suspender el enalapril y cualquier otro antihipertensivo y cambiarlo por alfametildopa."
     },
     {
       "id": 154,
       "question": "Una paciente de 22 semanas de gestación, con embarazo bien controlado, se realiza un doppler de arterias uterinas, que demuestra aumento de la resistencia. Como antecedente, estuvo hospitalizada en un embarazo anterior por una preclamsia. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Iniciar aspirina",
-        "Iniciar heparina",
-        "Iniciar L-arginina",
-        "Mantener el control normal del embarazo",
-        "Administrar corticoides"
+        "a. Iniciar aspirina",
+        "b. Iniciar heparina",
+        "c. Iniciar L-arginina",
+        "d. Mantener el control normal del embarazo",
+        "e. Administrar corticoides"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Por ser una paciente de alto riesgo, debe recibir profilaxis de PE con aspirina."
     },
     {
       "id": 155,
       "question": "Usted atiende a una paciente de 33 años, con 13 semanas de embarazo. Como antecedentes, tuvo una cesárea de urgencia en un embarazo anterior, a las 31 semanas, por una preclamsia severa. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Indicar aspirina",
-        "Indicar heparina",
-        "Indicar L-arginina",
-        "Indicar ácidos grasos omega 3",
-        "Indicar dexametasona"
+        "a. Indicar aspirina",
+        "b. Indicar heparina",
+        "c. Indicar L-arginina",
+        "d. Indicar ácidos grasos omega 3",
+        "e. Indicar dexametasona"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Ídem."
     },
     {
       "id": 156,
       "question": "Una paciente de 34 años, cursando un embarazo de 38 semanas, con antecedente de RCIU en percentil 5. Se realiza una ecografía obstétrica, que muestra feto creciendo en percentil menor a 5 y oligohidroamnios. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Administrar corticoides, manteniendo una conducta expectante",
-        "Realizar cesárea dentro de las próximas 24 horas",
-        "Inducir el parto con misoprostol",
-        "Solicitar doppler umbilical y decidir según resultados",
-        "Realizar test de tolerancia a las contracciones"
+        "a. Administrar corticoides, manteniendo una conducta expectante",
+        "b. Realizar cesárea dentro de las próximas 24 horas",
+        "c. Inducir el parto con misoprostol",
+        "d. Solicitar doppler umbilical y decidir según resultados",
+        "e. Realizar test de tolerancia a las contracciones"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un RCIU, con criterios de interrupción (mayor a 37 semanas y además OHA y además detención del crecimiento). Se prefiere la cesárea para evitar el estrés del trabajo de parto."
     },
     {
       "id": 157,
       "question": "Una paciente de 28 años, multípara de 1, cursando un embarazo de 32 semanas, consulta por metrorragia escasa. A la especuloscopía se ven restos de sangre, sin metrorragia actual. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar amniocentesis",
-        "Inducir el parto con misoprostol",
-        "Realizar cesárea",
-        "Solicitar una ecografía obstétrica",
-        "Realizar un tacto vaginal"
+        "a. Realizar amniocentesis",
+        "b. Inducir el parto con misoprostol",
+        "c. Realizar cesárea",
+        "d. Solicitar una ecografía obstétrica",
+        "e. Realizar un tacto vaginal"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Las metrorragias de la segunda mitad del embarazo, se estudian con ecografía."
     },
     {
       "id": 158,
       "question": "Una paciente de 31 años, cursando un embarazo de 11 semanas, se realiza una ecografía obstétrica, que muestra una translucencia nucal de 6 mm (VN: menor a 3 mm), asociada a ausencia de hueso nasal. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar biopsia de vellosidad corial",
-        "Realizar amniocentesis a las 20 semanas",
-        "Realizar detección de ADN fetal en sangre materna 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 40/58",
-        "Realizar seguimiento con relación férmoro / craneana",
-        "Realizar el control normal del embarazo"
+        "a. Realizar biopsia de vellosidad corial",
+        "b. Realizar amniocentesis a las 20 semanas",
+        "c. Realizar detección de ADN fetal en sangre materna 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 40/58",
+        "d. Realizar seguimiento con relación férmoro / craneana",
+        "e. Realizar el control normal del embarazo"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "El estudio de ADN fetal libre ha revolucionado el manejo de la detección de aneuploidías, por ser de mínimo riesgo y tener excelentes resultados (muy alta sensibilidad y muy bajos falsos positivos). Por tanto, en mi opinión es la respuesta correcta. Aunque sigue siendo algo que el médico general no tiene por qué hacer."
     },
     {
       "id": 159,
       "question": "Una paciente de 25 años, con antecedente de atraso menstrual de 6 semanas, consulta por metrorragia. Su test de embarazo es positivo. Su especuloscopía confirma metrorragia que proviene del orificio cervical y su tacto vaginal muestra un cuello cerrado, duro y de ubicación posterior. Se solicita una ecografía obstétrica que muestra lo siguiente: FOTO (Ecografía obstétrica con un saco gestacional de 11mm). ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Dar misoprostol",
-        "Realizar legrado",
-        "Controlar con nueva ecografía en 7 días",
-        "Realizar laparoscopía",
-        "Dar metotrexato"
+        "a. Dar misoprostol",
+        "b. Realizar legrado",
+        "c. Controlar con nueva ecografía en 7 días",
+        "d. Realizar laparoscopía",
+        "e. Dar metotrexato"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Tiene una amenaza de aborto, sin modificaciones cervicales, por lo que hay que observar. Además, la ecografía era normal, ya que el saco gestacional era menor a 18mm. Se controla con una EcoTV en 7 días, o antes, si empeoran los síntomas."
     },
     {
       "id": 160,
       "question": "Una paciente, puérpera desde hace 10 días, presenta dolor en la mama derecha, que aumenta especialmente al dar de mamar. En su examen físico se aprecia lo siguiente: FOTO (punto blanco o perla láctea en el pezón). ¿Cuál es la indicación más adecuada?",
       "options": [
-        "Frío local antes de dar de mamar",
-        "Calor",
-        "Punción de la lesión",
-        "Drenaje quirúrgico",
-        "Uso de pezonera"
+        "a. Frío local antes de dar de mamar",
+        "b. Calor",
+        "c. Punción de la lesión",
+        "d. Drenaje quirúrgico",
+        "e. Uso de pezonera"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": ", C? Tiene un punto blanco o perla láctea, que se produce porque se obstruye la salida de uno de los conductos galactóforos. Su tratamiento es discutible, ya que responde a distintos tratamientos y además, puede estar infectado. El calor local es lo clásico, pero también se suelen puncionar, ya que así se soluciona el problema. En mi opinión, es una mala pregunta, ya que tiene más de una respuesta correcta. Yo marqué puncionar, pero probablemente la respuesta que consideren como correcta es la del calor local. De verdad que Asofamech debería publicar sus preguntas y respuestas, para poder solucionar este tipo de preguntas. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 56/58"
     },
     {
       "id": 161,
       "question": "Una paciente, con antecedente de mortinato por infección por estreptococo betahemolítico grupo B, cursa un nuevo embarazo de 35 semanas, que no ha presentado complicaciones y se ha controlado adecuadamente. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Administrar penicilina endovenosa al recién nacido",
-        "Administrar ampicilina endovenosa a la mujer durante el trabajo de parto",
-        "Solicitar cultivo perianal y decidir conducta",
-        "Dar antibióticos profilácticos en este momento",
-        "Realizar cesárea electiva al término"
+        "a. Administrar penicilina endovenosa al recién nacido",
+        "b. Administrar ampicilina endovenosa a la mujer durante el trabajo de parto",
+        "c. Solicitar cultivo perianal y decidir conducta",
+        "d. Dar antibióticos profilácticos en este momento",
+        "e. Realizar cesárea electiva al término"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es una paciente de alto riesgo, por lo que se debe dar profilaxis en el parto y no se solicita el cultivo. En las de bajo riesgo, sí se solicita el cultivo para decidir."
     },
     {
       "id": 162,
       "question": "Una paciente de 32 años presenta reglas irregulares, cada 2 a 3 meses, asociada a hirsutismo y acné. Consulta porque ha tenido problemas para embarazarse ¿Cuál es el mejor fármaco para de tratar la infertilidad en esta paciente?",
       "options": [
-        "Espironolactona",
-        "Análogos de la GnRH",
-        "Citrato de clomifeno",
-        "Metformina",
-        "Progesterona 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 41/58"
+        "a. Espironolactona",
+        "b. Análogos de la GnRH",
+        "c. Citrato de clomifeno",
+        "d. Metformina",
+        "e. Progesterona 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 41/58"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "La infertilidad del SOP es por anovulación, que se trata con inductores, como el clomifeno."
     },
     {
       "id": 163,
       "question": "Una paciente de 27 años, cursando 36 semanas de embarazo, consulta por malestar general, asociada a cefalea, tinitus y epigastralgia. Su presión arterial es 170/100 mmHg y presenta reflejos osteotendíneos exaltados. Su tacto vaginal no muestra cambios cervicales y su registro cardiaco fetal no tiene alteraciones. ¿Cuál es la conducta inmediata más adecuada?",
       "options": [
-        "Administrar labetalol",
-        "Iniciar alfametildopa",
-        "Administrar sulfato de magnesio 5 gramos endovenoso y luego 2 gramos cada hora",
-        "Solicitar un test de tolerancia a las contracciones",
-        "Realizar cesárea de urgencia"
+        "a. Administrar labetalol",
+        "b. Iniciar alfametildopa",
+        "c. Administrar sulfato de magnesio 5 gramos endovenoso y luego 2 gramos cada hora",
+        "d. Solicitar un test de tolerancia a las contracciones",
+        "e. Realizar cesárea de urgencia"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "E? Es una pésima pregunta. Todo el mundo sabe que una preclamsia grave, con probable HELLP y exaltación neurológica, se debe interrumpir o si no, se muere (es lo más importante). Además todos sabemos que primero se administra el sulfato de magnesio, mientras se prepara el pabellón para la cesárea. Como se pregunta la conducta inmediata, probablemente quien redactó esta pregunta quiere que se marque el sulfato de magnesio, pero también se debe hacer la cesárea de manera inmediata, por lo que insisto, es una mala pregunta, que induce a error. Además, no es primera vez que se pregunta, por lo que es molesto volver a encontrarse con ella, ya que no es una pregunta que mida conocimiento, sino que suerte al elegir la alternativa correcta y no evalúa medicina, sino la opinión de quien la redactó, que considera que lo más urgente es el MgSO4 o bien considera que lo fundamental es la interrupción."
     },
     {
       "id": 164,
       "question": "Una paciente de 32 años, cursando un embarazo de 32 semanas, consulta por dolor abdominal. Se constatan contracciones uterinas 3 a 4 en 10 minutos y se realiza un tacto vaginal que muestra dilatación de 6 cm, con borramiento completo. ¿Cuál de los siguientes fármacos es el más importante para mejorar el pronóstico del recién nacido?",
       "options": [
-        "Corticoides",
-        "Sulfato de magnesio",
-        "Tocolíticos",
-        "Antibióticos",
-        "Progesterona"
+        "a. Corticoides",
+        "b. Sulfato de magnesio",
+        "c. Tocolíticos",
+        "d. Antibióticos",
+        "e. Progesterona"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "A?. Nuevamente una pregunta conflictiva. Como ya está en fase activa, no sirven los tocolíticos y tampoco alcanzarán a actuar los corticoides. El sulfato de magnesio, tiene un rol neuroprotector, por lo que se administran en los casos de parto prematuro inminente (yo marqué esa, aunque el año pasado marqué corticoides), sin embargo, los corticoides igualmente se dan en una única dosis en los partos prematuros inminentes, y además, en general son lo que más incide en la prevención de morbimortalidad del RN pretérmino. Los obstetras que están redactando las preguntas del Eunacom deben recordar que este examen busca medir los conocimientos de un médico general y que están haciendo preguntas de selección múltiple, por lo que no pueden hacer preguntas que induzcan a error, sino que deben ser preguntas claras, que no dejen lugar a dudas de que evalúan un conocimiento importante que debe tener un médico general."
     },
     {
       "id": 165,
       "question": "Una paciente cursa un embarazo de 32 semanas, presenta dinámica uterina 2 a 3 contracciones cada 10 minutos y dilatación cervical de 1 cm. El registro fetal es tranquilizador. Se administran corticoides a la madre, más nifedipino 10 mg vía oral, sin embargo persiste con la dinámica uterina una hora después. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Administrar tocolíticos de segunda línea",
-        "Dejar a evolución espontánea",
-        "Administrar sulfato de magnesio",
-        "Realizar cesárea",
-        "Realizar amniocentesis"
+        "a. Administrar tocolíticos de segunda línea",
+        "b. Dejar a evolución espontánea",
+        "c. Administrar sulfato de magnesio",
+        "d. Realizar cesárea",
+        "e. Realizar amniocentesis"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Al fallar los tocolíticos de primera línea, lo primero es descartar una infección con la amniocentesis."
     },
     {
       "id": 166,
       "question": "Una paciente de 28 años, cursa un embarazo de 32 semanas por amenorrea, sin controles obstétricos previos. Consulta por pérdida de líquido . Al examen físico presenta temperatura 38,5 grados Celsius, PA: 120/80 mmHg, FC: 100x’. Su tacto vaginal tiene un cuello cerrado, duro y posterior. Se solicita un hemograma muestra glóbulos blancos: 11.000 por mm3. La ecografía obstétricia, que muestra oligoamnios y peso fetal de 1.100 gramos, equivalente a un embarazo de 29 semanas. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Inducir el parto con misoprostol",
-        "Administrar corticoides y antibióticos y mantener una conducta expectante",
-        "Realizae cesárea",
-        "Realizar amniocentesis",
-        "Realizar amnioinfusión, con surfactante intramniótico 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 42/58"
+        "a. Inducir el parto con misoprostol",
+        "b. Administrar corticoides y antibióticos y mantener una conducta expectante",
+        "c. Realizae cesárea",
+        "d. Realizar amniocentesis",
+        "e. Realizar amnioinfusión, con surfactante intramniótico 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 42/58"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una pregunta difícil, con mucha información. Era una RPO de 32 semanas, con edad gestacional incierta (puede ser aún menor) y con sospecha de infección ovular. Según recuerdo, no cumplía criterios de corioamnionitis clínica, por lo que la respuesta era la amniocentesis, en mi opinión. Sin embargo no recuerdo 100% bien esta pregunta y si hubiese tenido taquicardia materna y fetal, sí estaría indicada la interrupción por cesárea (alguien me dijo que tenía más criterios, pero según recuerdo, no los tenía)."
     },
     {
       "id": 167,
       "question": "Una paciente de 32 años, hace 2 meses se implantó un DIU medicado, como método anticonceptivo. Consulta por atraso menstrual. Se realiza test de embarazo, la que resulta positiva y se solicitan niveles plasmáticos de HCG que resultan 980 UI/L. No tiene síntomas. La conducta más adecuada es:",
       "options": [
-        "Retirar el DIU",
-        "Solicitar una ecografía obstétrica",
-        "Observar evolución",
-        "Administrar metotrexato",
-        "Realizar histeroscopía"
+        "a. Retirar el DIU",
+        "b. Solicitar una ecografía obstétrica",
+        "c. Observar evolución",
+        "d. Administrar metotrexato",
+        "e. Realizar histeroscopía"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Se debe solicitar la ecografía, no solo para ver la relación entre el DIU y el saco gestacional, sino además, para asegurarse que no sea un embarazo ectópico (alto riesgo en DIU). 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 57/58"
     },
     {
       "id": 168,
       "question": "Una paciente cursando un embarazo de 35 semanas, es diagnosticada de RCIU en percentil 3. ¿Cuál de las siguientes alteraciones es una indicación de interrupción inmediata del embarazo?",
       "options": [
-        "Oligohidroamnios",
-        "Aumento de la resistencia de las arterias umbilicales",
-        "Dilatación de la arteria cerebral media",
-        "Relación femoro/abdominal mayor a 0,25",
-        "Ducto venoso con flujo ausente en diástole, al doppler"
+        "a. Oligohidroamnios",
+        "b. Aumento de la resistencia de las arterias umbilicales",
+        "c. Dilatación de la arteria cerebral media",
+        "d. Relación femoro/abdominal mayor a 0,25",
+        "e. Ducto venoso con flujo ausente en diástole, al doppler"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "El doppler ducto venoso alterado es ominoso (también el OHA severo y el doppler umbilical con flujo ausente o reverso en diástole)."
     },
     {
       "id": 169,
       "question": "Una paciente de 37 años, está en trabajo de parto de término. Está con anestesia raquídea y oxitocina en goteo. Presenta registro electrónico fetal tipo III y se constatan 6 contracciones uterinas cada 10 minutos. La conducta más adecuada es:",
       "options": [
-        "Poner a la madre en decúbito lateral izquierdo",
-        "Suspender la oxitocina",
-        "Realizar rotura artificial de membrana",
-        "Dar oxígeno a la madre",
-        "Administrar tocolíticos"
+        "a. Poner a la madre en decúbito lateral izquierdo",
+        "b. Suspender la oxitocina",
+        "c. Realizar rotura artificial de membrana",
+        "d. Dar oxígeno a la madre",
+        "e. Administrar tocolíticos"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene un registro ominoso, con taquisistolía, así que lo primero a hacer es suspender la oxitocina. Sin embargo, también hay que lateralizar, dar O2, etc, por lo que es una mala pregunta."
     },
     {
       "id": 170,
       "question": "Una paciente de 33 años, cursando un embarazo de 31 semanas, presenta contracciones uterinas frecuentes y dolorosas. Además, su tacto vaginal demuestra 2 cm de dilatación y 50% de borramiento. ¿Qué se debe realizar antes, para decidir si se administran o no los tocolíticos?",
       "options": [
-        "Realizar ecodoppler de arterias umbilicales",
-        "Determinar vitalidad y bienestar fetal mediante ecografía",
-        "Realizar ecodoppler de arterias uterinas",
-        "Realizar monitoreo electrónico de la frecuencia cardiaca fetal",
-        "Descartar infección con amniocentesis"
+        "a. Realizar ecodoppler de arterias umbilicales",
+        "b. Determinar vitalidad y bienestar fetal mediante ecografía",
+        "c. Realizar ecodoppler de arterias uterinas",
+        "d. Realizar monitoreo electrónico de la frecuencia cardiaca fetal",
+        "e. Descartar infección con amniocentesis"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": ", B? Por regla general, antes de dar los tocolíticos, se debe evaluar si están contraindicados (ej. Óbito fetal, alteración grave del bienestar fetal, dilatación mayor a 3 o 6 cm, etc.). Tanto el registro, como la Ecografía se suelen solicitar. Yo marqué el registro, ya que es lo que suele estar disponible y es más rápido de hacer en ese momento."
     },
     {
       "id": 171,
       "question": "Una paciente de 58 años, con 18 meses de amenorrea, consulta por metrorragia de 2 días evolución. Su examen ginecológico demuestra escasa metrorragia, que proviene del OCE, sin otras alteraciones. Sus mamografía y PAP son normales y fueron realizados hace menos de un año. Se realiza una ecografía transvaginal, que muestra endometrio de 3 mm, sin masas. ¿Cuál es la conducta más adecuada? 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 43/58",
       "options": [
-        "Realizar colposcopía",
-        "Controlar con una ecografía en 1 mes",
-        "Realizar legrado",
-        "Iniciar terapia de reemplazo hormonal",
-        "Realizar histeroscopía"
+        "a. Realizar colposcopía",
+        "b. Controlar con una ecografía en 1 mes",
+        "c. Realizar legrado",
+        "d. Iniciar terapia de reemplazo hormonal",
+        "e. Realizar histeroscopía"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Tiene una metrorragia postmenopáusica, con endometrio menor a 5 mm, por lo que probablemente es por atrofia endometrial, la que se suele observar."
     },
     {
       "id": 172,
       "question": "Una paciente de 80 años, se realiza una ecografía transvaginal, como parte de un control ginecológico, que muestra un endometrio de 7 mm, con anexos normales. No presenta síntomas y no recibe terapia de reemplazo hormonal. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Histerectomía",
-        "Terapia de reemplazo hormonal",
-        "Biopsia de endometrio si es que presenta metrorragia",
-        "Legrado",
-        "Colposcopía"
+        "a. Histerectomía",
+        "b. Terapia de reemplazo hormonal",
+        "c. Biopsia de endometrio si es que presenta metrorragia",
+        "d. Legrado",
+        "e. Colposcopía"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Tiene un endometrio grueso para su edad, por lo que podría tener una hiperplasia endometrial y eventualmente desarrollar un cáncer. Sin embargo, por estar asintomática, se debe observar. De las opciones, la C era la más aceptable."
     },
     {
       "id": 173,
       "question": "Una paciente se realiza un PAP que muestra atipías escamosas de bajo grado. Se realiza una colposcopía y biopsia, que muestra presencia de una neoplasia intraepitelial grado 1 y un condiloma. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Crioterapia",
-        "Tipificación de virus papiloma humano",
-        "Conización cervical",
-        "Histerectomía",
-        "Curetaje endocervical"
+        "a. Crioterapia",
+        "b. Tipificación de virus papiloma humano",
+        "c. Conización cervical",
+        "d. Histerectomía",
+        "e. Curetaje endocervical"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "Tanto NIE 1, como condilomas, se tratan con crioterapia como primera línea."
     },
     {
       "id": 174,
       "question": "Una paciente de 37 años, puérpera hace 7 días, con antecedente de hemorragia puerperal, evoluciona con aumento de la metrorragia, asociada a fiebre hasta 38,5 grados Celsius y dolor abdominal bajo. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Inercia uterina",
-        "Neoplasia trofoblástica gestacional",
-        "Endometritis",
-        "Restos ovulares",
-        "Miometritis"
+        "a. Inercia uterina",
+        "b. Neoplasia trofoblástica gestacional",
+        "c. Endometritis",
+        "d. Restos ovulares",
+        "e. Miometritis"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": "Es una endometritis puerperal clásica."
     },
     {
       "id": 175,
       "question": "Una mujer de 18 años, presenta reglas regulares, muy abundantes, asociada a dismenorrea. Se realiza una ecografía transvaginal, que visualiza múltiples quistes menores a 6 mm en ambos ovarios. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Realizar biopsia de endometrio",
-        "Realizar histeroscopía",
-        "Solicitar estudio endocrinológico",
-        "Solicitar test de tolerancia a la glucosa",
-        "Solicitar estudio de la hemostasia 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 44/58"
+        "a. Realizar biopsia de endometrio",
+        "b. Realizar histeroscopía",
+        "c. Solicitar estudio endocrinológico",
+        "d. Solicitar test de tolerancia a la glucosa",
+        "e. Solicitar estudio de la hemostasia 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 44/58"
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "c",
       "explanation": ", E? Nuevamente es una mala pregunta. Por un lado, tiene la hipermenorrea, sin una causa anatómica, por lo que se debe estudiar la hemostasia. Por otro lado, tiene el criterio ecográfico de SOP, por lo que se debe buscar el criterio endocrinológico, con el índice de andrógenos libres. Yo marqué C, pero como el Eunacom no tiene transparencia, nunca sabremos cuál es la respuesta."
     },
     {
       "id": 176,
       "question": "Una mujer de 22 años consulta por un nódulo mamario, que se autopalpó. Al examen físico se constata un nódulo en la mama derecha, de 2 cm de diámetro, móvil. No se palpan adenopatías axilares. ¿Cuál es el examen más adecuado para proseguir con el estudio de esta paciente?",
       "options": [
-        "Mamografías",
-        "Ecografía mamaria",
-        "Resonancia magnética nuclear de mamas",
-        "TAC de tórax",
-        "Biopsia"
+        "a. Mamografías",
+        "b. Ecografía mamaria",
+        "c. Resonancia magnética nuclear de mamas",
+        "d. TAC de tórax",
+        "e. Biopsia"
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "b",
       "explanation": "Es un fibroadenoma clásico, que se estudia con ecografía mamaria."
     },
     {
       "id": 177,
       "question": "Una paciente de 18 años, cursando un embarazo de 11 semanas, presenta vómitos frecuentas, desde inicios del embarazo, pero que han ido en aumento. Hace 24 horas ha empeorado, al punto que no ha podido ingerir líquidos adecuadamente, por lo que acude al servicio de urgencia. El diagnóstico más probable es:",
       "options": [
-        "Gastroparesia gestacional",
-        "Cólico biliar",
-        "Hepatitis",
-        "Hiperemesis gravídica",
-        "Síndrome de HELLP"
+        "a. Gastroparesia gestacional",
+        "b. Cólico biliar",
+        "c. Hepatitis",
+        "d. Hiperemesis gravídica",
+        "e. Síndrome de HELLP"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una hiperemesis gravísica clásica."
     },
     {
       "id": 178,
       "question": "Una paciente de 24 años, cursando un embarazo de 10 semanas, presenta vómitos frecuentes, que iniciaron hace un mes y han ido en aumento. Además ha bajado 3 kilogramos de peso, desde que se embarazó, ya que muchos de los alimentos y olores le producen muchas náuseas y vómitos. Refiere que vomita cerca de 6 veces al día y que esto afecta claramente su calidad de vida. ¿Cuál es el tratamiento más adecuado?",
       "options": [
-        "Doxilamina",
-        "Clorpromazina",
-        "Omeprazol",
-        "Metoclopramida",
-        "Ondasentrón sublingual"
+        "a. Doxilamina",
+        "b. Clorpromazina",
+        "c. Omeprazol",
+        "d. Metoclopramida",
+        "e. Ondasentrón sublingual"
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "a",
       "explanation": "La doxilamina (antihistamínico) son el tratamiento de primera línea en la hiperemesis gravídica."
     },
     {
       "id": 179,
       "question": "Una paciente se realiza un PAP que es informado como satisfactorio, inflamatorio y con atipías glandulares. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Tratamiento con metronidazol",
-        "Tratamiento con estrógenos",
-        "Control con un PAP en un año",
-        "Repetir el PAP",
-        "Colposcopía"
+        "a. Tratamiento con metronidazol",
+        "b. Tratamiento con estrógenos",
+        "c. Control con un PAP en un año",
+        "d. Repetir el PAP",
+        "e. Colposcopía"
       ],
-      "correctAnswer": "E",
+      "correctAnswer": "e",
       "explanation": "Por se atipías glandulares, lo más correcto es derivar a colposcopía y biopsia más curetaje endocervical."
     },
     {
       "id": 180,
       "question": "Una paciente embarazada de 9 semanas, se realiza una glicemia de ayuno en su control del embarazo, que resulta 130 mg/dl. ¿Cuál es el diagnóstico más probable?",
       "options": [
-        "Glicemia normal para el embarazo",
-        "Intolerancia a la glucosa 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 45/58",
-        "Diabetes mellitus gestacional",
-        "Diabetes mellitus pregestacional",
-        "Prediabetes"
+        "a. Glicemia normal para el embarazo",
+        "b. Intolerancia a la glucosa 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 45/58",
+        "c. Diabetes mellitus gestacional",
+        "d. Diabetes mellitus pregestacional",
+        "e. Prediabetes"
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "d",
       "explanation": "Es una mala pregunta, porque solo dan 1 glicemia, lo que no diagnostica nada. Sin embargo, se considera diabetes pregestacional que haya 2 glicemias de ayuno mayores o iguales a 126, a inicio del embarazo. Así mismo, se considera diabetes gestacional, si las dos glicemias son mayores o iguales a 100, pero menores a 126. 17/5/2018 Eunacom diciembre 2017 | Dr. Guevara http://pruebas.drguevara.cl/dic-2017/ 58/58 Todos los Derechos Reservados para DrGuevara Espero sinceramente que les haya ido muy bien en este examen."
     }
   ]
