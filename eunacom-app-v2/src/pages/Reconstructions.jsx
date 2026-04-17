@@ -107,9 +107,9 @@ const Reconstructions = () => {
       const res = await fetch(`/data/reconstrucciones/${exam.file}`)
       const data = await res.json()
 
-      // Filter to questions that have choices (at least 2 options)
+      // Filter to questions that have choices (at least 2 options) — supports ES and EN formats
       const validQuestions = data.questions.filter(
-        q => q.opciones && q.opciones.length >= 2
+        q => (q.opciones || q.options || []).length >= 2
       )
 
       if (validQuestions.length === 0) {
