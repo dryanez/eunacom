@@ -30,28 +30,27 @@ const TestCreator = () => {
 
     // --- Data Fetching ---
     useEffect(() => {
-        if (user) fetchData()
+        fetchData()
     }, [user])
 
     const fetchData = async () => {
         setLoading(true)
         try {
-            if (!user) return
-
-            const [progress, db] = await Promise.all([
-                fetchProgress(user.id),
-                fetch('/data/questionDB.json').then(r => r.json())
-            ])
+            const db = await fetch('/data/questionDB.json').then(r => r.json())
             setQuestionDB(db)
-            const progressMap = {}
-            progress.forEach(p => {
-                progressMap[p.question_id] = {
-                    is_correct: p.is_correct,
-                    is_omitted: p.is_omitted,
-                    is_marked: p.is_flagged
-                }
-            })
-            setUserProgress(progressMap)
+
+            if (user) {
+                const progress = await fetchProgress(user.id)
+                const progressMap = {}
+                progress.forEach(p => {
+                    progressMap[p.question_id] = {
+                        is_correct: p.is_correct,
+                        is_omitted: p.is_omitted,
+                        is_marked: p.is_flagged
+                    }
+                })
+                setUserProgress(progressMap)
+            }
         } catch (e) {
             console.error('Error fetching data:', e)
         } finally {
