@@ -6,7 +6,7 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } fro
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, ChevronDown, Menu, X, Video, Shield, Users
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
@@ -17,19 +17,18 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
     const [displayName, setDisplayName] = useState(null)
 
     useEffect(() => {
-        if (user) {
-            fetchProgress(user.id).then(data => {
-                const correct = data.filter(p => p.is_correct).length
-                const totalXP = (correct * XP_PER_CORRECT) + ((data.length - correct) * XP_PER_INCORRECT)
-                const { newLevel } = calculateLevelUp(totalXP, 1)
-                setUserLevel(newLevel)
-            }).catch(() => {})
-            fetchUserProfile(user.id).then(profile => {
-                if (profile?.first_name) {
-                    setDisplayName(`${profile.first_name} ${profile.last_name || ''}`.trim())
-                }
-            }).catch(() => {})
-        }
+        if (!user) return
+        fetchProgress(user.id).then(data => {
+            const correct = data.filter(p => p.is_correct).length
+            const totalXP = (correct * XP_PER_CORRECT) + ((data.length - correct) * XP_PER_INCORRECT)
+            const { newLevel } = calculateLevelUp(totalXP, 1)
+            setUserLevel(newLevel)
+        }).catch(() => {})
+        fetchUserProfile(user.id).then(profile => {
+            if (profile?.first_name) {
+                setDisplayName(`${profile.first_name} ${profile.last_name || ''}`.trim())
+            }
+        }).catch(() => {})
     }, [user])
 
     const handleLogout = async () => {
@@ -100,26 +99,34 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             </nav>
 
             <div className="sidebar__footer">
-                {isAdmin() && (
+                {user ? (
                     <>
-                        <div className="sidebar__section-title" style={{ marginTop: 0 }}>Admin</div>
-                        <NavLink to="/admin/users" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                            <Users size={18} /> Usuarios
-                        </NavLink>
+                        {isAdmin() && (
+                            <>
+                                <div className="sidebar__section-title" style={{ marginTop: 0 }}>Admin</div>
+                                <NavLink to="/admin/users" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                                    <Users size={18} /> Usuarios
+                                </NavLink>
+                            </>
+                        )}
+                        <div className="sidebar__user">
+                            <div className="sidebar__avatar">
+                                {(displayName || user.email || 'U').charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div className="sidebar__user-name">{displayName || user.email?.split('@')[0] || 'Usuario'}</div>
+                                <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
+                            </div>
+                        </div>
+                        <button onClick={handleLogout} className="sidebar__logout">
+                            <LogOut size={16} /> Cerrar Sesión
+                        </button>
                     </>
+                ) : (
+                    <NavLink to="/login" className="sidebar__logout" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={onToggle}>
+                        <LogIn size={16} /> Iniciar Sesión
+                    </NavLink>
                 )}
-                <div className="sidebar__user">
-                    <div className="sidebar__avatar">
-                        {(displayName || user?.email || 'U').charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                        <div className="sidebar__user-name">{displayName || user?.email?.split('@')[0] || 'Usuario'}</div>
-                        <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
-                    </div>
-                </div>
-                <button onClick={handleLogout} className="sidebar__logout">
-                    <LogOut size={16} /> Cerrar Sesión
-                </button>
             </div>
         </aside>
     )

@@ -1,173 +1,262 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { FileText, Target, Flame, Trophy, Crown, Medal, ChevronRight, BookOpen, BarChart3, Calendar } from 'lucide-react'
+import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard } from '../lib/api'
-import { XP_PER_CORRECT, XP_PER_INCORRECT, getLevelTitle, getLevelProgress, getXPForLevel } from '../utils/xpSystem'
+import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
+
+const PERIODS = [
+  { key: 'today', label: 'Hoy' },
+  { key: 'week', label: 'Semana' },
+  { key: 'all', label: 'General' },
+]
 
 const Dashboard = () => {
   const { user } = useAuth()
-  const navigate = useNavigate()
-  const [stats, setStats] = useState({ total: 0, correct: 0, xp: 0 })
+  const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
   const [leaderboard, setLeaderboard] = useState([])
-  const [streak, setStreak] = useState(0)
-  const [todayAnswers, setTodayAnswers] = useState(0)
   const [lbPeriod, setLbPeriod] = useState('week')
-  const [myRank, setMyRank] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const dailyGoal = 50
+  const [todayAnswers, setTodayAnswers] = useState(0)
+  const [todayCorrect, setTodayCorrect] = useState(0)
+  const [lbLoading, setLbLoading] = useState(true)
+  const DAILY_GOAL = 50
 
   useEffect(() => {
-    if (!user) return
-    Promise.all([
-      fetchProgress(user.id).catch(() => []),
-      fetchLeaderboard(lbPeriod, user.id).catch(() => ({ leaderboard: [], streak: 0, todayAnswers: 0, todayCorrect: 0 })),
-    ]).then(([prog, lb]) => {
-      const correct = prog.filter(p => p.is_correct).length
-      const total = prog.length
-      const xp = correct * XP_PER_CORRECT + (total - correct) * XP_PER_INCORRECT
-      setStats({ total, correct, xp })
-      if (lb) {
-        setLeaderboard(lb.leaderboard || [])
-        setStreak(lb.streak || 0)
-        setTodayAnswers(lb.todayAnswers || 0)
-        const idx = (lb.leaderboard || []).findIndex(u => u.user_id === user.id)
-        setMyRank(idx >= 0 ? idx + 1 : null)
-      }
-      setLoading(false)
-    })
-  }, [user, lbPeriod])
+    if (user) fetchStats()
+    loadLeaderboard('week')
+  }, [user])
 
-  useEffect(() => {
-    if (!user || loading) return
-    fetchLeaderboard(lbPeriod, user.id).then(lb => {
-      if (lb) {
-        setLeaderboard(lb.leaderboard || [])
-        const idx = (lb.leaderboard || []).findIndex(u => u.user_id === user.id)
-        setMyRank(idx >= 0 ? idx + 1 : null)
-      }
-    }).catch(() => {})
-  }, [lbPeriod])
+  const fetchStats = async () => {
+    try {
+      const progressData = await fetchProgress(user.id)
+      const total = progressData.length
+      const correct = progressData.filter(p => p.is_correct).length
+      const totalXP = (correct * XP_PER_CORRECT) + ((total - correct) * XP_PER_INCORRECT)
+      const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
+      setStats({ totalAnswered: total, correctAnswers: correct, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
+    } catch (e) { console.error('Dashboard stats error:', e) }
+  }
 
-  const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
-  const lvl = getLevelProgress(stats.xp)
-  const goalPct = Math.min(100, Math.round((todayAnswers / dailyGoal) * 100))
+  const loadLeaderboard = async (period) => {
+    setLbPeriod(period)
+    setLbLoading(true)
+    try {
+      const data = await fetchLeaderboard(period, user?.id || null)
+      setLeaderboard(data.leaderboard || [])
+      if (user) {
+        setStats(prev => ({ ...prev, streak: data.streak || 0 }))
+        setTodayAnswers(data.todayAnswers || 0)
+        setTodayCorrect(data.todayCorrect || 0)
+      }
+    } catch (e) { console.error('Leaderboard error:', e) }
+    setLbLoading(false)
+  }
+
+  const accuracy = stats.totalAnswered > 0 ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100) : 0
+  const levelCapXP = getXPForLevel(stats.level + 1)
+  const xpProgress = getLevelProgress(stats.xp, stats.level)
+  const levelTitle = getLevelTitle(stats.level)
+  const dailyPct = Math.min((todayAnswers / DAILY_GOAL) * 100, 100)
+
+  // Find user's rank in leaderboard
+  const myRank = leaderboard.findIndex(u => u.user_id === user?.id) + 1
 
   return (
-    <div style={{ maxWidth: 860, margin: '0 auto' }}>
-      {/* XP + Level bar */}
-      <div className="card" style={{ padding: '1rem 1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Trophy size={20} color="var(--accent-amber)" />
-          <span style={{ fontWeight: 800, fontSize: '1rem' }}>{getLevelTitle(stats.xp)}</span>
-        </div>
-        <div style={{ flex: 1, minWidth: 120 }}>
-          <div className="xp-bar" style={{ height: 8 }}>
-            <div className="xp-bar__fill" style={{ width: lvl.progress + '%' }} />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--surface-400)', marginTop: 2 }}>
-            <span>{stats.xp} XP</span>
-            <span>Nivel {lvl.level} → {getXPForLevel(lvl.level + 1)} XP</span>
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.75rem', borderRadius: 'var(--radius-full)', background: streak > 0 ? 'rgba(245,158,11,0.1)' : 'var(--surface-600)', border: '1px solid ' + (streak > 0 ? 'rgba(245,158,11,0.25)' : 'rgba(255,255,255,0.05)') }}>
-          <Flame size={16} color={streak > 0 ? 'var(--accent-amber)' : 'var(--surface-500)'} fill={streak > 0 ? 'var(--accent-amber)' : 'none'} />
-          <span style={{ fontWeight: 800, fontSize: '0.9rem', color: streak > 0 ? 'var(--accent-amber)' : 'var(--surface-500)' }}>{streak}</span>
-          <span style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>días</span>
-        </div>
-      </div>
+    <div style={{ paddingBottom: '2rem' }}>
+      <h1 className="page__title">Inicio</h1>
+      <p className="page__subtitle">{user ? 'Tu progreso general' : 'La plataforma de estudio EUNACOM más completa de Chile'}</p>
 
-      {/* Stat cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <div className="card" style={{ padding: '1rem', textAlign: 'center' }}>
-          <div style={{ position: 'relative', width: 64, height: 64, margin: '0 auto 0.5rem' }}>
-            <svg viewBox="0 0 36 36" style={{ width: 64, height: 64, transform: 'rotate(-90deg)' }}>
-              <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
-              <circle cx="18" cy="18" r="15.9" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--accent-red)'} strokeWidth="3" strokeDasharray={accuracy + ' ' + (100 - accuracy)} strokeLinecap="round" />
-            </svg>
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.95rem' }}>{accuracy}%</div>
+      {/* ─── GUEST CTA ─── */}
+      {!user && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
+          border: '1px solid rgba(19,91,236,0.25)', borderRadius: 'var(--radius-xl)',
+          padding: '1.75rem 1.5rem', marginBottom: '1.5rem', textAlign: 'center',
+        }}>
+          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🩺</div>
+          <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.5rem' }}>
+            Únete gratis y prepara tu EUNACOM
+          </h2>
+          <p style={{ fontSize: '0.88rem', color: 'var(--surface-300)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+            Más de 2.800 preguntas reales, exámenes completos, clases en video y ranking en tiempo real.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="/register" style={{
+              padding: '0.65rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
+              borderRadius: 'var(--radius-full)', fontWeight: 700, fontSize: '0.9rem',
+              textDecoration: 'none', border: 'none',
+            }}>Crear cuenta gratis</a>
+            <a href="/login" style={{
+              padding: '0.65rem 1.5rem', background: 'rgba(255,255,255,0.06)', color: 'var(--surface-100)',
+              borderRadius: 'var(--radius-full)', fontWeight: 600, fontSize: '0.9rem',
+              textDecoration: 'none', border: '1px solid rgba(255,255,255,0.1)',
+            }}>Iniciar sesión</a>
           </div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 600, textTransform: 'uppercase' }}>Precisión</div>
         </div>
-        <div className="card" style={{ padding: '1rem', textAlign: 'center' }}>
-          <FileText size={28} color="var(--primary-300)" style={{ margin: '0 auto 0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>{stats.total.toLocaleString()}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 600, textTransform: 'uppercase' }}>Respondidas</div>
-        </div>
-        <div className="card" style={{ padding: '1rem', textAlign: 'center' }}>
-          <Target size={28} color={goalPct >= 100 ? 'var(--accent-green)' : 'var(--accent-teal)'} style={{ margin: '0 auto 0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 800 }}>{goalPct >= 100 ? '✅' : todayAnswers + '/' + dailyGoal}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 600, textTransform: 'uppercase' }}>Meta Diaria</div>
-          <div className="xp-bar" style={{ height: 5, marginTop: '0.5rem' }}>
-            <div className="xp-bar__fill" style={{ width: goalPct + '%', background: goalPct >= 100 ? 'var(--accent-green)' : 'var(--accent-teal)' }} />
-          </div>
-        </div>
-      </div>
+      )}
 
-      {/* Leaderboard */}
+      {/* ─── XP + STREAK BAR (logged-in only) ─── */}
+      {user && (
+        <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.5rem', marginBottom: '1.5rem', background: 'var(--surface-700)', gap: '1.5rem', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--primary-300)', fontWeight: 600, marginBottom: '0.25rem' }}>
+              <Zap size={14} style={{ verticalAlign: 'middle', marginRight: 4 }} />
+              Nivel {stats.level} · {levelTitle}
+            </div>
+            <div className="xp-labels">
+              <span>{formatXP(Math.max(0, levelCapXP - stats.xp))} XP para subir</span>
+              <span>{formatXP(stats.xp)}/{formatXP(levelCapXP)} XP</span>
+            </div>
+            <div className="xp-bar"><div className="xp-bar__fill" style={{ width: `${xpProgress}%` }} /></div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', marginTop: 4 }}>Total: {formatXP(stats.totalXP)} XP</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1.5rem', borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
+            <Flame size={36} color={stats.streak > 0 ? 'var(--accent-amber)' : 'var(--surface-500)'} fill={stats.streak > 0 ? 'var(--accent-amber)' : 'none'} />
+            <div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Racha</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: stats.streak > 0 ? 'var(--accent-amber)' : 'var(--surface-300)' }}>{stats.streak}<span style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--surface-400)' }}> días</span></div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── STATS GRID (logged-in only) ─── */}
+      {user && (
+        <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
+          {/* Accuracy */}
+          <div className="stat-card">
+            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><PieChart size={18} color="var(--primary-300)" /></div>
+              Puntaje
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '0.75rem 0' }}>
+              <div className="donut-wrapper">
+                <svg viewBox="0 0 36 36" className="circular-chart">
+                  <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
+                  <path strokeDasharray={`${accuracy}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--primary-400)'} strokeWidth="3" strokeLinecap="round" />
+                </svg>
+                <div className="donut-center">
+                  <div className="donut-value" style={{ fontSize: '1.1rem' }}>{accuracy}%</div>
+                  <div className="donut-label">Correctas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Total questions */}
+          <div className="stat-card">
+            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><FileText size={18} color="var(--primary-300)" /></div>
+              Respondidas
+            </div>
+            <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
+              <div className="stat-card__value">{stats.totalAnswered.toLocaleString()}</div>
+              <div className="stat-card__sub">{stats.correctAnswers} correctas</div>
+            </div>
+          </div>
+
+          {/* Daily goal */}
+          <div className="stat-card">
+            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Target size={18} color={dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-300)'} /></div>
+              Meta Diaria
+            </div>
+            <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
+              <div className="stat-card__value" style={{ color: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--surface-50)', WebkitTextFillColor: 'initial', background: 'none' }}>
+                {todayAnswers}<span style={{ color: 'var(--surface-400)', fontSize: '1.5rem', fontWeight: 600 }}>/{DAILY_GOAL}</span>
+              </div>
+              <div style={{ margin: '0.5rem auto 0', width: '80%' }}>
+                <div className="xp-bar" style={{ height: 6 }}>
+                  <div className="xp-bar__fill" style={{ width: `${dailyPct}%`, background: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-400)' }} />
+                </div>
+              </div>
+              {dailyPct >= 100 && <div style={{ fontSize: '0.75rem', color: 'var(--accent-green)', fontWeight: 600, marginTop: 4 }}>✅ ¡Meta cumplida!</div>}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── LEADERBOARD ─── */}
       <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <h2 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <Crown size={18} color="var(--accent-amber)" /> Ranking
-          </h2>
-          <div style={{ display: 'flex', background: 'var(--surface-600)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
-            {[['today','Hoy'],['week','Semana'],['all','General']].map(function([key, label]) {
-              return React.createElement('button', {
-                key: key,
-                onClick: function() { setLbPeriod(key) },
-                style: { padding: '0.35rem 0.75rem', border: 'none', fontSize: '0.78rem', fontWeight: 600, background: lbPeriod === key ? 'var(--primary-500)' : 'transparent', color: lbPeriod === key ? '#fff' : 'var(--surface-400)', cursor: 'pointer', fontFamily: 'var(--font)', transition: 'all 0.15s' }
-              }, label)
-            })}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Trophy size={20} color="var(--accent-amber)" />
+            <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800 }}>Leaderboard</h3>
+            {myRank > 0 && <span style={{ fontSize: '0.78rem', color: 'var(--primary-300)', fontWeight: 600, background: 'rgba(19,91,236,0.1)', padding: '0.15rem 0.5rem', borderRadius: 'var(--radius-full)' }}>Tú #{myRank}</span>}
+          </div>
+          <div style={{ display: 'flex', gap: '0.25rem' }}>
+            {PERIODS.map(p => (
+              <button key={p.key} onClick={() => loadLeaderboard(p.key)} style={{
+                padding: '0.3rem 0.65rem', borderRadius: 'var(--radius-full)', border: 'none',
+                background: lbPeriod === p.key ? 'var(--primary-500)' : 'var(--surface-600)',
+                color: lbPeriod === p.key ? '#fff' : 'var(--surface-300)',
+                fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font)',
+              }}>{p.label}</button>
+            ))}
           </div>
         </div>
-        {leaderboard.length === 0 ? (
-          <p style={{ textAlign: 'center', color: 'var(--surface-400)', fontSize: '0.85rem', padding: '1rem 0' }}>No hay datos aún. ¡Responde preguntas para aparecer!</p>
+
+        {lbLoading ? (
+          <div style={{ textAlign: 'center', padding: '1rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>Cargando...</div>
+        ) : leaderboard.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
+            Aún no hay actividad {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}. ¡Sé el primero!
+          </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            {leaderboard.slice(0, 10).map(function(entry, i) {
-              var isMe = entry.user_id === (user && user.id)
-              var rank = i + 1
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+            {leaderboard.slice(0, 10).map((u, i) => {
+              const isMe = u.user_id === user?.id
+              const name = (u.first_name ? `${u.first_name} ${(u.last_name || '').charAt(0)}.` : u.email?.split('@')[0] || 'Anónimo')
+              const rankIcon = i === 0 ? <Crown size={16} color="#FFD700" /> : i === 1 ? <Medal size={16} color="#C0C0C0" /> : i === 2 ? <Medal size={16} color="#CD7F32" /> : null
               return (
-                <div key={entry.user_id} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.55rem 0.75rem', borderRadius: 'var(--radius)', background: isMe ? 'rgba(19,91,236,0.08)' : 'transparent', border: isMe ? '1px solid rgba(19,91,236,0.2)' : '1px solid transparent' }}>
-                  <div style={{ width: 24, textAlign: 'center', fontWeight: 800, fontSize: '0.85rem', color: rank <= 3 ? ['var(--accent-amber)','#94a3b8','#cd7f32'][rank-1] : 'var(--surface-400)' }}>
-                    {rank === 1 ? <Crown size={16} /> : rank <= 3 ? <Medal size={16} /> : rank}
+                <div key={u.user_id} style={{
+                  display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 0.75rem',
+                  borderRadius: 'var(--radius)',
+                  background: isMe ? 'rgba(19,91,236,0.08)' : i < 3 ? 'rgba(255,255,255,0.02)' : 'transparent',
+                  border: isMe ? '1px solid rgba(19,91,236,0.2)' : '1px solid transparent',
+                }}>
+                  <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.85rem', color: i < 3 ? 'var(--accent-amber)' : 'var(--surface-400)' }}>
+                    {rankIcon || (i + 1)}
                   </div>
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'hsl(' + ((entry.user_id || '').charCodeAt(0) * 37 % 360) + ', 60%, 45%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 700, color: '#fff' }}>
-                    {(entry.display_name || 'A')[0].toUpperCase()}
+                  <div style={{ width: 32, height: 32, borderRadius: 'var(--radius-full)', background: isMe ? 'var(--primary-500)' : 'var(--surface-600)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', color: '#fff', flexShrink: 0 }}>
+                    {name.charAt(0).toUpperCase()}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{entry.display_name || 'Estudiante'}{isMe ? ' (tú)' : ''}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{entry.total_questions} preg. · {entry.accuracy}% precisión</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: isMe ? 700 : 500, fontSize: '0.88rem', color: 'var(--surface-100)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {name} {isMe && <span style={{ fontSize: '0.72rem', color: 'var(--primary-300)' }}>(tú)</span>}
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>
+                      {u.correct}/{u.total_answers} correctas · {Math.round((u.correct / Math.max(u.total_answers, 1)) * 100)}%
+                    </div>
                   </div>
-                  <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--accent-amber)' }}>{entry.xp} XP</div>
+                  <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--accent-amber)', display: 'flex', alignItems: 'center', gap: 3 }}>
+                    <Zap size={14} /> {Number(u.xp).toLocaleString()}
+                  </div>
                 </div>
               )
             })}
           </div>
         )}
-        {myRank && myRank > 10 && (
-          <div style={{ textAlign: 'center', marginTop: '0.75rem', padding: '0.5rem', background: 'rgba(19,91,236,0.05)', borderRadius: 'var(--radius)', fontSize: '0.82rem', color: 'var(--surface-300)' }}>
-            Tu posición: <strong>#{myRank}</strong>
-          </div>
-        )}
       </div>
 
-      {/* Quick actions */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
-        {[
-          { label: 'Exámenes', icon: React.createElement(FileText, {size:20}), path: '/test', color: 'var(--primary-400)' },
-          { label: 'Plan de Estudio', icon: React.createElement(Calendar, {size:20}), path: '/study-plan', color: 'var(--accent-teal)' },
-          { label: 'Estadísticas', icon: React.createElement(BarChart3, {size:20}), path: '/stats', color: 'var(--accent-green)' },
-          { label: 'Mis Clases', icon: React.createElement(BookOpen, {size:20}), path: '/mis-clases', color: 'var(--accent-amber)' },
-        ].map(function(a) {
-          return (
-            <button key={a.path} onClick={function(){navigate(a.path)}} className="card" style={{ padding: '1rem', border: 'none', cursor: 'pointer', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font)', background: 'var(--surface-700)' }}>
-              <span style={{ color: a.color }}>{a.icon}</span>
-              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--surface-200)' }}>{a.label}</span>
-              <ChevronRight size={14} color="var(--surface-500)" />
-            </button>
-          )
-        })}
+      {/* ─── QUICK ACTIONS ─── */}
+      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
+      <div className="action-grid">
+        <a href="/test" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Exámenes</div>
+        </a>
+        <a href="/study-plan" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
+          <div className="action-card__label">Plan de Estudio</div>
+        </a>
+        <a href="/stats" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Estadísticas</div>
+        </a>
+        <a href="/mis-clases" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
+          <div className="action-card__label">Mis Clases</div>
+        </a>
       </div>
     </div>
   )

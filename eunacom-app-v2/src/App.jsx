@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import AuthLayout from './layouts/AuthLayout'
 import DashboardLayout from './layouts/DashboardLayout'
+import PublicLayout from './layouts/PublicLayout'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import TestCreator from './pages/TestCreator'
@@ -24,16 +25,20 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Public Routes */}
+          {/* Auth Routes */}
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
 
-          {/* Protected Routes */}
-          <Route element={<DashboardLayout />}>
+          {/* Public Routes — visible without login, content gated inside each page */}
+          <Route element={<PublicLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* Fallbacks for side menu */}
+            <Route path="/reconstructions" element={<Reconstructions />} />
+          </Route>
+
+          {/* Protected Routes — require login */}
+          <Route element={<DashboardLayout />}>
             <Route path="/study-plan" element={<StudyPlan />} />
             <Route path="/test" element={<TestCreator />} />
             <Route path="/simulation" element={<Simulation />} />
@@ -46,7 +51,6 @@ function App() {
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
             <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/reconstructions" element={<Reconstructions />} />
           </Route>
 
           {/* Default Route */}

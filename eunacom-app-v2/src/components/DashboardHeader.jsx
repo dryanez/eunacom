@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronDown, Menu, Heart, X } from 'lucide-react'
+import { ChevronDown, Menu, Heart, X, LogIn } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
 const DONATION_LINKS = [
@@ -99,26 +99,44 @@ const DashboardHeader = ({ onMenuToggle }) => {
                 )}
 
                 <div style={{ marginLeft: 'auto', position: 'relative' }}>
-                    <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)}>
-                        <img src="/logo.png" alt={userName} />
-                        <span>{userName}</span>
-                        <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
-                    </div>
-                    {showMenu && (
-                        <div style={{
-                            position: 'absolute', top: '100%', right: 0, marginTop: '0.5rem',
-                            background: 'var(--surface-700)', borderRadius: 'var(--radius)',
-                            boxShadow: 'var(--shadow-lg)', minWidth: '180px', zIndex: 1000,
-                            border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden'
-                        }}>
-                            <button onClick={handleLogout} style={{
-                                width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                color: '#ef4444', fontWeight: 600, fontSize: '0.9rem', textAlign: 'left',
-                                border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
-                            }}>
-                                Cerrar Sesión
-                            </button>
-                        </div>
+                    {user ? (
+                        <>
+                            <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)}>
+                                <img src="/logo.png" alt={userName} />
+                                <span>{userName}</span>
+                                <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
+                            </div>
+                            {showMenu && (
+                                <div style={{
+                                    position: 'absolute', top: '100%', right: 0, marginTop: '0.5rem',
+                                    background: 'var(--surface-700)', borderRadius: 'var(--radius)',
+                                    boxShadow: 'var(--shadow-lg)', minWidth: '180px', zIndex: 1000,
+                                    border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden'
+                                }}>
+                                    <button onClick={handleLogout} style={{
+                                        width: '100%', padding: '0.75rem 1rem', background: 'transparent',
+                                        color: '#ef4444', fontWeight: 600, fontSize: '0.9rem', textAlign: 'left',
+                                        border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
+                                    }}>
+                                        Cerrar Sesión
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <button
+                            onClick={() => navigate('/login')}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: '0.4rem',
+                                padding: '0.45rem 1rem',
+                                background: 'var(--gradient-primary)', border: 'none',
+                                borderRadius: 'var(--radius-full)', color: '#fff',
+                                fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer',
+                                fontFamily: 'var(--font)',
+                            }}
+                        >
+                            <LogIn size={15} /> Iniciar Sesión
+                        </button>
                     )}
                 </div>
             </header>

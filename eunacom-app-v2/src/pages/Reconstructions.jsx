@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchProgress } from '../lib/api'
 import { Stethoscope, PlayCircle, CheckCircle2, Clock, FileText, AlertCircle, ChevronRight } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
+import LoginGateModal from '../components/LoginGateModal'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
 
@@ -45,9 +46,10 @@ const Reconstructions = () => {
   const { user } = useAuth()
   const [index, setIndex] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [starting, setStarting] = useState(null) // exam id being started
+  const [starting, setStarting] = useState(null)
   const [userProgress, setUserProgress] = useState({})
-  const [examResults, setExamResults] = useState({}) // examId -> {total, correct, pct}
+  const [examResults, setExamResults] = useState({})
+  const [showLoginGate, setShowLoginGate] = useState(false)
 
   useEffect(() => {
     loadData()
@@ -99,7 +101,7 @@ const Reconstructions = () => {
 
   const handleStartExam = async (exam) => {
     if (!user) {
-      alert('Debes iniciar sesión para comenzar un examen.')
+      setShowLoginGate(true)
       return
     }
     setStarting(exam.id)
@@ -171,6 +173,12 @@ const Reconstructions = () => {
 
   return (
     <div className="page" style={{ paddingBottom: '3rem' }}>
+      {showLoginGate && (
+        <LoginGateModal
+          onClose={() => setShowLoginGate(false)}
+          message="Inicia sesión para practicar con los exámenes EUNACOM reales."
+        />
+      )}
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '2rem' }}>
