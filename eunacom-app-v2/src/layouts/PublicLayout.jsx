@@ -15,6 +15,13 @@ const PublicLayout = () => {
   return (
     <div className="app-layout">
       <Sidebar mobileOpen={mobileOpen} onToggle={() => setMobileOpen(false)} />
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 999 }}
+          className="sidebar-backdrop"
+        />
+      )}
       <div className="main-content">
         <DashboardHeader onMenuToggle={() => setMobileOpen(!mobileOpen)} />
         <div className="page">

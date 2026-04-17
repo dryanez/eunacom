@@ -778,15 +778,19 @@ polyline {
   .app-layout { flex-direction: column; }
   .sidebar {
     position: fixed;
+    top: 0; left: 0; height: 100vh;
     transform: translateX(-100%);
-    z-index: 1000;
-    transition: transform 0.3s;
+    z-index: 1001;
+    transition: transform 0.3s ease;
   }
-  .sidebar.open { transform: translateX(0); }
+  .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
+  .sidebar-backdrop { display: block !important; }
   .stats-grid { grid-template-columns: 1fr; }
   .action-grid { grid-template-columns: 1fr; }
   .mobile-menu-btn { display: block !important; }
 }
+
+.sidebar-backdrop { display: none; }
 
 .mobile-menu-btn {
   display: none;

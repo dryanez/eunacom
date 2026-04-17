@@ -35,6 +35,7 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reconstructions" element={<Reconstructions />} />
+            <Route path="/mis-clases" element={<MisClases />} />
           </Route>
 
           {/* Protected Routes — require login */}
@@ -47,7 +48,6 @@ function App() {
             <Route path="/stats" element={<Stats />} />
             <Route path="/flashcards" element={<div className="page"><h1 className="page__title">Flashcards</h1></div>} />
             <Route path="/review" element={<div className="page"><h1 className="page__title">Repasar Errores</h1></div>} />
-            <Route path="/mis-clases" element={<MisClases />} />
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
             <Route path="/admin/users" element={<AdminUsers />} />

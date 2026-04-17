@@ -14,6 +14,7 @@ import {
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
+import LoginGateModal from '../components/LoginGateModal'
 
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
@@ -1775,6 +1776,7 @@ const MisClases = () => {
   const [clases, setClases] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedId, setSelectedId] = useState(null)
+  const [showLoginGate, setShowLoginGate] = useState(false)
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
   const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
@@ -1901,6 +1903,7 @@ const MisClases = () => {
 
   // Detail: fetch full data for one class on demand
   const openClase = async (id) => {
+    if (!user) { setShowLoginGate(true); return }
     setSelectedId(id)
     setLoadingDetail(true)
     try {
@@ -2098,6 +2101,12 @@ const MisClases = () => {
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
+      {showLoginGate && (
+        <LoginGateModal
+          onClose={() => setShowLoginGate(false)}
+          message="Inicia sesión para acceder a las clases en video y pruebas EUNACOM."
+        />
+      )}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
         <h1 className="page__title">Mis Clases</h1>
         {(() => {
