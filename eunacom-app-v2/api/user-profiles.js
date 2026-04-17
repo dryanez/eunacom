@@ -41,14 +41,17 @@ export default async function handler(req, res) {
         id, email, first_name, last_name,
         exam_month, exam_year, prep_months,
         nationality, country, country_code, whatsapp,
-        onboarding_done
+        inscrito_eunacom, onboarding_done
       } = req.body
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
 
+      // Ensure inscrito_eunacom column exists
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN inscrito_eunacom TEXT`, args: [] }).catch(() => {})
+
       await db.execute({
-        sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, onboarding_done, updated_at)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+        sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, inscrito_eunacom, onboarding_done, updated_at)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
               ON CONFLICT(id) DO UPDATE SET
                 email = excluded.email,
                 first_name = excluded.first_name,
@@ -60,12 +63,14 @@ export default async function handler(req, res) {
                 country = excluded.country,
                 country_code = excluded.country_code,
                 whatsapp = excluded.whatsapp,
+                inscrito_eunacom = excluded.inscrito_eunacom,
                 onboarding_done = excluded.onboarding_done,
                 updated_at = datetime('now')`,
         args: [
           id, email, first_name || null, last_name || null,
           exam_month || null, exam_year || null, prep_months || null,
           nationality || null, country || null, country_code || null, whatsapp || null,
+          inscrito_eunacom || null,
           onboarding_done ? 1 : 0
         ]
       })

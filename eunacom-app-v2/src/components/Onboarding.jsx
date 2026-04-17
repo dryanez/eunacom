@@ -49,6 +49,7 @@ const Onboarding = ({ user, onComplete }) => {
   const [examYear, setExamYear] = useState('2026')
   const [nationality, setNationality] = useState('Chile')
   const [whatsapp, setWhatsapp] = useState('')
+  const [inscrito, setInscrito] = useState('')
   const [saving, setSaving] = useState(false)
 
   const slide = SLIDES[slideIdx]
@@ -137,7 +138,9 @@ const Onboarding = ({ user, onComplete }) => {
         exam_month: examMonth,
         exam_year: examYear,
         nationality,
+        country: nationality,
         whatsapp,
+        inscrito_eunacom: inscrito,
         onboarding_done: true,
       })
     } catch (e) {
@@ -292,6 +295,22 @@ const Onboarding = ({ user, onComplete }) => {
             <label style={labelStyle}><Phone size={14} style={{ verticalAlign: 'middle', marginRight: 4 }} /> WhatsApp (opcional)</label>
             <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)}
               placeholder="+56 9 1234 5678" style={inputStyle} />
+          </div>
+
+          {/* Inscrito */}
+          <div>
+            <label style={labelStyle}>📋 ¿Ya estás inscrito/a en el EUNACOM?</label>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              {['Sí', 'No', 'Aún no sé'].map(opt => (
+                <button key={opt} onClick={() => setInscrito(opt)} style={{
+                  ...inputStyle, flex: 1, textAlign: 'center', cursor: 'pointer',
+                  background: inscrito === opt ? 'rgba(19,91,236,0.2)' : 'var(--surface-600)',
+                  border: inscrito === opt ? '1.5px solid var(--primary-400)' : '1px solid var(--surface-500)',
+                  color: inscrito === opt ? 'var(--primary-300)' : 'var(--surface-200)',
+                  fontWeight: inscrito === opt ? 700 : 500,
+                }}>{opt}</button>
+              ))}
+            </div>
           </div>
         </div>
 
