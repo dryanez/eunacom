@@ -4,8 +4,8 @@ import { supabase } from '../lib/supabase'
 const AuthContext = createContext({})
 
 // Bump this number any time you need to force-logout ALL users globally.
-// Current bump: April 17 2026 — force re-login to trigger onboarding check.
-const SESSION_VERSION = '2'
+// Current bump: April 17 2026 — force re-login after onboarding fix in PublicLayout.
+const SESSION_VERSION = '3'
 const SESSION_KEY = 'eunacom_session_v'
 
 export const useAuth = () => {
