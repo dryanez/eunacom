@@ -2355,7 +2355,7 @@ const MisClases = () => {
               {/* Two big cards: Clases and Pruebas */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                 {/* Clases card */}
-                <div className="card" onClick={() => setSubView('clases')} style={{
+                <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }} style={{
                   padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                   borderTop: `4px solid ${subStyle.color}`,
                   textAlign: 'center',
@@ -2389,7 +2389,7 @@ const MisClases = () => {
                 </div>
 
                 {/* Pruebas card */}
-                <div className="card" onClick={() => setSubView('pruebas')} style={{
+                <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }} style={{
                   padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                   borderTop: '4px solid #10b981',
                   textAlign: 'center',

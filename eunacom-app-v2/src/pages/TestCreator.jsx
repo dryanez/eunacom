@@ -3,6 +3,7 @@ import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, Chevro
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, createTest, genId } from '../lib/api'
+import LoginGateModal from '../components/LoginGateModal'
 
 const TestCreator = () => {
     const navigate = useNavigate()
@@ -14,6 +15,7 @@ const TestCreator = () => {
     const [userProgress, setUserProgress] = useState({})
     const [recentTests, setRecentTests] = useState([])
     const [questionDB, setQuestionDB] = useState([])
+    const [showLoginGate, setShowLoginGate] = useState(false)
 
     const [statusFilters, setStatusFilters] = useState({
         unused: true,
@@ -188,6 +190,7 @@ const TestCreator = () => {
 
     // --- Create Test ---
     const handleStartExam = async () => {
+        if (!user) { setShowLoginGate(true); return }
         if (maxQuestions === 0) {
             alert('Selecciona al menos un tema y un estado de preguntas.')
             return
@@ -229,6 +232,7 @@ const TestCreator = () => {
     ]
 
     return (
+        <>
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
             <h1 className="page__title">Crear Examen</h1>
             <p className="page__subtitle">Configura tu examen personalizado</p>
@@ -413,6 +417,13 @@ const TestCreator = () => {
                 </button>
             </div>
         </div>
+        {showLoginGate && (
+            <LoginGateModal
+                onClose={() => setShowLoginGate(false)}
+                message="Inicia sesión para crear y guardar tus exámenes personalizados."
+            />
+        )}
+        </>
     )
 }
 
