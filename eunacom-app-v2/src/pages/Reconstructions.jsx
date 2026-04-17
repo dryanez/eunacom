@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchProgress } from '../lib/api'
 import { Stethoscope, PlayCircle, CheckCircle2, Clock, FileText, AlertCircle, ChevronRight } from 'lucide-react'
+import LoadingScreen from '../components/LoadingScreen'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
 
@@ -148,13 +149,8 @@ const Reconstructions = () => {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-        <div className="spinner" />
-      </div>
-    )
-  }
+  if (loading) return <LoadingScreen context="test" />
+  if (starting) return <LoadingScreen context="test" />
 
   if (!index || !index.exams?.length) {
     return (

@@ -13,6 +13,7 @@ import {
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap
 } from 'lucide-react'
+import LoadingScreen from '../components/LoadingScreen'
 
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
@@ -2047,25 +2048,7 @@ const MisClases = () => {
   // ─── Detail view ───
   if (selectedId) {
     if (loadingDetail || !selectedClase) {
-      return (
-        <div style={{ paddingBottom: '2rem' }}>
-          <button onClick={closeDetail} style={{
-            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-            borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
-            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
-            marginBottom: '1.25rem'
-          }}>
-            <ChevronLeft size={16} /> Volver
-          </button>
-          <div className="card" style={{ padding: '2rem' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', padding: '2rem 0' }}>
-              <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid var(--primary-500)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
-              <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Cargando clase...</span>
-            </div>
-          </div>
-          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-        </div>
-      )
+      return <LoadingScreen context="clases" />
     }
     return (
       <div style={{ paddingBottom: '2rem' }}>
@@ -2092,26 +2075,7 @@ const MisClases = () => {
     )
   }
 
-  if (loading) {
-    return (
-      <div style={{ paddingBottom: '2rem' }}>
-        <h1 className="page__title">Mis Clases</h1>
-        <p className="page__subtitle" style={{ marginBottom: '1.5rem' }}>Cargando tu contenido...</p>
-        <div style={{ display: 'grid', gap: '0.75rem' }}>
-          {[1,2,3,4].map(i => (
-            <div key={i} className="card" style={{ padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: 42, height: 42, borderRadius: 10, background: 'var(--surface-600)', animation: 'pulse 1.5s infinite' }} />
-              <div style={{ flex: 1 }}>
-                <div style={{ width: `${50 + i * 10}%`, height: 14, borderRadius: 6, background: 'var(--surface-600)', marginBottom: 8, animation: 'pulse 1.5s infinite' }} />
-                <div style={{ width: '30%', height: 10, borderRadius: 6, background: 'var(--surface-600)', animation: 'pulse 1.5s infinite' }} />
-              </div>
-            </div>
-          ))}
-        </div>
-        <style>{`@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }`}</style>
-      </div>
-    )
-  }
+  if (loading) return <LoadingScreen context="clases" />
 
   // ─── Build folder tree ───
   const tree = {}
