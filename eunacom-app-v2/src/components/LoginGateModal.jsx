@@ -1,9 +1,16 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { LogIn, UserPlus, X, Stethoscope } from 'lucide-react'
+import React, { useState } from 'react'
+import { X, Stethoscope } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 
 const LoginGateModal = ({ onClose, message = 'Inicia sesión para acceder al material de estudio.' }) => {
-  const navigate = useNavigate()
+  const { signInWithGoogle } = useAuth()
+  const [loading, setLoading] = useState(false)
+
+  const handleGoogle = async () => {
+    setLoading(true)
+    await signInWithGoogle()
+    setLoading(false)
+  }
 
   return (
     <div
@@ -35,7 +42,6 @@ const LoginGateModal = ({ onClose, message = 'Inicia sesión para acceder al mat
           <X size={18} />
         </button>
 
-        {/* Icon */}
         <div style={{
           width: 64, height: 64, borderRadius: '50%',
           background: 'rgba(19,91,236,0.15)',
@@ -60,35 +66,15 @@ const LoginGateModal = ({ onClose, message = 'Inicia sesión para acceder al mat
           {message}
         </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-          <button
-            onClick={() => navigate('/login')}
-            style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              padding: '0.8rem 1rem',
-              background: 'var(--gradient-primary)', border: 'none',
-              borderRadius: 'var(--radius)', color: '#fff',
-              fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer',
-              fontFamily: 'var(--font)',
-            }}
-          >
-            <LogIn size={18} /> Iniciar Sesión
-          </button>
-
-          <button
-            onClick={() => navigate('/register')}
-            style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              padding: '0.8rem 1rem',
-              background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 'var(--radius)', color: 'var(--surface-100)',
-              fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer',
-              fontFamily: 'var(--font)',
-            }}
-          >
-            <UserPlus size={18} /> Crear cuenta gratis
-          </button>
-        </div>
+        <button
+          onClick={handleGoogle}
+          disabled={loading}
+          className="btn-google btn-google--large"
+          style={{ width: '100%' }}
+        >
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style={{ width: 20, height: 20 }} />
+          {loading ? 'Redirigiendo...' : 'Continuar con Google'}
+        </button>
 
         <p style={{ fontSize: '0.75rem', color: 'var(--surface-500)', marginTop: '1.25rem' }}>
           Es completamente gratis. Sin tarjeta de crédito.
