@@ -126,15 +126,19 @@ const Onboarding = ({ user, onComplete }) => {
   const handleSubmit = async () => {
     setSaving(true)
     try {
+      const nameParts = (name || '').trim().split(/\s+/)
+      const firstName = nameParts[0] || user.email?.split('@')[0] || 'Estudiante'
+      const lastName = nameParts.slice(1).join(' ') || null
       await onComplete({
-        userId: user.id,
+        id: user.id,
         email: user.email,
-        displayName: name || user.email?.split('@')[0] || 'Estudiante',
-        examMonth,
-        examYear,
+        first_name: firstName,
+        last_name: lastName,
+        exam_month: examMonth,
+        exam_year: examYear,
         nationality,
         whatsapp,
-        onboardingDone: true,
+        onboarding_done: true,
       })
     } catch (e) {
       console.error('Onboarding save error:', e)
