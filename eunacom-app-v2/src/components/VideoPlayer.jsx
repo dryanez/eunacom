@@ -20,6 +20,7 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
   const watchedFiredRef = useRef(!!initialWatched)
+  const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   useEffect(() => { setWatched(!!initialWatched); watchedFiredRef.current = !!initialWatched }, [initialWatched])
 
@@ -132,7 +133,7 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
       </div>
 
       {/* Video element */}
-      <div style={{ position: 'relative', background: '#000', cursor: 'pointer' }} onClick={togglePlay}>
+      <div style={{ position: 'relative', background: '#000', cursor: isMobile ? 'default' : 'pointer' }} onClick={isMobile ? undefined : togglePlay}>
         {loading && !error && (
           <div style={{
             position: 'absolute', inset: 0,
@@ -166,6 +167,7 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
         <video
           ref={videoRef}
           src={src}
+          controls={isMobile}
           playsInline
           webkit-playsinline="true"
           style={{ width: '100%', display: error ? 'none' : 'block', maxHeight: 480, background: '#000' }}
@@ -193,8 +195,8 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
           preload="metadata"
         />
 
-        {/* Play/Pause overlay — only when paused and no error */}
-        {!playing && !error && !loading && (
+        {/* Play/Pause overlay — only when paused and no error, desktop only */}
+        {!isMobile && !playing && !error && !loading && (
           <div style={{
             position: 'absolute', inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -213,8 +215,8 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
         )}
       </div>
 
-      {/* Controls */}
-      {!error && (
+      {/* Controls — desktop only, mobile uses native controls */}
+      {!error && !isMobile && (
         <div style={{
           padding: '0.75rem 1.1rem',
           background: 'var(--surface-800)',
