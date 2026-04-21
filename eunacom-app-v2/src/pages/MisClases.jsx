@@ -1214,7 +1214,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     const qs = activePrueba.questions
     let correct = 0
     qs.forEach((q, i) => {
-      if (correctFound[i]) correct++
+      if (correctFound[i] && !(attempts[i]?.length > 0)) correct++
     })
     const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
     const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
@@ -1241,10 +1241,10 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     // ─── Results screen ───
     if (showResult) {
       let correct = 0
-      qs.forEach((qq, i) => { if (correctFound[i]) correct++ })
+      qs.forEach((qq, i) => { if (correctFound[i] && !(attempts[i]?.length > 0)) correct++ })
       const attempted = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
       const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
-      const wrong = qs.map((qq, i) => ({ ...qq, idx: i })).filter(qq => !correctFound[qq.idx] && (attempts[qq.idx]?.length > 0))
+      const wrong = qs.map((qq, i) => ({ ...qq, idx: i })).filter(qq => attempts[qq.idx]?.length > 0)
       const omitted = qs.length - attempted
 
       return (
