@@ -11,7 +11,8 @@ import {
   HeartPulse, Brain, Droplets, FlaskConical, Wind, Bone, Microscope,
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
-  TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap
+  TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
+  Printer, RefreshCw
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -1104,6 +1105,50 @@ function savePruebaProgress(pruebaId, data) {
   return all
 }
 
+function printPruebaHtml(pruebas, title) {
+  const qs = pruebas.flatMap((p, pi) =>
+    p.questions.map((q, qi) => ({ ...q, _pruebaName: p.name, _globalIdx: pi * 1000 + qi }))
+  )
+  const questionsHtml = qs.map((q, i) => `
+    <div class="question">
+      <div class="q-header"><span class="q-num">${i + 1}.</span> <span class="q-prueba">${q._pruebaName}</span></div>
+      <div class="q-text">${q.pregunta.replace(/\n/g, '<br>')}</div>
+      <ol type="A" class="options">
+        ${q.opciones.map(o => `<li>${o.text}</li>`).join('')}
+      </ol>
+    </div>`).join('')
+  const answerKey = qs.map((q, i) => `<span class="ans">${i + 1}:${q.respuestaCorrecta}</span>`).join(' ')
+  return `<!DOCTYPE html><html><head><meta charset="utf-8">
+  <title>${title}</title>
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 11pt; margin: 1.5cm 2cm; color: #111; }
+    h1 { font-size: 15pt; border-bottom: 2px solid #333; padding-bottom: 6px; margin-bottom: 1rem; }
+    .question { margin-bottom: 1.2rem; page-break-inside: avoid; }
+    .q-header { font-size: 9pt; color: #666; margin-bottom: 3px; }
+    .q-num { font-weight: bold; font-size: 11pt; color: #000; }
+    .q-text { margin: 2px 0 6px 0; line-height: 1.45; }
+    .options { margin: 0 0 0 1.2rem; padding: 0; line-height: 1.6; }
+    .options li { margin-bottom: 1px; }
+    .answer-key { margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 0.75rem; font-size: 9.5pt; line-height: 1.8; }
+    .ans { display: inline-block; margin-right: 8px; font-weight: bold; }
+    @page { margin: 1.5cm 2cm; }
+    @media print { body { margin: 0; } }
+  </style></head><body>
+  <h1>${title}</h1>
+  ${questionsHtml}
+  <div class="answer-key"><strong>Clave de respuestas:</strong><br>${answerKey}</div>
+  </body></html>`
+}
+
+function openPrint(pruebas, title) {
+  const w = window.open('', '_blank')
+  if (!w) return
+  w.document.write(printPruebaHtml(pruebas, title))
+  w.document.close()
+  w.focus()
+  setTimeout(() => w.print(), 400)
+}
+
 /* ════════════════════════════════════════════════════════════════
    PRUEBAS VIEW — shown when user picks "Pruebas" on a subsystem
    Shows all available Pruebas with progress + score, and runs the
@@ -1177,6 +1222,40 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     }).then(r => r.json()).then(d => setAnswerStats(d.data || {})).catch(() => {})
   }
 
+  const startReviewWrong = async () => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    const wrongQs = allPruebas.flatMap(p => {
+      const prog = pruebaProgress[p.id]
+      if (!prog?.wrongIndices?.length) return []
+      return prog.wrongIndices.map(idx => p.questions[idx]).filter(Boolean)
+    })
+    if (wrongQs.length === 0) return
+    setActivePrueba({ id: `review_wrong_${subsystem}`, name: `Repaso de Incorrectas — ${subsystem}`, questions: wrongQs })
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  const handlePrintOne = async (pruebaMeta) => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    const p = allPruebas.find(pp => pp.id === pruebaMeta.id)
+    if (!p) return
+    openPrint([p], `${pruebaMeta.name} — ${subsystem}`)
+  }
+
+  const handlePrintAll = async () => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    openPrint(allPruebas, `Todas las Pruebas — ${subsystem}`)
+  }
+
   const selectAnswer = (qIdx, optId) => {
     if (correctFound[qIdx]) return // already got it right
     const q = activePrueba.questions[qIdx]
@@ -1216,10 +1295,11 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     qs.forEach((q, i) => {
       if (correctFound[i] && !(attempts[i]?.length > 0)) correct++
     })
+    const wrongIndices = qs.map((_, i) => i).filter(i => attempts[i]?.length > 0)
     const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
     const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
     const pct = Math.round((answered / qs.length) * 100)
-    const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, total: qs.length, answered })
+    const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, wrong: wrongIndices.length, total: qs.length, answered, wrongIndices })
     setPruebaProgress(updated)
     setShowResult(true)
   }
@@ -1599,6 +1679,9 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     if (done.length === 0) return null
     return Math.round(done.reduce((s, p) => s + pruebaProgress[p.id].score, 0) / done.length)
   })()
+  const totalCorrect = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.correct || 0), 0)
+  const totalWrong = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrong || 0), 0)
+  const totalWrongQuestions = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrongIndices?.length || 0), 0)
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
@@ -1640,18 +1723,65 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           <ProgressRing percent={overallPct} size={50} stroke={4} />
         </div>
 
-        {/* Stats row */}
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+        {/* Big stats row */}
+        {(totalCorrect > 0 || totalWrong > 0 || avgScore !== null) && (
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.1rem', flexWrap: 'wrap' }}>
+            {avgScore !== null && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: `1px solid ${avgScore >= 70 ? 'rgba(16,185,129,0.3)' : 'rgba(245,158,11,0.3)'}`,
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: avgScore >= 70 ? '#10b981' : avgScore >= 50 ? '#f59e0b' : '#ef4444', lineHeight: 1 }}>{avgScore}%</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Promedio</div>
+              </div>
+            )}
+            {totalCorrect > 0 && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: '1px solid rgba(16,185,129,0.3)',
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#10b981', lineHeight: 1 }}>{totalCorrect}</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Correctas</div>
+              </div>
+            )}
+            {totalWrong > 0 && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: '1px solid rgba(239,68,68,0.3)',
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>{totalWrong}</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Incorrectas</div>
+              </div>
+            )}
+          </div>
+        )}
+        {/* Small footer row */}
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
             <CheckCircle2 size={14} style={{ color: '#10b981' }} />
             <span style={{ color: 'var(--text-secondary)' }}>{doneCount}/{pruebas.length} completadas</span>
           </div>
-          {avgScore !== null && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
-              <BarChart3 size={14} style={{ color: avgScore >= 70 ? '#10b981' : '#f59e0b' }} />
-              <span style={{ color: 'var(--text-secondary)' }}>Promedio: <strong style={{ color: avgScore >= 70 ? '#10b981' : '#f59e0b' }}>{avgScore}%</strong></span>
-            </div>
+        </div>
+        {/* Action buttons */}
+        <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+          {totalWrongQuestions > 0 && (
+            <button onClick={startReviewWrong} style={{
+              display: 'flex', alignItems: 'center', gap: '0.4rem',
+              background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.35)',
+              borderRadius: 9, padding: '0.45rem 0.85rem', color: '#ef4444',
+              cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600,
+            }}>
+              <RefreshCw size={13} /> Repasar incorrectas ({totalWrongQuestions})
+            </button>
           )}
+          <button onClick={handlePrintAll} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 9, padding: '0.45rem 0.85rem', color: 'var(--text-secondary)',
+            cursor: 'pointer', fontSize: '0.8rem',
+          }}>
+            <Printer size={13} /> Imprimir todo
+          </button>
         </div>
       </div>
 
@@ -1662,12 +1792,22 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           const done = prog.done || 0
           const score = prog.score
           const hasScore = score !== undefined
+          const pCorrect = prog.correct || 0
+          const pWrong = prog.wrong || 0
           return (
             <div key={p.id} className="card" onClick={() => startPrueba(p)} style={{
               padding: '1.1rem 1.25rem', cursor: 'pointer', transition: 'all 0.25s',
               borderLeft: `3px solid ${done >= 100 ? '#10b981' : hasScore ? '#f59e0b' : subsystemStyle.color}`,
               position: 'relative', overflow: 'hidden',
             }}>
+              {/* Print icon */}
+              <button onClick={e => { e.stopPropagation(); handlePrintOne(p) }} title="Imprimir prueba" style={{
+                position: 'absolute', top: 8, right: done >= 100 ? 36 : 8,
+                background: 'transparent', border: 'none', cursor: 'pointer',
+                color: 'var(--text-tertiary)', padding: 4, borderRadius: 6,
+              }}>
+                <Printer size={13} />
+              </button>
               {/* Completed badge */}
               {done >= 100 && (
                 <div style={{
@@ -1706,6 +1846,12 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
                       </span>
                     )}
                   </div>
+                  {hasScore && (pCorrect > 0 || pWrong > 0) && (
+                    <div style={{ display: 'flex', gap: '0.6rem', marginTop: '0.3rem', fontSize: '0.72rem' }}>
+                      {pCorrect > 0 && <span style={{ color: '#10b981', fontWeight: 600 }}>✓ {pCorrect} correctas</span>}
+                      {pWrong > 0 && <span style={{ color: '#ef4444', fontWeight: 600 }}>✗ {pWrong} incorrectas</span>}
+                    </div>
+                  )}
                 </div>
                 <ChevronRight size={16} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
               </div>
