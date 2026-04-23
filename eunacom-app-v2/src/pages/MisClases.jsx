@@ -168,6 +168,8 @@ function PuntosClaveSection({ keyPoints }) {
 
   const toggleFlip = (i) => setFlipped(prev => ({ ...prev, [i]: !prev[i] }))
 
+  const anyHasDetail = keyPoints.some(p => splitPoint(p).detail !== null)
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
@@ -179,14 +181,17 @@ function PuntosClaveSection({ keyPoints }) {
         </div>
         <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Puntos Clave</h3>
       </div>
-      <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: '1.25rem', marginLeft: '2.75rem' }}>
-        Toca una tarjeta para ver el detalle
-      </p>
+      {anyHasDetail && (
+        <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: '1.25rem', marginLeft: '2.75rem' }}>
+          Toca una tarjeta para ver el detalle
+        </p>
+      )}
 
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
         gap: '0.85rem',
+        marginTop: anyHasDetail ? 0 : '1.25rem',
       }}>
         {keyPoints.map((point, i) => {
           const s = cardStyles[i % cardStyles.length]
@@ -1959,6 +1964,25 @@ const MisClases = () => {
             isCorrect: letter === q.correctAnswer,
             explanation: letter === q.correctAnswer ? (q.explanation || '') : ''
           }))
+        }
+      }
+
+      // Format: options as array with text "A) texto" but no id/letter field
+      if (Array.isArray(q.options) && q.options.length && !q.options[0]?.id && !q.options[0]?.letter) {
+        const letterMatch = q.options[0]?.text?.match(/^([A-E])\)/)
+        if (letterMatch) {
+          return {
+            questionText,
+            options: q.options.map(o => {
+              const m = o.text?.match(/^([A-E])\)\s*(.+)$/)
+              return {
+                id: m ? m[1] : String(o.text?.[0] || ''),
+                text: m ? m[2] : (o.text || ''),
+                isCorrect: !!o.isCorrect,
+                explanation: o.explanation || ''
+              }
+            })
+          }
         }
       }
 
