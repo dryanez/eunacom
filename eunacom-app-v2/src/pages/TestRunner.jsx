@@ -10,11 +10,14 @@ const TestRunner = () => {
     const { user } = useAuth()
     const questions = location.state?.questions || []
 
+    const isSimulation = !!location.state?.isSimulation
+    const startFinished = !!location.state?.startFinished
+
     const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
-    const [isFinished, setIsFinished] = useState(false)
+    const [isFinished, setIsFinished] = useState(startFinished)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [tutorMessage, setTutorMessage] = useState(null)
     const [isTutorLoading, setIsTutorLoading] = useState(false)
@@ -114,8 +117,10 @@ const TestRunner = () => {
             <div style={{ background: 'var(--surface-900)', minHeight: '100vh', padding: '2rem 1rem', paddingBottom: '4rem' }}>
                 <div style={{ maxWidth: '700px', margin: '0 auto' }}>
                     <div className="card" style={{ padding: '2.5rem', textAlign: 'center', marginBottom: '1.5rem' }}>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>¡Examen Finalizado!</h1>
-                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>Tiempo: {formatTime(timeElapsed)}</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+                            {startFinished ? 'Revisión del Examen' : '¡Examen Finalizado!'}
+                        </h1>
+                        {!startFinished && <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>Tiempo: {formatTime(timeElapsed)}</p>}
                         <div style={{ fontSize: '4rem', fontWeight: 800, color: pct >= 60 ? 'var(--accent-green)' : 'var(--accent-red)', marginBottom: '0.5rem' }}>
                             {pct}%
                         </div>
@@ -138,6 +143,44 @@ const TestRunner = () => {
                         </div>
                     </div>
 
+                    {/* Question grid navigator */}
+                    <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.07em', marginBottom: '0.75rem' }}>
+                            VISTA RÁPIDA — {totalQuestions} PREGUNTAS
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                            {results.map((r, i) => {
+                                const wrongIdx = wrongResults.findIndex(wr => wr.q.id === r.q.id)
+                                const isWrongOrOmitted = wrongIdx !== -1
+                                const color = r.correct ? '#34d399' : (r.omitted ? '#fbbf24' : '#f87171')
+                                const bg = r.correct ? 'rgba(52,211,153,0.15)' : (r.omitted ? 'rgba(251,191,36,0.15)' : 'rgba(248,113,113,0.15)')
+                                return (
+                                    <button
+                                        key={r.q.id}
+                                        title={`P${i + 1}: ${r.correct ? 'Correcta' : (r.omitted ? 'Omitida' : 'Incorrecta')}`}
+                                        onClick={() => isWrongOrOmitted && document.getElementById(`review-wrong-${wrongIdx}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                                        style={{
+                                            width: 28, height: 28, borderRadius: 4, border: 'none',
+                                            background: bg, color, fontSize: '0.6rem', fontWeight: 700,
+                                            cursor: isWrongOrOmitted ? 'pointer' : 'default',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            transition: 'filter 0.15s',
+                                        }}
+                                        onMouseEnter={e => { if (isWrongOrOmitted) e.currentTarget.style.filter = 'brightness(1.4)' }}
+                                        onMouseLeave={e => { e.currentTarget.style.filter = 'none' }}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.5rem', marginTop: '0.75rem', fontSize: '0.75rem' }}>
+                            <span style={{ color: '#34d399' }}>■ Correctas: {score}</span>
+                            <span style={{ color: '#f87171' }}>■ Incorrectas: {results.filter(r => !r.correct && !r.omitted).length}</span>
+                            <span style={{ color: '#fbbf24' }}>■ Omitidas: {results.filter(r => r.omitted).length}</span>
+                        </div>
+                    </div>
+
                     {wrongResults.length > 0 && (
                         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: '1.5rem' }}>
                             <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--surface-700)' }}>
@@ -145,7 +188,7 @@ const TestRunner = () => {
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                                 {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => (
-                                    <div key={q.id} style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                                    <div key={q.id} id={`review-wrong-${i}`} style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                                         <p style={{ margin: '0 0 0.75rem', fontSize: '0.93rem', lineHeight: 1.5, color: 'var(--surface-100)' }}>
                                             <strong style={{ color: 'var(--surface-400)', marginRight: '0.5rem' }}>{i + 1}.</strong>
                                             {q.question}
@@ -262,9 +305,11 @@ const TestRunner = () => {
                     style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-300)', border: `1px solid ${flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-700)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
                     <Flag size={20} />
                 </button>
-                <button onClick={handleTutorRequest} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: (isTutorLoading || tutorMessage) ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
-                    <Lightbulb size={24} />
-                </button>
+                {!isSimulation && (
+                    <button onClick={handleTutorRequest} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: (isTutorLoading || tutorMessage) ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
+                        <Lightbulb size={24} />
+                    </button>
+                )}
             </div>
         </div>
     )

@@ -114,6 +114,7 @@ const History = () => {
     const handleContinue = async (test) => {
         const db = await getQuestionDB()
         const testQuestions = test.questions.map(id => db.find(q => q.id === id)).filter(Boolean)
+        const isCompleted = test.status === 'Completado'
 
         if (testQuestions.length === 0) {
             alert('No se pudieron cargar las preguntas originales.')
@@ -125,7 +126,8 @@ const History = () => {
                 testId: test.id,
                 questions: testQuestions,
                 savedAnswers: test.savedAnswers || {},
-                savedIndex: test.currentQuestionIndex || 0
+                savedIndex: test.currentQuestionIndex || 0,
+                startFinished: isCompleted,
             }
         })
     }
