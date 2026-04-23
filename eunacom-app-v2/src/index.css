@@ -119,7 +119,7 @@ button {
   padding: 1.25rem;
   flex-shrink: 0;
   position: relative;
-  overflow-y: auto;
+  overflow: hidden; /* sidebar itself never scrolls */
 }
 
 .sidebar__brand {
@@ -151,6 +151,13 @@ button {
   flex-direction: column;
   gap: 2px;
   flex: 1;
+  min-height: 0;          /* required for flex child to shrink below content size */
+  overflow-y: auto;       /* only the nav scrolls, not the whole sidebar */
+  scrollbar-width: none;  /* Firefox: hide scrollbar */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.sidebar__nav::-webkit-scrollbar {
+  display: none;          /* Chrome/Safari: hide scrollbar */
 }
 
 .sidebar__link {

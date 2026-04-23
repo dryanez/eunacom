@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { saveUserProfile } from '../lib/api'
-import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles, X } from 'lucide-react'
+import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles } from 'lucide-react'
 
 // ─── TOUR SLIDES ─────────────────────────────────────────────────────────
 const SLIDES = [
@@ -126,7 +126,6 @@ const Onboarding = ({ user, onComplete }) => {
     else setPhase('form')
   }
   const prevSlide = () => { if (slideIdx > 0) setSlideIdx(slideIdx - 1) }
-  const skipTour  = () => setPhase('form')
 
   const handleSubmit = async () => {
     if (!name.trim()) { setError('Por favor ingresa tu nombre.'); return }
@@ -200,17 +199,6 @@ const Onboarding = ({ user, onComplete }) => {
           boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
           transition: 'all 0.3s ease',
         }}>
-          {/* Skip button */}
-          <button onClick={skipTour} style={{
-            position: 'absolute', top: 10, right: 10,
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--surface-400)', padding: 4, borderRadius: 6,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            minWidth: 32, minHeight: 32,
-          }} aria-label="Saltar tour">
-            <X size={15} />
-          </button>
-
           {slideIdx === 0 && (
             <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>
               <Stethoscope size={38} color="var(--primary-400)" />
