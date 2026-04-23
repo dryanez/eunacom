@@ -54,8 +54,6 @@ const Onboarding = ({ user, onComplete }) => {
   const [error, setError] = useState('')
 
   const slide = SLIDES[slideIdx]
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 700
-
   // Register user early so they appear in admin even before finishing
   useEffect(() => {
     if (!user?.id || !user?.email) return
