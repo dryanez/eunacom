@@ -156,13 +156,19 @@ function PuntosClaveSection({ keyPoints }) {
     // Try splitting at patterns like "Word = explanation", "Word: explanation"
     const colonMatch = text.match(/^([^:.=]+[:.=])\s*(.+)$/s)
     if (colonMatch && colonMatch[1].length < 80) {
-      return { headline: colonMatch[1].replace(/[:.=]$/, '').trim(), detail: colonMatch[2].trim() }
+      const rawHeadline = colonMatch[1].replace(/[:.=]$/, '').trim()
+      // Don't split if the "headline" is just a number (e.g. "1.", "2.") — numbered list prefix
+      if (!/^\d+$/.test(rawHeadline)) {
+        return { headline: rawHeadline, detail: colonMatch[2].trim() }
+      }
     }
     // If the text is short enough, it's all headline
     if (text.length < 100) return { headline: text, detail: null }
-    // Otherwise split at first sentence
+    // Otherwise split at first sentence — but not on a numbered list prefix
     const sentenceMatch = text.match(/^([^.]+\.)\s*(.+)$/s)
-    if (sentenceMatch) return { headline: sentenceMatch[1], detail: sentenceMatch[2] }
+    if (sentenceMatch && !/^\d+$/.test(sentenceMatch[1].replace(/\.$/, '').trim())) {
+      return { headline: sentenceMatch[1], detail: sentenceMatch[2] }
+    }
     return { headline: text, detail: null }
   }
 
