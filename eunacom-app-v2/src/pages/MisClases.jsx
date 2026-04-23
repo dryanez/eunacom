@@ -1969,6 +1969,21 @@ const MisClases = () => {
 
       // Format: options as array with text "A) texto" but no id/letter field
       if (Array.isArray(q.options) && q.options.length && !q.options[0]?.id && !q.options[0]?.letter) {
+        // Sub-format A: options are plain strings + correct is index
+        if (typeof q.options[0] === 'string') {
+          const letters = ['A', 'B', 'C', 'D', 'E']
+          const correctIdx = typeof q.correct === 'number' ? q.correct : -1
+          return {
+            questionText,
+            options: q.options.map((text, i) => ({
+              id: letters[i] || String(i),
+              text,
+              isCorrect: i === correctIdx,
+              explanation: i === correctIdx ? (q.explanation || '') : ''
+            }))
+          }
+        }
+        // Sub-format B: options are objects with text "A) texto"
         const letterMatch = q.options[0]?.text?.match(/^([A-E])\)/)
         if (letterMatch) {
           return {
