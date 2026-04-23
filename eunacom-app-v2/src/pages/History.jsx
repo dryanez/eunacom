@@ -3,7 +3,7 @@ import { Search, Filter, Play, Trash2 } from 'lucide-react'
 import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { getQuestionDB } from '../lib/questionDB'
+import { loadTestQuestions } from '../lib/questionDB'
 
 const HistoryCard = ({ test }) => {
     return (
@@ -112,8 +112,7 @@ const History = () => {
     }
 
     const handleContinue = async (test) => {
-        const db = await getQuestionDB()
-        const testQuestions = test.questions.map(id => db.find(q => q.id === id)).filter(Boolean)
+        const testQuestions = await loadTestQuestions(test.questions)
         const isCompleted = test.status === 'Completado'
 
         if (testQuestions.length === 0) {
