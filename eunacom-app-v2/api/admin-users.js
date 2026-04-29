@@ -33,21 +33,31 @@ export default async function handler(req, res) {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
-      // Get all profiles with their question counts
+      // Get all profiles with question counts, test counts, clase counts
       const profiles = await db.execute({
-        sql: `SELECT 
+        sql: `SELECT
           up.*,
           COALESCE(q.total_answers, 0) as total_answers,
           COALESCE(q.correct_answers, 0) as correct_answers,
-          COALESCE(t.total_tests, 0) as total_tests
+          COALESCE(t.total_tests, 0) as total_tests,
+          COALESCE(t.completed_tests, 0) as total_pruebas,
+          COALESCE(c.total_classes, 0) as total_classes
         FROM user_profiles up
         LEFT JOIN (
-          SELECT user_id, COUNT(*) as total_answers, SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as correct_answers
+          SELECT user_id, COUNT(*) as total_answers,
+                 SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as correct_answers
           FROM user_progress GROUP BY user_id
         ) q ON up.id = q.user_id
         LEFT JOIN (
-          SELECT user_id, COUNT(*) as total_tests FROM tests GROUP BY user_id
+          SELECT user_id, COUNT(*) as total_tests,
+                 SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_tests
+          FROM tests GROUP BY user_id
         ) t ON up.id = t.user_id
+        LEFT JOIN (
+          SELECT user_id, COUNT(*) as total_classes
+          FROM clase_progress WHERE video_watched = 1 OR quiz_completed = 1
+          GROUP BY user_id
+        ) c ON up.id = c.user_id
         ORDER BY up.created_at DESC`,
         args: []
       })

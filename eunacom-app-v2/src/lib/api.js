@@ -179,6 +179,11 @@ export async function fetchAdminUsers(adminEmail) {
   return data.data || []
 }
 
+export async function fetchAdminUserDetail(userId, adminEmail) {
+  const params = new URLSearchParams({ userId, adminEmail })
+  return apiFetch(`/api/admin-user-detail?${params.toString()}`)
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {
