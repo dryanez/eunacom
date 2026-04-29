@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
 import AuthLayout from './layouts/AuthLayout'
 import DashboardLayout from './layouts/DashboardLayout'
 import PublicLayout from './layouts/PublicLayout'
@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard'
 import TestCreator from './pages/TestCreator'
 import History from './pages/History'
 import StudyPlan from './pages/StudyPlan'
+import FelipeCalendar from './pages/FelipeCalendar'
 import Stats from './pages/Stats'
 import Simulation from './pages/Simulation'
 import TestRunner from './pages/TestRunner'
@@ -19,6 +20,11 @@ import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
 import './index.css'
+
+function StudyPlanRoute() {
+  const { user } = useAuth()
+  return user?.email === 'dr.felipeyanez@gmail.com' ? <FelipeCalendar /> : <StudyPlan />
+}
 
 function App() {
   return (
@@ -41,7 +47,7 @@ function App() {
 
           {/* Protected Routes — require login */}
           <Route element={<DashboardLayout />}>
-            <Route path="/study-plan" element={<StudyPlan />} />
+            <Route path="/study-plan" element={<StudyPlanRoute />} />
             <Route path="/simulation" element={<Simulation />} />
             <Route path="/test-runner" element={<TestRunner />} />
             <Route path="/history" element={<History />} />
