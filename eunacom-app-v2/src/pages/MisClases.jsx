@@ -137,8 +137,21 @@ function ResumenSection({ summary }) {
 /* ════════════════════════════════════════════════════════════════
    PUNTOS CLAVE SECTION
    ════════════════════════════════════════════════════════════════ */
+function cleanKeyPoint(text) {
+  const t = text.trim()
+  // Drop markdown table rows (start with |) and separators
+  if (t.startsWith('|')) return null
+  // Drop lines that are only dashes/pipes (table separators that lost leading |)
+  if (/^[-|: ]+$/.test(t)) return null
+  // Drop empty or whitespace-only
+  if (!t) return null
+  return t
+}
+
 function PuntosClaveSection({ keyPoints }) {
   const [flipped, setFlipped] = useState({})
+
+  const cleanedPoints = keyPoints.map(cleanKeyPoint).filter(Boolean)
 
   const cardStyles = [
     { gradient: 'linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.03) 100%)', accent: '#3b82f6', glow: 'rgba(59,130,246,0.15)' },
@@ -174,7 +187,7 @@ function PuntosClaveSection({ keyPoints }) {
 
   const toggleFlip = (i) => setFlipped(prev => ({ ...prev, [i]: !prev[i] }))
 
-  const anyHasDetail = keyPoints.some(p => splitPoint(p).detail !== null)
+  const anyHasDetail = cleanedPoints.some(p => splitPoint(p).detail !== null)
 
   return (
     <div>
@@ -199,7 +212,7 @@ function PuntosClaveSection({ keyPoints }) {
         gap: '0.85rem',
         marginTop: anyHasDetail ? 0 : '1.25rem',
       }}>
-        {keyPoints.map((point, i) => {
+        {cleanedPoints.map((point, i) => {
           const s = cardStyles[i % cardStyles.length]
           const { headline, detail } = splitPoint(point)
           const isFlipped = flipped[i]
@@ -1111,7 +1124,12 @@ function loadPruebaProgress() {
 }
 function savePruebaProgress(pruebaId, data) {
   const all = loadPruebaProgress()
-  all[pruebaId] = { ...all[pruebaId], ...data, updatedAt: Date.now() }
+  const prev = all[pruebaId] || {}
+  // Append this attempt to history array (keep all previous attempts)
+  const history = prev.history || []
+  history.push({ ...data, date: Date.now() })
+  // Also keep a flat "last attempt" for quick display
+  all[pruebaId] = { ...prev, ...data, history, updatedAt: Date.now() }
   localStorage.setItem(PRUEBA_KEY, JSON.stringify(all))
   return all
 }
@@ -1323,6 +1341,15 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     setCorrectFound({})
   }
 
+  const retryPrueba = () => {
+    // Start fresh attempt — history is preserved in localStorage
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
   // ─── If taking a prueba ───
   if (activePrueba) {
     const qs = activePrueba.questions
@@ -1358,17 +1385,50 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
             <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
               {activePrueba.name} — {score}%
             </h2>
-            <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
               {correct} correctas · {wrong.length} incorrectas · {omitted} omitidas
             </p>
 
+            {/* Attempt history */}
+            {(() => {
+              const hist = (pruebaProgress[activePrueba.id]?.history || [])
+              if (hist.length > 1) return (
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    Intentos anteriores
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {hist.slice(0, -1).map((h, idx) => (
+                      <div key={idx} style={{
+                        padding: '0.3rem 0.75rem', borderRadius: 20, fontSize: '0.78rem', fontWeight: 700,
+                        background: h.score >= 70 ? 'rgba(16,185,129,0.12)' : h.score >= 50 ? 'rgba(245,158,11,0.12)' : 'rgba(239,68,68,0.1)',
+                        color: h.score >= 70 ? '#10b981' : h.score >= 50 ? '#f59e0b' : '#ef4444',
+                        border: `1px solid ${h.score >= 70 ? '#10b98140' : h.score >= 50 ? '#f59e0b40' : '#ef444440'}`,
+                      }}>
+                        #{idx + 1} — {h.score}%
+                      </div>
+                    ))}
+                    <div style={{
+                      padding: '0.3rem 0.75rem', borderRadius: 20, fontSize: '0.78rem', fontWeight: 700,
+                      background: score >= 70 ? 'rgba(16,185,129,0.2)' : score >= 50 ? 'rgba(245,158,11,0.2)' : 'rgba(239,68,68,0.15)',
+                      color: score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444',
+                      border: `2px solid ${score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444'}`,
+                    }}>
+                      #{hist.length} — {score}% (este)
+                    </div>
+                  </div>
+                </div>
+              )
+              return null
+            })()}
+
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button onClick={resetPrueba} style={{
+              <button onClick={retryPrueba} style={{
                 padding: '0.6rem 1.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
                 background: 'var(--primary-500)', color: '#fff', fontWeight: 600, fontSize: '0.9rem',
                 display: 'flex', alignItems: 'center', gap: '0.4rem'
               }}>
-                <RotateCcw size={15} /> Repetir
+                <RotateCcw size={15} /> Hacer de nuevo
               </button>
               <button onClick={() => setActivePrueba(null)} style={{
                 padding: '0.6rem 1.5rem', borderRadius: 10, border: '1px solid var(--border-color)',
@@ -1805,6 +1865,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           const hasScore = score !== undefined
           const pCorrect = prog.correct || 0
           const pWrong = prog.wrong || 0
+          const history = prog.history || []
           return (
             <div key={p.id} className="card" onClick={() => startPrueba(p)} style={{
               padding: '1.1rem 1.25rem', cursor: 'pointer', transition: 'all 0.25s',
@@ -1853,14 +1914,28 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
                         display: 'flex', alignItems: 'center', gap: '0.25rem',
                         fontWeight: 700, color: score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444'
                       }}>
-                        <Target size={11} /> {score}%
+                        <Target size={11} /> {score}% último
+                      </span>
+                    )}
+                    {history.length > 1 && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-tertiary)' }}>
+                        <RefreshCw size={11} /> {history.length} intentos
                       </span>
                     )}
                   </div>
-                  {hasScore && (pCorrect > 0 || pWrong > 0) && (
-                    <div style={{ display: 'flex', gap: '0.6rem', marginTop: '0.3rem', fontSize: '0.72rem' }}>
-                      {pCorrect > 0 && <span style={{ color: '#10b981', fontWeight: 600 }}>✓ {pCorrect} correctas</span>}
-                      {pWrong > 0 && <span style={{ color: '#ef4444', fontWeight: 600 }}>✗ {pWrong} incorrectas</span>}
+                  {/* Attempt history badges */}
+                  {history.length > 0 && (
+                    <div style={{ display: 'flex', gap: '0.35rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
+                      {history.map((h, idx) => (
+                        <span key={idx} style={{
+                          fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.5rem',
+                          borderRadius: 20,
+                          background: h.score >= 70 ? 'rgba(16,185,129,0.1)' : h.score >= 50 ? 'rgba(245,158,11,0.1)' : 'rgba(239,68,68,0.08)',
+                          color: h.score >= 70 ? '#10b981' : h.score >= 50 ? '#f59e0b' : '#ef4444',
+                        }}>
+                          #{idx + 1} {h.score}%
+                        </span>
+                      ))}
                     </div>
                   )}
                 </div>
