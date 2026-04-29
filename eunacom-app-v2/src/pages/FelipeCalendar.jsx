@@ -610,16 +610,27 @@ export default function FelipeCalendar() {
   const [selectedDay, setSelectedDay]   = useState(null)
   const [done, setDone] = useState({})
 
-  // Load settings from DB
+  // Load settings from DB — auto-seed Dr. Yáñez's known plan if missing
   useEffect(() => {
     if (!user) return
-    fetchStudyPlanSettings(user.id).then(data => {
+    fetchStudyPlanSettings(user.id).then(async data => {
+      if ((!data || !data.plan_start) && user.email === 'dr.felipeyanez@gmail.com') {
+        await saveStudyPlanSettings({
+          userId: user.id,
+          examDate: '2026-07-08',
+          weekdayMinutes: 120,
+          saturdayMinutes: 90,
+          sundayMinutes: 60,
+          completedSubjects: ['pediatria', 'endocrinologia'],
+          planStart: '2026-04-29',
+        })
+        data = await fetchStudyPlanSettings(user.id)
+      }
       setSettings(data)
       if (!data || !data.plan_start) setShowSetup(true)
       setSettingsLoading(false)
     }).catch(() => {
-      setSettings(null)
-      setShowSetup(true)
+      if (user.email !== 'dr.felipeyanez@gmail.com') setShowSetup(true)
       setSettingsLoading(false)
     })
   }, [user])
