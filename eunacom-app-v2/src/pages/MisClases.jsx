@@ -1134,6 +1134,77 @@ function savePruebaProgress(pruebaId, data) {
   return all
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   MIS ERRORES — 3-STATE SPACED REPETITION TRACKER
+   State machine per question (key = pruebaId_numero):
+     undefined  → not yet seen wrong
+     'wrong'    → answered wrong and NOT corrected this session
+     'once_right' → was 'wrong', then answered correctly in a later session
+     (deleted)  → was 'once_right', then answered correctly again → learned ✅
+   ════════════════════════════════════════════════════════════════ */
+const ERRORES_KEY = 'eunacom_errores'
+function loadErrores() {
+  try { return JSON.parse(localStorage.getItem(ERRORES_KEY) || '{}') } catch { return {} }
+}
+function saveErrores(data) {
+  localStorage.setItem(ERRORES_KEY, JSON.stringify(data))
+  return data
+}
+
+/**
+ * Call after every finishPrueba (not on review-wrong sessions).
+ * @param {string} pruebaId
+ * @param {Array}  questions      — full question objects for this prueba
+ * @param {number[]} wrongIndices — indices of questions with at least one wrong attempt
+ * @param {Object}  correctFound  — { [qIdx]: true } questions answered correctly this session
+ * @param {Object}  attemptsMap   — { [qIdx]: ['A','C',…] } wrong option IDs tried
+ */
+function updateErrorStates(pruebaId, questions, wrongIndices, correctFound, attemptsMap) {
+  const all = loadErrores()
+  const now = Date.now()
+
+  questions.forEach((q, i) => {
+    const key = `${pruebaId}_${q.numero}`
+    const prev = all[key]
+    const prevState = prev?.state
+    const hadWrongAttempt = (attemptsMap[i]?.length || 0) > 0
+    const gotRightThisSession = !!correctFound[i]
+    // "Made an error" = had at least one wrong attempt this session (even if eventually correct)
+    // "Fixed it this session" = also got the right answer before finishing
+    // For spaced-rep: getting it right on first try in a *later* session is what counts.
+    // We only promote state when the student got it right with NO wrong attempts this session.
+    const cleanCorrect = gotRightThisSession && !hadWrongAttempt
+
+    if (hadWrongAttempt) {
+      // Wrong this session (may or may not have eventually got it right)
+      // Always reset to 'wrong' — needs a clean correct in a separate session
+      all[key] = {
+        state: 'wrong',
+        pruebaId,
+        question: {
+          numero: q.numero,
+          pregunta: q.pregunta,
+          opciones: q.opciones,
+          respuestaCorrecta: q.respuestaCorrecta,
+          explicacion: q.explicacion,
+          tags: q.tags,
+        },
+        tag: (q.tags || '').split(',')[0].trim() || 'General',
+        updatedAt: now,
+      }
+    } else if (cleanCorrect && prevState === 'wrong') {
+      // Was wrong in a prior session, now got it cleanly right → once_right
+      all[key] = { ...prev, state: 'once_right', updatedAt: now }
+    } else if (cleanCorrect && prevState === 'once_right') {
+      // Got it cleanly right a second time in a separate session → learned → remove
+      delete all[key]
+    }
+    // First-time clean correct with no prior state → ignore (never was wrong)
+  })
+
+  return saveErrores(all)
+}
+
 function printPruebaHtml(pruebas, title) {
   const qs = pruebas.flatMap((p, pi) =>
     p.questions.map((q, qi) => ({ ...q, _pruebaName: p.name, _globalIdx: pi * 1000 + qi }))
@@ -1195,6 +1266,8 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const [attempts, setAttempts] = useState({})       // { qIndex: ['C','D'] } — wrong attempts
   const [correctFound, setCorrectFound] = useState({}) // { qIndex: true } — correct answer found
   const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: 5, B: 3 } }
+  const [errores, setErrores] = useState(loadErrores) // 3-state error tracker
+  const [activeTab, setActiveTab] = useState('pruebas') // 'pruebas' | 'errores'
 
   // Load pruebas index
   useEffect(() => {
@@ -1269,6 +1342,53 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     setCorrectFound({})
   }
 
+  // Start a mini-prueba from a "Mis Errores" tag group
+  const startErrorMiniPrueba = (questions, tagName) => {
+    if (!questions?.length) return
+    setActivePrueba({
+      id: `errores_mini_${subsystem}_${tagName}`,
+      name: `Mis Errores — ${tagName}`,
+      questions: questions.map(e => e.question),
+      _isErrorMini: true,
+      _errorKeys: questions.map(e => e.key),
+      _errorStates: Object.fromEntries(questions.map(e => [e.question.numero, e.state])),
+    })
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  // After finishing an error mini-prueba, update 3-state for those specific questions
+  const finishErrorMiniPrueba = () => {
+    if (!activePrueba?._isErrorMini) return
+    const qs = activePrueba.questions
+    const all = loadErrores()
+    const now = Date.now()
+    qs.forEach((q, i) => {
+      // Find the key from _errorKeys by matching numero
+      const key = activePrueba._errorKeys?.find(k => k.endsWith(`_${q.numero}`))
+      if (!key) return
+      const prev = all[key]
+      if (!prev) return
+      const hadWrongAttempt = (attempts[i]?.length || 0) > 0
+      const gotRightThisSession = !!correctFound[i]
+      const cleanCorrect = gotRightThisSession && !hadWrongAttempt
+
+      if (hadWrongAttempt) {
+        // Wrong again → reset to 'wrong'
+        all[key] = { ...prev, state: 'wrong', updatedAt: now }
+      } else if (cleanCorrect && prev.state === 'wrong') {
+        all[key] = { ...prev, state: 'once_right', updatedAt: now }
+      } else if (cleanCorrect && prev.state === 'once_right') {
+        delete all[key]
+      }
+    })
+    const updated = saveErrores(all)
+    setErrores(updated)
+  }
+
   const handlePrintOne = async (pruebaMeta) => {
     const data = topicData || await loadTopic()
     if (!data) return
@@ -1330,6 +1450,15 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     const pct = Math.round((answered / qs.length) * 100)
     const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, wrong: wrongIndices.length, total: qs.length, answered, wrongIndices })
     setPruebaProgress(updated)
+
+    // Update 3-state error tracker (skip review-wrong sessions to avoid double-counting)
+    if (!activePrueba.id.startsWith('review_wrong_') && !activePrueba.id.startsWith('errores_mini_')) {
+      const updatedErrores = updateErrorStates(activePrueba.id, qs, wrongIndices, correctFound, attempts)
+      setErrores(updatedErrores)
+    } else if (activePrueba._isErrorMini) {
+      finishErrorMiniPrueba()
+    }
+
     setShowResult(true)
   }
 
@@ -1754,6 +1883,28 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const totalWrong = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrong || 0), 0)
   const totalWrongQuestions = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrongIndices?.length || 0), 0)
 
+  // ── "Mis Errores" data — filter errores for THIS subsystem's prueba IDs ──
+  const myPruebaIds = new Set(pruebas.map(p => p.id))
+  const myErrores = Object.entries(errores)
+    .filter(([, v]) => myPruebaIds.has(v.pruebaId))
+    .map(([key, v]) => ({ key, ...v }))
+  const wrongCount = myErrores.filter(e => e.state === 'wrong').length
+  const onceRightCount = myErrores.filter(e => e.state === 'once_right').length
+
+  // Group by primary tag
+  const errorsByTag = myErrores.reduce((acc, e) => {
+    const tag = e.tag || 'General'
+    if (!acc[tag]) acc[tag] = []
+    acc[tag].push(e)
+    return acc
+  }, {})
+  // Sort tags: most 🔴 wrong first
+  const sortedTags = Object.entries(errorsByTag).sort((a, b) => {
+    const aWrong = a[1].filter(e => e.state === 'wrong').length
+    const bWrong = b[1].filter(e => e.state === 'wrong').length
+    return bWrong - aWrong
+  })
+
   return (
     <div style={{ paddingBottom: '2rem' }}>
       <button onClick={onBack} style={{
@@ -1765,6 +1916,136 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
         <ChevronLeft size={16} /> Volver
       </button>
 
+      {/* ── Tab bar ── */}
+      <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.25rem', background: 'var(--surface-700)', padding: '0.3rem', borderRadius: 12, border: '1px solid var(--border-color)' }}>
+        <button onClick={() => setActiveTab('pruebas')} style={{
+          flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
+          fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s',
+          background: activeTab === 'pruebas' ? 'var(--primary-500)' : 'transparent',
+          color: activeTab === 'pruebas' ? '#fff' : 'var(--text-secondary)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+        }}>
+          <ClipboardList size={15} /> Pruebas
+        </button>
+        <button onClick={() => setActiveTab('errores')} style={{
+          flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
+          fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s', position: 'relative',
+          background: activeTab === 'errores' ? '#ef4444' : 'transparent',
+          color: activeTab === 'errores' ? '#fff' : wrongCount > 0 ? '#ef4444' : 'var(--text-secondary)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+        }}>
+          <XCircle size={15} /> Mis Errores
+          {(wrongCount + onceRightCount) > 0 && (
+            <span style={{
+              background: activeTab === 'errores' ? 'rgba(255,255,255,0.25)' : 'rgba(239,68,68,0.15)',
+              color: activeTab === 'errores' ? '#fff' : '#ef4444',
+              fontSize: '0.7rem', fontWeight: 800, padding: '1px 7px', borderRadius: 999, marginLeft: 2,
+            }}>
+              {wrongCount + onceRightCount}
+            </span>
+          )}
+        </button>
+      </div>
+
+      {/* ════════════════════════════════════════════════════
+          MIS ERRORES TAB
+          ════════════════════════════════════════════════════ */}
+      {activeTab === 'errores' && (
+        <div>
+          {myErrores.length === 0 ? (
+            <div className="card" style={{ padding: '2.5rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🎉</div>
+              <p style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1rem' }}>Sin errores activos</p>
+              <p style={{ color: 'var(--text-tertiary)', fontSize: '0.83rem', marginTop: '0.4rem' }}>
+                Haz pruebas para que aparezcan aquí las preguntas que necesitas repasar.
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Summary bar */}
+              <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.1rem', flexWrap: 'wrap' }}>
+                {wrongCount > 0 && (
+                  <div style={{ flex: 1, minWidth: 100, background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>{wrongCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>🔴 Para repasar</div>
+                  </div>
+                )}
+                {onceRightCount > 0 && (
+                  <div style={{ flex: 1, minWidth: 100, background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f59e0b', lineHeight: 1 }}>{onceRightCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>🟡 Casi dominado</div>
+                  </div>
+                )}
+                <div style={{ flex: 1, minWidth: 100, background: 'var(--surface-700)', border: '1px solid var(--border-color)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', lineHeight: 1.5 }}>
+                    <strong style={{ color: 'var(--text-secondary)' }}>Cómo funciona</strong><br />
+                    🔴 Incorrecta → 🟡 Una vez bien → 🟢 Dominada (eliminada)
+                  </div>
+                </div>
+              </div>
+
+              {/* "Repasar todos" button */}
+              {wrongCount > 0 && (
+                <button onClick={() => startErrorMiniPrueba(myErrores.filter(e => e.state === 'wrong'), 'Todos los errores')} style={{
+                  width: '100%', padding: '0.7rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+                  background: '#ef4444', color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  marginBottom: '1.25rem', boxShadow: '0 4px 12px rgba(239,68,68,0.3)',
+                }}>
+                  <RotateCcw size={16} /> Repasar todos los errores ({wrongCount})
+                </button>
+              )}
+
+              {/* Tag groups */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                {sortedTags.map(([tag, items]) => {
+                  const tagWrong = items.filter(e => e.state === 'wrong')
+                  const tagOnceRight = items.filter(e => e.state === 'once_right')
+                  return (
+                    <div key={tag} className="card" style={{
+                      padding: '1rem 1.25rem',
+                      borderLeft: `3px solid ${tagWrong.length > 0 ? '#ef4444' : '#f59e0b'}`,
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                            {tag}
+                          </div>
+                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            {tagWrong.length > 0 && (
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ef4444', background: 'rgba(239,68,68,0.1)', padding: '2px 8px', borderRadius: 999 }}>
+                                🔴 {tagWrong.length} errores
+                              </span>
+                            )}
+                            {tagOnceRight.length > 0 && (
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f59e0b', background: 'rgba(245,158,11,0.1)', padding: '2px 8px', borderRadius: 999 }}>
+                                🟡 {tagOnceRight.length} casi
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        {tagWrong.length > 0 && (
+                          <button onClick={() => startErrorMiniPrueba(tagWrong, tag)} style={{
+                            padding: '0.45rem 0.9rem', borderRadius: 8, border: 'none', cursor: 'pointer',
+                            background: 'rgba(239,68,68,0.12)', color: '#ef4444',
+                            fontSize: '0.78rem', fontWeight: 700, flexShrink: 0,
+                            display: 'flex', alignItems: 'center', gap: '0.35rem',
+                          }}>
+                            <RotateCcw size={12} /> Practicar
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {activeTab === 'pruebas' && (
+      <>
       {/* Overview card */}
       <div className="card" style={{
         padding: '1.5rem', marginBottom: '1.25rem',
@@ -1956,6 +2237,8 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           )
         })}
       </div>
+      </>
+      )}
     </div>
   )
 }
