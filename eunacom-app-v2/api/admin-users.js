@@ -27,13 +27,33 @@ export default async function handler(req, res) {
     })
 
     if (req.method === 'GET') {
-      // Verify admin - check the email header (simple approach)
-      const adminEmail = req.query.adminEmail
+      const { adminEmail, userId } = req.query
       if (adminEmail !== 'dr.felipeyanez@gmail.com') {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
-      // Get all profiles with question counts, test counts, clase counts
+      // Detail view: ?userId=xxx — returns tests + clase progress for one user
+      if (userId) {
+        const [testsResult, clasesResult] = await Promise.all([
+          db.execute({
+            sql: `SELECT id, mode, status, score, total_questions, created_at, completed_at
+                  FROM tests WHERE user_id = ? ORDER BY created_at DESC LIMIT 200`,
+            args: [userId]
+          }),
+          db.execute({
+            sql: `SELECT cp.clase_id, cp.read_clase, cp.read_puntos, cp.quiz_completed,
+                         cp.quiz_score, cp.quiz_correct, cp.quiz_total, cp.video_watched,
+                         cp.updated_at, c.topic
+                  FROM clase_progress cp
+                  LEFT JOIN clases c ON c.id = cp.clase_id
+                  WHERE cp.user_id = ? ORDER BY cp.updated_at DESC`,
+            args: [userId]
+          })
+        ])
+        return res.json({ tests: testsResult.rows, clases: clasesResult.rows })
+      }
+
+      // List view: all profiles with aggregate stats
       const profiles = await db.execute({
         sql: `SELECT
           up.*,
@@ -61,7 +81,6 @@ export default async function handler(req, res) {
         ORDER BY up.created_at DESC`,
         args: []
       })
-
       return res.json({ data: profiles.rows })
     }
 
