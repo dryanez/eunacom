@@ -136,7 +136,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "¿A qué tipo de estudio corresponde el estudio de Framingham, que empezó\nen 1949 para identificar factores de riesgo de enfermedad coronaria, en el que\nde entre 10.000 personas que vivían en Framingham de edades comprendidas\n\nentre los 30 y los 59 años, se seleccionó una muestra representativa de ambos\nDr. Guevara\nsexos, reexaminándose cada dos años en busca de señales de enfermedad\nPreparación EUNACOM\ncoronaria?:",
+          "pregunta": "¿A qué tipo de estudio corresponde el estudio de Framingham, que empezó\nen 1949 para identificar factores de riesgo de enfermedad coronaria, en el que\nde entre 10.000 personas que vivían en Framingham de edades comprendidas\n\nentre los 30 y los 59 años, se seleccionó una muestra representativa de ambos\nsexos, reexaminándose cada dos años en busca de señales de enfermedad\ncoronaria?:",
           "opciones": [
             {
               "id": "A",
@@ -296,7 +296,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "En una población de 1000 individuos, previamente sanos, se producen 144\nDr. Guevara\ncasos de influenza AH1N1, durante el invierno. Esto quiere decir que:\nPreparación EUNACOM",
+          "pregunta": "En una población de 1000 individuos, previamente sanos, se producen 144\ncasos de influenza AH1N1, durante el invierno. Esto quiere decir que:",
           "opciones": [
             {
               "id": "A",
@@ -436,11 +436,11 @@
             },
             {
               "id": "C",
-              "text": "Ambos tratamientos son igualmente efectivos Dr. Guevara"
+              "text": "Ambos tratamientos son igualmente efectivos"
             },
             {
               "id": "D",
-              "text": "Si ambos tratamientos fueran iguales, la probabilidad de encontrar esta Preparación EUNACOM diferencia en un estudio similar, sería 0,06"
+              "text": "Si ambos tratamientos fueran iguales, la probabilidad de encontrar esta diferencia en un estudio similar, sería 0,06"
             },
             {
               "id": "E",
@@ -600,11 +600,11 @@
             },
             {
               "id": "D",
-              "text": "Tasa de mortalidad general Dr. Guevara"
+              "text": "Tasa de mortalidad general"
             },
             {
               "id": "E",
-              "text": "Tasa de letalidad de VIH Preparación EUNACOM"
+              "text": "Tasa de letalidad de VIH"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2092,11 +2092,11 @@
             },
             {
               "id": "C",
-              "text": "El aporte per cápita Dr. Guevara"
+              "text": "El aporte per cápita"
             },
             {
               "id": "D",
-              "text": "Los municipios Preparación EUNACOM"
+              "text": "Los municipios"
             },
             {
               "id": "E",
@@ -2104,7 +2104,7 @@
             }
           ],
           "respuestaCorrecta": "C",
-          "explicacion": "La alternativa correcta es la C (El aporte per cápita Dr. Guevara) porque el financiamiento principal de la Atención Primaria de Salud (APS) en Chile, y específicamente de los consultorios públicos, proviene del pago per cápita basal, también conocido como \"cápita\". Este financiamiento se basa en el número de personas inscritas y validadas en cada establecimiento de APS. Este sistema fue implementado en el marco de la reforma de la salud chilena con el objetivo de entregar recursos de manera más equitativa y proporcional a las necesidades de la población inscrita.\n\nPara confirmar esto, se puede consultar la información oficial del Ministerio de Salud (MINSAL) respecto al financiamiento de la APS, que detalla la importancia del per cápita como principal fuente de recursos. Aunque existen otros componentes de financiamiento, como el Fondo Nacional de Salud (FONASA), el per cápita es el más significativo para la operación diaria de los consultorios.",
+          "explicacion": "La alternativa correcta es la C (El aporte per cápita) porque el financiamiento principal de la Atención Primaria de Salud (APS) en Chile, y específicamente de los consultorios públicos, proviene del pago per cápita basal, también conocido como \"cápita\". Este financiamiento se basa en el número de personas inscritas y validadas en cada establecimiento de APS. Este sistema fue implementado en el marco de la reforma de la salud chilena con el objetivo de entregar recursos de manera más equitativa y proporcional a las necesidades de la población inscrita.\n\nPara confirmar esto, se puede consultar la información oficial del Ministerio de Salud (MINSAL) respecto al financiamiento de la APS, que detalla la importancia del per cápita como principal fuente de recursos. Aunque existen otros componentes de financiamiento, como el Fondo Nacional de Salud (FONASA), el per cápita es el más significativo para la operación diaria de los consultorios.",
           "explicacionIncorrectas": "*   **A: El 7% de aporte de los trabajadores:** Si bien el 7% de cotización de los trabajadores va a FONASA o ISAPRE, este dinero no se destina directamente al financiamiento de los consultorios de APS, sino que alimenta el sistema general de salud. FONASA luego asigna recursos a los servicios de salud, incluyendo la APS, pero el 7% no va directamente a los consultorios.\n*   **B: La ley de presupuesto:** La ley de presupuesto sí asigna recursos al sector salud, incluyendo la APS, pero no es la principal fuente de financiamiento directo para los consultorios. La ley de presupuesto es más amplia y cubre diversas áreas del sector salud.\n*   **D: Los municipios:** Los municipios son los administradores de los consultorios de APS en muchos casos, pero no son la principal fuente de financiamiento. Reciben los fondos, principalmente del per cápita, y los administran.\n*   **E: El servicio de salud:** Los Servicios de Salud también reciben fondos del Estado, pero no son la principal fuente directa de financiamiento para los consultorios de APS. Los Servicios de Salud coordinan y supervisan la red asistencial, y parte de su financiamiento puede derivarse a la APS, pero el aporte per cápita es más específico y significativo.",
           "codigoEunacom": "7.01.3.049 Financiamiento del sector salud",
           "tags": "EUNACOM, Salud Pública, APS, Atención Primaria, Financiamiento, Per Cápita, Chile, MINSAL, FONASA, Gestión en Salud.",
@@ -2216,7 +2216,7 @@
             },
             {
               "id": "B",
-              "text": "Si un paciente presenta un resultado positivo, tiene un 84% de probabilidades de Dr. Guevara que tenga la enfermedad Preparación EUNACOM"
+              "text": "Si un paciente presenta un resultado positivo, tiene un 84% de probabilidades de que tenga la enfermedad"
             },
             {
               "id": "C",
@@ -2368,11 +2368,11 @@
         },
         {
           "numero": 14,
-          "pregunta": "El mejor parámetro para determinar el impacto del cáncer gástrico es:\nDr. Guevara",
+          "pregunta": "El mejor parámetro para determinar el impacto del cáncer gástrico es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Tasa de mortalidad por cáncer gástrico Preparación EUNACOM"
+              "text": "Tasa de mortalidad por cáncer gástrico"
             },
             {
               "id": "B",
@@ -2496,7 +2496,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "El saneamiento ambiental, la disponibilidad de agua potable y la de\nDr. Guevara\nalcantarillado son medidas de:\nPreparación EUNACOM",
+          "pregunta": "El saneamiento ambiental, la disponibilidad de agua potable y la de\nalcantarillado son medidas de:",
           "opciones": [
             {
               "id": "A",
@@ -2736,11 +2736,11 @@
             },
             {
               "id": "B",
-              "text": "Síndrome miasténico tipo Eaton-Lambert. Dr. Guevara"
+              "text": "Síndrome miasténico tipo Eaton-Lambert."
             },
             {
               "id": "C",
-              "text": "Miopatía tirotóxica con fasciculaciones. Preparación EUNACOM"
+              "text": "Miopatía tirotóxica con fasciculaciones."
             },
             {
               "id": "D",
@@ -2888,7 +2888,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente de 68 años presenta un cuadro de meses de evolución de olvidos\nDr. Guevara\nfrecuentes y conversaciones repetitivas, al que se le ha agregado en las últimas\nPreparación EUNACOM\nsemanas dificultad para realizar sus actividades cotidianas, como salir a\ncomprar o llamar por teléfono. El examen neurológico no presenta alteraciones\nmotoras ni sensitivas. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 68 años presenta un cuadro de meses de evolución de olvidos\nfrecuentes y conversaciones repetitivas, al que se le ha agregado en las últimas\nsemanas dificultad para realizar sus actividades cotidianas, como salir a\ncomprar o llamar por teléfono. El examen neurológico no presenta alteraciones\nmotoras ni sensitivas. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2996,7 +2996,7 @@
             },
             {
               "id": "C",
-              "text": "Invalida el estudio, ya que la asignación aleatoria no ha conseguido su objetivo de Preparación EUNACOM obtener grupos homogéneos."
+              "text": "Invalida el estudio, ya que la asignación aleatoria no ha conseguido su objetivo de obtener grupos homogéneos."
             },
             {
               "id": "D",
@@ -3244,11 +3244,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Se ocupa el 90% de los días-cama disponibles en el mes Dr. Guevara"
+              "text": "Se ocupa el 90% de los días-cama disponibles en el mes"
             },
             {
               "id": "B",
-              "text": "Hay días en que el hospital no tiene camas disponibles Preparación EUNACOM"
+              "text": "Hay días en que el hospital no tiene camas disponibles"
             },
             {
               "id": "C",
@@ -3265,7 +3265,7 @@
           ],
           "respuestaCorrecta": "A",
           "explicacion": "La alternativa correcta es la A: \"Se ocupa el 90% de los días-cama disponibles en el mes\".  El índice de ocupación de camas se calcula como el número total de días-paciente (es decir, el número de días que las camas estuvieron ocupadas por pacientes) dividido por el número total de días-cama disponibles (número de camas disponibles multiplicado por el número de días en el período). Multiplicar este resultado por 100 nos da el porcentaje.  Un índice de ocupación del 90% significa que, en promedio, el 90% de las camas estuvieron ocupadas cada día del mes.  Esto no implica que *siempre* haya un 90% de camas ocupadas *cada* día (podría variar día a día), sino que esa es la ocupación promedio durante el mes.  Este indicador es fundamental para la gestión hospitalaria, ya que permite evaluar la eficiencia en la utilización de recursos y la necesidad de ampliar la capacidad o mejorar la gestión de camas. El MINSAL usa este indicador para monitorear la utilización de los recursos hospitalarios, aunque las guías clínicas específicas no lo abordan directamente, sí se considera un indicador clave en los reportes y análisis de gestión hospitalaria.",
-          "explicacionIncorrectas": "*   **B: Hay días en que el hospital no tiene camas disponibles Preparación EUNACOM:** Un índice de ocupación del 90% no implica necesariamente que haya días sin camas disponibles.  Podría haber días con ocupación superior y otros con ocupación inferior al 90%, pero el promedio mensual es del 90%.  Para afirmar que no hay camas disponibles algún día, necesitaríamos información adicional sobre la variabilidad diaria de la ocupación.\n*   **C: El hospital siempre tiene algunas camas disponibles:** Un 90% de ocupación no garantiza que siempre haya camas disponibles. Podría haber momentos de alta demanda donde la ocupación sea del 100% o cercana a ella, y momentos de baja demanda. Solo sabemos el promedio mensual.\n*   **D: durante el mes hay un 10% de camas que no fueron utilizadas:**  Esta es una interpretación directa del 90% de ocupación. Sin embargo, es importante entender que no implica que *exactamente* el 10% de las camas estuvieron vacías *cada día*. Es el promedio mensual.\n*   **E: Los pacientes tienen una alta rotación Respuestas: Prueba número 5 NEUROLOGÍA + SALUD PÚBLICA Preguntas Respuestas 1 C 2 D 3 E 4 A 5 C 6 E 7 D 8 A 9 A 10 C 11 B 12 B 13 B 14 C 15 C 16 A 17 C 18 A 19 C 20 A:**  La rotación de pacientes (número de pacientes dados de alta en relación al número de camas) es un indicador *diferente* a la ocupación de camas. Si bien ambos están relacionados con la gestión de camas, un alto índice de ocupación no necesariamente implica una alta rotación.  Podría haber pacientes con estancias más largas que contribuyan a la alta ocupación, o pacientes con estancias cortas y un flujo constante de ingresos.",
+          "explicacionIncorrectas": "*   **B: Hay días en que el hospital no tiene camas disponibles:** Un índice de ocupación del 90% no implica necesariamente que haya días sin camas disponibles.  Podría haber días con ocupación superior y otros con ocupación inferior al 90%, pero el promedio mensual es del 90%.  Para afirmar que no hay camas disponibles algún día, necesitaríamos información adicional sobre la variabilidad diaria de la ocupación.\n*   **C: El hospital siempre tiene algunas camas disponibles:** Un 90% de ocupación no garantiza que siempre haya camas disponibles. Podría haber momentos de alta demanda donde la ocupación sea del 100% o cercana a ella, y momentos de baja demanda. Solo sabemos el promedio mensual.\n*   **D: durante el mes hay un 10% de camas que no fueron utilizadas:**  Esta es una interpretación directa del 90% de ocupación. Sin embargo, es importante entender que no implica que *exactamente* el 10% de las camas estuvieron vacías *cada día*. Es el promedio mensual.\n*   **E: Los pacientes tienen una alta rotación Respuestas: Prueba número 5 NEUROLOGÍA + SALUD PÚBLICA Preguntas Respuestas 1 C 2 D 3 E 4 A 5 C 6 E 7 D 8 A 9 A 10 C 11 B 12 B 13 B 14 C 15 C 16 A 17 C 18 A 19 C 20 A:**  La rotación de pacientes (número de pacientes dados de alta en relación al número de camas) es un indicador *diferente* a la ocupación de camas. Si bien ambos están relacionados con la gestión de camas, un alto índice de ocupación no necesariamente implica una alta rotación.  Podría haber pacientes con estancias más largas que contribuyan a la alta ocupación, o pacientes con estancias cortas y un flujo constante de ingresos.",
           "codigoEunacom": "7.01.3.009 Indicadores de nivel de salud: cálculo e interpretación",
           "tags": "Ocupación de camas, gestión hospitalaria, indicadores de salud, salud pública, EUNACOM, días-cama, días-paciente.",
           "videoRecomendado": "None"
@@ -3420,11 +3420,11 @@
             },
             {
               "id": "C",
-              "text": "Las muertes producidas en los menores de un año y el total de la población Dr. Guevara"
+              "text": "Las muertes producidas en los menores de un año y el total de la población"
             },
             {
               "id": "D",
-              "text": "Las muertes producidas en los menores de un año y la población menor de 1 año Preparación EUNACOM"
+              "text": "Las muertes producidas en los menores de un año y la población menor de 1 año"
             },
             {
               "id": "E",
@@ -3516,11 +3516,11 @@
             },
             {
               "id": "C",
-              "text": "El antibiótico B porque tiene menos efecto adversos Dr. Guevara"
+              "text": "El antibiótico B porque tiene menos efecto adversos"
             },
             {
               "id": "D",
-              "text": "El antibiótico B porque reduce más la mortalidad Preparación EUNACOM"
+              "text": "El antibiótico B porque reduce más la mortalidad"
             },
             {
               "id": "E",
@@ -3680,11 +3680,11 @@
             },
             {
               "id": "D",
-              "text": "Siempre es doble ciego Dr. Guevara"
+              "text": "Siempre es doble ciego"
             },
             {
               "id": "E",
-              "text": "Siempre usa placebo como grupo de control Preparación EUNACOM"
+              "text": "Siempre usa placebo como grupo de control"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3812,7 +3812,7 @@
             },
             {
               "id": "E",
-              "text": "Atender a los reclamos de los pacientes afiliados a Fonasa y de los afiliados a Dr. Guevara Isapre Preparación EUNACOM"
+              "text": "Atender a los reclamos de los pacientes afiliados a Fonasa y de los afiliados a Isapre"
             }
           ],
           "respuestaCorrecta": "C",
@@ -4024,11 +4024,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 55 años presenta miedo a que la asalten, por lo que ha dejado\nde salir de su casa. Además no le gusta que su marido ni que su hijo manejen\n\npor miedo a que puedan chocar. El diagnóstico de sospecha es:\nDr. Guevara",
+          "pregunta": "Una mujer de 55 años presenta miedo a que la asalten, por lo que ha dejado\nde salir de su casa. Además no le gusta que su marido ni que su hijo manejen\n\npor miedo a que puedan chocar. El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Fobia social Preparación EUNACOM"
+              "text": "Fobia social"
             },
             {
               "id": "B",
@@ -4164,11 +4164,11 @@
             },
             {
               "id": "C",
-              "text": "Aumento de la líbido Dr. Guevara"
+              "text": "Aumento de la líbido"
             },
             {
               "id": "D",
-              "text": "Insomnio Preparación EUNACOM"
+              "text": "Insomnio"
             },
             {
               "id": "E",
@@ -4320,11 +4320,11 @@
             },
             {
               "id": "B",
-              "text": "Análisis de varianza Dr. Guevara"
+              "text": "Análisis de varianza"
             },
             {
               "id": "C",
-              "text": "“r” de Pearson Preparación EUNACOM"
+              "text": "“r” de Pearson"
             },
             {
               "id": "D",
@@ -4472,7 +4472,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "En un ensayo clínico se compara la efectividad del clopidogrel comparado\ncon la aspirina. Para esto se forman 2 grupos de 100 pacientes cada uno. El\nprimer grupo recibe aspirina y corresponde a pacientes con antecedente\ninfarto al miocardio, tratados con trombolisis. El segundo grupo recibe el\n\nclopidgrel y corresponde a pacientes con infarto al miocardio, tratados con\nDr. Guevara\nangioplastia primaria. Se comparan las tasas de complicaciones y de mejoría.\nPreparación EUNACOM\nSe puede afirmar que:",
+          "pregunta": "En un ensayo clínico se compara la efectividad del clopidogrel comparado\ncon la aspirina. Para esto se forman 2 grupos de 100 pacientes cada uno. El\nprimer grupo recibe aspirina y corresponde a pacientes con antecedente\ninfarto al miocardio, tratados con trombolisis. El segundo grupo recibe el\n\nclopidgrel y corresponde a pacientes con infarto al miocardio, tratados con\nangioplastia primaria. Se comparan las tasas de complicaciones y de mejoría.\nSe puede afirmar que:",
           "opciones": [
             {
               "id": "A",
@@ -4688,11 +4688,11 @@
             },
             {
               "id": "D",
-              "text": "Las inmigraciones Dr. Guevara"
+              "text": "Las inmigraciones"
             },
             {
               "id": "E",
-              "text": "Las emigraciones Preparación EUNACOM"
+              "text": "Las emigraciones"
             }
           ],
           "respuestaCorrecta": "A",
@@ -4800,11 +4800,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Calcule la sensibilidad del antígeno Ca-19.9 para el diagnóstico de cáncer de\npáncreas, utilizando la siguiente información:\nEnfermos de Cá Páncreas Sanos\nTotal\nCa-19.9 elevado 72 40 112\nCa-19.9 normal 18 160\n178\nTotal 90 200\n\n290\nDr. Guevara",
+          "pregunta": "Calcule la sensibilidad del antígeno Ca-19.9 para el diagnóstico de cáncer de\npáncreas, utilizando la siguiente información:\nEnfermos de Cá Páncreas Sanos\nTotal\nCa-19.9 elevado 72 40 112\nCa-19.9 normal 18 160\n178\nTotal 90 200\n\n290",
           "opciones": [
             {
               "id": "A",
-              "text": "72/112 Preparación EUNACOM"
+              "text": "72/112"
             },
             {
               "id": "B",
@@ -4908,11 +4908,11 @@
             },
             {
               "id": "C",
-              "text": "La fluoxetina, porque es más eficaz Dr. Guevara"
+              "text": "La fluoxetina, porque es más eficaz"
             },
             {
               "id": "D",
-              "text": "El escitalopram porque tiene una menor tasa de efectos adversos Preparación EUNACOM"
+              "text": "El escitalopram porque tiene una menor tasa de efectos adversos"
             },
             {
               "id": "E",
@@ -5028,11 +5028,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Menor a 1 Dr. Guevara"
+              "text": "Menor a 1"
             },
             {
               "id": "B",
-              "text": "Entre 1 y 5 Preparación EUNACOM"
+              "text": "Entre 1 y 5"
             },
             {
               "id": "C",
@@ -5196,11 +5196,11 @@
             },
             {
               "id": "C",
-              "text": "60 por mil Dr. Guevara"
+              "text": "60 por mil"
             },
             {
               "id": "D",
-              "text": "90 por mil Preparación EUNACOM"
+              "text": "90 por mil"
             },
             {
               "id": "E",
@@ -5320,11 +5320,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "La probabilidad de estar enfermo corresponde a:\nDr. Guevara",
+          "pregunta": "La probabilidad de estar enfermo corresponde a:",
           "opciones": [
             {
               "id": "A",
-              "text": "La morbilidad Preparación EUNACOM"
+              "text": "La morbilidad"
             },
             {
               "id": "B",
@@ -5448,7 +5448,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Se realiza un ensayo clínico que compara un fármaco A versus un fármaco B\npara el tratamiento del hanta. Se obtienen los siguientes resultados:\nFármaco A Fármaco B RR [IC 95%]\n\nTasa de mejoría 80% 70% 1,14 [1,10-1,20]\nDr. Guevara\nTasa de efectos 1% 0,10% 10 [0,8-80]\nPreparación EUNACOM\nadversos\n¿Qué fármaco recomendaría?",
+          "pregunta": "Se realiza un ensayo clínico que compara un fármaco A versus un fármaco B\npara el tratamiento del hanta. Se obtienen los siguientes resultados:\nFármaco A Fármaco B RR [IC 95%]\n\nTasa de mejoría 80% 70% 1,14 [1,10-1,20]\nTasa de efectos 1% 0,10% 10 [0,8-80]\nadversos\n¿Qué fármaco recomendaría?",
           "opciones": [
             {
               "id": "A",
@@ -5560,11 +5560,11 @@
             },
             {
               "id": "D",
-              "text": "2,0 Dr. Guevara"
+              "text": "2,0"
             },
             {
               "id": "E",
-              "text": "2,5 Preparación EUNACOM"
+              "text": "2,5"
             }
           ],
           "respuestaCorrecta": "B",
@@ -5716,11 +5716,11 @@
             },
             {
               "id": "C",
-              "text": "Trabajador es contagiado de influenza por un compañero de trabajo Dr. Guevara"
+              "text": "Trabajador es contagiado de influenza por un compañero de trabajo"
             },
             {
               "id": "D",
-              "text": "Trabajadora inicia metrorragia intensa en su lugar de trabajo Preparación EUNACOM"
+              "text": "Trabajadora inicia metrorragia intensa en su lugar de trabajo"
             },
             {
               "id": "E",
@@ -6000,11 +6000,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Actualmente FONASA se financia principalmente a partir de:\nDr. Guevara",
+          "pregunta": "Actualmente FONASA se financia principalmente a partir de:",
           "opciones": [
             {
               "id": "A",
-              "text": "Los impuestos generales, a través de la ley de presupuesto general Preparación EUNACOM"
+              "text": "Los impuestos generales, a través de la ley de presupuesto general"
             },
             {
               "id": "B",
@@ -6160,7 +6160,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Se ha visto que el 90% de los pacientes diagnosticados de parálisis facial,\nDr. Guevara\nmejora al ser tratado con prednisona, mientras que sólo un 85% mejora al\nPreparación EUNACOM\nrecibir un placebo. Así el NNT de la prednisona es:",
+          "pregunta": "Se ha visto que el 90% de los pacientes diagnosticados de parálisis facial,\nmejora al ser tratado con prednisona, mientras que sólo un 85% mejora al\nrecibir un placebo. Así el NNT de la prednisona es:",
           "opciones": [
             {
               "id": "A",
@@ -6276,7 +6276,7 @@
             },
             {
               "id": "E",
-              "text": "Se determina que el tratamiento con ceftriaxona tiene mejores resultados que el Dr. Guevara tratamiento con penicilina en cuanto a mortalidad y mejoría, en los pacientes con Preparación EUNACOM neumonía ATS III"
+              "text": "Se determina que el tratamiento con ceftriaxona tiene mejores resultados que el tratamiento con penicilina en cuanto a mortalidad y mejoría, en los pacientes con neumonía ATS III"
             }
           ],
           "respuestaCorrecta": "B",
@@ -6416,7 +6416,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Se realiza un estudio en el que se evalúa un nuevo antidepresivo,\nDr. Guevara\ncomparándolo con fluoxetina. Para esto se cuenta con 100 pacientes\nPreparación EUNACOM\ndiagnosticados de depresión. Se trata con fluoxetina a los pacientes sin\nideación suicida y sin síntomas psicóticos y se trata con el nuevo fármaco a los\npacientes con depresión refractaria, con síntomas psicóticos o con ideación\nsuicida. Se puede afirmar que:",
+          "pregunta": "Se realiza un estudio en el que se evalúa un nuevo antidepresivo,\ncomparándolo con fluoxetina. Para esto se cuenta con 100 pacientes\ndiagnosticados de depresión. Se trata con fluoxetina a los pacientes sin\nideación suicida y sin síntomas psicóticos y se trata con el nuevo fármaco a los\npacientes con depresión refractaria, con síntomas psicóticos o con ideación\nsuicida. Se puede afirmar que:",
           "opciones": [
             {
               "id": "A",
@@ -6600,11 +6600,11 @@
             },
             {
               "id": "D",
-              "text": "Ácido valproico Dr. Guevara"
+              "text": "Ácido valproico"
             },
             {
               "id": "E",
-              "text": "Antipsicóticos atípicos Preparación EUNACOM"
+              "text": "Antipsicóticos atípicos"
             }
           ],
           "respuestaCorrecta": "C",
@@ -6744,7 +6744,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Los pacientes con trastorno obsesivo compulsivo, inadecuadamente tratado,\nDr. Guevara\nsuelen complicarse con:\nPreparación EUNACOM",
+          "pregunta": "Los pacientes con trastorno obsesivo compulsivo, inadecuadamente tratado,\nsuelen complicarse con:",
           "opciones": [
             {
               "id": "A",
@@ -6888,15 +6888,15 @@
             },
             {
               "id": "D",
-              "text": "Los empleadores Dr. Guevara"
+              "text": "Los empleadores"
             },
             {
               "id": "E",
-              "text": "El servicio de salud Preparación EUNACOM"
+              "text": "El servicio de salud"
             }
           ],
           "respuestaCorrecta": "D",
-          "explicacion": "La alternativa correcta es la D: Los empleadores Dr. Guevara. En Chile, el financiamiento del tratamiento de las enfermedades profesionales está a cargo de los empleadores a través del seguro obligatorio establecido por la Ley N° 16.744, que establece normas sobre accidentes del trabajo y enfermedades profesionales. Esta ley obliga a los empleadores a afiliarse a un organismo administrador del seguro (mutual de seguridad o el Instituto de Seguridad Laboral - ISL) y a pagar una cotización mensual, cuyo monto depende del riesgo asociado a la actividad de la empresa. El objetivo de este seguro es proteger a los trabajadores de los riesgos derivados de su trabajo y financiar las prestaciones médicas y económicas en caso de accidentes del trabajo o enfermedades profesionales. La Superintendencia de Seguridad Social (SUSESO) es el organismo encargado de fiscalizar el cumplimiento de esta ley.",
+          "explicacion": "La alternativa correcta es la D: Los empleadores. En Chile, el financiamiento del tratamiento de las enfermedades profesionales está a cargo de los empleadores a través del seguro obligatorio establecido por la Ley N° 16.744, que establece normas sobre accidentes del trabajo y enfermedades profesionales. Esta ley obliga a los empleadores a afiliarse a un organismo administrador del seguro (mutual de seguridad o el Instituto de Seguridad Laboral - ISL) y a pagar una cotización mensual, cuyo monto depende del riesgo asociado a la actividad de la empresa. El objetivo de este seguro es proteger a los trabajadores de los riesgos derivados de su trabajo y financiar las prestaciones médicas y económicas en caso de accidentes del trabajo o enfermedades profesionales. La Superintendencia de Seguridad Social (SUSESO) es el organismo encargado de fiscalizar el cumplimiento de esta ley.",
           "explicacionIncorrectas": "*   **A: Las municipalidades:** Las municipalidades no son responsables del financiamiento de las enfermedades profesionales. Si bien pueden tener programas de salud ocupacional a nivel local, el financiamiento principal recae en los empleadores a través del seguro obligatorio.\n*   **B: Fonasa:** El Fondo Nacional de Salud (Fonasa) es el seguro público de salud que cubre a una gran parte de la población chilena, pero no es el responsable del financiamiento de las enfermedades profesionales. Estas están cubiertas por el seguro de la Ley N° 16.744.\n*   **C: Los trabajadores:** Los trabajadores no son responsables de financiar el tratamiento de las enfermedades profesionales. El financiamiento recae en los empleadores a través del seguro obligatorio.\n*   **E: El servicio de salud:** Los Servicios de Salud, como parte del sistema público, atienden a pacientes con enfermedades profesionales, pero el financiamiento para esta atención no proviene directamente del Servicio de Salud como tal, sino del seguro de la Ley 16.744 que es financiado por los empleadores.",
           "codigoEunacom": "7.01.3.033 Bases conceptuales de la seguridad social",
           "tags": "EUNACOM, Salud Pública, Enfermedades Profesionales, Financiamiento, Ley 16744, Seguridad Social, Empleadores, Chile",
@@ -7044,7 +7044,7 @@
             },
             {
               "id": "C",
-              "text": "Hay que tranquilizarla y explicarle que lo más probable es que se trate de un falso Dr. Guevara positivo Preparación EUNACOM"
+              "text": "Hay que tranquilizarla y explicarle que lo más probable es que se trate de un falso positivo"
             },
             {
               "id": "D",
@@ -7144,11 +7144,11 @@
             },
             {
               "id": "D",
-              "text": "1 Dr. Guevara"
+              "text": "1"
             },
             {
               "id": "E",
-              "text": "1,33 Preparación EUNACOM Respuestas: Prueba número 11 SALUD PÚBLICA + PSIQUIATRÍA Preguntas Respuestas 1 D 2 C 3 C 4 D 5 E 6 A 7 B 8 A 9 B 10 E 11 D 12 D 13 E 14 A 15 C 16 A 17 E 18 B 19 C 20 C"
+              "text": "1,33 Respuestas: Prueba número 11 SALUD PÚBLICA + PSIQUIATRÍA Preguntas Respuestas 1 D 2 C 3 C 4 D 5 E 6 A 7 B 8 A 9 B 10 E 11 D 12 D 13 E 14 A 15 C 16 A 17 E 18 B 19 C 20 C"
             }
           ],
           "respuestaCorrecta": "C",
@@ -7276,11 +7276,11 @@
             },
             {
               "id": "C",
-              "text": "70% a 80% Dr. Guevara"
+              "text": "70% a 80%"
             },
             {
               "id": "D",
-              "text": "80% a 90% Preparación EUNACOM"
+              "text": "80% a 90%"
             },
             {
               "id": "E",
@@ -7440,11 +7440,11 @@
             },
             {
               "id": "D",
-              "text": "La letalidad Dr. Guevara"
+              "text": "La letalidad"
             },
             {
               "id": "E",
-              "text": "La mortalidad Preparación EUNACOM"
+              "text": "La mortalidad"
             }
           ],
           "respuestaCorrecta": "A",
@@ -7564,7 +7564,7 @@
             },
             {
               "id": "C",
-              "text": "Se determina que salvar un paciente adicional, al ser tratado con angioplastia, en Dr. Guevara lugar de trombolisis, cuesta $2.000.000 Preparación EUNACOM"
+              "text": "Se determina que salvar un paciente adicional, al ser tratado con angioplastia, en lugar de trombolisis, cuesta $2.000.000"
             },
             {
               "id": "D",
@@ -7700,7 +7700,7 @@
             },
             {
               "id": "E",
-              "text": "La relación entre las muertes producidas en el período neonatal y los menores de Dr. Guevara un año Preparación EUNACOM"
+              "text": "La relación entre las muertes producidas en el período neonatal y los menores de un año"
             }
           ],
           "respuestaCorrecta": "B",

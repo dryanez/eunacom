@@ -116,11 +116,11 @@
             },
             {
               "id": "C",
-              "text": "Poliposis nasal Dr. Guevara"
+              "text": "Poliposis nasal"
             },
             {
               "id": "D",
-              "text": "Hipertrofia adenoídea Preparación EUNACOM"
+              "text": "Hipertrofia adenoídea"
             },
             {
               "id": "E",
@@ -244,11 +244,11 @@
             },
             {
               "id": "C",
-              "text": "Radiografía de cavidades perinasales y clindamicina Dr. Guevara"
+              "text": "Radiografía de cavidades perinasales y clindamicina"
             },
             {
               "id": "D",
-              "text": "TAC de cavidades perinasales y ampicilina Preparación EUNACOM"
+              "text": "TAC de cavidades perinasales y ampicilina"
             },
             {
               "id": "E",
@@ -400,11 +400,11 @@
             },
             {
               "id": "B",
-              "text": "Úlcera corneal Dr. Guevara"
+              "text": "Úlcera corneal"
             },
             {
               "id": "C",
-              "text": "Glaucoma de ángulo estrecho Preparación EUNACOM"
+              "text": "Glaucoma de ángulo estrecho"
             },
             {
               "id": "D",
@@ -540,7 +540,7 @@
             },
             {
               "id": "E",
-              "text": "Solicitar resonancia magnética de órbitas y cerebro y decidir manejo según Dr. Guevara hallazgos Preparación EUNACOM"
+              "text": "Solicitar resonancia magnética de órbitas y cerebro y decidir manejo según hallazgos"
             }
           ],
           "respuestaCorrecta": "C",
@@ -768,11 +768,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar polisonmografía y decidir conducta según los resultados Dr. Guevara"
+              "text": "Solicitar polisonmografía y decidir conducta según los resultados"
             },
             {
               "id": "E",
-              "text": "Derivar para amigdalectomía bilateral Preparación EUNACOM"
+              "text": "Derivar para amigdalectomía bilateral"
             }
           ],
           "respuestaCorrecta": "E",
@@ -912,11 +912,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño de 5 años presenta lesiones papulares, eritematosas y recidivantes\nen la cara, fosas poplíteas y pliegues cubitales, que en algunas ocasiones se\nexacerban y rezuman. Al examen se observa además pitiriasis alba en la cara y\n\ndoble ojera en cada ojo. El diagnóstico es:\nDr. Guevara",
+          "pregunta": "Un niño de 5 años presenta lesiones papulares, eritematosas y recidivantes\nen la cara, fosas poplíteas y pliegues cubitales, que en algunas ocasiones se\nexacerban y rezuman. Al examen se observa además pitiriasis alba en la cara y\n\ndoble ojera en cada ojo. El diagnóstico es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Dermatitis seborreica Preparación EUNACOM"
+              "text": "Dermatitis seborreica"
             },
             {
               "id": "B",
@@ -1048,11 +1048,11 @@
             },
             {
               "id": "B",
-              "text": "Ketoconazol oral Dr. Guevara"
+              "text": "Ketoconazol oral"
             },
             {
               "id": "C",
-              "text": "Terbinafina tópica Preparación EUNACOM"
+              "text": "Terbinafina tópica"
             },
             {
               "id": "D",
@@ -1184,11 +1184,11 @@
             },
             {
               "id": "D",
-              "text": "Esclerodermia Dr. Guevara"
+              "text": "Esclerodermia"
             },
             {
               "id": "E",
-              "text": "Eccema dishidrótico (ponfólix) Preparación EUNACOM"
+              "text": "Eccema dishidrótico (ponfólix)"
             }
           ],
           "respuestaCorrecta": "A",
@@ -1400,7 +1400,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 58 años, fumadora, consulta por disfonía de 2 meses de\nDr. Guevara\nevolución. No ha presentado otros síntomas y el examen físico no aporta mayor\nPreparación EUNACOM\ninformación. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 58 años, fumadora, consulta por disfonía de 2 meses de\nevolución. No ha presentado otros síntomas y el examen físico no aporta mayor\ninformación. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -1528,11 +1528,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un hombre de 65 años, diabético, hipertenso, fumador y dislipidémico,\nconsulta por obstrucción nasal derecha, de 6 meses de evolución, asociado a\nrinorrea serosanguinolenta. Al examen físico no se aprecian mayores\n\nalteraciones. El diagnóstico de sospecha es:\nDr. Guevara",
+          "pregunta": "Un hombre de 65 años, diabético, hipertenso, fumador y dislipidémico,\nconsulta por obstrucción nasal derecha, de 6 meses de evolución, asociado a\nrinorrea serosanguinolenta. Al examen físico no se aprecian mayores\n\nalteraciones. El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Rinitis alérgica Preparación EUNACOM"
+              "text": "Rinitis alérgica"
             },
             {
               "id": "B",
@@ -1664,7 +1664,7 @@
             },
             {
               "id": "B",
-              "text": "Glaucoma agudo – Ojo rojo profundo, doloroso, con midriasis que no responde a Dr. Guevara la luz Preparación EUNACOM"
+              "text": "Glaucoma agudo – Ojo rojo profundo, doloroso, con midriasis que no responde a la luz"
             },
             {
               "id": "C",
@@ -1816,11 +1816,11 @@
         },
         {
           "numero": 17,
-          "pregunta": "El glaucoma crónico, se caracteriza por todo lo siguiente, EXCEPTO:\nDr. Guevara",
+          "pregunta": "El glaucoma crónico, se caracteriza por todo lo siguiente, EXCEPTO:",
           "opciones": [
             {
               "id": "A",
-              "text": "Disminución de la agudeza visual en etapas avanzadas Preparación EUNACOM"
+              "text": "Disminución de la agudeza visual en etapas avanzadas"
             },
             {
               "id": "B",
@@ -2080,11 +2080,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:\nDr. Guevara",
+          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar nasofibroscopía Preparación EUNACOM"
+              "text": "Solicitar nasofibroscopía"
             },
             {
               "id": "B",
@@ -2104,7 +2104,7 @@
             }
           ],
           "respuestaCorrecta": "A",
-          "explicacion": "La alternativa correcta es la A: **Solicitar nasofibroscopía Preparación EUNACOM**.\n\n**¿Por qué?**\n\nLa pregunta nos presenta un adulto con hipoacusia de conducción unilateral (izquierda) y una curva timpanométrica tipo B (plana). Una curva tipo B generalmente indica la presencia de líquido en el oído medio, típicamente asociado a una otitis media con efusión (OME). Sin embargo, en un adulto, la causa más común de OME es la obstrucción de la trompa de Eustaquio. Esta obstrucción en adultos debe ser investigada con mayor profundidad, ya que podría estar causada por patología nasofaríngea, como un tumor (ej. carcinoma nasofaríngeo) que impide la correcta ventilación del oído medio.\n\nLa nasofibroscopía permite visualizar directamente la nasofaringe y la trompa de Eustaquio, descartando causas obstructivas como tumores o inflamación significativa. La visualización directa es crucial para un diagnóstico preciso y un manejo adecuado. La guía GES de Otitis Media en menores de 15 años no aborda esta situación en adultos, por lo que no podemos basarnos en ella, pero el principio de descartar patología neoplásica en adultos con OME unilateral es fundamental.",
+          "explicacion": "La alternativa correcta es la A: **Solicitar nasofibroscopía**.\n\n**¿Por qué?**\n\nLa pregunta nos presenta un adulto con hipoacusia de conducción unilateral (izquierda) y una curva timpanométrica tipo B (plana). Una curva tipo B generalmente indica la presencia de líquido en el oído medio, típicamente asociado a una otitis media con efusión (OME). Sin embargo, en un adulto, la causa más común de OME es la obstrucción de la trompa de Eustaquio. Esta obstrucción en adultos debe ser investigada con mayor profundidad, ya que podría estar causada por patología nasofaríngea, como un tumor (ej. carcinoma nasofaríngeo) que impide la correcta ventilación del oído medio.\n\nLa nasofibroscopía permite visualizar directamente la nasofaringe y la trompa de Eustaquio, descartando causas obstructivas como tumores o inflamación significativa. La visualización directa es crucial para un diagnóstico preciso y un manejo adecuado. La guía GES de Otitis Media en menores de 15 años no aborda esta situación en adultos, por lo que no podemos basarnos en ella, pero el principio de descartar patología neoplásica en adultos con OME unilateral es fundamental.",
           "explicacionIncorrectas": "*   **B: Iniciar antibióticos:** Los antibióticos no son la primera línea de tratamiento en otitis media con efusión (OME) en adultos. Primero, necesitamos determinar la causa de la efusión. Los antibióticos sólo se justificarían si hubiera signos de infección activa (fiebre, otalgia severa, malestar general), lo cual no se menciona en el enunciado. Además, incluso en ese caso, la causa subyacente de la obstrucción tubárica debería investigarse.\n*   **C: Iniciar corticoides:** Los corticoides podrían ser considerados para reducir la inflamación de la mucosa de la trompa de Eustaquio y favorecer su permeabilidad. Sin embargo, al igual que con los antibióticos, esto es un tratamiento sintomático y no aborda la posible causa subyacente. Utilizarlos sin descartar patología nasofaríngea podría enmascarar una causa más grave, como un tumor.\n*   **D: Indicar uso de audífonos:** Los audífonos son una opción para tratar la hipoacusia, pero no resuelven el problema de fondo. En este caso, la hipoacusia es de conducción y potencialmente reversible si se resuelve la causa de la obstrucción tubárica. Indicar audífonos sin investigar la causa sería un error.\n*   **E: Instalar tubos de ventilación (colleras):** Los tubos de ventilación se utilizan para ventilar el oído medio cuando la trompa de Eustaquio no funciona correctamente. Si bien podrían aliviar los síntomas a corto plazo, no tratan la causa de la obstrucción tubárica. Al igual que con las otras opciones, instalarlos sin investigar primero la causa podría ser perjudicial.",
           "codigoEunacom": "None. La lista provista es de dermatología.",
           "tags": "EUNACOM, Otorrinolaringología, Hipoacusia, Otitis Media con Efusión, Timpanometría, Nasofibroscopía, Trompa de Eustaquio, Carcinoma Nasofaríngeo",
@@ -2208,11 +2208,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?\nDr. Guevara",
+          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?",
           "opciones": [
             {
               "id": "A",
-              "text": "Menisco medial Preparación EUNACOM"
+              "text": "Menisco medial"
             },
             {
               "id": "B",
@@ -2368,7 +2368,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\nDr. Guevara\noídos. Su sospecha inicial será:\nPreparación EUNACOM",
+          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\noídos. Su sospecha inicial será:",
           "opciones": [
             {
               "id": "A",
@@ -2504,11 +2504,11 @@
             },
             {
               "id": "B",
-              "text": "Una Resonacia Nuclear del tobillo. Dr. Guevara"
+              "text": "Una Resonacia Nuclear del tobillo."
             },
             {
               "id": "C",
-              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional. Preparación EUNACOM"
+              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional."
             },
             {
               "id": "D",
@@ -3376,7 +3376,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nDr. Guevara\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nPreparación EUNACOM\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
+          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -3536,7 +3536,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Usted recibe a un niño en la urgencia porque se habría metido una pequeña\nDr. Guevara\npelotita de plástico en el oído izquierdo. A la otoscopía se observa el cuerpo\nPreparación EUNACOM\nextraño de cerca de 6mm de diámetro en el conducto auditivo externo. La\nconducta más adecuada es:",
+          "pregunta": "Usted recibe a un niño en la urgencia porque se habría metido una pequeña\npelotita de plástico en el oído izquierdo. A la otoscopía se observa el cuerpo\nextraño de cerca de 6mm de diámetro en el conducto auditivo externo. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -3676,7 +3676,7 @@
             },
             {
               "id": "C",
-              "text": "Retinopatía diabética – Agudeza visual mejora el mirar a través de un agujero Dr. Guevara estenopeico Preparación EUNACOM"
+              "text": "Retinopatía diabética – Agudeza visual mejora el mirar a través de un agujero estenopeico"
             },
             {
               "id": "D",
@@ -3808,11 +3808,11 @@
             },
             {
               "id": "D",
-              "text": "Compresión del tabique nasal Dr. Guevara"
+              "text": "Compresión del tabique nasal"
             },
             {
               "id": "E",
-              "text": "Drenaje quirúrgico de inmediato Preparación EUNACOM"
+              "text": "Drenaje quirúrgico de inmediato"
             }
           ],
           "respuestaCorrecta": "E",
@@ -4024,7 +4024,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "La asociación de ojo rojo profundo, efecto Tyndall y miosis es característico\nDr. Guevara\nde:\nPreparación EUNACOM",
+          "pregunta": "La asociación de ojo rojo profundo, efecto Tyndall y miosis es característico\nde:",
           "opciones": [
             {
               "id": "A",
@@ -4184,7 +4184,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un paciente de 50 años, constructor, consulta porque le cuesta oír lo que le\nDr. Guevara\nhablan. La otoscopía es normal, al igual que la impedanciometría. Sin embargo\nPreparación EUNACOM\nla audiometría muestra una hipoacusia sensorioneural con especial afectación\nde las frecuencias medias (relacionadas al habla). El diagnóstico más probable\nes:",
+          "pregunta": "Un paciente de 50 años, constructor, consulta porque le cuesta oír lo que le\nhablan. La otoscopía es normal, al igual que la impedanciometría. Sin embargo\nla audiometría muestra una hipoacusia sensorioneural con especial afectación\nde las frecuencias medias (relacionadas al habla). El diagnóstico más probable\nes:",
           "opciones": [
             {
               "id": "A",
@@ -4328,11 +4328,11 @@
             },
             {
               "id": "D",
-              "text": "Chalazión Dr. Guevara"
+              "text": "Chalazión"
             },
             {
               "id": "E",
-              "text": "Orzuelo Preparación EUNACOM"
+              "text": "Orzuelo"
             }
           ],
           "respuestaCorrecta": "B",
@@ -4484,11 +4484,11 @@
             },
             {
               "id": "C",
-              "text": "Queratitis punctata Dr. Guevara"
+              "text": "Queratitis punctata"
             },
             {
               "id": "D",
-              "text": "Miosis Preparación EUNACOM"
+              "text": "Miosis"
             },
             {
               "id": "E",
@@ -5320,7 +5320,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 16 años inicia tratamiento con indometacina por estar\ncursando con una pericarditis aguda, evolucionando con aparición de lesiones\ncutáneas eritematosas, dolorosas, consistentes en placas y algunas vesículas,\nque comprometen el 20% de la superficie cutánea. También presenta aparición\n\nde vesículas y úlceras en la mucosa oral y presenta hematuria en algunas\nDr. Guevara\noportunidades. El signo de Nicolsky es negativo. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 16 años inicia tratamiento con indometacina por estar\ncursando con una pericarditis aguda, evolucionando con aparición de lesiones\ncutáneas eritematosas, dolorosas, consistentes en placas y algunas vesículas,\nque comprometen el 20% de la superficie cutánea. También presenta aparición\n\nde vesículas y úlceras en la mucosa oral y presenta hematuria en algunas\noportunidades. El signo de Nicolsky es negativo. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -5460,11 +5460,11 @@
             },
             {
               "id": "C",
-              "text": "Dermatitis atópica Dr. Guevara"
+              "text": "Dermatitis atópica"
             },
             {
               "id": "D",
-              "text": "Rinitis alérgica Preparación EUNACOM"
+              "text": "Rinitis alérgica"
             },
             {
               "id": "E",
@@ -5612,11 +5612,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Virus Dr. Guevara"
+              "text": "Virus"
             },
             {
               "id": "B",
-              "text": "Neumococo Preparación EUNACOM"
+              "text": "Neumococo"
             },
             {
               "id": "C",
@@ -5632,8 +5632,8 @@
             }
           ],
           "respuestaCorrecta": "A",
-          "explicacion": "La alternativa correcta es la A (Virus Dr. Guevara).  Aunque el nombre del virus es genérico, la clave en este caso es la presencia de **vesículas en el paladar blando** junto con la odinofagia, coriza, tos seca y adenopatías cervicales. Esta combinación apunta fuertemente a una **faringoamigdalitis viral**, específicamente causada por un virus del grupo *Coxsackie*.  La presencia de vesículas en la orofaringe, especialmente en el paladar blando (herpangina), es muy sugestiva de *Coxsackie A*. Si bien otros virus pueden causar faringitis, la presencia de estas vesículas es el dato más discriminativo.  El estreptococo, por ejemplo, rara vez causa lesiones vesiculares.",
-          "explicacionIncorrectas": "*   **B: Neumococo Preparación EUNACOM:** *Streptococcus pneumoniae* (Neumococo) es una causa común de neumonía y otitis media, pero no es un agente etiológico frecuente de faringitis. Tampoco produce las vesículas características en el paladar blando.\n*   **C: Estreptococo betahemolítico, grupo A:** El *Streptococcus pyogenes* (Estreptococo betahemolítico del grupo A) es una causa importante de faringitis bacteriana, pero típicamente se presenta con exudado amigdalino, dolor de garganta intenso, fiebre, y sin coriza. Lo más importante, NO produce vesículas en el paladar blando. Además, la escasa tos seca es atípica de una infección bacteriana.\n*   **D: Moraxella catarrhalis:** *Moraxella catarrhalis* es una causa común de otitis media y sinusitis, especialmente en niños, y puede causar bronquitis en adultos con enfermedad pulmonar obstructiva crónica (EPOC). No es una causa común de faringitis, y definitivamente no produce vesículas en el paladar blando.\n*   **E: Bacterias anaerobias:** Las bacterias anaerobias rara vez causan faringitis aguda en pacientes inmunocompetentes. Se asocian más a infecciones profundas del cuello o abscesos periamigdalinos, condiciones que no se describen en el caso clínico.",
+          "explicacion": "La alternativa correcta es la A (Virus).  Aunque el nombre del virus es genérico, la clave en este caso es la presencia de **vesículas en el paladar blando** junto con la odinofagia, coriza, tos seca y adenopatías cervicales. Esta combinación apunta fuertemente a una **faringoamigdalitis viral**, específicamente causada por un virus del grupo *Coxsackie*.  La presencia de vesículas en la orofaringe, especialmente en el paladar blando (herpangina), es muy sugestiva de *Coxsackie A*. Si bien otros virus pueden causar faringitis, la presencia de estas vesículas es el dato más discriminativo.  El estreptococo, por ejemplo, rara vez causa lesiones vesiculares.",
+          "explicacionIncorrectas": "*   **B: Neumococo:** *Streptococcus pneumoniae* (Neumococo) es una causa común de neumonía y otitis media, pero no es un agente etiológico frecuente de faringitis. Tampoco produce las vesículas características en el paladar blando.\n*   **C: Estreptococo betahemolítico, grupo A:** El *Streptococcus pyogenes* (Estreptococo betahemolítico del grupo A) es una causa importante de faringitis bacteriana, pero típicamente se presenta con exudado amigdalino, dolor de garganta intenso, fiebre, y sin coriza. Lo más importante, NO produce vesículas en el paladar blando. Además, la escasa tos seca es atípica de una infección bacteriana.\n*   **D: Moraxella catarrhalis:** *Moraxella catarrhalis* es una causa común de otitis media y sinusitis, especialmente en niños, y puede causar bronquitis en adultos con enfermedad pulmonar obstructiva crónica (EPOC). No es una causa común de faringitis, y definitivamente no produce vesículas en el paladar blando.\n*   **E: Bacterias anaerobias:** Las bacterias anaerobias rara vez causan faringitis aguda en pacientes inmunocompetentes. Se asocian más a infecciones profundas del cuello o abscesos periamigdalinos, condiciones que no se describen en el caso clínico.",
           "codigoEunacom": "6.01.1.031 Verrugas, herpes simplex, herpes zoster, moluscos (Aunque no es ninguno de estos virus específicos, este código engloba las infecciones virales cutáneas más comunes)",
           "tags": "EUNACOM, pediatría, infectología, faringitis, amigdalitis, Coxsackie, herpangina, virus, adenopatías, odinofagia, vesículas",
           "videoRecomendado": "None"
@@ -5768,7 +5768,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "¿Cuál de los siguientes síntomas o signos puede encontrarse en una otitis\nDr. Guevara\nmedia aguda no complicada?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de los siguientes síntomas o signos puede encontrarse en una otitis\nmedia aguda no complicada?",
           "opciones": [
             {
               "id": "A",
@@ -6552,11 +6552,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una paciente de 55 años presenta disfonía de 5 días de duración, asociada a\nmalestar general, tos y aparición de adenopatías submandibulares y cervicales\n\nanteriores. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Una paciente de 55 años presenta disfonía de 5 días de duración, asociada a\nmalestar general, tos y aparición de adenopatías submandibulares y cervicales\n\nanteriores. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar antibióticos y solicitar baciloscopías de expectoración Preparación EUNACOM"
+              "text": "Iniciar antibióticos y solicitar baciloscopías de expectoración"
             },
             {
               "id": "B",
@@ -6712,7 +6712,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño se mete un poroto en el oído izquierdo, evolucionando con dolor e\nDr. Guevara\nhipoacusia. En la otoscopía se observa el poroto en el tercio medio del conducto\nPreparación EUNACOM\nauditivo externo. La conducta más adecuada es:",
+          "pregunta": "Un niño se mete un poroto en el oído izquierdo, evolucionando con dolor e\nhipoacusia. En la otoscopía se observa el poroto en el tercio medio del conducto\nauditivo externo. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6872,7 +6872,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un adulto mayor ha perdido lentamente la agudeza visual de ambos ojos,\nDr. Guevara\ndesde hace dos años, siendo mayor en el ojo derecho. No ha presentado dolor ni\nPreparación EUNACOM\notros síntomas. La oculomotilidad es normal, al igual que los reflejos\nfotomotores y corneales, con normalidad del rojo pupilar. El diagnóstico más\nprobable es:",
+          "pregunta": "Un adulto mayor ha perdido lentamente la agudeza visual de ambos ojos,\ndesde hace dos años, siendo mayor en el ojo derecho. No ha presentado dolor ni\notros síntomas. La oculomotilidad es normal, al igual que los reflejos\nfotomotores y corneales, con normalidad del rojo pupilar. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -7000,7 +7000,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un paciente de 50 años, diabético, pierde súbitamente la visión del ojo\nDr. Guevara\nizquierdo, pudiendo sólo diferenciar la presencia de luz y sombra en una zona\nPreparación EUNACOM\nperiférica del campo visual de dicho ojo. No presenta dolor y la oculomotilidad,\nasí como la inspección ocular externa es normal. Se aprecia pérdida del rojo\npupilar izquierdo El diagnóstico de sospecha es:",
+          "pregunta": "Un paciente de 50 años, diabético, pierde súbitamente la visión del ojo\nizquierdo, pudiendo sólo diferenciar la presencia de luz y sombra en una zona\nperiférica del campo visual de dicho ojo. No presenta dolor y la oculomotilidad,\nasí como la inspección ocular externa es normal. Se aprecia pérdida del rojo\npupilar izquierdo El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",
@@ -7204,11 +7204,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Laringitis crónica e iniciar antibióticos y solicitar baciloscopías de expectoración Dr. Guevara"
+              "text": "Laringitis crónica e iniciar antibióticos y solicitar baciloscopías de expectoración"
             },
             {
               "id": "B",
-              "text": "Cáncer de laringe y solicitar TAC de cuello Preparación EUNACOM"
+              "text": "Cáncer de laringe y solicitar TAC de cuello"
             },
             {
               "id": "C",
@@ -7360,7 +7360,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño se mete un poroto en la fosa nasal izquierda, evolucionando con\nDr. Guevara\nrinorrea purulenta de mal olor. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un niño se mete un poroto en la fosa nasal izquierda, evolucionando con\nrinorrea purulenta de mal olor. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -7504,11 +7504,11 @@
             },
             {
               "id": "D",
-              "text": "Glaucoma congénito Dr. Guevara"
+              "text": "Glaucoma congénito"
             },
             {
               "id": "E",
-              "text": "Atresia del conducto nasolagrimal Preparación EUNACOM"
+              "text": "Atresia del conducto nasolagrimal"
             }
           ],
           "respuestaCorrecta": "D",
@@ -7632,15 +7632,15 @@
             },
             {
               "id": "D",
-              "text": "La hipermetropía se trata usando lentes biconvexos Dr. Guevara"
+              "text": "La hipermetropía se trata usando lentes biconvexos"
             },
             {
               "id": "E",
-              "text": "El astigmatismo se trata usando lentes bicóncavos Preparación EUNACOM"
+              "text": "El astigmatismo se trata usando lentes bicóncavos"
             }
           ],
           "respuestaCorrecta": "D",
-          "explicacion": "La alternativa correcta es la **D: La hipermetropía se trata usando lentes biconvexos Dr. Guevara**. La hipermetropía es un defecto refractivo donde la imagen se enfoca detrás de la retina cuando el ojo está en reposo (sin acomodación). Para corregir esto, necesitamos una lente que converja los rayos de luz antes de que lleguen al ojo, lo que se logra con lentes **convexos** o **biconvexos**. Estas lentes aumentan el poder de refracción del ojo, permitiendo que la imagen se enfoque correctamente en la retina. Los lentes biconvexos son más gruesos en el centro y más delgados en los bordes.",
+          "explicacion": "La alternativa correcta es la **D: La hipermetropía se trata usando lentes biconvexos**. La hipermetropía es un defecto refractivo donde la imagen se enfoca detrás de la retina cuando el ojo está en reposo (sin acomodación). Para corregir esto, necesitamos una lente que converja los rayos de luz antes de que lleguen al ojo, lo que se logra con lentes **convexos** o **biconvexos**. Estas lentes aumentan el poder de refracción del ojo, permitiendo que la imagen se enfoque correctamente en la retina. Los lentes biconvexos son más gruesos en el centro y más delgados en los bordes.",
           "explicacionIncorrectas": "*   **A: El astigmatismo, a diferencia de otros vicios de refracción, NO mejora su agudeza visual, al mirar por un agujero estenopeico:** Esta afirmación es **incorrecta**. El agujero estenopeico reduce los rayos de luz periféricos que entran al ojo, disminuyendo las aberraciones ópticas causadas por el astigmatismo y mejorando temporalmente la agudeza visual. Esto ocurre porque el astigmatismo se debe a una curvatura irregular de la córnea o del cristalino, lo que hace que la luz se enfoque en múltiples puntos en lugar de uno solo. El agujero estenopeico ayuda a que la luz se enfoque más nítidamente.\n*   **B: La hipermetropía se caracteriza por la formación de la imagen por delante de la retina:** Esta afirmación es **incorrecta**. Como ya mencionamos, la hipermetropía se caracteriza por la formación de la imagen **detrás** de la retina. La miopía, por el contrario, se caracteriza por la formación de la imagen por delante de la retina.\n*   **C: La miopía se caracteriza por ojos de pequeño tamaño, por lo que tiene mayor riesgo de desarrollar glaucoma agudo, que la población general:** Esta afirmación es **incorrecta** por dos razones. Primero, la miopía generalmente se asocia con ojos de **mayor** tamaño (axial). Segundo, la miopía se asocia a un *menor* riesgo de glaucoma agudo de ángulo cerrado. Los ojos miopes tienen una cámara anterior más profunda, lo que hace menos probable el cierre angular que causa el glaucoma agudo.\n*   **E: El astigmatismo se trata usando lentes bicóncavos:** Esta afirmación es **incorrecta**. El astigmatismo se corrige con lentes **cilíndricos**, que tienen diferente poder de refracción en diferentes meridianos para compensar la curvatura irregular de la córnea o del cristalino. Las lentes bicóncavas se utilizan para corregir la miopía.",
           "codigoEunacom": "No existe un código EUNACOM directamente relacionado con errores de refracción como hipermetropía, miopía o astigmatismo. Los códigos disponibles se enfocan en patologías cutáneas.",
           "tags": "EUNACOM, oftalmología, hipermetropía, miopía, astigmatismo, refracción, lentes, biconvexo, cilindrico, agujero estenopeico",

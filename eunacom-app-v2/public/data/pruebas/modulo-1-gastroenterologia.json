@@ -120,11 +120,11 @@
             },
             {
               "id": "D",
-              "text": "Solicita colonoscopía y manejar segun hallazgos ­3/gastroenterologia/prueba­1­gastroenterologia/ 1/621/12/2016 Prueba 1 | Dr. Guevara"
+              "text": "Solicita colonoscopía y manejar segun hallazgos ­3/gastroenterologia/prueba­1­gastroenterologia/ 1/621/12/2016 Prueba 1 |"
             },
             {
               "id": "E",
-              "text": "Tranquilizar a la paciente y explicarle que es normal presentar diarrea al usar Dr. Guevara antibióticos de amplio espectro Preparación EUNACOM"
+              "text": "Tranquilizar a la paciente y explicarle que es normal presentar diarrea al usar antibióticos de amplio espectro"
             }
           ],
           "respuestaCorrecta": "C",
@@ -276,15 +276,15 @@
             },
             {
               "id": "C",
-              "text": "La presencia de adenopatías metastásicas ­3/gastroenterologia/prueba­1­gastroenterologia/ 2/621/12/2016 Prueba 1 | Dr. Guevara"
+              "text": "La presencia de adenopatías metastásicas ­3/gastroenterologia/prueba­1­gastroenterologia/ 2/621/12/2016 Prueba 1 |"
             },
             {
               "id": "D",
-              "text": "El grado de invasión transmural del tumor Dr. Guevara"
+              "text": "El grado de invasión transmural del tumor"
             },
             {
               "id": "E",
-              "text": "La presencia de anemia Preparación EUNACOM"
+              "text": "La presencia de anemia"
             }
           ],
           "respuestaCorrecta": "D",
@@ -404,15 +404,15 @@
             },
             {
               "id": "C",
-              "text": "Enfermedad inflamatoria intestinal y colonoscopia ­3/gastroenterologia/prueba­1­gastroenterologia/ 3/621/12/2016 Prueba 1 | Dr. Guevara"
+              "text": "Enfermedad inflamatoria intestinal y colonoscopia ­3/gastroenterologia/prueba­1­gastroenterologia/ 3/621/12/2016 Prueba 1 |"
             },
             {
               "id": "D",
-              "text": "Divertículo de Meckel y gammagrafía con 99Tc pertecnetato Dr. Guevara"
+              "text": "Divertículo de Meckel y gammagrafía con 99Tc pertecnetato"
             },
             {
               "id": "E",
-              "text": "Pólipo colorectal y rectoscopia Preparación EUNACOM"
+              "text": "Pólipo colorectal y rectoscopia"
             }
           ],
           "respuestaCorrecta": "C",
@@ -520,15 +520,15 @@
         },
         {
           "numero": 17,
-          "pregunta": "Paciente de sexo femenino, de 45 años, inicia dolor en Hipocondrio derecho,\nmuy intenso, asociado a fiebre de un día de evolución. La analítica sanguínea\nmuestra Hcto: 42%, G. Blancos: 15.200, GOT: 55, GPT: 48, Bili: 1,7, amilasa\nnormal. La ecografía abdominal muestra vesícula biliar distendida con paredes\nengrosadas, barro biliar y cálculo de 12 mm de diámetro, impactado en el\nbacinete. El tratamiento de elección es:\n­3/gastroenterologia/prueba­1­gastroenterologia/ 4/621/12/2016 Prueba 1 | Dr. Guevara",
+          "pregunta": "Paciente de sexo femenino, de 45 años, inicia dolor en Hipocondrio derecho,\nmuy intenso, asociado a fiebre de un día de evolución. La analítica sanguínea\nmuestra Hcto: 42%, G. Blancos: 15.200, GOT: 55, GPT: 48, Bili: 1,7, amilasa\nnormal. La ecografía abdominal muestra vesícula biliar distendida con paredes\nengrosadas, barro biliar y cálculo de 12 mm de diámetro, impactado en el\nbacinete. El tratamiento de elección es:\n­3/gastroenterologia/prueba­1­gastroenterologia/ 4/621/12/2016 Prueba 1 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Colecistectomía laparoscópica de urgencia Dr. Guevara"
+              "text": "Colecistectomía laparoscópica de urgencia"
             },
             {
               "id": "B",
-              "text": "Tratamiento antibiótico y colecistectomía en frío en 10 días Preparación EUNACOM"
+              "text": "Tratamiento antibiótico y colecistectomía en frío en 10 días"
             },
             {
               "id": "C",
@@ -636,7 +636,7 @@
             },
             {
               "id": "E",
-              "text": "Omeprazol, bismuto coloidal y amoxicilina Respuestas: Prueba número 1 Digestivo Preguntas Respuestas 1 B 2 D 3 D 4 C ­3/gastroenterologia/prueba­1­gastroenterologia/ 5/621/12/2016 Prueba 1 | Dr. Guevara 5 C Dr. Guevara 6 E Preparación EUNACOM 7 C 8 A 9 D 10 A 11 C 12 B 13 C 14 A 15 E 16 D 17 A 18 E 19 C 20 A Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­1­gastroenterologia/ 6/6"
+              "text": "Omeprazol, bismuto coloidal y amoxicilina Respuestas: Prueba número 1 Digestivo Preguntas Respuestas 1 B 2 D 3 D 4 C ­3/gastroenterologia/prueba­1­gastroenterologia/ 5/621/12/2016 Prueba 1 | 5 C 6 E 7 C 8 A 9 D 10 A 11 C 12 B 13 C 14 A 15 E 16 D 17 A 18 E 19 C 20 A"
             }
           ],
           "respuestaCorrecta": "A",
@@ -772,7 +772,7 @@
             },
             {
               "id": "E",
-              "text": "Tranquilizar a la madre y explicarle los signos de alarma para reconsultar ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 1/721/12/2016 Prueba 2 | Dr. Guevara"
+              "text": "Tranquilizar a la madre y explicarle los signos de alarma para reconsultar ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 1/721/12/2016 Prueba 2 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -784,7 +784,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Paciente de 29 años con datos clínicos y serológicos de hepatitis crónica, con\nDr. Guevara\nsiguientes los datos analíticos: GOT y GPT dos veces por encima del límite alto\nPreparación EUNACOM\nde la normalidad, bilirrubina 0,2 mg/dL; serología virus de la hepatitis B: HBsAg\n(-), HBsAc (+), HBcAc (+). Anticuerpos anti virus C (+); AMA (-); ANCA (-); ANA (-).\n¿Cuál es, entre las siguientes, la causa más probable de la hepatitis crónica?",
+          "pregunta": "Paciente de 29 años con datos clínicos y serológicos de hepatitis crónica, con\nsiguientes los datos analíticos: GOT y GPT dos veces por encima del límite alto\nde la normalidad, bilirrubina 0,2 mg/dL; serología virus de la hepatitis B: HBsAg\n(-), HBsAc (+), HBcAc (+). Anticuerpos anti virus C (+); AMA (-); ANCA (-); ANA (-).\n¿Cuál es, entre las siguientes, la causa más probable de la hepatitis crónica?",
           "opciones": [
             {
               "id": "A",
@@ -900,7 +900,7 @@
             },
             {
               "id": "E",
-              "text": "Cirrosis biliar primaria y anticuerpos antimitocondriales ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 2/721/12/2016 Prueba 2 | Dr. Guevara"
+              "text": "Cirrosis biliar primaria y anticuerpos antimitocondriales ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 2/721/12/2016 Prueba 2 |"
             }
           ],
           "respuestaCorrecta": "E",
@@ -912,7 +912,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Paciente de 18 años consulta por ictericia fluctuante, especialmente cuando\nDr. Guevara\nduerme poco y cuando consume bebidas alcohólicas. No ha presentado acolia,\nPreparación EUNACOM\ncoluria ni otros síntomas. El examen físico muestra escleras con tinte\nsubictérico, sin otras alteraciones. Las pruebas hepáticas resultan normales,\nexcepto por hipernilirrubinemia de 2,2 mg/dl, de predominio indirecto. La\nconducta más adecuada es:",
+          "pregunta": "Paciente de 18 años consulta por ictericia fluctuante, especialmente cuando\nduerme poco y cuando consume bebidas alcohólicas. No ha presentado acolia,\ncoluria ni otros síntomas. El examen físico muestra escleras con tinte\nsubictérico, sin otras alteraciones. Las pruebas hepáticas resultan normales,\nexcepto por hipernilirrubinemia de 2,2 mg/dl, de predominio indirecto. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -1012,15 +1012,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Tromboembolismo pulmonar y solicitar angioTAC de tórax ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 3/721/12/2016 Prueba 2 | Dr. Guevara"
+              "text": "Tromboembolismo pulmonar y solicitar angioTAC de tórax ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 3/721/12/2016 Prueba 2 |"
             },
             {
               "id": "B",
-              "text": "Neumonía y administrar antibióticos Dr. Guevara"
+              "text": "Neumonía y administrar antibióticos"
             },
             {
               "id": "C",
-              "text": "Neumotórax hipertensivo e instalar toracostomía Preparación EUNACOM"
+              "text": "Neumotórax hipertensivo e instalar toracostomía"
             },
             {
               "id": "D",
@@ -1136,15 +1136,15 @@
         },
         {
           "numero": 16,
-          "pregunta": "Paciente de 30 años, portador de úlcera gástrica por uso de AINEs, consulta\npor exacerbación de sus síntomas dolorosos. Desde hace 3 horas el dolor se\nhace mucho más intenso, irradiándose a dorso y se asocia a hipotensión. Al\nexamen físico destaca abdomen en tabla, muy doloroso, con Blumber (+) y\nabolición de los ruidos intestinales. ¿Qué examen debe solicitarse como\nprimera aproximación diagnóstica?\n­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 4/721/12/2016 Prueba 2 | Dr. Guevara",
+          "pregunta": "Paciente de 30 años, portador de úlcera gástrica por uso de AINEs, consulta\npor exacerbación de sus síntomas dolorosos. Desde hace 3 horas el dolor se\nhace mucho más intenso, irradiándose a dorso y se asocia a hipotensión. Al\nexamen físico destaca abdomen en tabla, muy doloroso, con Blumber (+) y\nabolición de los ruidos intestinales. ¿Qué examen debe solicitarse como\nprimera aproximación diagnóstica?\n­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 4/721/12/2016 Prueba 2 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Ecografía abdominal Dr. Guevara"
+              "text": "Ecografía abdominal"
             },
             {
               "id": "B",
-              "text": "TAC de abdomen y pelvis Preparación EUNACOM"
+              "text": "TAC de abdomen y pelvis"
             },
             {
               "id": "C",
@@ -1276,15 +1276,15 @@
             },
             {
               "id": "C",
-              "text": "Neumonía neumocócica ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 5/721/12/2016 Prueba 2 | Dr. Guevara"
+              "text": "Neumonía neumocócica ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 5/721/12/2016 Prueba 2 |"
             },
             {
               "id": "D",
-              "text": "Influenza Dr. Guevara"
+              "text": "Influenza"
             },
             {
               "id": "E",
-              "text": "Neumonía por Mycoplasma Preparación EUNACOM Respuestas: Prueba 2 DIGESTIVO + RESPIRATORIO Preguntas Respuestas 1 C 2 D 3 C 4 D 5 B 6 B 7 C 8 E 9 D 10 E 11 C 12 D 13 C 14 A 15 E 16 D 17 A 18 D 19 C 20 D ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 6/721/12/2016 Prueba 2 | Dr. Guevara Dr. Guevara Preparación EUNACOM Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 7/7"
+              "text": "Neumonía por Mycoplasma Respuestas: Prueba 2 DIGESTIVO + RESPIRATORIO Preguntas Respuestas 1 C 2 D 3 C 4 D 5 B 6 B 7 C 8 E 9 D 10 E 11 C 12 D 13 C 14 A 15 E 16 D 17 A 18 D 19 C 20 D ­3/gastroenterologia/prueba­2­gastroenterologia­respiratorio/ 6/721/12/2016 Prueba 2 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -1404,15 +1404,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Hiponatremia ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 1/721/12/2016 Prueba 3 | Dr. Guevara"
+              "text": "Hiponatremia ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 1/721/12/2016 Prueba 3 |"
             },
             {
               "id": "B",
-              "text": "Hipokalemia Dr. Guevara"
+              "text": "Hipokalemia"
             },
             {
               "id": "C",
-              "text": "Hipercalcemia Preparación EUNACOM"
+              "text": "Hipercalcemia"
             },
             {
               "id": "D",
@@ -1548,7 +1548,7 @@
             },
             {
               "id": "E",
-              "text": "Gentamicina, nitrofurantoina o amoxicilina más ácido clavulánico ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 2/721/12/2016 Prueba 3 | Dr. Guevara"
+              "text": "Gentamicina, nitrofurantoina o amoxicilina más ácido clavulánico ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 2/721/12/2016 Prueba 3 |"
             }
           ],
           "respuestaCorrecta": "B",
@@ -1560,7 +1560,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente de 45 años consulta por dolor abdominal intenso, asociado a\nDr. Guevara\nvómitos. Al examen físico se observa en buenas condiciones generales,\nPreparación EUNACOM\nhidratado y bien perfundido, con actitud de dolor. El abdomen es blando y\ndepresible, pero muy doloroso, especialmente a la palpación epigástrica. Se\nsolicitan exámenes que demuestran, hematocrito: 39%, blancos: 15.000,\nplaquetas: 250.000, VHS: 60 mm/h, bilirrubina: 1,5, mg/dl, GOT: 40, GPT: 44,\nfosfatasas alcalinas: 160, amilasa: 456, lipasa: 551, sodio: 133, cloro: 100, potasio:\n4,3, BUN: 26 y creatinina: 1,2. La ecografía abdominal sólo demuestra colelitiasis\nmúltiple, con 4 cálculos de tamaño menor a 6mm. La conducta más adecuada\nes:",
+          "pregunta": "Un paciente de 45 años consulta por dolor abdominal intenso, asociado a\nvómitos. Al examen físico se observa en buenas condiciones generales,\nhidratado y bien perfundido, con actitud de dolor. El abdomen es blando y\ndepresible, pero muy doloroso, especialmente a la palpación epigástrica. Se\nsolicitan exámenes que demuestran, hematocrito: 39%, blancos: 15.000,\nplaquetas: 250.000, VHS: 60 mm/h, bilirrubina: 1,5, mg/dl, GOT: 40, GPT: 44,\nfosfatasas alcalinas: 160, amilasa: 456, lipasa: 551, sodio: 133, cloro: 100, potasio:\n4,3, BUN: 26 y creatinina: 1,2. La ecografía abdominal sólo demuestra colelitiasis\nmúltiple, con 4 cálculos de tamaño menor a 6mm. La conducta más adecuada\nes:",
           "opciones": [
             {
               "id": "A",
@@ -1668,15 +1668,15 @@
             },
             {
               "id": "C",
-              "text": "pH: 7,16; pCO2: 67 mmHg: HCO3: 26 mEq/l ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 3/721/12/2016 Prueba 3 | Dr. Guevara"
+              "text": "pH: 7,16; pCO2: 67 mmHg: HCO3: 26 mEq/l ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 3/721/12/2016 Prueba 3 |"
             },
             {
               "id": "D",
-              "text": "pH: 7,32; pCO2: 63 mmHg: HCO3: 29 mEq/l Dr. Guevara"
+              "text": "pH: 7,32; pCO2: 63 mmHg: HCO3: 29 mEq/l"
             },
             {
               "id": "E",
-              "text": "pH: 7,46; pCO2: 48 mmHg: HCO3: 32 mEq/l Preparación EUNACOM"
+              "text": "pH: 7,46; pCO2: 48 mmHg: HCO3: 32 mEq/l"
             }
           ],
           "respuestaCorrecta": "A",
@@ -1796,15 +1796,15 @@
             },
             {
               "id": "C",
-              "text": "Agregar un diurético de asa ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 4/721/12/2016 Prueba 3 | Dr. Guevara"
+              "text": "Agregar un diurético de asa ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 4/721/12/2016 Prueba 3 |"
             },
             {
               "id": "D",
-              "text": "Administrar suero hipertónico por vía endovenosa Dr. Guevara"
+              "text": "Administrar suero hipertónico por vía endovenosa"
             },
             {
               "id": "E",
-              "text": "Hemodiálisis Preparación EUNACOM"
+              "text": "Hemodiálisis"
             }
           ],
           "respuestaCorrecta": "A",
@@ -1924,15 +1924,15 @@
             },
             {
               "id": "C",
-              "text": "Realizar ABC y solicitar un TAC de cerebro ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 5/721/12/2016 Prueba 3 | Dr. Guevara"
+              "text": "Realizar ABC y solicitar un TAC de cerebro ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 5/721/12/2016 Prueba 3 |"
             },
             {
               "id": "D",
-              "text": "Realizar ABC y realizar hemodiálisis de urgencia Dr. Guevara"
+              "text": "Realizar ABC y realizar hemodiálisis de urgencia"
             },
             {
               "id": "E",
-              "text": "Realizar ABC y administrar un bifosfonato endovenoso Preparación EUNACOM Respuestas: Prueba 3 GASTROENTEROLOGÍA + NEFROLOGÍA Preguntas Respuestas 1 D 2 C 3 C 4 C 5 B 6 C 7 D 8 B 9 C 10 C 11 A 12 A 13 A 14 A 15 E 16 A 17 A 18 D 19 D 20 A ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 6/721/12/2016 Prueba 3 | Dr. Guevara Dr. Guevara Preparación EUNACOM Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 7/7"
+              "text": "Realizar ABC y administrar un bifosfonato endovenoso Respuestas: Prueba 3 GASTROENTEROLOGÍA + NEFROLOGÍA Preguntas Respuestas 1 D 2 C 3 C 4 C 5 B 6 C 7 D 8 B 9 C 10 C 11 A 12 A 13 A 14 A 15 E 16 A 17 A 18 D 19 D 20 A ­3/gastroenterologia/prueba­3­gastroenterologia­nefrologia/ 6/721/12/2016 Prueba 3 |"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2048,11 +2048,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea, de 24 horas de evolución,\nasociada a dolor abdominal tipo cólico y fiebre hasta 38°C. Su esposa tiene\nsíntomas similares, pero menos intensos. Al examen se aprecia en buenas\ncondiciones generales, con signos vitales normales, hidratado. El abdomen se\npalpa blando, depresible, con aumento de los ruidos hidroaéreos. La conducta\n­3/gastroenterologia/prueba­4­gastroenterologia/ 1/621/12/2016 Prueba 4 | Dr. Guevara\nmás adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea, de 24 horas de evolución,\nasociada a dolor abdominal tipo cólico y fiebre hasta 38°C. Su esposa tiene\nsíntomas similares, pero menos intensos. Al examen se aprecia en buenas\ncondiciones generales, con signos vitales normales, hidratado. El abdomen se\npalpa blando, depresible, con aumento de los ruidos hidroaéreos. La conducta\n­3/gastroenterologia/prueba­4­gastroenterologia/ 1/621/12/2016 Prueba 4 |\nmás adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar sales de rehidratación oral y antibióticos Preparación EUNACOM"
+              "text": "Iniciar sales de rehidratación oral y antibióticos"
             },
             {
               "id": "B",
@@ -2164,7 +2164,7 @@
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente ­3/gastroenterologia/prueba­4­gastroenterologia/ 2/621/12/2016 Prueba 4 | Dr. Guevara"
+              "text": "Resolver quirúrgicamente ­3/gastroenterologia/prueba­4­gastroenterologia/ 2/621/12/2016 Prueba 4 |"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2176,11 +2176,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Respecto a los divertículos esofágicos es FALSO que:\nDr. Guevara",
+          "pregunta": "Respecto a los divertículos esofágicos es FALSO que:",
           "opciones": [
             {
               "id": "A",
-              "text": "El divertículo de Zenker se produce por un mecanismo de pulsión Preparación EUNACOM"
+              "text": "El divertículo de Zenker se produce por un mecanismo de pulsión"
             },
             {
               "id": "B",
@@ -2308,15 +2308,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Acelerar la cicatrización ­3/gastroenterologia/prueba­4­gastroenterologia/ 3/621/12/2016 Prueba 4 | Dr. Guevara"
+              "text": "Acelerar la cicatrización ­3/gastroenterologia/prueba­4­gastroenterologia/ 3/621/12/2016 Prueba 4 |"
             },
             {
               "id": "B",
-              "text": "Disminuir el riesgo de cáncer gástrico Dr. Guevara"
+              "text": "Disminuir el riesgo de cáncer gástrico"
             },
             {
               "id": "C",
-              "text": "Disminuir las recurrencias de la úlcera Preparación EUNACOM"
+              "text": "Disminuir las recurrencias de la úlcera"
             },
             {
               "id": "D",
@@ -2452,7 +2452,7 @@
             },
             {
               "id": "E",
-              "text": "Infección ­3/gastroenterologia/prueba­4­gastroenterologia/ 4/621/12/2016 Prueba 4 | Dr. Guevara"
+              "text": "Infección ­3/gastroenterologia/prueba­4­gastroenterologia/ 4/621/12/2016 Prueba 4 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -2464,7 +2464,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un paciente de 60 años, sin antecedentes de importancia, presenta cuadro\nDr. Guevara\nde vómitos postprandiales abundantes, que suceden algunos minutos después\nPreparación EUNACOM\nde ingerir alimentos. Refiere que los síntomas iniciaron hace 4 meses, pero que\nse han vuelto cada vez más intensos, vomitando incluso luego de ingerir\npequeñas cantidades de alientos. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 60 años, sin antecedentes de importancia, presenta cuadro\nde vómitos postprandiales abundantes, que suceden algunos minutos después\nde ingerir alimentos. Refiere que los síntomas iniciaron hace 4 meses, pero que\nse han vuelto cada vez más intensos, vomitando incluso luego de ingerir\npequeñas cantidades de alientos. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2580,7 +2580,7 @@
             },
             {
               "id": "E",
-              "text": "Gastroenteritis aguda Respuestas: Prueba 4 GASTROENTEROLOGÍA ­3/gastroenterologia/prueba­4­gastroenterologia/ 5/621/12/2016 Prueba 4 | Dr. Guevara Preguntas Respuestas Dr. Guevara P1reparación EUNACOM E 2 D 3 B 4 B 5 A 6 A 7 A 8 C 9 B 10 A 11 E 12 C 13 B 14 D 15 D 16 D 17 C 18 C 19 C 20 D Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­4­gastroenterologia/ 6/6"
+              "text": "Gastroenteritis aguda Respuestas: Prueba 4 GASTROENTEROLOGÍA ­3/gastroenterologia/prueba­4­gastroenterologia/ 5/621/12/2016 Prueba 4 | Preguntas Respuestas P1reparación EUNACOM E 2 D 3 B 4 B 5 A 6 A 7 A 8 C 9 B 10 A 11 E 12 C 13 B 14 D 15 D 16 D 17 C 18 C 19 C 20 D"
             }
           ],
           "respuestaCorrecta": "D",
@@ -2700,15 +2700,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Cloxacilina ­3/gastroenterologia/prueba­5­gastroenterologia/ 1/721/12/2016 Prueba 5 | Dr. Guevara"
+              "text": "Cloxacilina ­3/gastroenterologia/prueba­5­gastroenterologia/ 1/721/12/2016 Prueba 5 |"
             },
             {
               "id": "B",
-              "text": "Ceftriaxona Dr. Guevara"
+              "text": "Ceftriaxona"
             },
             {
               "id": "C",
-              "text": "Gentamicina Preparación EUNACOM"
+              "text": "Gentamicina"
             },
             {
               "id": "D",
@@ -2824,15 +2824,15 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 55 años, con daño hepático crónico por consumo de alcohol,\nse realiza endoscopía como examen de control, que demuestra presencia de\nvárices esofágicas grandes, con signos rojos. La conducta más adecuada es:\n­3/gastroenterologia/prueba­5­gastroenterologia/ 2/721/12/2016 Prueba 5 | Dr. Guevara",
+          "pregunta": "Un paciente de 55 años, con daño hepático crónico por consumo de alcohol,\nse realiza endoscopía como examen de control, que demuestra presencia de\nvárices esofágicas grandes, con signos rojos. La conducta más adecuada es:\n­3/gastroenterologia/prueba­5­gastroenterologia/ 2/721/12/2016 Prueba 5 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar terlipresina Dr. Guevara"
+              "text": "Iniciar terlipresina"
             },
             {
               "id": "B",
-              "text": "Instalar un TIPS Preparación EUNACOM"
+              "text": "Instalar un TIPS"
             },
             {
               "id": "C",
@@ -2960,15 +2960,15 @@
             },
             {
               "id": "B",
-              "text": "Solicitar serologías virales ­3/gastroenterologia/prueba­5­gastroenterologia/ 3/721/12/2016 Prueba 5 | Dr. Guevara"
+              "text": "Solicitar serologías virales ­3/gastroenterologia/prueba­5­gastroenterologia/ 3/721/12/2016 Prueba 5 |"
             },
             {
               "id": "C",
-              "text": "Solicitar ANA, AMA, ANCA y ASMA Dr. Guevara"
+              "text": "Solicitar ANA, AMA, ANCA y ASMA"
             },
             {
               "id": "D",
-              "text": "Solicitar ecografía abdominal Preparación EUNACOM"
+              "text": "Solicitar ecografía abdominal"
             },
             {
               "id": "E",
@@ -3068,7 +3068,7 @@
             },
             {
               "id": "E",
-              "text": "Colédocolitiasis ­3/gastroenterologia/prueba­5­gastroenterologia/ 4/721/12/2016 Prueba 5 | Dr. Guevara"
+              "text": "Colédocolitiasis ­3/gastroenterologia/prueba­5­gastroenterologia/ 4/721/12/2016 Prueba 5 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -3080,7 +3080,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "El hepatocarcinoma se asocia a cirrosis hepática de distintas etiologías.\nDr. Guevara\n¿Qué marcador serológico se suele elevar en los pacientes con este tipo de\nPreparación EUNACOM\ntumor?",
+          "pregunta": "El hepatocarcinoma se asocia a cirrosis hepática de distintas etiologías.\n¿Qué marcador serológico se suele elevar en los pacientes con este tipo de\ntumor?",
           "opciones": [
             {
               "id": "A",
@@ -3216,19 +3216,19 @@
             },
             {
               "id": "B",
-              "text": "Cefadroxilo ­3/gastroenterologia/prueba­5­gastroenterologia/ 5/721/12/2016 Prueba 5 | Dr. Guevara"
+              "text": "Cefadroxilo ­3/gastroenterologia/prueba­5­gastroenterologia/ 5/721/12/2016 Prueba 5 |"
             },
             {
               "id": "C",
-              "text": "Amoxicilina más ácido clavulánico Dr. Guevara"
+              "text": "Amoxicilina más ácido clavulánico"
             },
             {
               "id": "D",
-              "text": "Clindamicina Preparación EUNACOM"
+              "text": "Clindamicina"
             },
             {
               "id": "E",
-              "text": "Metronidazol Respuestas: Prueba número 5 GASTROENTEROLOGÍA 2 Preguntas Respuestas 1 D 2 B 3 C 4 A 5 C 6 E 7 C 8 C 9 E 10 B 11 D 12 A 13 A 14 D 15 D 16 D 17 E 18 A 19 C 20 B ­3/gastroenterologia/prueba­5­gastroenterologia/ 6/721/12/2016 Prueba 5 | Dr. Guevara Dr. Guevara Preparación EUNACOM Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­5­gastroenterologia/ 7/7"
+              "text": "Metronidazol Respuestas: Prueba número 5 GASTROENTEROLOGÍA 2 Preguntas Respuestas 1 D 2 B 3 C 4 A 5 C 6 E 7 C 8 C 9 E 10 B 11 D 12 A 13 A 14 D 15 D 16 D 17 E 18 A 19 C 20 B ­3/gastroenterologia/prueba­5­gastroenterologia/ 6/721/12/2016 Prueba 5 |"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3360,11 +3360,11 @@
             },
             {
               "id": "D",
-              "text": "La determinación del antígeno prostático específico (PSA) es fundamental para el ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 1/621/12/2016 Prueba 6 | Dr. Guevara diagnóstico. Dr. Guevara"
+              "text": "La determinación del antígeno prostático específico (PSA) es fundamental para el ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 1/621/12/2016 Prueba 6 | diagnóstico."
             },
             {
               "id": "E",
-              "text": "Hay que iniciar ya tratamiento con calcitonina y calcio. Preparación EUNACOM"
+              "text": "Hay que iniciar ya tratamiento con calcitonina y calcio."
             }
           ],
           "respuestaCorrecta": "C",
@@ -3516,15 +3516,15 @@
             },
             {
               "id": "C",
-              "text": "Leucemia aguda ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 2/621/12/2016 Prueba 6 | Dr. Guevara"
+              "text": "Leucemia aguda ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 2/621/12/2016 Prueba 6 |"
             },
             {
               "id": "D",
-              "text": "Linfoma Dr. Guevara"
+              "text": "Linfoma"
             },
             {
               "id": "E",
-              "text": "Enfermedad por arañazo de gato Preparación EUNACOM"
+              "text": "Enfermedad por arañazo de gato"
             }
           ],
           "respuestaCorrecta": "D",
@@ -3636,15 +3636,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Ascitis. ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 3/621/12/2016 Prueba 6 | Dr. Guevara"
+              "text": "Ascitis. ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 3/621/12/2016 Prueba 6 |"
             },
             {
               "id": "B",
-              "text": "Perforación intestinal. Dr. Guevara"
+              "text": "Perforación intestinal."
             },
             {
               "id": "C",
-              "text": "Peritonitis. Preparación EUNACOM"
+              "text": "Peritonitis."
             },
             {
               "id": "D",
@@ -3780,7 +3780,7 @@
             },
             {
               "id": "E",
-              "text": "El HNPCC puede presentar pólipos de colon, pero éstos son mucho menos abundantes que en la poliposis adenomatosa familiar ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 4/621/12/2016 Prueba 6 | Dr. Guevara"
+              "text": "El HNPCC puede presentar pólipos de colon, pero éstos son mucho menos abundantes que en la poliposis adenomatosa familiar ­3/gastroenterologia/prueba­6­gastroenterologia­hematologia­y­oncologia/ 4/621/12/2016 Prueba 6 |"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3792,7 +3792,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Una mujer en estudio por elevación de las transaminasas se realiza\nDr. Guevara\nserología para hepatitis virales y presenta VHBs-Ag (-), VHBs-Ac (+), VHBc-Ac\nPreparación EUNACOM\nIgM (-), VHBc-Ac IgG (+), VHC-Ac totales (-), VHA IgM (-). Se realizan las mismas\nprueba a su marido y resultan todas negativas. ¿Cuál es la conducta más\nadecuada para el marido?",
+          "pregunta": "Una mujer en estudio por elevación de las transaminasas se realiza\nserología para hepatitis virales y presenta VHBs-Ag (-), VHBs-Ac (+), VHBc-Ac\nIgM (-), VHBc-Ac IgG (+), VHC-Ac totales (-), VHA IgM (-). Se realizan las mismas\nprueba a su marido y resultan todas negativas. ¿Cuál es la conducta más\nadecuada para el marido?",
           "opciones": [
             {
               "id": "A",
@@ -3980,7 +3980,7 @@
             },
             {
               "id": "E",
-              "text": "Diverticulitis ­3/gastroenterologia/prueba­7­gastroenterologia/ 1/621/12/2016 Prueba 7 | Dr. Guevara"
+              "text": "Diverticulitis ­3/gastroenterologia/prueba­7­gastroenterologia/ 1/621/12/2016 Prueba 7 |"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3992,7 +3992,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 30 años, previamente sano, presenta dolor epigástrico\nDr. Guevara\nintenso, constante, irradiado al dorso y acompañado de vómitos alimentarios\nPreparación EUNACOM\nen varias oportunidades. Presenta FC: 97x’, t°: 36,9°C, PA: 120/80 mmHg. El\nexamen abdominal demuestra dolor a la palpación epigástrica, ruidos\nhidroaéreos presentes y ausencia de signos de irritación peritoneal. La\nconducta más adecuada es:",
+          "pregunta": "Un paciente de 30 años, previamente sano, presenta dolor epigástrico\nintenso, constante, irradiado al dorso y acompañado de vómitos alimentarios\nen varias oportunidades. Presenta FC: 97x’, t°: 36,9°C, PA: 120/80 mmHg. El\nexamen abdominal demuestra dolor a la palpación epigástrica, ruidos\nhidroaéreos presentes y ausencia de signos de irritación peritoneal. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4124,15 +4124,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar omeprazol ­3/gastroenterologia/prueba­7­gastroenterologia/ 2/621/12/2016 Prueba 7 | Dr. Guevara"
+              "text": "Iniciar omeprazol ­3/gastroenterologia/prueba­7­gastroenterologia/ 2/621/12/2016 Prueba 7 |"
             },
             {
               "id": "B",
-              "text": "Realizar tratamiento erradicador para Helicobacter pylori Dr. Guevara"
+              "text": "Realizar tratamiento erradicador para Helicobacter pylori"
             },
             {
               "id": "C",
-              "text": "Solicitar pH-metría esofágica de 24 horas Preparación EUNACOM"
+              "text": "Solicitar pH-metría esofágica de 24 horas"
             },
             {
               "id": "D",
@@ -4268,7 +4268,7 @@
             },
             {
               "id": "E",
-              "text": "Divertículos esofágicos ­3/gastroenterologia/prueba­7­gastroenterologia/ 3/621/12/2016 Prueba 7 | Dr. Guevara"
+              "text": "Divertículos esofágicos ­3/gastroenterologia/prueba­7­gastroenterologia/ 3/621/12/2016 Prueba 7 |"
             }
           ],
           "respuestaCorrecta": "C",
@@ -4280,7 +4280,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente cirrótico por consumo de alcohol ingresa por desorientación y\nDr. Guevara\nfiebre. Al examen se constata ascitis moderada, ictericia y asterixis. Se decide\nPreparación EUNACOM\nrealizar paracentesis diagnóstica, que da salida a líquido amarillo,\ntransparente, con recuento celular de 490 células por mm3, con 90%\npolimorfonuclear. La conducta más adecuada es:",
+          "pregunta": "Un paciente cirrótico por consumo de alcohol ingresa por desorientación y\nfiebre. Al examen se constata ascitis moderada, ictericia y asterixis. Se decide\nrealizar paracentesis diagnóstica, que da salida a líquido amarillo,\ntransparente, con recuento celular de 490 células por mm3, con 90%\npolimorfonuclear. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4388,15 +4388,15 @@
             },
             {
               "id": "C",
-              "text": "Iniciar clindamicina oral ­3/gastroenterologia/prueba­7­gastroenterologia/ 4/621/12/2016 Prueba 7 | Dr. Guevara"
+              "text": "Iniciar clindamicina oral ­3/gastroenterologia/prueba­7­gastroenterologia/ 4/621/12/2016 Prueba 7 |"
             },
             {
               "id": "D",
-              "text": "Reiniciar la amoxicilina, agregando ácido clavulánico Dr. Guevara"
+              "text": "Reiniciar la amoxicilina, agregando ácido clavulánico"
             },
             {
               "id": "E",
-              "text": "Iniciar rehidratación oral, sin necesidad de iniciar antibióticos Preparación EUNACOM"
+              "text": "Iniciar rehidratación oral, sin necesidad de iniciar antibióticos"
             }
           ],
           "respuestaCorrecta": "B",
@@ -4524,7 +4524,7 @@
             },
             {
               "id": "E",
-              "text": "La presencia de anemia Respuestas: Prueba 7 GASTROENTEROLOGÍA ­3/gastroenterologia/prueba­7­gastroenterologia/ 5/621/12/2016 Prueba 7 | Dr. Guevara Preguntas Respuestas Dr. Guevara 1 E Preparación EUNACOM 2 E 3 B 4 C 5 A 6 B 7 E 8 A 9 D 10 A 11 D 12 C 13 C 14 C 15 C 16 B 17 A 18 B 19 B 20 D Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­7­gastroenterologia/ 6/6"
+              "text": "La presencia de anemia Respuestas: Prueba 7 GASTROENTEROLOGÍA ­3/gastroenterologia/prueba­7­gastroenterologia/ 5/621/12/2016 Prueba 7 | Preguntas Respuestas 1 E 2 E 3 B 4 C 5 A 6 B 7 E 8 A 9 D 10 A 11 D 12 C 13 C 14 C 15 C 16 B 17 A 18 B 19 B 20 D"
             }
           ],
           "respuestaCorrecta": "D",
@@ -4640,11 +4640,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 25 años consulta por dolor abdominal y diarrea de 4 semanas\nde evolución, que en los últimos días se ha vuelto sanguinolenta. Al examen\nfísico presenta palidez y escaso dolor a la palpación abdominal, sin signos de\nirritación peritoneal y con ruidos hidroaéreos presentes. El diagnóstico más\n­3/gastroenterologia/prueba­8­gastroenterologia/ 1/621/12/2016 Prueba 8 | Dr. Guevara\nprobable es:\nDr. Guevara",
+          "pregunta": "Una mujer de 25 años consulta por dolor abdominal y diarrea de 4 semanas\nde evolución, que en los últimos días se ha vuelto sanguinolenta. Al examen\nfísico presenta palidez y escaso dolor a la palpación abdominal, sin signos de\nirritación peritoneal y con ruidos hidroaéreos presentes. El diagnóstico más\n­3/gastroenterologia/prueba­8­gastroenterologia/ 1/621/12/2016 Prueba 8 |\nprobable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Enfermedad celíaca Preparación EUNACOM"
+              "text": "Enfermedad celíaca"
             },
             {
               "id": "B",
@@ -4772,15 +4772,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar colonoscopía ­3/gastroenterologia/prueba­8­gastroenterologia/ 2/621/12/2016 Prueba 8 | Dr. Guevara"
+              "text": "Solicitar colonoscopía ­3/gastroenterologia/prueba­8­gastroenterologia/ 2/621/12/2016 Prueba 8 |"
             },
             {
               "id": "B",
-              "text": "Solicitar ecografía abdominal Dr. Guevara"
+              "text": "Solicitar ecografía abdominal"
             },
             {
               "id": "C",
-              "text": "Solicitar tomografía axial computada Preparación EUNACOM"
+              "text": "Solicitar tomografía axial computada"
             },
             {
               "id": "D",
@@ -4908,15 +4908,15 @@
             },
             {
               "id": "C",
-              "text": "Quiste simple ­3/gastroenterologia/prueba­8­gastroenterologia/ 3/621/12/2016 Prueba 8 | Dr. Guevara"
+              "text": "Quiste simple ­3/gastroenterologia/prueba­8­gastroenterologia/ 3/621/12/2016 Prueba 8 |"
             },
             {
               "id": "D",
-              "text": "Quiste hidatídico Dr. Guevara"
+              "text": "Quiste hidatídico"
             },
             {
               "id": "E",
-              "text": "Hemangioma Preparación EUNACOM"
+              "text": "Hemangioma"
             }
           ],
           "respuestaCorrecta": "B",
@@ -5060,15 +5060,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Consumo de AINES ­3/gastroenterologia/prueba­8­gastroenterologia/ 4/621/12/2016 Prueba 8 | Dr. Guevara"
+              "text": "Consumo de AINES ­3/gastroenterologia/prueba­8­gastroenterologia/ 4/621/12/2016 Prueba 8 |"
             },
             {
               "id": "B",
-              "text": "Helicobacter pylori Dr. Guevara"
+              "text": "Helicobacter pylori"
             },
             {
               "id": "C",
-              "text": "Gastrinoma Preparación EUNACOM"
+              "text": "Gastrinoma"
             },
             {
               "id": "D",
@@ -5172,7 +5172,7 @@
             },
             {
               "id": "E",
-              "text": "Dolor en hipocondrio derecho Respuestas: Prueba 8 GASTROENTEROLOGÍA Preguntas Respuestas 1 C 2 D 3 C ­3/gastroenterologia/prueba­8­gastroenterologia/ 5/621/12/2016 Prueba 8 | Dr. Guevara 4 B Dr. Guevara 5 A Preparación EUNACOM 6 E 7 C 8 C 9 B 10 D 11 A 12 B 13 C 14 D 15 A 16 D 17 B 18 C 19 B 20 D Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­8­gastroenterologia/ 6/6"
+              "text": "Dolor en hipocondrio derecho Respuestas: Prueba 8 GASTROENTEROLOGÍA Preguntas Respuestas 1 C 2 D 3 C ­3/gastroenterologia/prueba­8­gastroenterologia/ 5/621/12/2016 Prueba 8 | 4 B 5 A 6 E 7 C 8 C 9 B 10 D 11 A 12 B 13 C 14 D 15 A 16 D 17 B 18 C 19 B 20 D"
             }
           ],
           "respuestaCorrecta": "D",
@@ -5292,15 +5292,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "AMA, ANCA, ASMA y ANA ­3/gastroenterologia/prueba­9­gastroenterologia/ 1/621/12/2016 Prueba 9 | Dr. Guevara"
+              "text": "AMA, ANCA, ASMA y ANA ­3/gastroenterologia/prueba­9­gastroenterologia/ 1/621/12/2016 Prueba 9 |"
             },
             {
               "id": "B",
-              "text": "Anticuerpos totales contra VHC Dr. Guevara"
+              "text": "Anticuerpos totales contra VHC"
             },
             {
               "id": "C",
-              "text": "IgM VHA y antígeno de superficie VHB Preparación EUNACOM"
+              "text": "IgM VHA y antígeno de superficie VHB"
             },
             {
               "id": "D",
@@ -5452,15 +5452,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar omeprazol ­3/gastroenterologia/prueba­9­gastroenterologia/ 2/621/12/2016 Prueba 9 | Dr. Guevara"
+              "text": "Iniciar omeprazol ­3/gastroenterologia/prueba­9­gastroenterologia/ 2/621/12/2016 Prueba 9 |"
             },
             {
               "id": "B",
-              "text": "Observar evolución Dr. Guevara"
+              "text": "Observar evolución"
             },
             {
               "id": "C",
-              "text": "Solicitar TAC de abdomen y pelvis Preparación EUNACOM"
+              "text": "Solicitar TAC de abdomen y pelvis"
             },
             {
               "id": "D",
@@ -5608,7 +5608,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un paciente de 60 años refiere constipación de un año de evolución,\nasociado a dolor abdominal intermitente, que han aumentado de intensidad en\n­3/gastroenterologia/prueba­9­gastroenterologia/ 3/621/12/2016 Prueba 9 | Dr. Guevara\nel último mes. El examen físico no presenta alteraciones. La conducta más\nDr. Guevara\nadecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 60 años refiere constipación de un año de evolución,\nasociado a dolor abdominal intermitente, que han aumentado de intensidad en\n­3/gastroenterologia/prueba­9­gastroenterologia/ 3/621/12/2016 Prueba 9 |\nel último mes. El examen físico no presenta alteraciones. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5768,7 +5768,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "Un paciente de 20 años consulta por fiebre alta, asociada a diarrea\ndisentérica, de un día de evolución. Al examen físico está decaído, con dolor\n­3/gastroenterologia/prueba­9­gastroenterologia/ 4/621/12/2016 Prueba 9 | Dr. Guevara\nabdominal tipo cólico, signos vitales normales y sin deshidratación. La\nDr. Guevara\nconducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 20 años consulta por fiebre alta, asociada a diarrea\ndisentérica, de un día de evolución. Al examen físico está decaído, con dolor\n­3/gastroenterologia/prueba­9­gastroenterologia/ 4/621/12/2016 Prueba 9 |\nabdominal tipo cólico, signos vitales normales y sin deshidratación. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5820,7 +5820,7 @@
             },
             {
               "id": "E",
-              "text": "Iniciar medidas generales antirreflujo y omeprazol en dosis única diaria Respuestas: Prueba 9 Gastroenterología Preguntas Respuestas 1 E 2 A 3 D 4 C 5 A 6 C 7 E 8 D 9 D 10 A 11 B 12 E 13 B 14 E ­3/gastroenterologia/prueba­9­gastroenterologia/ 5/621/12/2016 Prueba 9 | Dr. Guevara D15r. Guevara A P1re6paración EUNACOM E 17 A 18 A 19 A 20 E Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­9­gastroenterologia/ 6/6"
+              "text": "Iniciar medidas generales antirreflujo y omeprazol en dosis única diaria Respuestas: Prueba 9 Gastroenterología Preguntas Respuestas 1 E 2 A 3 D 4 C 5 A 6 C 7 E 8 D 9 D 10 A 11 B 12 E 13 B 14 E ­3/gastroenterologia/prueba­9­gastroenterologia/ 5/621/12/2016 Prueba 9 | D15r. Guevara A P1re6paración EUNACOM E 17 A 18 A 19 A 20 E"
             }
           ],
           "respuestaCorrecta": "E",
@@ -5936,11 +5936,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "La primera causa de hemorragia digestiva baja masiva es de origen\ndiverticular. ¿Cuál es la conducta más adecuada ante un paciente que presenta\n­3/gastroenterologia/prueba­10­gastroenterologia/ 1/621/12/2016 Prueba 10 | Dr. Guevara\nuna hemorragia digestiva baja masiva, con rectorragia activa?\nDr. Guevara",
+          "pregunta": "La primera causa de hemorragia digestiva baja masiva es de origen\ndiverticular. ¿Cuál es la conducta más adecuada ante un paciente que presenta\n­3/gastroenterologia/prueba­10­gastroenterologia/ 1/621/12/2016 Prueba 10 |\nuna hemorragia digestiva baja masiva, con rectorragia activa?",
           "opciones": [
             {
               "id": "A",
-              "text": "Administración de cristaloides endovenosos y realización de colonoscopía de Preparación EUNACOM urgencia"
+              "text": "Administración de cristaloides endovenosos y realización de colonoscopía de urgencia"
             },
             {
               "id": "B",
@@ -6076,15 +6076,15 @@
             },
             {
               "id": "C",
-              "text": "Solicitar manometría esofágica ­3/gastroenterologia/prueba­10­gastroenterologia/ 2/621/12/2016 Prueba 10 | Dr. Guevara"
+              "text": "Solicitar manometría esofágica ­3/gastroenterologia/prueba­10­gastroenterologia/ 2/621/12/2016 Prueba 10 |"
             },
             {
               "id": "D",
-              "text": "Aumentar la dosis de omeprazol Dr. Guevara"
+              "text": "Aumentar la dosis de omeprazol"
             },
             {
               "id": "E",
-              "text": "Agregar famotidina Preparación EUNACOM"
+              "text": "Agregar famotidina"
             }
           ],
           "respuestaCorrecta": "B",
@@ -6224,15 +6224,15 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente de 67 años presenta, desde hace 3 meses, vómitos explosivos\nluego de comer, que han ido volviéndose cada vez más frecuentes,\nobjetivándose una baja de peso de 12 kilogramos en dos meses. El diagnóstico\nmás probable es:\n­3/gastroenterologia/prueba­10­gastroenterologia/ 3/621/12/2016 Prueba 10 | Dr. Guevara",
+          "pregunta": "Un paciente de 67 años presenta, desde hace 3 meses, vómitos explosivos\nluego de comer, que han ido volviéndose cada vez más frecuentes,\nobjetivándose una baja de peso de 12 kilogramos en dos meses. El diagnóstico\nmás probable es:\n­3/gastroenterologia/prueba­10­gastroenterologia/ 3/621/12/2016 Prueba 10 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Divertículo esofágico Dr. Guevara"
+              "text": "Divertículo esofágico"
             },
             {
               "id": "B",
-              "text": "Cáncer de esófago Preparación EUNACOM"
+              "text": "Cáncer de esófago"
             },
             {
               "id": "C",
@@ -6352,15 +6352,15 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un niño de 3 años presenta un cuadro diarreico de un día de evolución,\nasociado a irritabilidad y fiebre de hasta 38,2°C. Al examen presenta FC y PA\nnormales para la edad, constatándose mucosas secas y llanto sin lágrimas. La\nconducta más adecuada es:\n­3/gastroenterologia/prueba­10­gastroenterologia/ 4/621/12/2016 Prueba 10 | Dr. Guevara",
+          "pregunta": "Un niño de 3 años presenta un cuadro diarreico de un día de evolución,\nasociado a irritabilidad y fiebre de hasta 38,2°C. Al examen presenta FC y PA\nnormales para la edad, constatándose mucosas secas y llanto sin lágrimas. La\nconducta más adecuada es:\n­3/gastroenterologia/prueba­10­gastroenterologia/ 4/621/12/2016 Prueba 10 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Administrar bolo de suero fisiológico 20 cc/kg y reevaluar Dr. Guevara"
+              "text": "Administrar bolo de suero fisiológico 20 cc/kg y reevaluar"
             },
             {
               "id": "B",
-              "text": "Indicar sales de rehidratación oral 50cc/Kg, a tomar en 4 horas y reevaluar Preparación EUNACOM"
+              "text": "Indicar sales de rehidratación oral 50cc/Kg, a tomar en 4 horas y reevaluar"
             },
             {
               "id": "C",
@@ -6468,7 +6468,7 @@
             },
             {
               "id": "E",
-              "text": "Funcional Respuestas: Prueba 10 GASTROENTEROLOGÍA Preguntas Respuestas 1 D 2 C ­3/gastroenterologia/prueba­10­gastroenterologia/ 5/621/12/2016 Prueba 10 | Dr. Guevara 3 C Dr. Guevara 4 A Preparación EUNACOM 5 A 6 E 7 C 8 B 9 C 10 C 11 A 12 A 13 C 14 C 15 C 16 C 17 B 18 A 19 A 20 E Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­10­gastroenterologia/ 6/6"
+              "text": "Funcional Respuestas: Prueba 10 GASTROENTEROLOGÍA Preguntas Respuestas 1 D 2 C ­3/gastroenterologia/prueba­10­gastroenterologia/ 5/621/12/2016 Prueba 10 | 3 C 4 A 5 A 6 E 7 C 8 B 9 C 10 C 11 A 12 A 13 C 14 C 15 C 16 C 17 B 18 A 19 A 20 E"
             }
           ],
           "respuestaCorrecta": "E",
@@ -6592,15 +6592,15 @@
             },
             {
               "id": "B",
-              "text": "Hepatitis C ­3/gastroenterologia/prueba­11­gastroenterologia/ 1/621/12/2016 Prueba 11 | Dr. Guevara"
+              "text": "Hepatitis C ­3/gastroenterologia/prueba­11­gastroenterologia/ 1/621/12/2016 Prueba 11 |"
             },
             {
               "id": "C",
-              "text": "Hepatitis A y B Dr. Guevara"
+              "text": "Hepatitis A y B"
             },
             {
               "id": "D",
-              "text": "Hepatitis B y C Preparación EUNACOM"
+              "text": "Hepatitis B y C"
             },
             {
               "id": "E",
@@ -6744,7 +6744,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente consulta por dolor abdominal, fiebre y vómitos de 12 horas de\nevolución, constatándose mediante una ecografía, una vesícula biliar\n­3/gastroenterologia/prueba­11­gastroenterologia/ 2/621/12/2016 Prueba 11 | Dr. Guevara\ndistendida, con paredes edematosas de 8 mm de diámetro con presencia de\nDr. Guevara\nbarro biliar y un cálculo de 15 mm de diámetro, impactado en el bacinete. La\nPreparación EUNACOM\nconducta más adecuada es:",
+          "pregunta": "Un paciente consulta por dolor abdominal, fiebre y vómitos de 12 horas de\nevolución, constatándose mediante una ecografía, una vesícula biliar\n­3/gastroenterologia/prueba­11­gastroenterologia/ 2/621/12/2016 Prueba 11 |\ndistendida, con paredes edematosas de 8 mm de diámetro con presencia de\nbarro biliar y un cálculo de 15 mm de diámetro, impactado en el bacinete. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6876,15 +6876,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­11­gastroenterologia/ 3/621/12/2016 Prueba 11 | Dr. Guevara"
+              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­11­gastroenterologia/ 3/621/12/2016 Prueba 11 |"
             },
             {
               "id": "B",
-              "text": "Solicitar pH-metría de 24 horas Dr. Guevara"
+              "text": "Solicitar pH-metría de 24 horas"
             },
             {
               "id": "C",
-              "text": "Iniciar medidas antirreflujo e indicar omeprazol Preparación EUNACOM"
+              "text": "Iniciar medidas antirreflujo e indicar omeprazol"
             },
             {
               "id": "D",
@@ -7032,11 +7032,11 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un lactante de 8 meses de edad presenta diarrea acuosa, abundante, de 2\ndías de evolución, asociada a fiebre hasta 38,2°C. Al examen físico se aprecia en\nbuenas condiciones generales, con signos vitales normales, mucosas hidratadas\n­3/gastroenterologia/prueba­11­gastroenterologia/ 4/621/12/2016 Prueba 11 | Dr. Guevara\ny turgencia cutánea normal. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un lactante de 8 meses de edad presenta diarrea acuosa, abundante, de 2\ndías de evolución, asociada a fiebre hasta 38,2°C. Al examen físico se aprecia en\nbuenas condiciones generales, con signos vitales normales, mucosas hidratadas\n­3/gastroenterologia/prueba­11­gastroenterologia/ 4/621/12/2016 Prueba 11 |\ny turgencia cutánea normal. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Enviar a domicilio, indicando abundantes líquidos, como jugos y bebidas gaseosas Preparación EUNACOM"
+              "text": "Enviar a domicilio, indicando abundantes líquidos, como jugos y bebidas gaseosas"
             },
             {
               "id": "B",
@@ -7116,7 +7116,7 @@
             },
             {
               "id": "E",
-              "text": "Acalasia esofágica Respuestas: Prueba 11 GASTROENTEROLOGÍA Preguntas Respuestas 1 B 2 C 3 B 4 D 5 D 6 D ­3/gastroenterologia/prueba­11­gastroenterologia/ 5/621/12/2016 Prueba 11 | Dr. Guevara 7 D Dr. Guevara 8 A Preparación EUNACOM 9 E 10 E 11 C 12 B 13 C 14 C 15 A 16 A 17 E 18 B 19 B 20 E Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­11­gastroenterologia/ 6/6"
+              "text": "Acalasia esofágica Respuestas: Prueba 11 GASTROENTEROLOGÍA Preguntas Respuestas 1 B 2 C 3 B 4 D 5 D 6 D ­3/gastroenterologia/prueba­11­gastroenterologia/ 5/621/12/2016 Prueba 11 | 7 D 8 A 9 E 10 E 11 C 12 B 13 C 14 C 15 A 16 A 17 E 18 B 19 B 20 E"
             }
           ],
           "respuestaCorrecta": "E",
@@ -7264,11 +7264,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 67 años presenta hematoquezia abundante en una\noportunidad, asociada a malestar general. Al examen físico está pálido, con FC:\n105x’, PA: 100/60 mmHg y el tacto rectal demuestra sangre fresca. La primera\n­3/gastroenterologia/prueba­12­gastroenterologia/ 1/921/12/2016 Prueba 12 | Dr. Guevara\nmedida a realizar es:\nDr. Guevara",
+          "pregunta": "Un paciente de 67 años presenta hematoquezia abundante en una\noportunidad, asociada a malestar general. Al examen físico está pálido, con FC:\n105x’, PA: 100/60 mmHg y el tacto rectal demuestra sangre fresca. La primera\n­3/gastroenterologia/prueba­12­gastroenterologia/ 1/921/12/2016 Prueba 12 |\nmedida a realizar es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Administrar suero fisiológico Preparación EUNACOM"
+              "text": "Administrar suero fisiológico"
             },
             {
               "id": "B",
@@ -7392,15 +7392,15 @@
         },
         {
           "numero": 9,
-          "pregunta": "Las primeras causas de obstrucción de intestino delgado y de colon son\nrespectivamente:\n­3/gastroenterologia/prueba­12­gastroenterologia/ 2/921/12/2016 Prueba 12 | Dr. Guevara",
+          "pregunta": "Las primeras causas de obstrucción de intestino delgado y de colon son\nrespectivamente:\n­3/gastroenterologia/prueba­12­gastroenterologia/ 2/921/12/2016 Prueba 12 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Bridas y hernias Dr. Guevara"
+              "text": "Bridas y hernias"
             },
             {
               "id": "B",
-              "text": "Hernias y cáncer Preparación EUNACOM"
+              "text": "Hernias y cáncer"
             },
             {
               "id": "C",
@@ -7532,15 +7532,15 @@
             },
             {
               "id": "C",
-              "text": "Colitis viral ­3/gastroenterologia/prueba­12­gastroenterologia/ 3/921/12/2016 Prueba 12 | Dr. Guevara"
+              "text": "Colitis viral ­3/gastroenterologia/prueba­12­gastroenterologia/ 3/921/12/2016 Prueba 12 |"
             },
             {
               "id": "D",
-              "text": "Poliposis hereditaria Dr. Guevara"
+              "text": "Poliposis hereditaria"
             },
             {
               "id": "E",
-              "text": "Enfermedad inflamatoria intestinal Preparación EUNACOM"
+              "text": "Enfermedad inflamatoria intestinal"
             }
           ],
           "respuestaCorrecta": "E",
@@ -7692,15 +7692,15 @@
             },
             {
               "id": "C",
-              "text": "Dolor retroesternal durante la deglución ­3/gastroenterologia/prueba­12­gastroenterologia/ 4/921/12/2016 Prueba 12 | Dr. Guevara"
+              "text": "Dolor retroesternal durante la deglución ­3/gastroenterologia/prueba­12­gastroenterologia/ 4/921/12/2016 Prueba 12 |"
             },
             {
               "id": "D",
-              "text": "Dificultad para tragar líquidos y sólidos, de curso fluctuante Dr. Guevara"
+              "text": "Dificultad para tragar líquidos y sólidos, de curso fluctuante"
             },
             {
               "id": "E",
-              "text": "Sensación de cuerpo extraño, de localización esofágica alta Preparación EUNACOM"
+              "text": "Sensación de cuerpo extraño, de localización esofágica alta"
             }
           ],
           "respuestaCorrecta": "D",
@@ -7816,15 +7816,15 @@
             },
             {
               "id": "B",
-              "text": "Solicitar test de Sudán en deposiciones ­3/gastroenterologia/prueba­12­gastroenterologia/ 5/921/12/2016 Prueba 12 | Dr. Guevara"
+              "text": "Solicitar test de Sudán en deposiciones ­3/gastroenterologia/prueba­12­gastroenterologia/ 5/921/12/2016 Prueba 12 |"
             },
             {
               "id": "C",
-              "text": "Iniciar antidiarreicos Dr. Guevara"
+              "text": "Iniciar antidiarreicos"
             },
             {
               "id": "D",
-              "text": "Solicitar test tripsina en heces Preparación EUNACOM"
+              "text": "Solicitar test tripsina en heces"
             },
             {
               "id": "E",
@@ -7940,15 +7940,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar coplrocultivo y decidir manejo según resultado ­3/gastroenterologia/prueba­12­gastroenterologia/ 6/921/12/2016 Prueba 12 | Dr. Guevara"
+              "text": "Solicitar coplrocultivo y decidir manejo según resultado ­3/gastroenterologia/prueba­12­gastroenterologia/ 6/921/12/2016 Prueba 12 |"
             },
             {
               "id": "B",
-              "text": "Iniciar metronidazol oral Dr. Guevara"
+              "text": "Iniciar metronidazol oral"
             },
             {
               "id": "C",
-              "text": "Iniciar clindamicina oral Preparación EUNACOM"
+              "text": "Iniciar clindamicina oral"
             },
             {
               "id": "D",
@@ -8084,7 +8084,7 @@
             },
             {
               "id": "E",
-              "text": "Funcional Respuestas: ­3/gastroenterologia/prueba­12­gastroenterologia/ 7/921/12/2016 Prueba 12 | Dr. Guevara Dr. Guevara Prueba 12 Gastroenterología Preparación EUNACOPMreguntas Respuestas 1 C 2 B 3 A 4 D 5 A 6 C 7 A 8 A 9 D 10 A 11 A 12 D 13 E 14 B 15 D 16 B 17 B 18 D 19 C 20 B 21 A 22 B 23 B 24 D 25 D 26 B ­3/gastroenterologia/prueba­12­gastroenterologia/ 8/921/12/2016 Prueba 12 | Dr. Guevara 27 A Dr. Guevara 28 B Preparación EUNACOM 29 D 30 E Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­12­gastroenterologia/ 9/9"
+              "text": "Funcional Respuestas: ­3/gastroenterologia/prueba­12­gastroenterologia/ 7/921/12/2016 Prueba 12 | Prueba 12 Gastroenterología Preparación EUNACOPMreguntas Respuestas 1 C 2 B 3 A 4 D 5 A 6 C 7 A 8 A 9 D 10 A 11 A 12 D 13 E 14 B 15 D 16 B 17 B 18 D 19 C 20 B 21 A 22 B 23 B 24 D 25 D 26 B ­3/gastroenterologia/prueba­12­gastroenterologia/ 8/921/12/2016 Prueba 12 | 27 A 28 B 29 D 30 E"
             }
           ],
           "respuestaCorrecta": "E",
@@ -8232,15 +8232,15 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una mujer en estudio por elevación de las transaminasas se realiza serología\npara hepatitis virales y presenta VHBs-Ag (-), VHBs-Ac (+), VHBc-Ac IgM (-),\nVHBc-Ac IgG (+), VHC-Ac totales (-), VHA IgM (-). Se realizan las mismas prueba a\nsu marido y resultan todas negativas. ¿Cuál es la conducta más adecuada para\nel marido?\n­3/gastroenterologia/prueba­13­gastroenterologia/ 1/921/12/2016 Prueba 13 | Dr. Guevara",
+          "pregunta": "Una mujer en estudio por elevación de las transaminasas se realiza serología\npara hepatitis virales y presenta VHBs-Ag (-), VHBs-Ac (+), VHBc-Ac IgM (-),\nVHBc-Ac IgG (+), VHC-Ac totales (-), VHA IgM (-). Se realizan las mismas prueba a\nsu marido y resultan todas negativas. ¿Cuál es la conducta más adecuada para\nel marido?\n­3/gastroenterologia/prueba­13­gastroenterologia/ 1/921/12/2016 Prueba 13 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Indicar uso de preservativo durante las relaciones sexuales Dr. Guevara"
+              "text": "Indicar uso de preservativo durante las relaciones sexuales"
             },
             {
               "id": "B",
-              "text": "Indicar la administración de inmunoglobulina hiperinmune contra el VHB Preparación EUNACOM"
+              "text": "Indicar la administración de inmunoglobulina hiperinmune contra el VHB"
             },
             {
               "id": "C",
@@ -8348,7 +8348,7 @@
             },
             {
               "id": "E",
-              "text": "Iniciar corticoides orales ­3/gastroenterologia/prueba­13­gastroenterologia/ 2/921/12/2016 Prueba 13 | Dr. Guevara"
+              "text": "Iniciar corticoides orales ­3/gastroenterologia/prueba­13­gastroenterologia/ 2/921/12/2016 Prueba 13 |"
             }
           ],
           "respuestaCorrecta": "A",
@@ -8360,7 +8360,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Paciente cirrótico de 48 años, bebedor excesivo activo, consulta por fiebre de\nDr. Guevara\nhasta 37.6°C, intenso compromiso del estado general, dolor abdominal alto,\nPreparación EUNACOM\nvómitos profusos, diarrea fugaz y coluria. Al examen: ictericia marcada,\ndecaimiento, bradipsiquia, dolor en abdomen superior, hepatomegalia sensible\ny ascitis mínima.\nLaboratorio: Bilirrubina 7 mg/dl, transaminasa pirúvica 110 U, transaminasa\noxalacética 250 U, gammaglutamiltranspeptidasa 600 U y 12.000 leucocitos/mm3\nen el hemograma. El diagnóstico más probable es:",
+          "pregunta": "Paciente cirrótico de 48 años, bebedor excesivo activo, consulta por fiebre de\nhasta 37.6°C, intenso compromiso del estado general, dolor abdominal alto,\nvómitos profusos, diarrea fugaz y coluria. Al examen: ictericia marcada,\ndecaimiento, bradipsiquia, dolor en abdomen superior, hepatomegalia sensible\ny ascitis mínima.\nLaboratorio: Bilirrubina 7 mg/dl, transaminasa pirúvica 110 U, transaminasa\noxalacética 250 U, gammaglutamiltranspeptidasa 600 U y 12.000 leucocitos/mm3\nen el hemograma. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -8464,15 +8464,15 @@
             },
             {
               "id": "B",
-              "text": "Colédocolitiasis ­3/gastroenterologia/prueba­13­gastroenterologia/ 3/921/12/2016 Prueba 13 | Dr. Guevara"
+              "text": "Colédocolitiasis ­3/gastroenterologia/prueba­13­gastroenterologia/ 3/921/12/2016 Prueba 13 |"
             },
             {
               "id": "C",
-              "text": "Cirrosis biliar primaria Dr. Guevara"
+              "text": "Cirrosis biliar primaria"
             },
             {
               "id": "D",
-              "text": "Atresia biliar primaria Preparación EUNACOM"
+              "text": "Atresia biliar primaria"
             },
             {
               "id": "E",
@@ -8604,7 +8604,7 @@
             },
             {
               "id": "E",
-              "text": "Instalación de un TIPS ­3/gastroenterologia/prueba­13­gastroenterologia/ 4/921/12/2016 Prueba 13 | Dr. Guevara"
+              "text": "Instalación de un TIPS ­3/gastroenterologia/prueba­13­gastroenterologia/ 4/921/12/2016 Prueba 13 |"
             }
           ],
           "respuestaCorrecta": "C",
@@ -8616,7 +8616,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Cuál es el tratamiento de elección para la ascitis moderada, no complicada,\nDr. Guevara\nen un paciente cirrótico por consumo de alcohol?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál es el tratamiento de elección para la ascitis moderada, no complicada,\nen un paciente cirrótico por consumo de alcohol?",
           "opciones": [
             {
               "id": "A",
@@ -8640,7 +8640,7 @@
             }
           ],
           "respuestaCorrecta": "B",
-          "explicacion": "La ascitis es una complicación común y significativa de la cirrosis hepática, resultado de la hipertensión portal, la vasodilatación esplácnica, la disminución del volumen circulante efectivo y la activación de sistemas vasoconstrictores como el sistema renina-angiotensina-aldosterona (SRAA) y la hormona antidiurética (ADH). Esto conduce a una retención renal de sodio y agua, con la consiguiente acumulación de líquido en la cavidad peritoneal.\n\nEl tratamiento de elección para la ascitis moderada no complicada en un paciente cirrótico, como el Dr. Guevara indica, es la combinación de restricción dietética de sodio junto con diuréticos orales. La restricción de sodio (típicamente a 80-100 mEq/día o 2000 mg/día) es fundamental, ya que reduce la carga total de sodio que el riñón debe excretar y mejora la eficacia de los diuréticos. Los diuréticos de elección son la espironolactona y la furosemida. La espironolactona, un antagonista de la aldosterona, es el diurético de primera línea, ya que aborda el hiperaldosteronismo secundario común en la cirrosis. Actúa en el túbulo colector cortical, bloqueando la reabsorción de sodio y la excreción de potasio.\n\nLa furosemida, un diurético de asa, se añade a la espironolactona para potenciar la natriuresis y contrarrestar el efecto ahorrador de potasio de la espironolactona, previniendo la hiperkalemia. La combinación se inicia comúnmente en una proporción de 100 mg de espironolactona y 40 mg de furosemida, ajustándose progresivamente según la respuesta del paciente y la monitorización de electrolitos y función renal. Este enfoque combinado es seguro y eficaz para la mayoría de los pacientes con ascitis moderada no complicada, logrando una movilización gradual del líquido ascítico y mejorando la calidad de vida.",
+          "explicacion": "La ascitis es una complicación común y significativa de la cirrosis hepática, resultado de la hipertensión portal, la vasodilatación esplácnica, la disminución del volumen circulante efectivo y la activación de sistemas vasoconstrictores como el sistema renina-angiotensina-aldosterona (SRAA) y la hormona antidiurética (ADH). Esto conduce a una retención renal de sodio y agua, con la consiguiente acumulación de líquido en la cavidad peritoneal.\n\nEl tratamiento de elección para la ascitis moderada no complicada en un paciente cirrótico, como el indica, es la combinación de restricción dietética de sodio junto con diuréticos orales. La restricción de sodio (típicamente a 80-100 mEq/día o 2000 mg/día) es fundamental, ya que reduce la carga total de sodio que el riñón debe excretar y mejora la eficacia de los diuréticos. Los diuréticos de elección son la espironolactona y la furosemida. La espironolactona, un antagonista de la aldosterona, es el diurético de primera línea, ya que aborda el hiperaldosteronismo secundario común en la cirrosis. Actúa en el túbulo colector cortical, bloqueando la reabsorción de sodio y la excreción de potasio.\n\nLa furosemida, un diurético de asa, se añade a la espironolactona para potenciar la natriuresis y contrarrestar el efecto ahorrador de potasio de la espironolactona, previniendo la hiperkalemia. La combinación se inicia comúnmente en una proporción de 100 mg de espironolactona y 40 mg de furosemida, ajustándose progresivamente según la respuesta del paciente y la monitorización de electrolitos y función renal. Este enfoque combinado es seguro y eficaz para la mayoría de los pacientes con ascitis moderada no complicada, logrando una movilización gradual del líquido ascítico y mejorando la calidad de vida.",
           "explicacionIncorrectas": "*   **a) Dieta:** Si bien la restricción de sodio en la dieta es un componente esencial del tratamiento, rara vez es suficiente por sí sola para controlar la ascitis moderada. Se utiliza siempre en combinación con diuréticos para lograr una diuresis y natriuresis adecuadas.\n*   **c) Albúmina endovenosa:** La albúmina intravenosa no es un tratamiento de primera línea para la ascitis moderada no complicada. Su uso principal está indicado en situaciones específicas como la prevención de la disfunción circulatoria post-paracentesis en paracentesis de gran volumen, como coadyuvante en el tratamiento de la peritonitis bacteriana espontánea (PBE) para prevenir el síndrome hepatorrenal, o en el manejo del síndrome hepatorrenal tipo 1.\n*   **d) Paracentesis periódicas:** La paracentesis de gran volumen es el tratamiento de elección para la ascitis tensa o refractaria que no responde a los diuréticos o que causa síntomas importantes (como dificultad respiratoria). No es la primera opción para la ascitis moderada y no complicada debido a su naturaleza invasiva y al riesgo de complicaciones como la infección o la disfunción circulatoria post-paracentesis. Se considera cuando el tratamiento diurético falla.\n*   **e) Instalación de un TIPS (Shunt portosistémico):** El TIPS es un procedimiento invasivo que reduce la hipertensión portal. Está reservado para pacientes con ascitis refractaria (que no responde a la dosis máxima de diuréticos y a la paracentesis periódica), hemorragia por várices esofágicas recurrentes a pesar de tratamiento endoscópico y farmacológico, o en casos seleccionados de síndrome hepatorrenal. Tiene riesgos significativos, como la encefalopatía hepática y el deterioro de la función hepática, por lo que no es un tratamiento de primera línea para la ascitis moderada no complicada.",
           "codigoEunacom": "Ascitis - 1.06.1.001",
           "tags": "Cirrosis, Ascitis, Tratamiento, Diuréticos, Hepatología",
@@ -8764,7 +8764,7 @@
             },
             {
               "id": "E",
-              "text": "Hombre de 60 años con icteriacia, coluria y acolia, asociado a baja de peso ­3/gastroenterologia/prueba­13­gastroenterologia/ 5/921/12/2016 Prueba 13 | Dr. Guevara"
+              "text": "Hombre de 60 años con icteriacia, coluria y acolia, asociado a baja de peso ­3/gastroenterologia/prueba­13­gastroenterologia/ 5/921/12/2016 Prueba 13 |"
             }
           ],
           "respuestaCorrecta": "A",
@@ -8776,11 +8776,11 @@
         },
         {
           "numero": 22,
-          "pregunta": "La etiología más común del hígado graso es:\nDr. Guevara",
+          "pregunta": "La etiología más común del hígado graso es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Consumo de alcohol Preparación EUNACOM"
+              "text": "Consumo de alcohol"
             },
             {
               "id": "B",
@@ -8924,7 +8924,7 @@
             },
             {
               "id": "E",
-              "text": "Radiografía simple ­3/gastroenterologia/prueba­13­gastroenterologia/ 6/921/12/2016 Prueba 13 | Dr. Guevara"
+              "text": "Radiografía simple ­3/gastroenterologia/prueba­13­gastroenterologia/ 6/921/12/2016 Prueba 13 |"
             }
           ],
           "respuestaCorrecta": "C",
@@ -8936,11 +8936,11 @@
         },
         {
           "numero": 27,
-          "pregunta": "El hígado graso se diagnostica preferentemente mediante:\nDr. Guevara",
+          "pregunta": "El hígado graso se diagnostica preferentemente mediante:",
           "opciones": [
             {
               "id": "A",
-              "text": "La clínica Preparación EUNACOM"
+              "text": "La clínica"
             },
             {
               "id": "B",
@@ -9052,7 +9052,7 @@
             },
             {
               "id": "E",
-              "text": "Ecografía abdominal Respuestas: Prueba 13 Gastroenterología ­3/gastroenterologia/prueba­13­gastroenterologia/ 7/921/12/2016 Prueba 13 | Dr. Guevara Preguntas Respuestas Dr. Guevara 1 C Preparación EUNACOM 2 C 3 C 4 C 5 E 6 C 7 C 8 A 9 E 10 A 11 D 12 E 13 A 14 A 15 D 16 C 17 B 18 D 19 D 20 A 21 A 22 B 23 E 24 B 25 D 26 C 27 C ­3/gastroenterologia/prueba­13­gastroenterologia/ 8/921/12/2016 Prueba 13 | Dr. Guevara 28 C Dr. Guevara 29 A Preparación EUNACOM 30 C Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­13­gastroenterologia/ 9/9"
+              "text": "Ecografía abdominal Respuestas: Prueba 13 Gastroenterología ­3/gastroenterologia/prueba­13­gastroenterologia/ 7/921/12/2016 Prueba 13 | Preguntas Respuestas 1 C 2 C 3 C 4 C 5 E 6 C 7 C 8 A 9 E 10 A 11 D 12 E 13 A 14 A 15 D 16 C 17 B 18 D 19 D 20 A 21 A 22 B 23 E 24 B 25 D 26 C 27 C ­3/gastroenterologia/prueba­13­gastroenterologia/ 8/921/12/2016 Prueba 13 | 28 C 29 A 30 C"
             }
           ],
           "respuestaCorrecta": "C",
@@ -9188,7 +9188,7 @@
             },
             {
               "id": "E",
-              "text": "Avena ­3/gastroenterologia/prueba­14­gastroenterologia/ 1/921/12/2016 Prueba 14 | Dr. Guevara"
+              "text": "Avena ­3/gastroenterologia/prueba­14­gastroenterologia/ 1/921/12/2016 Prueba 14 |"
             }
           ],
           "respuestaCorrecta": "A",
@@ -9200,7 +9200,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 67 años presenta hematoquezia abundante en una\nDr. Guevara\noportunidad, asociada a malestar general. Al examen físico está pálido, con FC:\nPreparación EUNACOM\n125x’, PA: 80/40 mmHg y el tacto rectal demuestra sangre fresca. La conducta\nmás adecuada es:",
+          "pregunta": "Un paciente de 67 años presenta hematoquezia abundante en una\noportunidad, asociada a malestar general. Al examen físico está pálido, con FC:\n125x’, PA: 80/40 mmHg y el tacto rectal demuestra sangre fresca. La conducta\nmás adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -9304,15 +9304,15 @@
             },
             {
               "id": "B",
-              "text": "Mallory Vice ­3/gastroenterologia/prueba­14­gastroenterologia/ 2/921/12/2016 Prueba 14 | Dr. Guevara"
+              "text": "Mallory Vice ­3/gastroenterologia/prueba­14­gastroenterologia/ 2/921/12/2016 Prueba 14 |"
             },
             {
               "id": "C",
-              "text": "Cáncer gástrico Dr. Guevara"
+              "text": "Cáncer gástrico"
             },
             {
               "id": "D",
-              "text": "Várices esofágicas Preparación EUNACOM"
+              "text": "Várices esofágicas"
             },
             {
               "id": "E",
@@ -9456,11 +9456,11 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente de 17 años consulta por un cuadro de tres meses de evolución\nde dolor abdominal y diarrea frecuente, que en algunas oportunidades ha sido\nsanguinolenta. Además ha presentado abscesos perianales en 2 oportunidades.\n­3/gastroenterologia/prueba­14­gastroenterologia/ 3/921/12/2016 Prueba 14 | Dr. Guevara\nEl diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 17 años consulta por un cuadro de tres meses de evolución\nde dolor abdominal y diarrea frecuente, que en algunas oportunidades ha sido\nsanguinolenta. Además ha presentado abscesos perianales en 2 oportunidades.\n­3/gastroenterologia/prueba­14­gastroenterologia/ 3/921/12/2016 Prueba 14 |\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Colitis ulcerosa Preparación EUNACOM"
+              "text": "Colitis ulcerosa"
             },
             {
               "id": "B",
@@ -9604,7 +9604,7 @@
             },
             {
               "id": "E",
-              "text": "Neoplásica ­3/gastroenterologia/prueba­14­gastroenterologia/ 4/921/12/2016 Prueba 14 | Dr. Guevara"
+              "text": "Neoplásica ­3/gastroenterologia/prueba­14­gastroenterologia/ 4/921/12/2016 Prueba 14 |"
             }
           ],
           "respuestaCorrecta": "B",
@@ -9616,7 +9616,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un paciente de 30 años presenta disfagia baja, de tipo intermitente, que\nDr. Guevara\ncompromete en especial la ingesta de líquidos. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 30 años presenta disfagia baja, de tipo intermitente, que\ncompromete en especial la ingesta de líquidos. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -9748,15 +9748,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Anticuerpos antimicrosomales ­3/gastroenterologia/prueba­14­gastroenterologia/ 5/921/12/2016 Prueba 14 | Dr. Guevara"
+              "text": "Anticuerpos antimicrosomales ­3/gastroenterologia/prueba­14­gastroenterologia/ 5/921/12/2016 Prueba 14 |"
             },
             {
               "id": "B",
-              "text": "Anticuerpos antimitocondriales Dr. Guevara"
+              "text": "Anticuerpos antimitocondriales"
             },
             {
               "id": "C",
-              "text": "Anticuerpos antinucleares Preparación EUNACOM"
+              "text": "Anticuerpos antinucleares"
             },
             {
               "id": "D",
@@ -9892,7 +9892,7 @@
             },
             {
               "id": "E",
-              "text": "Completar el tratamiento con amoxicilina, iniciar rehidratación oral, sin necesidad de conductas adicionales ­3/gastroenterologia/prueba­14­gastroenterologia/ 6/921/12/2016 Prueba 14 | Dr. Guevara"
+              "text": "Completar el tratamiento con amoxicilina, iniciar rehidratación oral, sin necesidad de conductas adicionales ­3/gastroenterologia/prueba­14­gastroenterologia/ 6/921/12/2016 Prueba 14 |"
             }
           ],
           "respuestaCorrecta": "C",
@@ -9904,7 +9904,7 @@
         },
         {
           "numero": 27,
-          "pregunta": "¿Cuál de las siguientes alternativas es MENOS concordante con un síndrome\nDr. Guevara\nde intestino irritable?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de las siguientes alternativas es MENOS concordante con un síndrome\nde intestino irritable?",
           "opciones": [
             {
               "id": "A",
@@ -10020,7 +10020,7 @@
             },
             {
               "id": "E",
-              "text": "Funcional Respuestas: Prueba 14 Gastroenterología ­3/gastroenterologia/prueba­14­gastroenterologia/ 7/921/12/2016 Prueba 14 | Dr. Guevara Preguntas Respuestas Dr. Guevara 1 B Preparación EUNACOM 2 D 3 C 4 A 5 A 6 E 7 A 8 B 9 A 10 A 11 A 12 A 13 E 14 D 15 B 16 A 17 B 18 C 19 B 20 A 21 B 22 E 23 D 24 D 25 D 26 C 27 E ­3/gastroenterologia/prueba­14­gastroenterologia/ 8/921/12/2016 Prueba 14 | Dr. Guevara 28 B Dr. Guevara 29 B Preparación EUNACOM 30 A Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­14­gastroenterologia/ 9/9"
+              "text": "Funcional Respuestas: Prueba 14 Gastroenterología ­3/gastroenterologia/prueba­14­gastroenterologia/ 7/921/12/2016 Prueba 14 | Preguntas Respuestas 1 B 2 D 3 C 4 A 5 A 6 E 7 A 8 B 9 A 10 A 11 A 12 A 13 E 14 D 15 B 16 A 17 B 18 C 19 B 20 A 21 B 22 E 23 D 24 D 25 D 26 C 27 E ­3/gastroenterologia/prueba­14­gastroenterologia/ 8/921/12/2016 Prueba 14 | 28 B 29 B 30 A"
             }
           ],
           "respuestaCorrecta": "A",
@@ -10176,15 +10176,15 @@
             },
             {
               "id": "B",
-              "text": "Indicar la administración de inmunoglobulina hiperinmune contra el VHB ­3/gastroenterologia/prueba­15­gastroenterologia/ 1/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "Indicar la administración de inmunoglobulina hiperinmune contra el VHB ­3/gastroenterologia/prueba­15­gastroenterologia/ 1/821/12/2016 Prueba 15 |"
             },
             {
               "id": "C",
-              "text": "Vacunar contra la hepatitis B Dr. Guevara"
+              "text": "Vacunar contra la hepatitis B"
             },
             {
               "id": "D",
-              "text": "Solicitar PCR para VHB Preparación EUNACOM"
+              "text": "Solicitar PCR para VHB"
             },
             {
               "id": "E",
@@ -10300,15 +10300,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Hepatitis autoinmune. ­3/gastroenterologia/prueba­15­gastroenterologia/ 2/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "Hepatitis autoinmune. ­3/gastroenterologia/prueba­15­gastroenterologia/ 2/821/12/2016 Prueba 15 |"
             },
             {
               "id": "B",
-              "text": "NASH. Dr. Guevara"
+              "text": "NASH."
             },
             {
               "id": "C",
-              "text": "Colangitis esclerosante. Preparación EUNACOM"
+              "text": "Colangitis esclerosante."
             },
             {
               "id": "D",
@@ -10436,15 +10436,15 @@
             },
             {
               "id": "C",
-              "text": "Pirazinamida ­3/gastroenterologia/prueba­15­gastroenterologia/ 3/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "Pirazinamida ­3/gastroenterologia/prueba­15­gastroenterologia/ 3/821/12/2016 Prueba 15 |"
             },
             {
               "id": "D",
-              "text": "Etambutol Dr. Guevara"
+              "text": "Etambutol"
             },
             {
               "id": "E",
-              "text": "Estreptomicina Preparación EUNACOM"
+              "text": "Estreptomicina"
             }
           ],
           "respuestaCorrecta": "A",
@@ -10596,15 +10596,15 @@
             },
             {
               "id": "C",
-              "text": "Alcohol y tumoral ­3/gastroenterologia/prueba­15­gastroenterologia/ 4/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "Alcohol y tumoral ­3/gastroenterologia/prueba­15­gastroenterologia/ 4/821/12/2016 Prueba 15 |"
             },
             {
               "id": "D",
-              "text": "Alcohol y NASH Dr. Guevara"
+              "text": "Alcohol y NASH"
             },
             {
               "id": "E",
-              "text": "Alcohol y autoinmune Preparación EUNACOM"
+              "text": "Alcohol y autoinmune"
             }
           ],
           "respuestaCorrecta": "A",
@@ -10756,15 +10756,15 @@
             },
             {
               "id": "C",
-              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­15­gastroenterologia/ 5/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­15­gastroenterologia/ 5/821/12/2016 Prueba 15 |"
             },
             {
               "id": "D",
-              "text": "Solicitar TAC de abdomen Dr. Guevara"
+              "text": "Solicitar TAC de abdomen"
             },
             {
               "id": "E",
-              "text": "Solicitar ecografía abdominal Preparación EUNACOM"
+              "text": "Solicitar ecografía abdominal"
             }
           ],
           "respuestaCorrecta": "C",
@@ -10916,15 +10916,15 @@
             },
             {
               "id": "C",
-              "text": "TAC ­3/gastroenterologia/prueba­15­gastroenterologia/ 6/821/12/2016 Prueba 15 | Dr. Guevara"
+              "text": "TAC ­3/gastroenterologia/prueba­15­gastroenterologia/ 6/821/12/2016 Prueba 15 |"
             },
             {
               "id": "D",
-              "text": "Resonancia magnética Dr. Guevara"
+              "text": "Resonancia magnética"
             },
             {
               "id": "E",
-              "text": "Laparoscopía Preparación EUNACOM"
+              "text": "Laparoscopía"
             }
           ],
           "respuestaCorrecta": "C",
@@ -10988,7 +10988,7 @@
             },
             {
               "id": "E",
-              "text": "Indicar reposo y administrar IgG inespecífica Respuestas: Prueba 15 Gastroenterología Preguntas Respuestas 1 A 2 A 3 E 4 D 5 C 6 C 7 B 8 B 9 D 10 B 11 B ­3/gastroenterologia/prueba­15­gastroenterologia/ 7/821/12/2016 Prueba 15 | Dr. Guevara 12 A Dr. Guevara 13 A Preparación EUNACOM 14 E 15 B 16 D 17 B 18 A 19 D 20 B 21 C 22 B 23 C 24 D 25 D 26 D 27 C 28 C 29 B 30 A Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­15­gastroenterologia/ 8/8"
+              "text": "Indicar reposo y administrar IgG inespecífica Respuestas: Prueba 15 Gastroenterología Preguntas Respuestas 1 A 2 A 3 E 4 D 5 C 6 C 7 B 8 B 9 D 10 B 11 B ­3/gastroenterologia/prueba­15­gastroenterologia/ 7/821/12/2016 Prueba 15 | 12 A 13 A 14 E 15 B 16 D 17 B 18 A 19 D 20 B 21 C 22 B 23 C 24 D 25 D 26 D 27 C 28 C 29 B 30 A"
             }
           ],
           "respuestaCorrecta": "A",
@@ -11104,7 +11104,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea disentérica, de 24 horas\nde evolución, asociada a dolor abdominal tipo cólico y fiebre hasta 38,8°C. Su\n­3/gastroenterologia/prueba­16­gastroenterologia/ 1/721/12/2016 Prueba 16 | Dr. Guevara\nesposa tiene síntomas similares, pero menos intensos. Al examen se aprecia en\nDr. Guevara\nbuenas condiciones generales, con signos vitales normales, hidratado. El\nPreparación EUNACOM\nabdomen se palpa blando, depresible, con aumento de los ruidos hidroaéreos.\nLa conducta más adecuada es:",
+          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea disentérica, de 24 horas\nde evolución, asociada a dolor abdominal tipo cólico y fiebre hasta 38,8°C. Su\n­3/gastroenterologia/prueba­16­gastroenterologia/ 1/721/12/2016 Prueba 16 |\nesposa tiene síntomas similares, pero menos intensos. Al examen se aprecia en\nbuenas condiciones generales, con signos vitales normales, hidratado. El\nabdomen se palpa blando, depresible, con aumento de los ruidos hidroaéreos.\nLa conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -11216,11 +11216,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar ecografía abdominal ­3/gastroenterologia/prueba­16­gastroenterologia/ 2/721/12/2016 Prueba 16 | Dr. Guevara"
+              "text": "Solicitar ecografía abdominal ­3/gastroenterologia/prueba­16­gastroenterologia/ 2/721/12/2016 Prueba 16 |"
             },
             {
               "id": "E",
-              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 Dr. Guevara meses Preparación EUNACOM"
+              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 meses"
             }
           ],
           "respuestaCorrecta": "A",
@@ -11340,15 +11340,15 @@
             },
             {
               "id": "C",
-              "text": "Solicitar marcadores de hepatitis virales ­3/gastroenterologia/prueba­16­gastroenterologia/ 3/721/12/2016 Prueba 16 | Dr. Guevara"
+              "text": "Solicitar marcadores de hepatitis virales ­3/gastroenterologia/prueba­16­gastroenterologia/ 3/721/12/2016 Prueba 16 |"
             },
             {
               "id": "D",
-              "text": "Solicitar alcoholemia Dr. Guevara"
+              "text": "Solicitar alcoholemia"
             },
             {
               "id": "E",
-              "text": "Realizar paracentesis diagnóstica Preparación EUNACOM"
+              "text": "Realizar paracentesis diagnóstica"
             }
           ],
           "respuestaCorrecta": "E",
@@ -11468,15 +11468,15 @@
             },
             {
               "id": "C",
-              "text": "Hospitalizar, iniciar antibióticos, cristaloides y analgésicos orales ­3/gastroenterologia/prueba­16­gastroenterologia/ 4/721/12/2016 Prueba 16 | Dr. Guevara"
+              "text": "Hospitalizar, iniciar antibióticos, cristaloides y analgésicos orales ­3/gastroenterologia/prueba­16­gastroenterologia/ 4/721/12/2016 Prueba 16 |"
             },
             {
               "id": "D",
-              "text": "Enviar a domicilio con régimen liviano y antibióticos orales Dr. Guevara"
+              "text": "Enviar a domicilio con régimen liviano y antibióticos orales"
             },
             {
               "id": "E",
-              "text": "Hospitalizar y resolver de manera quirúrgica de inmediato Preparación EUNACOM"
+              "text": "Hospitalizar y resolver de manera quirúrgica de inmediato"
             }
           ],
           "respuestaCorrecta": "B",
@@ -11624,19 +11624,19 @@
             },
             {
               "id": "B",
-              "text": "Atún ­3/gastroenterologia/prueba­16­gastroenterologia/ 5/721/12/2016 Prueba 16 | Dr. Guevara"
+              "text": "Atún ­3/gastroenterologia/prueba­16­gastroenterologia/ 5/721/12/2016 Prueba 16 |"
             },
             {
               "id": "C",
-              "text": "Uvas Dr. Guevara"
+              "text": "Uvas"
             },
             {
               "id": "D",
-              "text": "Tallarines Preparación EUNACOM"
+              "text": "Tallarines"
             },
             {
               "id": "E",
-              "text": "Papas Respuestas: Prueba 16 Gastroenterología Preguntas Respuestas 1 C 2 B 3 C 4 A 5 D 6 B 7 A 8 E 9 B 10 C 11 E 12 D 13 D 14 A 15 B 16 C 17 D 18 E 19 B 20 D ­3/gastroenterologia/prueba­16­gastroenterologia/ 6/721/12/2016 Prueba 16 | Dr. Guevara Dr. Guevara Preparación EUNACOM Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­16­gastroenterologia/ 7/7"
+              "text": "Papas Respuestas: Prueba 16 Gastroenterología Preguntas Respuestas 1 C 2 B 3 C 4 A 5 D 6 B 7 A 8 E 9 B 10 C 11 E 12 D 13 D 14 A 15 B 16 C 17 D 18 E 19 B 20 D ­3/gastroenterologia/prueba­16­gastroenterologia/ 6/721/12/2016 Prueba 16 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -11752,7 +11752,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea disentérica, de 24 horas\nde evolución, asociada a dolor abdominal tipo cólico y fiebre hasta 38,8°C. Su\nesposa tiene síntomas similares, pero menos intensos. Al examen se aprecia en\n­3/gastroenterologia/prueba­17­gastroenterologia/ 1/721/12/2016 Prueba 17 | Dr. Guevara\nbuenas condiciones generales, con signos vitales normales, hidratado. El\nDr. Guevara\nabdomen se palpa blando, depresible, con aumento de los ruidos hidroaéreos.\nPreparación EUNACOM\nLa conducta más adecuada es:",
+          "pregunta": "Un paciente de 32 años presenta cuadro de diarrea disentérica, de 24 horas\nde evolución, asociada a dolor abdominal tipo cólico y fiebre hasta 38,8°C. Su\nesposa tiene síntomas similares, pero menos intensos. Al examen se aprecia en\n­3/gastroenterologia/prueba­17­gastroenterologia/ 1/721/12/2016 Prueba 17 |\nbuenas condiciones generales, con signos vitales normales, hidratado. El\nabdomen se palpa blando, depresible, con aumento de los ruidos hidroaéreos.\nLa conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -11868,7 +11868,7 @@
             },
             {
               "id": "E",
-              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 meses ­3/gastroenterologia/prueba­17­gastroenterologia/ 2/721/12/2016 Prueba 17 | Dr. Guevara"
+              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 meses ­3/gastroenterologia/prueba­17­gastroenterologia/ 2/721/12/2016 Prueba 17 |"
             }
           ],
           "respuestaCorrecta": "C",
@@ -11880,7 +11880,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 24 años presenta un cuadro de dolor abdominal y\nDr. Guevara\ndeposiciones diarreicas de 6 meses de evolución, que se han vuelto\nPreparación EUNACOM\nsanguinolentas. Desde el inicio de los síntomas presenta pujo y tenesmo.\nRefiere que ha bajado 10 kg de peso presenta sensación febril ocasional. El\ndiagnóstico más probable es:",
+          "pregunta": "Un paciente de 24 años presenta un cuadro de dolor abdominal y\ndeposiciones diarreicas de 6 meses de evolución, que se han vuelto\nsanguinolentas. Desde el inicio de los síntomas presenta pujo y tenesmo.\nRefiere que ha bajado 10 kg de peso presenta sensación febril ocasional. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -11996,7 +11996,7 @@
             },
             {
               "id": "E",
-              "text": "Realizar paracentesis diagnóstica ­3/gastroenterologia/prueba­17­gastroenterologia/ 3/721/12/2016 Prueba 17 | Dr. Guevara"
+              "text": "Realizar paracentesis diagnóstica ­3/gastroenterologia/prueba­17­gastroenterologia/ 3/721/12/2016 Prueba 17 |"
             }
           ],
           "respuestaCorrecta": "E",
@@ -12008,11 +12008,11 @@
         },
         {
           "numero": 12,
-          "pregunta": "¿Qué afirmación es FALSA?\nDr. Guevara",
+          "pregunta": "¿Qué afirmación es FALSA?",
           "opciones": [
             {
               "id": "A",
-              "text": "La poliposis adenomatosa familiar (PAF) se caracteriza por presentar más de 100 Preparación EUNACOM pólipos en el colon"
+              "text": "La poliposis adenomatosa familiar (PAF) se caracteriza por presentar más de 100 pólipos en el colon"
             },
             {
               "id": "B",
@@ -12140,15 +12140,15 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Transaminasa pirúvica (GPT) ­3/gastroenterologia/prueba­17­gastroenterologia/ 4/721/12/2016 Prueba 17 | Dr. Guevara"
+              "text": "Transaminasa pirúvica (GPT) ­3/gastroenterologia/prueba­17­gastroenterologia/ 4/721/12/2016 Prueba 17 |"
             },
             {
               "id": "B",
-              "text": "Bilirrubinemia Dr. Guevara"
+              "text": "Bilirrubinemia"
             },
             {
               "id": "C",
-              "text": "INR Preparación EUNACOM"
+              "text": "INR"
             },
             {
               "id": "D",
@@ -12284,7 +12284,7 @@
             },
             {
               "id": "E",
-              "text": "Papas Respuestas: ­3/gastroenterologia/prueba­17­gastroenterologia/ 5/721/12/2016 Prueba 17 | Dr. Guevara Dr. Guevara Prueba 17 Gastroenterología. Preparación EUNACOPMreguntas Respuestas 1 E 2 B 3 C 4 D 5 E 6 A 7 C 8 D 9 D 10 A 11 E 12 C 13 D 14 A 15 B 16 C 17 D 18 D 19 A 20 A 2 comentarios sobre “Prueba 17” ­3/gastroenterologia/prueba­17­gastroenterologia/ 6/721/12/2016 Prueba 17 | Dr. Guevara Dr. Guevara moisés peña Preparación EUNACOM abril 21, 2016 a las 14:52 Creo…. q para poder tener una visión correcta de la pregunta 2, debería decir ÚLCERA GASTRO DUODENAL .. dice una duodeno gástrica. … aunque uno supone q es úlcera. .. admin abril 26, 2016 a las 14:46 Gracias! Corregido Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­17­gastroenterologia/ 7/7"
+              "text": "Papas Respuestas: ­3/gastroenterologia/prueba­17­gastroenterologia/ 5/721/12/2016 Prueba 17 | Prueba 17 Gastroenterología. Preparación EUNACOPMreguntas Respuestas 1 E 2 B 3 C 4 D 5 E 6 A 7 C 8 D 9 D 10 A 11 E 12 C 13 D 14 A 15 B 16 C 17 D 18 D 19 A 20 A 2 comentarios sobre “Prueba 17” ­3/gastroenterologia/prueba­17­gastroenterologia/ 6/721/12/2016 Prueba 17 | moisés peña abril 21, 2016 a las 14:52 Creo…. q para poder tener una visión correcta de la pregunta 2, debería decir ÚLCERA GASTRO DUODENAL .. dice una duodeno gástrica. … aunque uno supone q es úlcera. .. admin abril 26, 2016 a las 14:46 Gracias! Corregido"
             }
           ],
           "respuestaCorrecta": "A",
@@ -12400,15 +12400,15 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 57 años, consulta por artralgias de manos, de larga evolución,\nasociadas a rigidez matinal que dura entre 30 y 60 minutos y que cede con los\nmovimientos de las manos. Al examen físico se aprecia aumento de volumen,\neritema y signos de derrame articular en relación a las articulaciones\ninterfalángicas proximales y distales de ambas manos y en la muñeca derecha.\nEl diagnóstico más probable es:\n­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 1/721/12/2016 Prueba 18 | Dr. Guevara",
+          "pregunta": "Una mujer de 57 años, consulta por artralgias de manos, de larga evolución,\nasociadas a rigidez matinal que dura entre 30 y 60 minutos y que cede con los\nmovimientos de las manos. Al examen físico se aprecia aumento de volumen,\neritema y signos de derrame articular en relación a las articulaciones\ninterfalángicas proximales y distales de ambas manos y en la muñeca derecha.\nEl diagnóstico más probable es:\n­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 1/721/12/2016 Prueba 18 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Artritis reumatoide Dr. Guevara"
+              "text": "Artritis reumatoide"
             },
             {
               "id": "B",
-              "text": "Artritis gotosa Preparación EUNACOM"
+              "text": "Artritis gotosa"
             },
             {
               "id": "C",
@@ -12540,15 +12540,15 @@
             },
             {
               "id": "C",
-              "text": "Vasculitis de vaso pequeño ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 2/721/12/2016 Prueba 18 | Dr. Guevara"
+              "text": "Vasculitis de vaso pequeño ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 2/721/12/2016 Prueba 18 |"
             },
             {
               "id": "D",
-              "text": "Pericarditis Dr. Guevara"
+              "text": "Pericarditis"
             },
             {
               "id": "E",
-              "text": "Síndrome de Sjörgren secundario Preparación EUNACOM"
+              "text": "Síndrome de Sjörgren secundario"
             }
           ],
           "respuestaCorrecta": "B",
@@ -12656,15 +12656,15 @@
         },
         {
           "numero": 12,
-          "pregunta": "Una niña de 5 años presenta fiebre intermitente de 3 semanas de evolución,\nacompañada en algunas oportunidades de un rash eritematoso macular, que\ncompromete el tronco y la zona proximal de las extremidades que desaparece\nal ceder la fiebre. No presenta otros síntomas. Al examen físico se constata\nartritis de el tobillo derecho y de la tercera y cuarta articulaciones\nmetacarpofalángica izquierdas. El diagnóstico más probable es:\n­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 3/721/12/2016 Prueba 18 | Dr. Guevara",
+          "pregunta": "Una niña de 5 años presenta fiebre intermitente de 3 semanas de evolución,\nacompañada en algunas oportunidades de un rash eritematoso macular, que\ncompromete el tronco y la zona proximal de las extremidades que desaparece\nal ceder la fiebre. No presenta otros síntomas. Al examen físico se constata\nartritis de el tobillo derecho y de la tercera y cuarta articulaciones\nmetacarpofalángica izquierdas. El diagnóstico más probable es:\n­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 3/721/12/2016 Prueba 18 |",
           "opciones": [
             {
               "id": "A",
-              "text": "Lupus infantil Dr. Guevara"
+              "text": "Lupus infantil"
             },
             {
               "id": "B",
-              "text": "Púrpura de Schoenlein Henoch Preparación EUNACOM"
+              "text": "Púrpura de Schoenlein Henoch"
             },
             {
               "id": "C",
@@ -12796,15 +12796,15 @@
             },
             {
               "id": "C",
-              "text": "Antibióticos y tiamina ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 4/721/12/2016 Prueba 18 | Dr. Guevara"
+              "text": "Antibióticos y tiamina ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 4/721/12/2016 Prueba 18 |"
             },
             {
               "id": "D",
-              "text": "Tiamina y vitamina B12 Dr. Guevara"
+              "text": "Tiamina y vitamina B12"
             },
             {
               "id": "E",
-              "text": "Lactusa y tiamina Preparación EUNACOM"
+              "text": "Lactusa y tiamina"
             }
           ],
           "respuestaCorrecta": "C",
@@ -12924,15 +12924,15 @@
             },
             {
               "id": "C",
-              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 5/721/12/2016 Prueba 18 | Dr. Guevara"
+              "text": "Solicitar endoscopía digestiva alta ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 5/721/12/2016 Prueba 18 |"
             },
             {
               "id": "D",
-              "text": "Resolver quirúrgicamente de inmediato Dr. Guevara"
+              "text": "Resolver quirúrgicamente de inmediato"
             },
             {
               "id": "E",
-              "text": "Solicitar TAC de abdomen y pelvis Preparación EUNACOM Respuestas: Prueba 18 Gastroenterología + Reumatología Preguntas Respuestas 1 B 2 C 3 E 4 A 5 B 6 C 7 E 8 B 9 E 10 D 11 B 12 D 13 B 14 B 15 B 16 C 17 C 18 D 19 D 20 D ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 6/721/12/2016 Prueba 18 | Dr. Guevara Dr. Guevara Preparación EUNACOM Todos los Derechos Reservados para DrGuevara ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 7/7"
+              "text": "Solicitar TAC de abdomen y pelvis Respuestas: Prueba 18 Gastroenterología + Reumatología Preguntas Respuestas 1 B 2 C 3 E 4 A 5 B 6 C 7 E 8 B 9 E 10 D 11 B 12 D 13 B 14 B 15 B 16 C 17 C 18 D 19 D 20 D ­3/gastroenterologia/prueba­18­gastroenterologia­reumatologia/ 6/721/12/2016 Prueba 18 |"
             }
           ],
           "respuestaCorrecta": "D",
@@ -13060,15 +13060,15 @@
             },
             {
               "id": "C",
-              "text": "Cáncer incipiente de esófago ­3/gastroenterologia/prueba­19­gastroenterologia/ 1/721/12/2016 Prueba 19 | Dr. Guevara"
+              "text": "Cáncer incipiente de esófago ­3/gastroenterologia/prueba­19­gastroenterologia/ 1/721/12/2016 Prueba 19 |"
             },
             {
               "id": "D",
-              "text": "Estenosis esofágica secundaria a RGE Dr. Guevara"
+              "text": "Estenosis esofágica secundaria a RGE"
             },
             {
               "id": "E",
-              "text": "Cáncer esofágico avanzado Preparación EUNACOM"
+              "text": "Cáncer esofágico avanzado"
             }
           ],
           "respuestaCorrecta": "",
@@ -13196,7 +13196,7 @@
             },
             {
               "id": "E",
-              "text": "Colitis pseudomembranosa ­3/gastroenterologia/prueba­19­gastroenterologia/ 2/721/12/2016 Prueba 19 | Dr. Guevara"
+              "text": "Colitis pseudomembranosa ­3/gastroenterologia/prueba­19­gastroenterologia/ 2/721/12/2016 Prueba 19 |"
             }
           ],
           "respuestaCorrecta": "",
@@ -13208,7 +13208,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente consulta por diarrea de 4 semanas de evolución, asociado a baja\nDr. Guevara\nde peso. Refiere que en otras oportunidades ha presentado cuadros similares.\nPreparación EUNACOM\nRefiere que sus deposiciones son abundantes, con gotas de grasa. La conducta\nmás adecuada, para confirmar la malabsorción intestinal, es:",
+          "pregunta": "Un paciente consulta por diarrea de 4 semanas de evolución, asociado a baja\nde peso. Refiere que en otras oportunidades ha presentado cuadros similares.\nRefiere que sus deposiciones son abundantes, con gotas de grasa. La conducta\nmás adecuada, para confirmar la malabsorción intestinal, es:",
           "opciones": [
             {
               "id": "A",
@@ -13324,7 +13324,7 @@
             },
             {
               "id": "E",
-              "text": "Tiempo de tromboplastina parcial activada ­3/gastroenterologia/prueba­19­gastroenterologia/ 3/721/12/2016 Prueba 19 | Dr. Guevara"
+              "text": "Tiempo de tromboplastina parcial activada ­3/gastroenterologia/prueba­19­gastroenterologia/ 3/721/12/2016 Prueba 19 |"
             }
           ],
           "respuestaCorrecta": "",
@@ -13336,7 +13336,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente con cirrosis hepática por consumo de alcohol, presenta\nDr. Guevara\nhematemesis, seguida de ortostatismo. Al examen físico se aprecia pálido, con\nPreparación EUNACOM\nFC: 88x’, PA: 110/70, T°: 36,4°C, abdomen blando depresible, con ascitis clínica\nmoderada. La conducta más adecuada es:",
+          "pregunta": "Un paciente con cirrosis hepática por consumo de alcohol, presenta\nhematemesis, seguida de ortostatismo. Al examen físico se aprecia pálido, con\nFC: 88x’, PA: 110/70, T°: 36,4°C, abdomen blando depresible, con ascitis clínica\nmoderada. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -13464,7 +13464,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Una paciente de 33 años asintomática presenta elevación de las\ntransaminasas en exámenes de chequeo, con GOT: 80 UI/l y GPT: 92 UI/l. La\nbilirrubina, GGT y fosfatasas alcalinas son normales. Al examen físico destaca\n­3/gastroenterologia/prueba­19­gastroenterologia/ 4/721/12/2016 Prueba 19 | Dr. Guevara\nhepatomegalia de 3 cm bajo el reborde costal y obesidad moderada a severa. La\nDr. Guevara\necografía abdominal demuestra aumento de la ecogenicidad hepática. El\nPreparación EUNACOM\ndiagnóstico más probable es:",
+          "pregunta": "Una paciente de 33 años asintomática presenta elevación de las\ntransaminasas en exámenes de chequeo, con GOT: 80 UI/l y GPT: 92 UI/l. La\nbilirrubina, GGT y fosfatasas alcalinas son normales. Al examen físico destaca\n­3/gastroenterologia/prueba­19­gastroenterologia/ 4/721/12/2016 Prueba 19 |\nhepatomegalia de 3 cm bajo el reborde costal y obesidad moderada a severa. La\necografía abdominal demuestra aumento de la ecogenicidad hepática. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -13572,15 +13572,15 @@
             },
             {
               "id": "C",
-              "text": "Solicitar ecografía abdominal ­3/gastroenterologia/prueba­19­gastroenterologia/ 5/721/12/2016 Prueba 19 | Dr. Guevara"
+              "text": "Solicitar ecografía abdominal ­3/gastroenterologia/prueba­19­gastroenterologia/ 5/721/12/2016 Prueba 19 |"
             },
             {
               "id": "D",
-              "text": "Enviar a domicilio, explicando el carácter benigno de su condición Dr. Guevara"
+              "text": "Enviar a domicilio, explicando el carácter benigno de su condición"
             },
             {
               "id": "E",
-              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 Preparación EUNACOM meses Respuestas: Prueba 19 Gastroenterología Preguntas Respuestas"
+              "text": "Prohibir el consumo de alcohol y controlar con nuevas pruebas hepáticas en 3 meses Respuestas: Prueba 19 Gastroenterología Preguntas Respuestas"
             }
           ],
           "respuestaCorrecta": "",

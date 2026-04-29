@@ -136,11 +136,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Germán, de 6 meses de edad, 7.200 grs. de peso y que recibió durante 3 meses\nlactancia materna, es enviado desde su Sala-Cuna a policlínico por un cuadro\ndiarreico de 24 horas de evolución, con fiebre baja y presencia de 4 vómitos en\nlas últimas 12 horas. Al examen físico usted lo encuentra con mucosas algo\nsecas, consciente, irritable, sediento. La madre se ve preocupada, receptiva y\n\ncooperadora. ¿Cuál es la conducta que se debe iniciar?\nDr. Guevara",
+          "pregunta": "Germán, de 6 meses de edad, 7.200 grs. de peso y que recibió durante 3 meses\nlactancia materna, es enviado desde su Sala-Cuna a policlínico por un cuadro\ndiarreico de 24 horas de evolución, con fiebre baja y presencia de 4 vómitos en\nlas últimas 12 horas. Al examen físico usted lo encuentra con mucosas algo\nsecas, consciente, irritable, sediento. La madre se ve preocupada, receptiva y\n\ncooperadora. ¿Cuál es la conducta que se debe iniciar?",
           "opciones": [
             {
               "id": "A",
-              "text": "Derivación del niño a un hospital para rehidratación intravenosa Preparación EUNACOM"
+              "text": "Derivación del niño a un hospital para rehidratación intravenosa"
             },
             {
               "id": "B",
@@ -264,11 +264,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "La madre primípara, de un recién nacido de 15 días de edad, consulta porque\ndesde que salió de la maternidad, el niño presenta deposiciones semilíquidas,\nexplosivas, de olor ácido, en cantidad de 6 a 8 en 24 horas, principalmente\ndespués de ser amamantado. No recibe otros alimentos. Al nacer pesó 2.800 grs.\nal tercer día 2.670 grs. y actualmente 3.200 grs. El examen físico es normal.\n\n¿Cuál de las siguientes conductas es la MAS apropiada?\nDr. Guevara",
+          "pregunta": "La madre primípara, de un recién nacido de 15 días de edad, consulta porque\ndesde que salió de la maternidad, el niño presenta deposiciones semilíquidas,\nexplosivas, de olor ácido, en cantidad de 6 a 8 en 24 horas, principalmente\ndespués de ser amamantado. No recibe otros alimentos. Al nacer pesó 2.800 grs.\nal tercer día 2.670 grs. y actualmente 3.200 grs. El examen físico es normal.\n\n¿Cuál de las siguientes conductas es la MAS apropiada?",
           "opciones": [
             {
               "id": "A",
-              "text": "Hospitalizar al niño Preparación EUNACOM"
+              "text": "Hospitalizar al niño"
             },
             {
               "id": "B",
@@ -380,7 +380,7 @@
             },
             {
               "id": "E",
-              "text": "siga amamantándolo y retrase la incorporación de sólidos hasta después de los 7 Dr. Guevara meses Preparación EUNACOM"
+              "text": "siga amamantándolo y retrase la incorporación de sólidos hasta después de los 7 meses"
             }
           ],
           "respuestaCorrecta": "A",
@@ -552,7 +552,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Frente a un cuadro de escroto agudo unilateral, cuyo diagnóstico etiológico\nDr. Guevara\nno es posible precisar, la actitud CORRECTA a seguir es:\nPreparación EUNACOM",
+          "pregunta": "Frente a un cuadro de escroto agudo unilateral, cuyo diagnóstico etiológico\nno es posible precisar, la actitud CORRECTA a seguir es:",
           "opciones": [
             {
               "id": "A",
@@ -720,11 +720,11 @@
             },
             {
               "id": "B",
-              "text": "Sonreír frente a un rostro humano Dr. Guevara"
+              "text": "Sonreír frente a un rostro humano"
             },
             {
               "id": "C",
-              "text": "Seguir con la mirada a 180 grados Preparación EUNACOM"
+              "text": "Seguir con la mirada a 180 grados"
             },
             {
               "id": "D",
@@ -872,7 +872,7 @@
         },
         {
           "numero": 28,
-          "pregunta": "¿Cuál es el diagnóstico MAS probable en un paciente de 8 años, de sexo\nDr. Guevara\nmasculino, en buen estado general que consulta por artralgia unilateral de\nPreparación EUNACOM\ncadera de 2 semanas y cojera progresiva?",
+          "pregunta": "¿Cuál es el diagnóstico MAS probable en un paciente de 8 años, de sexo\nmasculino, en buen estado general que consulta por artralgia unilateral de\ncadera de 2 semanas y cojera progresiva?",
           "opciones": [
             {
               "id": "A",
@@ -1032,7 +1032,7 @@
         },
         {
           "numero": 33,
-          "pregunta": "En el síndrome nefrítico, expresión de glomerulonefritis aguda\nDr. Guevara\npostinfecciosa, el dato de laboratorio de MAYOR utilidad para confirmar el\nPreparación EUNACOM\ndiagnóstico es:",
+          "pregunta": "En el síndrome nefrítico, expresión de glomerulonefritis aguda\npostinfecciosa, el dato de laboratorio de MAYOR utilidad para confirmar el\ndiagnóstico es:",
           "opciones": [
             {
               "id": "A",
@@ -1200,11 +1200,11 @@
             },
             {
               "id": "B",
-              "text": "Claritromicina Dr. Guevara"
+              "text": "Claritromicina"
             },
             {
               "id": "C",
-              "text": "Amoxicilina Preparación EUNACOM"
+              "text": "Amoxicilina"
             },
             {
               "id": "D",
@@ -1352,11 +1352,11 @@
         },
         {
           "numero": 43,
-          "pregunta": "La causa más común de muerte perinatal en Chile es:\nDr. Guevara",
+          "pregunta": "La causa más común de muerte perinatal en Chile es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Hipoglicemia Preparación EUNACOM"
+              "text": "Hipoglicemia"
             },
             {
               "id": "B",
@@ -1512,7 +1512,7 @@
         },
         {
           "numero": 48,
-          "pregunta": "Lactante de 15 meses que presentó diarrea con mucosidades y sangre hace 5\ndías, se aprecia muy decaído, pálido y con discreto edema de párpados. No ha\n\norinado en las últimas 12 horas pese a estar con menos diarrea y haber recibido\nDr. Guevara\nlíquidos. ¿Cuál es el diagnóstico más probable?\nPreparación EUNACOM",
+          "pregunta": "Lactante de 15 meses que presentó diarrea con mucosidades y sangre hace 5\ndías, se aprecia muy decaído, pálido y con discreto edema de párpados. No ha\n\norinado en las últimas 12 horas pese a estar con menos diarrea y haber recibido\nlíquidos. ¿Cuál es el diagnóstico más probable?",
           "opciones": [
             {
               "id": "A",
@@ -1712,7 +1712,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un niño de 7 años presenta fiebre, y compromiso del estado general de 7 días\nDr. Guevara\nde evolución. La madre refiere que en algunas oportunidades cojea por dolor\nPreparación EUNACOM\nen la rodilla derecha. No presenta síntomas urinarios, respiratorios ni\ndigestivos. Al examen se observa moderadamente pálido, con petequias en\ntronco y extremidades inferiores, sin otros hallazgos de importancia. El\ndiagnóstico más probable es:",
+          "pregunta": "Un niño de 7 años presenta fiebre, y compromiso del estado general de 7 días\nde evolución. La madre refiere que en algunas oportunidades cojea por dolor\nen la rodilla derecha. No presenta síntomas urinarios, respiratorios ni\ndigestivos. Al examen se observa moderadamente pálido, con petequias en\ntronco y extremidades inferiores, sin otros hallazgos de importancia. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -1828,7 +1828,7 @@
             },
             {
               "id": "E",
-              "text": "Hidrocarburos Preparación EUNACOM"
+              "text": "Hidrocarburos"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1940,11 +1940,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Indicar beta-agonistas de acción corta previo al ejercicio y durante los síntomas Dr. Guevara"
+              "text": "Indicar beta-agonistas de acción corta previo al ejercicio y durante los síntomas"
             },
             {
               "id": "B",
-              "text": "Iniciar corticoides inhalados, según horario, asociados a beta-agonistas de acción Preparación EUNACOM corta, durante los síntomas"
+              "text": "Iniciar corticoides inhalados, según horario, asociados a beta-agonistas de acción corta, durante los síntomas"
             },
             {
               "id": "C",
@@ -2064,7 +2064,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "Un niño de 6 años consulta por cuadro de malestar, fiebre hasta 38,7°C y\nDr. Guevara\neritema facial, al que luego se agrega un exantema macular eritematoso, que\nPreparación EUNACOM\ncompromete tronco y extremidades, con confluencia de las lesiones, en\ndisposición reticular. El diagnóstico más probable es:",
+          "pregunta": "Un niño de 6 años consulta por cuadro de malestar, fiebre hasta 38,7°C y\neritema facial, al que luego se agrega un exantema macular eritematoso, que\ncompromete tronco y extremidades, con confluencia de las lesiones, en\ndisposición reticular. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2200,11 +2200,11 @@
             },
             {
               "id": "B",
-              "text": "Polipomatosis adenomatosa intestinal Dr. Guevara"
+              "text": "Polipomatosis adenomatosa intestinal"
             },
             {
               "id": "C",
-              "text": "Divertículo de Meckel Preparación EUNACOM"
+              "text": "Divertículo de Meckel"
             },
             {
               "id": "D",
@@ -2360,7 +2360,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un lactante de 7 meses ha presentado 4 episodios de dificultad respiratoria\nsibilante. El primero de ellos fue a los 4 meses, en relación a una infección por\nVRS. El último episodio fue hace 4 días y fue tratado con broncodilatadores\n\ninhalados y corticoides orales. Actualmente se encuentra asintomático. El\nDr. Guevara\ntratamiento farmacológico de elección para el manejo de este paciente, de\nPreparación EUNACOM\nahora en adelante, es:",
+          "pregunta": "Un lactante de 7 meses ha presentado 4 episodios de dificultad respiratoria\nsibilante. El primero de ellos fue a los 4 meses, en relación a una infección por\nVRS. El último episodio fue hace 4 días y fue tratado con broncodilatadores\n\ninhalados y corticoides orales. Actualmente se encuentra asintomático. El\ntratamiento farmacológico de elección para el manejo de este paciente, de\nahora en adelante, es:",
           "opciones": [
             {
               "id": "A",
@@ -2520,7 +2520,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño de 8 meses presenta fiebre alta, decaimiento marcado y convulsiona\nDr. Guevara\nen una oportunidad. Al examen físico se observa hiporreactivo, febril hasta\nPreparación EUNACOM\n39,6°C, destacando rigidez de nuca y fontanela anterior abombada. No presenta\nsignos focales. El diagnóstico más probable es:",
+          "pregunta": "Un niño de 8 meses presenta fiebre alta, decaimiento marcado y convulsiona\nen una oportunidad. Al examen físico se observa hiporreactivo, febril hasta\n39,6°C, destacando rigidez de nuca y fontanela anterior abombada. No presenta\nsignos focales. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2664,11 +2664,11 @@
             },
             {
               "id": "D",
-              "text": "75% Dr. Guevara"
+              "text": "75%"
             },
             {
               "id": "E",
-              "text": "100% Preparación EUNACOM"
+              "text": "100%"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2792,11 +2792,11 @@
             },
             {
               "id": "D",
-              "text": "Administrar suero fisiológico, corticoides y antihistamínicos endovenosos, Dr. Guevara"
+              "text": "Administrar suero fisiológico, corticoides y antihistamínicos endovenosos,"
             },
             {
               "id": "E",
-              "text": "Iniciar corticoides orales Preparación EUNACOM"
+              "text": "Iniciar corticoides orales"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3040,7 +3040,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un recién nacido de pretérmino (34 semanas) que pesó 1750 g al nacer, a\nDr. Guevara\nlos10 días presenta ictericia con bilirrubinemia total 10 mg/dl y una fracción\nPreparación EUNACOM\ndirecta de 0,8 mg/dl. Está recibiendo alimentación orogástrica intermitente de\nleche materna extraída y nutrición parenteral suplementaria.\nEl diagnóstico más probable es:",
+          "pregunta": "Un recién nacido de pretérmino (34 semanas) que pesó 1750 g al nacer, a\nlos10 días presenta ictericia con bilirrubinemia total 10 mg/dl y una fracción\ndirecta de 0,8 mg/dl. Está recibiendo alimentación orogástrica intermitente de\nleche materna extraída y nutrición parenteral suplementaria.\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3176,11 +3176,11 @@
             },
             {
               "id": "B",
-              "text": "Administrar antipiréticos Dr. Guevara"
+              "text": "Administrar antipiréticos"
             },
             {
               "id": "C",
-              "text": "Administrar anticonvulsivante Preparación EUNACOM"
+              "text": "Administrar anticonvulsivante"
             },
             {
               "id": "D",
@@ -3332,11 +3332,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Fibrosis quística Dr. Guevara"
+              "text": "Fibrosis quística"
             },
             {
               "id": "B",
-              "text": "Reflujo gastroesofágico Preparación EUNACOM"
+              "text": "Reflujo gastroesofágico"
             },
             {
               "id": "C",
@@ -3472,7 +3472,7 @@
             },
             {
               "id": "D",
-              "text": "En el caso de testículos no palpables bilaterales, es estudio requiere un examen Preparación EUNACOM cromosómico"
+              "text": "En el caso de testículos no palpables bilaterales, es estudio requiere un examen cromosómico"
             },
             {
               "id": "E",
@@ -3672,7 +3672,7 @@
             },
             {
               "id": "D",
-              "text": "La enfermedad de Berger es la glomerulonefritis más frecuente Preparación EUNACOM"
+              "text": "La enfermedad de Berger es la glomerulonefritis más frecuente"
             },
             {
               "id": "E",
@@ -3788,7 +3788,7 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Observar en su domicilio con indicaciones de control en caso de aparición de Dr. Guevara signos de alarma Preparación EUNACOM"
+              "text": "Observar en su domicilio con indicaciones de control en caso de aparición de signos de alarma"
             },
             {
               "id": "B",
@@ -3944,7 +3944,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un niño de 4 años es traído por un cuadro de 5 días de fiebre alta,\ndecaimiento, eritema de labios y artralgias de extremidades superiores. Al\nexamen físico se aprecia inyección conjuntival bilateral, labios rojos y partidos,\nse palpan algunas adenopatías cervicales anteriores y se aprecia\n\nenrojecimiento y edema de las extremidades inferiores. La conducta más\nDr. Guevara\nadecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un niño de 4 años es traído por un cuadro de 5 días de fiebre alta,\ndecaimiento, eritema de labios y artralgias de extremidades superiores. Al\nexamen físico se aprecia inyección conjuntival bilateral, labios rojos y partidos,\nse palpan algunas adenopatías cervicales anteriores y se aprecia\n\nenrojecimiento y edema de las extremidades inferiores. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4088,11 +4088,11 @@
             },
             {
               "id": "D",
-              "text": "Derivar a traumatología para corrección con órtesis Dr. Guevara"
+              "text": "Derivar a traumatología para corrección con órtesis"
             },
             {
               "id": "E",
-              "text": "Enviar a domicilio, sin necesidad de mayor estudio Preparación EUNACOM"
+              "text": "Enviar a domicilio, sin necesidad de mayor estudio"
             }
           ],
           "respuestaCorrecta": "E",
@@ -4312,7 +4312,7 @@
             },
             {
               "id": "B",
-              "text": "Niño de 6 años con índice peso/edad +1,0 DS, índice peso/talla +2,1DS e índice Preparación EUNACOM talla/edad -1,1DS"
+              "text": "Niño de 6 años con índice peso/edad +1,0 DS, índice peso/talla +2,1DS e índice talla/edad -1,1DS"
             },
             {
               "id": "C",
@@ -4464,11 +4464,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "El tratamiento de elección de la laringitis aguda obstructiva es:\nDr. Guevara",
+          "pregunta": "El tratamiento de elección de la laringitis aguda obstructiva es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Salbutamol inhalado Preparación EUNACOM"
+              "text": "Salbutamol inhalado"
             },
             {
               "id": "B",
@@ -4640,11 +4640,11 @@
             },
             {
               "id": "D",
-              "text": "Estreptococo beta-hemolítico grupo B Dr. Guevara"
+              "text": "Estreptococo beta-hemolítico grupo B"
             },
             {
               "id": "E",
-              "text": "Estreptococo beta-hemolítico grupo A Preparación EUNACOM"
+              "text": "Estreptococo beta-hemolítico grupo A"
             }
           ],
           "respuestaCorrecta": "A",
@@ -4784,7 +4784,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "Un niño de 4 años es diagnosticado de tos convulsiva con IFD para\nBordetella pertusis, iniciándose tratamiento con eritromicina. Tiene un\n\nhermano de 8 años, que está asintomático y tiene todas sus vacunas al día. La\nDr. Guevara\nconducta más adecuada para con el hermano es:\nPreparación EUNACOM",
+          "pregunta": "Un niño de 4 años es diagnosticado de tos convulsiva con IFD para\nBordetella pertusis, iniciándose tratamiento con eritromicina. Tiene un\n\nhermano de 8 años, que está asintomático y tiene todas sus vacunas al día. La\nconducta más adecuada para con el hermano es:",
           "opciones": [
             {
               "id": "A",
@@ -4928,7 +4928,7 @@
             },
             {
               "id": "B",
-              "text": "La alta inmunidad alcanzada con las dosis anteriores de la vacuna DPT, contra la Dr. Guevara tos convulsiva Preparación EUNACOM"
+              "text": "La alta inmunidad alcanzada con las dosis anteriores de la vacuna DPT, contra la tos convulsiva"
             },
             {
               "id": "C",
@@ -5068,7 +5068,7 @@
             },
             {
               "id": "E",
-              "text": "Proteinuria, edema e hipertensión arterial, asociada a hipocomplementemia, Preparación EUNACOM durante una infección estreptocócica"
+              "text": "Proteinuria, edema e hipertensión arterial, asociada a hipocomplementemia, durante una infección estreptocócica"
             }
           ],
           "respuestaCorrecta": "D",
@@ -5192,7 +5192,7 @@
             },
             {
               "id": "D",
-              "text": "Elevación marcada de las transaminasas e hiperbilirrubinemia de predominio Dr. Guevara directo Preparación EUNACOM"
+              "text": "Elevación marcada de las transaminasas e hiperbilirrubinemia de predominio directo"
             },
             {
               "id": "E",
@@ -5304,7 +5304,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "Los 3 hitos del desarrollo psicomotor, que el lactante logra normalmente al\nDr. Guevara\ncumplir el año de edad, son:\nPreparación EUNACOM",
+          "pregunta": "Los 3 hitos del desarrollo psicomotor, que el lactante logra normalmente al\ncumplir el año de edad, son:",
           "opciones": [
             {
               "id": "A",
@@ -5440,11 +5440,11 @@
             },
             {
               "id": "B",
-              "text": "Pseudomona aureginosa Dr. Guevara"
+              "text": "Pseudomona aureginosa"
             },
             {
               "id": "C",
-              "text": "Citomegalovirus Preparación EUNACOM"
+              "text": "Citomegalovirus"
             },
             {
               "id": "D",
@@ -5604,11 +5604,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar punción lumbar Dr. Guevara"
+              "text": "Realizar punción lumbar"
             },
             {
               "id": "B",
-              "text": "Iniciar ceftriaxona + ampicilina + corticoides Preparación EUNACOM"
+              "text": "Iniciar ceftriaxona + ampicilina + corticoides"
             },
             {
               "id": "C",
@@ -5728,7 +5728,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un niño de 10 años presenta un cuadro de artralgias, asociado a hematuria y\nDr. Guevara\ndolor abdominal, con presencia de lesiones purpúricas en las extremidades\nPreparación EUNACOM\ninferiores y en los glúteos, sin otras alteraciones en el examen físico. Se\nsolicitan exámenes generales, que muestran presencia de hematuria y cilindros\nhemáticos, sin otras alteraciones. La conducta más adecuada ante la patología\ndescrita es:",
+          "pregunta": "Un niño de 10 años presenta un cuadro de artralgias, asociado a hematuria y\ndolor abdominal, con presencia de lesiones purpúricas en las extremidades\ninferiores y en los glúteos, sin otras alteraciones en el examen físico. Se\nsolicitan exámenes generales, que muestran presencia de hematuria y cilindros\nhemáticos, sin otras alteraciones. La conducta más adecuada ante la patología\ndescrita es:",
           "opciones": [
             {
               "id": "A",
@@ -5840,11 +5840,11 @@
             },
             {
               "id": "D",
-              "text": "Comunicación interventricular Dr. Guevara"
+              "text": "Comunicación interventricular"
             },
             {
               "id": "E",
-              "text": "Soplo inocente Preparación EUNACOM"
+              "text": "Soplo inocente"
             }
           ],
           "respuestaCorrecta": "E",
@@ -5964,11 +5964,11 @@
             },
             {
               "id": "C",
-              "text": "Ligada al cromosoma X Dr. Guevara"
+              "text": "Ligada al cromosoma X"
             },
             {
               "id": "D",
-              "text": "Ligada al cromosoma Y Preparación EUNACOM"
+              "text": "Ligada al cromosoma Y"
             },
             {
               "id": "E",
@@ -6112,11 +6112,11 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un niño presenta fiebre alta y un exantema generalizado, que inicia como\npequeñas máculas rosadas, que evolucionan a lesiones purpúricas que crecen\nrápidamente, acompañándose de compromiso hemodinámico. El agente más\n\nprobable es:\nDr. Guevara",
+          "pregunta": "Un niño presenta fiebre alta y un exantema generalizado, que inicia como\npequeñas máculas rosadas, que evolucionan a lesiones purpúricas que crecen\nrápidamente, acompañándose de compromiso hemodinámico. El agente más\n\nprobable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Sarampión Preparación EUNACOM"
+              "text": "Sarampión"
             },
             {
               "id": "B",
@@ -6252,11 +6252,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar punción lumbar Dr. Guevara"
+              "text": "Realizar punción lumbar"
             },
             {
               "id": "B",
-              "text": "Iniciar ceftriaxona + ampicilina + corticoides Preparación EUNACOM"
+              "text": "Iniciar ceftriaxona + ampicilina + corticoides"
             },
             {
               "id": "C",
@@ -6376,7 +6376,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un niño de 10 años presenta un cuadro de artralgias, asociado a hematuria y\nDr. Guevara\ndolor abdominal, con presencia de lesiones purpúricas en las extremidades\nPreparación EUNACOM\ninferiores y en los glúteos, sin otras alteraciones en el examen físico. Se\nsolicitan exámenes generales, que muestran presencia de hematuria y cilindros\nhemáticos, sin otras alteraciones. La conducta más adecuada ante la patología\ndescrita es:",
+          "pregunta": "Un niño de 10 años presenta un cuadro de artralgias, asociado a hematuria y\ndolor abdominal, con presencia de lesiones purpúricas en las extremidades\ninferiores y en los glúteos, sin otras alteraciones en el examen físico. Se\nsolicitan exámenes generales, que muestran presencia de hematuria y cilindros\nhemáticos, sin otras alteraciones. La conducta más adecuada ante la patología\ndescrita es:",
           "opciones": [
             {
               "id": "A",
@@ -6488,11 +6488,11 @@
             },
             {
               "id": "D",
-              "text": "Comunicación interventricular Dr. Guevara"
+              "text": "Comunicación interventricular"
             },
             {
               "id": "E",
-              "text": "Soplo inocente Preparación EUNACOM"
+              "text": "Soplo inocente"
             }
           ],
           "respuestaCorrecta": "E",
@@ -6616,11 +6616,11 @@
             },
             {
               "id": "D",
-              "text": "Ligada al cromosoma Y Dr. Guevara"
+              "text": "Ligada al cromosoma Y"
             },
             {
               "id": "E",
-              "text": "Mitocondrial Preparación EUNACOM"
+              "text": "Mitocondrial"
             }
           ],
           "respuestaCorrecta": "A",
@@ -6764,11 +6764,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Sarampión Dr. Guevara"
+              "text": "Sarampión"
             },
             {
               "id": "B",
-              "text": "Yersinia Pestis Preparación EUNACOM"
+              "text": "Yersinia Pestis"
             },
             {
               "id": "C",
@@ -7560,11 +7560,11 @@
             },
             {
               "id": "D",
-              "text": "Velocidad de crecimiento disminuida y edad ósea acorde con la edad cronológica Dr. Guevara"
+              "text": "Velocidad de crecimiento disminuida y edad ósea acorde con la edad cronológica"
             },
             {
               "id": "E",
-              "text": "Velocidad de crecimiento disminuida y edad ósea menor que la edad cronológica Preparación EUNACOM"
+              "text": "Velocidad de crecimiento disminuida y edad ósea menor que la edad cronológica"
             }
           ],
           "respuestaCorrecta": "C",
@@ -7708,11 +7708,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Observar evolución, indicando sales de rehidratación oral Dr. Guevara"
+              "text": "Observar evolución, indicando sales de rehidratación oral"
             },
             {
               "id": "B",
-              "text": "Hospitalizar e iniciar suero fisiológico y ceftriaxona por vía intravenosa Preparación EUNACOM"
+              "text": "Hospitalizar e iniciar suero fisiológico y ceftriaxona por vía intravenosa"
             },
             {
               "id": "C",
@@ -7844,11 +7844,11 @@
             },
             {
               "id": "D",
-              "text": "Artritis juvenil idiopática Dr. Guevara"
+              "text": "Artritis juvenil idiopática"
             },
             {
               "id": "E",
-              "text": "Enfermedad de Kawasaki Preparación EUNACOM"
+              "text": "Enfermedad de Kawasaki"
             }
           ],
           "respuestaCorrecta": "C",
@@ -8000,11 +8000,11 @@
             },
             {
               "id": "C",
-              "text": "Hemoconcentración trombocitopenia y hematuria dismórfica Dr. Guevara"
+              "text": "Hemoconcentración trombocitopenia y hematuria dismórfica"
             },
             {
               "id": "D",
-              "text": "Hemoconcentración, trombocitosis y elevación de la creatinina Preparación EUNACOM"
+              "text": "Hemoconcentración, trombocitosis y elevación de la creatinina"
             },
             {
               "id": "E",
@@ -8228,11 +8228,11 @@
             },
             {
               "id": "B",
-              "text": "Ecocardiograma Dr. Guevara"
+              "text": "Ecocardiograma"
             },
             {
               "id": "C",
-              "text": "Angiografía coronaria Preparación EUNACOM"
+              "text": "Angiografía coronaria"
             },
             {
               "id": "D",
@@ -8360,11 +8360,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar test pack para estreptococo betahemolítico grupo A Dr. Guevara"
+              "text": "Solicitar test pack para estreptococo betahemolítico grupo A"
             },
             {
               "id": "D",
-              "text": "Iniciar amoxicilina oral Preparación EUNACOM"
+              "text": "Iniciar amoxicilina oral"
             },
             {
               "id": "E",
@@ -8564,11 +8564,11 @@
             },
             {
               "id": "D",
-              "text": "Soplo continuo Dr. Guevara"
+              "text": "Soplo continuo"
             },
             {
               "id": "E",
-              "text": "Cianosis que no responde a oxígeno al 100% Preparación EUNACOM"
+              "text": "Cianosis que no responde a oxígeno al 100%"
             }
           ],
           "respuestaCorrecta": "C",
@@ -8676,7 +8676,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un lactante de 6 meses de edad, sin antecedentes de importancia, presentó\nDr. Guevara\nun cuadro de dificultad respiratoria, asociado a retracción intercostal y\nPreparación EUNACOM\ncianosis perioral. Este cuadro fue manejado con salbutamol y oxígeno y luego\nfue enviado a domicilio con buena evolución. Usted lo evalúa 5 días después y\nestá en excelentes condiciones, sin alteraciones en el examen físico. La\nconducta más adecuada es:",
+          "pregunta": "Un lactante de 6 meses de edad, sin antecedentes de importancia, presentó\nun cuadro de dificultad respiratoria, asociado a retracción intercostal y\ncianosis perioral. Este cuadro fue manejado con salbutamol y oxígeno y luego\nfue enviado a domicilio con buena evolución. Usted lo evalúa 5 días después y\nestá en excelentes condiciones, sin alteraciones en el examen físico. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -8804,7 +8804,7 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un niño presenta un síndrome purpúrico, con aparición de petequias y\nDr. Guevara\nalgunas equimosis generalizadas. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un niño presenta un síndrome purpúrico, con aparición de petequias y\nalgunas equimosis generalizadas. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -8940,11 +8940,11 @@
             },
             {
               "id": "B",
-              "text": "Trivírica y antineumocócica solamente Dr. Guevara"
+              "text": "Trivírica y antineumocócica solamente"
             },
             {
               "id": "C",
-              "text": "Trivírica, y luego de 1 mes: DPT, Haemóphilus influenza B, polio y hepatitis B Preparación EUNACOM"
+              "text": "Trivírica, y luego de 1 mes: DPT, Haemóphilus influenza B, polio y hepatitis B"
             },
             {
               "id": "D",
@@ -9072,11 +9072,11 @@
             },
             {
               "id": "C",
-              "text": "Estreptococo grupo A Dr. Guevara"
+              "text": "Estreptococo grupo A"
             },
             {
               "id": "D",
-              "text": "Estreptococo grupo B Preparación EUNACOM"
+              "text": "Estreptococo grupo B"
             },
             {
               "id": "E",
@@ -9228,11 +9228,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "La segunda causa de muerte en la edad pediátrica es el cáncer, estando en\nprimer lugar los cánceres hematológicos. ¿De qué mueren más frecuentemente\n\nlos pacientes con leucemia?\nDr. Guevara",
+          "pregunta": "La segunda causa de muerte en la edad pediátrica es el cáncer, estando en\nprimer lugar los cánceres hematológicos. ¿De qué mueren más frecuentemente\n\nlos pacientes con leucemia?",
           "opciones": [
             {
               "id": "A",
-              "text": "De infecciones Preparación EUNACOM"
+              "text": "De infecciones"
             },
             {
               "id": "B",
@@ -9372,11 +9372,11 @@
             },
             {
               "id": "D",
-              "text": "Enfermedad de Hirschsprung Dr. Guevara"
+              "text": "Enfermedad de Hirschsprung"
             },
             {
               "id": "E",
-              "text": "Atresia duodenal Preparación EUNACOM"
+              "text": "Atresia duodenal"
             }
           ],
           "respuestaCorrecta": "E",
@@ -9524,11 +9524,11 @@
             },
             {
               "id": "B",
-              "text": "Solicitar biopsia renal Dr. Guevara"
+              "text": "Solicitar biopsia renal"
             },
             {
               "id": "C",
-              "text": "Iniciar corticoides endovenosos y ciclofosfamida Preparación EUNACOM"
+              "text": "Iniciar corticoides endovenosos y ciclofosfamida"
             },
             {
               "id": "D",
@@ -9660,11 +9660,11 @@
             },
             {
               "id": "D",
-              "text": "Virus herpes 6 Dr. Guevara"
+              "text": "Virus herpes 6"
             },
             {
               "id": "E",
-              "text": "Enterovirus Preparación EUNACOM"
+              "text": "Enterovirus"
             }
           ],
           "respuestaCorrecta": "B",

@@ -120,11 +120,11 @@
             },
             {
               "id": "D",
-              "text": "Prolongar el registro por 20 minutos más Dr. Guevara"
+              "text": "Prolongar el registro por 20 minutos más"
             },
             {
               "id": "E",
-              "text": "Tranquilizar a la madre y enviar a domicilio Preparación EUNACOM"
+              "text": "Tranquilizar a la madre y enviar a domicilio"
             }
           ],
           "respuestaCorrecta": "E",
@@ -264,11 +264,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "¿Cuál de las siguientes alternativas NO es una causa de oligohidroamnios?\nDr. Guevara",
+          "pregunta": "¿Cuál de las siguientes alternativas NO es una causa de oligohidroamnios?",
           "opciones": [
             {
               "id": "A",
-              "text": "Atresia esofágica Preparación EUNACOM"
+              "text": "Atresia esofágica"
             },
             {
               "id": "B",
@@ -408,11 +408,11 @@
             },
             {
               "id": "D",
-              "text": "Cesáreas anteriores Dr. Guevara"
+              "text": "Cesáreas anteriores"
             },
             {
               "id": "E",
-              "text": "Desproporción céfalopélvica Preparación EUNACOM"
+              "text": "Desproporción céfalopélvica"
             }
           ],
           "respuestaCorrecta": "D",
@@ -552,11 +552,11 @@
         },
         {
           "numero": 18,
-          "pregunta": "¿Cuál de las siguientes vacunas está contraindicada durante el embarazo?\nDr. Guevara",
+          "pregunta": "¿Cuál de las siguientes vacunas está contraindicada durante el embarazo?",
           "opciones": [
             {
               "id": "A",
-              "text": "Varicela Preparación EUNACOM"
+              "text": "Varicela"
             },
             {
               "id": "B",
@@ -760,11 +760,11 @@
             },
             {
               "id": "B",
-              "text": "Amniocentesis Dr. Guevara"
+              "text": "Amniocentesis"
             },
             {
               "id": "C",
-              "text": "Postparto Preparación EUNACOM"
+              "text": "Postparto"
             },
             {
               "id": "D",
@@ -896,11 +896,11 @@
             },
             {
               "id": "D",
-              "text": "Hernia diafragmática congénita Dr. Guevara"
+              "text": "Hernia diafragmática congénita"
             },
             {
               "id": "E",
-              "text": "Restricción del crecimiento intrauterino Preparación EUNACOM"
+              "text": "Restricción del crecimiento intrauterino"
             }
           ],
           "respuestaCorrecta": "B",
@@ -1056,11 +1056,11 @@
             },
             {
               "id": "D",
-              "text": "Rotura de vasa previa Dr. Guevara"
+              "text": "Rotura de vasa previa"
             },
             {
               "id": "E",
-              "text": "Acretismo placentario Preparación EUNACOM"
+              "text": "Acretismo placentario"
             }
           ],
           "respuestaCorrecta": "A",
@@ -1204,11 +1204,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Altura uterina Dr. Guevara"
+              "text": "Altura uterina"
             },
             {
               "id": "B",
-              "text": "Inicio de la percepción de movimientos fetales Preparación EUNACOM"
+              "text": "Inicio de la percepción de movimientos fetales"
             },
             {
               "id": "C",
@@ -1432,7 +1432,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente asintomática, cursando un embarazo de 28 semanas, se realiza\nDr. Guevara\nun test de tolerancia a la glucosa, con 75 gramos por vía oral, obteniéndose una\nPreparación EUNACOM\nglicemia basal de 98 mg/dl y una glicemia a las 2 horas post sobrecarga de 190\nmg/dl. Se le indica una dieta estricta, la que cumple parcialmente, manteniendo\nglicemias postprandiales cercanas a 170 mg/dl. La conducta más adecuada es:",
+          "pregunta": "Una paciente asintomática, cursando un embarazo de 28 semanas, se realiza\nun test de tolerancia a la glucosa, con 75 gramos por vía oral, obteniéndose una\nglicemia basal de 98 mg/dl y una glicemia a las 2 horas post sobrecarga de 190\nmg/dl. Se le indica una dieta estricta, la que cumple parcialmente, manteniendo\nglicemias postprandiales cercanas a 170 mg/dl. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -1572,11 +1572,11 @@
             },
             {
               "id": "C",
-              "text": "Síndrome de HELLP Dr. Guevara"
+              "text": "Síndrome de HELLP"
             },
             {
               "id": "D",
-              "text": "Colestasia intrahepática del embarazo Preparación EUNACOM"
+              "text": "Colestasia intrahepática del embarazo"
             },
             {
               "id": "E",
@@ -1704,11 +1704,11 @@
             },
             {
               "id": "D",
-              "text": "Inducir el parto con misoprostol Dr. Guevara"
+              "text": "Inducir el parto con misoprostol"
             },
             {
               "id": "E",
-              "text": "Realizar amniocentesis y decidir conducta según resultados Preparación EUNACOM"
+              "text": "Realizar amniocentesis y decidir conducta según resultados"
             }
           ],
           "respuestaCorrecta": "D",
@@ -1848,7 +1848,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Una paciente de 23 años, cursando un embarazo de 32 semanas, con feto en\ncefálica, consulta por disminución de la percepción de los movimientos fetales,\npor lo que se realiza un registro basal no estresante que resulta no\ninterpretable. Por esto se solicita un test de tolerancia a las contracciones, que\n\ndemuestra presencia de desaceleraciones precoces (DIP 1) en la mayoría de las\nDr. Guevara\ncontracciones uterina, sin otras alteraciones. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una paciente de 23 años, cursando un embarazo de 32 semanas, con feto en\ncefálica, consulta por disminución de la percepción de los movimientos fetales,\npor lo que se realiza un registro basal no estresante que resulta no\ninterpretable. Por esto se solicita un test de tolerancia a las contracciones, que\n\ndemuestra presencia de desaceleraciones precoces (DIP 1) en la mayoría de las\ncontracciones uterina, sin otras alteraciones. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -2080,7 +2080,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 34 años, cursando embarazo de 8 semanas, consulta por\nDr. Guevara\nmetrorragia de 2 horas de evolución, con escaso dolor hipogástrico. Sus signos\nPreparación EUNACOM\nvitales son normales y presenta útero mayor al tamaño esperado para su edad\ngestacional, palpándose a la altura del pubis. La especuloscopía confirma que\nla sangre proviene de la cavidad endometrial. La conducta más adecuada es:",
+          "pregunta": "Una paciente de 34 años, cursando embarazo de 8 semanas, consulta por\nmetrorragia de 2 horas de evolución, con escaso dolor hipogástrico. Sus signos\nvitales son normales y presenta útero mayor al tamaño esperado para su edad\ngestacional, palpándose a la altura del pubis. La especuloscopía confirma que\nla sangre proviene de la cavidad endometrial. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -2192,11 +2192,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar niveles plasmáticos de subunidad beta Dr. Guevara"
+              "text": "Solicitar niveles plasmáticos de subunidad beta"
             },
             {
               "id": "E",
-              "text": "Realizar legrado uterino Preparación EUNACOM"
+              "text": "Realizar legrado uterino"
             }
           ],
           "respuestaCorrecta": "C",
@@ -2308,11 +2308,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Embarazo molar Dr. Guevara"
+              "text": "Embarazo molar"
             },
             {
               "id": "B",
-              "text": "Preclamsia moderada Preparación EUNACOM"
+              "text": "Preclamsia moderada"
             },
             {
               "id": "C",
@@ -2448,11 +2448,11 @@
             },
             {
               "id": "D",
-              "text": "Dolor Dr. Guevara"
+              "text": "Dolor"
             },
             {
               "id": "E",
-              "text": "Naúseas Preparación EUNACOM"
+              "text": "Naúseas"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2728,11 +2728,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Respecto a la endometriosis es VERDADERO que:\nDr. Guevara",
+          "pregunta": "Respecto a la endometriosis es VERDADERO que:",
           "opciones": [
             {
               "id": "A",
-              "text": "El uso de anticonceptivos orales es un factor de riesgo Preparación EUNACOM"
+              "text": "El uso de anticonceptivos orales es un factor de riesgo"
             },
             {
               "id": "B",
@@ -2868,11 +2868,11 @@
             },
             {
               "id": "C",
-              "text": "Progesterona disminuida Dr. Guevara"
+              "text": "Progesterona disminuida"
             },
             {
               "id": "D",
-              "text": "Hormona luteinizante aumentada Preparación EUNACOM"
+              "text": "Hormona luteinizante aumentada"
             },
             {
               "id": "E",
@@ -3016,11 +3016,11 @@
         },
         {
           "numero": 14,
-          "pregunta": "¿Cuál de las siguientes situaciones tiene opción de parto vaginal?\nDr. Guevara",
+          "pregunta": "¿Cuál de las siguientes situaciones tiene opción de parto vaginal?",
           "opciones": [
             {
               "id": "A",
-              "text": "Embarazo gemelar con el primer gemelo en presentación cefálica y el segundo en Preparación EUNACOM presentación podálica"
+              "text": "Embarazo gemelar con el primer gemelo en presentación cefálica y el segundo en presentación podálica"
             },
             {
               "id": "B",
@@ -3160,11 +3160,11 @@
             },
             {
               "id": "D",
-              "text": "Endometriosis e infecciones Dr. Guevara"
+              "text": "Endometriosis e infecciones"
             },
             {
               "id": "E",
-              "text": "Disfuncional y cáncer de endometrio Preparación EUNACOM"
+              "text": "Disfuncional y cáncer de endometrio"
             }
           ],
           "respuestaCorrecta": "A",
@@ -3344,7 +3344,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 24 años, con un embarazo de 40 semanas, inicia dinámica\nDr. Guevara\nuterina. Al examen físico se palpan 4 contracciones cada 10 minutos, con tacto\nPreparación EUNACOM\nvaginal con dilatación de 8 cm, borramiento completo, membranas rotas y feto\nen presentación de frente, naso-ilíaca izquierda anterior. La conducta más\nadecuada es:",
+          "pregunta": "Una mujer de 24 años, con un embarazo de 40 semanas, inicia dinámica\nuterina. Al examen físico se palpan 4 contracciones cada 10 minutos, con tacto\nvaginal con dilatación de 8 cm, borramiento completo, membranas rotas y feto\nen presentación de frente, naso-ilíaca izquierda anterior. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -3456,11 +3456,11 @@
             },
             {
               "id": "D",
-              "text": "Insuficiencia cardíaca descompensada Dr. Guevara"
+              "text": "Insuficiencia cardíaca descompensada"
             },
             {
               "id": "E",
-              "text": "Colestasia intrahepática del embarazo Preparación EUNACOM"
+              "text": "Colestasia intrahepática del embarazo"
             }
           ],
           "respuestaCorrecta": "C",
@@ -3612,11 +3612,11 @@
             },
             {
               "id": "C",
-              "text": "Placenta previa oclusiva Dr. Guevara"
+              "text": "Placenta previa oclusiva"
             },
             {
               "id": "D",
-              "text": "Eclamsia Preparación EUNACOM"
+              "text": "Eclamsia"
             },
             {
               "id": "E",
@@ -3760,7 +3760,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Una paciente, con embarazo de 36 semanas de edad gestacional, presenta\nDr. Guevara\nmetrorragia oscura, asociada a contracciones uterinas dolorosas. Al examen\nPreparación EUNACOM\nfísico se constata hipertonía uterina y el registro fetal muestra bradicardia. El\ndiagnóstico más probable es:",
+          "pregunta": "Una paciente, con embarazo de 36 semanas de edad gestacional, presenta\nmetrorragia oscura, asociada a contracciones uterinas dolorosas. Al examen\nfísico se constata hipertonía uterina y el registro fetal muestra bradicardia. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4656,11 +4656,11 @@
             },
             {
               "id": "D",
-              "text": "7 semanas Dr. Guevara"
+              "text": "7 semanas"
             },
             {
               "id": "E",
-              "text": "8 semanas Preparación EUNACOM"
+              "text": "8 semanas"
             }
           ],
           "respuestaCorrecta": "B",
@@ -4816,11 +4816,11 @@
             },
             {
               "id": "D",
-              "text": "Penicilina endovenosa Dr. Guevara"
+              "text": "Penicilina endovenosa"
             },
             {
               "id": "E",
-              "text": "Gentamicina endovenosa Preparación EUNACOM"
+              "text": "Gentamicina endovenosa"
             }
           ],
           "respuestaCorrecta": "A",
@@ -4964,11 +4964,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Mantener la edad gestacional de 9 semanas Dr. Guevara"
+              "text": "Mantener la edad gestacional de 9 semanas"
             },
             {
               "id": "B",
-              "text": "Cambiar la edad gestacional a 7 semanas Preparación EUNACOM"
+              "text": "Cambiar la edad gestacional a 7 semanas"
             },
             {
               "id": "C",
@@ -5136,11 +5136,11 @@
             },
             {
               "id": "D",
-              "text": "Isoinmunización Rh Dr. Guevara"
+              "text": "Isoinmunización Rh"
             },
             {
               "id": "E",
-              "text": "Parálisis cerebral Preparación EUNACOM"
+              "text": "Parálisis cerebral"
             }
           ],
           "respuestaCorrecta": "B",
@@ -5288,11 +5288,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 30 años, puérpera de 2 días, presenta dolor torácico y disnea,\nque iniciaron de una manera relativamente brusca. El examen físico sólo\nmuestra taquicardia y los cambios esperables en una puérpera. La radiografía\nde tórax es normal, al igual que el electrocardiograma. La conducta más\n\nadecuada es:\nDr. Guevara",
+          "pregunta": "Una mujer de 30 años, puérpera de 2 días, presenta dolor torácico y disnea,\nque iniciaron de una manera relativamente brusca. El examen físico sólo\nmuestra taquicardia y los cambios esperables en una puérpera. La radiografía\nde tórax es normal, al igual que el electrocardiograma. La conducta más\n\nadecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar antibióticos endovenosos Preparación EUNACOM"
+              "text": "Iniciar antibióticos endovenosos"
             },
             {
               "id": "B",
@@ -5416,7 +5416,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Una mujer de 19 años, cursando su primer embarazo de 20 semanas de\ngestación, inicia dolor hipogástrico y metrorragia. Al examen físico se constata\n\ndilatación cervical de 3 cm y la ecografía muestra feto intrauterino, con latidos\nDr. Guevara\ncardiofetales presentes. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 19 años, cursando su primer embarazo de 20 semanas de\ngestación, inicia dolor hipogástrico y metrorragia. Al examen físico se constata\n\ndilatación cervical de 3 cm y la ecografía muestra feto intrauterino, con latidos\ncardiofetales presentes. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5544,7 +5544,7 @@
         },
         {
           "numero": 12,
-          "pregunta": "Una mujer embarazada consulta por disminución de la percepción de los\nDr. Guevara\nmovimientos fetales. Se solicita un registro basal no estresante por 20 minutos,\nPreparación EUNACOM\nque resulta “no reactivo”. La conducta más adecuada es:",
+          "pregunta": "Una mujer embarazada consulta por disminución de la percepción de los\nmovimientos fetales. Se solicita un registro basal no estresante por 20 minutos,\nque resulta “no reactivo”. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5692,7 +5692,7 @@
             },
             {
               "id": "E",
-              "text": "Indicar triterapia durante el trabajo de parto, para lograr niveles plasmáticos Dr. Guevara óptimos de antirretrovirales en el momento del expulsivo Preparación EUNACOM"
+              "text": "Indicar triterapia durante el trabajo de parto, para lograr niveles plasmáticos óptimos de antirretrovirales en el momento del expulsivo"
             }
           ],
           "respuestaCorrecta": "D",
@@ -5936,7 +5936,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 45 años, presenta hemorragia postparto, que no cede a pesar\nde realizar masaje uterino y de administrar oxitocina y metilergonovina\n\nendovenosas. Paralelamente se administran cristaloides endovenosos. La\nDr. Guevara\nconducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 45 años, presenta hemorragia postparto, que no cede a pesar\nde realizar masaje uterino y de administrar oxitocina y metilergonovina\n\nendovenosas. Paralelamente se administran cristaloides endovenosos. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6076,11 +6076,11 @@
             },
             {
               "id": "C",
-              "text": "Realizar cesárea Dr. Guevara"
+              "text": "Realizar cesárea"
             },
             {
               "id": "D",
-              "text": "Iniciar antibióticos endovenosos Preparación EUNACOM"
+              "text": "Iniciar antibióticos endovenosos"
             },
             {
               "id": "E",
@@ -6224,7 +6224,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "¿Que mostrará la biopsia endomertrial de una paciente cursando un\nDr. Guevara\nembarazo tubario?\nPreparación EUNACOM",
+          "pregunta": "¿Que mostrará la biopsia endomertrial de una paciente cursando un\nembarazo tubario?",
           "opciones": [
             {
               "id": "A",
@@ -6356,11 +6356,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Conducir el trabajo de aborto Dr. Guevara"
+              "text": "Conducir el trabajo de aborto"
             },
             {
               "id": "B",
-              "text": "Solicitar subunidad beta-HCG plasmática Preparación EUNACOM"
+              "text": "Solicitar subunidad beta-HCG plasmática"
             },
             {
               "id": "C",
@@ -6592,11 +6592,11 @@
             },
             {
               "id": "B",
-              "text": "Realizar una ecografía transvaginal Dr. Guevara"
+              "text": "Realizar una ecografía transvaginal"
             },
             {
               "id": "C",
-              "text": "Enviar a domicilio Preparación EUNACOM"
+              "text": "Enviar a domicilio"
             },
             {
               "id": "D",
@@ -6696,11 +6696,11 @@
             },
             {
               "id": "D",
-              "text": "Glicemias preprandiales y postprandiales Dr. Guevara"
+              "text": "Glicemias preprandiales y postprandiales"
             },
             {
               "id": "E",
-              "text": "Ecografía obstétrica, con estimación de peso fetal Preparación EUNACOM"
+              "text": "Ecografía obstétrica, con estimación de peso fetal"
             }
           ],
           "respuestaCorrecta": "D",
@@ -6824,11 +6824,11 @@
             },
             {
               "id": "D",
-              "text": "Neoplasia trofoblástica gestacional Dr. Guevara"
+              "text": "Neoplasia trofoblástica gestacional"
             },
             {
               "id": "E",
-              "text": "Cáncer de endometrio Preparación EUNACOM"
+              "text": "Cáncer de endometrio"
             }
           ],
           "respuestaCorrecta": "E",
@@ -6976,11 +6976,11 @@
             },
             {
               "id": "B",
-              "text": "Dispareunia profunda Dr. Guevara"
+              "text": "Dispareunia profunda"
             },
             {
               "id": "C",
-              "text": "Hipermenorrea Preparación EUNACOM"
+              "text": "Hipermenorrea"
             },
             {
               "id": "D",
@@ -7232,7 +7232,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 20 años, cursando un embarazo de 33 semanas, inicia\ncontracciones uterinas, algunas de las cuales son dolorosas. Se constata la\npresencia de 2 contracciones uterinas cada 10 minutos y el registro de la\n\nfrecuencia fetal es tranquilizador. El tacto vaginal muestra dilatación cervical\nDr. Guevara\nde un centímetro. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 20 años, cursando un embarazo de 33 semanas, inicia\ncontracciones uterinas, algunas de las cuales son dolorosas. Se constata la\npresencia de 2 contracciones uterinas cada 10 minutos y el registro de la\n\nfrecuencia fetal es tranquilizador. El tacto vaginal muestra dilatación cervical\nde un centímetro. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -7360,7 +7360,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Una mujer de 34 años presenta un embarazo de 34 semanas. Se realiza una\necografía obstétrica, que demuestra un feto con un peso en percentil 5 para la\nedad gestacional, con el diámetro craneano mayor al diámetro abdominal y\n\nnormalidad en el líquido amniótico. ¿Qué conducta es MENOS adecuada para el\nDr. Guevara\nmanejo de esta paciente?\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 34 años presenta un embarazo de 34 semanas. Se realiza una\necografía obstétrica, que demuestra un feto con un peso en percentil 5 para la\nedad gestacional, con el diámetro craneano mayor al diámetro abdominal y\n\nnormalidad en el líquido amniótico. ¿Qué conducta es MENOS adecuada para el\nmanejo de esta paciente?",
           "opciones": [
             {
               "id": "A",
@@ -7492,11 +7492,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Endometrioma Dr. Guevara"
+              "text": "Endometrioma"
             },
             {
               "id": "B",
-              "text": "Quiste folicular Preparación EUNACOM"
+              "text": "Quiste folicular"
             },
             {
               "id": "C",
@@ -7656,11 +7656,11 @@
             },
             {
               "id": "B",
-              "text": "Realizar cono cervical Dr. Guevara"
+              "text": "Realizar cono cervical"
             },
             {
               "id": "C",
-              "text": "Solicitar nuevo PAP en un año Preparación EUNACOM"
+              "text": "Solicitar nuevo PAP en un año"
             },
             {
               "id": "D",

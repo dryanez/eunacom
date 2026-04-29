@@ -136,7 +136,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Paciente hipertenso, de 67 años, con dolor torácico intenso, de inicio súbito.\nDr. Guevara\nAl examen físico FC: 110x’, regular, PA:230/128, asimetría en los pulsos radiales\nPreparación EUNACOM\ny a la auscultación cardíaca destaca un soplo diastólico. La conducta inicial más\nadecuada a seguir, además de tomar un ECG es:",
+          "pregunta": "Paciente hipertenso, de 67 años, con dolor torácico intenso, de inicio súbito.\nAl examen físico FC: 110x’, regular, PA:230/128, asimetría en los pulsos radiales\ny a la auscultación cardíaca destaca un soplo diastólico. La conducta inicial más\nadecuada a seguir, además de tomar un ECG es:",
           "opciones": [
             {
               "id": "A",
@@ -276,11 +276,11 @@
             },
             {
               "id": "C",
-              "text": "Ductus arterioso persistente\nDr. Guevara"
+              "text": "Ductus arterioso persistente"
             },
             {
               "id": "D",
-              "text": "Derenaje venoso anómalo\nPreparación EUNACOM"
+              "text": "Derenaje venoso anómalo"
             },
             {
               "id": "E",
@@ -424,7 +424,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Paciente de 15 años, cursando con herida penetrante torácica por arma\nDr. Guevara\nblanca, evoluciona con hipotensión marcada e ingurgitación yugular. Al\nPreparación EUNACOM\nexamen MP(+) simétrico. La conducta inmediata a seguir es:",
+          "pregunta": "Paciente de 15 años, cursando con herida penetrante torácica por arma\nblanca, evoluciona con hipotensión marcada e ingurgitación yugular. Al\nexamen MP(+) simétrico. La conducta inmediata a seguir es:",
           "opciones": [
             {
               "id": "A",
@@ -556,11 +556,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Cardiopatía coronaria\nDr. Guevara"
+              "text": "Cardiopatía coronaria"
             },
             {
               "id": "B",
-              "text": "Cardiopatía hipertensiva\nPreparación EUNACOM"
+              "text": "Cardiopatía hipertensiva"
             },
             {
               "id": "C",
@@ -636,7 +636,7 @@
             },
             {
               "id": "E",
-              "text": "Su perfil liídico es normal, por lo que no es necesario indicar ninguna medida\nterapeútica\nPreguntas Respuestas\n1 A\n2 C\n3 C\n4 D\n5 C\n6 C\n\n7 A\nDr. Guevara\n8 D\nPreparación EUNACOM\n9 B\n10 B\n11 D\n12 B\n13 C\n14 C\n15 C\n16 B\n17 C\n18 E\n19 E\n20 B\nUn comentario sobre “Prueba 1”\nmartin meza\nmayo 30, 2016 a las 04:20\nHola doc, me quedaron dudas en 2 preguntas especificamente:"
+              "text": "Su perfil liídico es normal, por lo que no es necesario indicar ninguna medida\nterapeútica\nPreguntas Respuestas\n1 A\n2 C\n3 C\n4 D\n5 C\n6 C\n\n7 A\n8 D\n9 B\n10 B\n11 D\n12 B\n13 C\n14 C\n15 C\n16 B\n17 C\n18 E\n19 E\n20 B\nUn comentario sobre “Prueba 1”\nmartin meza\nmayo 30, 2016 a las 04:20\nHola doc, me quedaron dudas en 2 preguntas especificamente:"
             }
           ],
           "respuestaCorrecta": "B",
@@ -784,7 +784,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 45 años, consulta por fiebre, compromiso del estado general,\nDr. Guevara\ntos con expectoración mucopurulenta y disnea. Al examen físico presenta FC:\nPreparación EUNACOM\n110x’, PA: 156/100, FR:34x’, saturación de oxígeno: 88%. El examen pulmonar\ndemuestra crépitos localizados en la mitad superior del hemicampo pulmonar\nizquierdo, asociadoa a matidez y aumento de transmisión de la voz. Se solicita\nradiografía de tórax que demuestra condensación del lóbulo superior\nizquierdo. El tratamiento antibiótico más adecuado es:",
+          "pregunta": "Un paciente de 45 años, consulta por fiebre, compromiso del estado general,\ntos con expectoración mucopurulenta y disnea. Al examen físico presenta FC:\n110x’, PA: 156/100, FR:34x’, saturación de oxígeno: 88%. El examen pulmonar\ndemuestra crépitos localizados en la mitad superior del hemicampo pulmonar\nizquierdo, asociadoa a matidez y aumento de transmisión de la voz. Se solicita\nradiografía de tórax que demuestra condensación del lóbulo superior\nizquierdo. El tratamiento antibiótico más adecuado es:",
           "opciones": [
             {
               "id": "A",
@@ -884,11 +884,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Embolía pulmonar\nDr. Guevara"
+              "text": "Embolía pulmonar"
             },
             {
               "id": "B",
-              "text": "Pericarditis\nPreparación EUNACOM"
+              "text": "Pericarditis"
             },
             {
               "id": "C",
@@ -1012,7 +1012,7 @@
           "opciones": [
             {
               "id": "A",
-              "text": "CVF: 85% del teórico; VEF1: 56% del teórico; VEF1/CVF: 42%, sin mejoría con\nDr. Guevara\nsalbutamol\nPreparación EUNACOM"
+              "text": "CVF: 85% del teórico; VEF1: 56% del teórico; VEF1/CVF: 42%, sin mejoría con\nsalbutamol"
             },
             {
               "id": "B",
@@ -1112,11 +1112,11 @@
             },
             {
               "id": "B",
-              "text": "Estenosis mitral\nDr. Guevara"
+              "text": "Estenosis mitral"
             },
             {
               "id": "C",
-              "text": "Insuficiencia aórtica\nPreparación EUNACOM"
+              "text": "Insuficiencia aórtica"
             },
             {
               "id": "D",
@@ -1232,7 +1232,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "Un paciente con antecedente de asma severo, con varias crisis asmáticas en\nDr. Guevara\nel último mes, razón por la cual está actualmente en tratamiento con\nPreparación EUNACOM\ncorticoides orales. Consulta en urgencia por cuadro de disnea sibilante,\nasociado a cianosis. Al examen físico presenta FC:120x’, PA:110/70, FR:43x’,\ncianosis perioral y tiraje. Se auscultan sibilancias inspiratorias y espiratorias,\ndifusas. La saturación por pulsometría es 87%. La conducta más adecuada es:",
+          "pregunta": "Un paciente con antecedente de asma severo, con varias crisis asmáticas en\nel último mes, razón por la cual está actualmente en tratamiento con\ncorticoides orales. Consulta en urgencia por cuadro de disnea sibilante,\nasociado a cianosis. Al examen físico presenta FC:120x’, PA:110/70, FR:43x’,\ncianosis perioral y tiraje. Se auscultan sibilancias inspiratorias y espiratorias,\ndifusas. La saturación por pulsometría es 87%. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -1400,7 +1400,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 74 años ha presentado síncopes relacionados con la actividad\nDr. Guevara\nfísica. Además presenta angina de pecho al caminar 2 cuadras. En el examen\nPreparación EUNACOM\nfísico destaca un pulso regular de poca amplitud y un soplo mesosístólico III/VI,\ncon click de apertura. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 74 años ha presentado síncopes relacionados con la actividad\nfísica. Además presenta angina de pecho al caminar 2 cuadras. En el examen\nfísico destaca un pulso regular de poca amplitud y un soplo mesosístólico III/VI,\ncon click de apertura. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -1532,11 +1532,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar coronariografía urgente\nDr. Guevara"
+              "text": "Realizar coronariografía urgente"
             },
             {
               "id": "B",
-              "text": "Administrar oxígeno, morfina, nitroglicerina y aspirina inmediatamente\nPreparación EUNACOM"
+              "text": "Administrar oxígeno, morfina, nitroglicerina y aspirina inmediatamente"
             },
             {
               "id": "C",
@@ -1672,11 +1672,11 @@
             },
             {
               "id": "D",
-              "text": "Pericardiocentesis\nDr. Guevara"
+              "text": "Pericardiocentesis"
             },
             {
               "id": "E",
-              "text": "Quirúrgico\nPreparación EUNACOM"
+              "text": "Quirúrgico"
             }
           ],
           "respuestaCorrecta": "B",
@@ -1796,11 +1796,11 @@
             },
             {
               "id": "C",
-              "text": "Miocardiopatía dilatada\nDr. Guevara"
+              "text": "Miocardiopatía dilatada"
             },
             {
               "id": "D",
-              "text": "Cardiopatía cronaria\nPreparación EUNACOM"
+              "text": "Cardiopatía cronaria"
             },
             {
               "id": "E",
@@ -1912,11 +1912,11 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un paciente de 61 años presenta dolor de la extremidad inferior derecha, de\ninicio súbito, asociado a parestesis y dificultad progresiva para mover los\nortejos de esa extremidad. Al examen físico se aprecia palidez de la pierna\n\nderecha, con clara disminución del pulso pedio. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente de 61 años presenta dolor de la extremidad inferior derecha, de\ninicio súbito, asociado a parestesis y dificultad progresiva para mover los\nortejos de esa extremidad. Al examen físico se aprecia palidez de la pierna\n\nderecha, con clara disminución del pulso pedio. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar Ecografía Doppler de extremidades inferiores\nPreparación EUNACOM"
+              "text": "Solicitar Ecografía Doppler de extremidades inferiores"
             },
             {
               "id": "B",
@@ -2696,7 +2696,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "¿Cuál de las siguientes manifestaciones clínicas en MENOS probable de ser\nDr. Guevara\nhallada en un paciente con miocardiopatía hipertrófica?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de las siguientes manifestaciones clínicas en MENOS probable de ser\nhallada en un paciente con miocardiopatía hipertrófica?",
           "opciones": [
             {
               "id": "A",
@@ -2808,11 +2808,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar desfibrilación eléctrica\nDr. Guevara"
+              "text": "Realizar desfibrilación eléctrica"
             },
             {
               "id": "E",
-              "text": "Realizar trombolisis endovenosa de inmediato\nPreparación EUNACOM"
+              "text": "Realizar trombolisis endovenosa de inmediato"
             }
           ],
           "respuestaCorrecta": "B",
@@ -2932,11 +2932,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar Test de esfuerzo a la brevedad\nDr. Guevara"
+              "text": "Solicitar Test de esfuerzo a la brevedad"
             },
             {
               "id": "D",
-              "text": "Solicitar un nuevo ECG\nPreparación EUNACOM"
+              "text": "Solicitar un nuevo ECG"
             },
             {
               "id": "E",
@@ -3080,7 +3080,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Un paciente de 66 años, hipertenso, presenta dolor retroesternal intenso,\nDr. Guevara\nirradiado a dorso. En el examen físico presenta FC: 127x’, PA: 200/120 mmHg,\nPreparación EUNACOM\nSatO2: 94%, pulsos radiales asimétricos, MP(+), sin ruidos agregados, RR2T con\nsoplo de regurgitación aórtica. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 66 años, hipertenso, presenta dolor retroesternal intenso,\nirradiado a dorso. En el examen físico presenta FC: 127x’, PA: 200/120 mmHg,\nSatO2: 94%, pulsos radiales asimétricos, MP(+), sin ruidos agregados, RR2T con\nsoplo de regurgitación aórtica. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3208,7 +3208,7 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un paciente fumador, dislipidémico e hipertenso, en tratamiento con\nDr. Guevara\nenalapril y atorvastatina, con buen control de su presión arterial y de sus\nPreparación EUNACOM\nniveles lipídicos, presenta dolor en la pantorrilla derecha, que aparece al\ncaminar cerca de 150 metros, limitándole la marcha y cede con el reposo. El\nexamen físico no aporta mayor información. La conducta más adecuada es:",
+          "pregunta": "Un paciente fumador, dislipidémico e hipertenso, en tratamiento con\nenalapril y atorvastatina, con buen control de su presión arterial y de sus\nniveles lipídicos, presenta dolor en la pantorrilla derecha, que aparece al\ncaminar cerca de 150 metros, limitándole la marcha y cede con el reposo. El\nexamen físico no aporta mayor información. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -3228,7 +3228,7 @@
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente\nPreguntas Respuestas\n1 B\n2 D\n3 C\n4 C\n5 D\n6 B\n7 B\n8 A\n9 C\n10 C\n11 C\n12 B\n13 C\n14 A\n15 A\n16 E\n17 C\n18 D\n\nD19r. Guevara E\nPreparación EUNACOM\n20 C\nUn comentario sobre “Prueba 5”\nCristián Ríos\ndiciembre 3, 2015 a las 07:27\nEn la pregunta 2.\nLa hipokalemia no orienta mas a un heraldosteronismo primario como causa de la\nHTA secundaria?"
+              "text": "Resolver quirúrgicamente\nPreguntas Respuestas\n1 B\n2 D\n3 C\n4 C\n5 D\n6 B\n7 B\n8 A\n9 C\n10 C\n11 C\n12 B\n13 C\n14 A\n15 A\n16 E\n17 C\n18 D\n\nD19r. Guevara E\n20 C\nUn comentario sobre “Prueba 5”\nCristián Ríos\ndiciembre 3, 2015 a las 07:27\nEn la pregunta 2.\nLa hipokalemia no orienta mas a un heraldosteronismo primario como causa de la\nHTA secundaria?"
             }
           ],
           "respuestaCorrecta": "C",
@@ -3344,7 +3344,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 40 años consulta por disnea de esfuerzos progresiva, que\ninició hace 4 meses y que actualmente es de pequeños esfuerzos. Además\nrefiere ortopnea de 2 almohadas. Al examen físico se aprecia desplazamiento\n\ndel choque de la punta, edema de extremidades inferiores, un soplo\nDr. Guevara\nholosistólico. El electrocardiograma muestra signos de hipertrofia ventricular\nPreparación EUNACOM\nizquierda. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 40 años consulta por disnea de esfuerzos progresiva, que\ninició hace 4 meses y que actualmente es de pequeños esfuerzos. Además\nrefiere ortopnea de 2 almohadas. Al examen físico se aprecia desplazamiento\n\ndel choque de la punta, edema de extremidades inferiores, un soplo\nholosistólico. El electrocardiograma muestra signos de hipertrofia ventricular\nizquierda. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3472,11 +3472,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 68 años, hipertenso, consulta por dolor de la extremidad\ninferior izquierda, que inició hace 4 horas. Al examen físico se observa\naumento de volumen y edema blando de la pierna izquierda, asociada a dolor\n\ncon la palpación de las masas musculares. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente de 68 años, hipertenso, consulta por dolor de la extremidad\ninferior izquierda, que inició hace 4 horas. Al examen físico se observa\naumento de volumen y edema blando de la pierna izquierda, asociada a dolor\n\ncon la palpación de las masas musculares. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar anticoagulación con heparina y solicitar angiografía de la extremidad\nPreparación EUNACOM\ninferior izquierda"
+              "text": "Iniciar anticoagulación con heparina y solicitar angiografía de la extremidad\ninferior izquierda"
             },
             {
               "id": "B",
@@ -3616,11 +3616,11 @@
             },
             {
               "id": "D",
-              "text": "Síncope cardiogénico\nDr. Guevara"
+              "text": "Síncope cardiogénico"
             },
             {
               "id": "E",
-              "text": "Taponamiento cardíaco\nPreparación EUNACOM"
+              "text": "Taponamiento cardíaco"
             }
           ],
           "respuestaCorrecta": "D",
@@ -3760,7 +3760,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un paciente cursando con una endocarditis aguda grave por Staphilococcus\nDr. Guevara\naureus, en tratamiento con cloxacilina + gentamicina endovenosa, presenta\nPreparación EUNACOM\nmarcada hipotensión. Se monitoriza con catéter de Swan Ganz, que muestra\nPVC: 20 mmHg, PCP: 24 mmHg, PA: 70/38 mmHg. El diagnóstico más probable es:",
+          "pregunta": "Un paciente cursando con una endocarditis aguda grave por Staphilococcus\naureus, en tratamiento con cloxacilina + gentamicina endovenosa, presenta\nmarcada hipotensión. Se monitoriza con catéter de Swan Ganz, que muestra\nPVC: 20 mmHg, PCP: 24 mmHg, PA: 70/38 mmHg. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3976,11 +3976,11 @@
             },
             {
               "id": "D",
-              "text": "Taquicardia ventricular\nDr. Guevara"
+              "text": "Taquicardia ventricular"
             },
             {
               "id": "E",
-              "text": "Flutter auricular\nPreparación EUNACOM"
+              "text": "Flutter auricular"
             }
           ],
           "respuestaCorrecta": "D",
@@ -4120,7 +4120,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 36 años ha presentado 2 síncopes en relación al ejercicio y\nDr. Guevara\nademás presenta disnea de esfuerzos y ortopnea de algunas semanas de\nPreparación EUNACOM\nevolución. Al examen cardíaco se ausculta un soplo sistólico eyectivo que\naumenta con la maniobra de Valsalva y al examen pulmonar se auscultan\ncrépitos pulmonares bibasales. El electrocardiograma muestra ondas T\ninvertidas en las derivaciones precordiales. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 36 años ha presentado 2 síncopes en relación al ejercicio y\nademás presenta disnea de esfuerzos y ortopnea de algunas semanas de\nevolución. Al examen cardíaco se ausculta un soplo sistólico eyectivo que\naumenta con la maniobra de Valsalva y al examen pulmonar se auscultan\ncrépitos pulmonares bibasales. El electrocardiograma muestra ondas T\ninvertidas en las derivaciones precordiales. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4228,11 +4228,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar ecocardiograma transtorácico\nDr. Guevara"
+              "text": "Solicitar ecocardiograma transtorácico"
             },
             {
               "id": "D",
-              "text": "Solicitar angioTAC de tórax de urgencia\nPreparación EUNACOM"
+              "text": "Solicitar angioTAC de tórax de urgencia"
             },
             {
               "id": "E",
@@ -4396,7 +4396,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Un paciente de 76 años, hipertenso, en tratamiento con atenolol e\nhidroclorotiazida, presenta varios síncopes en la última media hora,\nevolucionando luego con compromiso de conciencia. Al examen físico destaca\n\nestá pálido, frío, sudoroso, con FC: 30 lpm, y PA: 70/30 mmHg. A la auscultación\nDr. Guevara\ncardíaca se constata R1 de intensidad variable. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 76 años, hipertenso, en tratamiento con atenolol e\nhidroclorotiazida, presenta varios síncopes en la última media hora,\nevolucionando luego con compromiso de conciencia. Al examen físico destaca\n\nestá pálido, frío, sudoroso, con FC: 30 lpm, y PA: 70/30 mmHg. A la auscultación\ncardíaca se constata R1 de intensidad variable. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4532,11 +4532,11 @@
             },
             {
               "id": "B",
-              "text": "Administrar cloxacilina oral\nDr. Guevara"
+              "text": "Administrar cloxacilina oral"
             },
             {
               "id": "C",
-              "text": "Administrar ceftriaxona endovenosa\nPreparación EUNACOM"
+              "text": "Administrar ceftriaxona endovenosa"
             },
             {
               "id": "D",
@@ -4668,7 +4668,7 @@
             },
             {
               "id": "B",
-              "text": "Paciente de 70 años con cardiopatía coronaria, hipertensión arterial y fibrilación\nDr. Guevara\nauricular crónica, en tratamiento con digoxina y atenolol\nPreparación EUNACOM"
+              "text": "Paciente de 70 años con cardiopatía coronaria, hipertensión arterial y fibrilación\nauricular crónica, en tratamiento con digoxina y atenolol"
             },
             {
               "id": "C",
@@ -4788,11 +4788,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 36 años consulta por disnea de medianos esfuerzos, asociados\na edema de extremidades inferiores de un mes de evolución y que ha\naumentado en el último tiempo. Refiere que se ahoga en la noche, por lo que\ndebe dormir semisentado. Al examen físico se constata desplazamiento del\nchoque de la punta y se auscultan crépitos pulmonares bibasales. El\nelectrocardiograma muestra signos de hipertrofia ventricular izquierda. El\n\ndiagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 36 años consulta por disnea de medianos esfuerzos, asociados\na edema de extremidades inferiores de un mes de evolución y que ha\naumentado en el último tiempo. Refiere que se ahoga en la noche, por lo que\ndebe dormir semisentado. Al examen físico se constata desplazamiento del\nchoque de la punta y se auscultan crépitos pulmonares bibasales. El\nelectrocardiograma muestra signos de hipertrofia ventricular izquierda. El\n\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Insuficiencia mitral\nPreparación EUNACOM"
+              "text": "Insuficiencia mitral"
             },
             {
               "id": "B",
@@ -4916,11 +4916,11 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un paciente con antecedente de claudicación intermitente, consulta por\ndolor intenso de la pantorrilla izquierda, de inicio súbito hace 2 horas. Al\nexamen se aprecia palidez y ausencia de pulso de la extremidad. La conducta\n\ninicial más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente con antecedente de claudicación intermitente, consulta por\ndolor intenso de la pantorrilla izquierda, de inicio súbito hace 2 horas. Al\nexamen se aprecia palidez y ausencia de pulso de la extremidad. La conducta\n\ninicial más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Anticoagular con heparina y solicitar angiografía de EEII\nPreparación EUNACOM"
+              "text": "Anticoagular con heparina y solicitar angiografía de EEII"
             },
             {
               "id": "B",
@@ -5076,7 +5076,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un paciente de 64 años, portador de una insuficiencia cardíaca congestiva,\nDr. Guevara\nsecundaria a una cardiopatía hipertensiva, en tratamiento con enalapril y\nPreparación EUNACOM\nfurosemida en dosis altas, presenta aumento de la disnea y ortopnea basales. El\nexamen físico y el estudio inicial descartan patologías agudas. ¿Qué conducta\nes más adecuada para el manejo de este paciente?",
+          "pregunta": "Un paciente de 64 años, portador de una insuficiencia cardíaca congestiva,\nsecundaria a una cardiopatía hipertensiva, en tratamiento con enalapril y\nfurosemida en dosis altas, presenta aumento de la disnea y ortopnea basales. El\nexamen físico y el estudio inicial descartan patologías agudas. ¿Qué conducta\nes más adecuada para el manejo de este paciente?",
           "opciones": [
             {
               "id": "A",
@@ -5316,11 +5316,11 @@
             },
             {
               "id": "B",
-              "text": "Hipertensión arterial\nDr. Guevara"
+              "text": "Hipertensión arterial"
             },
             {
               "id": "C",
-              "text": "Valvulopatías\nPreparación EUNACOM"
+              "text": "Valvulopatías"
             },
             {
               "id": "D",
@@ -5452,11 +5452,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar una angiografía de extremidades inferiores\nDr. Guevara"
+              "text": "Solicitar una angiografía de extremidades inferiores"
             },
             {
               "id": "E",
-              "text": "Derivar para resolución quirúrgica\nPreparación EUNACOM"
+              "text": "Derivar para resolución quirúrgica"
             }
           ],
           "respuestaCorrecta": "",
@@ -5596,7 +5596,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente diabético de 50 años de edad, es diagnosticado de hipertensión\nDr. Guevara\narterial mediante un Holter de presión arterial. Se indica dieta hiposódica y se\nPreparación EUNACOM\ncontrola 3 meses después, constatándose presiones arteriales cercanas a 140/90\nmmHg. La conducta más adecuada es:",
+          "pregunta": "Un paciente diabético de 50 años de edad, es diagnosticado de hipertensión\narterial mediante un Holter de presión arterial. Se indica dieta hiposódica y se\ncontrola 3 meses después, constatándose presiones arteriales cercanas a 140/90\nmmHg. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5756,7 +5756,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "¿Qué examen es el más adecuado para confirmar la sospecha clínica de una\nDr. Guevara\nrotura de músculo papilar, durante un síndrome coronario agudo?\nPreparación EUNACOM",
+          "pregunta": "¿Qué examen es el más adecuado para confirmar la sospecha clínica de una\nrotura de músculo papilar, durante un síndrome coronario agudo?",
           "opciones": [
             {
               "id": "A",
@@ -5964,11 +5964,11 @@
             },
             {
               "id": "B",
-              "text": "Estenosis tricuspídea\nDr. Guevara"
+              "text": "Estenosis tricuspídea"
             },
             {
               "id": "C",
-              "text": "Insuficiencia mitral\nPreparación EUNACOM"
+              "text": "Insuficiencia mitral"
             },
             {
               "id": "D",
@@ -6084,7 +6084,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 67 años, diabético e hipertenso, consulta por dolor torácico\nopresivo, intenso, por lo que se realiza un electrocardiograma que muestra\nsupradesnivel del segmento ST en las derivaciones V1 a V4. Recibe aspirina,\noxígeno y nitroglicerina y se inicia el protocolo de trombolisis endovenosa con\nestreptoquinasa. Treinta minutos después el dolor disminuye\nconsiderablemente, al igual que el supradesnivel del ST. Además en los\n\ncontroles seriados de CKmb se constata una anticipación en alcanzar el peak.\nDr. Guevara\nUsted debe sospechar:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 67 años, diabético e hipertenso, consulta por dolor torácico\nopresivo, intenso, por lo que se realiza un electrocardiograma que muestra\nsupradesnivel del segmento ST en las derivaciones V1 a V4. Recibe aspirina,\noxígeno y nitroglicerina y se inicia el protocolo de trombolisis endovenosa con\nestreptoquinasa. Treinta minutos después el dolor disminuye\nconsiderablemente, al igual que el supradesnivel del ST. Además en los\n\ncontroles seriados de CKmb se constata una anticipación en alcanzar el peak.\nUsted debe sospechar:",
           "opciones": [
             {
               "id": "A",
@@ -6224,11 +6224,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar Angio-TAC de tórax\nDr. Guevara"
+              "text": "Solicitar Angio-TAC de tórax"
             },
             {
               "id": "D",
-              "text": "Administrar suero fisiológico\nPreparación EUNACOM"
+              "text": "Administrar suero fisiológico"
             },
             {
               "id": "E",
@@ -6372,7 +6372,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Qué alteración es más sugerente de una disección aórtica en contexto de\nDr. Guevara\nun paciente que consulta por dolor torácico?\nPreparación EUNACOM",
+          "pregunta": "¿Qué alteración es más sugerente de una disección aórtica en contexto de\nun paciente que consulta por dolor torácico?",
           "opciones": [
             {
               "id": "A",
@@ -6488,7 +6488,7 @@
             },
             {
               "id": "E",
-              "text": "Solicitar aldosterona plasmática, actividad de renina plasmática y angiografía de\narterias renales\nRespuestas:\n\nDr. Guevara Prueba 10 CARDIOLOGÍA\nPreparación EUNACOPMreguntas Respuestas\n1 D\n2 B\n3 D\n4 E\n5 E\n6 D\n7 E\n8 A\n9 B\n10 A\n11 A\n12 B\n13 E\n14 D\n15 D\n16 A\n17 B\n18 B\n19 C\n20 C"
+              "text": "Solicitar aldosterona plasmática, actividad de renina plasmática y angiografía de\narterias renales\nRespuestas: Prueba 10 CARDIOLOGÍA\nPreparación EUNACOPMreguntas Respuestas\n1 D\n2 B\n3 D\n4 E\n5 E\n6 D\n7 E\n8 A\n9 B\n10 A\n11 A\n12 B\n13 E\n14 D\n15 D\n16 A\n17 B\n18 B\n19 C\n20 C"
             }
           ],
           "respuestaCorrecta": "C",
@@ -6604,7 +6604,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente sufre un infarto transmural de la pared anterolateral del\nventrículo izquierdo, el que es manejado adecuadamente. Evoluciona con una\nmoderada disminución de la capacidad de realizar esfuerzos, sin dolor. En sus\nexámenes de control, destaca un electrocardiograma, realizado 3 meses\ndespués del evento, que muestra presencia de supradesnivel del segmento ST\n\nen varias derivaciones precordiales. Al cuarto mes de evolución presenta una\nDr. Guevara\nisquemia aguda de extremidades inferiores. ¿Qué diagnóstico debe sospechar?\nPreparación EUNACOM",
+          "pregunta": "Un paciente sufre un infarto transmural de la pared anterolateral del\nventrículo izquierdo, el que es manejado adecuadamente. Evoluciona con una\nmoderada disminución de la capacidad de realizar esfuerzos, sin dolor. En sus\nexámenes de control, destaca un electrocardiograma, realizado 3 meses\ndespués del evento, que muestra presencia de supradesnivel del segmento ST\n\nen varias derivaciones precordiales. Al cuarto mes de evolución presenta una\nisquemia aguda de extremidades inferiores. ¿Qué diagnóstico debe sospechar?",
           "opciones": [
             {
               "id": "A",
@@ -6732,7 +6732,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 69 años, con antecedente de insuficiencia cardíaca crónica,\nsecundaria a una cardiopatía hipertensiva, de larga data, en tratamiento con\n\nenalapril, espironolactona, hidroclorotiazida, aspirina y atorvastatina,\nDr. Guevara\nconsulta por aumento de su sintomatología y progresión de su disnea, que\nPreparación EUNACOM\nactualmente aparece ante mínimos esfuerzos. El examen físico demuestra FC:\n87x’, regular, PA: 130/80, crépitaciones pulmonares escasas bibasales, y un RR2T\nsin soplos. La conducta más adecuada para mejorar el pronóstico en este\npaciente es:",
+          "pregunta": "Un paciente de 69 años, con antecedente de insuficiencia cardíaca crónica,\nsecundaria a una cardiopatía hipertensiva, de larga data, en tratamiento con\n\nenalapril, espironolactona, hidroclorotiazida, aspirina y atorvastatina,\nconsulta por aumento de su sintomatología y progresión de su disnea, que\nactualmente aparece ante mínimos esfuerzos. El examen físico demuestra FC:\n87x’, regular, PA: 130/80, crépitaciones pulmonares escasas bibasales, y un RR2T\nsin soplos. La conducta más adecuada para mejorar el pronóstico en este\npaciente es:",
           "opciones": [
             {
               "id": "A",
@@ -6844,7 +6844,7 @@
             },
             {
               "id": "D",
-              "text": "Administración de digoxina por vía intravenosa para reducir la frecuencia\nDr. Guevara\ncardíaca.\nPreparación EUNACOM"
+              "text": "Administración de digoxina por vía intravenosa para reducir la frecuencia\ncardíaca."
             },
             {
               "id": "E",
@@ -6996,11 +6996,11 @@
             },
             {
               "id": "B",
-              "text": "Clearence de creatinina de 50 ml/min\nDr. Guevara"
+              "text": "Clearence de creatinina de 50 ml/min"
             },
             {
               "id": "C",
-              "text": "Diabetes mellitus\nPreparación EUNACOM"
+              "text": "Diabetes mellitus"
             },
             {
               "id": "D",
@@ -7116,7 +7116,7 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un paciente de 66 años sufre un síndrome coronario agudo, en cuyo\nelectrocardiograma se demostraba inversión de la onda T en las derivadas\ninferiores, sin otras alteraciones. Fue manejado médicamente, con buenos\nresultados. Además, las troponinas se mantuvieron negativas durante toda la\n\nevolución. Actualmente está asintomático, con capacidad funcional y examen\nDr. Guevara\nfísico normales. ¿Qué fármaco se debe indicar en primer lugar para el manejo\nPreparación EUNACOM\nde este paciente, a partir de este punto?",
+          "pregunta": "Un paciente de 66 años sufre un síndrome coronario agudo, en cuyo\nelectrocardiograma se demostraba inversión de la onda T en las derivadas\ninferiores, sin otras alteraciones. Fue manejado médicamente, con buenos\nresultados. Además, las troponinas se mantuvieron negativas durante toda la\n\nevolución. Actualmente está asintomático, con capacidad funcional y examen\nfísico normales. ¿Qué fármaco se debe indicar en primer lugar para el manejo\nde este paciente, a partir de este punto?",
           "opciones": [
             {
               "id": "A",
@@ -7260,11 +7260,11 @@
             },
             {
               "id": "D",
-              "text": "Edema agudo de pulmón.\nDr. Guevara"
+              "text": "Edema agudo de pulmón."
             },
             {
               "id": "E",
-              "text": "Hepatomegalia.\nPreparación EUNACOM"
+              "text": "Hepatomegalia."
             }
           ],
           "respuestaCorrecta": "D",
@@ -7372,11 +7372,11 @@
         },
         {
           "numero": 28,
-          "pregunta": "Una paciente de 46 años presenta un cuadro de astenia y edema de EEII,\nprogresivo, de 3 meses de duración. Al examen destaca hepatomegalia, edema\nblando de extremidades inferiores e ingurgitación yugular, con colapso “y”\nprominente en el pulso venoso. El examen pulmonar es normal. El diagnóstico\n\nmás probable es:\nDr. Guevara",
+          "pregunta": "Una paciente de 46 años presenta un cuadro de astenia y edema de EEII,\nprogresivo, de 3 meses de duración. Al examen destaca hepatomegalia, edema\nblando de extremidades inferiores e ingurgitación yugular, con colapso “y”\nprominente en el pulso venoso. El examen pulmonar es normal. El diagnóstico\n\nmás probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Pericarditis aguda\nPreparación EUNACOM"
+              "text": "Pericarditis aguda"
             },
             {
               "id": "B",
@@ -7572,11 +7572,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Ingresa un paciente con una fibrilación auricular rápida a 150 lpm,\ndesorientado, disneico, sudoroso, con PA: 80/60 mmHg, La conducta más\n\nadecuada es:\nDr. Guevara",
+          "pregunta": "Ingresa un paciente con una fibrilación auricular rápida a 150 lpm,\ndesorientado, disneico, sudoroso, con PA: 80/60 mmHg, La conducta más\n\nadecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Administrar suero fisiológico\nPreparación EUNACOM"
+              "text": "Administrar suero fisiológico"
             },
             {
               "id": "B",
@@ -7732,7 +7732,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente de 67 años, con antecedente de una estenosis mitral, ingresa al\nDr. Guevara\nservicio de urgencia comprometido de consciencia, hipotenso, taquicárdico y\nPreparación EUNACOM\nfebril. Al examen físico está pálido y sudoroso, con FC: 120x’, PA: 60/40 mmHg, t\n°: 40,2°C. Se ausculta un soplo cardiaco intenso y se observan petequias en las\nextremidades inferiores. El monitoreo electrocardiográfico muestra una\ntaquicardia sinusal. Se instalan vías venosas periféricas y se monitoriza\ninvasivamente con un catéter de Swan-Ganz, obteniéndose los siguientes\nresultados: PVC: 15 mmHg, PAP: 45/22 mmHg, PCP: 22mmHg. La medida MENOS\nadecuada para el manejo de este paciente es:",
+          "pregunta": "Un paciente de 67 años, con antecedente de una estenosis mitral, ingresa al\nservicio de urgencia comprometido de consciencia, hipotenso, taquicárdico y\nfebril. Al examen físico está pálido y sudoroso, con FC: 120x’, PA: 60/40 mmHg, t\n°: 40,2°C. Se ausculta un soplo cardiaco intenso y se observan petequias en las\nextremidades inferiores. El monitoreo electrocardiográfico muestra una\ntaquicardia sinusal. Se instalan vías venosas periféricas y se monitoriza\ninvasivamente con un catéter de Swan-Ganz, obteniéndose los siguientes\nresultados: PVC: 15 mmHg, PAP: 45/22 mmHg, PCP: 22mmHg. La medida MENOS\nadecuada para el manejo de este paciente es:",
           "opciones": [
             {
               "id": "A",
@@ -7828,7 +7828,7 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un paciente de 70 años, cardiópata coronario, en CFIII, evoluciona con tos y\nexpectoración mucopurulenta, agregándose disnea de reposo y rápido\ndeterioro del estado general, con síncopes y desorientación. Al examen físico se\naprecia pálido, con extremidades frías y pulsos débiles. Se constata FC: 120x’,\nPA: 66/31 mmHg, con RR3T y MP+ con crépitos bilaterales, mayor en lavase\n\nderecha. El monitoreo electrocardiográfico demuestra taquicardia sinusal. Se\nDr. Guevara\ninstala catéter de Swan-Ganz, obteniéndose PVC: 3 mmHg (VN: 0-8), PAP: 45/22\nPreparación EUNACOM\nmmHg (VN: menor a 35) y PCP: 3 mmHg (van: menor a 18). El diagnóstico más\nprobable es:",
+          "pregunta": "Un paciente de 70 años, cardiópata coronario, en CFIII, evoluciona con tos y\nexpectoración mucopurulenta, agregándose disnea de reposo y rápido\ndeterioro del estado general, con síncopes y desorientación. Al examen físico se\naprecia pálido, con extremidades frías y pulsos débiles. Se constata FC: 120x’,\nPA: 66/31 mmHg, con RR3T y MP+ con crépitos bilaterales, mayor en lavase\n\nderecha. El monitoreo electrocardiográfico demuestra taquicardia sinusal. Se\ninstala catéter de Swan-Ganz, obteniéndose PVC: 3 mmHg (VN: 0-8), PAP: 45/22\nmmHg (VN: menor a 35) y PCP: 3 mmHg (van: menor a 18). El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -7988,7 +7988,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Cuál de los siguientes casos clínicos es más concordante con una úlcera\nDr. Guevara\narterial?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de los siguientes casos clínicos es más concordante con una úlcera\narterial?",
           "opciones": [
             {
               "id": "A",
@@ -8132,11 +8132,11 @@
             },
             {
               "id": "D",
-              "text": "Derivar a cirujano vascular para cirugía de reperfusión de EEII\nDr. Guevara"
+              "text": "Derivar a cirujano vascular para cirugía de reperfusión de EEII"
             },
             {
               "id": "E",
-              "text": "Solicitar ecografía-doppler de EEII\nPreparación EUNACOM"
+              "text": "Solicitar ecografía-doppler de EEII"
             }
           ],
           "respuestaCorrecta": "A",
@@ -8244,7 +8244,7 @@
         },
         {
           "numero": 25,
-          "pregunta": "Paciente hipertenso, de 67 años, con dolor torácico intenso, de inicio súbito.\nAl examen físico FC: 110x’, regular, PA:230/128, asimetría en los pulsos radiales\n\ny a la auscultación cardíaca destaca un soplo diastólico. La conducta inicial más\nDr. Guevara\nadecuada a seguir, además de tomar un ECG es:\nPreparación EUNACOM",
+          "pregunta": "Paciente hipertenso, de 67 años, con dolor torácico intenso, de inicio súbito.\nAl examen físico FC: 110x’, regular, PA:230/128, asimetría en los pulsos radiales\n\ny a la auscultación cardíaca destaca un soplo diastólico. La conducta inicial más\nadecuada a seguir, además de tomar un ECG es:",
           "opciones": [
             {
               "id": "A",
@@ -8372,7 +8372,7 @@
         },
         {
           "numero": 29,
-          "pregunta": "Un paciente diabético e hipertenso de 50 años de edad, en tratamiento con\nDr. Guevara\ndieta hiposódica, metformina y enalapril 5 mg cada 12 horas, desde hace un\nPreparación EUNACOM\naño, presenta presiones arteriales cercanas a 140/90 mmHg en la mayoría de las\ntomas. La conducta más adecuada es:",
+          "pregunta": "Un paciente diabético e hipertenso de 50 años de edad, en tratamiento con\ndieta hiposódica, metformina y enalapril 5 mg cada 12 horas, desde hace un\naño, presenta presiones arteriales cercanas a 140/90 mmHg en la mayoría de las\ntomas. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -9428,11 +9428,11 @@
             },
             {
               "id": "D",
-              "text": "Aministrar amiodarona endovenosa, 150 mg en infusión continua\nDr. Guevara"
+              "text": "Aministrar amiodarona endovenosa, 150 mg en infusión continua"
             },
             {
               "id": "E",
-              "text": "Realizar cardioversión eléctrica inmediata\nPreparación EUNACOM"
+              "text": "Realizar cardioversión eléctrica inmediata"
             }
           ],
           "respuestaCorrecta": "C",
@@ -9572,7 +9572,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente de 67 años, cardiópata, presenta una neumonía severa, la que es\ntratada con ceftriaxona endovenosa. Evoluciona con hipotensión y compromiso\n\nde conciencia, por lo que es monitorizado con un catéter de Swan Ganz que\nDr. Guevara\nmuestra marcada elevación de la PVC y de la PCP. El diagnóstico más probable\nPreparación EUNACOM\nes:",
+          "pregunta": "Un paciente de 67 años, cardiópata, presenta una neumonía severa, la que es\ntratada con ceftriaxona endovenosa. Evoluciona con hipotensión y compromiso\n\nde conciencia, por lo que es monitorizado con un catéter de Swan Ganz que\nmuestra marcada elevación de la PVC y de la PCP. El diagnóstico más probable\nes:",
           "opciones": [
             {
               "id": "A",
@@ -9680,11 +9680,11 @@
             },
             {
               "id": "C",
-              "text": "Shock hipovolémico\nDr. Guevara"
+              "text": "Shock hipovolémico"
             },
             {
               "id": "D",
-              "text": "Shock anafiláctico\nPreparación EUNACOM"
+              "text": "Shock anafiláctico"
             },
             {
               "id": "E",
@@ -9832,11 +9832,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Úlcera arterial\nDr. Guevara"
+              "text": "Úlcera arterial"
             },
             {
               "id": "B",
-              "text": "Úlcera venosa\nPreparación EUNACOM"
+              "text": "Úlcera venosa"
             },
             {
               "id": "C",
@@ -9988,7 +9988,7 @@
         },
         {
           "numero": 22,
-          "pregunta": "Un paciente de 45 años, hipertenso desde hace 6 meses, en tratamiento con\nDr. Guevara\ndieta hiposódica, presenta presiones arteriales cercanas a 150/90, durante los\nPreparación EUNACOM\núltimos 3 meses. No fuma ni padece otras patologías. El examen físico es\nnormal. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 45 años, hipertenso desde hace 6 meses, en tratamiento con\ndieta hiposódica, presenta presiones arteriales cercanas a 150/90, durante los\núltimos 3 meses. No fuma ni padece otras patologías. El examen físico es\nnormal. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -10088,11 +10088,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Infarto agudo al miocardio con embolía cerebral secundaria\nDr. Guevara"
+              "text": "Infarto agudo al miocardio con embolía cerebral secundaria"
             },
             {
               "id": "B",
-              "text": "Endocarditis bacteriana aguda con metástasis séptica\nPreparación EUNACOM"
+              "text": "Endocarditis bacteriana aguda con metástasis séptica"
             },
             {
               "id": "C",
@@ -10228,11 +10228,11 @@
             },
             {
               "id": "D",
-              "text": "IECAs\nDr. Guevara"
+              "text": "IECAs"
             },
             {
               "id": "E",
-              "text": "ARA II\nPreparación EUNACOM"
+              "text": "ARA II"
             }
           ],
           "respuestaCorrecta": "D",
@@ -10380,7 +10380,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 47 años, cursando su segundo día de hospitalización por un\naccidente de tránsito grave, con politraumatismo, contusión pulmonar y TEC\nsevero, presenta un cuadro clínico compatible con una TVP de la extremidad\n\ninferior izquierda, la que se confirma mediante ecografía, con compromiso de\nDr. Guevara\nla vena poplítea. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 47 años, cursando su segundo día de hospitalización por un\naccidente de tránsito grave, con politraumatismo, contusión pulmonar y TEC\nsevero, presenta un cuadro clínico compatible con una TVP de la extremidad\n\ninferior izquierda, la que se confirma mediante ecografía, con compromiso de\nla vena poplítea. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -10492,11 +10492,11 @@
             },
             {
               "id": "D",
-              "text": "Estenosis pulmonar.\nDr. Guevara"
+              "text": "Estenosis pulmonar."
             },
             {
               "id": "E",
-              "text": "Insuficiencia mitral reumática.\nPreparación EUNACOM"
+              "text": "Insuficiencia mitral reumática."
             }
           ],
           "respuestaCorrecta": "C",
@@ -10604,7 +10604,7 @@
         },
         {
           "numero": 11,
-          "pregunta": "Un recién nacido de término, sin antecedentes obstétricos de importancia,\npresenta cianosis intensa y desaturación arterial marcada, desde el nacimiento,\n\nque no responde a oxígeno al 100%. El examen físico no aporta mayor\nDr. Guevara\ninformación. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un recién nacido de término, sin antecedentes obstétricos de importancia,\npresenta cianosis intensa y desaturación arterial marcada, desde el nacimiento,\n\nque no responde a oxígeno al 100%. El examen físico no aporta mayor\ninformación. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -10732,7 +10732,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "¿Cuál de los siguientes casos clínicos es más concordante con una úlcera\nDr. Guevara\narterial?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de los siguientes casos clínicos es más concordante con una úlcera\narterial?",
           "opciones": [
             {
               "id": "A",
@@ -10860,11 +10860,11 @@
         },
         {
           "numero": 19,
-          "pregunta": "Una paciente de 59 años, cursando el segundo día de un infarto agudo al\nmiocardio de la pared anteroseptal, presenta marcado empeoramiento del\nestado general, evolucionando con palidez y disnea. Al examen físico se aprecia\npulso a 115x’, regular, PA: 100/70mmHg, se ausculta un soplo cardíaco\nholosistólico y se escuchan crépitos pulmonares bilaterales. El diagnóstico de\n\nsospecha es:\nDr. Guevara",
+          "pregunta": "Una paciente de 59 años, cursando el segundo día de un infarto agudo al\nmiocardio de la pared anteroseptal, presenta marcado empeoramiento del\nestado general, evolucionando con palidez y disnea. Al examen físico se aprecia\npulso a 115x’, regular, PA: 100/70mmHg, se ausculta un soplo cardíaco\nholosistólico y se escuchan crépitos pulmonares bilaterales. El diagnóstico de\n\nsospecha es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Disección aórtica\nPreparación EUNACOM"
+              "text": "Disección aórtica"
             },
             {
               "id": "B",
@@ -11056,7 +11056,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "¿Qué alteración determina un peor pronóstico en una paciente con\nDr. Guevara\ninsuficiencia cardíaca?\nPreparación EUNACOM",
+          "pregunta": "¿Qué alteración determina un peor pronóstico en una paciente con\ninsuficiencia cardíaca?",
           "opciones": [
             {
               "id": "A",
@@ -11188,11 +11188,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar betabloqueo\nDr. Guevara"
+              "text": "Iniciar betabloqueo"
             },
             {
               "id": "B",
-              "text": "Iniciar amiodarona\nPreparación EUNACOM"
+              "text": "Iniciar amiodarona"
             },
             {
               "id": "C",
@@ -11344,7 +11344,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un recién nacido de término, de 3 días vida, hijo de madre primípara, inicia\nDr. Guevara\nictericia hasta los muslos. Es alimentado con leche materna exclusiva. Su grupo\nPreparación EUNACOM\nsanguíneo es O Rh(+) y el de la madre es A Rh(-). El hemograma es normal, la\nbilirrubina total es 12,2 mg/dl y la bilirrubina directa es 1,3 mg/dl. El\ndiagnóstico más probable es:",
+          "pregunta": "Un recién nacido de término, de 3 días vida, hijo de madre primípara, inicia\nictericia hasta los muslos. Es alimentado con leche materna exclusiva. Su grupo\nsanguíneo es O Rh(+) y el de la madre es A Rh(-). El hemograma es normal, la\nbilirrubina total es 12,2 mg/dl y la bilirrubina directa es 1,3 mg/dl. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -11480,11 +11480,11 @@
             },
             {
               "id": "B",
-              "text": "Hepatitis aguda grave\nDr. Guevara"
+              "text": "Hepatitis aguda grave"
             },
             {
               "id": "C",
-              "text": "Síndrome hemolítico urémico\nPreparación EUNACOM"
+              "text": "Síndrome hemolítico urémico"
             },
             {
               "id": "D",
@@ -11672,7 +11672,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 40 años, fumador de 5 cigarrillos al día, sin otras patologías\nde importancia, presenta disnea de esfuerzos, progresiva, de 3 meses de\nevolución, asociada a ortopnea y edema de extremidades inferiores.\nActualmente está en capacidad funcional III. Al examen físico presenta FC: 90x’\nregular, PA: 110/70, RR2T sin soplos, desplazamiento importante del choque de\nla punta, murmullo pulmonar simétrico, con crépitos escasos bibasales, edema\n\nde extremidades inferiores y reflujo hepatoyugular. La radiografía de tórax\nDr. Guevara\ndemuestra cardiomegalia, hilios pulmonares prominentes, con redistribución\nPreparación EUNACOM\nsanguínea hacia los ápices. El electrocardiograma muestra signos de\nhipertrofia del ventrículo izquierdo. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 40 años, fumador de 5 cigarrillos al día, sin otras patologías\nde importancia, presenta disnea de esfuerzos, progresiva, de 3 meses de\nevolución, asociada a ortopnea y edema de extremidades inferiores.\nActualmente está en capacidad funcional III. Al examen físico presenta FC: 90x’\nregular, PA: 110/70, RR2T sin soplos, desplazamiento importante del choque de\nla punta, murmullo pulmonar simétrico, con crépitos escasos bibasales, edema\n\nde extremidades inferiores y reflujo hepatoyugular. La radiografía de tórax\ndemuestra cardiomegalia, hilios pulmonares prominentes, con redistribución\nsanguínea hacia los ápices. El electrocardiograma muestra signos de\nhipertrofia del ventrículo izquierdo. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -11800,11 +11800,11 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 60 años, con antecedente de un infarto hace 3 años, bien\ntolerado, consulta por disnea y palpitaciones de instalación bruscas. Al examen\nfísico presenta FC: 180 x’, con PA: 90/60 mmHg, El monitor electrocardiográfico\n\nmuestra complejos QRS de 0,20 segundos. El diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 60 años, con antecedente de un infarto hace 3 años, bien\ntolerado, consulta por disnea y palpitaciones de instalación bruscas. Al examen\nfísico presenta FC: 180 x’, con PA: 90/60 mmHg, El monitor electrocardiográfico\n\nmuestra complejos QRS de 0,20 segundos. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Fibrilación auricular\nPreparación EUNACOM"
+              "text": "Fibrilación auricular"
             },
             {
               "id": "B",
@@ -11928,11 +11928,11 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un niño de 3 meses presenta mal incremento ponderal e infecciones\nrespiratorias a repetición. La madre refiere que se cansa rápidamente al\nmamar. Al examen físico destacan crépitos pulmonares bibasales y soplo\ncardíaco sistólico. Presenta además desaturación arterial hasta 85%, que\n\nrevierte al aportar oxígeno. El diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un niño de 3 meses presenta mal incremento ponderal e infecciones\nrespiratorias a repetición. La madre refiere que se cansa rápidamente al\nmamar. Al examen físico destacan crépitos pulmonares bibasales y soplo\ncardíaco sistólico. Presenta además desaturación arterial hasta 85%, que\n\nrevierte al aportar oxígeno. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Cardiopatía congénita con cortocircuito de derecha a izquierda\nPreparación EUNACOM"
+              "text": "Cardiopatía congénita con cortocircuito de derecha a izquierda"
             },
             {
               "id": "B",
@@ -12036,11 +12036,11 @@
             },
             {
               "id": "C",
-              "text": "Infarto cardíaco\nDr. Guevara"
+              "text": "Infarto cardíaco"
             },
             {
               "id": "D",
-              "text": "Bloqueo A-V de tercer grado\nPreparación EUNACOM"
+              "text": "Bloqueo A-V de tercer grado"
             },
             {
               "id": "E",
@@ -12140,7 +12140,7 @@
             },
             {
               "id": "E",
-              "text": "Iniciar aspirina, clopidogrel, oxígeno, nitroglicerina, morfina y realizar\nDr. Guevara\ncoronariografía de urgencia\nPreparación EUNACOM"
+              "text": "Iniciar aspirina, clopidogrel, oxígeno, nitroglicerina, morfina y realizar\ncoronariografía de urgencia"
             }
           ],
           "respuestaCorrecta": "E",
@@ -12320,11 +12320,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 60 años presenta astenia, asociada a edema de extremidades\ninferiores, de algunas semanas de evolución. Al examen físico se ausculta un\nsoplo cardíaco sistólico eyectivo, con click de eyección y disminución de la\n\nintensidad de R2 y se palpa hepatomegalia. El diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 60 años presenta astenia, asociada a edema de extremidades\ninferiores, de algunas semanas de evolución. Al examen físico se ausculta un\nsoplo cardíaco sistólico eyectivo, con click de eyección y disminución de la\n\nintensidad de R2 y se palpa hepatomegalia. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Hipertensión pulmonar\nPreparación EUNACOM"
+              "text": "Hipertensión pulmonar"
             },
             {
               "id": "B",
@@ -12456,11 +12456,11 @@
             },
             {
               "id": "B",
-              "text": "Realizar cardioversión eléctrica\nDr. Guevara"
+              "text": "Realizar cardioversión eléctrica"
             },
             {
               "id": "C",
-              "text": "Iniciar anticoagulación inmediata con heparina\nPreparación EUNACOM"
+              "text": "Iniciar anticoagulación inmediata con heparina"
             },
             {
               "id": "D",
@@ -12576,7 +12576,7 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un paciente de 55 años, en situación de calle, presenta un cuadro de fiebre,\ntos con expectoración mucopurulenta, que en ocasiones es hemoptoica. Se\nsolicita una radiografía de tórax, que muestra zonas de relleno alveolar y\n\nbandas de retracción, con observación de ensanchamiento del mediastino,\nDr. Guevara\ncompatible con adenopatías mediastínicas. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 55 años, en situación de calle, presenta un cuadro de fiebre,\ntos con expectoración mucopurulenta, que en ocasiones es hemoptoica. Se\nsolicita una radiografía de tórax, que muestra zonas de relleno alveolar y\n\nbandas de retracción, con observación de ensanchamiento del mediastino,\ncompatible con adenopatías mediastínicas. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -12704,7 +12704,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Una paciente de 67 años, portadora de una insuficiencia cardíaca crónica,\nDr. Guevara\nconsulta por mayor disnea de la habitual, asociado a tos con expectoración. Se\nPreparación EUNACOM\nrealiza una radiografía de tórax que demuestra una zona de relleno alveolar\npequeña, con un derrame pleural izquierdo, el que se punciona, obteniéndose\nun líquido amarillo, transparente, con proteínas 4,1 g/dl, LDH: 100 UI/l, células:\n730 x mm3, con 5% de mononucleares y 95% de polimorfonucleares, pH: 7,35 y\nlactato: 4,0 mmol/L. Las proteínas plasmáticas son 6,3 g/dl y la LDH plasmática\nes 150 UI/l. La conducta más adecuada es",
+          "pregunta": "Una paciente de 67 años, portadora de una insuficiencia cardíaca crónica,\nconsulta por mayor disnea de la habitual, asociado a tos con expectoración. Se\nrealiza una radiografía de tórax que demuestra una zona de relleno alveolar\npequeña, con un derrame pleural izquierdo, el que se punciona, obteniéndose\nun líquido amarillo, transparente, con proteínas 4,1 g/dl, LDH: 100 UI/l, células:\n730 x mm3, con 5% de mononucleares y 95% de polimorfonucleares, pH: 7,35 y\nlactato: 4,0 mmol/L. Las proteínas plasmáticas son 6,3 g/dl y la LDH plasmática\nes 150 UI/l. La conducta más adecuada es",
           "opciones": [
             {
               "id": "A",
@@ -12812,11 +12812,11 @@
             },
             {
               "id": "C",
-              "text": "CVF: 105% del teórico; VEF1: 96% del teórico; VEF1/CVF: 79%, sin mejoría con\n\nsalbutamol\nDr. Guevara"
+              "text": "CVF: 105% del teórico; VEF1: 96% del teórico; VEF1/CVF: 79%, sin mejoría con\n\nsalbutamol"
             },
             {
               "id": "D",
-              "text": "CVF: 110% del teórico; VEF1: 60% del teórico; VEF1/CVF: 58%, con mejoría con\nPreparación EUNACOM\nsalbutamol"
+              "text": "CVF: 110% del teórico; VEF1: 60% del teórico; VEF1/CVF: 58%, con mejoría con\nsalbutamol"
             },
             {
               "id": "E",

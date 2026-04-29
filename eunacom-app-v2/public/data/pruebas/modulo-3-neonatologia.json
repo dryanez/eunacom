@@ -152,7 +152,7 @@
             },
             {
               "id": "D",
-              "text": "Solicitar bilirrubina plasmática, hemograma, prueba de Coombs directo, grupo-Rh Dr. Guevara y hemocultivos y decidir manejo según resultados Preparación EUNACOM"
+              "text": "Solicitar bilirrubina plasmática, hemograma, prueba de Coombs directo, grupo-Rh y hemocultivos y decidir manejo según resultados"
             },
             {
               "id": "E",
@@ -284,7 +284,7 @@
             },
             {
               "id": "E",
-              "text": "Iniciar soporte, solicitar hemograma, hemocultivos, glicemia, calcemia, Preparación EUNACOM electrolitos, pruebas de función renal, gases venosos, radiografía de tórax, punción lumbar y exámenes de orina e iniciar una asociación de cefotaximo y ampicilina endovenosa, inmediatamente"
+              "text": "Iniciar soporte, solicitar hemograma, hemocultivos, glicemia, calcemia, electrolitos, pruebas de función renal, gases venosos, radiografía de tórax, punción lumbar y exámenes de orina e iniciar una asociación de cefotaximo y ampicilina endovenosa, inmediatamente"
             }
           ],
           "respuestaCorrecta": "E",
@@ -424,7 +424,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Una mujer embarazada de 28 semanas, Rh negativo, se realiza test de\nDr. Guevara\nCoombs indirecto como parte del control prenatal, el que resulta positivo. La\nPreparación EUNACOM\nconducta más adecuada es:",
+          "pregunta": "Una mujer embarazada de 28 semanas, Rh negativo, se realiza test de\nCoombs indirecto como parte del control prenatal, el que resulta positivo. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -536,11 +536,11 @@
             },
             {
               "id": "D",
-              "text": "Ictericia por leche materna Dr. Guevara"
+              "text": "Ictericia por leche materna"
             },
             {
               "id": "E",
-              "text": "Sepsis neonatal Preparación EUNACOM"
+              "text": "Sepsis neonatal"
             }
           ],
           "respuestaCorrecta": "A",
@@ -784,7 +784,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nDr. Guevara\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\nPreparación EUNACOM\ninformación?",
+          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\ninformación?",
           "opciones": [
             {
               "id": "A",
@@ -924,11 +924,11 @@
             },
             {
               "id": "C",
-              "text": "Iniciar masaje cardíaco Dr. Guevara"
+              "text": "Iniciar masaje cardíaco"
             },
             {
               "id": "D",
-              "text": "Solicitar gases de sangre de cordón umbilical y decidir manejo según los Preparación EUNACOM resultados"
+              "text": "Solicitar gases de sangre de cordón umbilical y decidir manejo según los resultados"
             },
             {
               "id": "E",
@@ -1076,11 +1076,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar nuevo test de Coombs indirecto a las 36 semanas de gestación Dr. Guevara"
+              "text": "Solicitar nuevo test de Coombs indirecto a las 36 semanas de gestación"
             },
             {
               "id": "B",
-              "text": "Solicitar test de Coombs directo Preparación EUNACOM"
+              "text": "Solicitar test de Coombs directo"
             },
             {
               "id": "C",
@@ -1216,11 +1216,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar VDRL a la madre y al niño Dr. Guevara"
+              "text": "Solicitar VDRL a la madre y al niño"
             },
             {
               "id": "E",
-              "text": "Solicitar IgM para virus herpes simplex Preparación EUNACOM"
+              "text": "Solicitar IgM para virus herpes simplex"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2064,11 +2064,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar test del sudor Dr. Guevara"
+              "text": "Solicitar test del sudor"
             },
             {
               "id": "E",
-              "text": "Iniciar nutrición parenteral Preparación EUNACOM"
+              "text": "Iniciar nutrición parenteral"
             }
           ],
           "respuestaCorrecta": "A",
@@ -2224,11 +2224,11 @@
             },
             {
               "id": "D",
-              "text": "Hijo de madre diabética Dr. Guevara"
+              "text": "Hijo de madre diabética"
             },
             {
               "id": "E",
-              "text": "Parto por cesárea Preparación EUNACOM"
+              "text": "Parto por cesárea"
             }
           ],
           "respuestaCorrecta": "C",
@@ -2388,7 +2388,7 @@
             },
             {
               "id": "E",
-              "text": "Solicitar ecografías doppler periódicas de arteria cerebral media fetal Preparación EUNACOM"
+              "text": "Solicitar ecografías doppler periódicas de arteria cerebral media fetal"
             }
           ],
           "respuestaCorrecta": "E",
@@ -2544,11 +2544,11 @@
             },
             {
               "id": "D",
-              "text": "Disminución de la carga osmolar Dr. Guevara"
+              "text": "Disminución de la carga osmolar"
             },
             {
               "id": "E",
-              "text": "Aporte de calorías Preparación EUNACOM"
+              "text": "Aporte de calorías"
             }
           ],
           "respuestaCorrecta": "B",
@@ -2728,7 +2728,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "El niño pequeño para la edad gestacional tiene mayor riesgo de presentar\nDr. Guevara\ntodo lo siguiente, EXCEPTO:\nPreparación EUNACOM",
+          "pregunta": "El niño pequeño para la edad gestacional tiene mayor riesgo de presentar\ntodo lo siguiente, EXCEPTO:",
           "opciones": [
             {
               "id": "A",
@@ -2888,7 +2888,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un recién nacido de 42+2 semanas de edad gestacional presenta dificultad\nDr. Guevara\nrespiratoria y aleteo nasal. Al examen físico se constata taquipnea, retracción\nPreparación EUNACOM\nintercostal, murmullo pulmonar disminuido, sibilancias bilaterales y escasos\ncrépitos. El diagnóstico más probable es:",
+          "pregunta": "Un recién nacido de 42+2 semanas de edad gestacional presenta dificultad\nrespiratoria y aleteo nasal. Al examen físico se constata taquipnea, retracción\nintercostal, murmullo pulmonar disminuido, sibilancias bilaterales y escasos\ncrépitos. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3028,11 +3028,11 @@
             },
             {
               "id": "C",
-              "text": "Estenosis hipertrófica del píloro Dr. Guevara"
+              "text": "Estenosis hipertrófica del píloro"
             },
             {
               "id": "D",
-              "text": "Intususcepción intestinal Preparación EUNACOM"
+              "text": "Intususcepción intestinal"
             },
             {
               "id": "E",
@@ -3176,7 +3176,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "Un recién nacido, hijo de madre diabética, presenta hiporrectividad e\nDr. Guevara\nhipotonía, a las 3 horas de nacido, seguidas de una convulsión. El diagnóstico\nPreparación EUNACOM\nmás probable es:",
+          "pregunta": "Un recién nacido, hijo de madre diabética, presenta hiporrectividad e\nhipotonía, a las 3 horas de nacido, seguidas de una convulsión. El diagnóstico\nmás probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4032,11 +4032,11 @@
             },
             {
               "id": "B",
-              "text": "Recién nacido con compromiso de conciencia y hematocrito de 60% Dr. Guevara"
+              "text": "Recién nacido con compromiso de conciencia y hematocrito de 60%"
             },
             {
               "id": "C",
-              "text": "Recién nacido asintomático con hemoglobina de 18g/dl Preparación EUNACOM"
+              "text": "Recién nacido asintomático con hemoglobina de 18g/dl"
             },
             {
               "id": "D",
@@ -4200,11 +4200,11 @@
             },
             {
               "id": "D",
-              "text": "Enfermedad de membrana hialina Dr. Guevara"
+              "text": "Enfermedad de membrana hialina"
             },
             {
               "id": "E",
-              "text": "Hipocalcemia Preparación EUNACOM"
+              "text": "Hipocalcemia"
             }
           ],
           "respuestaCorrecta": "C",
@@ -4344,7 +4344,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "Un recién nacido debe ser alimentado con fórmula, ya que su madre no\nDr. Guevara\npresenta eyección de leche. Respecto a la cantidad de leche que debe recibir es\nPreparación EUNACOM\nverdadero que:",
+          "pregunta": "Un recién nacido debe ser alimentado con fórmula, ya que su madre no\npresenta eyección de leche. Respecto a la cantidad de leche que debe recibir es\nverdadero que:",
           "opciones": [
             {
               "id": "A",
@@ -4472,7 +4472,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "Un recién nacido pretérmino, de 33 semanas de gestación presenta\ntaquipnea, quejido y aleteo nasal, que inició algunos minutos luego del\nnacimiento y que ha ido en detrimento en las horas siguientes, de modo que\nrequiere altas concentraciones de oxígenos para mantener saturación arterial\n\nde oxígeno normal. El examen físico resulta inespecífico. El diagnóstico más\nDr. Guevara\nprobable es:\nPreparación EUNACOM",
+          "pregunta": "Un recién nacido pretérmino, de 33 semanas de gestación presenta\ntaquipnea, quejido y aleteo nasal, que inició algunos minutos luego del\nnacimiento y que ha ido en detrimento en las horas siguientes, de modo que\nrequiere altas concentraciones de oxígenos para mantener saturación arterial\n\nde oxígeno normal. El examen físico resulta inespecífico. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -4612,11 +4612,11 @@
             },
             {
               "id": "C",
-              "text": "Suero glucosado endovenoso Dr. Guevara"
+              "text": "Suero glucosado endovenoso"
             },
             {
               "id": "D",
-              "text": "Lactancia materna de inicio precoz Preparación EUNACOM"
+              "text": "Lactancia materna de inicio precoz"
             },
             {
               "id": "E",
@@ -4772,7 +4772,7 @@
             },
             {
               "id": "C",
-              "text": "Sólo puede ser alimentado con relleno a base de leche de vaca y tiene Dr. Guevara contraindicación absoluta de la lactancia materna Preparación EUNACOM"
+              "text": "Sólo puede ser alimentado con relleno a base de leche de vaca y tiene contraindicación absoluta de la lactancia materna"
             },
             {
               "id": "D",
@@ -4964,7 +4964,7 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Asegurar un ambiente temperado y administrar líquidos tibios, hasta recuperar la Dr. Guevara temperatura normal, sin necesidad de mayor estudio Preparación EUNACOM"
+              "text": "Asegurar un ambiente temperado y administrar líquidos tibios, hasta recuperar la temperatura normal, sin necesidad de mayor estudio"
             },
             {
               "id": "B",
@@ -5120,7 +5120,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "¿Qué tratamiento antibiótico es más adecuado para un recién nacido de 2\nDr. Guevara\ndías de vida cursando una sepsis neonatal?\nPreparación EUNACOM",
+          "pregunta": "¿Qué tratamiento antibiótico es más adecuado para un recién nacido de 2\ndías de vida cursando una sepsis neonatal?",
           "opciones": [
             {
               "id": "A",
@@ -5280,7 +5280,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un recién nacido de término, de 3 días de vida, presenta ictericia desde hace\nDr. Guevara\n24 horas, que actualmente llega a los muslos. Al nacer pesó 3.420 gramos, se\nPreparación EUNACOM\nalimenta adecuadamente y actualmente pesa 3.230 gramos. El examen físico no\naporta mayor información. La conducta más adecuada es:",
+          "pregunta": "Un recién nacido de término, de 3 días de vida, presenta ictericia desde hace\n24 horas, que actualmente llega a los muslos. Al nacer pesó 3.420 gramos, se\nalimenta adecuadamente y actualmente pesa 3.230 gramos. El examen físico no\naporta mayor información. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5424,11 +5424,11 @@
             },
             {
               "id": "D",
-              "text": "Enfermedad de Hirschsprung Dr. Guevara"
+              "text": "Enfermedad de Hirschsprung"
             },
             {
               "id": "E",
-              "text": "Atresia duodenal Preparación EUNACOM"
+              "text": "Atresia duodenal"
             }
           ],
           "respuestaCorrecta": "E",
@@ -5548,11 +5548,11 @@
             },
             {
               "id": "C",
-              "text": "Anemia hemolítica por incompatibilidad de grupo clásico Dr. Guevara"
+              "text": "Anemia hemolítica por incompatibilidad de grupo clásico"
             },
             {
               "id": "D",
-              "text": "Hipotiroidismo congénito Preparación EUNACOM"
+              "text": "Hipotiroidismo congénito"
             },
             {
               "id": "E",
@@ -5696,7 +5696,7 @@
         },
         {
           "numero": 27,
-          "pregunta": "Un recién nacido, con antecedente de asfixia neonatal recuperada, presenta\nDr. Guevara\nal quinto día de vida, vómitos, actitud de dolor y deposiciones con sangre. Al\nPreparación EUNACOM\nexamen físico se observa irritable y con el abdomen marcadamente distendido.\nEl diagnóstico más probable es:",
+          "pregunta": "Un recién nacido, con antecedente de asfixia neonatal recuperada, presenta\nal quinto día de vida, vómitos, actitud de dolor y deposiciones con sangre. Al\nexamen físico se observa irritable y con el abdomen marcadamente distendido.\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -6708,7 +6708,7 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar exámenes de sangre y orina, realizar una punción lumbar e iniciar Dr. Guevara ceftriaxona + vancomicina por vía endovenosa Preparación EUNACOM"
+              "text": "Solicitar exámenes de sangre y orina, realizar una punción lumbar e iniciar ceftriaxona + vancomicina por vía endovenosa"
             },
             {
               "id": "B",
@@ -6876,11 +6876,11 @@
             },
             {
               "id": "C",
-              "text": "Streptococcus agalactiae y Escherichia coli Dr. Guevara"
+              "text": "Streptococcus agalactiae y Escherichia coli"
             },
             {
               "id": "D",
-              "text": "Streptococcus pneumoniae y Streptococcus agalactiae Preparación EUNACOM"
+              "text": "Streptococcus pneumoniae y Streptococcus agalactiae"
             },
             {
               "id": "E",
@@ -7028,11 +7028,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Ictericia fisiológica Dr. Guevara"
+              "text": "Ictericia fisiológica"
             },
             {
               "id": "B",
-              "text": "Hemólisis Preparación EUNACOM"
+              "text": "Hemólisis"
             },
             {
               "id": "C",
@@ -7188,11 +7188,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Coluria y acolia Dr. Guevara"
+              "text": "Coluria y acolia"
             },
             {
               "id": "B",
-              "text": "Ictericia generalizada Preparación EUNACOM"
+              "text": "Ictericia generalizada"
             },
             {
               "id": "C",
@@ -7312,7 +7312,7 @@
         },
         {
           "numero": 23,
-          "pregunta": "Un recién nacido de término, alimentado con lactancia materna exclusiva,\nDr. Guevara\ninicia ictericia a los 6 días con bilirrubinemia total 7 mg/dl y una fracción\nPreparación EUNACOM\ndirecta de 0,8 mg/dl, la que va aumentando progresivamente hasta los 18 días.\nPor lo demás se ve de buen aspecto y ha subido adecuadamente de peso. Sus\nreflejos, así como el resto del examen físico son normales. El diagnóstico más\nprobable es:",
+          "pregunta": "Un recién nacido de término, alimentado con lactancia materna exclusiva,\ninicia ictericia a los 6 días con bilirrubinemia total 7 mg/dl y una fracción\ndirecta de 0,8 mg/dl, la que va aumentando progresivamente hasta los 18 días.\nPor lo demás se ve de buen aspecto y ha subido adecuadamente de peso. Sus\nreflejos, así como el resto del examen físico son normales. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -7444,11 +7444,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Fibrosis quística Dr. Guevara"
+              "text": "Fibrosis quística"
             },
             {
               "id": "B",
-              "text": "Estenosis hipertrófica del píloro Preparación EUNACOM"
+              "text": "Estenosis hipertrófica del píloro"
             },
             {
               "id": "C",
@@ -7832,7 +7832,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nDr. Guevara\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\nPreparación EUNACOM\ninformación?",
+          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\ninformación?",
           "opciones": [
             {
               "id": "A",
@@ -7960,7 +7960,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un recién nacido presenta retraso en la eliminación de meconio. Durante\nlos días siguientes presenta rara vez deposiciones y además vomita en\nmúltiples oportunidades. Al examen físico se aprecia distensión abdominal,\n\ncon bazuque intestinal y claro aumento de los ruidos hidroaéreos. EL\nDr. Guevara\ndiagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un recién nacido presenta retraso en la eliminación de meconio. Durante\nlos días siguientes presenta rara vez deposiciones y además vomita en\nmúltiples oportunidades. Al examen físico se aprecia distensión abdominal,\n\ncon bazuque intestinal y claro aumento de los ruidos hidroaéreos. EL\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -8104,11 +8104,11 @@
             },
             {
               "id": "D",
-              "text": "Hemorragia periventricular Dr. Guevara"
+              "text": "Hemorragia periventricular"
             },
             {
               "id": "E",
-              "text": "Encefalopatía hopóxica Preparación EUNACOM"
+              "text": "Encefalopatía hopóxica"
             }
           ],
           "respuestaCorrecta": "E",
@@ -8480,7 +8480,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nDr. Guevara\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\nPreparación EUNACOM\ninformación?",
+          "pregunta": "Un recién nacido presenta cianosis que no responde a oxígeno al 100%,\nasociado a un soplo sistólico eyectivo. ¿Qué patología es compatible con esta\ninformación?",
           "opciones": [
             {
               "id": "A",
@@ -8608,11 +8608,11 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un recién nacido de un día de vida presenta vómitos intensos, que aparecen\na los pocos minutos de mamar. Al examen se aprecia adolorido y la radiografía\nde abdomen muestra dos imágenes redondas, de contenido gaseoso en la zona\n\nalta del abdomen. El diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un recién nacido de un día de vida presenta vómitos intensos, que aparecen\na los pocos minutos de mamar. Al examen se aprecia adolorido y la radiografía\nde abdomen muestra dos imágenes redondas, de contenido gaseoso en la zona\n\nalta del abdomen. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Fibrosis quística Preparación EUNACOM"
+              "text": "Fibrosis quística"
             },
             {
               "id": "B",
@@ -8768,11 +8768,11 @@
         },
         {
           "numero": 18,
-          "pregunta": "La mortalidad neonatal precoz engloba a aquellas muertes que suceden:\nDr. Guevara",
+          "pregunta": "La mortalidad neonatal precoz engloba a aquellas muertes que suceden:",
           "opciones": [
             {
               "id": "A",
-              "text": "Entre el nacimiento y los 7 días de vida Preparación EUNACOM"
+              "text": "Entre el nacimiento y los 7 días de vida"
             },
             {
               "id": "B",
@@ -8984,11 +8984,11 @@
             },
             {
               "id": "D",
-              "text": "Atresia duodenal Dr. Guevara"
+              "text": "Atresia duodenal"
             },
             {
               "id": "E",
-              "text": "Fibrosis quística Preparación EUNACOM"
+              "text": "Fibrosis quística"
             }
           ],
           "respuestaCorrecta": "A",
@@ -9112,11 +9112,11 @@
             },
             {
               "id": "D",
-              "text": "Mielomeningocele Dr. Guevara"
+              "text": "Mielomeningocele"
             },
             {
               "id": "E",
-              "text": "Meningitis neonatal Preparación EUNACOM"
+              "text": "Meningitis neonatal"
             }
           ],
           "respuestaCorrecta": "C",
@@ -9256,7 +9256,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Recién nacido de 42 + 1 semanas de edad gestacional presenta taquipnea,\nDr. Guevara\naleteo nasal y retracción costal. Al examen pulmonar se ausculta murmullo\nPreparación EUNACOM\npulmonar disminuido, sibilancias bilaterales y escasos crépitos. El diagnóstico\nmás probable es:",
+          "pregunta": "Recién nacido de 42 + 1 semanas de edad gestacional presenta taquipnea,\naleteo nasal y retracción costal. Al examen pulmonar se ausculta murmullo\npulmonar disminuido, sibilancias bilaterales y escasos crépitos. El diagnóstico\nmás probable es:",
           "opciones": [
             {
               "id": "A",
@@ -9352,7 +9352,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Recién nacido con antecedente de retraso en la eliminación de meconio, es\ntraído a la consulta por presentar vómitos frecuentes. La madre refiere que\nrara vez presenta deposiciones. Al examen físico destaca distención abdominal,\n\nbazuqueo intestinal y aumento de los ruidos hidroaéreos. El diagnóstico más\nDr. Guevara\nprobable es:\nPreparación EUNACOM",
+          "pregunta": "Recién nacido con antecedente de retraso en la eliminación de meconio, es\ntraído a la consulta por presentar vómitos frecuentes. La madre refiere que\nrara vez presenta deposiciones. Al examen físico destaca distención abdominal,\n\nbazuqueo intestinal y aumento de los ruidos hidroaéreos. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -9484,11 +9484,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Treponema pallidum Dr. Guevara"
+              "text": "Treponema pallidum"
             },
             {
               "id": "B",
-              "text": "Chlamydia trachomatis Preparación EUNACOM"
+              "text": "Chlamydia trachomatis"
             },
             {
               "id": "C",

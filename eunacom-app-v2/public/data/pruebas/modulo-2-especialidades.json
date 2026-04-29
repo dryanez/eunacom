@@ -120,11 +120,11 @@
             },
             {
               "id": "D",
-              "text": "Radiografía de senos paranasales con velamiento del seno maxilar derecho Dr. Guevara"
+              "text": "Radiografía de senos paranasales con velamiento del seno maxilar derecho"
             },
             {
               "id": "E",
-              "text": "Cultivo nasal positivo para Staphilococcus aureus Preparación EUNACOM"
+              "text": "Cultivo nasal positivo para Staphilococcus aureus"
             }
           ],
           "respuestaCorrecta": "C",
@@ -248,11 +248,11 @@
             },
             {
               "id": "D",
-              "text": "Administrar oxígeno a 2 litros por minuto, analgésicos y antibióticos Dr. Guevara"
+              "text": "Administrar oxígeno a 2 litros por minuto, analgésicos y antibióticos"
             },
             {
               "id": "E",
-              "text": "Realizar sellamiento pleural con talco Preparación EUNACOM"
+              "text": "Realizar sellamiento pleural con talco"
             }
           ],
           "respuestaCorrecta": "C",
@@ -392,11 +392,11 @@
         },
         {
           "numero": 13,
-          "pregunta": "Se comparan la tasas de hemorragia grave entre un grupo tratado con un\nanticoagulante experimental y otro grupo tratado con heparina de bajo peso\nmolecular. Se calculan las incidencias de hemorragias graves y se obtiene un un\nriesgo relativo de 3, con un intervalo de confianza de 95% de 2,3 a 3,5. Esto\n\nsignifica que:\nDr. Guevara",
+          "pregunta": "Se comparan la tasas de hemorragia grave entre un grupo tratado con un\nanticoagulante experimental y otro grupo tratado con heparina de bajo peso\nmolecular. Se calculan las incidencias de hemorragias graves y se obtiene un un\nriesgo relativo de 3, con un intervalo de confianza de 95% de 2,3 a 3,5. Esto\n\nsignifica que:",
           "opciones": [
             {
               "id": "A",
-              "text": "La probabilidad de sufrir una hemorragia grave es 3 veces mayor en los pacientes Preparación EUNACOM tratados con el nuevo anticoagulante"
+              "text": "La probabilidad de sufrir una hemorragia grave es 3 veces mayor en los pacientes tratados con el nuevo anticoagulante"
             },
             {
               "id": "B",
@@ -520,7 +520,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "Paciente de 34 años, consulta porque presenta pensamientos desagradables.\nDr. Guevara\nCada vez que sale de su casa debe desconectar la electricidad y el gas, porque\nPreparación EUNACOM\ntiene la sensación de que se producirá un incendio. Esto le ha traído problemas\ncon su pareja quien lo encuentra muy exagerado. Sabe que esto es ridículo y\nexagerado, pero no puede evitarlo. El diagnóstico más probable es:",
+          "pregunta": "Paciente de 34 años, consulta porque presenta pensamientos desagradables.\nCada vez que sale de su casa debe desconectar la electricidad y el gas, porque\ntiene la sensación de que se producirá un incendio. Esto le ha traído problemas\ncon su pareja quien lo encuentra muy exagerado. Sabe que esto es ridículo y\nexagerado, pero no puede evitarlo. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -648,7 +648,7 @@
         },
         {
           "numero": 21,
-          "pregunta": "Paciente de 55 años, consulta por dolor abdominal epigástrico muy intenso,\nDr. Guevara\nasociado a ictericia y vómitos alimentarios en varias ocasiones. Al examen\nPreparación EUNACOM\nfísico se constata paciente en buenas condiciones generales, ictérico, con fascie\nde dolor, con PA: 140/80, FC: 80x’, t°: 36,8°C. El examen abdominal sólo destaca\ndolor a la palpación epigástrica y en hipocondrio derecho, sin signos de\nirritación peritoneal. Los exámenes demuestran elevación de la bilirrubina\ndirecta y de las fosfatasas alcalinas, con transaminasas y lipasa normales. El\nhemograma resulta normal. El diagnóstico más probable es:",
+          "pregunta": "Paciente de 55 años, consulta por dolor abdominal epigástrico muy intenso,\nasociado a ictericia y vómitos alimentarios en varias ocasiones. Al examen\nfísico se constata paciente en buenas condiciones generales, ictérico, con fascie\nde dolor, con PA: 140/80, FC: 80x’, t°: 36,8°C. El examen abdominal sólo destaca\ndolor a la palpación epigástrica y en hipocondrio derecho, sin signos de\nirritación peritoneal. Los exámenes demuestran elevación de la bilirrubina\ndirecta y de las fosfatasas alcalinas, con transaminasas y lipasa normales. El\nhemograma resulta normal. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -776,7 +776,7 @@
         },
         {
           "numero": 25,
-          "pregunta": "Los fármacos utilizados para el tratamiento de mantención de la\nDr. Guevara\nenfermedad bipolar son:\nPreparación EUNACOM",
+          "pregunta": "Los fármacos utilizados para el tratamiento de mantención de la\nenfermedad bipolar son:",
           "opciones": [
             {
               "id": "A",
@@ -912,11 +912,11 @@
             },
             {
               "id": "B",
-              "text": "Depresión mayor Dr. Guevara"
+              "text": "Depresión mayor"
             },
             {
               "id": "C",
-              "text": "Trastorno bipolar Preparación EUNACOM"
+              "text": "Trastorno bipolar"
             },
             {
               "id": "D",
@@ -1048,11 +1048,11 @@
             },
             {
               "id": "D",
-              "text": "Síncopes vasovagales Dr. Guevara"
+              "text": "Síncopes vasovagales"
             },
             {
               "id": "E",
-              "text": "Trastorno adaptativo Preparación EUNACOM"
+              "text": "Trastorno adaptativo"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1192,7 +1192,7 @@
         },
         {
           "numero": 38,
-          "pregunta": "Una paciente de 25 años, con antecedente de litiasis renal, presenta dolor en\nzona lumbar derecha, irradiado a abdomen y genitales. Al examen se observa\n\npaciente con agitación psicomotora muy adolorida. Sus signos vitales son\nDr. Guevara\nnormales. Evoluciona al día siguiente con fiebre y orinas de mal olor y la\nPreparación EUNACOM\necografía abdominal demuestra dilatación pielocalicilar dercha, con formación\nde varias colecciones renales. La conducta más apropiada es:",
+          "pregunta": "Una paciente de 25 años, con antecedente de litiasis renal, presenta dolor en\nzona lumbar derecha, irradiado a abdomen y genitales. Al examen se observa\n\npaciente con agitación psicomotora muy adolorida. Sus signos vitales son\nnormales. Evoluciona al día siguiente con fiebre y orinas de mal olor y la\necografía abdominal demuestra dilatación pielocalicilar dercha, con formación\nde varias colecciones renales. La conducta más apropiada es:",
           "opciones": [
             {
               "id": "A",
@@ -1320,7 +1320,7 @@
         },
         {
           "numero": 42,
-          "pregunta": "Un niño de 5 años, es traído por su madre, ya que tiene una voz muy ronca y\nDr. Guevara\nfrecuentemente queda afónico. Dice que es hiperactivo, que habla fuerte y que\nPreparación EUNACOM\ngrita y llora con frecuencia. Cuando grita mucho queda disfónico. El examen\nfísico no aporta mayor información. El diagnóstico más probable es:",
+          "pregunta": "Un niño de 5 años, es traído por su madre, ya que tiene una voz muy ronca y\nfrecuentemente queda afónico. Dice que es hiperactivo, que habla fuerte y que\ngrita y llora con frecuencia. Cuando grita mucho queda disfónico. El examen\nfísico no aporta mayor información. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -1460,11 +1460,11 @@
             },
             {
               "id": "C",
-              "text": "Arteria circunfleja humeral posterior Dr. Guevara"
+              "text": "Arteria circunfleja humeral posterior"
             },
             {
               "id": "D",
-              "text": "Nervio mediano Preparación EUNACOM"
+              "text": "Nervio mediano"
             },
             {
               "id": "E",
@@ -1624,11 +1624,11 @@
             },
             {
               "id": "D",
-              "text": "Artrosis Dr. Guevara"
+              "text": "Artrosis"
             },
             {
               "id": "E",
-              "text": "Osteoporosis Preparación EUNACOM"
+              "text": "Osteoporosis"
             }
           ],
           "respuestaCorrecta": "D",
@@ -1768,7 +1768,7 @@
         },
         {
           "numero": 56,
-          "pregunta": "Paciente de 35 años, consulta cuadro de 3 semanas de evolución de\nepisodios de disnea, palpitaciones, opresión precordial, sudoración, temblor,\nangustia, parestesias y náuseas, de instalación en 5 minutos y que demora cerca\nde 15 minutos en ceder. El primer episodio apareció en relación a un estresor\neconómico. Desde entonces ha presentado 6 episodios similares y en 3 de ellos\nno ha sido posible identificar un desencadenante claro. Está muy preocupada\n\npor su problema, ya que teme sufrir un infarto o un accidente vascular durante\nDr. Guevara\notra crisis. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Paciente de 35 años, consulta cuadro de 3 semanas de evolución de\nepisodios de disnea, palpitaciones, opresión precordial, sudoración, temblor,\nangustia, parestesias y náuseas, de instalación en 5 minutos y que demora cerca\nde 15 minutos en ceder. El primer episodio apareció en relación a un estresor\neconómico. Desde entonces ha presentado 6 episodios similares y en 3 de ellos\nno ha sido posible identificar un desencadenante claro. Está muy preocupada\n\npor su problema, ya que teme sufrir un infarto o un accidente vascular durante\notra crisis. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -1928,7 +1928,7 @@
         },
         {
           "numero": 61,
-          "pregunta": "Un paciente de 78 años, con accidente vascular periférico secuelado,\nsemipostrado presenta lesión negra, levemente dolorosa en el glúteo derecho.\n\nAl examen se observa paciente enflaquecido, con la lesión descrita, de 4 cm,\nDr. Guevara\ncon halo eritematoso menor a un centímetro, con costra negra en el centro. La\nPreparación EUNACOM\nconducta más adecuada es:",
+          "pregunta": "Un paciente de 78 años, con accidente vascular periférico secuelado,\nsemipostrado presenta lesión negra, levemente dolorosa en el glúteo derecho.\n\nAl examen se observa paciente enflaquecido, con la lesión descrita, de 4 cm,\ncon halo eritematoso menor a un centímetro, con costra negra en el centro. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -2072,11 +2072,11 @@
             },
             {
               "id": "D",
-              "text": "Catatonía Dr. Guevara"
+              "text": "Catatonía"
             },
             {
               "id": "E",
-              "text": "Balismo Preparación EUNACOM"
+              "text": "Balismo"
             }
           ],
           "respuestaCorrecta": "C",
@@ -2228,11 +2228,11 @@
             },
             {
               "id": "C",
-              "text": "Comedón Dr. Guevara"
+              "text": "Comedón"
             },
             {
               "id": "D",
-              "text": "Pústula Preparación EUNACOM"
+              "text": "Pústula"
             },
             {
               "id": "E",
@@ -2368,11 +2368,11 @@
             },
             {
               "id": "D",
-              "text": "Anisocoria Dr. Guevara"
+              "text": "Anisocoria"
             },
             {
               "id": "E",
-              "text": "Leucoma Preparación EUNACOM"
+              "text": "Leucoma"
             }
           ],
           "respuestaCorrecta": "",
@@ -2512,11 +2512,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "La probabilidad de enfermar en un período de tiempo, se denomina:\nDr. Guevara",
+          "pregunta": "La probabilidad de enfermar en un período de tiempo, se denomina:",
           "opciones": [
             {
               "id": "A",
-              "text": "Tasa de ataque Preparación EUNACOM"
+              "text": "Tasa de ataque"
             },
             {
               "id": "B",
@@ -2660,7 +2660,7 @@
             },
             {
               "id": "E",
-              "text": "Endocarditis bacteriana subaguda, sobre válvula aórtica bicúspide Preparación EUNACOM"
+              "text": "Endocarditis bacteriana subaguda, sobre válvula aórtica bicúspide"
             }
           ],
           "respuestaCorrecta": "E",
@@ -2800,7 +2800,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un paciente de 30 años presenta dolor lumbar muy intenso que inició al\nDr. Guevara\nlevantar un mueble y que le impide la mayoría de los movimientos de la\nPreparación EUNACOM\ncolumna lumbar. Al examen físico se observa muy adolorido, con signos vitales\nnormales y limitación de la flexión y rotación de la columna lumbar, debido al\ndolor. El examen neurológico es normal. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 30 años presenta dolor lumbar muy intenso que inició al\nlevantar un mueble y que le impide la mayoría de los movimientos de la\ncolumna lumbar. Al examen físico se observa muy adolorido, con signos vitales\nnormales y limitación de la flexión y rotación de la columna lumbar, debido al\ndolor. El examen neurológico es normal. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -2928,7 +2928,7 @@
         },
         {
           "numero": 22,
-          "pregunta": "Se seleccionan 1.000 pacientes diagnosticados de insuficiencia cardíaca\nDr. Guevara\nsevera, de los cuales 500 son tratados con enalapril, atenolol, furosemida y\nPreparación EUNACOM\nespironolactona, mientras que a los otros 500, además de recibir esos\nmedicamentos, se les implanta un marcapasos con resincronización. Se evalúa\nla mejoría de los síntomas, la ocurrencia de arritmias, y las sobrevidas\npromedios en ambos grupos. ¿A qué tipo de estudio corresponde?",
+          "pregunta": "Se seleccionan 1.000 pacientes diagnosticados de insuficiencia cardíaca\nsevera, de los cuales 500 son tratados con enalapril, atenolol, furosemida y\nespironolactona, mientras que a los otros 500, además de recibir esos\nmedicamentos, se les implanta un marcapasos con resincronización. Se evalúa\nla mejoría de los síntomas, la ocurrencia de arritmias, y las sobrevidas\npromedios en ambos grupos. ¿A qué tipo de estudio corresponde?",
           "opciones": [
             {
               "id": "A",
@@ -3056,11 +3056,11 @@
         },
         {
           "numero": 26,
-          "pregunta": "En el glaucoma agudo, usted espera encontrar todo lo siguiente, EXCEPTO:\nDr. Guevara",
+          "pregunta": "En el glaucoma agudo, usted espera encontrar todo lo siguiente, EXCEPTO:",
           "opciones": [
             {
               "id": "A",
-              "text": "Aumento de la tonicidad del ojo comprometido Preparación EUNACOM"
+              "text": "Aumento de la tonicidad del ojo comprometido"
             },
             {
               "id": "B",
@@ -3184,11 +3184,11 @@
         },
         {
           "numero": 30,
-          "pregunta": "Un paciente de 70 años, sin antecedentes ni hábitos de importancia,\nconsulta por vómitos postprandiales, asociados a baja de peso. Refiere que\nvomita luego de cada comida y que este cuadro ha ido empeorando\nprogresivamente, desde hace 5 meses. Al examen físico se aprecia pálido y\n\nenflaquecido. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente de 70 años, sin antecedentes ni hábitos de importancia,\nconsulta por vómitos postprandiales, asociados a baja de peso. Refiere que\nvomita luego de cada comida y que este cuadro ha ido empeorando\nprogresivamente, desde hace 5 meses. Al examen físico se aprecia pálido y\n\nenflaquecido. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar prokinéticos Preparación EUNACOM"
+              "text": "Iniciar prokinéticos"
             },
             {
               "id": "B",
@@ -3316,11 +3316,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Dermatitis de contacto Dr. Guevara"
+              "text": "Dermatitis de contacto"
             },
             {
               "id": "B",
-              "text": "Liquen simple Preparación EUNACOM"
+              "text": "Liquen simple"
             },
             {
               "id": "C",
@@ -3472,7 +3472,7 @@
         },
         {
           "numero": 39,
-          "pregunta": "Los pacientes con trastorno obsesivo compulsivo, que no es adecuadamente\nDr. Guevara\ntratado, suelen complicarse con:\nPreparación EUNACOM",
+          "pregunta": "Los pacientes con trastorno obsesivo compulsivo, que no es adecuadamente\ntratado, suelen complicarse con:",
           "opciones": [
             {
               "id": "A",
@@ -3612,11 +3612,11 @@
             },
             {
               "id": "C",
-              "text": "Esquizofrenia Dr. Guevara"
+              "text": "Esquizofrenia"
             },
             {
               "id": "D",
-              "text": "Trastorno obsesivo compulsivo Preparación EUNACOM"
+              "text": "Trastorno obsesivo compulsivo"
             },
             {
               "id": "E",
@@ -3740,11 +3740,11 @@
             },
             {
               "id": "C",
-              "text": "Disfagia Dr. Guevara"
+              "text": "Disfagia"
             },
             {
               "id": "D",
-              "text": "Dolor abdominal Preparación EUNACOM"
+              "text": "Dolor abdominal"
             },
             {
               "id": "E",
@@ -3868,11 +3868,11 @@
             },
             {
               "id": "C",
-              "text": "Esguince de tobillo grado II Dr. Guevara"
+              "text": "Esguince de tobillo grado II"
             },
             {
               "id": "D",
-              "text": "Rotura de la sindesmosis peroneo-tibial Preparación EUNACOM"
+              "text": "Rotura de la sindesmosis peroneo-tibial"
             },
             {
               "id": "E",
@@ -3984,11 +3984,11 @@
         },
         {
           "numero": 55,
-          "pregunta": "Respecto a los estudios de casos y controles es FALSO que:\nDr. Guevara",
+          "pregunta": "Respecto a los estudios de casos y controles es FALSO que:",
           "opciones": [
             {
               "id": "A",
-              "text": "Son muy útiles para estudiar patologías poco frecuentes Preparación EUNACOM"
+              "text": "Son muy útiles para estudiar patologías poco frecuentes"
             },
             {
               "id": "B",
@@ -4124,11 +4124,11 @@
             },
             {
               "id": "C",
-              "text": "2,67 Dr. Guevara"
+              "text": "2,67"
             },
             {
               "id": "D",
-              "text": "3,50 Preparación EUNACOM"
+              "text": "3,50"
             },
             {
               "id": "E",
@@ -4256,11 +4256,11 @@
             },
             {
               "id": "D",
-              "text": "Trastorno de personalidad evitativo Dr. Guevara"
+              "text": "Trastorno de personalidad evitativo"
             },
             {
               "id": "E",
-              "text": "Síndrome de Asperger Preparación EUNACOM"
+              "text": "Síndrome de Asperger"
             }
           ],
           "respuestaCorrecta": "D",
@@ -4400,7 +4400,7 @@
         },
         {
           "numero": 68,
-          "pregunta": "Se realiza un test de tolerancia a la glucosa a 500 personas, diagnosticadas\nDr. Guevara\nde obesidad y a 500 personas, con peso normal, determinando la cantidad de\nPreparación EUNACOM\npacientes diabéticos e intolerantes a la glucosa en cada uno de los grupos. ¿A\nqué tipo de estudio corresponde?",
+          "pregunta": "Se realiza un test de tolerancia a la glucosa a 500 personas, diagnosticadas\nde obesidad y a 500 personas, con peso normal, determinando la cantidad de\npacientes diabéticos e intolerantes a la glucosa en cada uno de los grupos. ¿A\nqué tipo de estudio corresponde?",
           "opciones": [
             {
               "id": "A",
@@ -4632,7 +4632,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 47 años consulta por dolor abdominal intenso, localizado en\nel hipocondrio derecho y asociado a vómitos. Al examen físico está febril hasta\n38,5°C, con FC: 94x’, PA: 120/80 mmHg. El abdomen es doloroso, especialmente\n\nen el hipocondrio derecho. Se solicitan exámenes que demuestran hematocrito\nDr. Guevara\nnormal, con leucocitosis de 16.500 x mm3, plaquetas normales, lipasa normal,\nPreparación EUNACOM\ntransaminasas normales, bilirrubina: 1,6 mg/dl, fosfatasas alcalinas normales y\npruebas de función renal normales. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 47 años consulta por dolor abdominal intenso, localizado en\nel hipocondrio derecho y asociado a vómitos. Al examen físico está febril hasta\n38,5°C, con FC: 94x’, PA: 120/80 mmHg. El abdomen es doloroso, especialmente\n\nen el hipocondrio derecho. Se solicitan exámenes que demuestran hematocrito\nnormal, con leucocitosis de 16.500 x mm3, plaquetas normales, lipasa normal,\ntransaminasas normales, bilirrubina: 1,6 mg/dl, fosfatasas alcalinas normales y\npruebas de función renal normales. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4792,7 +4792,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un paciente de 57 años consulta por dolor abdominal muy intenso, de tipo\nDr. Guevara\ncólico, asociado a vómitos alimentarios y distensión abdominal progresiva.\nPreparación EUNACOM\nRefiere que estuvo hospitalizado hace 4 años por una apendicitis aguda, la que\nse resolvió quirúrgicamente con éxito. Al examen físico se aprecia abdomen\ndoloroso, distendido, timpánico, con bazuqueo y aumento de los ruidos\nintestinales. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 57 años consulta por dolor abdominal muy intenso, de tipo\ncólico, asociado a vómitos alimentarios y distensión abdominal progresiva.\nRefiere que estuvo hospitalizado hace 4 años por una apendicitis aguda, la que\nse resolvió quirúrgicamente con éxito. Al examen físico se aprecia abdomen\ndoloroso, distendido, timpánico, con bazuqueo y aumento de los ruidos\nintestinales. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4952,11 +4952,11 @@
         },
         {
           "numero": 15,
-          "pregunta": "La verborrea y la ideofugalidad son características de:\nDr. Guevara",
+          "pregunta": "La verborrea y la ideofugalidad son características de:",
           "opciones": [
             {
               "id": "A",
-              "text": "La esquizofrenia Preparación EUNACOM"
+              "text": "La esquizofrenia"
             },
             {
               "id": "B",
@@ -5096,11 +5096,11 @@
             },
             {
               "id": "D",
-              "text": "Esquizofrenia Dr. Guevara"
+              "text": "Esquizofrenia"
             },
             {
               "id": "E",
-              "text": "Demencia Preparación EUNACOM"
+              "text": "Demencia"
             }
           ],
           "respuestaCorrecta": "D",
@@ -5240,11 +5240,11 @@
         },
         {
           "numero": 24,
-          "pregunta": "Calcule la especificidad de una prueba diagnóstica de tromboembolismo\npulmonar (TEP), con la siguiente información: “De un total de mil pacientes,\ncien de ellos efectivamente presentaron TEP y el resto se consideró sano. La\nprueba resultó positiva en 90 de los pacientes enfermos y en 45 de los pacientes\n\nsanos”.\nDr. Guevara",
+          "pregunta": "Calcule la especificidad de una prueba diagnóstica de tromboembolismo\npulmonar (TEP), con la siguiente información: “De un total de mil pacientes,\ncien de ellos efectivamente presentaron TEP y el resto se consideró sano. La\nprueba resultó positiva en 90 de los pacientes enfermos y en 45 de los pacientes\n\nsanos”.",
           "opciones": [
             {
               "id": "A",
-              "text": "95% Preparación EUNACOM"
+              "text": "95%"
             },
             {
               "id": "B",
@@ -5384,11 +5384,11 @@
             },
             {
               "id": "D",
-              "text": "Instalar una sonda Foley Dr. Guevara"
+              "text": "Instalar una sonda Foley"
             },
             {
               "id": "E",
-              "text": "Realizar una cistostomía percutánea Preparación EUNACOM"
+              "text": "Realizar una cistostomía percutánea"
             }
           ],
           "respuestaCorrecta": "D",
@@ -5512,11 +5512,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar angio-TAC de tórax Dr. Guevara"
+              "text": "Solicitar angio-TAC de tórax"
             },
             {
               "id": "E",
-              "text": "Puncionar el segundo espacio intercostal en la línea media clavicular Preparación EUNACOM"
+              "text": "Puncionar el segundo espacio intercostal en la línea media clavicular"
             }
           ],
           "respuestaCorrecta": "B",
@@ -5644,7 +5644,7 @@
             },
             {
               "id": "E",
-              "text": "Son útiles en enfermedades poco frecuentes o que demoran muchos años en Dr. Guevara manifestarse Preparación EUNACOM"
+              "text": "Son útiles en enfermedades poco frecuentes o que demoran muchos años en manifestarse"
             }
           ],
           "respuestaCorrecta": "C",
@@ -5792,11 +5792,11 @@
             },
             {
               "id": "B",
-              "text": "Extremidades superiores Dr. Guevara"
+              "text": "Extremidades superiores"
             },
             {
               "id": "C",
-              "text": "Fosas cubitales y poplíteas Preparación EUNACOM"
+              "text": "Fosas cubitales y poplíteas"
             },
             {
               "id": "D",
@@ -5944,11 +5944,11 @@
         },
         {
           "numero": 46,
-          "pregunta": "Respecto a la máscara laríngea es FALSO que:\nDr. Guevara",
+          "pregunta": "Respecto a la máscara laríngea es FALSO que:",
           "opciones": [
             {
               "id": "A",
-              "text": "No requiere del laringoscopio para su instalación Preparación EUNACOM"
+              "text": "No requiere del laringoscopio para su instalación"
             },
             {
               "id": "B",
@@ -6088,11 +6088,11 @@
             },
             {
               "id": "D",
-              "text": "Transfundir glóbulos rojos, solicitar TAC de abdomen y pelvis Dr. Guevara"
+              "text": "Transfundir glóbulos rojos, solicitar TAC de abdomen y pelvis"
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente de inmediato Preparación EUNACOM"
+              "text": "Resolver quirúrgicamente de inmediato"
             }
           ],
           "respuestaCorrecta": "A",
@@ -6240,11 +6240,11 @@
             },
             {
               "id": "B",
-              "text": "Estreptococo betahemolótico, grupo A Dr. Guevara"
+              "text": "Estreptococo betahemolótico, grupo A"
             },
             {
               "id": "C",
-              "text": "Anaerobios Preparación EUNACOM"
+              "text": "Anaerobios"
             },
             {
               "id": "D",
@@ -6404,11 +6404,11 @@
             },
             {
               "id": "C",
-              "text": "Los pacientes FONASA C no realizan copago Dr. Guevara"
+              "text": "Los pacientes FONASA C no realizan copago"
             },
             {
               "id": "D",
-              "text": "Los pacientes FONASA D aportan mensualmente el 7% de su sueldo Preparación EUNACOM"
+              "text": "Los pacientes FONASA D aportan mensualmente el 7% de su sueldo"
             },
             {
               "id": "E",
@@ -6536,11 +6536,11 @@
             },
             {
               "id": "D",
-              "text": "Resolver quirúrgicamente de manera electiva Dr. Guevara"
+              "text": "Resolver quirúrgicamente de manera electiva"
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente de inmediato Preparación EUNACOM"
+              "text": "Resolver quirúrgicamente de inmediato"
             }
           ],
           "respuestaCorrecta": "D",
@@ -6680,7 +6680,7 @@
         },
         {
           "numero": 69,
-          "pregunta": "Una mujer de 45 años cree que un famoso cantante está profundamente\nDr. Guevara\nenamorado de ella y que se lo hace saber a través de la letra de sus canciones y\nPreparación EUNACOM\nde comentarios y miradas que le entrega por la televisión. Ha intentado\ncomunicarse con él en numerosas oportunidades, sin tener éxito. El diagnóstico\nmás probable es:",
+          "pregunta": "Una mujer de 45 años cree que un famoso cantante está profundamente\nenamorado de ella y que se lo hace saber a través de la letra de sus canciones y\nde comentarios y miradas que le entrega por la televisión. Ha intentado\ncomunicarse con él en numerosas oportunidades, sin tener éxito. El diagnóstico\nmás probable es:",
           "opciones": [
             {
               "id": "A",
@@ -6864,11 +6864,11 @@
             },
             {
               "id": "D",
-              "text": "Controlar con nuevo tacto rectal y con nuevo APE en 6 meses Dr. Guevara"
+              "text": "Controlar con nuevo tacto rectal y con nuevo APE en 6 meses"
             },
             {
               "id": "E",
-              "text": "Controlar con nuevo tacto rectal y con nuevo APE en 1 año Preparación EUNACOM"
+              "text": "Controlar con nuevo tacto rectal y con nuevo APE en 1 año"
             }
           ],
           "respuestaCorrecta": "A",
@@ -6992,11 +6992,11 @@
             },
             {
               "id": "D",
-              "text": "Ansiedad generalizada Dr. Guevara"
+              "text": "Ansiedad generalizada"
             },
             {
               "id": "E",
-              "text": "Trastorno de estrés postraumático Preparación EUNACOM"
+              "text": "Trastorno de estrés postraumático"
             }
           ],
           "respuestaCorrecta": "E",
@@ -7136,7 +7136,7 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un paciente consulta por cefalea, vómitos, ojo rojo izquierdo y disminución\nde la agudeza visual izquierda. Al examen físico se constata ojo rojo\n\nperiquerático, con dilatación pupilar izquierda que no responde a la luz. El\nDr. Guevara\ndiagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente consulta por cefalea, vómitos, ojo rojo izquierdo y disminución\nde la agudeza visual izquierda. Al examen físico se constata ojo rojo\n\nperiquerático, con dilatación pupilar izquierda que no responde a la luz. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -7280,11 +7280,11 @@
             },
             {
               "id": "D",
-              "text": "La letalidad de fiebre tifoidea es 10 por 100.000 habitantes Dr. Guevara"
+              "text": "La letalidad de fiebre tifoidea es 10 por 100.000 habitantes"
             },
             {
               "id": "E",
-              "text": "El likelihood ratio de fiebre tifoidea es 10 por 100.000 habitantes Preparación EUNACOM"
+              "text": "El likelihood ratio de fiebre tifoidea es 10 por 100.000 habitantes"
             }
           ],
           "respuestaCorrecta": "B",
@@ -7428,11 +7428,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar resonancia magnética nuclear abdominal y pelviana Dr. Guevara"
+              "text": "Solicitar resonancia magnética nuclear abdominal y pelviana"
             },
             {
               "id": "B",
-              "text": "Solicitar TAC de abdomen y pelvis Preparación EUNACOM"
+              "text": "Solicitar TAC de abdomen y pelvis"
             },
             {
               "id": "C",
@@ -7560,11 +7560,11 @@
             },
             {
               "id": "B",
-              "text": "Atrofia ósea de Suddeck Dr. Guevara"
+              "text": "Atrofia ósea de Suddeck"
             },
             {
               "id": "C",
-              "text": "Trombosis enosa profunda Preparación EUNACOM"
+              "text": "Trombosis enosa profunda"
             },
             {
               "id": "D",
@@ -7712,11 +7712,11 @@
         },
         {
           "numero": 31,
-          "pregunta": "El cáncer de colon suele complicarse más frecuentemente con:\nDr. Guevara",
+          "pregunta": "El cáncer de colon suele complicarse más frecuentemente con:",
           "opciones": [
             {
               "id": "A",
-              "text": "Hemorragia Preparación EUNACOM"
+              "text": "Hemorragia"
             },
             {
               "id": "B",
@@ -7852,11 +7852,11 @@
             },
             {
               "id": "C",
-              "text": "8.000 Dr. Guevara"
+              "text": "8.000"
             },
             {
               "id": "D",
-              "text": "1.250 Preparación EUNACOM"
+              "text": "1.250"
             },
             {
               "id": "E",
@@ -8004,11 +8004,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Granuloma telangiectásico Dr. Guevara"
+              "text": "Granuloma telangiectásico"
             },
             {
               "id": "B",
-              "text": "Tiña corporis Preparación EUNACOM"
+              "text": "Tiña corporis"
             },
             {
               "id": "C",
@@ -8140,11 +8140,11 @@
             },
             {
               "id": "C",
-              "text": "Vértigo postural paroxístico benigno Dr. Guevara"
+              "text": "Vértigo postural paroxístico benigno"
             },
             {
               "id": "D",
-              "text": "Accidente vascular cerebeloso Preparación EUNACOM"
+              "text": "Accidente vascular cerebeloso"
             },
             {
               "id": "E",
@@ -8288,7 +8288,7 @@
         },
         {
           "numero": 49,
-          "pregunta": "Un paciente de 60 años se palpa una masa pulsátil en el abdomen. Se solicita\nDr. Guevara\nTAC abdominal que muestra un aneurisma aórtico abdominal de 4,1 cm de\nPreparación EUNACOM\ndiámetro. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 60 años se palpa una masa pulsátil en el abdomen. Se solicita\nTAC abdominal que muestra un aneurisma aórtico abdominal de 4,1 cm de\ndiámetro. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -8416,7 +8416,7 @@
         },
         {
           "numero": 53,
-          "pregunta": "Un paciente de 69 años sufre una caída por la escalera, presentando un\nDr. Guevara\ngolpe en la cabeza. Inicialmente está bien, con algo de dolor, sin embargo el\nPreparación EUNACOM\ndolor aumenta lentamente, presentado además desorientación al día siguiente.\nEl diagnóstico más probable es:",
+          "pregunta": "Un paciente de 69 años sufre una caída por la escalera, presentando un\ngolpe en la cabeza. Inicialmente está bien, con algo de dolor, sin embargo el\ndolor aumenta lentamente, presentado además desorientación al día siguiente.\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -8528,11 +8528,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar linfadenectomía lumboaórtica Dr. Guevara"
+              "text": "Realizar linfadenectomía lumboaórtica"
             },
             {
               "id": "E",
-              "text": "Iniciar hormonoterapia Preparación EUNACOM"
+              "text": "Iniciar hormonoterapia"
             }
           ],
           "respuestaCorrecta": "D",
@@ -8688,11 +8688,11 @@
             },
             {
               "id": "D",
-              "text": "Se asocia a trastornos de la personalidad Dr. Guevara"
+              "text": "Se asocia a trastornos de la personalidad"
             },
             {
               "id": "E",
-              "text": "Se asocia a episodios depresivos Preparación EUNACOM"
+              "text": "Se asocia a episodios depresivos"
             }
           ],
           "respuestaCorrecta": "A",
@@ -8816,11 +8816,11 @@
             },
             {
               "id": "D",
-              "text": "Urticaria aguda Dr. Guevara"
+              "text": "Urticaria aguda"
             },
             {
               "id": "E",
-              "text": "Eritema multiforme menor Preparación EUNACOM"
+              "text": "Eritema multiforme menor"
             }
           ],
           "respuestaCorrecta": "D",
@@ -8960,7 +8960,7 @@
         },
         {
           "numero": 70,
-          "pregunta": "Un paciente presenta, desde hace 48 horas, visión de luces en el cuadrante\nDr. Guevara\ntemporal superior del campo visual del ojo izquierdo. El diagnóstico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Un paciente presenta, desde hace 48 horas, visión de luces en el cuadrante\ntemporal superior del campo visual del ojo izquierdo. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -9096,7 +9096,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 80 años consulta por dolor en la rodilla izquierda, de 1 mes de\nDr. Guevara\nevolución, que aumenta con la marcha y que cede parcialmente con el reposo.\nPreparación EUNACOM\nRefiere además dolor nocturno. Al examen físico presenta movilidad indolora,\ncon cierto grado de limitación a la flexión completa, sin signos inflamatorios ni\nde derrame articular. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 80 años consulta por dolor en la rodilla izquierda, de 1 mes de\nevolución, que aumenta con la marcha y que cede parcialmente con el reposo.\nRefiere además dolor nocturno. Al examen físico presenta movilidad indolora,\ncon cierto grado de limitación a la flexión completa, sin signos inflamatorios ni\nde derrame articular. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -9224,7 +9224,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 25 años refiere escuchar voces de espíritus malignos que lo\ninsultan y lo obligan a autoagredirse. Explica que las voces fueron enviadas por\n\nel diablo, para hacerlo sufrir por ser el hijo de Dios. El diagnóstico más\nDr. Guevara\nprobable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 25 años refiere escuchar voces de espíritus malignos que lo\ninsultan y lo obligan a autoagredirse. Explica que las voces fueron enviadas por\n\nel diablo, para hacerlo sufrir por ser el hijo de Dios. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -9356,11 +9356,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Cáncer gástrico Dr. Guevara"
+              "text": "Cáncer gástrico"
             },
             {
               "id": "B",
-              "text": "Cólico biliar Preparación EUNACOM"
+              "text": "Cólico biliar"
             },
             {
               "id": "C",
@@ -9608,7 +9608,7 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un paciente de 40 años, usuario de lentes de contacto, por hipermetropía,\npresenta intenso dolor ocular izquierdo, asociado a marcada disminución de la\n\nagudeza visual y ojo rojo profundo. Al examen físico se constata además\nDr. Guevara\nmidriasis y abolición del reflejo fotomotor del ojo izquierdo. El diagnóstico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Un paciente de 40 años, usuario de lentes de contacto, por hipermetropía,\npresenta intenso dolor ocular izquierdo, asociado a marcada disminución de la\n\nagudeza visual y ojo rojo profundo. Al examen físico se constata además\nmidriasis y abolición del reflejo fotomotor del ojo izquierdo. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -9736,11 +9736,11 @@
         },
         {
           "numero": 24,
-          "pregunta": "Un paciente de 66 años consulta por cefalea crónica, especialmente molesta\nen las tardes, asociada a sensación de presión facial “visión cansada”. Refiere\nque además padece de colon irritable y fibromialgia, con respuesta parcial al\ntratamiento con trimebutino y alprazolam. También presenta disfagia\nintermitente y disestesias ocasionales en las extremidades inferiores. El\nexamen físico es normal. Se solicitan exámenes generales, que resultan\nnormales y una endoscopía digestiva alta, que también resulta normal. El\n\ndiagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 66 años consulta por cefalea crónica, especialmente molesta\nen las tardes, asociada a sensación de presión facial “visión cansada”. Refiere\nque además padece de colon irritable y fibromialgia, con respuesta parcial al\ntratamiento con trimebutino y alprazolam. También presenta disfagia\nintermitente y disestesias ocasionales en las extremidades inferiores. El\nexamen físico es normal. Se solicitan exámenes generales, que resultan\nnormales y una endoscopía digestiva alta, que también resulta normal. El\n\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Trastorno conversivo Preparación EUNACOM"
+              "text": "Trastorno conversivo"
             },
             {
               "id": "B",
@@ -9864,11 +9864,11 @@
         },
         {
           "numero": 28,
-          "pregunta": "Un paciente de 60 años, hipertenso y diabético, consulta por dolor torácico\nintenso, lancinante, de una hora de evolución, que inició súbitamente y que ha\nido aumentando al pasar el tiempo. Al examen físico está taquicárdico,\nhipertenso, con auscultación de un soplo diastólico. El diagnóstico más\n\nprobable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 60 años, hipertenso y diabético, consulta por dolor torácico\nintenso, lancinante, de una hora de evolución, que inició súbitamente y que ha\nido aumentando al pasar el tiempo. Al examen físico está taquicárdico,\nhipertenso, con auscultación de un soplo diastólico. El diagnóstico más\n\nprobable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "IAM con rotura de la pared libre Preparación EUNACOM"
+              "text": "IAM con rotura de la pared libre"
             },
             {
               "id": "B",
@@ -9992,7 +9992,7 @@
         },
         {
           "numero": 32,
-          "pregunta": "Calcule el riesgo relativo con la siguiente información obtenida de un\nestudio de cohortes:\nDesarrollo IAM No desarrolla Total\nIAM\nLDL aumentado 100 400 500\n\nLDL normal 150 1.350 1.500\nDr. Guevara\nTotal 250 1.750 2.000\nPreparación EUNACOM",
+          "pregunta": "Calcule el riesgo relativo con la siguiente información obtenida de un\nestudio de cohortes:\nDesarrollo IAM No desarrolla Total\nIAM\nLDL aumentado 100 400 500\n\nLDL normal 150 1.350 1.500\nTotal 250 1.750 2.000",
           "opciones": [
             {
               "id": "A",
@@ -10120,7 +10120,7 @@
         },
         {
           "numero": 36,
-          "pregunta": "Un paciente diabético, presenta una lesión indolora, de lento crecimiento en\nel brazo derecho, caracterizada por una placa de 5 cm de diámetro de borde\n\npapular, arciforme, con tendencia a la curación central y sin compromiso de los\nDr. Guevara\nvellos de la piel afectada. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente diabético, presenta una lesión indolora, de lento crecimiento en\nel brazo derecho, caracterizada por una placa de 5 cm de diámetro de borde\n\npapular, arciforme, con tendencia a la curación central y sin compromiso de los\nvellos de la piel afectada. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -10248,7 +10248,7 @@
         },
         {
           "numero": 40,
-          "pregunta": "Un paciente de 6 años consulta por un cuadro de odinofagia intensa,\nDr. Guevara\nasociada a fiebre hasta 38,5°C, coriza y tos seca. Al examen físico presenta\nPreparación EUNACOM\nfaringe eritematosa, con amígdalas de tamaño aumentado con exudado\namigdalino escaso, presencia de 3 vesículas en la úvula y se palpan pequeñas\nadenopatías cervicales bilaterales. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 6 años consulta por un cuadro de odinofagia intensa,\nasociada a fiebre hasta 38,5°C, coriza y tos seca. Al examen físico presenta\nfaringe eritematosa, con amígdalas de tamaño aumentado con exudado\namigdalino escaso, presencia de 3 vesículas en la úvula y se palpan pequeñas\nadenopatías cervicales bilaterales. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -10384,11 +10384,11 @@
             },
             {
               "id": "B",
-              "text": "Parálisis del IV nervio craneal izquierdo Dr. Guevara"
+              "text": "Parálisis del IV nervio craneal izquierdo"
             },
             {
               "id": "C",
-              "text": "Parálisis del VI nervio craneal izquierdo Preparación EUNACOM"
+              "text": "Parálisis del VI nervio craneal izquierdo"
             },
             {
               "id": "D",
@@ -10508,11 +10508,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "A los 40 años el APE y a los 50 años el tacto rectal Dr. Guevara"
+              "text": "A los 40 años el APE y a los 50 años el tacto rectal"
             },
             {
               "id": "B",
-              "text": "A los 50 años el APE y a los 40 años el tacto rectal Preparación EUNACOM"
+              "text": "A los 50 años el APE y a los 40 años el tacto rectal"
             },
             {
               "id": "C",
@@ -10636,11 +10636,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Sordera súbita Dr. Guevara"
+              "text": "Sordera súbita"
             },
             {
               "id": "B",
-              "text": "Neurinoma del acústico Preparación EUNACOM"
+              "text": "Neurinoma del acústico"
             },
             {
               "id": "C",
@@ -10764,11 +10764,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Fonasa Dr. Guevara"
+              "text": "Fonasa"
             },
             {
               "id": "B",
-              "text": "La AFP Preparación EUNACOM"
+              "text": "La AFP"
             },
             {
               "id": "C",
@@ -10920,7 +10920,7 @@
         },
         {
           "numero": 61,
-          "pregunta": "Un paciente sufre una caída de altura, resultando con múltiples\nDr. Guevara\ncontusiones, fracturas costales y fractura de pelvis desplazada. Evoluciona con\nPreparación EUNACOM\nimposibilidad de orinar. Al examen físico se aprecia uretrorragia. El\ndiagnóstico más probable es:",
+          "pregunta": "Un paciente sufre una caída de altura, resultando con múltiples\ncontusiones, fracturas costales y fractura de pelvis desplazada. Evoluciona con\nimposibilidad de orinar. Al examen físico se aprecia uretrorragia. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -11056,11 +11056,11 @@
             },
             {
               "id": "B",
-              "text": "Catarata senil Dr. Guevara"
+              "text": "Catarata senil"
             },
             {
               "id": "C",
-              "text": "Glaucoma de ángulo abierto Preparación EUNACOM"
+              "text": "Glaucoma de ángulo abierto"
             },
             {
               "id": "D",
@@ -11208,7 +11208,7 @@
         },
         {
           "numero": 70,
-          "pregunta": "Una paciente de 55 años presenta múltiples lesiones en la cara,\nDr. Guevara\ncaracterizadas por pápulas y pústulas, sobre una base eritematosa en las\nPreparación EUNACOM\nmejillas, frente y mentón. Refiere que las lesiones aumentan al exponerse al sol\ny cuando consume alcohol. El diagnóstico más probable es:",
+          "pregunta": "Una paciente de 55 años presenta múltiples lesiones en la cara,\ncaracterizadas por pápulas y pústulas, sobre una base eritematosa en las\nmejillas, frente y mentón. Refiere que las lesiones aumentan al exponerse al sol\ny cuando consume alcohol. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -11376,7 +11376,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "¿Qué alteración es más probable de encontrar en un paciente con trastorno\nDr. Guevara\nde ansiedad generalizada?\nPreparación EUNACOM",
+          "pregunta": "¿Qué alteración es más probable de encontrar en un paciente con trastorno\nde ansiedad generalizada?",
           "opciones": [
             {
               "id": "A",
@@ -11508,11 +11508,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Trastorno de conducta Dr. Guevara"
+              "text": "Trastorno de conducta"
             },
             {
               "id": "B",
-              "text": "Depresión psicótica Preparación EUNACOM"
+              "text": "Depresión psicótica"
             },
             {
               "id": "C",
@@ -11648,11 +11648,11 @@
             },
             {
               "id": "D",
-              "text": "Eficiencia Dr. Guevara"
+              "text": "Eficiencia"
             },
             {
               "id": "E",
-              "text": "Beneficio Preparación EUNACOM"
+              "text": "Beneficio"
             }
           ],
           "respuestaCorrecta": "D",
@@ -11800,11 +11800,11 @@
             },
             {
               "id": "B",
-              "text": "Especificidad Dr. Guevara"
+              "text": "Especificidad"
             },
             {
               "id": "C",
-              "text": "Valor predictivo positivo Preparación EUNACOM"
+              "text": "Valor predictivo positivo"
             },
             {
               "id": "D",
@@ -11936,11 +11936,11 @@
             },
             {
               "id": "D",
-              "text": "Indicar sondeo vesical intermitente Dr. Guevara"
+              "text": "Indicar sondeo vesical intermitente"
             },
             {
               "id": "E",
-              "text": "Administrar anticolinérgicos endovenosos Preparación EUNACOM"
+              "text": "Administrar anticolinérgicos endovenosos"
             }
           ],
           "respuestaCorrecta": "C",
@@ -12080,7 +12080,7 @@
         },
         {
           "numero": 27,
-          "pregunta": "Las actividades que promueven un estilo de visa saludable, con\nDr. Guevara\nalimentación adecuada y ejercicios habituales corresponde a:\nPreparación EUNACOM",
+          "pregunta": "Las actividades que promueven un estilo de visa saludable, con\nalimentación adecuada y ejercicios habituales corresponde a:",
           "opciones": [
             {
               "id": "A",
@@ -12244,11 +12244,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Neurtitis óptica Dr. Guevara"
+              "text": "Neurtitis óptica"
             },
             {
               "id": "B",
-              "text": "Retinopatía diabética Preparación EUNACOM"
+              "text": "Retinopatía diabética"
             },
             {
               "id": "C",
@@ -12372,11 +12372,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Colangitis aguda Dr. Guevara"
+              "text": "Colangitis aguda"
             },
             {
               "id": "B",
-              "text": "Pancreatitis aguda Preparación EUNACOM"
+              "text": "Pancreatitis aguda"
             },
             {
               "id": "C",
@@ -12512,11 +12512,11 @@
             },
             {
               "id": "D",
-              "text": "Sordera súbita Dr. Guevara"
+              "text": "Sordera súbita"
             },
             {
               "id": "E",
-              "text": "Trauma acústico Preparación EUNACOM"
+              "text": "Trauma acústico"
             }
           ],
           "respuestaCorrecta": "C",
@@ -12656,7 +12656,7 @@
         },
         {
           "numero": 45,
-          "pregunta": "Un paciente de 19 años consulta por odinofagia muy intensa, asociada a\nDr. Guevara\nimposibilidad de abrir la boca. Al examen físico se aprecia eritema faríngeo,\nPreparación EUNACOM\ncon exudado bilateral y abombamiento del pilar amigdalino izquierdo. La\nconducta más adecuada es:",
+          "pregunta": "Un paciente de 19 años consulta por odinofagia muy intensa, asociada a\nimposibilidad de abrir la boca. Al examen físico se aprecia eritema faríngeo,\ncon exudado bilateral y abombamiento del pilar amigdalino izquierdo. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -12816,11 +12816,11 @@
         },
         {
           "numero": 50,
-          "pregunta": "La lesión del cuarto nervio cranea derecho producirá:\nDr. Guevara",
+          "pregunta": "La lesión del cuarto nervio cranea derecho producirá:",
           "opciones": [
             {
               "id": "A",
-              "text": "Imposibilidad para mirar hacia arriba Preparación EUNACOM"
+              "text": "Imposibilidad para mirar hacia arriba"
             },
             {
               "id": "B",
@@ -12944,7 +12944,7 @@
         },
         {
           "numero": 54,
-          "pregunta": "Calcule el Odds ratio aproximado, utilizando la siguiente información de un\nestudio de prevalencia.\nElija la alternativa que contenga al valor de dicho OR.\nGastritis antral Gastritis antral (-) Total\n\n(+)\nDr. Guevara\nH. Pylory (+) 600 150 750\nPreparación EUNACOM\nH Pylori (-) 50 200 250\nTotal 650 350 1000",
+          "pregunta": "Calcule el Odds ratio aproximado, utilizando la siguiente información de un\nestudio de prevalencia.\nElija la alternativa que contenga al valor de dicho OR.\nGastritis antral Gastritis antral (-) Total\n\n(+)\nH. Pylory (+) 600 150 750\nH Pylori (-) 50 200 250\nTotal 650 350 1000",
           "opciones": [
             {
               "id": "A",
@@ -13072,7 +13072,7 @@
         },
         {
           "numero": 58,
-          "pregunta": "Un paciente alcohólico presenta un cuadro de confusión, diplopía y\nDr. Guevara\ndificultades para caminar. Al examen físico destaca estrabismo divergente. El\nPreparación EUNACOM\ndiagnóstico más probable es:",
+          "pregunta": "Un paciente alcohólico presenta un cuadro de confusión, diplopía y\ndificultades para caminar. Al examen físico destaca estrabismo divergente. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -13204,11 +13204,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Observar evolución Dr. Guevara"
+              "text": "Observar evolución"
             },
             {
               "id": "B",
-              "text": "Realizar descenso testicular y orquidopexia bilateral lo antes posible Preparación EUNACOM"
+              "text": "Realizar descenso testicular y orquidopexia bilateral lo antes posible"
             },
             {
               "id": "C",
@@ -13348,7 +13348,7 @@
             },
             {
               "id": "E",
-              "text": "Hay un 92% de probabilidad de que el nuevo tratamiento sea mejor que el Dr. Guevara tadicional Preparación EUNACOM"
+              "text": "Hay un 92% de probabilidad de que el nuevo tratamiento sea mejor que el tadicional"
             }
           ],
           "respuestaCorrecta": "A",
@@ -13600,11 +13600,11 @@
             },
             {
               "id": "B",
-              "text": "Haloperidol Dr. Guevara"
+              "text": "Haloperidol"
             },
             {
               "id": "C",
-              "text": "Antipsicóticos atípicos Preparación EUNACOM"
+              "text": "Antipsicóticos atípicos"
             },
             {
               "id": "D",
@@ -13720,7 +13720,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un hombre de 44 años, afirma ser capaz de controlar el clima y está seguro\nde que él es responsable de evitar la mayoría de los huracanes, que azotan el\nmundo. Al ser interrogado de cómo puede ser eso posible, explica con lujo de\ndetalles la manera como adquirió ese don hace muchos años y no acepta\nninguna otra explicación. No ha presentado alucinaciones y se desempeña bien\n\nen su trabajo. Tiene buenas relaciones con sus amigos y familiares y nunca\nDr. Guevara\nhabla de su poder porque sabe que no lo entenderían. El diagnóstico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Un hombre de 44 años, afirma ser capaz de controlar el clima y está seguro\nde que él es responsable de evitar la mayoría de los huracanes, que azotan el\nmundo. Al ser interrogado de cómo puede ser eso posible, explica con lujo de\ndetalles la manera como adquirió ese don hace muchos años y no acepta\nninguna otra explicación. No ha presentado alucinaciones y se desempeña bien\n\nen su trabajo. Tiene buenas relaciones con sus amigos y familiares y nunca\nhabla de su poder porque sabe que no lo entenderían. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -13848,11 +13848,11 @@
         },
         {
           "numero": 12,
-          "pregunta": "Una madre trae a su hijo de 6 años, porque ha bajado considerablemente su\nrendimiento escolar y se encuentra irritable y en algunas ocasiones, agresivo.\nComparte menos con sus amigos del colegio. Ella refiere tener problemas con\nsu marido y que actualmente están durmiendo en camas separadas. El\n\ndiagnóstico que debe sospecharse es:\nDr. Guevara",
+          "pregunta": "Una madre trae a su hijo de 6 años, porque ha bajado considerablemente su\nrendimiento escolar y se encuentra irritable y en algunas ocasiones, agresivo.\nComparte menos con sus amigos del colegio. Ella refiere tener problemas con\nsu marido y que actualmente están durmiendo en camas separadas. El\n\ndiagnóstico que debe sospecharse es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Trastorno del desarrollo Preparación EUNACOM"
+              "text": "Trastorno del desarrollo"
             },
             {
               "id": "B",
@@ -13992,11 +13992,11 @@
             },
             {
               "id": "D",
-              "text": "Trastorno por somatización Dr. Guevara"
+              "text": "Trastorno por somatización"
             },
             {
               "id": "E",
-              "text": "Trastorno de personalidad dependiente Preparación EUNACOM"
+              "text": "Trastorno de personalidad dependiente"
             }
           ],
           "respuestaCorrecta": "",
@@ -14136,7 +14136,7 @@
         },
         {
           "numero": 21,
-          "pregunta": "Un paciente de 32 años está convencido de que su mujer lo engaña con un\namante. Ella lo niega rotundamente y dice que su esposo está volviéndose loco\ncon ese tema. Por esto, él la sigue e incluso ha contratado un detective para que\nla espíe, sin lograr ninguna información. A pesar de esto él insiste en el engaño\nde su mujer, ya que ha visto manchas en las sábanas de la casa, que con toda\nseguridad son producto de la infidelidad. No ha presentado alucinaciones y el\n\nresto de su examen psiquiátrico es normal, al igual que el examen neurológico.\nDr. Guevara\nEl diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 32 años está convencido de que su mujer lo engaña con un\namante. Ella lo niega rotundamente y dice que su esposo está volviéndose loco\ncon ese tema. Por esto, él la sigue e incluso ha contratado un detective para que\nla espíe, sin lograr ninguna información. A pesar de esto él insiste en el engaño\nde su mujer, ya que ha visto manchas en las sábanas de la casa, que con toda\nseguridad son producto de la infidelidad. No ha presentado alucinaciones y el\n\nresto de su examen psiquiátrico es normal, al igual que el examen neurológico.\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -14280,11 +14280,11 @@
             },
             {
               "id": "D",
-              "text": "Somatomorfo Dr. Guevara"
+              "text": "Somatomorfo"
             },
             {
               "id": "E",
-              "text": "Simulación Preparación EUNACOM"
+              "text": "Simulación"
             }
           ],
           "respuestaCorrecta": "",
@@ -14424,7 +14424,7 @@
         },
         {
           "numero": 30,
-          "pregunta": "Los fármacos utilizados para el tratamiento de mantención de la\nDr. Guevara\nenfermedad bipolar son:\nPreparación EUNACOM",
+          "pregunta": "Los fármacos utilizados para el tratamiento de mantención de la\nenfermedad bipolar son:",
           "opciones": [
             {
               "id": "A",
@@ -14552,7 +14552,7 @@
         },
         {
           "numero": 34,
-          "pregunta": "Paciente de 35 años, presenta varias denuncias en su contra por violencia\nDr. Guevara\nintrafamiliar y sus hijos han sido hospitalizados en 3 ocasiones por fracturas.\nPreparación EUNACOM\nConsume alcohol y pasta base con cierta regularidad. Ha sido detenido en\nvarias oportunidades por robo y ha sido despedido de sus trabajos por\nproblemas con otros empleados. Presenta algún grado de verborrea y una\nactitud minimizadora respecto a sus actos. No parece sentir culpa respecto a\nsus acusaciones. El diagnóstico más probable es:",
+          "pregunta": "Paciente de 35 años, presenta varias denuncias en su contra por violencia\nintrafamiliar y sus hijos han sido hospitalizados en 3 ocasiones por fracturas.\nConsume alcohol y pasta base con cierta regularidad. Ha sido detenido en\nvarias oportunidades por robo y ha sido despedido de sus trabajos por\nproblemas con otros empleados. Presenta algún grado de verborrea y una\nactitud minimizadora respecto a sus actos. No parece sentir culpa respecto a\nsus acusaciones. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -14688,11 +14688,11 @@
             },
             {
               "id": "B",
-              "text": "Alteraciones en la migración neuronal Dr. Guevara"
+              "text": "Alteraciones en la migración neuronal"
             },
             {
               "id": "C",
-              "text": "Disfunción familiar Preparación EUNACOM"
+              "text": "Disfunción familiar"
             },
             {
               "id": "D",
@@ -14840,7 +14840,7 @@
         },
         {
           "numero": 43,
-          "pregunta": "Un paciente ha dejado de salir de su casa, ha descuidado el orden de la\nDr. Guevara\nmisma y también su aspecto personal. Es muy unido a la religión y lee la Biblia\nPreparación EUNACOM\na diario. Escucha voces que comentan todos sus actos y que lo insultan. El\ndiagnóstico más probable es:",
+          "pregunta": "Un paciente ha dejado de salir de su casa, ha descuidado el orden de la\nmisma y también su aspecto personal. Es muy unido a la religión y lee la Biblia\na diario. Escucha voces que comentan todos sus actos y que lo insultan. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -15000,7 +15000,7 @@
         },
         {
           "numero": 48,
-          "pregunta": "Un paciente de 24 años es una persona solitaria que trabaja en una empresa\nde despacho de encomiendas. Sus compañeros de trabajo refieren que es muy\napático, afectivamente plano y que tiene algunas ideas de que puede\n\ncomunicarse con Dios. Él refiere que es el mesías y que Dios le ha encomendado\nDr. Guevara\nla salvación del mundo y que le dice quiénes son buenos espíritus y quiénes\nPreparación EUNACOM\nmalos. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 24 años es una persona solitaria que trabaja en una empresa\nde despacho de encomiendas. Sus compañeros de trabajo refieren que es muy\napático, afectivamente plano y que tiene algunas ideas de que puede\n\ncomunicarse con Dios. Él refiere que es el mesías y que Dios le ha encomendado\nla salvación del mundo y que le dice quiénes son buenos espíritus y quiénes\nmalos. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -15132,11 +15132,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Fluoxetina Dr. Guevara"
+              "text": "Fluoxetina"
             },
             {
               "id": "B",
-              "text": "Amitriptilina Preparación EUNACOM"
+              "text": "Amitriptilina"
             },
             {
               "id": "C",
@@ -15300,11 +15300,11 @@
             },
             {
               "id": "C",
-              "text": "Desnutrición Dr. Guevara"
+              "text": "Desnutrición"
             },
             {
               "id": "D",
-              "text": "Vómitos autoinducidos Preparación EUNACOM"
+              "text": "Vómitos autoinducidos"
             },
             {
               "id": "E",
@@ -15448,7 +15448,7 @@
         },
         {
           "numero": 62,
-          "pregunta": "Un paciente ingiere una sustancia evolucionando con compromiso de\nconsciencia y depresión respiratoria. Al examen físico destaca miosis con\n\npupilas en punta de alfiler. La sustancia responsable corresponde con mayor\nDr. Guevara\nprobabilidad a:\nPreparación EUNACOM",
+          "pregunta": "Un paciente ingiere una sustancia evolucionando con compromiso de\nconsciencia y depresión respiratoria. Al examen físico destaca miosis con\n\npupilas en punta de alfiler. La sustancia responsable corresponde con mayor\nprobabilidad a:",
           "opciones": [
             {
               "id": "A",
@@ -15580,11 +15580,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar psicoterapia Dr. Guevara"
+              "text": "Iniciar psicoterapia"
             },
             {
               "id": "B",
-              "text": "Iniciar psicoterapia y quetiapina Preparación EUNACOM"
+              "text": "Iniciar psicoterapia y quetiapina"
             },
             {
               "id": "C",
@@ -15720,11 +15720,11 @@
             },
             {
               "id": "D",
-              "text": "Antiderpesivos inhibidores de la monoaminooxidasa Dr. Guevara"
+              "text": "Antiderpesivos inhibidores de la monoaminooxidasa"
             },
             {
               "id": "E",
-              "text": "Antidepresivos inhibidores de la recaptura de serotonina más antipsicóticos Preparación EUNACOM atípicos"
+              "text": "Antidepresivos inhibidores de la recaptura de serotonina más antipsicóticos atípicos"
             }
           ],
           "respuestaCorrecta": "D",
@@ -15832,7 +15832,7 @@
         },
         {
           "numero": 74,
-          "pregunta": "Un paciente es muy retraído, no tiene amigos íntimos y evita lugares y\nDr. Guevara\nactividades en los que tenga que interactuar con otras personas ya que siente\nPreparación EUNACOM\nmiedo a ser rechazado o ser considerado como inferior. Tampoco ha iniciado\nrelaciones amorosas por el mismo motivo. El diagnóstico más probable es:",
+          "pregunta": "Un paciente es muy retraído, no tiene amigos íntimos y evita lugares y\nactividades en los que tenga que interactuar con otras personas ya que siente\nmiedo a ser rechazado o ser considerado como inferior. Tampoco ha iniciado\nrelaciones amorosas por el mismo motivo. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -15976,11 +15976,11 @@
             },
             {
               "id": "D",
-              "text": "Agorafobia Dr. Guevara"
+              "text": "Agorafobia"
             },
             {
               "id": "E",
-              "text": "Conductas evitativas Preparación EUNACOM"
+              "text": "Conductas evitativas"
             }
           ],
           "respuestaCorrecta": "B",
@@ -16152,7 +16152,7 @@
         },
         {
           "numero": 84,
-          "pregunta": "Usted evalúa un paciente de 50 años que acude a un chequeo médico con\nDr. Guevara\nexámenes generales, en el que se constata elevación marcada de la GGT y\nPreparación EUNACOM\ndiscreta de la GOT, sin otras alteraciones. Al interrogarlo mejor se confirma\nque consume cerca de una botella de vino al día, sin embargo él afirma que no\nle interesa dejar de tomar y que seguirá haciéndolo aunque le haga mal.\nAdemás de explicarle que está presentando daño hepático, por el consumo de\nalcohol, la conducta más adecuada es:",
+          "pregunta": "Usted evalúa un paciente de 50 años que acude a un chequeo médico con\nexámenes generales, en el que se constata elevación marcada de la GGT y\ndiscreta de la GOT, sin otras alteraciones. Al interrogarlo mejor se confirma\nque consume cerca de una botella de vino al día, sin embargo él afirma que no\nle interesa dejar de tomar y que seguirá haciéndolo aunque le haga mal.\nAdemás de explicarle que está presentando daño hepático, por el consumo de\nalcohol, la conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -16256,11 +16256,11 @@
             },
             {
               "id": "B",
-              "text": "Trastorno de estrés postraumático Dr. Guevara"
+              "text": "Trastorno de estrés postraumático"
             },
             {
               "id": "C",
-              "text": "Depresión psicótica Preparación EUNACOM"
+              "text": "Depresión psicótica"
             },
             {
               "id": "D",
@@ -16512,7 +16512,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 56 años asegura que existe un complot en su contra, en el que\nDr. Guevara\nparticipan algunos familiares y agentes del estado. Cree que hay micrófonos en\nPreparación EUNACOM\nsu casa y al empezar a buscarlos generó preocupación en sus familiares,\nquienes decidieron traerlo a consultar. El diagnóstico es:",
+          "pregunta": "Un paciente de 56 años asegura que existe un complot en su contra, en el que\nparticipan algunos familiares y agentes del estado. Cree que hay micrófonos en\nsu casa y al empezar a buscarlos generó preocupación en sus familiares,\nquienes decidieron traerlo a consultar. El diagnóstico es:",
           "opciones": [
             {
               "id": "A",
@@ -16656,11 +16656,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar pielografía de eliminación Dr. Guevara"
+              "text": "Solicitar pielografía de eliminación"
             },
             {
               "id": "E",
-              "text": "Solicitar ecografía besico prostática Preparación EUNACOM"
+              "text": "Solicitar ecografía besico prostática"
             }
           ],
           "respuestaCorrecta": "C",
@@ -16800,7 +16800,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un paciente sufre una mordedura por un gato en la mano derecha. El gato\nera callejero y lo atacó sin mediar provocación alguna. El paciente refiere que\n\nsu última vacunación antitetánica fue hace 2 años. La conducta más adecuada\nDr. Guevara\nes:\nPreparación EUNACOM",
+          "pregunta": "Un paciente sufre una mordedura por un gato en la mano derecha. El gato\nera callejero y lo atacó sin mediar provocación alguna. El paciente refiere que\n\nsu última vacunación antitetánica fue hace 2 años. La conducta más adecuada\nes:",
           "opciones": [
             {
               "id": "A",
@@ -16912,11 +16912,11 @@
             },
             {
               "id": "D",
-              "text": "Laberintitis aguda Dr. Guevara"
+              "text": "Laberintitis aguda"
             },
             {
               "id": "E",
-              "text": "Infarto de cerebelo Preparación EUNACOM"
+              "text": "Infarto de cerebelo"
             }
           ],
           "respuestaCorrecta": "B",
@@ -17056,7 +17056,7 @@
         },
         {
           "numero": 22,
-          "pregunta": "Un paciente de 43 años, hipermétrope, consulta por dolor ocular derecho,\nmuy intenso, que inició hace 1 hora, al que se ha agregado pérdida de la visión\n\nde dicho ojo. Al examen físico se observa ojo rojo derecho, de tipo\nDr. Guevara\nperiquerático, asociado a midriasis ipsilateral. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 43 años, hipermétrope, consulta por dolor ocular derecho,\nmuy intenso, que inició hace 1 hora, al que se ha agregado pérdida de la visión\n\nde dicho ojo. Al examen físico se observa ojo rojo derecho, de tipo\nperiquerático, asociado a midriasis ipsilateral. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -17156,11 +17156,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Trastorno por hipocondría Dr. Guevara"
+              "text": "Trastorno por hipocondría"
             },
             {
               "id": "B",
-              "text": "Trastorno de angustia generalizada Preparación EUNACOM"
+              "text": "Trastorno de angustia generalizada"
             },
             {
               "id": "C",
@@ -17312,7 +17312,7 @@
         },
         {
           "numero": 30,
-          "pregunta": "Una paciente de 55 años presenta cefalea, náuseas y dolor abdominal con\nDr. Guevara\ncierta frecuencia. En ocasiones además refiere dificultad para tragar y\nPreparación EUNACOM\nsensación de inestabilidad de la marcha. Su estudio no identifica ninguna causa\norgánica de sus síntomas. El diagnóstico más probable es:",
+          "pregunta": "Una paciente de 55 años presenta cefalea, náuseas y dolor abdominal con\ncierta frecuencia. En ocasiones además refiere dificultad para tragar y\nsensación de inestabilidad de la marcha. Su estudio no identifica ninguna causa\norgánica de sus síntomas. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -17424,11 +17424,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar tratamiento endoscópico Dr. Guevara"
+              "text": "Realizar tratamiento endoscópico"
             },
             {
               "id": "E",
-              "text": "Programar resección quirúrgica del segmento de colon comprometido Preparación EUNACOM"
+              "text": "Programar resección quirúrgica del segmento de colon comprometido"
             }
           ],
           "respuestaCorrecta": "E",
@@ -17568,7 +17568,7 @@
         },
         {
           "numero": 38,
-          "pregunta": "Un niño de 1 mes de edad presenta ligero estrabismo fluctuante, que en\nDr. Guevara\nocasiones es más evidente que en otras. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Un niño de 1 mes de edad presenta ligero estrabismo fluctuante, que en\nocasiones es más evidente que en otras. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -17696,7 +17696,7 @@
         },
         {
           "numero": 42,
-          "pregunta": "Un paciente consulta por dolor abdominal. Se solicita una ecografía\nDr. Guevara\nabdominal que muestra una vesícula biliar “en porcelana”. La conducta más\nPreparación EUNACOM\nadecuada es:",
+          "pregunta": "Un paciente consulta por dolor abdominal. Se solicita una ecografía\nabdominal que muestra una vesícula biliar “en porcelana”. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -17824,7 +17824,7 @@
         },
         {
           "numero": 46,
-          "pregunta": "Se realiza un estudio que pretende evaluar la efectividad de un\nDr. Guevara\nhipoglicemiante. Para esto se compara este nuevo hipoglicemiante contra\nPreparación EUNACOM\nmetformina y se comparan las hemoglobinas glicosiladas promedio. Se observa\nun mejor control metabólico con el nuevo hipoglicemiante (HbA1c: 6,6% con el\nnuevo hipoglicemiante, contra 7,2% con la metformina, con p: 0,01), sin\nembargo al revisar el estudio se aprecia que los pacientes que recibieron el\nnuevo hipoglicemiante recibieron además un control estricto de la dieta,\nmientras que los que recibieron la metformina mantuvieron la dieta a la que\nestaban acostumbrados. Respecto a este estudio es verdadero que:",
+          "pregunta": "Se realiza un estudio que pretende evaluar la efectividad de un\nhipoglicemiante. Para esto se compara este nuevo hipoglicemiante contra\nmetformina y se comparan las hemoglobinas glicosiladas promedio. Se observa\nun mejor control metabólico con el nuevo hipoglicemiante (HbA1c: 6,6% con el\nnuevo hipoglicemiante, contra 7,2% con la metformina, con p: 0,01), sin\nembargo al revisar el estudio se aprecia que los pacientes que recibieron el\nnuevo hipoglicemiante recibieron además un control estricto de la dieta,\nmientras que los que recibieron la metformina mantuvieron la dieta a la que\nestaban acostumbrados. Respecto a este estudio es verdadero que:",
           "opciones": [
             {
               "id": "A",
@@ -17928,11 +17928,11 @@
             },
             {
               "id": "B",
-              "text": "Trastorno de personalidad paranoide Dr. Guevara"
+              "text": "Trastorno de personalidad paranoide"
             },
             {
               "id": "C",
-              "text": "Trastorno de personalidad limítrofe Preparación EUNACOM"
+              "text": "Trastorno de personalidad limítrofe"
             },
             {
               "id": "D",
@@ -18080,7 +18080,7 @@
         },
         {
           "numero": 54,
-          "pregunta": "Un paciente de 35 años presenta una hernia inguinal desde hace 1 año. Hace\nDr. Guevara\nunas horas se hizo dolorosa e imposible de reducir. Al examen físico se\nPreparación EUNACOM\nconstata una hernia encarcerada, sin signos de obstrucción intestinal y se\nintenta reducción manual, sin éxito. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 35 años presenta una hernia inguinal desde hace 1 año. Hace\nunas horas se hizo dolorosa e imposible de reducir. Al examen físico se\nconstata una hernia encarcerada, sin signos de obstrucción intestinal y se\nintenta reducción manual, sin éxito. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -18212,11 +18212,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Úlcera gastroduodenal perforada Dr. Guevara"
+              "text": "Úlcera gastroduodenal perforada"
             },
             {
               "id": "B",
-              "text": "Embolia mesentérica Preparación EUNACOM"
+              "text": "Embolia mesentérica"
             },
             {
               "id": "C",
@@ -18348,11 +18348,11 @@
             },
             {
               "id": "C",
-              "text": "Iniciar hormonoterapia Dr. Guevara"
+              "text": "Iniciar hormonoterapia"
             },
             {
               "id": "D",
-              "text": "Solicitar APE libre Preparación EUNACOM"
+              "text": "Solicitar APE libre"
             },
             {
               "id": "E",
@@ -18496,11 +18496,11 @@
         },
         {
           "numero": 67,
-          "pregunta": "El tratamiento antibiótico de elección de la sinusitis bacteriana aguda es:\nDr. Guevara",
+          "pregunta": "El tratamiento antibiótico de elección de la sinusitis bacteriana aguda es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Ceftriaxona Preparación EUNACOM"
+              "text": "Ceftriaxona"
             },
             {
               "id": "B",

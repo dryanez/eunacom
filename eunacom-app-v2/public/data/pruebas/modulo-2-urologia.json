@@ -372,11 +372,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Balanopostitis aguda Dr. Guevara"
+              "text": "Balanopostitis aguda"
             },
             {
               "id": "B",
-              "text": "Infección urinaria baja Preparación EUNACOM"
+              "text": "Infección urinaria baja"
             },
             {
               "id": "C",
@@ -504,11 +504,11 @@
             },
             {
               "id": "B",
-              "text": "Calcitonina Dr. Guevara"
+              "text": "Calcitonina"
             },
             {
               "id": "C",
-              "text": "Carbonato de calcio oral Preparación EUNACOM"
+              "text": "Carbonato de calcio oral"
             },
             {
               "id": "D",
@@ -668,7 +668,7 @@
             },
             {
               "id": "C",
-              "text": "Mujer de 50 años que en algunas ocasiones siente deseos incontrolables de orinar, Preparación EUNACOM por lo que no alcanza a ir al baño, orinándose antes"
+              "text": "Mujer de 50 años que en algunas ocasiones siente deseos incontrolables de orinar, por lo que no alcanza a ir al baño, orinándose antes"
             },
             {
               "id": "D",
@@ -824,11 +824,11 @@
             },
             {
               "id": "B",
-              "text": "Uso de furosemida Dr. Guevara"
+              "text": "Uso de furosemida"
             },
             {
               "id": "C",
-              "text": "Insuficiencia renal aguda prerrenal Preparación EUNACOM"
+              "text": "Insuficiencia renal aguda prerrenal"
             },
             {
               "id": "D",
@@ -1048,11 +1048,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una mujer de 38 años, diagnosticada hace 15 de diabetes, tiene como única\ncomplicación conocida una retinopatía. ¿Qué prueba le realizaría para\n\npredecir la aparición de nefropatía diabética?:\nDr. Guevara",
+          "pregunta": "Una mujer de 38 años, diagnosticada hace 15 de diabetes, tiene como única\ncomplicación conocida una retinopatía. ¿Qué prueba le realizaría para\n\npredecir la aparición de nefropatía diabética?:",
           "opciones": [
             {
               "id": "A",
-              "text": "Proteinuria de 24 horas. Preparación EUNACOM"
+              "text": "Proteinuria de 24 horas."
             },
             {
               "id": "B",
@@ -1224,16 +1224,16 @@
             },
             {
               "id": "D",
-              "text": "50.000 colonias/ml. Dr. Guevara"
+              "text": "50.000 colonias/ml."
             },
             {
               "id": "E",
-              "text": "100.000 colonias/ml. Preparación EUNACOM"
+              "text": "100.000 colonias/ml."
             }
           ],
           "respuestaCorrecta": "E",
           "explicacion": "La alternativa correcta es la E: 100.000 colonias/ml.\n\nEn un urocultivo obtenido por **micción espontánea** (chorro medio), se considera bacteriuria significativa cuando se aísla un único microorganismo en una concentración de **≥100.000 UFC/mL (Unidades Formadoras de Colonias por mililitro)**. Esta definición es crucial porque discrimina entre una verdadera infección urinaria y una simple contaminación de la muestra con bacterias de la flora perineal.  Este valor es ampliamente aceptado en la literatura y se refleja en las guías clínicas internacionales y nacionales. La Guía Clínica AUGE del MINSAL sobre Infección Urinaria Baja en la Mujer, aunque centrada en mujeres, también utiliza este criterio para definir bacteriuria significativa. Hay que tener presente que esta definición varía según la forma de toma de la muestra. Por ejemplo, en una punción suprapúbica, cualquier recuento bacteriano se considera significativo.",
-          "explicacionIncorrectas": "*   **A: 100 colonias/ml:** Este recuento es demasiado bajo y generalmente indica contaminación, no una infección urinaria verdadera.\n*   **B: 1.000 colonias/ml:**  Si bien podría sugerir una infección en ciertos contextos (pacientes sondados, por ejemplo), no cumple con el criterio clásico para micción espontánea.\n*   **C: 10.000 colonias/ml:**  Este valor es más sugestivo que los anteriores, pero sigue siendo inferior al umbral generalmente aceptado de 100.000 UFC/ml para una muestra tomada por micción espontánea. Algunas guías o en algunos subgrupos de pacientes (por ejemplo, pacientes sintomáticas con recuentos bajos, o pacientes con catéteres urinarios), podría considerarse significativo, pero en el contexto general de la pregunta (preparación EUNACOM), 100.000 es la definición estándar.\n*   **D: 50.000 colonias/ml:** Al igual que la opción C, está por debajo del umbral de 100.000 UFC/mL que define bacteriuria significativa en una muestra de orina obtenida por micción espontánea.",
+          "explicacionIncorrectas": "*   **A: 100 colonias/ml:** Este recuento es demasiado bajo y generalmente indica contaminación, no una infección urinaria verdadera.\n*   **B: 1.000 colonias/ml:**  Si bien podría sugerir una infección en ciertos contextos (pacientes sondados, por ejemplo), no cumple con el criterio clásico para micción espontánea.\n*   **C: 10.000 colonias/ml:**  Este valor es más sugestivo que los anteriores, pero sigue siendo inferior al umbral generalmente aceptado de 100.000 UFC/ml para una muestra tomada por micción espontánea. Algunas guías o en algunos subgrupos de pacientes (por ejemplo, pacientes sintomáticas con recuentos bajos, o pacientes con catéteres urinarios), podría considerarse significativo, pero en el contexto general de la pregunta (), 100.000 es la definición estándar.\n*   **D: 50.000 colonias/ml:** Al igual que la opción C, está por debajo del umbral de 100.000 UFC/mL que define bacteriuria significativa en una muestra de orina obtenida por micción espontánea.",
           "codigoEunacom": "4.03.1.015 Infección urinaria alta y baja\n4.03.4.011 Examen de orina completo, urocultivo",
           "tags": "Bacteriuria significativa, Urocultivo, Infección urinaria, EUNACOM, Urología, Diagnóstico, MINSAL, UFC, Unidades formadoras de colonias, Toma de muestra, Chorro medio, Micción espontánea, Contaminación.",
           "videoRecomendado": "10.ITU en pediatría - Malformaciones urológicas - Reflujo vesicoureteral.mp4 (Aunque el video está enfocado en pediatría, repasa conceptos generales sobre ITU que son relevantes para la pregunta)"
@@ -1384,11 +1384,11 @@
             },
             {
               "id": "D",
-              "text": "Uso concomitante de glibenclamida Dr. Guevara"
+              "text": "Uso concomitante de glibenclamida"
             },
             {
               "id": "E",
-              "text": "Uso concomitante de insulina Preparación EUNACOM"
+              "text": "Uso concomitante de insulina"
             }
           ],
           "respuestaCorrecta": "A",
@@ -1544,11 +1544,11 @@
             },
             {
               "id": "D",
-              "text": "Hipocalcemia – Arritmias Dr. Guevara"
+              "text": "Hipocalcemia – Arritmias"
             },
             {
               "id": "E",
-              "text": "Hiponatremia – compromiso de conciencia Preparación EUNACOM NO CONTESTE ESTA PREGUNTA Todas estas medidas terapéuticas son aconsejables en el síndrome nefrótico, EXCEPTO:"
+              "text": "Hiponatremia – compromiso de conciencia NO CONTESTE ESTA PREGUNTA Todas estas medidas terapéuticas son aconsejables en el síndrome nefrótico, EXCEPTO:"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1664,7 +1664,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una paciente con antecedente de enfermedad celíaca, presenta debilidad y\nDr. Guevara\nespasmos musculares generalizados. Al examen físico se aprecia hiperreflexia\nPreparación EUNACOM\ny signo de Chovstek. El diagnóstico más probable es:",
+          "pregunta": "Una paciente con antecedente de enfermedad celíaca, presenta debilidad y\nespasmos musculares generalizados. Al examen físico se aprecia hiperreflexia\ny signo de Chovstek. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -1776,7 +1776,7 @@
             },
             {
               "id": "D",
-              "text": "Administrar corticoides, asociados a ciclofosfamida e iniciar sulfato de magnesio Dr. Guevara endovenoso Preparación EUNACOM"
+              "text": "Administrar corticoides, asociados a ciclofosfamida e iniciar sulfato de magnesio endovenoso"
             },
             {
               "id": "E",
@@ -1936,11 +1936,11 @@
             },
             {
               "id": "D",
-              "text": "Chancroide genital Dr. Guevara"
+              "text": "Chancroide genital"
             },
             {
               "id": "E",
-              "text": "Balanouretritis gonocócica Preparación EUNACOM"
+              "text": "Balanouretritis gonocócica"
             }
           ],
           "respuestaCorrecta": "B",
@@ -2080,11 +2080,11 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un paciente con antecedente de hiperplasia benigna de la próstata, en\ntratamiento con tamsulosina, consulta por imposibilidad de orinar, de 6 horas\nde evolución, asociado a intenso dolor abdominal. Al examen físico se palpa\n\nglobo vesical. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente con antecedente de hiperplasia benigna de la próstata, en\ntratamiento con tamsulosina, consulta por imposibilidad de orinar, de 6 horas\nde evolución, asociado a intenso dolor abdominal. Al examen físico se palpa\n\nglobo vesical. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar cistostomía suprapúbica Preparación EUNACOM"
+              "text": "Realizar cistostomía suprapúbica"
             },
             {
               "id": "B",
@@ -2356,11 +2356,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar biopsia testicular por punción Dr. Guevara"
+              "text": "Solicitar biopsia testicular por punción"
             },
             {
               "id": "D",
-              "text": "Realizar tumorectomía y biopsia Preparación EUNACOM"
+              "text": "Realizar tumorectomía y biopsia"
             },
             {
               "id": "E",
@@ -2504,7 +2504,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "¿Qué tratamiento antibiótico indicaría a una paciente con infección de a\nDr. Guevara\nherida operatoria, luego de una mastectomía parcial?\nPreparación EUNACOM",
+          "pregunta": "¿Qué tratamiento antibiótico indicaría a una paciente con infección de a\nherida operatoria, luego de una mastectomía parcial?",
           "opciones": [
             {
               "id": "A",
@@ -2644,11 +2644,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar radiografías baritadas Dr. Guevara"
+              "text": "Solicitar radiografías baritadas"
             },
             {
               "id": "D",
-              "text": "Solicitar manometría esofágica Preparación EUNACOM"
+              "text": "Solicitar manometría esofágica"
             },
             {
               "id": "E",
@@ -2776,11 +2776,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar cirugía de Hartmann Dr. Guevara"
+              "text": "Realizar cirugía de Hartmann"
             },
             {
               "id": "E",
-              "text": "Realizar hemicolectomía izquierda Preparación EUNACOM"
+              "text": "Realizar hemicolectomía izquierda"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3004,11 +3004,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar biopsia testicular por punción Dr. Guevara"
+              "text": "Solicitar biopsia testicular por punción"
             },
             {
               "id": "D",
-              "text": "Realizar tumorectomía y biopsia Preparación EUNACOM"
+              "text": "Realizar tumorectomía y biopsia"
             },
             {
               "id": "E",
@@ -3152,7 +3152,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "¿Qué tratamiento antibiótico indicaría a una paciente con infección de a\nDr. Guevara\nherida operatoria, luego de una mastectomía parcial?\nPreparación EUNACOM",
+          "pregunta": "¿Qué tratamiento antibiótico indicaría a una paciente con infección de a\nherida operatoria, luego de una mastectomía parcial?",
           "opciones": [
             {
               "id": "A",
@@ -3292,11 +3292,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar radiografías baritadas Dr. Guevara"
+              "text": "Solicitar radiografías baritadas"
             },
             {
               "id": "D",
-              "text": "Solicitar manometría esofágica Preparación EUNACOM"
+              "text": "Solicitar manometría esofágica"
             },
             {
               "id": "E",
@@ -3424,11 +3424,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar cirugía de Hartmann Dr. Guevara"
+              "text": "Realizar cirugía de Hartmann"
             },
             {
               "id": "E",
-              "text": "Realizar hemicolectomía izquierda Preparación EUNACOM"
+              "text": "Realizar hemicolectomía izquierda"
             }
           ],
           "respuestaCorrecta": "B",
@@ -3644,11 +3644,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Hipertensión renovascular Dr. Guevara"
+              "text": "Hipertensión renovascular"
             },
             {
               "id": "B",
-              "text": "Hipertensión escencial Preparación EUNACOM"
+              "text": "Hipertensión escencial"
             },
             {
               "id": "C",
@@ -3665,7 +3665,7 @@
           ],
           "respuestaCorrecta": "A",
           "explicacion": "La alternativa correcta es **A: Hipertensión renovascular**. La clave para llegar a este diagnóstico reside en varios puntos:\n\n*   **Edad del paciente:** Un paciente de 25 años con hipertensión arterial de novo, es decir, que debuta a esta edad, es **altamente sugestivo de hipertensión secundaria**, no esencial. La hipertensión esencial suele aparecer en personas mayores de 30 años.\n*   **Niveles de presión arterial:** La presión de 160/100 mmHg es una hipertensión de grado 2 según la clasificación actual. Una hipertensión tan elevada en un paciente joven debe hacernos pensar en causas secundarias.\n*   **Hipokalemia:** El potasio sérico bajo (3.0 mEq/L) es un hallazgo crucial. La hipertensión renovascular, especialmente la causada por estenosis de la arteria renal, puede activar el sistema renina-angiotensina-aldosterona (SRAA). El aumento de aldosterona causa retención de sodio (Na está normal, pero podría estar elevado) y excreción de potasio (causando la hipokalemia) e hidrogeniones.\n*   **Creatinina normal:** La creatinina normal (1.0 mg/dL) indica que, al menos al momento de la evaluación, no hay insuficiencia renal significativa. Esto no descarta una hipertensión renovascular, pero sí sugiere que el riñón aún está funcionando relativamente bien.\n\nLa estenosis de la arteria renal produce una disminución del flujo sanguíneo al riñón, lo que activa el SRAA. Esta activación lleva a la liberación de renina, que convierte el angiotensinógeno en angiotensina I. La angiotensina I se convierte en angiotensina II (un potente vasoconstrictor) y también estimula la liberación de aldosterona. La aldosterona aumenta la reabsorción de sodio y agua en los túbulos renales, lo que contribuye a la hipertensión y causa la pérdida de potasio.\n\n**En resumen, la hipertensión de inicio temprano asociada a hipokalemia es un signo de alarma para buscar causas secundarias, siendo la hipertensión renovascular una de las principales sospechas.**\n\n*Consideraciones según guías clínicas chilenas (MINSAL):* Si bien la guía GES de Hipertensión Arterial Primaria o Esencial no se enfoca en las causas secundarias, sí enfatiza la importancia de descartarlas en pacientes jóvenes con hipertensión severa. En la práctica clínica chilena, ante un caso como este, se deben realizar estudios complementarios como ecografía Doppler renal o angioTAC abdominal para confirmar o descartar la estenosis de la arteria renal.",
-          "explicacionIncorrectas": "*   **B: Hipertensión esencial Preparación EUNACOM:** Es menos probable debido a la edad del paciente y la presencia de hipokalemia. La hipertensión esencial generalmente se presenta en personas mayores de 30 años y no suele asociarse con hipokalemia, a menos que exista otra causa concomitante.\n*   **C: Feocromocitoma:** Si bien el feocromocitoma es una causa de hipertensión secundaria, generalmente se presenta con síntomas como cefalea intensa, palpitaciones, sudoración profusa, ansiedad y palidez, los cuales no se mencionan en el caso. Además, la hipokalemia no es un hallazgo típico del feocromocitoma.\n*   **D: Glomerulopatía médica:** Las glomerulopatías pueden causar hipertensión, pero generalmente se asocian con otros hallazgos en el examen de orina (proteinuria, hematuria) y pueden afectar la función renal (aumento de la creatinina). La creatinina normal en este caso hace menos probable esta opción.\n*   **E: Pseudohipertensión (hipertensión del delantal blanco):** La hipertensión del delantal blanco se refiere a la elevación de la presión arterial en el consultorio médico, mientras que en casa los valores son normales. En este caso, se indica que los niveles de presión arterial son altos \"en promedio\", lo que sugiere que la hipertensión es persistente y no solo en el entorno médico.",
+          "explicacionIncorrectas": "*   **B: Hipertensión esencial:** Es menos probable debido a la edad del paciente y la presencia de hipokalemia. La hipertensión esencial generalmente se presenta en personas mayores de 30 años y no suele asociarse con hipokalemia, a menos que exista otra causa concomitante.\n*   **C: Feocromocitoma:** Si bien el feocromocitoma es una causa de hipertensión secundaria, generalmente se presenta con síntomas como cefalea intensa, palpitaciones, sudoración profusa, ansiedad y palidez, los cuales no se mencionan en el caso. Además, la hipokalemia no es un hallazgo típico del feocromocitoma.\n*   **D: Glomerulopatía médica:** Las glomerulopatías pueden causar hipertensión, pero generalmente se asocian con otros hallazgos en el examen de orina (proteinuria, hematuria) y pueden afectar la función renal (aumento de la creatinina). La creatinina normal en este caso hace menos probable esta opción.\n*   **E: Pseudohipertensión (hipertensión del delantal blanco):** La hipertensión del delantal blanco se refiere a la elevación de la presión arterial en el consultorio médico, mientras que en casa los valores son normales. En este caso, se indica que los niveles de presión arterial son altos \"en promedio\", lo que sugiere que la hipertensión es persistente y no solo en el entorno médico.",
           "codigoEunacom": "4.03.1.026 Uropatía alta",
           "tags": "Hipertensión, Hipertensión Renovascular, Hipokalemia, EUNACOM, Nefrología, Hipertensión Secundaria, Estenosis Arteria Renal, Sistema Renina Angiotensina Aldosterona, Joven, Aldosterona.",
           "videoRecomendado": "22.Hipertensión arterial secundaria.mp4"
@@ -3800,11 +3800,11 @@
         },
         {
           "numero": 10,
-          "pregunta": "Una paciente presenta un accidente automovilístico, resultando con\nhemorragia importante. Evoluciona con oliguria y elevación de la creatinina. Se\ninicia suero fisiológico, con reinicio de la diuresis, a 4.000 cc/día. Al tercer día se\nsolicitan exámenes que muestran creatinina plasmática: 4,4 mg/dl. BUN: 65\nmg/dl, Na plasmático: 132 mEq/l, Na urinario: 30 mEq/l, sedimento urinario:\n\ncilindors granulosos. El diagnóstico más importante es:\nDr. Guevara",
+          "pregunta": "Una paciente presenta un accidente automovilístico, resultando con\nhemorragia importante. Evoluciona con oliguria y elevación de la creatinina. Se\ninicia suero fisiológico, con reinicio de la diuresis, a 4.000 cc/día. Al tercer día se\nsolicitan exámenes que muestran creatinina plasmática: 4,4 mg/dl. BUN: 65\nmg/dl, Na plasmático: 132 mEq/l, Na urinario: 30 mEq/l, sedimento urinario:\n\ncilindors granulosos. El diagnóstico más importante es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Insuficiencia renal aguda prerrenal Preparación EUNACOM"
+              "text": "Insuficiencia renal aguda prerrenal"
             },
             {
               "id": "B",
@@ -3944,11 +3944,11 @@
             },
             {
               "id": "D",
-              "text": "Neiseria gonorreae Dr. Guevara"
+              "text": "Neiseria gonorreae"
             },
             {
               "id": "E",
-              "text": "Treponema pallidum Preparación EUNACOM"
+              "text": "Treponema pallidum"
             }
           ],
           "respuestaCorrecta": "C",
@@ -4092,11 +4092,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar ecografía inguinoescrotal Dr. Guevara"
+              "text": "Solicitar ecografía inguinoescrotal"
             },
             {
               "id": "B",
-              "text": "Solicitar TAC de abdomen y pelvis Preparación EUNACOM"
+              "text": "Solicitar TAC de abdomen y pelvis"
             },
             {
               "id": "C",
@@ -4904,7 +4904,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "El examen de mayor rendimiento para confirmar la sospecha de urolitiasis\nDr. Guevara\npor ácido úrico es:\nPreparación EUNACOM",
+          "pregunta": "El examen de mayor rendimiento para confirmar la sospecha de urolitiasis\npor ácido úrico es:",
           "opciones": [
             {
               "id": "A",
@@ -5064,7 +5064,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "¿Cuál de las siguientes alternativas NO es una indicación de cirugía en una\nDr. Guevara\nuropatía obstructiva por hiperplasia benigna de la próstata?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de las siguientes alternativas NO es una indicación de cirugía en una\nuropatía obstructiva por hiperplasia benigna de la próstata?",
           "opciones": [
             {
               "id": "A",
@@ -5208,15 +5208,15 @@
             },
             {
               "id": "D",
-              "text": "Cálculos renales coraliformes Dr. Guevara"
+              "text": "Cálculos renales coraliformes"
             },
             {
               "id": "E",
-              "text": "Riñón poliquístico Preparación EUNACOM"
+              "text": "Riñón poliquístico"
             }
           ],
           "respuestaCorrecta": "E",
-          "explicacion": "La alternativa correcta es **E (Riñón poliquístico Preparación EUNACOM)** porque el cuadro clínico presentado por el paciente es altamente sugestivo de esta patología. La combinación de hematuria (en varias oportunidades), infecciones urinarias recurrentes, elevación de la creatinina plasmática (indicativo de insuficiencia renal) y la palpación de masas abdominales bilaterales en la región renal son hallazgos clásicos de la enfermedad renal poliquística autosómica dominante (ERPAD). Esta enfermedad se caracteriza por el desarrollo progresivo de quistes en ambos riñones, lo que lleva a su agrandamiento, disfunción renal y las complicaciones mencionadas. La edad del paciente (20 años) es consistente con la presentación de la enfermedad, aunque puede manifestarse a distintas edades.",
+          "explicacion": "La alternativa correcta es **E (Riñón poliquístico)** porque el cuadro clínico presentado por el paciente es altamente sugestivo de esta patología. La combinación de hematuria (en varias oportunidades), infecciones urinarias recurrentes, elevación de la creatinina plasmática (indicativo de insuficiencia renal) y la palpación de masas abdominales bilaterales en la región renal son hallazgos clásicos de la enfermedad renal poliquística autosómica dominante (ERPAD). Esta enfermedad se caracteriza por el desarrollo progresivo de quistes en ambos riñones, lo que lleva a su agrandamiento, disfunción renal y las complicaciones mencionadas. La edad del paciente (20 años) es consistente con la presentación de la enfermedad, aunque puede manifestarse a distintas edades.",
           "explicacionIncorrectas": "*   **A: Tumor de Wilms:** Si bien el Tumor de Wilms es una masa abdominal palpable, es mucho más frecuente en niños pequeños (edad promedio de diagnóstico entre 2 y 5 años). La hematuria puede estar presente, pero las infecciones urinarias recurrentes y la insuficiencia renal son menos características al momento del diagnóstico inicial. El paciente del caso tiene 20 años, lo que hace que el Tumor de Wilms sea muy poco probable.\n*   **B: Cáncer de células renales:** El cáncer de células renales (CCR) suele presentarse con la tríada clásica de hematuria, dolor lumbar y masa palpable, pero esta tríada solo se ve en una minoría de casos. La edad típica de presentación es mayor (60-70 años). Además, las infecciones urinarias recurrentes no son una característica prominente del CCR. Aunque puede causar elevación de la creatinina, la presencia de masas bilaterales palpables hace menos probable este diagnóstico.\n*   **C: Hidroureteronefrosis:** La hidroureteronefrosis se refiere a la dilatación del uréter y la pelvis renal, generalmente debido a una obstrucción. Si bien puede causar dolor, hematuria e infecciones urinarias, la palpación de masas renales bilaterales no es común a menos que la hidronefrosis sea severa y crónica. Además, la causa subyacente de la hidronefrosis (cálculos, estenosis, etc.) sería lo que necesitaría ser diagnosticado, no la consecuencia de la obstrucción. La elevación de creatinina estaría relacionada a la obstrucción, pero la palpación de masas bilaterales grandes es menos común que en el riñón poliquístico.\n*   **D: Cálculos renales coraliformes:** Los cálculos renales coraliformes, al ser grandes y ocupar toda la pelvis renal, pueden causar infecciones urinarias recurrentes y hematuria. Pueden llevar a la insuficiencia renal crónica. Sin embargo, generalmente no se presentan con masas abdominales palpables bilaterales tan evidentes como las descritas en el caso. Además, la palpación directa de los riñones agrandados es menos probable, ya que la masa es principalmente la del cálculo en sí.",
           "codigoEunacom": "1.  09.1.019 Riñón poliquístico",
           "tags": "EUNACOM, Nefrología, Riñón Poliquístico, Hematuria, Infección Urinaria, Insuficiencia Renal, Masa Abdominal, Diagnóstico Diferencial",
@@ -5356,11 +5356,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar quimioterapia Dr. Guevara"
+              "text": "Realizar quimioterapia"
             },
             {
               "id": "B",
-              "text": "Realizar linfadenectomía lumboaórtica Preparación EUNACOM"
+              "text": "Realizar linfadenectomía lumboaórtica"
             },
             {
               "id": "C",
@@ -5552,7 +5552,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una paciente de 45 años presenta un cuadro de disuria, orinas turbias, fiebre\nhasta 40°C y marcado compromiso del estado general. Al examen físico está\nfebril, muy decaída, con tendencia a la hipotensión, con, FC: 120x’, PA: 90/50\n\nmmHg, presenta puño percusión positiva a derecha. Se solicita hemograma que\nDr. Guevara\ndemuestra leucocitosis de 20.000 y sedimento de orina que demuestra\nPreparación EUNACOM\npiocituria y bacteriuria y se solicita urocultivo, que está pendiente. El\ntratamiento antibiótico de elección es:",
+          "pregunta": "Una paciente de 45 años presenta un cuadro de disuria, orinas turbias, fiebre\nhasta 40°C y marcado compromiso del estado general. Al examen físico está\nfebril, muy decaída, con tendencia a la hipotensión, con, FC: 120x’, PA: 90/50\n\nmmHg, presenta puño percusión positiva a derecha. Se solicita hemograma que\ndemuestra leucocitosis de 20.000 y sedimento de orina que demuestra\npiocituria y bacteriuria y se solicita urocultivo, que está pendiente. El\ntratamiento antibiótico de elección es:",
           "opciones": [
             {
               "id": "A",
@@ -5680,7 +5680,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "¿Cuál de los siguientes cuadros clínicos es más sugerente de una\nDr. Guevara\nhipocalcemia?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de los siguientes cuadros clínicos es más sugerente de una\nhipocalcemia?",
           "opciones": [
             {
               "id": "A",
@@ -5820,11 +5820,11 @@
             },
             {
               "id": "C",
-              "text": "Varicocele Dr. Guevara"
+              "text": "Varicocele"
             },
             {
               "id": "D",
-              "text": "Torsión testicular Preparación EUNACOM"
+              "text": "Torsión testicular"
             },
             {
               "id": "E",
@@ -5968,11 +5968,11 @@
         },
         {
           "numero": 17,
-          "pregunta": "Un paciente presenta una lesión en el pene, localizada en el glande, que\nconsiste en una úlcera de 1 cm de diámetro, de fondo limpio, indolora, de\nbordes netos, sin secreción. ¿Qué examen será más adecuado para continuar el\n\nestudio?\nDr. Guevara",
+          "pregunta": "Un paciente presenta una lesión en el pene, localizada en el glande, que\nconsiste en una úlcera de 1 cm de diámetro, de fondo limpio, indolora, de\nbordes netos, sin secreción. ¿Qué examen será más adecuado para continuar el\n\nestudio?",
           "opciones": [
             {
               "id": "A",
-              "text": "MHA-TP Preparación EUNACOM"
+              "text": "MHA-TP"
             },
             {
               "id": "B",
@@ -6216,11 +6216,11 @@
             },
             {
               "id": "D",
-              "text": "Urolitiasis Dr. Guevara"
+              "text": "Urolitiasis"
             },
             {
               "id": "E",
-              "text": "Hiperplasia benigna de la próstata Preparación EUNACOM"
+              "text": "Hiperplasia benigna de la próstata"
             }
           ],
           "respuestaCorrecta": "E",
@@ -6360,7 +6360,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño de 4 años de edad, asintomático, presenta varias adherencias\nDr. Guevara\nbalanoprepuciales, algunas cercanas al meato urinario. La conducta más\nPreparación EUNACOM\nadecuada es:",
+          "pregunta": "Un niño de 4 años de edad, asintomático, presenta varias adherencias\nbalanoprepuciales, algunas cercanas al meato urinario. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6520,7 +6520,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un paciente presenta aumento de volumen escrotal, que en ocasiones es\nDr. Guevara\ndoloroso. Al examen físico destaca aumento de volumen, “en bolsa de gusanos”.\nPreparación EUNACOM\nLa prueba de transiluminación es negativa:",
+          "pregunta": "Un paciente presenta aumento de volumen escrotal, que en ocasiones es\ndoloroso. Al examen físico destaca aumento de volumen, “en bolsa de gusanos”.\nLa prueba de transiluminación es negativa:",
           "opciones": [
             {
               "id": "A",
@@ -6680,11 +6680,11 @@
         },
         {
           "numero": 19,
-          "pregunta": "Son complicaciones frecuentes de los opiodes, EXCEPTO:\nDr. Guevara",
+          "pregunta": "Son complicaciones frecuentes de los opiodes, EXCEPTO:",
           "opciones": [
             {
               "id": "A",
-              "text": "Convulsiones Preparación EUNACOM"
+              "text": "Convulsiones"
             },
             {
               "id": "B",
@@ -6852,11 +6852,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Suspender hipoglicemiantes orales e iniciar insulina Dr. Guevara"
+              "text": "Suspender hipoglicemiantes orales e iniciar insulina"
             },
             {
               "id": "B",
-              "text": "Iniciar prednisona Preparación EUNACOM"
+              "text": "Iniciar prednisona"
             },
             {
               "id": "C",
@@ -7008,7 +7008,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Paciente de 20 años, sufre accidente de tránsito, evoluciona con anuria de 6\nDr. Guevara\nhoras de evolución, a pesar de deseos intensos de orinar. Presión arterial y\nPreparación EUNACOM\npulso normales. Al examen se observa salida de sangre fresca por uretra y se\npalpa globo vesical. La medida inicial a seguir es:",
+          "pregunta": "Paciente de 20 años, sufre accidente de tránsito, evoluciona con anuria de 6\nhoras de evolución, a pesar de deseos intensos de orinar. Presión arterial y\npulso normales. Al examen se observa salida de sangre fresca por uretra y se\npalpa globo vesical. La medida inicial a seguir es:",
           "opciones": [
             {
               "id": "A",
@@ -7112,11 +7112,11 @@
             },
             {
               "id": "B",
-              "text": "Nefrosis lipoídea Dr. Guevara"
+              "text": "Nefrosis lipoídea"
             },
             {
               "id": "C",
-              "text": "Nefropatía membranosa Preparación EUNACOM"
+              "text": "Nefropatía membranosa"
             },
             {
               "id": "D",
@@ -7264,7 +7264,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Cuál de los siguientes cuadros clínicos es más sugerente de una\nDr. Guevara\nincontinencia urinaria de esfuerzos?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál de los siguientes cuadros clínicos es más sugerente de una\nincontinencia urinaria de esfuerzos?",
           "opciones": [
             {
               "id": "A",

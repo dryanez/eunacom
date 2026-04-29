@@ -784,7 +784,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "La pérdida de la visión de un ojo, producida por una falta de desarrollo de\nDr. Guevara\nlos centros de procesamiento a nivel del sistema nervioso central, producto de\nPreparación EUNACOM\nuna inadecuada estimulación durante los primeros años del desarrollo, se\ndenomina:",
+          "pregunta": "La pérdida de la visión de un ojo, producida por una falta de desarrollo de\nlos centros de procesamiento a nivel del sistema nervioso central, producto de\nuna inadecuada estimulación durante los primeros años del desarrollo, se\ndenomina:",
           "opciones": [
             {
               "id": "A",
@@ -924,11 +924,11 @@
             },
             {
               "id": "C",
-              "text": "Dermatitis atópica Dr. Guevara"
+              "text": "Dermatitis atópica"
             },
             {
               "id": "D",
-              "text": "Dermatitis inespecífica Preparación EUNACOM"
+              "text": "Dermatitis inespecífica"
             },
             {
               "id": "E",
@@ -1056,11 +1056,11 @@
             },
             {
               "id": "D",
-              "text": "Terbinafina oral Dr. Guevara"
+              "text": "Terbinafina oral"
             },
             {
               "id": "E",
-              "text": "Griseofulvina oral Preparación EUNACOM"
+              "text": "Griseofulvina oral"
             }
           ],
           "respuestaCorrecta": "D",
@@ -1200,7 +1200,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un lactante de 3 meses de edad presenta epifora, opacidad corneal y ojos de\nDr. Guevara\nmayor tamaño del normal. El diagnóstico de sospecha es:\nPreparación EUNACOM",
+          "pregunta": "Un lactante de 3 meses de edad presenta epifora, opacidad corneal y ojos de\nmayor tamaño del normal. El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",
@@ -1400,7 +1400,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 58 años, fumadora, consulta por disfonía de 2 meses de\nDr. Guevara\nevolución. No ha presentado otros síntomas y el examen físico no aporta mayor\nPreparación EUNACOM\ninformación. La conducta más adecuada es:",
+          "pregunta": "Un paciente de 58 años, fumadora, consulta por disfonía de 2 meses de\nevolución. No ha presentado otros síntomas y el examen físico no aporta mayor\ninformación. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -1528,7 +1528,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un hombre de 65 años, diabético, hipertenso, fumador y dislipidémico,\nconsulta por obstrucción nasal derecha, de 6 meses de evolución, asociado a\n\nrinorrea serosanguinolenta. Al examen físico no se aprecian mayores\nDr. Guevara\nalteraciones. El diagnóstico de sospecha es:\nPreparación EUNACOM",
+          "pregunta": "Un hombre de 65 años, diabético, hipertenso, fumador y dislipidémico,\nconsulta por obstrucción nasal derecha, de 6 meses de evolución, asociado a\n\nrinorrea serosanguinolenta. Al examen físico no se aprecian mayores\nalteraciones. El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",
@@ -1660,11 +1660,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Escleritis – Ojo rojo profundo, con hipopión y pérdida del reflejo de acomodación Dr. Guevara"
+              "text": "Escleritis – Ojo rojo profundo, con hipopión y pérdida del reflejo de acomodación"
             },
             {
               "id": "B",
-              "text": "Glaucoma agudo – Ojo rojo profundo, doloroso, con midriasis que no responde a Preparación EUNACOM la luz"
+              "text": "Glaucoma agudo – Ojo rojo profundo, doloroso, con midriasis que no responde a la luz"
             },
             {
               "id": "C",
@@ -1816,11 +1816,11 @@
         },
         {
           "numero": 17,
-          "pregunta": "El glaucoma crónico, se caracteriza por todo lo siguiente, EXCEPTO:\nDr. Guevara",
+          "pregunta": "El glaucoma crónico, se caracteriza por todo lo siguiente, EXCEPTO:",
           "opciones": [
             {
               "id": "A",
-              "text": "Disminución de la agudeza visual en etapas avanzadas Preparación EUNACOM"
+              "text": "Disminución de la agudeza visual en etapas avanzadas"
             },
             {
               "id": "B",
@@ -2080,11 +2080,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:\nDr. Guevara",
+          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar nasofibroscopía Preparación EUNACOM"
+              "text": "Solicitar nasofibroscopía"
             },
             {
               "id": "B",
@@ -2104,7 +2104,7 @@
             }
           ],
           "respuestaCorrecta": "A",
-          "explicacion": "La alternativa correcta es la A: **Solicitar nasofibroscopía Preparación EUNACOM**.\n\n¿Por qué? Tenemos un paciente adulto con hipoacusia de conducción unilateral y una curva timpanométrica tipo B (plana). Esto indica una alteración en el oído medio. La causa más común de hipoacusia de conducción con curva B es la **otitis media con efusión (OME)** o líquido en el oído medio. Si bien la OME es común en niños, en adultos, especialmente si es unilateral y persistente, **DEBEMOS descartar una causa obstructiva a nivel de la nasofaringe**, específicamente un tumor, como un carcinoma nasofaríngeo. La nasofibroscopía es el examen de elección para evaluar la nasofaringe y descartar patología tumoral. Es importante recordar que en la población adulta, la OME unilateral puede ser un signo de alarma y amerita una evaluación más exhaustiva. El retraso en el diagnóstico de un tumor nasofaríngeo puede tener consecuencias graves.\n\nNo existe una guía clínica específica del MINSAL que dicte *exactamente* este flujo de manejo. Sin embargo, la norma técnica para el manejo de patologías ORL en APS y la guía clínica de cáncer de cabeza y cuello enfatizan la importancia de la derivación oportuna al especialista frente a sospecha de patología tumoral y la necesidad de descartar causas orgánicas en hipoacusias de conducción unilaterales persistentes en adultos.",
+          "explicacion": "La alternativa correcta es la A: **Solicitar nasofibroscopía**.\n\n¿Por qué? Tenemos un paciente adulto con hipoacusia de conducción unilateral y una curva timpanométrica tipo B (plana). Esto indica una alteración en el oído medio. La causa más común de hipoacusia de conducción con curva B es la **otitis media con efusión (OME)** o líquido en el oído medio. Si bien la OME es común en niños, en adultos, especialmente si es unilateral y persistente, **DEBEMOS descartar una causa obstructiva a nivel de la nasofaringe**, específicamente un tumor, como un carcinoma nasofaríngeo. La nasofibroscopía es el examen de elección para evaluar la nasofaringe y descartar patología tumoral. Es importante recordar que en la población adulta, la OME unilateral puede ser un signo de alarma y amerita una evaluación más exhaustiva. El retraso en el diagnóstico de un tumor nasofaríngeo puede tener consecuencias graves.\n\nNo existe una guía clínica específica del MINSAL que dicte *exactamente* este flujo de manejo. Sin embargo, la norma técnica para el manejo de patologías ORL en APS y la guía clínica de cáncer de cabeza y cuello enfatizan la importancia de la derivación oportuna al especialista frente a sospecha de patología tumoral y la necesidad de descartar causas orgánicas en hipoacusias de conducción unilaterales persistentes en adultos.",
           "explicacionIncorrectas": "*   **B: Iniciar antibióticos:** Los antibióticos se utilizan en casos de otitis media aguda bacteriana, que se presenta con síntomas como dolor de oído intenso, fiebre y secreción purulenta. En este caso, el paciente tiene una sensación de oído tapado, pero no hay signos de infección aguda. Por lo tanto, los antibióticos no están indicados inicialmente.\n*   **C: Iniciar corticoides:** Los corticoides pueden considerarse en algunos casos de hipoacusia súbita o en casos de enfermedad autoinmune del oído interno, pero no son el tratamiento de primera línea para la otitis media con efusión en adultos. Además, su uso prolongado tiene riesgos y efectos secundarios.\n*   **D: Indicar uso de audífonos:** Los audífonos son una opción para rehabilitar la audición en pacientes con hipoacusia permanente. En este caso, es fundamental identificar la causa de la hipoacusia de conducción antes de indicar un audífono, ya que la causa podría ser tratable.\n*   **E: Instalar tubos de ventilación (colleras):** Los tubos de ventilación se utilizan en casos de otitis media con efusión recurrente o persistente que no responde a otros tratamientos, generalmente en niños. En este caso, antes de considerar la instalación de un tubo de ventilación, es fundamental descartar otras causas de la efusión en el oído medio, especialmente una obstrucción nasofaríngea en un adulto.",
           "codigoEunacom": "6.01.3.003 Manifestaciones cutáneas de enfermedades sistémicas (Aunque no es una patología dermatológica primaria, el abordaje diagnóstico de un posible carcinoma nasofaríngeo requiere considerar manifestaciones no solo ORL, incluyendo posibles manifestaciones cutáneas asociadas a enfermedades sistémicas o paraneoplásicas.)",
           "tags": "EUNACOM, Otorrinolaringología, Hipoacusia de Conducción, Otitis Media con Efusión, Nasofibroscopía, Carcinoma Nasofaríngeo, Curva Timpanométrica Tipo B, Adulto, Diagnóstico Diferencial, Tumores de Cabeza y Cuello, MINSAL.",
@@ -2208,11 +2208,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?\nDr. Guevara",
+          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?",
           "opciones": [
             {
               "id": "A",
-              "text": "Menisco medial Preparación EUNACOM"
+              "text": "Menisco medial"
             },
             {
               "id": "B",
@@ -2368,7 +2368,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\nDr. Guevara\noídos. Su sospecha inicial será:\nPreparación EUNACOM",
+          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\noídos. Su sospecha inicial será:",
           "opciones": [
             {
               "id": "A",
@@ -2504,11 +2504,11 @@
             },
             {
               "id": "B",
-              "text": "Una Resonacia Nuclear del tobillo. Dr. Guevara"
+              "text": "Una Resonacia Nuclear del tobillo."
             },
             {
               "id": "C",
-              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional. Preparación EUNACOM"
+              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional."
             },
             {
               "id": "D",
@@ -2520,7 +2520,7 @@
             }
           ],
           "respuestaCorrecta": "C",
-          "explicacion": "La alternativa correcta es la C: Radiografías dinámicas del tobillo previa anestesia local o regional. Preparación EUNACOM.\n\nUn esguince de tobillo por el mecanismo descrito (caída vertical con tobillo en varo y rotación interna) sugiere una lesión de los ligamentos laterales del tobillo, principalmente el ligamento talofibular anterior (LTFA) y el ligamento calcaneofibular (LCF).  La evaluación inicial generalmente incluye radiografías estándar para descartar fracturas. Sin embargo, en casos donde la inestabilidad es clínicamente sospechosa (dolor significativo, incapacidad para soportar peso, equimosis marcada) pero las radiografías son normales, las radiografías dinámicas son cruciales.  Estas radiografías se toman mientras se aplica estrés al tobillo (inversión forzada), lo que permite visualizar la subluxación del astrágalo y evaluar la integridad de los ligamentos laterales. La anestesia local o regional permite relajar la musculatura y disminuir el dolor, facilitando la correcta aplicación del estrés y, por lo tanto, la visualización de la inestabilidad. No hay una guía clínica MINSAL específica para esguinces de tobillo que detalle este procedimiento, pero la práctica es estándar en traumatología. El objetivo es descartar inestabilidad ligamentosa severa que requiera manejo quirúrgico.",
+          "explicacion": "La alternativa correcta es la C: Radiografías dinámicas del tobillo previa anestesia local o regional..\n\nUn esguince de tobillo por el mecanismo descrito (caída vertical con tobillo en varo y rotación interna) sugiere una lesión de los ligamentos laterales del tobillo, principalmente el ligamento talofibular anterior (LTFA) y el ligamento calcaneofibular (LCF).  La evaluación inicial generalmente incluye radiografías estándar para descartar fracturas. Sin embargo, en casos donde la inestabilidad es clínicamente sospechosa (dolor significativo, incapacidad para soportar peso, equimosis marcada) pero las radiografías son normales, las radiografías dinámicas son cruciales.  Estas radiografías se toman mientras se aplica estrés al tobillo (inversión forzada), lo que permite visualizar la subluxación del astrágalo y evaluar la integridad de los ligamentos laterales. La anestesia local o regional permite relajar la musculatura y disminuir el dolor, facilitando la correcta aplicación del estrés y, por lo tanto, la visualización de la inestabilidad. No hay una guía clínica MINSAL específica para esguinces de tobillo que detalle este procedimiento, pero la práctica es estándar en traumatología. El objetivo es descartar inestabilidad ligamentosa severa que requiera manejo quirúrgico.",
           "explicacionIncorrectas": "*   **A: Una Tomografía Axial de la pinza bimaleolar.** Si bien la tomografía puede ser útil para evaluar fracturas sutiles o lesiones óseas asociadas, no es la técnica de elección para evaluar la integridad ligamentosa. La TAC proporciona imágenes estáticas y no dinámicas, por lo que no permite evaluar la inestabilidad ligamentosa.\n\n*   **B: Una Resonancia Nuclear del tobillo.** La resonancia magnética (RM) es excelente para visualizar los ligamentos y tejidos blandos, y puede ser útil para confirmar la rotura de ligamentos y evaluar otras lesiones asociadas (lesiones condrales, tendinosas). Sin embargo, no es la primera línea de investigación para evaluar la inestabilidad aguda. La RM es más útil cuando hay sospecha de lesiones internas o si la inestabilidad persiste después del tratamiento conservador.\n\n*   **D: Repetir la radiografía estandar pasados 7 días.** Repetir la radiografía estándar en 7 días no aporta información adicional sobre la inestabilidad ligamentosa. Solo sirve para identificar fracturas ocultas que pudieran haberse hecho evidentes con el tiempo, pero no es el objetivo en este caso.\n\n*   **E: Una cintigrafía con TC 99.** La cintigrafía ósea es útil para detectar fracturas por estrés o lesiones inflamatorias, pero no es la técnica adecuada para evaluar la integridad ligamentosa en un esguince agudo.",
           "codigoEunacom": "None. (No hay código específico para esguinces de tobillo. Se usaría un código genérico para \"Traumatismos musculoesqueléticos\".)",
           "tags": "Esguince de tobillo, Radiografías dinámicas, Inestabilidad ligamentosa, Examen físico, EUNACOM, Traumatología, Ligamento talofibular anterior, Ligamento calcaneofibular",
@@ -2732,11 +2732,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Leucocoria Dr. Guevara"
+              "text": "Leucocoria"
             },
             {
               "id": "B",
-              "text": "Alteración del rojo pupilar Preparación EUNACOM"
+              "text": "Alteración del rojo pupilar"
             },
             {
               "id": "C",
@@ -2888,11 +2888,11 @@
         },
         {
           "numero": 10,
-          "pregunta": "El síntoma más frecuente de la otitis media con efusión es:\nDr. Guevara",
+          "pregunta": "El síntoma más frecuente de la otitis media con efusión es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Hipoacusia Preparación EUNACOM"
+              "text": "Hipoacusia"
             },
             {
               "id": "B",
@@ -3052,11 +3052,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar campimetría ocular Dr. Guevara"
+              "text": "Solicitar campimetría ocular"
             },
             {
               "id": "B",
-              "text": "Solicitar eco-doppler carotídeo Preparación EUNACOM"
+              "text": "Solicitar eco-doppler carotídeo"
             },
             {
               "id": "C",
@@ -3073,7 +3073,7 @@
           ],
           "respuestaCorrecta": "D",
           "explicacion": "En un paciente hipertenso que presenta una disminución súbita y marcada de la agudeza visual en un ojo, la primera acción y la más crucial es realizar un fondo de ojo (oftalmoscopia). La razón principal es descartar una oclusión arterial o venosa de la retina, una neuropatía óptica isquémica anterior (NOIA), o un desprendimiento de retina. Estas condiciones representan emergencias oftalmológicas que requieren un diagnóstico y tratamiento rápidos para prevenir la pérdida permanente de la visión. La hipertensión es un factor de riesgo importante para todas estas condiciones. El fondo de ojo permite visualizar directamente la retina, los vasos sanguíneos y el nervio óptico, lo que facilita la detección de anomalías que expliquen la pérdida visual súbita.  Aunque la hipertensión puede contribuir, la pérdida de visión aguda requiere descartar etiologías más severas y tiempo-dependientes.\n\nSi bien la hipertensión crónica puede eventualmente llevar a retinopatía hipertensiva, el inicio agudo de la pérdida visual sugiere un evento isquémico o hemorrágico agudo, o un desprendimiento, que necesita ser identificado *inmediatamente*.\n\nNo hay guías clínicas específicas del MINSAL que aborden directamente este escenario exacto, pero el manejo de la hipertensión y el tratamiento de las emergencias oftalmológicas están contemplados en las guías generales de salud cardiovascular y oftalmológicas, respectivamente. La derivación oportuna a un oftalmólogo es clave.",
-          "explicacionIncorrectas": "*   **A: Solicitar campimetría ocular Dr. Guevara:** La campimetría evalúa el campo visual, pero no es la primera línea de investigación en una pérdida visual aguda y súbita. Primero hay que descartar las causas estructurales o vasculares con el fondo de ojo. La campimetría podría ser útil después para refinar el diagnóstico si el fondo de ojo no es concluyente o para evaluar el daño funcional.\n\n*   **B: Solicitar eco-doppler carotídeo Preparación EUNACOM:** Si bien un eco-doppler carotídeo puede ser útil para evaluar la enfermedad carotídea como una posible causa de isquemia cerebral transitoria (AIT) con síntomas visuales, no es la primera acción ante una pérdida visual súbita y unilateral. El enfoque inicial debe dirigirse a evaluar directamente el ojo afectado, ya que la patología retiniana es más probable en este contexto.\n\n*   **C: Iniciar antihipertensivos endovenosos:** Bajar la presión arterial de forma brusca en un paciente hipertenso, especialmente si es crónico, puede ser perjudicial y disminuir aún más la perfusión retiniana, empeorando la isquemia si la hay. Además, no aborda la causa subyacente de la pérdida visual súbita. El control de la presión arterial es importante, pero no la prioridad inicial.\n\n*   **E: Iniciar heparina endovenosa:** La anticoagulación con heparina puede ser considerada en ciertos tipos de oclusión vascular retiniana, pero *solo después* de confirmar el diagnóstico con el fondo de ojo y evaluar los riesgos y beneficios. No se inicia de manera empírica sin diagnóstico.",
+          "explicacionIncorrectas": "*   **A: Solicitar campimetría ocular:** La campimetría evalúa el campo visual, pero no es la primera línea de investigación en una pérdida visual aguda y súbita. Primero hay que descartar las causas estructurales o vasculares con el fondo de ojo. La campimetría podría ser útil después para refinar el diagnóstico si el fondo de ojo no es concluyente o para evaluar el daño funcional.\n\n*   **B: Solicitar eco-doppler carotídeo:** Si bien un eco-doppler carotídeo puede ser útil para evaluar la enfermedad carotídea como una posible causa de isquemia cerebral transitoria (AIT) con síntomas visuales, no es la primera acción ante una pérdida visual súbita y unilateral. El enfoque inicial debe dirigirse a evaluar directamente el ojo afectado, ya que la patología retiniana es más probable en este contexto.\n\n*   **C: Iniciar antihipertensivos endovenosos:** Bajar la presión arterial de forma brusca en un paciente hipertenso, especialmente si es crónico, puede ser perjudicial y disminuir aún más la perfusión retiniana, empeorando la isquemia si la hay. Además, no aborda la causa subyacente de la pérdida visual súbita. El control de la presión arterial es importante, pero no la prioridad inicial.\n\n*   **E: Iniciar heparina endovenosa:** La anticoagulación con heparina puede ser considerada en ciertos tipos de oclusión vascular retiniana, pero *solo después* de confirmar el diagnóstico con el fondo de ojo y evaluar los riesgos y beneficios. No se inicia de manera empírica sin diagnóstico.",
           "codigoEunacom": "Ninguno. La pregunta se enfoca en el manejo inicial y no específicamente en una enfermedad dermatológica.",
           "tags": "Pérdida visual súbita, Hipertensión, Fondo de ojo, Oclusión retiniana, Neuropatía óptica isquémica, EUNACOM, Oftalmología",
           "videoRecomendado": "4.Perdida súbita de visión.mp4"
@@ -3220,11 +3220,11 @@
             },
             {
               "id": "C",
-              "text": "Rinne (+) a derecha, (-) a izquierda y Weber lateraliza a izquierda Dr. Guevara"
+              "text": "Rinne (+) a derecha, (-) a izquierda y Weber lateraliza a izquierda"
             },
             {
               "id": "D",
-              "text": "Rinne (-) a derecha, (+) a izquierda y Weber lateraliza a derecha Preparación EUNACOM"
+              "text": "Rinne (-) a derecha, (+) a izquierda y Weber lateraliza a derecha"
             },
             {
               "id": "E",
@@ -3376,7 +3376,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nDr. Guevara\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nPreparación EUNACOM\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
+          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -3536,7 +3536,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Usted recibe a un niño en la urgencia porque se habría metido una pequeña\nDr. Guevara\npelotita de plástico en el oído izquierdo. A la otoscopía se observa el cuerpo\nPreparación EUNACOM\nextraño de cerca de 6mm de diámetro en el conducto auditivo externo. La\nconducta más adecuada es:",
+          "pregunta": "Usted recibe a un niño en la urgencia porque se habría metido una pequeña\npelotita de plástico en el oído izquierdo. A la otoscopía se observa el cuerpo\nextraño de cerca de 6mm de diámetro en el conducto auditivo externo. La\nconducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -3676,7 +3676,7 @@
             },
             {
               "id": "C",
-              "text": "Retinopatía diabética – Agudeza visual mejora el mirar a través de un agujero Dr. Guevara estenopeico Preparación EUNACOM"
+              "text": "Retinopatía diabética – Agudeza visual mejora el mirar a través de un agujero estenopeico"
             },
             {
               "id": "D",
@@ -3808,11 +3808,11 @@
             },
             {
               "id": "D",
-              "text": "Compresión del tabique nasal Dr. Guevara"
+              "text": "Compresión del tabique nasal"
             },
             {
               "id": "E",
-              "text": "Drenaje quirúrgico de inmediato Preparación EUNACOM"
+              "text": "Drenaje quirúrgico de inmediato"
             }
           ],
           "respuestaCorrecta": "E",
@@ -4024,7 +4024,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "La asociación de ojo rojo profundo, efecto Tyndall y miosis es característico\nDr. Guevara\nde:\nPreparación EUNACOM",
+          "pregunta": "La asociación de ojo rojo profundo, efecto Tyndall y miosis es característico\nde:",
           "opciones": [
             {
               "id": "A",
@@ -4184,7 +4184,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un paciente de 50 años, constructor, consulta porque le cuesta oír lo que le\nDr. Guevara\nhablan. La otoscopía es normal, al igual que la impedanciometría. Sin embargo\nPreparación EUNACOM\nla audiometría muestra una hipoacusia sensorioneural con especial afectación\nde las frecuencias medias (relacionadas al habla). El diagnóstico más probable\nes:",
+          "pregunta": "Un paciente de 50 años, constructor, consulta porque le cuesta oír lo que le\nhablan. La otoscopía es normal, al igual que la impedanciometría. Sin embargo\nla audiometría muestra una hipoacusia sensorioneural con especial afectación\nde las frecuencias medias (relacionadas al habla). El diagnóstico más probable\nes:",
           "opciones": [
             {
               "id": "A",
@@ -4328,11 +4328,11 @@
             },
             {
               "id": "D",
-              "text": "Chalazión Dr. Guevara"
+              "text": "Chalazión"
             },
             {
               "id": "E",
-              "text": "Orzuelo Preparación EUNACOM"
+              "text": "Orzuelo"
             }
           ],
           "respuestaCorrecta": "B",
@@ -4480,11 +4480,11 @@
             },
             {
               "id": "B",
-              "text": "Exoftalmo Dr. Guevara"
+              "text": "Exoftalmo"
             },
             {
               "id": "C",
-              "text": "Queratitis punctata Preparación EUNACOM"
+              "text": "Queratitis punctata"
             },
             {
               "id": "D",
@@ -4672,7 +4672,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nDr. Guevara\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nPreparación EUNACOM\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
+          "pregunta": "Una paciente de 65 años ha notado algunas dificultades para ver. Al examen\nfísico se aprecia una agudeza visual normal, sin embargo ha perdido gran parte\nde la visión periférica, manteniendo la visión central. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -4816,11 +4816,11 @@
             },
             {
               "id": "D",
-              "text": "Hemianopsia homónima izquierda de alta congruencia Dr. Guevara"
+              "text": "Hemianopsia homónima izquierda de alta congruencia"
             },
             {
               "id": "E",
-              "text": "Hemianopsia homónima derecha de baja congruencia Preparación EUNACOM"
+              "text": "Hemianopsia homónima derecha de baja congruencia"
             }
           ],
           "respuestaCorrecta": "C",
@@ -4960,7 +4960,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Identifique la asociación CORRECTA entre la patología y el efecto de mirar a\nDr. Guevara\ntravés de un agujero estenopeico.\nPreparación EUNACOM",
+          "pregunta": "Identifique la asociación CORRECTA entre la patología y el efecto de mirar a\ntravés de un agujero estenopeico.",
           "opciones": [
             {
               "id": "A",
@@ -5088,7 +5088,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "¿Cuál es la conducta más adecuada frente a un paciente con una fractura\nDr. Guevara\nnasal reciente que presenta un hematoma del tabique?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál es la conducta más adecuada frente a un paciente con una fractura\nnasal reciente que presenta un hematoma del tabique?",
           "opciones": [
             {
               "id": "A",
@@ -5320,7 +5320,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 16 años inicia tratamiento con indometacina por estar\ncursando con una pericarditis aguda, evolucionando con aparición de lesiones\ncutáneas eritematosas, dolorosas, consistentes en placas y algunas vesículas,\n\nque comprometen el 20% de la superficie cutánea. También presenta aparición\nDr. Guevara\nde vesículas y úlceras en la mucosa oral y presenta hematuria en algunas\nPreparación EUNACOM\noportunidades. El signo de Nicolsky es negativo. El diagnóstico más probable es:",
+          "pregunta": "Un paciente de 16 años inicia tratamiento con indometacina por estar\ncursando con una pericarditis aguda, evolucionando con aparición de lesiones\ncutáneas eritematosas, dolorosas, consistentes en placas y algunas vesículas,\n\nque comprometen el 20% de la superficie cutánea. También presenta aparición\nde vesículas y úlceras en la mucosa oral y presenta hematuria en algunas\noportunidades. El signo de Nicolsky es negativo. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -5448,11 +5448,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "El patch test (test de parche) sirve para corroborar el diagnóstico de:\nDr. Guevara",
+          "pregunta": "El patch test (test de parche) sirve para corroborar el diagnóstico de:",
           "opciones": [
             {
               "id": "A",
-              "text": "Dermatitis de contacto alérgica Preparación EUNACOM"
+              "text": "Dermatitis de contacto alérgica"
             },
             {
               "id": "B",
@@ -5608,7 +5608,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un paciente de 10 años consulta por odinofagia, asociado a coriza y escasa\ntos seca. Al examen físico se observa faringe eritematosa, con amígdalas\n\naumentadas de tamaño. Se visualizan 3 pequeñas vesículas en el paladar\nDr. Guevara\nblando y se palpan varias adenopatías cervicales. El agente etiológico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Un paciente de 10 años consulta por odinofagia, asociado a coriza y escasa\ntos seca. Al examen físico se observa faringe eritematosa, con amígdalas\n\naumentadas de tamaño. Se visualizan 3 pequeñas vesículas en el paladar\nblando y se palpan varias adenopatías cervicales. El agente etiológico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -5748,11 +5748,11 @@
             },
             {
               "id": "C",
-              "text": "Glaucoma agudo Dr. Guevara"
+              "text": "Glaucoma agudo"
             },
             {
               "id": "D",
-              "text": "Glaucoma crónico Preparación EUNACOM"
+              "text": "Glaucoma crónico"
             },
             {
               "id": "E",
@@ -5952,7 +5952,7 @@
             },
             {
               "id": "D",
-              "text": "Indicar colirio antibiótico por 7 días Preparación EUNACOM"
+              "text": "Indicar colirio antibiótico por 7 días"
             },
             {
               "id": "E",
@@ -6072,11 +6072,11 @@
             },
             {
               "id": "B",
-              "text": "Vértigo postural paroxístico benigno Dr. Guevara"
+              "text": "Vértigo postural paroxístico benigno"
             },
             {
               "id": "C",
-              "text": "Neuronitis vestibular Preparación EUNACOM"
+              "text": "Neuronitis vestibular"
             },
             {
               "id": "D",
@@ -6204,11 +6204,11 @@
             },
             {
               "id": "C",
-              "text": "Sinusitis crónica Dr. Guevara"
+              "text": "Sinusitis crónica"
             },
             {
               "id": "D",
-              "text": "Poliposis nasal Preparación EUNACOM"
+              "text": "Poliposis nasal"
             },
             {
               "id": "E",
@@ -6352,7 +6352,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un paciente de 70 años presenta una lesión en la frente de 1 cm de diámetro,\nDr. Guevara\nde borde solevantado, brillante, con una ulceración central. El diagnóstico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Un paciente de 70 años presenta una lesión en la frente de 1 cm de diámetro,\nde borde solevantado, brillante, con una ulceración central. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -6552,11 +6552,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una paciente de 55 años presenta disfonía de 5 días de duración, asociada a\nmalestar general, tos y aparición de adenopatías submandibulares y cervicales\n\nanteriores. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Una paciente de 55 años presenta disfonía de 5 días de duración, asociada a\nmalestar general, tos y aparición de adenopatías submandibulares y cervicales\n\nanteriores. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Iniciar antibióticos y solicitar baciloscopías de expectoración Preparación EUNACOM"
+              "text": "Iniciar antibióticos y solicitar baciloscopías de expectoración"
             },
             {
               "id": "B",
@@ -6712,7 +6712,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un niño se mete un poroto en el oído izquierdo, evolucionando con dolor e\nDr. Guevara\nhipoacusia. En la otoscopía se observa el poroto en el tercio medio del conducto\nPreparación EUNACOM\nauditivo externo. La conducta más adecuada es:",
+          "pregunta": "Un niño se mete un poroto en el oído izquierdo, evolucionando con dolor e\nhipoacusia. En la otoscopía se observa el poroto en el tercio medio del conducto\nauditivo externo. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6872,7 +6872,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un adulto mayor ha perdido lentamente la agudeza visual de ambos ojos,\nDr. Guevara\ndesde hace dos años, siendo mayor en el ojo derecho. No ha presentado dolor ni\nPreparación EUNACOM\notros síntomas. La oculomotilidad es normal, al igual que los reflejos\nfotomotores y corneales, con normalidad del rojo pupilar. El diagnóstico más\nprobable es:",
+          "pregunta": "Un adulto mayor ha perdido lentamente la agudeza visual de ambos ojos,\ndesde hace dos años, siendo mayor en el ojo derecho. No ha presentado dolor ni\notros síntomas. La oculomotilidad es normal, al igual que los reflejos\nfotomotores y corneales, con normalidad del rojo pupilar. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -7000,7 +7000,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un paciente de 50 años, diabético, pierde súbitamente la visión del ojo\nDr. Guevara\nizquierdo, pudiendo sólo diferenciar la presencia de luz y sombra en una zona\nPreparación EUNACOM\nperiférica del campo visual de dicho ojo. No presenta dolor y la oculomotilidad,\nasí como la inspección ocular externa es normal. Se aprecia pérdida del rojo\npupilar izquierdo El diagnóstico de sospecha es:",
+          "pregunta": "Un paciente de 50 años, diabético, pierde súbitamente la visión del ojo\nizquierdo, pudiendo sólo diferenciar la presencia de luz y sombra en una zona\nperiférica del campo visual de dicho ojo. No presenta dolor y la oculomotilidad,\nasí como la inspección ocular externa es normal. Se aprecia pérdida del rojo\npupilar izquierdo El diagnóstico de sospecha es:",
           "opciones": [
             {
               "id": "A",

@@ -784,11 +784,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Un paciente de 70 años consulta por dolor muy intenso en la rodilla\nizquierda, asociada a aumento de volumen, calor local y eritema. Al examen\nfísico presenta derrame articular y signos inflamatorios en dicha articulación.\nSe realiza una radiografía de rodilla, que muestra una línea de calcificación a\nnivel del cartílago articular. La artrocentesis da salida a un líquido turbio, de\nfilancia disminuida, con cerca de 10.000 células, con 90% de\npolimorfonucleares. La microscopía en el microscopio de campo oscuro\nobserva múltiples cristales con brirrefringencia de elongación positiva. La\n\ntinción de Gram no muestra bacterias. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Un paciente de 70 años consulta por dolor muy intenso en la rodilla\nizquierda, asociada a aumento de volumen, calor local y eritema. Al examen\nfísico presenta derrame articular y signos inflamatorios en dicha articulación.\nSe realiza una radiografía de rodilla, que muestra una línea de calcificación a\nnivel del cartílago articular. La artrocentesis da salida a un líquido turbio, de\nfilancia disminuida, con cerca de 10.000 células, con 90% de\npolimorfonucleares. La microscopía en el microscopio de campo oscuro\nobserva múltiples cristales con brirrefringencia de elongación positiva. La\n\ntinción de Gram no muestra bacterias. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Enviar a domicilio con paracetamol oral y una dieta pobre en calcio Preparación EUNACOM"
+              "text": "Enviar a domicilio con paracetamol oral y una dieta pobre en calcio"
             },
             {
               "id": "B",
@@ -896,11 +896,11 @@
             },
             {
               "id": "D",
-              "text": "Metotrexato y ejercicios Dr. Guevara"
+              "text": "Metotrexato y ejercicios"
             },
             {
               "id": "E",
-              "text": "Ciclosfosfamida y corticoides Preparación EUNACOM"
+              "text": "Ciclosfosfamida y corticoides"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1020,11 +1020,11 @@
             },
             {
               "id": "C",
-              "text": "Fractura de cúpula radial – imposibilidad de pronosupinar el antebrazo Dr. Guevara"
+              "text": "Fractura de cúpula radial – imposibilidad de pronosupinar el antebrazo"
             },
             {
               "id": "D",
-              "text": "Luxación posterior de cadera – posición púdica Preparación EUNACOM"
+              "text": "Luxación posterior de cadera – posición púdica"
             },
             {
               "id": "E",
@@ -1168,7 +1168,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Una paciente de 58 años, de origen rural, tiene una historia de larga data de\nDr. Guevara\ndolores articulares, especialmente en las manos, que han ido limitando sus\nPreparación EUNACOM\nactividades de manera progresiva. Los síntomas son fluctuantes, con períodos\nde mayor actividad. Al examen se observa desviación de los dedos hacia\ncubital, con deformaciones en cuello de cisne y en dedos de sastre\n(Boutonniere). No se aprecian signos inflamatorios. El diagnóstico más\nprobable es:",
+          "pregunta": "Una paciente de 58 años, de origen rural, tiene una historia de larga data de\ndolores articulares, especialmente en las manos, que han ido limitando sus\nactividades de manera progresiva. Los síntomas son fluctuantes, con períodos\nde mayor actividad. Al examen se observa desviación de los dedos hacia\ncubital, con deformaciones en cuello de cisne y en dedos de sastre\n(Boutonniere). No se aprecian signos inflamatorios. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -1272,11 +1272,11 @@
             },
             {
               "id": "B",
-              "text": "Imposibilidad para extender la muñeca Dr. Guevara"
+              "text": "Imposibilidad para extender la muñeca"
             },
             {
               "id": "C",
-              "text": "Anestesia de los pulpejos del índice y dedo medio Preparación EUNACOM"
+              "text": "Anestesia de los pulpejos del índice y dedo medio"
             },
             {
               "id": "D",
@@ -1444,7 +1444,7 @@
             },
             {
               "id": "C",
-              "text": "Iniciar analgesia y antibióticos endovenosos y luego realizar cirugía de resección Dr. Guevara de la cabeza femoral (Cirugía de Girldestone)) Preparación EUNACOM"
+              "text": "Iniciar analgesia y antibióticos endovenosos y luego realizar cirugía de resección de la cabeza femoral (Cirugía de Girldestone))"
             },
             {
               "id": "D",
@@ -1592,7 +1592,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente sufre una caída en bicicleta, golpeándose el hombro derecho. Al\nexamen se aprecia hombro derecho en charretera, con imposibilidad de\n\nabducirlo, asociado a anestesia de la zona deltoídea. El diagnóstico más\nDr. Guevara\nprobable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente sufre una caída en bicicleta, golpeándose el hombro derecho. Al\nexamen se aprecia hombro derecho en charretera, con imposibilidad de\n\nabducirlo, asociado a anestesia de la zona deltoídea. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -1728,7 +1728,7 @@
             },
             {
               "id": "B",
-              "text": "Administrar amiodarona y realizar soporte circulatorio y respiratorio Preparación EUNACOM"
+              "text": "Administrar amiodarona y realizar soporte circulatorio y respiratorio"
             },
             {
               "id": "C",
@@ -1880,7 +1880,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Un hombre de 30 años consulta por dolor en la rodilla izquierda, de 5 días\nde evolución, que aparece al caminar y que se inició durante una expedición,\nen la que caminó largas distancias. Al examen físico presenta dolor a la\n\npalpación de la cara interna de la zona tibial proximal de la pierna izquierda.\nDr. Guevara\nEl diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un hombre de 30 años consulta por dolor en la rodilla izquierda, de 5 días\nde evolución, que aparece al caminar y que se inició durante una expedición,\nen la que caminó largas distancias. Al examen físico presenta dolor a la\n\npalpación de la cara interna de la zona tibial proximal de la pierna izquierda.\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2112,11 +2112,11 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:\nDr. Guevara",
+          "pregunta": "Un adulto consulta por sensación de oído izquierdo tapado. Se solicita\naudiometría que muestra una hipoacusia de conducción izquierda y una\nimpedanciometría, que muestra una curva B (plana). La conducta más\n\nadecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Solicitar nasofibroscopía Preparación EUNACOM"
+              "text": "Solicitar nasofibroscopía"
             },
             {
               "id": "B",
@@ -2240,11 +2240,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?\nDr. Guevara",
+          "pregunta": "Un hombre de 26 años sufre caída mientras esquiaba, torciéndose la rodilla\nderecha y evolucionando con importante dolor, especialmente al caminar. El\nexamen físico se aprecia pequeño derrame articular y dolor a la rotación\nexterna de la pierna, a la compresión de la rodilla y a la palpación de la\ninterlínea posteromedial. Las radiografías de rodilla descartan kesiones óseas.\n\n¿Qué estructura se daño con mayor probabilidad?",
           "opciones": [
             {
               "id": "A",
-              "text": "Menisco medial Preparación EUNACOM"
+              "text": "Menisco medial"
             },
             {
               "id": "B",
@@ -2400,7 +2400,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\nDr. Guevara\noídos. Su sospecha inicial será:\nPreparación EUNACOM",
+          "pregunta": "Mujer de 34 años, madre de 3 hijos, que acude a su consulta presentando\nuna hipoacusia derecha, con Rinne negativo derecho y positivo izquierdo y\n\nWeber con lateralización al lado derecho. La otoscopia es normal en ambos\noídos. Su sospecha inicial será:",
           "opciones": [
             {
               "id": "A",
@@ -2536,11 +2536,11 @@
             },
             {
               "id": "B",
-              "text": "Una Resonacia Nuclear del tobillo. Dr. Guevara"
+              "text": "Una Resonacia Nuclear del tobillo."
             },
             {
               "id": "C",
-              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional. Preparación EUNACOM"
+              "text": "Radiografías dinámicas del tobillo previa anestesia local o regional."
             },
             {
               "id": "D",
@@ -2552,7 +2552,7 @@
             }
           ],
           "respuestaCorrecta": "C",
-          "explicacion": "La alternativa correcta es la C (Radiografías dinámicas del tobillo previa anestesia local o regional. Preparación EUNACOM) porque, en un esguince de tobillo, especialmente con el mecanismo de lesión descrito (caída vertical con tobillo en varo y rotación interna), es crucial descartar inestabilidad ligamentaria. Las radiografías estáticas pueden ser normales incluso con daño ligamentario significativo. Las radiografías dinámicas (también llamadas radiografías con estrés) permiten evaluar la integridad de los ligamentos al forzar el tobillo en la dirección en la que se lesionó. La anestesia local o regional es necesaria para relajar los músculos y permitir una evaluación adecuada de la inestabilidad, ya que el dolor puede limitar la capacidad del examinador para aplicar el estrés necesario. Si se observa un bostezo excesivo de la articulación tibiotalar al realizar el estrés, esto sugiere una ruptura ligamentaria significativa. En Chile, las guías clínicas del MINSAL para el manejo de lesiones musculoesqueléticas enfatizan la importancia de una evaluación clínica y radiológica exhaustiva para determinar la gravedad de un esguince de tobillo, especialmente en casos con sospecha de inestabilidad. Si bien no existe una guía específica sobre radiografías dinámicas, se sobreentiende la necesidad de evaluar inestabilidad.",
+          "explicacion": "La alternativa correcta es la C (Radiografías dinámicas del tobillo previa anestesia local o regional.) porque, en un esguince de tobillo, especialmente con el mecanismo de lesión descrito (caída vertical con tobillo en varo y rotación interna), es crucial descartar inestabilidad ligamentaria. Las radiografías estáticas pueden ser normales incluso con daño ligamentario significativo. Las radiografías dinámicas (también llamadas radiografías con estrés) permiten evaluar la integridad de los ligamentos al forzar el tobillo en la dirección en la que se lesionó. La anestesia local o regional es necesaria para relajar los músculos y permitir una evaluación adecuada de la inestabilidad, ya que el dolor puede limitar la capacidad del examinador para aplicar el estrés necesario. Si se observa un bostezo excesivo de la articulación tibiotalar al realizar el estrés, esto sugiere una ruptura ligamentaria significativa. En Chile, las guías clínicas del MINSAL para el manejo de lesiones musculoesqueléticas enfatizan la importancia de una evaluación clínica y radiológica exhaustiva para determinar la gravedad de un esguince de tobillo, especialmente en casos con sospecha de inestabilidad. Si bien no existe una guía específica sobre radiografías dinámicas, se sobreentiende la necesidad de evaluar inestabilidad.",
           "explicacionIncorrectas": "*   **A: Una Tomografía Axial de la pinza bimaleolar.** La tomografía axial computarizada (TAC) es útil para evaluar fracturas óseas, pero no es la mejor opción para evaluar la integridad de los ligamentos. En un esguince de tobillo, el principal problema es la lesión de los ligamentos laterales (principalmente el ligamento talofibular anterior, el calcaneofibular y el talofibular posterior), que no se visualizan bien en la TAC.\n*   **B: Una Resonancia Nuclear del tobillo.** La resonancia magnética (RM) es excelente para visualizar los ligamentos y otras estructuras de tejidos blandos. Sin embargo, su costo y disponibilidad son mayores que las radiografías, y no es el primer examen a solicitar para evaluar la inestabilidad ligamentaria. La RM se reserva para casos en los que la evaluación clínica y las radiografías son insuficientes para determinar la gravedad de la lesión, o si se sospechan lesiones intraarticulares adicionales (como lesiones del cartílago).\n*   **D: Repetir la radiografía estándar pasados 7 días.** Repetir una radiografía estática pasados 7 días no aporta información adicional sobre la estabilidad ligamentaria. Si la radiografía inicial fue normal, repetir el estudio no cambiará el manejo.\n*   **E: Una cintigrafía con TC 99.** La cintigrafía ósea es útil para detectar fracturas por estrés, tumores óseos o infecciones, pero no es la prueba adecuada para evaluar la inestabilidad ligamentaria en un esguince agudo de tobillo.",
           "codigoEunacom": "4.02.2.013 Luxofractura del tobillo",
           "tags": "Esguince de tobillo, Radiografías dinámicas, Inestabilidad ligamentaria, Tobillo, Traumatología, EUNACOM",
@@ -2772,7 +2772,7 @@
             },
             {
               "id": "C",
-              "text": "Cefalea intensa, que aumenta al sentarse o al pararse, que inicia a 24 horas Dr. Guevara después de una osetosíntesis de tibia, realizada bajo anestesia raquídea Preparación EUNACOM"
+              "text": "Cefalea intensa, que aumenta al sentarse o al pararse, que inicia a 24 horas después de una osetosíntesis de tibia, realizada bajo anestesia raquídea"
             },
             {
               "id": "D",
@@ -2904,16 +2904,16 @@
             },
             {
               "id": "D",
-              "text": "Intubación vigil e intubación con guía Dr. Guevara"
+              "text": "Intubación vigil e intubación con guía"
             },
             {
               "id": "E",
-              "text": "Intubación con guía y máscara laríngea Preparación EUNACOM"
+              "text": "Intubación con guía y máscara laríngea"
             }
           ],
           "respuestaCorrecta": "C",
           "explicacion": "La alternativa correcta es la **C: Intubación en secuencia rápida (ISR) e intubación vigil**. Analicemos por qué:\n\n*   **Obstrucción intestinal y Riesgo de Aspiración:** El paciente con obstrucción intestinal tiene un alto riesgo de regurgitación y aspiración del contenido gástrico. Esto se debe al aumento de la presión intragástrica y la disminución del vaciamiento gástrico. La aspiración puede provocar neumonitis química grave e incluso síndrome de dificultad respiratoria aguda (SDRA).\n\n*   **Intubación en Secuencia Rápida (ISR):** La ISR es la técnica de elección para la intubación en pacientes con alto riesgo de aspiración. Implica la preoxigenación, la administración de un agente inductor de acción rápida (como el propofol o etomidato) y un relajante muscular (succinilcolina o rocuronio) para lograr una parálisis neuromuscular completa y facilitar la intubación. El objetivo es minimizar el tiempo durante el cual el paciente está inconsciente y desprotegido de la aspiración. Se debe aplicar presión cricoídea (maniobra de Sellick) durante la intubación para ocluir el esófago y reducir el riesgo de regurgitación (aunque su eficacia es controversial, sigue siendo una práctica común en muchos centros).\n\n*   **Intubación Vigil:**  Si bien la ISR es fundamental, en ciertos casos, una intubación vigil puede ser considerada antes de la ISR.  Esto se aplica especialmente si hay sospecha de una vía aérea difícil. La intubación vigil implica la administración de sedación consciente y anestesia tópica de la vía aérea, permitiendo la evaluación de la vía aérea con el paciente despierto y colaborando. Si la vía aérea se visualiza fácilmente durante la intubación vigil, se puede proceder a la intubación. En caso contrario, la ISR se prepara como plan B.  La intubación vigil permite optimizar el primer intento de intubación en un paciente que puede ser difícil de intubar.\n\n*Guías Clínicas Chilenas:* Si bien no hay una guía específica del MINSAL sobre manejo de vía aérea en obstrucción intestinal, las guías sobre manejo de urgencias y anestesia enfatizan la importancia de la ISR en pacientes con riesgo de aspiración y la evaluación de la vía aérea difícil. Las guías de la Sociedad de Anestesiología de Chile (SACH) también dan recomendaciones en esta línea.",
-          "explicacionIncorrectas": "*   **A: Máscara laríngea e intubación retrógrada:** La máscara laríngea (ML) es una alternativa de rescate para la vía aérea, *no* la primera opción en un paciente con alto riesgo de aspiración. La ML no protege contra la aspiración como un tubo endotraqueal con un manguito inflado. La intubación retrógrada es una técnica compleja utilizada en casos de vía aérea difícil prevista, y generalmente no es necesaria en el manejo inicial de un paciente con obstrucción intestinal, a menos que exista una dificultad anatómica evidente.\n\n*   **B: Intubación retrógrada e intubación en secuencia rápida:** Como se mencionó anteriormente, la intubación retrógrada no es la primera línea en este escenario. Priorizar la ISR es crucial para minimizar el riesgo de aspiración.\n\n*   **D: Intubación vigil e intubación con guía Dr. Guevara:**  La intubación vigil por sí sola, sin la consideración de la ISR para proteger la vía aérea de la aspiración, es incorrecta. Si bien la intubación vigil puede ser parte de la estrategia (para evaluar la vía aérea dificil), debe estar combinada con la preparación para una ISR. El uso de un \"guía Dr. Guevara\" (probablemente se refiere a una guía tipo Bougie o similar) es una herramienta útil en la intubación, pero no una alternativa en sí misma para el manejo de la vía aérea en esta situación.\n\n*   **E: Intubación con guía y máscara laríngea:** Similar a la opción A, la ML no es la primera línea debido al riesgo de aspiración. El uso de una guía (Bougie) puede facilitar la intubación, pero no aborda el riesgo principal de aspiración.",
+          "explicacionIncorrectas": "*   **A: Máscara laríngea e intubación retrógrada:** La máscara laríngea (ML) es una alternativa de rescate para la vía aérea, *no* la primera opción en un paciente con alto riesgo de aspiración. La ML no protege contra la aspiración como un tubo endotraqueal con un manguito inflado. La intubación retrógrada es una técnica compleja utilizada en casos de vía aérea difícil prevista, y generalmente no es necesaria en el manejo inicial de un paciente con obstrucción intestinal, a menos que exista una dificultad anatómica evidente.\n\n*   **B: Intubación retrógrada e intubación en secuencia rápida:** Como se mencionó anteriormente, la intubación retrógrada no es la primera línea en este escenario. Priorizar la ISR es crucial para minimizar el riesgo de aspiración.\n\n*   **D: Intubación vigil e intubación con guía:**  La intubación vigil por sí sola, sin la consideración de la ISR para proteger la vía aérea de la aspiración, es incorrecta. Si bien la intubación vigil puede ser parte de la estrategia (para evaluar la vía aérea dificil), debe estar combinada con la preparación para una ISR. El uso de un \"guía\" (probablemente se refiere a una guía tipo Bougie o similar) es una herramienta útil en la intubación, pero no una alternativa en sí misma para el manejo de la vía aérea en esta situación.\n\n*   **E: Intubación con guía y máscara laríngea:** Similar a la opción A, la ML no es la primera línea debido al riesgo de aspiración. El uso de una guía (Bougie) puede facilitar la intubación, pero no aborda el riesgo principal de aspiración.",
           "codigoEunacom": "No hay un código EUNACOM directamente relacionado con el manejo específico de la vía aérea en obstrucción intestinal. Sin embargo, podemos considerar el siguiente:\n\n*   **4.02.2.014 Politraumatizado:** Si bien no todos los pacientes con obstrucción intestinal son politraumatizados, el contexto de urgencia y la necesidad de una intervención rápida pueden justificar la inclusión de este código.",
           "tags": "Obstrucción intestinal, intubación en secuencia rápida, intubación vigil, riesgo de aspiración, vía aérea difícil, urgencia quirúrgica, anestesia, EUNACOM, manejo de la vía aérea.",
           "videoRecomendado": "None. No hay un video directamente relacionado al manejo de vía aérea en pacientes con obstrucción intestinal."
@@ -3048,7 +3048,7 @@
         },
         {
           "numero": 14,
-          "pregunta": "Un paciente presenta dolor lumbar de inicio súbito, que inició al movilizar\nDr. Guevara\nunos muebles y que se irradia por la cara anterior del muslo y la cara medial de\nPreparación EUNACOM\nla pierna, hasta el maléolo medial. Al examen físico destaca disminución del\nreflejo rotuliano. La raíz comprometida es:",
+          "pregunta": "Un paciente presenta dolor lumbar de inicio súbito, que inició al movilizar\nunos muebles y que se irradia por la cara anterior del muslo y la cara medial de\nla pierna, hasta el maléolo medial. Al examen físico destaca disminución del\nreflejo rotuliano. La raíz comprometida es:",
           "opciones": [
             {
               "id": "A",
@@ -3188,11 +3188,11 @@
             },
             {
               "id": "C",
-              "text": "Rotura del ligamento cruzado posterior Dr. Guevara"
+              "text": "Rotura del ligamento cruzado posterior"
             },
             {
               "id": "D",
-              "text": "Rotura del ligamento colateral medial Preparación EUNACOM"
+              "text": "Rotura del ligamento colateral medial"
             },
             {
               "id": "E",
@@ -3408,7 +3408,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente sufre un accidente de tránsito con luxofractura de la rodilla\nDr. Guevara\nizquierda. Evoluciona a los 5 minutos con dolor importante en la pierna y pie\nPreparación EUNACOM\nizquierdos. Al examen físico se constata palidez, llene capilar muy enlentecido\ny ausencia de pulso pedio y tibial posterior. El diagnóstico más probable es:",
+          "pregunta": "Un paciente sufre un accidente de tránsito con luxofractura de la rodilla\nizquierda. Evoluciona a los 5 minutos con dolor importante en la pierna y pie\nizquierdos. Al examen físico se constata palidez, llene capilar muy enlentecido\ny ausencia de pulso pedio y tibial posterior. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3568,7 +3568,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un paciente de 40 años, sin antecedentes de importancia, consulta por dolor\nDr. Guevara\nmuy intenso en la zona dorsal alta, de 4 horas de evolución, que inició de\nPreparación EUNACOM\nmanera súbita luego de levantar una caja. Al examen físico presenta signos\nvitales normales y se constata dolor importante a la flexión y rotación lateral a\nderecha de la columna dorsal, sin otras alteraciones. La conducta más\nadecuada es:",
+          "pregunta": "Un paciente de 40 años, sin antecedentes de importancia, consulta por dolor\nmuy intenso en la zona dorsal alta, de 4 horas de evolución, que inició de\nmanera súbita luego de levantar una caja. Al examen físico presenta signos\nvitales normales y se constata dolor importante a la flexión y rotación lateral a\nderecha de la columna dorsal, sin otras alteraciones. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -3708,11 +3708,11 @@
             },
             {
               "id": "C",
-              "text": "Desarrollan pseudoartrosis o no unión Dr. Guevara"
+              "text": "Desarrollan pseudoartrosis o no unión"
             },
             {
               "id": "D",
-              "text": "Desarrollan hemartrosis y dolor persistente Preparación EUNACOM"
+              "text": "Desarrollan hemartrosis y dolor persistente"
             },
             {
               "id": "E",
@@ -3856,7 +3856,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "En paciente presenta inversión forzada del pie izquierdo mientras bajaba\nDr. Guevara\nuna escalera, evolucionando con intenso dolor. Al examen físico se aprecia\nPreparación EUNACOM\nequimosis y aumento de volumen en la zona inframaleolar externa. Se solicitan\nradiografías de tobillo y pierna, que no visualizan lesiones óseas. La conducta\nmás adecuada es:",
+          "pregunta": "En paciente presenta inversión forzada del pie izquierdo mientras bajaba\nuna escalera, evolucionando con intenso dolor. Al examen físico se aprecia\nequimosis y aumento de volumen en la zona inframaleolar externa. Se solicitan\nradiografías de tobillo y pierna, que no visualizan lesiones óseas. La conducta\nmás adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4056,7 +4056,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente de 45 años presenta un fractura de pierna, la que es reducida y\nDr. Guevara\nfijada quirúrgicamente, con instalación de un clavo endomedular. Al día\nPreparación EUNACOM\nsiguiente evoluciona con dolor y edema de la extremidad. Al examen físico\npresenta dolor marcado a la palpación muscular de la pantorrilla, con\nnormalidad de los pulsos, sensibilidad y movilidad distal. El diagnóstico más\nprobable es:",
+          "pregunta": "Un paciente de 45 años presenta un fractura de pierna, la que es reducida y\nfijada quirúrgicamente, con instalación de un clavo endomedular. Al día\nsiguiente evoluciona con dolor y edema de la extremidad. Al examen físico\npresenta dolor marcado a la palpación muscular de la pantorrilla, con\nnormalidad de los pulsos, sensibilidad y movilidad distal. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -4184,11 +4184,11 @@
         },
         {
           "numero": 9,
-          "pregunta": "Un paciente de 50 años consulta por dolor en la pierna izquierda. Al examen\nse aprecia aumento de volumen en relación a la tibia. Se solicita radiografía de\npierna que visualiza un tumor óseo de 5 cm de diámetro, con compromiso de la\narquitectura, reacción perióstica en tela de cebolla y disrupción de la cortical.\n\nEl diagnóstico más probable es:\nDr. Guevara",
+          "pregunta": "Un paciente de 50 años consulta por dolor en la pierna izquierda. Al examen\nse aprecia aumento de volumen en relación a la tibia. Se solicita radiografía de\npierna que visualiza un tumor óseo de 5 cm de diámetro, con compromiso de la\narquitectura, reacción perióstica en tela de cebolla y disrupción de la cortical.\n\nEl diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Osteosarcoma Preparación EUNACOM"
+              "text": "Osteosarcoma"
             },
             {
               "id": "B",
@@ -4312,11 +4312,11 @@
         },
         {
           "numero": 13,
-          "pregunta": "Un adulto mayor de 80 años consulta por dolor lumbar de larga data,\nirradiado a ambas piernas que se presenta al caminar y que lo obliga a\ndetenerse luego de andar una cuadra. Refiere que cede al sentarse y que es\nmenos intenso cuando camina inclinado hacia delante. El diagnóstico más\n\nprobable es:\nDr. Guevara",
+          "pregunta": "Un adulto mayor de 80 años consulta por dolor lumbar de larga data,\nirradiado a ambas piernas que se presenta al caminar y que lo obliga a\ndetenerse luego de andar una cuadra. Refiere que cede al sentarse y que es\nmenos intenso cuando camina inclinado hacia delante. El diagnóstico más\n\nprobable es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Espodilosis lumbar Preparación EUNACOM"
+              "text": "Espodilosis lumbar"
             },
             {
               "id": "B",
@@ -4456,11 +4456,11 @@
             },
             {
               "id": "D",
-              "text": "Lesión del ligamento colateral lateral Dr. Guevara"
+              "text": "Lesión del ligamento colateral lateral"
             },
             {
               "id": "E",
-              "text": "Lesión del tendón de la pata de ganso Preparación EUNACOM"
+              "text": "Lesión del tendón de la pata de ganso"
             }
           ],
           "respuestaCorrecta": "D",
@@ -4704,7 +4704,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Un paciente sufre un accidente de tránsito con luxofractura de la rodilla\nDr. Guevara\nizquierda. Evoluciona a los 5 minutos con dolor importante en la pierna y pie\nPreparación EUNACOM\nizquierdos. Al examen físico se constata palidez, llene capilar muy enlentecido\ny ausencia de pulso pedio y tibial posterior. El diagnóstico más probable es:",
+          "pregunta": "Un paciente sufre un accidente de tránsito con luxofractura de la rodilla\nizquierda. Evoluciona a los 5 minutos con dolor importante en la pierna y pie\nizquierdos. Al examen físico se constata palidez, llene capilar muy enlentecido\ny ausencia de pulso pedio y tibial posterior. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4864,7 +4864,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Un paciente de 40 años, sin antecedentes de importancia, consulta por dolor\nDr. Guevara\nmuy intenso en la zona dorsal alta, de 4 horas de evolución, que inició de\nPreparación EUNACOM\nmanera súbita luego de levantar una caja. Al examen físico presenta signos\nvitales normales y se constata dolor importante a la flexión y rotación lateral a\nderecha de la columna dorsal, sin otras alteraciones. La conducta más\nadecuada es:",
+          "pregunta": "Un paciente de 40 años, sin antecedentes de importancia, consulta por dolor\nmuy intenso en la zona dorsal alta, de 4 horas de evolución, que inició de\nmanera súbita luego de levantar una caja. Al examen físico presenta signos\nvitales normales y se constata dolor importante a la flexión y rotación lateral a\nderecha de la columna dorsal, sin otras alteraciones. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5004,11 +5004,11 @@
             },
             {
               "id": "C",
-              "text": "Desarrollan pseudoartrosis o no unión Dr. Guevara"
+              "text": "Desarrollan pseudoartrosis o no unión"
             },
             {
               "id": "D",
-              "text": "Desarrollan hemartrosis y dolor persistente Preparación EUNACOM"
+              "text": "Desarrollan hemartrosis y dolor persistente"
             },
             {
               "id": "E",
@@ -5152,7 +5152,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "En paciente presenta inversión forzada del pie izquierdo mientras bajaba\nDr. Guevara\nuna escalera, evolucionando con intenso dolor. Al examen físico se aprecia\nPreparación EUNACOM\nequimosis y aumento de volumen en la zona inframaleolar externa. Se solicitan\nradiografías de tobillo y pierna, que no visualizan lesiones óseas. La conducta\nmás adecuada es:",
+          "pregunta": "En paciente presenta inversión forzada del pie izquierdo mientras bajaba\nuna escalera, evolucionando con intenso dolor. Al examen físico se aprecia\nequimosis y aumento de volumen en la zona inframaleolar externa. Se solicitan\nradiografías de tobillo y pierna, que no visualizan lesiones óseas. La conducta\nmás adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5320,11 +5320,11 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 80 años sufre una caída a nivel, golpeándose contra el suelo y\npresentando mucho dolor e imposibilidad de caminar. Al examen se aprecia\nrotación externa y abducción del muslo izquierdo. El diagnóstico más probable\n\nes:\nDr. Guevara",
+          "pregunta": "Una mujer de 80 años sufre una caída a nivel, golpeándose contra el suelo y\npresentando mucho dolor e imposibilidad de caminar. Al examen se aprecia\nrotación externa y abducción del muslo izquierdo. El diagnóstico más probable\n\nes:",
           "opciones": [
             {
               "id": "A",
-              "text": "Fractura de pelvis Preparación EUNACOM"
+              "text": "Fractura de pelvis"
             },
             {
               "id": "B",
@@ -5441,7 +5441,7 @@
           ],
           "respuestaCorrecta": "D",
           "explicacion": "La alternativa correcta es la D.  Esta alternativa aborda de manera integral el manejo inicial de una fractura expuesta en un contexto de recursos limitados.\n\n*   **Aseo con abundante suero fisiológico:**  Es crucial para remover la mayor cantidad posible de contaminantes (tierra, vegetales) de la herida, disminuyendo el riesgo de infección. No se debe usar povidona yodada en fracturas expuestas.\n\n*   **Vacunación antitetánica:**  Dado el contexto de la herida (fundo agrícola, restos de tierra) el riesgo de tétanos es alto y la vacunación (o refuerzo, según el historial de la paciente) es mandatoria. Según la norma técnica del programa nacional de inmunizaciones del MINSAL (vigente),  se debe administrar vacuna dT o dTpa según el esquema del paciente.\n\n*   **Antibióticos:** La fractura expuesta requiere antibioticoterapia empírica de amplio espectro lo antes posible. La combinación de cloxacilina (para cubrir *Staphylococcus aureus* y otros gram positivos), gentamicina (para gram negativos) y metronidazol (para anaerobios, presentes en heridas contaminadas con tierra) es una opción adecuada en un contexto donde no se dispone de cultivos ni antibiograma. Si se contara con información epidemiológica local sobre resistencia bacteriana, la elección de antibióticos podría ajustarse.  Es fundamental recordar que esta terapia es empírica y debe ser revisada y ajustada en un centro de mayor complejidad.\n\n*   **Analgésicos:** El manejo del dolor es fundamental para el bienestar de la paciente.\n\n*   **Inmovilización transitoria:**  Estabilizar la fractura reduce el dolor, disminuye el riesgo de daño a los tejidos blandos y facilita el traslado. Una férula o un vendaje compresivo son suficientes para la inmovilización inicial.\n\n*   **Derivación:** Dada la complejidad de la fractura expuesta (alto riesgo de infección, necesidad de fijación quirúrgica), la paciente debe ser derivada a un centro de mayor complejidad con capacidad para realizar cirugía ortopédica y manejar potenciales complicaciones.",
-          "explicacionIncorrectas": "*   **A: Derivar de inmediato a un centro de mayor complejidad:** Si bien la derivación es necesaria, diferir el aseo y la antibioterapia iniciales aumenta el riesgo de infección y complica el manejo posterior. En el contexto rural, es improbable que se pueda derivar de forma instantánea.  Hay que hacer algo por la paciente.\n\n*   **B: Realizar aseo con suero fisiológico, aplicar vacunación antitetánica y derivar posteriormente a un centro de mayor complejidad:**  Esta alternativa omite la antibioticoterapia, que es un pilar fundamental del manejo inicial de una fractura expuesta.\n\n*   **C: Realizar aseo con abundante suero fisiológico, aplicar vacunación antitetánica, administrar cloxacilina endovenosa y analgésicos, inmovilizar de manera transitoria y derivar posteriormente a un centro de mayor complejidad:**  Esta alternativa deja fuera la cobertura para gram negativos y anaerobios, que es crítica en una fractura expuesta contaminada con tierra.\n\n*   **E: Realizar aseo con abundante suero fisiológico, aplicar vacunación antitetánica, administrar ceftriaxona + metronidazol por vía endovenosa y analgésicos, suturar la herida, inmovilizar con una valva de yeso cerrada y derivar posteriormente a un Dr. Guevara centro de mayor complejidad:**  Esta alternativa tiene varios errores graves.  Primero, suturar una fractura expuesta está contraindicado, ya que aumenta el riesgo de infección.  Segundo, la valva de yeso cerrada puede impedir la correcta observación de la herida y aumentar el riesgo de síndrome compartimental.  Tercero, si bien la ceftriaxona tiene un buen espectro para gram negativos, la cloxacilina es una mejor opción para cubrir *S. aureus* que podría ser resistente a la ceftriaxona.",
+          "explicacionIncorrectas": "*   **A: Derivar de inmediato a un centro de mayor complejidad:** Si bien la derivación es necesaria, diferir el aseo y la antibioterapia iniciales aumenta el riesgo de infección y complica el manejo posterior. En el contexto rural, es improbable que se pueda derivar de forma instantánea.  Hay que hacer algo por la paciente.\n\n*   **B: Realizar aseo con suero fisiológico, aplicar vacunación antitetánica y derivar posteriormente a un centro de mayor complejidad:**  Esta alternativa omite la antibioticoterapia, que es un pilar fundamental del manejo inicial de una fractura expuesta.\n\n*   **C: Realizar aseo con abundante suero fisiológico, aplicar vacunación antitetánica, administrar cloxacilina endovenosa y analgésicos, inmovilizar de manera transitoria y derivar posteriormente a un centro de mayor complejidad:**  Esta alternativa deja fuera la cobertura para gram negativos y anaerobios, que es crítica en una fractura expuesta contaminada con tierra.\n\n*   **E: Realizar aseo con abundante suero fisiológico, aplicar vacunación antitetánica, administrar ceftriaxona + metronidazol por vía endovenosa y analgésicos, suturar la herida, inmovilizar con una valva de yeso cerrada y derivar posteriormente a un centro de mayor complejidad:**  Esta alternativa tiene varios errores graves.  Primero, suturar una fractura expuesta está contraindicado, ya que aumenta el riesgo de infección.  Segundo, la valva de yeso cerrada puede impedir la correcta observación de la herida y aumentar el riesgo de síndrome compartimental.  Tercero, si bien la ceftriaxona tiene un buen espectro para gram negativos, la cloxacilina es una mejor opción para cubrir *S. aureus* que podría ser resistente a la ceftriaxona.",
           "codigoEunacom": "4.02.2.008 Fracturas expuestas",
           "tags": "Fractura expuesta, antibióticos, tétanos, aseo quirúrgico, derivación, cloxacilina, gentamicina, metronidazol, EUNACOM, traumatología, urgencia",
           "videoRecomendado": "2.Fracturas expuestas.mp4\n15.Infección de piel y partes blandas.mp4"
@@ -5576,7 +5576,7 @@
         },
         {
           "numero": 12,
-          "pregunta": "Un niño de 8 años sufre una fractura de antebrazo, la que se maneja\nortopédicamente. Inicialmente presenta intenso dolor, por lo que se maneja\n\ncon analgésicos en altas dosis. Algunas semanas después presenta dificultad\nDr. Guevara\npara mover los dedos con la “mano en garra”. El diagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un niño de 8 años sufre una fractura de antebrazo, la que se maneja\nortopédicamente. Inicialmente presenta intenso dolor, por lo que se maneja\n\ncon analgésicos en altas dosis. Algunas semanas después presenta dificultad\npara mover los dedos con la “mano en garra”. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -5736,7 +5736,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Cuál es la conducta ante un paciente con artrosis de cadera izquierda, que\nDr. Guevara\nno responde al tratamiento con ejercicios y paracetamol 1 gramo cada 8 horas?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál es la conducta ante un paciente con artrosis de cadera izquierda, que\nno responde al tratamiento con ejercicios y paracetamol 1 gramo cada 8 horas?",
           "opciones": [
             {
               "id": "A",
@@ -6624,11 +6624,11 @@
             },
             {
               "id": "B",
-              "text": "Fractura de diáfisis femoral Dr. Guevara"
+              "text": "Fractura de diáfisis femoral"
             },
             {
               "id": "C",
-              "text": "Fractura de cadera Preparación EUNACOM"
+              "text": "Fractura de cadera"
             },
             {
               "id": "D",
@@ -6744,7 +6744,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Un paciente de 40 años, consulta por dolor en el codo derecho, que aparece\nDr. Guevara\ncon algunos movimientos. Al examinarlo se constata dolor a la palpación de la\nPreparación EUNACOM\ninserción de los músculos extensores de la muñeca. El diagnóstico más\nprobable es:",
+          "pregunta": "Un paciente de 40 años, consulta por dolor en el codo derecho, que aparece\ncon algunos movimientos. Al examinarlo se constata dolor a la palpación de la\ninserción de los músculos extensores de la muñeca. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -6876,11 +6876,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Distrofia simpático refleja Dr. Guevara"
+              "text": "Distrofia simpático refleja"
             },
             {
               "id": "B",
-              "text": "Síndrome compartimental Preparación EUNACOM"
+              "text": "Síndrome compartimental"
             },
             {
               "id": "C",
@@ -7032,7 +7032,7 @@
         },
         {
           "numero": 17,
-          "pregunta": "¿Cuál es la conducta ante un paciente con artralgias de manos, sin signos\nDr. Guevara\ninflamatorios y con nódulos de Bouchard y Heberden?\nPreparación EUNACOM",
+          "pregunta": "¿Cuál es la conducta ante un paciente con artralgias de manos, sin signos\ninflamatorios y con nódulos de Bouchard y Heberden?",
           "opciones": [
             {
               "id": "A",

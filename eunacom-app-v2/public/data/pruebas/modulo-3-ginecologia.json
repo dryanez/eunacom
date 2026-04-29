@@ -784,7 +784,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una mujer de 30 años se realiza una salpingooforectomía derecha,\nDr. Guevara\nsecundaria a un embarazo tubario. Un año más tarde sufre una torsión ovárica\nPreparación EUNACOM\nizquierda, que no es diagnosticada a tiempo, por lo que se realiza ooforectomía\nizquierda. La conducta más adecuada para el reemplazo hormonal en esta\npaciente es:",
+          "pregunta": "Una mujer de 30 años se realiza una salpingooforectomía derecha,\nsecundaria a un embarazo tubario. Un año más tarde sufre una torsión ovárica\nizquierda, que no es diagnosticada a tiempo, por lo que se realiza ooforectomía\nizquierda. La conducta más adecuada para el reemplazo hormonal en esta\npaciente es:",
           "opciones": [
             {
               "id": "A",
@@ -920,11 +920,11 @@
             },
             {
               "id": "B",
-              "text": "Enterococo Dr. Guevara"
+              "text": "Enterococo"
             },
             {
               "id": "C",
-              "text": "Actinomyces Preparación EUNACOM"
+              "text": "Actinomyces"
             },
             {
               "id": "D",
@@ -1088,11 +1088,11 @@
             },
             {
               "id": "D",
-              "text": "Cándida Dr. Guevara"
+              "text": "Cándida"
             },
             {
               "id": "E",
-              "text": "Alérgica Preparación EUNACOM"
+              "text": "Alérgica"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1212,11 +1212,11 @@
             },
             {
               "id": "C",
-              "text": "Iniciar análogos de GnRH a permanencia Dr. Guevara"
+              "text": "Iniciar análogos de GnRH a permanencia"
             },
             {
               "id": "D",
-              "text": "Realizar punción percutánea Preparación EUNACOM"
+              "text": "Realizar punción percutánea"
             },
             {
               "id": "E",
@@ -1440,11 +1440,11 @@
             },
             {
               "id": "B",
-              "text": "Hiperplasia endometrial Dr. Guevara"
+              "text": "Hiperplasia endometrial"
             },
             {
               "id": "C",
-              "text": "Atrofia endometrial Preparación EUNACOM"
+              "text": "Atrofia endometrial"
             },
             {
               "id": "D",
@@ -1600,11 +1600,11 @@
             },
             {
               "id": "B",
-              "text": "Sus síntomas más frecuentes son la sensación de peso y humedad genital Dr. Guevara"
+              "text": "Sus síntomas más frecuentes son la sensación de peso y humedad genital"
             },
             {
               "id": "C",
-              "text": "El rectocele es el tipo más frecuente de prolapso genital femenino Preparación EUNACOM"
+              "text": "El rectocele es el tipo más frecuente de prolapso genital femenino"
             },
             {
               "id": "D",
@@ -1736,11 +1736,11 @@
             },
             {
               "id": "D",
-              "text": "Derivar a biopsia estereotáxica o con mamótomo Dr. Guevara"
+              "text": "Derivar a biopsia estereotáxica o con mamótomo"
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente Preparación EUNACOM"
+              "text": "Resolver quirúrgicamente"
             }
           ],
           "respuestaCorrecta": "C",
@@ -1864,11 +1864,11 @@
             },
             {
               "id": "D",
-              "text": "Realizar histerectomía Dr. Guevara"
+              "text": "Realizar histerectomía"
             },
             {
               "id": "E",
-              "text": "Solicitar biopsia endometrial Preparación EUNACOM"
+              "text": "Solicitar biopsia endometrial"
             }
           ],
           "respuestaCorrecta": "E",
@@ -2060,11 +2060,11 @@
             },
             {
               "id": "C",
-              "text": "Debe iniciarse alfametildopa Dr. Guevara"
+              "text": "Debe iniciarse alfametildopa"
             },
             {
               "id": "D",
-              "text": "Durante el trabajo de parto se debe administrar sulfato de magnesio endovenoso Preparación EUNACOM"
+              "text": "Durante el trabajo de parto se debe administrar sulfato de magnesio endovenoso"
             },
             {
               "id": "E",
@@ -2176,7 +2176,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Desde 1.960 se observa una preocupante elevación de la tasa de cesáreas.\nDr. Guevara\nEste incremento se asocia entre otras, pero de forma preferente a una de las\nPreparación EUNACOM\nindicaciones expuestas a continuación:",
+          "pregunta": "Desde 1.960 se observa una preocupante elevación de la tasa de cesáreas.\nEste incremento se asocia entre otras, pero de forma preferente a una de las\nindicaciones expuestas a continuación:",
           "opciones": [
             {
               "id": "A",
@@ -2316,11 +2316,11 @@
             },
             {
               "id": "C",
-              "text": "Inicio de una demencia. Dr. Guevara"
+              "text": "Inicio de una demencia."
             },
             {
               "id": "D",
-              "text": "Neurosis hipocondríaca. Preparación EUNACOM"
+              "text": "Neurosis hipocondríaca."
             },
             {
               "id": "E",
@@ -2432,7 +2432,7 @@
         },
         {
           "numero": 16,
-          "pregunta": "Un paciente de 34 años es traído por sus familiares porque tiene la idea de\nque el alcalde y sus colaboradores han acordado hacerle la vida imposible.\nExplica claramente que él voto por el otro candidato y que por eso han puesto\nreglas municipales que lo afectan directamente, como la prohibición de\nestacionar en la calle donde vive y la instalación de nuevas señales de tránsito\nque le obligan a tomar una ruta más larga a su trabajo. Por esto ha puesto\n\nreiteradas denuncias en el juzgado de policía local, sin obtener resultados. No\nDr. Guevara\nha presentado otros problemas y su examen físico es normal. El diagnóstico\nPreparación EUNACOM\nmás probable es:",
+          "pregunta": "Un paciente de 34 años es traído por sus familiares porque tiene la idea de\nque el alcalde y sus colaboradores han acordado hacerle la vida imposible.\nExplica claramente que él voto por el otro candidato y que por eso han puesto\nreglas municipales que lo afectan directamente, como la prohibición de\nestacionar en la calle donde vive y la instalación de nuevas señales de tránsito\nque le obligan a tomar una ruta más larga a su trabajo. Por esto ha puesto\n\nreiteradas denuncias en el juzgado de policía local, sin obtener resultados. No\nha presentado otros problemas y su examen físico es normal. El diagnóstico\nmás probable es:",
           "opciones": [
             {
               "id": "A",
@@ -2560,7 +2560,7 @@
         },
         {
           "numero": 20,
-          "pregunta": "Un paciente de 19 años se angustia mucho en las situaciones en que debe\nrealizar alguna actividad en frente de los demás, como hablar en público,\n\ncantar o comer. Por esta razón evita cualquier situación de este tipo. El\nDr. Guevara\ndiagnóstico más probable es:\nPreparación EUNACOM",
+          "pregunta": "Un paciente de 19 años se angustia mucho en las situaciones en que debe\nrealizar alguna actividad en frente de los demás, como hablar en público,\n\ncantar o comer. Por esta razón evita cualquier situación de este tipo. El\ndiagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3344,7 +3344,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una niña de 4 años es traída por su madre, ya que presenta metrorragia. Al\nDr. Guevara\nexamen superficial se constata escasa metrorragia, asociada a leucorrea de mal\nPreparación EUNACOM\nolor. El diagnóstico más probable es:",
+          "pregunta": "Una niña de 4 años es traída por su madre, ya que presenta metrorragia. Al\nexamen superficial se constata escasa metrorragia, asociada a leucorrea de mal\nolor. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -3504,7 +3504,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "La prueba de progesterona es muy útil para identificar las metrorragias\nDr. Guevara\ncausadas por:\nPreparación EUNACOM",
+          "pregunta": "La prueba de progesterona es muy útil para identificar las metrorragias\ncausadas por:",
           "opciones": [
             {
               "id": "A",
@@ -3664,7 +3664,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "Una paciente de 45 años, consulta por leucorrea. A la especulscopía se\nDr. Guevara\naprecia secreción blanco grisácea, de mal olor, con mínima inflamación de la\nPreparación EUNACOM\npared vaginal. El tratamiento más adecuado de la patología descrita es:",
+          "pregunta": "Una paciente de 45 años, consulta por leucorrea. A la especulscopía se\naprecia secreción blanco grisácea, de mal olor, con mínima inflamación de la\npared vaginal. El tratamiento más adecuado de la patología descrita es:",
           "opciones": [
             {
               "id": "A",
@@ -3824,7 +3824,7 @@
         },
         {
           "numero": 20,
-          "pregunta": "¿Qué tipo de terapia de reemplazo hormonal indicaría a una mujer\nDr. Guevara\nperimenopáusica, histerectomizada, con marcados síntomas vasomotores?\nPreparación EUNACOM",
+          "pregunta": "¿Qué tipo de terapia de reemplazo hormonal indicaría a una mujer\nperimenopáusica, histerectomizada, con marcados síntomas vasomotores?",
           "opciones": [
             {
               "id": "A",
@@ -3992,7 +3992,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 26 años, maratonista olímpica, consulta por amenorrea de 6\nmeses de evolución. Refiere que no ha presentado otros síntomas y que no\nconsume ningún tipo de medicamentos ni anabólicos. Entrena cerca de 8 horas\nal día y mantiene relaciones sexuales habitualmente. Se realizó en test de\n\nembarazo recientemente, la que resultó negativa. Al examen físico no se\nDr. Guevara\nencuentran alteraciones. La causa más probable de su amenorrea es:\nPreparación EUNACOM",
+          "pregunta": "Una paciente de 26 años, maratonista olímpica, consulta por amenorrea de 6\nmeses de evolución. Refiere que no ha presentado otros síntomas y que no\nconsume ningún tipo de medicamentos ni anabólicos. Entrena cerca de 8 horas\nal día y mantiene relaciones sexuales habitualmente. Se realizó en test de\n\nembarazo recientemente, la que resultó negativa. Al examen físico no se\nencuentran alteraciones. La causa más probable de su amenorrea es:",
           "opciones": [
             {
               "id": "A",
@@ -4152,7 +4152,7 @@
         },
         {
           "numero": 10,
-          "pregunta": "Una paciente de 45 años, consulta por algia pélvica crónica cíclica, que se\nDr. Guevara\npresenta cada 28 días, durando cerca de 5 días. Se solicita una ecografía\nPreparación EUNACOM\ntransvaginal que muestra presencia de un tumor anexial izquierdo quístco, con\ncontenido en vidrio esmerilado. Se constata además un Ca-125 elevado al doble\nde lo normal. El diagnóstico más probable es:",
+          "pregunta": "Una paciente de 45 años, consulta por algia pélvica crónica cíclica, que se\npresenta cada 28 días, durando cerca de 5 días. Se solicita una ecografía\ntransvaginal que muestra presencia de un tumor anexial izquierdo quístco, con\ncontenido en vidrio esmerilado. Se constata además un Ca-125 elevado al doble\nde lo normal. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -4288,11 +4288,11 @@
             },
             {
               "id": "B",
-              "text": "Endometriosis Dr. Guevara"
+              "text": "Endometriosis"
             },
             {
               "id": "C",
-              "text": "Cáncer de endometrio Preparación EUNACOM"
+              "text": "Cáncer de endometrio"
             },
             {
               "id": "D",
@@ -4440,7 +4440,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "La asociación de dismenorrea, disquexia e infertilidad debe hacer\nDr. Guevara\nsospechar la presencia de:\nPreparación EUNACOM",
+          "pregunta": "La asociación de dismenorrea, disquexia e infertilidad debe hacer\nsospechar la presencia de:",
           "opciones": [
             {
               "id": "A",
@@ -4624,11 +4624,11 @@
             },
             {
               "id": "D",
-              "text": "Solicitar test de tolerancia a las contracciones Dr. Guevara"
+              "text": "Solicitar test de tolerancia a las contracciones"
             },
             {
               "id": "E",
-              "text": "Observar evolución Preparación EUNACOM"
+              "text": "Observar evolución"
             }
           ],
           "respuestaCorrecta": "E",
@@ -4768,7 +4768,7 @@
         },
         {
           "numero": 9,
-          "pregunta": "Una paciente multípara de 2, cuyo primer hijo nació por parto normal y su\nsegundo hijo nació por cesárea a las 40 semanas, cursa un nuevo embarazo de\n\n39 semanas. Inicia trabajo de parto, constatándose feto en presentación\nDr. Guevara\ncefálica, variante OIIA, con 4 CU cada 10 minutos y cuello uterino\nPreparación EUNACOM\ncompletamente borrado, con 5 cm de dilatación y membranas rotas. El registro\nestresante es tranquilizador. La conducta más adecuada es:",
+          "pregunta": "Una paciente multípara de 2, cuyo primer hijo nació por parto normal y su\nsegundo hijo nació por cesárea a las 40 semanas, cursa un nuevo embarazo de\n\n39 semanas. Inicia trabajo de parto, constatándose feto en presentación\ncefálica, variante OIIA, con 4 CU cada 10 minutos y cuello uterino\ncompletamente borrado, con 5 cm de dilatación y membranas rotas. El registro\nestresante es tranquilizador. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -4896,11 +4896,11 @@
         },
         {
           "numero": 13,
-          "pregunta": "Durante un test de tolerancia a las contracciones se aprecian múltiples\ndesaceleraciones de la frecuencia cardíaca fetal, que inician 20 segundos\ndespués de las contracciones uterinas, alcanzando las 90 pulsaciones por\n\nminuto y durando cerca de un minuto. La conducta más adecuada es:\nDr. Guevara",
+          "pregunta": "Durante un test de tolerancia a las contracciones se aprecian múltiples\ndesaceleraciones de la frecuencia cardíaca fetal, que inician 20 segundos\ndespués de las contracciones uterinas, alcanzando las 90 pulsaciones por\n\nminuto y durando cerca de un minuto. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Realizar cesárea de urgencia Preparación EUNACOM"
+              "text": "Realizar cesárea de urgencia"
             },
             {
               "id": "B",
@@ -5056,7 +5056,7 @@
         },
         {
           "numero": 18,
-          "pregunta": "Una paciente de 35 años con antecedente de hipermenorrea y anemia\nDr. Guevara\nferropénica, acude a control ginecológico, en el cual se palpa un útero nodular,\nPreparación EUNACOM\naumentado de tamaño. El diagnóstico más probable es:",
+          "pregunta": "Una paciente de 35 años con antecedente de hipermenorrea y anemia\nferropénica, acude a control ginecológico, en el cual se palpa un útero nodular,\naumentado de tamaño. El diagnóstico más probable es:",
           "opciones": [
             {
               "id": "A",
@@ -5288,7 +5288,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente de 16 años, cuya menarquía fue a los 15 años, consulta porque\nDr. Guevara\nsus reglas son irregulares, sucediendo cada 2 a 3 meses. La conducta más\nPreparación EUNACOM\nadecuada es:",
+          "pregunta": "Una paciente de 16 años, cuya menarquía fue a los 15 años, consulta porque\nsus reglas son irregulares, sucediendo cada 2 a 3 meses. La conducta más\nadecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5432,11 +5432,11 @@
             },
             {
               "id": "D",
-              "text": "Retirar el DIU, iniciar antibióticos y realizar legrado uterino Dr. Guevara"
+              "text": "Retirar el DIU, iniciar antibióticos y realizar legrado uterino"
             },
             {
               "id": "E",
-              "text": "Resolver quirúrgicamente, bajo cobertura antibiótica Preparación EUNACOM"
+              "text": "Resolver quirúrgicamente, bajo cobertura antibiótica"
             }
           ],
           "respuestaCorrecta": "C",
@@ -5608,7 +5608,7 @@
         },
         {
           "numero": 15,
-          "pregunta": "Una mujer se realiza un PAP, que muestra presecia de abundantes células\nDr. Guevara\natípicas, por lo que se deriva a colposcopia y biopsia, que demuestran presencia\nPreparación EUNACOM\nde una NIE 3. La conducta más adecuada es:",
+          "pregunta": "Una mujer se realiza un PAP, que muestra presecia de abundantes células\natípicas, por lo que se deriva a colposcopia y biopsia, que demuestran presencia\nde una NIE 3. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -5768,11 +5768,11 @@
         },
         {
           "numero": 20,
-          "pregunta": "El tratamiento de elección de la vaginosis bacteriana es:\nDr. Guevara",
+          "pregunta": "El tratamiento de elección de la vaginosis bacteriana es:",
           "opciones": [
             {
               "id": "A",
-              "text": "Metronidazol Preparación EUNACOM"
+              "text": "Metronidazol"
             },
             {
               "id": "B",
@@ -5936,7 +5936,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente consulta por dismenorrea severa, que inició hace 6 meses y que\nha ido en aumento. Se solicita una ecografía transvaginal que visualiza un\n\ntumor ovárico izquierdo, de 5 cm de diámetro, quístico, con contenido en\nDr. Guevara\n“vidrio esmerilado”. El Ca-125 resulta el doble de lo normal. El diagnóstico más\nPreparación EUNACOM\nprobable es:",
+          "pregunta": "Una paciente consulta por dismenorrea severa, que inició hace 6 meses y que\nha ido en aumento. Se solicita una ecografía transvaginal que visualiza un\n\ntumor ovárico izquierdo, de 5 cm de diámetro, quístico, con contenido en\n“vidrio esmerilado”. El Ca-125 resulta el doble de lo normal. El diagnóstico más\nprobable es:",
           "opciones": [
             {
               "id": "A",
@@ -6080,11 +6080,11 @@
             },
             {
               "id": "D",
-              "text": "Tricomoniasis Dr. Guevara"
+              "text": "Tricomoniasis"
             },
             {
               "id": "E",
-              "text": "Absceso de Bartolino Preparación EUNACOM"
+              "text": "Absceso de Bartolino"
             }
           ],
           "respuestaCorrecta": "D",
@@ -6244,7 +6244,7 @@
             },
             {
               "id": "E",
-              "text": "Las mujeres histerectomizadas deben recibir sólo progestágenos como terapia de Preparación EUNACOM remplazo hormonal"
+              "text": "Las mujeres histerectomizadas deben recibir sólo progestágenos como terapia de remplazo hormonal"
             }
           ],
           "respuestaCorrecta": "D",
@@ -6396,11 +6396,11 @@
             },
             {
               "id": "C",
-              "text": "Solicitar niveles plasmáticos de estrógenos Dr. Guevara"
+              "text": "Solicitar niveles plasmáticos de estrógenos"
             },
             {
               "id": "D",
-              "text": "Realizar legrado Preparación EUNACOM"
+              "text": "Realizar legrado"
             },
             {
               "id": "E",
@@ -6584,7 +6584,7 @@
         },
         {
           "numero": 5,
-          "pregunta": "Una paciente es diagnosticada de una neoplasia intraepitelial de alto grado\nDr. Guevara\n(NIE-3). La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una paciente es diagnosticada de una neoplasia intraepitelial de alto grado\n(NIE-3). La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -6728,11 +6728,11 @@
             },
             {
               "id": "D",
-              "text": "Nuliparidad Dr. Guevara"
+              "text": "Nuliparidad"
             },
             {
               "id": "E",
-              "text": "Menarquia tardía Preparación EUNACOM"
+              "text": "Menarquia tardía"
             }
           ],
           "respuestaCorrecta": "D",
@@ -6876,11 +6876,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Fibroadenoma Dr. Guevara"
+              "text": "Fibroadenoma"
             },
             {
               "id": "B",
-              "text": "Quiste Preparación EUNACOM"
+              "text": "Quiste"
             },
             {
               "id": "C",
@@ -7032,7 +7032,7 @@
         },
         {
           "numero": 19,
-          "pregunta": "La presentación más habitual del cáncer de cuello uterino, en una paciente\nDr. Guevara\nque no se realiza control con Papanicolaou, es:\nPreparación EUNACOM",
+          "pregunta": "La presentación más habitual del cáncer de cuello uterino, en una paciente\nque no se realiza control con Papanicolaou, es:",
           "opciones": [
             {
               "id": "A",
@@ -7208,11 +7208,11 @@
             },
             {
               "id": "B",
-              "text": "Realizar una ecografía transvaginal Dr. Guevara"
+              "text": "Realizar una ecografía transvaginal"
             },
             {
               "id": "C",
-              "text": "Enviar a domicilio Preparación EUNACOM"
+              "text": "Enviar a domicilio"
             },
             {
               "id": "D",
@@ -7312,11 +7312,11 @@
             },
             {
               "id": "D",
-              "text": "Glicemias preprandiales y postprandiales Dr. Guevara"
+              "text": "Glicemias preprandiales y postprandiales"
             },
             {
               "id": "E",
-              "text": "Ecografía obstétrica, con estimación de peso fetal Preparación EUNACOM"
+              "text": "Ecografía obstétrica, con estimación de peso fetal"
             }
           ],
           "respuestaCorrecta": "D",
@@ -7440,11 +7440,11 @@
             },
             {
               "id": "D",
-              "text": "Neoplasia trofoblástica gestacional Dr. Guevara"
+              "text": "Neoplasia trofoblástica gestacional"
             },
             {
               "id": "E",
-              "text": "Cáncer de endometrio Preparación EUNACOM"
+              "text": "Cáncer de endometrio"
             }
           ],
           "respuestaCorrecta": "E",
@@ -7592,11 +7592,11 @@
             },
             {
               "id": "B",
-              "text": "Dispareunia profunda Dr. Guevara"
+              "text": "Dispareunia profunda"
             },
             {
               "id": "C",
-              "text": "Hipermenorrea Preparación EUNACOM"
+              "text": "Hipermenorrea"
             },
             {
               "id": "D",
@@ -7848,7 +7848,7 @@
         },
         {
           "numero": 4,
-          "pregunta": "Una mujer de 20 años, cursando un embarazo de 33 semanas, inicia\ncontracciones uterinas, algunas de las cuales son dolorosas. Se constata la\npresencia de 2 contracciones uterinas cada 10 minutos y el registro de la\n\nfrecuencia fetal es tranquilizador. El tacto vaginal muestra dilatación cervical\nDr. Guevara\nde un centímetro. La conducta más adecuada es:\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 20 años, cursando un embarazo de 33 semanas, inicia\ncontracciones uterinas, algunas de las cuales son dolorosas. Se constata la\npresencia de 2 contracciones uterinas cada 10 minutos y el registro de la\n\nfrecuencia fetal es tranquilizador. El tacto vaginal muestra dilatación cervical\nde un centímetro. La conducta más adecuada es:",
           "opciones": [
             {
               "id": "A",
@@ -7976,7 +7976,7 @@
         },
         {
           "numero": 8,
-          "pregunta": "Una mujer de 34 años presenta un embarazo de 34 semanas. Se realiza una\necografía obstétrica, que demuestra un feto con un peso en percentil 5 para la\nedad gestacional, con el diámetro craneano mayor al diámetro abdominal y\n\nnormalidad en el líquido amniótico. ¿Qué conducta es MENOS adecuada para el\nDr. Guevara\nmanejo de esta paciente?\nPreparación EUNACOM",
+          "pregunta": "Una mujer de 34 años presenta un embarazo de 34 semanas. Se realiza una\necografía obstétrica, que demuestra un feto con un peso en percentil 5 para la\nedad gestacional, con el diámetro craneano mayor al diámetro abdominal y\n\nnormalidad en el líquido amniótico. ¿Qué conducta es MENOS adecuada para el\nmanejo de esta paciente?",
           "opciones": [
             {
               "id": "A",
@@ -8108,11 +8108,11 @@
           "opciones": [
             {
               "id": "A",
-              "text": "Endometrioma Dr. Guevara"
+              "text": "Endometrioma"
             },
             {
               "id": "B",
-              "text": "Quiste folicular Preparación EUNACOM"
+              "text": "Quiste folicular"
             },
             {
               "id": "C",
@@ -8272,11 +8272,11 @@
             },
             {
               "id": "B",
-              "text": "Realizar cono cervical Dr. Guevara"
+              "text": "Realizar cono cervical"
             },
             {
               "id": "C",
-              "text": "Solicitar nuevo PAP en un año Preparación EUNACOM"
+              "text": "Solicitar nuevo PAP en un año"
             },
             {
               "id": "D",
