@@ -1268,6 +1268,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const [correctFound, setCorrectFound] = useState({}) // { qIndex: true } — correct answer found
   const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: 5, B: 3 } }
   const [errores, setErrores] = useState(loadErrores) // 3-state error tracker
+  const [erroresLoading, setErroresLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('pruebas') // 'pruebas' | 'errores'
 
   // Load pruebas index
@@ -1302,21 +1303,89 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     return d
   }
 
-  // Bootstrap errores from existing pruebaProgress.wrongIndices
-  // (runs once per subsystem when topicData becomes available)
+  // Bootstrap errores from ALL subsystems that have wrongIndices in pruebaProgress.
+  // Fetches only the JSON files that are actually needed (have wrong questions).
+  const bootstrapAllErrores = async () => {
+    if (!index) return
+    setErroresLoading(true)
+    const progress = loadPruebaProgress()
+    const current = loadErrores()
+
+    // Collect every slug that contains a prueba with wrongIndices
+    const slugsNeeded = new Set()
+    const slugToPruebaIds = {}
+    Object.values(index).forEach(topicMap => {
+      Object.values(topicMap).forEach(meta => {
+        const hasWrong = meta.pruebas?.some(p => progress[p.id]?.wrongIndices?.length > 0)
+        if (hasWrong) {
+          slugsNeeded.add(meta.slug)
+          slugToPruebaIds[meta.slug] = meta.pruebas.map(p => p.id)
+        }
+      })
+    })
+
+    if (slugsNeeded.size === 0) return
+
+    // Fetch all needed files in parallel
+    const files = await Promise.all(
+      [...slugsNeeded].map(slug =>
+        fetch(`/data/pruebas/${slug}.json`).then(r => r.json()).catch(() => null)
+      )
+    )
+
+    let changed = false
+    files.forEach(data => {
+      if (!data) return
+      const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+      allPruebas.forEach(p => {
+        const prog = progress[p.id]
+        if (!prog?.wrongIndices?.length) return
+        prog.wrongIndices.forEach(idx => {
+          const q = p.questions[idx]
+          if (!q) return
+          const key = `${p.id}_${q.numero}`
+          if (!current[key]) {
+            current[key] = {
+              state: 'wrong',
+              pruebaId: p.id,
+              question: {
+                numero: q.numero,
+                pregunta: q.pregunta,
+                opciones: q.opciones,
+                respuestaCorrecta: q.respuestaCorrecta,
+                explicacion: q.explicacion,
+                tags: q.tags,
+              },
+              tag: (q.tags || '').split(',')[0].trim() || 'General',
+              updatedAt: prog.updatedAt || Date.now(),
+            }
+            changed = true
+          }
+        })
+      })
+    })
+
+    if (changed) {
+      saveErrores(current)
+      setErrores({ ...current })
+    }
+    setErroresLoading(false)
+  }
+
+  // Also bootstrap when topicData loads (covers newly finished pruebas in this subsystem)
   useEffect(() => {
     if (!topicData) return
     const allPruebas = Array.isArray(topicData.pruebas) ? topicData.pruebas : Object.values(topicData.pruebas)
+    const progress = loadPruebaProgress()
     const current = loadErrores()
     let changed = false
     allPruebas.forEach(p => {
-      const prog = pruebaProgress[p.id]
+      const prog = progress[p.id]
       if (!prog?.wrongIndices?.length) return
       prog.wrongIndices.forEach(idx => {
         const q = p.questions[idx]
         if (!q) return
         const key = `${p.id}_${q.numero}`
-        // Only bootstrap if not already tracked (don't overwrite user's progress)
         if (!current[key]) {
           current[key] = {
             state: 'wrong',
@@ -1925,15 +1994,13 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const totalWrongQuestions = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrongIndices?.length || 0), 0)
 
   // ── "Mis Errores" data — filter errores for THIS subsystem's prueba IDs ──
-  const myPruebaIds = new Set(pruebas.map(p => p.id))
-  const myErrores = Object.entries(errores)
-    .filter(([, v]) => myPruebaIds.has(v.pruebaId))
-    .map(([key, v]) => ({ key, ...v }))
-  const wrongCount = myErrores.filter(e => e.state === 'wrong').length
-  const onceRightCount = myErrores.filter(e => e.state === 'once_right').length
+  // Show ALL errores (across all subsystems), not just this one
+  const allErrores = Object.entries(errores).map(([key, v]) => ({ key, ...v }))
+  const wrongCount = allErrores.filter(e => e.state === 'wrong').length
+  const onceRightCount = allErrores.filter(e => e.state === 'once_right').length
 
   // Group by primary tag
-  const errorsByTag = myErrores.reduce((acc, e) => {
+  const errorsByTag = allErrores.reduce((acc, e) => {
     const tag = e.tag || 'General'
     if (!acc[tag]) acc[tag] = []
     acc[tag].push(e)
@@ -1968,7 +2035,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
         }}>
           <ClipboardList size={15} /> Pruebas
         </button>
-        <button onClick={() => { setActiveTab('errores'); loadTopic() }} style={{
+        <button onClick={() => { setActiveTab('errores'); bootstrapAllErrores() }} style={{
           flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
           fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s', position: 'relative',
           background: activeTab === 'errores' ? '#ef4444' : 'transparent',
@@ -1993,7 +2060,13 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
           ════════════════════════════════════════════════════ */}
       {activeTab === 'errores' && (
         <div>
-          {myErrores.length === 0 ? (
+          {erroresLoading ? (
+            <div style={{ padding: '2.5rem', textAlign: 'center' }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', border: '3px solid #ef4444', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite', margin: '0 auto 1rem' }} />
+              <p style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>Cargando tus errores de todas las secciones...</p>
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          ) : allErrores.length === 0 ? (
             <div className="card" style={{ padding: '2.5rem', textAlign: 'center' }}>
               <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🎉</div>
               <p style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1rem' }}>Sin errores activos</p>
@@ -2027,7 +2100,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
 
               {/* "Repasar todos" button */}
               {wrongCount > 0 && (
-                <button onClick={() => startErrorMiniPrueba(myErrores.filter(e => e.state === 'wrong'), 'Todos los errores')} style={{
+                <button onClick={() => startErrorMiniPrueba(allErrores.filter(e => e.state === 'wrong'), 'Todos los errores')} style={{
                   width: '100%', padding: '0.7rem', borderRadius: 10, border: 'none', cursor: 'pointer',
                   background: '#ef4444', color: '#fff', fontWeight: 700, fontSize: '0.9rem',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
