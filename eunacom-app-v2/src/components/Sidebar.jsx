@@ -6,7 +6,7 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } fro
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
@@ -96,6 +96,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Shield size={18} /> Biblioteca EUNACOM
                 </NavLink>
+                {user?.email === 'dr.felipeyanez@gmail.com' && (
+                    <NavLink to="/study-guides" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316' }}>
+                        <Flame size={18} /> Study Guides High Yield!
+                    </NavLink>
+                )}
             </nav>
 
             <div className="sidebar__footer">

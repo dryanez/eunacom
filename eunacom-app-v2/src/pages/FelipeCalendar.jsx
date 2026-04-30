@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { getVideoUrl } from '../lib/videoMap'
 import videoIndex from '../lib/videoIndex.json'
-import { fetchStudyPlanSettings, saveStudyPlanSettings } from '../lib/api'
+import { fetchStudyPlanSettings, saveStudyPlanSettings, fetchEunacomQuestions, createTest, genId } from '../lib/api'
 import {
   ChevronLeft, ChevronRight, Play, Check, X,
   Target, Trophy, Flame, Zap, Settings, Info, CheckCircle,
@@ -37,11 +37,11 @@ const SUBJECTS = [
 ]
 
 const PHASE_META = {
-  1: { label:'Fase 1', sublabel:'Mayor Rendimiento', color:'#10b981', dim:'#064e3b', text:'#6ee7b7',
+  1: { label:'Fase 1', sublabel:'Mayor Rendimiento', color:'#10b981', dim:'#064e3b', text:'#6ee7b7', pct: 46,
        desc:'Especialidades con más preguntas EUNACOM por hora de video. Se estudian primero para maximizar los ciclos de repaso de flashcards.' },
-  2: { label:'Fase 2', sublabel:'Rendimiento Medio',  color:'#3b82f6', dim:'#1e3a5f', text:'#93c5fd',
+  2: { label:'Fase 2', sublabel:'Rendimiento Medio',  color:'#3b82f6', dim:'#1e3a5f', text:'#93c5fd', pct: 32,
        desc:'Especialidades con alto peso en el examen pero mayor volumen de video. Se estudian después de cubrir los temas de mayor rendimiento.' },
-  3: { label:'Fase 3', sublabel:'Completar Temario',  color:'#f59e0b', dim:'#451a03', text:'#fcd34d',
+  3: { label:'Fase 3', sublabel:'Completar Temario',  color:'#f59e0b', dim:'#451a03', text:'#fcd34d', pct: 22,
        desc:'Especialidades de menor densidad de preguntas. Se estudian al final para cubrir el 100% del temario antes del repaso.' },
 }
 
@@ -397,30 +397,108 @@ function SetupModal({ onSave, initial }) {
 }
 
 // ─── DAY DETAIL PANEL ─────────────────────────────────────────────────────────
-function DayPanel({ ds, schedule, examDate, onClose, done, toggleVideo }) {
-  const day = schedule[ds]
-  if (!day) return null
+function DayPanel({ ds, schedule, examDate, onClose, done, toggleVideo, userId }) {
+  const navigate = useNavigate()
+  const [creating45, setCreating45] = useState(false)
+  const [creatingPrueba, setCreatingPrueba] = useState(false)
 
-  const isToday     = ds === toStr(new Date())
-  const subjects    = [...new Set(day.videos.map(v => v.subjectName))]
-  const phase       = day.videos[0]?.phase || null
+  const day         = schedule[ds]
+  const phase       = day?.videos[0]?.phase || null
   const meta        = phase ? PHASE_META[phase] : null
-  const totalVideos = day.videos.length
-  const doneVideos  = day.videos.filter(v => done[`${v.videoKey}_${v.videoNum}`]).length
+  const totalVideos = day?.videos.length || 0
+  const doneVideos  = day?.videos.filter(v => done[`${v.videoKey}_${v.videoNum}`]).length || 0
   const pct         = totalVideos > 0 ? Math.round((doneVideos / totalVideos) * 100) : 0
-
-  const subj        = SUBJECTS.find(x => x.id === day.videos[0]?.subjectId)
+  const subj        = SUBJECTS.find(x => x.id === day?.videos[0]?.subjectId)
   const avgMins     = subj ? (subj.videoHours * 60) / subj.total : 12
   const videoMins   = Math.round(totalVideos * avgMins)
   const pruebaSlug  = subj?.pruebaSlug || null
 
-  const daySchedule = [
-    { time: '10:00',                            label: '🎬 Videos',         detail: `${totalVideos} video${totalVideos !== 1 ? 's' : ''} (~${videoMins} min)`, color: '#3b82f6', link: null },
-    { time: addHHMM('10:00', videoMins),        label: '✍️ Flashcards',     detail: 'Escribir fichas de los videos', color: '#a855f7', link: null },
-    { time: addHHMM('10:00', videoMins + 30),   label: '❓ Preguntas app',  detail: 'Prueba generada por IA (~40 preguntas)', color: '#f59e0b', link: '/test' },
-    { time: addHHMM('10:00', videoMins + 75),   label: '📋 Prueba EUNACOM', detail: `Preguntas reales de ${subj?.name || 'la especialidad'}`, color: '#ec4899', link: pruebaSlug ? `/pruebas/${pruebaSlug}` : '/test' },
-    { time: addHHMM('10:00', videoMins + 120),  label: '🃏 Repaso FC',      detail: 'Revisar flashcards del día', color: '#10b981', link: null },
-  ]
+  // Build horario with automatic pomodoro breaks every ~55 min of work
+  const daySchedule = useMemo(() => {
+    const items = []
+    let t = '10:00'
+    let sinceBreak = 0
+    const addWork = (mins, item) => {
+      items.push({ ...item, time: t })
+      sinceBreak += mins
+      t = addHHMM(t, mins)
+      if (sinceBreak >= 55) {
+        items.push({ time: t, label: '🍅 Pomodoro', detail: '5 min de descanso activo', color: '#ef4444', isBreak: true })
+        t = addHHMM(t, 5)
+        sinceBreak = 0
+      }
+    }
+    addWork(videoMins, { label: '🎬 Videos', detail: `${totalVideos} video${totalVideos !== 1 ? 's' : ''} (~${videoMins} min)`, color: '#3b82f6' })
+    addWork(30,  { label: '✍️ Flashcards', detail: 'Escribir fichas de los videos', color: '#a855f7' })
+    addWork(45,  { label: '🎯 Bloque de 45 preguntas random', detail: 'Todos los tópicos — distribución proporcional EUNACOM', color: '#f59e0b', action: 'create45' })
+    addWork(45,  { label: '📋 Prueba EUNACOM', detail: `Preguntas reales de ${subj?.name || 'la especialidad'}`, color: '#ec4899', action: 'prueba' })
+    addWork(30,  { label: '🃏 Repaso FC', detail: 'Revisar flashcards del día', color: '#10b981' })
+    return items
+  }, [videoMins, totalVideos, subj])
+
+  const handle45Questions = useCallback(async () => {
+    if (creating45) return
+    setCreating45(true)
+    try {
+      const results = await Promise.all(
+        SUBJECTS.map(async s => {
+          const n = Math.round(s.examQs / 180 * 45)
+          if (n === 0) return []
+          const qs = await fetchEunacomQuestions({ specialty: s.videoKey, limit: Math.min(n * 4, 100) })
+          return [...qs].sort(() => Math.random() - 0.5).slice(0, n).map(q => ({
+            id: q.id,
+            question: q.pregunta,
+            choices: q.opciones,
+            correctAnswer: q.respuestaCorrecta,
+            explanation: q.explicacion,
+            specialty: q.specialty,
+          }))
+        })
+      )
+      const allQs = results.flat().sort(() => Math.random() - 0.5)
+      if (allQs.length === 0) { alert('No hay preguntas disponibles aún.'); return }
+      const testId = genId()
+      await createTest({ id: testId, userId, mode: 'practice', totalQuestions: allQs.length, questions: allQs })
+      navigate('/test-runner', { state: { testId, questions: allQs } })
+    } catch (e) {
+      console.error(e)
+      alert('Error al crear el bloque de preguntas.')
+    } finally {
+      setCreating45(false)
+    }
+  }, [creating45, userId, navigate])
+
+  const handlePrueba = useCallback(async () => {
+    if (!pruebaSlug || creatingPrueba) return
+    setCreatingPrueba(true)
+    try {
+      const resp = await fetch(`/data/pruebas/${pruebaSlug}.json`)
+      if (!resp.ok) throw new Error('archivo no encontrado')
+      const data = await resp.json()
+      const pruebasList = data.pruebas || []
+      if (pruebasList.length === 0) throw new Error('sin preguntas')
+      const prueba = pruebasList[Math.floor(Math.random() * pruebasList.length)]
+      const questions = (prueba.questions || []).map(q => ({
+        id: q.codigoEunacom || `${pruebaSlug}_${q.numero}`,
+        question: q.pregunta,
+        choices: q.opciones,
+        correctAnswer: q.respuestaCorrecta,
+        explanation: q.explicacion,
+      }))
+      const testId = genId()
+      await createTest({ id: testId, userId, mode: 'practice', totalQuestions: questions.length, questions })
+      navigate('/test-runner', { state: { testId, questions } })
+    } catch (e) {
+      console.error(e)
+      alert('Error al cargar la prueba EUNACOM.')
+    } finally {
+      setCreatingPrueba(false)
+    }
+  }, [pruebaSlug, creatingPrueba, userId, navigate])
+
+  if (!day) return null
+
+  const isToday = ds === toStr(new Date())
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end', pointerEvents: 'none' }}>
@@ -533,19 +611,31 @@ function DayPanel({ ds, schedule, examDate, onClose, done, toggleVideo }) {
             <div style={{ marginBottom: '1.5rem' }}>
               <div style={{ color: '#64748b', fontSize: '0.72rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Horario sugerido</div>
               {daySchedule.map((s, i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 8, alignItems: 'flex-start' }}>
+                <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 6, alignItems: 'flex-start' }}>
                   <div style={{ color: '#475569', fontSize: '0.78rem', width: 42, flexShrink: 0, paddingTop: 2, fontFamily: 'monospace' }}>{s.time}</div>
-                  <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', borderLeft: `2px solid ${s.color}55`, borderRadius: '0 6px 6px 0', padding: '6px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                    <div>
-                      <div style={{ color: '#e2e8f0', fontSize: '0.85rem', fontWeight: 600 }}>{s.label}</div>
-                      <div style={{ color: '#64748b', fontSize: '0.76rem' }}>{s.detail}</div>
+                  {s.isBreak ? (
+                    <div style={{ flex: 1, background: 'rgba(239,68,68,0.05)', borderLeft: '2px solid #ef444433', borderRadius: '0 6px 6px 0', padding: '5px 10px' }}>
+                      <div style={{ color: '#fca5a5', fontSize: '0.82rem', fontWeight: 600 }}>{s.label}</div>
+                      <div style={{ color: '#64748b', fontSize: '0.73rem' }}>{s.detail}</div>
                     </div>
-                    {s.link && (
-                      <a href={s.link} style={{ flexShrink: 0, fontSize: '0.7rem', color: s.color, background: `${s.color}15`, border: `1px solid ${s.color}40`, borderRadius: 6, padding: '3px 8px', textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}>
-                        Ir →
-                      </a>
-                    )}
-                  </div>
+                  ) : (
+                    <div style={{ flex: 1, background: 'rgba(255,255,255,0.03)', borderLeft: `2px solid ${s.color}55`, borderRadius: '0 6px 6px 0', padding: '6px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                      <div>
+                        <div style={{ color: '#e2e8f0', fontSize: '0.85rem', fontWeight: 600 }}>{s.label}</div>
+                        <div style={{ color: '#64748b', fontSize: '0.76rem' }}>{s.detail}</div>
+                      </div>
+                      {s.action === 'create45' && (
+                        <button onClick={handle45Questions} disabled={creating45} style={{ flexShrink: 0, fontSize: '0.7rem', color: s.color, background: `${s.color}15`, border: `1px solid ${s.color}40`, borderRadius: 6, padding: '4px 9px', cursor: creating45 ? 'not-allowed' : 'pointer', fontFamily: 'inherit', fontWeight: 600, whiteSpace: 'nowrap', opacity: creating45 ? 0.6 : 1 }}>
+                          {creating45 ? 'Creando…' : 'Ir →'}
+                        </button>
+                      )}
+                      {s.action === 'prueba' && (
+                        <button onClick={handlePrueba} disabled={creatingPrueba || !pruebaSlug} style={{ flexShrink: 0, fontSize: '0.7rem', color: s.color, background: `${s.color}15`, border: `1px solid ${s.color}40`, borderRadius: 6, padding: '4px 9px', cursor: (creatingPrueba || !pruebaSlug) ? 'not-allowed' : 'pointer', fontFamily: 'inherit', fontWeight: 600, whiteSpace: 'nowrap', opacity: (creatingPrueba || !pruebaSlug) ? 0.6 : 1 }}>
+                          {creatingPrueba ? 'Cargando…' : 'Ir →'}
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -557,7 +647,6 @@ function DayPanel({ ds, schedule, examDate, onClose, done, toggleVideo }) {
             {day.videos.map((v, i) => {
               const key    = `${v.videoKey}_${v.videoNum}`
               const isDone = done[key]
-              const url    = getVideoUrl(v.videoKey, v.videoNum)
               return (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px',
@@ -583,12 +672,11 @@ function DayPanel({ ds, schedule, examDate, onClose, done, toggleVideo }) {
                     </div>
                     <div style={{ color: '#475569', fontSize: '0.7rem', marginTop: 2 }}>{v.subjectName}</div>
                   </div>
-                  {url && (
-                    <a href={url} target="_blank" rel="noopener noreferrer"
-                      style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 8, background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>
-                      <Play size={13} color="#60a5fa" fill="#60a5fa" />
-                    </a>
-                  )}
+                  <button
+                    onClick={() => navigate('/mis-clases', { state: { openSubsystem: v.videoKey, openLesson: v.videoNum } })}
+                    style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 8, background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                    <Play size={13} color="#60a5fa" fill="#60a5fa" />
+                  </button>
                 </div>
               )
             })}
@@ -825,6 +913,7 @@ export default function FelipeCalendar() {
               <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.75rem', color: m.text }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: m.color }} />
                 {m.label} — {m.sublabel}
+                <span style={{ color: '#475569', fontSize: '0.68rem' }}>({m.pct}% EUNACOM)</span>
               </div>
             ))}
           </div>
@@ -935,6 +1024,7 @@ export default function FelipeCalendar() {
           onClose={() => setSelectedDay(null)}
           done={done}
           toggleVideo={toggleVideo}
+          userId={user?.id}
         />
       )}
     </div>
