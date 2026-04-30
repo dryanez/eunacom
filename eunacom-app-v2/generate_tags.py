@@ -251,7 +251,7 @@ RULES = [
     (r'fisiopatología|mecanismo.*patogenia|patogénesis', ['Fisiopatología', 'Medicina básica', 'EUNACOM']),
 ]
 
-def generate_tags(question_text: str, extra_context: str = '') -> str:
+def generate_tags(question_text: str, extra_context: str = '', specialty: str = '') -> str:
     """Generate comma-separated tags from question text using rule-based matching."""
     text = (question_text + ' ' + extra_context).lower()
     
@@ -268,8 +268,9 @@ def generate_tags(question_text: str, extra_context: str = '') -> str:
                 break
     
     if not matched_tags:
-        # Generic fallback
-        matched_tags = ['Medicina', 'EUNACOM']
+        # Fall back to the module specialty (e.g. "Pediatría") instead of useless "Medicina"
+        fallback = specialty if specialty else 'Medicina'
+        matched_tags = [fallback, 'EUNACOM']
     
     return ', '.join(matched_tags[:6])
 
@@ -293,8 +294,43 @@ BASE = '/Volumes/Install macOS Sequoia/Eunacom/eunacom-app-v2/public/data'
 tagged_count = 0
 skipped_count = 0
 
+# Map filename keywords → specialty name for fallback tagging
+SPECIALTY_MAP = {
+    'cardiologia': 'Cardiología',
+    'endocrinologia': 'Endocrinología',
+    'gastroenterologia': 'Gastroenterología',
+    'hematologia': 'Hematología',
+    'infectologia': 'Infectología',
+    'neumologia': 'Neumología',
+    'nefrologia': 'Nefrología',
+    'neurologia': 'Neurología',
+    'reumatologia': 'Reumatología',
+    'psiquiatria': 'Psiquiatría',
+    'geriatria': 'Geriatría',
+    'dermatologia': 'Dermatología',
+    'traumatologia': 'Traumatología',
+    'pediatria': 'Pediatría',
+    'ginecologia': 'Ginecología',
+    'obstetricia': 'Obstetricia',
+    'cirugia': 'Cirugía',
+    'oftalmologia': 'Oftalmología',
+    'otorrino': 'Otorrinolaringología',
+    'urologia': 'Urología',
+    'salud_publica': 'Salud pública',
+    'salud-publica': 'Salud pública',
+    'farmacologia': 'Farmacología',
+    'medicina_interna': 'Medicina interna',
+}
 
-def tag_question_list(questions: list) -> int:
+def specialty_from_filename(fname: str) -> str:
+    fname_lower = fname.lower()
+    for key, val in SPECIALTY_MAP.items():
+        if key in fname_lower:
+            return val
+    return ''
+
+
+def tag_question_list(questions: list, specialty: str = '') -> int:
     """Tag ALL question dicts in place (always overwrites). Returns count tagged."""
     count = 0
     for q in questions:
@@ -302,7 +338,7 @@ def tag_question_list(questions: list) -> int:
             continue
         text = get_question_text(q)
         if text.strip():
-            q['tags'] = generate_tags(text)
+            q['tags'] = generate_tags(text, specialty=specialty)
             count += 1
     return count
 
@@ -319,8 +355,9 @@ for fname in sorted(os.listdir(prueba_dir)):
     
     count = 0
     pruebas = data.get('pruebas', [])
+    specialty = specialty_from_filename(fname)
     for prueba in pruebas:
-        count += tag_question_list(prueba.get('questions', []))
+        count += tag_question_list(prueba.get('questions', []), specialty=specialty)
     
     if count > 0:
         with open(fpath, 'w') as f:
