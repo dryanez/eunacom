@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchClases, fetchClase, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
 import { getVideoUrl } from '../lib/videoMap'
@@ -1301,6 +1302,46 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     return d
   }
 
+  // Bootstrap errores from existing pruebaProgress.wrongIndices
+  // (runs once per subsystem when topicData becomes available)
+  useEffect(() => {
+    if (!topicData) return
+    const allPruebas = Array.isArray(topicData.pruebas) ? topicData.pruebas : Object.values(topicData.pruebas)
+    const current = loadErrores()
+    let changed = false
+    allPruebas.forEach(p => {
+      const prog = pruebaProgress[p.id]
+      if (!prog?.wrongIndices?.length) return
+      prog.wrongIndices.forEach(idx => {
+        const q = p.questions[idx]
+        if (!q) return
+        const key = `${p.id}_${q.numero}`
+        // Only bootstrap if not already tracked (don't overwrite user's progress)
+        if (!current[key]) {
+          current[key] = {
+            state: 'wrong',
+            pruebaId: p.id,
+            question: {
+              numero: q.numero,
+              pregunta: q.pregunta,
+              opciones: q.opciones,
+              respuestaCorrecta: q.respuestaCorrecta,
+              explicacion: q.explicacion,
+              tags: q.tags,
+            },
+            tag: (q.tags || '').split(',')[0].trim() || 'General',
+            updatedAt: prog.updatedAt || Date.now(),
+          }
+          changed = true
+        }
+      })
+    })
+    if (changed) {
+      saveErrores(current)
+      setErrores({ ...current })
+    }
+  }, [topicData]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const startPrueba = async (pruebaMeta) => {
     const data = topicData || await loadTopic()
     if (!data) return
@@ -1927,7 +1968,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
         }}>
           <ClipboardList size={15} /> Pruebas
         </button>
-        <button onClick={() => setActiveTab('errores')} style={{
+        <button onClick={() => { setActiveTab('errores'); loadTopic() }} style={{
           flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
           fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s', position: 'relative',
           background: activeTab === 'errores' ? '#ef4444' : 'transparent',
@@ -2288,6 +2329,8 @@ function getSubsystemStyle(name) {
    ════════════════════════════════════════════════════════════════ */
 const MisClases = () => {
   const { user } = useAuth()
+  const location = useLocation()
+  const handledNavState = useRef(false)
   const [clases, setClases] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedId, setSelectedId] = useState(null)
@@ -2541,6 +2584,16 @@ const MisClases = () => {
   }
 
   useEffect(() => { loadData() }, [user])
+
+  // Auto-open a class when navigated from FelipeCalendar with { openSubsystem, openLesson } state
+  useEffect(() => {
+    if (loading || !clases.length || handledNavState.current) return
+    const { openSubsystem, openLesson } = location.state || {}
+    if (!openSubsystem || !openLesson) return
+    handledNavState.current = true
+    const target = clases.find(c => c.subsystem === openSubsystem && c.lessonNumber === openLesson)
+    if (target) openClase(target.id)
+  }, [loading, clases.length])
 
   // ─── Aggregate Quiz view ───
   if (aggregateQuiz) {
