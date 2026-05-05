@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
 import { fetchClases, fetchClase, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
 import { getVideoUrl } from '../lib/videoMap'
 import VideoPlayer from '../components/VideoPlayer'
@@ -13,7 +14,7 @@ import {
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
-  Printer, RefreshCw
+  Printer, BookMarked
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -1120,18 +1121,52 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
    PRUEBAS PROGRESS HELPERS  (localStorage)
    ════════════════════════════════════════════════════════════════ */
 const PRUEBA_KEY = 'eunacom_prueba_progress'
-function loadPruebaProgress() {
-  try { return JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch { return {} }
+
+// Load all progress for the current user from Supabase (or localStorage if not logged in)
+export async function loadPruebaProgress(user) {
+  if (!user) {
+    try { return JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch { return {} }
+  }
+  const { data, error } = await supabase
+    .from('prueba_progress')
+    .select('prueba_id, data')
+    .eq('user_id', user.id)
+  if (error) {
+    console.error('Supabase loadPruebaProgress error', error)
+    return {}
+  }
+  const result = {}
+  for (const row of data) {
+    result[row.prueba_id] = row.data
+  }
+  return result
 }
-function savePruebaProgress(pruebaId, data) {
-  const all = loadPruebaProgress()
+
+// Save progress for a single prueba for the current user (and localStorage for offline)
+export async function savePruebaProgress(user, pruebaId, data) {
+  // Save to localStorage for offline support
+  let all = {}
+  try { all = JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch {}
   const prev = all[pruebaId] || {}
-  // Append this attempt to history array (keep all previous attempts)
   const history = prev.history || []
   history.push({ ...data, date: Date.now() })
-  // Also keep a flat "last attempt" for quick display
   all[pruebaId] = { ...prev, ...data, history, updatedAt: Date.now() }
   localStorage.setItem(PRUEBA_KEY, JSON.stringify(all))
+
+  if (!user) return all
+
+  // Save to Supabase
+  const { error } = await supabase
+    .from('prueba_progress')
+    .upsert({
+      user_id: user.id,
+      prueba_id: pruebaId,
+      data: all[pruebaId],
+      updated_at: new Date().toISOString(),
+    }, { onConflict: ['user_id', 'prueba_id'] })
+  if (error) {
+    console.error('Supabase savePruebaProgress error', error)
+  }
   return all
 }
 
@@ -1251,6 +1286,129 @@ function openPrint(pruebas, title) {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   FLASHCARD PANEL — AI-generated review cards from wrong answers
+   ════════════════════════════════════════════════════════════════ */
+function FlashcardPanel({ flashcards, onClose }) {
+  const [current, setCurrent] = useState(0)
+  const [flipped, setFlipped] = useState(false)
+
+  if (!flashcards?.length) return null
+  const card = flashcards[current]
+
+  return (
+    <div style={{
+      marginTop: '1.75rem',
+      background: 'linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(59,130,246,0.06) 100%)',
+      border: '1px solid rgba(124,58,237,0.25)',
+      borderRadius: 16, padding: '1.5rem',
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <BookMarked size={18} style={{ color: '#7c3aed' }} />
+          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)' }}>Flashcards de Repaso</span>
+          <span style={{
+            fontSize: '0.72rem', fontWeight: 700, padding: '2px 8px', borderRadius: 999,
+            background: 'rgba(124,58,237,0.12)', color: '#7c3aed'
+          }}>{current + 1}/{flashcards.length}</span>
+        </div>
+        <button onClick={onClose} style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          color: 'var(--text-tertiary)', fontSize: '1.1rem', lineHeight: 1, padding: '2px 6px'
+        }}>✕</button>
+      </div>
+
+      {/* Tag */}
+      {card.tag && (
+        <div style={{
+          fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
+          color: '#7c3aed', marginBottom: '0.75rem'
+        }}>{card.tag}</div>
+      )}
+
+      {/* Flip Card */}
+      <div
+        onClick={() => setFlipped(f => !f)}
+        style={{
+          cursor: 'pointer',
+          minHeight: 160,
+          borderRadius: 12,
+          padding: '1.5rem',
+          background: flipped
+            ? 'linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(59,130,246,0.08) 100%)'
+            : 'var(--surface-700)',
+          border: `1.5px solid ${flipped ? '#10b98140' : 'var(--border-color)'}`,
+          transition: 'all 0.25s ease',
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          userSelect: 'none',
+        }}
+      >
+        <div style={{
+          fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
+          color: flipped ? '#10b981' : 'var(--primary-400)', marginBottom: '0.75rem',
+          display: 'flex', alignItems: 'center', gap: '0.4rem'
+        }}>
+          {flipped ? <CheckCircle2 size={12} /> : <HelpCircle size={12} />}
+          {flipped ? 'Concepto Clave' : 'Pregunta — toca para ver la respuesta'}
+        </div>
+        <div style={{
+          fontSize: '0.92rem', lineHeight: 1.65,
+          color: flipped ? 'var(--text-primary)' : 'var(--text-secondary)',
+          fontWeight: flipped ? 500 : 400,
+          whiteSpace: 'pre-wrap'
+        }}>
+          {flipped ? card.back : card.front}
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem', justifyContent: 'center', alignItems: 'center' }}>
+        <button
+          onClick={() => { setCurrent(c => Math.max(0, c - 1)); setFlipped(false) }}
+          disabled={current === 0}
+          style={{
+            padding: '0.45rem 1rem', borderRadius: 8, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: current === 0 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: current === 0 ? 'default' : 'pointer', fontSize: '0.82rem', fontWeight: 600,
+            opacity: current === 0 ? 0.4 : 1,
+          }}
+        >
+          ← Anterior
+        </button>
+
+        {/* Dots */}
+        <div style={{ display: 'flex', gap: '0.3rem' }}>
+          {flashcards.map((_, i) => (
+            <div key={i} onClick={() => { setCurrent(i); setFlipped(false) }} style={{
+              width: i === current ? 20 : 8, height: 8, borderRadius: 999,
+              background: i === current ? '#7c3aed' : 'var(--surface-600)',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }} />
+          ))}
+        </div>
+
+        <button
+          onClick={() => { setCurrent(c => Math.min(flashcards.length - 1, c + 1)); setFlipped(false) }}
+          disabled={current === flashcards.length - 1}
+          style={{
+            padding: '0.45rem 1rem', borderRadius: 8, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: current === flashcards.length - 1 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: current === flashcards.length - 1 ? 'default' : 'pointer', fontSize: '0.82rem', fontWeight: 600,
+            opacity: current === flashcards.length - 1 ? 0.4 : 1,
+          }}
+        >
+          Siguiente →
+        </button>
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>
+        Toca la tarjeta para girarla
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
    PRUEBAS VIEW — shown when user picks "Pruebas" on a subsystem
    Shows all available Pruebas with progress + score, and runs the
    test inline when one is selected.
@@ -1270,6 +1428,20 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const [errores, setErrores] = useState(loadErrores) // 3-state error tracker
   const [erroresLoading, setErroresLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('pruebas') // 'pruebas' | 'errores'
+  const [flashcards, setFlashcards] = useState(null)   // generated flashcards
+
+  // Build flashcards from wrong questions — pure client-side, no API
+  const buildFlashcards = (wrongQs) => wrongQs.map(wq => {
+    const correctOpt = wq.opciones?.find(o => o.id === wq.respuestaCorrecta)
+    return {
+      front: wq.pregunta,
+      back: [
+        `✓ ${wq.respuestaCorrecta}) ${correctOpt?.text || ''}`,
+        wq.explicacion ? `\n${wq.explicacion}` : ''
+      ].join('').trim(),
+      tag: (wq.tags || '').split(',')[0].trim() || 'General'
+    }
+  })
 
   // Load pruebas index
   useEffect(() => {
@@ -1324,9 +1496,10 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
       })
     })
 
-    if (slugsNeeded.size === 0) return
+    if (slugsNeeded.size === 0) { setErroresLoading(false); return }
 
     // Fetch all needed files in parallel
+    try {
     const files = await Promise.all(
       [...slugsNeeded].map(slug =>
         fetch(`/data/pruebas/${slug}.json`).then(r => r.json()).catch(() => null)
@@ -1369,7 +1542,11 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
       saveErrores(current)
       setErrores({ ...current })
     }
+    } catch (e) {
+      console.error('bootstrapAllErrores error:', e)
+    } finally {
     setErroresLoading(false)
+    }
   }
 
   // Also bootstrap when topicData loads (covers newly finished pruebas in this subsystem)
@@ -1558,8 +1735,8 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
     const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
     const pct = Math.round((answered / qs.length) * 100)
-    const updated = savePruebaProgress(activePrueba.id, { done: pct, score, correct, wrong: wrongIndices.length, total: qs.length, answered, wrongIndices })
-    setPruebaProgress(updated)
+    savePruebaProgress(user, activePrueba.id, { done: pct, score, correct, wrong: wrongIndices.length, total: qs.length, answered, wrongIndices })
+      .then(updated => setPruebaProgress(updated))
 
     // Update 3-state error tracker (skip review-wrong sessions to avoid double-counting)
     if (!activePrueba.id.startsWith('review_wrong_') && !activePrueba.id.startsWith('errores_mini_')) {
@@ -1669,6 +1846,24 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
               }}>
                 <RotateCcw size={15} /> Hacer de nuevo
               </button>
+              {wrong.length > 0 && (
+                <button
+                  onClick={() => {
+                    setFlashcards(flashcards ? null : buildFlashcards(wrong))
+                  }}
+                  style={{
+                    padding: '0.6rem 1.5rem', borderRadius: 10,
+                    border: '1.5px solid rgba(124,58,237,0.4)',
+                    background: flashcards ? 'rgba(124,58,237,0.18)' : 'rgba(124,58,237,0.1)',
+                    color: '#7c3aed', fontWeight: 600, fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <BookMarked size={15} /> {flashcards ? 'Cerrar Flashcards' : `Flashcards (${wrong.length})`}
+                </button>
+              )}
               <button onClick={() => setActivePrueba(null)} style={{
                 padding: '0.6rem 1.5rem', borderRadius: 10, border: '1px solid var(--border-color)',
                 background: 'var(--surface-700)', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem',
@@ -1711,6 +1906,11 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
                 })}
               </div>
             </div>
+          )}
+
+          {/* AI Flashcards */}
+          {flashcards?.length > 0 && (
+            <FlashcardPanel flashcards={flashcards} onClose={() => setFlashcards(null)} />
           )}
         </div>
       )
