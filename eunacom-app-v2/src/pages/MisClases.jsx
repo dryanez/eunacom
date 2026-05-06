@@ -1472,13 +1472,25 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
 
   // Match subsystem name to pruebas index key (fuzzy)
   const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
+  // Explicit aliases: DB subsystem name → index.json topic key
+  const SUBSYSTEM_ALIASES = {
+    'Cirugia General':        'Cirugía y Anestesia',
+    'Cirugía General':        'Cirugía y Anestesia',
+    'Cirugía General y Anestesia': 'Cirugía y Anestesia',
+    'Cirugia General y Anestesia': 'Cirugía y Anestesia',
+    'Neurología y Geriatría': 'Neurología',
+    'Neurologia y Geriatria': 'Neurología',
+  }
   const findTopicKey = () => {
     if (!index || !index[specialty]) return null
     const topics = index[specialty]
-    const target = norm(subsystem)
-    // exact match first
+    // check alias first
+    const aliased = SUBSYSTEM_ALIASES[subsystem]
+    if (aliased && topics[aliased]) return aliased
+    // exact match
     if (topics[subsystem]) return subsystem
     // fuzzy
+    const target = norm(subsystem)
     return Object.keys(topics).find(k => norm(k) === target) || Object.keys(topics).find(k => norm(k).includes(target) || target.includes(norm(k))) || null
   }
 
