@@ -1414,6 +1414,7 @@ function FlashcardPanel({ flashcards, onClose }) {
    test inline when one is selected.
    ════════════════════════════════════════════════════════════════ */
 function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
+  const { user } = useAuth()
   const [index, setIndex] = useState(null)
   const [loading, setLoading] = useState(true)
   const [topicData, setTopicData] = useState(null)
@@ -1421,7 +1422,10 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState({})        // { qIndex: 'A'|'B'|… } — final correct answer
   const [showResult, setShowResult] = useState(false)
-  const [pruebaProgress, setPruebaProgress] = useState(loadPruebaProgress())
+  const [pruebaProgress, setPruebaProgress] = useState(() => {
+    // Start with localStorage for instant render
+    try { return JSON.parse(localStorage.getItem('eunacom_prueba_progress') || '{}') } catch { return {} }
+  })
   const [attempts, setAttempts] = useState({})       // { qIndex: ['C','D'] } — wrong attempts
   const [correctFound, setCorrectFound] = useState({}) // { qIndex: true } — correct answer found
   const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: 5, B: 3 } }
@@ -1450,6 +1454,21 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
       .then(idx => { setIndex(idx); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])
+
+  // Sync progress from Supabase on mount — merges with localStorage so scores are never lost
+  useEffect(() => {
+    if (!user) return
+    loadPruebaProgress(user).then(serverProgress => {
+      if (!serverProgress || Object.keys(serverProgress).length === 0) return
+      // Merge: server wins per-prueba (server is source of truth)
+      setPruebaProgress(prev => ({ ...prev, ...serverProgress }))
+      // Also keep localStorage in sync
+      try {
+        const local = JSON.parse(localStorage.getItem('eunacom_prueba_progress') || '{}')
+        localStorage.setItem('eunacom_prueba_progress', JSON.stringify({ ...local, ...serverProgress }))
+      } catch {}
+    }).catch(e => console.warn('Could not sync prueba progress from Supabase:', e))
+  }, [user]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Match subsystem name to pruebas index key (fuzzy)
   const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
