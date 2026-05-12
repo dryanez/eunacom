@@ -291,7 +291,7 @@
         {
           "id": "modulo-1-hematologia-1",
           "name": "Prueba 1",
-          "questionCount": 21
+          "questionCount": 20
         },
         {
           "id": "modulo-1-hematologia-2",
@@ -321,61 +321,6 @@
         {
           "id": "modulo-1-hematologia-7",
           "name": "Prueba 7",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-8",
-          "name": "Prueba 8",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-9",
-          "name": "Prueba 9",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-10",
-          "name": "Prueba 10",
-          "questionCount": 29
-        },
-        {
-          "id": "modulo-1-hematologia-11",
-          "name": "Prueba 11",
-          "questionCount": 30
-        },
-        {
-          "id": "modulo-1-hematologia-12",
-          "name": "Prueba 12",
-          "questionCount": 29
-        },
-        {
-          "id": "modulo-1-hematologia-13",
-          "name": "Prueba 13",
-          "questionCount": 30
-        },
-        {
-          "id": "modulo-1-hematologia-14",
-          "name": "Prueba 14",
-          "questionCount": 10
-        },
-        {
-          "id": "modulo-1-hematologia-15",
-          "name": "Prueba 15",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-16",
-          "name": "Prueba 16",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-17",
-          "name": "Prueba 17",
-          "questionCount": 20
-        },
-        {
-          "id": "modulo-1-hematologia-18",
-          "name": "Prueba 18",
           "questionCount": 20
         }
       ]

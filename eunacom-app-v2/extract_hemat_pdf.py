@@ -178,6 +178,8 @@ def find_best_match(pdf_q, existing_qs, threshold=0.65):
 def letter_to_index(letter):
     return ord(letter.upper()) - ord('A')
 
+INDEX_PATH = Path(__file__).parent / "public/data/pruebas/index.json"
+
 def main():
     print("📄 Reading PDF...")
     pages = get_all_text(PDF_PATH)
@@ -188,109 +190,110 @@ def main():
     for pn, qs in sorted(answer_key.items()):
         print(f"   Prueba {pn}: {len(qs)} answers")
 
-    print("📝 Parsing questions...")
+    print("📝 Parsing questions from PDF...")
     pdf_pruebas = parse_pruebas_from_pages(pages)
     for pn, qs in sorted(pdf_pruebas.items()):
         print(f"   Prueba {pn}: {len(qs)} questions")
 
-    print("📂 Loading existing JSON...")
+    print("📂 Loading existing JSON for explanation mining...")
     with open(JSON_PATH) as f:
-        data = json.load(f)
-    pruebas_json = data['pruebas']
-    print(f"   {len(pruebas_json)} existing pruebas")
+        old_data = json.load(f)
+    all_existing_qs = [q for p in old_data['pruebas'] for q in p.get('questions', [])]
+    print(f"   {len(all_existing_qs)} existing questions to mine explanations from")
 
-    # Build a flat list of all existing questions for matching
-    all_existing = []
-    for p in pruebas_json:
-        for q in p.get('questions', []):
-            all_existing.append({'prueba': p['id'], 'q': q})
-
-    # ─── Process each PDF prueba ───────────────────────────────────────────────
-    stats = {'matched': 0, 'no_match': 0, 'answer_fixed': 0, 'answer_ok': 0}
+    # ─── Rebuild from scratch using only PDF pruebas ──────────────────────────
+    stats = {'matched': 0, 'no_match': 0, 'answer_fixed': 0}
+    new_pruebas = []
 
     for prueba_num, pdf_qs in sorted(pdf_pruebas.items()):
         pdf_answers = answer_key.get(prueba_num, {})
-
-        # Find the matching prueba in the JSON (by index: PDF prueba 1 → json prueba 0)
-        json_prueba = None
-        for p in pruebas_json:
-            # Match by name "Prueba N" or by position
-            if p.get('name', '').strip() == f"Prueba {prueba_num}":
-                json_prueba = p
-                break
-        if not json_prueba and prueba_num - 1 < len(pruebas_json):
-            json_prueba = pruebas_json[prueba_num - 1]
+        prueba_id = f"modulo-1-hematologia-{prueba_num}"
+        built_questions = []
 
         print(f"\n{'='*60}")
-        print(f"PDF Prueba {prueba_num} → JSON: {json_prueba['name'] if json_prueba else 'NOT FOUND'}")
+        print(f"Building Prueba {prueba_num} ({len(pdf_qs)} questions)")
 
         for pdf_q in pdf_qs:
-            q_num = pdf_q['numero']
-            correct_letter = pdf_answers.get(q_num)
+            q_num   = pdf_q['numero']
+            correct = pdf_answers.get(q_num, '')
 
-            # Try to find match in all existing questions
-            match, score = find_best_match(pdf_q, [item['q'] for item in all_existing])
+            # Try to find matching existing question to grab explanation
+            match, score = find_best_match(pdf_q, all_existing_qs)
 
-            if match:
+            if match and score >= 0.65:
                 stats['matched'] += 1
-                # Check if answer matches
-                existing_answer = match.get('respuestaCorrecta', '')
-                answer_matches = existing_answer.upper() == (correct_letter or '').upper()
-
-                if not answer_matches and correct_letter:
+                existing_ans = match.get('respuestaCorrecta', '')
+                if existing_ans.upper() != correct.upper() and correct:
                     stats['answer_fixed'] += 1
-                    print(f"  Q{q_num} ✓ match (score={score:.2f}) | answer: {existing_answer} → {correct_letter} FIXED")
-                    # Update the match answer
-                    match['respuestaCorrecta'] = correct_letter
-                    # Update opciones isCorrect if present
-                    for opt in match.get('opciones', []):
-                        opt['esCorrecta'] = (opt['id'].upper() == correct_letter.upper())
+                    print(f"  Q{q_num} ✓ match({score:.2f}) answer {existing_ans}→{correct} FIXED")
                 else:
-                    stats['answer_ok'] += 1
-                    print(f"  Q{q_num} ✓ match (score={score:.2f}) | answer: {correct_letter} ✓")
+                    print(f"  Q{q_num} ✓ match({score:.2f}) answer={correct}")
 
-                # If the pdf has better/cleaner question text, use it
-                # (only if similarity is high enough that it's clearly the same question)
-                if score > 0.80 and len(pdf_q['pregunta']) > 20:
-                    match['pregunta_pdf'] = pdf_q['pregunta']  # keep original, add pdf version
-
+                new_q = {
+                    "numero":               q_num,
+                    "pregunta":             pdf_q['pregunta'],
+                    "opciones":             pdf_q['opciones'],
+                    "respuestaCorrecta":    correct or existing_ans,
+                    "explicacion":          match.get('explicacion', ''),
+                    "explicacionIncorrectas": match.get('explicacionIncorrectas', ''),
+                    "codigoEunacom":        match.get('codigoEunacom', '') or match.get('codigo_eunacom', ''),
+                    "tags":                 match.get('tags', ''),
+                    "videoRecomendado":     match.get('videoRecomendado', ''),
+                }
             else:
                 stats['no_match'] += 1
-                print(f"  Q{q_num} ✗ NO MATCH (best score={score:.2f}) | {pdf_q['pregunta'][:80]}")
-                # Add as new question to the corresponding prueba
-                if json_prueba and correct_letter:
-                    new_q = {
-                        "numero": q_num,
-                        "pregunta": pdf_q['pregunta'],
-                        "opciones": pdf_q['opciones'],
-                        "respuestaCorrecta": correct_letter,
-                        "explicacion": "",
-                        "explicacionIncorrectas": "",
-                        "codigoEunacom": "",
-                        "tags": "",
-                        "fuente": "PDF Guevara Hematología"
-                    }
-                    # Check if this question number already exists in the prueba
-                    existing_nums = {q['numero'] for q in json_prueba.get('questions', [])}
-                    if q_num not in existing_nums:
-                        json_prueba.setdefault('questions', []).append(new_q)
-                        print(f"        → Added as new question to {json_prueba['name']}")
+                print(f"  Q{q_num} ✗ no match (best={score:.2f}) — no explanation")
+                new_q = {
+                    "numero":               q_num,
+                    "pregunta":             pdf_q['pregunta'],
+                    "opciones":             pdf_q['opciones'],
+                    "respuestaCorrecta":    correct,
+                    "explicacion":          "",
+                    "explicacionIncorrectas": "",
+                    "codigoEunacom":        "",
+                    "tags":                 "",
+                    "videoRecomendado":     "",
+                }
+
+            built_questions.append(new_q)
+
+        new_pruebas.append({
+            "id":            prueba_id,
+            "name":          f"Prueba {prueba_num}",
+            "sourceFile":    "hrmatologia question tomo 1.pdf",
+            "questionCount": len(built_questions),
+            "questions":     built_questions,
+        })
 
     print(f"\n{'='*60}")
     print(f"📊 Results:")
-    print(f"   Matched:       {stats['matched']}")
-    print(f"   Answers fixed: {stats['answer_fixed']}")
-    print(f"   Answers OK:    {stats['answer_ok']}")
-    print(f"   No match:      {stats['no_match']}")
+    print(f"   PDF pruebas:        {len(new_pruebas)}")
+    print(f"   Total questions:    {sum(len(p['questions']) for p in new_pruebas)}")
+    print(f"   With explanations:  {stats['matched']}")
+    print(f"   Answers fixed:      {stats['answer_fixed']}")
+    print(f"   Without explanation:{stats['no_match']}")
 
     if DRY_RUN:
         print("\n⚠️  DRY RUN — not saving. Remove --dry-run to save.")
         return
 
-    # Save
+    # ─── Save rebuilt hematología JSON ────────────────────────────────────────
+    new_data = {"pruebas": new_pruebas}
     with open(OUT_PATH, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"\n✅ Saved to {OUT_PATH}")
+        json.dump(new_data, f, ensure_ascii=False, indent=2)
+    print(f"\n✅ Saved {OUT_PATH}")
+
+    # ─── Update index.json ────────────────────────────────────────────────────
+    with open(INDEX_PATH) as f:
+        index = json.load(f)
+
+    index['Módulo 1']['Hematología']['pruebas'] = [
+        {"id": p["id"], "name": p["name"], "questionCount": p["questionCount"]}
+        for p in new_pruebas
+    ]
+    with open(INDEX_PATH, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False, indent=2)
+    print(f"✅ Updated index.json — Hematología now has {len(new_pruebas)} pruebas")
 
 if __name__ == '__main__':
     main()
