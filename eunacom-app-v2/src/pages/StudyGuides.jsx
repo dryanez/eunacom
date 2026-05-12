@@ -237,9 +237,15 @@ function TopicPanel({ topic, isOpen, onToggle }) {
   )
 }
 
+const SUBJECTS = [
+  { id: 'hematologia', label: 'Hematología 🩸', json: '/data/study-guides/hematologia-high-yield.json', apkg: '/data/study-guides/hematologia-anki.apkg', apkgName: 'Hematologia-High-Yield-Cloze.apkg', color: '#ef4444' },
+  { id: 'pediatria', label: 'Pediatría 👶', json: '/data/study-guides/pediatria-high-yield.json', apkg: '/data/study-guides/pediatria-anki.apkg', apkgName: 'Pediatria-High-Yield-Cloze.apkg', color: '#10b981' },
+]
+
 // ── Main Page ─────────────────────────────────────────────────────────────
 export default function StudyGuides() {
   const { user } = useAuth()
+  const [activeSubject, setActiveSubject] = useState('hematologia')
   const [guideData, setGuideData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [openTopic, setOpenTopic] = useState(null)
@@ -250,31 +256,36 @@ export default function StudyGuides() {
 
   useEffect(() => {
     if (!isOwner) return
-    fetch('/data/study-guides/pediatria-high-yield.json')
+    setLoading(true)
+    setGuideData(null)
+    setOpenTopic(null)
+    const sub = SUBJECTS.find(s => s.id === activeSubject)
+    fetch(sub.json)
       .then(r => r.json())
       .then(d => { setGuideData(d); setLoading(false) })
       .catch(() => setLoading(false))
-  }, [isOwner])
+  }, [isOwner, activeSubject])
 
   const handleDownloadAnki = useCallback(async () => {
     if (downloading) return
     setDownloading(true)
+    const sub = SUBJECTS.find(s => s.id === activeSubject)
     try {
-      const res = await fetch('/data/study-guides/pediatria-anki.apkg')
+      const res = await fetch(sub.apkg)
       if (!res.ok) throw new Error('Archivo no generado aún')
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = 'Pediatria-High-Yield-Cloze.apkg'
+      a.download = sub.apkgName
       a.click()
       URL.revokeObjectURL(url)
     } catch {
-      alert('El archivo Anki aún no está disponible. Contacta a Dr. Yáñez.')
+      alert('El archivo Anki aún no está disponible.')
     } finally {
       setDownloading(false)
     }
-  }, [downloading])
+  }, [downloading, activeSubject])
 
   if (!isOwner) {
     return (
@@ -303,6 +314,8 @@ export default function StudyGuides() {
 
   const totalFC = guideData?.meta?.totalFlashcards || 0
   const totalQ = guideData?.meta?.totalQuestions || 0
+  const totalPearls = guideData?.meta?.totalPearls || 0
+  const activeSub = SUBJECTS.find(s => s.id === activeSubject)
 
   return (
     <div className="page" style={{ maxWidth: 860, margin: '0 auto', padding: '24px 16px' }}>
@@ -314,7 +327,7 @@ export default function StudyGuides() {
               Study Guides High Yield! 🔥
             </h1>
             <p style={{ color: '#64748b', fontSize: '0.85rem', margin: '6px 0 0' }}>
-              Pediatría EUNACOM · {totalQ} preguntas · {totalFC} flashcards · {guideData?.topics?.length || 0} tópicos
+              {activeSub?.label} · {totalQ} preguntas · {totalFC} flashcards · {totalPearls} perlas
             </p>
           </div>
           <button
@@ -338,12 +351,36 @@ export default function StudyGuides() {
           </button>
         </div>
 
+        {/* Subject tabs */}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+          {SUBJECTS.map(s => (
+            <button
+              key={s.id}
+              onClick={() => setActiveSubject(s.id)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 22,
+                border: `1.5px solid ${activeSubject === s.id ? s.color : '#334155'}`,
+                background: activeSubject === s.id ? s.color + '22' : 'transparent',
+                color: activeSubject === s.id ? s.color : '#64748b',
+                fontWeight: activeSubject === s.id ? 700 : 400,
+                fontSize: '0.82rem',
+                cursor: 'pointer',
+                transition: 'all 0.15s',
+              }}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+
         {/* Stats row */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
           {[
             { label: 'Preguntas EUNACOM', val: totalQ, color: '#3b82f6' },
             { label: 'Flashcards Cloze', val: totalFC, color: '#a855f7' },
-            { label: 'Tópicos', val: guideData?.topics?.length || 0, color: '#10b981' },
+            { label: 'Perlas clínicas', val: totalPearls, color: activeSub?.color || '#10b981' },
+            { label: 'Tópicos', val: guideData?.topics?.length || 0, color: '#f97316' },
           ].map(s => (
             <div key={s.label} style={{
               padding: '10px 16px',
