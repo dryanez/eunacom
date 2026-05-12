@@ -3018,7 +3018,7 @@ const MisClases = () => {
         {(() => {
           const totalClases = clases.length
           const completedClases = clases.filter(c => getProgress(c.id) >= 100).length
-          const pct = totalClases ? Math.round((completedClases / totalClases) * 100) : 0
+          const pct = totalClases ? Math.round(clases.reduce((sum, c) => sum + getProgress(c.id), 0) / totalClases) : 0
           return (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textAlign: 'right' }}>
@@ -3082,7 +3082,7 @@ const MisClases = () => {
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
-            const specPct = lessonCount ? Math.round((completedCount / lessonCount) * 100) : 0
+            const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
               <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
@@ -3129,7 +3129,7 @@ const MisClases = () => {
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
             const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
-            const subPct = lessons.length ? Math.round((completed / lessons.length) * 100) : 0
+            const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
             return (
               <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
                 padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
@@ -3223,7 +3223,7 @@ const MisClases = () => {
           const subStyle = getSubsystemStyle(currentSubsystem)
           const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
           const completed = lessons.filter(l => getProgress(l.id) >= 100).length
-          const subPct = lessons.length ? Math.round((completed / lessons.length) * 100) : 0
+          const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
           // Get prueba stats from localStorage
           const pruebaProgress = loadPruebaProgress()
           const pruebaIndex = (() => {
