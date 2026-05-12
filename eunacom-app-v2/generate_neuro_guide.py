@@ -333,6 +333,24 @@ def build_json(topics):
                 "respuestaCorrecta": q.get("respuestaCorrecta", ""),
                 "explicacion": q.get("explicacion", ""),
             })
+
+        # Convert pearls: "🔑 **Cat:** text" → {cat, pearl}
+        pearls_out = []
+        for i, p in enumerate(t.get("pearls", [])):
+            p_clean = re.sub(r"^🔑\s*", "", p)
+            m = re.match(r"\*\*(.+?)\*\*[:\s]*(.*)", p_clean, re.DOTALL)
+            if m:
+                pearls_out.append({"cat": m.group(1).strip(), "pearl": m.group(2).strip()})
+            else:
+                pearls_out.append({"cat": "CLAVE", "pearl": p_clean.strip()})
+
+        # Convert flashcards: {front, back} → {id, cloze}
+        flashcards_out = []
+        for i, fc in enumerate(t.get("flashcards", [])):
+            fc_id = f"{t['id']}-fc{i+1}"
+            cloze = f"{fc['front']} → {{{{c1::{fc['back']}}}}}"
+            flashcards_out.append({"id": fc_id, "cloze": cloze})
+
         lesson_blocks = LESSONS.get(t["id"], [])
         rapid_check_count = sum(1 for b in lesson_blocks if b.get("type") == "rapid_check")
         out.append({
@@ -340,8 +358,8 @@ def build_json(topics):
             "title": t["title"],
             "icon": t["icon"],
             "color": t["color"],
-            "pearls": t["pearls"],
-            "flashcards": t["flashcards"],
+            "pearls": pearls_out,
+            "flashcards": flashcards_out,
             "questions": qs,
             "lesson": lesson_blocks,
             "lessonRapidCheckCount": rapid_check_count,
@@ -509,7 +527,22 @@ if __name__ == "__main__":
         print(f"  {t['icon']} {t['title']}: {len(t['questions'])} questions | {lesson_rcs} rapid-checks")
 
     print("Building JSON...")
-    guide = build_json(topics)
+    topics_out = build_json(topics)
+    total_q   = sum(len(t["questions"]) for t in topics)
+    total_fc  = sum(len(t["flashcards"]) for t in topics)
+    total_pearls = sum(len(t["pearls"]) for t in topics)
+    total_rc  = sum(sum(1 for b in LESSONS.get(t["id"],[]) if b.get("type")=="rapid_check") for t in topics)
+    guide = {
+        "meta": {
+            "subject": "Neurología y Geriatría",
+            "totalQuestions": total_q,
+            "totalFlashcards": total_fc,
+            "totalPearls": total_pearls,
+            "totalRapidChecks": total_rc,
+            "generated": "2026-05-12",
+        },
+        "topics": topics_out,
+    }
     json_path = os.path.join(OUT_DIR, "neurologia-high-yield.json")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(guide, f, ensure_ascii=False, indent=2)
@@ -519,7 +552,4 @@ if __name__ == "__main__":
     apkg_path = os.path.join(OUT_DIR, "neurologia-anki.apkg")
     build_apkg(topics, apkg_path)
 
-    total_q = sum(len(t["questions"]) for t in topics)
-    total_fc = sum(len(t["flashcards"]) for t in topics)
-    total_rc = sum(sum(1 for b in LESSONS.get(t["id"],[]) if b.get("type")=="rapid_check") for t in topics)
     print(f"\n🎉 Done! {total_q} questions | {total_fc} flashcards | {total_rc} rapid-checks across {len(topics)} topics")
