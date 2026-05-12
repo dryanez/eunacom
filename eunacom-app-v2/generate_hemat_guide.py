@@ -323,6 +323,7 @@ def build_apkg(topics, out_path):
     with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
         zf.write(db_path, "collection.anki2")
         zf.writestr("media", "{}")
+        zf.writestr("meta", json.dumps({"created": now_s, "deck_configs_enabled": False}))
 
     shutil.rmtree(tmpdir)
     print(f"✅ Anki .apkg written → {out_path}  ({len(all_cards)} cards)")
