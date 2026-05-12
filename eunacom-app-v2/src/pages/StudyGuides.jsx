@@ -395,6 +395,7 @@ function TopicPanel({ topic, isOpen, onToggle }) {
 const SUBJECTS = [
   { id: 'hematologia', label: 'Hematología 🩸', json: '/data/study-guides/hematologia-high-yield.json', apkg: '/data/study-guides/hematologia-anki.apkg', apkgName: 'Hematologia-High-Yield-Cloze.apkg', color: '#ef4444' },
   { id: 'pediatria', label: 'Pediatría 👶', json: '/data/study-guides/pediatria-high-yield.json', apkg: '/data/study-guides/pediatria-anki.apkg', apkgName: 'Pediatria-High-Yield-Cloze.apkg', color: '#10b981' },
+  { id: 'neurologia', label: 'Neurología 🧠', json: '/data/study-guides/neurologia-high-yield.json', apkg: '/data/study-guides/neurologia-anki.apkg', apkgName: 'Neurologia-High-Yield-Cloze.apkg', color: '#6366f1' },
 ]
 
 // ── Main Page ─────────────────────────────────────────────────────────────
