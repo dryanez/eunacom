@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { saveTestProgress, completeTest, insertProgress, askTutor, genId } from '../lib/api'
+import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
 
 const TestRunner = () => {
     const navigate = useNavigate()
@@ -12,23 +12,26 @@ const TestRunner = () => {
 
     const isSimulation = !!location.state?.isSimulation
     const startFinished = !!location.state?.startFinished
+    const mode = location.state?.mode || 'tutor'
+    const isTutorMode = mode === 'tutor'
 
     const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
+    const [firstAttempts, setFirstAttempts] = useState({}) // tutor mode: records first pick only (for scoring)
+    const [wrongAttempts, setWrongAttempts] = useState({}) // tutor mode: { [questionId]: Set of wrong optionIds tried }
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
     const [isFinished, setIsFinished] = useState(startFinished)
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [tutorMessage, setTutorMessage] = useState(null)
-    const [isTutorLoading, setIsTutorLoading] = useState(false)
+    const [showExplanation, setShowExplanation] = useState({}) // tutor mode: show explanation panel per question
 
-    useEffect(() => { setTutorMessage(null) }, [currentIndex])
+    useEffect(() => { /* nothing to reset per question now */ }, [currentIndex])
 
     useEffect(() => {
-        if (isFinished || questions.length === 0) return
+        if (isFinished || questions.length === 0 || isTutorMode) return
         const timer = setInterval(() => setTimeElapsed(prev => prev + 1), 1000)
         return () => clearInterval(timer)
-    }, [isFinished, questions.length])
+    }, [isFinished, questions.length, isTutorMode])
 
     const formatTime = (s) => {
         const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60
@@ -41,9 +44,34 @@ const TestRunner = () => {
     const totalQuestions = questions.length
 
     const handleSelectOption = (optionId) => {
-        const newAnswers = { ...answers, [currentQuestion.id]: optionId }
-        setAnswers(newAnswers)
-        if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex).catch(console.error)
+        const isCorrect = optionId.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+        const qid = currentQuestion.id
+
+        if (isTutorMode) {
+            // Record first attempt only for scoring
+            if (!(qid in firstAttempts)) {
+                setFirstAttempts(prev => ({ ...prev, [qid]: optionId }))
+            }
+
+            if (isCorrect) {
+                // Lock on correct answer
+                setAnswers(prev => ({ ...prev, [qid]: optionId }))
+                setShowExplanation(prev => ({ ...prev, [qid]: true }))
+            } else {
+                // Add to wrong attempts — DO NOT update answers (keep last correct or null)
+                setWrongAttempts(prev => {
+                    const set = new Set(prev[qid] || [])
+                    set.add(optionId)
+                    return { ...prev, [qid]: set }
+                })
+                // Show hint after first wrong attempt
+                setShowExplanation(prev => ({ ...prev, [qid]: true }))
+            }
+        } else {
+            const newAnswers = { ...answers, [qid]: optionId }
+            setAnswers(newAnswers)
+            if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex).catch(console.error)
+        }
     }
 
     const handleNext = async () => {
@@ -59,7 +87,8 @@ const TestRunner = () => {
 
     const finishTest = async () => {
         let score = 0
-        questions.forEach(q => { if (answers[q.id]?.toLowerCase() === q.correctAnswer?.toLowerCase()) score++ })
+        const scoreSource = isTutorMode ? firstAttempts : answers
+        questions.forEach(q => { if (scoreSource[q.id]?.toLowerCase() === q.correctAnswer?.toLowerCase()) score++ })
         const pct = Math.round((score / totalQuestions) * 100)
 
         if (location.state?.testId) {
@@ -67,8 +96,9 @@ const TestRunner = () => {
                 if (user) {
                     await completeTest(location.state.testId, answers, currentIndex, pct)
                     for (const q of questions) {
-                        const isCorrect = answers[q.id]?.toLowerCase() === q.correctAnswer?.toLowerCase()
-                        const isOmitted = !answers[q.id]
+                        const firstAns = isTutorMode ? firstAttempts[q.id] : answers[q.id]
+                        const isCorrect = firstAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
+                        const isOmitted = !firstAns
                         await insertProgress(user.id, q.id, isCorrect, isOmitted).catch(() => {})
                     }
                 }
@@ -78,32 +108,16 @@ const TestRunner = () => {
 
     const handlePrev = () => { if (currentIndex > 0) setCurrentIndex(ci => ci - 1) }
 
-    const handleTutorRequest = async () => {
-        const userAnswerId = answers[currentQuestion.id]
-        if (!userAnswerId) { setTutorMessage('Por favor selecciona una respuesta primero.'); return }
-        if (userAnswerId.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()) {
-            setTutorMessage('¡Tu respuesta es correcta! No necesitas tutoría para esta pregunta.'); return
-        }
-        setIsTutorLoading(true); setTutorMessage(null)
-        const userAnswerObj = currentQuestion.choices?.find(c => c.id === userAnswerId)
-        const correctAnswerObj = currentQuestion.choices?.find(c => c.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase())
-        try {
-            const msg = await askTutor({
-                question: currentQuestion.question,
-                options: currentQuestion.choices?.map(c => c.text),
-                userAnswer: userAnswerObj ? userAnswerObj.text : userAnswerId,
-                correctAnswer: correctAnswerObj ? correctAnswerObj.text : currentQuestion.correctAnswer,
-                explanation: currentQuestion.explanation || ''
-            })
-            setTutorMessage(msg)
-        } catch (e) { setTutorMessage('Error conectando con el tutor de IA.') }
-        finally { setIsTutorLoading(false) }
+    const handleShowHint = () => {
+        const qid = currentQuestion.id
+        setShowExplanation(prev => ({ ...prev, [qid]: !prev[qid] }))
     }
 
     if (isFinished) {
         let score = 0
         const results = questions.map(q => {
-            const userAns = answers[q.id]
+            const firstAns = isTutorMode ? firstAttempts[q.id] : answers[q.id]
+            const userAns = firstAns  // show first attempt in review
             const correct = userAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
             if (correct) score++
             const userChoice = q.choices?.find(c => c.id === userAns)
@@ -239,7 +253,10 @@ const TestRunner = () => {
             {/* Status bar */}
             <div style={{ background: 'var(--primary-600)', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'white' }}>
                 <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>Q {currentIndex + 1} / {totalQuestions}</div>
-                <div style={{ fontWeight: 700, fontSize: '1.2rem', fontFamily: 'monospace' }}>{formatTime(timeElapsed)}</div>
+                {isTutorMode
+                    ? <div style={{ fontWeight: 600, fontSize: '0.9rem', opacity: 0.9 }}>💡 Modo Tutor</div>
+                    : <div style={{ fontWeight: 700, fontSize: '1.2rem', fontFamily: 'monospace' }}>{formatTime(timeElapsed)}</div>
+                }
             </div>
             <div style={{ height: '4px', background: 'rgba(0,0,0,0.2)' }}>
                 <div style={{ height: '100%', width: `${((currentIndex + 1) / totalQuestions) * 100}%`, background: 'white', transition: 'width 0.3s' }} />
@@ -253,33 +270,114 @@ const TestRunner = () => {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
                     {currentQuestion.choices.map(opt => {
-                        const isSelected = answers[currentQuestion.id] === opt.id
+                        const qid = currentQuestion.id
+                        const isCorrectOpt = opt.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                        const tutorSolved = isTutorMode && answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                        const hasAnswered = !isTutorMode && !!answers[qid]
+                        const isWrongAttempt = isTutorMode && (wrongAttempts[qid] || new Set()).has(opt.id)
+                        const isSelected = !isTutorMode && answers[qid] === opt.id
+
+                        // Disable: in tutor mode if already got correct, or if this option was already tried wrong
+                        const isDisabled = (isTutorMode && (tutorSolved || isWrongAttempt)) || hasAnswered
+
+                        let bg = 'var(--surface-800)'
+                        let border = 'var(--surface-600)'
+                        let dotColor = 'var(--surface-400)'
+
+                        if (isTutorMode) {
+                            if (tutorSolved && isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399' }
+                            else if (isWrongAttempt) { bg = 'rgba(248,113,113,0.1)'; border = 'rgba(248,113,113,0.5)'; dotColor = '#f87171' }
+                        } else if (hasAnswered) {
+                            if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399' }
+                            else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171' }
+                        } else if (isSelected) {
+                            bg = 'rgba(19,91,236,0.15)'; border = 'var(--primary-500)'; dotColor = 'var(--primary-400)'
+                        }
+
+                        const showDot = (isTutorMode && tutorSolved && isCorrectOpt) || (isTutorMode && isWrongAttempt) || (!isTutorMode && (hasAnswered && (isCorrectOpt || isSelected)) || isSelected)
+
                         return (
-                            <button key={opt.id} onClick={() => handleSelectOption(opt.id)} style={{
+                            <button key={opt.id} onClick={() => !isDisabled && handleSelectOption(opt.id)} style={{
                                 width: '100%', textAlign: 'left', padding: '1.25rem 1rem',
-                                background: isSelected ? 'rgba(19,91,236,0.15)' : 'var(--surface-800)',
-                                border: `2px solid ${isSelected ? 'var(--primary-500)' : 'var(--surface-600)'}`,
-                                borderRadius: 'var(--radius)', color: 'white', fontSize: '1.05rem',
-                                display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer', transition: 'all 0.1s'
+                                background: bg,
+                                border: `2px solid ${border}`,
+                                borderRadius: 'var(--radius)', color: isDisabled && !isCorrectOpt && !isWrongAttempt ? 'var(--surface-400)' : 'white', fontSize: '1.05rem',
+                                display: 'flex', alignItems: 'center', gap: '1rem',
+                                cursor: isDisabled ? 'default' : 'pointer', transition: 'all 0.1s',
+                                opacity: isDisabled && !isWrongAttempt && !(tutorSolved && isCorrectOpt) ? 0.45 : 1,
                             }}>
-                                <div style={{ minWidth: '24px', height: '24px', borderRadius: '50%', border: `2px solid ${isSelected ? 'var(--primary-400)' : 'var(--surface-400)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    {isSelected && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--primary-400)' }} />}
+                                <div style={{ minWidth: '24px', height: '24px', borderRadius: '50%', border: `2px solid ${dotColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                    {showDot && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: dotColor }} />}
                                 </div>
-                                <span><strong style={{ color: 'var(--surface-300)', marginRight: '0.5rem' }}>{opt.id}.</strong>{opt.text}</span>
+                                <span>
+                                    <strong style={{ color: 'var(--surface-300)', marginRight: '0.5rem' }}>{opt.id}.</strong>
+                                    {opt.text}
+                                </span>
+                                {isTutorMode && isWrongAttempt && <span style={{ marginLeft: 'auto', fontSize: '0.85rem', color: '#f87171', flexShrink: 0 }}>✗ Incorrecto</span>}
+                                {isTutorMode && tutorSolved && isCorrectOpt && <span style={{ marginLeft: 'auto', fontSize: '0.85rem', color: '#34d399', flexShrink: 0 }}>✓ Correcto</span>}
                             </button>
                         )
                     })}
                 </div>
 
-                {(isTutorLoading || tutorMessage) && (
-                    <div style={{ marginBottom: '2rem', padding: '1.5rem', borderRadius: 'var(--radius)', background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#06b6d4', fontWeight: 'bold', marginBottom: '1rem' }}>
-                            <Lightbulb size={20} /> Tutor Médico (Gemini 2.0)
+                {/* Tutor mode feedback panel */}
+                {isTutorMode && (() => {
+                    const qid = currentQuestion.id
+                    const tutorSolved = answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                    const wrongCount = (wrongAttempts[qid] || new Set()).size
+                    const hasTriedWrong = wrongCount > 0
+                    const isShowingExplanation = showExplanation[qid]
+                    const correctChoice = currentQuestion.choices?.find(c => c.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase())
+
+                    if (!tutorSolved && !hasTriedWrong) return null // nothing yet
+
+                    return (
+                        <div style={{
+                            marginBottom: '2rem', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius)',
+                            background: tutorSolved ? 'rgba(52,211,153,0.08)' : 'rgba(248,113,113,0.08)',
+                            border: `1px solid ${tutorSolved ? 'rgba(52,211,153,0.3)' : 'rgba(248,113,113,0.3)'}`,
+                        }}>
+                            {tutorSolved ? (
+                                <>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34d399', fontWeight: 700, marginBottom: currentQuestion.explanation ? '0.75rem' : 0, fontSize: '1rem' }}>
+                                        ✅ ¡Correcto! {wrongCount > 0 && <span style={{ fontWeight: 400, fontSize: '0.85rem', color: '#6ee7b7' }}>({wrongCount} intento{wrongCount > 1 ? 's' : ''} previo{wrongCount > 1 ? 's' : ''})</span>}
+                                    </div>
+                                    {currentQuestion.explanation && (
+                                        <div style={{ color: 'var(--surface-200)', lineHeight: 1.6, fontSize: '0.93rem' }}>
+                                            💡 {currentQuestion.explanation}
+                                        </div>
+                                    )}
+                                </>
+                            ) : (
+                                <>
+                                    <div style={{ color: '#f87171', fontWeight: 700, marginBottom: '0.5rem', fontSize: '1rem' }}>
+                                        ❌ Incorrecto — inténtalo de nuevo
+                                    </div>
+                                    {isShowingExplanation && currentQuestion.explanation && (
+                                        <div style={{ color: 'var(--surface-300)', lineHeight: 1.6, fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                                            💡 <em>Pista:</em> {currentQuestion.explanation}
+                                        </div>
+                                    )}
+                                    {!isShowingExplanation && (
+                                        <button onClick={handleShowHint} style={{ background: 'none', border: '1px solid rgba(248,113,113,0.4)', color: '#f87171', borderRadius: 6, padding: '4px 12px', fontSize: '0.8rem', cursor: 'pointer', marginTop: '0.25rem' }}>
+                                            💡 Ver pista
+                                        </button>
+                                    )}
+                                </>
+                            )}
                         </div>
-                        {isTutorLoading
-                            ? <div style={{ color: 'var(--surface-200)' }}>Analizando tu respuesta...</div>
-                            : <div style={{ color: 'var(--surface-100)', lineHeight: '1.6', whiteSpace: 'pre-wrap' }}>{tutorMessage}</div>
-                        }
+                    )
+                })()}
+
+                {/* Non-tutor explanation panel (lightbulb) */}
+                {!isTutorMode && showExplanation[currentQuestion.id] && currentQuestion.explanation && (
+                    <div style={{ marginBottom: '2rem', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius)', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.3)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#06b6d4', fontWeight: 700, marginBottom: '0.75rem' }}>
+                            <Lightbulb size={18} /> Explicación
+                        </div>
+                        <div style={{ color: 'var(--surface-200)', lineHeight: 1.6, fontSize: '0.93rem' }}>
+                            {currentQuestion.explanation}
+                        </div>
                     </div>
                 )}
 
@@ -305,8 +403,8 @@ const TestRunner = () => {
                     style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-300)', border: `1px solid ${flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-700)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
                     <Flag size={20} />
                 </button>
-                {!isSimulation && (
-                    <button onClick={handleTutorRequest} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: (isTutorLoading || tutorMessage) ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
+                {!isSimulation && !isTutorMode && (
+                    <button onClick={handleShowHint} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: showExplanation[currentQuestion.id] ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
                         <Lightbulb size={24} />
                     </button>
                 )}
