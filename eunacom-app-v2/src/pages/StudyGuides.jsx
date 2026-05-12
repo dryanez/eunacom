@@ -108,9 +108,158 @@ function QuestionItem({ q, index }) {
   )
 }
 
+// ── Inline Rapid Check (Socratic quiz inside lesson) ──────────────────────
+function InlineRapidCheck({ block, color }) {
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const isCorrect = selected === block.correct
+
+  const handleSelect = (letter) => {
+    if (revealed) return
+    setSelected(letter)
+    setRevealed(true)
+  }
+
+  const getOptStyle = (letter) => {
+    if (!revealed) return {
+      background: 'rgba(51,65,85,0.5)', border: '1px solid #334155', color: '#cbd5e1',
+    }
+    if (letter === block.correct) return {
+      background: 'rgba(16,185,129,0.2)', border: '1px solid #10b981', color: '#6ee7b7',
+    }
+    if (letter === selected) return {
+      background: 'rgba(239,68,68,0.15)', border: '1px solid #ef4444', color: '#fca5a5',
+    }
+    return { background: 'rgba(51,65,85,0.2)', border: '1px solid #1e293b', color: '#475569' }
+  }
+
+  return (
+    <div style={{
+      background: '#0f1729',
+      border: `2px solid ${color}55`,
+      borderRadius: 12,
+      padding: '16px 18px',
+      margin: '20px 0',
+      position: 'relative',
+    }}>
+      {/* Header label */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12,
+      }}>
+        <span style={{
+          background: color + '22', color, border: `1px solid ${color}44`,
+          borderRadius: 20, padding: '2px 10px', fontSize: '0.68rem', fontWeight: 700,
+          textTransform: 'uppercase', letterSpacing: '0.06em',
+        }}>⚡ Verifica lo que aprendiste</span>
+      </div>
+
+      {/* Question */}
+      <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: 1.6, margin: '0 0 12px', fontWeight: 500 }}>
+        {block.question}
+      </p>
+
+      {/* Options */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+        {(block.options || []).map((opt) => {
+          const letter = opt[0] // "A", "B", etc.
+          return (
+            <button
+              key={letter}
+              onClick={() => handleSelect(letter)}
+              style={{
+                ...getOptStyle(letter),
+                borderRadius: 8, padding: '8px 14px', textAlign: 'left',
+                cursor: revealed ? 'default' : 'pointer', fontSize: '0.85rem',
+                transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: 8,
+              }}
+            >
+              {revealed && letter === block.correct && <CheckCircle size={14} color="#10b981" style={{ flexShrink: 0 }} />}
+              {revealed && letter === selected && letter !== block.correct && <XCircle size={14} color="#ef4444" style={{ flexShrink: 0 }} />}
+              <span>{opt}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Feedback */}
+      {revealed && (
+        <div style={{
+          marginTop: 14,
+          padding: '12px 14px',
+          background: isCorrect ? 'rgba(16,185,129,0.08)' : 'rgba(239,68,68,0.08)',
+          border: `1px solid ${isCorrect ? '#10b98144' : '#ef444444'}`,
+          borderRadius: 9,
+        }}>
+          {isCorrect ? (
+            <div style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: 600 }}>
+              ✓ ¡Correcto! Sigue leyendo.
+            </div>
+          ) : (
+            <div>
+              <div style={{ color: '#ef4444', fontWeight: 700, fontSize: '0.8rem', marginBottom: 6 }}>
+                ✗ No del todo — vuelve a revisar esto:
+              </div>
+              <div
+                style={{ color: '#fca5a5', fontSize: '0.83rem', lineHeight: 1.6 }}
+                dangerouslySetInnerHTML={{ __html: block.wrong_hint }}
+              />
+            </div>
+          )}
+          {/* Retry button */}
+          <button
+            onClick={() => { setSelected(null); setRevealed(false) }}
+            style={{
+              marginTop: 10, padding: '4px 12px',
+              background: 'rgba(100,116,139,0.15)', color: '#64748b',
+              border: '1px solid #334155', borderRadius: 6, fontSize: '0.75rem', cursor: 'pointer',
+            }}
+          >
+            <RotateCcw size={11} style={{ marginRight: 4, verticalAlign: 'middle' }} />Intentar de nuevo
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Lesson View (full didactic content) ──────────────────────────────────
+function LessonView({ topic }) {
+  const lesson = topic.lesson || []
+
+  if (lesson.length === 0) {
+    return (
+      <div style={{ color: '#475569', fontSize: '0.85rem', padding: '20px 0', textAlign: 'center' }}>
+        Lección didáctica próximamente para este tema.
+      </div>
+    )
+  }
+
+  return (
+    <div className="lesson-content" style={{ maxWidth: '100%' }}>
+      {lesson.map((block, i) => {
+        if (block.type === 'text') {
+          return (
+            <div
+              key={i}
+              className="lesson-text"
+              dangerouslySetInnerHTML={{ __html: block.html }}
+            />
+          )
+        }
+        if (block.type === 'rapid_check') {
+          return (
+            <InlineRapidCheck key={block.id || i} block={block} color={topic.color} />
+          )
+        }
+        return null
+      })}
+    </div>
+  )
+}
+
 // ── Topic Panel ──────────────────────────────────────────────────────────
 function TopicPanel({ topic, isOpen, onToggle }) {
-  const [view, setView] = useState('pearls') // 'pearls' | 'flashcards' | 'questions'
+  const [view, setView] = useState('lesson')
 
   return (
     <div style={{
@@ -148,6 +297,7 @@ function TopicPanel({ topic, isOpen, onToggle }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{
             background: topic.color + '22',
+
             color: topic.color,
             border: `1px solid ${topic.color}44`,
             borderRadius: 20,
@@ -165,8 +315,8 @@ function TopicPanel({ topic, isOpen, onToggle }) {
       {isOpen && (
         <div style={{ padding: '0 18px 18px' }}>
           {/* Tab nav */}
-          <div style={{ display: 'flex', gap: 6, marginBottom: 16, borderBottom: '1px solid #334155', paddingBottom: 12 }}>
-            {['pearls', 'flashcards', 'questions'].map(v => (
+          <div style={{ display: 'flex', gap: 6, marginBottom: 16, borderBottom: '1px solid #334155', paddingBottom: 12, flexWrap: 'wrap' }}>
+            {['lesson', 'pearls', 'flashcards', 'questions'].map(v => (
               <button
                 key={v}
                 onClick={() => setView(v)}
@@ -182,12 +332,17 @@ function TopicPanel({ topic, isOpen, onToggle }) {
                   transition: 'all 0.15s',
                 }}
               >
+                {v === 'lesson' && `📖 Lección`}
                 {v === 'pearls' && `Perlas (${topic.pearls?.length || 0})`}
                 {v === 'flashcards' && `Flashcards (${topic.flashcardCount})`}
                 {v === 'questions' && `Preguntas (${topic.questionCount})`}
               </button>
             ))}
           </div>
+
+          {/* Lesson */}
+          {view === 'lesson' && <LessonView topic={topic} />}
+
 
           {/* Pearls */}
           {view === 'pearls' && (

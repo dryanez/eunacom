@@ -3,6 +3,60 @@
    Dark Mode | Lexend | #135bec Primary
    ======================================== */
 
+/* ── Lesson didactic content styles ── */
+.lesson-text h3 {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 20px 0 10px;
+  padding-top: 4px;
+}
+.lesson-text h3:first-child { margin-top: 4px; }
+.lesson-text p {
+  color: #94a3b8;
+  font-size: 0.87rem;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+.lesson-text strong { color: #e2e8f0; }
+.lesson-text em { color: #fbbf24; font-style: italic; }
+.lesson-text ul, .lesson-text ol {
+  color: #94a3b8;
+  font-size: 0.87rem;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.lesson-text li { margin-bottom: 4px; }
+.lesson-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  font-size: 0.82rem;
+  overflow-x: auto;
+  display: block;
+}
+.lesson-text thead tr { background: #0f172a; }
+.lesson-text th {
+  color: #e2e8f0;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 2px solid #334155;
+  white-space: nowrap;
+}
+.lesson-text td {
+  color: #94a3b8;
+  padding: 7px 12px;
+  border-bottom: 1px solid #1e293b;
+  vertical-align: top;
+}
+.lesson-text tr:nth-child(even) { background: rgba(15,23,42,0.5); }
+.lesson-text td strong { color: #cbd5e1; font-weight: 600; }
+.lesson-text td.wrong-row { color: #fca5a5 !important; }
+
+
+
 :root {
   /* === Primary Blue === */
   --primary-900: #0a2d75;

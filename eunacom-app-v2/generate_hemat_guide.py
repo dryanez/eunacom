@@ -4,6 +4,7 @@ Generate hematologia-high-yield.json + hematologia-anki.apkg
 Reads modulo-1-hematologia.json, builds a structured study guide.
 """
 import json, os, re, struct, time, zipfile, hashlib, sqlite3, tempfile, shutil
+from lessons_hemat import LESSONS
 
 OUT_DIR = "public/data/study-guides"
 HEMAT_JSON = "public/data/pruebas/modulo-1-hematologia.json"
@@ -197,6 +198,10 @@ def assign_questions(all_q, topics):
                 used.add(i)
         topic["questionCount"] = len(topic["questions"])
         topic["flashcardCount"] = len(topic["flashcards"])
+        # Inject lesson content
+        lesson = LESSONS.get(topic["id"], [])
+        topic["lesson"] = lesson
+        topic["lessonRapidCheckCount"] = sum(1 for b in lesson if b["type"] == "rapid_check")
 
 # ─────────────────────────────────────────────────────────
 # ANKI .APKG GENERATION
@@ -333,6 +338,7 @@ def main():
     total_fc = sum(len(t["flashcards"]) for t in TOPICS)
     total_q = sum(t["questionCount"] for t in TOPICS)
     total_pearls = sum(len(t.get("pearls",[])) for t in TOPICS)
+    total_rc = sum(t.get("lessonRapidCheckCount", 0) for t in TOPICS)
 
     guide = {
         "meta": {
@@ -340,6 +346,7 @@ def main():
             "totalFlashcards": total_fc,
             "totalQuestions": total_q,
             "totalPearls": total_pearls,
+            "totalRapidChecks": total_rc,
             "generated": time.strftime("%Y-%m-%d"),
         },
         "topics": TOPICS,
@@ -349,7 +356,7 @@ def main():
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(guide, f, ensure_ascii=False, indent=2)
     print(f"✅ JSON written → {json_path}")
-    print(f"   Topics: {len(TOPICS)}, Questions: {total_q}, Flashcards: {total_fc}, Pearls: {total_pearls}")
+    print(f"   Topics: {len(TOPICS)}, Questions: {total_q}, Flashcards: {total_fc}, Pearls: {total_pearls}, RapidChecks: {total_rc}")
 
     apkg_path = os.path.join(OUT_DIR, "hematologia-anki.apkg")
     build_apkg(TOPICS, apkg_path)
