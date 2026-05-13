@@ -320,10 +320,12 @@ def build_apkg(topics, out_path):
     conn.close()
 
     # Zip into .apkg
+    # meta must be a binary Protobuf AnkiPackageMetadata{version=LEGACY(1)}
+    # encoded as: field 1, wire type 0 (varint), value 1 → b'\x08\x01'
     with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
         zf.write(db_path, "collection.anki2")
         zf.writestr("media", "{}")
-        zf.writestr("meta", json.dumps({"created": now_s, "deck_configs_enabled": False}))
+        zf.writestr("meta", b'\x08\x01')
 
     shutil.rmtree(tmpdir)
     print(f"✅ Anki .apkg written → {out_path}  ({len(all_cards)} cards)")

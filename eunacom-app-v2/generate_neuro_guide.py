@@ -506,11 +506,12 @@ def build_apkg(topics, out_path):
     conn.commit()
     conn.close()
 
-    meta_content = json.dumps({"mod": int(time.time()), "scm": int(time.time() * 1000)})
+    # meta must be a binary Protobuf AnkiPackageMetadata{version=LEGACY(1)}
+    # encoded as: field 1, wire type 0 (varint), value 1 → b'\x08\x01'
     with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
         zf.write(col_db, "collection.anki2")
         zf.writestr("media", "{}")
-        zf.writestr("meta", meta_content)
+        zf.writestr("meta", b'\x08\x01')
     os.remove(col_db)
     print(f"✅ Anki deck: {out_path}")
 
