@@ -19,23 +19,32 @@ const DashboardLayout = () => {
         if (!user) navigate('/login')
     }, [user, authLoading, navigate])
 
-    // Check if user has completed onboarding
+    // Check if user has completed onboarding — only once per session
     useEffect(() => {
         if (!user) return
+        // If already checked this session, don't re-fetch
+        const sessionKey = `onboarding_checked_${user.id}`
+        if (sessionStorage.getItem(sessionKey)) {
+            setProfileChecked(true)
+            return
+        }
         fetchUserProfile(user.id).then(profile => {
             if (!profile || !profile.onboarding_done) {
                 setShowOnboarding(true)
+            } else {
+                // Mark as checked so we never re-fetch this session
+                sessionStorage.setItem(sessionKey, '1')
             }
             setProfileChecked(true)
         }).catch(() => {
-            // On error, assume not completed — always show onboarding, never let through
             setShowOnboarding(true)
             setProfileChecked(true)
         })
-    }, [user])
+    }, [user?.id])
 
     const handleOnboardingComplete = async (profileData) => {
         await saveUserProfile(profileData)
+        sessionStorage.setItem(`onboarding_checked_${user.id}`, '1')
         setShowOnboarding(false)
     }
 

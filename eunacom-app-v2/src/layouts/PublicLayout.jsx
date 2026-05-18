@@ -14,22 +14,30 @@ const PublicLayout = () => {
   const [showOnboarding, setShowOnboarding] = useState(false)
   const [profileChecked, setProfileChecked] = useState(false)
 
-  // If a user is logged in, check if they completed onboarding
+  // If a user is logged in, check if they completed onboarding — only once per session
   useEffect(() => {
     if (!user) { setProfileChecked(true); return }
+    const sessionKey = `onboarding_checked_${user.id}`
+    if (sessionStorage.getItem(sessionKey)) {
+      setProfileChecked(true)
+      return
+    }
     fetchUserProfile(user.id).then(profile => {
       if (!profile || !profile.onboarding_done) {
         setShowOnboarding(true)
+      } else {
+        sessionStorage.setItem(sessionKey, '1')
       }
       setProfileChecked(true)
     }).catch(() => {
       setShowOnboarding(true)
       setProfileChecked(true)
     })
-  }, [user])
+  }, [user?.id])
 
   const handleOnboardingComplete = async (profileData) => {
     await saveUserProfile(profileData)
+    sessionStorage.setItem(`onboarding_checked_${user.id}`, '1')
     setShowOnboarding(false)
   }
 
