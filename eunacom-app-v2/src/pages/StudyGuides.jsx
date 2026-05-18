@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { BookOpen, Brain, Download, ChevronDown, ChevronRight, CheckCircle, XCircle, RotateCcw, Eye, EyeOff, Zap } from 'lucide-react'
 
 const OWNER_EMAIL = 'dr.felipeyanez@gmail.com'
+const ALLOWED_EMAILS = [OWNER_EMAIL, 'llancagomez@gmail.com']
 
 // ── Flashcard component (cloze-style reveal) ──────────────────────────────
 function FlashCard({ card, index }) {
@@ -408,7 +409,7 @@ export default function StudyGuides() {
   const [search, setSearch] = useState('')
   const [downloading, setDownloading] = useState(false)
 
-  const isOwner = user?.email === OWNER_EMAIL
+  const isOwner = ALLOWED_EMAILS.includes(user?.email)
 
   useEffect(() => {
     if (!isOwner) return

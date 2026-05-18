@@ -4,7 +4,9 @@
     "totalQuestions": 301,
     "totalFlashcards": 49,
     "lastUpdated": "2026-04-30",
-    "source": "Preguntas Pruebas EUNACOM Módulo 3 Pediatría (301 preguntas)"
+    "source": "Preguntas Pruebas EUNACOM Módulo 3 Pediatría (301 preguntas)",
+    "subject": "Pediatría",
+    "totalPearls": 90
   },
   "topics": [
     {
@@ -3131,7 +3133,9 @@
           "back": "Espasmos masivos + hipsarritmia EEG + retraso mental",
           "cloze": "El síndrome de West se caracteriza por la tríada: {{c1::espasmos masivos}}, {{c2::hipsarritmia en EEG}} y {{c3::retraso mental}}. Se inicia entre los {{c4::3-12 meses}} y se trata con {{c5::ACTH o vigabatrina}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "infectologia",
@@ -5089,7 +5093,9 @@
           "back": "Fiebre >5 días + 4 de 5: conjuntivitis, labios/mucosa oral, exantema, cambios en extremidades, adenopatía cervical",
           "cloze": "La enfermedad de Kawasaki requiere {{c1::fiebre >5 días}} más al menos 4 de los siguientes: {{c2::conjuntivitis bilateral}}, {{c3::cambios en labios y mucosa oral}}, {{c4::exantema}}, {{c5::cambios en manos/pies}} y {{c6::adenopatía cervical}}. La complicación más temida son los {{c7::aneurismas coronarios}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "vacunas",
@@ -5547,7 +5553,9 @@
           "back": "BCG, Sabin oral, Trivírica (SRP), Varicela",
           "cloze": "Las vacunas vivas contraindicadas en inmunocomprometidos son: {{c1::BCG}}, {{c2::Sabin oral (OPV)}}, {{c3::Trivírica (SRP)}} y {{c4::Varicela}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "cardiologia",
@@ -5945,7 +5953,9 @@
           "back": "Causas renovasculares (coartación aórtica, estenosis arteria renal)",
           "cloze": "En un niño de 3 años con PA en percentil 98 y pulsos femorales disminuidos, el diagnóstico más probable es {{c1::Coartación Aórtica}}. La primera causa de HTA crónica en niños es {{c2::patología renal}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "nefrologia",
@@ -6341,7 +6351,9 @@
           "back": "Infantil (autosómica recesiva) → IRA neonatal. Adulto (autosómica dominante) → IRC en adultos.",
           "cloze": "La poliquistosis renal {{c1::autosómica recesiva}} (infantil) causa {{c2::insuficiencia renal severa perinatal}}. Tiene una probabilidad de {{c3::25%}} de repetición en hermanos."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "gastroenterologia",
@@ -6913,7 +6925,9 @@
           "back": "Celíaca: anticuerpos anti-transglutaminasa, biopsia. FQ: test del sudor.",
           "cloze": "La enfermedad celíaca se confirma con {{c1::biopsia de intestino delgado}} + anticuerpos {{c2::anti-transglutaminasa}}. La fibrosis quística se confirma con {{c3::test del sudor}} (Cl >60 mmol/L). Ambas causan {{c4::diarrea crónica + mal incremento ponderal}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "nutricion",
@@ -7245,7 +7259,9 @@
           "back": "Hasta los 6 meses",
           "cloze": "La lactancia materna exclusiva se recomienda hasta los {{c1::6 meses}}. Protege contra {{c2::infecciones}}, {{c3::alergias}}, {{c4::otitis}} y mejora el vínculo madre-hijo."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "crecimiento",
@@ -7626,7 +7642,9 @@
           "back": "Aumento del volumen testicular >4 mL",
           "cloze": "El primer signo de pubertad en el varón es {{c1::aumento del volumen testicular >4 mL}}. La ginecomastia puberal es {{c2::normal}} y {{c3::transitoria}} (dura 1-2 años)."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "neurologia",
@@ -7900,7 +7918,9 @@
           "back": "En etapa escolar (6-12 años)",
           "cloze": "El TDAH se detecta con mayor frecuencia en {{c1::etapa escolar (6-12 años)}}, aunque los síntomas deben estar presentes desde antes de los {{c2::7 años}}. El tratamiento incluye {{c3::metilfenidato}} + {{c4::terapia conductual}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "endocrinologia",
@@ -8106,7 +8126,9 @@
           "back": "Revisar curva de crecimiento",
           "cloze": "Ante un niño con talla baja, el primer paso es {{c1::revisar la curva de crecimiento}}. Si la velocidad de crecimiento es normal, lo más probable es una variante {{c2::familiar}} o {{c3::constitucional}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "hematologia",
@@ -8328,7 +8350,9 @@
           "back": "Plaquetas bajas aisladas, sin anemia, post-viral, autolimitada",
           "cloze": "La púrpura trombocitopénica inmune (PTI) en niños cursa con {{c1::plaquetas bajas}} de forma aislada, {{c2::sin anemia}}, generalmente {{c3::post-viral}} y es {{c4::autolimitada}} en la mayoría de los casos."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "neumologia",
@@ -8486,7 +8510,9 @@
           "back": "Hipertrofia adenotonsilar → Adenoamigdalectomía",
           "cloze": "La causa más frecuente de apnea obstructiva del sueño en {{c1::preescolares}} es {{c2::hipertrofia adenotonsilar}}. El tratamiento definitivo es {{c3::adenoamigdalectomía}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "ortopedia",
@@ -8673,7 +8699,9 @@
           "back": "Hasta demostrar lo contrario = maltrato infantil",
           "cloze": "La fractura de escápula en un niño es altamente sugestiva de {{c1::maltrato infantil}} hasta demostrar lo contrario. Otras fracturas sospechosas: {{c2::fractura en espiral}} de huesos largos y {{c3::hematoma subdural sin trauma claro}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "cirugia",
@@ -8827,7 +8855,9 @@
           "back": "Operar de inmediato si no se puede descartar torsión testicular",
           "cloze": "Ante un escroto agudo unilateral en el que no se puede determinar la etiología clínicamente, la conducta es {{c1::operar de inmediato}}, ya que la ventana para salvar el testículo en torsión es de {{c2::6 horas}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "inmunologia",
@@ -8858,7 +8888,9 @@
           "back": "Transmisión vertical (madre-hijo)",
           "cloze": "La transmisión de VIH en pediatría es principalmente {{c1::vertical (madre-hijo)}}. La profilaxis se realiza con {{c2::antirretrovirales}} durante el embarazo. El diagnóstico en menores de 18 meses requiere {{c3::PCR}} (no serología por anticuerpos maternos)."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "salud-publica",
@@ -9383,7 +9415,9 @@
           "back": "Leucemia aguda, sepsis meningocócica, PTI",
           "cloze": "Un niño con fiebre y petequias/equimosis aisladas debe hacer pensar en {{c1::leucemia aguda}} (si hay hepatoesplenomegalia), {{c2::sepsis meningocócica}} (si hay compromiso hemodinámico) o {{c3::PTI}} (si plaquetas bajas aisladas)."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "salud-mental",
@@ -9433,7 +9467,9 @@
           "tags": "Maltrato infantil, Pediatría social, Pediatría"
         }
       ],
-      "flashcards": []
+      "flashcards": [],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "urgencias",
@@ -9581,7 +9617,9 @@
           "back": "Midriasis + piel seca + rubicundez + taquicardia + retención urinaria + alucinaciones",
           "cloze": "El síndrome anticolinérgico se presenta con {{c1::midriasis}}, {{c2::piel seca y caliente}}, {{c3::rubicundez facial}}, {{c4::taquicardia}}, {{c5::retención urinaria}} y {{c6::alucinaciones}}. El antídoto es {{c7::fisostigmina}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "exantemas",
@@ -9644,7 +9682,9 @@
           "back": "S. pyogenes. Faringitis + exantema en lija + lengua en fresa + líneas de Pastia.",
           "cloze": "La escarlatina es causada por {{c1::Streptococcus pyogenes}} y se presenta con {{c2::faringitis}}, {{c3::exantema micropapular eritematoso (lija)}}, {{c4::lengua en fresa}} y {{c5::líneas de Pastia}}."
         }
-      ]
+      ],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     },
     {
       "id": "oftalmologia",
@@ -9660,7 +9700,9 @@
         }
       ],
       "questions": [],
-      "flashcards": []
+      "flashcards": [],
+      "lesson": [],
+      "lessonRapidCheckCount": 0
     }
   ]
 }
