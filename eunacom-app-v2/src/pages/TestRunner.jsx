@@ -87,7 +87,7 @@ const TestRunner = () => {
 
     const finishTest = async () => {
         let score = 0
-        const scoreSource = isTutorMode ? firstAttempts : answers
+        const scoreSource = (isTutorMode && !startFinished) ? firstAttempts : answers
         questions.forEach(q => { if (scoreSource[q.id]?.toLowerCase() === q.correctAnswer?.toLowerCase()) score++ })
         const pct = Math.round((score / totalQuestions) * 100)
 
@@ -115,8 +115,9 @@ const TestRunner = () => {
 
     if (isFinished) {
         let score = 0
+        // On review (startFinished), firstAttempts is empty — always use saved answers
         const results = questions.map(q => {
-            const firstAns = isTutorMode ? firstAttempts[q.id] : answers[q.id]
+            const firstAns = (!startFinished && isTutorMode) ? firstAttempts[q.id] : answers[q.id]
             const userAns = firstAns  // show first attempt in review
             const correct = userAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
             if (correct) score++
