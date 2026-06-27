@@ -258,6 +258,27 @@ const Dashboard = () => {
         </>
       )}
 
+      {/* ─── QUICK ACTIONS ─── */}
+      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
+      <div className="action-grid" style={{ marginBottom: '1.5rem' }}>
+        <a href="/test" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Exámenes</div>
+        </a>
+        <a href="/study-plan" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
+          <div className="action-card__label">Plan de Estudio</div>
+        </a>
+        <a href="/stats" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Estadísticas</div>
+        </a>
+        <a href="/mis-clases" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
+          <div className="action-card__label">Mis Clases</div>
+        </a>
+      </div>
+
       {/* ─── LEADERBOARD ─── */}
       <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -322,27 +343,6 @@ const Dashboard = () => {
             })}
           </div>
         )}
-      </div>
-
-      {/* ─── QUICK ACTIONS ─── */}
-      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
-      <div className="action-grid">
-        <a href="/test" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Exámenes</div>
-        </a>
-        <a href="/study-plan" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
-          <div className="action-card__label">Plan de Estudio</div>
-        </a>
-        <a href="/stats" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Estadísticas</div>
-        </a>
-        <a href="/mis-clases" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
-          <div className="action-card__label">Mis Clases</div>
-        </a>
       </div>
     </div>
   )

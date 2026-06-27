@@ -51,6 +51,19 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     <CalendarDays size={18} /> Plan de Estudio
                 </NavLink>
 
+                <div className="sidebar__section-title">Aprendizaje</div>
+                <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Video size={18} /> Mis Clases
+                </NavLink>
+                <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Shield size={18} /> Biblioteca EUNACOM
+                </NavLink>
+                {user?.email === 'dr.felipeyanez@gmail.com' && (
+                    <NavLink to="/study-guides" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316' }}>
+                        <Flame size={18} /> Study Guides High Yield!
+                    </NavLink>
+                )}
+
                 <div className="sidebar__section-title">Exámenes</div>
                 <div
                     className="sidebar__link"
@@ -88,19 +101,6 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/review" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <RotateCcw size={18} /> Repasar Errores
                 </NavLink>
-
-                <div className="sidebar__section-title">Aprendizaje</div>
-                <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <Video size={18} /> Mis Clases
-                </NavLink>
-                <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <Shield size={18} /> Biblioteca EUNACOM
-                </NavLink>
-                {user?.email === 'dr.felipeyanez@gmail.com' && (
-                    <NavLink to="/study-guides" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316' }}>
-                        <Flame size={18} /> Study Guides High Yield!
-                    </NavLink>
-                )}
             </nav>
 
             <div className="sidebar__footer">
