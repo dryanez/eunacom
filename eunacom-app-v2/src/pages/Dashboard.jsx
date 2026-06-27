@@ -29,23 +29,60 @@ const Dashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const progressData = await fetchProgress(user.id)
-      const total = progressData.length
-      const answered = progressData.filter(p => !p.is_omitted).length
-      const correct = progressData.filter(p => p.is_correct).length
-      const incorrect = answered - correct
-      const totalXP = (correct * XP_PER_CORRECT) + (incorrect * XP_PER_INCORRECT)
+      // Import fetchTests if it hasn't been imported
+      const { fetchTests } = await import('../lib/api');
+      const userTests = await fetchTests(user.id)
+      
+      let totalAnswered = 0
+      let correctAnswers = 0
+      let reconAnswered = 0
+      let reconCorrect = 0
+      let customAnswered = 0
+      let customCorrect = 0
+      
+      let totalExams = 0
+      let reconExams = 0
+      let customExams = 0
+
+      // Calculate strictly from completed tests
+      for (const t of userTests) {
+          if (t.status === 'completed') {
+              // Ensure we count the questions in the exam
+              let numQuestions = t.total_questions || 0
+              if (numQuestions === 0 && t.answers) {
+                const ansObj = typeof t.answers === 'string' ? JSON.parse(t.answers) : t.answers;
+                numQuestions = Object.keys(ansObj).length;
+              }
+
+              const score = t.score || 0
+              const isRecon = typeof t.questions === 'string' && t.questions.includes('_q')
+              
+              totalAnswered += numQuestions
+              correctAnswers += score
+              totalExams++
+              
+              if (isRecon) {
+                  reconAnswered += numQuestions
+                  reconCorrect += score
+                  reconExams++
+              } else {
+                  customAnswered += numQuestions
+                  customCorrect += score
+                  customExams++
+              }
+          }
+      }
+
+      const incorrectAnswers = totalAnswered - correctAnswers
+      const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT)
       const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
 
-      const recon = progressData.filter(p => String(p.question_id).includes('_q'))
-      const custom = progressData.filter(p => !String(p.question_id).includes('_q'))
-
       setSubStats({
-          reconstructions: { answered: recon.length, correct: recon.filter(p => p.is_correct).length },
-          custom: { answered: custom.length, correct: custom.filter(p => p.is_correct).length }
+          reconstructions: { answered: reconAnswered, correct: reconCorrect, exams: reconExams },
+          custom: { answered: customAnswered, correct: customCorrect, exams: customExams }
       })
 
-      setStats({ totalAnswered: total, correctAnswers: correct, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
+      setStats({ totalAnswered, correctAnswers, totalExams, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
     } catch (e) { console.error('Dashboard stats error:', e) }
   }
 
@@ -67,10 +104,10 @@ const Dashboard = () => {
   const getActiveStats = () => {
       if (activeTab === 'reconstructions') return subStats.reconstructions
       if (activeTab === 'custom') return subStats.custom
-      return { answered: stats.totalAnswered, correct: stats.correctAnswers }
+      return { answered: stats.totalAnswered, correct: stats.correctAnswers, exams: stats.totalExams }
   }
 
-  const { answered: currentAnswered, correct: currentCorrect } = getActiveStats()
+  const { answered: currentAnswered, correct: currentCorrect, exams: currentExams } = getActiveStats()
   const accuracy = currentAnswered > 0 ? Math.round((currentCorrect / currentAnswered) * 100) : 0
   const levelCapXP = getXPForLevel(stats.level + 1)
   const xpProgress = getLevelProgress(stats.xp, stats.level)
@@ -183,6 +220,18 @@ const Dashboard = () => {
               <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
                 <div className="stat-card__value">{currentAnswered.toLocaleString()}</div>
                 <div className="stat-card__sub">{currentCorrect} correctas</div>
+              </div>
+            </div>
+
+            {/* Exámenes */}
+            <div className="stat-card">
+              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Activity size={18} color="var(--accent-teal)" /></div>
+                Exámenes
+              </div>
+              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
+                <div className="stat-card__value">{currentExams || 0}</div>
+                <div className="stat-card__sub">Completados</div>
               </div>
             </div>
 
