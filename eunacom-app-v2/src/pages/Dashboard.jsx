@@ -290,6 +290,7 @@ const Dashboard = () => {
               const isMe = u.user_id === user?.id
               const name = (u.first_name ? `${u.first_name} ${(u.last_name || '').charAt(0)}.` : u.email?.split('@')[0] || 'Anónimo')
               const rankIcon = i === 0 ? <Crown size={16} color="#FFD700" /> : i === 1 ? <Medal size={16} color="#C0C0C0" /> : i === 2 ? <Medal size={16} color="#CD7F32" /> : null
+              const uLvl = calculateLevelUp(Number(u.xp || 0), 1).newLevel
               return (
                 <div key={u.user_id} style={{
                   display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 0.75rem',
@@ -307,8 +308,10 @@ const Dashboard = () => {
                     <div style={{ fontWeight: isMe ? 700 : 500, fontSize: '0.88rem', color: 'var(--surface-100)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {name} {isMe && <span style={{ fontSize: '0.72rem', color: 'var(--primary-300)' }}>(tú)</span>}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>
-                      {u.correct}/{u.total_answers} correctas · {Math.round((u.correct / Math.max(u.total_answers, 1)) * 100)}%
+                    <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <span style={{ color: 'var(--primary-300)', fontWeight: 600 }}>Nvl {uLvl}</span>
+                      <span>·</span>
+                      <span style={{ fontStyle: 'italic' }}>{getLevelTitle(uLvl)}</span>
                     </div>
                   </div>
                   <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--accent-amber)', display: 'flex', alignItems: 'center', gap: 3 }}>
