@@ -265,10 +265,12 @@ const Dashboard = () => {
           <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
           <div className="action-card__label">Exámenes</div>
         </a>
-        <a href="/study-plan" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
-          <div className="action-card__label">Plan de Estudio</div>
-        </a>
+        {user?.email === 'dr.felipeyanez@gmail.com' && (
+          <a href="/study-plan" className="action-card">
+            <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
+            <div className="action-card__label">Plan de Estudio</div>
+          </a>
+        )}
         <a href="/stats" className="action-card">
           <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
           <div className="action-card__label">Estadísticas</div>

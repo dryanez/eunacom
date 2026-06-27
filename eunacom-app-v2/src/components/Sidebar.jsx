@@ -47,9 +47,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/dashboard" data-tour="dashboard" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Home size={18} /> Inicio
                 </NavLink>
-                <NavLink to="/study-plan" data-tour="study-plan" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <CalendarDays size={18} /> Plan de Estudio
-                </NavLink>
+                {isAdmin() && (
+                    <NavLink to="/study-plan" data-tour="study-plan" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                        <CalendarDays size={18} /> Plan de Estudio
+                    </NavLink>
+                )}
 
                 <div className="sidebar__section-title">Aprendizaje</div>
                 <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
@@ -95,9 +97,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/stats" data-tour="stats" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <BarChart3 size={18} /> Estadísticas
                 </NavLink>
-                <NavLink to="/flashcards" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <CreditCard size={18} /> Flashcards
-                </NavLink>
+                {isAdmin() && (
+                    <NavLink to="/flashcards" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                        <CreditCard size={18} /> Flashcards
+                    </NavLink>
+                )}
                 <NavLink to="/review" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <RotateCcw size={18} /> Repasar Errores
                 </NavLink>
