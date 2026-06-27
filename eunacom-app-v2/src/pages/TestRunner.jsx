@@ -21,6 +21,8 @@ const TestRunner = () => {
     const [wrongAttempts, setWrongAttempts] = useState({}) // tutor mode: { [questionId]: Set of wrong optionIds tried }
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
+    const timeLimitSeconds = location.state?.timeLimitSeconds || 0
+    const [timeLeft, setTimeLeft] = useState(timeLimitSeconds)
     const [isFinished, setIsFinished] = useState(startFinished)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [showExplanation, setShowExplanation] = useState({}) // tutor mode: show explanation panel per question
@@ -29,9 +31,22 @@ const TestRunner = () => {
 
     useEffect(() => {
         if (isFinished || questions.length === 0 || isTutorMode) return
-        const timer = setInterval(() => setTimeElapsed(prev => prev + 1), 1000)
+        const timer = setInterval(() => {
+            if (timeLimitSeconds > 0) {
+                setTimeLeft(prev => {
+                    if (prev <= 1) {
+                        clearInterval(timer)
+                        document.getElementById('auto-submit-btn')?.click()
+                        return 0
+                    }
+                    return prev - 1
+                })
+            } else {
+                setTimeElapsed(prev => prev + 1)
+            }
+        }, 1000)
         return () => clearInterval(timer)
-    }, [isFinished, questions.length, isTutorMode])
+    }, [isFinished, questions.length, isTutorMode, timeLimitSeconds])
 
     const formatTime = (s) => {
         const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60
@@ -242,6 +257,14 @@ const TestRunner = () => {
 
     return (
         <div style={{ background: 'var(--surface-900)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <button id="auto-submit-btn" style={{ display: 'none' }} onClick={() => {
+                setIsSubmitting(true)
+                finishTest().then(() => {
+                    setIsFinished(true)
+                    setIsSubmitting(false)
+                    alert('¡El tiempo ha finalizado!')
+                })
+            }} />
             {/* Top bar */}
             <div style={{ background: 'var(--surface-800)', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--surface-700)' }}>
                 <button onClick={() => navigate(-1)} style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}>
@@ -256,7 +279,9 @@ const TestRunner = () => {
                 <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>Q {currentIndex + 1} / {totalQuestions}</div>
                 {isTutorMode
                     ? <div style={{ fontWeight: 600, fontSize: '0.9rem', opacity: 0.9 }}>💡 Modo Tutor</div>
-                    : <div style={{ fontWeight: 700, fontSize: '1.2rem', fontFamily: 'monospace' }}>{formatTime(timeElapsed)}</div>
+                    : <div style={{ fontWeight: 700, fontSize: '1.2rem', fontFamily: 'monospace', color: (timeLimitSeconds > 0 && timeLeft < 60) ? '#f87171' : 'white' }}>
+                        {timeLimitSeconds > 0 ? formatTime(timeLeft) : formatTime(timeElapsed)}
+                      </div>
                 }
             </div>
             <div style={{ height: '4px', background: 'rgba(0,0,0,0.2)' }}>

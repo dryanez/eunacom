@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchProgress } from '../lib/api'
-import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft } from 'lucide-react'
+import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock, GraduationCap } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 
@@ -173,6 +173,7 @@ const Reconstructions = () => {
   const [activeTab, setActiveTab] = useState('exams')
   const [selectedTopic, setSelectedTopic] = useState(null)   // topic drill-down
   const [activeQuiz, setActiveQuiz] = useState(null)         // { questions, title }
+  const [selectedExam, setSelectedExam] = useState(null)     // exam mode modal
 
   useEffect(() => { loadData() }, [user])
 
@@ -206,9 +207,10 @@ const Reconstructions = () => {
     finally { setLoading(false) }
   }
 
-  const handleStartExam = async (exam) => {
+  const handleStartExam = async (exam, selectedMode) => {
     if (!user) { setShowLoginGate(true); return }
     setStarting(exam.id)
+    setSelectedExam(null)
     try {
       const res = await fetch(`/data/reconstrucciones/${exam.file}`)
       const data = await res.json()
@@ -216,8 +218,10 @@ const Reconstructions = () => {
       if (!valid.length) { alert('Sin preguntas disponibles.'); return }
       const questions = valid.map(q => toTestRunnerFormat(q, exam.id))
       const testId = genId()
-      await createTest({ id: testId, userId: user.id, mode: 'tutor', timeLimitSeconds: 0, totalQuestions: questions.length, questions: questions.map(q => q.id) })
-      navigate('/test-runner', { state: { testId, questions, isReconstruction: true, examName: exam.name } })
+      const timeLimitSeconds = selectedMode === 'exam' ? questions.length * 60 : 0
+
+      await createTest({ id: testId, userId: user.id, mode: selectedMode, timeLimitSeconds, totalQuestions: questions.length, questions: questions.map(q => q.id) })
+      navigate('/test-runner', { state: { testId, questions, isReconstruction: true, examName: exam.name, mode: selectedMode, isSimulation: selectedMode === 'exam', timeLimitSeconds } })
     } catch (e) { alert('Error: ' + (e.message || String(e))) }
     finally { setStarting(null) }
   }
@@ -247,6 +251,43 @@ const Reconstructions = () => {
               <span style={{ fontWeight: 700, fontSize: '0.9rem', flex: 1, color: 'var(--surface-200)' }}>{activeQuiz.title}</span>
             </div>
             <InlineQuiz questions={activeQuiz.questions} title={activeQuiz.title} onClose={() => setActiveQuiz(null)}/>
+          </div>
+        </div>
+      )}
+
+      {/* Exam Mode Modal */}
+      {selectedExam && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
+          <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 480, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
+            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--surface-100)' }}>Modo de Examen</h3>
+              <button onClick={() => setSelectedExam(null)} style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer' }}><X size={20}/></button>
+            </div>
+            <div style={{ padding: '1.5rem' }}>
+              <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: 1.5 }}>
+                Estás a punto de comenzar <strong>{selectedExam.name}</strong> ({selectedExam.total_questions} preguntas). ¿Cómo te gustaría rendirlo?
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <button onClick={() => handleStartExam(selectedExam, 'tutor')} style={{ display: 'flex', gap: '1rem', padding: '1.25rem', background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(99,102,241,0.15)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(99,102,241,0.1)'}>
+                  <div style={{ color: 'var(--primary-400)', marginTop: '0.2rem' }}><GraduationCap size={24}/></div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>Modo Tutor</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', lineHeight: 1.4 }}>Sin límite de tiempo. Obtén pistas y explicaciones en tiempo real para aprender de tus errores al instante.</div>
+                  </div>
+                </button>
+                <button onClick={() => handleStartExam(selectedExam, 'exam')} style={{ display: 'flex', gap: '1rem', padding: '1.25rem', background: 'rgba(251,191,36,0.1)', border: '1px solid rgba(251,191,36,0.3)', borderRadius: 10, cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(251,191,36,0.15)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(251,191,36,0.1)'}>
+                  <div style={{ color: 'var(--accent-amber)', marginTop: '0.2rem' }}><Clock size={24}/></div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>Modo Simulacro</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', lineHeight: 1.4 }}>Igual que el EUNACOM. Tiempo calculado ({selectedExam.total_questions} minutos). Sin pistas hasta el final de la prueba.</div>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -300,7 +341,7 @@ const Reconstructions = () => {
                 const pct = result?.pct
                 return (
                   <div key={exam.id} style={{ background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
-                    onClick={() => handleStartExam(exam)}
+                    onClick={() => setSelectedExam(exam)}
                     onMouseEnter={e => { e.currentTarget.style.borderColor='var(--primary-400)'; e.currentTarget.style.transform='translateY(-1px)' }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor=result?'var(--surface-600)':'var(--surface-700)'; e.currentTarget.style.transform='none' }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
