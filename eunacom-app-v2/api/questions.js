@@ -39,7 +39,25 @@ export default async function handler(req, res) {
   try {
     let rows = []
 
-    if (clase_id) {
+    if (req.query.reviewUserId) {
+      // Ensure columns exist just in case
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
+      const result = await db.execute({
+        sql: `
+          SELECT 
+            q.*, up.answered_at
+          FROM user_progress up
+          JOIN eunacom_questions q ON up.question_id = q.id
+          WHERE up.user_id = ? AND up.is_correct = 0 AND up.is_omitted = 0
+          ORDER BY up.answered_at DESC
+          LIMIT 200
+        `,
+        args: [req.query.reviewUserId]
+      })
+      rows = result.rows
+    } else if (clase_id) {
       // Primary: questions matched directly to this class
       const direct = await db.execute({
         sql: `SELECT * FROM eunacom_questions WHERE clase_id = ? ORDER BY id LIMIT ? OFFSET ?`,
@@ -59,7 +77,7 @@ export default async function handler(req, res) {
       })
       rows = result.rows
     } else {
-      return res.status(400).json({ error: 'Provide clase_id, eunacom_code, or specialty' })
+      return res.status(400).json({ error: 'Provide clase_id, eunacom_code, specialty, or reviewUserId' })
     }
 
     // Normalise rows into a consistent shape for the frontend

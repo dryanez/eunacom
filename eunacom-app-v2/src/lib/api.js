@@ -37,7 +37,7 @@ export async function fetchTests(userId) {
 }
 
 export async function fetchReviewQuestions(userId) {
-  const data = await apiFetch(`/api/review?userId=${userId}`)
+  const data = await apiFetch(`/api/questions?reviewUserId=${userId}`)
   return data.data || []
 }
 
