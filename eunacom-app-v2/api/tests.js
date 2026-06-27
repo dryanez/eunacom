@@ -42,6 +42,12 @@ export default async function handler(req, res) {
       // Sync completed test answers to user_progress table
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+      try { await db.execute('CREATE UNIQUE INDEX IF NOT EXISTS idx_up_user_question ON user_progress(user_id, question_id)') } catch (e) {
+        try {
+          await db.execute(`DELETE FROM user_progress WHERE rowid NOT IN (SELECT MIN(rowid) FROM user_progress GROUP BY user_id, question_id)`)
+          await db.execute('CREATE UNIQUE INDEX idx_up_user_question ON user_progress(user_id, question_id)')
+        } catch (err) {}
+      }
 
       const testRow = await db.execute({ sql: 'SELECT user_id, questions FROM tests WHERE id = ?', args: [id] })
       if (testRow.rows.length > 0) {
