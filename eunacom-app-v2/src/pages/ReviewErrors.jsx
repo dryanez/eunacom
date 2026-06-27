@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchReviewQuestions } from '../lib/api'
-import { RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp, Layers, Tag } from 'lucide-react'
+import { RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp, Layers, Tag, Video } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const ReviewErrors = () => {
@@ -211,19 +211,32 @@ const ReviewErrors = () => {
                           </div>
                         )}
 
-                        {q.claseId && (
-                          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <button 
-                              className="btn-premium"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                navigate(`/mis-clases`); // In a real scenario, scroll or focus to the specific module using q.claseId
-                              }}
-                            >
-                              <BookOpen size={18} /> Ir a la Clase
-                            </button>
-                          </div>
-                        )}
+                        {(() => {
+                          const topic = q.topic || '';
+                          const cat = q.category || '';
+                          const targetSubsystem = topic === 'Cirugía y Anestesia' ? 'Cirugía General y Anestesia' 
+                                                : topic === 'Neurología' ? 'Neurología y Geriatría' 
+                                                : topic;
+                          const lessonNumStr = cat.replace(/[^0-9]/g, '');
+                          const lessonNumber = lessonNumStr ? parseInt(lessonNumStr, 10) : null;
+                          
+                          if (targetSubsystem && lessonNumber) {
+                            return (
+                              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                                <button 
+                                  className="btn-premium"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    navigate('/mis-clases', { state: { openSubsystem: targetSubsystem, openLesson: lessonNumber } });
+                                  }}
+                                >
+                                  <Video size={18} /> Ver Video de la Clase
+                                </button>
+                              </div>
+                            );
+                          }
+                          return null;
+                        })()}
                       </div>
                     )}
                   </div>
