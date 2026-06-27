@@ -48,7 +48,7 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/flashcards" element={<div className="page"><h1 className="page__title">Flashcards</h1></div>} />
-            <Route path="/review" element={<div className="page"><h1 className="page__title">Repasar Errores</h1></div>} />
+            <Route path="/review" element={<ReviewErrors />} />
             <Route path="/biblioteca" element={<Biblioteca />} />
             <Route path="/script-progress" element={<ScriptProgress />} />
             <Route path="/admin/users" element={<AdminUsers />} />

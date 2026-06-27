@@ -36,6 +36,11 @@ export async function fetchTests(userId) {
   return data.data || []
 }
 
+export async function fetchReviewQuestions(userId) {
+  const data = await apiFetch(`/api/review?userId=${userId}`)
+  return data.data || []
+}
+
 export async function createTest(testObj) {
   // testObj: { id, userId, mode, timeLimitSeconds, totalQuestions, questions }
   return apiFetch('/api/tests', {
