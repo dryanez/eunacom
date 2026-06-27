@@ -10,6 +10,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'userId required' })
   }
 
+  // Ensure columns exist just in case they haven't been created yet
+  try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+  try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
   try {
     const result = await db.execute({
       sql: `
