@@ -22,17 +22,22 @@ import LoginGateModal from '../components/LoginGateModal'
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
    ════════════════════════════════════════════════════════════════ */
-function ProgressRing({ percent, size = 32, stroke = 3 }) {
+function ProgressRing({ percent, size = 48, stroke = 4 }) {
   const r = (size - stroke) / 2
   const circ = 2 * Math.PI * r
   const offset = circ - (percent / 100) * circ
-  const color = percent >= 100 ? '#10b981' : percent > 0 ? '#f59e0b' : 'var(--surface-500)'
+  const color = percent >= 100 ? '#10b981' : percent > 0 ? '#3b82f6' : 'var(--surface-500)'
+  
   return (
-    <svg width={size} height={size} style={{ transform: 'rotate(-90deg)', flexShrink: 0 }}>
-      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="var(--surface-600)" strokeWidth={stroke} />
-      {percent > 0 && <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" style={{ transition: 'stroke-dashoffset 0.5s' }} />}
-      <text x={size/2} y={size/2} textAnchor="middle" dominantBaseline="central" style={{ transform: 'rotate(90deg)', transformOrigin: 'center', fontSize: size * 0.3, fontWeight: 700, fill: color }}>{percent}%</text>
-    </svg>
+    <div style={{ position: 'relative', width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <svg width={size} height={size} style={{ transform: 'rotate(-90deg)', position: 'absolute', top: 0, left: 0 }}>
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="var(--surface-600)" strokeWidth={stroke} />
+        {percent > 0 && <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" style={{ transition: 'stroke-dashoffset 0.5s' }} />}
+      </svg>
+      <span style={{ fontSize: size < 40 ? '0.7rem' : '0.85rem', fontWeight: 800, color: percent >= 100 ? '#10b981' : 'var(--text-primary)', zIndex: 1 }}>
+        {percent}%
+      </span>
+    </div>
   )
 }
 
