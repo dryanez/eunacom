@@ -50,7 +50,7 @@ export default async function handler(req, res) {
             q.*, up.answered_at
           FROM user_progress up
           JOIN eunacom_questions q ON up.question_id = q.id
-          WHERE up.user_id = ? AND up.is_correct = 0 AND up.is_omitted = 0
+          WHERE up.user_id = ? AND up.is_correct = 0
           ORDER BY up.answered_at DESC
           LIMIT 200
         `,
