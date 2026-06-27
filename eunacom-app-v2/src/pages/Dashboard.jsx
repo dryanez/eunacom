@@ -54,20 +54,21 @@ const Dashboard = () => {
                 numQuestions = Object.keys(ansObj).length;
               }
 
-              const score = t.score || 0
+              const pct = t.score || 0
+              const actualCorrect = Math.round((pct / 100) * numQuestions)
               const isRecon = typeof t.questions === 'string' && t.questions.includes('_q')
               
               totalAnswered += numQuestions
-              correctAnswers += score
+              correctAnswers += actualCorrect
               totalExams++
               
               if (isRecon) {
                   reconAnswered += numQuestions
-                  reconCorrect += score
+                  reconCorrect += actualCorrect
                   reconExams++
               } else {
                   customAnswered += numQuestions
-                  customCorrect += score
+                  customCorrect += actualCorrect
                   customExams++
               }
           }
