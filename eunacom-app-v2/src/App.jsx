@@ -19,6 +19,7 @@ import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
 import StudyGuides from './pages/StudyGuides'
+import ReviewErrors from './pages/ReviewErrors'
 import './index.css'
 
 function App() {
