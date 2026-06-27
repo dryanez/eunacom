@@ -4,9 +4,41 @@
 import { getTurso } from './_turso.js';
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
-
   const db = getTurso()
+
+  if (req.query.migrate === 'true') {
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+    const result = await db.execute("SELECT * FROM tests WHERE status = 'completed'")
+    let totalTests = 0
+    let totalSynced = 0
+    for (const test of result.rows) {
+      const { id, user_id, questions: qsRaw, answers: ansRaw } = test
+      const parsedQuestions = JSON.parse(qsRaw || '[]')
+      const parsedAnswers = JSON.parse(ansRaw || '{}')
+      let synced = 0
+      for (const q of parsedQuestions) {
+        const userPick = parsedAnswers[q.id]
+        const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
+        const isOmitted = !userPick
+        await db.execute({
+          sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
+                VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
+                ON CONFLICT(user_id, question_id) DO UPDATE SET
+                is_correct = excluded.is_correct,
+                is_omitted = excluded.is_omitted,
+                answered_at = datetime('now')`,
+          args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
+        })
+        synced++
+      }
+      totalSynced += synced
+      totalTests++
+    }
+    return res.json({ ok: true, message: `Migrated ${totalTests} tests and synced ${totalSynced} questions to user_progress.` })
+  }
+
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
 
   // Ensure table exists (idempotent – safe if already created by upload script)
   await db.execute({ sql: `
