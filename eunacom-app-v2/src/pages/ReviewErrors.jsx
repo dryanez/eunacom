@@ -19,8 +19,47 @@ const ReviewErrors = () => {
   const loadData = async () => {
     try {
       setLoading(true)
-      const data = await fetchReviewQuestions(user.id)
-      setQuestions(data)
+      const [progressRes, dbRes] = await Promise.all([
+        fetch('/api/progress?userId=' + user.id).then(r => r.json()),
+        fetch('/data/questionDB.json').then(r => r.json())
+      ])
+      
+      const progressList = progressRes.data || []
+      const allQs = dbRes || []
+      
+      const errorQMap = new Map()
+      progressList.forEach(p => {
+        if (p.is_correct === 0 || p.is_omitted === 1) {
+          // If multiple attempts, keep the latest
+          const existing = errorQMap.get(p.question_id)
+          const currentDate = p.answered_at ? new Date(p.answered_at.replace(' ', 'T') + 'Z').getTime() : 0
+          const existingDate = existing ? new Date(existing.replace(' ', 'T') + 'Z').getTime() : 0
+          if (!existing || currentDate > existingDate) {
+            errorQMap.set(p.question_id, p.answered_at)
+          }
+        }
+      })
+      
+      const errorQuestions = allQs
+        .filter(q => errorQMap.has(q.id))
+        .map(q => {
+          const rawDate = errorQMap.get(q.id)
+          const safeDateStr = rawDate ? rawDate.replace(' ', 'T') + 'Z' : new Date().toISOString()
+          return {
+            id: q.id,
+            pregunta: q.question,
+            opciones: q.choices,
+            respuestaCorrecta: q.correctAnswer,
+            explicacion: q.explanation,
+            explicacionIncorrectas: q.incorrectExplanations,
+            specialty: q.topic || 'General',
+            tags: q.tags || '',
+            answeredAt: safeDateStr
+          }
+        })
+        .sort((a, b) => new Date(b.answeredAt).getTime() - new Date(a.answeredAt).getTime())
+        
+      setQuestions(errorQuestions)
     } catch (e) {
       console.error(e)
     } finally {
