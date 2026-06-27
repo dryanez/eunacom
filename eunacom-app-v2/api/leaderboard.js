@@ -4,6 +4,9 @@ export default async function handler(req, res) {
   const db = getTurso()
 
   try {
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
     if (req.method === 'GET') {
       const { period, userId } = req.query // period: 'today' | 'week' | 'all'
 

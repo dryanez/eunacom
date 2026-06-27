@@ -83,6 +83,9 @@ function clasesApiPlugin() {
         res.setHeader('Content-Type', 'application/json')
         const url = new URL(req.url, 'http://localhost')
         try {
+          try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+          try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
           if (req.method === 'GET') {
             const userId = url.searchParams.get('userId')
             if (!userId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId required' })) }
