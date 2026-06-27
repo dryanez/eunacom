@@ -369,16 +369,20 @@ button {
 
 /* ========== CARDS ========== */
 .card {
-  background: var(--surface-700);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: var(--shadow-md);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 .card--gradient-top {
@@ -392,7 +396,7 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 4px;
   background: var(--gradient-primary);
 }
 
@@ -404,12 +408,15 @@ button {
 }
 
 .stat-card {
-  background: var(--surface-700);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   text-align: center;
-  transition: all 0.25s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card:hover {
@@ -452,18 +459,21 @@ button {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: var(--surface-700);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   text-decoration: none;
   color: var(--surface-100);
-  transition: all 0.25s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .action-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: var(--primary-400);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3), var(--shadow-glow);
   color: white;
 }
 

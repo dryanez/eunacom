@@ -11,26 +11,30 @@ export default async function handler(req, res) {
       const { period, userId } = req.query // period: 'today' | 'week' | 'all'
 
       // Leaderboard: top users by XP (correct*10 + incorrect*2)
+      // We read directly from tests where status = 'completed'
       let dateFilter = ''
       if (period === 'today') {
-        dateFilter = "AND date(up.answered_at) = date('now')"
+        dateFilter = "AND date(t.completed_at) = date('now')"
       } else if (period === 'week') {
-        dateFilter = "AND up.answered_at >= datetime('now', '-7 days')"
+        dateFilter = "AND t.completed_at >= datetime('now', '-7 days')"
       }
 
       const lb = await db.execute({
         sql: `SELECT 
-          up.user_id,
+          t.user_id,
           COALESCE(pr.first_name, '') as first_name,
           COALESCE(pr.last_name, '') as last_name,
-          COALESCE(pr.email, up.user_id) as email,
-          COUNT(*) as total_answers,
-          SUM(CASE WHEN up.is_correct = 1 THEN 1 ELSE 0 END) as correct,
-          (SUM(CASE WHEN up.is_correct = 1 THEN 10 WHEN up.is_correct = 0 AND COALESCE(up.is_omitted, 0) = 0 THEN 2 ELSE 0 END)) as xp
-        FROM user_progress up
-        LEFT JOIN user_profiles pr ON up.user_id = pr.id
-        WHERE 1=1 ${dateFilter}
-        GROUP BY up.user_id
+          COALESCE(pr.email, t.user_id) as email,
+          SUM(t.total_questions) as total_answers,
+          SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as correct,
+          SUM(
+              ROUND((t.score * 1.0 / 100) * t.total_questions) * 10 + 
+              (t.total_questions - ROUND((t.score * 1.0 / 100) * t.total_questions)) * 2
+          ) as xp
+        FROM tests t
+        LEFT JOIN user_profiles pr ON t.user_id = pr.id
+        WHERE t.status = 'completed' ${dateFilter}
+        GROUP BY t.user_id
         ORDER BY xp DESC
         LIMIT 50`,
         args: []
@@ -40,9 +44,9 @@ export default async function handler(req, res) {
       let streak = 0
       if (userId) {
         const days = await db.execute({
-          sql: `SELECT DISTINCT date(answered_at) as d 
-                FROM user_progress 
-                WHERE user_id = ? 
+          sql: `SELECT DISTINCT date(completed_at) as d 
+                FROM tests 
+                WHERE user_id = ? AND status = 'completed'
                 ORDER BY d DESC 
                 LIMIT 60`,
           args: [userId]
@@ -81,19 +85,15 @@ export default async function handler(req, res) {
 
         // Also get today's stats for the user
         const todayStats = await db.execute({
-          sql: `SELECT COUNT(*) as today_answers,
-                SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as today_correct
-                FROM user_progress 
-                WHERE user_id = ? AND date(answered_at) = date('now')`,
+          sql: `SELECT 
+                  SUM(t.total_questions) as today_answers,
+                  SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as today_correct
+                FROM tests t
+                WHERE t.user_id = ? AND t.status = 'completed' AND date(t.completed_at) = date('now')`,
           args: [userId]
         })
 
-        const countResult = await db.execute('SELECT COUNT(*) as c FROM user_progress')
-        const testsCountResult = await db.execute('SELECT COUNT(*) as c FROM tests')
-
         return res.json({
-          debug_count: countResult.rows[0].c,
-          tests_count: testsCountResult.rows[0]?.c || 0,
           leaderboard: lb.rows,
           streak,
           todayAnswers: todayStats.rows[0]?.today_answers || 0,

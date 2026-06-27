@@ -14,12 +14,12 @@ export const getXPForLevel = (level) => {
 
 // Get level title based on current level
 export const getLevelTitle = (level) => {
-    if (level === 1) return 'Estudiante'
-    if (level <= 5) return 'Interno'
-    if (level <= 10) return 'Residente'
-    if (level <= 15) return 'Especialista'
-    if (level <= 20) return 'Médico Senior'
-    return 'Profesor'
+    if (level === 1) return 'Recién Egresado'
+    if (level <= 5) return 'Médico General'
+    if (level <= 10) return 'Postulante EUNACOM'
+    if (level <= 15) return 'Candidato Destacado'
+    if (level <= 20) return 'Experto EUNACOM'
+    return 'Leyenda Médica'
 }
 
 // Calculate level up progression
