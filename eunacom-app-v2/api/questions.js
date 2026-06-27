@@ -12,17 +12,26 @@ export default async function handler(req, res) {
     const result = await db.execute("SELECT * FROM tests WHERE status = 'completed'")
     let totalTests = 0
     let totalSynced = 0
+    
+    const promises = []
+    let currentBatch = []
+    
     for (const test of result.rows) {
       const { id, user_id, questions: qsRaw, answers: ansRaw } = test
-      const parsedQuestions = JSON.parse(qsRaw || '[]')
-      const parsedAnswers = JSON.parse(ansRaw || '{}')
+      let parsedQuestions = []
+      try { parsedQuestions = JSON.parse(qsRaw || '[]') } catch {}
+      let parsedAnswers = {}
+      try { parsedAnswers = JSON.parse(ansRaw || '{}') } catch {}
       
-      const statements = []
+      if (!Array.isArray(parsedQuestions)) continue;
+      
       for (const q of parsedQuestions) {
+        if (!q || !q.id) continue;
         const userPick = parsedAnswers[q.id]
         const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
         const isOmitted = !userPick
-        statements.push({
+        
+        currentBatch.push({
           sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
                 VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
                 ON CONFLICT(user_id, question_id) DO UPDATE SET
@@ -32,14 +41,26 @@ export default async function handler(req, res) {
           args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
         })
       }
-      if (statements.length > 0) {
-        // chunk statements if there are too many, but 90 is well within limit
-        await db.batch(statements)
-        totalSynced += statements.length
+      
+      if (currentBatch.length >= 150) {
+        promises.push(db.batch([...currentBatch]))
+        totalSynced += currentBatch.length
+        currentBatch = []
       }
       totalTests++
     }
-    return res.json({ ok: true, message: `Migrated ${totalTests} tests and synced ${totalSynced} questions to user_progress.` })
+    
+    if (currentBatch.length > 0) {
+      promises.push(db.batch(currentBatch))
+      totalSynced += currentBatch.length
+    }
+    
+    try {
+      await Promise.all(promises)
+      return res.json({ ok: true, message: `Migrated ${totalTests} tests and synced ${totalSynced} questions to user_progress.` })
+    } catch (e) {
+      return res.status(500).json({ error: e.message })
+    }
   }
 
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
