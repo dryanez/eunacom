@@ -89,9 +89,11 @@ export default async function handler(req, res) {
         })
 
         const countResult = await db.execute('SELECT COUNT(*) as c FROM user_progress')
+        const testsCountResult = await db.execute('SELECT COUNT(*) as c FROM tests')
 
         return res.json({
           debug_count: countResult.rows[0].c,
+          tests_count: testsCountResult.rows[0]?.c || 0,
           leaderboard: lb.rows,
           streak,
           todayAnswers: todayStats.rows[0]?.today_answers || 0,
