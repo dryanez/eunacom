@@ -16,12 +16,13 @@ export default async function handler(req, res) {
       const { id, user_id, questions: qsRaw, answers: ansRaw } = test
       const parsedQuestions = JSON.parse(qsRaw || '[]')
       const parsedAnswers = JSON.parse(ansRaw || '{}')
-      let synced = 0
+      
+      const statements = []
       for (const q of parsedQuestions) {
         const userPick = parsedAnswers[q.id]
         const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
         const isOmitted = !userPick
-        await db.execute({
+        statements.push({
           sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
                 VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
                 ON CONFLICT(user_id, question_id) DO UPDATE SET
@@ -30,9 +31,12 @@ export default async function handler(req, res) {
                 answered_at = datetime('now')`,
           args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
         })
-        synced++
       }
-      totalSynced += synced
+      if (statements.length > 0) {
+        // chunk statements if there are too many, but 90 is well within limit
+        await db.batch(statements)
+        totalSynced += statements.length
+      }
       totalTests++
     }
     return res.json({ ok: true, message: `Migrated ${totalTests} tests and synced ${totalSynced} questions to user_progress.` })

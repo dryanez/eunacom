@@ -48,12 +48,13 @@ export default async function handler(req, res) {
         const { user_id, questions: qsRaw } = testRow.rows[0]
         const parsedQuestions = JSON.parse(qsRaw || '[]')
         
+        const statements = []
         for (const q of parsedQuestions) {
           const userPick = (answers || {})[q.id]
           const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
           const isOmitted = !userPick
           
-          await db.execute({
+          statements.push({
             sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
                   VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
                   ON CONFLICT(user_id, question_id) DO UPDATE SET
@@ -62,6 +63,9 @@ export default async function handler(req, res) {
                   answered_at = datetime('now')`,
             args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
           })
+        }
+        if (statements.length > 0) {
+          await db.batch(statements)
         }
       }
 
