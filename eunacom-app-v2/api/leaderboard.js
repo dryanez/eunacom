@@ -23,7 +23,7 @@ export default async function handler(req, res) {
           COALESCE(pr.email, up.user_id) as email,
           COUNT(*) as total_answers,
           SUM(CASE WHEN up.is_correct = 1 THEN 1 ELSE 0 END) as correct,
-          (SUM(CASE WHEN up.is_correct = 1 THEN 10 ELSE 2 END)) as xp
+          (SUM(CASE WHEN up.is_correct = 1 THEN 10 WHEN up.is_correct = 0 AND COALESCE(up.is_omitted, 0) = 0 THEN 2 ELSE 0 END)) as xp
         FROM user_progress up
         LEFT JOIN user_profiles pr ON up.user_id = pr.id
         WHERE 1=1 ${dateFilter}

@@ -31,8 +31,10 @@ const Dashboard = () => {
     try {
       const progressData = await fetchProgress(user.id)
       const total = progressData.length
+      const answered = progressData.filter(p => !p.is_omitted).length
       const correct = progressData.filter(p => p.is_correct).length
-      const totalXP = (correct * XP_PER_CORRECT) + ((total - correct) * XP_PER_INCORRECT)
+      const incorrect = answered - correct
+      const totalXP = (correct * XP_PER_CORRECT) + (incorrect * XP_PER_INCORRECT)
       const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
 
       const recon = progressData.filter(p => String(p.question_id).includes('_q'))
