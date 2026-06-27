@@ -19,6 +19,17 @@ export default async function handler(req, res) {
     let totalTests = 0
     let totalSynced = 0
     
+    // Fetch questionDB to map IDs to correct answers
+    const protocol = req.headers['x-forwarded-proto'] || 'https'
+    const host = req.headers.host || 'eunacom.vercel.app'
+    let qdbMap = new Map()
+    try {
+      const qdb = await fetch(`${protocol}://${host}/data/questionDB.json`).then(r => r.json())
+      qdbMap = new Map(qdb.map(q => [q.id, q]))
+    } catch (e) {
+      return res.status(500).json({ error: 'Failed to fetch questionDB.json for migration: ' + e.message })
+    }
+    
     const promises = []
     let currentBatch = []
     
@@ -31,10 +42,16 @@ export default async function handler(req, res) {
       
       if (!Array.isArray(parsedQuestions)) continue;
       
-      for (const q of parsedQuestions) {
-        if (!q || !q.id) continue;
-        const userPick = parsedAnswers[q.id]
-        const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
+      for (const qItem of parsedQuestions) {
+        // qsRaw can be array of IDs (strings) or objects
+        const qId = typeof qItem === 'string' ? qItem : qItem?.id
+        if (!qId) continue;
+        
+        const qData = qdbMap.get(qId)
+        if (!qData) continue; // Skip if we can't verify the correct answer
+        
+        const userPick = parsedAnswers[qId]
+        const isCorrect = userPick ? (userPick.toLowerCase() === qData.correctAnswer?.toLowerCase()) : false
         const isOmitted = !userPick
         
         currentBatch.push({
@@ -44,7 +61,7 @@ export default async function handler(req, res) {
                 is_correct = excluded.is_correct,
                 is_omitted = excluded.is_omitted,
                 answered_at = datetime('now')`,
-          args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
+          args: [user_id, qId, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
         })
       }
       
