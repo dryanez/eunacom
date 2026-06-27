@@ -54,7 +54,7 @@ const Dashboard = () => {
                 numQuestions = Object.keys(ansObj).length;
               }
 
-              const pct = t.score || 0
+              const pct = Math.min(t.score || 0, 100)
               const actualCorrect = Math.round((pct / 100) * numQuestions)
               const isRecon = typeof t.questions === 'string' && t.questions.includes('_q')
               
@@ -83,7 +83,7 @@ const Dashboard = () => {
           custom: { answered: customAnswered, correct: customCorrect, exams: customExams }
       })
 
-      setStats({ totalAnswered, correctAnswers, totalExams, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
+      setStats(prev => ({ ...prev, totalAnswered, correctAnswers, totalExams, xp: remainingXP, totalXP, level: newLevel }))
     } catch (e) { console.error('Dashboard stats error:', e) }
   }
 

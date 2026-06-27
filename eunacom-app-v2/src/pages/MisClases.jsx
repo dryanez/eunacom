@@ -34,7 +34,7 @@ function ProgressRing({ percent, size = 48, stroke = 4 }) {
         <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="var(--surface-600)" strokeWidth={stroke} />
         {percent > 0 && <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" style={{ transition: 'stroke-dashoffset 0.5s' }} />}
       </svg>
-      <span style={{ fontSize: size < 40 ? '0.7rem' : '0.85rem', fontWeight: 800, color: percent >= 100 ? '#10b981' : 'var(--text-primary)', zIndex: 1 }}>
+      <span style={{ fontSize: size <= 42 ? '0.8rem' : '0.9rem', fontWeight: 800, color: percent >= 100 ? '#10b981' : 'var(--text-primary)', zIndex: 1, letterSpacing: '-0.03em' }}>
         {percent}%
       </span>
     </div>
@@ -2402,8 +2402,8 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
         background: `linear-gradient(135deg, ${subsystemStyle.bg} 0%, transparent 100%)`,
         borderLeft: `4px solid ${subsystemStyle.color}`,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
               <div style={{
                 width: 40, height: 40, borderRadius: 12, background: subsystemStyle.bg,
@@ -3018,7 +3018,7 @@ const MisClases = () => {
           message="Inicia sesión para acceder a las clases en video y pruebas EUNACOM."
         />
       )}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
         <h1 className="page__title">Mis Clases</h1>
         {(() => {
           const totalClases = clases.length
@@ -3248,11 +3248,12 @@ const MisClases = () => {
                     width: 48, height: 48, borderRadius: 14, background: subStyle.bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: subStyle.color, border: `1px solid ${subStyle.color}25`,
+                    flexShrink: 0,
                   }}>
                     {subStyle.icon}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {currentSubsystem}
                     </h2>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
