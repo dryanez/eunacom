@@ -13,6 +13,8 @@ const PERIODS = [
 const Dashboard = () => {
   const { user } = useAuth()
   const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
+  const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0 }, custom: { answered: 0, correct: 0 } })
+  const [activeTab, setActiveTab] = useState('general') // general, reconstructions, custom
   const [leaderboard, setLeaderboard] = useState([])
   const [lbPeriod, setLbPeriod] = useState('week')
   const [todayAnswers, setTodayAnswers] = useState(0)
@@ -32,6 +34,15 @@ const Dashboard = () => {
       const correct = progressData.filter(p => p.is_correct).length
       const totalXP = (correct * XP_PER_CORRECT) + ((total - correct) * XP_PER_INCORRECT)
       const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
+
+      const recon = progressData.filter(p => String(p.question_id).includes('_q'))
+      const custom = progressData.filter(p => !String(p.question_id).includes('_q'))
+
+      setSubStats({
+          reconstructions: { answered: recon.length, correct: recon.filter(p => p.is_correct).length },
+          custom: { answered: custom.length, correct: custom.filter(p => p.is_correct).length }
+      })
+
       setStats({ totalAnswered: total, correctAnswers: correct, xp: remainingXP, totalXP, level: newLevel, streak: 0 })
     } catch (e) { console.error('Dashboard stats error:', e) }
   }
@@ -51,7 +62,14 @@ const Dashboard = () => {
     setLbLoading(false)
   }
 
-  const accuracy = stats.totalAnswered > 0 ? Math.round((stats.correctAnswers / stats.totalAnswered) * 100) : 0
+  const getActiveStats = () => {
+      if (activeTab === 'reconstructions') return subStats.reconstructions
+      if (activeTab === 'custom') return subStats.custom
+      return { answered: stats.totalAnswered, correct: stats.correctAnswers }
+  }
+
+  const { answered: currentAnswered, correct: currentCorrect } = getActiveStats()
+  const accuracy = currentAnswered > 0 ? Math.round((currentCorrect / currentAnswered) * 100) : 0
   const levelCapXP = getXPForLevel(stats.level + 1)
   const xpProgress = getLevelProgress(stats.xp, stats.level)
   const levelTitle = getLevelTitle(stats.level)
@@ -121,38 +139,50 @@ const Dashboard = () => {
 
       {/* ─── STATS GRID (logged-in only) ─── */}
       {user && (
-        <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
-          {/* Accuracy */}
-          <div className="stat-card">
-            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><PieChart size={18} color="var(--primary-300)" /></div>
-              Puntaje
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '0.75rem 0' }}>
-              <div className="donut-wrapper">
-                <svg viewBox="0 0 36 36" className="circular-chart">
-                  <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
-                  <path strokeDasharray={`${accuracy}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--primary-400)'} strokeWidth="3" strokeLinecap="round" />
-                </svg>
-                <div className="donut-center">
-                  <div className="donut-value" style={{ fontSize: '1.1rem' }}>{accuracy}%</div>
-                  <div className="donut-label">Correctas</div>
+        <>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)' }}>
+            {[
+                { id: 'general', label: 'General' },
+                { id: 'reconstructions', label: 'Reconstrucciones' },
+                { id: 'custom', label: 'Exámenes Práctica' },
+            ].map(tab => (
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
+                  {tab.label}
+                </button>
+            ))}
+          </div>
+          <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
+            {/* Accuracy */}
+            <div className="stat-card">
+              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><PieChart size={18} color="var(--primary-300)" /></div>
+                Puntaje
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', padding: '0.75rem 0' }}>
+                <div className="donut-wrapper">
+                  <svg viewBox="0 0 36 36" className="circular-chart">
+                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
+                    <path strokeDasharray={`${accuracy}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--primary-400)'} strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                  <div className="donut-center">
+                    <div className="donut-value" style={{ fontSize: '1.1rem' }}>{accuracy}%</div>
+                    <div className="donut-label">Correctas</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Total questions */}
-          <div className="stat-card">
-            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><FileText size={18} color="var(--primary-300)" /></div>
-              Respondidas
+            {/* Total questions */}
+            <div className="stat-card">
+              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><FileText size={18} color="var(--primary-300)" /></div>
+                Respondidas
+              </div>
+              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
+                <div className="stat-card__value">{currentAnswered.toLocaleString()}</div>
+                <div className="stat-card__sub">{currentCorrect} correctas</div>
+              </div>
             </div>
-            <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-              <div className="stat-card__value">{stats.totalAnswered.toLocaleString()}</div>
-              <div className="stat-card__sub">{stats.correctAnswers} correctas</div>
-            </div>
-          </div>
 
           {/* Daily goal */}
           <div className="stat-card">
@@ -173,6 +203,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        </>
       )}
 
       {/* ─── LEADERBOARD ─── */}

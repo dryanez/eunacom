@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight } from 'lucide-react'
+import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight, Zap } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
+import { XP_PER_CORRECT, XP_PER_INCORRECT } from '../utils/xpSystem'
 
 const TestRunner = () => {
     const navigate = useNavigate()
@@ -142,6 +143,8 @@ const TestRunner = () => {
         })
         const pct = Math.round((score / totalQuestions) * 100)
         const wrongResults = results.filter(r => !r.correct)
+        const incorrectCount = results.filter(r => !r.correct && !r.omitted).length
+        const sessionXP = (score * XP_PER_CORRECT) + (incorrectCount * XP_PER_INCORRECT)
 
         return (
             <div style={{ background: 'var(--surface-900)', minHeight: '100vh', padding: '2rem 1rem', paddingBottom: '4rem' }}>
@@ -150,7 +153,14 @@ const TestRunner = () => {
                         <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
                             {startFinished ? 'Revisión del Examen' : '¡Examen Finalizado!'}
                         </h1>
-                        {!startFinished && <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>Tiempo: {formatTime(timeElapsed)}</p>}
+                        {!startFinished && <p style={{ color: 'var(--surface-300)', marginBottom: '1rem' }}>Tiempo: {timeLimitSeconds > 0 ? formatTime(timeLimitSeconds - timeLeft) : formatTime(timeElapsed)}</p>}
+                        
+                        {!startFinished && (
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(251,191,36,0.15)', color: 'var(--accent-amber)', padding: '0.5rem 1rem', borderRadius: '2rem', fontWeight: 700, marginBottom: '1.5rem' }}>
+                                <Zap size={18} fill="currentColor" /> +{sessionXP} XP Obtenida
+                            </div>
+                        )}
+
                         <div style={{ fontSize: '4rem', fontWeight: 800, color: pct >= 60 ? 'var(--accent-green)' : 'var(--accent-red)', marginBottom: '0.5rem' }}>
                             {pct}%
                         </div>

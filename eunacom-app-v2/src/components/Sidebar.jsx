@@ -77,7 +77,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 )}
 
                 <NavLink to="/history" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <Clock size={18} /> Historial Tests
+                    <Clock size={18} /> Historial de Exámenes
                 </NavLink>
                 <NavLink to="/stats" data-tour="stats" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <BarChart3 size={18} /> Estadísticas
