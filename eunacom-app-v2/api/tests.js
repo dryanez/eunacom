@@ -38,6 +38,33 @@ export default async function handler(req, res) {
         sql: `UPDATE tests SET answers = ?, current_question_index = ?, status = 'completed', score = ?, completed_at = datetime('now') WHERE id = ?`,
         args: [JSON.stringify(answers || {}), currentIndex ?? 0, score ?? 0, id]
       })
+
+      // Sync completed test answers to user_progress table
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
+      const testRow = await db.execute({ sql: 'SELECT user_id, questions FROM tests WHERE id = ?', args: [id] })
+      if (testRow.rows.length > 0) {
+        const { user_id, questions: qsRaw } = testRow.rows[0]
+        const parsedQuestions = JSON.parse(qsRaw || '[]')
+        
+        for (const q of parsedQuestions) {
+          const userPick = (answers || {})[q.id]
+          const isCorrect = userPick ? (userPick.toLowerCase() === (q.respuestaCorrecta || q.respuesta_correcta)?.toLowerCase()) : false
+          const isOmitted = !userPick
+          
+          await db.execute({
+            sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
+                  VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
+                  ON CONFLICT(user_id, question_id) DO UPDATE SET
+                  is_correct = excluded.is_correct,
+                  is_omitted = excluded.is_omitted,
+                  answered_at = datetime('now')`,
+            args: [user_id, q.id, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
+          })
+        }
+      }
+
     } else {
       await db.execute({
         sql: 'UPDATE tests SET answers = ?, current_question_index = ? WHERE id = ?',
