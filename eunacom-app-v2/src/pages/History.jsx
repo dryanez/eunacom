@@ -14,7 +14,11 @@ const HistoryCard = ({ test }) => {
         displayScore = test.score
         scoreColor = test.score >= 50 ? 'var(--accent-green)' : 'var(--accent-red)'
     } else {
-        const answeredCount = Object.keys(test.savedAnswers).length
+        const answeredKeys = new Set([
+            ...Object.keys(test.savedAnswers || {}),
+            ...Object.keys(test.tutorState?.firstAttempts || {})
+        ])
+        const answeredCount = answeredKeys.size
         const totalCount = test.questions.length
         displayScore = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
     }
