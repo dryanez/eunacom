@@ -57,9 +57,11 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Video size={18} /> Mis Clases
                 </NavLink>
-                <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <Shield size={18} /> Biblioteca EUNACOM
-                </NavLink>
+                {isAdmin() && (
+                    <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                        <Shield size={18} /> Biblioteca EUNACOM
+                    </NavLink>
+                )}
                 {user?.email === 'dr.felipeyanez@gmail.com' && (
                     <NavLink to="/study-guides" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316' }}>
                         <Flame size={18} /> Study Guides High Yield!

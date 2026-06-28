@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 import { fetchPerfil } from '../lib/api'
 import {
   Search, BookOpen, ChevronRight, Stethoscope, AlertTriangle,
@@ -156,6 +158,7 @@ function StatsBar({ items }) {
    MAIN PAGE
    ════════════════════════════════════════════════════════════════ */
 const Biblioteca = () => {
+  const { isAdmin } = useAuth()
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -163,6 +166,10 @@ const Biblioteca = () => {
   const [filterSpecialty, setFilterSpecialty] = useState('')
   const [filterSeccion, setFilterSeccion] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState('')
+
+  if (!isAdmin()) {
+    return <Navigate to="/dashboard" replace />
+  }
 
   // Debounce search
   useEffect(() => {
