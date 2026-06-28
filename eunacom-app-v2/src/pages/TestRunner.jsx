@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight, Zap } from 'lucide-react'
+import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight, Zap, PlayCircle } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
@@ -295,9 +295,14 @@ const TestRunner = () => {
                                                 <span>{correctChoice ? `${correctChoice.id}. ${correctChoice.text}` : q.correctAnswer}</span>
                                             </div>
                                             {q.explanation && (
-                                                <div style={{ marginTop: '0.5rem', padding: '0.75rem', background: 'rgba(255,255,255,0.04)', borderRadius: '6px', color: 'var(--surface-300)', lineHeight: 1.5 }}>
+                                                <div style={{ marginTop: '0.75rem', padding: '0.85rem', background: 'rgba(99, 102, 241, 0.08)', borderRadius: '8px', fontSize: '0.85rem', color: 'var(--surface-300)', lineHeight: 1.6 }}>
                                                     💡 {q.explanation}
                                                 </div>
+                                            )}
+                                            {q.videoUrl && (
+                                                <a href={q.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.6rem 1rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+                                                    <PlayCircle size={16} /> Ver clase en video
+                                                </a>
                                             )}
                                         </div>
                                     </div>
@@ -458,6 +463,11 @@ const TestRunner = () => {
                                             💡 {currentQuestion.explanation}
                                         </div>
                                     )}
+                                    {currentQuestion.videoUrl && (
+                                        <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
+                                            <PlayCircle size={14} /> Ver clase en video
+                                        </a>
+                                    )}
                                 </>
                             ) : (
                                 <>
@@ -468,6 +478,11 @@ const TestRunner = () => {
                                         <div style={{ color: 'var(--surface-300)', lineHeight: 1.6, fontSize: '0.9rem', marginTop: '0.5rem' }}>
                                             💡 <em>Pista:</em> {currentQuestion.explanation}
                                         </div>
+                                    )}
+                                    {isShowingExplanation && currentQuestion.videoUrl && (
+                                        <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
+                                            <PlayCircle size={14} /> Ver clase en video
+                                        </a>
                                     )}
                                     {!isShowingExplanation && (
                                         <button onClick={handleShowHint} style={{ background: 'none', border: '1px solid rgba(248,113,113,0.4)', color: '#f87171', borderRadius: 6, padding: '4px 12px', fontSize: '0.8rem', cursor: 'pointer', marginTop: '0.25rem' }}>
@@ -489,6 +504,11 @@ const TestRunner = () => {
                         <div style={{ color: 'var(--surface-200)', lineHeight: 1.6, fontSize: '0.93rem' }}>
                             {currentQuestion.explanation}
                         </div>
+                        {currentQuestion.videoUrl && (
+                            <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '1rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
+                                <PlayCircle size={14} /> Ver clase en video
+                            </a>
+                        )}
                     </div>
                 )}
 
