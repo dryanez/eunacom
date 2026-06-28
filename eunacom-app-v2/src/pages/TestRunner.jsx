@@ -16,9 +16,25 @@ const TestRunner = () => {
     const mode = location.state?.mode || 'tutor'
     const isTutorMode = mode === 'tutor'
 
-    const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
     const initTutorState = location.state?.tutorState || { firstAttempts: {}, wrongAttempts: {} }
+    
+    let firstUnanswered = -1
+    if (questions && questions.length > 0) {
+        for (let i = 0; i < questions.length; i++) {
+            const qid = questions[i].id
+            if (!(location.state?.savedAnswers || {})[qid] && !(initTutorState.firstAttempts || {})[qid]) {
+                firstUnanswered = i
+                break
+            }
+        }
+    }
+    const computedInitialIndex = firstUnanswered !== -1 
+        ? Math.max(location.state?.savedIndex || 0, firstUnanswered)
+        : (location.state?.savedIndex || 0)
+
+    const [currentIndex, setCurrentIndex] = useState(computedInitialIndex)
+    
     const initialWrongAttempts = Object.fromEntries(
         Object.entries(initTutorState.wrongAttempts || {}).map(([k,v]) => [k, new Set(v)])
     )
