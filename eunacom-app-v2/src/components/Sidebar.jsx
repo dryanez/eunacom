@@ -6,11 +6,11 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } fro
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff
 } from 'lucide-react'
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
-    const { signOut, user, isAdmin } = useAuth()
+    const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
@@ -62,7 +62,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                         <Shield size={18} /> Biblioteca EUNACOM
                     </NavLink>
                 )}
-                {user?.email === 'dr.felipeyanez@gmail.com' && (
+                {isAdmin() && (
                     <NavLink to="/study-guides" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316' }}>
                         <Flame size={18} /> Study Guides High Yield!
                     </NavLink>
@@ -129,6 +129,19 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                                 <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
                             </div>
                         </div>
+                        {isRealAdmin && isRealAdmin() && (
+                            <button 
+                                onClick={toggleAdminPreview} 
+                                className="sidebar__logout" 
+                                style={{ 
+                                    marginBottom: '0.5rem',
+                                    color: adminPreviewMode ? '#f59e0b' : 'inherit'
+                                }}
+                            >
+                                {adminPreviewMode ? <EyeOff size={16} /> : <Eye size={16} />}
+                                {adminPreviewMode ? 'Salir de Vista Usuario' : 'Ver como Usuario'}
+                            </button>
+                        )}
                         <button onClick={handleLogout} className="sidebar__logout">
                             <LogOut size={16} /> Cerrar Sesión
                         </button>

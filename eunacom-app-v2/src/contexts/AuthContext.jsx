@@ -19,6 +19,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [adminPreviewMode, setAdminPreviewMode] = useState(false)
 
     useEffect(() => {
         // Force-logout if session version has changed (e.g. to trigger onboarding re-check)
@@ -85,8 +86,16 @@ export const AuthProvider = ({ children }) => {
         return { error }
     }
 
-    const isAdmin = () => {
+    const toggleAdminPreview = () => {
+        setAdminPreviewMode(prev => !prev)
+    }
+
+    const isRealAdmin = () => {
         return user?.email === 'dr.felipeyanez@gmail.com'
+    }
+
+    const isAdmin = () => {
+        return user?.email === 'dr.felipeyanez@gmail.com' && !adminPreviewMode
     }
 
     const value = {
@@ -97,6 +106,9 @@ export const AuthProvider = ({ children }) => {
         signInWithGoogle,
         signOut,
         isAdmin,
+        isRealAdmin,
+        adminPreviewMode,
+        toggleAdminPreview,
     }
 
     return (
