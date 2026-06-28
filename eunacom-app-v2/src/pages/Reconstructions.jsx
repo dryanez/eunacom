@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { createTest, genId, fetchProgress } from '../lib/api'
+import { createTest, genId, fetchProgress, fetchTests } from '../lib/api'
 import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock, GraduationCap } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -169,6 +169,7 @@ const Reconstructions = () => {
   const [loading, setLoading] = useState(true)
   const [starting, setStarting] = useState(null)
   const [examResults, setExamResults] = useState({})
+  const [activeTests, setActiveTests] = useState({})
   const [showLoginGate, setShowLoginGate] = useState(false)
   const [activeTab, setActiveTab] = useState('exams')
   const [selectedTopic, setSelectedTopic] = useState(null)   // topic drill-down
@@ -202,6 +203,24 @@ const Reconstructions = () => {
           if (total > 0) results[exam.id] = { answered: total, correct, pct: Math.round((correct/total)*100) }
         }
         setExamResults(results)
+
+        // Fetch active tests
+        const userTests = await fetchTests(user.id)
+        const active = {}
+        for (const t of userTests) {
+          if (t.status === 'in_progress') {
+            const qIds = typeof t.questions === 'string' ? JSON.parse(t.questions) : t.questions || []
+            if (qIds.length > 0 && qIds[0].includes('_q')) {
+              const examId = qIds[0].split('_q')[0]
+              if (!active[examId]) active[examId] = {}
+              active[examId][t.mode] = {
+                ...t,
+                answers: typeof t.answers === 'string' ? JSON.parse(t.answers) : t.answers || {}
+              }
+            }
+          }
+        }
+        setActiveTests(active)
       }
     } catch (e) { console.error(e) }
     finally { setLoading(false) }
@@ -217,6 +236,27 @@ const Reconstructions = () => {
       const valid = data.questions.filter(q => (q.opciones || q.options || []).length >= 2)
       if (!valid.length) { alert('Sin preguntas disponibles.'); return }
       const questions = valid.map(q => toTestRunnerFormat(q, exam.id))
+      const activeTest = activeTests[exam.id]?.[selectedMode]
+      if (activeTest) {
+        if (window.confirm('Tienes este examen en curso. ¿Deseas retomarlo donde lo dejaste?\n\nSi cancelas, empezarás uno nuevo.')) {
+          navigate('/test-runner', {
+            state: {
+              testId: activeTest.id,
+              questions,
+              isReconstruction: true,
+              examName: exam.name,
+              mode: selectedMode,
+              isSimulation: selectedMode === 'exam',
+              timeLimitSeconds: selectedMode === 'exam' ? questions.length * 60 : 0,
+              timeLeftSeconds: activeTest.time_left_seconds !== null ? activeTest.time_left_seconds : undefined,
+              savedIndex: activeTest.current_question_index || 0,
+              savedAnswers: activeTest.answers || {}
+            }
+          })
+          return
+        }
+      }
+
       const testId = genId()
       const timeLimitSeconds = selectedMode === 'exam' ? questions.length * 60 : 0
 

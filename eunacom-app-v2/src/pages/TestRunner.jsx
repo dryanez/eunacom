@@ -24,9 +24,10 @@ const TestRunner = () => {
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
     const timeLimitSeconds = location.state?.timeLimitSeconds || 0
-    const [timeLeft, setTimeLeft] = useState(timeLimitSeconds)
+    const [timeLeft, setTimeLeft] = useState(location.state?.timeLeftSeconds !== undefined ? location.state.timeLeftSeconds : timeLimitSeconds)
     const [isFinished, setIsFinished] = useState(startFinished)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [showExitModal, setShowExitModal] = useState(false)
     const [showExplanation, setShowExplanation] = useState({}) // tutor mode: show explanation panel per question
 
     useEffect(() => { /* nothing to reset per question now */ }, [currentIndex])
@@ -87,7 +88,7 @@ const TestRunner = () => {
         } else {
             const newAnswers = { ...answers, [qid]: optionId }
             setAnswers(newAnswers)
-            if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex).catch(console.error)
+            if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex, timeLeft).catch(console.error)
         }
     }
 
@@ -128,6 +129,20 @@ const TestRunner = () => {
     const handleShowHint = () => {
         const qid = currentQuestion.id
         setShowExplanation(prev => ({ ...prev, [qid]: !prev[qid] }))
+    }
+
+    const handleSaveAndExit = async () => {
+        if (location.state?.testId) {
+            await saveTestProgress(location.state.testId, answers, currentIndex, timeLeft).catch(console.error)
+        }
+        navigate('/dashboard')
+    }
+
+    const handleSubmitTest = async () => {
+        setIsSubmitting(true)
+        await finishTest()
+        setIsFinished(true)
+        setIsSubmitting(false)
     }
 
     if (isFinished) {
@@ -283,9 +298,9 @@ const TestRunner = () => {
             }} />
             {/* Top bar */}
             <div style={{ background: 'var(--surface-800)', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--surface-700)' }}>
-                <button onClick={() => navigate(-1)} style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}>
-                    <ChevronLeft size={20} /> Volver
-                </button>
+                    <button onClick={() => setShowExitModal(true)} style={{ background: 'transparent', border: 'none', color: 'var(--surface-50)', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '0.5rem' }}>
+                        <ChevronLeft size={20} /> Volver
+                    </button>
                 <div style={{ fontWeight: 700 }}>Examen EUNACOM — {currentQuestion.topic}</div>
                 <button style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer' }}><MoreHorizontal size={24} /></button>
             </div>
@@ -457,6 +472,27 @@ const TestRunner = () => {
             {fullscreenImage && (
                 <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.9)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', padding: '2rem', cursor: 'zoom-out' }} onClick={() => setFullscreenImage(null)}>
                     <img src={fullscreenImage} alt="Fullscreen" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px' }} />
+                </div>
+            )}
+            {showExitModal && (
+                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+                    <div style={{ background: 'var(--surface-800)', padding: '2rem', borderRadius: '16px', maxWidth: '400px', width: '100%', border: '1px solid var(--surface-600)', textAlign: 'center' }}>
+                        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>¿Estás seguro que deseas salir?</h2>
+                        <p style={{ color: 'var(--surface-300)', marginBottom: '2rem', lineHeight: 1.5 }}>
+                            Puedes guardar tu progreso para continuar después, o terminar el test ahora mismo.
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <button onClick={handleSaveAndExit} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: 'none', background: 'var(--primary-600)', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                                Guardar y salir
+                            </button>
+                            <button onClick={() => { setShowExitModal(false); handleSubmitTest(); }} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--surface-600)', background: 'transparent', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                                Terminar test
+                            </button>
+                            <button onClick={() => setShowExitModal(false)} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: 'none', background: 'var(--surface-700)', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

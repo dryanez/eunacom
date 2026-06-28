@@ -32,7 +32,10 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { id, answers, currentIndex, status, score } = req.body
+    const { id, answers, currentIndex, status, score, timeLeftSeconds } = req.body
+
+    try { await db.execute('ALTER TABLE tests ADD COLUMN time_left_seconds INTEGER DEFAULT NULL') } catch {}
+
     if (status === 'completed') {
       await db.execute({
         sql: `UPDATE tests SET answers = ?, current_question_index = ?, status = 'completed', score = ?, completed_at = datetime('now') WHERE id = ?`,
@@ -56,8 +59,8 @@ export default async function handler(req, res) {
 
     } else {
       await db.execute({
-        sql: 'UPDATE tests SET answers = ?, current_question_index = ? WHERE id = ?',
-        args: [JSON.stringify(answers || {}), currentIndex ?? 0, id]
+        sql: 'UPDATE tests SET answers = ?, current_question_index = ?, time_left_seconds = ? WHERE id = ?',
+        args: [JSON.stringify(answers || {}), currentIndex ?? 0, timeLeftSeconds ?? null, id]
       })
     }
     return res.json({ ok: true })
