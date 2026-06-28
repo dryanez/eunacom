@@ -53,6 +53,8 @@ const ReviewErrors = () => {
             explicacion: q.explanation,
             explicacionIncorrectas: q.incorrectExplanations,
             specialty: q.topic || 'General',
+            topic: q.topic || '',
+            category: q.category || '',
             tags: q.tags || '',
             answeredAt: safeDateStr
           }
