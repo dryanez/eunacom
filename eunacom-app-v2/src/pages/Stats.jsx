@@ -60,7 +60,7 @@ const Stats = () => {
             }
         }).sort((a, b) => b.percentage - a.percentage)
 
-        const weak = [...arr].sort((a, b) => a.percentage - b.percentage).filter(a => a.percentage < 60).slice(0, 3)
+        const weak = [...arr].sort((a, b) => a.percentage - b.percentage).filter(a => a.percentage < 60).slice(0, 10)
         return { barData: arr, weaknesses: weak }
     }, [progressData])
 
@@ -178,23 +178,42 @@ const Stats = () => {
                     <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Puntos Débiles</h3>
                     <ChevronDown size={20} color="var(--surface-400)" />
                 </div>
-                <div style={{ padding: '0.5rem 1.5rem 1.5rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ padding: '0.5rem 1.5rem 1.5rem 1.5rem' }}>
                     {loading ? null : weaknesses.length === 0 ? (
                         <div style={{ color: 'var(--surface-400)', textAlign: 'center', padding: '1rem 0' }}>
                             ¡Sin puntos débiles por ahora! Sigue practicando.
                         </div>
-                    ) : weaknesses.map(item => (
-                        <div key={item.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                            <div>
-                                <span style={{ fontWeight: 500, color: 'var(--surface-200)' }}>{item.name} </span>
-                                <span style={{ color: 'var(--accent-red)', fontWeight: 600 }}>({item.score})</span>
-                                <div style={{ fontSize: '0.78rem', color: 'var(--surface-400)', marginTop: '0.2rem' }}>
-                                    {item.correct} correctas de {item.total} respondidas
-                                </div>
+                    ) : (
+                        <div style={{ position: 'relative' }}>
+                            <button onClick={() => {
+                                const container = document.getElementById('weakpoints-container')
+                                if (container) container.scrollBy({ left: -250, behavior: 'smooth' })
+                            }} style={{ position: 'absolute', left: '-15px', top: '50%', transform: 'translateY(-50%)', zIndex: 2, background: 'var(--surface-700)', border: '1px solid var(--surface-500)', borderRadius: '50%', width: '36px', height: '36px', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>&lt;</button>
+                            
+                            <div id="weakpoints-container" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', scrollBehavior: 'smooth', scrollSnapType: 'x mandatory', padding: '0.5rem', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                                {weaknesses.map(item => (
+                                    <div key={item.name} style={{ flex: '0 0 240px', scrollSnapAlign: 'start', background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ fontWeight: 600, color: 'var(--surface-200)', fontSize: '0.95rem' }}>{item.name}</span>
+                                            <AlertCircle size={18} color="var(--accent-red)" />
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
+                                            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-red)' }}>{item.score}</span>
+                                            <span style={{ fontSize: '0.8rem', color: 'var(--surface-400)' }}>correctas</span>
+                                        </div>
+                                        <div style={{ fontSize: '0.78rem', color: 'var(--surface-400)' }}>
+                                            {item.correct} de {item.total} respondidas
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                            <AlertCircle size={20} color="var(--accent-red)" fill="rgba(239,68,68,0.2)" />
+                            
+                            <button onClick={() => {
+                                const container = document.getElementById('weakpoints-container')
+                                if (container) container.scrollBy({ left: 250, behavior: 'smooth' })
+                            }} style={{ position: 'absolute', right: '-15px', top: '50%', transform: 'translateY(-50%)', zIndex: 2, background: 'var(--surface-700)', border: '1px solid var(--surface-500)', borderRadius: '50%', width: '36px', height: '36px', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>&gt;</button>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         </div>

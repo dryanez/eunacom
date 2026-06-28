@@ -29,7 +29,7 @@ const HistoryCard = ({ test }) => {
     return (
         <div className="card" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', padding: '1.25rem', marginBottom: '1rem', gap: '1.5rem' }}>
             <div style={{ position: 'absolute', top: '0.5rem', right: '0.75rem', fontSize: '0.7rem', color: 'var(--surface-500)', fontFamily: 'monospace', fontWeight: 600 }}>
-                #{test.id}
+                #{test.id.split('-')[0]}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                 <div className="donut-wrapper" style={{ width: '60px', height: '60px' }}>

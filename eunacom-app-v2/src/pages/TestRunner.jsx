@@ -109,13 +109,25 @@ const TestRunner = () => {
         } else {
             const newAnswers = { ...answers, [qid]: optionId }
             setAnswers(newAnswers)
-            if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex, timeLeft).catch(console.error)
+            if (location.state?.testId) saveTestProgress(location.state.testId, newAnswers, currentIndex, timeLeft, null).catch(console.error)
         }
+    }
+
+    const getTutorState = () => {
+        if (!isTutorMode) return null
+        const serializedWrongAttempts = Object.fromEntries(
+            Object.entries(wrongAttempts).map(([k,v]) => [k, Array.from(v)])
+        )
+        return { firstAttempts, wrongAttempts: serializedWrongAttempts }
     }
 
     const handleNext = async () => {
         if (currentIndex < totalQuestions - 1) {
-            setCurrentIndex(ci => ci + 1)
+            const nextIndex = currentIndex + 1
+            setCurrentIndex(nextIndex)
+            if (location.state?.testId) {
+                saveTestProgress(location.state.testId, answers, nextIndex, timeLeft, getTutorState()).catch(console.error)
+            }
         } else {
             setIsSubmitting(true)
             await finishTest()
@@ -145,7 +157,15 @@ const TestRunner = () => {
         }
     }
 
-    const handlePrev = () => { if (currentIndex > 0) setCurrentIndex(ci => ci - 1) }
+    const handlePrev = () => { 
+        if (currentIndex > 0) {
+            const prevIndex = currentIndex - 1
+            setCurrentIndex(prevIndex)
+            if (location.state?.testId) {
+                saveTestProgress(location.state.testId, answers, prevIndex, timeLeft, getTutorState()).catch(console.error)
+            }
+        }
+    }
 
     const handleShowHint = () => {
         const qid = currentQuestion.id
@@ -191,9 +211,9 @@ const TestRunner = () => {
         const sessionXP = (score * XP_PER_CORRECT) + (incorrectCount * XP_PER_INCORRECT)
 
         return (
-            <div className="test-review-page">
-                <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-                    <div className="card text-center" style={{ marginBottom: '1.5rem' }}>
+            <div className="test-review-page" style={{ padding: '1rem' }}>
+                <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+                    <div className="card text-center" style={{ marginBottom: '1.5rem', width: '100%', padding: '2rem 1rem' }}>
                         <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
                             {startFinished ? 'Revisión del Examen' : '¡Examen Finalizado!'}
                         </h1>
