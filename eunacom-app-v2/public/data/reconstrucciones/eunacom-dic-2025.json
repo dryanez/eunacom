@@ -4,7 +4,7 @@
   "month": "Diciembre",
   "year": 2025,
   "total_questions": 180,
-  "questions_with_answers": 175,
+  "questions_with_answers": 180,
   "questions": [
     {
       "id": 1,
@@ -16,8 +16,8 @@
         "d) Estenosis aór2ca",
         "e) Ductus arterioso persistente"
       ],
-      "correctAnswer": "",
-      "explanation": ""
+      "correctAnswer": "a",
+      "explanation": "Es una insuﬁciencia mitral clásica, con clínica de insuﬁciencia cardiaca  izquierda (disnea y crépitos), soplo holosistólico y desplazamiento del  choque de la punta, que sugiere cardiomegalia. Revisar resumen de  semiología cardiaca."
     },
     {
       "id": 2,
@@ -29,8 +29,8 @@
         "d) Test de esfuerzo",
         "e) Electrocardiograma de 24 horas (Holter)"
       ],
-      "correctAnswer": "",
-      "explanation": ""
+      "correctAnswer": "d",
+      "explanation": "Es una angina crónica estable. Su diagnóstico es clínico y su estudio  comienza con una prueba de esfuerzo, generalmente el ECG de esfuerzo.  En los casos en que no se puede realizar (amputados o pacientes que no  toleran el ejercicio) y en los casos en que el electrocardiograma es ilegible  (ej. BCRI), se uGlizan otras pruebas de esfuerzo, como la ecocardiografía,  con dobutamina o la cintigrafía cardiaca con talio y dipiridamol. Si alguna  de estas pruebas de esfuerzo resulta alterada, se procede a la  coronariografía para determinar la vía de revascularización. La regla  general es que se uGlice un stent cuando hay compromiso de uno o dos  vasos, y se uGlice un bypass coronario cuando hay compromiso de tres  vasos o de dos vasos incluyendo la arteria descendente anterior (ADA)."
     },
     {
       "id": 3,
@@ -42,8 +42,8 @@
         "d) Adenosina endovenosa",
         "e) Cardioversión eléctrica"
       ],
-      "correctAnswer": "",
-      "explanation": "",
+      "correctAnswer": "d",
+      "explanation": "Tiene una TPSV clásica. El tratamiento de primera línea son las maniobras  vagales (ej. Valsalva modiﬁcado es la más recomendada en adultos y  niños que cooperan; en niños pequeño se preﬁere la inmersión facial en  agua fría. El masaje caroVdeo se puede usar en adultos, pero no se  recomienda en niños ni en adultos mayores con riesgo de ateroma  caroVdeo que se pueda soltar). De segunda línea se uGlizan fármacos,  siendo de elección la adenosina en bolo EV de 6 mg. Si falla, se dan hasta  dos nuevas dosis de 12 mg. Si vuelve a fallar, se usa el verapamilo  (contraindicado en falla cardíaca e hipotensión). Como toda taquiarritmia,  si está hemodinámicamente inestable, de primera línea se maneja con  cardioversión eléctrica.",
       "imageUrl": "/img/dic-2025/q3.png"
     },
     {
@@ -1834,7 +1834,7 @@
         "e) Timoma"
       ],
       "correctAnswer": "a",
-      "explanation": "Tiene un síndrome de vena cava superior, cuyas causas más frecuentes  son el cáncer de células pequeñas y el linfoma. Por la edad y las  adenopaVas, lo más probable, por lejos es un linfoma de Hodgkin. Si   hubiese sido un adulto mayor fumador, sería más probable el carcinoma  broncogénico.   141 C  Es un absceso de Bartholino clásico."
+      "explanation": "Tiene un síndrome de vena cava superior, cuyas causas más frecuentes  son el cáncer de células pequeñas y el linfoma. Por la edad y las  adenopaVas, lo más probable, por lejos es un linfoma de Hodgkin. Si   hubiese sido un adulto mayor fumador, sería más probable el carcinoma  broncogénico."
     },
     {
       "id": 141,
@@ -1846,8 +1846,8 @@
         "d) Absceso perianal",
         "e) Quiste epidermoide vulvar infectado"
       ],
-      "correctAnswer": "",
-      "explanation": ""
+      "correctAnswer": "c",
+      "explanation": "Es un absceso de Bartholino clásico."
     },
     {
       "id": 142,
@@ -2068,7 +2068,7 @@
         "e) Carbonato de li2o"
       ],
       "correctAnswer": "b",
-      "explanation": "El tratamiento de elección en la depresión son los antidepresivos IRS  (inhibidores de la recaptura de serotonina), tales como sertralina,  ﬂuoxeGna, citalopram y escitalopram. De segunda línea (en caso de que  no responda después de 4 semanas), se puede subir la dosis o idealmente  cambiar a un antidepresivo dual, como la venlafaxina, duloxeGna,  bupropión o mirtazapina. Los dos úlGmos, además, son úGles en casos en  que los otros antidepresivos produzcan disminución de la libido.  159 B  Tiene un síndrome de Cushing, cuyo estudio sigue los siguientes pasos:   Primero: Se inicia con cualquiera de 3 exámenes (algunas guías  recomiendan pedir más de uno desde el inicio): 1. CorGsol libre urinario  de 24 horas, 2. Prueba de supresión corta (mide corGsol basal y post  dexametasona, con dosis baja) y 3. CorGsol en saliva.  Segundo: Una vez conﬁrmado el hipercorGsolismo, se conGnúa el estudio  con la prueba de supresión larga (más dosis de dexametasona) y niveles  plasmáticos de ACTH.  Tercero: Si los resultados orientan a un tumor hipoﬁsiario (suprime y/o  ACTH elevada), se solicitar una imagen hipoﬁsiaria (RMN). En cambio, si  orientan a una causa suprarrenal (no suprime y/o ACTH baja), se solicita  una imagen suprarrenal (RMN o TAC)."
+      "explanation": "El tratamiento de elección en la depresión son los antidepresivos IRS  (inhibidores de la recaptura de serotonina), tales como sertralina,  ﬂuoxeGna, citalopram y escitalopram. De segunda línea (en caso de que  no responda después de 4 semanas), se puede subir la dosis o idealmente  cambiar a un antidepresivo dual, como la venlafaxina, duloxeGna,  bupropión o mirtazapina. Los dos úlGmos, además, son úGles en casos en  que los otros antidepresivos produzcan disminución de la libido."
     },
     {
       "id": 159,
@@ -2080,8 +2080,8 @@
         "d) Resonancia magné2ca nuclear de abdomen",
         "e) Resonancia magné2ca nuclear de hipóﬁsis"
       ],
-      "correctAnswer": "",
-      "explanation": ""
+      "correctAnswer": "b",
+      "explanation": "Tiene un síndrome de Cushing, cuyo estudio sigue los siguientes pasos:   Primero: Se inicia con cualquiera de 3 exámenes (algunas guías  recomiendan pedir más de uno desde el inicio): 1. CorGsol libre urinario  de 24 horas, 2. Prueba de supresión corta (mide corGsol basal y post  dexametasona, con dosis baja) y 3. CorGsol en saliva.  Segundo: Una vez conﬁrmado el hipercorGsolismo, se conGnúa el estudio  con la prueba de supresión larga (más dosis de dexametasona) y niveles  plasmáticos de ACTH.  Tercero: Si los resultados orientan a un tumor hipoﬁsiario (suprime y/o  ACTH elevada), se solicitar una imagen hipoﬁsiaria (RMN). En cambio, si  orientan a una causa suprarrenal (no suprime y/o ACTH baja), se solicita  una imagen suprarrenal (RMN o TAC)."
     },
     {
       "id": 160,
