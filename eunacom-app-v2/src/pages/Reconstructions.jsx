@@ -175,6 +175,7 @@ const Reconstructions = () => {
   const [selectedTopic, setSelectedTopic] = useState(null)   // topic drill-down
   const [activeQuiz, setActiveQuiz] = useState(null)         // { questions, title }
   const [selectedExam, setSelectedExam] = useState(null)     // exam mode modal
+  const [resumePrompt, setResumePrompt] = useState(null)     // { exam, selectedMode, activeTest, questions }
 
   useEffect(() => { loadData() }, [user])
 
@@ -238,29 +239,49 @@ const Reconstructions = () => {
       const questions = valid.map(q => toTestRunnerFormat(q, exam.id))
       const activeTest = activeTests[exam.id]?.[selectedMode]
       if (activeTest) {
-        if (window.confirm('Tienes este examen en curso. ¿Deseas retomarlo donde lo dejaste?\n\nSi cancelas, empezarás uno nuevo.')) {
-          navigate('/test-runner', {
-            state: {
-              testId: activeTest.id,
-              questions,
-              isReconstruction: true,
-              examName: exam.name,
-              mode: selectedMode,
-              isSimulation: selectedMode === 'exam',
-              timeLimitSeconds: selectedMode === 'exam' ? questions.length * 60 : 0,
-              timeLeftSeconds: activeTest.time_left_seconds !== null ? activeTest.time_left_seconds : undefined,
-              tutorState: activeTest.tutor_state ? JSON.parse(activeTest.tutor_state) : null,
-              savedIndex: activeTest.current_question_index || 0,
-              savedAnswers: typeof activeTest.answers === 'string' ? JSON.parse(activeTest.answers) : (activeTest.answers || {})
-            }
-          })
-          return
-        }
+        setResumePrompt({ exam, selectedMode, activeTest, questions })
+        return
       }
 
       const testId = genId()
       const timeLimitSeconds = selectedMode === 'exam' ? questions.length * 60 : 0
 
+      await createTest({ id: testId, userId: user.id, mode: selectedMode, timeLimitSeconds, totalQuestions: questions.length, questions: questions.map(q => q.id) })
+      navigate('/test-runner', { state: { testId, questions, isReconstruction: true, examName: exam.name, mode: selectedMode, isSimulation: selectedMode === 'exam', timeLimitSeconds } })
+    } catch (e) { alert('Error: ' + (e.message || String(e))) }
+    finally { setStarting(null) }
+  }
+
+  const handleResumeChoice = async (resume) => {
+    if (!resumePrompt) return
+    const { exam, selectedMode, activeTest, questions } = resumePrompt
+    setResumePrompt(null)
+    setStarting(exam.id)
+
+    if (resume) {
+      navigate('/test-runner', {
+        state: {
+          testId: activeTest.id,
+          questions,
+          isReconstruction: true,
+          examName: exam.name,
+          mode: selectedMode,
+          isSimulation: selectedMode === 'exam',
+          timeLimitSeconds: selectedMode === 'exam' ? questions.length * 60 : 0,
+          timeLeftSeconds: activeTest.time_left_seconds !== null ? activeTest.time_left_seconds : undefined,
+          tutorState: activeTest.tutor_state ? JSON.parse(activeTest.tutor_state) : null,
+          savedIndex: activeTest.current_question_index || 0,
+          savedAnswers: typeof activeTest.answers === 'string' ? JSON.parse(activeTest.answers) : (activeTest.answers || {})
+        }
+      })
+      setStarting(null)
+      return
+    }
+
+    // Start new
+    try {
+      const testId = genId()
+      const timeLimitSeconds = selectedMode === 'exam' ? questions.length * 60 : 0
       await createTest({ id: testId, userId: user.id, mode: selectedMode, timeLimitSeconds, totalQuestions: questions.length, questions: questions.map(q => q.id) })
       navigate('/test-runner', { state: { testId, questions, isReconstruction: true, examName: exam.name, mode: selectedMode, isSimulation: selectedMode === 'exam', timeLimitSeconds } })
     } catch (e) { alert('Error: ' + (e.message || String(e))) }
@@ -297,7 +318,7 @@ const Reconstructions = () => {
       )}
 
       {/* Exam Mode Modal */}
-      {selectedExam && (
+      {selectedExam && !resumePrompt && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
           <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 480, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
             <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -326,6 +347,33 @@ const Reconstructions = () => {
                     <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>Modo Simulacro</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', lineHeight: 1.4 }}>Igual que el EUNACOM. Tiempo calculado ({selectedExam.total_questions} minutos). Sin pistas hasta el final de la prueba.</div>
                   </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Resume Prompt Modal */}
+      {resumePrompt && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
+          <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 400, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
+            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--surface-100)' }}>Examen en Curso</h3>
+              <button onClick={() => setResumePrompt(null)} style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer' }}><X size={20}/></button>
+            </div>
+            <div style={{ padding: '1.5rem' }}>
+              <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: 1.5 }}>
+                Tienes un intento previo de este examen. ¿Deseas retomarlo donde lo dejaste o empezar uno nuevo desde cero?
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <button onClick={() => handleResumeChoice(true)} className="btn-primary" style={{ padding: '0.85rem', fontWeight: 600, fontSize: '0.95rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
+                  <PlayCircle size={18}/> Continuar examen
+                </button>
+                <button onClick={() => handleResumeChoice(false)} style={{ padding: '0.85rem', background: 'transparent', color: 'var(--surface-300)', border: '1px solid var(--surface-600)', borderRadius: 8, fontWeight: 600, fontSize: '0.95rem', cursor: 'pointer', transition: 'all 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                  Empezar de nuevo
                 </button>
               </div>
             </div>
