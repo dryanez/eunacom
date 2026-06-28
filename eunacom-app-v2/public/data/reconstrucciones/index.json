@@ -1,6 +1,6 @@
 {
   "total_exams": 16,
-  "total_questions": 2834,
+  "total_questions": 2901,
   "exams": [
     {
       "id": "eunacom-2013",
@@ -142,8 +142,8 @@
       "name": "EUNACOM Diciembre 2025",
       "month": "Diciembre",
       "year": 2025,
-      "total_questions": 113,
-      "questions_with_answers": 113,
+      "total_questions": 180,
+      "questions_with_answers": 175,
       "file": "eunacom-dic-2025.json"
     }
   ]
