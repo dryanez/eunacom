@@ -10,6 +10,7 @@ const ReviewErrors = () => {
   const [questions, setQuestions] = useState([])
   const [loading, setLoading] = useState(true)
   const [expandedQ, setExpandedQ] = useState(null)
+  const [fullscreenImage, setFullscreenImage] = useState(null)
   const [filterSpecialty, setFilterSpecialty] = useState('all')
 
   useEffect(() => {
@@ -56,7 +57,8 @@ const ReviewErrors = () => {
             topic: q.topic || '',
             category: q.category || '',
             tags: q.tags || '',
-            answeredAt: safeDateStr
+            answeredAt: safeDateStr,
+            imageUrl: q.imageUrl
           }
         })
         .sort((a, b) => new Date(b.answeredAt).getTime() - new Date(a.answeredAt).getTime())
@@ -166,10 +168,10 @@ const ReviewErrors = () => {
                 return (
                   <div key={q.id} className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
                     <div 
-                      style={{ padding: '1.2rem', cursor: 'pointer', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}
+                      style={{ padding: '1rem', cursor: 'pointer', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}
                       onClick={() => setExpandedQ(isExpanded ? null : q.id)}
                     >
-                      <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(239,68,68,0.1)', color: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700 }}>
+                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(239,68,68,0.1)', color: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700, fontSize: '0.9rem' }}>
                         {idx + 1}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -188,6 +190,11 @@ const ReviewErrors = () => {
                         </div>
                         <div style={{ fontSize: '1rem', color: 'var(--surface-50)', lineHeight: 1.5 }}>
                           {q.pregunta}
+                          {q.imageUrl && (
+                              <div style={{ marginTop: '0.75rem', cursor: 'zoom-in' }} onClick={(e) => { e.stopPropagation(); setFullscreenImage(q.imageUrl) }}>
+                                  <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '6px', border: '1px solid var(--surface-700)' }} />
+                              </div>
+                          )}
                         </div>
                       </div>
                       <div style={{ color: 'var(--surface-400)' }}>
@@ -196,7 +203,7 @@ const ReviewErrors = () => {
                     </div>
 
                     {isExpanded && (
-                      <div style={{ padding: '1.2rem', borderTop: '1px solid var(--surface-700)', background: 'var(--surface-900)' }}>
+                      <div style={{ padding: '1rem', borderTop: '1px solid var(--surface-700)', background: 'var(--surface-900)' }}>
                         <div style={{ marginBottom: '1.5rem' }}>
                           <h4 style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Respuesta Correcta</h4>
                           <div style={{ padding: '1rem', background: 'rgba(16,185,129,0.05)', borderLeft: '4px solid #10b981', borderRadius: '0 8px 8px 0', color: 'var(--surface-50)' }}>
@@ -247,6 +254,12 @@ const ReviewErrors = () => {
             </div>
           </section>
         </>
+      )}
+
+      {fullscreenImage && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', cursor: 'zoom-out' }} onClick={() => setFullscreenImage(null)}>
+              <img src={fullscreenImage} alt="Fullscreen" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px' }} />
+          </div>
       )}
     </div>
   )

@@ -20,6 +20,7 @@ const TestRunner = () => {
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
     const [firstAttempts, setFirstAttempts] = useState({}) // tutor mode: records first pick only (for scoring)
     const [wrongAttempts, setWrongAttempts] = useState({}) // tutor mode: { [questionId]: Set of wrong optionIds tried }
+    const [fullscreenImage, setFullscreenImage] = useState(null)
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
     const timeLimitSeconds = location.state?.timeLimitSeconds || 0
@@ -147,9 +148,9 @@ const TestRunner = () => {
         const sessionXP = (score * XP_PER_CORRECT) + (incorrectCount * XP_PER_INCORRECT)
 
         return (
-            <div style={{ background: 'var(--surface-900)', minHeight: '100vh', padding: '2rem 1rem', paddingBottom: '4rem' }}>
+            <div className="test-review-page">
                 <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-                    <div className="card" style={{ padding: '2.5rem', textAlign: 'center', marginBottom: '1.5rem' }}>
+                    <div className="card text-center" style={{ marginBottom: '1.5rem' }}>
                         <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
                             {startFinished ? 'Revisión del Examen' : '¡Examen Finalizado!'}
                         </h1>
@@ -184,7 +185,7 @@ const TestRunner = () => {
                     </div>
 
                     {/* Question grid navigator */}
-                    <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
+                    <div className="card" style={{ marginBottom: '1.5rem' }}>
                         <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.07em', marginBottom: '0.75rem' }}>
                             VISTA RÁPIDA — {totalQuestions} PREGUNTAS
                         </div>
@@ -223,16 +224,21 @@ const TestRunner = () => {
 
                     {wrongResults.length > 0 && (
                         <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: '1.5rem' }}>
-                            <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--surface-700)' }}>
+                            <div className="test-review-header">
                                 <h3 style={{ margin: 0, fontSize: '1rem' }}>Preguntas para Repasar ({wrongResults.length})</h3>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                                 {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => (
-                                    <div key={q.id} id={`review-wrong-${i}`} style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                                    <div key={q.id} id={`review-wrong-${i}`} className="test-review-item" style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
                                         <p style={{ margin: '0 0 0.75rem', fontSize: '0.93rem', lineHeight: 1.5, color: 'var(--surface-100)' }}>
                                             <strong style={{ color: 'var(--surface-400)', marginRight: '0.5rem' }}>{i + 1}.</strong>
                                             {q.question}
                                         </p>
+                                        {q.imageUrl && (
+                                            <div style={{ marginBottom: '1rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(q.imageUrl)}>
+                                                <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '6px', border: '1px solid var(--surface-700)' }} />
+                                            </div>
+                                        )}
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.85rem' }}>
                                             {!omitted && (
                                                 <div style={{ color: 'var(--accent-red)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
@@ -299,9 +305,14 @@ const TestRunner = () => {
             </div>
 
             {/* Content */}
-            <div style={{ padding: '1.5rem', flex: 1, maxWidth: '800px', margin: '0 auto', width: '100%', paddingBottom: '6rem' }}>
-                <div className="card" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
+            <div className="test-runner-content">
+                <div className="card" style={{ marginBottom: '2rem' }}>
                     <p style={{ fontSize: '1.1rem', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>{currentQuestion.question}</p>
+                    {currentQuestion.imageUrl && (
+                        <div style={{ marginTop: '1rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(currentQuestion.imageUrl)}>
+                            <img src={currentQuestion.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '400px', borderRadius: '8px', border: '1px solid var(--surface-600)' }} />
+                        </div>
+                    )}
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -333,8 +344,7 @@ const TestRunner = () => {
                         const showDot = (isTutorMode && tutorSolved && isCorrectOpt) || (isTutorMode && isWrongAttempt) || (!isTutorMode && (hasAnswered && (isCorrectOpt || isSelected)) || isSelected)
 
                         return (
-                            <button key={opt.id} onClick={() => !isDisabled && handleSelectOption(opt.id)} style={{
-                                width: '100%', textAlign: 'left', padding: '1.25rem 1rem',
+                            <button key={opt.id} className="test-runner-option" onClick={() => !isDisabled && handleSelectOption(opt.id)} style={{
                                 background: bg,
                                 border: `2px solid ${border}`,
                                 borderRadius: 'var(--radius)', color: isDisabled && !isCorrectOpt && !isWrongAttempt ? 'var(--surface-400)' : 'white', fontSize: '1.05rem',
@@ -368,8 +378,7 @@ const TestRunner = () => {
                     if (!tutorSolved && !hasTriedWrong) return null // nothing yet
 
                     return (
-                        <div style={{
-                            marginBottom: '2rem', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius)',
+                        <div className="tutor-feedback-panel" style={{
                             background: tutorSolved ? 'rgba(52,211,153,0.08)' : 'rgba(248,113,113,0.08)',
                             border: `1px solid ${tutorSolved ? 'rgba(52,211,153,0.3)' : 'rgba(248,113,113,0.3)'}`,
                         }}>
@@ -407,7 +416,7 @@ const TestRunner = () => {
 
                 {/* Non-tutor explanation panel (lightbulb) */}
                 {!isTutorMode && showExplanation[currentQuestion.id] && currentQuestion.explanation && (
-                    <div style={{ marginBottom: '2rem', padding: '1.25rem 1.5rem', borderRadius: 'var(--radius)', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.3)' }}>
+                    <div className="tutor-feedback-panel" style={{ background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.3)' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#06b6d4', fontWeight: 700, marginBottom: '0.75rem' }}>
                             <Lightbulb size={18} /> Explicación
                         </div>
@@ -445,6 +454,11 @@ const TestRunner = () => {
                     </button>
                 )}
             </div>
+            {fullscreenImage && (
+                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.9)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', padding: '2rem', cursor: 'zoom-out' }} onClick={() => setFullscreenImage(null)}>
+                    <img src={fullscreenImage} alt="Fullscreen" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px' }} />
+                </div>
+            )}
         </div>
     )
 }

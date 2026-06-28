@@ -400,6 +400,45 @@ button {
   background: var(--gradient-primary);
 }
 
+/* ========== TEST RUNNER CLASSES ========== */
+.test-review-page {
+  background: var(--surface-900);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem 1rem;
+}
+
+.test-runner-content {
+  padding: 1.5rem;
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: 6rem;
+}
+
+.test-runner-option {
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1rem;
+}
+
+.tutor-feedback-panel {
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+}
+
+.test-review-header {
+  padding: 1.25rem 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--surface-700);
+}
+
+.test-review-item {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--surface-700);
+}
+
 /* ========== STAT CARDS ========== */
 .stats-grid {
   display: grid;
@@ -859,6 +898,27 @@ polyline {
   .stats-grid { grid-template-columns: 1fr; }
   .action-grid { grid-template-columns: 1fr; }
   .mobile-menu-btn { display: block !important; }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem 0.75rem;
+  }
+  .card, .stat-card, .action-card {
+    padding: 1rem;
+  }
+  .test-review-page {
+    padding: 1rem 0.5rem 3rem 0.5rem;
+  }
+  .test-runner-content {
+    padding: 1rem 0.5rem;
+  }
+  .test-runner-option {
+    padding: 1rem 0.75rem;
+  }
+  .tutor-feedback-panel, .test-review-header, .test-review-item {
+    padding: 1rem;
+  }
 }
 
 .sidebar-backdrop { display: none; }
