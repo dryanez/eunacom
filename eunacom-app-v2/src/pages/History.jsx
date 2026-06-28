@@ -8,8 +8,15 @@ import { loadTestQuestions, getQuestionDB } from '../lib/questionDB'
 const HistoryCard = ({ test }) => {
     // Logic for score colors
     let scoreColor = 'var(--primary-400)'
+    let displayScore = 0
+    
     if (test.status === 'Completado') {
+        displayScore = test.score
         scoreColor = test.score >= 50 ? 'var(--accent-green)' : 'var(--accent-red)'
+    } else {
+        const answeredCount = Object.keys(test.savedAnswers).length
+        const totalCount = test.questions.length
+        displayScore = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
     }
     
     const scoreText = test.status === 'Completado' ? (test.score >= 50 ? 'Aprobado' : 'Reprobado') : 'Progreso'
@@ -29,20 +36,18 @@ const HistoryCard = ({ test }) => {
                         fill="none" stroke="var(--surface-600)" strokeWidth="4"
                     />
                     <path className="circle"
-                        strokeDasharray={`${test.score}, 100`}
+                        strokeDasharray={`${displayScore}, 100`}
                         d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                         fill="none" stroke={scoreColor} strokeWidth="4" strokeLinecap="round"
                     />
                     </svg>
                     <div className="donut-center" style={{ fontSize: '0.9rem', fontWeight: 700, color: scoreColor }}>
-                        {test.score}%
+                        {displayScore}%
                     </div>
                 </div>
-                {test.status === 'Completado' && (
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: scoreColor, textTransform: 'uppercase' }}>
-                        {scoreText}
-                    </span>
-                )}
+                <span style={{ fontSize: '0.65rem', fontWeight: 700, color: scoreColor, textTransform: 'uppercase' }}>
+                    {scoreText}
+                </span>
             </div>
             
             <div style={{ flex: '1 1 200px' }}>
@@ -157,6 +162,8 @@ const History = () => {
                     questions,
                     savedAnswers: typeof t.answers === 'string' ? JSON.parse(t.answers) : (t.answers || {}),
                     currentQuestionIndex: t.current_question_index || 0,
+                    timeLimitSeconds: t.time_limit_seconds || 0,
+                    timeLeftSeconds: t.time_left_seconds !== null ? t.time_left_seconds : undefined,
                     title: testTitle,
                     isReconstruction
                 }
@@ -195,6 +202,11 @@ const History = () => {
                 savedAnswers: test.savedAnswers || {},
                 savedIndex: test.currentQuestionIndex || 0,
                 startFinished: isCompleted,
+                timeLimitSeconds: test.timeLimitSeconds,
+                timeLeftSeconds: test.timeLeftSeconds,
+                isReconstruction: test.isReconstruction,
+                mode: test.mode === 'Tiempo' ? 'exam' : 'tutor',
+                isSimulation: test.mode === 'Tiempo'
             }
         })
     }
