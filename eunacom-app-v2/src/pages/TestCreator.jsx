@@ -305,8 +305,9 @@ const TestCreator = () => {
                     </button>
                 </div>
                 <div style={{ maxHeight: '380px', overflowY: 'auto' }}>
-                    {Object.entries(categories).map(([cat, topics]) => {
-                        const topicList = Object.keys(topics)
+                    {Object.keys(categories).sort().map(cat => {
+                        const topics = categories[cat]
+                        const topicList = Object.keys(topics).sort()
                         const isExpanded = expandedCategories[cat] !== false // default expanded
                         const totalCatCount = topicList.reduce((acc, t) => {
                             return acc + (questionDB.filter(q => q.category === cat && q.topic === t && filteredByStatus.has(q.id)).length)
@@ -383,15 +384,20 @@ const TestCreator = () => {
                             </strong>
                         </div>
                     </div>
-                    <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem' }}>
-                        {[10, 25, 40].map(n => (
-                            <button key={n} onClick={() => setNumQuestions(String(Math.min(n, maxQuestions)))} style={{
-                                padding: '0.4rem 0.75rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 600,
-                                border: `1px solid ${parseInt(numQuestions) === n ? 'var(--primary-400)' : 'var(--surface-600)'}`,
-                                background: parseInt(numQuestions) === n ? 'rgba(19,91,236,0.2)' : 'transparent',
-                                color: parseInt(numQuestions) === n ? 'var(--primary-400)' : 'var(--surface-400)', cursor: 'pointer'
-                            }}>{n}</button>
-                        ))}
+                    <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                        {[10, 25, 40, 'Todas'].map(n => {
+                            const val = n === 'Todas' ? maxQuestions : Math.min(n, maxQuestions)
+                            const isActive = n === 'Todas' ? parseInt(numQuestions) === maxQuestions : parseInt(numQuestions) === n
+                            
+                            return (
+                                <button key={n} onClick={() => setNumQuestions(String(val))} style={{
+                                    padding: '0.4rem 0.75rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 600,
+                                    border: `1px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
+                                    background: isActive ? 'rgba(19,91,236,0.2)' : 'transparent',
+                                    color: isActive ? 'var(--primary-400)' : 'var(--surface-400)', cursor: 'pointer'
+                                }}>{n}</button>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
