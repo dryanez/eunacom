@@ -18,8 +18,13 @@ const TestRunner = () => {
 
     const [currentIndex, setCurrentIndex] = useState(location.state?.savedIndex || 0)
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
-    const [firstAttempts, setFirstAttempts] = useState({}) // tutor mode: records first pick only (for scoring)
-    const [wrongAttempts, setWrongAttempts] = useState({}) // tutor mode: { [questionId]: Set of wrong optionIds tried }
+    const initTutorState = location.state?.tutorState || { firstAttempts: {}, wrongAttempts: {} }
+    const initialWrongAttempts = Object.fromEntries(
+        Object.entries(initTutorState.wrongAttempts || {}).map(([k,v]) => [k, new Set(v)])
+    )
+    
+    const [firstAttempts, setFirstAttempts] = useState(initTutorState.firstAttempts || {}) // tutor mode: records first pick only (for scoring)
+    const [wrongAttempts, setWrongAttempts] = useState(initialWrongAttempts) // tutor mode: { [questionId]: Set of wrong optionIds tried }
     const [fullscreenImage, setFullscreenImage] = useState(null)
     const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
     const [timeElapsed, setTimeElapsed] = useState(0)
@@ -85,6 +90,22 @@ const TestRunner = () => {
                 // Show hint after first wrong attempt
                 setShowExplanation(prev => ({ ...prev, [qid]: true }))
             }
+            
+            // Save progress in tutor mode too
+            if (location.state?.testId) {
+                // Must calculate new tutorState since state updates are async
+                const newFirstAttempts = qid in firstAttempts ? firstAttempts : { ...firstAttempts, [qid]: optionId }
+                const newWrongAttempts = isCorrect ? wrongAttempts : { 
+                    ...wrongAttempts, 
+                    [qid]: new Set([...(wrongAttempts[qid] || []), optionId]) 
+                }
+                const serializedWrongAttempts = Object.fromEntries(
+                    Object.entries(newWrongAttempts).map(([k,v]) => [k, Array.from(v)])
+                )
+                const newAnswers = isCorrect ? { ...answers, [qid]: optionId } : answers
+                const tutorState = { firstAttempts: newFirstAttempts, wrongAttempts: serializedWrongAttempts }
+                saveTestProgress(location.state.testId, newAnswers, currentIndex, timeLeft, tutorState).catch(console.error)
+            }
         } else {
             const newAnswers = { ...answers, [qid]: optionId }
             setAnswers(newAnswers)
@@ -133,7 +154,11 @@ const TestRunner = () => {
 
     const handleSaveAndExit = async () => {
         if (location.state?.testId) {
-            await saveTestProgress(location.state.testId, answers, currentIndex, timeLeft).catch(console.error)
+            const serializedWrongAttempts = Object.fromEntries(
+                Object.entries(wrongAttempts).map(([k,v]) => [k, Array.from(v)])
+            )
+            const tutorState = isTutorMode ? { firstAttempts, wrongAttempts: serializedWrongAttempts } : null
+            await saveTestProgress(location.state.testId, answers, currentIndex, timeLeft, tutorState).catch(console.error)
         }
         navigate('/dashboard')
     }
@@ -334,38 +359,61 @@ const TestRunner = () => {
                     {currentQuestion.choices.map(opt => {
                         const qid = currentQuestion.id
                         const isCorrectOpt = opt.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
-                        const tutorSolved = isTutorMode && answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
-                        const hasAnswered = !isTutorMode && !!answers[qid]
-                        const isWrongAttempt = isTutorMode && (wrongAttempts[qid] || new Set()).has(opt.id)
-                        const isSelected = !isTutorMode && answers[qid] === opt.id
+                        
+                        let isSelected = false
+                        let hasAnswered = false
+                        let tutorSolved = false
+                        let isWrongAttempt = false
+                        
+                        if (isFinished) {
+                            // In Review Mode (finished test), we show their FIRST attempt in tutor mode, or their final answer in timed mode.
+                            const userFinalAnswer = (isTutorMode && firstAttempts[qid]) ? firstAttempts[qid] : answers[qid]
+                            isSelected = userFinalAnswer === opt.id
+                            hasAnswered = !!userFinalAnswer
+                        } else {
+                            // In Active Mode
+                            if (isTutorMode) {
+                                tutorSolved = answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                                isWrongAttempt = (wrongAttempts[qid] || new Set()).has(opt.id)
+                            } else {
+                                hasAnswered = !!answers[qid]
+                                isSelected = answers[qid] === opt.id
+                            }
+                        }
 
-                        // Disable: in tutor mode if already got correct, or if this option was already tried wrong
-                        const isDisabled = (isTutorMode && (tutorSolved || isWrongAttempt)) || hasAnswered
+                        // Disable: if finished, OR in active tutor mode if already got correct, or if this option was already tried wrong, OR in active timed mode if answered
+                        const isDisabled = isFinished || (isTutorMode && !isFinished && (tutorSolved || isWrongAttempt)) || (!isTutorMode && !isFinished && hasAnswered)
 
                         let bg = 'var(--surface-800)'
                         let border = 'var(--surface-600)'
                         let dotColor = 'var(--surface-400)'
+                        let showDot = false
 
-                        if (isTutorMode) {
-                            if (tutorSolved && isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399' }
-                            else if (isWrongAttempt) { bg = 'rgba(248,113,113,0.1)'; border = 'rgba(248,113,113,0.5)'; dotColor = '#f87171' }
-                        } else if (hasAnswered) {
-                            if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399' }
-                            else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171' }
-                        } else if (isSelected) {
-                            bg = 'rgba(19,91,236,0.15)'; border = 'var(--primary-500)'; dotColor = 'var(--primary-400)'
+                        if (isFinished) {
+                            // Review Mode styling (same for both Timed and Tutor)
+                            if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
+                            else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171'; showDot = true; }
+                        } else {
+                            // Active Mode styling
+                            if (isTutorMode) {
+                                if (tutorSolved && isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
+                                else if (isWrongAttempt) { bg = 'rgba(248,113,113,0.1)'; border = 'rgba(248,113,113,0.5)'; dotColor = '#f87171'; showDot = true; }
+                            } else if (hasAnswered) {
+                                if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
+                                else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171'; showDot = true; }
+                            } else if (isSelected) {
+                                bg = 'rgba(19,91,236,0.15)'; border = 'var(--primary-500)'; dotColor = 'var(--primary-400)'; showDot = true;
+                            }
                         }
-
-                        const showDot = (isTutorMode && tutorSolved && isCorrectOpt) || (isTutorMode && isWrongAttempt) || (!isTutorMode && (hasAnswered && (isCorrectOpt || isSelected)) || isSelected)
 
                         return (
                             <button key={opt.id} className="test-runner-option" onClick={() => !isDisabled && handleSelectOption(opt.id)} style={{
                                 background: bg,
                                 border: `2px solid ${border}`,
-                                borderRadius: 'var(--radius)', color: isDisabled && !isCorrectOpt && !isWrongAttempt ? 'var(--surface-400)' : 'white', fontSize: '1.05rem',
+                                borderRadius: 'var(--radius)', color: isDisabled && !isCorrectOpt && !isWrongAttempt && !isSelected ? 'var(--surface-400)' : 'white', fontSize: '1.05rem',
                                 display: 'flex', alignItems: 'center', gap: '1rem',
                                 cursor: isDisabled ? 'default' : 'pointer', transition: 'all 0.1s',
-                                opacity: isDisabled && !isWrongAttempt && !(tutorSolved && isCorrectOpt) ? 0.45 : 1,
+                                opacity: isDisabled && !isWrongAttempt && !isCorrectOpt && !isSelected ? 0.45 : 1,
                             }}>
                                 <div style={{ minWidth: '24px', height: '24px', borderRadius: '50%', border: `2px solid ${dotColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                     {showDot && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: dotColor }} />}

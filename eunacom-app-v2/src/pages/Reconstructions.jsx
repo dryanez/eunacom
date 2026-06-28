@@ -249,8 +249,9 @@ const Reconstructions = () => {
               isSimulation: selectedMode === 'exam',
               timeLimitSeconds: selectedMode === 'exam' ? questions.length * 60 : 0,
               timeLeftSeconds: activeTest.time_left_seconds !== null ? activeTest.time_left_seconds : undefined,
+              tutorState: activeTest.tutor_state ? JSON.parse(activeTest.tutor_state) : null,
               savedIndex: activeTest.current_question_index || 0,
-              savedAnswers: activeTest.answers || {}
+              savedAnswers: typeof activeTest.answers === 'string' ? JSON.parse(activeTest.answers) : (activeTest.answers || {})
             }
           })
           return

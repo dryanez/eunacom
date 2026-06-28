@@ -164,6 +164,7 @@ const History = () => {
                     currentQuestionIndex: t.current_question_index || 0,
                     timeLimitSeconds: t.time_limit_seconds || 0,
                     timeLeftSeconds: t.time_left_seconds !== null ? t.time_left_seconds : undefined,
+                    tutorState: t.tutor_state ? JSON.parse(t.tutor_state) : null,
                     title: testTitle,
                     isReconstruction
                 }
@@ -204,6 +205,7 @@ const History = () => {
                 startFinished: isCompleted,
                 timeLimitSeconds: test.timeLimitSeconds,
                 timeLeftSeconds: test.timeLeftSeconds,
+                tutorState: test.tutorState,
                 isReconstruction: test.isReconstruction,
                 mode: test.mode === 'Tiempo' ? 'exam' : 'tutor',
                 isSimulation: test.mode === 'Tiempo'

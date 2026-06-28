@@ -49,10 +49,10 @@ export async function createTest(testObj) {
   })
 }
 
-export async function saveTestProgress(id, answers, currentIndex, timeLeftSeconds) {
+export async function saveTestProgress(id, answers, currentIndex, timeLeftSeconds, tutorState = null) {
   return apiFetch('/api/tests', {
     method: 'PATCH',
-    body: JSON.stringify({ id, answers, currentIndex, timeLeftSeconds })
+    body: JSON.stringify({ id, answers, currentIndex, timeLeftSeconds, tutorState })
   })
 }
 
