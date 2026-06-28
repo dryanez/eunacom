@@ -80,7 +80,7 @@ const Stats = () => {
     const area = chartPoints.length > 0
         ? `M ${chartPoints[0].x},${chartPoints[0].y} ` +
           chartPoints.slice(1).map(p => `L ${p.x},${p.y}`).join(' ') +
-          ` L ${chartPoints[chartPoints.length - 1].x},200 L ${chartPoints[0].x},200 Z`
+          ` L ${chartPoints[chartPoints.length - 1].x},180 L ${chartPoints[0].x},180 Z`
         : ''
 
     return (
@@ -130,39 +130,43 @@ const Stats = () => {
                             Completa al menos 2 exámenes para ver tu evolución.
                         </div>
                     ) : (
-                        <div style={{ overflowX: 'auto', paddingBottom: '0.5rem' }} className="hide-scrollbar">
-                            <div style={{ position: 'relative', width: '100%', minWidth: '500px', height: '200px' }}>
-                                <svg viewBox="0 0 400 200" style={{ width: '100%', height: '100%', overflow: 'visible' }} preserveAspectRatio="none">
-                                    <defs>
-                                        <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="rgba(59,130,246,0.35)" />
-                                            <stop offset="100%" stopColor="rgba(59,130,246,0)" />
-                                        </linearGradient>
-                                    </defs>
-                                    {[0, 25, 50, 75, 100].map((pct, i) => {
-                                        const y = Math.round((1 - pct / 100) * 160) + 20
-                                        return (
-                                            <g key={i}>
-                                                <line x1="0" y1={y} x2="400" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                                                <text x="2" y={y - 3} fill="rgba(255,255,255,0.4)" fontSize="10" fontWeight="500">{pct}%</text>
-                                            </g>
-                                        )
-                                    })}
-                                    {area && <path d={area} fill="url(#areaGradient)" />}
-                                    {polyline && <polyline points={polyline} fill="none" stroke="var(--primary-400)" strokeWidth="3" strokeLinejoin="round" />}
-                                    {chartPoints.map((p, i) => (
+                        <div style={{ position: 'relative', width: '100%', height: '240px' }}>
+                            <svg viewBox="0 0 400 240" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                                <defs>
+                                    <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stopColor="rgba(59,130,246,0.35)" />
+                                        <stop offset="100%" stopColor="rgba(59,130,246,0)" />
+                                    </linearGradient>
+                                </defs>
+                                {[0, 25, 50, 75, 100].map((pct, i) => {
+                                    const y = Math.round((1 - pct / 100) * 160) + 20
+                                    return (
                                         <g key={i}>
-                                            <circle cx={p.x} cy={p.y} r="5" fill="var(--primary-400)" stroke="var(--surface-900)" strokeWidth="2.5" />
-                                            <title>{p.date}: {p.score}%</title>
+                                            <line x1="0" y1={y} x2="400" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+                                            <text x="2" y={y - 3} fill="rgba(255,255,255,0.4)" fontSize="10" fontWeight="500">{pct}%</text>
                                         </g>
-                                    ))}
-                                </svg>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.75rem', paddingLeft: '2%', paddingRight: '2%' }}>
-                                    {chartPoints.map((p, i) => (
-                                        <span key={i} style={{ fontSize: '0.75rem', color: 'var(--surface-400)', textAlign: 'center', flex: 1, whiteSpace: 'nowrap' }}>{p.date}</span>
-                                    ))}
-                                </div>
-                            </div>
+                                    )
+                                })}
+                                {area && <path d={area} fill="url(#areaGradient)" />}
+                                {polyline && <polyline points={polyline} fill="none" stroke="var(--primary-400)" strokeWidth="3" strokeLinejoin="round" />}
+                                {chartPoints.map((p, i) => (
+                                    <g key={i}>
+                                        <circle cx={p.x} cy={p.y} r="5" fill="var(--primary-400)" stroke="var(--surface-900)" strokeWidth="2.5" />
+                                        <title>{p.date}: {p.score}%</title>
+                                        {/* Rotated labels to fit without scrolling */}
+                                        <text 
+                                            x={p.x} 
+                                            y={200} 
+                                            fill="var(--surface-400)" 
+                                            fontSize="11" 
+                                            textAnchor="end" 
+                                            transform={`rotate(-45, ${p.x}, 200)`}
+                                        >
+                                            {p.date}
+                                        </text>
+                                    </g>
+                                ))}
+                            </svg>
                         </div>
                     )}
                 </div>
