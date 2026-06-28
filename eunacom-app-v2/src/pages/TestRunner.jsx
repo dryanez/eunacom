@@ -153,6 +153,7 @@ const TestRunner = () => {
     }
 
     const handleSaveAndExit = async () => {
+        setIsSubmitting(true)
         if (location.state?.testId) {
             const serializedWrongAttempts = Object.fromEntries(
                 Object.entries(wrongAttempts).map(([k,v]) => [k, Array.from(v)])
@@ -160,6 +161,8 @@ const TestRunner = () => {
             const tutorState = isTutorMode ? { firstAttempts, wrongAttempts: serializedWrongAttempts } : null
             await saveTestProgress(location.state.testId, answers, currentIndex, timeLeft, tutorState).catch(console.error)
         }
+        setIsSubmitting(false)
+        setShowExitModal(false)
         navigate('/dashboard')
     }
 
@@ -531,7 +534,7 @@ const TestRunner = () => {
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <button onClick={handleSaveAndExit} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: 'none', background: 'var(--primary-600)', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
-                                Guardar y salir
+                                {isSubmitting ? 'Guardando...' : 'Guardar y salir'}
                             </button>
                             <button onClick={() => { setShowExitModal(false); handleSubmitTest(); }} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--surface-600)', background: 'transparent', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
                                 Terminar test
