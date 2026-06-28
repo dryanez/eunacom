@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchReviewQuestions } from '../lib/api'
-import { RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp, Layers, Tag, Video } from 'lucide-react'
+import { RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp, Layers, Tag, Video, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const ReviewErrors = () => {
@@ -12,6 +12,19 @@ const ReviewErrors = () => {
   const [expandedQ, setExpandedQ] = useState(null)
   const [fullscreenImage, setFullscreenImage] = useState(null)
   const [filterSpecialty, setFilterSpecialty] = useState('all')
+  const scrollContainerRef = useRef(null)
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' })
+    }
+  }
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' })
+    }
+  }
 
   useEffect(() => {
     if (user) loadData()
@@ -116,10 +129,24 @@ const ReviewErrors = () => {
         <>
           {/* Weakest Topics Dashboard */}
           <section style={{ marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <AlertCircle size={20} color="var(--accent-amber)" /> Tus Puntos Débiles
-            </h2>
-            <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '1.2rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <AlertCircle size={20} color="var(--accent-amber)" /> Tus Puntos Débiles
+              </h2>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button onClick={scrollLeft} style={{ background: 'var(--surface-700)', border: 'none', color: 'var(--surface-200)', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                  <ChevronLeft size={20} />
+                </button>
+                <button onClick={scrollRight} style={{ background: 'var(--surface-700)', border: 'none', color: 'var(--surface-200)', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+            <div 
+              ref={scrollContainerRef}
+              style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              className="hide-scrollbar"
+            >
               <div 
                 className={`glass-card ${filterSpecialty === 'all' ? 'active-filter' : ''}`}
                 style={{ 
@@ -168,7 +195,7 @@ const ReviewErrors = () => {
                 return (
                   <div key={q.id} className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
                     <div 
-                      style={{ padding: '1rem', cursor: 'pointer', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}
+                      style={{ padding: '0.75rem', cursor: 'pointer', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}
                       onClick={() => setExpandedQ(isExpanded ? null : q.id)}
                     >
                       <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(239,68,68,0.1)', color: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700, fontSize: '0.9rem' }}>
@@ -203,7 +230,7 @@ const ReviewErrors = () => {
                     </div>
 
                     {isExpanded && (
-                      <div style={{ padding: '1rem', borderTop: '1px solid var(--surface-700)', background: 'var(--surface-900)' }}>
+                      <div style={{ padding: '0.75rem', borderTop: '1px solid var(--surface-700)', background: 'var(--surface-900)' }}>
                         <div style={{ marginBottom: '1.5rem' }}>
                           <h4 style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Respuesta Correcta</h4>
                           <div style={{ padding: '1rem', background: 'rgba(16,185,129,0.05)', borderLeft: '4px solid #10b981', borderRadius: '0 8px 8px 0', color: 'var(--surface-50)' }}>

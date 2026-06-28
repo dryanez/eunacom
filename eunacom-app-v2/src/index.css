@@ -400,6 +400,10 @@ button {
   background: var(--gradient-primary);
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* ========== TEST RUNNER CLASSES ========== */
 .test-review-page {
   background: var(--surface-900);

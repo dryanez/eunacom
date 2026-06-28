@@ -17,7 +17,7 @@ function toTestRunnerFormat(q, examId) {
     if (typeof rc === 'string' && /^[A-Ea-e]$/.test(rc)) correctAnswer = rc.toUpperCase()
     else if (typeof rc === 'number' && rc < choices.length) correctAnswer = LETTERS[rc]
   }
-  return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '' }
+  return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '', imageUrl: q.imageUrl }
 }
 
 /* ── Inline Quiz ── */
