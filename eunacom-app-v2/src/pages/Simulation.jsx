@@ -2,13 +2,17 @@ import React, { useState } from 'react'
 import { Clock, LightbulbOff, PlayCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useSubscription } from '../contexts/SubscriptionContext'
+import PaymentModal from '../components/PaymentModal'
 import { createTest, genId } from '../lib/api'
 import { getQuestionDB } from '../lib/questionDB'
 
 const Simulation = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
+    const { isPremium } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
+    const [showPaymentModal, setShowPaymentModal] = useState(false)
 
     const blueprint = [
         { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)', category: 'Medicina Interna' },
@@ -19,6 +23,11 @@ const Simulation = () => {
     ]
 
     const handleStartSimulation = async () => {
+        if (!isPremium) {
+            setShowPaymentModal(true)
+            return
+        }
+        
         setIsStarting(true)
         try {
             if (!user) throw new Error('Debes iniciar sesión.')
@@ -117,6 +126,8 @@ const Simulation = () => {
                     <PlayCircle size={22} /> {isStarting ? 'Preparando simulación...' : 'Iniciar Simulación Oficial'}
                 </button>
             </div>
+            
+            {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
         </div>
     )
 }

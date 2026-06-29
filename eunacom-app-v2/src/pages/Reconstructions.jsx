@@ -440,7 +440,7 @@ const Reconstructions = () => {
               {examsByYear[year].map(exam => {
                 const result = examResults[exam.id]
                 const pct = result?.pct
-                const isLocked = !isPremium && index.exams.findIndex(x => x.id === exam.id) > 0;
+                const isLocked = !isPremium && exam.id !== 'eunacom-dic-2025';
                 return (
                   <div key={exam.id} style={{ position: 'relative', background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
                     onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
