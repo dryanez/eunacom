@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers } from 'lucide-react'
+import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
@@ -21,6 +21,42 @@ const Dashboard = () => {
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
   const DAILY_GOAL = 50
+
+  // PWA Install State
+  const [deferredPrompt, setDeferredPrompt] = useState(null)
+  const [isIOS, setIsIOS] = useState(false)
+  const [isStandalone, setIsStandalone] = useState(false)
+
+  useEffect(() => {
+    // Check if iOS
+    const userAgent = window.navigator.userAgent.toLowerCase()
+    const isIosDevice = /iphone|ipad|ipod/.test(userAgent)
+    setIsIOS(isIosDevice)
+
+    // Check if already installed
+    const isStand = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone
+    setIsStandalone(isStand)
+
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  }, [])
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null)
+      }
+    } else if (isIOS) {
+      alert("Para instalar en iPhone/iPad:\n1. Toca el ícono de Compartir (el cuadro con la flecha hacia arriba) en la parte inferior de Safari.\n2. Selecciona 'Agregar a Inicio'.")
+    }
+  }
 
   useEffect(() => {
     if (user) fetchStats()
@@ -146,8 +182,23 @@ const Dashboard = () => {
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
-      <h1 className="page__title">Inicio</h1>
-      <p className="page__subtitle">{user ? 'Tu progreso general' : 'La plataforma de estudio EUNACOM más completa de Chile'}</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+        <div>
+          <h1 className="page__title">Inicio</h1>
+          <p className="page__subtitle">{user ? 'Tu progreso general' : 'La plataforma de estudio EUNACOM más completa de Chile'}</p>
+        </div>
+        {!isStandalone && (deferredPrompt || isIOS) && (
+          <button onClick={handleInstallClick} style={{
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+            padding: '0.5rem 1rem', background: 'var(--gradient-primary)', color: '#fff',
+            borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
+            boxShadow: '0 4px 12px rgba(19,91,236,0.3)'
+          }}>
+            <Download size={16} />
+            Instalar App
+          </button>
+        )}
+      </div>
 
       {/* ─── GUEST CTA ─── */}
       {!user && (
