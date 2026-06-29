@@ -189,6 +189,15 @@ export async function fetchAdminUserDetail(userId, adminEmail) {
   return apiFetch(`/api/admin-users?${params.toString()}`)
 }
 
+// ── PAYMENTS (Mercado Pago) ───────────────────────────────────────────────────
+
+export async function createCheckoutSession(userId, planId) {
+  return apiFetch('/api/checkout', {
+    method: 'POST',
+    body: JSON.stringify({ userId, planId })
+  })
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {

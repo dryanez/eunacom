@@ -1,18 +1,43 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2 } from 'lucide-react';
+import { X, CheckCircle2, Loader2 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { createCheckoutSession } from '../lib/api';
 
 const PAYPAL_LINK = 'https://www.paypal.com/donate/?business=famedvorbereitung@gmail.com&currency_code=USD';
-const MP_LINK = 'https://www.mercadopago.cl/';
 
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', mpLink: MP_LINK, ppLink: PAYPAL_LINK },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', mpLink: MP_LINK, ppLink: PAYPAL_LINK },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, mpLink: MP_LINK, ppLink: PAYPAL_LINK },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', mpLink: MP_LINK, ppLink: PAYPAL_LINK }
+  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', ppLink: PAYPAL_LINK },
+  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', ppLink: PAYPAL_LINK },
+  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, ppLink: PAYPAL_LINK },
+  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', ppLink: PAYPAL_LINK }
 ];
 
 const PaymentModal = ({ onClose }) => {
+  const { user } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState(PLANS[2]); // Default 6 months
+  const [loadingMp, setLoadingMp] = useState(false);
+  const [errorMp, setErrorMp] = useState(null);
+
+  const handleMercadoPago = async () => {
+    if (!user) {
+      setErrorMp("Debes iniciar sesión para suscribirte.");
+      return;
+    }
+    setLoadingMp(true);
+    setErrorMp(null);
+    try {
+      const res = await createCheckoutSession(user.id, selectedPlan.id);
+      if (res.init_point) {
+        window.location.href = res.init_point;
+      } else {
+        throw new Error("No se pudo obtener el link de pago.");
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMp("Ocurrió un error al procesar el pago. Inténtalo de nuevo.");
+      setLoadingMp(false);
+    }
+  };
 
   return (
     <div
@@ -89,23 +114,25 @@ const PaymentModal = ({ onClose }) => {
 
             <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
               <p style={{ margin: 0, fontSize: '0.85rem', color: '#fcd34d', lineHeight: 1.5 }}>
-                <strong>Aviso importante:</strong> Una vez realizado el pago por cualquier medio, por favor contáctanos por WhatsApp al <strong>+1 (929) 360-3799</strong> para activar tu cuenta. Estamos trabajando para que este proceso sea automático muy pronto.
+                <strong>Activación Automática:</strong> Al pagar con <strong>Mercado Pago / Webpay</strong> tu cuenta se activa de inmediato. Si pagas por PayPal o Transferencia, contáctanos por WhatsApp al <strong>+1 (929) 360-3799</strong> para activar tu cuenta.
               </p>
             </div>
 
             {/* Mercado Libre */}
             <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-              <a href={selectedPlan.mpLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <button style={{
+              <button 
+                onClick={handleMercadoPago}
+                disabled={loadingMp}
+                style={{
                   width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                  fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+                  fontSize: '1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  opacity: loadingMp ? 0.8 : 1
                 }}>
-                  Pagar con Mercado Pago / Tarjetas
-                </button>
-              </a>
-              <span style={{ fontSize: '0.75rem', color: 'var(--surface-300)' }}>
-                Envía tu pago al correo: <strong>famedvorbereitung@gmail.com</strong>
-              </span>
+                {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar con Webpay / Tarjetas"}
+              </button>
+              {errorMp && (
+                <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorMp}</div>
+              )}
             </div>
 
             {/* PayPal */}
