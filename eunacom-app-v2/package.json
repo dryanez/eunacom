@@ -17,6 +17,10 @@
     "@supabase/supabase-js": "^2.100.1",
     "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.7.0",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.19.1",
+    "pdfmake": "^0.3.11",
+    "puppeteer": "^25.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2"

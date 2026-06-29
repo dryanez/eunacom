@@ -5,8 +5,10 @@ import { fetchPerfil } from '../lib/api'
 import {
   Search, BookOpen, ChevronRight, Stethoscope, AlertTriangle,
   Brain, FileText, Wrench, Filter, X, Shield, ArrowRight,
-  Activity, Eye, Clipboard
+  Activity, Eye, Clipboard, Lock
 } from 'lucide-react'
+import PaymentModal from '../components/PaymentModal'
+import { useSubscription } from '../contexts/SubscriptionContext'
 
 /* ════════════════════════════════════════════════════════════════
    LEVEL BADGES
@@ -158,7 +160,6 @@ function StatsBar({ items }) {
    MAIN PAGE
    ════════════════════════════════════════════════════════════════ */
 const Biblioteca = () => {
-  const { isAdmin } = useAuth()
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -166,10 +167,8 @@ const Biblioteca = () => {
   const [filterSpecialty, setFilterSpecialty] = useState('')
   const [filterSeccion, setFilterSeccion] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState('')
-
-  if (!isAdmin()) {
-    return <Navigate to="/dashboard" replace />
-  }
+  const { isPremium } = useSubscription()
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   // Debounce search
   useEffect(() => {
@@ -223,6 +222,7 @@ const Biblioteca = () => {
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
+      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 className="page__title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Shield size={24} style={{ color: 'var(--primary-500)' }} />
@@ -302,12 +302,22 @@ const Biblioteca = () => {
       )}
 
       {/* Results grouped by section */}
-      {!loading && sectionOrder.filter(s => grouped[s]).map(seccion => (
-        <div key={seccion} style={{ marginBottom: '1.5rem' }}>
+      {!loading && sectionOrder.filter(s => grouped[s]).map((seccion, index) => {
+        const isLocked = !isPremium && index > 0;
+        return (
+        <div key={seccion} style={{ marginBottom: '1.5rem', position: 'relative' }}>
+          {isLocked && (
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px' }} onClick={() => setShowPaymentModal(true)}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer' }}>
+                <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
+              </div>
+            </div>
+          )}
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
             marginBottom: '0.75rem', padding: '0.5rem 0',
             borderBottom: `2px solid ${sectionColors[seccion] || '#6b7280'}20`,
+            opacity: isLocked ? 0.5 : 1
           }}>
             <div style={{
               width: 28, height: 28, borderRadius: 8,
@@ -324,13 +334,13 @@ const Biblioteca = () => {
               ({grouped[seccion].length})
             </span>
           </div>
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gap: '0.5rem', opacity: isLocked ? 0.5 : 1 }}>
             {grouped[seccion].map(item => (
               <ItemCard key={item.codigo} item={item} />
             ))}
           </div>
         </div>
-      ))}
+      )})}
 
       {/* Empty state */}
       {!loading && items.length === 0 && (

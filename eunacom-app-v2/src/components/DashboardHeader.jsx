@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown, Menu, Heart, X, LogIn } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { useSubscription } from '../contexts/SubscriptionContext'
 
 const DONATION_LINKS = [
   { name: 'PayPal', url: 'https://www.paypal.com/donate/?hosted_button_id=R8LN5TXP8XYNG', emoji: '💳' },
@@ -10,6 +11,7 @@ const DONATION_LINKS = [
 
 const DashboardHeader = ({ onMenuToggle }) => {
     const { user, signOut } = useAuth()
+    const { isPremium, togglePremium } = useSubscription()
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [showDonate, setShowDonate] = useState(false)
@@ -120,6 +122,14 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                         border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
                                     }}>
                                         Cerrar Sesión
+                                    </button>
+                                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '0.25rem 0' }} />
+                                    <button onClick={togglePremium} style={{
+                                        width: '100%', padding: '0.75rem 1rem', background: 'transparent',
+                                        color: isPremium ? '#10b981' : '#fbbf24', fontWeight: 600, fontSize: '0.8rem', textAlign: 'left',
+                                        border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
+                                    }}>
+                                        [DEV] Modo: {isPremium ? 'Premium' : 'Free'}
                                     </button>
                                 </div>
                             )}

@@ -13,8 +13,8 @@ const PERIODS = [
 const Dashboard = () => {
   const { user } = useAuth()
   const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
-  const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0 }, custom: { answered: 0, correct: 0 } })
-  const [activeTab, setActiveTab] = useState('general') // general, reconstructions, custom
+  const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0, exams: 0 }, custom: { answered: 0, correct: 0, exams: 0 }, clases: { answered: 0, correct: 0, exams: 0 } })
+  const [activeTab, setActiveTab] = useState('general') // general, clases, reconstructions, custom
   const [leaderboard, setLeaderboard] = useState([])
   const [lbPeriod, setLbPeriod] = useState('week')
   const [todayAnswers, setTodayAnswers] = useState(0)
@@ -30,8 +30,11 @@ const Dashboard = () => {
   const fetchStats = async () => {
     try {
       // Import fetchTests if it hasn't been imported
-      const { fetchTests } = await import('../lib/api');
-      const userTests = await fetchTests(user.id)
+      const { fetchTests, fetchClaseProgress } = await import('../lib/api');
+      const [userTests, userClasesProgress] = await Promise.all([
+        fetchTests(user.id),
+        fetchClaseProgress(user.id).catch(() => [])
+      ]);
       
       let totalAnswered = 0
       let correctAnswers = 0
@@ -39,10 +42,13 @@ const Dashboard = () => {
       let reconCorrect = 0
       let customAnswered = 0
       let customCorrect = 0
+      let clasesAnswered = 0
+      let clasesCorrect = 0
       
       let totalExams = 0
       let reconExams = 0
       let customExams = 0
+      let clasesExams = 0
 
       // Calculate strictly from completed tests
       for (const t of userTests) {
@@ -74,13 +80,32 @@ const Dashboard = () => {
           }
       }
 
+      // Add clases quiz progress
+      for (const cp of userClasesProgress) {
+        if (cp.quiz_completed) {
+          const numQuestions = cp.quiz_total || 0;
+          const numCorrect = cp.quiz_correct || 0;
+          
+          if (numQuestions > 0) {
+            clasesAnswered += numQuestions;
+            clasesCorrect += numCorrect;
+            clasesExams++;
+            
+            totalAnswered += numQuestions;
+            correctAnswers += numCorrect;
+            totalExams++;
+          }
+        }
+      }
+
       const incorrectAnswers = totalAnswered - correctAnswers
       const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT)
       const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
 
       setSubStats({
           reconstructions: { answered: reconAnswered, correct: reconCorrect, exams: reconExams },
-          custom: { answered: customAnswered, correct: customCorrect, exams: customExams }
+          custom: { answered: customAnswered, correct: customCorrect, exams: customExams },
+          clases: { answered: clasesAnswered, correct: clasesCorrect, exams: clasesExams }
       })
 
       setStats(prev => ({ ...prev, totalAnswered, correctAnswers, totalExams, xp: remainingXP, totalXP, level: newLevel }))
@@ -103,6 +128,7 @@ const Dashboard = () => {
   }
 
   const getActiveStats = () => {
+      if (activeTab === 'clases') return subStats.clases
       if (activeTab === 'reconstructions') return subStats.reconstructions
       if (activeTab === 'custom') return subStats.custom
       return { answered: stats.totalAnswered, correct: stats.correctAnswers, exams: stats.totalExams }
@@ -183,6 +209,7 @@ const Dashboard = () => {
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)' }}>
             {[
                 { id: 'general', label: 'General' },
+                { id: 'clases', label: 'Clases' },
                 { id: 'reconstructions', label: 'Reconstrucciones' },
                 { id: 'custom', label: 'Exámenes Práctica' },
             ].map(tab => (

@@ -2,9 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchProgress, fetchTests } from '../lib/api'
-import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock, GraduationCap } from 'lucide-react'
+import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock, GraduationCap, Lock } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
+import PaymentModal from '../components/PaymentModal'
+import { useSubscription } from '../contexts/SubscriptionContext'
 
 const LETTERS = ['A','B','C','D','E']
 
@@ -122,14 +124,21 @@ function TopicDetail({ topic, onPractice, onBack }) {
 }
 
 /* ── Subject Card (2nd level: topics list) ── */
-function SubjectCard({ subject, onSelectTopic }) {
+function SubjectCard({ subject, onSelectTopic, isLocked, onShowPayment }) {
   const [open, setOpen] = useState(false)
   const [showAll, setShowAll] = useState(false)
   const visible = showAll ? subject.topics : subject.topics.slice(0, 5)
 
   return (
-    <div style={{ background: 'var(--surface-800)', borderRadius: 10, border: '1px solid var(--surface-700)', overflow: 'hidden', marginBottom: '0.75rem' }}>
-      <button onClick={() => setOpen(o => !o)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem 1.25rem', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
+    <div style={{ background: 'var(--surface-800)', borderRadius: 10, border: '1px solid var(--surface-700)', overflow: 'hidden', marginBottom: '0.75rem', position: 'relative' }}>
+      {isLocked && (
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={onShowPayment}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem' }}>
+            <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
+          </div>
+        </div>
+      )}
+      <button onClick={() => setOpen(o => !o)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem 1.25rem', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', opacity: isLocked ? 0.5 : 1 }}>
         <span style={{ fontSize: '1.4rem' }}>{subject.emoji}</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--surface-100)' }}>{subject.subject}</div>
@@ -164,6 +173,7 @@ function SubjectCard({ subject, onSelectTopic }) {
 const Reconstructions = () => {
   const navigate = useNavigate()
   const { user } = useAuth()
+  const { isPremium } = useSubscription()
   const [index, setIndex] = useState(null)
   const [topicIndex, setTopicIndex] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -176,6 +186,7 @@ const Reconstructions = () => {
   const [activeQuiz, setActiveQuiz] = useState(null)         // { questions, title }
   const [selectedExam, setSelectedExam] = useState(null)     // exam mode modal
   const [resumePrompt, setResumePrompt] = useState(null)     // { exam, selectedMode, activeTest, questions }
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   useEffect(() => { loadData() }, [user])
 
@@ -303,6 +314,7 @@ const Reconstructions = () => {
   return (
     <div className="page" style={{ paddingBottom: '3rem' }}>
       {showLoginGate && <LoginGateModal onClose={() => setShowLoginGate(false)} message="Inicia sesión para practicar con los exámenes EUNACOM reales."/>}
+      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
 
       {/* Quiz Modal */}
       {activeQuiz && (
@@ -428,12 +440,22 @@ const Reconstructions = () => {
               {examsByYear[year].map(exam => {
                 const result = examResults[exam.id]
                 const pct = result?.pct
+                const isLocked = !isPremium && index.exams.findIndex(x => x.id === exam.id) > 0;
                 return (
-                  <div key={exam.id} style={{ background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
-                    onClick={() => setSelectedExam(exam)}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor='var(--primary-400)'; e.currentTarget.style.transform='translateY(-1px)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor=result?'var(--surface-600)':'var(--surface-700)'; e.currentTarget.style.transform='none' }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                  <div key={exam.id} style={{ position: 'relative', background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
+                    onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
+                    onMouseEnter={e => { if (!isLocked) { e.currentTarget.style.borderColor='var(--primary-400)'; e.currentTarget.style.transform='translateY(-1px)' } }}
+                    onMouseLeave={e => { if (!isLocked) { e.currentTarget.style.borderColor=result?'var(--surface-600)':'var(--surface-700)'; e.currentTarget.style.transform='none' } }}>
+                    
+                    {isLocked && (
+                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem' }}>
+                          <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div style={{ flex: 1, minWidth: 0, opacity: isLocked ? 0.5 : 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
                         <span style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--surface-100)' }}>{exam.name}</span>
                         {!exam.questions_with_answers && <span style={{ fontSize: '0.62rem', padding: '0.12rem 0.45rem', borderRadius: '999px', background: 'rgba(251,191,36,0.15)', color: 'var(--accent-amber)' }}>Sin pauta</span>}
@@ -473,8 +495,8 @@ const Reconstructions = () => {
                 <div style={{ marginBottom: '1.25rem', padding: '0.85rem 1rem', background: 'rgba(99,102,241,0.08)', borderRadius: 10, border: '1px solid rgba(99,102,241,0.2)', fontSize: '0.84rem', color: 'var(--surface-300)', lineHeight: 1.6 }}>
                   🔥 <strong style={{ color: 'var(--primary-300)' }}>Practica por tema.</strong> Haz clic en una especialidad para ver los temas más preguntados. Luego entra en un tema para ver el desglose exacto por subtema y practicar.
                 </div>
-                {topicIndex ? topicIndex.map(subject => (
-                  <SubjectCard key={subject.subject} subject={subject} onSelectTopic={setSelectedTopic}/>
+                {topicIndex ? topicIndex.map((subject, i) => (
+                  <SubjectCard key={subject.subject} subject={subject} onSelectTopic={setSelectedTopic} isLocked={!isPremium && i > 0} onShowPayment={() => setShowPaymentModal(true)} />
                 )) : <p style={{ color: 'var(--surface-400)' }}>Cargando...</p>}
               </>
             ) : (

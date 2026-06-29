@@ -14,10 +14,12 @@ import {
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
-  Printer, RefreshCw, BookMarked
+  Printer, RefreshCw, BookMarked, Lock
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
+import PaymentModal from '../components/PaymentModal'
+import { useSubscription } from '../contexts/SubscriptionContext'
 
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
@@ -2647,6 +2649,8 @@ const MisClases = () => {
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
   const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
+  const { isPremium } = useSubscription()
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
   const normalizeQuiz = (rawQuiz) => {
@@ -3018,6 +3022,7 @@ const MisClases = () => {
           message="Inicia sesión para acceder a las clases en video y pruebas EUNACOM."
         />
       )}
+      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
         <h1 className="page__title">Mis Clases</h1>
         {(() => {
@@ -3082,19 +3087,29 @@ const MisClases = () => {
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
-          {specialties.map(spec => {
+          {specialties.map((spec, i) => {
+            const isLocked = !isPremium && i > 0;
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
+              <div key={spec} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                 borderLeft: `4px solid ${style.color}`,
                 background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
+                position: 'relative',
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                {isLocked && (
+                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem' }}>
+                      <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
+                    </div>
+                  </div>
+                )}
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', opacity: isLocked ? 0.5 : 1 }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 14, background: style.bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -3110,7 +3125,7 @@ const MisClases = () => {
                   </div>
                   <ProgressRing percent={specPct} size={42} stroke={3} />
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', opacity: isLocked ? 0.5 : 1 }}>
                   {Object.keys(tree[spec]).map(sub => {
                     const subStyle = getSubsystemStyle(sub)
                     return (
