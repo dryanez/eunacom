@@ -3088,28 +3088,19 @@ const MisClases = () => {
         /* ─── Level 1: Specialties ─── */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
           {specialties.map((spec, i) => {
-            const isLocked = !isPremium && i > 0;
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : setCurrentSpecialty(spec)} style={{
+              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                 borderLeft: `4px solid ${style.color}`,
                 background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
                 position: 'relative',
               }}>
-                {isLocked && (
-                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem' }}>
-                      <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
-                    </div>
-                  </div>
-                )}
-                
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', opacity: isLocked ? 0.5 : 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 14, background: style.bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -3125,7 +3116,7 @@ const MisClases = () => {
                   </div>
                   <ProgressRing percent={specPct} size={42} stroke={3} />
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', opacity: isLocked ? 0.5 : 1 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                   {Object.keys(tree[spec]).map(sub => {
                     const subStyle = getSubsystemStyle(sub)
                     return (
@@ -3201,16 +3192,26 @@ const MisClases = () => {
             <ChevronLeft size={16} /> Volver
           </button>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {tree[currentSpecialty][currentSubsystem].map(clase => {
+            {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
+              const isLocked = !isPremium && idx > 0;
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (
-                <div key={clase.id} className="card" onClick={() => openClase(clase.id)} style={{
+                <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
                   padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
+                  position: 'relative',
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
+                  {isLocked && (
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.4rem 0.8rem', borderRadius: '8px', color: 'white', fontWeight: 600, fontSize: '0.8rem' }}>
+                        <Lock size={14} color="#fbbf24" /> Premium
+                      </div>
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0, opacity: isLocked ? 0.5 : 1 }}>
                     <div style={{
                       width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -3228,7 +3229,7 @@ const MisClases = () => {
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: isLocked ? 0.5 : 1 }}>
                     {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
                     <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
                   </div>
