@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 
 const DONATION_LINKS = [
-  { name: 'PayPal', url: 'https://www.paypal.com/donate/?hosted_button_id=R8LN5TXP8XYNG', emoji: '💳' },
+  { name: 'PayPal', url: 'https://www.paypal.com/ncp/payment/L5WCCV853656A', emoji: '💳' },
   { name: 'Mercado Pago (Chile)', url: 'https://link.mercadopago.cl/donacioneunacom', emoji: '🟡' },
 ]
 

@@ -279,6 +279,7 @@ const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
             <button disabled={granting} onClick={() => handleGrant(3)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+3 Meses</button>
             <button disabled={granting} onClick={() => handleGrant(6)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+6 Meses</button>
             <button disabled={granting} onClick={() => handleGrant(12)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+1 Año</button>
+            <button disabled={granting} onClick={() => handleGrant(1200)} style={{ padding: '0.5rem 1rem', background: 'var(--accent-blue)', border: 'none', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 700 }}>⭐ De Por Vida</button>
           </div>
         </div>
 
