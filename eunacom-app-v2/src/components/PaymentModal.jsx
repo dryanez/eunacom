@@ -134,6 +134,27 @@ const PaymentModal = ({ onClose }) => {
               )}
             </div>
 
+            <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1.5rem 0' }} />
+
+            {/* Transferencia */}
+            <div>
+              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--surface-200)', fontSize: '0.95rem' }}>Transferencia Directa (Solo Chile)</h4>
+              <div style={{ background: 'var(--surface-600)', padding: '1rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
+                <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem', color: 'var(--surface-300)' }}>
+                  Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
+                </p>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--surface-100)', lineHeight: 1.6 }}>
+                  <li><strong>Banco:</strong> BancoEstado</li>
+                  <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
+                  <li><strong>Nombre:</strong> Felipe Yanez</li>
+                  <li><strong>Monto:</strong> {selectedPlan.price}</li>
+                </ul>
+                <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
+                  IMPORTANTE: Al transferir, debes enviar tu comprobante por WhatsApp al +1 (929) 360-3799 para activación manual.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
