@@ -30,6 +30,7 @@ export default async function handler(req, res) {
         inscrito_eunacom TEXT,
         onboarding_done INTEGER DEFAULT 0,
         is_premium INTEGER DEFAULT 0,
+        premium_until TEXT,
         created_at TEXT DEFAULT (datetime('now')),
         updated_at TEXT DEFAULT (datetime('now'))
       )`,
@@ -58,9 +59,19 @@ export default async function handler(req, res) {
           if (externalReference) {
             const [userId, planId] = externalReference.split('|')
             if (userId) {
+               // Calculate expiration date
+               const now = new Date()
+               if (planId === '1m') now.setMonth(now.getMonth() + 1)
+               else if (planId === '3m') now.setMonth(now.getMonth() + 3)
+               else if (planId === '6m') now.setMonth(now.getMonth() + 6)
+               else if (planId === '1y') now.setFullYear(now.getFullYear() + 1)
+               const premiumUntil = now.toISOString()
+
+               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
+
                await db.execute({
-                 sql: `UPDATE user_profiles SET is_premium = 1, updated_at = datetime('now') WHERE id = ?`,
-                 args: [userId]
+                 sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, updated_at = datetime('now') WHERE id = ?`,
+                 args: [premiumUntil, userId]
                })
             }
           }

@@ -25,7 +25,20 @@ export function SubscriptionProvider({ children }) {
       fetchUserProfile(user.id)
         .then(profile => {
           if (mounted && profile) {
-            setIsPremium(profile.is_premium === 1);
+            // Check if user is premium and hasn't expired
+            let valid = false;
+            if (profile.is_premium === 1) {
+              if (profile.premium_until) {
+                const expiresAt = new Date(profile.premium_until);
+                if (expiresAt > new Date()) {
+                  valid = true;
+                }
+              } else {
+                // Legacy or manually activated users with no expiration date
+                valid = true;
+              }
+            }
+            setIsPremium(valid);
           }
         })
         .catch(err => console.error("Error fetching premium status:", err))

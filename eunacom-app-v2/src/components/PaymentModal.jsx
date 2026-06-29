@@ -3,13 +3,11 @@ import { X, CheckCircle2, Loader2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
 
-const PAYPAL_LINK = 'https://www.paypal.com/donate/?business=famedvorbereitung@gmail.com&currency_code=USD';
-
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', ppLink: PAYPAL_LINK },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', ppLink: PAYPAL_LINK },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, ppLink: PAYPAL_LINK },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', ppLink: PAYPAL_LINK }
+  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido' },
+  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva' },
+  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true },
+  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros' }
 ];
 
 const PaymentModal = ({ onClose }) => {
@@ -107,68 +105,33 @@ const PaymentModal = ({ onClose }) => {
           </div>
 
           {/* Right Side: Payment Methods */}
-          <div style={{ flex: '1 1 350px', padding: '2rem', display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: '1.1rem', color: 'var(--surface-50)', marginBottom: '0.5rem', marginTop: 0 }}>
-              Métodos de Pago para: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name}</span>
+          <div style={{ flex: '1 1 350px', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--surface-50)', marginBottom: '1rem', marginTop: 0, textAlign: 'center' }}>
+              Completar pago: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name}</span>
             </h3>
 
-            <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
-              <p style={{ margin: 0, fontSize: '0.85rem', color: '#fcd34d', lineHeight: 1.5 }}>
-                <strong>Activación Automática:</strong> Al pagar con <strong>Mercado Pago / Webpay</strong> tu cuenta se activa de inmediato. Si pagas por PayPal o Transferencia, contáctanos por WhatsApp al <strong>+1 (929) 360-3799</strong> para activar tu cuenta.
+            <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <p style={{ margin: 0, fontSize: '0.9rem', color: '#34d399', lineHeight: 1.5, textAlign: 'center' }}>
+                <CheckCircle2 size={18} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.5rem' }} />
+                <strong>Activación Inmediata</strong> al finalizar el pago seguro con Webpay o Tarjetas.
               </p>
             </div>
 
             {/* Mercado Libre */}
-            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
               <button 
                 onClick={handleMercadoPago}
                 disabled={loadingMp}
                 style={{
                   width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                  fontSize: '1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  opacity: loadingMp ? 0.8 : 1
+                  fontSize: '1.1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  opacity: loadingMp ? 0.8 : 1, transition: 'all 0.2s'
                 }}>
-                {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar con Webpay / Tarjetas"}
+                {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
               </button>
               {errorMp && (
                 <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorMp}</div>
               )}
-            </div>
-
-            {/* PayPal */}
-            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-              <a href={selectedPlan.ppLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <button style={{
-                  width: '100%', padding: '1rem', background: '#00457C', color: 'white', border: 'none', borderRadius: '8px',
-                  fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
-                }}>
-                  Pagar con PayPal (Internacional)
-                </button>
-              </a>
-              <span style={{ fontSize: '0.75rem', color: 'var(--surface-300)' }}>
-                O envía tu pago directo a: <strong>famedvorbereitung@gmail.com</strong>
-              </span>
-            </div>
-
-            <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', marginBottom: '1.5rem' }} />
-
-            {/* Transferencia */}
-            <div>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--surface-200)', fontSize: '0.95rem' }}>Transferencia Directa (Solo Chile)</h4>
-              <div style={{ background: 'var(--surface-600)', padding: '1rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
-                <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem', color: 'var(--surface-300)' }}>
-                  Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
-                </p>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--surface-100)', lineHeight: 1.6 }}>
-                  <li><strong>Banco:</strong> BancoEstado</li>
-                  <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
-                  <li><strong>Nombre:</strong> Felipe Yanez</li>
-                  <li><strong>Monto:</strong> {selectedPlan.price}</li>
-                </ul>
-                <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
-                  IMPORTANTE: Envía el comprobante con tu correo registrado al WhatsApp indicado arriba.
-                </p>
-              </div>
             </div>
 
           </div>
