@@ -20,9 +20,7 @@ const PaymentModal = ({ onClose }) => {
   
   // Bolivia QR State
   const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
-  const [loadingQr, setLoadingQr] = useState(false);
-  const [qrImage, setQrImage] = useState(null);
-  const [errorQr, setErrorQr] = useState(null);
+
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -51,37 +49,6 @@ const PaymentModal = ({ onClose }) => {
     }
   };
 
-  const handleBoliviaQR = async () => {
-    if (!user) {
-      setErrorQr("Debes iniciar sesión para suscribirte.");
-      return;
-    }
-    setLoadingQr(true);
-    setErrorQr(null);
-    setQrImage(null);
-    
-    try {
-      // Llamada a nuestra API
-      const res = await fetch('/api/bolivia-payment', { 
-        method: 'POST', 
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id, planId: selectedPlan.id }) 
-      });
-      
-      const data = await res.json();
-      
-      if (res.ok && data.qr_code_image) {
-        setQrImage(data.qr_code_image);
-      } else {
-        throw new Error(data.error || "No se pudo generar el código QR.");
-      }
-      setLoadingQr(false);
-    } catch (err) {
-      console.error(err);
-      setErrorQr("Error al generar el QR. Inténtalo de nuevo.");
-      setLoadingQr(false);
-    }
-  };
 
   return (
     <div
@@ -278,43 +245,15 @@ const PaymentModal = ({ onClose }) => {
                 </>
               ) : (
                 <>
-                  {/* Bolivia Pago Simple QR */}
+                  {/* Bolivia / Internacional */}
                   <div style={{ textAlign: 'center' }}>
-                    <p style={{ color: 'var(--surface-300)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                      Paga de forma rápida y segura desde cualquier banco boliviano usando <strong>Pago Simple (QR)</strong>.
-                    </p>
-                    
-                    {!qrImage ? (
-                      <button 
-                        onClick={handleBoliviaQR}
-                        disabled={loadingQr}
-                        style={{
-                          width: '100%', padding: '1rem', background: '#10b981', color: 'white', border: 'none', borderRadius: '8px',
-                          fontSize: '1.1rem', fontWeight: 700, cursor: loadingQr ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                          opacity: loadingQr ? 0.8 : 1, transition: 'all 0.2s'
-                        }}>
-                        {loadingQr ? <><Loader2 size={18} className="spin" /> Generando QR...</> : "Generar QR para Pagar"}
-                      </button>
-                    ) : (
-                      <div style={{ background: 'white', padding: '1.5rem', borderRadius: '12px', display: 'inline-block' }}>
-                        <img src={qrImage} alt="QR Code Pago Simple" style={{ width: '200px', height: '200px' }} />
-                        <p style={{ margin: '1rem 0 0 0', fontSize: '0.9rem', color: '#111827', fontWeight: 600 }}>Escanea este código</p>
-                        <p style={{ margin: 0, fontSize: '0.8rem', color: '#4b5563' }}>con la app de tu banco</p>
-                      </div>
-                    )}
-                    
-                    {errorQr && (
-                      <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorQr}</div>
-                    )}
-
-                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1.5rem 0' }} />
-                    <p style={{ color: 'var(--surface-300)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                      ¿Tienes tarjeta habilitada para compras internacionales?
+                    <p style={{ color: 'var(--surface-300)', fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+                      Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
                     </p>
                     <button 
                       onClick={() => {
                         if (!user) {
-                          setErrorQr("Debes iniciar sesión para suscribirte.");
+                          alert("Debes iniciar sesión para suscribirte.");
                           return;
                         }
                         window.location.href = selectedPlan.paypal;
