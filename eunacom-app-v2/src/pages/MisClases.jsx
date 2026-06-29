@@ -3157,15 +3157,35 @@ const MisClases = () => {
         /* ─── Level 2: Subsystems ─── */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
+            const isLockedLevel2 = !isPremium && sub !== 'Cardiología'
             const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
             return (
-              <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
+              <div key={sub} className="card" onClick={() => isLockedLevel2 ? setShowPaymentModal(true) : setCurrentSubsystem(sub)} style={{
                 padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                 borderLeft: `3px solid ${subStyle.color}`,
                 background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
+                position: 'relative',
+                opacity: isLockedLevel2 ? 0.75 : 1,
               }}>
+                {isLockedLevel2 && (
+                  <div style={{
+                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                      background: 'rgba(15,23,42,0.65)', borderRadius: 'var(--radius)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+                      color: 'var(--surface-50)'
+                  }}>
+                      <div style={{
+                          background: 'rgba(0,0,0,0.6)', padding: '0.4rem 0.8rem',
+                          borderRadius: '50px', display: 'flex', alignItems: 'center', gap: '0.4rem',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+                      }}>
+                          <Lock size={14} style={{ color: '#fbbf24' }} />
+                          <span style={{ fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.5px' }}>PREMIUM</span>
+                      </div>
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <div style={{
