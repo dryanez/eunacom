@@ -15,6 +15,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [showDonate, setShowDonate] = useState(false)
+    const [showRut, setShowRut] = useState(false)
     const [bannerDismissed, setBannerDismissed] = useState(() => {
         try { return sessionStorage.getItem('donate_banner_dismissed') === '1' } catch { return false }
     })
@@ -193,6 +194,35 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                     <span>{d.emoji}</span> {d.name}
                                 </a>
                             ))}
+                            <button
+                                onClick={() => setShowRut(!showRut)}
+                                style={{
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                    padding: '0.75rem 1rem', background: 'var(--surface-600)',
+                                    borderRadius: 'var(--radius)', color: 'var(--surface-50)', fontWeight: 600,
+                                    fontSize: '0.9rem', border: '1px solid rgba(255,255,255,0.06)', cursor: 'pointer',
+                                    fontFamily: 'var(--font)', transition: 'background 0.2s',
+                                }}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-500)'}
+                                onMouseLeave={e => e.currentTarget.style.background = 'var(--surface-600)'}
+                            >
+                                <span>🏦</span> Transferencia (Cuenta RUT)
+                            </button>
+                            {showRut && (
+                                <div style={{
+                                    marginTop: '0.25rem', padding: '1rem', background: 'var(--surface-800)',
+                                    borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.06)',
+                                    fontSize: '0.85rem', color: 'var(--surface-200)', textAlign: 'left',
+                                    fontFamily: 'var(--font)'
+                                }}>
+                                    <p style={{ margin: '0 0 0.5rem 0' }}><strong>Banco:</strong> BancoEstado</p>
+                                    <p style={{ margin: '0 0 0.5rem 0' }}><strong>Cuenta RUT:</strong> 18.842.443-0</p>
+                                    <p style={{ margin: '0 0 0.5rem 0' }}><strong>Nombre:</strong> EUNACOM App</p>
+                                    <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.8rem', color: 'var(--accent-amber)', lineHeight: 1.5 }}>
+                                        * Al transferir, envíanos tu comprobante por WhatsApp al <strong>+1 (929) 360-3799</strong> para activar tu beneficio vitalicio.
+                                    </p>
+                                </div>
+                            )}
                         </div>
                         <button
                             onClick={() => setShowDonate(false)}
