@@ -2,12 +2,15 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, ChevronRight, RefreshCw, BookOpen } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useSubscription } from '../contexts/SubscriptionContext'
+import PaymentModal from '../components/PaymentModal'
 import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 
 const TestCreator = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
+    const { isPremium } = useSubscription()
     const [mode, setMode] = useState('tutor')
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
@@ -16,6 +19,7 @@ const TestCreator = () => {
     const [recentTests, setRecentTests] = useState([])
     const [questionDB, setQuestionDB] = useState([])
     const [showLoginGate, setShowLoginGate] = useState(false)
+    const [showPaymentModal, setShowPaymentModal] = useState(false)
 
     const [statusFilters, setStatusFilters] = useState({
         unused: true,
@@ -190,6 +194,10 @@ const TestCreator = () => {
     // --- Create Test ---
     const handleStartExam = async () => {
         if (!user) { setShowLoginGate(true); return }
+        if (!isPremium) {
+            setShowPaymentModal(true)
+            return
+        }
         if (maxQuestions === 0) {
             alert('Selecciona al menos un tema y un estado de preguntas.')
             return
@@ -232,6 +240,7 @@ const TestCreator = () => {
 
     return (
         <>
+        {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
             <h1 className="page__title">Crear Examen</h1>
             <p className="page__subtitle">Configura tu examen personalizado</p>

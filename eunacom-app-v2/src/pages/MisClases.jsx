@@ -3087,7 +3087,7 @@ const MisClases = () => {
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
-          {specialties.map((spec, i) => {
+          {specialties.filter(spec => isPremium || (spec !== 'Módulo 2' && spec !== 'Módulo 3')).map((spec, i) => {
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
