@@ -3087,19 +3087,38 @@ const MisClases = () => {
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
-          {specialties.filter(spec => isPremium || (spec !== 'Módulo 2' && spec !== 'Módulo 3')).map((spec, i) => {
+          {specialties.map((spec, i) => {
+            const isLockedLevel1 = !isPremium && spec !== 'Módulo 1'
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
+              <div key={spec} className="card" onClick={() => isLockedLevel1 ? setShowPaymentModal(true) : setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                 borderLeft: `4px solid ${style.color}`,
                 background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
                 position: 'relative',
+                opacity: isLockedLevel1 ? 0.6 : 1,
               }}>
+                {isLockedLevel1 && (
+                  <div style={{
+                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                      background: 'rgba(15,23,42,0.85)', borderRadius: 'var(--radius)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+                      color: 'var(--surface-50)'
+                  }}>
+                      <div style={{
+                          background: 'rgba(255,255,255,0.1)', padding: '0.75rem',
+                          borderRadius: '50%', marginBottom: '0.5rem',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+                      }}>
+                          <Lock size={24} style={{ color: '#fbbf24' }} />
+                      </div>
+                      <span style={{ fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.5px' }}>PREMIUM</span>
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 14, background: style.bg,
@@ -3193,7 +3212,7 @@ const MisClases = () => {
           </button>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
-              const isLocked = !isPremium && idx > 0;
+              const isLocked = !isPremium && !(currentSpecialty === 'Módulo 1' && currentSubsystem === 'Cardiología' && idx === 0);
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (
