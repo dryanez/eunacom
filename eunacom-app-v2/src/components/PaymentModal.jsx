@@ -80,9 +80,15 @@ const PaymentModal = ({ onClose }) => {
 
           {/* Right Side: Payment Methods */}
           <div style={{ flex: '1 1 350px', padding: '2rem', display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: '1.1rem', color: 'var(--surface-50)', marginBottom: '1.5rem', marginTop: 0 }}>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--surface-50)', marginBottom: '0.5rem', marginTop: 0 }}>
               Métodos de Pago para: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name}</span>
             </h3>
+
+            <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <p style={{ margin: 0, fontSize: '0.85rem', color: '#fcd34d', lineHeight: 1.5 }}>
+                <strong>Aviso importante:</strong> Una vez realizado el pago por cualquier medio, por favor contáctanos por WhatsApp al <strong>+1 (929) 360-3799</strong> para activar tu cuenta. Estamos trabajando para que este proceso sea automático muy pronto.
+              </p>
+            </div>
 
             {/* Mercado Libre */}
             <a href={selectedPlan.mpLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
@@ -116,11 +122,11 @@ const PaymentModal = ({ onClose }) => {
                 <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--surface-100)', lineHeight: 1.6 }}>
                   <li><strong>Banco:</strong> BancoEstado</li>
                   <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
-                  <li><strong>Nombre:</strong> Famedtesprep Spa</li>
+                  <li><strong>Nombre:</strong> Felipe Yanez</li>
                   <li><strong>Monto:</strong> {selectedPlan.price}</li>
                 </ul>
                 <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
-                  IMPORTANTE: Envía el comprobante con tu correo registrado a pagos@famedtesprep.com para activar tu cuenta.
+                  IMPORTANTE: Envía el comprobante con tu correo registrado al WhatsApp indicado arriba.
                 </p>
               </div>
             </div>
