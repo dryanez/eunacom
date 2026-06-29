@@ -11,6 +11,7 @@ export function useSubscription() {
 export function SubscriptionProvider({ children }) {
   const { user } = useAuth();
   const [isPremium, setIsPremium] = useState(false);
+  const [isFounder, setIsFounder] = useState(false);
   const [loadingPremium, setLoadingPremium] = useState(true);
 
   // We keep this for testing purposes, but default it to false
@@ -39,6 +40,7 @@ export function SubscriptionProvider({ children }) {
               }
             }
             setIsPremium(valid);
+            setIsFounder(valid && profile.plan_months === 1200);
           }
         })
         .catch(err => console.error("Error fetching premium status:", err))
@@ -54,7 +56,7 @@ export function SubscriptionProvider({ children }) {
   }, [user]);
 
   return (
-    <SubscriptionContext.Provider value={{ isPremium, togglePremium, loadingPremium }}>
+    <SubscriptionContext.Provider value={{ isPremium, isFounder, togglePremium, loadingPremium }}>
       {children}
     </SubscriptionContext.Provider>
   );

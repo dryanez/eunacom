@@ -11,7 +11,7 @@ const DONATION_LINKS = [
 
 const DashboardHeader = ({ onMenuToggle }) => {
     const { user, signOut } = useAuth()
-    const { isPremium, togglePremium } = useSubscription()
+    const { isPremium, isFounder, togglePremium } = useSubscription()
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [showDonate, setShowDonate] = useState(false)
@@ -107,6 +107,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
                             <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)}>
                                 <img src="/logo.png" alt={userName} />
                                 <span>{userName}</span>
+                                {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800 }}>Founder 🚀</span>}
                                 <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
                             </div>
                             {showMenu && (

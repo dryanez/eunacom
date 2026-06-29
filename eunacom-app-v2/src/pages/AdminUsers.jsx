@@ -190,6 +190,7 @@ const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: '1.1rem', fontWeight: 800 }}>
               {user.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : user.email}
+              {user.plan_months === 1200 && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800, verticalAlign: 'middle' }}>Founder 🚀</span>}
             </div>
             <div style={{ fontSize: '0.82rem', color: 'var(--surface-400)', marginTop: 2 }}>{user.email}</div>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
@@ -459,6 +460,7 @@ const AdminUsers = () => {
                   <TD>
                     <div style={{ fontWeight: 600 }}>
                       {u.first_name ? `${u.first_name} ${u.last_name || ''}`.trim() : '—'}
+                      {u.plan_months === 1200 && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.6rem', padding: '2px 4px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800 }}>Founder 🚀</span>}
                     </div>
                   </TD>
                   <TD><span style={{ fontSize: '0.85rem' }}>{u.email}</span></TD>
