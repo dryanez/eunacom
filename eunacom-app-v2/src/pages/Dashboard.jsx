@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp } from 'lucide-react'
+import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
@@ -203,6 +203,33 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* ─── QUICK ACTIONS ─── */}
+      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
+      <div className="action-grid" style={{ marginBottom: '1.5rem' }}>
+        <a href="/mis-clases" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
+          <div className="action-card__label">Clases</div>
+        </a>
+        <a href="/test" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Exámenes</div>
+        </a>
+        <a href="/reconstructions" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(16,185,129,0.15)' }}><Layers size={24} color="var(--accent-green)" /></div>
+          <div className="action-card__label">Reconstrucciones</div>
+        </a>
+        {user?.email === 'dr.felipeyanez@gmail.com' && (
+          <a href="/study-plan" className="action-card">
+            <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
+            <div className="action-card__label">Plan de Estudio</div>
+          </a>
+        )}
+        <a href="/stats" className="action-card">
+          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
+          <div className="action-card__label">Estadísticas</div>
+        </a>
+      </div>
+
       {/* ─── STATS GRID (logged-in only) ─── */}
       {user && (
         <>
@@ -285,28 +312,6 @@ const Dashboard = () => {
         </>
       )}
 
-      {/* ─── QUICK ACTIONS ─── */}
-      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
-      <div className="action-grid" style={{ marginBottom: '1.5rem' }}>
-        <a href="/test" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Exámenes</div>
-        </a>
-        {user?.email === 'dr.felipeyanez@gmail.com' && (
-          <a href="/study-plan" className="action-card">
-            <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
-            <div className="action-card__label">Plan de Estudio</div>
-          </a>
-        )}
-        <a href="/stats" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Estadísticas</div>
-        </a>
-        <a href="/mis-clases" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
-          <div className="action-card__label">Mis Clases</div>
-        </a>
-      </div>
 
       {/* ─── LEADERBOARD ─── */}
       <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
