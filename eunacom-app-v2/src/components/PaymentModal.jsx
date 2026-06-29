@@ -4,10 +4,10 @@ import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
 
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido' },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva' },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros' }
+  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
+  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
+  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
+  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' }
 ];
 
 const PaymentModal = ({ onClose }) => {
@@ -17,6 +17,12 @@ const PaymentModal = ({ onClose }) => {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
+  
+  // Bolivia QR State
+  const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
+  const [loadingQr, setLoadingQr] = useState(false);
+  const [qrImage, setQrImage] = useState(null);
+  const [errorQr, setErrorQr] = useState(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -42,6 +48,38 @@ const PaymentModal = ({ onClose }) => {
       console.error(err);
       setErrorMp("Ocurrió un error al procesar el pago. Inténtalo de nuevo.");
       setLoadingMp(false);
+    }
+  };
+
+  const handleBoliviaQR = async () => {
+    if (!user) {
+      setErrorQr("Debes iniciar sesión para suscribirte.");
+      return;
+    }
+    setLoadingQr(true);
+    setErrorQr(null);
+    setQrImage(null);
+    
+    try {
+      // Llamada a nuestra API
+      const res = await fetch('/api/bolivia-payment', { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id, planId: selectedPlan.id }) 
+      });
+      
+      const data = await res.json();
+      
+      if (res.ok && data.qr_code_image) {
+        setQrImage(data.qr_code_image);
+      } else {
+        throw new Error(data.error || "No se pudo generar el código QR.");
+      }
+      setLoadingQr(false);
+    } catch (err) {
+      console.error(err);
+      setErrorQr("Error al generar el QR. Inténtalo de nuevo.");
+      setLoadingQr(false);
     }
   };
 
@@ -150,50 +188,147 @@ const PaymentModal = ({ onClose }) => {
                 Completar pago: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name}</span>
               </h3>
 
+              {/* Selector de País */}
+              <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', background: 'var(--surface-600)', padding: '0.25rem', borderRadius: '8px' }}>
+                <button
+                  onClick={() => setCountry('CL')}
+                  style={{
+                    flex: 1, padding: '0.5rem', border: 'none', borderRadius: '6px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+                    background: country === 'CL' ? 'var(--surface-500)' : 'transparent',
+                    color: country === 'CL' ? 'white' : 'var(--surface-300)'
+                  }}
+                >
+                  🇨🇱 Chile
+                </button>
+                <button
+                  onClick={() => setCountry('BO')}
+                  style={{
+                    flex: 1, padding: '0.5rem', border: 'none', borderRadius: '6px', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+                    background: country === 'BO' ? 'var(--surface-500)' : 'transparent',
+                    color: country === 'BO' ? 'white' : 'var(--surface-300)'
+                  }}
+                >
+                  🇧🇴 Bolivia
+                </button>
+              </div>
+
               <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
                 <p style={{ margin: 0, fontSize: '0.9rem', color: '#34d399', lineHeight: 1.5, textAlign: 'center' }}>
                   <CheckCircle2 size={18} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.5rem' }} />
-                  <strong>Activación Inmediata</strong> al finalizar el pago seguro con Webpay o Tarjetas.
+                  <strong>Activación Inmediata</strong> al finalizar el pago seguro {country === 'CL' ? 'con Webpay o Tarjetas' : 'con Pago Simple QR'}.
                 </p>
               </div>
 
-              {/* Mercado Libre */}
-              <div style={{ textAlign: 'center' }}>
-                <button 
-                  onClick={handleMercadoPago}
-                  disabled={loadingMp}
-                  style={{
-                    width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                    fontSize: '1.1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                    opacity: loadingMp ? 0.8 : 1, transition: 'all 0.2s'
-                  }}>
-                  {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
-                </button>
-                {errorMp && (
-                  <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorMp}</div>
-                )}
-              </div>
+              {country === 'CL' ? (
+                <>
+                  {/* Mercado Libre */}
+                  <div style={{ textAlign: 'center' }}>
+                    <button 
+                      onClick={handleMercadoPago}
+                      disabled={loadingMp}
+                      style={{
+                        width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '1.1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        opacity: loadingMp ? 0.8 : 1, transition: 'all 0.2s'
+                      }}>
+                      {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
+                    </button>
 
-              <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1.5rem 0' }} />
+                    <button 
+                      onClick={() => {
+                        if (!user) {
+                          setErrorMp("Debes iniciar sesión para suscribirte.");
+                          return;
+                        }
+                        window.location.href = selectedPlan.paypal;
+                      }}
+                      style={{
+                        width: '100%', padding: '1rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '1.1rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        transition: 'all 0.2s'
+                      }}>
+                      Pagar Internacional con PayPal
+                    </button>
+                    
+                    {errorMp && (
+                      <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorMp}</div>
+                    )}
+                  </div>
 
-              {/* Transferencia */}
-              <div>
-                <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--surface-200)', fontSize: '0.95rem' }}>Transferencia Directa (Solo Chile)</h4>
-                <div style={{ background: 'var(--surface-600)', padding: '1rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
-                  <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem', color: 'var(--surface-300)' }}>
-                    Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
-                  </p>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--surface-100)', lineHeight: 1.6 }}>
-                    <li><strong>Banco:</strong> BancoEstado</li>
-                    <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
-                    <li><strong>Nombre:</strong> Felipe Yanez</li>
-                    <li><strong>Monto:</strong> {selectedPlan.price}</li>
-                  </ul>
-                  <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
-                    IMPORTANTE: Al transferir, debes enviar tu comprobante por WhatsApp al +1 (929) 360-3799 para activación manual.
-                  </p>
-                </div>
-              </div>
+                  <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1.5rem 0' }} />
+
+                  {/* Transferencia */}
+                  <div>
+                    <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--surface-200)', fontSize: '0.95rem' }}>Transferencia Directa</h4>
+                    <div style={{ background: 'var(--surface-600)', padding: '1rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
+                      <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem', color: 'var(--surface-300)' }}>
+                        Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
+                      </p>
+                      <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--surface-100)', lineHeight: 1.6 }}>
+                        <li><strong>Banco:</strong> BancoEstado</li>
+                        <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
+                        <li><strong>Nombre:</strong> Felipe Yanez</li>
+                        <li><strong>Monto:</strong> {selectedPlan.price}</li>
+                      </ul>
+                      <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
+                        IMPORTANTE: Al transferir, debes enviar tu comprobante por WhatsApp al +1 (929) 360-3799 para activación manual.
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Bolivia Pago Simple QR */}
+                  <div style={{ textAlign: 'center' }}>
+                    <p style={{ color: 'var(--surface-300)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                      Paga de forma rápida y segura desde cualquier banco boliviano usando <strong>Pago Simple (QR)</strong>.
+                    </p>
+                    
+                    {!qrImage ? (
+                      <button 
+                        onClick={handleBoliviaQR}
+                        disabled={loadingQr}
+                        style={{
+                          width: '100%', padding: '1rem', background: '#10b981', color: 'white', border: 'none', borderRadius: '8px',
+                          fontSize: '1.1rem', fontWeight: 700, cursor: loadingQr ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                          opacity: loadingQr ? 0.8 : 1, transition: 'all 0.2s'
+                        }}>
+                        {loadingQr ? <><Loader2 size={18} className="spin" /> Generando QR...</> : "Generar QR para Pagar"}
+                      </button>
+                    ) : (
+                      <div style={{ background: 'white', padding: '1.5rem', borderRadius: '12px', display: 'inline-block' }}>
+                        <img src={qrImage} alt="QR Code Pago Simple" style={{ width: '200px', height: '200px' }} />
+                        <p style={{ margin: '1rem 0 0 0', fontSize: '0.9rem', color: '#111827', fontWeight: 600 }}>Escanea este código</p>
+                        <p style={{ margin: 0, fontSize: '0.8rem', color: '#4b5563' }}>con la app de tu banco</p>
+                      </div>
+                    )}
+                    
+                    {errorQr && (
+                      <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.5rem' }}>{errorQr}</div>
+                    )}
+
+                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1.5rem 0' }} />
+                    <p style={{ color: 'var(--surface-300)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                      ¿Tienes tarjeta habilitada para compras internacionales?
+                    </p>
+                    <button 
+                      onClick={() => {
+                        if (!user) {
+                          setErrorQr("Debes iniciar sesión para suscribirte.");
+                          return;
+                        }
+                        window.location.href = selectedPlan.paypal;
+                      }}
+                      style={{
+                        width: '100%', padding: '1rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '1.1rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        transition: 'all 0.2s'
+                      }}>
+                      Pagar con PayPal (USD)
+                    </button>
+                  </div>
+                </>
+              )}
 
             </div>
           )}

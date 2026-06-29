@@ -95,7 +95,8 @@ const DonatePopup = () => {
             </span>
           </div>
           <p style={{ fontSize: '0.82rem', color: 'var(--surface-200)', fontFamily: 'var(--font)', margin: 0, lineHeight: 1.5 }}>
-            Todos los que donen tendrán la app <strong>gratis de por vida</strong>, incluso cuando comencemos a cobrar después de Julio 2026.
+            Todos los que donen tendrán la app <strong>gratis de por vida</strong>, incluso cuando comencemos a cobrar después de Julio 2026.<br/><br/>
+            <strong style={{ color: '#ef4444' }}>¡Solo estaremos recibiendo donaciones hasta el último día de Junio!</strong>
           </p>
         </div>
 
