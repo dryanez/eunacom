@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
 
+const PAYPAL_LINK = 'https://www.paypal.com/donate/?business=famedvorbereitung@gmail.com&currency_code=USD';
+const MP_LINK = 'https://www.mercadopago.cl/';
+
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', mpLink: '#', ppLink: '#' },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', mpLink: '#', ppLink: '#' },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, mpLink: '#', ppLink: '#' },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', mpLink: '#', ppLink: '#' }
+  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', mpLink: MP_LINK, ppLink: PAYPAL_LINK },
+  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', mpLink: MP_LINK, ppLink: PAYPAL_LINK },
+  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, mpLink: MP_LINK, ppLink: PAYPAL_LINK },
+  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', mpLink: MP_LINK, ppLink: PAYPAL_LINK }
 ];
 
 const PaymentModal = ({ onClose }) => {
@@ -91,24 +94,34 @@ const PaymentModal = ({ onClose }) => {
             </div>
 
             {/* Mercado Libre */}
-            <a href={selectedPlan.mpLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-              <button style={{
-                width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
-              }}>
-                Pagar con Mercado Pago / Tarjetas
-              </button>
-            </a>
+            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+              <a href={selectedPlan.mpLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button style={{
+                  width: '100%', padding: '1rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
+                  fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+                }}>
+                  Pagar con Mercado Pago / Tarjetas
+                </button>
+              </a>
+              <span style={{ fontSize: '0.75rem', color: 'var(--surface-300)' }}>
+                Envía tu pago al correo: <strong>famedvorbereitung@gmail.com</strong>
+              </span>
+            </div>
 
             {/* PayPal */}
-            <a href={selectedPlan.ppLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-              <button style={{
-                width: '100%', padding: '1rem', background: '#00457C', color: 'white', border: 'none', borderRadius: '8px',
-                fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
-              }}>
-                Pagar con PayPal (Internacional)
-              </button>
-            </a>
+            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+              <a href={selectedPlan.ppLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button style={{
+                  width: '100%', padding: '1rem', background: '#00457C', color: 'white', border: 'none', borderRadius: '8px',
+                  fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+                }}>
+                  Pagar con PayPal (Internacional)
+                </button>
+              </a>
+              <span style={{ fontSize: '0.75rem', color: 'var(--surface-300)' }}>
+                O envía tu pago directo a: <strong>famedvorbereitung@gmail.com</strong>
+              </span>
+            </div>
 
             <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', marginBottom: '1.5rem' }} />
 
