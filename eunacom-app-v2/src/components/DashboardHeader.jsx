@@ -123,14 +123,6 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                     }}>
                                         Cerrar Sesión
                                     </button>
-                                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '0.25rem 0' }} />
-                                    <button onClick={togglePremium} style={{
-                                        width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                        color: isPremium ? '#10b981' : '#fbbf24', fontWeight: 600, fontSize: '0.8rem', textAlign: 'left',
-                                        border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
-                                    }}>
-                                        [DEV] Modo: {isPremium ? 'Premium' : 'Free'}
-                                    </button>
                                 </div>
                             )}
                         </>

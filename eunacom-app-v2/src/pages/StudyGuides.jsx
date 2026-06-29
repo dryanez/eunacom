@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { BookOpen, Brain, Download, ChevronDown, ChevronRight, CheckCircle, XCircle, RotateCcw, Eye, EyeOff, Zap } from 'lucide-react'
 
-const OWNER_EMAIL = 'dr.felipeyanez@gmail.com'
-const ALLOWED_EMAILS = [OWNER_EMAIL, 'llancagomez@gmail.com']
+const ADMIN_HASH = 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'
+const ALLOWED_EMAILS = ['llancagomez@gmail.com']
 
 // ── Flashcard component (cloze-style reveal) ──────────────────────────────
 function FlashCard({ card, index }) {
@@ -409,7 +409,7 @@ export default function StudyGuides() {
   const [search, setSearch] = useState('')
   const [downloading, setDownloading] = useState(false)
 
-  const isOwner = ALLOWED_EMAILS.includes(user?.email)
+  const isOwner = (user?.email && btoa(user.email) === ADMIN_HASH) || ALLOWED_EMAILS.includes(user?.email)
 
   useEffect(() => {
     if (!isOwner) return

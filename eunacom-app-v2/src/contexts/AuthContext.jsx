@@ -91,11 +91,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     const isRealAdmin = () => {
-        return user?.email === 'dr.felipeyanez@gmail.com'
+        return user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'
     }
 
     const isAdmin = () => {
-        return user?.email === 'dr.felipeyanez@gmail.com' && !adminPreviewMode
+        return user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t' && !adminPreviewMode
     }
 
     const value = {

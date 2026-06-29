@@ -269,7 +269,7 @@ const Dashboard = () => {
           <div className="action-card__icon" style={{ background: 'rgba(16,185,129,0.15)' }}><Layers size={24} color="var(--accent-green)" /></div>
           <div className="action-card__label">Reconstrucciones</div>
         </a>
-        {user?.email === 'dr.felipeyanez@gmail.com' && (
+        {user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t' && (
           <a href="/study-plan" className="action-card">
             <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
             <div className="action-card__label">Plan de Estudio</div>
