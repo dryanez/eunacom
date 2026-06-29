@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Heart, X, Gift } from 'lucide-react'
 
 const DONATION_LINKS = [
-  { name: 'PayPal', url: 'https://www.paypal.com/donate/?hosted_button_id=R8LN5TXP8XYNG', emoji: '💳' },
+  { name: 'PayPal', url: 'https://www.paypal.com/ncp/payment/L5WCCV853656A', emoji: '💳' },
   { name: 'Mercado Pago (Chile)', url: 'https://link.mercadopago.cl/donacioneunacom', emoji: '🟡' },
 ]
 
