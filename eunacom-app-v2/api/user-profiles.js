@@ -1,5 +1,14 @@
 import { getTurso } from './_turso.js'
 
+const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
+
+const PLANS = {
+  '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
+  '3m': { title: 'EUNACOM Examen - 3 Meses Premium', price: 34990 },
+  '6m': { title: 'EUNACOM Examen - 6 Meses Premium', price: 54990 },
+  '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 }
+}
+
 export default async function handler(req, res) {
   const db = getTurso()
 
@@ -27,6 +36,74 @@ export default async function handler(req, res) {
       args: []
     })
 
+    // --- WEBHOOK HANDLING ---
+    if (req.method === 'POST') {
+      const type = req.body?.type;
+      const topic = req.body?.topic || req.query?.topic;
+      const action = req.body?.action;
+      
+      if (type === 'payment' || topic === 'payment' || action === 'payment.created') {
+        let paymentId = req.body?.data?.id || req.body?.resource || req.query?.id || req.query['data.id'];
+        if (!paymentId) return res.status(200).json({ received: true, msg: "Not a payment event or missing ID" })
+  
+        const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+          headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+        })
+  
+        if (!mpRes.ok) return res.status(200).json({ received: true, msg: "Failed to fetch payment details" })
+  
+        const paymentData = await mpRes.json()
+        if (paymentData.status === 'approved') {
+          const externalReference = paymentData.external_reference
+          if (externalReference) {
+            const [userId, planId] = externalReference.split('|')
+            if (userId) {
+               await db.execute({
+                 sql: `UPDATE user_profiles SET is_premium = 1, updated_at = datetime('now') WHERE id = ?`,
+                 args: [userId]
+               })
+            }
+          }
+        }
+        return res.status(200).json({ received: true })
+      }
+    }
+
+    // --- CHECKOUT CREATION ---
+    if (req.method === 'POST' && req.body?.action === 'checkout') {
+      const { userId, planId } = req.body
+      if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+
+      const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
+      let payerEmail = 'test@test.com'
+      if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
+
+      const plan = PLANS[planId]
+      const externalReference = `${userId}|${planId}|${Date.now()}`
+
+      const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ title: plan.title, description: "Acceso Premium EUNACOM Examen", quantity: 1, unit_price: plan.price, currency_id: "CLP" }],
+          payer: { email: payerEmail },
+          external_reference: externalReference,
+          back_urls: {
+            success: "https://eunacom.vercel.app/dashboard?payment=success",
+            failure: "https://eunacom.vercel.app/dashboard?payment=failure",
+            pending: "https://eunacom.vercel.app/dashboard?payment=pending"
+          },
+          auto_return: "approved",
+          notification_url: "https://eunacom.vercel.app/api/user-profiles"
+        })
+      })
+
+      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia' })
+      const data = await mpRes.json()
+      return res.json({ init_point: data.init_point })
+    }
+
+    // --- GET PROFILE ---
     if (req.method === 'GET') {
       const userId = req.query.userId
       if (!userId) return res.status(400).json({ error: 'userId required' })
@@ -38,6 +115,7 @@ export default async function handler(req, res) {
       return res.json({ data: result.rows[0] || null })
     }
 
+    // --- CREATE PROFILE ---
     if (req.method === 'POST') {
       const {
         id, email, first_name, last_name,
