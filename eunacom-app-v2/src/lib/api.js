@@ -189,6 +189,13 @@ export async function fetchAdminUserDetail(userId, adminEmail) {
   return apiFetch(`/api/admin-users?${params.toString()}`)
 }
 
+export async function grantPremiumAccess(adminEmail, targetUserId, months) {
+  return apiFetch('/api/admin-users', {
+    method: 'PATCH',
+    body: JSON.stringify({ adminEmail, userId: targetUserId, months })
+  })
+}
+
 // ── PAYMENTS (Mercado Pago) ───────────────────────────────────────────────────
 
 export async function createCheckoutSession(userId, planId) {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchAdminUsers, fetchAdminUserDetail } from '../lib/api'
+import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess } from '../lib/api'
 import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
-  CheckCircle, AlertCircle, Phone, Mail,
+  CheckCircle, AlertCircle, Phone, Mail, Star, Key
 } from 'lucide-react'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
@@ -131,7 +131,7 @@ const ClaseRow = ({ clase }) => {
 
 // ── UserPanel ────────────────────────────────────────────────────────────────
 
-const UserPanel = ({ user, detail, onClose }) => {
+const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
   const pct = user.total_answers > 0
     ? Math.round((Number(user.correct_answers) / Number(user.total_answers)) * 100) : 0
 
@@ -146,6 +146,21 @@ const UserPanel = ({ user, detail, onClose }) => {
     .filter(Boolean).map(s => s[0]).join('').toUpperCase() || (user.email || '?')[0].toUpperCase()
 
   const pctColor = pct >= 60 ? 'var(--accent-green)' : pct >= 45 ? 'var(--accent-amber)' : 'var(--accent-red)'
+
+  const [granting, setGranting] = useState(false)
+
+  const handleGrant = async (months) => {
+    if (!window.confirm(`¿Seguro que deseas dar ${months} mes(es) de acceso Premium a ${user.email}?`)) return
+    setGranting(true)
+    try {
+      await onGrantPremium(user.id, months)
+    } finally {
+      setGranting(false)
+    }
+  }
+
+  const isPremium = user.is_premium === 1 && (!user.premium_until || new Date(user.premium_until) > new Date())
+
 
   return (
     <>
@@ -184,6 +199,10 @@ const UserPanel = ({ user, detail, onClose }) => {
               {user.onboarding_done
                 ? <Tag icon={<CheckCircle size={12} />} label="Onboarding ✓" color="var(--accent-green)" />
                 : <Tag icon={<AlertCircle size={12} />} label="Sin onboarding" color="var(--surface-400)" />
+              }
+              {isPremium
+                ? <Tag icon={<Star size={12} fill="var(--accent-amber)" />} label={`Premium (hasta ${fmtDate(user.premium_until)})`} color="var(--accent-amber)" />
+                : <Tag icon={<Star size={12} />} label="Gratis / Vencido" color="var(--surface-500)" />
               }
             </div>
             {user.whatsapp && (
@@ -246,6 +265,23 @@ const UserPanel = ({ user, detail, onClose }) => {
           )}
         </div>
 
+        {/* Administrar Acceso */}
+        <div style={{ padding: '1.25rem 1.5rem', background: 'rgba(234, 179, 8, 0.05)' }}>
+          <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--accent-amber)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.65rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <Key size={13} />
+            Administrar Acceso Premium
+          </div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--surface-300)', marginBottom: '1rem' }}>
+            Activa o extiende manualmente la suscripción de este usuario.
+          </div>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <button disabled={granting} onClick={() => handleGrant(1)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+1 Mes</button>
+            <button disabled={granting} onClick={() => handleGrant(3)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+3 Meses</button>
+            <button disabled={granting} onClick={() => handleGrant(6)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+6 Meses</button>
+            <button disabled={granting} onClick={() => handleGrant(12)} style={{ padding: '0.5rem 1rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: '#fff', fontSize: '0.8rem', cursor: granting ? 'wait' : 'pointer', fontWeight: 600 }}>+1 Año</button>
+          </div>
+        </div>
+
         <div style={{ padding: '1rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.06)', fontSize: '0.75rem', color: 'var(--surface-500)' }}>
           Registro: {fmtDate(user.created_at)} · Último update: {fmtDate(user.updated_at)}
         </div>
@@ -293,6 +329,25 @@ const AdminUsers = () => {
       setDetailData({ tests: [], clases: [], loading: false })
     }
   }, [user])
+
+  const handleGrantPremium = async (targetUserId, months) => {
+    try {
+      const res = await grantPremiumAccess(user.email, targetUserId, months)
+      if (res.success) {
+        // Update local state to reflect new premium status
+        setUsers(prev => prev.map(u => u.id === targetUserId ? { ...u, is_premium: 1, premium_until: res.premium_until } : u))
+        if (selectedUser?.id === targetUserId) {
+          setSelectedUser(prev => ({ ...prev, is_premium: 1, premium_until: res.premium_until }))
+        }
+        alert(`¡Acceso Premium otorgado exitosamente hasta ${fmtDate(res.premium_until)}!`)
+      } else {
+        alert('Error al otorgar acceso.')
+      }
+    } catch (e) {
+      console.error(e)
+      alert('Error de conexión al otorgar acceso.')
+    }
+  }
 
   if (!isAdmin()) {
     return (
@@ -383,6 +438,7 @@ const AdminUsers = () => {
                 <Th label="Clases" col="total_classes" onClick={handleSort}><SortIcon col="total_classes" /></Th>
                 <Th label="Pruebas ✓" col="total_pruebas" onClick={handleSort}><SortIcon col="total_pruebas" /></Th>
                 <Th label="Tests" col="total_tests" onClick={handleSort}><SortIcon col="total_tests" /></Th>
+                <Th label="Premium" col="premium_until" onClick={handleSort}><SortIcon col="premium_until" /></Th>
                 <Th label="Registro" col="created_at" onClick={handleSort}><SortIcon col="created_at" /></Th>
               </tr>
             </thead>
@@ -418,6 +474,11 @@ const AdminUsers = () => {
                   <TD><span style={{ fontWeight: 600, color: 'var(--accent-teal)' }}>{Number(u.total_classes) || 0}</span></TD>
                   <TD><span style={{ fontWeight: 600, color: '#ec4899' }}>{Number(u.total_pruebas) || 0}</span></TD>
                   <TD>{Number(u.total_tests) || 0}</TD>
+                  <TD>
+                    {u.is_premium === 1 && (!u.premium_until || new Date(u.premium_until) > new Date())
+                      ? <Star size={14} fill="var(--accent-amber)" color="var(--accent-amber)" />
+                      : <span style={{ color: 'var(--surface-600)' }}>—</span>}
+                  </TD>
                   <TD>{fmtDate(u.created_at)}</TD>
                 </tr>
               ))}
@@ -436,6 +497,7 @@ const AdminUsers = () => {
           user={selectedUser}
           detail={detailData}
           onClose={() => setSelectedUser(null)}
+          onGrantPremium={handleGrantPremium}
         />
       )}
     </div>

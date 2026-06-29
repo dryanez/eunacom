@@ -84,6 +84,31 @@ export default async function handler(req, res) {
       return res.json({ data: profiles.rows })
     }
 
+    if (req.method === 'PATCH') {
+      const { adminEmail, userId, months } = req.body
+      if (adminEmail !== 'dr.felipeyanez@gmail.com') {
+        return res.status(403).json({ error: 'Forbidden' })
+      }
+      if (!userId || !months) {
+        return res.status(400).json({ error: 'Missing userId or months' })
+      }
+
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
+
+      const now = new Date()
+      if (months === 12) now.setFullYear(now.getFullYear() + 1)
+      else now.setMonth(now.getMonth() + months)
+      const premiumUntil = now.toISOString()
+
+      await db.execute({
+        sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, updated_at = datetime('now') WHERE id = ?`,
+        args: [premiumUntil, userId]
+      })
+
+      return res.json({ success: true, premium_until: premiumUntil })
+    }
+
     return res.status(405).json({ error: 'Method not allowed' })
   } catch (err) {
     console.error('admin-users error:', err)
