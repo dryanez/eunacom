@@ -114,6 +114,35 @@ export default async function handler(req, res) {
       return res.json({ init_point: data.init_point })
     }
 
+    // --- DONATE CREATION ---
+    if (req.method === 'POST' && req.body?.action === 'donate') {
+      const { userId } = req.body
+      let payerEmail = 'donante@anonimo.com'
+      if (userId) {
+         const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
+         if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
+      }
+      
+      const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ title: "Donación App EUNACOM", description: "Aporte voluntario (USD $9 approx)", quantity: 1, unit_price: 9000, currency_id: "CLP" }],
+          payer: { email: payerEmail },
+          back_urls: {
+            success: "https://eunacom.vercel.app/dashboard?donation=success",
+            failure: "https://eunacom.vercel.app/dashboard?donation=failure",
+            pending: "https://eunacom.vercel.app/dashboard?donation=pending"
+          },
+          auto_return: "approved"
+        })
+      })
+
+      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia de donación' })
+      const data = await mpRes.json()
+      return res.json({ init_point: data.init_point })
+    }
+
     // --- GET PROFILE ---
     if (req.method === 'GET') {
       const userId = req.query.userId

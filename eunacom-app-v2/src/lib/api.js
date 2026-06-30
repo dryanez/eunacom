@@ -205,6 +205,13 @@ export async function createCheckoutSession(userId, planId) {
   })
 }
 
+export async function createDonationSession(userId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'donate', userId })
+  })
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {

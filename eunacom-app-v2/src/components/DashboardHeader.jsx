@@ -4,9 +4,11 @@ import { ChevronDown, Menu, Heart, X, LogIn } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 
+import { Loader2 } from 'lucide-react'
+import { createDonationSession } from '../lib/api'
+
 const DONATION_LINKS = [
-  { name: 'PayPal', url: 'https://www.paypal.com/ncp/payment/L5WCCV853656A', emoji: '💳' },
-  { name: 'Mercado Pago (Chile)', url: 'https://link.mercadopago.cl/donacioneunacom', emoji: '🟡' },
+  { name: 'PayPal', url: 'https://www.paypal.com/ncp/payment/L5WCCV853656A', emoji: '💳' }
 ]
 
 const DashboardHeader = ({ onMenuToggle }) => {
@@ -16,6 +18,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const [showMenu, setShowMenu] = useState(false)
     const [showDonate, setShowDonate] = useState(false)
     const [showRut, setShowRut] = useState(false)
+    const [loadingMp, setLoadingMp] = useState(false)
     const [bannerDismissed, setBannerDismissed] = useState(() => {
         try { return sessionStorage.getItem('donate_banner_dismissed') === '1' } catch { return false }
     })
@@ -30,6 +33,23 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const dismissBanner = () => {
         setBannerDismissed(true)
         try { sessionStorage.setItem('donate_banner_dismissed', '1') } catch {}
+    }
+
+    const handleMpDonation = async (e) => {
+        e.preventDefault()
+        setLoadingMp(true)
+        try {
+            const res = await createDonationSession(user?.id)
+            if (res.init_point) {
+                window.location.href = res.init_point
+            } else {
+                alert("Error al procesar.")
+            }
+        } catch (err) {
+            alert("Error de conexión.")
+        } finally {
+            setLoadingMp(false)
+        }
     }
 
     return (
@@ -194,6 +214,20 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                     <span>{d.emoji}</span> {d.name}
                                 </a>
                             ))}
+                            <button
+                                onClick={handleMpDonation}
+                                disabled={loadingMp}
+                                style={{
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                    padding: '0.75rem 1rem', background: '#009ee3', color: '#fff',
+                                    borderRadius: 'var(--radius)', fontWeight: 600, fontSize: '0.9rem',
+                                    border: 'none', cursor: loadingMp ? 'wait' : 'pointer', fontFamily: 'var(--font)',
+                                    transition: 'opacity 0.2s', opacity: loadingMp ? 0.7 : 1
+                                }}
+                            >
+                                {loadingMp ? <Loader2 size={16} className="spin" /> : <span>🟡</span>}
+                                {loadingMp ? 'Cargando...' : 'Mercado Pago ($9.000 CLP)'}
+                            </button>
                             <button
                                 onClick={() => setShowRut(!showRut)}
                                 style={{
