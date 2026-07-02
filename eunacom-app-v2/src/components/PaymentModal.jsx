@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
 
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
+  { id: '1m', name: '1 Mes', price: '$5.000', desc: 'Para repaso rápido', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
   { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
   { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
   { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' }

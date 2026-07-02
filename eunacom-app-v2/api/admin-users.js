@@ -95,6 +95,7 @@ export default async function handler(req, res) {
 
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
 
       const now = new Date()
       if (months === 12) now.setFullYear(now.getFullYear() + 1)
@@ -102,11 +103,11 @@ export default async function handler(req, res) {
       const premiumUntil = now.toISOString()
 
       await db.execute({
-        sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, updated_at = datetime('now') WHERE id = ?`,
-        args: [premiumUntil, userId]
+        sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
+        args: [premiumUntil, months, userId]
       })
 
-      return res.json({ success: true, premium_until: premiumUntil })
+      return res.json({ success: true, premium_until: premiumUntil, plan_months: months })
     }
 
     return res.status(405).json({ error: 'Method not allowed' })

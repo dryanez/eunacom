@@ -299,6 +299,7 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const [filterPremium, setFilterPremium] = useState('premium')
   const [sortKey, setSortKey] = useState('created_at')
   const [sortDir, setSortDir] = useState('desc')
   const [selectedUser, setSelectedUser] = useState(null)
@@ -337,9 +338,9 @@ const AdminUsers = () => {
       const res = await grantPremiumAccess(user.email, targetUserId, months)
       if (res.success) {
         // Update local state to reflect new premium status
-        setUsers(prev => prev.map(u => u.id === targetUserId ? { ...u, is_premium: 1, premium_until: res.premium_until } : u))
+        setUsers(prev => prev.map(u => u.id === targetUserId ? { ...u, is_premium: 1, premium_until: res.premium_until, plan_months: res.plan_months } : u))
         if (selectedUser?.id === targetUserId) {
-          setSelectedUser(prev => ({ ...prev, is_premium: 1, premium_until: res.premium_until }))
+          setSelectedUser(prev => ({ ...prev, is_premium: 1, premium_until: res.premium_until, plan_months: res.plan_months }))
         }
         alert(`¡Acceso Premium otorgado exitosamente hasta ${fmtDate(res.premium_until)}!`)
       } else {
@@ -361,6 +362,21 @@ const AdminUsers = () => {
   }
 
   const filtered = users.filter(u => {
+    // 1. Premium Filter
+    const isPremium = u.is_premium === 1 && (!u.premium_until || new Date(u.premium_until) > new Date())
+    let passPremium = true
+    if (filterPremium === 'premium') passPremium = isPremium
+    else if (filterPremium === '1200') passPremium = isPremium && Number(u.plan_months) === 1200
+    else if (filterPremium === '12') passPremium = isPremium && Number(u.plan_months) === 12
+    else if (filterPremium === '6') passPremium = isPremium && Number(u.plan_months) === 6
+    else if (filterPremium === '3') passPremium = isPremium && Number(u.plan_months) === 3
+    else if (filterPremium === '1') passPremium = isPremium && Number(u.plan_months) === 1
+    else if (filterPremium === 'all') passPremium = true
+    else if (filterPremium === 'free') passPremium = !isPremium
+
+    if (!passPremium) return false
+
+    // 2. Text Search
     const q = search.toLowerCase()
     return (
       (u.email || '').toLowerCase().includes(q) ||
@@ -409,20 +425,45 @@ const AdminUsers = () => {
         <SummaryCard label="Pruebas ✓" value={users.reduce((s, u) => s + Number(u.total_pruebas || 0), 0)} color="#ec4899" />
       </div>
 
-      {/* Search */}
-      <div style={{ position: 'relative', marginBottom: '1rem' }}>
-        <Search size={16} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />
-        <input
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Buscar por nombre, email, país..."
-          style={{
-            width: '100%', padding: '0.65rem 0.75rem 0.65rem 2.5rem',
-            background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: 'var(--radius)', color: 'var(--surface-50)', fontSize: '0.9rem',
-            fontFamily: 'var(--font)', outline: 'none',
-          }}
-        />
+      {/* Search and Filter */}
+      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
+          <Search size={16} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Buscar por nombre, email, país..."
+            style={{
+              width: '100%', padding: '0.65rem 0.75rem 0.65rem 2.5rem',
+              background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 'var(--radius)', color: 'var(--surface-50)', fontSize: '0.9rem',
+              fontFamily: 'var(--font)', outline: 'none',
+            }}
+          />
+        </div>
+        <div style={{ width: '200px' }}>
+          <select
+            value={filterPremium}
+            onChange={e => setFilterPremium(e.target.value)}
+            style={{
+              width: '100%', padding: '0.65rem 1rem',
+              background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 'var(--radius)', color: 'var(--surface-50)', fontSize: '0.9rem',
+              fontFamily: 'var(--font)', outline: 'none', cursor: 'pointer', appearance: 'none',
+              backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239CA3AF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")',
+              backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem top 50%', backgroundSize: '0.65rem auto'
+            }}
+          >
+            <option value="premium">Premium (Todos)</option>
+            <option value="1200">Founder (De por vida)</option>
+            <option value="12">Premium: 1 Año</option>
+            <option value="6">Premium: 6 Meses</option>
+            <option value="3">Premium: 3 Meses</option>
+            <option value="1">Premium: 1 Mes</option>
+            <option value="all">Ver Todos (Gratis y Premium)</option>
+            <option value="free">Gratis / Vencidos</option>
+          </select>
+        </div>
       </div>
 
       {loading ? (
