@@ -215,7 +215,7 @@ export async function createDonationSession(userId) {
 // ── MAILING CAMPAIGNS ─────────────────────────────────────────────────────────
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {
-  return apiFetch('/api/campaign', {
+  return apiFetch('/api/admin-users', {
     method: 'POST',
     body: JSON.stringify({ adminEmail, targetEmails, subject, htmlContent })
   })

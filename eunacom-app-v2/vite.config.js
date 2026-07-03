@@ -355,9 +355,9 @@ function clasesApiPlugin() {
         }
       })
 
-      // ── Campaign API (Local Dev) ──
+      // ── Admin Users API (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
-        if (!req.url.startsWith('/api/campaign')) return next()
+        if (!req.url.startsWith('/api/admin-users')) return next()
         res.setHeader('Content-Type', 'application/json')
         try {
           if (req.method === 'POST') {
