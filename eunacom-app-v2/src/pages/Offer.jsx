@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
 import { CheckCircle2, Clock, Loader2, Star, Zap } from 'lucide-react';
@@ -9,6 +9,14 @@ const Offer = () => {
   const navigate = useNavigate();
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide(s => (s + 1) % 3);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMercadoPago = async () => {
     if (!user) {
@@ -78,13 +86,28 @@ const Offer = () => {
             border: '1px solid rgba(255,255,255,0.1)', 
             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.7)',
             maxWidth: '1000px',
-            margin: '0 auto'
+            margin: '0 auto',
+            position: 'relative'
           }}>
             <img 
-              src="/reconstructions-preview.png" 
+              src={`/slide${currentSlide + 1}.png`}
               alt="Plataforma de Reconstrucciones EUNACOM" 
-              style={{ width: '100%', height: 'auto', display: 'block' }} 
+              style={{ width: '100%', height: 'auto', display: 'block', transition: 'opacity 0.5s ease-in-out' }} 
             />
+            {/* Slider Dots */}
+            <div style={{ position: 'absolute', bottom: '1rem', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+              {[0, 1, 2].map(idx => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  style={{
+                    width: '12px', height: '12px', borderRadius: '50%', border: 'none',
+                    background: currentSlide === idx ? '#fff' : 'rgba(255,255,255,0.5)',
+                    cursor: 'pointer', transition: 'background 0.3s'
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
