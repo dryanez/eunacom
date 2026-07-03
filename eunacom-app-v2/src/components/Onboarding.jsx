@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { saveUserProfile } from '../lib/api'
-import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles } from 'lucide-react'
+import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles, X } from 'lucide-react'
 
 // ─── TOUR SLIDES ─────────────────────────────────────────────────────────
 const SLIDES = [
@@ -155,6 +155,20 @@ const Onboarding = ({ user, onComplete }) => {
     setSaving(false)
   }
 
+  const handleSkip = async () => {
+    setSaving(true)
+    try {
+      await onComplete({
+        id: user.id,
+        email: user.email,
+        onboarding_done: true,
+      })
+    } catch (e) {
+      console.error('Onboarding skip error:', e)
+    }
+    setSaving(false)
+  }
+
   // ─── TOUR PHASE ───────────────────────────────────────────────────────
   if (phase === 'tour') {
     const centered = !highlightRect
@@ -199,6 +213,10 @@ const Onboarding = ({ user, onComplete }) => {
           boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
           transition: 'all 0.3s ease',
         }}>
+          <button onClick={handleSkip} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4 }}>
+            <X size={18} />
+          </button>
+          
           {slideIdx === 0 && (
             <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>
               <Stethoscope size={38} color="var(--primary-400)" />
@@ -273,7 +291,12 @@ const Onboarding = ({ user, onComplete }) => {
           // Small top margin so card isn't glued to top on large screens
           marginTop: 'auto',
           marginBottom: 'auto',
+          position: 'relative',
         }}>
+          <button onClick={handleSkip} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4, zIndex: 10 }}>
+            <X size={20} />
+          </button>
+
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
             <Sparkles size={30} color="var(--accent-amber)" style={{ marginBottom: '0.5rem' }} />
