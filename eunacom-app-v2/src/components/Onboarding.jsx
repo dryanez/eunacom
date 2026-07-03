@@ -213,9 +213,11 @@ const Onboarding = ({ user, onComplete }) => {
           boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
           transition: 'all 0.3s ease',
         }}>
-          <button onClick={handleSkip} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4 }}>
-            <X size={18} />
-          </button>
+          {user?.email === 'dr.felipeyanez@gmail.com' && (
+            <button onClick={handleSkip} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4 }}>
+              <X size={18} />
+            </button>
+          )}
           
           {slideIdx === 0 && (
             <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -293,9 +295,11 @@ const Onboarding = ({ user, onComplete }) => {
           marginBottom: 'auto',
           position: 'relative',
         }}>
-          <button onClick={handleSkip} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4, zIndex: 10 }}>
-            <X size={20} />
-          </button>
+          {user?.email === 'dr.felipeyanez@gmail.com' && (
+            <button onClick={handleSkip} style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 4, zIndex: 10 }}>
+              <X size={20} />
+            </button>
+          )}
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
