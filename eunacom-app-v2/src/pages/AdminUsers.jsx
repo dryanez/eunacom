@@ -4,8 +4,9 @@ import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess } from '../li
 import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
-  CheckCircle, AlertCircle, Phone, Mail, Star, Key
+  CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send
 } from 'lucide-react'
+import CampaignModal from '../components/CampaignModal'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
 
@@ -304,6 +305,7 @@ const AdminUsers = () => {
   const [sortDir, setSortDir] = useState('desc')
   const [selectedUser, setSelectedUser] = useState(null)
   const [detailData, setDetailData] = useState({ tests: [], clases: [], loading: false })
+  const [showCampaignModal, setShowCampaignModal] = useState(false)
 
   useEffect(() => {
     if (user && isAdmin()) loadUsers()
@@ -427,6 +429,18 @@ const AdminUsers = () => {
 
       {/* Search and Filter */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => setShowCampaignModal(true)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+            padding: '0.65rem 1rem', background: 'var(--primary-600)',
+            border: 'none', borderRadius: 'var(--radius)', color: '#fff',
+            fontWeight: 600, cursor: 'pointer', outline: 'none'
+          }}
+        >
+          <Send size={16} /> Nueva Campaña
+        </button>
+
         <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
           <Search size={16} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />
           <input
@@ -544,6 +558,13 @@ const AdminUsers = () => {
           onGrantPremium={handleGrantPremium}
         />
       )}
+
+      <CampaignModal
+        isOpen={showCampaignModal}
+        onClose={() => setShowCampaignModal(false)}
+        targetUsers={filtered}
+        adminEmail={user?.email}
+      />
     </div>
   )
 }

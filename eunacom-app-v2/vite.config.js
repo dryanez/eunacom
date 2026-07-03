@@ -354,6 +354,57 @@ function clasesApiPlugin() {
           return res.end(JSON.stringify({ error: err.message }))
         }
       })
+
+      // ── Campaign API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/campaign')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        try {
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            
+            if (!process.env.RESEND_API_KEY) {
+              return res.end(JSON.stringify({ error: 'RESEND_API_KEY is missing in local .env' }))
+            }
+            
+            const { Resend } = await import('resend')
+            const resend = new Resend(process.env.RESEND_API_KEY)
+            const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacom.app'
+            const targets = body.targetEmails || []
+            
+            if (targets.length === 0) {
+              return res.end(JSON.stringify({ error: 'No target emails provided' }))
+            }
+
+            console.log(`Sending campaign via Resend to ${targets.length} users...`)
+            
+            const chunkArray = (arr, size) => arr.length > size ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)] : [arr]
+            const batches = chunkArray(targets, 100)
+            let totalSent = 0
+            
+            for (const batch of batches) {
+              const payload = batch.map(email => ({
+                from: `EUNACOM App <${sender}>`,
+                to: email,
+                subject: body.subject,
+                html: body.htmlContent,
+              }))
+              const { error } = await resend.batch.send(payload)
+              if (error) throw new Error(error.message)
+              totalSent += batch.length
+            }
+
+            console.log('Campaign successfully sent!')
+            return res.end(JSON.stringify({ success: true, message: `Campaign sent to ${totalSent} users` }))
+          }
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          console.error('campaign-api error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
     }
   }
 }
