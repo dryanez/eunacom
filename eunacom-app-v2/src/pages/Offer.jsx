@@ -90,24 +90,10 @@ const Offer = () => {
             position: 'relative'
           }}>
             <img 
-              src={`/slide${currentSlide + 1}.png`}
+              src="/reconstructions-preview.png"
               alt="Plataforma de Reconstrucciones EUNACOM" 
-              style={{ width: '100%', height: 'auto', display: 'block', transition: 'opacity 0.5s ease-in-out' }} 
+              style={{ width: '100%', height: 'auto', display: 'block' }} 
             />
-            {/* Slider Dots */}
-            <div style={{ position: 'absolute', bottom: '1rem', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-              {[0, 1, 2].map(idx => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  style={{
-                    width: '12px', height: '12px', borderRadius: '50%', border: 'none',
-                    background: currentSlide === idx ? '#fff' : 'rgba(255,255,255,0.5)',
-                    cursor: 'pointer', transition: 'background 0.3s'
-                  }}
-                />
-              ))}
-            </div>
           </div>
         </div>
 
@@ -196,7 +182,25 @@ const Offer = () => {
                   Pagar con PayPal (Internacional)
                 </a>
                 <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--surface-400)', marginTop: '0.75rem', lineHeight: 1.4 }}>
-                  Para Bolivia y el resto del mundo.<br/>(Necesitamos el nuevo link de PayPal por $5 USD)
+                  Para Bolivia y el resto del mundo.<br/>(Debes enviarme el nuevo link de PayPal por $5 USD)
+                </p>
+              </div>
+
+              {/* Transferencia */}
+              <div style={{ width: '100%', marginTop: '1.5rem', background: 'var(--surface-600)', padding: '1.25rem', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.2)' }}>
+                <h4 style={{ margin: '0 0 0.75rem 0', color: 'var(--surface-100)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Transferencia Directa (Chile)
+                </h4>
+                <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem', color: 'var(--surface-300)' }}>
+                  Puedes transferir directamente <strong>$5.000</strong> a:
+                </p>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.9rem', color: 'var(--surface-200)', lineHeight: 1.6 }}>
+                  <li><strong>Banco:</strong> BancoEstado</li>
+                  <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
+                  <li><strong>Nombre:</strong> Felipe Yanez</li>
+                </ul>
+                <p style={{ margin: '0.75rem 0 0 0', fontSize: '0.85rem', color: '#10b981', fontWeight: 600 }}>
+                  IMPORTANTE: Al transferir, debes enviar tu comprobante por WhatsApp al +1 (929) 360-3799 para activación manual.
                 </p>
               </div>
 

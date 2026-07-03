@@ -10,9 +10,9 @@ export function useSubscription() {
 
 export function SubscriptionProvider({ children }) {
   const { user } = useAuth();
-  const [isPremium, setIsPremium] = useState(false);
-  const [isFounder, setIsFounder] = useState(false);
-  const [loadingPremium, setLoadingPremium] = useState(true);
+  const [isPremium, setIsPremium] = useState(true);
+  const [isFounder, setIsFounder] = useState(true);
+  const [loadingPremium, setLoadingPremium] = useState(false);
 
   // We keep this for testing purposes, but default it to false
   const togglePremium = () => {
