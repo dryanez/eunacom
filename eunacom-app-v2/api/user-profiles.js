@@ -3,10 +3,11 @@ import { getTurso } from './_turso.js'
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
 const PLANS = {
-  '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 5000 },
+  '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
   '3m': { title: 'EUNACOM Examen - 3 Meses Premium', price: 34990 },
   '6m': { title: 'EUNACOM Examen - 6 Meses Premium', price: 54990 },
-  '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 }
+  '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 },
+  'offer': { title: 'Oferta Última Semana - 1 Mes', price: 5000 }
 }
 
 export default async function handler(req, res) {
@@ -62,7 +63,7 @@ export default async function handler(req, res) {
                // Calculate expiration date
                const now = new Date()
                let planMonths = 1;
-               if (planId === '1m') { now.setMonth(now.getMonth() + 1); planMonths = 1; }
+               if (planId === '1m' || planId === 'offer') { now.setMonth(now.getMonth() + 1); planMonths = 1; }
                else if (planId === '3m') { now.setMonth(now.getMonth() + 3); planMonths = 3; }
                else if (planId === '6m') { now.setMonth(now.getMonth() + 6); planMonths = 6; }
                else if (planId === '1y') { now.setFullYear(now.getFullYear() + 1); planMonths = 12; }

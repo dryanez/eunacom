@@ -14,6 +14,7 @@ import Stats from './pages/Stats'
 import Simulation from './pages/Simulation'
 import TestRunner from './pages/TestRunner'
 import Register from './pages/Register'
+import Offer from './pages/Offer'
 import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
 import ScriptProgress from './pages/ScriptProgress'
@@ -42,6 +43,8 @@ function App() {
             <Route path="/mis-clases" element={<MisClases />} />
             <Route path="/test" element={<TestCreator />} />
           </Route>
+          
+          <Route path="/oferta" element={<Offer />} />
 
           {/* Protected Routes — require login */}
           <Route element={<DashboardLayout />}>
