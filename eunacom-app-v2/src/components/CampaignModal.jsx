@@ -69,54 +69,66 @@ export default function CampaignModal({ isOpen, onClose, targetUsers, adminEmail
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="bg-slate-900 border border-slate-700 p-6 rounded-xl shadow-2xl w-full max-w-2xl text-white">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-blue-400">Nueva Campaña (Resend)</h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-white">&times;</button>
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1000,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)', padding: '1rem'
+    }}>
+      <div style={{
+        backgroundColor: 'var(--surface-800, #1e293b)', border: '1px solid var(--border-color, #334155)',
+        padding: '1.5rem', borderRadius: '12px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+        width: '100%', maxWidth: '600px', color: '#fff'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--primary-400, #60a5fa)', margin: 0 }}>Nueva Campaña (Resend)</h2>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
         </div>
 
-        <div className="mb-4">
-          <p className="text-slate-300">
-            Destinatarios: <span className="font-semibold text-white">{targetEmails.length} usuarios</span> (tomados del filtro actual)
+        <div style={{ marginBottom: '1rem' }}>
+          <p style={{ color: '#cbd5e1', margin: 0 }}>
+            Destinatarios: <span style={{ fontWeight: 600, color: '#fff' }}>{targetEmails.length} usuarios</span> (tomados del filtro actual)
           </p>
         </div>
 
-        <div className="bg-slate-800 p-4 rounded-lg mb-6 text-sm">
-          <p className="mb-2"><span className="text-slate-400">Asunto:</span> {subject}</p>
-          <div className="border-t border-slate-700 my-2"></div>
-          <p className="text-slate-400 mb-1">Previsualización (HTML):</p>
-          <div className="bg-white text-black p-4 rounded" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        <div style={{ backgroundColor: 'var(--surface-700, #334155)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+          <p style={{ margin: '0 0 0.5rem 0' }}><span style={{ color: '#94a3b8' }}>Asunto:</span> {subject}</p>
+          <div style={{ borderTop: '1px solid #475569', margin: '0.5rem 0' }}></div>
+          <p style={{ color: '#94a3b8', margin: '0 0 0.25rem 0' }}>Previsualización (HTML):</p>
+          <div style={{ backgroundColor: '#fff', color: '#000', padding: '1rem', borderRadius: '4px' }} dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>
 
         {statusMsg && (
-          <div className={`p-3 rounded-lg mb-4 text-sm ${statusMsg.type === 'error' ? 'bg-red-900/50 text-red-200 border border-red-500' : 'bg-green-900/50 text-green-200 border border-green-500'}`}>
+          <div style={{
+            padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.875rem',
+            backgroundColor: statusMsg.type === 'error' ? 'rgba(127, 29, 29, 0.5)' : 'rgba(20, 83, 45, 0.5)',
+            color: statusMsg.type === 'error' ? '#fecaca' : '#bbf7d0',
+            border: `1px solid ${statusMsg.type === 'error' ? '#ef4444' : '#22c55e'}`
+          }}>
             {statusMsg.text}
           </div>
         )}
 
-        <div className="flex justify-end gap-3">
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition"
             disabled={isSending}
+            style={{
+              padding: '0.5rem 1rem', backgroundColor: 'var(--surface-700, #334155)', border: 'none',
+              borderRadius: '8px', color: '#fff', cursor: isSending ? 'not-allowed' : 'pointer'
+            }}
           >
             Cancelar
           </button>
           <button
             onClick={handleSend}
             disabled={isSending || targetEmails.length === 0}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition disabled:opacity-50 flex items-center gap-2"
+            style={{
+              padding: '0.5rem 1rem', backgroundColor: 'var(--primary-600, #2563eb)', border: 'none',
+              borderRadius: '8px', color: '#fff', fontWeight: 500, cursor: (isSending || targetEmails.length === 0) ? 'not-allowed' : 'pointer',
+              display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: (isSending || targetEmails.length === 0) ? 0.5 : 1
+            }}
           >
-            {isSending ? (
-              <>
-                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Enviando...
-              </>
-            ) : 'Enviar Campaña'}
+            {isSending ? 'Enviando...' : 'Enviar Campaña'}
           </button>
         </div>
       </div>

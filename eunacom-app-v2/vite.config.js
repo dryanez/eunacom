@@ -462,6 +462,10 @@ export default defineConfig({
     // /api/progress and /api/tests are handled by Vite middleware (clasesApiPlugin)
     proxy: {
       '/api/tutor': 'http://localhost:5001',
+      '/api': {
+        target: 'https://eunacom.vercel.app',
+        changeOrigin: true,
+      }
     }
   }
 })
