@@ -33,6 +33,12 @@ export default async function handler(req, res) {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
+      // Temporary cleanup route
+      if (req.query.cleanup === '1') {
+        await db.execute({ sql: "DELETE FROM user_profiles WHERE id = 'screenshot-mock' OR email = 'test@test.com'", args: [] })
+        return res.json({ success: true, message: 'Deleted test account' })
+      }
+
       // Detail view: ?userId=xxx — returns tests + clase progress for one user
       if (userId) {
         const [testsResult, clasesResult] = await Promise.all([
