@@ -45,9 +45,9 @@ const Onboarding = ({ user, onComplete }) => {
 
   // Form state
   const [name, setName] = useState('')
-  const [examMonth, setExamMonth] = useState('Julio')
-  const [examYear, setExamYear] = useState('2026')
-  const [nationality, setNationality] = useState('Chile')
+  const [examMonth, setExamMonth] = useState('')
+  const [examYear, setExamYear] = useState('')
+  const [nationality, setNationality] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
   const [inscrito, setInscrito] = useState('')
   const [saving, setSaving] = useState(false)
@@ -129,6 +129,11 @@ const Onboarding = ({ user, onComplete }) => {
 
   const handleSubmit = async () => {
     if (!name.trim()) { setError('Por favor ingresa tu nombre.'); return }
+    if (!examMonth) { setError('Por favor selecciona el mes de tu examen.'); return }
+    if (!examYear) { setError('Por favor selecciona el año de tu examen.'); return }
+    if (!nationality) { setError('Por favor selecciona tu país.'); return }
+    if (!whatsapp.trim()) { setError('Por favor ingresa tu número de WhatsApp.'); return }
+    if (!inscrito) { setError('Por favor indica si ya estás inscrito/a.'); return }
     setError('')
     setSaving(true)
     try {
@@ -338,20 +343,23 @@ const Onboarding = ({ user, onComplete }) => {
                 <select
                   value={examMonth}
                   onChange={e => setExamMonth(e.target.value)}
-                  style={{ ...inputStyle, flex: 1 }}
+                  style={{ ...inputStyle, flex: 1, color: examMonth ? 'var(--surface-100)' : 'var(--surface-400)' }}
                   aria-label="Mes del examen"
                 >
-                  <option value="Julio">Julio</option>
-                  <option value="Diciembre">Diciembre</option>
+                  <option value="" disabled>Mes...</option>
+                  <option value="Julio" style={{ color: 'var(--surface-100)' }}>Julio</option>
+                  <option value="Diciembre" style={{ color: 'var(--surface-100)' }}>Diciembre</option>
                 </select>
                 <select
                   value={examYear}
                   onChange={e => setExamYear(e.target.value)}
-                  style={{ ...inputStyle, flex: 1 }}
+                  style={{ ...inputStyle, flex: 1, color: examYear ? 'var(--surface-100)' : 'var(--surface-400)' }}
                   aria-label="Año del examen"
                 >
-                  <option value="2026">2026</option>
-                  <option value="2027">2027</option>
+                  <option value="" disabled>Año...</option>
+                  <option value="2025" style={{ color: 'var(--surface-100)' }}>2025</option>
+                  <option value="2026" style={{ color: 'var(--surface-100)' }}>2026</option>
+                  <option value="2027" style={{ color: 'var(--surface-100)' }}>2027</option>
                 </select>
               </div>
             </div>
@@ -365,10 +373,11 @@ const Onboarding = ({ user, onComplete }) => {
                 id="ob-country"
                 value={nationality}
                 onChange={e => setNationality(e.target.value)}
-                style={inputStyle}
+                style={{ ...inputStyle, color: nationality ? 'var(--surface-100)' : 'var(--surface-400)' }}
               >
+                <option value="" disabled>Selecciona tu país...</option>
                 {['Chile','Argentina','Colombia','Perú','Venezuela','Ecuador','Bolivia','México','Otro'].map(c => (
-                  <option key={c} value={c}>{c}</option>
+                  <option key={c} value={c} style={{ color: 'var(--surface-100)' }}>{c}</option>
                 ))}
               </select>
             </div>
@@ -376,7 +385,7 @@ const Onboarding = ({ user, onComplete }) => {
             {/* WhatsApp */}
             <div>
               <label htmlFor="ob-wa" style={labelStyle}>
-                <Phone size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> WhatsApp <span style={{ fontWeight: 400, color: 'var(--surface-400)' }}>(opcional)</span>
+                <Phone size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> WhatsApp
               </label>
               <input
                 id="ob-wa"
@@ -431,7 +440,7 @@ const Onboarding = ({ user, onComplete }) => {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={saving || !name.trim()}
+            disabled={saving || !name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito}
             style={{
               ...btnPrimary,
               width: '100%',
@@ -440,8 +449,8 @@ const Onboarding = ({ user, onComplete }) => {
               padding: '0.85rem',
               fontSize: '0.95rem',
               minHeight: 48,
-              opacity: !name.trim() ? 0.5 : 1,
-              cursor: (!name.trim() || saving) ? 'not-allowed' : 'pointer',
+              opacity: (!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) ? 0.5 : 1,
+              cursor: ((!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) || saving) ? 'not-allowed' : 'pointer',
             }}
           >
             {saving ? 'Guardando...' : '¡Empezar a estudiar! 🚀'}
