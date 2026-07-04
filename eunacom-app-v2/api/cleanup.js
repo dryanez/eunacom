@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     // 3. Mark existing users as onboarding_done = 1
     await db.execute({
-      sql: 'UPDATE user_profiles SET onboarding_done = 1 WHERE first_name IS NOT NULL AND first_name != ""',
+      sql: "UPDATE user_profiles SET onboarding_done = 1 WHERE first_name IS NOT NULL AND first_name != ''",
       args: []
     })
 
