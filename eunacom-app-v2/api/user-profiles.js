@@ -169,9 +169,17 @@ export default async function handler(req, res) {
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
 
-      // Ensure columns exist if adding to old DB
-      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN inscrito_eunacom TEXT`, args: [] }).catch(() => {})
-      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
+      // Ensure all columns exist if adding to old DB (catch errors if they already exist)
+      const newCols = [
+        'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+        'nationality TEXT', 'country TEXT', 'country_code TEXT',
+        'whatsapp TEXT', 'inscrito_eunacom TEXT', 
+        'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+        'premium_until TEXT', 'plan_months INTEGER'
+      ]
+      for (const col of newCols) {
+        await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      }
 
       await db.execute({
         sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, inscrito_eunacom, onboarding_done, is_premium, updated_at)
