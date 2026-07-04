@@ -5,6 +5,28 @@ import { Resend } from 'resend'
 export default async function handler(req, res) {
   const db = getTurso()
 
+  // TEMPORARY FIX: DB CLEANUP
+  if (req.method === 'GET' && req.query.secret === 'fixit123') {
+    try {
+      const results = {}
+      const r1 = await db.execute({ sql: 'DELETE FROM user_profiles WHERE email = ?', args: ['test@test.com'] })
+      results.deletedTestEmail = r1.rowsAffected
+
+      const r2 = await db.execute({ sql: 'DELETE FROM user_profiles WHERE first_name LIKE ? OR email LIKE ?', args: ['%TESTANN%', '%testann%'] })
+      results.deletedTestann = r2.rowsAffected
+
+      const r3 = await db.execute({ sql: 'UPDATE user_profiles SET onboarding_done = 1 WHERE first_name IS NOT NULL AND first_name != ""' })
+      results.updatedExistingUsers = r3.rowsAffected
+
+      const r4 = await db.execute({ sql: 'UPDATE user_profiles SET onboarding_done = 1 WHERE email = ?', args: ['dr.felipeyanez@gmail.com'] })
+      results.updatedAdmin = r4.rowsAffected
+
+      return res.status(200).json({ success: true, results })
+    } catch (err) {
+      return res.status(500).json({ error: err.message })
+    }
+  }
+
   try {
     // Ensure table exists
     await db.execute({
