@@ -17,8 +17,8 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({ id: 'screenshot-mock', email: 'test@test.com' })
-    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
     const [adminPreviewMode, setAdminPreviewMode] = useState(false)
 
     useEffect(() => {
