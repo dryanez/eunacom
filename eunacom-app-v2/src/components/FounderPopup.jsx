@@ -9,7 +9,7 @@ const FounderPopup = ({ user }) => {
     if (!user?.id) return
 
     // Check if already shown
-    const storageKey = `founder_thank_you_${user.id}`
+    const storageKey = `founder_thank_you_v2_${user.id}`
     if (localStorage.getItem(storageKey)) return
 
     // Only show to founder users (plan_months === 1200)
@@ -24,7 +24,7 @@ const FounderPopup = ({ user }) => {
   if (!show) return null
 
   const handleClose = () => {
-    localStorage.setItem(`founder_thank_you_${user.id}`, '1')
+    localStorage.setItem(`founder_thank_you_v2_${user.id}`, '1')
     setShow(false)
   }
 
