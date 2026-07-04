@@ -12,9 +12,9 @@ const FounderPopup = ({ user }) => {
     const storageKey = `founder_thank_you_${user.id}`
     if (localStorage.getItem(storageKey)) return
 
-    // Only show to premium users
+    // Only show to founder users (plan_months === 1200)
     fetchUserProfile(user.id).then(profile => {
-      if (profile?.is_premium === 1) {
+      if (profile?.plan_months === 1200) {
         // Show after a small delay to not collide with other UI things
         setTimeout(() => setShow(true), 2000)
       }
