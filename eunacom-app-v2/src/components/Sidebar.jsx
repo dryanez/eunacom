@@ -10,6 +10,26 @@ import {
     LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff
 } from 'lucide-react'
 
+const ProgressItem = ({ label, used, total }) => {
+    const isMaxed = used >= total;
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--surface-300)', display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                <span>{label}</span>
+                <span style={{ color: isMaxed ? '#ef4444' : 'inherit' }}>{Math.min(used, total)}/{total}</span>
+            </div>
+            <div style={{ width: '100%', height: '4px', background: 'var(--surface-600)', borderRadius: '2px', overflow: 'hidden' }}>
+                <div style={{ 
+                    height: '100%', 
+                    width: `${Math.min((used / total) * 100, 100)}%`, 
+                    background: isMaxed ? '#ef4444' : '#10b981',
+                    transition: 'width 0.3s ease-in-out'
+                }} />
+            </div>
+        </div>
+    );
+};
+
 const Sidebar = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
     const { isPremium, usageStats } = useSubscription()
@@ -114,22 +134,19 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             <div className="sidebar__footer">
                 {!isPremium && user && (
                     <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                        <div style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
-                            <span>Preguntas Gratis</span>
-                            <span>{Math.min(usageStats?.customQuestionsAnswered || 0, 100)}/100</span>
+                        <div style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 700, marginBottom: '0.75rem', textAlign: 'center', letterSpacing: '0.5px' }}>
+                            TU PLAN GRATUITO
                         </div>
-                        <div style={{ width: '100%', height: '6px', background: 'var(--surface-600)', borderRadius: '4px', overflow: 'hidden', marginBottom: '1rem' }}>
-                            <div style={{ 
-                                height: '100%', 
-                                width: `${Math.min(((usageStats?.customQuestionsAnswered || 0) / 100) * 100, 100)}%`, 
-                                background: (usageStats?.customQuestionsAnswered || 0) >= 100 ? '#ef4444' : '#10b981',
-                                transition: 'width 0.3s ease-in-out'
-                            }} />
-                        </div>
+                        
+                        <ProgressItem label="Preguntas" used={usageStats?.customQuestionsAnswered || 0} total={100} />
+                        <ProgressItem label="Clases" used={usageStats?.clasesOpened || 0} total={5} />
+                        <ProgressItem label="Reconstrucciones" used={usageStats?.reconstructionsCompleted || 0} total={1} />
+                        <ProgressItem label="Simulacros" used={usageStats?.simulationsCompleted || 0} total={1} />
+
                         <NavLink to="/oferta" style={{ 
                             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                             background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
-                            fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none', transition: 'background 0.2s'
+                            fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none', transition: 'background 0.2s', marginTop: '1rem'
                         }} onClick={onToggle}>
                             <Flame size={14} /> ¡Pasar a Premium!
                         </NavLink>
