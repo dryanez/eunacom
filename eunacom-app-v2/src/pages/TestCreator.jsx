@@ -3,7 +3,7 @@ import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, Chevro
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
-import PaymentModal from '../components/PaymentModal'
+import ClassPreviewModal from '../components/ClassPreviewModal'
 import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 
@@ -19,7 +19,7 @@ const TestCreator = () => {
     const [recentTests, setRecentTests] = useState([])
     const [questionDB, setQuestionDB] = useState([])
     const [showLoginGate, setShowLoginGate] = useState(false)
-    const [showPaymentModal, setShowPaymentModal] = useState(false)
+    const [previewTarget, setPreviewTarget] = useState(null)
 
     const [statusFilters, setStatusFilters] = useState({
         unused: true,
@@ -196,7 +196,7 @@ const TestCreator = () => {
         if (!user) { setShowLoginGate(true); return }
         const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededQuestions;
         if (isLocked) {
-            setShowPaymentModal(true)
+            setPreviewTarget({ type: 'exam', title: 'Creador de Exámenes' })
             return
         }
         if (maxQuestions === 0) {
@@ -241,7 +241,7 @@ const TestCreator = () => {
 
     return (
         <>
-        {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+        {previewTarget && <ClassPreviewModal item={previewTarget} onClose={() => setPreviewTarget(null)} />}
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
             <h1 className="page__title">Crear Examen</h1>
             <p className="page__subtitle">Configura tu examen personalizado</p>
