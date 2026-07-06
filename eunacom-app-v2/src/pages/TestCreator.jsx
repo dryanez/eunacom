@@ -10,7 +10,7 @@ import LoginGateModal from '../components/LoginGateModal'
 const TestCreator = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
-    const { isPremium, usageStats, hasExceededQuestions } = useSubscription()
+    const { isPremium, usageStats, hasExceededQuestions, freemiumMode } = useSubscription()
     const [mode, setMode] = useState('tutor')
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
@@ -194,7 +194,8 @@ const TestCreator = () => {
     // --- Create Test ---
     const handleStartExam = async () => {
         if (!user) { setShowLoginGate(true); return }
-        if (hasExceededQuestions) {
+        const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededQuestions;
+        if (isLocked) {
             setShowPaymentModal(true)
             return
         }

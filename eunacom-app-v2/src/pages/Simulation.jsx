@@ -10,20 +10,21 @@ import { getQuestionDB } from '../lib/questionDB'
 const Simulation = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
-    const { isPremium, hasExceededSimulations } = useSubscription()
+    const { isPremium, hasExceededSimulations, freemiumMode } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
 
     const blueprint = [
         { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)', category: 'Medicina Interna' },
-        { name: 'Pediatría', qty: 36, percent: 20, color: 'var(--surface-400)', category: 'Pediatría' },
-        { name: 'Cirugía', qty: 27, percent: 15, color: 'var(--accent-amber)', category: 'Cirugía' },
+        { name: 'Cirugía', qty: 27, percent: 15, color: 'var(--accent-teal)', category: 'Cirugía' },
+        { name: 'Pediatría', qty: 27, percent: 15, color: 'var(--accent-amber)', category: 'Pediatría' },
         { name: 'Ginecología y Obstetricia', qty: 27, percent: 15, color: 'var(--primary-400)', category: 'Ginecología' },
         { name: 'Salud Pública y Psiquiatría', qty: 36, percent: 20, color: 'var(--accent-red)', category: 'Salud Pública' },
     ]
 
     const handleStartSimulation = async () => {
-        if (hasExceededSimulations) {
+        const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededSimulations;
+        if (isLocked) {
             setShowPaymentModal(true)
             return
         }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess } from '../lib/api'
+import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess, fetchAppSettings, updateAppSetting } from '../lib/api'
 import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
-  CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send
+  CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
 
@@ -306,9 +306,14 @@ const AdminUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null)
   const [detailData, setDetailData] = useState({ tests: [], clases: [], loading: false })
   const [showCampaignModal, setShowCampaignModal] = useState(false)
+  const [freemiumMode, setFreemiumMode] = useState('strict')
+  const [updatingMode, setUpdatingMode] = useState(false)
 
   useEffect(() => {
-    if (user && isAdmin()) loadUsers()
+    if (user && isAdmin()) {
+      loadUsers()
+      loadSettings()
+    }
   }, [user])
 
   const loadUsers = async () => {
@@ -320,6 +325,31 @@ const AdminUsers = () => {
       console.error('Error loading users:', e)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const loadSettings = async () => {
+    try {
+      const settings = await fetchAppSettings()
+      if (settings.freemium_mode) {
+        setFreemiumMode(settings.freemium_mode)
+      }
+    } catch (e) {
+      console.error('Error loading app settings:', e)
+    }
+  }
+
+  const handleModeChange = async (mode) => {
+    setUpdatingMode(true)
+    try {
+      await updateAppSetting(user.email, 'freemium_mode', mode)
+      setFreemiumMode(mode)
+      alert(`Modo Freemium actualizado a: ${mode === 'strict' ? 'Estricto' : 'Por Uso'}`)
+    } catch (e) {
+      console.error('Error updating setting:', e)
+      alert('Error al actualizar el modo freemium.')
+    } finally {
+      setUpdatingMode(false)
     }
   }
 
@@ -415,6 +445,60 @@ const AdminUsers = () => {
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>Usuarios</h1>
           <p style={{ color: 'var(--surface-400)', fontSize: '0.85rem', margin: 0 }}>{users.length} usuarios registrados</p>
+        </div>
+      </div>
+
+      {/* Global Config Panel */}
+      <div style={{
+        background: 'rgba(59, 130, 246, 0.05)',
+        border: '1px solid rgba(59, 130, 246, 0.2)',
+        borderRadius: 'var(--radius)',
+        padding: '1.25rem',
+        marginBottom: '1.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: 'var(--primary-400)', marginBottom: '0.25rem' }}>
+            <Settings size={18} />
+            Configuración Global: Estrategia Freemium
+          </div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--surface-300)' }}>
+            Controla cómo los usuarios gratuitos interactúan con la plataforma.
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--surface-800)', padding: '0.25rem', borderRadius: 'var(--radius)' }}>
+          <button
+            onClick={() => handleModeChange('strict')}
+            disabled={updatingMode}
+            style={{
+              padding: '0.5rem 1rem',
+              background: freemiumMode === 'strict' ? 'var(--primary-600)' : 'transparent',
+              color: freemiumMode === 'strict' ? '#fff' : 'var(--surface-400)',
+              border: 'none', borderRadius: 4, fontSize: '0.85rem', fontWeight: 600,
+              cursor: updatingMode ? 'wait' : 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            Modo Estricto (1 Módulo)
+          </button>
+          <button
+            onClick={() => handleModeChange('usage')}
+            disabled={updatingMode}
+            style={{
+              padding: '0.5rem 1rem',
+              background: freemiumMode === 'usage' ? 'var(--primary-600)' : 'transparent',
+              color: freemiumMode === 'usage' ? '#fff' : 'var(--surface-400)',
+              border: 'none', borderRadius: 4, fontSize: '0.85rem', fontWeight: 600,
+              cursor: updatingMode ? 'wait' : 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            Modo por Uso (Todo Visible)
+          </button>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { fetchUserProfile, fetchTests, fetchClaseProgress } from '../lib/api';
+import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings } from '../lib/api';
 
 const SubscriptionContext = createContext();
 
@@ -13,6 +13,7 @@ export function SubscriptionProvider({ children }) {
   const [isPremium, setIsPremium] = useState(true);
   const [isFounder, setIsFounder] = useState(true);
   const [loadingPremium, setLoadingPremium] = useState(false);
+  const [freemiumMode, setFreemiumMode] = useState('strict'); // strict or usage
   
   // Freemium usage tracking
   const [usageStats, setUsageStats] = useState({
@@ -29,6 +30,16 @@ export function SubscriptionProvider({ children }) {
 
   useEffect(() => {
     let mounted = true;
+
+    // Always fetch global settings, regardless of user auth state
+    fetchAppSettings()
+      .then(settings => {
+        if (mounted && settings.freemium_mode) {
+          setFreemiumMode(settings.freemium_mode);
+        }
+      })
+      .catch(err => console.error("Error fetching app settings:", err));
+
     if (user) {
       setLoadingPremium(true);
       
@@ -118,6 +129,7 @@ export function SubscriptionProvider({ children }) {
       isFounder, 
       togglePremium, 
       loadingPremium,
+      freemiumMode,
       usageStats,
       hasExceededClasses,
       hasExceededReconstructions,

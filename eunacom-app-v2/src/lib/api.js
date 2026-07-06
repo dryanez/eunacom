@@ -221,6 +221,20 @@ export async function sendCampaign(adminEmail, targetEmails, subject, htmlConten
   })
 }
 
+// ── APP SETTINGS ─────────────────────────────────────────────────────────────────
+
+export async function fetchAppSettings() {
+  const data = await apiFetch('/api/app-settings')
+  return data.settings || {}
+}
+
+export async function updateAppSetting(adminEmail, key, value) {
+  return apiFetch('/api/app-settings', {
+    method: 'POST',
+    body: JSON.stringify({ adminEmail, key, value })
+  })
+}
+
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
 export function genId() {
