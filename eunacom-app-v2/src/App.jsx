@@ -42,9 +42,8 @@ function App() {
             <Route path="/reconstructions" element={<Reconstructions />} />
             <Route path="/mis-clases" element={<MisClases />} />
             <Route path="/test" element={<TestCreator />} />
+            <Route path="/oferta" element={<Offer />} />
           </Route>
-          
-          <Route path="/oferta" element={<Offer />} />
 
           {/* Protected Routes — require login */}
           <Route element={<DashboardLayout />}>
