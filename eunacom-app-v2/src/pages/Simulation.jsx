@@ -10,7 +10,7 @@ import { getQuestionDB } from '../lib/questionDB'
 const Simulation = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
-    const { isPremium } = useSubscription()
+    const { isPremium, hasExceededSimulations } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
 
@@ -23,7 +23,7 @@ const Simulation = () => {
     ]
 
     const handleStartSimulation = async () => {
-        if (!isPremium) {
+        if (hasExceededSimulations) {
             setShowPaymentModal(true)
             return
         }
@@ -58,7 +58,7 @@ const Simulation = () => {
             await createTest({
                 id: testId,
                 userId: user.id,
-                mode: 'timed',
+                mode: 'simulation',
                 timeLimitSeconds: 4 * 60 * 60, // 4 hours
                 totalQuestions: finalQuestions.length,
                 questions: questionIds

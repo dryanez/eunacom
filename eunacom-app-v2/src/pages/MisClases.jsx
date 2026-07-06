@@ -2649,7 +2649,7 @@ const MisClases = () => {
   const [currentSpecialty, setCurrentSpecialty] = useState(null)
   const [currentSubsystem, setCurrentSubsystem] = useState(null)
   const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
-  const { isPremium } = useSubscription()
+  const { isPremium, hasExceededClasses } = useSubscription()
   const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
@@ -3088,7 +3088,7 @@ const MisClases = () => {
         /* ─── Level 1: Specialties ─── */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
           {specialties.map((spec, i) => {
-            const isLockedLevel1 = !isPremium && spec !== 'Módulo 1'
+            const isLockedLevel1 = false;
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
@@ -3157,7 +3157,7 @@ const MisClases = () => {
         /* ─── Level 2: Subsystems ─── */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
-            const isLockedLevel2 = !isPremium && sub !== 'Cardiología'
+            const isLockedLevel2 = false;
             const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
@@ -3232,7 +3232,8 @@ const MisClases = () => {
           </button>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
-              const isLocked = !isPremium && !(currentSpecialty === 'Módulo 1' && currentSubsystem === 'Cardiología' && idx === 0);
+              const hasProgress = progressMap[clase.id] && Object.keys(progressMap[clase.id]).length > 0;
+              const isLocked = hasExceededClasses && !hasProgress;
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (

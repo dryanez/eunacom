@@ -173,7 +173,7 @@ function SubjectCard({ subject, onSelectTopic, isLocked, onShowPayment }) {
 const Reconstructions = () => {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { isPremium } = useSubscription()
+  const { isPremium, hasExceededReconstructions } = useSubscription()
   const [index, setIndex] = useState(null)
   const [topicIndex, setTopicIndex] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -440,7 +440,7 @@ const Reconstructions = () => {
               {examsByYear[year].map(exam => {
                 const result = examResults[exam.id]
                 const pct = result?.pct
-                const isLocked = !isPremium && exam.id !== 'eunacom-dic-2025';
+                const isLocked = hasExceededReconstructions;
                 return (
                   <div key={exam.id} style={{ position: 'relative', background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
                     onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
@@ -496,7 +496,7 @@ const Reconstructions = () => {
                   🔥 <strong style={{ color: 'var(--primary-300)' }}>Practica por tema.</strong> Haz clic en una especialidad para ver los temas más preguntados. Luego entra en un tema para ver el desglose exacto por subtema y practicar.
                 </div>
                 {topicIndex ? topicIndex.map((subject, i) => (
-                  <SubjectCard key={subject.subject} subject={subject} onSelectTopic={setSelectedTopic} isLocked={!isPremium && i > 0} onShowPayment={() => setShowPaymentModal(true)} />
+                  <SubjectCard key={subject.subject} subject={subject} onSelectTopic={setSelectedTopic} isLocked={hasExceededReconstructions} onShowPayment={() => setShowPaymentModal(true)} />
                 )) : <p style={{ color: 'var(--surface-400)' }}>Cargando...</p>}
               </>
             ) : (

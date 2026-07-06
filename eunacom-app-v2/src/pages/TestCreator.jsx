@@ -10,7 +10,7 @@ import LoginGateModal from '../components/LoginGateModal'
 const TestCreator = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
-    const { isPremium } = useSubscription()
+    const { isPremium, usageStats, hasExceededQuestions } = useSubscription()
     const [mode, setMode] = useState('tutor')
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
@@ -194,7 +194,7 @@ const TestCreator = () => {
     // --- Create Test ---
     const handleStartExam = async () => {
         if (!user) { setShowLoginGate(true); return }
-        if (!isPremium) {
+        if (hasExceededQuestions) {
             setShowPaymentModal(true)
             return
         }
@@ -365,7 +365,14 @@ const TestCreator = () => {
 
             {/* ── NUMBER OF QUESTIONS ── */}
             <div className="card" style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ margin: '0 0 1rem', fontSize: '1rem', fontWeight: 700 }}>Nº de Preguntas</h3>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                    <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Nº de Preguntas</h3>
+                    {!isPremium && (
+                        <span style={{ fontSize: '0.85rem', color: hasExceededQuestions ? 'var(--accent-red)' : 'var(--primary-400)', fontWeight: 600 }}>
+                            Preguntas usadas: {usageStats.customQuestionsAnswered} / 100
+                        </span>
+                    )}
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                     <input
                         type="number"
