@@ -19,7 +19,6 @@ import {
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
-import ClassPreviewModal from '../components/ClassPreviewModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 
 /* ════════════════════════════════════════════════════════════════
@@ -2652,7 +2651,6 @@ const MisClases = () => {
   const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
   const { isPremium, hasExceededClasses, freemiumMode } = useSubscription()
   const [showPaymentModal, setShowPaymentModal] = useState(false)
-  const [previewTarget, setPreviewTarget] = useState(null)
 
   // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
   const normalizeQuiz = (rawQuiz) => {
@@ -3025,7 +3023,6 @@ const MisClases = () => {
         />
       )}
       {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
-      {previewTarget && <ClassPreviewModal item={previewTarget} onClose={() => setPreviewTarget(null)} />}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
         <h1 className="page__title">Mis Clases</h1>
         {(() => {
@@ -3100,7 +3097,7 @@ const MisClases = () => {
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => isLockedLevel1 ? setPreviewTarget({ type: 'specialty', title: spec, specialty: spec }) : setCurrentSpecialty(spec)} style={{
+              <div key={spec} className="card" onClick={() => isLockedLevel1 ? setShowPaymentModal(true) : setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                 borderLeft: `4px solid ${style.color}`,
                 background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
@@ -3169,7 +3166,7 @@ const MisClases = () => {
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
             return (
-              <div key={sub} className="card" onClick={() => isLockedLevel2 ? setPreviewTarget({ type: 'subsystem', title: sub, specialty: currentSpecialty }) : setCurrentSubsystem(sub)} style={{
+              <div key={sub} className="card" onClick={() => isLockedLevel2 ? setShowPaymentModal(true) : setCurrentSubsystem(sub)} style={{
                 padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                 borderLeft: `3px solid ${subStyle.color}`,
                 background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
@@ -3246,7 +3243,7 @@ const MisClases = () => {
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (
-                <div key={clase.id} className="card" onClick={() => isLocked ? setPreviewTarget({ type: 'clase', title: clase.topic, specialty: clase.specialty, lessonNumber: clase.lessonNumber }) : openClase(clase.id)} style={{
+                <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
                   padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,

@@ -3,7 +3,7 @@ import { Clock, LightbulbOff, PlayCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
-import ClassPreviewModal from '../components/ClassPreviewModal'
+import PaymentModal from '../components/PaymentModal'
 import { createTest, genId } from '../lib/api'
 import { getQuestionDB } from '../lib/questionDB'
 
@@ -12,7 +12,7 @@ const Simulation = () => {
     const { user } = useAuth()
     const { isPremium, hasExceededSimulations, freemiumMode } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
-    const [previewTarget, setPreviewTarget] = useState(null)
+    const [showPaymentModal, setShowPaymentModal] = useState(false)
 
     const blueprint = [
         { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)', category: 'Medicina Interna' },
@@ -25,7 +25,7 @@ const Simulation = () => {
     const handleStartSimulation = async () => {
         const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededSimulations;
         if (isLocked) {
-            setPreviewTarget({ type: 'exam', title: 'Simulación EUNACOM ST' })
+            setShowPaymentModal(true)
             return
         }
         
@@ -128,7 +128,7 @@ const Simulation = () => {
                 </button>
             </div>
             
-            {previewTarget && <ClassPreviewModal item={previewTarget} onClose={() => setPreviewTarget(null)} />}
+            {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
         </div>
     )
 }
