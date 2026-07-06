@@ -122,15 +122,33 @@ const Offer = () => {
               </h2>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {[
-                  'Todas las reconstrucciones de exámenes pasados',
-                  'Más de 7.000 preguntas explicadas',
-                  'Simulacros con tiempo real ilimitados',
-                  'Clases de repaso intensivo (MedScribe)',
-                  'Predicción de puntaje con IA'
+                  { text: 'Todas las reconstrucciones de exámenes pasados', highlight: true },
+                  { text: 'Más de 7.000 preguntas explicadas' },
+                  { text: 'Simulacros con tiempo real ilimitados' },
+                  { text: 'Clases de repaso intensivo (MedScribe)' },
+                  { text: 'Predicción de puntaje con IA' }
                 ].map((feature, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '1.05rem', color: 'var(--surface-200)' }}>
-                    <CheckCircle2 color="#10b981" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <span>{feature}</span>
+                  <li key={i} style={{ 
+                    display: 'flex', 
+                    alignItems: 'flex-start', 
+                    gap: '0.75rem', 
+                    fontSize: '1.05rem', 
+                    color: feature.highlight ? '#fff' : 'var(--surface-200)',
+                    fontWeight: feature.highlight ? 700 : 400,
+                    background: feature.highlight ? 'rgba(236, 72, 153, 0.15)' : 'transparent',
+                    padding: feature.highlight ? '0.75rem 1rem' : '0',
+                    borderRadius: '8px',
+                    border: feature.highlight ? '1px solid rgba(236, 72, 153, 0.4)' : 'none'
+                  }}>
+                    <CheckCircle2 color="#10b981" size={20} style={{ flexShrink: 0, marginTop: feature.highlight ? '2px' : '2px' }} />
+                    <span style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                      {feature.text}
+                      {feature.highlight && (
+                        <span style={{ color: '#ec4899', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase' }}>
+                          ⭐️ Lo más importante
+                        </span>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>

@@ -22,15 +22,15 @@ export default function CampaignModal({ isOpen, onClose, targetUsers, adminEmail
       
       <p>Hemos habilitado un <strong>Acceso de Último Minuto</strong>:</p>
       <ul style="list-style-type: none; padding-left: 0;">
-        <li>✅ <strong>Reconstrucciones completas</strong> de exámenes pasados.</li>
-        <li>✅ <strong>7.000+ preguntas</strong> explicadas.</li>
-        <li>✅ Modo Simulacro con tiempo real.</li>
+        <li style="background-color: #fce7f3; padding: 12px; border-radius: 8px; color: #be185d; margin-bottom: 12px; border: 1px solid #f9a8d4;">✅ <strong>Reconstrucciones completas</strong> de exámenes pasados. <br><span style="font-size: 12px; text-transform: uppercase; font-weight: 900;">⭐ LO MÁS IMPORTANTE</span></li>
+        <li style="padding: 6px 12px;">✅ <strong>7.000+ preguntas</strong> explicadas.</li>
+        <li style="padding: 6px 12px;">✅ Modo Simulacro con tiempo real.</li>
       </ul>
       
       <p><strong>Todo por solo $5.000 CLP (o $5 USD).</strong></p>
       
       <div style="text-align: center; margin: 30px 0;">
-        <a href="https://eunacom.famed-vorbereitung.com/oferta" style="background-color: #2563eb; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; display: inline-block;">Activar mi Acceso por $5.000</a>
+        <a href="https://eunacom.vercel.app/oferta" style="background-color: #2563eb; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; display: inline-block;">Activar mi Acceso por $5.000</a>
       </div>
       
       <p>No dejes que los nervios te jueguen en contra. Asegura tu preparación hoy mismo.</p>
