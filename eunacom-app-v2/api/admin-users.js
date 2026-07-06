@@ -28,7 +28,22 @@ export default async function handler(req, res) {
     })
 
     if (req.method === 'GET') {
-      const { adminEmail, userId } = req.query
+      const { adminEmail, userId, action } = req.query
+
+      // Public settings fetch
+      if (action === 'settings') {
+        await db.execute({
+          sql: `CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY, value TEXT)`, args: []
+        })
+        await db.execute({
+          sql: `INSERT OR IGNORE INTO app_settings (key, value) VALUES ('freemium_mode', 'strict')`, args: []
+        })
+        const result = await db.execute({ sql: `SELECT key, value FROM app_settings`, args: [] })
+        const settings = {}
+        for (const row of result.rows) { settings[row.key] = row.value }
+        return res.json({ settings })
+      }
+
       if (adminEmail !== 'dr.felipeyanez@gmail.com') {
         return res.status(403).json({ error: 'Forbidden' })
       }
@@ -118,10 +133,27 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const { adminEmail, targetEmails, subject, htmlContent } = req.body
+      const { adminEmail, targetEmails, subject, htmlContent, action, key, value } = req.body
       if (adminEmail !== 'dr.felipeyanez@gmail.com') {
-        return res.status(403).json({ error: 'Unauthorized: Only admins can send campaigns' })
+        return res.status(403).json({ error: 'Unauthorized' })
       }
+
+      // App Settings update route
+      if (action === 'settings') {
+        if (!key || value === undefined) return res.status(400).json({ error: 'Missing key or value' })
+        
+        await db.execute({
+          sql: `CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY, value TEXT)`, args: []
+        })
+        await db.execute({
+          sql: `INSERT INTO app_settings (key, value) VALUES (?, ?)
+                ON CONFLICT(key) DO UPDATE SET value = excluded.value`,
+          args: [key, value]
+        })
+        return res.json({ success: true, key, value })
+      }
+
+      // Campaign route
       if (!targetEmails || !Array.isArray(targetEmails) || targetEmails.length === 0) {
         return res.status(400).json({ error: 'targetEmails must be a non-empty array' })
       }

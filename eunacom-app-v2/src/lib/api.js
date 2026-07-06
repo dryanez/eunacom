@@ -224,14 +224,14 @@ export async function sendCampaign(adminEmail, targetEmails, subject, htmlConten
 // ── APP SETTINGS ─────────────────────────────────────────────────────────────────
 
 export async function fetchAppSettings() {
-  const data = await apiFetch('/api/app-settings')
+  const data = await apiFetch('/api/admin-users?action=settings')
   return data.settings || {}
 }
 
 export async function updateAppSetting(adminEmail, key, value) {
-  return apiFetch('/api/app-settings', {
+  return apiFetch('/api/admin-users', {
     method: 'POST',
-    body: JSON.stringify({ adminEmail, key, value })
+    body: JSON.stringify({ adminEmail, action: 'settings', key, value })
   })
 }
 
