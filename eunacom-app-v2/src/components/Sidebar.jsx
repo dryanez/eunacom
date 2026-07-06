@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchProgress, fetchUserProfile } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } from '../utils/xpSystem'
 import {
@@ -11,6 +12,7 @@ import {
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
+    const { isPremium, usageStats } = useSubscription()
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
@@ -110,6 +112,29 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             </nav>
 
             <div className="sidebar__footer">
+                {!isPremium && user && (
+                    <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                            <span>Preguntas Gratis</span>
+                            <span>{Math.min(usageStats?.customQuestionsAnswered || 0, 100)}/100</span>
+                        </div>
+                        <div style={{ width: '100%', height: '6px', background: 'var(--surface-600)', borderRadius: '4px', overflow: 'hidden', marginBottom: '1rem' }}>
+                            <div style={{ 
+                                height: '100%', 
+                                width: `${Math.min(((usageStats?.customQuestionsAnswered || 0) / 100) * 100, 100)}%`, 
+                                background: (usageStats?.customQuestionsAnswered || 0) >= 100 ? '#ef4444' : '#10b981',
+                                transition: 'width 0.3s ease-in-out'
+                            }} />
+                        </div>
+                        <NavLink to="/oferta" style={{ 
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                            background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
+                            fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none', transition: 'background 0.2s'
+                        }} onClick={onToggle}>
+                            <Flame size={14} /> ¡Pasar a Premium!
+                        </NavLink>
+                    </div>
+                )}
                 {user ? (
                     <>
                         {isAdmin() && (
