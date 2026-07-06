@@ -79,22 +79,6 @@ const Offer = () => {
           <p style={{ fontSize: '1.1rem', color: 'var(--surface-300)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6, marginBottom: '2.5rem' }}>
             Accede de inmediato a todas las reconstrucciones interactivas y nuestro banco de 7.000+ preguntas con una oferta exclusiva de último minuto.
           </p>
-
-          <div style={{ 
-            borderRadius: '16px', 
-            overflow: 'hidden', 
-            border: '1px solid rgba(255,255,255,0.1)', 
-            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.7)',
-            maxWidth: '1000px',
-            margin: '0 auto',
-            position: 'relative'
-          }}>
-            <img 
-              src="/reconstructions-preview.png"
-              alt="Plataforma de Reconstrucciones EUNACOM" 
-              style={{ width: '100%', height: 'auto', display: 'block' }} 
-            />
-          </div>
         </div>
 
         {/* Pricing Card */}
