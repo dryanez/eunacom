@@ -27,3 +27,7 @@ src/data/questionDB.json
 src/data/pruebas.json
 
 .env
+
+# Cache and local scratch
+__pycache__/
+scratch/

@@ -394,6 +394,7 @@ function TopicPanel({ topic, isOpen, onToggle }) {
 }
 
 const SUBJECTS = [
+  { id: 'cardiologia', label: 'Cardiología ❤️', json: '/data/study-guides/cardiologia-high-yield.json', apkg: '/data/study-guides/cardiologia-anki.apkg', apkgName: 'Cardiologia-High-Yield-Cloze.apkg', pdf: '/data/study-guides/cardiologia-libro.pdf', pdfName: 'Cardiologia-Libro-V3.pdf', color: '#ef4444' },
   { id: 'hematologia', label: 'Hematología 🩸', json: '/data/study-guides/hematologia-high-yield.json', apkg: '/data/study-guides/hematologia-anki-v2.apkg', apkgName: 'Hematologia-High-Yield-Cloze.apkg', color: '#ef4444' },
   { id: 'pediatria', label: 'Pediatría 👶', json: '/data/study-guides/pediatria-high-yield.json', apkg: '/data/study-guides/pediatria-anki.apkg', apkgName: 'Pediatria-High-Yield-Cloze.apkg', color: '#10b981' },
   { id: 'neurologia', label: 'Neurología 🧠', json: '/data/study-guides/neurologia-high-yield.json', apkg: '/data/study-guides/neurologia-anki.apkg', apkgName: 'Neurologia-High-Yield-Cloze.apkg', color: '#6366f1' },
@@ -408,6 +409,7 @@ export default function StudyGuides() {
   const [openTopic, setOpenTopic] = useState(null)
   const [search, setSearch] = useState('')
   const [downloading, setDownloading] = useState(false)
+  const [downloadingPdf, setDownloadingPdf] = useState(false)
 
   const isOwner = (user?.email && btoa(user.email) === ADMIN_HASH) || ALLOWED_EMAILS.includes(user?.email)
 
@@ -443,6 +445,28 @@ export default function StudyGuides() {
       setDownloading(false)
     }
   }, [downloading, activeSubject])
+
+  const handleDownloadPdf = useCallback(async () => {
+    if (downloadingPdf) return
+    const sub = SUBJECTS.find(s => s.id === activeSubject)
+    if (!sub.pdf) return
+    setDownloadingPdf(true)
+    try {
+      const res = await fetch(sub.pdf)
+      if (!res.ok) throw new Error('Archivo no generado aún')
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = sub.pdfName
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch {
+      alert('El archivo PDF aún no está disponible.')
+    } finally {
+      setDownloadingPdf(false)
+    }
+  }, [downloadingPdf, activeSubject])
 
   if (!isOwner) {
     return (
@@ -487,25 +511,48 @@ export default function StudyGuides() {
               {activeSub?.label} · {totalQ} preguntas · {totalFC} flashcards · {totalPearls} perlas
             </p>
           </div>
-          <button
-            onClick={handleDownloadAnki}
-            disabled={downloading}
-            style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              padding: '10px 18px',
-              background: downloading ? 'rgba(124,58,237,0.3)' : 'rgba(124,58,237,0.15)',
-              color: '#a78bfa',
-              border: '1px solid rgba(124,58,237,0.4)',
-              borderRadius: 10,
-              cursor: downloading ? 'default' : 'pointer',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              transition: 'all 0.15s',
-            }}
-          >
-            <Download size={15} />
-            {downloading ? 'Descargando...' : 'Descargar Anki (.apkg)'}
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {activeSub?.pdf && (
+              <button
+                onClick={handleDownloadPdf}
+                disabled={downloadingPdf}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  padding: '10px 18px',
+                  background: downloadingPdf ? 'rgba(239,68,68,0.3)' : 'rgba(239,68,68,0.15)',
+                  color: '#fca5a5',
+                  border: '1px solid rgba(239,68,68,0.4)',
+                  borderRadius: 10,
+                  cursor: downloadingPdf ? 'default' : 'pointer',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  transition: 'all 0.15s',
+                }}
+              >
+                <BookOpen size={15} />
+                {downloadingPdf ? 'Descargando...' : 'Descargar Libro PDF (📕)'}
+              </button>
+            )}
+            <button
+              onClick={handleDownloadAnki}
+              disabled={downloading}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                padding: '10px 18px',
+                background: downloading ? 'rgba(124,58,237,0.3)' : 'rgba(124,58,237,0.15)',
+                color: '#a78bfa',
+                border: '1px solid rgba(124,58,237,0.4)',
+                borderRadius: 10,
+                cursor: downloading ? 'default' : 'pointer',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                transition: 'all 0.15s',
+              }}
+            >
+              <Download size={15} />
+              {downloading ? 'Descargando...' : 'Descargar Anki (.apkg)'}
+            </button>
+          </div>
         </div>
 
         {/* Subject tabs */}
@@ -575,14 +622,69 @@ export default function StudyGuides() {
 
       {/* Topic list */}
       <div>
-        {filteredTopics.map(topic => (
-          <TopicPanel
-            key={topic.id}
-            topic={topic}
-            isOpen={openTopic === topic.id}
-            onToggle={() => setOpenTopic(openTopic === topic.id ? null : topic.id)}
-          />
-        ))}
+        {(() => {
+          const hasCategories = filteredTopics.some(t => t.category);
+          if (!hasCategories) {
+            return filteredTopics.map(topic => (
+              <TopicPanel
+                key={topic.id}
+                topic={topic}
+                isOpen={openTopic === topic.id}
+                onToggle={() => setOpenTopic(openTopic === topic.id ? null : topic.id)}
+              />
+            ));
+          }
+
+          const groups = {};
+          filteredTopics.forEach(t => {
+            const cat = t.category || 'Otros';
+            if (!groups[cat]) groups[cat] = [];
+            groups[cat].push(t);
+          });
+
+          const groupOrder = [
+            'Situaciones Clínicas (1.01.1)',
+            'Situaciones Clínicas de Urgencia (1.01.2)',
+            'Conocimientos Generales (1.01.3)',
+            'Patología Vascular Periférica (4.01)'
+          ];
+          const sortedCategories = Object.keys(groups).sort((a, b) => {
+            const idxA = groupOrder.findIndex(g => a.includes(g) || g.includes(a));
+            const idxB = groupOrder.findIndex(g => b.includes(g) || g.includes(b));
+            if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+            if (idxA !== -1) return -1;
+            if (idxB !== -1) return 1;
+            return a.localeCompare(b);
+          });
+
+          return sortedCategories.map(catName => (
+            <div key={catName} style={{ marginBottom: 24 }}>
+              <div style={{
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                color: '#ef4444',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: 10,
+                borderBottom: '1px solid #334155',
+                paddingBottom: 6,
+                marginTop: 15
+              }}>
+                {catName}
+              </div>
+              <div>
+                {groups[catName].map(topic => (
+                  <TopicPanel
+                    key={topic.id}
+                    topic={topic}
+                    isOpen={openTopic === topic.id}
+                    onToggle={() => setOpenTopic(openTopic === topic.id ? null : topic.id)}
+                  />
+                ))}
+              </div>
+            </div>
+          ));
+        })()}
         {filteredTopics.length === 0 && (
           <div style={{ textAlign: 'center', color: '#475569', padding: '40px 0' }}>
             No se encontraron tópicos para "{search}"

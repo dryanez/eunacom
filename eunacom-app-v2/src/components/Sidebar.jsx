@@ -32,7 +32,7 @@ const ProgressItem = ({ label, used, total }) => {
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
-    const { isPremium, usageStats } = useSubscription()
+    const { isPremium, usageStats, setShowPaymentModal } = useSubscription()
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
@@ -143,13 +143,19 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                         <ProgressItem label="Reconstrucciones" used={usageStats?.reconstructionsCompleted || 0} total={1} />
                         <ProgressItem label="Simulacros" used={usageStats?.simulationsCompleted || 0} total={1} />
 
-                        <NavLink to="/oferta" style={{ 
-                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                            background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
-                            fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none', transition: 'background 0.2s', marginTop: '1rem'
-                        }} onClick={onToggle}>
+                        <button 
+                            onClick={() => {
+                                setShowPaymentModal(true);
+                                onToggle();
+                            }}
+                            style={{ 
+                                display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
+                                fontSize: '0.85rem', fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s', marginTop: '1rem'
+                            }}
+                        >
                             <Flame size={14} /> ¡Pasar a Premium!
-                        </NavLink>
+                        </button>
                     </div>
                 )}
                 {user ? (

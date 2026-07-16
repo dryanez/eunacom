@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings } from '../lib/api';
+import PaymentModal from '../components/PaymentModal';
 
 const SubscriptionContext = createContext();
 
@@ -11,6 +12,7 @@ export function useSubscription() {
 export function SubscriptionProvider({ children }) {
   const { user } = useAuth();
   const [isPremium, setIsPremium] = useState(true);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [isFounder, setIsFounder] = useState(true);
   const [loadingPremium, setLoadingPremium] = useState(false);
   const [freemiumMode, setFreemiumMode] = useState('strict'); // strict or usage
@@ -134,9 +136,12 @@ export function SubscriptionProvider({ children }) {
       hasExceededClasses,
       hasExceededReconstructions,
       hasExceededSimulations,
-      hasExceededQuestions
+      hasExceededQuestions,
+      showPaymentModal,
+      setShowPaymentModal
     }}>
       {children}
+      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
     </SubscriptionContext.Provider>
   );
 }
