@@ -119,6 +119,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -128,6 +131,9 @@ body {
   color: var(--surface-50);
   background: var(--surface-800);
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
   touch-action: manipulation;
 }
 
@@ -160,6 +166,8 @@ button {
 .app-layout {
   display: flex;
   height: 100vh;
+  width: 100%;
+  max-width: 100vw;
   overflow: hidden;
 }
 
@@ -304,6 +312,9 @@ button {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* ========== HEADER ========== */
@@ -823,6 +834,7 @@ polyline {
 }
 
 /* ========== PROFILE CARD ========== */
+
 .profile-card {
   display: flex;
   align-items: center;
@@ -1006,6 +1018,18 @@ polyline {
 
 @media (max-width: 768px) {
   .grid-2-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-auto-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 380px) {
+  .grid-auto-responsive {
     grid-template-columns: 1fr;
   }
 }

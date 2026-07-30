@@ -215,10 +215,7 @@ function PuntosClaveSection({ keyPoints }) {
         </p>
       )}
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-        gap: '0.85rem',
+      <div className="grid-auto-responsive" style={{
         marginTop: anyHasDetail ? 0 : '1.25rem',
       }}>
         {cleanedPoints.map((point, i) => {
@@ -2490,7 +2487,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
       </div>
 
       {/* Pruebas grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem' }}>
+      <div className="grid-auto-responsive">
         {pruebas.map((p, i) => {
           const prog = pruebaProgress[p.id] || {}
           const done = prog.done || 0
@@ -3086,7 +3083,7 @@ const MisClases = () => {
         </div>
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
+        <div className="grid-auto-responsive">
           {specialties.map((spec, i) => {
             const isLockedLevel1 = freemiumMode === 'strict' 
               ? (!isPremium && spec !== 'Módulo 1')
@@ -3327,7 +3324,7 @@ const MisClases = () => {
               </div>
 
               {/* Two big cards: Clases and Pruebas */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+              <div className="grid-auto-responsive">
                 {/* Clases card */}
                 <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }} style={{
                   padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
