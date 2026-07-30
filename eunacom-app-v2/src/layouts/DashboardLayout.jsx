@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar'
 import DashboardHeader from '../components/DashboardHeader'
 import Onboarding from '../components/Onboarding'
 import FounderPopup from '../components/FounderPopup'
+import BottomNavigation from '../components/BottomNavigation'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 const DashboardLayout = () => {
@@ -72,6 +73,7 @@ const DashboardLayout = () => {
                 <Onboarding user={user} onComplete={handleOnboardingComplete} />
             )}
             <FounderPopup user={user} />
+            <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />
         </div>
     )
 }

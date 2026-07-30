@@ -75,6 +75,7 @@ function clasesApiPlugin() {
       // ── Progress API ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/progress')) return next()
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) return next();
         if (!db) {
           db = createClient({
             url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
@@ -130,6 +131,7 @@ function clasesApiPlugin() {
       // ── Tests API ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/tests')) return next()
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) return next();
         if (!db) {
           db = createClient({
             url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
@@ -195,6 +197,7 @@ function clasesApiPlugin() {
       // ── Perfil EUNACOM API ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/perfil')) return next()
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) return next();
         if (!db) {
           db = createClient({
             url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
@@ -234,6 +237,7 @@ function clasesApiPlugin() {
       // ── Clase Progress API ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/clase-progress')) return next()
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) return next();
         if (!db) {
           db = createClient({
             url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
@@ -286,6 +290,7 @@ function clasesApiPlugin() {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/clases')) return next()
 
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) return next();
         if (!db) {
           db = createClient({
             url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,

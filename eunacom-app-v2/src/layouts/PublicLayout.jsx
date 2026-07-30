@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import Sidebar from '../components/Sidebar'
 import DashboardHeader from '../components/DashboardHeader'
 import Onboarding from '../components/Onboarding'
+import BottomNavigation from '../components/BottomNavigation'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 // Layout for pages that are visible without login (dashboard, reconstructions list)
@@ -62,6 +63,7 @@ const PublicLayout = () => {
       {showOnboarding && (
         <Onboarding user={user} onComplete={handleOnboardingComplete} />
       )}
+      <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />
     </div>
   )
 }
