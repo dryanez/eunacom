@@ -503,30 +503,24 @@ button {
 }
 
 /* ========== ACTION GRID ========== */
-@media (max-width: 768px) {
-  .action-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.75rem;
-    margin-right: -2rem; /* bleed into padding */
-    padding-right: 2rem;
-  }
-  .action-grid::-webkit-scrollbar {
-    display: none;
-  }
-  .action-grid > * {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
-  }
-}
-
 .action-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .action-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .action-card {
+    padding: 0.85rem;
+    gap: 0.5rem;
+  }
+  .action-card__label {
+    font-size: 0.85rem;
+  }
 }
 
 .action-card {
@@ -1047,7 +1041,25 @@ polyline {
   gap: 1rem;
 }
 
+.mobile-swipe-hint {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+  text-align: right;
+  padding-right: 0.5rem;
+  font-style: italic;
+  animation: pulse-hint 2s infinite;
+}
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.7; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(3px); }
+}
+
 @media (max-width: 768px) {
+  .mobile-swipe-hint {
+    display: block;
+  }
   .grid-auto-responsive {
     display: flex;
     flex-wrap: nowrap;

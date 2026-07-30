@@ -215,6 +215,7 @@ function PuntosClaveSection({ keyPoints }) {
         </p>
       )}
 
+      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
       <div className="grid-auto-responsive" style={{
         marginTop: anyHasDetail ? 0 : '1.25rem',
       }}>
@@ -2487,6 +2488,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
       </div>
 
       {/* Pruebas grid */}
+      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
       <div className="grid-auto-responsive">
         {pruebas.map((p, i) => {
           const prog = pruebaProgress[p.id] || {}
@@ -3083,6 +3085,7 @@ const MisClases = () => {
         </div>
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
+        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
         <div className="grid-auto-responsive">
           {specialties.map((spec, i) => {
             const isLockedLevel1 = freemiumMode === 'strict' 
@@ -3324,6 +3327,7 @@ const MisClases = () => {
               </div>
 
               {/* Two big cards: Clases and Pruebas */}
+              <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
               <div className="grid-auto-responsive">
                 {/* Clases card */}
                 <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }} style={{
