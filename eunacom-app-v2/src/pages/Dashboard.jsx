@@ -182,23 +182,39 @@ const Dashboard = () => {
 
   return (
     <div style={{ paddingBottom: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div>
           <h1 className="page__title">Inicio</h1>
           <p className="page__subtitle">{user ? 'Tu progreso general' : 'La plataforma de estudio EUNACOM más completa de Chile'}</p>
         </div>
-        {!isStandalone && (deferredPrompt || isIOS) && (
+      </div>
+
+      {/* ─── PWA INSTALL BANNER ─── */}
+      {!isStandalone && (deferredPrompt || isIOS) && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
+          border: '1px solid rgba(19,91,236,0.3)', borderRadius: 'var(--radius-xl)',
+          padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap'
+        }}>
+          <div style={{ flex: 1, minWidth: '250px' }}>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Download size={18} color="var(--primary-400)" />
+              Instala la App de Eunacom
+            </h2>
+            <p style={{ fontSize: '0.85rem', color: 'var(--surface-300)', margin: 0, lineHeight: 1.5 }}>
+              No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo y cargar todo más rápido.
+            </p>
+          </div>
           <button onClick={handleInstallClick} style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
-            padding: '0.5rem 1rem', background: 'var(--gradient-primary)', color: '#fff',
-            borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
-            boxShadow: '0 4px 12px rgba(19,91,236,0.3)'
+            padding: '0.75rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
+            borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer',
+            boxShadow: '0 4px 15px rgba(19,91,236,0.4)', whiteSpace: 'nowrap'
           }}>
-            <Download size={16} />
             Instalar App
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ─── GUEST CTA ─── */}
       {!user && (
