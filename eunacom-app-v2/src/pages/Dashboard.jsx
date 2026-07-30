@@ -23,7 +23,7 @@ const Dashboard = () => {
   const DAILY_GOAL = 50
 
   // PWA Install State
-  const [deferredPrompt, setDeferredPrompt] = useState(null)
+  const [deferredPrompt, setDeferredPrompt] = useState(window.globalDeferredPrompt || null)
   const [isIOS, setIsIOS] = useState(false)
   const [isStandalone, setIsStandalone] = useState(false)
 
@@ -42,8 +42,21 @@ const Dashboard = () => {
       setDeferredPrompt(e)
     }
 
+    const handlePromptReady = () => {
+      setDeferredPrompt(window.globalDeferredPrompt)
+    }
+
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    window.addEventListener('pwa-prompt-ready', handlePromptReady)
+    
+    if (window.globalDeferredPrompt) {
+      setDeferredPrompt(window.globalDeferredPrompt)
+    }
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+      window.removeEventListener('pwa-prompt-ready', handlePromptReady)
+    }
   }, [])
 
   const handleInstallClick = async () => {

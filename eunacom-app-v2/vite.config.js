@@ -425,7 +425,7 @@ export default defineConfig({
       manifest: {
         name: 'EUNACOM Examen',
         short_name: 'EUNACOM',
-        description: 'Plataforma de estudio para el EUNACOM',
+        description: 'No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu dispositivo para tener un acceso directo y cargar todo más rápido.',
         theme_color: '#0b1120',
         background_color: '#0b1120',
         display: 'standalone',
