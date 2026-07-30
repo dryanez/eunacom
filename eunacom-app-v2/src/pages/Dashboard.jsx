@@ -313,14 +313,15 @@ const Dashboard = () => {
       {/* ─── STATS GRID (logged-in only) ─── */}
       {user && (
         <>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)' }}>
+          <div className="stats-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)', overflowX: 'auto', flexWrap: 'nowrap', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', paddingBottom: '0.2rem' }}>
+            <style>{`.stats-tabs::-webkit-scrollbar { display: none; }`}</style>
             {[
                 { id: 'general', label: 'General' },
                 { id: 'clases', label: 'Clases' },
                 { id: 'reconstructions', label: 'Reconstrucciones' },
                 { id: 'custom', label: 'Exámenes Práctica' },
             ].map(tab => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ flexShrink: 0, whiteSpace: 'nowrap', padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
                   {tab.label}
                 </button>
             ))}

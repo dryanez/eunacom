@@ -170,6 +170,7 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
           controls={isMobile}
           playsInline
           webkit-playsinline="true"
+          crossOrigin="anonymous"
           style={{ width: '100%', display: error ? 'none' : 'block', maxHeight: 480, background: '#000' }}
           onLoadedMetadata={(e) => { setDuration(e.target.duration); setLoading(false) }}
           onCanPlay={() => setLoading(false)}
