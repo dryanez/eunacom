@@ -930,7 +930,29 @@ polyline {
   }
   .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
   .sidebar-backdrop { display: block !important; }
-  .stats-grid { grid-template-columns: 1fr; }
+  .stats-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.5rem; 
+  }
+  .stat-card {
+    padding: 0.75rem 0.5rem;
+  }
+  .stat-card__value {
+    font-size: 1.25rem;
+  }
+  .stat-card__sub {
+    font-size: 0.7rem;
+  }
+  .donut-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  .donut-value {
+    font-size: 1.1rem;
+  }
+  .stat-card__label {
+    font-size: 0.75rem;
+  }
   .mobile-menu-btn { display: none !important; }
   .main-content { padding-bottom: calc(65px + env(safe-area-inset-bottom)); }
 }
