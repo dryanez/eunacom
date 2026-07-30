@@ -84,7 +84,7 @@ const Simulation = () => {
                     <p style={{ color: 'var(--surface-300)', fontSize: '1.05rem', lineHeight: 1.5 }}>Prepárate para el examen real. 180 preguntas, tiempo limitado.</p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
+                <div className="grid-2-responsive" style={{ marginBottom: '2rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-800)', padding: '1.5rem', borderRadius: 'var(--radius)', textAlign: 'center' }}>
                         <Clock size={32} color="var(--primary-300)" style={{ marginBottom: '1rem' }} />
                         <div style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.25rem' }}>4 Horas (240 min)</div>

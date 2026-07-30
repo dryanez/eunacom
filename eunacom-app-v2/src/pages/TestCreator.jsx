@@ -249,7 +249,7 @@ const TestCreator = () => {
             {/* ── MODE ── */}
             <div className="card" style={{ marginBottom: '1.5rem' }}>
                 <h3 style={{ margin: '0 0 1rem', fontSize: '1rem', fontWeight: 700 }}>Modo de Examen</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="grid-2-responsive">
                     {[
                         { id: 'tutor', label: 'Modo Tutor', desc: 'Feedback inmediato después de cada respuesta.' },
                         { id: 'timed', label: 'Modo Tiempo', desc: 'Simula condiciones reales del EUNACOM.' }
@@ -366,7 +366,7 @@ const TestCreator = () => {
 
             {/* ── NUMBER OF QUESTIONS ── */}
             <div className="card" style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Nº de Preguntas</h3>
                     {!isPremium && (
                         <span style={{ fontSize: '0.85rem', color: hasExceededQuestions ? 'var(--accent-red)' : 'var(--primary-400)', fontWeight: 600 }}>
@@ -374,7 +374,7 @@ const TestCreator = () => {
                         </span>
                     )}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
                     <input
                         type="number"
                         min={1}

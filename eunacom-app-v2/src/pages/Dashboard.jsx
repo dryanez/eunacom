@@ -209,7 +209,7 @@ const Dashboard = () => {
           border: '1px solid rgba(19,91,236,0.3)', borderRadius: 'var(--radius-xl)',
           padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap'
         }}>
-          <div style={{ flex: 1, minWidth: '250px' }}>
+          <div style={{ flex: 1, minWidth: '200px' }}>
             <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Download size={18} color="var(--primary-400)" />
               Instala la App de Eunacom
