@@ -3085,6 +3085,7 @@ const MisClases = () => {
         </div>
       ) : !currentSpecialty ? (
         /* ─── Level 1: Specialties ─── */
+        <>
         <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
         <div className="grid-auto-responsive">
           {specialties.map((spec, i) => {
@@ -3155,6 +3156,7 @@ const MisClases = () => {
             )
           })}
         </div>
+        </>
       ) : !currentSubsystem ? (
         /* ─── Level 2: Subsystems ─── */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>

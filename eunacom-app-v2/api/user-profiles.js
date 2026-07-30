@@ -208,6 +208,19 @@ export default async function handler(req, res) {
       })
       return res.json({ ok: true })
     }
+    // --- DELETE PROFILE ---
+    if (req.method === 'DELETE') {
+      const { userId } = req.body
+      if (!userId) return res.status(400).json({ error: 'userId required' })
+
+      // Delete all user data across all tables
+      await db.execute({ sql: 'DELETE FROM tests WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM user_progress WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM clase_progress WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM user_profiles WHERE id = ?', args: [userId] })
+      
+      return res.json({ ok: true })
+    }
 
     return res.status(405).json({ error: 'Method not allowed' })
   } catch (err) {
