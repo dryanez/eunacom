@@ -12,20 +12,30 @@
     <meta name="apple-mobile-web-app-title" content="EUNACOM">
     <script>
       // Auto-recover from stale Service Worker / Vite chunk load errors
+      function forceCleanReload() {
+        if (!sessionStorage.getItem('pwa_chunk_recovery')) {
+          sessionStorage.setItem('pwa_chunk_recovery', 'true');
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+              for (var r of registrations) r.unregister();
+              window.location.reload(true);
+            });
+          } else {
+            window.location.reload(true);
+          }
+        }
+      }
       window.addEventListener('error', function(e) {
         var msg = e.message || '';
-        if (msg.includes('Expected a JavaScript') || msg.includes('MIME type') || msg.includes('Loading chunk') || msg.includes('dynamically imported module') || msg.includes('Failed to load module')) {
-          if (!sessionStorage.getItem('pwa_chunk_recovery')) {
-            sessionStorage.setItem('pwa_chunk_recovery', 'true');
-            if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                for (var r of registrations) r.unregister();
-                window.location.reload(true);
-              });
-            } else {
-              window.location.reload(true);
-            }
-          }
+        var target = e.target || {};
+        if (msg.includes('Expected a JavaScript') || msg.includes('MIME type') || msg.includes('Loading chunk') || msg.includes('dynamically imported module') || msg.includes('Failed to load module') || target.tagName === 'SCRIPT') {
+          forceCleanReload();
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function(e) {
+        var reason = String(e.reason || '');
+        if (reason.includes('dynamically imported module') || reason.includes('MIME type') || reason.includes('Loading chunk')) {
+          forceCleanReload();
         }
       });
       window.addEventListener('load', function() {
