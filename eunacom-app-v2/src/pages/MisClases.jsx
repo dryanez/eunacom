@@ -508,7 +508,7 @@ function EunacomQuestionsSection({ claseId, eunacomCode }) {
 /* ════════════════════════════════════════════════════════════════
    QUIZ SECTION — One question at a time
    ════════════════════════════════════════════════════════════════ */
-function QuizSection({ quiz, onComplete }) {
+function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
   const [currentQ, setCurrentQ] = useState(0)
   const [selected, setSelected] = useState({})
   const [showScore, setShowScore] = useState(false)
@@ -568,14 +568,29 @@ function QuizSection({ quiz, onComplete }) {
             {correctCount} de {total} correctas
           </div>
         </div>
-        <button onClick={resetQuiz} style={{
-          display: 'flex', alignItems: 'center', gap: '0.5rem',
-          padding: '0.7rem 1.5rem', borderRadius: '10px', border: 'none',
-          background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
-          fontSize: '0.9rem', fontWeight: 600
-        }}>
-          <RotateCcw size={16} /> Reintentar Quiz
-        </button>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.5rem' }}>
+          {onNextClass && (
+            <button onClick={onNextClass} style={{
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+              padding: '0.75rem 1.6rem', borderRadius: '10px', border: 'none',
+              background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+              fontSize: '0.95rem', fontWeight: 700, boxShadow: '0 4px 15px rgba(19,91,236,0.35)',
+              touchAction: 'manipulation'
+            }}>
+              Siguiente Clase <ArrowRight size={18} />
+            </button>
+          )}
+          <button onClick={resetQuiz} style={{
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+            padding: '0.75rem 1.4rem', borderRadius: '10px',
+            border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: 'var(--text-primary)', cursor: 'pointer',
+            fontSize: '0.9rem', fontWeight: 600,
+            touchAction: 'manipulation'
+          }}>
+            <RotateCcw size={16} /> Reintentar Quiz
+          </button>
+        </div>
       </div>
     )
   }
@@ -923,7 +938,7 @@ function PerfilBadge({ label, prefix }) {
   )
 }
 
-function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuizComplete, onVideoWatched, progressMap }) {
+function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuizComplete, onVideoWatched, progressMap, onNextClass, nextClase }) {
   const [step, setStep] = useState(0)
   const [showQuizPrompt, setShowQuizPrompt] = useState(false)
   const hasTranscript = !!clase.cleanTranscript
@@ -1086,7 +1101,7 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
         </div>
       )}
       {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
-      {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
+      {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onNextClass={onNextClass} nextClase={nextClase} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
       {step === 3 && (
         <PruebasView
           specialty={clase.specialty}
@@ -1096,28 +1111,50 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
         />
       )}
 
-      {step < maxStep && (
-        <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
-          {step > 0 && (
-            <button onClick={goPrev} style={{
-              display: 'flex', alignItems: 'center', gap: '0.4rem',
-              padding: '0.7rem 1.3rem', borderRadius: '10px',
-              border: '1px solid var(--border-color)', background: 'var(--surface-700)',
-              color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600,
-            }}>
-              <ArrowLeft size={16} /> {steps[step - 1].label}
-            </button>
-          )}
+      <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
+        {step > 0 && (
+          <button onClick={goPrev} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.3rem', borderRadius: '10px',
+            border: '1px solid var(--border-color)', background: 'var(--surface-700)',
+            color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600,
+          }}>
+            <ArrowLeft size={16} /> {steps[step - 1].label}
+          </button>
+        )}
+
+        {step === 2 && onNextClass ? (
+          <button onClick={onNextClass} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
+            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
+          }}>
+            Siguiente Clase <ArrowRight size={16} />
+          </button>
+        ) : step < maxStep ? (
           <button onClick={goNext} style={{
             display: 'flex', alignItems: 'center', gap: '0.4rem',
             padding: '0.7rem 1.3rem', borderRadius: '10px', border: 'none',
             background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
             fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
           }}>
             {steps[step + 1].label} <ArrowRight size={16} />
           </button>
-        </div>
-      )}
+        ) : onNextClass ? (
+          <button onClick={onNextClass} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
+            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
+          }}>
+            Siguiente Clase <ArrowRight size={16} />
+          </button>
+        ) : null}
+      </div>
     </div>
   )
 }
@@ -2967,6 +3004,17 @@ const MisClases = () => {
     if (loadingDetail || !selectedClase) {
       return <LoadingScreen context="clases" />
     }
+    const currentIndex = clases.findIndex(c => c.id === selectedClase.id)
+    const nextClase = currentIndex >= 0 && currentIndex < clases.length - 1 ? clases[currentIndex + 1] : null
+    const handleNextClass = () => {
+      if (nextClase) {
+        setSelectedId(nextClase.id)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        closeDetail()
+      }
+    }
+
     return (
       <div style={{ paddingBottom: '2rem' }}>
         <ClaseDetail
@@ -2975,6 +3023,8 @@ const MisClases = () => {
           onNavigateToTopic={navigateToTopic}
           onTrackProgress={trackProgress}
           progressMap={progressMap}
+          nextClase={nextClase}
+          onNextClass={handleNextClass}
           onVideoWatched={async (claseId) => {
             try {
               await saveClaseProgress({ userId: user.id, claseId, videoWatched: 1 })
