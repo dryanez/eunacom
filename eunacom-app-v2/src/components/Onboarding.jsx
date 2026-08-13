@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { saveUserProfile } from '../lib/api'
-import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles, X } from 'lucide-react'
+import { ChevronRight, ChevronLeft, User, Calendar, Globe, Phone, Stethoscope, Sparkles, X, Loader2 } from 'lucide-react'
 
 // ─── TOUR SLIDES ─────────────────────────────────────────────────────────
 const SLIDES = [
@@ -156,8 +156,8 @@ const Onboarding = ({ user, onComplete }) => {
     } catch (e) {
       console.error('Onboarding save error:', e)
       setError('Error al guardar. Intenta de nuevo.')
+      setSaving(false)
     }
-    setSaving(false)
   }
 
   const handleSkip = async () => {
@@ -170,8 +170,8 @@ const Onboarding = ({ user, onComplete }) => {
       })
     } catch (e) {
       console.error('Onboarding skip error:', e)
+      setSaving(false)
     }
-    setSaving(false)
   }
 
   // ─── TOUR PHASE ───────────────────────────────────────────────────────
@@ -282,7 +282,7 @@ const Onboarding = ({ user, onComplete }) => {
         overflowY: 'auto',
         WebkitOverflowScrolling: 'touch',
         display: 'flex',
-        alignItems: 'flex-start',   // not center — lets content scroll above fold
+        alignItems: 'flex-start',
         justifyContent: 'center',
         padding: '16px 16px calc(16px + env(safe-area-inset-bottom))',
         paddingTop: 'max(16px, env(safe-area-inset-top))',
@@ -295,7 +295,6 @@ const Onboarding = ({ user, onComplete }) => {
           width: '100%',
           border: '1px solid rgba(255,255,255,0.08)',
           boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-          // Small top margin so card isn't glued to top on large screens
           marginTop: 'auto',
           marginBottom: 'auto',
           position: 'relative',
@@ -420,6 +419,7 @@ const Onboarding = ({ user, onComplete }) => {
                       fontSize: '0.82rem',
                       fontFamily: 'var(--font)',
                       transition: 'all 0.15s',
+                      touchAction: 'manipulation'
                     }}
                   >
                     {opt}
@@ -449,11 +449,17 @@ const Onboarding = ({ user, onComplete }) => {
               padding: '0.85rem',
               fontSize: '0.95rem',
               minHeight: 48,
-              opacity: (!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) ? 0.5 : 1,
+              opacity: ((!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) || saving) ? 0.5 : 1,
               cursor: ((!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) || saving) ? 'not-allowed' : 'pointer',
             }}
           >
-            {saving ? 'Guardando...' : '¡Empezar a estudiar! 🚀'}
+            {saving ? (
+              <>
+                <Loader2 size={18} className="spin" /> Guardando...
+              </>
+            ) : (
+              '¡Empezar a estudiar! 🚀'
+            )}
           </button>
         </div>
       </div>
@@ -468,6 +474,8 @@ const btnPrimary = {
   color: '#fff', border: 'none', borderRadius: 'var(--radius)',
   fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer',
   fontFamily: 'var(--font)', minHeight: 44,
+  touchAction: 'manipulation',
+  transition: 'transform 0.1s ease, opacity 0.15s ease'
 }
 const btnSecondary = {
   display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
@@ -475,6 +483,8 @@ const btnSecondary = {
   color: 'var(--surface-300)', border: 'none', borderRadius: 'var(--radius)',
   fontWeight: 600, fontSize: '0.82rem', cursor: 'pointer',
   fontFamily: 'var(--font)', minHeight: 44,
+  touchAction: 'manipulation',
+  transition: 'transform 0.1s ease, opacity 0.15s ease'
 }
 const labelStyle = {
   display: 'block', fontSize: '0.82rem', fontWeight: 700,
@@ -491,3 +501,4 @@ const inputStyle = {
 }
 
 export default Onboarding
+

@@ -233,13 +233,19 @@ button {
   border-radius: var(--radius);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
+  touch-action: manipulation;
 }
 
 .sidebar__link:hover {
   background: rgba(255, 255, 255, 0.12);
   color: white;
   transform: translateX(2px);
+}
+
+.sidebar__link:active {
+  transform: scale(0.97);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .sidebar__link--active {
@@ -1029,17 +1035,23 @@ polyline {
     font-weight: 500;
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius);
-    transition: all 0.2s;
+    transition: all 0.15s ease;
     background: none;
     border: none;
     cursor: pointer;
     font-family: var(--font);
     min-width: 65px;
     flex-shrink: 0;
+    touch-action: manipulation;
   }
 
   .bottom-nav__link:hover {
     color: var(--surface-200);
+  }
+
+  .bottom-nav__link:active {
+    transform: scale(0.94);
+    color: var(--primary-300);
   }
 
   .bottom-nav__link--active {

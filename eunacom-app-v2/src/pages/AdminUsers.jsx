@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess, fetchAppSettings, updateAppSetting } from '../lib/api'
+import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess, fetchAppSettings, updateAppSetting, fetchPaypalTransactions, downloadPaypalCsv } from '../lib/api'
 import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
-  CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings
+  CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings,
+  Download, CreditCard
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
 
@@ -308,11 +309,15 @@ const AdminUsers = () => {
   const [showCampaignModal, setShowCampaignModal] = useState(false)
   const [freemiumMode, setFreemiumMode] = useState('strict')
   const [updatingMode, setUpdatingMode] = useState(false)
+  const [activeTab, setActiveTab] = useState('users') // 'users' | 'paypal'
+  const [paypalTxns, setPaypalTxns] = useState([])
+  const [paypalLoading, setPaypalLoading] = useState(false)
 
   useEffect(() => {
     if (user && isAdmin()) {
       loadUsers()
       loadSettings()
+      loadPaypalTxns()
     }
   }, [user])
 
@@ -336,6 +341,18 @@ const AdminUsers = () => {
       }
     } catch (e) {
       console.error('Error loading app settings:', e)
+    }
+  }
+
+  const loadPaypalTxns = async () => {
+    setPaypalLoading(true)
+    try {
+      const data = await fetchPaypalTransactions(user.email)
+      setPaypalTxns(data)
+    } catch (e) {
+      console.error('Error loading PayPal transactions:', e)
+    } finally {
+      setPaypalLoading(false)
     }
   }
 
@@ -443,11 +460,40 @@ const AdminUsers = () => {
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
         <Users size={28} color="var(--primary-400)" />
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>Usuarios</h1>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>Administración</h1>
           <p style={{ color: 'var(--surface-400)', fontSize: '0.85rem', margin: 0 }}>{users.length} usuarios registrados</p>
         </div>
       </div>
 
+      {/* Tab Selector */}
+      <div style={{ display: 'flex', gap: '0.25rem', background: 'var(--surface-800)', padding: '0.25rem', borderRadius: 'var(--radius)', marginBottom: '1.5rem', width: 'fit-content' }}>
+        <button
+          onClick={() => setActiveTab('users')}
+          style={{
+            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: activeTab === 'users' ? 'var(--primary-600)' : 'transparent',
+            color: activeTab === 'users' ? '#fff' : 'var(--surface-400)'
+          }}
+        >
+          <Users size={16} /> Usuarios
+        </button>
+        <button
+          onClick={() => setActiveTab('paypal')}
+          style={{
+            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: activeTab === 'paypal' ? '#003087' : 'transparent',
+            color: activeTab === 'paypal' ? '#fff' : 'var(--surface-400)'
+          }}
+        >
+          <CreditCard size={16} /> PayPal ({paypalTxns.length})
+        </button>
+      </div>
+
+      {/* ═══ USERS TAB ═══ */}
+      {activeTab === 'users' && (
+      <>
       {/* Global Config Panel */}
       <div style={{
         background: 'rgba(59, 130, 246, 0.05)',
@@ -649,8 +695,126 @@ const AdminUsers = () => {
         targetUsers={filtered}
         adminEmail={user?.email}
       />
+    </>
+      )}
+
+      {/* ═══ PAYPAL TRANSACTIONS TAB ═══ */}
+      {activeTab === 'paypal' && (
+        <>
+          {/* PayPal Summary */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
+            <SummaryCard label="Total Transacciones" value={paypalTxns.length} color="#003087" />
+            <SummaryCard label="Usuarios Matcheados" value={paypalTxns.filter(t => t.user_id).length} color="var(--accent-green)" />
+            <SummaryCard label="Sin Match" value={paypalTxns.filter(t => !t.user_id).length} color="var(--accent-red)" />
+            <SummaryCard label="Completados" value={paypalTxns.filter(t => t.status === 'COMPLETED' || t.status === 'completed').length} color="var(--accent-teal)" />
+          </div>
+
+          {/* Actions */}
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => downloadPaypalCsv(user.email)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '0.65rem 1.25rem', background: '#003087',
+                border: 'none', borderRadius: 'var(--radius)', color: '#fff',
+                fontWeight: 600, cursor: 'pointer', outline: 'none', fontSize: '0.9rem'
+              }}
+            >
+              <Download size={16} /> Descargar Excel / CSV
+            </button>
+            <button
+              onClick={loadPaypalTxns}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '0.65rem 1rem', background: 'var(--surface-700)',
+                border: '1px solid rgba(255,255,255,0.08)', borderRadius: 'var(--radius)', color: 'var(--surface-200)',
+                fontWeight: 600, cursor: 'pointer', outline: 'none', fontSize: '0.9rem'
+              }}
+            >
+              Refrescar
+            </button>
+          </div>
+
+          {/* Transactions Table */}
+          {paypalLoading ? (
+            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--surface-400)' }}>Cargando transacciones PayPal...</div>
+          ) : paypalTxns.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--surface-400)' }}>
+              <CreditCard size={48} style={{ marginBottom: '1rem', opacity: 0.3 }} />
+              <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>No hay transacciones PayPal aún</p>
+              <p style={{ fontSize: '0.85rem' }}>Las transacciones aparecerán aquí automáticamente cuando se configure el webhook de PayPal.</p>
+            </div>
+          ) : (
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Fecha</th>
+                    <th style={thStyle}>Nombre</th>
+                    <th style={thStyle}>Email PayPal</th>
+                    <th style={thStyle}>Plan</th>
+                    <th style={thStyle}>Monto</th>
+                    <th style={thStyle}>Estado</th>
+                    <th style={thStyle}>Usuario Match</th>
+                    <th style={thStyle}>País</th>
+                    <th style={thStyle}>ID Transacción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paypalTxns.map(t => (
+                    <tr key={t.transaction_id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                      <TD>{fmtDateTime(t.payment_date || t.created_at)}</TD>
+                      <TD style={{ fontWeight: 600 }}>{t.payer_name || '—'}</TD>
+                      <TD>{t.payer_email || '—'}</TD>
+                      <TD>
+                        <span style={{
+                          background: t.plan_id ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.05)',
+                          color: t.plan_id ? 'var(--accent-blue)' : 'var(--surface-400)',
+                          padding: '2px 8px', borderRadius: 4, fontSize: '0.78rem', fontWeight: 600
+                        }}>
+                          {t.plan_id === '1m' ? '1 Mes' : t.plan_id === '3m' ? '3 Meses' : t.plan_id === '6m' ? '6 Meses' : t.plan_id === '1y' ? '1 Año' : t.plan_id || '—'}
+                        </span>
+                      </TD>
+                      <TD style={{ fontWeight: 700 }}>{t.amount ? `${t.currency || 'USD'} ${t.amount}` : '—'}</TD>
+                      <TD>
+                        <span style={{
+                          background: (t.status === 'COMPLETED' || t.status === 'completed') ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)',
+                          color: (t.status === 'COMPLETED' || t.status === 'completed') ? '#34d399' : '#f87171',
+                          padding: '2px 8px', borderRadius: 4, fontSize: '0.75rem', fontWeight: 600
+                        }}>
+                          {t.status || '—'}
+                        </span>
+                      </TD>
+                      <TD>
+                        {t.user_id ? (
+                          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                            <CheckCircle size={14} color="var(--accent-green)" />
+                            <span style={{ fontSize: '0.78rem' }}>{t.profile_name || t.profile_email || t.user_id.slice(0, 8)}</span>
+                          </span>
+                        ) : (
+                          <span style={{ color: 'var(--surface-500)', fontSize: '0.78rem' }}>Sin match</span>
+                        )}
+                      </TD>
+                      <TD>{t.payer_country || t.profile_country || '—'}</TD>
+                      <TD style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontFamily: 'monospace' }}>{t.transaction_id?.slice(0, 16)}...</TD>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
+}
+
+const thStyle = {
+  padding: '0.75rem 1rem', textAlign: 'left', fontWeight: 700,
+  fontSize: '0.78rem', color: 'var(--surface-300)',
+  borderBottom: '2px solid rgba(255,255,255,0.08)',
+  whiteSpace: 'nowrap', textTransform: 'uppercase',
+  letterSpacing: '0.05em',
 }
 
 export default AdminUsers

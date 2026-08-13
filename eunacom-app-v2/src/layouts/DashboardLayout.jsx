@@ -6,6 +6,7 @@ import DashboardHeader from '../components/DashboardHeader'
 import Onboarding from '../components/Onboarding'
 import FounderPopup from '../components/FounderPopup'
 import BottomNavigation from '../components/BottomNavigation'
+import TopLoadingBar from '../components/TopLoadingBar'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 const DashboardLayout = () => {
@@ -55,6 +56,7 @@ const DashboardLayout = () => {
 
     return (
         <div className="app-layout">
+            <TopLoadingBar />
             <Sidebar mobileOpen={mobileOpen} onToggle={() => setMobileOpen(false)} />
             {mobileOpen && (
                 <div

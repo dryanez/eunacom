@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar'
 import DashboardHeader from '../components/DashboardHeader'
 import Onboarding from '../components/Onboarding'
 import BottomNavigation from '../components/BottomNavigation'
+import TopLoadingBar from '../components/TopLoadingBar'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 // Layout for pages that are visible without login (dashboard, reconstructions list)
@@ -46,6 +47,7 @@ const PublicLayout = () => {
 
   return (
     <div className="app-layout">
+      <TopLoadingBar />
       <Sidebar mobileOpen={mobileOpen} onToggle={() => setMobileOpen(false)} />
       {mobileOpen && (
         <div

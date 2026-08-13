@@ -212,6 +212,17 @@ export async function createDonationSession(userId) {
   })
 }
 
+// ── PAYPAL TRANSACTIONS (Admin) ───────────────────────────────────────────────
+
+export async function fetchPaypalTransactions(adminEmail) {
+  const data = await apiFetch(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}`)
+  return data.data || []
+}
+
+export function downloadPaypalCsv(adminEmail) {
+  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+}
+
 // ── MAILING CAMPAIGNS ─────────────────────────────────────────────────────────
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {

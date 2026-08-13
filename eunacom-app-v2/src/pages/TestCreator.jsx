@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { PlayCircle, Clock, CheckCircle2, AlertCircle, Flag, ChevronDown, ChevronRight, RefreshCw, BookOpen } from 'lucide-react'
+import { PlayCircle, Clock, CheckCircle2, Circle, AlertCircle, Flag, ChevronDown, ChevronRight, RefreshCw, BookOpen, Loader2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
@@ -15,8 +15,8 @@ const TestCreator = () => {
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
     const [isCreating, setIsCreating] = useState(false)
+    const [createError, setCreateError] = useState('')
     const [userProgress, setUserProgress] = useState({})
-    const [recentTests, setRecentTests] = useState([])
     const [questionDB, setQuestionDB] = useState([])
     const [showLoginGate, setShowLoginGate] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
@@ -31,6 +31,7 @@ const TestCreator = () => {
 
     const [expandedCategories, setExpandedCategories] = useState({})
     const [selectedTopics, setSelectedTopics] = useState({})
+    const [initialSelectDone, setInitialSelectDone] = useState(false)
 
     // --- Data Fetching ---
     useEffect(() => {
@@ -133,6 +134,14 @@ const TestCreator = () => {
         return { counts, filteredByStatus: filteredIds, subjects }
     }, [questionDB, userProgress, statusFilters])
 
+    // --- Auto-select all topics on initial data load ---
+    useEffect(() => {
+        if (!initialSelectDone && Object.keys(categories).length > 0) {
+            handleSelectAllTopics()
+            setInitialSelectDone(true)
+        }
+    }, [categories, initialSelectDone])
+
     // --- Questions currently selected by tab + topic checkboxes ---
     const selectedQuestions = useMemo(() => {
         const result = []
@@ -143,7 +152,7 @@ const TestCreator = () => {
             if (selectedTopics[cat]?.[topic]) result.push(q)
         })
         return result
-    }, [filteredByStatus, selectedTopics])
+    }, [questionDB, filteredByStatus, selectedTopics])
 
     const maxQuestions = selectedQuestions.length
 
@@ -181,18 +190,21 @@ const TestCreator = () => {
     const handleDeselectAll = () => setSelectedTopics({})
 
     const allTopicsSelected = useMemo(() => {
+        if (Object.keys(categories).length === 0) return false
         return Object.entries(categories).every(([cat, topics]) =>
             Object.keys(topics).every(t => selectedTopics[cat]?.[t])
         )
     }, [categories, selectedTopics])
 
     // --- Time estimation ---
-    const timeEstimateM = Math.max(1, parseInt(numQuestions) || 1)
+    const activeNum = Math.max(1, parseInt(numQuestions) || 1)
+    const timeEstimateM = Math.max(1, activeNum)
     const timeEstimateH = Math.floor(timeEstimateM / 60)
     const timeEstimateRem = timeEstimateM % 60
 
     // --- Create Test ---
     const handleStartExam = async () => {
+        setCreateError('')
         if (!user) { setShowLoginGate(true); return }
         const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededQuestions;
         if (isLocked) {
@@ -200,14 +212,12 @@ const TestCreator = () => {
             return
         }
         if (maxQuestions === 0) {
-            alert('Selecciona al menos un tema y un estado de preguntas.')
+            setCreateError('Selecciona al menos un tema y un estado con preguntas disponibles.')
             return
         }
-        const n = Math.min(parseInt(numQuestions) || 1, maxQuestions)
+        const n = Math.min(Math.max(1, parseInt(numQuestions) || 1), maxQuestions)
         setIsCreating(true)
         try {
-            if (!user) throw new Error('Debes iniciar sesión.')
-
             const shuffled = [...selectedQuestions].sort(() => 0.5 - Math.random())
             const picked = shuffled.slice(0, n)
             const questionIds = picked.map(q => q.id)
@@ -225,8 +235,7 @@ const TestCreator = () => {
             navigate('/test-runner', { state: { testId, questions: picked } })
         } catch (err) {
             console.error('Full error:', err)
-            alert('Error al crear el examen: ' + (err.message || String(err)))
-        } finally {
+            setCreateError('Error al crear el examen: ' + (err.message || String(err)))
             setIsCreating(false)
         }
     }
@@ -252,18 +261,32 @@ const TestCreator = () => {
                 <div className="grid-2-responsive">
                     {[
                         { id: 'tutor', label: 'Modo Tutor', desc: 'Feedback inmediato después de cada respuesta.' },
-                        { id: 'timed', label: 'Modo Tiempo', desc: 'Simula condiciones reales del EUNACOM.' }
-                    ].map(m => (
-                        <button key={m.id} onClick={() => setMode(m.id)} style={{
-                            padding: '1rem', borderRadius: 'var(--radius)',
-                            border: `2px solid ${mode === m.id ? 'var(--primary-500)' : 'var(--surface-600)'}`,
-                            background: mode === m.id ? 'rgba(19,91,236,0.12)' : 'transparent',
-                            color: 'white', textAlign: 'left', cursor: 'pointer', transition: 'all 0.2s'
-                        }}>
-                            <div style={{ fontWeight: 700 }}>{m.label}</div>
-                            <div style={{ fontSize: '0.8rem', color: 'var(--surface-400)', marginTop: '0.25rem' }}>{m.desc}</div>
-                        </button>
-                    ))}
+                        { id: 'timed', label: 'Modo Tiempo', desc: 'Simula condiciones reales del EUNACOM (1 min/pregunta).' }
+                    ].map(m => {
+                        const isActive = mode === m.id
+                        return (
+                            <button key={m.id} onClick={() => setMode(m.id)} style={{
+                                position: 'relative',
+                                padding: '1.1rem 1.25rem', borderRadius: 'var(--radius-xl)',
+                                border: `2px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
+                                background: isActive ? 'rgba(19,91,236,0.18)' : 'var(--surface-800)',
+                                color: 'white', textAlign: 'left', cursor: 'pointer',
+                                boxShadow: isActive ? '0 0 16px rgba(19,91,236,0.3)' : 'none',
+                                transition: 'all 0.2s ease',
+                                outline: 'none'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                                    <span style={{ fontWeight: 800, fontSize: '1rem', color: isActive ? '#fff' : 'var(--surface-200)' }}>{m.label}</span>
+                                    {isActive ? (
+                                        <CheckCircle2 size={20} color="var(--primary-400)" style={{ flexShrink: 0 }} />
+                                    ) : (
+                                        <Circle size={18} color="var(--surface-500)" style={{ flexShrink: 0 }} />
+                                    )}
+                                </div>
+                                <div style={{ fontSize: '0.82rem', color: isActive ? 'var(--surface-200)' : 'var(--surface-400)', lineHeight: 1.4 }}>{m.desc}</div>
+                            </button>
+                        )
+                    })}
                 </div>
             </div>
 
@@ -272,87 +295,128 @@ const TestCreator = () => {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                     <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Estado de Preguntas</h3>
                     {loading && <span style={{ color: 'var(--surface-400)', fontSize: '0.85rem' }}>Cargando...</span>}
-                    {!loading && <button onClick={fetchData} style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.85rem' }}>
+                    {!loading && <button onClick={fetchData} style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.85rem', fontWeight: 600 }}>
                         <RefreshCw size={14} /> Actualizar
                     </button>}
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                    {statusConfig.map(({ key, label, color, icon: Icon }) => (
-                        <label key={key} style={{
-                            display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer',
-                            padding: '0.6rem 1rem', borderRadius: 'var(--radius)',
-                            border: `1px solid ${statusFilters[key] ? color : 'var(--surface-600)'}`,
-                            background: statusFilters[key] ? `${color}18` : 'transparent',
-                            transition: 'all 0.2s'
-                        }}>
-                            <input type="checkbox" checked={statusFilters[key]} onChange={() => toggleStatus(key)} style={{ display: 'none' }} />
-                            <Icon size={16} color={statusFilters[key] ? color : 'var(--surface-400)'} />
-                            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>{label}</span>
-                            <span style={{
-                                background: statusFilters[key] ? color : 'var(--surface-700)',
-                                color: statusFilters[key] ? '#000' : 'var(--surface-300)',
-                                borderRadius: '999px', padding: '1px 8px', fontSize: '0.8rem', fontWeight: 700
-                            }}>{counts[key]}</span>
-                        </label>
-                    ))}
+                    {statusConfig.map(({ key, label, color, icon: Icon }) => {
+                        const isChecked = !!statusFilters[key]
+                        return (
+                            <button
+                                key={key}
+                                type="button"
+                                onClick={() => toggleStatus(key)}
+                                style={{
+                                    display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer',
+                                    padding: '0.65rem 1rem', borderRadius: 'var(--radius-full)',
+                                    border: `2px solid ${isChecked ? color : 'var(--surface-600)'}`,
+                                    background: isChecked ? `${color}22` : 'var(--surface-800)',
+                                    color: isChecked ? '#fff' : 'var(--surface-300)',
+                                    fontWeight: isChecked ? 700 : 500,
+                                    fontSize: '0.88rem',
+                                    boxShadow: isChecked ? `0 0 12px ${color}33` : 'none',
+                                    transition: 'all 0.18s ease'
+                                }}
+                            >
+                                {isChecked ? <CheckCircle2 size={16} color={color} /> : <Circle size={16} color="var(--surface-500)" />}
+                                <span>{label}</span>
+                                <span style={{
+                                    background: isChecked ? color : 'var(--surface-700)',
+                                    color: isChecked ? '#000' : 'var(--surface-300)',
+                                    borderRadius: '999px', padding: '2px 8px', fontSize: '0.78rem', fontWeight: 800
+                                }}>{counts[key]}</span>
+                            </button>
+                        )
+                    })}
                 </div>
             </div>
 
             {/* ── TOPICS ── */}
             <div className="card" style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <div>
-                        <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Temas</h3>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--surface-400)' }}>
-                            {maxQuestions} pregunta{maxQuestions !== 1 ? 's' : ''} disponibles con estos filtros
+                        <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Temas y Especialidades</h3>
+                        <span style={{ fontSize: '0.82rem', color: maxQuestions > 0 ? 'var(--accent-green)' : 'var(--accent-amber)', fontWeight: 600 }}>
+                            {maxQuestions} pregunta{maxQuestions !== 1 ? 's' : ''} disponibles seleccionadas
                         </span>
                     </div>
                     <button
+                        type="button"
                         onClick={allTopicsSelected ? handleDeselectAll : handleSelectAllTopics}
-                        style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}
+                        style={{ background: 'rgba(19,91,236,0.1)', border: '1px solid rgba(19,91,236,0.3)', color: 'var(--primary-400)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, padding: '0.4rem 0.85rem', borderRadius: 'var(--radius-full)' }}
                     >
                         {allTopicsSelected ? 'Deseleccionar todo' : 'Seleccionar todo'}
                     </button>
                 </div>
-                <div style={{ maxHeight: '380px', overflowY: 'auto' }}>
+                <div style={{ maxHeight: '420px', overflowY: 'auto', paddingRight: '0.25rem' }}>
                     {Object.keys(categories).sort().map(cat => {
                         const topics = categories[cat]
                         const topicList = Object.keys(topics).sort()
-                        const isExpanded = expandedCategories[cat] !== false // default expanded
+                        const isExpanded = expandedCategories[cat] !== false
                         const totalCatCount = topicList.reduce((acc, t) => {
                             return acc + (questionDB.filter(q => q.category === cat && q.topic === t && filteredByStatus.has(q.id)).length)
                         }, 0)
-                        const allCatSelected = topicList.every(t => selectedTopics[cat]?.[t])
+                        const selectedCount = topicList.filter(t => selectedTopics[cat]?.[t]).length
+                        const allCatSelected = topicList.length > 0 && selectedCount === topicList.length
 
                         return (
-                            <div key={cat} style={{ marginBottom: '0.5rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 0' }}>
-                                    <button onClick={() => toggleCategoryExpand(cat)}
-                                        style={{ background: 'transparent', border: 'none', color: 'var(--surface-300)', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                        {isExpanded ? <ChevronDown size={17} /> : <ChevronRight size={17} />}
+                            <div key={cat} style={{ marginBottom: '0.6rem', background: 'rgba(255,255,255,0.02)', borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 0.85rem', background: 'var(--surface-800)' }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => toggleCategoryExpand(cat)}
+                                        style={{ background: 'transparent', border: 'none', color: 'var(--surface-300)', padding: 4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                                        aria-label={isExpanded ? "Colapsar categoría" : "Expandir categoría"}
+                                    >
+                                        {isExpanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                                     </button>
-                                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', flex: 1 }}>
-                                        <input type="checkbox" checked={allCatSelected} onChange={() => toggleCategorySelection(cat)}
-                                            style={{ width: '17px', height: '17px', accentColor: 'var(--primary-400)' }} />
-                                        <strong style={{ fontWeight: 700 }}>{cat}</strong>
-                                        <span style={{ background: 'var(--surface-700)', color: 'var(--surface-300)', borderRadius: '999px', padding: '1px 8px', fontSize: '0.75rem', fontWeight: 600 }}>
-                                            {totalCatCount}
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', flex: 1, minHeight: '36px' }}>
+                                        <input
+                                            type="checkbox"
+                                            checked={allCatSelected}
+                                            onChange={() => toggleCategorySelection(cat)}
+                                            style={{ width: '19px', height: '19px', accentColor: 'var(--primary-400)', cursor: 'pointer' }}
+                                        />
+                                        <strong style={{ fontWeight: 700, fontSize: '0.95rem' }}>{cat}</strong>
+                                        <span style={{
+                                            background: selectedCount > 0 ? 'rgba(19,91,236,0.2)' : 'var(--surface-700)',
+                                            color: selectedCount > 0 ? 'var(--primary-300)' : 'var(--surface-400)',
+                                            borderRadius: '999px', padding: '2px 10px', fontSize: '0.75rem', fontWeight: 700, marginLeft: 'auto'
+                                        }}>
+                                            {selectedCount}/{topicList.length} temas ({totalCatCount} pgs)
                                         </span>
                                     </label>
                                 </div>
                                 {isExpanded && (
-                                    <div style={{ paddingLeft: '2.5rem', borderLeft: '1px solid rgba(255,255,255,0.08)', marginLeft: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.25rem', marginBottom: '0.5rem' }}>
+                                    <div style={{ padding: '0.5rem 0.85rem 0.6rem 2.25rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                                         {topicList.map(topic => {
                                             const topicCount = questionDB.filter(q => q.category === cat && q.topic === topic && filteredByStatus.has(q.id)).length
+                                            const isChecked = !!selectedTopics[cat]?.[topic]
                                             return (
-                                                <label key={topic} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: topicCount === 0 ? 'not-allowed' : 'pointer', opacity: topicCount === 0 ? 0.4 : 1 }}>
-                                                    <input type="checkbox"
-                                                        checked={!!selectedTopics[cat]?.[topic]}
+                                                <label
+                                                    key={topic}
+                                                    style={{
+                                                        display: 'flex', alignItems: 'center', gap: '0.75rem',
+                                                        cursor: topicCount === 0 ? 'not-allowed' : 'pointer',
+                                                        opacity: topicCount === 0 ? 0.35 : 1,
+                                                        padding: '0.45rem 0.65rem',
+                                                        borderRadius: 'var(--radius)',
+                                                        background: isChecked ? 'rgba(19,91,236,0.12)' : 'transparent',
+                                                        border: `1px solid ${isChecked ? 'rgba(19,91,236,0.3)' : 'transparent'}`,
+                                                        transition: 'all 0.15s ease',
+                                                        minHeight: '40px'
+                                                    }}
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={isChecked}
                                                         onChange={() => topicCount > 0 && toggleTopicSelection(cat, topic)}
                                                         disabled={topicCount === 0}
-                                                        style={{ width: '15px', height: '15px', accentColor: 'var(--primary-400)' }} />
-                                                    <span style={{ fontSize: '0.93rem' }}>{topic}</span>
-                                                    <span style={{ color: 'var(--surface-400)', fontSize: '0.8rem' }}>({topicCount})</span>
+                                                        style={{ width: '17px', height: '17px', accentColor: 'var(--primary-400)', cursor: topicCount === 0 ? 'not-allowed' : 'pointer' }}
+                                                    />
+                                                    <span style={{ fontSize: '0.9rem', fontWeight: isChecked ? 600 : 400, flex: 1 }}>{topic}</span>
+                                                    <span style={{ color: isChecked ? 'var(--primary-300)' : 'var(--surface-400)', fontSize: '0.8rem', fontWeight: 600 }}>({topicCount})</span>
                                                 </label>
                                             )
                                         })}
@@ -380,15 +444,20 @@ const TestCreator = () => {
                         min={1}
                         max={maxQuestions || 1}
                         value={numQuestions}
-                        onChange={e => setNumQuestions(e.target.value)}
+                        onChange={e => {
+                            const val = e.target.value
+                            setNumQuestions(val)
+                        }}
                         onBlur={e => {
                             const val = parseInt(e.target.value) || 1
-                            setNumQuestions(String(Math.min(Math.max(val, 1), maxQuestions || 1)))
+                            const clamped = Math.min(Math.max(val, 1), Math.max(1, maxQuestions))
+                            setNumQuestions(String(clamped))
                         }}
                         style={{
                             width: '90px', padding: '0.75rem', fontSize: '1.4rem', fontWeight: 800,
                             textAlign: 'center', background: 'var(--surface-800)', color: 'white',
-                            border: '2px solid var(--primary-500)', borderRadius: 'var(--radius)', outline: 'none'
+                            border: '2px solid var(--primary-400)', borderRadius: 'var(--radius-xl)', outline: 'none',
+                            boxShadow: '0 0 10px rgba(19,91,236,0.2)'
                         }}
                     />
                     <div>
@@ -403,36 +472,81 @@ const TestCreator = () => {
                     </div>
                     <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                         {[10, 25, 40, 'Todas'].map(n => {
-                            const val = n === 'Todas' ? maxQuestions : Math.min(n, maxQuestions)
-                            const isActive = n === 'Todas' ? parseInt(numQuestions) === maxQuestions : parseInt(numQuestions) === n
+                            const targetVal = n === 'Todas' ? Math.max(1, maxQuestions) : Math.min(n, Math.max(1, maxQuestions))
+                            const currentVal = parseInt(numQuestions) || 0
+                            const isActive = n === 'Todas' ? currentVal === maxQuestions && maxQuestions > 0 : currentVal === n
                             
                             return (
-                                <button key={n} onClick={() => setNumQuestions(String(val))} style={{
-                                    padding: '0.4rem 0.75rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 600,
-                                    border: `1px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
-                                    background: isActive ? 'rgba(19,91,236,0.2)' : 'transparent',
-                                    color: isActive ? 'var(--primary-400)' : 'var(--surface-400)', cursor: 'pointer'
-                                }}>{n}</button>
+                                <button
+                                    key={n}
+                                    type="button"
+                                    onClick={() => setNumQuestions(String(targetVal))}
+                                    style={{
+                                        padding: '0.5rem 0.9rem', borderRadius: 'var(--radius-full)', fontSize: '0.85rem', fontWeight: 700,
+                                        border: `2px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
+                                        background: isActive ? 'var(--gradient-primary)' : 'var(--surface-800)',
+                                        color: isActive ? '#fff' : 'var(--surface-300)', cursor: 'pointer',
+                                        boxShadow: isActive ? '0 4px 12px rgba(19,91,236,0.4)' : 'none',
+                                        transition: 'all 0.18s ease'
+                                    }}
+                                >
+                                    {n}
+                                </button>
                             )
                         })}
                     </div>
                 </div>
             </div>
 
-            {/* ── START BUTTON ── */}
+            {/* ── START BUTTON + ERROR WARNING ── */}
             <div style={{ position: 'sticky', bottom: '1.5rem', zIndex: 10 }}>
+                {createError && (
+                    <div style={{
+                        background: 'rgba(239, 68, 68, 0.18)', border: '1.5px solid #ef4444',
+                        borderRadius: 'var(--radius)', padding: '0.85rem 1rem', marginBottom: '0.75rem',
+                        color: '#fca5a5', fontSize: '0.88rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem'
+                    }}>
+                        <AlertCircle size={18} color="#ef4444" style={{ flexShrink: 0 }} />
+                        <span>{createError}</span>
+                    </div>
+                )}
+                {maxQuestions === 0 && !createError && (
+                    <div style={{
+                        background: 'rgba(245, 158, 11, 0.15)', border: '1.5px solid #f59e0b',
+                        borderRadius: 'var(--radius)', padding: '0.75rem 1rem', marginBottom: '0.75rem',
+                        color: '#fef08a', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem'
+                    }}>
+                        <AlertCircle size={18} color="#f59e0b" style={{ flexShrink: 0 }} />
+                        <span>⚠️ Selecciona al menos un tema y un estado con preguntas disponibles para poder iniciar.</span>
+                    </div>
+                )}
                 <button
                     onClick={handleStartExam}
                     disabled={maxQuestions === 0 || isCreating}
                     className="btn-primary btn-primary--full"
-                    style={{ padding: '1.25rem', fontSize: '1.05rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem', opacity: maxQuestions === 0 ? 0.45 : 1 }}
+                    style={{
+                        padding: '1.25rem', fontSize: '1.05rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem',
+                        opacity: (maxQuestions === 0 || isCreating) ? 0.5 : 1,
+                        cursor: (maxQuestions === 0 || isCreating) ? 'not-allowed' : 'pointer',
+                        boxShadow: (maxQuestions > 0 && !isCreating) ? '0 8px 25px rgba(19,91,236,0.45)' : 'none',
+                        transition: 'all 0.2s ease'
+                    }}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <PlayCircle size={22} />
-                        {isCreating ? 'Creando examen...' : `Comenzar Examen · ${Math.min(numQuestions, maxQuestions)} Preguntas`}
+                        {isCreating ? (
+                            <>
+                                <Loader2 size={22} className="spin" />
+                                <span>Creando examen...</span>
+                            </>
+                        ) : (
+                            <>
+                                <PlayCircle size={22} />
+                                <span>Comenzar Examen · {Math.min(activeNum, maxQuestions)} Preguntas</span>
+                            </>
+                        )}
                     </div>
-                    {maxQuestions > 0 && (
-                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
+                    {maxQuestions > 0 && !isCreating && (
+                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>
                             {mode === 'timed' ? '⏱ Modo Tiempo · 1 min/pregunta' : '💡 Modo Tutor · Feedback inmediato'}
                         </span>
                     )}
@@ -450,3 +564,4 @@ const TestCreator = () => {
 }
 
 export default TestCreator
+
