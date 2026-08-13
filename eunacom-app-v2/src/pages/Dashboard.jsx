@@ -241,7 +241,7 @@ const Dashboard = () => {
             Únete gratis y prepara tu EUNACOM
           </h2>
           <p style={{ fontSize: '0.88rem', color: 'var(--surface-300)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-            Más de 2.800 preguntas reales, exámenes completos, clases en video y ranking en tiempo real.
+            Más de 6.000 preguntas reales, exámenes completos, clases en video y ranking en tiempo real.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="/register" style={{
