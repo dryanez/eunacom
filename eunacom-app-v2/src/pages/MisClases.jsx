@@ -3148,7 +3148,7 @@ const MisClases = () => {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
         }}>
           <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
-            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 5 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
+            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
           </span>
           <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
             Desbloquear Ilimitado
