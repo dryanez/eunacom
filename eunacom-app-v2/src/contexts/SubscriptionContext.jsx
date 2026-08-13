@@ -85,17 +85,21 @@ export function SubscriptionProvider({ children }) {
               t.status === 'completed' && t.mode === 'simulation'
             ).length;
             
-            // Custom Questions: answered questions in non-reconstruction, non-simulation tests
+            // Custom Questions: count ALL questions in created custom tests
             let customQuestionsAnswered = 0;
-            const customTests = tests.filter(t => 
-              t.mode !== 'simulation' && !(t.questions && t.questions.includes('_q'))
-            );
+            const customTests = tests.filter(t => {
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
+              return t.mode !== 'simulation' && !qStr.includes('_q');
+            });
             
             customTests.forEach(t => {
               try {
-                const answers = typeof t.answers === 'string' ? JSON.parse(t.answers) : (t.answers || {});
-                customQuestionsAnswered += Object.keys(answers).length;
-              } catch (e) {}
+                const qList = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || []);
+                const count = t.total_questions || t.totalQuestions || (Array.isArray(qList) ? qList.length : 0);
+                customQuestionsAnswered += count;
+              } catch (e) {
+                if (t.total_questions) customQuestionsAnswered += t.total_questions;
+              }
             });
             
             setUsageStats({
