@@ -26,6 +26,8 @@ const Dashboard = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(window.globalDeferredPrompt || null)
   const [isIOS, setIsIOS] = useState(false)
   const [isStandalone, setIsStandalone] = useState(false)
+  const [isInstallClicked, setIsInstallClicked] = useState(() => localStorage.getItem('pwa_install_clicked') === 'true')
+  const [dismissed, setDismissed] = useState(() => localStorage.getItem('pwa_dismissed') === 'true')
 
   useEffect(() => {
     // Check if iOS
@@ -33,9 +35,23 @@ const Dashboard = () => {
     const isIosDevice = /iphone|ipad|ipod/.test(userAgent)
     setIsIOS(isIosDevice)
 
-    // Check if already installed
-    const isStand = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone
-    setIsStandalone(isStand)
+    // Check if already installed or running as standalone app / home shortcut
+    const checkStandalone = () => {
+      const isStand = 
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches ||
+        window.matchMedia('(display-mode: minimal-ui)').matches ||
+        window.navigator.standalone === true ||
+        document.referrer.includes('android-app://') ||
+        localStorage.getItem('pwa_installed') === 'true'
+      return Boolean(isStand)
+    }
+    setIsStandalone(checkStandalone())
+
+    const handleAppInstalled = () => {
+      setIsStandalone(true)
+      localStorage.setItem('pwa_installed', 'true')
+    }
 
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault()
@@ -46,6 +62,7 @@ const Dashboard = () => {
       setDeferredPrompt(window.globalDeferredPrompt)
     }
 
+    window.addEventListener('appinstalled', handleAppInstalled)
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
     window.addEventListener('pwa-prompt-ready', handlePromptReady)
     
@@ -54,21 +71,32 @@ const Dashboard = () => {
     }
 
     return () => {
+      window.removeEventListener('appinstalled', handleAppInstalled)
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
       window.removeEventListener('pwa-prompt-ready', handlePromptReady)
     }
   }, [])
 
   const handleInstallClick = async () => {
+    setIsInstallClicked(true)
+    localStorage.setItem('pwa_install_clicked', 'true')
+
     if (deferredPrompt) {
       deferredPrompt.prompt()
       const { outcome } = await deferredPrompt.userChoice
       if (outcome === 'accepted') {
         setDeferredPrompt(null)
+        setIsStandalone(true)
+        localStorage.setItem('pwa_installed', 'true')
       }
     } else if (isIOS) {
       alert("Para instalar en iPhone/iPad:\n1. Toca el ícono de Compartir (el cuadro con la flecha hacia arriba) en la parte inferior de Safari.\n2. Selecciona 'Agregar a Inicio'.")
     }
+  }
+
+  const handleDismiss = () => {
+    setDismissed(true)
+    localStorage.setItem('pwa_dismissed', 'true')
   }
 
   useEffect(() => {
@@ -203,30 +231,72 @@ const Dashboard = () => {
       </div>
 
       {/* ─── PWA INSTALL BANNER ─── */}
-      {!isStandalone && (deferredPrompt || isIOS) && (
-        <div style={{
-          background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
-          border: '1px solid rgba(19,91,236,0.3)', borderRadius: 'var(--radius-xl)',
-          padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap'
-        }}>
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Download size={18} color="var(--primary-400)" />
-              Instala la App de Eunacom
-            </h2>
-            <p style={{ fontSize: '0.85rem', color: 'var(--surface-300)', margin: 0, lineHeight: 1.5 }}>
-              No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo y cargar todo más rápido.
-            </p>
-          </div>
-          <button onClick={handleInstallClick} style={{
-            display: 'flex', alignItems: 'center', gap: '0.5rem',
-            padding: '0.75rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
-            borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(19,91,236,0.4)', whiteSpace: 'nowrap'
+      {!isStandalone && !dismissed && (deferredPrompt || isIOS) && (
+        isInstallClicked ? (
+          <div style={{
+            background: 'rgba(19,91,236,0.12)',
+            border: '1px solid rgba(19,91,236,0.25)',
+            borderRadius: 'var(--radius-full)',
+            padding: '0.55rem 1rem',
+            marginBottom: '1.25rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem'
           }}>
-            Instalar App
-          </button>
-        </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', fontWeight: 600, color: 'var(--surface-200)' }}>
+              <Download size={15} color="var(--primary-400)" />
+              <span>Instalar App EUNACOM</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <button onClick={handleInstallClick} style={{
+                padding: '0.35rem 0.9rem',
+                background: 'var(--gradient-primary)',
+                color: '#fff',
+                borderRadius: 'var(--radius-full)',
+                border: 'none',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                cursor: 'pointer'
+              }}>
+                Instalar App
+              </button>
+              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}>
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
+            border: '1px solid rgba(19,91,236,0.3)', borderRadius: 'var(--radius-xl)',
+            padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap',
+            position: 'relative'
+          }}>
+            <div style={{ flex: 1, minWidth: '200px' }}>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Download size={18} color="var(--primary-400)" />
+                Instala la App de Eunacom
+              </h2>
+              <p style={{ fontSize: '0.85rem', color: 'var(--surface-300)', margin: 0, lineHeight: 1.5 }}>
+                No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo y cargar todo más rápido.
+              </p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button onClick={handleInstallClick} style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                padding: '0.75rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
+                borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer',
+                boxShadow: '0 4px 15px rgba(19,91,236,0.4)', whiteSpace: 'nowrap'
+              }}>
+                Instalar App
+              </button>
+              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
+                <X size={18} />
+              </button>
+            </div>
+          </div>
+        )
       )}
 
       {/* ─── GUEST CTA ─── */}
