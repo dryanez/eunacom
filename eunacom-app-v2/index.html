@@ -6,9 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
     <meta name="description" content="Plataforma de Preparación para el Examen EUNACOM - Estudia de forma inteligente y divertida" />
     <meta name="theme-color" content="#0b1120">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="EUNACOM">
+    <script>
+      // Auto-recover from stale Service Worker / Vite chunk load errors
+      window.addEventListener('error', function(e) {
+        var msg = e.message || '';
+        if (msg.includes('Expected a JavaScript') || msg.includes('MIME type') || msg.includes('Loading chunk') || msg.includes('dynamically imported module') || msg.includes('Failed to load module')) {
+          if (!sessionStorage.getItem('pwa_chunk_recovery')) {
+            sessionStorage.setItem('pwa_chunk_recovery', 'true');
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for (var r of registrations) r.unregister();
+                window.location.reload(true);
+              });
+            } else {
+              window.location.reload(true);
+            }
+          }
+        }
+      });
+      window.addEventListener('load', function() {
+        sessionStorage.removeItem('pwa_chunk_recovery');
+      });
+    </script>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
