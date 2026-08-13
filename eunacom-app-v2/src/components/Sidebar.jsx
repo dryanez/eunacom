@@ -118,15 +118,29 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
 
             <div className="sidebar__footer">
                 {!isPremium && user && (
-                    <div style={{ marginBottom: '1rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                        <div style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 700, marginBottom: '0.75rem', textAlign: 'center', letterSpacing: '0.5px' }}>
+                    <div style={{ marginBottom: '0.65rem', padding: '0.65rem 0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        <div style={{ fontSize: '0.72rem', color: '#f8fafc', fontWeight: 800, marginBottom: '0.4rem', textAlign: 'center', letterSpacing: '0.5px' }}>
                             TU PLAN GRATUITO
                         </div>
                         
-                        <ProgressItem label="Preguntas" used={usageStats?.customQuestionsAnswered || 0} total={20} />
-                        <ProgressItem label="Clases" used={usageStats?.clasesOpened || 0} total={3} />
-                        <ProgressItem label="Reconstrucciones" used={usageStats?.reconstructionsCompleted || 0} total={1} />
-                        <ProgressItem label="Simulacros" used={usageStats?.simulationsCompleted || 0} total={1} />
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem 0.5rem', marginBottom: '0.5rem' }}>
+                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Preguntas:</span>
+                                <span style={{ color: (usageStats?.customQuestionsAnswered || 0) >= 20 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.customQuestionsAnswered || 0, 20)}/20</span>
+                            </div>
+                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Clases:</span>
+                                <span style={{ color: (usageStats?.clasesOpened || 0) >= 3 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.clasesOpened || 0, 3)}/3</span>
+                            </div>
+                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Reconst:</span>
+                                <span style={{ color: (usageStats?.reconstructionsCompleted || 0) >= 1 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.reconstructionsCompleted || 0, 1)}/1</span>
+                            </div>
+                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Simulacros:</span>
+                                <span style={{ color: (usageStats?.simulationsCompleted || 0) >= 1 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.simulationsCompleted || 0, 1)}/1</span>
+                            </div>
+                        </div>
 
                         <button 
                             onClick={() => {
@@ -134,12 +148,12 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                                 onToggle();
                             }}
                             style={{ 
-                                display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                                background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
-                                fontSize: '0.85rem', fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s', marginTop: '1rem'
+                                display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+                                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)', color: '#fff', padding: '0.45rem 0.6rem', borderRadius: '8px', 
+                                fontSize: '0.78rem', fontWeight: 800, border: 'none', cursor: 'pointer', boxShadow: '0 2px 8px rgba(6,182,212,0.3)'
                             }}
                         >
-                            <Flame size={14} /> ¡Pasar a Premium!
+                            <Flame size={13} /> ¡Pasar a Premium!
                         </button>
                     </div>
                 )}
