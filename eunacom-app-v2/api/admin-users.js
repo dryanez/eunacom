@@ -20,6 +20,8 @@ export default async function handler(req, res) {
         country TEXT,
         country_code TEXT,
         whatsapp TEXT,
+        inscrito_eunacom TEXT,
+        ayuda_inscripcion TEXT,
         onboarding_done INTEGER DEFAULT 0,
         created_at TEXT DEFAULT (datetime('now')),
         updated_at TEXT DEFAULT (datetime('now'))
