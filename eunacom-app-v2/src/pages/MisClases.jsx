@@ -3014,7 +3014,7 @@ const MisClases = () => {
     const handleNextClass = () => {
       if (nextClase) {
         const isNextAlreadyDone = progressMap[nextClase.id]?.video_watched === 1 || progressMap[nextClase.id]?.quiz_completed === 1
-        if (!isPremium && completedClassesCount >= 5 && !isNextAlreadyDone) {
+        if (!isPremium && completedClassesCount >= 3 && !isNextAlreadyDone) {
           setShowPaymentModal(true)
           return
         }
@@ -3037,7 +3037,7 @@ const MisClases = () => {
           onNextClass={handleNextClass}
           onVideoWatched={async (claseId) => {
             const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
-            if (!isPremium && completedClassesCount >= 5 && !isAlreadyDone) {
+            if (!isPremium && completedClassesCount >= 3 && !isAlreadyDone) {
               setShowPaymentModal(true)
               return
             }
@@ -3048,7 +3048,7 @@ const MisClases = () => {
           }}
           onQuizComplete={async (claseId, score, correct, total, wrongAnswers) => {
             const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
-            if (!isPremium && completedClassesCount >= 5 && !isAlreadyDone) {
+            if (!isPremium && completedClassesCount >= 3 && !isAlreadyDone) {
               setShowPaymentModal(true)
               return
             }

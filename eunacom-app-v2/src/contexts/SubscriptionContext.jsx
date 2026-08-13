@@ -120,7 +120,7 @@ export function SubscriptionProvider({ children }) {
   }, [user]);
 
   // Convenience flags for the UI
-  const hasExceededClasses = !isPremium && usageStats.clasesOpened >= 5;
+  const hasExceededClasses = !isPremium && usageStats.clasesOpened >= 3;
   const hasExceededReconstructions = !isPremium && usageStats.reconstructionsCompleted >= 1;
   const hasExceededSimulations = !isPremium && usageStats.simulationsCompleted >= 1;
   const hasExceededQuestions = !isPremium && usageStats.customQuestionsAnswered >= 20;

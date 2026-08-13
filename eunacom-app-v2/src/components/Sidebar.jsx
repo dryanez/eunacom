@@ -139,7 +139,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                         </div>
                         
                         <ProgressItem label="Preguntas" used={usageStats?.customQuestionsAnswered || 0} total={20} />
-                        <ProgressItem label="Clases" used={usageStats?.clasesOpened || 0} total={5} />
+                        <ProgressItem label="Clases" used={usageStats?.clasesOpened || 0} total={3} />
                         <ProgressItem label="Reconstrucciones" used={usageStats?.reconstructionsCompleted || 0} total={1} />
                         <ProgressItem label="Simulacros" used={usageStats?.simulationsCompleted || 0} total={1} />
 
