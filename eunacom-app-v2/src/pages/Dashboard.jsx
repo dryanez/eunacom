@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download, X } from 'lucide-react'
+import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download, X, Sparkles, Stethoscope, LogIn } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
@@ -305,28 +305,81 @@ const Dashboard = () => {
       {/* ─── GUEST CTA ─── */}
       {!user && (
         <div style={{
-          background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
-          border: '1px solid rgba(19,91,236,0.25)', borderRadius: 'var(--radius-xl)',
-          padding: '1.75rem 1.5rem', marginBottom: '1.5rem', textAlign: 'center',
+          position: 'relative',
+          background: 'linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(19,31,60,0.95) 100%)',
+          border: '1.5px solid rgba(56, 189, 248, 0.4)',
+          borderRadius: '24px',
+          padding: '2.25rem 1.75rem',
+          marginBottom: '2rem',
+          textAlign: 'center',
+          boxShadow: '0 20px 50px rgba(19, 91, 236, 0.3), 0 0 35px rgba(6, 182, 212, 0.2), inset 0 1px 1px rgba(255,255,255,0.15)',
+          overflow: 'hidden',
         }}>
-          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🩺</div>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.5rem' }}>
+          {/* Subtle glowing ambient orb background */}
+          <div style={{
+            position: 'absolute', top: '-40px', left: '50%', transform: 'translateX(-50%)',
+            width: '240px', height: '140px',
+            background: 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.25) 0%, rgba(19, 91, 236, 0.15) 50%, transparent 80%)',
+            filter: 'blur(20px)', pointerEvents: 'none'
+          }} />
+
+          {/* Top Pill Badge */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.35rem 0.9rem', borderRadius: '100px',
+            background: 'rgba(56, 189, 248, 0.12)', border: '1px solid rgba(56, 189, 248, 0.3)',
+            color: '#38bdf8', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em',
+            marginBottom: '1rem', textTransform: 'uppercase'
+          }}>
+            <Sparkles size={14} /> Acceso Gratuito Ilimitado
+          </div>
+
+          <h2 style={{
+            fontSize: '1.45rem', fontWeight: 800, color: '#ffffff',
+            margin: '0 0 0.6rem', letterSpacing: '-0.02em', lineHeight: 1.3
+          }}>
             Únete gratis y prepara tu EUNACOM
           </h2>
-          <p style={{ fontSize: '0.88rem', color: 'var(--surface-300)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+          
+          <p style={{
+            fontSize: '0.92rem', color: '#94a3b8',
+            marginBottom: '1.75rem', lineHeight: 1.6, maxWidth: '520px', margin: '0 auto 1.75rem'
+          }}>
             Más de 6.000 preguntas reales, exámenes completos, clases en video y ranking en tiempo real.
           </p>
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 2 }}>
             <a href="/register" style={{
-              padding: '0.65rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
-              borderRadius: 'var(--radius-full)', fontWeight: 700, fontSize: '0.9rem',
-              textDecoration: 'none', border: 'none',
-            }}>Crear cuenta gratis</a>
+              padding: '0.85rem 2rem',
+              background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+              color: '#ffffff',
+              borderRadius: '100px',
+              fontWeight: 700,
+              fontSize: '0.98rem',
+              textDecoration: 'none',
+              border: 'none',
+              boxShadow: '0 8px 25px rgba(6, 182, 212, 0.4), 0 2px 4px rgba(0,0,0,0.2)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
+            }}>
+              <Stethoscope size={18} /> Crear cuenta gratis
+            </a>
+            
             <a href="/login" style={{
-              padding: '0.65rem 1.5rem', background: 'rgba(255,255,255,0.06)', color: 'var(--surface-100)',
-              borderRadius: 'var(--radius-full)', fontWeight: 600, fontSize: '0.9rem',
-              textDecoration: 'none', border: '1px solid rgba(255,255,255,0.1)',
-            }}>Iniciar sesión</a>
+              padding: '0.85rem 2rem',
+              background: 'rgba(255, 255, 255, 0.08)',
+              color: '#f8fafc',
+              borderRadius: '100px',
+              fontWeight: 700,
+              fontSize: '0.98rem',
+              textDecoration: 'none',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(8px)',
+              transition: 'background 0.2s ease',
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
+            }}>
+              <LogIn size={18} /> Iniciar sesión
+            </a>
           </div>
         </div>
       )}
