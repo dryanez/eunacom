@@ -197,15 +197,15 @@ const TestCreator = () => {
     const handleStartExam = async () => {
         setCreateError('')
         if (!user) { setShowLoginGate(true); return }
-        const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededQuestions;
-        if (isLocked) {
+        if (!isPremium && remainingFreeQuestions <= 0) {
             setShowPaymentModal(true)
+            setCreateError('Has alcanzado el límite de 20 preguntas respondidas en tu Plan Gratuito. ¡Actualiza a Premium para responder más preguntas!')
             return
         }
         const requestedNum = parseInt(numQuestions) || 1
-        if (!isPremium && requestedNum > 20) {
+        if (!isPremium && requestedNum > remainingFreeQuestions) {
             setShowPaymentModal(true)
-            setCreateError('El Plan Gratuito está limitado a un máximo de 20 preguntas por examen. ¡Actualiza a Premium para exámenes ilimitados!')
+            setCreateError(`Te quedan ${remainingFreeQuestions} preguntas disponibles en tu Plan Gratuito (límite total de 20). ¡Pásate a Premium para responder sin límites!`)
             return
         }
         if (maxQuestions === 0) {
@@ -237,6 +237,11 @@ const TestCreator = () => {
         }
     }
 
+    const remainingFreeQuestions = useMemo(() => {
+        if (isPremium) return 99999
+        return Math.max(0, 20 - (usageStats?.customQuestionsAnswered || 0))
+    }, [isPremium, usageStats?.customQuestionsAnswered])
+
     const statusConfig = [
         { key: 'unused', label: 'Sin usar', color: 'var(--primary-400)', icon: BookOpen },
         { key: 'incorrect', label: 'Incorrectas', color: '#f87171', icon: AlertCircle },
@@ -251,6 +256,21 @@ const TestCreator = () => {
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
             <h1 className="page__title">Crear Examen</h1>
             <p className="page__subtitle">Configura tu examen personalizado</p>
+
+            {!isPremium && (
+                <div style={{
+                    background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
+                    borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.5rem',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
+                }}>
+                    <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
+                        👑 Plan Gratuito: {usageStats?.customQuestionsAnswered || 0} de 20 preguntas respondidas en total. {remainingFreeQuestions > 0 ? `(Te quedan ${remainingFreeQuestions} preguntas disponbles)` : '(Has alcanzado el límite free)'}
+                    </span>
+                    <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
+                        Desbloquear Ilimitado
+                    </button>
+                </div>
+            )}
 
             {/* ── MODE ── */}
             <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -439,14 +459,14 @@ const TestCreator = () => {
                     <input
                         type="number"
                         min={1}
-                        max={!isPremium ? Math.min(20, maxQuestions || 1) : (maxQuestions || 1)}
+                        max={!isPremium ? Math.min(remainingFreeQuestions, maxQuestions || 1) : (maxQuestions || 1)}
                         value={numQuestions}
                         onChange={e => {
                             const val = e.target.value
                             const num = parseInt(val) || 0
-                            if (!isPremium && num > 20) {
+                            if (!isPremium && num > remainingFreeQuestions) {
                                 setShowPaymentModal(true)
-                                setNumQuestions('20')
+                                setNumQuestions(String(Math.max(1, remainingFreeQuestions)))
                                 return
                             }
                             setNumQuestions(val)
@@ -454,9 +474,9 @@ const TestCreator = () => {
                         onBlur={e => {
                             const val = parseInt(e.target.value) || 1
                             let clamped = Math.min(Math.max(val, 1), Math.max(1, maxQuestions))
-                            if (!isPremium && clamped > 20) {
+                            if (!isPremium && clamped > remainingFreeQuestions) {
                                 setShowPaymentModal(true)
-                                clamped = 20
+                                clamped = Math.max(1, remainingFreeQuestions)
                             }
                             setNumQuestions(String(clamped))
                         }}
@@ -469,7 +489,7 @@ const TestCreator = () => {
                     />
                     <div>
                         <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)' }}>
-                            Máximo disponible: <strong style={{ color: 'white' }}>{!isPremium ? Math.min(20, maxQuestions) : maxQuestions}</strong> {!isPremium && maxQuestions > 20 && '(Límite free: 20)'}
+                            Máximo disponible: <strong style={{ color: 'white' }}>{!isPremium ? Math.min(remainingFreeQuestions, maxQuestions) : maxQuestions}</strong> {!isPremium && maxQuestions > remainingFreeQuestions && `(Free restante: ${remainingFreeQuestions})`}
                         </div>
                         <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', marginTop: '0.25rem' }}>
                             Tiempo estimado: <strong style={{ color: 'white' }}>
@@ -488,9 +508,9 @@ const TestCreator = () => {
                                     key={n}
                                     type="button"
                                     onClick={() => {
-                                        if (!isPremium && (n === 'Todas' || (typeof n === 'number' && n > 20) || targetVal > 20)) {
+                                        if (!isPremium && (n === 'Todas' || (typeof n === 'number' && n > remainingFreeQuestions) || targetVal > remainingFreeQuestions)) {
                                             setShowPaymentModal(true)
-                                            setNumQuestions('20')
+                                            setNumQuestions(String(Math.max(1, Math.min(20, remainingFreeQuestions))))
                                             return
                                         }
                                         setNumQuestions(String(targetVal))
