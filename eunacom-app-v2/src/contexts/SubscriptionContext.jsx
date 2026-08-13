@@ -123,7 +123,7 @@ export function SubscriptionProvider({ children }) {
   const hasExceededClasses = !isPremium && usageStats.clasesOpened >= 5;
   const hasExceededReconstructions = !isPremium && usageStats.reconstructionsCompleted >= 1;
   const hasExceededSimulations = !isPremium && usageStats.simulationsCompleted >= 1;
-  const hasExceededQuestions = !isPremium && usageStats.customQuestionsAnswered >= 100;
+  const hasExceededQuestions = !isPremium && usageStats.customQuestionsAnswered >= 20;
 
   return (
     <SubscriptionContext.Provider value={{ 

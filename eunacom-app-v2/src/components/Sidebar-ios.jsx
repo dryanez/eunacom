@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchProgress, fetchUserProfile } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
-    Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff
+    Clock, BarChart3, RotateCcw, Settings,
+    LogOut, LogIn, ChevronDown, Video, Shield, Users, Flame, Eye, EyeOff
 } from 'lucide-react'
 
 const ProgressItem = ({ label, used, total }) => {
@@ -30,10 +30,11 @@ const ProgressItem = ({ label, used, total }) => {
     );
 };
 
-const Sidebar = ({ mobileOpen, onToggle }) => {
+const SidebarIOS = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
     const { isPremium, usageStats, setShowPaymentModal } = useSubscription()
     const navigate = useNavigate()
+    const location = useLocation()
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
     const [displayName, setDisplayName] = useState(null)
@@ -53,6 +54,12 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
         }).catch(() => {})
     }, [user])
 
+    useEffect(() => {
+        if (location.pathname === '/test' || location.pathname === '/reconstructions' || location.pathname === '/simulation') {
+            setExamenesOpen(true)
+        }
+    }, [location.pathname])
+
     const handleLogout = async () => {
         await signOut()
         navigate('/login')
@@ -65,7 +72,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <span className="sidebar__brand-name">Eunacom-Examen</span>
             </div>
 
-            <nav className="sidebar__nav">
+            <nav className="sidebar__nav" aria-label="Main Navigation">
                 <NavLink to="/dashboard" data-tour="dashboard" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Home size={18} /> Inicio
                 </NavLink>
@@ -91,18 +98,20 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 )}
 
                 <div className="sidebar__section-title">Exámenes</div>
-                <div
+                <button
                     className="sidebar__link"
                     onClick={() => setExamenesOpen(!examenesOpen)}
-                    style={{ cursor: 'pointer', justifyContent: 'space-between' }}
+                    style={{ cursor: 'pointer', justifyContent: 'space-between', border: 'none', background: 'transparent', width: '100%', fontFamily: 'inherit' }}
+                    aria-expanded={examenesOpen}
+                    aria-controls="examenes-menu"
                 >
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <FileText size={18} /> Exámenes
                     </span>
                     <ChevronDown size={14} style={{ transform: examenesOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }} />
-                </div>
+                </button>
                 {examenesOpen && (
-                    <div style={{ paddingLeft: '1rem' }}>
+                    <div id="examenes-menu" style={{ paddingLeft: '1rem' }}>
                         <NavLink to="/test" data-tour="test" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                             <FileText size={16} /> Crear Examen
                         </NavLink>
@@ -121,13 +130,13 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/stats" data-tour="stats" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <BarChart3 size={18} /> Estadísticas
                 </NavLink>
-                {isAdmin() && (
-                    <NavLink to="/flashcards" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                        <CreditCard size={18} /> Flashcards
-                    </NavLink>
-                )}
                 <NavLink to="/review" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <RotateCcw size={18} /> Repasar Errores
+                </NavLink>
+
+                <div className="sidebar__section-title">Cuenta</div>
+                <NavLink to="/settings" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Settings size={18} /> Configuración
                 </NavLink>
             </nav>
 
@@ -151,7 +160,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                             style={{ 
                                 display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                                 background: '#2563eb', color: '#fff', padding: '0.6rem', borderRadius: '8px', 
-                                fontSize: '0.85rem', fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s', marginTop: '1rem'
+                                fontSize: '0.85rem', fontWeight: 700, border: 'none', cursor: 'pointer', transition: 'background 0.2s', marginTop: '1rem', minHeight: '44px'
                             }}
                         >
                             <Flame size={14} /> ¡Pasar a Premium!
@@ -204,4 +213,4 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
     )
 }
 
-export default Sidebar
+export default SidebarIOS

@@ -431,7 +431,7 @@ const TestCreator = () => {
                     <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>Nº de Preguntas</h3>
                     {!isPremium && (
                         <span style={{ fontSize: '0.85rem', color: hasExceededQuestions ? 'var(--accent-red)' : 'var(--primary-400)', fontWeight: 600 }}>
-                            Preguntas usadas: {usageStats.customQuestionsAnswered} / 100
+                            Preguntas usadas: {usageStats.customQuestionsAnswered} / 20
                         </span>
                     )}
                 </div>
