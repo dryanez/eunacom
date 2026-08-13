@@ -202,6 +202,12 @@ const TestCreator = () => {
             setShowPaymentModal(true)
             return
         }
+        const requestedNum = parseInt(numQuestions) || 1
+        if (!isPremium && requestedNum > 20) {
+            setShowPaymentModal(true)
+            setCreateError('El Plan Gratuito está limitado a un máximo de 20 preguntas por examen. ¡Actualiza a Premium para exámenes ilimitados!')
+            return
+        }
         if (maxQuestions === 0) {
             setCreateError('Selecciona al menos un tema y un estado con preguntas disponibles.')
             return
@@ -433,15 +439,25 @@ const TestCreator = () => {
                     <input
                         type="number"
                         min={1}
-                        max={maxQuestions || 1}
+                        max={!isPremium ? Math.min(20, maxQuestions || 1) : (maxQuestions || 1)}
                         value={numQuestions}
                         onChange={e => {
                             const val = e.target.value
+                            const num = parseInt(val) || 0
+                            if (!isPremium && num > 20) {
+                                setShowPaymentModal(true)
+                                setNumQuestions('20')
+                                return
+                            }
                             setNumQuestions(val)
                         }}
                         onBlur={e => {
                             const val = parseInt(e.target.value) || 1
-                            const clamped = Math.min(Math.max(val, 1), Math.max(1, maxQuestions))
+                            let clamped = Math.min(Math.max(val, 1), Math.max(1, maxQuestions))
+                            if (!isPremium && clamped > 20) {
+                                setShowPaymentModal(true)
+                                clamped = 20
+                            }
                             setNumQuestions(String(clamped))
                         }}
                         style={{
@@ -453,7 +469,7 @@ const TestCreator = () => {
                     />
                     <div>
                         <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)' }}>
-                            Máximo disponible: <strong style={{ color: 'white' }}>{maxQuestions}</strong>
+                            Máximo disponible: <strong style={{ color: 'white' }}>{!isPremium ? Math.min(20, maxQuestions) : maxQuestions}</strong> {!isPremium && maxQuestions > 20 && '(Límite free: 20)'}
                         </div>
                         <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', marginTop: '0.25rem' }}>
                             Tiempo estimado: <strong style={{ color: 'white' }}>
@@ -462,7 +478,7 @@ const TestCreator = () => {
                         </div>
                     </div>
                     <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                        {[10, 25, 40, 'Todas'].map(n => {
+                        {[10, 20, 40, 'Todas'].map(n => {
                             const targetVal = n === 'Todas' ? Math.max(1, maxQuestions) : Math.min(n, Math.max(1, maxQuestions))
                             const currentVal = parseInt(numQuestions) || 0
                             const isActive = n === 'Todas' ? currentVal === maxQuestions && maxQuestions > 0 : currentVal === n
@@ -471,7 +487,14 @@ const TestCreator = () => {
                                 <button
                                     key={n}
                                     type="button"
-                                    onClick={() => setNumQuestions(String(targetVal))}
+                                    onClick={() => {
+                                        if (!isPremium && (n === 'Todas' || (typeof n === 'number' && n > 20) || targetVal > 20)) {
+                                            setShowPaymentModal(true)
+                                            setNumQuestions('20')
+                                            return
+                                        }
+                                        setNumQuestions(String(targetVal))
+                                    }}
                                     style={{
                                         padding: '0.5rem 0.9rem', borderRadius: 'var(--radius-full)', fontSize: '0.85rem', fontWeight: 700,
                                         border: `2px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
@@ -487,6 +510,14 @@ const TestCreator = () => {
                         })}
                     </div>
                 </div>
+                {!isPremium && (
+                    <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: '#fef08a', background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)', padding: '0.5rem 0.85rem', borderRadius: 'var(--radius)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+                        <span>👑 Plan Gratuito: máximo 20 preguntas por examen.</span>
+                        <button type="button" onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, padding: 0 }}>
+                            Desbloquear Ilimitado
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* ── START BUTTON + ERROR WARNING ── */}
