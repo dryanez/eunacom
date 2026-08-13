@@ -3006,9 +3006,19 @@ const MisClases = () => {
     }
     const currentIndex = clases.findIndex(c => c.id === selectedClase.id)
     const nextClase = currentIndex >= 0 && currentIndex < clases.length - 1 ? clases[currentIndex + 1] : null
+    
+    const completedClassesCount = Object.values(progressMap || {}).filter(
+      p => p && (p.video_watched === 1 || p.quiz_completed === 1)
+    ).length
+
     const handleNextClass = () => {
       if (nextClase) {
-        setSelectedId(nextClase.id)
+        const isNextAlreadyDone = progressMap[nextClase.id]?.video_watched === 1 || progressMap[nextClase.id]?.quiz_completed === 1
+        if (!isPremium && completedClassesCount >= 5 && !isNextAlreadyDone) {
+          setShowPaymentModal(true)
+          return
+        }
+        openClase(nextClase.id)
         window.scrollTo({ top: 0, behavior: 'smooth' })
       } else {
         closeDetail()
@@ -3026,12 +3036,22 @@ const MisClases = () => {
           nextClase={nextClase}
           onNextClass={handleNextClass}
           onVideoWatched={async (claseId) => {
+            const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
+            if (!isPremium && completedClassesCount >= 5 && !isAlreadyDone) {
+              setShowPaymentModal(true)
+              return
+            }
             try {
               await saveClaseProgress({ userId: user.id, claseId, videoWatched: 1 })
               setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], video_watched: 1 } }))
             } catch {}
           }}
           onQuizComplete={async (claseId, score, correct, total, wrongAnswers) => {
+            const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
+            if (!isPremium && completedClassesCount >= 5 && !isAlreadyDone) {
+              setShowPaymentModal(true)
+              return
+            }
             try {
               await saveClaseProgress({ userId: user.id, claseId, quizCompleted: 1, quizScore: score, quizCorrect: correct, quizTotal: total, quizAnswers: wrongAnswers })
               setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], quiz_completed: 1, quiz_score: score } }))
@@ -3091,6 +3111,21 @@ const MisClases = () => {
       <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
         {clases.length} clases disponibles · Tu progreso se guarda automáticamente.
       </p>
+
+      {!isPremium && (
+        <div style={{
+          background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
+          borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.25rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
+        }}>
+          <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
+            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 5 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
+          </span>
+          <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
+            Desbloquear Ilimitado
+          </button>
+        </div>
+      )}
 
       {/* Breadcrumb */}
       {(currentSpecialty || currentSubsystem) && (
@@ -3288,10 +3323,9 @@ const MisClases = () => {
           </button>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
-              const hasProgress = progressMap[clase.id] && Object.keys(progressMap[clase.id]).length > 0;
-              const isLocked = freemiumMode === 'strict'
-                ? (!isPremium && !(currentSpecialty === 'Módulo 1' && currentSubsystem === 'Cardiología' && idx === 0))
-                : (hasExceededClasses && !hasProgress);
+              const isAlreadyDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
+              const completedCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
+              const isLocked = !isPremium && completedCount >= 5 && !isAlreadyDone;
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (
