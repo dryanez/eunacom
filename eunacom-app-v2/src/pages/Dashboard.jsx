@@ -80,20 +80,23 @@ const Dashboard = () => {
   const handleInstallClick = async () => {
     setIsInstallClicked(true)
     localStorage.setItem('pwa_install_clicked', 'true')
-    // Mark as dismissed so the big banner window disappears completely after click
-    setDismissed(true)
-    localStorage.setItem('pwa_dismissed', 'true')
 
     if (deferredPrompt) {
-      deferredPrompt.prompt()
-      const { outcome } = await deferredPrompt.userChoice
-      if (outcome === 'accepted') {
-        setDeferredPrompt(null)
-        setIsStandalone(true)
-        localStorage.setItem('pwa_installed', 'true')
+      try {
+        deferredPrompt.prompt()
+        const choice = await deferredPrompt.userChoice
+        if (choice && choice.outcome === 'accepted') {
+          setDeferredPrompt(null)
+          setIsStandalone(true)
+          localStorage.setItem('pwa_installed', 'true')
+        }
+      } catch (e) {
+        console.error('PWA prompt error:', e)
       }
     } else if (isIOS) {
-      alert("Para instalar en iPhone/iPad:\n1. Toca el ícono de Compartir (el cuadro con la flecha hacia arriba) en la parte inferior de Safari.\n2. Selecciona 'Agregar a Inicio'.")
+      alert("Para instalar en iPhone/iPad:\n1. Toca el ícono de Compartir (el cuadro con la flecha hacia arriba) en Safari.\n2. Selecciona 'Agregar a Inicio'.")
+    } else {
+      alert("Para instalar en tu dispositivo:\nBusca la opción 'Agregar a la pantalla de inicio' o 'Instalar aplicación' en el menú de tu navegador.")
     }
   }
 
@@ -234,67 +237,83 @@ const Dashboard = () => {
       </div>
 
       {/* ─── PWA INSTALL BANNER ─── */}
-      {!isStandalone && !dismissed && (deferredPrompt || isIOS) && (
+      {!isStandalone && !dismissed && (
         isInstallClicked ? (
           <div style={{
-            background: 'rgba(19,91,236,0.12)',
-            border: '1px solid rgba(19,91,236,0.25)',
-            borderRadius: 'var(--radius-full)',
-            padding: '0.55rem 1rem',
+            background: 'rgba(15, 23, 42, 0.95)',
+            border: '1px solid rgba(56, 189, 248, 0.35)',
+            borderRadius: '100px',
+            padding: '0.45rem 1rem',
             marginBottom: '1.25rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '0.75rem'
+            gap: '0.75rem',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.4)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', fontWeight: 600, color: 'var(--surface-200)' }}>
-              <Download size={15} color="var(--primary-400)" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', fontWeight: 600, color: '#f8fafc' }}>
+              <Download size={15} color="#38bdf8" />
               <span>Instalar App EUNACOM</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <button onClick={handleInstallClick} style={{
                 padding: '0.35rem 0.9rem',
-                background: 'var(--gradient-primary)',
+                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
                 color: '#fff',
-                borderRadius: 'var(--radius-full)',
+                borderRadius: '100px',
                 border: 'none',
                 fontWeight: 700,
                 fontSize: '0.8rem',
                 cursor: 'pointer'
               }}>
-                Instalar App
+                Instalar
               </button>
-              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}>
+              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}>
                 <X size={16} />
               </button>
             </div>
           </div>
         ) : (
           <div style={{
-            background: 'linear-gradient(135deg, rgba(19,91,236,0.15) 0%, rgba(6,182,212,0.1) 100%)',
-            border: '1px solid rgba(19,91,236,0.3)', borderRadius: 'var(--radius-xl)',
-            padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap',
-            position: 'relative'
+            position: 'relative',
+            background: 'linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(19,31,60,0.95) 100%)',
+            border: '1.5px solid rgba(56, 189, 248, 0.35)',
+            borderRadius: '20px',
+            padding: '1.25rem 1.5rem',
+            marginBottom: '1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '1rem',
+            flexWrap: 'wrap',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
           }}>
             <div style={{ flex: 1, minWidth: '200px' }}>
-              <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Download size={18} color="var(--primary-400)" />
+              <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#ffffff', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Download size={18} color="#38bdf8" />
                 Instala la App de Eunacom
               </h2>
-              <p style={{ fontSize: '0.85rem', color: 'var(--surface-300)', margin: 0, lineHeight: 1.5 }}>
-                No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo y cargar todo más rápido.
+              <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>
+                No tienes que descargar la aplicación desde App Store o Google Play. Instálala de forma directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo rápido.
               </p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <button onClick={handleInstallClick} style={{
                 display: 'flex', alignItems: 'center', gap: '0.5rem',
-                padding: '0.75rem 1.5rem', background: 'var(--gradient-primary)', color: '#fff',
-                borderRadius: 'var(--radius-full)', border: 'none', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer',
-                boxShadow: '0 4px 15px rgba(19,91,236,0.4)', whiteSpace: 'nowrap'
+                padding: '0.65rem 1.25rem',
+                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+                color: '#fff',
+                borderRadius: '100px',
+                border: 'none',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                boxShadow: '0 4px 15px rgba(6, 182, 212, 0.4)',
+                whiteSpace: 'nowrap'
               }}>
                 Instalar App
               </button>
-              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
+              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
                 <X size={18} />
               </button>
             </div>
