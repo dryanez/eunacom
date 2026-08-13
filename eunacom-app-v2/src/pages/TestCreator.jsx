@@ -31,7 +31,6 @@ const TestCreator = () => {
 
     const [expandedCategories, setExpandedCategories] = useState({})
     const [selectedTopics, setSelectedTopics] = useState({})
-    const [initialSelectDone, setInitialSelectDone] = useState(false)
 
     // --- Data Fetching ---
     useEffect(() => {
@@ -133,14 +132,6 @@ const TestCreator = () => {
 
         return { counts, filteredByStatus: filteredIds, subjects }
     }, [questionDB, userProgress, statusFilters])
-
-    // --- Auto-select all topics on initial data load ---
-    useEffect(() => {
-        if (!initialSelectDone && Object.keys(categories).length > 0) {
-            handleSelectAllTopics()
-            setInitialSelectDone(true)
-        }
-    }, [categories, initialSelectDone])
 
     // --- Questions currently selected by tab + topic checkboxes ---
     const selectedQuestions = useMemo(() => {
@@ -537,6 +528,11 @@ const TestCreator = () => {
                             <>
                                 <Loader2 size={22} className="spin" />
                                 <span>Creando examen...</span>
+                            </>
+                        ) : maxQuestions === 0 ? (
+                            <>
+                                <PlayCircle size={22} />
+                                <span>Selecciona temas para comenzar</span>
                             </>
                         ) : (
                             <>
