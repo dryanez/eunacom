@@ -3174,39 +3174,18 @@ const MisClases = () => {
         <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
         <div className="grid-auto-responsive">
           {specialties.map((spec, i) => {
-            const isLockedLevel1 = freemiumMode === 'strict' 
-              ? (!isPremium && spec !== 'Módulo 1')
-              : false;
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
             const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => isLockedLevel1 ? setShowPaymentModal(true) : setCurrentSpecialty(spec)} style={{
+              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
                 padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
                 borderLeft: `4px solid ${style.color}`,
                 background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
                 position: 'relative',
-                opacity: isLockedLevel1 ? 0.6 : 1,
               }}>
-                {isLockedLevel1 && (
-                  <div style={{
-                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                      background: 'rgba(15,23,42,0.85)', borderRadius: 'var(--radius)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 10,
-                      color: 'var(--surface-50)'
-                  }}>
-                      <div style={{
-                          background: 'rgba(255,255,255,0.1)', padding: '0.75rem',
-                          borderRadius: '50%', marginBottom: '0.5rem',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
-                      }}>
-                          <Lock size={24} style={{ color: '#fbbf24' }} />
-                      </div>
-                      <span style={{ fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.5px' }}>PREMIUM</span>
-                  </div>
-                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 14, background: style.bg,
@@ -3246,37 +3225,16 @@ const MisClases = () => {
         /* ─── Level 2: Subsystems ─── */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
-            const isLockedLevel2 = freemiumMode === 'strict'
-              ? (!isPremium && sub !== 'Cardiología')
-              : false;
             const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
             return (
-              <div key={sub} className="card" onClick={() => isLockedLevel2 ? setShowPaymentModal(true) : setCurrentSubsystem(sub)} style={{
+              <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
                 padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                 borderLeft: `3px solid ${subStyle.color}`,
                 background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
                 position: 'relative',
-                opacity: isLockedLevel2 ? 0.75 : 1,
               }}>
-                {isLockedLevel2 && (
-                  <div style={{
-                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                      background: 'rgba(15,23,42,0.65)', borderRadius: 'var(--radius)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
-                      color: 'var(--surface-50)'
-                  }}>
-                      <div style={{
-                          background: 'rgba(0,0,0,0.6)', padding: '0.4rem 0.8rem',
-                          borderRadius: '50px', display: 'flex', alignItems: 'center', gap: '0.4rem',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
-                      }}>
-                          <Lock size={14} style={{ color: '#fbbf24' }} />
-                          <span style={{ fontWeight: 700, fontSize: '0.7rem', letterSpacing: '0.5px' }}>PREMIUM</span>
-                      </div>
-                  </div>
-                )}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <div style={{
@@ -3335,15 +3293,7 @@ const MisClases = () => {
                   borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
                   position: 'relative',
                 }}>
-                  {isLocked && (
-                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.4rem 0.8rem', borderRadius: '8px', color: 'white', fontWeight: 600, fontSize: '0.8rem' }}>
-                        <Lock size={14} color="#fbbf24" /> Premium
-                      </div>
-                    </div>
-                  )}
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0, opacity: isLocked ? 0.5 : 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
                     <div style={{
                       width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
