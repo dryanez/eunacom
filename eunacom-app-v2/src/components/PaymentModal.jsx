@@ -57,7 +57,7 @@ const PaymentModal = ({ onClose }) => {
         position: 'fixed', inset: 0, zIndex: 10000,
         background: 'rgba(11,17,32,0.85)', backdropFilter: 'blur(10px)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: isMobile ? '0.5rem' : '1rem',
+        padding: isMobile ? '0.35rem' : '1rem',
       }}
     >
       <div
@@ -66,92 +66,109 @@ const PaymentModal = ({ onClose }) => {
           background: 'var(--surface-700)', borderRadius: 'var(--radius-xl)',
           width: '100%', maxWidth: '800px',
           border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
-          overflow: 'hidden', display: 'flex', flexDirection: 'column', maxHeight: isMobile ? '95vh' : '90vh'
+          overflow: 'hidden', display: 'flex', flexDirection: 'column',
+          maxHeight: isMobile ? '82dvh' : '90vh',
+          height: isMobile ? '82dvh' : 'auto'
         }}
       >
         {/* Header */}
         <div style={{
-          padding: isMobile ? '0.85rem 1.1rem' : '1.5rem 2rem',
+          padding: isMobile ? '0.65rem 0.85rem' : '1.25rem 1.75rem',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexShrink: 0
         }}>
-          <h2 style={{ fontSize: isMobile ? '1.2rem' : '1.5rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, fontFamily: 'var(--font)' }}>
+          <h2 style={{ fontSize: isMobile ? '1.1rem' : '1.4rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, fontFamily: 'var(--font)' }}>
             Actualiza a Premium ⭐
           </h2>
           <button
             onClick={onClose}
-            style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: '0.35rem' }}
+            style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: '0.25rem' }}
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', overflowY: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', flex: 1, minHeight: 0, overflow: 'hidden' }}>
           {/* Left Side: Plans */}
           {(!isMobile || step === 1) && (
             <div style={{
               flex: '1 1 350px',
-              padding: isMobile ? '0.85rem 1rem 1rem' : '2rem',
               borderRight: isMobile ? 'none' : '1px solid rgba(255,255,255,0.08)',
               background: 'rgba(0,0,0,0.2)',
-              display: 'flex', flexDirection: 'column'
+              display: 'flex', flexDirection: 'column',
+              height: '100%', minHeight: 0, overflow: 'hidden'
             }}>
-              <p style={{
-                color: 'var(--surface-300)',
-                marginBottom: isMobile ? '0.65rem' : '1.5rem',
-                fontSize: isMobile ? '0.82rem' : '0.95rem',
-                lineHeight: 1.45
+              {/* Scrollable plans section */}
+              <div style={{
+                flex: 1, minHeight: 0, overflowY: 'auto',
+                padding: isMobile ? '0.6rem 0.85rem' : '1.5rem'
               }}>
-                Acceso ilimitado a todas las reconstrucciones, clases, resúmenes e IA predictiva.
-              </p>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.45rem' : '1rem' }}>
-                {PLANS.map(plan => (
-                  <div
-                    key={plan.id}
-                    onClick={() => {
-                      setSelectedPlan(plan);
-                      if (isMobile) setStep(2);
-                    }}
+                <p style={{
+                  color: 'var(--surface-300)',
+                  marginBottom: isMobile ? '0.45rem' : '1rem',
+                  fontSize: isMobile ? '0.78rem' : '0.9rem',
+                  lineHeight: 1.35
+                }}>
+                  Acceso ilimitado a reconstrucciones, clases e IA predictiva.
+                </p>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.35rem' : '0.75rem' }}>
+                  {PLANS.map(plan => (
+                    <div
+                      key={plan.id}
+                      onClick={() => {
+                        setSelectedPlan(plan);
+                        if (isMobile) setStep(2);
+                      }}
+                      style={{
+                        padding: isMobile ? '0.5rem 0.75rem' : '0.85rem',
+                        borderRadius: '10px',
+                        border: `2px solid ${selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'rgba(255,255,255,0.1)'}`,
+                        background: selectedPlan.id === plan.id ? 'rgba(59,130,246,0.18)' : 'var(--surface-600)',
+                        cursor: 'pointer', position: 'relative', transition: 'all 0.2s',
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        touchAction: 'manipulation'
+                      }}
+                    >
+                      {plan.popular && (
+                        <span style={{ position: 'absolute', top: -8, right: 10, background: '#ef4444', color: 'white', fontSize: '0.58rem', padding: '1px 5px', borderRadius: '6px', fontWeight: 800 }}>
+                          MÁS POPULAR
+                        </span>
+                      )}
+                      <div>
+                        <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>{plan.name}</h4>
+                        <p style={{ margin: '0.05rem 0 0 0', fontSize: isMobile ? '0.7rem' : '0.78rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
+                      </div>
+                      <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
+                        {plan.price}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Fixed bottom footer for Continuar al Pago button on mobile */}
+              {isMobile && (
+                <div style={{
+                  padding: '0.5rem 0.85rem',
+                  background: 'var(--surface-800)',
+                  borderTop: '1px solid rgba(255,255,255,0.08)',
+                  flexShrink: 0
+                }}>
+                  <button
+                    onClick={() => setStep(2)}
                     style={{
-                      padding: isMobile ? '0.6rem 0.85rem' : '1rem',
-                      borderRadius: '12px',
-                      border: `2px solid ${selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'rgba(255,255,255,0.1)'}`,
-                      background: selectedPlan.id === plan.id ? 'rgba(59,130,246,0.15)' : 'var(--surface-600)',
-                      cursor: 'pointer', position: 'relative', transition: 'all 0.2s',
-                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                      width: '100%', padding: '0.7rem', background: 'var(--accent-blue)', color: 'white',
+                      border: 'none', borderRadius: '8px', fontSize: '0.92rem', fontWeight: 800,
+                      cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center',
+                      boxShadow: '0 4px 12px rgba(59,130,246,0.4)',
                       touchAction: 'manipulation'
                     }}
                   >
-                    {plan.popular && (
-                      <span style={{ position: 'absolute', top: -9, right: 12, background: '#ef4444', color: 'white', fontSize: '0.6rem', padding: '1px 6px', borderRadius: '8px', fontWeight: 'bold' }}>
-                        MÁS POPULAR
-                      </span>
-                    )}
-                    <div>
-                      <h4 style={{ margin: 0, fontSize: isMobile ? '0.95rem' : '1.1rem', color: 'var(--surface-50)', fontWeight: 700 }}>{plan.name}</h4>
-                      <p style={{ margin: '0.1rem 0 0 0', fontSize: isMobile ? '0.75rem' : '0.8rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
-                    </div>
-                    <div style={{ fontSize: isMobile ? '1.05rem' : '1.2rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
-                      {plan.price}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {isMobile && (
-                <button
-                  onClick={() => setStep(2)}
-                  style={{
-                    width: '100%', padding: '0.8rem', background: 'var(--accent-blue)', color: 'white',
-                    border: 'none', borderRadius: '10px', fontSize: '0.98rem', fontWeight: 700,
-                    marginTop: '0.85rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    boxShadow: '0 4px 14px rgba(59,130,246,0.4)',
-                    touchAction: 'manipulation'
-                  }}
-                >
-                  Continuar al Pago ({selectedPlan.name} · {selectedPlan.price}) →
-                </button>
+                    Continuar al Pago ({selectedPlan.name} · {selectedPlan.price}) →
+                  </button>
+                </div>
               )}
             </div>
           )}
@@ -160,33 +177,34 @@ const PaymentModal = ({ onClose }) => {
           {(!isMobile || step === 2) && (
             <div style={{
               flex: '1 1 350px',
-              padding: isMobile ? '1rem' : '2rem',
-              display: 'flex', flexDirection: 'column', justifyContent: 'center'
+              padding: isMobile ? '0.75rem 0.85rem' : '1.5rem',
+              display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
+              overflowY: 'auto', flex: 1, minHeight: 0
             }}>
               {isMobile && (
                 <button
                   onClick={() => setStep(1)}
                   style={{
                     background: 'none', border: 'none', color: 'var(--surface-300)',
-                    textAlign: 'left', marginBottom: '0.85rem', fontSize: '0.88rem',
-                    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    textAlign: 'left', marginBottom: '0.65rem', fontSize: '0.85rem',
+                    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem',
                     padding: 0
                   }}
                 >
-                  <ArrowLeft size={16} /> Volver a los planes
+                  <ArrowLeft size={15} /> Volver a los planes
                 </button>
               )}
               
-              <h3 style={{ fontSize: '1.05rem', color: 'var(--surface-50)', marginBottom: '0.75rem', marginTop: 0, textAlign: 'center' }}>
+              <h3 style={{ fontSize: '0.98rem', color: 'var(--surface-50)', marginBottom: '0.6rem', marginTop: 0, textAlign: 'center' }}>
                 Completar pago: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name} ({selectedPlan.price})</span>
               </h3>
 
               {/* Selector de País */}
-              <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', background: 'var(--surface-600)', padding: '0.2rem', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.75rem', background: 'var(--surface-600)', padding: '0.15rem', borderRadius: '8px' }}>
                 <button
                   onClick={() => setCountry('CL')}
                   style={{
-                    flex: 1, padding: '0.45rem', border: 'none', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+                    flex: 1, padding: '0.4rem', border: 'none', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
                     background: country === 'CL' ? 'var(--surface-500)' : 'transparent',
                     color: country === 'CL' ? 'white' : 'var(--surface-300)'
                   }}
@@ -196,7 +214,7 @@ const PaymentModal = ({ onClose }) => {
                 <button
                   onClick={() => setCountry('BO')}
                   style={{
-                    flex: 1, padding: '0.45rem', border: 'none', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+                    flex: 1, padding: '0.4rem', border: 'none', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
                     background: country === 'BO' ? 'var(--surface-500)' : 'transparent',
                     color: country === 'BO' ? 'white' : 'var(--surface-300)'
                   }}
@@ -205,9 +223,9 @@ const PaymentModal = ({ onClose }) => {
                 </button>
               </div>
 
-              <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
-                <p style={{ margin: 0, fontSize: '0.82rem', color: '#34d399', lineHeight: 1.4, textAlign: 'center' }}>
-                  <CheckCircle2 size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.35rem' }} />
+              <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '0.6rem 0.75rem', borderRadius: '8px', marginBottom: '0.75rem' }}>
+                <p style={{ margin: 0, fontSize: '0.78rem', color: '#34d399', lineHeight: 1.35, textAlign: 'center' }}>
+                  <CheckCircle2 size={15} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.3rem' }} />
                   <strong>Activación Inmediata</strong> al finalizar el pago seguro {country === 'CL' ? 'con Webpay o Tarjetas' : 'con Pago Simple / PayPal'}.
                 </p>
               </div>
@@ -220,11 +238,11 @@ const PaymentModal = ({ onClose }) => {
                       onClick={handleMercadoPago}
                       disabled={loadingMp}
                       style={{
-                        width: '100%', padding: '0.85rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '1rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        width: '100%', padding: '0.75rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '0.95rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                         opacity: loadingMp ? 0.8 : 1, transition: 'all 0.2s'
                       }}>
-                      {loadingMp ? <><Loader2 size={18} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
+                      {loadingMp ? <><Loader2 size={16} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
                     </button>
 
                     <button 
@@ -236,34 +254,34 @@ const PaymentModal = ({ onClose }) => {
                         window.location.href = selectedPlan.paypal;
                       }}
                       style={{
-                        width: '100%', padding: '0.85rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '1rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.25rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.2rem', marginBottom: '0.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                         transition: 'all 0.2s'
                       }}>
                       Pagar Internacional con PayPal
                     </button>
                     
                     {errorMp && (
-                      <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem' }}>{errorMp}</div>
+                      <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
                     )}
                   </div>
 
-                  <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '1rem 0' }} />
+                  <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '0.75rem 0' }} />
 
                   {/* Transferencia */}
                   <div>
-                    <h4 style={{ margin: '0 0 0.4rem 0', color: 'var(--surface-200)', fontSize: '0.9rem' }}>Transferencia Directa</h4>
-                    <div style={{ background: 'var(--surface-600)', padding: '0.75rem 0.85rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
-                      <p style={{ margin: '0 0 0.35rem 0', fontSize: '0.8rem', color: 'var(--surface-300)' }}>
+                    <h4 style={{ margin: '0 0 0.35rem 0', color: 'var(--surface-200)', fontSize: '0.85rem' }}>Transferencia Directa</h4>
+                    <div style={{ background: 'var(--surface-600)', padding: '0.65rem 0.75rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
+                      <p style={{ margin: '0 0 0.3rem 0', fontSize: '0.78rem', color: 'var(--surface-300)' }}>
                         Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
                       </p>
-                      <ul style={{ margin: 0, paddingLeft: '1.1rem', fontSize: '0.8rem', color: 'var(--surface-100)', lineHeight: 1.5 }}>
+                      <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.78rem', color: 'var(--surface-100)', lineHeight: 1.45 }}>
                         <li><strong>Banco:</strong> BancoEstado</li>
                         <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
                         <li><strong>Nombre:</strong> Felipe Yanez</li>
                         <li><strong>Monto:</strong> {selectedPlan.price}</li>
                       </ul>
-                      <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.75rem', color: '#10b981', fontWeight: 600 }}>
+                      <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.72rem', color: '#10b981', fontWeight: 600 }}>
                         IMPORTANTE: Envía tu comprobante por WhatsApp al +1 (929) 360-3799.
                       </p>
                     </div>
@@ -273,7 +291,7 @@ const PaymentModal = ({ onClose }) => {
                 <>
                   {/* Bolivia / Internacional */}
                   <div style={{ textAlign: 'center' }}>
-                    <p style={{ color: 'var(--surface-300)', fontSize: '0.88rem', marginBottom: '1.25rem', lineHeight: 1.5 }}>
+                    <p style={{ color: 'var(--surface-300)', fontSize: '0.85rem', marginBottom: '1rem', lineHeight: 1.45 }}>
                       Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
                     </p>
                     <button 
@@ -285,8 +303,8 @@ const PaymentModal = ({ onClose }) => {
                         window.location.href = selectedPlan.paypal;
                       }}
                       style={{
-                        width: '100%', padding: '0.85rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '1rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                        width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
+                        fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                         transition: 'all 0.2s'
                       }}>
                       Pagar con PayPal (USD)

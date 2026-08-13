@@ -80,6 +80,9 @@ const Dashboard = () => {
   const handleInstallClick = async () => {
     setIsInstallClicked(true)
     localStorage.setItem('pwa_install_clicked', 'true')
+    // Mark as dismissed so the big banner window disappears completely after click
+    setDismissed(true)
+    localStorage.setItem('pwa_dismissed', 'true')
 
     if (deferredPrompt) {
       deferredPrompt.prompt()
