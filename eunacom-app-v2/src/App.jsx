@@ -42,13 +42,13 @@ function App() {
             <Route path="/reconstructions" element={<Reconstructions />} />
             <Route path="/mis-clases" element={<MisClases />} />
             <Route path="/test" element={<TestCreator />} />
+            <Route path="/simulation" element={<Simulation />} />
             <Route path="/oferta" element={<Offer />} />
           </Route>
 
           {/* Protected Routes — require login */}
           <Route element={<DashboardLayout />}>
             <Route path="/study-plan" element={<FelipeCalendar />} />
-            <Route path="/simulation" element={<Simulation />} />
             <Route path="/test-runner" element={<TestRunner />} />
             <Route path="/history" element={<History />} />
             <Route path="/stats" element={<Stats />} />
