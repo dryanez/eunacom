@@ -29,6 +29,7 @@ export default async function handler(req, res) {
         country_code TEXT,
         whatsapp TEXT,
         inscrito_eunacom TEXT,
+        ayuda_inscripcion TEXT,
         onboarding_done INTEGER DEFAULT 0,
         is_premium INTEGER DEFAULT 0,
         premium_until TEXT,
@@ -39,7 +40,7 @@ export default async function handler(req, res) {
     })
 
     // --- WEBHOOK HANDLING ---
-    if (req.method === 'POST') {
+    if (req.method === 'POST' && req.body?.type) {
       const type = req.body?.type;
       const topic = req.body?.topic || req.query?.topic;
       const action = req.body?.action;
@@ -99,20 +100,20 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: [{ title: plan.title, description: "Acceso Premium EUNACOM Examen", quantity: 1, unit_price: plan.price, currency_id: "CLP" }],
+          items: [{ title: plan.title, quantity: 1, unit_price: plan.price, currency_id: 'CLP' }],
           payer: { email: payerEmail },
           external_reference: externalReference,
           back_urls: {
-            success: "https://eunacom.vercel.app/dashboard?payment=success",
-            failure: "https://eunacom.vercel.app/dashboard?payment=failure",
-            pending: "https://eunacom.vercel.app/dashboard?payment=pending"
+            success: 'https://eunacom.vercel.app/dashboard?payment=success',
+            failure: 'https://eunacom.vercel.app/dashboard?payment=failure',
+            pending: 'https://eunacom.vercel.app/dashboard?payment=pending'
           },
-          auto_return: "approved",
-          notification_url: "https://eunacom.vercel.app/api/user-profiles"
+          auto_return: 'approved',
+          notification_url: 'https://eunacom.vercel.app/api/user-profiles'
         })
       })
 
-      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia' })
+      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia Mercado Pago' })
       const data = await mpRes.json()
       return res.json({ init_point: data.init_point })
     }
@@ -120,11 +121,11 @@ export default async function handler(req, res) {
     // --- DONATE CREATION ---
     if (req.method === 'POST' && req.body?.action === 'donate') {
       const { userId } = req.body
-      let payerEmail = 'donante@anonimo.com'
-      if (userId) {
-         const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
-         if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
-      }
+      if (!userId) return res.status(400).json({ error: 'userId required' })
+
+      const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
+      let payerEmail = 'test@test.com'
+      if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
       
       const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
@@ -158,13 +159,13 @@ export default async function handler(req, res) {
       return res.json({ data: result.rows[0] || null })
     }
 
-    // --- CREATE PROFILE ---
+    // --- CREATE / UPDATE PROFILE ---
     if (req.method === 'POST') {
       const {
         id, email, first_name, last_name,
         exam_month, exam_year, prep_months,
         nationality, country, country_code, whatsapp,
-        inscrito_eunacom, onboarding_done
+        inscrito_eunacom, ayuda_inscripcion, onboarding_done
       } = req.body
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
@@ -173,7 +174,7 @@ export default async function handler(req, res) {
       const newCols = [
         'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
         'nationality TEXT', 'country TEXT', 'country_code TEXT',
-        'whatsapp TEXT', 'inscrito_eunacom TEXT', 
+        'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
         'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
         'premium_until TEXT', 'plan_months INTEGER'
       ]
@@ -182,8 +183,8 @@ export default async function handler(req, res) {
       }
 
       await db.execute({
-        sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, inscrito_eunacom, onboarding_done, is_premium, updated_at)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+        sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion, onboarding_done, is_premium, updated_at)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
               ON CONFLICT(id) DO UPDATE SET
                 email = excluded.email,
                 first_name = COALESCE(excluded.first_name, user_profiles.first_name),
@@ -196,13 +197,14 @@ export default async function handler(req, res) {
                 country_code = COALESCE(excluded.country_code, user_profiles.country_code),
                 whatsapp = COALESCE(excluded.whatsapp, user_profiles.whatsapp),
                 inscrito_eunacom = COALESCE(excluded.inscrito_eunacom, user_profiles.inscrito_eunacom),
+                ayuda_inscripcion = COALESCE(excluded.ayuda_inscripcion, user_profiles.ayuda_inscripcion),
                 onboarding_done = MAX(excluded.onboarding_done, user_profiles.onboarding_done),
                 updated_at = datetime('now')`,
         args: [
           id, email, first_name || null, last_name || null,
           exam_month || null, exam_year || null, prep_months || null,
           nationality || null, country || null, country_code || null, whatsapp || null,
-          inscrito_eunacom || null,
+          inscrito_eunacom || null, ayuda_inscripcion || null,
           onboarding_done ? 1 : 0
         ]
       })

@@ -36,6 +36,44 @@ const SLIDES = [
   },
 ]
 
+// ─── COUNTRY CODES & PHONE VALIDATION ────────────────────────────────────
+const COUNTRY_CODES = [
+  { code: '+56', country: 'Chile', flag: '🇨🇱', minDigits: 9, maxDigits: 9, placeholder: '9 1234 5678' },
+  { code: '+54', country: 'Argentina', flag: '🇦🇷', minDigits: 10, maxDigits: 11, placeholder: '9 11 1234 5678' },
+  { code: '+57', country: 'Colombia', flag: '🇨🇴', minDigits: 10, maxDigits: 10, placeholder: '300 123 4567' },
+  { code: '+51', country: 'Perú', flag: '🇵🇪', minDigits: 9, maxDigits: 9, placeholder: '912 345 678' },
+  { code: '+58', country: 'Venezuela', flag: '🇻🇪', minDigits: 10, maxDigits: 10, placeholder: '412 123 4567' },
+  { code: '+593', country: 'Ecuador', flag: '🇪🇨', minDigits: 9, maxDigits: 9, placeholder: '91 234 5678' },
+  { code: '+591', country: 'Bolivia', flag: '🇧🇴', minDigits: 8, maxDigits: 8, placeholder: '7123 4567' },
+  { code: '+52', country: 'México', flag: '🇲🇽', minDigits: 10, maxDigits: 10, placeholder: '55 1234 5678' },
+  { code: '+53', country: 'Cuba', flag: '🇨🇺', minDigits: 8, maxDigits: 8, placeholder: '5 123 4567' },
+  { code: '+34', country: 'España', flag: '🇪🇸', minDigits: 9, maxDigits: 9, placeholder: '612 345 678' },
+  { code: '+1', country: 'Estados Unidos / Canadá', flag: '🇺🇸', minDigits: 10, maxDigits: 10, placeholder: '202 555 0123' },
+  { code: '+', country: 'Otro', flag: '🌐', minDigits: 7, maxDigits: 12, placeholder: '123456789' },
+]
+
+function validatePhone(rawNumber, selectedCode) {
+  const digits = (rawNumber || '').replace(/\D/g, '')
+  if (!digits) return { valid: false, message: 'Ingresa tu número de WhatsApp.' }
+
+  // Check repeating digits like 12345678, 00000000, 11111111, 99999999
+  const isRepeating = /^(\d)\1+$/.test(digits)
+  const isSequence = '01234567890123456789'.includes(digits) || '98765432109876543210'.includes(digits)
+  if (isRepeating || isSequence || digits.length < 7) {
+    return { valid: false, message: 'Por favor ingresa un número de WhatsApp real.' }
+  }
+
+  const rule = COUNTRY_CODES.find(c => c.code === selectedCode) || COUNTRY_CODES[0]
+  if (rule.minDigits && digits.length < rule.minDigits) {
+    return { valid: false, message: `El número para ${rule.country} debe tener al menos ${rule.minDigits} dígitos.` }
+  }
+  if (rule.maxDigits && digits.length > rule.maxDigits) {
+    return { valid: false, message: `El número para ${rule.country} no debe superar ${rule.maxDigits} dígitos.` }
+  }
+
+  return { valid: true }
+}
+
 // ─── COMPONENT ───────────────────────────────────────────────────────────
 const Onboarding = ({ user, onComplete }) => {
   const [phase, setPhase] = useState('tour') // 'tour' | 'form'
@@ -48,8 +86,10 @@ const Onboarding = ({ user, onComplete }) => {
   const [examMonth, setExamMonth] = useState('')
   const [examYear, setExamYear] = useState('')
   const [nationality, setNationality] = useState('')
+  const [countryCode, setCountryCode] = useState('+56')
   const [whatsapp, setWhatsapp] = useState('')
   const [inscrito, setInscrito] = useState('')
+  const [ayudaInscripcion, setAyudaInscripcion] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
@@ -65,6 +105,14 @@ const Onboarding = ({ user, onComplete }) => {
       onboarding_done: false,
     }).catch(() => {})
   }, [user])
+
+  const handleNationalitySelect = (countryName) => {
+    setNationality(countryName)
+    const match = COUNTRY_CODES.find(c => c.country.toLowerCase().includes(countryName.toLowerCase()) || countryName.toLowerCase().includes(c.country.toLowerCase()))
+    if (match) {
+      setCountryCode(match.code)
+    }
+  }
 
   const updateHighlight = useCallback(() => {
     if (!slide.selector) {
@@ -131,15 +179,25 @@ const Onboarding = ({ user, onComplete }) => {
     if (!name.trim()) { setError('Por favor ingresa tu nombre.'); return }
     if (!examMonth) { setError('Por favor selecciona el mes de tu examen.'); return }
     if (!examYear) { setError('Por favor selecciona el año de tu examen.'); return }
-    if (!nationality) { setError('Por favor selecciona tu país.'); return }
-    if (!whatsapp.trim()) { setError('Por favor ingresa tu número de WhatsApp.'); return }
-    if (!inscrito) { setError('Por favor indica si ya estás inscrito/a.'); return }
+    if (!nationality) { setError('Por favor selecciona tu nacionalidad.'); return }
+    
+    const phoneCheck = validatePhone(whatsapp, countryCode)
+    if (!phoneCheck.valid) {
+      setError(phoneCheck.message)
+      return
+    }
+
+    if (!inscrito) { setError('Por favor indica si ya estás inscrito/a en el EUNACOM.'); return }
+    if (!ayudaInscripcion) { setError('Por favor indica si necesitas ayuda para inscribirte.'); return }
+
     setError('')
     setSaving(true)
     try {
       const parts = name.trim().split(/\s+/)
       const firstName = parts[0] || user.email?.split('@')[0] || 'Estudiante'
       const lastName  = parts.slice(1).join(' ') || null
+      const fullPhone = `${countryCode} ${whatsapp.trim().replace(/\D/g, '')}`
+      
       await onComplete({
         id: user.id,
         email: user.email,
@@ -149,8 +207,10 @@ const Onboarding = ({ user, onComplete }) => {
         exam_year: examYear,
         nationality,
         country: nationality,
-        whatsapp,
+        country_code: countryCode,
+        whatsapp: fullPhone,
         inscrito_eunacom: inscrito,
+        ayuda_inscripcion: ayudaInscripcion,
         onboarding_done: true,
       })
     } catch (e) {
@@ -173,6 +233,9 @@ const Onboarding = ({ user, onComplete }) => {
       setSaving(false)
     }
   }
+
+  const selectedRule = COUNTRY_CODES.find(c => c.code === countryCode) || COUNTRY_CODES[0]
+  const phoneValidation = validatePhone(whatsapp, countryCode)
 
   // ─── TOUR PHASE ───────────────────────────────────────────────────────
   if (phase === 'tour') {
@@ -276,7 +339,7 @@ const Onboarding = ({ user, onComplete }) => {
         WebkitBackdropFilter: 'blur(6px)',
       }} />
 
-      {/* Scrollable container — key fix for mobile/small screens */}
+      {/* Scrollable container */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 9991,
         overflowY: 'auto',
@@ -328,7 +391,7 @@ const Onboarding = ({ user, onComplete }) => {
                 autoComplete="name"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                placeholder="Tu nombre"
+                placeholder="Tu nombre completo"
                 style={inputStyle}
               />
             </div>
@@ -365,37 +428,91 @@ const Onboarding = ({ user, onComplete }) => {
 
             {/* Nationality */}
             <div>
-              <label htmlFor="ob-country" style={labelStyle}>
-                <Globe size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> País
+              <label htmlFor="ob-nationality" style={labelStyle}>
+                <Globe size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> Nacionalidad
               </label>
               <select
-                id="ob-country"
+                id="ob-nationality"
                 value={nationality}
-                onChange={e => setNationality(e.target.value)}
+                onChange={e => handleNationalitySelect(e.target.value)}
                 style={{ ...inputStyle, color: nationality ? 'var(--surface-100)' : 'var(--surface-400)' }}
               >
-                <option value="" disabled>Selecciona tu país...</option>
-                {['Chile','Argentina','Colombia','Perú','Venezuela','Ecuador','Bolivia','México','Otro'].map(c => (
-                  <option key={c} value={c} style={{ color: 'var(--surface-100)' }}>{c}</option>
+                <option value="" disabled>Selecciona tu nacionalidad...</option>
+                {[
+                  { name: 'Chile', flag: '🇨🇱' },
+                  { name: 'Argentina', flag: '🇦🇷' },
+                  { name: 'Colombia', flag: '🇨🇴' },
+                  { name: 'Perú', flag: '🇵🇪' },
+                  { name: 'Venezuela', flag: '🇻🇪' },
+                  { name: 'Ecuador', flag: '🇪🇨' },
+                  { name: 'Bolivia', flag: '🇧🇴' },
+                  { name: 'México', flag: '🇲🇽' },
+                  { name: 'Cuba', flag: '🇨🇺' },
+                  { name: 'España', flag: '🇪🇸' },
+                  { name: 'Estados Unidos', flag: '🇺🇸' },
+                  { name: 'Otro', flag: '🌐' }
+                ].map(c => (
+                  <option key={c.name} value={c.name} style={{ color: 'var(--surface-100)' }}>
+                    {c.flag} {c.name}
+                  </option>
                 ))}
               </select>
             </div>
 
-            {/* WhatsApp */}
+            {/* WhatsApp with Country Flag + Code selector & Validation */}
             <div>
               <label htmlFor="ob-wa" style={labelStyle}>
                 <Phone size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> WhatsApp
               </label>
-              <input
-                id="ob-wa"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                value={whatsapp}
-                onChange={e => setWhatsapp(e.target.value)}
-                placeholder="+56 9 1234 5678"
-                style={inputStyle}
-              />
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
+                <select
+                  value={countryCode}
+                  onChange={e => setCountryCode(e.target.value)}
+                  style={{
+                    padding: '0.65rem 0.5rem',
+                    background: 'var(--surface-600)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: 'var(--radius)',
+                    color: 'var(--surface-100)',
+                    fontSize: '0.9rem',
+                    fontFamily: 'var(--font)',
+                    outline: 'none',
+                    minHeight: 44,
+                    width: '115px',
+                    flexShrink: 0
+                  }}
+                  aria-label="Código de país"
+                >
+                  {COUNTRY_CODES.map(c => (
+                    <option key={c.code + c.country} value={c.code} style={{ color: 'var(--surface-100)' }}>
+                      {c.flag} {c.code}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  id="ob-wa"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  value={whatsapp}
+                  onChange={e => setWhatsapp(e.target.value)}
+                  placeholder={selectedRule.placeholder || '9 1234 5678'}
+                  style={{
+                    ...inputStyle,
+                    flex: 1,
+                    border: (whatsapp.length > 0 && !phoneValidation.valid)
+                      ? '1px solid #ef4444'
+                      : (whatsapp.length > 0 && phoneValidation.valid)
+                      ? '1px solid #10b981'
+                      : '1px solid rgba(255,255,255,0.08)'
+                  }}
+                />
+              </div>
+              {whatsapp.length > 0 && !phoneValidation.valid && (
+                <div style={{ fontSize: '0.75rem', color: '#fca5a5', marginTop: '0.25rem' }}>
+                  {phoneValidation.message}
+                </div>
+              )}
             </div>
 
             {/* Inscrito */}
@@ -411,12 +528,42 @@ const Onboarding = ({ user, onComplete }) => {
                       flex: 1, textAlign: 'center', cursor: 'pointer',
                       padding: '0.6rem 0.25rem',
                       minHeight: 44,
-                      background: inscrito === opt ? 'rgba(19,91,236,0.2)' : 'var(--surface-600)',
+                      background: inscrito === opt ? 'rgba(19,91,236,0.25)' : 'var(--surface-600)',
                       border: inscrito === opt ? '1.5px solid var(--primary-400)' : '1px solid var(--surface-500)',
                       borderRadius: 'var(--radius)',
                       color: inscrito === opt ? 'var(--primary-300)' : 'var(--surface-200)',
                       fontWeight: inscrito === opt ? 700 : 500,
                       fontSize: '0.82rem',
+                      fontFamily: 'var(--font)',
+                      transition: 'all 0.15s',
+                      touchAction: 'manipulation'
+                    }}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Ayuda Inscripción */}
+            <div>
+              <label style={labelStyle}>¿Necesitas ayuda para inscribirte al EUNACOM?</label>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                {['Sí', 'No'].map(opt => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setAyudaInscripcion(opt)}
+                    style={{
+                      flex: 1, textAlign: 'center', cursor: 'pointer',
+                      padding: '0.6rem 0.25rem',
+                      minHeight: 44,
+                      background: ayudaInscripcion === opt ? 'rgba(168,85,247,0.25)' : 'var(--surface-600)',
+                      border: ayudaInscripcion === opt ? '1.5px solid #a855f7' : '1px solid var(--surface-500)',
+                      borderRadius: 'var(--radius)',
+                      color: ayudaInscripcion === opt ? '#c084fc' : 'var(--surface-200)',
+                      fontWeight: ayudaInscripcion === opt ? 700 : 500,
+                      fontSize: '0.88rem',
                       fontFamily: 'var(--font)',
                       transition: 'all 0.15s',
                       touchAction: 'manipulation'
@@ -440,7 +587,7 @@ const Onboarding = ({ user, onComplete }) => {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={saving || !name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito}
+            disabled={saving || !name.trim() || !examMonth || !examYear || !nationality || !phoneValidation.valid || !inscrito || !ayudaInscripcion}
             style={{
               ...btnPrimary,
               width: '100%',
@@ -449,8 +596,8 @@ const Onboarding = ({ user, onComplete }) => {
               padding: '0.85rem',
               fontSize: '0.95rem',
               minHeight: 48,
-              opacity: ((!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) || saving) ? 0.5 : 1,
-              cursor: ((!name.trim() || !examMonth || !examYear || !nationality || !whatsapp.trim() || !inscrito) || saving) ? 'not-allowed' : 'pointer',
+              opacity: ((!name.trim() || !examMonth || !examYear || !nationality || !phoneValidation.valid || !inscrito || !ayudaInscripcion) || saving) ? 0.5 : 1,
+              cursor: ((!name.trim() || !examMonth || !examYear || !nationality || !phoneValidation.valid || !inscrito || !ayudaInscripcion) || saving) ? 'not-allowed' : 'pointer',
             }}
           >
             {saving ? (

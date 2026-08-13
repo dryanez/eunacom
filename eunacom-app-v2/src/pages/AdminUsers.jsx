@@ -5,7 +5,7 @@ import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
   CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings,
-  Download, CreditCard
+  Download, CreditCard, HelpCircle
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
 
@@ -199,6 +199,7 @@ const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
               {user.country && <Tag icon={<Globe size={12} />} label={user.country} />}
               {user.exam_month && <Tag icon={<Calendar size={12} />} label={`${user.exam_month} ${user.exam_year || ''}`} />}
               {user.prep_months && <Tag icon={<Clock size={12} />} label={`${user.prep_months} meses prep`} />}
+              {user.ayuda_inscripcion && <Tag icon={<HelpCircle size={12} />} label={`Ayuda Inscripción: ${user.ayuda_inscripcion}`} color={user.ayuda_inscripcion === 'Sí' ? '#a855f7' : 'var(--surface-400)'} />}
               {user.onboarding_done
                 ? <Tag icon={<CheckCircle size={12} />} label="Onboarding ✓" color="var(--accent-green)" />
                 : <Tag icon={<AlertCircle size={12} />} label="Sin onboarding" color="var(--surface-400)" />
