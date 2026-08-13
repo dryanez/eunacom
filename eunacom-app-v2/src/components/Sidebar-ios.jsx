@@ -98,32 +98,15 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
                 )}
 
                 <div className="sidebar__section-title">Exámenes</div>
-                <button
-                    className="sidebar__link"
-                    onClick={() => setExamenesOpen(!examenesOpen)}
-                    style={{ cursor: 'pointer', justifyContent: 'space-between', border: 'none', background: 'transparent', width: '100%', fontFamily: 'inherit' }}
-                    aria-expanded={examenesOpen}
-                    aria-controls="examenes-menu"
-                >
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <FileText size={18} /> Exámenes
-                    </span>
-                    <ChevronDown size={14} style={{ transform: examenesOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }} />
-                </button>
-                {examenesOpen && (
-                    <div id="examenes-menu" style={{ paddingLeft: '1rem' }}>
-                        <NavLink to="/test" data-tour="test" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                            <FileText size={16} /> Crear Examen
-                        </NavLink>
-                        <NavLink to="/reconstructions" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                            <Stethoscope size={16} /> Reconstrucciones
-                        </NavLink>
-                        <NavLink to="/simulation" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                            <Target size={16} /> Simulación
-                        </NavLink>
-                    </div>
-                )}
-
+                <NavLink to="/test" data-tour="test" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <FileText size={18} /> Preguntas
+                </NavLink>
+                <NavLink to="/reconstructions" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Stethoscope size={18} /> Reconstrucciones
+                </NavLink>
+                <NavLink to="/simulation" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
+                    <Target size={18} /> Simulación
+                </NavLink>
                 <NavLink to="/history" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Clock size={18} /> Historial de Exámenes
                 </NavLink>
