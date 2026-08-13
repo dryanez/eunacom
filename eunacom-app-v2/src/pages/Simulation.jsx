@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import PaymentModal from '../components/PaymentModal'
+import LoadingScreen from '../components/LoadingScreen'
 import { createTest, genId } from '../lib/api'
 import { getQuestionDB } from '../lib/questionDB'
 
@@ -13,6 +14,8 @@ const Simulation = () => {
     const { isPremium, hasExceededSimulations, freemiumMode } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
+
+    if (isStarting) return <LoadingScreen context="test" message="Generando Simulacro EUNACOM (180 preguntas)..." />
 
     const blueprint = [
         { name: 'Medicina Interna', qty: 54, percent: 30, color: 'var(--accent-green)', category: 'Medicina Interna' },

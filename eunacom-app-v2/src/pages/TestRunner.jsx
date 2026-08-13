@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT } from '../utils/xpSystem'
+import LoadingScreen from '../components/LoadingScreen'
 
 const TestRunner = () => {
     const navigate = useNavigate()
@@ -77,7 +78,8 @@ const TestRunner = () => {
         return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`
     }
 
-    if (questions.length === 0) return <div style={{ padding: '2rem', color: 'white', textAlign: 'center' }}>No hay preguntas disponibles.</div>
+    if (isSubmitting) return <LoadingScreen context="test" message="Finalizando y guardando tu examen..." />
+    if (questions.length === 0) return <LoadingScreen context="test" message="Cargando preguntas del examen..." />
 
     const currentQuestion = questions[currentIndex]
     const totalQuestions = questions.length

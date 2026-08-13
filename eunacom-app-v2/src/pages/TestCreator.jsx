@@ -6,6 +6,7 @@ import { useSubscription } from '../contexts/SubscriptionContext'
 import PaymentModal from '../components/PaymentModal'
 import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
+import LoadingScreen from '../components/LoadingScreen'
 
 const TestCreator = () => {
     const navigate = useNavigate()
@@ -249,6 +250,9 @@ const TestCreator = () => {
         { key: 'marked', label: 'Marcadas', color: '#a78bfa', icon: Flag },
         { key: 'correct', label: 'Correctas', color: '#34d399', icon: CheckCircle2 }
     ]
+
+    if (loading) return <LoadingScreen context="test" message="Cargando base de preguntas..." />
+    if (isCreating) return <LoadingScreen context="test" message="Generando tu examen..." />
 
     return (
         <>
