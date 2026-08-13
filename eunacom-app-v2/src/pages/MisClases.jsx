@@ -509,9 +509,19 @@ function EunacomQuestionsSection({ claseId, eunacomCode }) {
    QUIZ SECTION — One question at a time
    ════════════════════════════════════════════════════════════════ */
 function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
+  const containerRef = useRef(null)
   const [currentQ, setCurrentQ] = useState(0)
   const [selected, setSelected] = useState({})
   const [showScore, setShowScore] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 60)
+    return () => clearTimeout(timer)
+  }, [currentQ, showScore])
 
   const total = quiz.length
   const q = quiz[currentQ]
@@ -548,7 +558,8 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
   if (showScore) {
     const pct = Math.round((correctCount / total) * 100)
     return (
-      <div className="card" style={{
+      <div ref={containerRef} className="card" style={{
+        scrollMarginTop: '16px',
         padding: '3rem 2rem', textAlign: 'center',
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem'
       }}>
@@ -596,7 +607,7 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
   }
 
   return (
-    <div>
+    <div ref={containerRef} style={{ scrollMarginTop: '16px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
         <Target size={17} style={{ color: qColor.accent }} />
         <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
