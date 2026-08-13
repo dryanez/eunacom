@@ -44,6 +44,9 @@ export const AuthProvider = ({ children }) => {
             if (session?.user) {
                 // Stamp the current version so they won't be kicked out again
                 localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+                if (window.location.hash && window.location.hash.includes('access_token')) {
+                    window.history.replaceState(null, '', window.location.pathname)
+                }
             }
             setUser(session?.user ?? null)
             setLoading(false)
