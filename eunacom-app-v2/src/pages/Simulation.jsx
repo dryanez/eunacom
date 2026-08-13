@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import PaymentModal from '../components/PaymentModal'
 import LoadingScreen from '../components/LoadingScreen'
+import LoginGateModal from '../components/LoginGateModal'
 import { createTest, genId } from '../lib/api'
 import { getQuestionDB } from '../lib/questionDB'
 
@@ -14,6 +15,7 @@ const Simulation = () => {
     const { isPremium, hasExceededSimulations, freemiumMode } = useSubscription()
     const [isStarting, setIsStarting] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
+    const [showLoginGate, setShowLoginGate] = useState(false)
 
     if (isStarting) return <LoadingScreen context="test" message="Generando Simulacro EUNACOM (180 preguntas)..." />
 
@@ -26,6 +28,10 @@ const Simulation = () => {
     ]
 
     const handleStartSimulation = async () => {
+        if (!user) {
+            setShowLoginGate(true)
+            return
+        }
         const isLocked = freemiumMode === 'strict' ? !isPremium : hasExceededSimulations;
         if (isLocked) {
             setShowPaymentModal(true)
@@ -34,7 +40,6 @@ const Simulation = () => {
         
         setIsStarting(true)
         try {
-            if (!user) throw new Error('Debes iniciar sesión.')
             const questionDB = await getQuestionDB()
 
             // Build 180-question exam from blueprint proportions
@@ -132,6 +137,7 @@ const Simulation = () => {
             </div>
             
             {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+            {showLoginGate && <LoginGateModal onClose={() => setShowLoginGate(false)} message="Inicia sesión o regístrate gratis para realizar tu examen de Simulación Oficial." />}
         </div>
     )
 }
