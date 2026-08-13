@@ -2856,6 +2856,15 @@ const MisClases = () => {
   // Detail: fetch full data for one class on demand
   const openClase = async (id) => {
     if (!user) { setShowLoginGate(true); return }
+    const isClassDone = progressMap[id]?.video_watched === 1 || progressMap[id]?.quiz_completed === 1
+    const completedClassesCount = Object.values(progressMap || {}).filter(
+      p => p && (p.video_watched === 1 || p.quiz_completed === 1)
+    ).length
+
+    if (!isPremium && completedClassesCount >= 3 && !isClassDone) {
+      setShowPaymentModal(true)
+      return
+    }
     setSelectedId(id)
     setLoadingDetail(true)
     try {
@@ -3017,10 +3026,18 @@ const MisClases = () => {
     }
     const currentIndex = clases.findIndex(c => c.id === selectedClase.id)
     const nextClase = currentIndex >= 0 && currentIndex < clases.length - 1 ? clases[currentIndex + 1] : null
-    
     const completedClassesCount = Object.values(progressMap || {}).filter(
       p => p && (p.video_watched === 1 || p.quiz_completed === 1)
     ).length
+    const isCurrentClassDone = progressMap[selectedClase.id]?.video_watched === 1 || progressMap[selectedClase.id]?.quiz_completed === 1
+
+    if (!isPremium && completedClassesCount >= 3 && !isCurrentClassDone) {
+      return (
+        <div style={{ paddingBottom: '2rem' }}>
+          <PaymentModal onClose={() => { setShowPaymentModal(false); closeDetail() }} />
+        </div>
+      )
+    }
 
     const handleNextClass = () => {
       if (nextClase) {
