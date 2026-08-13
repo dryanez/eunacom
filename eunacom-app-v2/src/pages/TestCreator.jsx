@@ -350,7 +350,7 @@ const TestCreator = () => {
                     {Object.keys(categories).sort().map(cat => {
                         const topics = categories[cat]
                         const topicList = Object.keys(topics).sort()
-                        const isExpanded = expandedCategories[cat] !== false
+                        const isExpanded = !!expandedCategories[cat]
                         const totalCatCount = topicList.reduce((acc, t) => {
                             return acc + (questionDB.filter(q => q.category === cat && q.topic === t && filteredByStatus.has(q.id)).length)
                         }, 0)
@@ -521,7 +521,7 @@ const TestCreator = () => {
             </div>
 
             {/* ── START BUTTON + ERROR WARNING ── */}
-            <div style={{ position: 'sticky', bottom: '1.5rem', zIndex: 10 }}>
+            <div style={{ marginTop: '1.5rem' }}>
                 {createError && (
                     <div style={{
                         background: 'rgba(239, 68, 68, 0.18)', border: '1.5px solid #ef4444',
@@ -532,22 +532,12 @@ const TestCreator = () => {
                         <span>{createError}</span>
                     </div>
                 )}
-                {maxQuestions === 0 && !createError && (
-                    <div style={{
-                        background: 'rgba(245, 158, 11, 0.15)', border: '1.5px solid #f59e0b',
-                        borderRadius: 'var(--radius)', padding: '0.75rem 1rem', marginBottom: '0.75rem',
-                        color: '#fef08a', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem'
-                    }}>
-                        <AlertCircle size={18} color="#f59e0b" style={{ flexShrink: 0 }} />
-                        <span>⚠️ Selecciona al menos un tema y un estado con preguntas disponibles para poder iniciar.</span>
-                    </div>
-                )}
                 <button
                     onClick={handleStartExam}
                     disabled={maxQuestions === 0 || isCreating}
                     className="btn-primary btn-primary--full"
                     style={{
-                        padding: '1.25rem', fontSize: '1.05rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem',
+                        padding: '1.1rem', fontSize: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem',
                         opacity: (maxQuestions === 0 || isCreating) ? 0.5 : 1,
                         cursor: (maxQuestions === 0 || isCreating) ? 'not-allowed' : 'pointer',
                         boxShadow: (maxQuestions > 0 && !isCreating) ? '0 8px 25px rgba(19,91,236,0.45)' : 'none',
@@ -557,23 +547,23 @@ const TestCreator = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         {isCreating ? (
                             <>
-                                <Loader2 size={22} className="spin" />
+                                <Loader2 size={20} className="spin" />
                                 <span>Creando examen...</span>
                             </>
                         ) : maxQuestions === 0 ? (
                             <>
-                                <PlayCircle size={22} />
-                                <span>Selecciona temas para comenzar</span>
+                                <PlayCircle size={20} />
+                                <span>Selecciona temas arriba para comenzar</span>
                             </>
                         ) : (
                             <>
-                                <PlayCircle size={22} />
+                                <PlayCircle size={20} />
                                 <span>Comenzar Examen · {Math.min(activeNum, maxQuestions)} Preguntas</span>
                             </>
                         )}
                     </div>
                     {maxQuestions > 0 && !isCreating && (
-                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>
+                        <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>
                             {mode === 'timed' ? '⏱ Modo Tiempo · 1 min/pregunta' : '💡 Modo Tutor · Feedback inmediato'}
                         </span>
                     )}
