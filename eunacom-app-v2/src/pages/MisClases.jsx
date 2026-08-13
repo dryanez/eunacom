@@ -3038,6 +3038,7 @@ const MisClases = () => {
 
     return (
       <div style={{ paddingBottom: '2rem' }}>
+        {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
         <ClaseDetail
           clase={selectedClase}
           onBack={closeDetail}
