@@ -240,6 +240,11 @@ const Reconstructions = () => {
 
   const handleStartExam = async (exam, selectedMode) => {
     if (!user) { setShowLoginGate(true); return }
+    const activeTest = activeTests[exam.id]?.[selectedMode]
+    if (!activeTest && !isPremium && hasExceededReconstructions) {
+      setShowPaymentModal(true)
+      return
+    }
     setStarting(exam.id)
     setSelectedExam(null)
     try {
@@ -248,7 +253,6 @@ const Reconstructions = () => {
       const valid = data.questions.filter(q => (q.opciones || q.options || []).length >= 2)
       if (!valid.length) { alert('Sin preguntas disponibles.'); return }
       const questions = valid.map(q => toTestRunnerFormat(q, exam.id))
-      const activeTest = activeTests[exam.id]?.[selectedMode]
       if (activeTest) {
         setResumePrompt({ exam, selectedMode, activeTest, questions })
         return
@@ -290,6 +294,10 @@ const Reconstructions = () => {
     }
 
     // Start new
+    if (!isPremium && hasExceededReconstructions) {
+      setShowPaymentModal(true)
+      return
+    }
     try {
       const testId = genId()
       const timeLimitSeconds = selectedMode === 'exam' ? questions.length * 60 : 0

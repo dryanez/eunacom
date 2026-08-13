@@ -73,16 +73,15 @@ export function SubscriptionProvider({ children }) {
           if (mounted && tests && claseProgress) {
             const clasesOpened = claseProgress.length;
             
-            // Reconstructions: completed tests with a question ID containing '_q'
-            const reconstructionsCompleted = tests.filter(t => 
-              t.status === 'completed' && 
-              t.questions && t.questions.includes('_q') &&
-              t.mode !== 'simulation' // just in case
-            ).length;
+            // Reconstructions: ALL created tests with '_q' in questions or mode 'reconstruction'
+            const reconstructionsCompleted = tests.filter(t => {
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
+              return t.mode !== 'simulation' && (t.mode === 'reconstruction' || qStr.includes('_q'));
+            }).length;
             
-            // Simulations: completed tests with mode 'simulation'
+            // Simulations: ALL created tests with mode 'simulation'
             const simulationsCompleted = tests.filter(t => 
-              t.status === 'completed' && t.mode === 'simulation'
+              t.mode === 'simulation'
             ).length;
             
             // Custom Questions: count ALL questions in created custom tests
