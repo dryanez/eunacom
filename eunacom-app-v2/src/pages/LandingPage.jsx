@@ -33,13 +33,14 @@ const PLANS = [
     price: '$14.990',
     unit: 'pago único',
     badge: 'Express',
-    desc: 'Para repaso final intensivo en las últimas semanas antes de rendir.',
+    desc: 'Curso completo con videos y preguntas para repaso final intensivo.',
     features: [
-      '+10.000 preguntas clasificadas por especialidad',
-      'Acceso completo a reconstrucciones reales',
-      'Simulacros cronometrados de 180 preguntas',
-      'Retroalimentación explicada por alternativa',
-      'App PWA instalable en celular y PC',
+      '🎓 Curso Completo: +650 Clases en Video (Perfil EUNACOM)',
+      '🩺 +10.000 preguntas clínicas clasificadas por especialidad',
+      '📋 Acceso total a reconstrucciones de exámenes reales',
+      '⏱️ Simulacros cronometrados oficiales de 180 preguntas',
+      '💡 Retroalimentación explicada por alternativa y Guías GES',
+      '📱 App PWA instalable para estudiar en celular y PC',
     ],
     popular: false,
     cta: 'Elegir 1 Mes',
@@ -50,13 +51,14 @@ const PLANS = [
     price: '$34.990',
     unit: 'pago único (~$11.660/mes)',
     badge: 'Ahorro 22%',
-    desc: 'El período óptimo para estudiar el temario completo con ritmo constante.',
+    desc: 'El período óptimo para ver el curso completo y resolver todo el banco.',
     features: [
-      'Todo lo incluido en el plan de 1 Mes',
-      'Clases en video por especialidad clínica',
-      'Módulo de revisión de errores recurrentes',
-      'Estadísticas de rendimiento por área médica',
-      'Simulacros ilimitados con ranking',
+      '🎓 Todo lo incluido en 1 Mes (+650 Videos + 10k Preguntas)',
+      '📊 Estadísticas de rendimiento y diagnóstico por área médica',
+      '🔍 Módulo de revisión de errores recurrentes',
+      '🏆 Simulacros ilimitados con ranking en tiempo real',
+      '⚡ Acceso prioritario a nuevas reconstrucciones',
+      '📱 Estudio 24/7 sin límites en todos tus dispositivos',
     ],
     popular: false,
     cta: 'Elegir 3 Meses',
@@ -69,11 +71,12 @@ const PLANS = [
     badge: 'Más Popular ⭐',
     desc: 'Preparación integral desde cero con calendario adaptativo y guías clínicas.',
     features: [
-      'Todo lo incluido en el plan de 3 Meses',
-      'Plan de estudio inteligente según tu fecha',
-      'Guías clínicas y resúmenes descargables en PDF',
-      'Banco de preguntas actualizado periódicamente',
-      'Soporte prioritario para dudas de plataforma',
+      '🎓 Todo lo incluido en 3 Meses (+650 Videos + 10k Preguntas)',
+      '📅 Plan de estudio inteligente adaptativo a tu fecha de examen',
+      '📑 Guías clínicas y resúmenes descargables en PDF',
+      '🔄 Banco de preguntas y clases actualizado periódicamente',
+      '⭐ Soporte prioritario para dudas de plataforma',
+      '🎯 Cobertura completa de Medicina Interna, Cirugía, Gine y Pedia',
     ],
     popular: true,
     cta: 'Empezar con 6 Meses',
@@ -84,13 +87,13 @@ const PLANS = [
     price: '$89.990',
     unit: 'pago único (~$7.499/mes)',
     badge: 'Mejor Valor',
-    desc: 'Acceso total para internistas y egresados preparando ambas convocatorias.',
+    desc: 'Acceso total extendido para asegurar tu aprobación en cualquier convocatoria.',
     features: [
-      'Acceso irrestricto por 12 meses completos',
-      'Todas las actualizaciones de preguntas y clases',
-      'Cobertura para convocatorias de Julio y Diciembre',
-      'Garantía de contenido según Guías GES vigentes',
-      'Máxima flexibilidad para estudiar sin límites',
+      '🎓 Todo lo incluido en 6 Meses (+650 Videos + 10k Preguntas)',
+      '🗓️ Acceso irrestricto por 12 meses completos (Julio & Diciembre)',
+      '🚀 Todas las futuras clases y nuevos módulos incluidos sin costo',
+      '📜 Garantía de contenido según normativas MINSAL/ASOFAMECH',
+      '💎 Máxima flexibilidad para estudiar con total tranquilidad',
     ],
     popular: false,
     cta: 'Elegir 1 Año',
@@ -721,12 +724,14 @@ export default function LandingPage() {
       {/* ── PRICING SECTION ── */}
       <section id="planes" style={{ padding: '72px 16px', maxWidth: '1240px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 44 }}>
-          <span style={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Precios Claros</span>
-          <h2 style={{ fontSize: 'clamp(1.7rem, 4vw, 2.6rem)', fontWeight: 800, color: '#0f172a', marginTop: 4, marginBottom: 10 }}>
-            Elige el plan ideal para tu preparación
+          <span style={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', background: 'rgba(2, 132, 199, 0.1)', padding: '4px 14px', borderRadius: 9999 }}>
+            🎓 CURSO COMPLETO TODO-EN-UNO (VIDEOS + PREGUNTAS)
+          </span>
+          <h2 style={{ fontSize: 'clamp(1.7rem, 4vw, 2.6rem)', fontWeight: 800, color: '#0f172a', marginTop: 12, marginBottom: 12, lineHeight: 1.25 }}>
+            Planes Todo-en-Uno: Curso con +650 Videos y +10.000 Preguntas
           </h2>
-          <p style={{ color: '#64748b', fontSize: '0.95rem', maxWidth: '540px', margin: '0 auto' }}>
-            Pago único por el período que elijas. Sin renovaciones automáticas ni letras chicas.
+          <p style={{ color: '#475569', fontSize: '1rem', maxWidth: '680px', margin: '0 auto', lineHeight: 1.6 }}>
+            <strong>Todos los planes</strong> incluyen acceso ilimitado a las <strong>+650 Clases en Video</strong> organizadas por subespecialidad (según el Perfil EUNACOM), Banco de <strong>+10.000 Preguntas</strong>, Reconstrucciones y Simulacros. ¡Estudia la teoría viendo clases y practica a tu propio ritmo!
           </p>
         </div>
 

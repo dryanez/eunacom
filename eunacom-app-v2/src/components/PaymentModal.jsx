@@ -4,10 +4,10 @@ import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
 
 const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Para repaso rápido', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Preparación intensiva', paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Estudio con calma', popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Acceso total sin apuros', paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' }
+  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
+  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Curso +650 videos + 10k preguntas (90 días)', paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
+  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Curso +650 videos + 10k preguntas (180 días)', popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
+  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Curso +650 videos + 10k preguntas (365 días)', paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' }
 ];
 
 const PaymentModal = ({ onClose }) => {
@@ -78,9 +78,14 @@ const PaymentModal = ({ onClose }) => {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           flexShrink: 0
         }}>
-          <h2 style={{ fontSize: isMobile ? '1.1rem' : '1.4rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, fontFamily: 'var(--font)' }}>
-            Actualiza a Premium ⭐
-          </h2>
+          <div>
+            <h2 style={{ fontSize: isMobile ? '1.1rem' : '1.35rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, fontFamily: 'var(--font)' }}>
+              Curso Completo Todo-en-Uno ⭐
+            </h2>
+            <div style={{ fontSize: isMobile ? '0.72rem' : '0.8rem', color: '#38bdf8', fontWeight: 600, marginTop: '2px' }}>
+              +650 Clases en Video (Perfil EUNACOM) + Banco de +10.000 Preguntas
+            </div>
+          </div>
           <button
             onClick={onClose}
             style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: '0.25rem' }}
@@ -107,10 +112,10 @@ const PaymentModal = ({ onClose }) => {
                 <p style={{
                   color: 'var(--surface-300)',
                   marginBottom: isMobile ? '0.45rem' : '1rem',
-                  fontSize: isMobile ? '0.78rem' : '0.9rem',
-                  lineHeight: 1.35
+                  fontSize: isMobile ? '0.78rem' : '0.88rem',
+                  lineHeight: 1.4
                 }}>
-                  Acceso ilimitado a reconstrucciones, clases e IA predictiva.
+                  <strong>Todos los planes</strong> incluyen acceso total e ilimitado al <strong>Curso de +650 Videos</strong>, +10.000 preguntas, reconstrucciones y simulacros.
                 </p>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.35rem' : '0.75rem' }}>

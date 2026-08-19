@@ -187,19 +187,19 @@ export default function CursoComparativa() {
               <div style={{ width: 44, height: 44, borderRadius: 10, backgroundColor: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                 <Video size={22} color="#16a34a" />
               </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>+650 Clases en Video por Especialidad</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>+650 Clases en Video (Perfil EUNACOM)</h3>
               <p style={{ color: '#64748b', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                Aprende conceptos clave de Medicina Interna, Pediatría, Ginecología, Cirugía, Psiquiatría y Salud Pública cuando tú quieras, a tu propio ritmo y sin horarios obligatorios.
+                Estudia la teoría médica completa viendo videoclases modulares de Medicina Interna, Pediatría, Ginecología, Cirugía, Psiquiatría y Salud Pública, organizadas 100% según el temario oficial ASOFAMECH.
               </p>
             </div>
 
-            <div style={{ backgroundColor: '#ffffff', padding: '24px', borderRadius: 14, border: '1px solid #f8fafc', border: '1px solid #e2e8f0' }}>
+            <div style={{ backgroundColor: '#ffffff', padding: '24px', borderRadius: 14, border: '1px solid #e2e8f0' }}>
               <div style={{ width: 44, height: 44, borderRadius: 10, backgroundColor: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                 <Zap size={22} color="#d97706" />
               </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>Precios Justos y Transparentes</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>Curso Todo-en-Uno desde $14.990</h3>
               <p style={{ color: '#64748b', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                Sin contratos amarrados ni mensualidades sorpresa. Elige tu plan desde $14.990 CLP y obtén acceso total inmediato para preparar con éxito tu convocatoria.
+                Sin contratos amarrados ni mensualidades de $600.000+. Todos los planes desde $14.990 CLP te dan acceso total al Curso en Video (+650 clases) + Banco de Preguntas (+10.000) + Reconstrucciones y Simulacros.
               </p>
             </div>
           </div>

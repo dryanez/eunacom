@@ -38,15 +38,15 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: '¿Qué incluye Eunacom App?',
-        a: 'Incluye más de 10.000 preguntas de casos clínicos, reconstrucciones oficiales de exámenes pasados, clases en video por especialidad, simulacros completos de 180 preguntas cronometrados y plan de estudio inteligente.',
+        a: 'Es un Curso Completo Todo-en-Uno que incluye el Curso Audiovisual de +650 Clases en Video (100% alineadas al Perfil de Conocimientos EUNACOM), Banco de +10.000 preguntas de casos clínicos justificadas, reconstrucciones oficiales de exámenes pasados, simulacros completos de 180 preguntas cronometrados y plan de estudio inteligente.',
       },
       {
         q: '¿Por qué las reconstrucciones de exámenes son tan efectivas?',
         a: 'Porque ASOFAMECH mantiene patrones de redacción, distractores y guías GES específicas. Practicar con reconstrucciones reales te permite familiarizarte con el examen exacto y evitar sorpresas en el día de la prueba.',
       },
       {
-        q: '¿Cuánto cuesta el acceso y cómo se paga?',
-        a: 'Ofrecemos planes desde $14.990 CLP (1 Mes), $34.990 CLP (3 Meses), $54.990 CLP (6 Meses) hasta $89.990 CLP (1 Año). El pago es único mediante MercadoPago (tarjetas de crédito, débito, CuentaRUT) y PayPal.',
+        q: '¿Cuánto cuesta el acceso y qué incluye cada plan?',
+        a: 'Ofrecemos planes desde $14.990 CLP (1 Mes), $34.990 CLP (3 Meses), $54.990 CLP (6 Meses) hasta $89.990 CLP (1 Año). TODOS los planes incluyen acceso total al Curso de +650 Clases en Video + Banco de +10.000 Preguntas + Reconstrucciones + Simulacros. El pago es único sin renovaciones automáticas mediante Webpay/MercadoPago y PayPal.',
       },
       {
         q: '¿Se renueva automáticamente mi suscripción?',
