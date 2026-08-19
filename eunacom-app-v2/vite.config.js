@@ -426,7 +426,12 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         skipWaiting: true,
         clientsClaim: true,
-        navigateFallbackDenylist: [/^\/api/],
+        navigateFallbackDenylist: [
+          /^\/api/,
+          /^\/sitemap\.xml$/,
+          /^\/robots\.txt$/,
+          /\.(xml|txt|png|jpg|jpeg|svg|webp|ico|pdf|json)$/i
+        ],
       },
       manifest: {
         name: 'EUNACOM Examen',
