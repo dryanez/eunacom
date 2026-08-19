@@ -200,7 +200,7 @@ export default function LandingPage() {
             Iniciar Sesión
           </button>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/dashboard')}
             style={{
               backgroundColor: '#0284c7',
               border: 'none',
@@ -213,7 +213,7 @@ export default function LandingPage() {
               boxShadow: '0 4px 12px rgba(2, 132, 199, 0.25)',
             }}
           >
-            Crear Cuenta
+            Probar App Gratis
           </button>
         </div>
 
@@ -298,7 +298,7 @@ export default function LandingPage() {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/dashboard')}
             style={{
               backgroundColor: '#0284c7',
               color: '#ffffff',
@@ -315,7 +315,7 @@ export default function LandingPage() {
               justifyContent: 'center'
             }}
           >
-            Comenzar ahora <ArrowRight size={18} />
+            Comenzar ahora (Ver App) <ArrowRight size={18} />
           </button>
           <a
             href="#planes"
@@ -463,13 +463,13 @@ export default function LandingPage() {
                 </p>
                 <div style={{ marginTop: 14, textAlign: 'right' }}>
                   <button
-                    onClick={() => navigate('/register')}
+                    onClick={() => navigate('/dashboard')}
                     style={{
                       backgroundColor: '#0284c7', color: '#ffffff', border: 'none',
                       padding: '10px 18px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', width: '100%'
                     }}
                   >
-                    Desbloquear +10.000 Preguntas →
+                    Ver +10.000 Preguntas en la App →
                   </button>
                 </div>
               </div>
@@ -577,10 +577,10 @@ export default function LandingPage() {
                 {[
                   { label: 'Arancel / Precio', us: 'Desde $14.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
                   { label: 'Banco de Preguntas', us: '+10.000 preguntas con justificación', them: '1.000 – 3.000 preguntas', bold: false },
+                  { label: 'Clases en Video', us: '+650 videoclases modulares organizadas por subespecialidad', them: 'Clases sincrónicas largas sin videoteca modular', bold: true },
                   { label: 'Reconstrucciones Reales', us: 'Completas de todas las convocatorias', them: 'Desactualizadas o restringidas', bold: false },
                   { label: 'Flexibilidad de Horarios', us: '24/7 a tu propio ritmo en celular/PC', them: 'Clases sincrónicas rígidas', bold: false },
                   { label: 'Plan de Estudio Adaptativo', us: 'Se ajusta a tus errores y fecha', them: 'Mismo temario plano para todos', bold: false },
-                  { label: 'Cobros Ocultos', us: 'Sin cargos automáticos', them: 'Matrículas o aranceles extra', bold: false },
                 ].map((row, idx) => (
                   <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <td style={{ padding: '14px 16px', color: '#1e293b', fontWeight: 600, fontSize: '0.86rem' }}>{row.label}</td>
@@ -736,7 +736,7 @@ export default function LandingPage() {
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
             <button
-              onClick={() => navigate('/register')}
+              onClick={() => navigate('/dashboard')}
               style={{
                 backgroundColor: '#ffffff',
                 color: '#0284c7',
@@ -749,7 +749,7 @@ export default function LandingPage() {
                 boxShadow: '0 6px 16px rgba(0,0,0,0.12)'
               }}
             >
-              Crear Cuenta Gratis →
+              Explorar Plataforma Gratis →
             </button>
             <button
               onClick={() => navigate('/login')}
