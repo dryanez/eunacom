@@ -55,10 +55,25 @@ export const AuthProvider = ({ children }) => {
         return () => subscription.unsubscribe()
     }, [])
 
-    const signUp = async (email, password) => {
+    const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '' })
+
+    const openAuthModal = (mode = 'register', message = '') => {
+        setAuthModal({ isOpen: true, mode, message })
+    }
+
+    const closeAuthModal = () => {
+        setAuthModal(prev => ({ ...prev, isOpen: false }))
+    }
+
+    const signUp = async (email, password, fullName = '') => {
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: {
+                    full_name: fullName,
+                }
+            }
         })
         return { data, error }
     }
@@ -112,6 +127,9 @@ export const AuthProvider = ({ children }) => {
         isRealAdmin,
         adminPreviewMode,
         toggleAdminPreview,
+        authModal,
+        openAuthModal,
+        closeAuthModal,
     }
 
     return (

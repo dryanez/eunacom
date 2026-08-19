@@ -27,6 +27,12 @@ import LandingPage from './pages/LandingPage'
 import FAQ from './pages/FAQ'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
+import CursoComparativa from './pages/CursoComparativa'
+import SimulacrosLanding from './pages/SimulacrosLanding'
+import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
+import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
+import ConveniosLanding from './pages/ConveniosLanding'
+import AuthModal from './components/AuthModal'
 import './index.css'
 
 function App() {
@@ -34,9 +40,15 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <SubscriptionProvider>
+          <AuthModal />
           <Routes>
             {/* ── SEO Public Pages (no layout wrapper, standalone) ── */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/curso-eunacom-2026" element={<CursoComparativa />} />
+            <Route path="/simulacros-eunacom" element={<SimulacrosLanding />} />
+            <Route path="/guia-eunacom-2026" element={<GuiaCompletaLanding />} />
+            <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
+            <Route path="/convenios" element={<ConveniosLanding />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />

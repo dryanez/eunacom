@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 import { BLOG_POSTS } from '../data/blogPosts'
 
 const CATEGORY_COLORS = {
@@ -11,6 +12,7 @@ const CATEGORY_COLORS = {
 
 export default function Blog() {
   const navigate = useNavigate()
+  const { openAuthModal } = useAuth()
 
   return (
     <div style={{ backgroundColor: '#ffffff', color: '#0f172a', fontFamily: 'Lexend, -apple-system, sans-serif', minHeight: '100vh' }}>
@@ -32,13 +34,13 @@ export default function Blog() {
         </button>
         <div style={{ display: 'flex', gap: 12 }}>
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => openAuthModal('login')}
             style={{ background: 'none', border: '1px solid #cbd5e1', color: '#334155', padding: '6px 14px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
           >
             Iniciar Sesión
           </button>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => openAuthModal('register')}
             style={{ backgroundColor: '#0284c7', color: '#ffffff', border: 'none', padding: '6px 16px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
           >
             Crear Cuenta

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import {
   BookOpen, Video, FileText, Calendar, BarChart2, ChevronDown,
@@ -127,7 +127,7 @@ const FAQ_ITEMS = [
 
 export default function LandingPage() {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, openAuthModal } = useAuth()
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [showExplanation, setShowExplanation] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
@@ -174,18 +174,20 @@ export default function LandingPage() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <a href="#caracteristicas" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 500, textDecoration: 'none' }}>Características</a>
-          <a href="#simulador-demo" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 500, textDecoration: 'none' }}>Probar Pregunta</a>
-          <a href="#planes" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 500, textDecoration: 'none' }}>Planes & Precios</a>
-          <button onClick={() => navigate('/faq')} style={{ background: 'none', border: 'none', color: '#475569', fontSize: '0.88rem', fontWeight: 500, cursor: 'pointer', padding: 0 }}>FAQ</button>
-          <button onClick={() => navigate('/blog')} style={{ background: 'none', border: 'none', color: '#475569', fontSize: '0.88rem', fontWeight: 500, cursor: 'pointer', padding: 0 }}>Blog</button>
+        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <Link to="/curso-eunacom-2026" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Mejor Curso 2026</Link>
+          <Link to="/simulacros-eunacom" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Simulacros</Link>
+          <Link to="/guia-eunacom-2026" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Guía EUNACOM</Link>
+          <Link to="/reconstrucciones-eunacom" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Reconstrucciones</Link>
+          <a href="#planes" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Planes</a>
+          <Link to="/faq" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>FAQ</Link>
+          <Link to="/blog" style={{ color: '#475569', fontSize: '0.88rem', fontWeight: 600, textDecoration: 'none' }}>Blog</Link>
         </nav>
 
         {/* Desktop Auth Buttons */}
         <div className="desktop-auth" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => openAuthModal('login')}
             style={{
               backgroundColor: 'transparent',
               border: '1px solid #cbd5e1',
@@ -200,7 +202,7 @@ export default function LandingPage() {
             Iniciar Sesión
           </button>
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => openAuthModal('register')}
             style={{
               backgroundColor: '#0284c7',
               border: 'none',
@@ -237,23 +239,26 @@ export default function LandingPage() {
           padding: '16px 20px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 12,
+          gap: 10,
           boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
         }}>
-          <a href="#caracteristicas" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '8px 0' }}>Características</a>
-          <a href="#simulador-demo" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '8px 0' }}>Probar Pregunta</a>
-          <a href="#planes" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '8px 0' }}>Planes & Precios</a>
-          <button onClick={() => { setMobileMenuOpen(false); navigate('/faq') }} style={{ background: 'none', border: 'none', textAlign: 'left', color: '#334155', fontSize: '0.95rem', fontWeight: 600, padding: '8px 0', cursor: 'pointer' }}>FAQ (Preguntas Frecuentes)</button>
-          <button onClick={() => { setMobileMenuOpen(false); navigate('/blog') }} style={{ background: 'none', border: 'none', textAlign: 'left', color: '#334155', fontSize: '0.95rem', fontWeight: 600, padding: '8px 0', cursor: 'pointer' }}>Blog EUNACOM</button>
+          <Link to="/curso-eunacom-2026" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Mejor Curso 2026</Link>
+          <Link to="/simulacros-eunacom" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Simulacros Oficiales</Link>
+          <Link to="/guia-eunacom-2026" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Guía EUNACOM 2026</Link>
+          <Link to="/reconstrucciones-eunacom" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Reconstrucciones Reales</Link>
+          <Link to="/convenios" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Convenios Institucionales</Link>
+          <a href="#planes" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Planes & Precios</a>
+          <Link to="/faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Preguntas Frecuentes (FAQ)</Link>
+          <Link to="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#334155', fontSize: '0.95rem', fontWeight: 600, textDecoration: 'none', padding: '6px 0' }}>Blog EUNACOM</Link>
           <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => { setMobileMenuOpen(false); openAuthModal('login') }}
               style={{ flex: 1, backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: '#334155', padding: '12px 0', borderRadius: 10, fontSize: '0.9rem', fontWeight: 700, cursor: 'pointer' }}
             >
               Iniciar Sesión
             </button>
             <button
-              onClick={() => navigate('/register')}
+              onClick={() => { setMobileMenuOpen(false); openAuthModal('register') }}
               style={{ flex: 1, backgroundColor: '#0284c7', border: 'none', color: '#ffffff', padding: '12px 0', borderRadius: 10, fontSize: '0.9rem', fontWeight: 700, cursor: 'pointer' }}
             >
               Crear Cuenta
@@ -801,7 +806,7 @@ export default function LandingPage() {
               </div>
 
               <button
-                onClick={() => navigate('/register')}
+                onClick={() => openAuthModal('register')}
                 style={{
                   width: '100%',
                   backgroundColor: plan.popular ? '#0284c7' : '#f8fafc',
@@ -880,7 +885,7 @@ export default function LandingPage() {
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => openAuthModal('register')}
               style={{
                 backgroundColor: '#ffffff',
                 color: '#0284c7',
@@ -896,7 +901,7 @@ export default function LandingPage() {
               Explorar Plataforma Gratis →
             </button>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => openAuthModal('login')}
               style={{
                 backgroundColor: 'transparent',
                 border: '1.5px solid #ffffff',
@@ -915,13 +920,18 @@ export default function LandingPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', padding: '40px 16px', textAlign: 'center', color: '#64748b', fontSize: '0.82rem' }}>
+      <footer style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', padding: '40px 16px', textAlign: 'center', color: '#64748b', fontSize: '0.84rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
-          <a href="#" style={{ color: '#475569', textDecoration: 'none', fontWeight: 500 }}>Inicio</a>
-          <a href="#planes" style={{ color: '#475569', textDecoration: 'none', fontWeight: 500 }}>Planes</a>
-          <a href="/faq" onClick={(e) => { e.preventDefault(); navigate('/faq') }} style={{ color: '#475569', textDecoration: 'none', fontWeight: 500 }}>FAQ</a>
-          <a href="/blog" onClick={(e) => { e.preventDefault(); navigate('/blog') }} style={{ color: '#475569', textDecoration: 'none', fontWeight: 500 }}>Blog</a>
-          <a href="/login" onClick={(e) => { e.preventDefault(); navigate('/login') }} style={{ color: '#475569', textDecoration: 'none', fontWeight: 500 }}>Iniciar Sesión</a>
+          <Link to="/" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Inicio</Link>
+          <Link to="/curso-eunacom-2026" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Mejor Curso EUNACOM 2026</Link>
+          <Link to="/simulacros-eunacom" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Simulacros Oficiales</Link>
+          <Link to="/guia-eunacom-2026" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Guía Completa 2026</Link>
+          <Link to="/reconstrucciones-eunacom" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Reconstrucciones Reales</Link>
+          <Link to="/convenios" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Convenios</Link>
+          <a href="#planes" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Planes</a>
+          <Link to="/faq" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>FAQ</Link>
+          <Link to="/blog" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Blog EUNACOM</Link>
+          <a href="/login" onClick={(e) => { e.preventDefault(); openAuthModal('login') }} style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Iniciar Sesión</a>
         </div>
         <p style={{ margin: 0 }}>© {new Date().getFullYear()} Eunacom App · eunacomapp.cl · Todos los derechos reservados · Chile</p>
       </footer>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown, ArrowLeft, BookOpen, HelpCircle, ArrowRight } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 
 const FAQ_SECTIONS = [
   {
@@ -75,8 +76,14 @@ export default function FAQ() {
     ),
   }
 
+  const toggleItem = (secIdx, itemIdx) => {
+    const key = `${secIdx}-${itemIdx}`
+    setOpenItems(prev => ({ ...prev, [key]: !prev[key] }))
+  }
+
   return (
     <div style={{ backgroundColor: '#ffffff', color: '#0f172a', fontFamily: 'Lexend, -apple-system, sans-serif', minHeight: '100vh' }}>
+      {/* Schema SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -100,13 +107,13 @@ export default function FAQ() {
         </button>
         <div style={{ display: 'flex', gap: 12 }}>
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => openAuthModal('login')}
             style={{ background: 'none', border: '1px solid #cbd5e1', color: '#334155', padding: '6px 14px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
           >
             Iniciar Sesión
           </button>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => openAuthModal('register')}
             style={{ backgroundColor: '#0284c7', color: '#ffffff', border: 'none', padding: '6px 16px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
           >
             Crear Cuenta
@@ -124,45 +131,43 @@ export default function FAQ() {
         }}>
           <HelpCircle size={14} color="#0284c7" /> Centro de Ayuda & FAQ
         </div>
-        <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: 12 }}>
-          Preguntas Frecuentes
+        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, color: '#0f172a', marginBottom: 12, letterSpacing: '-0.02em' }}>
+          Preguntas Frecuentes EUNACOM
         </h1>
-        <p style={{ color: '#64748b', fontSize: '1.05rem', lineHeight: 1.6 }}>
-          Todo lo que necesitas saber sobre el examen EUNACOM 2026 y la preparación con Eunacom App.
+        <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
+          Todo lo que necesitas saber sobre el examen, ponderaciones, habilitación profesional y cómo estudiar con nuestra plataforma.
         </p>
       </div>
 
-      {/* Accordions */}
-      <main style={{ maxWidth: '820px', margin: '0 auto', padding: '0 24px 80px' }}>
-        {FAQ_SECTIONS.map((section, sIdx) => (
-          <div key={sIdx} style={{ marginBottom: 40 }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: 16, borderBottom: '2px solid #f1f5f9', paddingBottom: 10 }}>
-              {section.section}
+      {/* Content */}
+      <main style={{ maxWidth: '860px', margin: '0 auto', padding: '0 24px 60px' }}>
+        {FAQ_SECTIONS.map((sec, secIdx) => (
+          <div key={secIdx} style={{ marginBottom: 40 }}>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: 16, borderBottom: '2px solid #f1f5f9', paddingBottom: 8 }}>
+              {sec.section}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {section.items.map((item, iIdx) => {
-                const key = `${sIdx}-${iIdx}`
-                const isOpen = openIndex === key
+              {sec.items.map((item, itemIdx) => {
+                const isOpen = openItems[`${secIdx}-${itemIdx}`]
                 return (
                   <div
-                    key={key}
-                    onClick={() => setOpenIndex(isOpen ? null : key)}
+                    key={itemIdx}
+                    onClick={() => toggleItem(secIdx, itemIdx)}
                     style={{
                       backgroundColor: '#ffffff',
                       border: '1px solid #e2e8f0',
-                      borderRadius: 14,
-                      padding: '18px 22px',
+                      borderRadius: 12,
+                      padding: '16px 20px',
                       cursor: 'pointer',
-                      boxShadow: isOpen ? '0 4px 12px rgba(0,0,0,0.03)' : 'none',
-                      transition: 'all 0.15s'
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#0f172a', margin: 0, paddingRight: 12 }}>{item.q}</h3>
+                      <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', margin: 0, paddingRight: 12 }}>{item.q}</h3>
                       <ChevronDown size={18} color="#64748b" style={{ flexShrink: 0, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
                     </div>
                     {isOpen && (
-                      <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: 1.65, marginTop: 12, marginBottom: 0 }}>
+                      <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.65, marginTop: 12, marginBottom: 0 }}>
                         {item.a}
                       </p>
                     )}
@@ -187,7 +192,7 @@ export default function FAQ() {
             Accede a más de 10.000 preguntas reales y simulacros oficiales desde $14.990 CLP.
           </p>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => openAuthModal('register')}
             style={{
               backgroundColor: '#0284c7', color: '#ffffff', border: 'none',
               padding: '12px 28px', borderRadius: 10, fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer',

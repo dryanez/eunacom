@@ -31,7 +31,7 @@ const ProgressItem = ({ label, used, total }) => {
 };
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
-    const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview } = useAuth()
+    const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview, openAuthModal } = useAuth()
     const { isPremium, usageStats, setShowPaymentModal } = useSubscription()
     const navigate = useNavigate()
     const [examenesOpen, setExamenesOpen] = useState(false)
@@ -194,9 +194,16 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                         </button>
                     </>
                 ) : (
-                    <NavLink to="/login" className="sidebar__logout" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={onToggle}>
+                    <button 
+                        onClick={() => {
+                            openAuthModal('login')
+                            if (onToggle) onToggle()
+                        }} 
+                        className="sidebar__logout" 
+                        style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', justifyContent: 'center' }}
+                    >
                         <LogIn size={16} /> Iniciar Sesión
-                    </NavLink>
+                    </button>
                 )}
             </div>
         </aside>

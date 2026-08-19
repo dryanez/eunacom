@@ -6,7 +6,7 @@ import { useSubscription } from '../contexts/SubscriptionContext'
 
 
 const DashboardHeader = ({ onMenuToggle }) => {
-    const { user, signOut } = useAuth()
+    const { user, signOut, openAuthModal } = useAuth()
     const { isFounder } = useSubscription()
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
@@ -62,7 +62,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
                         </>
                     ) : (
                         <button
-                            onClick={() => navigate('/login')}
+                            onClick={() => openAuthModal('login')}
                             style={{
                                 display: 'flex', alignItems: 'center', gap: '0.4rem',
                                 padding: '0.45rem 1rem',

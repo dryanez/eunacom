@@ -6,8 +6,44 @@
   <url>
     <loc>https://eunacomapp.cl/</loc>
     <lastmod>2026-08-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Key Sitelink Target Landing Pages -->
+  <url>
+    <loc>https://eunacomapp.cl/curso-eunacom-2026</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://eunacomapp.cl/simulacros-eunacom</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://eunacomapp.cl/guia-eunacom-2026</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://eunacomapp.cl/reconstrucciones-eunacom</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://eunacomapp.cl/convenios</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
 
   <!-- FAQ Page — high keyword value for informational queries -->
@@ -15,7 +51,7 @@
     <loc>https://eunacomapp.cl/faq</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
   <!-- Blog Index -->
@@ -23,7 +59,7 @@
     <loc>https://eunacomapp.cl/blog</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <!-- Blog Posts -->
@@ -31,31 +67,31 @@
     <loc>https://eunacomapp.cl/blog/como-prepararse-eunacom-2026</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://eunacomapp.cl/blog/fechas-eunacom-2026</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://eunacomapp.cl/blog/areas-tematicas-eunacom</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://eunacomapp.cl/blog/reconstrucciones-eunacom-que-son</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
 
   <!-- Register / Login — conversion pages -->
@@ -63,13 +99,13 @@
     <loc>https://eunacomapp.cl/register</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.60</priority>
   </url>
   <url>
     <loc>https://eunacomapp.cl/login</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.40</priority>
   </url>
 
 </urlset>
