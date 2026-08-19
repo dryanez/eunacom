@@ -275,23 +275,23 @@ export default function LandingPage() {
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           backgroundColor: '#f0f9ff', border: '1px solid #bae6fd',
-          color: '#0369a1', padding: '6px 14px', borderRadius: 9999,
-          fontSize: '0.8rem', fontWeight: 600, marginBottom: 20
+          color: '#0369a1', padding: '6px 16px', borderRadius: 9999,
+          fontSize: '0.82rem', fontWeight: 700, marginBottom: 20
         }}>
           <Stethoscope size={15} color="#0284c7" />
-          <span>La plataforma #1 en Chile · Actualizada con el Perfil de Conocimientos V3 2026</span>
+          <span>🎓 CURSO ON-DEMAND & BANCO #1 · 100% PERFIL DE CONOCIMIENTOS V3 2026</span>
         </div>
 
         <h1 style={{
-          fontSize: 'clamp(2rem, 6vw, 3.8rem)',
+          fontSize: 'clamp(2rem, 5.5vw, 3.6rem)',
           fontWeight: 800,
           color: '#0f172a',
-          lineHeight: 1.15,
+          lineHeight: 1.18,
           letterSpacing: '-0.03em',
-          maxWidth: '960px',
+          maxWidth: '980px',
           margin: '0 auto 18px'
         }}>
-          Aprueba el EUNACOM 2026 entrenando con <span style={{ color: '#0284c7' }}>+10.000 preguntas reales</span>
+          Curso EUNACOM On-Demand: <span style={{ color: '#0284c7' }}>+650 Clases en Video</span> y Banco de <span style={{ color: '#0284c7' }}>+10.000 Preguntas</span>
         </h1>
 
         <p style={{
