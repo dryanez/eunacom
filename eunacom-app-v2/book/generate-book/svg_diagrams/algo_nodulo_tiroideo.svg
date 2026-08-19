@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 42 743 320" width="100%" height="240px" style="max-width:743px;height:240px;font-family:'Inter',system-ui,sans-serif;">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#991b1b" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  
+    <g filter="url(#cardShadow)">
+      <rect x="20" y="55" width="210" height="95" rx="6" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5"/>
+      <rect x="20" y="55" width="210" height="22" rx="6" fill="url(#blueGrad)"/>
+      <text x="125" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">1. HALLAZGO NÓDULO</text>
+      <text x="30" y="93" fill="#1e293b" font-size="8.5">• Palpación o Incidentaloma</text>
+      <text x="30" y="108" fill="#1e3a8a" font-size="8.5" font-weight="700">PRIMER PASO: Medir TSH</text>
+      <text x="30" y="123" fill="#334155" font-size="8">• Si TSH Baja → Cintigrama</text>
+      <text x="30" y="137" fill="#334155" font-size="8">• Si TSH Normal/Alta → Ecografía</text>
+    </g>
+
+    <path d="M 230 102 L 270 102" stroke="#64748b" stroke-width="2"/>
+
+    <g filter="url(#cardShadow)">
+      <rect x="275" y="55" width="210" height="95" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+      <rect x="275" y="55" width="210" height="22" rx="6" fill="url(#amberGrad)"/>
+      <text x="380" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">2. ECOGRAFÍA TIROIDEA</text>
+      <text x="285" y="93" fill="#92400e" font-size="8.5" font-weight="700">Criterios de Sospecha (TIRADS):</text>
+      <text x="285" y="107" fill="#334155" font-size="7.5">• Hipoecogénico, más alto que ancho</text>
+      <text x="285" y="119" fill="#334155" font-size="7.5">• Microcalcificaciones, bordes irregulares</text>
+      <text x="285" y="131" fill="#334155" font-size="7.5">• Extensión extratiroidea / Adenopatías</text>
+    </g>
+
+    <path d="M 485 102 L 525 102" stroke="#64748b" stroke-width="2"/>
+
+    <g filter="url(#cardShadow)">
+      <rect x="530" y="55" width="190" height="95" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+      <rect x="530" y="55" width="190" height="22" rx="6" fill="url(#greenGrad)"/>
+      <text x="625" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">3. PAAF (PUNCIÓN)</text>
+      <text x="540" y="93" fill="#065f46" font-size="8.5" font-weight="700">Indicaciones PAAF:</text>
+      <text x="540" y="108" fill="#334155" font-size="8">• Nódulo sospechoso ≥ 1 cm</text>
+      <text x="540" y="122" fill="#334155" font-size="8">• Nódulo moderado ≥ 1.5 cm</text>
+      <text x="540" y="136" fill="#334155" font-size="8">• Espongiforme / Quístico &gt; 2 cm</text>
+    </g>
+
+    <!-- Bottom Bethesda System -->
+    <g filter="url(#cardShadow)">
+      <rect x="20" y="165" width="700" height="140" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+      <rect x="20" y="165" width="700" height="22" rx="6" fill="#1e293b"/>
+      <text x="370" y="180" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">SISTEMA DE BETHESDA PARA CITOPATOLOGÍA TIROIDEA</text>
+
+      <text x="35" y="205" fill="#047857" font-size="8.5" font-weight="700">Bethesda II: Benigno (60-70%)</text>
+      <text x="35" y="220" fill="#334155" font-size="8">• Riesgo malignidad &lt; 3%</text>
+      <text x="35" y="233" fill="#334155" font-size="8">• Conducta: Seguimiento ecográfico</text>
+
+      <text x="275" y="205" fill="#b45309" font-size="8.5" font-weight="700">Bethesda III - IV: Indeterminado</text>
+      <text x="275" y="220" fill="#334155" font-size="8">• III (AUS/FLUS): Repetir PAAF / Genético</text>
+      <text x="275" y="233" fill="#334155" font-size="8">• IV (Neoplasia folicular): Lobectomía</text>
+
+      <text x="515" y="205" fill="#dc2626" font-size="8.5" font-weight="700">Bethesda V - VI: Maligno / Sospecha</text>
+      <text x="515" y="220" fill="#334155" font-size="8">• V (Sospecha 60-75%): Tiroidectomía</text>
+      <text x="515" y="233" fill="#334155" font-size="8">• VI (Maligno 97-99% Papilar): Cirugía</text>
+    </g>
+  
+</svg>

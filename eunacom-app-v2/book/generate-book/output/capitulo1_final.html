@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítulo 1: Arritmias y Emergencias Cardiovasculares</title>
+  <link rel="stylesheet" href="book_styles.css">
+  <style>
+    /* PLANTUML SVG DIAGRAM STYLES */
+    .plantuml-diagram-container {
+      background: #ffffff;
+      border: 1px solid #0f172a;
+      border-radius: 3px;
+      padding: 12px;
+      margin: 16px 0;
+    }
+    .plantuml-diagram-container .diagram-header {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 8.5pt;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+    .svg-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .svg-wrapper svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* OPTION 2 TWO-COLUMN SUMMARY STYLES */
+    .two-column-diagram {
+      background: #ffffff;
+      border: 1px solid #0f172a;
+      border-radius: 3px;
+      padding: 12px;
+      margin: 16px 0;
+    }
+    .two-column-diagram .diagram-header {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 8.5pt;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+    .pathways-container {
+      display: flex;
+      gap: 10px;
+    }
+    .pathway-col {
+      flex: 1;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      padding: 8px;
+      background: #ffffff;
+    }
+    .pathway-col.pathway-unstable {
+      border: 1.5px solid #dc2626;
+      background: #fff5f5;
+    }
+    .pathway-col.pathway-stable {
+      border: 1.5px solid #2563eb;
+      background: #f0f9ff;
+    }
+    .pathway-header {
+      font-weight: 700;
+      font-size: 8pt;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #cbd5e1;
+    }
+    .pathway-unstable .pathway-header {
+      color: #b91c1c;
+      border-bottom-color: #fca5a5;
+    }
+    .pathway-stable .pathway-header {
+      color: #1d4ed8;
+      border-bottom-color: #bfdbfe;
+    }
+    .pathway-body {
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+    .pathway-arrow {
+      text-align: center;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #64748b;
+      margin: 2px 0;
+    }
+    .pathway-action {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 2px;
+      padding: 6px 8px;
+      font-size: 8.5pt;
+    }
+    .pathway-action.action-urgent {
+      border-color: #dc2626;
+      color: #991b1b;
+    }
+    .pathway-action.action-stable {
+      border-color: #2563eb;
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPIC CONTENT -->
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.1</div>
+        <h3>Manejo de Urgencias en Arritmias</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.2.009</div>
+        <div class="perfil-name">Taqui y bradiarritmia con compromiso hemodinámico</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Derivar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>Inestabilidad hemodinámica (hipotensión, choque, dolor isquémico, edema pulmonar agudo o alteración de conciencia) requiere cardioversión eléctrica sincronizada inmediata en taquiarritmias.</li><li>En bradiarritmias sintomáticas o inestables, el tratamiento farmacológico inicial es Atropina 0.5 - 1 mg EV bolo, preparando marcapaso transcutáneo.</li><li>Taquicardia de complejo QRS angosto (<0.12s) estable: 1° Maniobras vagales (Valsalva modificada), 2° Adenosina 6 mg EV bolo rápido.</li><li>Taquicardia de complejo QRS ancho (>=0.12s) en adulto con antecedentes cardiovasculares debe manejarse como Taquicardia Ventricular hasta demostrar lo contrario.</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Mujer de 60 años con antecedente de estenosis mitral severa e hipertensión arterial, ingresa a urgencias por disnea de reposo y palpitaciones de inicio brusco hace 2 horas. Al examen físico: paciente soporosa, pálida y sudorosa; PA 82/40 mmHg, FC 145x' irregular, MP(+) con crépitos difusos en ambos campos pulmonares y soplo diastólico IV/VI en ápex. ECG confirma Fibrilación Auricular con respuesta ventricular rápida."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Fibrilación Auricular con respuesta ventricular rápida y descompensación hemodinámica aguda (Shock cardiogénico + Edema agudo pulmonar).<br>
+            <strong>Conducta:</strong> Cardioversión eléctrica sincronizada inmediata con 120-200 Joules previa sedación rápida si la conciencia lo permite.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Definición y Concepto Fundamental</h4>
+          <p>El manejo de urgencia en arritmias comprende el conjunto de medidas diagnósticas y terapéuticas inmediatas orientadas a estabilizar al paciente que cursa con un trastorno del ritmo cardíaco asociado a riesgo vital inminente o deterioro hemodinámico severo. La premisa fundamental en la medicina de urgencia no es el diagnóstico electrocardiográfico exacto inicial, sino la determinación del estado de perfusión tisular y la presencia de inestabilidad hemodinámica.</p>
+        </div>
+
+        <div class="narrative-block">
+          <h4>Fisiopatología de la Inestabilidad Hemodinámica</h4>
+          <p>Tanto las taquiarritmias como las bradiarritmias severas alteran el gasto cardíaco. En las taquiarritmias severas (frecuencias > 150x'), el tiempo de llenado diastólico del ventrículo izquierdo disminuye drásticamente, lo que reduce el volumen sistólico, colapsa el gasto cardíaco y disminuye la perfusión de las arterias coronarias. En las bradiarritmias severas (frecuencias < 40x'), la frecuencia extremadamente baja es insuficiente para mantener el gasto cardíaco mínimo requerido por los órganos nobles.</p>
+        </div>
+
+        <div class="narrative-block">
+          <h4>Criterios Clínicos de Inestabilidad (Los 4 Signos Cardinales)</h4>
+          <p>Ante cualquier arritmia en urgencias, debe buscarse activamente la presencia de al menos uno de los siguientes 4 criterios de inestabilidad:</p>
+          <ul>
+            <li><strong>Signos de Choque / Hipotensión:</strong> Presión arterial sistólica < 90 mmHg, PAM < 65 mmHg, frialdad distal o llenado capilar lento.</li>
+            <li><strong>Alteración Aguda del Estado Mental:</strong> Somnolencia, confusión o síncope secundario a hipoperfusión cerebral.</li>
+            <li><strong>Isquemia Miocárdica Activa:</strong> Dolor torácico opresivo de características anginosas o cambios isquémicos en el ECG.</li>
+            <li><strong>Insuficiencia Cardíaca Aguda:</strong> Congestión pulmonar franca (crépitos bibasales difusos, ortopnea, edema pulmonar agudo).</li>
+          </ul>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ALGORITMO DE EVALUACIÓN Y MANEJO AGUDO DE ARRITMIAS</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="505px" preserveAspectRatio="none" style="width:982px;height:505px;background:#FFFFFF;" version="1.1" viewBox="0 0 982 505" width="982px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><rect fill="#FFFFCC" height="16.6406" rx="2.5" ry="2.5" style="stroke:#FFDD88;stroke-width:3;" width="951.925" x="13" y="13"/><text fill="#000000" font-family="monospace" font-size="10" lengthAdjust="spacing" textLength="535.8252" x="20" y="23.6406">This&#160;syntax&#160;is&#160;deprecated,&#160;you&#160;must&#160;add&#160;&lt;&lt;#ffe4e6&gt;&gt;&#160;at&#160;the&#160;end&#160;of&#160;the&#160;line,&#160;after&#160;the&#160;';'</text><ellipse cx="466.8744" cy="46.6406" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="214.0952" x="359.8268" y="76.6406"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="194.0952" x="369.8268" y="96.8511">Paciente con Arritmia en Urgencias</text><polygon fill="#FFFFFF" points="306.8641,129.4453,626.8846,129.4453,638.8846,142.25,626.8846,155.0547,306.8641,155.0547,294.8641,142.25,306.8641,129.4453" style="stroke:#1E293B;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="220.5371" x="306.8641" y="139.6558">&#191;Presenta Inestabilidad Hemodin&#225;mica?</text><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="320.0205" x="306.8641" y="152.4604">(Hipotensi&#243;n, Choque, Angina, Edema Pulmonar, S&#237;ncope)</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="71.7632" x="223.101" y="139.6558">S&#205; - Inestable</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="68.3901" x="638.8846" y="139.6558">NO - Estable</text><rect fill="#FFFFFF" height="45.6094" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="406.4663" x="16" y="165.0547"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="386.4663" x="26" y="185.2651">CARDIOVERSI&#211;N EL&#201;CTRICA SINCRONIZADA INMEDIATA (Taquicardia)</text><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="270.1392" x="26" y="198.0698">o Atropina 0.5-1mg EV / Marcapaso (Bradicardia)</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="159.4551" x="139.5056" y="243.4688"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="139.4551" x="149.5056" y="263.6792">Derivaci&#243;n Urgente a UCI</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="329.0527" x="549.9893" y="165.0547"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="309.0527" x="559.9893" y="185.2651">Tomar ECG de 12 derivaciones y evaluar ancho del QRS</text><polygon fill="#FFFFFF" points="597.7695,230.6641,831.2617,230.6641,843.2617,242.6641,831.2617,254.6641,597.7695,254.6641,585.7695,242.6641,597.7695,230.6641" style="stroke:#1E293B;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="233.4922" x="597.7695" y="246.4722">&#191;QRS Angosto &lt; 0.12s o Ancho &gt;= 0.12s?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="71.7632" x="514.0063" y="240.0698">QRS Angosto</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="61.0264" x="843.2617" y="240.0698">QRS Ancho</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="246.6064" x="452.4663" y="264.6641"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="226.6064" x="462.4663" y="284.8745">Maniobras Vagales (Valsalva modificada)</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="189.1465" x="481.1963" y="317.4688"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="169.1465" x="491.1963" y="337.6792">Adenosina 6mg EV bolo r&#225;pido</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="181.3691" x="485.085" y="370.2734"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="161.3691" x="495.085" y="390.4839">Betabloqueador / Verapamilo</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="219.3267" x="743.5984" y="264.6641"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="199.3267" x="753.5984" y="284.8745">Tratar como Taquicardia Ventricular</text><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="205.8452" x="750.3391" y="317.4688"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="185.8452" x="760.3391" y="337.6792">Amiodarona 150mg EV en 10 min</text><polygon fill="#FFFFFF" points="714.5156,409.0781,726.5156,421.0781,714.5156,433.0781,702.5156,421.0781,714.5156,409.0781" style="stroke:#1E293B;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><rect fill="#FFFFFF" height="32.8047" rx="12.5" ry="12.5" style="stroke:#1E293B;stroke-width:0.5;" width="238.1309" x="595.4502" y="453.0781"/><text fill="#0F172A" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="218.1309" x="605.4502" y="473.2886">Evaluaci&#243;n Ambulatoria por Cardiolog&#237;a</text><line style="stroke:#181818;stroke-width:1;" x1="466.8744" x2="466.8744" y1="56.6406" y2="76.6406"/><polygon fill="#181818" points="462.8744,66.6406,466.8744,76.6406,470.8744,66.6406,466.8744,70.6406" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="219.2332" x2="219.2332" y1="210.6641" y2="243.4688"/><polygon fill="#181818" points="215.2332,233.4688,219.2332,243.4688,223.2332,233.4688,219.2332,237.4688" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="575.7695" x2="575.7695" y1="297.4688" y2="317.4688"/><polygon fill="#181818" points="571.7695,307.4688,575.7695,317.4688,579.7695,307.4688,575.7695,311.4688" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="575.7695" x2="575.7695" y1="350.2734" y2="370.2734"/><polygon fill="#181818" points="571.7695,360.2734,575.7695,370.2734,579.7695,360.2734,575.7695,364.2734" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="853.2617" x2="853.2617" y1="297.4688" y2="317.4688"/><polygon fill="#181818" points="849.2617,307.4688,853.2617,317.4688,857.2617,307.4688,853.2617,311.4688" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="585.7695" x2="575.7695" y1="242.6641" y2="242.6641"/><line style="stroke:#181818;stroke-width:1;" x1="575.7695" x2="575.7695" y1="242.6641" y2="264.6641"/><polygon fill="#181818" points="571.7695,254.6641,575.7695,264.6641,579.7695,254.6641,575.7695,258.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="843.2617" x2="853.2617" y1="242.6641" y2="242.6641"/><line style="stroke:#181818;stroke-width:1;" x1="853.2617" x2="853.2617" y1="242.6641" y2="264.6641"/><polygon fill="#181818" points="849.2617,254.6641,853.2617,264.6641,857.2617,254.6641,853.2617,258.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="575.7695" x2="575.7695" y1="403.0781" y2="421.0781"/><line style="stroke:#181818;stroke-width:1;" x1="575.7695" x2="702.5156" y1="421.0781" y2="421.0781"/><polygon fill="#181818" points="692.5156,417.0781,702.5156,421.0781,692.5156,425.0781,696.5156,421.0781" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="853.2617" x2="853.2617" y1="350.2734" y2="421.0781"/><line style="stroke:#181818;stroke-width:1;" x1="853.2617" x2="726.5156" y1="421.0781" y2="421.0781"/><polygon fill="#181818" points="736.5156,417.0781,726.5156,421.0781,736.5156,425.0781,732.5156,421.0781" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="714.5156" x2="714.5156" y1="197.8594" y2="230.6641"/><polygon fill="#181818" points="710.5156,220.6641,714.5156,230.6641,718.5156,220.6641,714.5156,224.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="714.5156" x2="714.5156" y1="433.0781" y2="453.0781"/><polygon fill="#181818" points="710.5156,443.0781,714.5156,453.0781,718.5156,443.0781,714.5156,447.0781" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="294.8641" x2="219.2332" y1="142.25" y2="142.25"/><line style="stroke:#181818;stroke-width:1;" x1="219.2332" x2="219.2332" y1="142.25" y2="165.0547"/><polygon fill="#181818" points="215.2332,155.0547,219.2332,165.0547,223.2332,155.0547,219.2332,159.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="638.8846" x2="714.5156" y1="142.25" y2="142.25"/><line style="stroke:#181818;stroke-width:1;" x1="714.5156" x2="714.5156" y1="142.25" y2="165.0547"/><polygon fill="#181818" points="710.5156,155.0547,714.5156,165.0547,718.5156,155.0547,714.5156,159.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="466.8744" x2="466.8744" y1="109.4453" y2="129.4453"/><polygon fill="#181818" points="462.8744,119.4453,466.8744,129.4453,470.8744,119.4453,466.8744,123.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src XLFDRjD04BxxAKRYuaWfn84MaGALwnXgYQGXINFWDl5kd5MzE-vwdQgy0GTEF44Ve2SU00c_6ECuAP6eH0wMulbclfyPbzVA56XHmnBJwynIPKH4ELbujjh-lF8HCI93wTgIbh32l9G7fNADWcwLoVwf2Bd2AdSVoBWnScTe5UPFrsVgguGWE2Y6gLCRvUxE_wlj4KbMIBj31RB_vkNo2LJ3jiFqLi7hFdfUwT0wRp31L4dZ9AHaMAjLJYi4QU3APjAa2ijJJwt0__rhOcN9I8J4I6vUgbm9570XDGbbwdkjKZpp_0jLa9EcLFLFquLeJJULx49eCcMm2x6G6c5IvPeCsYxCwWUJKY4x7N1hPlLdzNSusbFaikD1Orw-aYU3A9mEayj5F9qbzOynn9_gRz5ycaGXp99nDBqS9r_2OGZ9U1GFat0UWZ_7cufLMQ6mun64pbB1Cg3t_FWeq1d42tW18xGf5bWI-ESMnHv_oio3eRHgmmcnbpOG3WhXAagQgf0EqxKdUV_WZozPTlnNz61E6Yt4qKV6GT3dPpkAs1hSWTnWNZ40JRecBkRmUJfhfhPXyvycCoeTmLlM6_HBO0DRyFjtxOkpVMO7u8QQoKTe52qjbh3037Dcz1TyfvXl49frhTYbQ3qoEXJIKDa4SzA6ikHJ0LlV5qhG3dCk6slDCldmBSUsa9PJqohV8jeGMY6iSITZRf6lZ4zB4npiWdkDiogjShHx2LgHGCj70S5nhrN1re8UQ6Ms18PLDxd6s-3QbOHwoJCSyIS61QkAcl6iFQiVy713JUyV?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ALGORITMO DE EVALUACIÓN Y MANEJO AGUDO DE ARRITMIAS — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              Hipotensión (PAS < 90 mmHg), Choque, Angina activa, Edema pulmonar agudo o Alteración de conciencia.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              CARDIOVERSIÓN ELÉCTRICA SINCRONIZADA INMEDIATA (Taquicardia)<br>o Atropina 0.5-1mg EV + Marcapaso Transcutáneo (Bradicardia).
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              Sin signos de choque, sin angina, sin congestión pulmonar y sensorio conservado.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> Tomar ECG de 12 derivaciones y evaluar ancho del QRS.</div><div><strong>Paso 2:</strong> QRS Angosto (<0.12s): Maniobras vagales -> Adenosina 6mg EV -> Betabloqueador / Verapamilo.</div><div><strong>Paso 3:</strong> QRS Ancho (>=0.12s): Tratar como Taquicardia Ventricular -> Amiodarona 150mg EV en 10 min.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN MANEJO DE URGENCIAS EN ARRITMIAS</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Adenosina</strong></td>
+                <td>TPSV regular de complejo angosto estable</td>
+                <td>6 mg EV bolo rápido en vena antecubital + 20 ml SF</td>
+                <td>Contraindicada en asma severo. Causa rubor y pausa asistólica corta.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Amiodarona</strong></td>
+                <td>TV monomórfica estable / FA descompensada</td>
+                <td>150 mg EV en 10 min, infusión 1 mg/min x 6h</td>
+                <td>Hipotensión arterial, bradicardia. Monitorizar QT.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Atropina</strong></td>
+                <td>Bradiarritmia sintomática / BAV nodal</td>
+                <td>0.5 - 1 mg EV bolo (repetir c/3-5 min max 3mg)</td>
+                <td>Ineficaz en BAV infranodal (Mobitz II / BAV 3° alto).</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 11</div>
+              <div class="q-text">Mujer de 60 años, con estenosis mitral severa, inicia bruscamente disnea y palpitaciones. Al examen FC:140x', PA:85/35, MP(+), con crépitos intensos y difusos, RI2T con soplo diastólico IV/VI en ápex. La conducta inicial más adecuada es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>Administrar amiodarona endovenosa en bolo</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Entregar oxígeno a FiO2 elevadas y soporte ventilatorio con BiPAP</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">C)</span>
+                    <span>Reponer fluidos con suero fisiológico</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">D)</span>
+                    <span>Cardioversión eléctrica inmediata</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Administrar furosemida endovenosa asociada a drogas vasoactivas</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: D</div>
+                <div>Paciente hemodinámicamente inestable (PA 85/35 mmHg) por taquiarritmia con edema pulmonar agudo. La indicación absoluta de primera línea es la cardioversión eléctrica sincronizada inmediata.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>En el examen EUNACOM, si un paciente con arritmia tiene hipotensión o edema pulmonar, la respuesta correcta SIEMPRE es cardioversión eléctrica. No intente fármacos primero.</div>
+          </div>
+        
+          <div class="sidebar-box dato">
+            <div class="sidebar-label">DATO CLAVE</div>
+            <div>Sincronizar el cardioversor con la onda R es vital para evitar descargar sobre la onda T y precipitar una Fibrilación Ventricular (fenómeno R sobre T).</div>
+          </div>
+        
+          <div class="sidebar-box ges">
+            <div class="sidebar-label">MINSAL GES</div>
+            <div>El protocolo SAMU / Red de Urgencia exige monitor con parches de desfibrilación instalados antes del traslado de todo paciente arritmico inestable.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>En taquicardia ventricular sin pulso o fibrilación ventricular se realiza DESFIBRILACIÓN NO SINCRONIZADA inmediata.</li><li>La dosis de adenosina debe administrarse mediante técnica de dos llaves (bolo rápido de fármaco seguido inmediatamente de 20 ml de SF y elevación del brazo).</li><li>En bradiarritmias por sobredosis de betabloqueadores el antídoto específico es el Glucagón EV.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.2</div>
+        <h3>Paro Cardiorespiratorio</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.2.006</div>
+        <div class="perfil-name">Paro cardiorespiratorio</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Completo</span>
+          <span><span class="label">Seg:</span> Derivar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>Diagnóstico de Paro: Paciente inconsciente + no responde + no respira normalmente (o solo gadea/gasping) + ausencia de pulso carotídeo comprobada en < 10 segundos.</li><li>Ritmos Desfibrilables: Fibrilación Ventricular (FV) y Taquicardia Ventricular sin pulso (TVsp). La desfibrilación precoz es el determinante principal de supervivencia.</li><li>Ritmos NO Desfibrilables: Asistolia y Actividad Eléctrica Sin Pulso (AESP). Requieren RCP inmediata y Adrenalina precoz.</li><li>Calidad de las Compresiones: Frecuencia 100-120/min, profundidad 5-6 cm, permitir reexpansión torácica completa, minimizar interrupciones (<10s).</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Hombre de 58 años, hipertenso y fumador, se desploma súbitamente en el pasillo del servicio de urgencias. Al evaluarlo, no responde a llamadas ni estímulo doloroso, y no se palpa pulso carotídeo en 5 segundos. Se instala monitor desfibrilador que muestra una actividad eléctrica caótica e irregular de amplitud variable sin complejos QRS reconocibles."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Paro Cardiorespiratorio en Fibrilación Ventricular (Ritmo desfibrilable).<br>
+            <strong>Conducta:</strong> Iniciar compresiones torácicas inmediatamente mientras se carga el desfibrilador → Aplicar descarga de 200 Joules (bifásico) e inmediatamente reiniciar RCP por 2 minutos.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Definición y Etiología del Paro Cardiorespiratorio (PCR)</h4>
+          <p>El paro cardiorespiratorio es la cesación brusca e inesperada de la actividad mecánica cardíaca y de la respiración espontánea. En adultos, más del 80% de los casos de PCR son de causa cardíaca primaria, siendo la cardiopatía coronaria agudizada la etiología más frecuente.</p>
+        </div>
+
+        <div class="narrative-block">
+          <h4>Fisiopatología de los Ritmos de Paro</h4>
+          <p>Los ritmos de PCR se dividen en Desfibrilables (FV / TVsp) y NO Desfibrilables (Asistolia / AESP). La asistolia representa la ausencia total de actividad eléctrica. La AESP presenta despolarización eléctrica sin contracción mecánica efectiva.</p>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ALGORITMO GENERAL DE SOPORTE VITAL AVANZADO (ACLS)</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="457px" preserveAspectRatio="none" style="width:743px;height:457px;background:#FFFFFF;" version="1.1" viewBox="0 0 743 457" width="743px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><rect fill="#FFFFCC" height="16.6406" rx="2.5" ry="2.5" style="stroke:#FFDD88;stroke-width:3;" width="712.5928" x="13" y="13"/><text fill="#000000" font-family="monospace" font-size="10" lengthAdjust="spacing" textLength="535.8252" x="20" y="23.6406">This&#160;syntax&#160;is&#160;deprecated,&#160;you&#160;must&#160;add&#160;&lt;&lt;#ffe4e6&gt;&gt;&#160;at&#160;the&#160;end&#160;of&#160;the&#160;line,&#160;after&#160;the&#160;';'</text><ellipse cx="403.5403" cy="46.6406" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="317.0483" x="245.0161" y="76.6406"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="297.0483" x="255.0161" y="96.8511">Paciente Inconsciente sin Pulso ni Respiraci&#243;n Normal</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="388.269" x="209.4058" y="129.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="368.269" x="219.4058" y="149.6558">Iniciar RCP de Alta Calidad (30:2) + Conectar Monitor Desfibrilador</text><polygon fill="#F1F1F1" points="330.4451,182.25,476.6355,182.25,488.6355,194.25,476.6355,206.25,330.4451,206.25,318.4451,194.25,330.4451,182.25" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="146.1904" x="330.4451" y="198.0581">&#191;El Ritmo es Desfibrilable?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="72.6978" x="245.7473" y="191.6558">S&#205; - FV / TVsp</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="112.5781" x="488.6355" y="191.6558">NO - Asistolia / AESP</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="194.4692" x="124.4075" y="216.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="174.4692" x="134.4075" y="236.4604">DESFIBRILACI&#211;N 200J (Bif&#225;sico)</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="209.2827" x="117.0007" y="269.0547"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="189.2827" x="127.0007" y="289.2651">RCP de Alta Calidad por 2 minutos</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="411.2842" x="16" y="321.8594"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="391.2842" x="26" y="342.0698">Adrenalina 1mg EV c/3-5 min + Amiodarona 300mg EV en 3&#176; descarga</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="209.2827" x="480.7971" y="216.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="189.2827" x="490.7971" y="236.4604">RCP de Alta Calidad por 2 minutos</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="264.229" x="453.324" y="269.0547"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="244.229" x="463.324" y="289.2651">Adrenalina 1mg EV de INMEDIATO c/3-5 min</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="276.3086" x="447.2842" y="321.8594"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="256.3086" x="457.2842" y="342.0698">Buscar y Tratar Causas Reversibles (5 H y 5 T)</text><polygon fill="#F1F1F1" points="403.5403,360.6641,415.5403,372.6641,403.5403,384.6641,391.5403,372.6641,403.5403,360.6641" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="242.7876" x="282.1465" y="404.6641"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="222.7876" x="292.1465" y="424.8745">Reevaluar Ritmo y Pulso cada 2 minutos</text><line style="stroke:#181818;stroke-width:1;" x1="403.5403" x2="403.5403" y1="56.6406" y2="76.6406"/><polygon fill="#181818" points="399.5403,66.6406,403.5403,76.6406,407.5403,66.6406,403.5403,70.6406" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="403.5403" x2="403.5403" y1="109.4453" y2="129.4453"/><polygon fill="#181818" points="399.5403,119.4453,403.5403,129.4453,407.5403,119.4453,403.5403,123.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="221.6421" x2="221.6421" y1="249.0547" y2="269.0547"/><polygon fill="#181818" points="217.6421,259.0547,221.6421,269.0547,225.6421,259.0547,221.6421,263.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="221.6421" x2="221.6421" y1="301.8594" y2="321.8594"/><polygon fill="#181818" points="217.6421,311.8594,221.6421,321.8594,225.6421,311.8594,221.6421,315.8594" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="585.4385" x2="585.4385" y1="249.0547" y2="269.0547"/><polygon fill="#181818" points="581.4385,259.0547,585.4385,269.0547,589.4385,259.0547,585.4385,263.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="585.4385" x2="585.4385" y1="301.8594" y2="321.8594"/><polygon fill="#181818" points="581.4385,311.8594,585.4385,321.8594,589.4385,311.8594,585.4385,315.8594" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="318.4451" x2="221.6421" y1="194.25" y2="194.25"/><line style="stroke:#181818;stroke-width:1;" x1="221.6421" x2="221.6421" y1="194.25" y2="216.25"/><polygon fill="#181818" points="217.6421,206.25,221.6421,216.25,225.6421,206.25,221.6421,210.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="488.6355" x2="585.4385" y1="194.25" y2="194.25"/><line style="stroke:#181818;stroke-width:1;" x1="585.4385" x2="585.4385" y1="194.25" y2="216.25"/><polygon fill="#181818" points="581.4385,206.25,585.4385,216.25,589.4385,206.25,585.4385,210.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="221.6421" x2="221.6421" y1="354.6641" y2="372.6641"/><line style="stroke:#181818;stroke-width:1;" x1="221.6421" x2="391.5403" y1="372.6641" y2="372.6641"/><polygon fill="#181818" points="381.5403,368.6641,391.5403,372.6641,381.5403,376.6641,385.5403,372.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="585.4385" x2="585.4385" y1="354.6641" y2="372.6641"/><line style="stroke:#181818;stroke-width:1;" x1="585.4385" x2="415.5403" y1="372.6641" y2="372.6641"/><polygon fill="#181818" points="425.5403,368.6641,415.5403,372.6641,425.5403,376.6641,421.5403,372.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="403.5403" x2="403.5403" y1="162.25" y2="182.25"/><polygon fill="#181818" points="399.5403,172.25,403.5403,182.25,407.5403,172.25,403.5403,176.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="403.5403" x2="403.5403" y1="384.6641" y2="404.6641"/><polygon fill="#181818" points="399.5403,394.6641,403.5403,404.6641,407.5403,394.6641,403.5403,398.6641" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src fL5BZjD04Dtx52MnSOH6amzXuIoGuoJ2YCb4IPHzfLrEIjFkZhhQWuOxiE84t0290o1DBaOvZ60aPaVlMkzLrVl87RiJ1cnWZ-Rk47phgi9R7-1LVNc9_67SUEVDCVY6e4Ohz0oI8rR-4xl3FqX5DROsBhoBIzJ9F33Qb_4DVoOO39948eQOP2iqJ2uIbCvu9qyVOGUhree7nx0cEN5Gtlc7WwKF3Tf9afME3ME0TR7I_P3RY52WvGehI4VzRDY3rr1uHqOFTROugk4PIStxm5QjX4d2DQIFF-SMrXmR3oJF27jBxteGZ-GWtPo_m1KiTd0DsvsSUWbqqT4RUflDvfj5ELsN7_EYF7zTmh3V_m3fbElpDs7ZUnFbPY-9FAcS8JJiskZbmighG4vHXp1e3Z3VWRaUNOqxZdh96_OL1g_egD__ZQksqUDtNIq6mm4d2Mana2vlLMqkBD5RHXMTppUhtly8qPboUJEVbVdszg-g2tdQTiVX0RO1kwWBR0L5Mxkd8Amf2gHZUA-4CMmr3d8Lrqcs9hf7stODNh9_U2hSO8NFvLGKqHn_0G00?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ALGORITMO GENERAL DE SOPORTE VITAL AVANZADO (ACLS) — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              Ritmo Desfibrilable (FV / TVsp) en paciente en paro.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              DESFIBRILACIÓN 200J BIFÁSICO INMEDIATA + RCP 2 min + Adrenalina 1mg EV c/3-5 min.
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              Ritmo NO Desfibrilable (Asistolia / AESP).
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> RCP de Alta Calidad por 2 minutos.</div><div><strong>Paso 2:</strong> Adrenalina 1mg EV de INMEDIATO c/3-5 min.</div><div><strong>Paso 3:</strong> Buscar y Tratar Causas Reversibles (5 H y 5 T).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN PARO CARDIORESPIRATORIO</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Adrenalina</strong></td>
+                <td>PCR (Todos los ritmos)</td>
+                <td>1 mg EV bolo c/3-5 min (1:10.000)</td>
+                <td>En asistolia/AESP dar de inmediato. En FV/TVsp dar tras la 2° descarga.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Amiodarona</strong></td>
+                <td>FV / TVsp refractaria a descargas</td>
+                <td>1° dosis 300 mg EV bolo, 2° dosis 150 mg</td>
+                <td>Administrar tras la 3° descarga si persiste el ritmo desfibrilable.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 19</div>
+              <div class="q-text">Paciente de 58 años sufre paro cardíaco presenciado. Se inicia RCP y el monitor demuestra asistolia. La medida farmacológica más adecuada e inmediata es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>Administrar atropina 1 mg EV</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Administrar amiodarona 300 mg EV</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">C)</span>
+                    <span>Administrar adrenalina 1 mg EV</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">D)</span>
+                    <span>Realizar choque eléctrico de 200J</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Administrar bicarbonato de sodio 1 mEq/kg</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: C</div>
+                <div>En ritmos NO desfibrilables (asistolia y AESP), la adrenalina 1 mg EV debe administrarse lo antes posible junto con la RCP de alta calidad.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>En asistolia NUNCA desfibrilar. Confirmar el trazado en al menos 2 derivaciones y buscar causas 5H y 5T.</div>
+          </div>
+        
+          <div class="sidebar-box dato">
+            <div class="sidebar-label">DATO CLAVE</div>
+            <div>La capnografía cuantitativa (ETCO2) monitoriza la calidad de las compresiones. Un valor < 10 mmHg indica RCP ineficaz.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>Frecuencia de ventilación tras intubación endotraqueal: 1 ventilación cada 6 segundos (10 por minuto) sin pausar compresiones.</li><li>La causa reversible más común de AESP en pacientes traumatizados o hipotensos es la hipovolemia severa.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.4</div>
+        <h3>Bradiarritmias y Bloqueos Cardíacos</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.1.002</div>
+        <div class="perfil-name">Bloqueos aurículo-ventriculares</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Derivar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>BAV de 1° Grado: PR > 0.20 segundos constante. Todas las ondas P conducen. Generalmente benigno y asintomático.</li><li>BAV de 2° Grado Mobitz I (Wenckebach): Prolongación progresiva del PR hasta que una onda P no conduce. Sitio de bloqueo: Nódulo AV. Generalmente benigno.</li><li>BAV de 2° Grado Mobitz II: PR constante con falla intermitente e impredecible de la conducción P. Sitio de bloqueo: Infranodal. Alto riesgo de progresión a BAV 3° -> Requiere Marcapaso Definitivo.</li><li>BAV de 3° Grado (Completo): Disociación AV completa. Ondas P y complejos QRS laten de forma totalmente independiente -> Marcapaso Definitivo Garantizado (GES N° 25).</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Hombre de 74 años con antecedentes de hipertensión arterial y diabetes mellitus tipo 2, consulta por episodios de mareos profundos y dos eventos sincopales en el último mes. Al examen físico: FC 34x' regular, PA 145/80 mmHg. El electrocardiograma revela ondas P a 75x' y complejos QRS anchos a 34x', sin ninguna relación temporal entre las P y los QRS."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Bloqueo Auriculoventricular Completo (BAV de 3° Grado) con ritmo de escape idioventricular.<br>
+            <strong>Conducta:</strong> Hospitalizar en unidad monitorizada, instalar marcapaso transitorio si presenta inestabilidad y gestionar implante de Marcapaso Definitivo (Garantía GES N° 25).
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Fisiopatología de los Trastornos de la Conducción AV</h4>
+          <p>Los bloqueos auriculoventriculares ocurren por una alteración anatómica o funcional en el sistema de conducción cardíaco que retarda o interrumpe la transmisión del impulso eléctrico desde las aurículas hacia los ventrículos. El sitio anatómico del bloqueo (nodal vs infranodal) determina el pronóstico y la respuesta a fármacos vagolíticos.</p>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ALGORITMO DIAGNÓSTICO Y TERAPÉUTICO DE BLOQUEOS AV</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="368px" preserveAspectRatio="none" style="width:1011px;height:368px;background:#FFFFFF;" version="1.1" viewBox="0 0 1011 368" width="1011px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><rect fill="#FFFFCC" height="16.6406" rx="2.5" ry="2.5" style="stroke:#FFDD88;stroke-width:3;" width="980.7773" x="13" y="13"/><text fill="#000000" font-family="monospace" font-size="10" lengthAdjust="spacing" textLength="535.8252" x="20" y="23.6406">This&#160;syntax&#160;is&#160;deprecated,&#160;you&#160;must&#160;add&#160;&lt;&lt;#ffe4e6&gt;&gt;&#160;at&#160;the&#160;end&#160;of&#160;the&#160;line,&#160;after&#160;the&#160;';'</text><ellipse cx="379.0204" cy="46.6406" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="334.6709" x="211.685" y="76.6406"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="314.6709" x="221.685" y="96.8511">Paciente con Bradicardia (&lt;60x') o S&#237;ncope en Urgencias</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="313.6807" x="222.1801" y="129.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="293.6807" x="232.1801" y="149.6558">ECG 12 derivaciones: Evaluar relaci&#243;n ondas P y QRS</text><polygon fill="#F1F1F1" points="269.9335,182.25,488.1074,182.25,500.1074,194.25,488.1074,206.25,269.9335,206.25,257.9335,194.25,269.9335,182.25" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="218.1738" x="269.9335" y="198.0581">&#191;Todas las P conducen con PR &gt; 0.20s?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="247.707" y="191.6558">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="16.8867" x="500.1074" y="191.6558">NO</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="232.1099" x="16" y="216.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="212.1099" x="26" y="236.4604">BAV 1&#176; Grado (Observaci&#243;n / Benigno)</text><polygon fill="#F1F1F1" points="486.0636,216.25,765.9083,216.25,777.9083,228.25,765.9083,240.25,486.0636,240.25,474.0636,228.25,486.0636,216.25" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="279.8447" x="486.0636" y="232.0581">&#191;PR se alarga progresivamente antes del bloqueo?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="463.837" y="225.6558">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="16.8867" x="777.9083" y="225.6558">NO</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="328.9185" x="278.1099" y="250.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="308.9185" x="288.1099" y="270.4604">BAV 2&#176; Mobitz I / Wenckebach (Observar / Tratar causa)</text><rect fill="#F1F1F1" height="45.6094" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="364.749" x="627.0283" y="250.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="344.749" x="637.0283" y="270.4604">INDICACI&#211;N DE MARCAPASO DEFINITIVO (Garant&#237;a GES N&#176; 25)</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="339.6143" x="637.0283" y="283.2651">Atropina / Isoproterenol / Marcapaso Transitorio como puente</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="219.0957" x="699.855" y="315.8594"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="199.0957" x="709.855" y="336.0698">Hospitalizar en Unidad Monitorizada</text><line style="stroke:#181818;stroke-width:1;" x1="379.0204" x2="379.0204" y1="56.6406" y2="76.6406"/><polygon fill="#181818" points="375.0204,66.6406,379.0204,76.6406,383.0204,66.6406,379.0204,70.6406" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="379.0204" x2="379.0204" y1="109.4453" y2="129.4453"/><polygon fill="#181818" points="375.0204,119.4453,379.0204,129.4453,383.0204,119.4453,379.0204,123.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="809.4028" x2="809.4028" y1="295.8594" y2="315.8594"/><polygon fill="#181818" points="805.4028,305.8594,809.4028,315.8594,813.4028,305.8594,809.4028,309.8594" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="474.0636" x2="442.5691" y1="228.25" y2="228.25"/><line style="stroke:#181818;stroke-width:1;" x1="442.5691" x2="442.5691" y1="228.25" y2="250.25"/><polygon fill="#181818" points="438.5691,240.25,442.5691,250.25,446.5691,240.25,442.5691,244.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="777.9083" x2="809.4028" y1="228.25" y2="228.25"/><line style="stroke:#181818;stroke-width:1;" x1="809.4028" x2="809.4028" y1="228.25" y2="250.25"/><polygon fill="#181818" points="805.4028,240.25,809.4028,250.25,813.4028,240.25,809.4028,244.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="257.9335" x2="132.0549" y1="194.25" y2="194.25"/><line style="stroke:#181818;stroke-width:1;" x1="132.0549" x2="132.0549" y1="194.25" y2="216.25"/><polygon fill="#181818" points="128.0549,206.25,132.0549,216.25,136.0549,206.25,132.0549,210.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="500.1074" x2="625.986" y1="194.25" y2="194.25"/><line style="stroke:#181818;stroke-width:1;" x1="625.986" x2="625.986" y1="194.25" y2="216.25"/><polygon fill="#181818" points="621.986,206.25,625.986,216.25,629.986,206.25,625.986,210.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="379.0204" x2="379.0204" y1="162.25" y2="182.25"/><polygon fill="#181818" points="375.0204,172.25,379.0204,182.25,383.0204,172.25,379.0204,176.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src RPB1ZjD038RlUGfB74Wlq5QmXom2fTrkoQ5fQSfoTZFJTDJfE7Wc1VeEU-8vLaBY0P2sBuQJNLMhXJbOcjzZ-xCzVcTSZOnxM6EvgvWQfyPaYU75fZkHFx-OaQDooxJNi47hzHENtwAYRyPL_tYKtc1ZmpMvaAD4fcpG_jzVcAE6mI2AV40EKRB0qcWND9JaOCIeJ8ci34ByxgB__MKF28hJdIkfrg0TVEPAkzAWluoIoNWAWw4aPtEGBEIqJs1oGDiW0sihskct0t8AFIpW1tnQ5fUHsK1y_sT5hMWxXrHMJId9MuJ54jv3_zMmxp_q86n5ZOlJRIy2I4Rf3GpkVy5KA0dY-TfhFZmMUGqZxKpbg7SfJvKEM6uZBLE2E9-tqGzb9Rj8Q94hX9gfOkq5VjzD0CLuYRMmjlIrqVISu95XA0mpMfjmX4mAVv61xBHiTdjcOf5NZ39XAB7ns46TiG2UWa7x2VGRVP5a-LKsJiVPwMSELnEOfSjnkaYBkLokipnRPJTpYAUoK1TETmZJIG6ve0pVzg8qCDN6eTJDF4bZGRDsPEK-GownHayjaVCc41kIKUy9wgRj-u4j-KY-DW6jEGfrksbd5AhsFtOXHrJul0kdp2Rgx5y0?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ALGORITMO DIAGNÓSTICO Y TERAPÉUTICO DE BLOQUEOS AV — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              BAV de 2° Grado Mobitz II o BAV de 3° Grado (Completo).
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              INDICACIÓN DE MARCAPASO DEFINITIVO (Garantía GES N° 25).<br>Atropina / Isoproterenol / Marcapaso Transitorio como puente.
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              BAV de 1° Grado o BAV 2° Mobitz I asintomático.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> BAV 1° Grado: Observación y seguimiento ambulatorio.</div><div><strong>Paso 2:</strong> BAV 2° Mobitz I: Tratamiento etiológico y descarte de fármacos bradicardizantes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN BRADIARRITMIAS Y BLOQUEOS CARDÍACOS</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Atropina</strong></td>
+                <td>Bradicardia sinusal / BAV Nodal (1° Grado / Mobitz I)</td>
+                <td>0.5 - 1 mg EV bolo c/3-5 min (máx 3 mg)</td>
+                <td>Ineficaz en bloqueos infranodales (Mobitz II / BAV 3° infranodal).</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 7</div>
+              <div class="q-text">Paciente de 72 años con antecedentes de HTA y diabetes, ingresa por episodio sincopal sin traumatismo. Al ECG se evidencia ritmo sinusal con FC 35x', ondas P independientes de los complejos QRS, los cuales son anchos (QRS 0.14s). El diagnóstico y manejo de elección es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>BAV 2° Mobitz I - Observación clínica</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>BAV 1° Grado - Atropina EV a permanencia</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">C)</span>
+                    <span>Enfermedad del nodo sinusal - Amiodarona EV</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">D)</span>
+                    <span>BAV 3° Grado - Instalación de marcapaso definitivo</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Bloqueo completo de rama izquierda - Coronariografía urgente</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: D</div>
+                <div>Disociación AV en paciente sincopal es BAV 3° Grado. Tratamiento definitivo: Marcapaso Definitivo (GES N° 25).</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box ges">
+            <div class="sidebar-label">GES CHILE</div>
+            <div>GES N° 25: Trastornos de conducción en mayores de 15 años que requieren marcapaso definitivo están garantizados con cobertura financiera y plazos legales.</div>
+          </div>
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>Si en una pregunta del EUNACOM mencionan un paciente mayor con síncope y QRS ancho con FC 30-35x' -> Pensar en BAV 3° y marcar Marcapaso Definitivo.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>El infarto agudo de miocardio de pared inferior suele cursar con BAV de 2° Mobitz I o BAV 3° nodal transitorio que responde a Atropina.</li><li>La hiperkalemia es la causa metabólica reversible más frecuente de bradicardia con ensanchamiento progresivo del QRS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.5</div>
+        <h3>Fibrilación Auricular</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.1.012</div>
+        <div class="perfil-name">Fibrilación auricular crónica</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Completo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>La arritmia cardíaca sostenida más frecuente en la práctica médica global. Su principal causa etiológica es la Hipertensión Arterial (HTA).</li><li>Hallazgos Patognomónicos en el ECG: Ausencia total de ondas P (reemplazadas por ondas 'f' de fibrilación) e intervalos R-R irregularmente irregulares.</li><li>Complicación Cardinal: Embolia sistémica (Accidente Cerebrovascular Isquémico) por formación de trombos en la orejuela de la aurícula izquierda.</li><li>Estratificación Antitrombótica: Escala CHA₂DS₂-VASc indica necesidad de Anticoagulación Oral (ACO) a permanencia.</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Mujer de 68 años, hipertensa en tratamiento con enalapril, consulta por palpitaciones de 2 semanas de evolución asociadas a fatiga de esfuerzo. Examen físico: PA 138/84 mmHg, FC 118x' irregular. Pulso arterial deficitario. Sin signos de congestión pulmonar. ECG confirma Fibrilación Auricular."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Fibrilación Auricular no valvular hemodinámicamente estable.<br>
+            <strong>Conducta:</strong> Calcular CHA₂DS₂-VASc (3 puntos: HTA + Edad 65-74 + Sexo Femenino) -> Iniciar Anticoagulación Oral a permanencia + Betabloqueador para control de FC.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Fisiopatología y Remodelado Auricular</h4>
+          <p>La Fibrilación Auricular (FA) se origina por la presencia de múltiples micro-reentradas auriculares impulsadas por focos ectópicos automáticos localizados predominantemente en la desembocadura de las venas pulmonares en la aurícula izquierda. La sobrecarga de presión (HTA) o de volumen causa dilatación auricular, fibrosis miocárdica y remodelado eléctrico/estructural que perpetúa la arritmia.</p>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ESTRATEGIA GLOBAL AF-CARE DE MANEJO DE FIBRILACIÓN AURICULAR</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="499px" preserveAspectRatio="none" style="width:830px;height:499px;background:#FFFFFF;" version="1.1" viewBox="0 0 830 499" width="830px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><ellipse cx="449.776" cy="25" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="360.2427" x="269.6547" y="55"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="340.2427" x="279.6547" y="75.2104">Diagn&#243;stico de Fibrilaci&#243;n Auricular (ECG: R-R irregular, sin P)</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="360.0601" x="269.746" y="107.8047"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="340.0601" x="279.746" y="128.0151">Estratificaci&#243;n de Riesgo Embol&#237;geno (Escala CHA2DS2-VASc)</text><polygon fill="#F1F1F1" points="292.9374,160.6094,606.6146,160.6094,618.6146,172.6094,606.6146,184.6094,292.9374,184.6094,280.9374,172.6094,292.9374,160.6094" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="313.6772" x="292.9374" y="176.4175">&#191;Puntaje CHA2DS2-VASc &gt;= 2 Hombres / &gt;= 3 Mujeres?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="270.7108" y="170.0151">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="16.8867" x="618.6146" y="170.0151">NO</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="460.1021" x="16" y="194.6094"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="440.1021" x="26" y="214.8198">ANTICOAGULACI&#211;N ORAL A PERMANENCIA (Acenocumarol / Warfarina / DOACs)</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="314.7979" x="496.1021" y="194.6094"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="294.7979" x="506.1021" y="214.8198">Evaluar Anticoagulaci&#243;n seg&#250;n puntaje 1 en hombres</text><polygon fill="#F1F1F1" points="449.776,233.4141,461.776,245.4141,449.776,257.4141,437.776,245.4141,449.776,233.4141" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="218.4136" x="340.5692" y="277.4141"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="198.4136" x="350.5692" y="297.6245">Selecci&#243;n de Estrategia Terap&#233;utica</text><polygon fill="#F1F1F1" points="360.3634,330.2188,539.1886,330.2188,551.1886,342.2188,539.1886,354.2188,360.3634,354.2188,348.3634,342.2188,360.3634,330.2188" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="178.8252" x="360.3634" y="346.0269">&#191;Control de Frecuencia o Ritmo?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="60.2207" x="288.1427" y="339.6245">Frecuencia</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="32.4575" x="551.1886" y="339.6245">Ritmo</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="240.5854" x="180.2024" y="364.2188"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="220.5854" x="190.2024" y="384.4292">Betabloqueador / Verapamilo / Digoxina</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="316.5381" x="440.7878" y="364.2188"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="296.5381" x="450.7878" y="384.4292">Amiodarona / Flecainida / Ablaci&#243;n Venas Pulmonares</text><polygon fill="#F1F1F1" points="449.776,403.0234,461.776,415.0234,449.776,427.0234,437.776,415.0234,449.776,403.0234" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="282.3833" x="308.5844" y="447.0234"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="262.3833" x="318.5844" y="467.2339">Seguimiento en Programa Cardiovascular (APS)</text><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="35" y2="55"/><polygon fill="#181818" points="445.776,45,449.776,55,453.776,45,449.776,49" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="87.8047" y2="107.8047"/><polygon fill="#181818" points="445.776,97.8047,449.776,107.8047,453.776,97.8047,449.776,101.8047" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="280.9374" x2="246.051" y1="172.6094" y2="172.6094"/><line style="stroke:#181818;stroke-width:1;" x1="246.051" x2="246.051" y1="172.6094" y2="194.6094"/><polygon fill="#181818" points="242.051,184.6094,246.051,194.6094,250.051,184.6094,246.051,188.6094" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="618.6146" x2="653.501" y1="172.6094" y2="172.6094"/><line style="stroke:#181818;stroke-width:1;" x1="653.501" x2="653.501" y1="172.6094" y2="194.6094"/><polygon fill="#181818" points="649.501,184.6094,653.501,194.6094,657.501,184.6094,653.501,188.6094" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="246.051" x2="246.051" y1="227.4141" y2="245.4141"/><line style="stroke:#181818;stroke-width:1;" x1="246.051" x2="437.776" y1="245.4141" y2="245.4141"/><polygon fill="#181818" points="427.776,241.4141,437.776,245.4141,427.776,249.4141,431.776,245.4141" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="653.501" x2="653.501" y1="227.4141" y2="245.4141"/><line style="stroke:#181818;stroke-width:1;" x1="653.501" x2="461.776" y1="245.4141" y2="245.4141"/><polygon fill="#181818" points="471.776,241.4141,461.776,245.4141,471.776,249.4141,467.776,245.4141" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="140.6094" y2="160.6094"/><polygon fill="#181818" points="445.776,150.6094,449.776,160.6094,453.776,150.6094,449.776,154.6094" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="257.4141" y2="277.4141"/><polygon fill="#181818" points="445.776,267.4141,449.776,277.4141,453.776,267.4141,449.776,271.4141" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="348.3634" x2="300.4951" y1="342.2188" y2="342.2188"/><line style="stroke:#181818;stroke-width:1;" x1="300.4951" x2="300.4951" y1="342.2188" y2="364.2188"/><polygon fill="#181818" points="296.4951,354.2188,300.4951,364.2188,304.4951,354.2188,300.4951,358.2188" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="551.1886" x2="599.0569" y1="342.2188" y2="342.2188"/><line style="stroke:#181818;stroke-width:1;" x1="599.0569" x2="599.0569" y1="342.2188" y2="364.2188"/><polygon fill="#181818" points="595.0569,354.2188,599.0569,364.2188,603.0569,354.2188,599.0569,358.2188" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="300.4951" x2="300.4951" y1="397.0234" y2="415.0234"/><line style="stroke:#181818;stroke-width:1;" x1="300.4951" x2="437.776" y1="415.0234" y2="415.0234"/><polygon fill="#181818" points="427.776,411.0234,437.776,415.0234,427.776,419.0234,431.776,415.0234" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="599.0569" x2="599.0569" y1="397.0234" y2="415.0234"/><line style="stroke:#181818;stroke-width:1;" x1="599.0569" x2="461.776" y1="415.0234" y2="415.0234"/><polygon fill="#181818" points="471.776,411.0234,461.776,415.0234,471.776,419.0234,467.776,415.0234" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="310.2188" y2="330.2188"/><polygon fill="#181818" points="445.776,320.2188,449.776,330.2188,453.776,320.2188,449.776,324.2188" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="449.776" x2="449.776" y1="427.0234" y2="447.0234"/><polygon fill="#181818" points="445.776,437.0234,449.776,447.0234,453.776,437.0234,449.776,441.0234" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src RPBFRjD04CRlVegHk2GI5Kgu1G5Q7AUDr3XHNC9vl5uxqwvtm_ufY7VWn5FqmAatBaZunHZd7rJWasTdvjFt-tRz7PaTEcoXH7dNE1jDbLfj7Johzr_YpnCBQwpSEjigg55xzLVBRx6odyWq_tGgLMFKOMPDo94tXIFK_-yNz4N1Q9GaFg0BoMHAs9ZkqGUIbkTWHgKZZPAwHmCYEf9HeuD1bbvEO7sn1d9EDVtPS_1aO3LybKmo7nm6gaaU5rbeJSet5hAsjBhxtYXZMSHBr0ZfbHXFY_75HXIIrwc6mQ-VgsW2tgedJNZp6iPmPTlIAGyl-l8bBEAjulBj4C9M6HWKtTTX0Z0H-SqyNOhBzzSYdNVVSbYknJK8M6NhXSYpF9qB60Z9HcHiqLdDWX_GrUZ88FzFboBrR4TnjZ38btlHx1vrP7vX-e2m1pyGUjLqFmpiZgv7m5Qs1wCiOIggaqcXj9BdG0uXgOOGRfJ3NVSGMHDF_2bVJc-glmEdP5H6ygJb74Dhpx1_MdjxxrJ0KjkFKV7JS0onwPMn9Mrx8chiPuOxCUsb3bcrP2lEO0y-OvT8Xgg-4EM9SACCUbX5tVBOKwmcKalA1DjJhvnj-97njQAhoDwZFpuPiIeupeejokrl?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ESTRATEGIA GLOBAL AF-CARE DE MANEJO DE FIBRILACIÓN AURICULAR — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              Hipotensión, síncope, shock cardiogénico o edema pulmonar agudo.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              CARDIOVERSIÓN ELÉCTRICA SINCRONIZADA INMEDIATA (120-200J).
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              Paciente en buenas condiciones hemodinámicas.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> Calcular Escala CHA2DS2-VASc.</div><div><strong>Paso 2:</strong> Si CHA2DS2-VASc >= 2 (hombres) / >= 3 (mujeres): Anticoagulación Oral a permanencia.</div><div><strong>Paso 3:</strong> Seleccionar Estrategia: Control de Frecuencia (Betabloqueador / Verapamilo) vs Control de Ritmo (Amiodarona / Flecainida).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN FIBRILACIÓN AURICULAR</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Bisoprolol / Carvedilol</strong></td>
+                <td>Control de FC en FA (1° Línea)</td>
+                <td>Bisoprolol 2.5 - 10 mg/día VO</td>
+                <td>Evitar en asma severo descompensado y bradicardia.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Acenocumarol / Warfarina</strong></td>
+                <td>Anticoagulación en FA (Estándar APS Chile)</td>
+                <td>Ajustada por INR (Meta 2.0 - 3.0)</td>
+                <td>Requiere controles periódicos de coagulación.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 6</div>
+              <div class="q-text">Mujer de 65 años, hipertensa en tratamiento con enalapril, consulta por palpitaciones e intolerancia al esfuerzo de 3 semanas de evolución. ECG demuestra fibrilación auricular con FC 110x'. Ecocardiograma muestra aurícula izquierda de 44 mm y FE 55%. Su puntaje CHA2DS2-VASc es de 3 puntos. La conducta antitrombótica más adecuada es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>Aspirina 100 mg/día</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Clopidogrel 75 mg/día</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">C)</span>
+                    <span>Anticoagulación oral a permanencia</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">D)</span>
+                    <span>Doble terapia antiagregante con aspirina y clopidogrel</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>No requiere tratamiento antitrombótico</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: C</div>
+                <div>En FA no valvular con CHA₂DS₂-VASc >= 2 en hombres o >= 3 en mujeres, existe indicación absoluta de Anticoagulación Oral a permanencia.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box dato">
+            <div class="sidebar-label">MINSAL 2018</div>
+            <div>En la red pública de Chile (FONASA/APS), el Acenocumarol es el anticoagulante de primera línea entregado en el Programa de Salud Cardiovascular.</div>
+          </div>
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>FA Valvular (Estenosis Mitral moderada/severa o Prótesis Mecánica) REQUIERE anticoagulación obligatoria con Warfarina/Acenocumarol. Los DOACs están contraindicados.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>El uso de Aspirina para prevención de stroke en FA no valvular está descatalogado por falta de eficacia frente al riesgo hemorrágico.</li><li>La FA silente o asintomática tiene el mismo riesgo de provocar un ACV embólico que la FA sintomática.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.12</div>
+        <h3>Taquicardia Paroxística Supraventricular (TPSV)</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.1.024</div>
+        <div class="perfil-name">Taquicardia paroxística supraventricular (TPSV)</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Completo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>Taquicardia regular de complejo QRS angosto (<0.12s) más frecuente en pacientes jóvenes sin cardiopatía.</li><li>Mecanismos principales: 1) Reentrada Nodal AV (60%). 2) Reentrada Auriculoventricular por Vía Accesoria (WPW) (30%).</li><li>Clínica: Palpitaciones de inicio y término BRUSCO, cuello latiente (signo de la rana).</li><li>Tratamiento Agudo: 1° Maniobras Vagales (Valsalva modificada). 2° Adenosina 6 mg EV en bolo rápido. 3° Cardioversión Eléctrica si inestable.</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Mujer de 28 años sin antecedentes consulta a urgencias por episodio de palpitaciones intensas de inicio brusco mientras estudiaba. FC 185x', PA 115/75. ECG muestra taquicardia regular de QRS angosto sin ondas P visibles."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Taquicardia Paroxística Supraventricular por Reentrada Nodal.<br>
+            <strong>Conducta:</strong> Realizar Maniobras Vagales (Valsalva modificada). Si no cede, administrar Adenosina 6 mg EV en bolo rápido.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Fisiopatología de la Reentrada Nodal AV</h4>
+          <p>La Taquicardia por Reentrada Nodal Auriculoventricular (TRNAV) ocurre en corazones sin enfermedad estructural por la existencia de una doble vía de conducción dentro del nódulo AV: una vía rápida de período refractario largo y una vía lenta de período refractario corto. Un extrasístole auricular desencadena el circuito de reentrada.</p>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ALGORITMO DE MANEJO DE TPSV EN URGENCIAS</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="568px" preserveAspectRatio="none" style="width:849px;height:568px;background:#FFFFFF;" version="1.1" viewBox="0 0 849 568" width="849px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><rect fill="#FFFFCC" height="16.6406" rx="2.5" ry="2.5" style="stroke:#FFDD88;stroke-width:3;" width="818.2446" x="13" y="13"/><text fill="#000000" font-family="monospace" font-size="10" lengthAdjust="spacing" textLength="535.8252" x="20" y="23.6406">This&#160;syntax&#160;is&#160;deprecated,&#160;you&#160;must&#160;add&#160;&lt;&lt;#ffe4e6&gt;&gt;&#160;at&#160;the&#160;end&#160;of&#160;the&#160;line,&#160;after&#160;the&#160;';'</text><ellipse cx="369.5677" cy="46.6406" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="428.4233" x="155.3561" y="76.6406"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="408.4233" x="165.3561" y="96.8511">Taquicardia Parox&#237;stica Supraventricular (QRS angosto regular 150-220x')</text><polygon fill="#F1F1F1" points="285.2711,129.4453,453.8644,129.4453,465.8644,141.4453,453.8644,153.4453,285.2711,153.4453,273.2711,141.4453,285.2711,129.4453" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="168.5933" x="285.2711" y="145.2534">&#191;Inestabilidad Hemodin&#225;mica?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="263.0446" y="138.8511">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="68.3901" x="465.8644" y="138.8511">NO - Estable</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="319.2183" x="16" y="163.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="299.2183" x="26" y="183.6558">CARDIOVERSI&#211;N EL&#201;CTRICA SINCRONIZADA (50-100J)</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="256.5483" x="435.2522" y="163.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="236.5483" x="445.2522" y="183.6558">1&#176; L&#205;NEA: Maniobra de Valsalva Modificada</text><polygon fill="#F1F1F1" points="489.9155,216.25,637.1372,216.25,649.1372,228.25,637.1372,240.25,489.9155,240.25,477.9155,228.25,489.9155,216.25" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="147.2217" x="489.9155" y="232.0581">&#191;Revierte a Ritmo Sinusal?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="467.689" y="225.6558">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="16.8867" x="649.1372" y="225.6558">NO</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="162.103" x="365.2183" y="250.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="142.103" x="375.2183" y="270.4604">Ritmo Sinusal Restaurado</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="248.105" x="556.7305" y="250.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="228.105" x="566.7305" y="270.4604">2&#176; L&#205;NEA: Adenosina 6mg EV Bolo R&#225;pido</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="201.7471" x="579.9094" y="351.457"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="181.7471" x="589.9094" y="371.6675">Repetir Adenosina 12mg EV Bolo</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="246.9233" x="557.3213" y="419.2617"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="226.9233" x="567.3213" y="439.4722">3&#176; L&#205;NEA: Verapamilo 5mg EV / Diltiazem</text><polygon fill="#F1F1F1" points="637.5054,303.0547,724.0605,303.0547,736.0605,315.0547,724.0605,327.0547,637.5054,327.0547,625.5054,315.0547,637.5054,303.0547" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="684.783" y="337.2651">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="86.5552" x="637.5054" y="318.8628">&#191;Persiste TPSV?</text><polygon fill="#F1F1F1" points="680.783,472.0664,692.783,484.0664,680.783,496.0664,668.783,484.0664,680.783,472.0664" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="250.2104" x="555.6777" y="516.0664"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="230.2104" x="565.6777" y="536.2769">Evaluaci&#243;n por Electrofisiolog&#237;a / Ablaci&#243;n</text><line style="stroke:#181818;stroke-width:1;" x1="369.5677" x2="369.5677" y1="56.6406" y2="76.6406"/><polygon fill="#181818" points="365.5677,66.6406,369.5677,76.6406,373.5677,66.6406,369.5677,70.6406" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="384.2617" y2="419.2617"/><polygon fill="#181818" points="676.783,409.2617,680.783,419.2617,684.783,409.2617,680.783,413.2617" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="327.0547" y2="351.457"/><polygon fill="#181818" points="676.783,341.457,680.783,351.457,684.783,341.457,680.783,345.457" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="736.0605" x2="814.2446" y1="315.0547" y2="315.0547"/><polygon fill="#181818" points="810.2446,391.7617,814.2446,401.7617,818.2446,391.7617,814.2446,395.7617" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="814.2446" x2="814.2446" y1="315.0547" y2="484.0664"/><line style="stroke:#181818;stroke-width:1;" x1="814.2446" x2="692.783" y1="484.0664" y2="484.0664"/><polygon fill="#181818" points="702.783,480.0664,692.783,484.0664,702.783,488.0664,698.783,484.0664" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="452.0664" y2="472.0664"/><polygon fill="#181818" points="676.783,462.0664,680.783,472.0664,684.783,462.0664,680.783,466.0664" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="283.0547" y2="303.0547"/><polygon fill="#181818" points="676.783,293.0547,680.783,303.0547,684.783,293.0547,680.783,297.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="496.0664" y2="516.0664"/><polygon fill="#181818" points="676.783,506.0664,680.783,516.0664,684.783,506.0664,680.783,510.0664" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="477.9155" x2="446.2698" y1="228.25" y2="228.25"/><line style="stroke:#181818;stroke-width:1;" x1="446.2698" x2="446.2698" y1="228.25" y2="250.25"/><polygon fill="#181818" points="442.2698,240.25,446.2698,250.25,450.2698,240.25,446.2698,244.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="649.1372" x2="680.783" y1="228.25" y2="228.25"/><line style="stroke:#181818;stroke-width:1;" x1="680.783" x2="680.783" y1="228.25" y2="250.25"/><polygon fill="#181818" points="676.783,240.25,680.783,250.25,684.783,240.25,680.783,244.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="563.5264" x2="563.5264" y1="196.25" y2="216.25"/><polygon fill="#181818" points="559.5264,206.25,563.5264,216.25,567.5264,206.25,563.5264,210.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="273.2711" x2="175.6091" y1="141.4453" y2="141.4453"/><line style="stroke:#181818;stroke-width:1;" x1="175.6091" x2="175.6091" y1="141.4453" y2="163.4453"/><polygon fill="#181818" points="171.6091,153.4453,175.6091,163.4453,179.6091,153.4453,175.6091,157.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="465.8644" x2="563.5264" y1="141.4453" y2="141.4453"/><line style="stroke:#181818;stroke-width:1;" x1="563.5264" x2="563.5264" y1="141.4453" y2="163.4453"/><polygon fill="#181818" points="559.5264,153.4453,563.5264,163.4453,567.5264,153.4453,563.5264,157.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="369.5677" x2="369.5677" y1="109.4453" y2="129.4453"/><polygon fill="#181818" points="365.5677,119.4453,369.5677,129.4453,373.5677,119.4453,369.5677,123.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src RPB1RjD048RlVegHE90SgiQ1zf0Sa4cCC6gTO4SvS9lOOsVKzQxPNOUgRy2X9vwW3r09YGUeLByOwxY1qEB37lQV-VzlnckkMDQeiO8DPbUbLetCPqee3Q-A_UUPFnMNIgfigrL5KA0mT2IPBURg6yloXP9JWOsm7vIqCRhEG3EA_-iftn3ulkSPYzfwanL-RJX3dJF24hMwRk-DTHUGDhN67KchEMi4QXXyJb90MIfZ5MWgzvV-sUXaF1vTlnvEFIvWyFWGINBM6nQSOmuVgL8vo_QkSfxlXc2t966GjhT33xhfwIsTJsP1CeyMwp19e_P73E55-tssIg9P06aKpv9577q9vW4CN9O_6droKU16ifXjFNABW46yW1C8krX1dV74V_m95-rj70OJk4J9QgFHjS3QBGx53jsQSouSKewTMK-Uq8v9MmA4X6sb86NPkFBdsCx_7nsIRk96kxyptSjFR007kgUkyH5La9DKXYN2ULL2k8Rtxa50qjxLVB3fgPQa3Hj7jLgcwvSe7GpLP5aVMVhZlvxJGzcRe_GrQQonOXTvrfUUmfo5PRoXgkyWwJRKSuSx50rctFwIKBjN6mhAh5O56tO1PNkFhZtOYBxa-GxsFllpDm00?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ALGORITMO DE MANEJO DE TPSV EN URGENCIAS — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              Hipotensión, angina o compromiso de conciencia.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              CARDIOVERSIÓN ELÉCTRICA SINCRONIZADA (50-100J).
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              Paciente hemodinámicamente estable.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> 1° Línea: Maniobra de Valsalva Modificada.</div><div><strong>Paso 2:</strong> 2° Línea: Adenosina 6mg EV Bolo Rápido (repetir 12mg si persiste).</div><div><strong>Paso 3:</strong> 3° Línea: Verapamilo 5mg EV / Diltiazem.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN TAQUICARDIA PAROXÍSTICA SUPRAVENTRICULAR (TPSV)</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Adenosina</strong></td>
+                <td>1° opción farmacológica en TPSV</td>
+                <td>6 mg EV bolo rápido -> 12 mg EV</td>
+                <td>Contraindicada en asma severo.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 8</div>
+              <div class="q-text">Mujer de 30 años con palpitaciones muy intensas de inicio y término brusco de minutos de duración. Ingresa a urgencias por palpitaciones. Al examen: FC:180x', PA:110/70. El ECG muestra taquicardia regular a QRS angosto. La primera medida a seguir es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>Administrar adenosina endovenosa</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Administrar amiodarona endovenosa</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">C)</span>
+                    <span>Realizar cardioversión eléctrica</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">D)</span>
+                    <span>Realizar maniobras vagales</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Administrar propafenona oral</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: D</div>
+                <div>En TPSV regular a QRS angosto hemodinámicamente estable, la primera medida no invasiva son las maniobras vagales.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>Paciente joven con TPSV estable -> La PRIMERA MEDIDA a realizar son las Maniobras Vagales.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>En WPW con Fibrilación Auricular está CONTRAINDICADO usar Verapamilo, Adenosina o Digoxina.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.13</div>
+        <h3>TV y Canalopatías</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.2.009</div>
+        <div class="perfil-name">Taquicardia ventricular / Canalopatías</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Sospecha</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Derivar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>Taquicardia de QRS Ancho (>=0.12s): Toda taquicardia de QRS ancho en adulto con cardiopatía debe considerarse Taquicardia Ventricular (TV) hasta demostrar lo contrario.</li><li>TV Monomórfica Estable: Amiodarona 150 mg EV en 10 min o Procainamida. Si se inestabiliza -> Cardioversión Eléctrica.</li><li>Canalopatías: Síndrome de QT Largo (riesgo de Torsades de Pointes), Síndrome de Brugada (ST ensillado en V1-V3).</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Hombre de 65 años con antecedente de infarto miocárdico antiguo presenta palpitaciones y mareos. PA 105/65, FC 170x'. ECG muestra taquicardia regular de complejo QRS ancho (0.16s) con disociación AV."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Taquicardia Ventricular Monomórfica Sostenida.<br>
+            <strong>Conducta:</strong> Amiodarona 150 mg EV en 10 min si estable. Preparar cardioversión si cae la presión arterial.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Diagnóstico Diferencial de QRS Ancho</h4>
+          <p>Toda taquicardia de complejos anchos en un paciente adulto, especialmente con historia de infarto agudo al miocardio previo o miocardiopatía, debe ser manejada como Taquicardia Ventricular. Tratar erróneamente una TV como TPSV con aberrancia administrando Verapamilo causa colapso hemodinámico letal.</p>
+        </div>
+      
+        </div>
+
+        <!-- PlantUML SVG Vector Diagram -->
+        
+    <div class="plantuml-diagram-container">
+      <div class="diagram-header">ALGORITMO DE TAQUICARDIA DE QRS ANCHO</div>
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="355px" preserveAspectRatio="none" style="width:1084px;height:355px;background:#FFFFFF;" version="1.1" viewBox="0 0 1084 355" width="1084px" zoomAndPan="magnify"><?plantuml 1.2026.6?><defs/><g><rect fill="#FFFFCC" height="16.6406" rx="2.5" ry="2.5" style="stroke:#FFDD88;stroke-width:3;" width="1053.792" x="13" y="13"/><text fill="#000000" font-family="monospace" font-size="10" lengthAdjust="spacing" textLength="535.8252" x="20" y="23.6406">This&#160;syntax&#160;is&#160;deprecated,&#160;you&#160;must&#160;add&#160;&lt;&lt;#ffe4e6&gt;&gt;&#160;at&#160;the&#160;end&#160;of&#160;the&#160;line,&#160;after&#160;the&#160;';'</text><ellipse cx="467.4642" cy="46.6406" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="282.2813" x="326.3236" y="76.6406"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="262.2813" x="336.3236" y="96.8511">Taquicardia de Complejo QRS Ancho (&gt;=0.12s)</text><polygon fill="#F1F1F1" points="401.6656,129.4453,533.2628,129.4453,545.2628,141.4453,533.2628,153.4453,401.6656,153.4453,389.6656,141.4453,401.6656,129.4453" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="131.5972" x="401.6656" y="145.2534">&#191;Tiene Pulso Carot&#237;deo?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="16.8867" x="372.7789" y="138.8511">NO</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="75.1899" x="545.2628" y="138.8511">S&#205; - Con Pulso</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="360.0977" x="16" y="163.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="340.0977" x="26" y="183.6558">DESFIBRILACI&#211;N NO SINCRONIZADA INMEDIATA (200J) + RCP</text><polygon fill="#F1F1F1" points="654.583,163.4453,823.1763,163.4453,835.1763,175.4453,823.1763,187.4453,654.583,187.4453,642.583,175.4453,654.583,163.4453" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="168.5933" x="654.583" y="179.2534">&#191;Inestabilidad Hemodin&#225;mica?</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="10.2266" x="632.3564" y="172.8511">S&#205;</text><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="68.3901" x="835.1763" y="172.8511">NO - Estable</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="326.2168" x="406.0977" y="197.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="306.2168" x="416.0977" y="217.6558">CARDIOVERSI&#211;N EL&#201;CTRICA SINCRONIZADA (100-200J)</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="294.4307" x="761.3379" y="197.4453"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="274.4307" x="771.3379" y="217.6558">Tratar como Taquicardia Ventricular Monom&#243;rfica</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="312.4775" x="752.3145" y="250.25"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="292.4775" x="762.3145" y="270.4604">Amiodarona 150mg EV en 10 min o Procainamida EV</text><rect fill="#F1F1F1" height="32.8047" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="247.9976" x="784.5544" y="303.0547"/><text fill="#000000" font-family="Arial" font-size="11" lengthAdjust="spacing" textLength="227.9976" x="794.5544" y="323.2651">Ingreso a Unidad de Cuidados Coronarios</text><line style="stroke:#181818;stroke-width:1;" x1="467.4642" x2="467.4642" y1="56.6406" y2="76.6406"/><polygon fill="#181818" points="463.4642,66.6406,467.4642,76.6406,471.4642,66.6406,467.4642,70.6406" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="908.5532" x2="908.5532" y1="230.25" y2="250.25"/><polygon fill="#181818" points="904.5532,240.25,908.5532,250.25,912.5532,240.25,908.5532,244.25" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="908.5532" x2="908.5532" y1="283.0547" y2="303.0547"/><polygon fill="#181818" points="904.5532,293.0547,908.5532,303.0547,912.5532,293.0547,908.5532,297.0547" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="642.583" x2="569.2061" y1="175.4453" y2="175.4453"/><line style="stroke:#181818;stroke-width:1;" x1="569.2061" x2="569.2061" y1="175.4453" y2="197.4453"/><polygon fill="#181818" points="565.2061,187.4453,569.2061,197.4453,573.2061,187.4453,569.2061,191.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="835.1763" x2="908.5532" y1="175.4453" y2="175.4453"/><line style="stroke:#181818;stroke-width:1;" x1="908.5532" x2="908.5532" y1="175.4453" y2="197.4453"/><polygon fill="#181818" points="904.5532,187.4453,908.5532,197.4453,912.5532,187.4453,908.5532,191.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="389.6656" x2="196.0488" y1="141.4453" y2="141.4453"/><line style="stroke:#181818;stroke-width:1;" x1="196.0488" x2="196.0488" y1="141.4453" y2="163.4453"/><polygon fill="#181818" points="192.0488,153.4453,196.0488,163.4453,200.0488,153.4453,196.0488,157.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="545.2628" x2="738.8796" y1="141.4453" y2="141.4453"/><line style="stroke:#181818;stroke-width:1;" x1="738.8796" x2="738.8796" y1="141.4453" y2="163.4453"/><polygon fill="#181818" points="734.8796,153.4453,738.8796,163.4453,742.8796,153.4453,738.8796,157.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><line style="stroke:#181818;stroke-width:1;" x1="467.4642" x2="467.4642" y1="109.4453" y2="129.4453"/><polygon fill="#181818" points="463.4642,119.4453,467.4642,129.4453,471.4642,119.4453,467.4642,123.4453" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><?plantuml-src RP7FRjGm4CRlUOgHk6I55YKLSDWL89DDXL6RtIPX3xrDOsVZDlOKEn4IRz039vw01-3K1q0YBuQJLFq3-61P-lpD_BuPTwNCDLhKS87LrS5IRqH2BLbuLaydSFS_JibGrLZI4cfidNmakGO5VL7cy8yYP8rzsnsJwJBqJcOLjl_N2_LLGXm7WUlGTi6gnC-zgj0AXVuR9AIlMtb9S9ONm4pL48HltqGluYEtM0UgXl3thr998s7NjuuWGKlTy5D8UhU0hf46mcox261C9b_ArwjDMXppzpa_OGaVlcUGRQ7WMP9lCtxEDWnuTffkE2iPX4THz741po5FTcjVGSWEgoQGFYg4nV0DbfxEp7t73ZCCDz8dkL2j4YZWWzGab1b-Q9_fdiYRHyC3LCBo3T_kqxoOcDAJuIOfSvwmfsnX74NBYMezsU-806Oc7sK9wTYzbNFzLMdHZnKgqWIF9xkNfhEgwbilZXlMmwsjlJZNNJ6jIFX96eJuLQGFaEx1WySHQ6M0O6UfGcLG-v1UktDnSx3Ixm3XavdIZ_lhnnSvFwgnd5Na_cOtGjN1TFy1?></g></svg>
+      </div>
+    </div>
+  
+
+        <!-- Option 2 Two-Column Parallel Pathway Summary -->
+        
+    <div class="two-column-diagram">
+      <div class="diagram-header">ALGORITMO DE TAQUICARDIA DE QRS ANCHO — RESUMEN PARALELO</div>
+      <div class="pathways-container">
+        <!-- LEFT COLUMN: UNSTABLE / URGENT -->
+        <div class="pathway-col pathway-unstable">
+          <div class="pathway-header">MANEJO INESTABLE (URGENCIA)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Inestabilidad:</strong><br>
+              Paciente sin pulso o inestable hemodinámicamente.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-urgent">
+              <strong>CONDUCTA INMEDIATA:</strong><br>
+              Sin Pulso: DESFIBRILACIÓN 200J INMEDIATA + RCP.<br>Con Pulso e Inestable: CARDIOVERSIÓN ELÉCTRICA SINCRONIZADA (100-200J).
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: STABLE / STEPWISE -->
+        <div class="pathway-col pathway-stable">
+          <div class="pathway-header">MANEJO ESTABLE (ESCALONADO)</div>
+          <div class="pathway-body">
+            <div class="pathway-criteria">
+              <strong>Criterios de Estabilidad:</strong><br>
+              Paciente consciente con pulso estable.
+            </div>
+            <div class="pathway-arrow">&darr;</div>
+            <div class="pathway-action action-stable">
+              <strong>ESQUEMA PASO A PASO:</strong><br>
+              <div><strong>Paso 1:</strong> Tratar como Taquicardia Ventricular Monomórfica.</div><div><strong>Paso 2:</strong> Amiodarona 150mg EV en 10 min o Procainamida EV.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN TV Y CANALOPATÍAS</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Amiodarona</strong></td>
+                <td>TV Monomórfica Estable</td>
+                <td>150 mg EV en 10 min -> Infusión 1 mg/min</td>
+                <td>Monitorear presión arterial.</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 14</div>
+              <div class="q-text">Paciente de 68 años con antecedente de infarto miocárdico previo, ingresa a urgencias por palpitaciones y mareos. PA: 110/70, FC: 160x'. ECG demuestra taquicardia regular de QRS ancho (0.15s) con ondas de captura ocasionales. La conducta más adecuada es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">A)</span>
+                    <span>Administrar amiodarona 150 mg EV en 10 minutos</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Administrar verapamilo 5 mg EV</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">C)</span>
+                    <span>Realizar maniobras vagales</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">D)</span>
+                    <span>Administrar adenosina 6 mg EV bolo</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Alta con propanolol oral</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: A</div>
+                <div>Taquicardia de QRS ancho con capturas en paciente con infarto previo es Taquicardia Ventricular. Al estar estable, el tratamiento inicial es Amiodarona EV.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>Ante la duda en taquicardia de QRS ancho en un adulto -> SIEMPRE tratar como Taquicardia Ventricular.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>Los latidos de captura y fusión en el ECG confirman el diagnóstico de Taquicardia Ventricular.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

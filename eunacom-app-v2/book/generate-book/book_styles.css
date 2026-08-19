@@ -1,0 +1,500 @@
+/* ============================================================
+   EUNACOM STUDY BOOK — PDF STYLESHEET (V4)
+   Strict 50% / 50% Two-Column Flex Grid (First Aid Step 2 CK)
+   Plain White • Zero Emojis • Publication Grade
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --primary-navy: #1e3a8a;
+  --primary-blue: #2563eb;
+  --secondary-slate: #475569;
+  --dark-slate: #0f172a;
+  
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;
+  --bg-subtle: #f1f5f9;
+  
+  --border-light: #cbd5e1;
+  --border-strong: #64748b;
+  --border-navy: #1e3a8a;
+
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@page {
+  size: letter;
+  margin: 0.45in;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-body);
+  font-size: 8.5pt;
+  line-height: 1.45;
+  color: var(--dark-slate);
+  background: var(--bg-white);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* COVER PAGE */
+.cover-page {
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 9.5in;
+  text-align: center;
+  padding: 1.5in 0.8in;
+  background: #0f172a;
+  color: white;
+  border-top: 8px solid var(--primary-blue);
+}
+
+.cover-page .cover-badge {
+  font-family: var(--font-mono);
+  font-size: 10pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+
+.cover-page h1 {
+  font-family: var(--font-serif);
+  font-size: 28pt;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.cover-page .cover-subtitle {
+  font-size: 13pt;
+  font-weight: 300;
+  color: #94a3b8;
+  margin-bottom: 36px;
+}
+
+.cover-page .cover-chapter {
+  font-size: 15pt;
+  font-weight: 600;
+  padding: 8px 28px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  border-radius: 3px;
+  margin-bottom: 40px;
+  color: #f8fafc;
+}
+
+.cover-page .cover-meta {
+  font-size: 8.5pt;
+  color: #64748b;
+  margin-top: auto;
+  border-top: 1px solid #334155;
+  padding-top: 14px;
+  width: 100%;
+}
+
+/* TOC PAGE */
+.toc-page {
+  page-break-after: always;
+  padding-top: 0.2in;
+}
+
+.toc-page h2 {
+  font-family: var(--font-serif);
+  font-size: 16pt;
+  color: var(--primary-navy);
+  border-bottom: 2px solid var(--primary-navy);
+  padding-bottom: 4px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-entry {
+  display: flex;
+  align-items: baseline;
+  padding: 4px 0;
+  font-size: 9pt;
+}
+
+.toc-entry.toc-section {
+  font-weight: 700;
+  font-size: 10pt;
+  margin-top: 14px;
+  color: var(--primary-navy);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 2px;
+}
+
+.toc-entry .toc-number {
+  width: 36px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.toc-entry .toc-title {
+  flex: 1;
+  color: var(--dark-slate);
+}
+
+.toc-entry .toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border-strong);
+  margin: 0 8px;
+  min-width: 20px;
+}
+
+.toc-entry .toc-page-num {
+  font-weight: 600;
+  color: var(--secondary-slate);
+  width: 26px;
+  text-align: right;
+}
+
+/* TOPIC PAGE HEADER */
+.topic-page {
+  page-break-before: always;
+}
+
+.topic-header-full {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--primary-navy);
+}
+
+.topic-header-full .topic-title-group .topic-num {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topic-header-full .topic-title-group h3 {
+  font-family: var(--font-serif);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1.2;
+}
+
+.perfil-badge-compact {
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--primary-navy);
+  padding: 4px 8px;
+  font-size: 7.5pt;
+  min-width: 190px;
+}
+
+.perfil-badge-compact .p-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+.perfil-badge-compact .p-levels {
+  display: flex;
+  gap: 6px;
+  color: var(--secondary-slate);
+  margin-top: 2px;
+}
+
+.perfil-badge-compact .p-levels span strong {
+  color: var(--dark-slate);
+}
+
+/* STRICT TWO-COLUMN FLEX GRID (50% / 50% HALF PAGE WIDTH) */
+.step2-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.step2-col {
+  flex: 1;
+  width: 50%;
+  max-width: 50%;
+  box-sizing: border-box;
+}
+
+.step2-col.border-right {
+  border-right: 1px solid var(--border-light);
+  padding-right: 14px;
+}
+
+/* CALLOUT BOXES */
+.callout-box {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--primary-navy);
+  border-radius: 2px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.callout-box .callout-header {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary-navy);
+  margin-bottom: 4px;
+}
+
+.callout-box.high-yield {
+  background: #f8fafc;
+  border-left-color: var(--primary-navy);
+}
+
+.callout-box.vignette {
+  background: #fffbeb;
+  border-color: #fcd34d;
+  border-left-color: #d97706;
+}
+.callout-box.vignette .callout-header {
+  color: #92400e;
+}
+
+.callout-box.eunacom-tip {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+  border-left-color: #0284c7;
+}
+.callout-box.eunacom-tip .callout-header {
+  color: #0369a1;
+}
+
+.callout-box.ges-alert {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  border-left-color: #16a34a;
+}
+.callout-box.ges-alert .callout-header {
+  color: #15803d;
+}
+
+.callout-box p, .callout-box ul {
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+.callout-box ul {
+  padding-left: 14px;
+}
+
+.callout-box li {
+  margin-bottom: 3px;
+}
+
+/* NARRATIVE SECTION IN TWO COLUMNS */
+.section-subhead {
+  font-family: var(--font-serif);
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin: 8px 0 4px 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+p.narrative-text {
+  font-size: 8.5pt;
+  line-height: 1.45;
+  color: var(--dark-slate);
+  margin-bottom: 8px;
+  text-align: justify;
+}
+
+ul.bullet-list, ol.num-list {
+  padding-left: 14px;
+  margin-bottom: 8px;
+}
+
+ul.bullet-list li, ol.num-list li {
+  font-size: 8.5pt;
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+
+/* PLANTUML DIAGRAM CONTAINER ACROSS COLUMNS OR FULL PAGE */
+.diagram-container-step2 {
+  width: 100%;
+  background: var(--bg-white);
+  border: 1px solid var(--border-navy);
+  border-radius: 2px;
+  padding: 10px;
+  margin: 12px 0;
+}
+
+.diagram-container-step2 .d-header {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary-navy);
+  text-align: center;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 4px;
+}
+
+.diagram-container-step2 svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* TABLES IN STEP 2 CK */
+.table-step2 {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 8pt;
+  border-top: 2px solid var(--primary-navy);
+  border-bottom: 2px solid var(--primary-navy);
+}
+
+.table-step2 caption {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 8.5pt;
+  text-align: left;
+  margin-bottom: 4px;
+  color: var(--primary-navy);
+}
+
+.table-step2 th {
+  background: var(--bg-subtle);
+  color: var(--primary-navy);
+  font-weight: 700;
+  padding: 5px 6px;
+  text-align: left;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.table-step2 td {
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+  line-height: 1.35;
+}
+
+.table-step2 tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+/* QUESTION BOX */
+.question-box-step2 {
+  background: var(--bg-white);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.question-box-step2 .q-hdr {
+  font-weight: 700;
+  font-size: 8pt;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.question-box-step2 .q-txt {
+  font-size: 8.5pt;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.question-box-step2 .q-opts {
+  padding-left: 2px;
+  margin-bottom: 6px;
+}
+
+.question-box-step2 .q-opt {
+  display: flex;
+  gap: 6px;
+  font-size: 8pt;
+  margin-bottom: 2px;
+}
+
+.question-box-step2 .q-opt.correct {
+  font-weight: 600;
+  color: #15803d;
+}
+
+.question-box-step2 .q-ans-box {
+  background: #f8fafc;
+  border-top: 1px solid var(--border-light);
+  padding-top: 4px;
+  margin-top: 4px;
+  font-size: 8pt;
+  line-height: 1.35;
+}
+
+.question-box-step2 .q-ans-box strong {
+  color: #15803d;
+}
+
+/* BIBLIOGRAPHY & COMPARISON TABLES */
+.bibliography {
+  margin-top: 20px;
+}
+
+.bibliography h3 {
+  font-family: var(--font-serif);
+  font-size: 12pt;
+  color: var(--primary-navy);
+  border-bottom: 2px solid var(--primary-navy);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.bibliography ol {
+  padding-left: 18px;
+  font-size: 8pt;
+  line-height: 1.5;
+}
+
+.bibliography li {
+  margin-bottom: 4px;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .topic-page {
+    page-break-before: always;
+  }
+}

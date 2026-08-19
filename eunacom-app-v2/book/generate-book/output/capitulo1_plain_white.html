@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítulo 1: Arritmias y Emergencias Cardiovasculares</title>
+  <link rel="stylesheet" href="book_styles.css">
+  <style>
+    /* PLAIN WHITE PUBLICATION VECTOR DIAGRAM STYLES */
+    .plain-white-diagram {
+      background: #ffffff;
+      border: 1px solid #0f172a;
+      border-radius: 2px;
+      padding: 16px;
+      margin: 18px 0;
+    }
+    .plain-white-diagram .diagram-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 8.5pt;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .flow-node {
+      width: 100%;
+      max-width: 480px;
+      padding: 10px 16px;
+      background: #ffffff;
+      border: 1px solid #1e293b;
+      border-radius: 2px;
+      text-align: center;
+      font-size: 8.5pt;
+      line-height: 1.4;
+      color: #0f172a;
+    }
+    .flow-node.node-start {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .flow-node.node-decision {
+      background: #ffffff;
+      border: 1.5px solid #1e3a8a;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+    .flow-node.node-urgent {
+      background: #ffffff;
+      border: 2px solid #b91c1c;
+      font-weight: 700;
+      color: #991b1b;
+    }
+    .flow-node.node-action {
+      background: #f8fafc;
+      border: 1px solid #475569;
+    }
+    .flow-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 18px;
+    }
+    .flow-connector .line {
+      width: 1.5px;
+      height: 12px;
+      background: #0f172a;
+    }
+    .flow-connector .arrow-head {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPIC CONTENT -->
+
+  <div class="topic-page">
+    <div class="topic-header">
+      <div>
+        <div class="topic-number-label">TEMA 1.1</div>
+        <h3>Manejo de Urgencias en Arritmias</h3>
+      </div>
+      <div class="perfil-badge">
+        <div class="perfil-code">PERFIL EUNACOM 1.01.2.009</div>
+        <div class="perfil-name">Taqui y bradiarritmia con compromiso hemodinámico</div>
+        <div class="perfil-levels">
+          <span><span class="label">Dx:</span> Específico</span>
+          <span><span class="label">Tx:</span> Inicial</span>
+          <span><span class="label">Seg:</span> Derivar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <!-- MAIN COLUMN (70%) -->
+      <div class="main-content">
+        <!-- Aspectos Esenciales -->
+        <div class="aspectos-box">
+          <div class="aspectos-title">ASPECTOS ESENCIALES (HIGH YIELD)</div>
+          <ul>
+            <li>Inestabilidad hemodinámica (hipotensión, choque, dolor isquémico, edema pulmonar agudo o alteración de conciencia) requiere cardioversión eléctrica sincronizada inmediata en taquiarritmias.</li><li>En bradiarritmias sintomáticas o inestables, el tratamiento farmacológico inicial es Atropina 0.5 - 1 mg EV bolo, preparando marcapaso transcutáneo.</li><li>Taquicardia de complejo QRS angosto (<0.12s) estable: 1° Maniobras vagales (Valsalva modificada), 2° Adenosina 6 mg EV bolo rápido.</li><li>Taquicardia de complejo QRS ancho (>=0.12s) en adulto con antecedentes cardiovasculares debe manejarse como Taquicardia Ventricular hasta demostrar lo contrario.</li>
+          </ul>
+        </div>
+
+        <!-- Caso Clínico Tipo -->
+        <div class="caso-clinico">
+          <div class="caso-title">CASO CLÍNICO TIPO EUNACOM</div>
+          <div class="caso-text">"Mujer de 60 años con antecedente de estenosis mitral severa e hipertensión arterial, ingresa a urgencias por disnea de reposo y palpitaciones de inicio brusco hace 2 horas. Al examen físico: paciente soporosa, pálida y sudorosa; PA 82/40 mmHg, FC 145x' irregular, MP(+) con crépitos difusos en ambos campos pulmonares y soplo diastólico IV/VI en ápex. ECG confirma Fibrilación Auricular con respuesta ventricular rápida."</div>
+          <div class="caso-answer">
+            <strong>Piensa en:</strong> Fibrilación Auricular con respuesta ventricular rápida y descompensación hemodinámica aguda (Shock cardiogénico + Edema agudo pulmonar).<br>
+            <strong>Conducta:</strong> Cardioversión eléctrica sincronizada inmediata con 120-200 Joules previa sedación rápida si la conciencia lo permite.
+          </div>
+        </div>
+
+        <!-- Concepto Narrativo Ampliado (Estilo Libro de Texto) -->
+        <div class="narrative-section">
+          
+        <div class="narrative-block">
+          <h4>Definición y Concepto Fundamental</h4>
+          <p>El manejo de urgencia en arritmias comprende el conjunto de medidas diagnósticas y terapéuticas inmediatas orientadas a estabilizar al paciente que cursa con un trastorno del ritmo cardíaco asociado a riesgo vital inminente o deterioro hemodinámico severo. La premisa fundamental en la medicina de urgencia no es el diagnóstico electrocardiográfico exacto inicial, sino la determinación del estado de perfusión tisular y la presencia de inestabilidad hemodinámica.</p>
+        </div>
+
+        <div class="narrative-block">
+          <h4>Fisiopatología de la Inestabilidad Hemodinámica</h4>
+          <p>Tanto las taquiarritmias como las bradiarritmias severas alteran el gasto cardíaco. En las taquiarritmias severas (frecuencias > 150x'), el tiempo de llenado diastólico del ventrículo izquierdo disminuye drásticamente, lo que reduce el volumen sistólico, colapsa el gasto cardíaco y disminuye la perfusión de las arterias coronarias (que ocurre predominantemente en diástole). En las bradiarritmias severas (frecuencias < 40x'), a pesar de un volumen sistólico compensatorio, la frecuencia extremadamente baja es insuficiente para mantener el gasto cardíaco mínimo requerido por los órganos nobles.</p>
+        </div>
+
+        <div class="narrative-block">
+          <h4>Criterios Clínicos de Inestabilidad (Los 4 Signos Cardinales)</h4>
+          <p>Ante cualquier arritmia en urgencias, debe buscarse activamente la presencia de al menos uno de los siguientes 4 criterios de inestabilidad:</p>
+          <ul>
+            <li><strong>Signos de Choque / Hipotensión:</strong> Presión arterial sistólica < 90 mmHg, presión arterial media (PAM) < 65 mmHg, frialdad distal, llenado capilar lento (>3 segundos) u oliguria.</li>
+            <li><strong>Alteración Aguda del Estado Mental:</strong> Somnolencia, confusión, agitación psicomotora o síncope secundario a hipoperfusión cerebral aguda.</li>
+            <li><strong>Isquemia Miocárdica Activa:</strong> Dolor torácico opresivo de características anginosas o cambios isquémicos agudos en el ECG.</li>
+            <li><strong>Insuficiencia Cardíaca Aguda:</strong> Congestión pulmonar franca (crépitos bibasales difusos, ortopnea, tercer ruido, edema pulmonar agudo en radiografía).</li>
+          </ul>
+        </div>
+      
+        </div>
+
+        <!-- Plain White Vector Flowchart -->
+        
+    <div class="plain-white-diagram">
+      <div class="diagram-title">ALGORITMO DE MANEJO AGUDO DE ARRITMIAS EN URGENCIAS</div>
+      <div class="flow-container">
+        
+      <div class="flow-node node-start">
+        <div class="node-text">PACIENTE CON ARRITMIA EN URGENCIAS</div>
+      </div>
+    
+        <div class="flow-connector">
+          <div class="line"></div>
+          <div class="arrow-head"></div>
+        </div>
+      
+      <div class="flow-node node-decision">
+        <div class="node-text">¿PRESENTA SIGNOS DE INESTABILIDAD HEMODINÁMICA?<br>(Hipotensión, Choque, Angina, Edema Pulmonar, Síncope)</div>
+      </div>
+    
+        <div class="flow-connector">
+          <div class="line"></div>
+          <div class="arrow-head"></div>
+        </div>
+      
+      <div class="flow-node node-urgent">
+        <div class="node-text">SÍ (INESTABLE) → Taquiarritmia: Cardioversión Eléctrica Sincronizada<br>Bradiarritmia: Atropina 0.5-1mg EV / Marcapaso</div>
+      </div>
+    
+        <div class="flow-connector">
+          <div class="line"></div>
+          <div class="arrow-head"></div>
+        </div>
+      
+      <div class="flow-node node-action">
+        <div class="node-text">NO (ESTABLE) → Tomar ECG de 12 derivaciones y evaluar ancho del QRS</div>
+      </div>
+    
+        <div class="flow-connector">
+          <div class="line"></div>
+          <div class="arrow-head"></div>
+        </div>
+      
+      <div class="flow-node node-action">
+        <div class="node-text">QRS Angosto (<0.12s) → Maniobras vagales → Adenosina 6mg EV → Betabloqueador</div>
+      </div>
+    
+        <div class="flow-connector">
+          <div class="line"></div>
+          <div class="arrow-head"></div>
+        </div>
+      
+      <div class="flow-node node-action">
+        <div class="node-text">QRS Ancho (>=0.12s) → Tratar como Taquicardia Ventricular: Amiodarona 150mg EV</div>
+      </div>
+    
+      </div>
+    </div>
+  
+
+        <!-- Tabla de Fármacos -->
+        
+        <table class="data-table">
+          <caption>FÁRMACOS CLAVE EN MANEJO DE URGENCIAS EN ARRITMIAS</caption>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación</th><th>Dosis / Vía</th><th>Precauciones / EUNACOM Tip</th></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Adenosina</strong></td>
+                <td>TPSV regular de complejo angosto estable</td>
+                <td>6 mg EV bolo rápido en vena antecubital + 20 ml SF</td>
+                <td>Contraindicada en asma severo. Causa rubor y pausa asistólica corta.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Amiodarona</strong></td>
+                <td>TV monomórfica estable / FA descompensada</td>
+                <td>150 mg EV en 10 min, infusión 1 mg/min x 6h</td>
+                <td>Hipotensión arterial, bradicardia. Monitorizar QT.</td>
+              </tr>
+            
+              <tr>
+                <td><strong>Atropina</strong></td>
+                <td>Bradiarritmia sintomática / BAV nodal</td>
+                <td>0.5 - 1 mg EV bolo (repetir c/3-5 min max 3mg)</td>
+                <td>Ineficaz en BAV infranodal (Mobitz II / BAV 3° alto).</td>
+              </tr>
+            
+          </tbody>
+        </table>
+        
+
+        <!-- Preguntas de Práctica -->
+        <div class="questions-section">
+          <div class="questions-header">PREGUNTAS EUNACOM DEL TEMA</div>
+          
+            <div class="question-block">
+              <div class="q-number">Pregunta 11</div>
+              <div class="q-text">Mujer de 60 años, con estenosis mitral severa, inicia bruscamente disnea y palpitaciones. Al examen FC:140x', PA:85/35, MP(+), con crépitos intensos y difusos, RI2T con soplo diastólico IV/VI en ápex. La conducta inicial más adecuada es:</div>
+              <div class="q-options">
+                
+                  <div class="q-option ">
+                    <span class="option-letter">A)</span>
+                    <span>Administrar amiodarona endovenosa en bolo</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">B)</span>
+                    <span>Entregar oxígeno a FiO2 elevadas y soporte ventilatorio con BiPAP</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">C)</span>
+                    <span>Reponer fluidos con suero fisiológico</span>
+                  </div>
+                
+                  <div class="q-option correct">
+                    <span class="option-letter">D)</span>
+                    <span>Cardioversión eléctrica inmediata</span>
+                  </div>
+                
+                  <div class="q-option ">
+                    <span class="option-letter">E)</span>
+                    <span>Administrar furosemida endovenosa asociada a drogas vasoactivas</span>
+                  </div>
+                
+              </div>
+              <div class="q-answer">
+                <div class="answer-label">Respuesta Correcta: D</div>
+                <div>Paciente hemodinámicamente inestable (PA 85/35 mmHg) por taquiarritmia con edema pulmonar agudo. La indicación absoluta de primera línea es la cardioversión eléctrica sincronizada inmediata.</div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- SIDEBAR COLUMN (30%) -->
+      <div class="sidebar-content">
+        
+          <div class="sidebar-box tip">
+            <div class="sidebar-label">EUNACOM TIP</div>
+            <div>En el examen EUNACOM, si un paciente con arritmia tiene hipotensión o edema pulmonar, la respuesta correcta SIEMPRE es cardioversión eléctrica. No intente fármacos primero.</div>
+          </div>
+        
+          <div class="sidebar-box dato">
+            <div class="sidebar-label">DATO CLAVE</div>
+            <div>Sincronizar el cardioversor con la onda R es vital para evitar descargar sobre la onda T y precipitar una Fibrilación Ventricular (fenómeno R sobre T).</div>
+          </div>
+        
+          <div class="sidebar-box ges">
+            <div class="sidebar-label">MINSAL GES</div>
+            <div>El protocolo SAMU / Red de Urgencia exige monitor con parches de desfibrilación instalados antes del traslado de todo paciente arritmico inestable.</div>
+          </div>
+        
+
+        <div class="pearls-box">
+          <div class="pearls-title">PERLAS CLÍNICAS</div>
+          <ul>
+            <li>En taquicardia ventricular sin pulso o fibrilación ventricular se realiza DESFIBRILACIÓN NO SINCRONIZADA inmediata.</li><li>La dosis de adenosina debe administrarse mediante técnica de dos llaves (bolo rápido de fármaco seguido inmediatamente de 20 ml de SF y elevación del brazo).</li><li>En bradiarritmias por sobredosis de betabloqueadores el antídoto específico es el Glucagón EV.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

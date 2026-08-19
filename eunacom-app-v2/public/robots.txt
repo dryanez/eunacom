@@ -2,15 +2,38 @@
 User-agent: *
 Allow: /
 
-# Allow all major search engines
+# Google Search & Google AI Overviews
 User-agent: Googlebot
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+# OpenAI / ChatGPT Search
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+# Microsoft Bing & Copilot
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 # Sitemap
-Sitemap: https://eunacom-examen.com/sitemap.xml
+Sitemap: https://eunacomapp.cl/sitemap.xml
