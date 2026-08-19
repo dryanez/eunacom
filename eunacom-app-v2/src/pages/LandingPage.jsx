@@ -151,7 +151,7 @@ export default function LandingPage() {
 
       {/* ── TOP ANNOUNCEMENT BAR ── */}
       <div style={{ background: 'linear-gradient(90deg, #0284c7 0%, #0369a1 100%)', color: '#ffffff', padding: '10px 16px', textAlign: 'center', fontSize: '0.84rem', fontWeight: 500 }}>
-        <span>🎓 EUNACOM 2026 (Julio & Diciembre) · +10.000 preguntas actualizadas con Guías GES </span>
+        <span>🎓 100% Actualizado al <strong>Perfil de Conocimientos V3 2026</strong> (Convocatoria Diciembre & Julio) · +10.000 preguntas y +650 clases en video </span>
         <a href="#planes" style={{ color: '#ffffff', fontWeight: 700, textDecoration: 'underline', marginLeft: 6 }}>Ver planes desde $14.990 →</a>
       </div>
 
@@ -271,7 +271,7 @@ export default function LandingPage() {
           fontSize: '0.8rem', fontWeight: 600, marginBottom: 20
         }}>
           <Stethoscope size={15} color="#0284c7" />
-          <span>La plataforma médica #1 en preguntas reales de EUNACOM</span>
+          <span>La plataforma #1 en Chile · Actualizada con el Perfil de Conocimientos V3 2026</span>
         </div>
 
         <h1 style={{
@@ -293,7 +293,7 @@ export default function LandingPage() {
           maxWidth: '720px',
           margin: '0 auto 30px'
         }}>
-          El banco más completo de Chile con reconstrucciones de exámenes pasados, clases en video por especialidad y plan adaptativo. Sin mensualidades abusivas.
+          El banco más completo de Chile con reconstrucciones oficiales, más de 650 clases en video y plan adaptativo 100% alineado al Perfil V3 de Diciembre 2026. Sin mensualidades abusivas.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
@@ -354,15 +354,15 @@ export default function LandingPage() {
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#059669' }}>100%</div>
-            <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Reconstrucciones</div>
+            <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Reconstrucciones Reales</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#7c3aed' }}>7 Áreas</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#7c3aed' }}>+650</div>
             <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Clases en Video</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#d97706' }}>51%</div>
-            <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Puntaje Aprobación</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#d97706' }}>Perfil V3</div>
+            <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Diciembre 2026 100% OK</div>
           </div>
         </div>
       </section>
