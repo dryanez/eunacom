@@ -279,7 +279,7 @@ export default function LandingPage() {
           fontSize: '0.82rem', fontWeight: 700, marginBottom: 20
         }}>
           <Stethoscope size={15} color="#0284c7" />
-          <span>🎓 CURSO ON-DEMAND & BANCO #1 · 100% PERFIL DE CONOCIMIENTOS V3 2026</span>
+          <span>🏆 LA PLATAFORMA Y CURSO #1 EN CHILE · EL ESTÁNDAR EUNACOM 2026</span>
         </div>
 
         <h1 style={{
@@ -288,20 +288,20 @@ export default function LandingPage() {
           color: '#0f172a',
           lineHeight: 1.18,
           letterSpacing: '-0.03em',
-          maxWidth: '980px',
+          maxWidth: '990px',
           margin: '0 auto 18px'
         }}>
-          Curso EUNACOM On-Demand: <span style={{ color: '#0284c7' }}>+650 Clases en Video</span> y Banco de <span style={{ color: '#0284c7' }}>+10.000 Preguntas</span>
+          El Curso EUNACOM #1 en Chile On-Demand: <span style={{ color: '#0284c7' }}>+650 Clases en Video</span> y <span style={{ color: '#0284c7' }}>+10.000 Preguntas Reales</span>
         </h1>
 
         <p style={{
           fontSize: 'clamp(0.98rem, 2.5vw, 1.2rem)',
           color: '#475569',
           lineHeight: 1.65,
-          maxWidth: '720px',
+          maxWidth: '760px',
           margin: '0 auto 30px'
         }}>
-          El banco más completo de Chile con reconstrucciones oficiales, más de 650 clases en video y plan adaptativo 100% alineado al Perfil V3 de Diciembre 2026. Sin mensualidades abusivas.
+          La plataforma médica líder y estándar en Chile para aprobar tu examen: curso on-demand con más de 650 clases en video (Perfil EUNACOM V3), reconstrucciones de exámenes oficiales, banco de +10.000 preguntas y plan adaptativo. Sin mensualidades abusivas.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
