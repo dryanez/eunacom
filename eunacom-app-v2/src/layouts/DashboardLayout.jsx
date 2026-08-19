@@ -38,8 +38,8 @@ const DashboardLayout = () => {
                 sessionStorage.setItem(sessionKey, '1')
             }
             setProfileChecked(true)
-        }).catch(() => {
-            setShowOnboarding(true)
+        }).catch((err) => {
+            console.warn('Error loading user profile for onboarding check:', err)
             setProfileChecked(true)
         })
     }, [user?.id])
