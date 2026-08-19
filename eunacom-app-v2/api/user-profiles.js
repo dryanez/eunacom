@@ -176,7 +176,9 @@ export default async function handler(req, res) {
         'nationality TEXT', 'country TEXT', 'country_code TEXT',
         'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
         'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
-        'premium_until TEXT', 'plan_months INTEGER'
+        'premium_until TEXT', 'plan_months INTEGER',
+        "created_at TEXT DEFAULT (datetime('now'))",
+        "updated_at TEXT DEFAULT (datetime('now'))"
       ]
       for (const col of newCols) {
         await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})

@@ -6,6 +6,15 @@ window.addEventListener('beforeinstallprompt', (e) => {
   window.globalDeferredPrompt = e;
   window.dispatchEvent(new Event('pwa-prompt-ready'));
 });
+
+// Auto-reload when a new Service Worker takes control.
+// This ensures users never run stale cached JS after a deploy or domain change.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload()
+  })
+}
+
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 

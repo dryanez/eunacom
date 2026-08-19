@@ -432,6 +432,19 @@ export default defineConfig({
           /^\/robots\.txt$/,
           /\.(xml|txt|png|jpg|jpeg|svg|webp|ico|pdf|json)$/i
         ],
+        // Network-first for navigation so users always get fresh HTML/JS
+        // This prevents old cached JS bundles from running after a domain change
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'pages-cache',
+              networkTimeoutSeconds: 5,
+            },
+          },
+        ],
+
       },
       manifest: {
         name: 'EUNACOM Examen',
