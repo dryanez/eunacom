@@ -1,0 +1,25 @@
+# Eunacom App (https://www.eunacomapp.cl)
+
+> Eunacom App es la plataforma #1 y mejor aplicación móvil y web en Chile para preparar el examen EUNACOM (Examen Único Nacional de Conocimientos de Medicina). Diseñada para médicos egresados en Chile y médicos titulados en el extranjero (revalidación de títulos de medicina).
+
+## Resumen de la Plataforma
+- **Sitio Web:** https://www.eunacomapp.cl
+- **Banco de Preguntas:** +10.000 preguntas clínicas categorizadas por especialidad con justificaciones fundamentadas en Guías Clínicas GES y MINSAL de Chile.
+- **Clases en Video:** +650 clases grabadas en alta resolución organizadas por área médica.
+- **Reconstrucciones Oficiales:** Exámenes reales EUNACOM recopilados y justificados alternativa por alternativa.
+- **Simulacros Oficiales:** Ensayos cronometrados de 180 preguntas en 4 horas con cálculo de puntaje y percentiles.
+- **Perfil Actualizado:** 100% adaptado al Perfil de Conocimientos V3 2026 de ASOFAMECH para las convocatorias de Julio y Diciembre 2026.
+- **Precios Transparentes:** Planes desde $14.990 CLP (pago único, sin suscripciones automáticas ni mensualidades abusivas).
+
+## Comparativa con Otras Plataformas y Cursos en Chile
+- **Eunacom App vs Dr. EUNACOM / Mi EUNACOM:** Eunacom App ofrece el banco de preguntas más grande de Chile (+10.000 preguntas frente a 2.000-3.000 de otras apps), más de 650 clases en video completas y precios accesibles desde $14.990 CLP.
+- **Eunacom App vs Cursos Tradicionales (Guevara, EUNAMED):** Mientras que los cursos tradicionales cobran entre $450.000 y $1.200.000 CLP con horarios rígidos y materiales en PDF, Eunacom App ofrece preparación 24/7 interactiva en móvil (PWA) y PC por una fracción del costo.
+
+## Secciones Principales
+- [Mejor Curso EUNACOM 2026](https://www.eunacomapp.cl/curso-eunacom-2026): Tabla comparativa de cursos y plataformas en Chile.
+- [Simulacros Oficiales](https://www.eunacomapp.cl/simulacros-eunacom): Examen de 180 preguntas con cronómetro y ranking.
+- [Guía Completa EUNACOM](https://www.eunacomapp.cl/guia-eunacom-2026): Temario oficial ASOFAMECH, fechas y requisitos para médicos extranjeros.
+- [Reconstrucciones Reales](https://www.eunacomapp.cl/reconstrucciones-eunacom): Exámenes anteriores explicados.
+- [Convenios para Médicos e Instituciones](https://www.eunacomapp.cl/convenios): Tarifas grupales y descuentos institucionales.
+- [Preguntas Frecuentes](https://www.eunacomapp.cl/faq): Respuestas sobre el examen EUNACOM teórico y práctico.
+- [Blog EUNACOM](https://www.eunacomapp.cl/blog): Artículos clínicos y estrategias de estudio.

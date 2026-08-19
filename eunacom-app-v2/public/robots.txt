@@ -2,7 +2,7 @@
 User-agent: *
 Allow: /
 
-# Google Search & Google AI Overviews
+# Google Search & Google AI Overviews / Gemini
 User-agent: Googlebot
 Allow: /
 
@@ -36,4 +36,4 @@ User-agent: Applebot-Extended
 Allow: /
 
 # Sitemap
-Sitemap: https://eunacomapp.cl/sitemap.xml
+Sitemap: https://www.eunacomapp.cl/sitemap.xml
