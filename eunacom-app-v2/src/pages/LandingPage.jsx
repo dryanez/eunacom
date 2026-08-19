@@ -925,6 +925,50 @@ export default function LandingPage() {
         .marquee-track:hover {
           animation-play-state: paused;
         }
+        .uni-badge-card {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background-color: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 8px 16px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+          flex-shrink: 0;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: default;
+        }
+        .uni-badge-card:hover {
+          border-color: #0284c7;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.18);
+          background-color: #f0f9ff;
+        }
+        .uni-badge-img {
+          width: 36px;
+          height: 36px;
+          object-fit: contain;
+          border-radius: 8px;
+          filter: grayscale(100%);
+          opacity: 0.55;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .uni-badge-card:hover .uni-badge-img {
+          filter: grayscale(0%);
+          opacity: 1;
+          transform: scale(1.1);
+        }
+        .uni-badge-text {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #64748b;
+          white-space: nowrap;
+          transition: color 0.3s ease;
+        }
+        .uni-badge-card:hover .uni-badge-text {
+          color: #0f172a;
+          font-weight: 700;
+        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .desktop-auth { display: none !important; }
