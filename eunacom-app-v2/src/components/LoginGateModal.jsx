@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthModal from './AuthModal'
 
-const LoginGateModal = ({ onClose, message = 'Inicia sesión para acceder al material de estudio.', initialMode = 'register' }) => {
+const LoginGateModal = ({ onClose, message = 'Inicia sesión para acceder al material de estudio.', initialMode = 'login' }) => {
   return (
     <AuthModal
       isOpen={true}

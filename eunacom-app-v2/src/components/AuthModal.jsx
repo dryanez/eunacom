@@ -10,7 +10,7 @@ const AuthModal = ({
   isOpen: propIsOpen,
   onClose: propOnClose,
   initialMode = 'register',
-  message = ''
+  message: propMessage = ''
 }) => {
   const {
     user,
@@ -22,10 +22,13 @@ const AuthModal = ({
   } = useAuth()
 
   // Determine whether we are controlled via props or global authModal context
-  const isOpen = propIsOpen !== undefined ? propIsOpen : authModal.isOpen
+  const isControlled = propIsOpen !== undefined
+  const isOpen = isControlled ? propIsOpen : authModal.isOpen
   const handleClose = propOnClose || closeAuthModal
+  const message = propMessage || authModal?.message || ''
 
-  const [mode, setMode] = useState(initialMode) // 'register' | 'login'
+  const targetInitialMode = isControlled ? initialMode : (authModal?.mode || initialMode || 'register')
+  const [mode, setMode] = useState(targetInitialMode) // 'register' | 'login'
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,20 +38,15 @@ const AuthModal = ({
   const [error, setError] = useState(null)
   const [successMsg, setSuccessMsg] = useState(null)
 
-  // Sync mode with context or prop changes
+  // Sync mode strictly whenever the modal opens or the requested mode changes
   useEffect(() => {
-    if (authModal?.mode) {
-      setMode(authModal.mode)
-    } else if (initialMode) {
-      setMode(initialMode)
+    if (isOpen) {
+      const activeMode = isControlled ? (initialMode || 'register') : (authModal?.mode || 'register')
+      setMode(activeMode)
+      setError(null)
+      setSuccessMsg(null)
     }
-  }, [authModal?.mode, initialMode])
-
-  // Reset form errors on open/mode switch
-  useEffect(() => {
-    setError(null)
-    setSuccessMsg(null)
-  }, [mode, isOpen])
+  }, [isOpen, isControlled, initialMode, authModal?.mode])
 
   // Auto-close if user is logged in
   useEffect(() => {

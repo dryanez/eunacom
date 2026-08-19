@@ -11,7 +11,7 @@ const PERIODS = [
 ]
 
 const Dashboard = () => {
-  const { user } = useAuth()
+  const { user, openAuthModal } = useAuth()
   const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
   const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0, exams: 0 }, custom: { answered: 0, correct: 0, exams: 0 }, clases: { answered: 0, correct: 0, exams: 0 } })
   const [activeTab, setActiveTab] = useState('general') // general, clases, reconstructions, custom
@@ -368,37 +368,45 @@ const Dashboard = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 2 }}>
-            <a href="/register" style={{
-              padding: '0.85rem 2rem',
-              background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-              color: '#ffffff',
-              borderRadius: '100px',
-              fontWeight: 700,
-              fontSize: '0.98rem',
-              textDecoration: 'none',
-              border: 'none',
-              boxShadow: '0 8px 25px rgba(6, 182, 212, 0.4), 0 2px 4px rgba(0,0,0,0.2)',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
-            }}>
+            <button
+              onClick={() => openAuthModal('register')}
+              style={{
+                padding: '0.85rem 2rem',
+                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
+                color: '#ffffff',
+                borderRadius: '100px',
+                fontWeight: 700,
+                fontSize: '0.98rem',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 8px 25px rgba(6, 182, 212, 0.4), 0 2px 4px rgba(0,0,0,0.2)',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                fontFamily: 'inherit',
+              }}
+            >
               <Stethoscope size={18} /> Crear cuenta gratis
-            </a>
+            </button>
             
-            <a href="/login" style={{
-              padding: '0.85rem 2rem',
-              background: 'rgba(255, 255, 255, 0.08)',
-              color: '#f8fafc',
-              borderRadius: '100px',
-              fontWeight: 700,
-              fontSize: '0.98rem',
-              textDecoration: 'none',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backdropFilter: 'blur(8px)',
-              transition: 'background 0.2s ease',
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem'
-            }}>
+            <button
+              onClick={() => openAuthModal('login')}
+              style={{
+                padding: '0.85rem 2rem',
+                background: 'rgba(255, 255, 255, 0.08)',
+                color: '#f8fafc',
+                borderRadius: '100px',
+                fontWeight: 700,
+                fontSize: '0.98rem',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(8px)',
+                cursor: 'pointer',
+                transition: 'background 0.2s ease',
+                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                fontFamily: 'inherit',
+              }}
+            >
               <LogIn size={18} /> Iniciar sesión
-            </a>
+            </button>
           </div>
         </div>
       )}
