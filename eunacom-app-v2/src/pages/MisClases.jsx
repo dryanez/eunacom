@@ -1688,7 +1688,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     setCorrectFound({})
     // Pre-fetch answer stats for all questions in this prueba
     const qIds = p.questions.map(q => `${p.id}_${q.numero}`)
-    fetch('/api/answer-stats', {
+    fetch('/api/progress?stats=true', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ questionIds: qIds })
@@ -1782,7 +1782,7 @@ function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
     const questionId = `${activePrueba.id}_${q.numero}`
 
     // Record this pick in answer stats (fire and forget)
-    fetch('/api/answer-stats', {
+    fetch('/api/progress?stats=true', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ questionId, optionId: optId })
