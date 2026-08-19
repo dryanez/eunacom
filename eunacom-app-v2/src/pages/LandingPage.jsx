@@ -367,6 +367,150 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── UNIVERSITIES INFINITE MOVING MARQUEE ── */}
+      <section style={{ padding: '36px 0 48px', backgroundColor: '#ffffff', overflow: 'hidden', borderBottom: '1px solid #e2e8f0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto 24px', textAlign: 'center', padding: '0 20px' }}>
+          <span style={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Confianza en Todo Chile
+          </span>
+          <h2 style={{ fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', fontWeight: 800, color: '#0f172a', marginTop: 4, marginBottom: 6 }}>
+            Médicos de las mejores facultades de Chile se preparan con nosotros
+          </h2>
+          <p style={{ color: '#64748b', fontSize: '0.9rem', maxWidth: '600px', margin: '0 auto' }}>
+            Internos y egresados de más de 25 escuelas de medicina y facultades extranjeras estudian con Eunacom App.
+          </p>
+        </div>
+
+        {/* Marquee Wrapper with side gradient masks */}
+        <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+          {/* Left / Right Fades */}
+          <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '80px', zIndex: 10, background: 'linear-gradient(to right, #ffffff 15%, transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '80px', zIndex: 10, background: 'linear-gradient(to left, #ffffff 15%, transparent)', pointerEvents: 'none' }} />
+
+          {/* Row 1 (Moves Left) */}
+          <div className="marquee-track marquee-left" style={{ display: 'flex', gap: '14px', width: 'max-content', marginBottom: '14px' }}>
+            {[
+              { id: 1, name: 'Universidad Autónoma' },
+              { id: 2, name: 'Univ. de La Frontera' },
+              { id: 3, name: 'Pontificia Univ. Católica (UC)' },
+              { id: 4, name: 'Univ. de Concepción' },
+              { id: 5, name: 'Univ. de Valparaíso' },
+              { id: 6, name: 'Universidad de Chile' },
+              { id: 7, name: 'Univ. Austral de Chile' },
+              { id: 8, name: 'Univ. de Santiago (USACH)' },
+              { id: 9, name: 'Univ. de los Andes' },
+              { id: 10, name: 'Univ. Finis Terrae' },
+              { id: 11, name: 'Univ. San Sebastián' },
+              { id: 12, name: 'Univ. del Desarrollo' },
+              { id: 13, name: 'Univ. del Alba' },
+              { id: 14, name: 'Univ. Andrés Bello' },
+              // Duplicate for seamless loop
+              { id: 1, name: 'Universidad Autónoma' },
+              { id: 2, name: 'Univ. de La Frontera' },
+              { id: 3, name: 'Pontificia Univ. Católica (UC)' },
+              { id: 4, name: 'Univ. de Concepción' },
+              { id: 5, name: 'Univ. de Valparaíso' },
+              { id: 6, name: 'Universidad de Chile' },
+              { id: 7, name: 'Univ. Austral de Chile' },
+              { id: 8, name: 'Univ. de Santiago (USACH)' },
+              { id: 9, name: 'Univ. de los Andes' },
+              { id: 10, name: 'Univ. Finis Terrae' },
+              { id: 11, name: 'Univ. San Sebastián' },
+              { id: 12, name: 'Univ. del Desarrollo' },
+              { id: 13, name: 'Univ. del Alba' },
+              { id: 14, name: 'Univ. Andrés Bello' },
+            ].map((uni, idx) => (
+              <div
+                key={idx}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '16px',
+                  padding: '8px 16px',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+                  flexShrink: 0,
+                  transition: 'transform 0.2s, border-color 0.2s'
+                }}
+              >
+                <img
+                  src={`/img/unis/uni_${uni.id}.png`}
+                  alt={uni.name}
+                  style={{ width: '38px', height: '38px', objectFit: 'contain', borderRadius: '8px' }}
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1e293b', whiteSpace: 'nowrap' }}>
+                  {uni.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2 (Moves Right) */}
+          <div className="marquee-track marquee-right" style={{ display: 'flex', gap: '14px', width: 'max-content' }}>
+            {[
+              { id: 15, name: 'Universidad Mayor' },
+              { id: 16, name: 'Univ. Católica del Norte' },
+              { id: 17, name: 'Univ. Católica del Maule' },
+              { id: 18, name: 'Univ. Diego Portales' },
+              { id: 19, name: 'Univ. Bernardo O’Higgins' },
+              { id: 20, name: 'Univ. de O’Higgins' },
+              { id: 21, name: 'Univ. de Antofagasta' },
+              { id: 22, name: 'Univ. de Tarapacá' },
+              { id: 23, name: 'Univ. de Atacama' },
+              { id: 24, name: 'Univ. de Magallanes' },
+              { id: 25, name: 'Univ. de Talca' },
+              { id: 26, name: 'Univ. Católica de la Santísima Concepción' },
+              { id: 27, name: 'Univ. de Playa Ancha' },
+              { id: 28, name: 'Univ. Arturo Prat' },
+              // Duplicate for seamless loop
+              { id: 15, name: 'Universidad Mayor' },
+              { id: 16, name: 'Univ. Católica del Norte' },
+              { id: 17, name: 'Univ. Católica del Maule' },
+              { id: 18, name: 'Univ. Diego Portales' },
+              { id: 19, name: 'Univ. Bernardo O’Higgins' },
+              { id: 20, name: 'Univ. de O’Higgins' },
+              { id: 21, name: 'Univ. de Antofagasta' },
+              { id: 22, name: 'Univ. de Tarapacá' },
+              { id: 23, name: 'Univ. de Atacama' },
+              { id: 24, name: 'Univ. de Magallanes' },
+              { id: 25, name: 'Univ. de Talca' },
+              { id: 26, name: 'Univ. Católica de la Santísima Concepción' },
+              { id: 27, name: 'Univ. de Playa Ancha' },
+              { id: 28, name: 'Univ. Arturo Prat' },
+            ].map((uni, idx) => (
+              <div
+                key={idx}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '16px',
+                  padding: '8px 16px',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+                  flexShrink: 0,
+                  transition: 'transform 0.2s, border-color 0.2s'
+                }}
+              >
+                <img
+                  src={`/img/unis/uni_${uni.id}.png`}
+                  alt={uni.name}
+                  style={{ width: '38px', height: '38px', objectFit: 'contain', borderRadius: '8px' }}
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1e293b', whiteSpace: 'nowrap' }}>
+                  {uni.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── INTERACTIVE LIVE PREVIEW (DEMO CASE) ── */}
       <section id="simulador-demo" style={{ padding: '48px 16px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
         <div style={{ maxWidth: '820px', margin: '0 auto' }}>
@@ -782,12 +926,31 @@ export default function LandingPage() {
         <p style={{ margin: 0 }}>© {new Date().getFullYear()} Eunacom App · eunacomapp.cl · Todos los derechos reservados · Chile</p>
       </footer>
 
-      {/* Responsive Breakpoints CSS */}
+      {/* Responsive Breakpoints & Marquee CSS */}
       <style>{`
+        @keyframes marqueeLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marqueeRight {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .marquee-left {
+          animation: marqueeLeft 40s linear infinite;
+        }
+        .marquee-right {
+          animation: marqueeRight 40s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .desktop-auth { display: none !important; }
           .mobile-toggle { display: block !important; }
+          .marquee-left { animation-duration: 25s; }
+          .marquee-right { animation-duration: 25s; }
         }
       `}</style>
     </div>
