@@ -239,24 +239,24 @@ const AuthModal = ({
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
               <img
                 src="/logo.png"
-                alt="Dr. EUNACOM Logo"
+                alt="Eunacom App Logo"
                 style={{
-                  width: 42,
-                  height: 42,
-                  borderRadius: '11px',
+                  width: 44,
+                  height: 44,
+                  borderRadius: '12px',
                   objectFit: 'contain',
-                  background: 'rgba(255,255,255,0.06)',
-                  padding: '2px',
+                  background: 'rgba(255,255,255,0.08)',
+                  padding: '3px',
                   border: '1.5px solid rgba(56, 189, 248, 0.4)',
                   boxShadow: '0 0 16px rgba(56, 189, 248, 0.3)',
                 }}
               />
               <div>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <span>Dr.</span> <span style={{ color: '#38bdf8' }}>EUNACOM</span>
+                <div style={{ fontSize: '1.15rem', fontWeight: 800, letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <span>EUNACOM</span> <span style={{ color: '#38bdf8' }}>APP</span>
                 </div>
                 <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 500 }}>
-                  Tu camino hacia la aprobación
+                  Plataforma Médica Chile
                 </div>
               </div>
             </div>
@@ -424,9 +424,9 @@ const AuthModal = ({
               marginBottom: '1rem',
             }}
           >
-            <img src="/logo.png" alt="Logo" style={{ width: 28, height: 28, borderRadius: 6, objectFit: 'contain' }} />
-            <span style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a' }}>
-              Dr. <span style={{ color: '#0284c7' }}>EUNACOM</span>
+            <img src="/logo.png" alt="Eunacom App Logo" style={{ width: 28, height: 28, borderRadius: 6, objectFit: 'contain' }} />
+            <span style={{ fontWeight: 800, fontSize: '1rem', color: '#0f172a' }}>
+              EUNACOM <span style={{ color: '#0284c7' }}>APP</span>
             </span>
           </div>
 
