@@ -35,6 +35,7 @@ import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
 import { useAuth } from './contexts/AuthContext'
+import AuthModal from './components/AuthModal'
 import './index.css'
 
 const AdminRoute = ({ children }) => {
