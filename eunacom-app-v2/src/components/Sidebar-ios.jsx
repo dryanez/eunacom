@@ -87,6 +87,11 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
                     <Video size={18} /> Mis Clases
                 </NavLink>
                 {isAdmin() && (
+                    <NavLink to="/studio" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#38bdf8', fontWeight: 700 }}>
+                        <Flame size={18} /> Studio Creator V3
+                    </NavLink>
+                )}
+                {isAdmin() && (
                     <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                         <Shield size={18} /> Biblioteca EUNACOM
                     </NavLink>

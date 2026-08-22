@@ -1,0 +1,297 @@
+{
+  "specialtyId": "gastroenterologia",
+  "specialtyName": "Gastroenterología",
+  "totalClasses": 16,
+  "classes": [
+    {
+      "id": "gastro-01",
+      "title": "Hemorragia Digestiva Alta y Baja (Masterclass)",
+      "perfilCodes": [
+        "1.06.2.007",
+        "1.06.1.030",
+        "1.06.4.007"
+      ],
+      "durationEstimate": "30 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-01",
+      "learningObjectives": [
+        "Estabilización hemodinámica inicial y meta restrictiva de transfusión (Hb 7-8 g/dL)",
+        "Farmacoterapia inmediata: IBP EV, Terlipresina / Octreótide y Ceftriaxona en cirróticos",
+        "Clasificación de Forrest al detalle: Indicación de terapia endoscópica dual (Ia a IIa)",
+        "HDA Variceal (Ligadura con bandas / TIPS) vs Hemorragia Digestiva Baja (Divertículos y Angiodisplasia)"
+      ]
+    },
+    {
+      "id": "gastro-02",
+      "title": "Hemorragia Digestiva Baja & Enfermedad Diverticular",
+      "perfilCodes": [
+        "1.06.2.007",
+        "1.06.1.016",
+        "1.06.1.017",
+        "1.06.4.005"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-02",
+      "learningObjectives": [
+        "Etiologías principales: Diverticulosis (causa #1 masiva indolora), Angiodisplasia y Cáncer",
+        "Diverticulitis Aguda: Clasificación de Hinchey I-IV al TAC abdominal",
+        "Manejo de Diverticulitis: Ciprofloxacino + Metronidazol oral en ambulatorio vs Cirugía de Hartmann",
+        "Algoritmo de HDB Masiva: Colonoscopía vs AngioTAC con embolización"
+      ]
+    },
+    {
+      "id": "gastro-03",
+      "title": "Cirrosis Hepática, Hipertensión Portal & Ascitis",
+      "perfilCodes": [
+        "1.06.1.005",
+        "1.06.1.001",
+        "1.06.1.022",
+        "1.06.5.001"
+      ],
+      "durationEstimate": "28 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-03",
+      "learningObjectives": [
+        "Gradiente de Albúmina en Líquido Ascítico (GASA ≥ 1.1 g/dL = Hipertensión Portal)",
+        "Manejo de Ascitis: Restricción de Sodio (< 2g/día) + Espironolactona 100 mg + Furosemida 40 mg",
+        "Paracentesis Evacuadora de Gran Volumen: Reposición con Albúmina (8g por cada litro evacuado > 5L)",
+        "Clasificación Pronóstica de Child-Pugh (A, B, C) y Score MELD"
+      ]
+    },
+    {
+      "id": "gastro-04",
+      "title": "Complicaciones Cirróticas: PBE, Encefalopatía & Síndrome Hepatorrenal",
+      "perfilCodes": [
+        "1.06.2.011",
+        "1.06.2.006",
+        "1.06.2.012"
+      ],
+      "durationEstimate": "28 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-04",
+      "learningObjectives": [
+        "Peritonitis Bacteriana Espontánea (PBE): Diagnóstico con PMN ≥ 250/mm³, Cefotaxima EV + Albúmina",
+        "Profilaxis de PBE: Primaria (Proteínas < 1.5 g/dL) y Secundaria (Ciprofloxacino / Cotrimoxazol)",
+        "Encefalopatía Hepática: Grados de West-Haven, factores gatillantes, Lactulosa y Rifaximina",
+        "Síndrome Hepatorrenal: Tipo 1 vs Tipo 2, Terlipresina + Albúmina EV"
+      ]
+    },
+    {
+      "id": "gastro-05",
+      "title": "Reflujo Gastroesofágico (ERGE), Dispepsia & Esófago de Barrett",
+      "perfilCodes": [
+        "1.06.1.027",
+        "1.06.1.014",
+        "1.06.4.007"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-05",
+      "learningObjectives": [
+        "ERGE: Prueba terapéutica con IBP vs Criterios de EDA obligatoria (Banderas rojas, > 40 años)",
+        "Esófago de Barrett: Metaplasia intestinal en tercio distal esofágico y protocolo de biopsias de Seattle",
+        "Dispepsia: Funcional (Roma IV) vs Orgánica",
+        "pH-metría e Impedanciometría esofágica de 24 horas como Gold Standard confirmatorio"
+      ]
+    },
+    {
+      "id": "gastro-06",
+      "title": "Úlcera Péptica & Helicobacter pylori",
+      "perfilCodes": [
+        "1.06.1.030",
+        "1.06.3.005"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-06",
+      "learningObjectives": [
+        "Diferencias clínicas: Úlcera Duodenal (alivia con comidas) vs Gástrica (aumenta con comidas)",
+        "Esquemas de Erradicación de H. pylori: Cuádruple con Bismuto o Terapia Concomitante por 14 días",
+        "Test de Control de Erradicación: Test de Aire Espirado con C13 o Antígeno en Deposiciones (≥ 4 semanas post-tratamiento)",
+        "Complicaciones de la Úlcera: Hemorragia, Perforación (Neumoperitoneo) y Estenosis Pilórica"
+      ]
+    },
+    {
+      "id": "gastro-07",
+      "title": "Cáncer Gástrico & Screening EUNACOM (Garantía GES)",
+      "perfilCodes": [
+        "1.06.1.004",
+        "1.06.3.003",
+        "1.06.4.007"
+      ],
+      "durationEstimate": "27 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-07",
+      "learningObjectives": [
+        "Epidemiología chilena: Cáncer gástrico como causa líder de mortalidad oncológica en hombres",
+        "Regla de Oro GES: Todo paciente ≥ 40 años con dispepsia de > 2 semanas o banderas rojas requiere EDA",
+        "Clasificación de Lauren: Intestinal (asociado a H. pylori y gastritis atrófica) vs Difuso (células en anillo de sello)",
+        "Estadificación con TAC de Tórax-Abdomen-Pelvis y Criterios de Resecabilidad"
+      ]
+    },
+    {
+      "id": "gastro-08",
+      "title": "Cáncer Colorrectal & Pólipos Intestinales",
+      "perfilCodes": [
+        "1.06.1.029",
+        "1.06.3.004",
+        "1.06.4.009"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-08",
+      "learningObjectives": [
+        "Clínica según localización: Colon Derecho (Anemia ferropénica y masa palpable) vs Izquierdo (Cambio del hábito intestinal y rectorragia)",
+        "Tamizaje en Población General: Test de Sangre Oculta en Deposiciones (FIT) anual o Colonoscopía cada 10 años desde los 50 años",
+        "Síndromes Hereditarios: Poliposis Adenomatosa Familiar (PAF - gen APC) y Síndrome de Lynch (Criterios de Amsterdam)",
+        "Pólipos con mayor riesgo de malignización: Adenomas vellosos, > 1 cm y con displasia de alto grado"
+      ]
+    },
+    {
+      "id": "gastro-09",
+      "title": "Patología Biliar Litiásica: Colelitiasis, Colecistitis & Coledocolitiasis",
+      "perfilCodes": [
+        "1.06.1.006",
+        "1.06.2.004",
+        "1.06.4.004",
+        "1.06.4.006"
+      ],
+      "durationEstimate": "28 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-09",
+      "learningObjectives": [
+        "Colelitiasis: Diagnóstico ecográfico (cálculo móvil con sombra acústica) y Criterio GES en Chile (35 a 49 años)",
+        "Colecistitis Aguda: Signo de Murphy ecográfico, engrosamiento pared > 4 mm y Colecistectomía precoz (< 72h)",
+        "Coledocolitiasis: Patrón colestásico con vía biliar dilatada > 6 mm; CPRE terapéutica vs ColangioRM"
+      ]
+    },
+    {
+      "id": "gastro-10",
+      "title": "Colangitis Aguda & Cáncer de Vía Biliar",
+      "perfilCodes": [
+        "1.06.2.003",
+        "1.06.1.003",
+        "1.06.1.007"
+      ],
+      "durationEstimate": "27 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-10",
+      "learningObjectives": [
+        "Tríada de Charcot (Dolor HCD + Fiebre con escalofríos + Ictericia)",
+        "Pentalogía de Reynolds (Tríada de Charcot + Shock / Hipotensión + Compromiso de Conciencia)",
+        "Guías de Tokio 2018 para Colangitis Aguda (Grado I, II y III)",
+        "Manejo de Emergencia: Antibióticos EV (Ceftriaxona + Metronidazol) + Drenaje Biliar Urgente por CPRE"
+      ]
+    },
+    {
+      "id": "gastro-11",
+      "title": "Pancreatitis Aguda & Crónica",
+      "perfilCodes": [
+        "1.06.2.010",
+        "1.06.1.025",
+        "1.06.4.005"
+      ],
+      "durationEstimate": "28 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-11",
+      "learningObjectives": [
+        "Criterios Diagnósticos de Atlanta (2 de 3: Dolor epigástrico en faja, Lipasa/Amilasa > 3x, TAC compatible)",
+        "Estratificación de Severidad: Score BISAP ≥ 3, PCR > 150 mg/L a las 48h, Escala de Balthazar al TAC a las 72h",
+        "Tratamiento: Hidratación vigorosa con Ringer Lactato (200-250 mL/h) y realimentación oral precoz",
+        "Pancreatitis Crónica: Tríada clásica (Calcificaciones pancreáticas, Esteatorrea y Diabetes mellitus)"
+      ]
+    },
+    {
+      "id": "gastro-12",
+      "title": "Hepatitis Virales A, B, C & Serología Completa",
+      "perfilCodes": [
+        "1.06.1.019",
+        "1.06.1.020",
+        "1.06.1.021",
+        "1.06.4.012"
+      ],
+      "durationEstimate": "28 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-12",
+      "learningObjectives": [
+        "Hepatitis A: Transmisión fecal-oral, IgM anti-VHA (+), no cronifica, manejo de soporte",
+        "Serología Completa de Hepatitis B: HBsAg (infección activa), Anti-HBc IgM (aguda), Anti-HBc IgG (pasada/crónica), Anti-HBs (inmunidad)",
+        "Hepatitis C: Causa líder de cirrosis y hepatocarcinoma en occidente, diagnóstico con Anti-VHC + Carga viral ARN, Tratamiento con Antivirales Directos (SVR > 95%)"
+      ]
+    },
+    {
+      "id": "gastro-13",
+      "title": "Falla Hepática Fulminante & Hepatopatías Especiales",
+      "perfilCodes": [
+        "1.06.2.009",
+        "1.06.1.024",
+        "1.06.3.006"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-13",
+      "learningObjectives": [
+        "Insuficiencia Hepática Aguda (Falla Fulminante): Encefalopatía + Coagulopatía (INR > 1.5) en < 26 semanas en hígado previamente sano",
+        "Causa #1 tóxica: Intoxicación por Paracetamol ➔ Tratamiento inmediato con N-Acetilcisteína EV",
+        "Criterios de King's College para Trasplante Hepático Urgente",
+        "Esteatosis Hepática No Alcohólica (EHNA): Diagnóstico, cambio de estilo de vida y control de síndrome metabólico"
+      ]
+    },
+    {
+      "id": "gastro-14",
+      "title": "Enfermedad Inflamatoria Intestinal: Colitis Ulcerosa vs Crohn",
+      "perfilCodes": [
+        "1.06.1.018",
+        "1.06.4.007"
+      ],
+      "durationEstimate": "27 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-14",
+      "learningObjectives": [
+        "Colitis Ulcerosa: Afectación continua mucosal desde el recto hacia proximal, diarrea sanguinolenta, pseudopólipos, p-ANCA (+)",
+        "Enfermedad de Crohn: Afectación transmural en parches (Skip lesions) desde boca al ano (íleon terminal #1), fístulas, granulomas no caseificantes, ASCA (+)",
+        "Complicaciones Graves: Megacolon Tóxico (Colon > 6 cm en Rx simple) ➔ Corticoides EV + Cirugía de urgencia si refractario",
+        "Tratamiento Médico: Mesalazina (Inducción y mantención en CU leve-moderada), Corticoides y Terapia Anti-TNF (Infliximab)"
+      ]
+    },
+    {
+      "id": "gastro-15",
+      "title": "Síndrome de Malabsorción, Enfermedad Celíaca & Diarrea Crónica",
+      "perfilCodes": [
+        "1.06.1.015",
+        "1.06.1.028",
+        "1.06.1.011",
+        "1.06.4.013"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-15",
+      "learningObjectives": [
+        "Enfermedad Celíaca: Anticuerpos Anti-Transglutaminasa IgA (tTG-IgA) + Biopsia Duodenal (Atrofia vellositaria Marsh 3)",
+        "Diarrea Crónica (> 4 semanas): Osmótica (cede con ayuno, GAP osmolar > 100) vs Secretora (no cede con ayuno, GAP < 50)",
+        "Test de D-Xilosa para diferenciar malabsorción mucosal vs maldigestión intraluminal pancreática",
+        "Intolerancia a la Lactosa: Test de Hidrógeno Espirado y prueba de exclusión dietética"
+      ]
+    },
+    {
+      "id": "gastro-16",
+      "title": "Diarreas Infecciosas, Clostridioides difficile & Trastornos Funcionales",
+      "perfilCodes": [
+        "1.06.2.005",
+        "1.06.1.010",
+        "1.06.1.008",
+        "1.06.4.014"
+      ],
+      "durationEstimate": "26 min",
+      "slideCount": 14,
+      "deckPath": "/deck/gastro-16",
+      "learningObjectives": [
+        "Diarrea Aguda Infecciosa: Inflamatoria (disentería con leucocitos fecales) vs No Inflamatoria (acuosa)",
+        "Infección por C. difficile: Diarrea tras uso de antibióticos (Clindamicina, Cefalosporinas, Quinolonas); Toxina A/B (+)",
+        "Tratamiento de C. difficile: Vancomicina oral 125 mg c/6h o Fidaxomicina oral (el Metronidazol ya no es de 1ra línea)",
+        "Síndrome de Intestino Irritable (SII): Criterios de Roma IV (Dolor abdominal recurrente ≥ 1 día/semana asociado a defecación) sin banderas rojas"
+      ]
+    }
+  ]
+}

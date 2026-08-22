@@ -1,0 +1,232 @@
+--- PAGE 3 ---
+3
+INDICE
+Introducción .................................................................... 5
+Área 1.- Medicina Interna
+ 01.- Cardiología ...................................................................... 9
+ 02.- Diabetes y nutrición ...................................................... 11
+ 03.- Endocrinología .............................................................. 13
+ 04.- Enfermedades infecciosas ............................................... 15
+ 05.- Enfermedades respiratorias ............................................ 18
+ 06.- Gastroenterología .......................................................... 21
+ 07.- Geriatría ........................................................................ 23
+ 08.- Hémato-oncología ......................................................... 25
+ 09.- Nefrología ..................................................................... 27
+ 10.- Neurología .................................................................... 29
+ 11.- Reumatología ................................................................ 31
+Área 2.- Pediatría
+ 01.- Pediatría general ............................................................ 33
+Área 3.- Obstetricia y ginecología
+ 01.- Obstetricia y ginecología ............................................... 38
+Área 4.- Cirugía
+ 01.- Cirugía general y anestesia ............................................. 41
+ 02.- T raumatología ............................................................... 45
+ 03.- Urología ........................................................................ 47
+Área 5.- Psiquiatría
+ 01.- Psiquiatría general ......................................................... 49
+Área 6.- Especialidades
+ 01.- Dermatología ................................................................ 51
+ 02.- Oftalmología ................................................................. 53
+ 03.- Otorrinolaringología ..................................................... 55
+Área 7.- Salud Pública
+ 01.- Salud pública ................................................................. 58
+--- PAGE 8 ---
+8
+Interpretación del código
+Cada ítem está identificado con un código único que facilita su uso durante el trabajo de los comités y permite 
+realizar un monitoreo preciso de la composición del banco de preguntas. El código está formado por cuatro números. 
+El primero identifica el área a que corresponde el ítem, el segundo la especialidad, el tercero la sección. El cuarto es el 
+número correlativo del ítem dentro de cada sección.
+Nota: Cuando más de una especialidad incluía un mismo ítem (Ej. embolia pul-
+monar, que se encuentra tanto en cardiología como en enfermedades respirato-
+rias) se conservó el ítem en ambas, cuidando de que el nivel exigido fuese consist-
+ente en cada repetición. A pesar de ello, se da el caso de que un mismo ítem posee 
+distintos niveles cuando se encuentre en pediatría y en otra especialidad, lo que 
+debe entenderse como que el nivel requerido en niños es distinto al de un con-
+texto de adultos (Ej. Acné tiene distinto nivel en pediatría que en dermatología).
+--- PAGE 9 ---
+9
+Área: Medicina Interna
+Cardiología
+Situaciones clínicas
+  Nivel de Nivel de Nivel de
+Código Situación Diagnóstico T ratamiento Seguimiento
+1.01.1.001 Angina crónica estable Específico Inicial Completo
+1.01.1.002 Bloqueos aurículo-ventriculares Específico Inicial Derivar
+1.01.1.003 Cardiopatía congénita en adulto Sospecha Inicial Derivar
+1.01.1.004 Corazón pulmonar crónico Específico Inicial Derivar
+1.01.1.005 Dislipidemias Específico Completo Completo
+1.01.1.006 Embolia pulmonar Sospecha Inicial Derivar
+1.01.1.007 Endocarditis bacteriana sub aguda (EBSA) Sospecha Inicial Derivar
+1.01.1.008 Enfermedad reumática activa Específico Completo Completo
+1.01.1.009 Estenosis aórtica Específico Inicial Derivar
+1.01.1.010 Estenosis mitral Específico Inicial Derivar
+1.01.1.011 Extrasistolía ventricular benigna Específico Inicial Completo
+1.01.1.012 Fibrilación auricular crónica Específico Inicial Completo
+1.01.1.013 Fibrilación auricular paroxística Específico Inicial Derivar
+1.01.1.014 Flutter auricular Específico Inicial Derivar
+1.01.1.015 Hipertensión arterial esencial Específico Completo Completo
+1.01.1.016 Hipertensión arterial secundaria Sospecha Inicial Derivar
+1.01.1.017 Insuficiencia aórtica Específico Inicial Derivar
+1.01.1.018 Insuficiencia cardíaca Específico Inicial Completo
+1.01.1.019 Insuficiencia mitral Específico Inicial Derivar
+1.01.1.020 Miocardiopatías Sospecha Inicial Derivar
+1.01.1.021 Paciente con soplo Específico Inicial Derivar
+1.01.1.022 Pericarditis aguda Sospecha Inicial No requiere
+1.01.1.023 Síndrome metabólico Específico Completo Completo
+1.01.1.024 T aquicardia paroxística supraventricular (TPSV) Específico Inicial Completo
+Situaciones clínicas de urgencia
+  Nivel de Nivel de Nivel de
+Código Situación Diagnóstico T ratamiento Seguimiento
+1.01.2.001 Angina inestable Específico Inicial Derivar
+1.01.2.002 Disección aórtica Sospecha Inicial Derivar
+1.01.2.003 Embolia cardiogénica Específico Inicial Derivar
+1.01.2.004 Infarto agudo al miocardio Específico Inicial Completo
+1.01.2.005 Insuficiencia cardíaca aguda Específico Inicial Derivar
+1.01.2.006 Paro cardiorespiratorio Específico Completo Derivar
+1.01.2.007 Shock Específico Inicial Derivar
+1.01.2.008 T aponamiento pericárdico Específico Inicial Derivar
+1.01.2.009 T aqui y bradiarritmia con compromiso hemodinámico Específico Inicial Derivar
+--- PAGE 11 ---
+11
+Área: Medicina Interna
+Diabetes y nutrición
+Situaciones clínicas
+  Nivel de Nivel de Nivel de
+Código Situación Diagnóstico T ratamiento Seguimiento
+1.02.1.001 Desnutrición Específico Inicial Derivar
+1.02.1.002 Diabetes gestacional Específico Inicial Derivar
+1.02.1.003 Diabetes mellitus pregestacional  Específico Completo Completo
+1.02.1.004 Diabetes Mellitus tipo 1 Específico Inicial Derivar
+1.02.1.005 Diabetes mellitus tipo 2 Específico Completo Completo
+1.02.1.006 Diabetes por corticoides  Específico Inicial Derivar
+1.02.1.007 Dislipidemias Específico Completo Completo
+1.02.1.008 Hipertensión arterial  en diabetes tipo 2 Específico Completo Completo
+1.02.1.009 Insuficiencia renal y diabetes Específico Inicial Derivar
+1.02.1.010 Nefropatía incipiente Específico Completo Completo
+1.02.1.011 Neuropatía diabética Sospecha Inicial Derivar
+1.02.1.012 Obesidad Específico Completo Completo
+1.02.1.013 Obesidad mórbida  Sospecha Inicial Derivar
+1.02.1.014 Pié diabético y otras infecciones en diabetes Específico Inicial Derivar
+1.02.1.015 Retinopatía diabética Sospecha Inicial Derivar
+1.02.1.016 Síndrome metabólico  Específico Completo Completo
+1.02.1.017 Síndromes carenciales de vitaminas y minerales Específico Inicial Derivar
+1.02.1.018 T rastornos de conducta alimentaria  Específico Inicial Derivar
+1.02.1.019 Vasculopatía periférica Sospecha Inicial Derivar
+Situaciones clínicas de urgencia
+  Nivel de Nivel de Nivel de
+Código Situación Diagnóstico T ratamiento Seguimiento
+1.02.2.001 Acidosis láctica Específico Inicial Derivar
+1.02.2.002 Cetoacidosis  Específico Completo Derivar
+1.02.2.003 Coma hiperosmolar Específico Inicial No requiere
+1.02.2.004 Déficit agudo de tiamina  Específico Completo Derivar
+1.02.2.005 Hipertrigliceridemia grave Específico Inicial Derivar
+1.02.2.006 Hipoglicemias Específico Completo Completo
+1.02.2.007 Síndrome hiperosmolar no cetósico  Específico Inicial Derivar
+Conocimientos generales
+Código T ema
+1.02.3.001 Alimentación saludable   
+1.02.3.002 Anorexia nerviosa   
+1.02.3.003 Diabetes y riesgo cardiovascular   
+1.02.3.004 Estilos de vida saludables (hábitos y conductas)   
+1.02.3.005 Prevención de complicaciones crónicas de la diabetes   
+1.02.3.006 Prevención de Diabetes Mellitus tipo 2   
+1.02.3.007 Prevención de dislipidemias   
+--- PAGE 12 ---
+12
+Conocimientos generales (cont.)
+Código T ema
+1.02.3.008 Prevención de la obesidad   
+1.02.3.009 Prevención de pié diabético 
+1.02.3.010 Regímenes dietéticos fundamentales 
+1.02.3.011 Regímenes dietéticos para dislipidemias  
+1.02.3.012 Regímenes dietéticos para obesidad 
+1.02.3.013 Riesgo cardiovascular global 
+1.02.3.014 Síndrome metabólico
+ 
+Exámenes e imagenología
+Código Examen Nivel
+1.02.4.001 Arteriografia extremidades inferiores  Emplea informe
+1.02.4.002 Ecotomografia abdominal   Emplea informe
+1.02.4.003 Albúmina plasmática  Interpreta y emplea
+1.02.4.004 Albuminuria   Interpreta y emplea
+1.02.4.005 Creatininemia  Interpreta y emplea
+1.02.4.006 Cuerpos cetónicos en orina (semicuantitativo)  Realiza, interpreta y emplea
+1.02.4.007 Cuerpos cetónicos en sangre  Interpreta y emplea
+1.02.4.008 Doppler vascular periférico  Emplea informe
+1.02.4.009 Electrocardiograma  Realiza, interpreta y emplea
+1.02.4.010 Electromiografía   Emplea informe
+1.02.4.011 Estudio funcional hepático  Interpreta y emplea
+1.02.4.012 Evaluación nutricional  Interpreta y emplea
+1.02.4.013 Examen de orina completa  Interpreta y emplea
+1.02.4.014 Examen de orina semicuantitativa  Emplea informe
+1.02.4.015 Glicemia capilar  Realiza, interpreta y emplea
+1.02.4.016 Glicemia venosa  Interpreta y emplea
+1.02.4.017 Hemoglobina glicosilada  Interpreta y emplea
+1.02.4.018 Insulinemia  Interpreta y emplea
+1.02.4.019 Microalbuminuria  Interpreta y emplea
+1.02.4.020 Nitrogeno urinario   Interpreta y emplea
+1.02.4.021 Perfil lipídico  Interpreta y emplea
+1.02.4.022 Proteiuniria 24 horas   Interpreta y emplea
+1.02.4.023 T est de esfuerzo  Emplea informe
+1.02.4.024 T est de tolerancia a la glucosa   Interpreta y emplea
+1.02.4.025 Urocultivo y antibiograma  Interpreta y emplea
+Procedimientos diagnósticos y terapéuticos
+Código Procedimiento Nivel
+1.02.5.001 Curaciones básicas del pié diabético  Realizar
+1.02.5.002 Evaluacion nutricional subjetiva   Realizar  
+1.02.5.003 Fondo de ojo  Realizar
+  
+--- PAGE 58 ---
+58
+ 
+Área: Salud pública
+Salud pública
+Conocimientos generales
+Código T ema
+7.01.3.001 Conceptos y definiciones de Salud Pública 
+7.01.3.002 Funciones esenciales de la Salud Pública 
+7.01.3.003 Historia natural de la enfermedad 
+7.01.3.004 Niveles de prevención 
+7.01.3.005 Promoción de salud y prevención de enfermedades 
+7.01.3.006 Determinantes del nivel de salud: demográficos, sociales, otros 
+7.01.3.007 Demografía y salud pública 
+7.01.3.008 Diagnóstico de situación de salud: 
+7.01.3.009 Indicadores de nivel de salud: cálculo e interpretación 
+7.01.3.010 Etapas del diagnóstico de situación de salud 
+7.01.3.011 Fuentes de información para el diagnóstico 
+7.01.3.012 Ejecución de un diagnóstico 
+7.01.3.013 Concepto y campo de la epidemiología 
+7.01.3.014 Epidemiología descriptiva
+7.01.3.015 Usos de la epidemiología en el control de enfermedades
+7.01.3.016 Vigilancia epidemiológica y estudio de brotes
+7.01.3.017 Usos de la epidemiología en el diagnóstico de situación de salud
+7.01.3.018 Epidemiología analítica
+7.01.3.019 Medidas de asociación e impacto
+7.01.3.020 Diseños de investigación epidemiológica
+7.01.3.021 Estudios de prevalencia
+7.01.3.022 Estudios de casos y controles
+7.01.3.023 Estudios de cohortes
+7.01.3.024 Estudios experimentales y cuasiexperimentales
+7.01.3.025 Concepto de estudios ecológicos
+7.01.3.026 Causalidad y sesgos
+7.01.3.027 Investigación epidemiológica
+7.01.3.028 Pruebas de screening (tamizaje) y diagnósticas
+7.01.3.029 Descripción sistemática de problemas
+7.01.3.030 Criterios de priorización de problemas
+7.01.3.031 Estrategias de control de enfermedades infecciosas
+7.01.3.032 Estrategias de control de enfermedades crónicas prioritarias (cáncer, cardiovasculares)
+7.01.3.033 Bases conceptuales de la seguridad social
+7.01.3.034 Desarrollo histórico de seguridad social y atención de salud
+7.01.3.035 Funciones de los sistemas de atención de salud
+7.01.3.036 Organización actual del sistema de salud chileno
+7.01.3.037 Política sanitaria y objetivos sanitarios en Chile
+7.01.3.038 Definición, estructura y funciones de los subsistemas en Chile
+7.01.3.039 Concepto y descripción de la red asistencial chilena
+7.01.3.040 Beneficios de la seguridad social y rol del médico en su acceso
+7.01.3.041 Conceptos de administración y gestión
+7.01.3.042 Planificación y programación en salud
+7.01.3.043 Formulación de programas
+7.01.3.044 Organización: principios y características estructurales y funcionales de las organizaciones
+7.01.3.045 Dirección: funciones de la dirección, liderazgo, comunicaciones, coordinación
+7.01.3.046 Evaluación y control: conceptos, tipos de evaluación

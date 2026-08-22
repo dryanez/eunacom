@@ -1,0 +1,674 @@
+{
+  "specialties": [
+    {
+      "specialtyId": "cardiologia",
+      "specialtyName": "Cardiología & Sistema Cardiovascular",
+      "totalClasses": 21,
+      "classes": [
+        {
+          "id": "cardio-00",
+          "title": "Taller Maestro de Electrocardiograma Clínico",
+          "perfilCodes": [
+            "1.01.4.007"
+          ],
+          "durationEstimate": "32 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-00",
+          "learningObjectives": [
+            "Cálculo sistemático del eje eléctrico frontal (D1 y aVF)",
+            "Diagnóstico de Bloqueos de Rama (BCRD vs BCRI) y Bloqueos Bifasciculares",
+            "Criterios de Hipertrofia Ventricular (Sokolow-Lyon > 35 mm, Cornell)",
+            "Ondas Q patológicas, supradesnivel del ST y cambios recíprocos (espejo)"
+          ],
+          "teleprompterScript": "[SLIDE 1: PORTADA & CÓDIGOS OFICIALES]\nBienvenidos a este Taller Maestro de Electrocardiograma Clínico para el EUNACOM 2026.\nEn esta masterclass cubrimos el código ministerial 1.01.4.007: Electrocardiograma de 12 derivaciones, con nivel de exigencia legal 'Realiza, Interpreta y Emplea'.\nEl ECG es por lejos el examen complementario más evaluado en el EUNACOM. En este video aprenderás el algoritmo de lectura sistemática en 6 pasos que te permitirá resolver cualquier trazado del examen en menos de 45 segundos.\n\n[SLIDE 2: LECTURA SISTEMÁTICA EN 6 PASOS]\nTodo trazado electrocardiográfico se analiza en un orden inalterable:\n1. Calibración y Estandarización: 25 mm/s y 10 mm/mV.\n2. Ritmo: ¿Es ritmo sinusal? (Onda P positiva en D2 y negativa en aVR, seguida de QRS, con FC regular entre 60 y 100 lpm).\n3. Frecuencia Cardíaca: Regla de los 300 (300, 150, 100, 75, 60, 50) o contar complejos en 30 cuadros grandes (6 segundos) multiplicado por 10 para ritmos irregulares.\n4. Eje Eléctrico Frontal: Cuadrantes D1 y aVF.\n5. Intervalos y Segmentos: PR (120-200 ms), QRS (< 120 ms), QT corregido (Bazett < 450 ms en hombres, < 460 ms en mujeres).\n6. Isquemia, Lesión y Necrosis: Ondas T picudas o invertidas, supradesnivel o infradesnivel del ST, y ondas Q patológicas.\n\n[SLIDE 3: CÁLCULO DEL EJE ELÉCTRICO FRONTAL]\nEl método rápido para el EUNACOM se basa en las derivaciones D1 y aVF:\n- Eje Normal (entre -30° y +90°): D1 positivo (+) y aVF positivo (+).\n- Desviación a la Izquierda (entre -30° y -90°): D1 positivo (+) y aVF negativo (-). Se confirma con D2 negativo. Causas: Hemibloqueo anterior izquierdo (HBAI), hipertrofia ventricular izquierda severa o infarto inferior antiguo.\n- Desviación a la Derecha (entre +90° y +180°): D1 negativo (-) y aVF positivo (+). Causas: Hipertrofia ventricular derecha, Cor Pulmonale, TEP o Hemibloqueo posterior izquierdo.\n- Desviación Extrema ('Tierra de nadie' entre -90° y 180°): D1 negativo y aVF negativo. Típica de Taquicardia Ventricular.\n\n[SLIDE 4: BLOQUEOS DE RAMA (BCRD VS BCRI)]\nCuando el QRS mide 120 milisegundos o más (3 cuadritos pequeños), estamos ante un Bloqueo Completo de Rama:\n- Bloqueo Completo de Rama Derecha (BCRD):\n  ● Patrón rsR' (orejas de conejo) en derivaciones derechas V1-V2.\n  ● Onda S ancha y empastada en derivaciones laterales V5-V6 y D1.\n  ● Causa benigna frecuente o secundaria a sobrecarga derecha (TEP, CIA, Chagas).\n- Bloqueo Completo de Rama Izquierda (BCRI):\n  ● Onda R ancha, mellada y sin onda Q en V5-V6 y D1.\n  ● Complejo QS o rS profundo en V1-V2.\n  ● Causa SIEMPRE patológica (Cardiopatía isquémica, HTA, Miocardiopatía dilatada).\n  ● ¡Regla de oro!: Todo BCRI nuevo en contexto de dolor torácico agudo equivale a IAM con supradesnivel del ST y requiere reperfusión inmediata.\n\n[SLIDE 5: CRITERIOS DE HIPERTROFIA VENTRICULAR]\nHipertrofia Ventricular Izquierda (HVI):\n- Criterio de Sokolow-Lyon: Onda S en V1 + Onda R en V5 o V6 > 35 mm (7 cuadros grandes).\n- Criterio de Cornell: Onda R en aVL + Onda S en V3 > 28 mm en hombres, o > 20 mm en mujeres.\n- Criterios de sobrecarga (Strain): Infradesnivel asimétrico del ST con inversión de onda T en V5, V6, D1 y aVL.\n\n[SLIDE 6: LOCALIZACIÓN ANATÓMICA DE LA ISQUEMIA EN 12 DERIVACIONES]\n- Pared Anterior Extensa (Arteria Descendente Anterior - ADA): V1 a V6.\n- Pared Anteroseptal (ADA): V1 a V4.\n- Pared Lateral Alta (Arteria Circunfleja - Cx): D1 y aVL.\n- Pared Lateral Baja (Cx): V5 y V6.\n- Pared Inferior (Arteria Coronaria Derecha - ACD): D2, D3 y aVF.\n- Ventrículo Derecho (ACD): Derivaciones derechas V3R y V4R. (¡Contraindicados los nitratos y diuréticos!).\n- Pared Posterior (ACD o Cx): Infradesnivel especular del ST en V1-V2 con onda R alta. Confirmar con V7, V8 y V9."
+        },
+        {
+          "id": "cardio-01",
+          "title": "Angina Crónica Estable & Cardiopatía Isquémica",
+          "perfilCodes": [
+            "1.01.1.001",
+            "1.01.4.008"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-01",
+          "learningObjectives": [
+            "Definición de Angina Típica vs Atípica vs Dolor No Cardíaco",
+            "Estratificación de Riesgo y Test de Esfuerzo (Criterios de Positividad y Alto Riesgo)",
+            "Tratamiento Antiisquémico de 1ra Línea (Betabloqueadores, Calcioantagonistas, Nitratos)",
+            "Terapia Preventiva Obligatoria: Aspirina 100 mg y Estatinas de Alta Potencia"
+          ]
+        },
+        {
+          "id": "cardio-02",
+          "title": "SCA sin Supradesnivel del ST & Angina Inestable",
+          "perfilCodes": [
+            "1.01.2.001",
+            "1.01.2.003",
+            "1.01.4.009"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-02",
+          "learningObjectives": [
+            "Diferenciación entre Angina Inestable y SCA sin SDST por Troponinas Ultrasensibles",
+            "Estratificación de Riesgo con Escalas TIMI y GRACE",
+            "Doble Antiagregación Plaquetaria (DAPT): Aspirina + Clopidogrel vs Ticagrelor",
+            "Timing de la Coronariografía: Invasiva Inmediata (< 2h) vs Precoz (< 24h) vs Electiva"
+          ]
+        },
+        {
+          "id": "cardio-03",
+          "title": "IAM con Supradesnivel del ST & Trombolisis",
+          "perfilCodes": [
+            "1.01.2.004",
+            "1.01.5.009"
+          ],
+          "durationEstimate": "30 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-03",
+          "learningObjectives": [
+            "Criterios Electrocardiográficos de Supradesnivel del ST y BCRI nuevo",
+            "Ventanas de Tiempo de Reperfusión: Angioplastía (< 120 min) vs Trombolisis (< 30 min / 12h)",
+            "Protocolo de Trombolisis con Tenecteplase / Alteplase y Contraindicaciones Absolutas",
+            "Manejo de Complicaciones Mecánicas: Rotura de Músculo Papilar y CIV post-IAM"
+          ]
+        },
+        {
+          "id": "cardio-04",
+          "title": "Dislipidemias & Síndrome Metabólico",
+          "perfilCodes": [
+            "1.01.1.005",
+            "1.01.1.023",
+            "1.01.4.013"
+          ],
+          "durationEstimate": "25 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-04",
+          "learningObjectives": [
+            "Criterios Diagnósticos de Síndrome Metabólico (ATP III / IDF)",
+            "Estratificación de Riesgo Cardiovascular (Riesgo Muy Alto, Alto, Moderado, Bajo)",
+            "Metas de Colesterol LDL según Riesgo (< 55 mg/dL en muy alto riesgo)",
+            "Farmacoterapia: Atorvastatina 40-80 mg, Rosuvastatina 20-40 mg, Ezetimiba y Fibratos"
+          ]
+        },
+        {
+          "id": "cardio-05",
+          "title": "Hipertensión Arterial Primaria & Secundaria",
+          "perfilCodes": [
+            "1.01.1.015",
+            "1.01.1.016",
+            "1.01.4.011"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-05",
+          "learningObjectives": [
+            "Diagnóstico Oficial de HTA: MAPA (Holter PA) vs PAC (Monitoreo Ambulatorio)",
+            "Terapia Dual de Inicio en Etapa 2: IECA/ARAII + Calcioantagonista DHP o Tiazida",
+            "Metas Terapéuticas en Población General (< 130/80 mmHg) y Adulto Mayor (< 140/80)",
+            "Screening de HTA Secundaria: Hiperaldosteronismo primario, Estenosis Arteria Renal, Feocromocitoma y SAHOS"
+          ]
+        },
+        {
+          "id": "cardio-06",
+          "title": "Crisis Hipertensiva: Urgencia vs Emergencia",
+          "perfilCodes": [
+            "1.01.2.006"
+          ],
+          "durationEstimate": "24 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-06",
+          "learningObjectives": [
+            "Diferenciación Crítica: Urgencia Hipertensiva vs Emergencia Hipertensiva (Daño de Órgano Blanco)",
+            "Manejo de Emergencia Hipertensiva: Labetalol EV, Nitroprusiato de Sodio y Nitroglicerina",
+            "Metas de Reducción: Disminuir PA un 20-25% en la primera hora (evitar descenso brusco)",
+            "Manejo de Urgencia Hipertensiva en APS: Captopril oral o Amlodipino con control ambulatorio"
+          ]
+        },
+        {
+          "id": "cardio-07",
+          "title": "Fibrilación Auricular & Anticoagulación",
+          "perfilCodes": [
+            "1.01.1.012",
+            "1.01.1.013",
+            "1.01.3.003"
+          ],
+          "durationEstimate": "30 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-07",
+          "learningObjectives": [
+            "Escala CHA2DS2-VASc de Riesgo Embólico e Indicación de Anticoagulación (≥ 1 en hombres, ≥ 2 en mujeres)",
+            "Anticoagulantes Orales Directos (DOACs): Apixabán, Rivaroxabán, Dabigatrán vs Cumarínicos (Acenocumarol)",
+            "Estrategia de Control de Frecuencia (Betabloqueadores, Verapamilo, Digoxina) vs Ritmo",
+            "Regla de las 48 Horas para Cardioversión y Rol del Ecocardiograma Transesofágico (ETE)"
+          ]
+        },
+        {
+          "id": "cardio-08",
+          "title": "Flutter Auricular & Taquicardias Supraventriculares",
+          "perfilCodes": [
+            "1.01.1.014",
+            "1.01.1.024",
+            "1.01.1.011",
+            "1.01.4.014"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-08",
+          "learningObjectives": [
+            "Flutter Auricular: Ondas F en diente de sierra a 300 lpm con bloqueo AV 2:1 (150 lpm)",
+            "TPSV por Reentrada Nodal: Maniobras Vagales ➔ Adenosina 6 mg EV en bolo rápido",
+            "Manejo del Paciente Inestable: Cardioversión Eléctrica Sincrónica Inmediata (50-100 Joules)",
+            "Extrasistolía Ventricular Benigna: Holter de ritmo, tranquilización y betabloqueadores si sintomático"
+          ]
+        },
+        {
+          "id": "cardio-09",
+          "title": "Bradiarritmias & Bloqueos Aurículo-Ventriculares",
+          "perfilCodes": [
+            "1.01.1.002",
+            "1.01.2.009"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-09",
+          "learningObjectives": [
+            "Bloqueos AV: 1er Grado (PR largo fijo), Mobitz I (Wenckebach - PR progresivo)",
+            "Bloqueos AV de Alto Riesgo: Mobitz II (PR fijo con fallas súbitas) y 3er Grado (Disociación AV completa)",
+            "Manejo Agudo en Urgencias: Atropina 1 mg EV, Infusión de Dopamina/Adrenalina o Marcapasos Transcutáneo",
+            "Criterios Definitivos de Implante de Marcapasos Permanente"
+          ]
+        },
+        {
+          "id": "cardio-10",
+          "title": "Insuficiencia Cardíaca Crónica & Aguda (Masterclass)",
+          "perfilCodes": [
+            "1.01.1.018",
+            "1.01.2.005",
+            "1.01.4.006"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-01",
+          "learningObjectives": [
+            "Criterios Diagnósticos de Framingham (R3 galope e Ingurgitación Yugular)",
+            "Los 4 Pilares de Sobrevida en IC-FEr: ARNI, Betabloqueador, ARM y iSGLT2 con dosificación y titulación",
+            "Cuadrícula de Forrester 2x2 para IC Aguda en Urgencias",
+            "Protocolo del Edema Agudo de Pulmón: VNI (CPAP) + Furosemida EV + Nitroglicerina EV"
+          ]
+        },
+        {
+          "id": "cardio-11",
+          "title": "Miocardiopatías & Enfermedad de Chagas Cardíaco",
+          "perfilCodes": [
+            "1.01.1.020",
+            "1.04.1.002"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-11",
+          "learningObjectives": [
+            "Miocardiopatía Dilatada, Hipertrófica (riesgo de muerte súbita) y Restrictiva (Amiloidosis)",
+            "Enfermedad de Chagas Crónica en Chile: Diagnóstico por Serología Doble (ELISA + IFI)",
+            "Afectación Conducción Cardíaca en Chagas: BCRD + Hemibloqueo Anterior/Posterior + Aneurisma Apical",
+            "Tratamiento Antiparasitario con Benznidazol / Nifurtimox y manejo de megacolon/megaesófago"
+          ]
+        },
+        {
+          "id": "cardio-12",
+          "title": "Valvulopatías Aórticas (Estenosis & Insuficiencia)",
+          "perfilCodes": [
+            "1.01.1.009",
+            "1.01.1.017",
+            "1.01.1.021"
+          ],
+          "durationEstimate": "27 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-12",
+          "learningObjectives": [
+            "Estenosis Aórtica: Tríada clásica (Angina, Síncope, Disnea), Soplo Romboidal a carótidas y Pulso Parvus et Tardus",
+            "Criterios de Severidad: Gradiente medio > 40 mmHg y Área Valvular < 1.0 cm²",
+            "Insuficiencia Aórtica: Soplo diastólico aspirativo en foco aórtico accesorio, Pulso Celler/Corrigan",
+            "Indicaciones de Reemplazo Valvular: Quirúrgico vs TAVI"
+          ]
+        },
+        {
+          "id": "cardio-13",
+          "title": "Valvulopatías Mitrales & Fiebre Reumática",
+          "perfilCodes": [
+            "1.01.1.010",
+            "1.01.1.019",
+            "1.01.1.008"
+          ],
+          "durationEstimate": "27 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-13",
+          "learningObjectives": [
+            "Estenosis Mitral Reumática: Chasquido de apertura, Rolido diastólico en ápex y Dilatación Auricular Izquierda",
+            "Insuficiencia Mitral: Soplo Holosistólico en ápex irradiado a axila con R1 disminuido",
+            "Criterios de Jones para Fiebre Reumática Activa y Profilaxis Secundaria con Penicilina Benzatina IM",
+            "Complicaciones Embólicas y Asociación con Fibrilación Auricular"
+          ]
+        },
+        {
+          "id": "cardio-14",
+          "title": "Endocarditis Infecciosa & Profilaxis",
+          "perfilCodes": [
+            "1.01.1.007"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-14",
+          "learningObjectives": [
+            "Criterios de Duke Modificados: 2 Mayores (Hemocultivos x3 + Ecocardiograma con vegetaciones)",
+            "Etiología: S. aureus en drogadictos EV / válvulas protésicas, S. viridans en procedimientos dentales",
+            "Manifestaciones Inmunológicas: Nódulos de Osler, Manchas de Roth, Lesiones de Janeway",
+            "Guías Oficiales de Profilaxis Antibiótica Dental: Amoxicilina 2g oral sólo en pacientes de Alto Riesgo"
+          ]
+        },
+        {
+          "id": "cardio-15",
+          "title": "Cardiopatías Congénitas del Adulto",
+          "perfilCodes": [
+            "1.01.1.003"
+          ],
+          "durationEstimate": "24 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-15",
+          "learningObjectives": [
+            "Comunicación Interauricular (CIA): Desdoblamiento fijo y amplio de R2, soplo sistólico eyectivo pulmonar",
+            "Comunicación Interventricular (CIV): Soplo pansistólico en mesocardio con frémito",
+            "Coartación Aórtica: Hipertensión en miembros superiores con pulsos femorales disminuidos / retardados",
+            "Síndrome de Eisenmenger: Inversión de shunt de izquierda-derecha a derecha-izquierda por hipertensión pulmonar"
+          ]
+        },
+        {
+          "id": "cardio-16",
+          "title": "Cor Pulmonale Crónico & Tromboembolismo Pulmonar",
+          "perfilCodes": [
+            "1.01.1.004",
+            "1.01.1.006"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-16",
+          "learningObjectives": [
+            "Fisiopatología del Cor Pulmonale: Hipertensión pulmonar precapilar secundaria a EPOC o SAHOS",
+            "Signos de Falla Cardíaca Derecha: Ingurgitación yugular, hepatomegalia congestiva y edema maleolar sin crépitos",
+            "Diagnóstico de TEP: Escala de Wells / Ginebra, Dímero D y Angiotac de Tórax (Gold Standard)",
+            "Tratamiento de TEP: Anticoagulación precoz (HBPM / DOACs) vs Trombolisis sistémica en TEP masivo con shock"
+          ]
+        },
+        {
+          "id": "cardio-17",
+          "title": "Pericarditis Aguda & Taponamiento Cardíaco",
+          "perfilCodes": [
+            "1.01.1.022",
+            "1.01.2.008",
+            "1.01.5.007"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-17",
+          "learningObjectives": [
+            "Pericarditis Aguda: Dolor pleurítico que alivia al inclinarse hacia adelante + Frote pericárdico",
+            "Hallazgos ECG: Supradesnivel cóncavo difuso del ST en todas las derivaciones con depresión del segmento PR",
+            "Tratamiento de Pericarditis: AINEs (Ibuprofeno 600 mg o Aspirina) + Colquicina por 3 meses",
+            "Taponamiento Cardíaco: Tríada de Beck (Hipotensión, Ruidos apagados, Ingurgitación Yugular) + Pulso Paradójico"
+          ]
+        },
+        {
+          "id": "cardio-18",
+          "title": "Disección Aórtica Aguda & Urgencias Vasculares",
+          "perfilCodes": [
+            "1.01.2.002",
+            "1.01.4.002"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-18",
+          "learningObjectives": [
+            "Cuadro Clínico: Dolor torácico lacerante o transfixiante irradiado al dorso interescapular",
+            "Clasificación de Stanford: Tipo A (Aorta ascendente - Quirúrgica urgente) vs Tipo B (Aorta descendente - Médica)",
+            "Examen Diagnóstico de Elección: Angiotac de Aorta Tórax-Abdomen",
+            "Manejo Médico Inicial: Betabloqueadores EV (Labetalol) para FC < 60 lpm y PAS < 120 mmHg"
+          ]
+        },
+        {
+          "id": "cardio-19",
+          "title": "Shock & Drogas Vasoactivas",
+          "perfilCodes": [
+            "1.01.2.007"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-19",
+          "learningObjectives": [
+            "Clasificación Fisiopatológica de Shock: Hipovolémico, Cardiogénico, Distributivo (Séptico, Anafiláctico) y Obstructivo",
+            "Marcadores de Hipoperfusión Tisular: Lactato > 2 mmol/L, Llene capilar > 3 segundos, Oliguria < 0.5 mL/kg/h",
+            "Drogas Vasoactivas: Noradrenalina (Vasopresor #1 de elección), Dobutamina (Inótropo), Adrenalina (Anafilaxia / PCR)",
+            "Monitoreo hemodinámico y traslado de urgencia a UCI"
+          ]
+        },
+        {
+          "id": "cardio-20",
+          "title": "Paro Cardiorrespiratorio & Algoritmo ACLS 2026",
+          "perfilCodes": [
+            "1.01.2.006",
+            "1.01.5.004",
+            "1.01.5.005",
+            "1.01.5.006"
+          ],
+          "durationEstimate": "30 min",
+          "slideCount": 14,
+          "deckPath": "/deck/cardio-20",
+          "learningObjectives": [
+            "Cadena de Supervivencia: Reconocimiento precoz, Compresiones de alta calidad (100-120 cpm, 5 cm)",
+            "Ritmos Desfibrilables: Fibrilación Ventricular (FV) y TV sin pulso ➔ Desfibrilación 200J + Adrenalina y Amiodarona",
+            "Ritmos No Desfibrilables: Asistolia y Actividad Eléctrica sin Pulso (AESP) ➔ RCP continuo + Adrenalina 1 mg cada 3-5 min",
+            "Causas Reversibles del Paro (Las 5H y las 5T) y Cuidados Post-Paro"
+          ]
+        }
+      ]
+    },
+    {
+      "specialtyId": "gastroenterologia",
+      "specialtyName": "Gastroenterología",
+      "totalClasses": 16,
+      "classes": [
+        {
+          "id": "gastro-01",
+          "title": "Hemorragia Digestiva Alta y Baja (Masterclass)",
+          "perfilCodes": [
+            "1.06.2.007",
+            "1.06.1.030",
+            "1.06.4.007"
+          ],
+          "durationEstimate": "30 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-01",
+          "learningObjectives": [
+            "Estabilización hemodinámica inicial y meta restrictiva de transfusión (Hb 7-8 g/dL)",
+            "Farmacoterapia inmediata: IBP EV, Terlipresina / Octreótide y Ceftriaxona en cirróticos",
+            "Clasificación de Forrest al detalle: Indicación de terapia endoscópica dual (Ia a IIa)",
+            "HDA Variceal (Ligadura con bandas / TIPS) vs Hemorragia Digestiva Baja (Divertículos y Angiodisplasia)"
+          ],
+          "teleprompterScript": "[SLIDE 1: PORTADA & CÓDIGOS OFICIALES]\nBienvenidos a la Masterclass oficial de Hemorragia Digestiva Alta y Baja para el EUNACOM 2026.\nEn esta clase cubriremos con maxima profundidad clinica los codigos 1.06.2.007 de Hemorragia Digestiva Alta y Baja, 1.06.1.030 de Ulcera Peptica y 1.06.4.007 de Endoscopia Digestiva del Perfil V3 de ASOFAMECh.\nAprenderas el algoritmo de estabilizacion hemodinamica de urgencia, la farmacoterapia pre-endoscopica obligatoria, la clasificacion de Forrest al detalle y el manejo de la hemorragia variceal y baja. Ademas, resolveremos 3 casos clinicos reales del examen. Comencemos.\n\n[SLIDE 2: MATRIZ DE AUDITORÍA OFICIAL]\nRevisemos la exigencia legal del Perfil V3.\nEl codigo 1.06.2.007 clasifica la Hemorragia Digestiva como una urgencia medica con nivel Sospecha Diagnostica, Tratamiento Inicial y Derivacion Oportuna a Unidad de Paciente Critico o Cirugia.\nEl codigo 1.06.1.030 de Ulcera Peptica exige nivel Diagnostico Especifico, Tratamiento Completo y Seguimiento Completo en APS, incluyendo la erradicacion de Helicobacter pylori.\nY el codigo 1.06.4.007 exige Emplear el informe de Endoscopia Digestiva para tomar decisiones terapeuticas inmediatas.\n\n[SLIDE 3: FISIOPATOLOGÍA & DIAGNÓSTICO ETIOLÓGICO]\nAnatomicamente, la Hemorragia Digestiva Alta se origina proximal al Angulo de Treitz, mientras que la Baja se origina distal a este.\nLa causa numero 1 de Hemorragia Digestiva Alta es la Ulcera Peptica, responsable del 50% de los casos, producida principalmente por infeccion por Helicobacter pylori o consumo de AINEs que inhiben la sintesis de prostaglandinas protectoras.\nLa causa numero 2 es la Rotura de Varices Esofagicas o Gastricas en pacientes con Cirrosis e Hipertension Portal, responsable del 20 al 30% de los casos y asociada a una mortalidad aguda del 15 al 20%.\nOtras causas frecuentes son el Sindrome de Mallory-Weiss por vomitos a repeticion, la gastropatia erosiva por estres y el cancer gastrico ulcerado.\nClinicamente, la hematemesis y el vomito en borra de cafe indican sangrado alto, la melena requiere al menos 50 a 100 mL de sangre en el tracto superior, y la hematoquecia suele indicar sangrado bajo o una hemorragia alta masiva con transito acelerado.\n\n[SLIDE 4: ALGORITMO DE REANIMACIÓN HEMODINÁMICA]\nLa regla de oro del EUNACOM: en todo paciente con hemorragia digestiva, la prioridad absoluta antes de cualquier endoscopia o traslado es la estabilizacion hemodinamica.\nPaso 1: Asegurar via aerea con intubacion orotraqueal si hay hematemesis masiva o compromiso de conciencia, e instalar 2 vias venosas perifericas gruesas de calibre 14 o 16 French.\nPaso 2: Expansion de volumen con cristaloides como Suero Fisiologico o Ringer Lactato en bolos de 500 a 1000 mL guiados por presion arterial y diuresis mayor a 0.5 mL por kilo hora.\nPaso 3: Estrategia transfusional restrictiva. Transfundir globulos rojos solo si la Hemoglobina es menor a 7 gramos por decilitro, con meta entre 7 y 8. En pacientes coronarios activos o con shock refractario, la meta es 8 a 9 gramos por decilitro.\nPaso 4: Corregir coagulopatia con Plasma Fresco Congelado si el INR es mayor a 1.5 en sangrado activo, o plaquetas si el recuento es menor a 50.000.\n\n[SLIDE 5: FARMACOTERAPIA PRE-ENDOSCÓPICA]\nMientras se prepara la endoscopia, debemos iniciar la farmacoterapia de urgencia segun la sospecha clinica:\nEn sospecha de Ulcera Peptica No Variceal: indicamos Inhibidor de Bomba de Protones endovenoso, con bolo de 80 mg de Omeprazol o Esomeprazol, seguido de infusion continua a 8 mg por hora durante 72 horas. Esto mantiene el pH intragastrico sobre 6, evitando la lisis del coagulo por pepsina y favoreciendo la agregacion plaquetaria.\nEn sospecha de Hemorragia Variceal en paciente cirrotico:\nPrimero, vasoconstrictores esplacnicos inmediatos: Terlipresina 2 mg EV cada 4 horas u Octreotide en bolo de 50 microgramos mas infusion de 50 microgramos hora.\nSegundo, profilaxis antibiotica obligatoria con Ceftriaxona 1 gramo EV cada 24 horas por 7 dias. Esto reduce la translocacion bacteriana, la peritonitis bacteriana espontanea, el resangrado y la mortalidad en un 50%.\nY tercero, Eritromicina 250 mg EV 30 minutos antes de la endoscopia para vaciar el estomago de coagulos.\n\n[SLIDE 6: CLASIFICACIÓN DE FORREST]\nLa clasificacion de Forrest al informe endoscopico determina el riesgo de resangrado y la necesidad de hemostasia:\nForrest Ia: Sangrado arterial en chorro activo, con riesgo de resangrado del 90%.\nForrest Ib: Sangrado activo en babeo continuo, con riesgo de resangrado del 50 al 60%.\nForrest IIa: Vaso visible no sangrante en el fondo de la ulcera, con riesgo de resangrado del 40 al 50%.\nMemoriza esta regla de examen: las ulceras Forrest Ia, Ib y IIa requieren OBLIGATORIAMENTE Terapia Endoscopica Dual, que consiste en inyeccion de Adrenalina 1 en 10.000 combinada con un segundo metodo mecanico como Hemoclips o termico como termocoagulacion, mas infusion de IBP EV por 72 horas.\nEn cambio, Forrest IIb con coagulo adherido requiere remocion controlada, Forrest IIc con mancha oscura tiene riesgo menor al 10% y no requiere terapia endoscopica, y Forrest III con base de fibrina limpia tiene riesgo menor al 3% y permite alta precoz con IBP oral.\n\n[SLIDE 7: MANEJO DE LA HDA VARICEAL & BALÓN]\nEn el paciente con Hemorragia Variceal confirmada:\nEl tratamiento endoscopico de primera linea es la Ligadura Elastica con Bandas de las varices esofagicas dentro de las primeras 12 horas. Si se trata de varices fundicas gastricas, el tratamiento de eleccion es la inyeccion de Cianoacrilato.\nSi el paciente presenta una hemorragia masiva exanguinante refractaria que no se logra controlar endoscopicamente, la medida de rescate transitoria es la colocacion del Balon de Sengstaken-Blakemore, el cual debe mantenerse inflado por un maximo de 24 horas como puente a una terapia definitiva.\nEn casos de fracaso terapeutico o alto riesgo de resangrado, se indica un Shunt Portosistemico Intrahepatico Transyugular, conocido como TIPS.\nPara la prevencion secundaria obligatoria al alta, se indican Betabloqueadores No Selectivos como Propranolol o Carvedilol asociados a sesiones periodicas de ligadura con bandas hasta erradicar las varices.\n\n[SLIDE 8: HEMORRAGIA DIGESTIVA BAJA]\nLa Hemorragia Digestiva Baja se origina distal al angulo de Treitz:\nLa causa numero 1 de sangrado masivo bajo indoloro en adultos mayores es la Enfermedad Diverticular del colon, responsable del 30 al 40% de los casos. Cede espontaneamente en el 80% de los pacientes.\nLa causa numero 2 es la Angiodisplasia o ectasia vascular, frecuente en el ciego y colon derecho de ancianos, asociada clasicamente a estenosis aortica en el Sindrome de Heyde.\nOtras causas relevantes son el Cancer Colorrectal con anemia ferropenica oculta, la Colitis Isquemica caracterizada por dolor colico en fosa iliaca izquierda seguido de diarrea sanguinolenta, y la patologia orificial como hemorroides y fisuras anales.\nEl examen de eleccion en pacientes estables es la Colonoscopia precoz. Si el sangrado es masivo y persistente impidiendo la preparacion de colon, el AngioTAC de abdomen y pelvis es el estudio de eleccion para localizar el vaso sangrante y guiar la embolizacion por radiologia intervencional.\n\n[SLIDE 9: ESCALAS DE ESTRATIFICACIÓN PRONÓSTICA]\nEn el EUNACOM se evaluan dos escalas pronosticas fundamentales:\nLa Escala de Glasgow-Blatchford se calcula ANTES de la endoscopia. Evalua urea plasmatica, hemoglobina, presion arterial, frecuencia cardiaca, sincope, melena y comorbilidades. Su regla de oro es que un score de 0 puntos identifica a pacientes de muy bajo riesgo que pueden manejarse de forma ambulatoria con seguridad.\nLa Escala de Rockall se calcula DESPUES de la endoscopia. Integra edad, shock, comorbilidades, diagnostico endoscopico y la clasificacion de Forrest para predecir el riesgo de resangrado y la mortalidad intrahospitalaria.\n\n[SLIDE 10: TRAMPAS DEL BANCO DE PREGUNTAS]\nRepasemos las 4 trampas clasicas del banco de 6,000 preguntas:\nTrampa 1: Transfusion excesiva. Transfundir a un cirrotico hasta hemoglobina mayor a 10 g/dL aumenta bruscamente la presion portal y provoca resangrado variceal fulminante. La meta estricta es 7 a 8 g/dL.\nTrampa 2: Profilaxis antibiotica. En todo paciente cirrotico con hemorragia digestiva, la Ceftriaxona 1g EV al dia es obligatoria desde el ingreso, reduciendo la mortalidad a la mitad.\nTrampa 3: Sonda Nasogastrica. El lavado gastrico no mejora sobrevida y un aspirado claro no descarta sangrado duodenal.\nTrampa 4: Ulcera Forrest IIa. Un vaso visible no sangrante NUNCA se deja sin tratamiento endoscopico, siempre requiere terapia dual.\n\n[SLIDE 11: CASO CLÍNICO 1]\nAnalicemos el Caso 1: Hombre de 54 anos cirrotico con hematemesis y melena, hipotenso a 90 con 55 mmHg y taquicardico a 112 lpm.\nLa conducta farmacologica inmediata mientras se coordina la endoscopia es Terlipresina EV para disminuir la presion portal, Ceftriaxona 1g EV profilactica para prevenir peritonitis bacteriana espontanea y Omeprazol 80 mg en bolo EV. La opcion correcta es la B.\n\n[SLIDE 12: CASO CLÍNICO 2]\nAnalicemos el Caso 2: Mujer de 68 anos consumidora cronica de Ketoprofeno con melena y ulcera duodenal de 15 mm con vaso visible no sangrante, clasificada como Forrest IIa.\nDado su alto riesgo de resangrado del 40 al 50%, la conducta obligatoria es Terapia Endoscopica Dual combinando Adrenalina con hemoclip o termocoagulacion, mas infusion continua de Omeprazol EV por 72 horas. La opcion correcta es la C.\n\n[SLIDE 13: CASO CLÍNICO 3]\nAnalicemos el Caso 3: Hombre de 76 anos con rectorragia masiva indolora y shock hemodinamico, con endoscopia alta normal que descarta sangrado alto.\nSi el sangrado activo persiste de forma abundante impidiendo la preparacion del colon para una colonoscopia, el examen diagnostico y terapeutico de eleccion es el AngioTAC de abdomen y pelvis para localizar la extravasacion activa de contraste y proceder a la embolizacion supraselectiva. La opcion correcta es la B.\n\n[SLIDE 14: ALGORITMO RESUMIDO DE DECISIÓN]\nEn resumen, ante cualquier hemorragia digestiva en el EUNACOM:\nPrimero: Reanimacion con 2 vias venosas perifericas gruesas, cristaloides y meta de hemoglobina de 7 a 8 g/dL.\nSegundo: Farmacoterapia precoz con IBP EV y en cirroticos Terlipresina mas Ceftriaxona.\nTercero: Endoscopia digestiva alta en menos de 24 horas, aplicando terapia dual en Forrest Ia, Ib y IIa, o ligadura con bandas en varices.\nCuarto: En hemorragia baja masiva refractaria, AngioTAC y embolizacion.\nHemos completado la Masterclass de Hemorragia Digestiva Alta y Baja. Nos vemos en la siguiente clase."
+        },
+        {
+          "id": "gastro-02",
+          "title": "Hemorragia Digestiva Baja & Enfermedad Diverticular",
+          "perfilCodes": [
+            "1.06.2.007",
+            "1.06.1.016",
+            "1.06.1.017",
+            "1.06.4.005"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-02",
+          "learningObjectives": [
+            "Etiologías principales: Diverticulosis (causa #1 masiva indolora), Angiodisplasia y Cáncer",
+            "Diverticulitis Aguda: Clasificación de Hinchey I-IV al TAC abdominal",
+            "Manejo de Diverticulitis: Ciprofloxacino + Metronidazol oral en ambulatorio vs Cirugía de Hartmann",
+            "Algoritmo de HDB Masiva: Colonoscopía vs AngioTAC con embolización"
+          ]
+        },
+        {
+          "id": "gastro-03",
+          "title": "Cirrosis Hepática, Hipertensión Portal & Ascitis",
+          "perfilCodes": [
+            "1.06.1.005",
+            "1.06.1.001",
+            "1.06.1.022",
+            "1.06.5.001"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-03",
+          "learningObjectives": [
+            "Gradiente de Albúmina en Líquido Ascítico (GASA ≥ 1.1 g/dL = Hipertensión Portal)",
+            "Manejo de Ascitis: Restricción de Sodio (< 2g/día) + Espironolactona 100 mg + Furosemida 40 mg",
+            "Paracentesis Evacuadora de Gran Volumen: Reposición con Albúmina (8g por cada litro evacuado > 5L)",
+            "Clasificación Pronóstica de Child-Pugh (A, B, C) y Score MELD"
+          ]
+        },
+        {
+          "id": "gastro-04",
+          "title": "Complicaciones Cirróticas: PBE, Encefalopatía & Síndrome Hepatorrenal",
+          "perfilCodes": [
+            "1.06.2.011",
+            "1.06.2.006",
+            "1.06.2.012"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-04",
+          "learningObjectives": [
+            "Peritonitis Bacteriana Espontánea (PBE): Diagnóstico con PMN ≥ 250/mm³, Cefotaxima EV + Albúmina",
+            "Profilaxis de PBE: Primaria (Proteínas < 1.5 g/dL) y Secundaria (Ciprofloxacino / Cotrimoxazol)",
+            "Encefalopatía Hepática: Grados de West-Haven, factores gatillantes, Lactulosa y Rifaximina",
+            "Síndrome Hepatorrenal: Tipo 1 vs Tipo 2, Terlipresina + Albúmina EV"
+          ]
+        },
+        {
+          "id": "gastro-05",
+          "title": "Reflujo Gastroesofágico (ERGE), Dispepsia & Esófago de Barrett",
+          "perfilCodes": [
+            "1.06.1.027",
+            "1.06.1.014",
+            "1.06.4.007"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-05",
+          "learningObjectives": [
+            "ERGE: Prueba terapéutica con IBP vs Criterios de EDA obligatoria (Banderas rojas, > 40 años)",
+            "Esófago de Barrett: Metaplasia intestinal en tercio distal esofágico y protocolo de biopsias de Seattle",
+            "Dispepsia: Funcional (Roma IV) vs Orgánica",
+            "pH-metría e Impedanciometría esofágica de 24 horas como Gold Standard confirmatorio"
+          ]
+        },
+        {
+          "id": "gastro-06",
+          "title": "Úlcera Péptica & Helicobacter pylori",
+          "perfilCodes": [
+            "1.06.1.030",
+            "1.06.3.005"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-06",
+          "learningObjectives": [
+            "Diferencias clínicas: Úlcera Duodenal (alivia con comidas) vs Gástrica (aumenta con comidas)",
+            "Esquemas de Erradicación de H. pylori: Cuádruple con Bismuto o Terapia Concomitante por 14 días",
+            "Test de Control de Erradicación: Test de Aire Espirado con C13 o Antígeno en Deposiciones (≥ 4 semanas post-tratamiento)",
+            "Complicaciones de la Úlcera: Hemorragia, Perforación (Neumoperitoneo) y Estenosis Pilórica"
+          ]
+        },
+        {
+          "id": "gastro-07",
+          "title": "Cáncer Gástrico & Screening EUNACOM (Garantía GES)",
+          "perfilCodes": [
+            "1.06.1.004",
+            "1.06.3.003",
+            "1.06.4.007"
+          ],
+          "durationEstimate": "27 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-07",
+          "learningObjectives": [
+            "Epidemiología chilena: Cáncer gástrico como causa líder de mortalidad oncológica en hombres",
+            "Regla de Oro GES: Todo paciente ≥ 40 años con dispepsia de > 2 semanas o banderas rojas requiere EDA",
+            "Clasificación de Lauren: Intestinal (asociado a H. pylori y gastritis atrófica) vs Difuso (células en anillo de sello)",
+            "Estadificación con TAC de Tórax-Abdomen-Pelvis y Criterios de Resecabilidad"
+          ]
+        },
+        {
+          "id": "gastro-08",
+          "title": "Cáncer Colorrectal & Pólipos Intestinales",
+          "perfilCodes": [
+            "1.06.1.029",
+            "1.06.3.004",
+            "1.06.4.009"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-08",
+          "learningObjectives": [
+            "Clínica según localización: Colon Derecho (Anemia ferropénica y masa palpable) vs Izquierdo (Cambio del hábito intestinal y rectorragia)",
+            "Tamizaje en Población General: Test de Sangre Oculta en Deposiciones (FIT) anual o Colonoscopía cada 10 años desde los 50 años",
+            "Síndromes Hereditarios: Poliposis Adenomatosa Familiar (PAF - gen APC) y Síndrome de Lynch (Criterios de Amsterdam)",
+            "Pólipos con mayor riesgo de malignización: Adenomas vellosos, > 1 cm y con displasia de alto grado"
+          ]
+        },
+        {
+          "id": "gastro-09",
+          "title": "Patología Biliar Litiásica: Colelitiasis, Colecistitis & Coledocolitiasis",
+          "perfilCodes": [
+            "1.06.1.006",
+            "1.06.2.004",
+            "1.06.4.004",
+            "1.06.4.006"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-09",
+          "learningObjectives": [
+            "Colelitiasis: Diagnóstico ecográfico (cálculo móvil con sombra acústica) y Criterio GES en Chile (35 a 49 años)",
+            "Colecistitis Aguda: Signo de Murphy ecográfico, engrosamiento pared > 4 mm y Colecistectomía precoz (< 72h)",
+            "Coledocolitiasis: Patrón colestásico con vía biliar dilatada > 6 mm; CPRE terapéutica vs ColangioRM"
+          ]
+        },
+        {
+          "id": "gastro-10",
+          "title": "Colangitis Aguda & Cáncer de Vía Biliar",
+          "perfilCodes": [
+            "1.06.2.003",
+            "1.06.1.003",
+            "1.06.1.007"
+          ],
+          "durationEstimate": "27 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-10",
+          "learningObjectives": [
+            "Tríada de Charcot (Dolor HCD + Fiebre con escalofríos + Ictericia)",
+            "Pentalogía de Reynolds (Tríada de Charcot + Shock / Hipotensión + Compromiso de Conciencia)",
+            "Guías de Tokio 2018 para Colangitis Aguda (Grado I, II y III)",
+            "Manejo de Emergencia: Antibióticos EV (Ceftriaxona + Metronidazol) + Drenaje Biliar Urgente por CPRE"
+          ]
+        },
+        {
+          "id": "gastro-11",
+          "title": "Pancreatitis Aguda & Crónica",
+          "perfilCodes": [
+            "1.06.2.010",
+            "1.06.1.025",
+            "1.06.4.005"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-11",
+          "learningObjectives": [
+            "Criterios Diagnósticos de Atlanta (2 de 3: Dolor epigástrico en faja, Lipasa/Amilasa > 3x, TAC compatible)",
+            "Estratificación de Severidad: Score BISAP ≥ 3, PCR > 150 mg/L a las 48h, Escala de Balthazar al TAC a las 72h",
+            "Tratamiento: Hidratación vigorosa con Ringer Lactato (200-250 mL/h) y realimentación oral precoz",
+            "Pancreatitis Crónica: Tríada clásica (Calcificaciones pancreáticas, Esteatorrea y Diabetes mellitus)"
+          ]
+        },
+        {
+          "id": "gastro-12",
+          "title": "Hepatitis Virales A, B, C & Serología Completa",
+          "perfilCodes": [
+            "1.06.1.019",
+            "1.06.1.020",
+            "1.06.1.021",
+            "1.06.4.012"
+          ],
+          "durationEstimate": "28 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-12",
+          "learningObjectives": [
+            "Hepatitis A: Transmisión fecal-oral, IgM anti-VHA (+), no cronifica, manejo de soporte",
+            "Serología Completa de Hepatitis B: HBsAg (infección activa), Anti-HBc IgM (aguda), Anti-HBc IgG (pasada/crónica), Anti-HBs (inmunidad)",
+            "Hepatitis C: Causa líder de cirrosis y hepatocarcinoma en occidente, diagnóstico con Anti-VHC + Carga viral ARN, Tratamiento con Antivirales Directos (SVR > 95%)"
+          ]
+        },
+        {
+          "id": "gastro-13",
+          "title": "Falla Hepática Fulminante & Hepatopatías Especiales",
+          "perfilCodes": [
+            "1.06.2.009",
+            "1.06.1.024",
+            "1.06.3.006"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-13",
+          "learningObjectives": [
+            "Insuficiencia Hepática Aguda (Falla Fulminante): Encefalopatía + Coagulopatía (INR > 1.5) en < 26 semanas en hígado previamente sano",
+            "Causa #1 tóxica: Intoxicación por Paracetamol ➔ Tratamiento inmediato con N-Acetilcisteína EV",
+            "Criterios de King's College para Trasplante Hepático Urgente",
+            "Esteatosis Hepática No Alcohólica (EHNA): Diagnóstico, cambio de estilo de vida y control de síndrome metabólico"
+          ]
+        },
+        {
+          "id": "gastro-14",
+          "title": "Enfermedad Inflamatoria Intestinal: Colitis Ulcerosa vs Crohn",
+          "perfilCodes": [
+            "1.06.1.018",
+            "1.06.4.007"
+          ],
+          "durationEstimate": "27 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-14",
+          "learningObjectives": [
+            "Colitis Ulcerosa: Afectación continua mucosal desde el recto hacia proximal, diarrea sanguinolenta, pseudopólipos, p-ANCA (+)",
+            "Enfermedad de Crohn: Afectación transmural en parches (Skip lesions) desde boca al ano (íleon terminal #1), fístulas, granulomas no caseificantes, ASCA (+)",
+            "Complicaciones Graves: Megacolon Tóxico (Colon > 6 cm en Rx simple) ➔ Corticoides EV + Cirugía de urgencia si refractario",
+            "Tratamiento Médico: Mesalazina (Inducción y mantención en CU leve-moderada), Corticoides y Terapia Anti-TNF (Infliximab)"
+          ]
+        },
+        {
+          "id": "gastro-15",
+          "title": "Síndrome de Malabsorción, Enfermedad Celíaca & Diarrea Crónica",
+          "perfilCodes": [
+            "1.06.1.015",
+            "1.06.1.028",
+            "1.06.1.011",
+            "1.06.4.013"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-15",
+          "learningObjectives": [
+            "Enfermedad Celíaca: Anticuerpos Anti-Transglutaminasa IgA (tTG-IgA) + Biopsia Duodenal (Atrofia vellositaria Marsh 3)",
+            "Diarrea Crónica (> 4 semanas): Osmótica (cede con ayuno, GAP osmolar > 100) vs Secretora (no cede con ayuno, GAP < 50)",
+            "Test de D-Xilosa para diferenciar malabsorción mucosal vs maldigestión intraluminal pancreática",
+            "Intolerancia a la Lactosa: Test de Hidrógeno Espirado y prueba de exclusión dietética"
+          ]
+        },
+        {
+          "id": "gastro-16",
+          "title": "Diarreas Infecciosas, Clostridioides difficile & Trastornos Funcionales",
+          "perfilCodes": [
+            "1.06.2.005",
+            "1.06.1.010",
+            "1.06.1.008",
+            "1.06.4.014"
+          ],
+          "durationEstimate": "26 min",
+          "slideCount": 14,
+          "deckPath": "/deck/gastro-16",
+          "learningObjectives": [
+            "Diarrea Aguda Infecciosa: Inflamatoria (disentería con leucocitos fecales) vs No Inflamatoria (acuosa)",
+            "Infección por C. difficile: Diarrea tras uso de antibióticos (Clindamicina, Cefalosporinas, Quinolonas); Toxina A/B (+)",
+            "Tratamiento de C. difficile: Vancomicina oral 125 mg c/6h o Fidaxomicina oral (el Metronidazol ya no es de 1ra línea)",
+            "Síndrome de Intestino Irritable (SII): Criterios de Roma IV (Dolor abdominal recurrente ≥ 1 día/semana asociado a defecación) sin banderas rojas"
+          ]
+        }
+      ]
+    }
+  ]
+}

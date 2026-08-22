@@ -365,6 +365,14 @@ function clasesApiPlugin() {
         if (!req.url.startsWith('/api/admin-users')) return next()
         res.setHeader('Content-Type', 'application/json')
         try {
+          if (req.method === 'GET') {
+            const url = new URL(req.url, 'http://localhost')
+            const action = url.searchParams.get('action')
+            if (action === 'settings') {
+              return res.end(JSON.stringify({ settings: { freemium_mode: 'strict' } }))
+            }
+            return res.end(JSON.stringify({ users: [], total: 0 }))
+          }
           if (req.method === 'POST') {
             const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
             

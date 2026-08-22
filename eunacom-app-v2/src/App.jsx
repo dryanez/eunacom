@@ -22,6 +22,8 @@ import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
 import StudyGuides from './pages/StudyGuides'
 import ReviewErrors from './pages/ReviewErrors'
+import StudioHub from './pages/StudioHub'
+import DeckRunner from './slides/DeckRunner'
 // SEO Public pages
 import LandingPage from './pages/LandingPage'
 import FAQ from './pages/FAQ'
@@ -32,8 +34,19 @@ import SimulacrosLanding from './pages/SimulacrosLanding'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
-import AuthModal from './components/AuthModal'
+import { useAuth } from './contexts/AuthContext'
 import './index.css'
+
+const AdminRoute = ({ children }) => {
+  const { user, isAdmin, loading } = useAuth()
+  const isExport = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('export') === 'true'
+  if (isExport) return children // Allows headless CLI video rendering
+  if (loading) return null
+  if (!user || !isAdmin()) {
+    return <Navigate to="/dashboard" replace />
+  }
+  return children
+}
 
 function App() {
   return (
@@ -52,6 +65,13 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+
+            {/* ── Admin-Only Presentation Engine (Fullscreen Deck) ── */}
+            <Route path="/deck/:classId" element={
+              <AdminRoute>
+                <DeckRunner />
+              </AdminRoute>
+            } />
 
             {/* ── Auth Routes ── */}
             <Route element={<AuthLayout />}>
@@ -81,6 +101,12 @@ function App() {
               <Route path="/script-progress" element={<ScriptProgress />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/study-guides" element={<StudyGuides />} />
+              {/* Admin-Only Studio Creator */}
+              <Route path="/studio" element={
+                <AdminRoute>
+                  <StudioHub />
+                </AdminRoute>
+              } />
             </Route>
 
             {/* ── Catch-all ── */}
