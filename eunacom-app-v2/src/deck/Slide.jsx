@@ -7,7 +7,7 @@ export function Slide({ center = false, full = false, nav, notes, children }) {
       style={{
         width: '100%',
         height: '100%',
-        padding: full ? 0 : '45px 65px',
+        padding: full ? 0 : '26px 36px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: center ? 'center' : 'space-between',

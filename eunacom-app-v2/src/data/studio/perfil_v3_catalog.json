@@ -3,371 +3,711 @@
     {
       "specialtyId": "cardiologia",
       "specialtyName": "Cardiología & Sistema Cardiovascular",
-      "totalClasses": 21,
+      "totalClasses": 36,
       "classes": [
-        {
-          "id": "cardio-00",
-          "title": "Taller Maestro de Electrocardiograma Clínico",
-          "perfilCodes": [
-            "1.01.4.007"
-          ],
-          "durationEstimate": "32 min",
-          "slideCount": 14,
-          "deckPath": "/deck/cardio-00",
-          "learningObjectives": [
-            "Cálculo sistemático del eje eléctrico frontal (D1 y aVF)",
-            "Diagnóstico de Bloqueos de Rama (BCRD vs BCRI) y Bloqueos Bifasciculares",
-            "Criterios de Hipertrofia Ventricular (Sokolow-Lyon > 35 mm, Cornell)",
-            "Ondas Q patológicas, supradesnivel del ST y cambios recíprocos (espejo)"
-          ],
-          "teleprompterScript": "[SLIDE 1: PORTADA & CÓDIGOS OFICIALES]\nBienvenidos a este Taller Maestro de Electrocardiograma Clínico para el EUNACOM 2026.\nEn esta masterclass cubrimos el código ministerial 1.01.4.007: Electrocardiograma de 12 derivaciones, con nivel de exigencia legal 'Realiza, Interpreta y Emplea'.\nEl ECG es por lejos el examen complementario más evaluado en el EUNACOM. En este video aprenderás el algoritmo de lectura sistemática en 6 pasos que te permitirá resolver cualquier trazado del examen en menos de 45 segundos.\n\n[SLIDE 2: LECTURA SISTEMÁTICA EN 6 PASOS]\nTodo trazado electrocardiográfico se analiza en un orden inalterable:\n1. Calibración y Estandarización: 25 mm/s y 10 mm/mV.\n2. Ritmo: ¿Es ritmo sinusal? (Onda P positiva en D2 y negativa en aVR, seguida de QRS, con FC regular entre 60 y 100 lpm).\n3. Frecuencia Cardíaca: Regla de los 300 (300, 150, 100, 75, 60, 50) o contar complejos en 30 cuadros grandes (6 segundos) multiplicado por 10 para ritmos irregulares.\n4. Eje Eléctrico Frontal: Cuadrantes D1 y aVF.\n5. Intervalos y Segmentos: PR (120-200 ms), QRS (< 120 ms), QT corregido (Bazett < 450 ms en hombres, < 460 ms en mujeres).\n6. Isquemia, Lesión y Necrosis: Ondas T picudas o invertidas, supradesnivel o infradesnivel del ST, y ondas Q patológicas.\n\n[SLIDE 3: CÁLCULO DEL EJE ELÉCTRICO FRONTAL]\nEl método rápido para el EUNACOM se basa en las derivaciones D1 y aVF:\n- Eje Normal (entre -30° y +90°): D1 positivo (+) y aVF positivo (+).\n- Desviación a la Izquierda (entre -30° y -90°): D1 positivo (+) y aVF negativo (-). Se confirma con D2 negativo. Causas: Hemibloqueo anterior izquierdo (HBAI), hipertrofia ventricular izquierda severa o infarto inferior antiguo.\n- Desviación a la Derecha (entre +90° y +180°): D1 negativo (-) y aVF positivo (+). Causas: Hipertrofia ventricular derecha, Cor Pulmonale, TEP o Hemibloqueo posterior izquierdo.\n- Desviación Extrema ('Tierra de nadie' entre -90° y 180°): D1 negativo y aVF negativo. Típica de Taquicardia Ventricular.\n\n[SLIDE 4: BLOQUEOS DE RAMA (BCRD VS BCRI)]\nCuando el QRS mide 120 milisegundos o más (3 cuadritos pequeños), estamos ante un Bloqueo Completo de Rama:\n- Bloqueo Completo de Rama Derecha (BCRD):\n  ● Patrón rsR' (orejas de conejo) en derivaciones derechas V1-V2.\n  ● Onda S ancha y empastada en derivaciones laterales V5-V6 y D1.\n  ● Causa benigna frecuente o secundaria a sobrecarga derecha (TEP, CIA, Chagas).\n- Bloqueo Completo de Rama Izquierda (BCRI):\n  ● Onda R ancha, mellada y sin onda Q en V5-V6 y D1.\n  ● Complejo QS o rS profundo en V1-V2.\n  ● Causa SIEMPRE patológica (Cardiopatía isquémica, HTA, Miocardiopatía dilatada).\n  ● ¡Regla de oro!: Todo BCRI nuevo en contexto de dolor torácico agudo equivale a IAM con supradesnivel del ST y requiere reperfusión inmediata.\n\n[SLIDE 5: CRITERIOS DE HIPERTROFIA VENTRICULAR]\nHipertrofia Ventricular Izquierda (HVI):\n- Criterio de Sokolow-Lyon: Onda S en V1 + Onda R en V5 o V6 > 35 mm (7 cuadros grandes).\n- Criterio de Cornell: Onda R en aVL + Onda S en V3 > 28 mm en hombres, o > 20 mm en mujeres.\n- Criterios de sobrecarga (Strain): Infradesnivel asimétrico del ST con inversión de onda T en V5, V6, D1 y aVL.\n\n[SLIDE 6: LOCALIZACIÓN ANATÓMICA DE LA ISQUEMIA EN 12 DERIVACIONES]\n- Pared Anterior Extensa (Arteria Descendente Anterior - ADA): V1 a V6.\n- Pared Anteroseptal (ADA): V1 a V4.\n- Pared Lateral Alta (Arteria Circunfleja - Cx): D1 y aVL.\n- Pared Lateral Baja (Cx): V5 y V6.\n- Pared Inferior (Arteria Coronaria Derecha - ACD): D2, D3 y aVF.\n- Ventrículo Derecho (ACD): Derivaciones derechas V3R y V4R. (¡Contraindicados los nitratos y diuréticos!).\n- Pared Posterior (ACD o Cx): Infradesnivel especular del ST en V1-V2 con onda R alta. Confirmar con V7, V8 y V9."
-        },
         {
           "id": "cardio-01",
           "title": "Angina Crónica Estable & Cardiopatía Isquémica",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
             "1.01.1.001",
+            "1.01.4.004",
             "1.01.4.008"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-01",
           "learningObjectives": [
-            "Definición de Angina Típica vs Atípica vs Dolor No Cardíaco",
-            "Estratificación de Riesgo y Test de Esfuerzo (Criterios de Positividad y Alto Riesgo)",
-            "Tratamiento Antiisquémico de 1ra Línea (Betabloqueadores, Calcioantagonistas, Nitratos)",
-            "Terapia Preventiva Obligatoria: Aspirina 100 mg y Estatinas de Alta Potencia"
-          ]
+            "Definición clínica de Angina Típica vs Atípica vs Dolor Torácico No Cardíaco",
+            "Test de Esfuerzo / AngioTAC coronario: Criterios de positividad y alto riesgo isquémico",
+            "Tratamiento antiisquémico de 1ra línea: Betabloqueadores, Calcioantagonistas y Nitratos",
+            "Terapia de prevención secundaria obligatoria: Aspirina 100 mg + Estatinas de alta potencia"
+          ],
+          "teleprompterScript": "[SLIDE 1: PORTADA & CÓDIGOS OFICIALES]\nBienvenidos a la Masterclass oficial de Angina Crónica Estable y Cardiopatía Isquémica para el EUNACOM 2026.\nEn esta clase cubrimos en profundidad los códigos 1.01.1.001 de Angina Estable, 1.01.4.004 de Test de Esfuerzo y 1.01.4.008 de AngioTAC coronario del Perfil V3 de ASOFAMECh.\nAprenderás a diferenciar la angina típica de otras causas de dolor torácico, los criterios de positividad y alto riesgo en el test de esfuerzo, la farmacoterapia antiisquémica de primera línea, la prevención secundaria obligatoria y el manejo de la angina vasoespástica de Prinzmetal. Además, resolveremos 3 casos clínicos reales del examen. Comencemos.\n\n[SLIDE 2: MATRIZ DE EXIGENCIA LEGAL PERFIL V3]\nRevisemos la exigencia legal del Perfil V3.\nEl código 1.01.1.001 clasifica la Angina Crónica Estable con nivel Diagnóstico Específico, Tratamiento Inicial y Seguimiento Completo en APS.\nEsto significa que como médico general en CESFAM estás legalmente facultado y obligado a realizar el diagnóstico clínico, solicitar la estratificación no invasiva, iniciar la terapia farmacológica y realizar el seguimiento ambulatorio periódico.\nSolo en caso de refractariedad o criterios de alto riesgo isquémico se deriva a nivel secundario para coronariografía.\n\n[SLIDE 3: CRITERIOS DE DIAMOND-FORRESTER]\nEl diagnóstico de la angina de pecho es fundamentalmente clínico y se basa en los 3 criterios de Diamond-Forrester:\nPrimero: Localización y carácter. Dolor u opresión retroesternal profunda, con irradiación típica a mandíbula, cuello o extremidad superior izquierda.\nSegundo: Gatillante fisiológico. Aparece de manera predecible con el esfuerzo físico o estrés emocional.\nTercero: Alivio rápido. Cede en menos de 5 a 10 minutos con el reposo o con nitratos sublinguales.\nSi el paciente cumple los 3 criterios, se define como Angina Típica. Si cumple 2, es Angina Atípica. Si cumple 0 o 1, es Dolor Torácico No Cardíaco.\n\n[SLIDE 4: CLASIFICACIÓN DEL DOLOR TORÁCICO]\nAnalicemos los tipos de dolor torácico en el EUNACOM:\nLa Angina Típica confiere una probabilidad pretest mayor al 85% en hombres mayores de 50 años.\nLa Angina Atípica es especialmente frecuente en mujeres, adultos mayores y pacientes diabéticos, donde la isquemia miocárdica puede manifestarse solo como equivalentes anginosos: disnea súbita de esfuerzo, fatiga inexplicable o náuseas.\nEl Dolor No Cardíaco se caracteriza por dolor punzante tipo puntada de costado, que empeora con la respiración profunda o que se reproduce palpando las articulaciones condrocostales, típico de la osteocondritis o Síndrome de Tietze.\n\n[SLIDE 5: ESCALA CANADIENSE CCS]\nLa limitación funcional de la angina se clasifica según la Sociedad Cardiovascular Canadiense en 4 clases:\nClase I: La actividad física ordinaria no causa angina; solo aparece con esfuerzos extenuantes o prolongados.\nClase II: Ligera limitación de la actividad ordinaria; aparece al caminar rápido en subida o subir más de un piso.\nClase III: Marcada limitación; aparece al caminar 1 o 2 cuadras en plano a paso normal.\nClase IV: Incapacidad total; aparece con mínimos esfuerzos de la vida diaria o en reposo.\n¡Atención a esta regla de examen!: Todo paciente que pasa bruscamente a clase funcional III o IV en las últimas semanas o presenta dolor en reposo debe manejarse como un Síndrome Coronario Agudo.\n\n[SLIDE 6: FISIOPATOLOGÍA DE LA PLACA ESTABLE]\nLa base fisiopatológica de la angina estable es una placa de ateroma rica en colágeno con capa fibrosa gruesa que obstruye de forma fija más del 70% del lumen arterial coronario.\nEn reposo, el flujo sanguíneo coronario basal es suficiente para satisfacer el miocardio. Sin embargo, durante el ejercicio, la demanda de oxígeno aumenta y la reserva coronaria se agota, generando isquemia subendocárdica transitoria.\nEn la cascada isquémica, el dolor es el último eslabón: primero se produce la alteración metabólica celular, luego la disfunción diastólica, seguida de la disfunción sistólica y cambios eléctricos en el ECG, para finalmente manifestarse el dolor torácico.\n\n[SLIDE 7: SELECCIÓN DEL TEST DIAGNÓSTICO]\n¿Cómo elegimos el examen diagnóstico en APS?:\nSi el paciente tiene capacidad para caminar y su ECG basal es completamente normal e interpretable, el estudio de primera línea es el Test de Esfuerzo convencional o Ergometría con protocolo de Bruce.\nSi la probabilidad pretest es baja o intermedia (15 al 50%), el AngioTAC de coronarias es una excelente alternativa gracias a su Valor Predictivo Negativo superior al 98%, ideal para descartar enfermedad coronaria.\nSi el ECG basal tiene alteraciones basales como Bloqueo Completo de Rama Izquierda, marcapasos o preexcitación, o el paciente tiene limitación motora, el Test de Esfuerzo pierde validez y se debe solicitar un Eco-Estrés o Resonancia Cardíaca con fármacos como Dobutamina o Dipiridamol.\n\n[SLIDE 8: TEST DE ESFUERZO (CRITERIOS DE POSITIVIDAD)]\nEl Test de Esfuerzo se considera positivo para isquemia miocárdica cuando se observa un infradesnivel del segmento ST mayor o igual a 1 milímetro horizontal o descendente medido a 80 milisegundos del punto J.\nUn infradesnivel ascendente rápido es una respuesta fisiológica normal al ejercicio y NO se considera patológico.\nLa aparición de un supradesnivel del ST en derivaciones sin onda Q previa indica isquemia transmural severa y obliga a detener la prueba de inmediato.\nEntre las contraindicaciones absolutas para realizar un test de esfuerzo destacan la Estenosis Aórtica Severa Sintomática, el infarto reciente menor a 48 horas y las arritmias ventriculares malignas inestables.\n\n[SLIDE 9: CRITERIOS DE ALTO RIESGO ISQUÉMICO]\nExisten 4 banderas rojas en el Test de Esfuerzo que definen alto riesgo de mortalidad anual mayor al 3% y obligan a derivar al paciente directamente a Coronariografía Invasiva:\n1. Infradesnivel del ST severo: Mayor o igual a 2 milímetros, o presente en 5 o más derivaciones.\n2. Aparición precoz: Isquemia en el estadio 1 de Bruce, con frecuencia cardíaca menor a 120 latidos por minuto o menos de 5 METs.\n3. Caída de la Presión Arterial Sistólica durante el esfuerzo, lo que traduce falla de bomba ventricular izquierda por isquemia masiva.\n4. Arritmias ventriculares complejas como Taquicardia Ventricular durante el esfuerzo.\nCualquiera de estos hallazgos sugiere compromiso del Tronco Coronario Izquierdo o enfermedad de 3 vasos.\n\n[SLIDE 10: PILARES DE PREVENCIÓN SECUNDARIA]\nTodo paciente con cardiopatía coronaria confirmada debe recibir terapia de prevención secundaria obligatoria en APS:\nPrimero: Aspirina a dosis de 100 miligramos al día a permanencia, o Clopidogrel 75 miligramos si existe alergia demostrada.\nSegundo: Estatinas de alta potencia: Atorvastatina 80 miligramos o Rosuvastatina 40 miligramos al día. Su objetivo es estabilizar la placa y alcanzar la meta de c-LDL menor a 55 miligramos por decilitro con una reducción mínima del 50%.\nTercero: Inhibidores de la ECA como Enalapril 10 a 20 miligramos al día si el paciente tiene hipertensión, diabetes, disfunción ventricular izquierda o daño renal.\n\n[SLIDE 11: BETABLOQUEADORES (1RA LÍNEA ANTIISQUÉMICA)]\nLos Betabloqueadores son el fármaco antiisquémico de primera elección.\nAl bloquear los receptores Beta-1 miocárdicos, reducen la frecuencia cardíaca, la contractilidad y el consumo de oxígeno, prolongando el tiempo de diástole para favorecer la perfusión coronaria.\nLos fármacos recomendados son Bisoprolol de 5 a 10 miligramos al día, Carvedilol 25 miligramos cada 12 horas o Succinato de Metoprolol.\nLa meta terapéutica obligatoria es alcanzar una frecuencia cardíaca en reposo entre 55 y 60 latidos por minuto.\nSi los betabloqueadores están contraindicados por asma severa o bloqueo AV, el fármaco alternativo de primera línea es un Calcioantagonista no dihidropiridínico como Verapamilo o Diltiazem.\n\n[SLIDE 12: CALCIOANTAGONISTAS & NITRATOS]\nSi el paciente persiste con síntomas a pesar del betabloqueo óptimo, asociamos un Calcioantagonista Dihidropiridínico como Amlodipino 5 a 10 miligramos al día, el cual induce vasodilatación arterial periférica y coronaria.\nPara el alivio sintomático de rescate, indicamos Nitroglicerina sublingual 0.6 miligramos SOS.\nInstruimos al paciente a tomar 1 comprimido sentado en reposo; si el dolor no cede en 5 minutos, repetir la dosis hasta un máximo de 3 comprimidos en 15 minutos. Si el dolor persiste, debe acudir de urgencia.\n¡Regla de oro de seguridad!: Jamás administrar nitratos si el paciente tomó Sildenafil en las últimas 24 horas o Tadalafil en las últimas 48 horas por riesgo de hipotensión refractaria mortal.\n\n[SLIDE 13: ANGINA DE PRINZMETAL]\nLa Angina Vasoespástica de Prinzmetal es una entidad clásica en el EUNACOM:\nSe presenta como dolor anginoso típico de reposo, predominantemente nocturno o de madrugada, en personas jóvenes cuyo único factor de riesgo suele ser el tabaquismo.\nDurante el dolor, el electrocardiograma muestra un supradesnivel transitorio del segmento ST que se normaliza por completo al ceder el espasmo con nitroglicerina.\nEl tratamiento de elección a largo plazo son los Calcioantagonistas como Amlodipino o Diltiazem más el cese del tabaquismo.\n¡Peligro mortal!: Los Betabloqueadores están estrictamente contraindicados en la angina de Prinzmetal porque dejan el tono vasoconstrictor Alfa-1 sin oposición, agravando el vasoespasmo.\n\n[SLIDE 14: LAS 4 TRAMPAS DEL EUNACOM]\nRepasemos las 4 trampas clásicas del examen:\nTrampa 1: Creer que la estatina no se indica si el colesterol es normal. En cardiopatía coronaria, la Atorvastatina 80 mg es obligatoria para todos los pacientes.\nTrampa 2: Indicar test de esfuerzo en un paciente con BCRI o marcapasos. El trazado basal no permite ver el ST; se debe solicitar Eco-Estrés.\nTrampa 3: Usar betabloqueadores en sospecha de angina de Prinzmetal. Empeoran el cuadro; se usan Calcioantagonistas.\nTrampa 4: Confundir una angina inestable con estable. Si el dolor ocurre en reposo o con mínimos esfuerzos, es una urgencia médica.\n\n[SLIDE 15: CASO CLÍNICO 1]\nAnalicemos el Caso 1: Hombre de 56 años hipertenso y fumador con dolor retroesternal opresivo de 3 meses que aparece al subir escaleras y cede en 3 a 5 minutos de reposo, con ECG basal normal.\nCumple los 3 criterios de Diamond-Forrester para Angina Crónica Estable en clase funcional CCS II.\nDado que su ECG basal es normal y puede caminar, la conducta diagnóstica indicada es un Test de Esfuerzo en protocolo de Bruce, asociando de inmediato prevención secundaria con Aspirina, Atorvastatina y Betabloqueo. La opción correcta es la B.\n\n[SLIDE 16: CASO CLÍNICO 2]\nAnalicemos el Caso 2: Mujer de 64 años con angina estable confirmada en tratamiento con dosis baja de betabloqueador (Atenolol 25 mg/día), quien persiste sintomática con frecuencia cardíaca en reposo de 82 latidos por minuto.\nLa conducta correcta es titular al alza la dosis del Betabloqueador hasta alcanzar la meta terapéutica de 55 a 60 latidos por minuto en reposo antes de cambiar o agregar otros fármacos. La opción correcta es la C.\n\n[SLIDE 17: CASO CLÍNICO 3]\nAnalicemos el Caso 3: Hombre de 42 años fumador con dolor anginoso nocturno que lo despierta a las 4 AM, con supradesnivel transitorio del ST en derivaciones inferiores que desaparece con nitroglicerina y enzimas negativas.\nEl diagnóstico es Angina Vasoespástica de Prinzmetal.\nEl tratamiento de elección son los Calcioantagonistas para prevenir el espasmo arterial y los Betabloqueadores están formalmente contraindicados. La opción correcta es la D.\n\n[SLIDE 18: ALGORITMO RESUMIDO DE DECISIÓN]\nEn resumen, ante una sospecha de angina crónica estable:\nPaso 1: Diagnóstico clínico con los criterios de Diamond-Forrester y graduación CCS I a IV.\nPaso 2: Test de esfuerzo si el ECG basal es normal; AngioTAC en riesgo intermedio o Eco-Estrés si hay BCRI.\nPaso 3: Terapia preventiva obligatoria con Aspirina 100 mg más Atorvastatina 80 mg (meta LDL menor a 55 mg/dL).\nPaso 4: Terapia antiisquémica con Betabloqueador buscando FC 55 a 60 lpm más Nitroglicerina sublingual de rescate.\n\n[SLIDE 19: CIERRE DE LA CLASE]\nFelicitaciones, has completado la Masterclass de Angina Crónica Estable dominando los 19 conceptos esenciales para el EUNACOM 2026.\nEn la siguiente clase revisaremos el Síndrome Coronario Agudo sin Supradesnivel del ST y la Angina Inestable. ¡Nos vemos en Cardio 02!"
         },
         {
           "id": "cardio-02",
-          "title": "SCA sin Supradesnivel del ST & Angina Inestable",
+          "title": "SCASEST: Angina Inestable e Infarto sin Supradesnivel del ST",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 20,
+          "bookPages": 5,
           "perfilCodes": [
             "1.01.2.001",
             "1.01.2.003",
             "1.01.4.009"
           ],
-          "durationEstimate": "28 min",
-          "slideCount": 14,
+          "durationEstimate": "14 min",
           "deckPath": "/deck/cardio-02",
           "learningObjectives": [
-            "Diferenciación entre Angina Inestable y SCA sin SDST por Troponinas Ultrasensibles",
-            "Estratificación de Riesgo con Escalas TIMI y GRACE",
+            "Diferenciación entre Angina Inestable e IAM sin SDST mediante Troponinas Ultrasensibles",
+            "Estratificación de riesgo con Escalas TIMI y GRACE",
             "Doble Antiagregación Plaquetaria (DAPT): Aspirina + Clopidogrel vs Ticagrelor",
-            "Timing de la Coronariografía: Invasiva Inmediata (< 2h) vs Precoz (< 24h) vs Electiva"
+            "Timing de la Coronariografía: Invasiva Inmediata (<2h) vs Precoz (<24h) vs Electiva"
           ]
         },
         {
           "id": "cardio-03",
-          "title": "IAM con Supradesnivel del ST & Trombolisis",
+          "title": "SCACEST: Infarto con Supradesnivel del ST & Reperfusión GES",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 32,
+          "bookPages": 8,
           "perfilCodes": [
-            "1.01.2.004",
-            "1.01.5.009"
+            "1.01.2.002",
+            "1.01.3.005",
+            "1.01.4.001"
           ],
-          "durationEstimate": "30 min",
-          "slideCount": 14,
+          "durationEstimate": "22 min",
           "deckPath": "/deck/cardio-03",
           "learningObjectives": [
-            "Criterios Electrocardiográficos de Supradesnivel del ST y BCRI nuevo",
-            "Ventanas de Tiempo de Reperfusión: Angioplastía (< 120 min) vs Trombolisis (< 30 min / 12h)",
-            "Protocolo de Trombolisis con Tenecteplase / Alteplase y Contraindicaciones Absolutas",
-            "Manejo de Complicaciones Mecánicas: Rotura de Músculo Papilar y CIV post-IAM"
+            "Diagnóstico electrocardiográfico: Supradesnivel del ST regional y criterios de Sgarbossa en BCRI",
+            "Estrategia de Reperfusión: Angioplastía Primaria (Meta Puerta-Balón <90-120 min) vs Trombolisis (Meta Puerta-Aguja <30 min)",
+            "Trombolisis con Tenecteplase / Alteplase: Dosis, contraindicaciones absolutas y criterios de reperfusión",
+            "Terapia coadyuvante obligatoria: DAPT, Heparina no fraccionada/Enoxaparina, Estatinas y Betabloqueo precoz"
           ]
         },
         {
           "id": "cardio-04",
-          "title": "Dislipidemias & Síndrome Metabólico",
+          "title": "Complicaciones Mecánicas y Eléctricas del IAM",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.1.005",
-            "1.01.1.023",
-            "1.01.4.013"
+            "1.01.2.004",
+            "1.01.4.005"
           ],
-          "durationEstimate": "25 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-04",
           "learningObjectives": [
-            "Criterios Diagnósticos de Síndrome Metabólico (ATP III / IDF)",
-            "Estratificación de Riesgo Cardiovascular (Riesgo Muy Alto, Alto, Moderado, Bajo)",
-            "Metas de Colesterol LDL según Riesgo (< 55 mg/dL en muy alto riesgo)",
-            "Farmacoterapia: Atorvastatina 40-80 mg, Rosuvastatina 20-40 mg, Ezetimiba y Fibratos"
+            "Rotura de Músculo Papilar e Insuficiencia Mitral Aguda: Soplo holosistólico en ápex y edema pulmonar súbito",
+            "Rotura de Tabique Interventricular (CIV post-IAM): Soplo pansistólico rudo con frémito en borde esternal",
+            "Rotura de Pared Libre de VI: Pseudoaneurisma y Taponamiento Cardíaco fulminante",
+            "Arritmias ventriculares post-reperfusión y Bloqueos AV en infarto de pared inferior vs anterior"
           ]
         },
         {
           "id": "cardio-05",
-          "title": "Hipertensión Arterial Primaria & Secundaria",
+          "title": "Insuficiencia Cardíaca Crónica: Fenotipos & Criterios de Framingham",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 20,
+          "bookPages": 5,
           "perfilCodes": [
-            "1.01.1.015",
-            "1.01.1.016",
-            "1.01.4.011"
+            "1.01.1.018",
+            "1.01.4.006",
+            "1.01.4.009"
           ],
-          "durationEstimate": "28 min",
-          "slideCount": 14,
+          "durationEstimate": "14 min",
           "deckPath": "/deck/cardio-05",
           "learningObjectives": [
-            "Diagnóstico Oficial de HTA: MAPA (Holter PA) vs PAC (Monitoreo Ambulatorio)",
-            "Terapia Dual de Inicio en Etapa 2: IECA/ARAII + Calcioantagonista DHP o Tiazida",
-            "Metas Terapéuticas en Población General (< 130/80 mmHg) y Adulto Mayor (< 140/80)",
-            "Screening de HTA Secundaria: Hiperaldosteronismo primario, Estenosis Arteria Renal, Feocromocitoma y SAHOS"
+            "Definición universal: IC-FEr (≤40%), IC-FElr (41-49%), IC-FEp (≥50%) e IC-FEm",
+            "Criterios de Framingham mayores y menores: Sensibilidad, especificidad y examen físico",
+            "Biomarcadores natriuréticos (BNP / NT-proBNP): Puntos de corte ajustados por edad, obesidad y falla renal",
+            "Ecocardiograma Transtorácico: Evaluación de FEVI, dimensiones cavitarias, E/e' y presiones pulmonares"
           ]
         },
         {
           "id": "cardio-06",
-          "title": "Crisis Hipertensiva: Urgencia vs Emergencia",
+          "title": "Cuádruple Terapia GDMT en IC-FEr: Dosificación, Titulación & Manejo de Complicaciones",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 29,
+          "bookPages": 7,
           "perfilCodes": [
-            "1.01.2.006"
+            "1.01.1.018",
+            "1.01.3.007"
           ],
-          "durationEstimate": "24 min",
-          "slideCount": 14,
+          "durationEstimate": "20 min",
           "deckPath": "/deck/cardio-06",
           "learningObjectives": [
-            "Diferenciación Crítica: Urgencia Hipertensiva vs Emergencia Hipertensiva (Daño de Órgano Blanco)",
-            "Manejo de Emergencia Hipertensiva: Labetalol EV, Nitroprusiato de Sodio y Nitroglicerina",
-            "Metas de Reducción: Disminuir PA un 20-25% en la primera hora (evitar descenso brusco)",
-            "Manejo de Urgencia Hipertensiva en APS: Captopril oral o Amlodipino con control ambulatorio"
+            "Los 4 Pilares de Sobrevida: ARNI (Sacubitrilo/Valsartán), Betabloqueadores, ARM (Espironolactona) e iSGLT2 (Dapagliflozina/Empagliflozina)",
+            "Protocolo estricto de titulación y periodo de lavado (Washout de 36 horas entre IECA y ARNI)",
+            "Límites de seguridad: Hiperkalemia (K+ > 5.0 mEq/L), deterioro de función renal (VFG < 30) e hipotensión",
+            "Fármacos de 2da línea y dispositivos: Ivabradina, Hidralazina/Isosorbide, Resincronizador (TRC) y Desfibrilador (DAI)"
           ]
         },
         {
           "id": "cardio-07",
-          "title": "Fibrilación Auricular & Anticoagulación",
+          "title": "Edema Agudo de Pulmón & Cuadrícula Hemodinámica de Forrester",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
           "perfilCodes": [
-            "1.01.1.012",
-            "1.01.1.013",
-            "1.01.3.003"
+            "1.01.2.005",
+            "1.01.3.006"
           ],
-          "durationEstimate": "30 min",
-          "slideCount": 14,
+          "durationEstimate": "18 min",
           "deckPath": "/deck/cardio-07",
           "learningObjectives": [
-            "Escala CHA2DS2-VASc de Riesgo Embólico e Indicación de Anticoagulación (≥ 1 en hombres, ≥ 2 en mujeres)",
-            "Anticoagulantes Orales Directos (DOACs): Apixabán, Rivaroxabán, Dabigatrán vs Cumarínicos (Acenocumarol)",
-            "Estrategia de Control de Frecuencia (Betabloqueadores, Verapamilo, Digoxina) vs Ritmo",
-            "Regla de las 48 Horas para Cardioversión y Rol del Ecocardiograma Transesofágico (ETE)"
+            "Cuadrantes de Forrester: Caliente-Húmedo (Perfil B), Frío-Húmedo (Perfil C), Frío-Seco (Perfil L) y Caliente-Seco (Perfil A)",
+            "Tratamiento del Edema Agudo de Pulmón: VNI (CPAP 5-10 cmH2O) + Furosemida EV + Nitroglicerina EV",
+            "Dosificación de Furosemida en bolo: 1-2 veces la dosis oral previa vs bolo fijo 40-80 mg EV",
+            "Manejo de la sobrecarga de volumen refractaria en urgencias"
           ]
         },
         {
           "id": "cardio-08",
-          "title": "Flutter Auricular & Taquicardias Supraventriculares",
+          "title": "Shock Cardiogénico: Inótropos, Vasopresores & Monitoreo UCI",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
           "perfilCodes": [
-            "1.01.1.014",
-            "1.01.1.024",
-            "1.01.1.011",
-            "1.01.4.014"
+            "1.01.2.005",
+            "1.01.3.003",
+            "1.01.3.006"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "18 min",
           "deckPath": "/deck/cardio-08",
           "learningObjectives": [
-            "Flutter Auricular: Ondas F en diente de sierra a 300 lpm con bloqueo AV 2:1 (150 lpm)",
-            "TPSV por Reentrada Nodal: Maniobras Vagales ➔ Adenosina 6 mg EV en bolo rápido",
-            "Manejo del Paciente Inestable: Cardioversión Eléctrica Sincrónica Inmediata (50-100 Joules)",
-            "Extrasistolía Ventricular Benigna: Holter de ritmo, tranquilización y betabloqueadores si sintomático"
+            "Definición hemodinámica de Shock Cardiogénico: Hipoperfusión tisular, PAS <90 mmHg y congestión",
+            "Vasopresor de 1ra línea: Noradrenalina (restaura PAM y perfusión coronaria sin taquicardia excesiva)",
+            "Inótropos de soporte: Dobutamina vs Milrinona vs Levosimendán (mecanismos, vasodilatación y arritmias)",
+            "Soporte circulatorio mecánico inicial y criterios de derivación urgente a Hemodinamia"
           ]
         },
         {
           "id": "cardio-09",
-          "title": "Bradiarritmias & Bloqueos Aurículo-Ventriculares",
+          "title": "Miocardiopatías (Dilatada, Hipertrófica & Restrictiva)",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.1.002",
-            "1.01.2.009"
+            "1.01.1.020",
+            "1.01.4.006"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-09",
           "learningObjectives": [
-            "Bloqueos AV: 1er Grado (PR largo fijo), Mobitz I (Wenckebach - PR progresivo)",
-            "Bloqueos AV de Alto Riesgo: Mobitz II (PR fijo con fallas súbitas) y 3er Grado (Disociación AV completa)",
-            "Manejo Agudo en Urgencias: Atropina 1 mg EV, Infusión de Dopamina/Adrenalina o Marcapasos Transcutáneo",
-            "Criterios Definitivos de Implante de Marcapasos Permanente"
+            "Miocardiopatía Dilatada: Etiología idiopática, isquémica, enólica, periparto y tóxica",
+            "Miocardiopatía Hipertrófica: Mutación sarcomérica, asimetría septal, soplo que aumenta con Valsalva y riesgo de Muerte Súbita",
+            "Miocardiopatía Restrictiva: Amiloidosis, Sarcoidosis, Hemocromatosis y patrón de llenado restrictivo",
+            "Estratificación de riesgo arrítmico e indicación de DAI en miocardiopatía hipertrófica"
           ]
         },
         {
           "id": "cardio-10",
-          "title": "Insuficiencia Cardíaca Crónica & Aguda (Masterclass)",
+          "title": "Cor Pulmonale Crónico & Hipertensión Pulmonar",
+          "tier": "Tier 1 (Focused)",
+          "slideCount": 13,
+          "bookPages": 3,
           "perfilCodes": [
-            "1.01.1.018",
-            "1.01.2.005",
+            "1.01.1.004",
             "1.01.4.006"
           ],
-          "durationEstimate": "28 min",
-          "slideCount": 14,
-          "deckPath": "/deck/cardio-01",
+          "durationEstimate": "9 min",
+          "deckPath": "/deck/cardio-10",
           "learningObjectives": [
-            "Criterios Diagnósticos de Framingham (R3 galope e Ingurgitación Yugular)",
-            "Los 4 Pilares de Sobrevida en IC-FEr: ARNI, Betabloqueador, ARM y iSGLT2 con dosificación y titulación",
-            "Cuadrícula de Forrester 2x2 para IC Aguda en Urgencias",
-            "Protocolo del Edema Agudo de Pulmón: VNI (CPAP) + Furosemida EV + Nitroglicerina EV"
+            "Definición: Hipertrofia y dilatación del Ventrículo Derecho secundaria a patología pulmonar primaria (EPOC, Fibrosis, SAHOS)",
+            "Signos semiológicos: R2 pulmonar acentuado, onda 'a' gigante en pulso venoso yugular, hepatomegalia congestiva y edema periférico",
+            "Hallazgos electrocardiográficos: Desviación de eje a derecha, onda P pulmonar (>2.5 mm en D2) y patrón S1Q3T3",
+            "Tratamiento etiológico: Oxigenoterapia domiciliaria, broncodilatadores y manejo cauteloso de diuréticos"
           ]
         },
         {
           "id": "cardio-11",
-          "title": "Miocardiopatías & Enfermedad de Chagas Cardíaco",
+          "title": "Bradicardias & Bloqueos Aurículo-Ventriculares",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.1.020",
-            "1.04.1.002"
+            "1.01.1.002",
+            "1.01.2.009",
+            "1.01.4.001"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-11",
           "learningObjectives": [
-            "Miocardiopatía Dilatada, Hipertrófica (riesgo de muerte súbita) y Restrictiva (Amiloidosis)",
-            "Enfermedad de Chagas Crónica en Chile: Diagnóstico por Serología Doble (ELISA + IFI)",
-            "Afectación Conducción Cardíaca en Chagas: BCRD + Hemibloqueo Anterior/Posterior + Aneurisma Apical",
-            "Tratamiento Antiparasitario con Benznidazol / Nifurtimox y manejo de megacolon/megaesófago"
+            "Bloqueos AV de 1er Grado (PR constante >200 ms) y Mobitz I / Wenckebach (PR progresivo con bloqueo suprahisiano benigno)",
+            "Bloqueos AV de Alto Riesgo: Mobitz II (PR fijo con fallo súbito infrahisiano) y 3er Grado / Completo (disociación AV total)",
+            "Manejo de la Bradicardia Sintomática en Urgencias: Atropina 1 mg EV (hasta 3 mg) vs Marcapasos Transcutáneo",
+            "Indicación formal de implante de Marcapasos Definitivo Permanente (Mobitz II, BAV 3° o Bradicardia sinusal sintomática)"
           ]
         },
         {
           "id": "cardio-12",
-          "title": "Valvulopatías Aórticas (Estenosis & Insuficiencia)",
+          "title": "Fibrilación Auricular: Manejo Agudo, Cardioversión & Anticoagulación",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 29,
+          "bookPages": 7,
           "perfilCodes": [
-            "1.01.1.009",
-            "1.01.1.017",
-            "1.01.1.021"
+            "1.01.1.012",
+            "1.01.1.013",
+            "1.01.3.001"
           ],
-          "durationEstimate": "27 min",
-          "slideCount": 14,
+          "durationEstimate": "20 min",
           "deckPath": "/deck/cardio-12",
           "learningObjectives": [
-            "Estenosis Aórtica: Tríada clásica (Angina, Síncope, Disnea), Soplo Romboidal a carótidas y Pulso Parvus et Tardus",
-            "Criterios de Severidad: Gradiente medio > 40 mmHg y Área Valvular < 1.0 cm²",
-            "Insuficiencia Aórtica: Soplo diastólico aspirativo en foco aórtico accesorio, Pulso Celler/Corrigan",
-            "Indicaciones de Reemplazo Valvular: Quirúrgico vs TAVI"
+            "Diagnóstico en ECG: Ausencia de ondas P, ritmo RR irregularmente irregular y ondas f de fibrilación",
+            "Manejo en Urgencias según Estabilidad: Inestable = Cardioversión Eléctrica Sincrónica Inmediata (100-200 J)",
+            "Manejo en Paciente Estable: Estrategia de tiempo (<48 horas: cardioversión segura; >48 horas: anticoagulación 3 semanas previa o ETE)",
+            "Control de Frecuencia (Betabloqueador / Diltiazem) vs Control de Ritmo (Amiodarona / Propafenona)",
+            "Estratificación del riesgo tromboembólico con CHA2DS2-VASc y sangrado con HAS-BLED: Indicación de DOACs (Apixabán, Rivaroxabán, Dabigatrán)"
           ]
         },
         {
           "id": "cardio-13",
-          "title": "Valvulopatías Mitrales & Fiebre Reumática",
+          "title": "Flutter Auricular & Taquicardias Auriculares",
+          "tier": "Tier 1 (Focused)",
+          "slideCount": 13,
+          "bookPages": 3,
           "perfilCodes": [
-            "1.01.1.010",
-            "1.01.1.019",
-            "1.01.1.008"
+            "1.01.1.014",
+            "1.01.3.001"
           ],
-          "durationEstimate": "27 min",
-          "slideCount": 14,
+          "durationEstimate": "9 min",
           "deckPath": "/deck/cardio-13",
           "learningObjectives": [
-            "Estenosis Mitral Reumática: Chasquido de apertura, Rolido diastólico en ápex y Dilatación Auricular Izquierda",
-            "Insuficiencia Mitral: Soplo Holosistólico en ápex irradiado a axila con R1 disminuido",
-            "Criterios de Jones para Fiebre Reumática Activa y Profilaxis Secundaria con Penicilina Benzatina IM",
-            "Complicaciones Embólicas y Asociación con Fibrilación Auricular"
+            "Patrón ECG patognomónico: Ondas F en 'diente de sierra' regulares a 300 lpm con conducción AV 2:1 (FC ventricular clásica de 150 lpm)",
+            "Localización anatómica del circuito macro-reentrante: Istmo Cavo-Tricuspídeo (ICT)",
+            "Manejo agudo: Cardioversión eléctrica con energías bajas (50-100 J) o control farmacológico",
+            "Tratamiento curativo definitivo: Ablación por radiofrecuencia del istmo cavotricuspídeo (>95% éxito)"
           ]
         },
         {
           "id": "cardio-14",
-          "title": "Endocarditis Infecciosa & Profilaxis",
+          "title": "Taquicardias Paroxísticas Supraventriculares (TPSV) & Síndrome de Wolff-Parkinson-White",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.1.007"
+            "1.01.1.024",
+            "1.01.2.008"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-14",
           "learningObjectives": [
-            "Criterios de Duke Modificados: 2 Mayores (Hemocultivos x3 + Ecocardiograma con vegetaciones)",
-            "Etiología: S. aureus en drogadictos EV / válvulas protésicas, S. viridans en procedimientos dentales",
-            "Manifestaciones Inmunológicas: Nódulos de Osler, Manchas de Roth, Lesiones de Janeway",
-            "Guías Oficiales de Profilaxis Antibiótica Dental: Amoxicilina 2g oral sólo en pacientes de Alto Riesgo"
+            "Taquicardia por Reentrada Nodal (TRN): QRS angosto regular a 150-220 lpm con onda P retrógrada oculta",
+            "Tratamiento escalonado de la TPSV estable: Maniobras vagales (Valsalva modificada) ➔ Adenosina 6 mg EV en bolo rápido",
+            "Síndrome de Wolff-Parkinson-White (WPW): Tríada de PR corto (<120 ms), Onda Delta y ensanchamiento del QRS",
+            "¡Peligro mortal EUNACOM!: Contraindicación absoluta de bloqueadores del nodo AV (Digoxina, Verapamilo, Betabloqueadores) en FA con WPW (riesgo de Fibrilación Ventricular)"
           ]
         },
         {
           "id": "cardio-15",
-          "title": "Cardiopatías Congénitas del Adulto",
+          "title": "Extrasistolía Ventricular & Taquicardias Ventriculares",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 20,
+          "bookPages": 5,
           "perfilCodes": [
-            "1.01.1.003"
+            "1.01.1.011",
+            "1.01.2.007",
+            "1.01.3.002"
           ],
-          "durationEstimate": "24 min",
-          "slideCount": 14,
+          "durationEstimate": "14 min",
           "deckPath": "/deck/cardio-15",
           "learningObjectives": [
-            "Comunicación Interauricular (CIA): Desdoblamiento fijo y amplio de R2, soplo sistólico eyectivo pulmonar",
-            "Comunicación Interventricular (CIV): Soplo pansistólico en mesocardio con frémito",
-            "Coartación Aórtica: Hipertensión en miembros superiores con pulsos femorales disminuidos / retardados",
-            "Síndrome de Eisenmenger: Inversión de shunt de izquierda-derecha a derecha-izquierda por hipertensión pulmonar"
+            "Extrasistolía Ventricular Benigna: Pausa compensatoria completa, ausencia de cardiopatía estructural y manejo con tranquilización/Betabloqueo",
+            "Criterios de Brugada y Vereckei para diferenciar Taquicardia de QRS Ancho (TV vs TPSV con aberrancia)",
+            "Taquicardia Ventricular Monomórfica: Inestable = Cardioversión eléctrica; Estable = Amiodarona EV o Procainamida",
+            "Taquicardia Ventricular Polimórfica / Torsades de Pointes: Prolongación del QT, hipokalemia/hipomagnesemia y Sulfato de Magnesio EV"
           ]
         },
         {
           "id": "cardio-16",
-          "title": "Cor Pulmonale Crónico & Tromboembolismo Pulmonar",
+          "title": "Paro Cardiorrespiratorio & Algoritmos de RCP Avanzada (ACLS)",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
           "perfilCodes": [
-            "1.01.1.004",
-            "1.01.1.006"
+            "1.01.2.007",
+            "1.01.3.002",
+            "1.01.3.004"
           ],
-          "durationEstimate": "28 min",
-          "slideCount": 14,
+          "durationEstimate": "18 min",
           "deckPath": "/deck/cardio-16",
           "learningObjectives": [
-            "Fisiopatología del Cor Pulmonale: Hipertensión pulmonar precapilar secundaria a EPOC o SAHOS",
-            "Signos de Falla Cardíaca Derecha: Ingurgitación yugular, hepatomegalia congestiva y edema maleolar sin crépitos",
-            "Diagnóstico de TEP: Escala de Wells / Ginebra, Dímero D y Angiotac de Tórax (Gold Standard)",
-            "Tratamiento de TEP: Anticoagulación precoz (HBPM / DOACs) vs Trombolisis sistémica en TEP masivo con shock"
+            "Ritmos Desfibrilables: Fibrilación Ventricular (FV) y Taquicardia Ventricular sin pulso (TVsp) ➔ Desfibrilación precoz + Adrenalina y Amiodarona",
+            "Ritmos No Desfibrilables: Asistolia y Actividad Eléctrica Sin Pulso (AESP) ➔ RCP continuo + Adrenalina precoz",
+            "Las 5 H y 5 T reversibles: Hipovolemia, Hipoxia, Hidrogeniones, Hipo/Hiperkalemia, Hipotermia; Neumotórax a Tensión, Taponamiento, Tóxicos, TEP, Trombosis coronaria",
+            "Cuidados post-paro: Manejo de temperatura, metas de oxigenación/presión arterial y coronariografía de emergencia"
           ]
         },
         {
           "id": "cardio-17",
-          "title": "Pericarditis Aguda & Taponamiento Cardíaco",
+          "title": "Estenosis Aórtica: Semiología, Criterios de Severidad & TAVI/Cirugía",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.1.022",
-            "1.01.2.008",
-            "1.01.5.007"
+            "1.01.1.009",
+            "1.01.1.021",
+            "1.01.4.006"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-17",
           "learningObjectives": [
-            "Pericarditis Aguda: Dolor pleurítico que alivia al inclinarse hacia adelante + Frote pericárdico",
-            "Hallazgos ECG: Supradesnivel cóncavo difuso del ST en todas las derivaciones con depresión del segmento PR",
-            "Tratamiento de Pericarditis: AINEs (Ibuprofeno 600 mg o Aspirina) + Colquicina por 3 meses",
-            "Taponamiento Cardíaco: Tríada de Beck (Hipotensión, Ruidos apagados, Ingurgitación Yugular) + Pulso Paradójico"
+            "Etiología: Degenerativa calcificada en ancianos vs Válvula Aórtica Bicúspide en jóvenes",
+            "Tríada sintomática clásica: Angina (sobrevida 5 años), Síncope (sobrevida 3 años) y Disnea de esfuerzo (sobrevida 2 años)",
+            "Semiología cardinal: Soplo mesosistólico eyectivo en foco aórtico irradiado a carótidas, pulso parvus et tardus y desdoblamiento paradójico de S2",
+            "Criterios ecocardiográficos de severidad: Gradiente medio >40 mmHg, Velocidad pico >4.0 m/s y Área Valvular Aórtica <1.0 cm²",
+            "Indicaciones de Reemplazo Valvular: Cirugía abierta (SAVR) vs Implante Transcatéter (TAVI)"
           ]
         },
         {
           "id": "cardio-18",
-          "title": "Disección Aórtica Aguda & Urgencias Vasculares",
+          "title": "Insuficiencia Aórtica Aguda vs Crónica: Signos Periféricos & Manejo",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.2.002",
-            "1.01.4.002"
+            "1.01.1.017",
+            "1.01.1.021"
           ],
-          "durationEstimate": "26 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-18",
           "learningObjectives": [
-            "Cuadro Clínico: Dolor torácico lacerante o transfixiante irradiado al dorso interescapular",
-            "Clasificación de Stanford: Tipo A (Aorta ascendente - Quirúrgica urgente) vs Tipo B (Aorta descendente - Médica)",
-            "Examen Diagnóstico de Elección: Angiotac de Aorta Tórax-Abdomen",
-            "Manejo Médico Inicial: Betabloqueadores EV (Labetalol) para FC < 60 lpm y PAS < 120 mmHg"
+            "Insuficiencia Aórtica Aguda (Endocarditis, Disección aórtica): Colapso hemodinámico rápido, edema pulmonar y cirugía de emergencia",
+            "Insuficiencia Aórtica Crónica: Dilatación ventricular progresiva con presión de pulso amplia",
+            "Signos periféricos clásicos: Pulso de Corrigan / Celler, Signo de Musset, Danza carotídea y Signo de Duroziez",
+            "Auscultación: Soplo diastólico decreciente en borde esternal izquierdo y soplo accesorio de Austin-Flint",
+            "Manejo farmacológico vasodilatador y criterios quirúrgicos (aparición de síntomas o FEVI <50% o DTSVI >50 mm)"
           ]
         },
         {
           "id": "cardio-19",
-          "title": "Shock & Drogas Vasoactivas",
+          "title": "Estenosis Mitral: Hemoptisis, Fibrilación Auricular & Comisurotomía",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.2.007"
+            "1.01.1.010",
+            "1.01.1.021",
+            "1.01.4.006"
           ],
-          "durationEstimate": "28 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-19",
           "learningObjectives": [
-            "Clasificación Fisiopatológica de Shock: Hipovolémico, Cardiogénico, Distributivo (Séptico, Anafiláctico) y Obstructivo",
-            "Marcadores de Hipoperfusión Tisular: Lactato > 2 mmol/L, Llene capilar > 3 segundos, Oliguria < 0.5 mL/kg/h",
-            "Drogas Vasoactivas: Noradrenalina (Vasopresor #1 de elección), Dobutamina (Inótropo), Adrenalina (Anafilaxia / PCR)",
-            "Monitoreo hemodinámico y traslado de urgencia a UCI"
+            "Etiología reumática casi universal con engrosamiento y fusión comisural",
+            "Clínica: Disnea progresiva, hemoptisis por rotura de vénulas bronquiales dilatadas, facie mitral y embolias sistémicas",
+            "Semiología: R1 brillante acentuado, chasquido de apertura mitral y rolido diastólico en ápex",
+            "Complicación cardinal: Dilatación de aurícula izquierda y Fibrilación Auricular (anticoagulación obligatoria)",
+            "Tratamiento intervencional: Valvuloplastía Mitral Percutánea con Balón (Score de Wilkins ≤8) vs Cirugía de reemplazo"
           ]
         },
         {
           "id": "cardio-20",
-          "title": "Paro Cardiorrespiratorio & Algoritmo ACLS 2026",
+          "title": "Insuficiencia Mitral Orgánica vs Funcional & Prolapso Valvular",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
           "perfilCodes": [
-            "1.01.2.006",
-            "1.01.5.004",
-            "1.01.5.005",
-            "1.01.5.006"
+            "1.01.1.019",
+            "1.01.1.021"
           ],
-          "durationEstimate": "30 min",
-          "slideCount": 14,
+          "durationEstimate": "13 min",
           "deckPath": "/deck/cardio-20",
           "learningObjectives": [
-            "Cadena de Supervivencia: Reconocimiento precoz, Compresiones de alta calidad (100-120 cpm, 5 cm)",
-            "Ritmos Desfibrilables: Fibrilación Ventricular (FV) y TV sin pulso ➔ Desfibrilación 200J + Adrenalina y Amiodarona",
-            "Ritmos No Desfibrilables: Asistolia y Actividad Eléctrica sin Pulso (AESP) ➔ RCP continuo + Adrenalina 1 mg cada 3-5 min",
-            "Causas Reversibles del Paro (Las 5H y las 5T) y Cuidados Post-Paro"
+            "Insuficiencia Mitral Orgánica (Degeneración mixomatosa / Prolapso, Endocarditis, Rotura cordal)",
+            "Insuficiencia Mitral Funcional / Secundaria (Dilatación anular por miocardiopatía o isquemia)",
+            "Semiología: Soplo holosistólico en ápex irradiado a axila con R1 disminuido y tercer ruido (R3)",
+            "Prolapso de Válvula Mitral (Síndrome de Barlow): Clic mesosistólico seguido de soplo telesistólico",
+            "Criterios de intervención quirúrgica: Reparación mitral (Plastía) preferida sobre reemplazo protésico"
+          ]
+        },
+        {
+          "id": "cardio-21",
+          "title": "Semiología de Soplos Cardíacos & Maniobras Dinámicas",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.021"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-21",
+          "learningObjectives": [
+            "Diferenciación inmediata de soplos sistólicos eyectivos (EAo, EPulm) vs regurgitantes (IMitral, ITricuspídea, CIV)",
+            "Soplos diastólicos (Estenosis Mitral, Insuficiencia Aórtica, Estenosis Tricuspídea, Insuficiencia Pulmonar)",
+            "Maniobra de Valsalva & Bipedestación (disminuyen precarga): Aumentan el soplo de la Miocardiopatía Hipertrófica y Prolapso Mitral; disminuyen todos los demás",
+            "Maniobra de Handgrip (aumenta postcarga): Aumenta soplos regurgitantes izquierdos (IAo, IM); disminuye EAo y MCH",
+            "Maniobra de Rivero-Carvallo (Inspiración profunda): Aumenta selectivamente todos los soplos de cavidades derechas"
+          ]
+        },
+        {
+          "id": "cardio-22",
+          "title": "Cardiopatías Congénitas en el Adulto: CIA, CIV, Ductus & Coartación",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 20,
+          "bookPages": 5,
+          "perfilCodes": [
+            "1.01.1.003",
+            "1.01.1.021"
+          ],
+          "durationEstimate": "14 min",
+          "deckPath": "/deck/cardio-22",
+          "learningObjectives": [
+            "Comunicación Interauricular (CIA Ostium Secundum): Soplo eyectivo pulmonar + Desdoblamiento fijo y amplio del 2do ruido (S2)",
+            "Comunicación Interventricular (CIV): Soplo holosistólico rudo en barra en 3er-4to EII con frémito",
+            "Ductus Arterioso Persistente (DAP): Soplo continuo sistodiastólico en maquinaria de Gibson en región infraclavicular izquierda",
+            "Coartación Aórtica: HTA en extremidades superiores con pulsos femorales disminuidos/retrasados y signo de Roesler en Rx tórax",
+            "Síndrome de Eisenmenger: Inversión de cortocircuito izquierda-a-derecha a derecha-a-izquierda por hipertensión pulmonar severa con cianosis"
+          ]
+        },
+        {
+          "id": "cardio-23",
+          "title": "Hipertensión Arterial Esencial: Diagnóstico, Metas & Guía GES",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.015",
+            "1.01.4.003"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-23",
+          "learningObjectives": [
+            "Criterios diagnósticos MINSAL: Perfil de Presión Arterial en consulta (≥140/90 en 2 o más tomas separadas)",
+            "Monitoreo Ambulatorio de Presión Arterial (MAPA 24h) y Automonitoreo (AMPA): Puntos de corte y descarte de HTA de bata blanca / HTA enmascarada",
+            "Estratificación de riesgo cardiovascular global y pesquisa de daño de órgano blanco (fondo de ojo, microalbuminuria, ECG)",
+            "Metas terapéuticas según Guía GES: <140/90 general y <130/80 en pacientes de alto riesgo / diabéticos / ERC"
+          ]
+        },
+        {
+          "id": "cardio-24",
+          "title": "Farmacoterapia Antihipertensiva: Familias, Combinaciones Fijas & Efectos Adversos",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.015"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-24",
+          "learningObjectives": [
+            "Las 4 Familias de 1ra línea: IECAs (Enalapril), ARA-II (Losartán), Calcioantagonistas Dihidropiridínicos (Amlodipino) y Tiazidas (Hidroclorotiazida/Clortalidona)",
+            "Estrategia de Combinación Dual Fija en 1 solo comprimido desde etapa 1 de alto riesgo o etapa 2 (IECA/ARA-II + Calcioantagonista o Tiazida)",
+            "Efectos adversos clásicos de examen: Tos seca y angioedema (IECAs), edema maleolar por vasodilatación precapilar (Amlodipino), hipokalemia e hiperuricemia (Tiazidas)",
+            "Manejo de la HTA Resistente: Adición de Espironolactona 25 mg como 4to fármaco de elección"
+          ]
+        },
+        {
+          "id": "cardio-25",
+          "title": "Crisis Hipertensiva: Urgencia vs Emergencia Hipertensiva",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
+          "perfilCodes": [
+            "1.01.2.006"
+          ],
+          "durationEstimate": "18 min",
+          "deckPath": "/deck/cardio-25",
+          "learningObjectives": [
+            "Diferenciación crucial: Cifra tensional elevada (PAS ≥180 o PAD ≥120) CON daño de órgano blanco agudo (Emergencia) vs SIN daño agudo (Urgencia)",
+            "Manejo de la Urgencia Hipertensiva: Reposo, fármacos orales (Captopril / Amlodipino), descenso gradual en 24-48 horas y derivación ambulatoria",
+            "Manejo de la Emergencia Hipertensiva: Hospitalización en UCI/UTI, drogas endovenosas continuas (Labetalol, Nitroprusiato, Nitroglicerina)",
+            "Metas específicas de descenso de PA: Reducción máxima del 20-25% en la primera hora (excepciones: Disección aórtica PAS <120 en 20 min, ACV isquémico <185/110 pre-trombolisis)"
+          ]
+        },
+        {
+          "id": "cardio-26",
+          "title": "Hipertensión Arterial Secundaria: Renovascular, Feocromocitoma & Hiperaldosteronismo",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.016"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-26",
+          "learningObjectives": [
+            "Sospecha clínica de HTA secundaria: Paciente menor de 30 años, HTA resistente a 3 fármacos, inicio brusco o hipokalemia espontánea",
+            "Estenosis de Arteria Renal / HTA Renovascular: Aterosclerosis en ancianos vs Displasia Fibromuscular en mujeres jóvenes, deterioro de función renal post-IECA",
+            "Hiperaldosteronismo Primario (Síndrome de Conn): HTA + Hipokalemia + Alcalosis metabólica, screening con relación Aldosterona/Renina plasmática",
+            "Feocromocitoma: Tríada de cefalea, sudoración profusa y palpitaciones con paroxismos hipertensivos, diagnóstico con Metanefrinas libres en plasma o fraccionadas en orina"
+          ]
+        },
+        {
+          "id": "cardio-27",
+          "title": "Pericarditis Aguda: Criterios Diagnósticos, ECG Evolutivo & Tratamiento",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.022",
+            "1.01.4.001"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-27",
+          "learningObjectives": [
+            "Tríada diagnóstica (requiere 2 de 4 criterios): Dolor pleurítico que alivia al inclinarse hacia adelante, Frote pericárdico, Supradesnivel cóncavo difuso del ST con infradesnivel del PR, y Derrame pericárdico en ecocardiograma",
+            "Fases evolutivas en el ECG: Fase 1 (ST cóncavo generalizado + PR bajo), Fase 2 (Normalización), Fase 3 (Inversión difusa onda T), Fase 4 (Resolución)",
+            "Tratamiento de 1ra línea obligatorio: AINEs a dosis altas (Aspirina 1g c/8h o Ibuprofeno 600mg c/8h) + Colchicina 0.5 mg/día por 3 meses (reduce recurrencias en un 50%)",
+            "Criterios de hospitalización de alto riesgo (fiebre >38°C, inicio subagudo, derrame pericárdico severo, miopericarditis)"
+          ]
+        },
+        {
+          "id": "cardio-28",
+          "title": "Taponamiento Cardíaco & Derrame Pericárdico: Tríada de Beck & Pulso Paradojal",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
+          "perfilCodes": [
+            "1.01.2.010",
+            "1.01.3.003"
+          ],
+          "durationEstimate": "18 min",
+          "deckPath": "/deck/cardio-28",
+          "learningObjectives": [
+            "Fisiopatología: Acumulación rápida de líquido en el espacio pericárdico que iguala presiones diastólicas e impide el llenado ventricular",
+            "Tríada clásica de Beck: Hipotensión arterial + Ruidos cardíacos apagados + Ingurgitación yugular",
+            "Signo patognomónico: Pulso Paradojal (caída >10 mmHg en la presión arterial sistólica durante la inspiración espontánea)",
+            "Hallazgos complementarios: Alternancia eléctrica del QRS y bajo voltaje generalizado en ECG, signo de silueta globular en Rx tórax",
+            "Tratamiento de emergencia vital: Pericardiocentesis evacuadora urgente guiada por ecocardiograma"
+          ]
+        },
+        {
+          "id": "cardio-29",
+          "title": "Endocarditis Infecciosa: Criterios de Duke Modificados, Terapia Antimicrobiana & Cirugía",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
+          "perfilCodes": [
+            "1.01.1.007",
+            "1.01.4.005",
+            "1.01.4.006"
+          ],
+          "durationEstimate": "18 min",
+          "deckPath": "/deck/cardio-29",
+          "learningObjectives": [
+            "Microbiología: S. aureus (causa #1 aguda en válvula nativa y usuarios de drogas EV), S. viridans (subaguda odontológica), S. epidermidis (prótesis <1 año), Enterococcus faecalis (genitourinario)",
+            "Criterios de Duke Modificados: Criterios Mayores (Hemocultivos positivos típicos y Ecocardiograma positivo para vegetación/absceso) y Menores (fiebre, fenómenos vasculares como Janeway, fenómenos inmunológicos como Osler/Roth)",
+            "Esquemas antimicrobianos empíricos prolongados (4-6 semanas bactericidas EV)",
+            "Indicaciones de cirugía cardíaca urgente: Insuficiencia valvular aguda refractaria con IC, infección no controlada/absceso perivalvular y embolias recurrentes con vegetación >10 mm"
+          ]
+        },
+        {
+          "id": "cardio-30",
+          "title": "Fiebre Reumática Activa & Profilaxis Secundaria",
+          "tier": "Tier 1 (Focused)",
+          "slideCount": 13,
+          "bookPages": 3,
+          "perfilCodes": [
+            "1.01.1.008"
+          ],
+          "durationEstimate": "9 min",
+          "deckPath": "/deck/cardio-30",
+          "learningObjectives": [
+            "Patogenia: Reacción autoinmune post-faringitis por Streptococcus pyogenes (Streptococo Grupo A) tras periodo de latencia de 2-3 semanas",
+            "Criterios de Jones para diagnóstico: Evidencia de infección estreptocócica previa (ASO elevado) + 2 criterios mayores (Carditis, Poliartritis migratoria, Corea de Sydenham, Nódulos subcutáneos, Eritema marginado) o 1 mayor + 2 menores",
+            "Tratamiento del episodio agudo: Erradicación faríngea con Penicilina Benzatina + AINEs a dosis antiinflamatorias (Aspirina) + Corticoides si carditis severa",
+            "Profilaxis secundaria obligatoria: Penicilina Benzatina 1.200.000 UI IM cada 3-4 semanas (duración: mínimo 5-10 años o hasta los 21-40 años según compromiso cardíaco)"
+          ]
+        },
+        {
+          "id": "cardio-31",
+          "title": "Tromboembolismo Pulmonar (TEP): Scores Wells/Ginebra, Dímero D, AngioTAC & Trombolisis",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 29,
+          "bookPages": 7,
+          "perfilCodes": [
+            "1.01.1.006",
+            "1.01.3.005",
+            "1.01.4.008"
+          ],
+          "durationEstimate": "20 min",
+          "deckPath": "/deck/cardio-31",
+          "learningObjectives": [
+            "Estratificación de probabilidad pretest: Score de Wells o Score de Ginebra (Baja/Intermedia vs Alta)",
+            "Uso racional del Dímero D: Prueba de alta sensibilidad y valor predictivo negativo para descartar TEP en baja probabilidad",
+            "Gold Standard Diagnóstico: AngioTAC de Tórax con protocolo de arterias pulmonares (o Cintigrafía V/Q si insuficiencia renal/alergia)",
+            "Estratificación de riesgo hemodinámico: TEP de Alto Riesgo / Masivo (Shock o PAS <90 mmHg) ➔ Trombolisis sistémica inmediata con Alteplase",
+            "Manejo en TEP no masivo: Anticoagulación terapéutica inmediata con Heparina de Bajo Peso Molecular (Enoxaparina) o DOACs (Rivaroxabán/Apixabán)"
+          ]
+        },
+        {
+          "id": "cardio-32",
+          "title": "Trombosis Venosa Profunda (TVP): Diagnóstico, Eco-Doppler & Anticoagulación",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.023",
+            "1.01.4.006"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-32",
+          "learningObjectives": [
+            "Factores de riesgo (Tríada de Virchow: Estasis, Lesión endotelial e Hipercoagulabilidad)",
+            "Score de Wells para TVP y examen físico (aumento de volumen unilateral de extremidad, empastamiento gemelar, Signo de Homans)",
+            "Examen diagnóstico de elección: Eco-Doppler Venoso de extremidades inferiores con prueba de compresibilidad venosa",
+            "Tratamiento anticoagulante: Duración estándar de 3 meses para TVP provocada vs anticoagulación extendida indefinida en TVP no provocada o trombofilia",
+            "Criterios de indicación de Filtro de Vena Cava Inferior (contraindicación absoluta o sangrado activo bajo anticoagulación)"
+          ]
+        },
+        {
+          "id": "cardio-33",
+          "title": "Disección Aórtica Aguda & Aneurisma de Aorta Abdominal",
+          "tier": "Tier 3 (Dense Emergency)",
+          "slideCount": 26,
+          "bookPages": 6,
+          "perfilCodes": [
+            "1.01.2.011",
+            "1.01.4.005",
+            "1.01.4.008"
+          ],
+          "durationEstimate": "18 min",
+          "deckPath": "/deck/cardio-33",
+          "learningObjectives": [
+            "Disección Aórtica: Dolor torácico lacerante interescapular súbito, asimetría de pulsos/presiones en brazos (>20 mmHg) y soplo de insuficiencia aórtica",
+            "Clasificación de Stanford: Tipo A (compromete aorta ascendente) ➔ Cirugía cardíaca de emergencia inmediata; Tipo B (aorta descendente) ➔ Manejo médico en UCI",
+            "Control hemodinámico estricto: Betabloqueadores EV (Labetalol / Esmolol) para meta de FC <60 lpm y PAS 100-120 mmHg antes de usar vasodilatadores",
+            "Aneurisma de Aorta Abdominal (AAA): Criterios de screening ecográfico y punto de corte quirúrgico (diámetro ≥5.5 cm o crecimiento >1 cm/año o sintomático)"
+          ]
+        },
+        {
+          "id": "cardio-34",
+          "title": "Enfermedad Arterial Oclusiva Periférica: Claudicación & Manejo",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.023"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-34",
+          "learningObjectives": [
+            "Fisiopatología: Aterosclerosis en arterias de extremidades inferiores; Claudicación Intermitente en pantorrilla que cede con el reposo",
+            "Examen Físico: Palpación sistemática de pulsos femorales, poplíteos, tibiales posteriores y pedios, frialdad distal y atrofia cutánea",
+            "Diagnóstico objetivo: Índice Tobillo-Brazo (ITB): Normal 0.9-1.3, Claudicación 0.4-0.9, Isquemia Crítica <0.4",
+            "Tratamiento conservador de 1ra línea: Ejercicio físico supervisado + Cese estricto de tabaquismo + Aspirina 100 mg + Atorvastatina 80 mg + Cilostazol",
+            "Criterios de Isquemia Crítica que Amenaza la Extremidad (dolor en reposo nocturno, úlceras isquémicas o gangrena ➔ revascularización urgente)"
+          ]
+        },
+        {
+          "id": "cardio-35",
+          "title": "Dislipidemias: Estratificación MINSAL, Metas de c-LDL & Estatinas",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.005"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-35",
+          "learningObjectives": [
+            "Estratificación de Riesgo Cardiovascular Global MINSAL (Bajo, Moderado, Alto y Muy Alto Riesgo)",
+            "Metas de Colesterol LDL según categoría de riesgo: Muy Alto Riesgo (prevención secundaria post-IAM/ACV) <55 mg/dL; Alto Riesgo (diabéticos de larga data) <70 mg/dL",
+            "Potencia de Estatinas: Alta potencia (Atorvastatina 40-80 mg, Rosuvastatina 20-40 mg ➔ reduce c-LDL ≥50%)",
+            "Terapia combinada: Adición de Ezetimiba 10 mg si no se alcanza la meta con estatinas máximas toleradas",
+            "Manejo de Hipertrigliceridemia Severa (>500 mg/dL): Fibratos (Fenofibrato/Gemfibrozilo) para prevención de Pancreatitis Aguda"
+          ]
+        },
+        {
+          "id": "cardio-36",
+          "title": "Síncope de Origen Cardiovascular vs Reflejo: Estratificación de Riesgo",
+          "tier": "Tier 2 (Standard)",
+          "slideCount": 19,
+          "bookPages": 4,
+          "perfilCodes": [
+            "1.01.1.021",
+            "1.01.4.001",
+            "1.01.4.002"
+          ],
+          "durationEstimate": "13 min",
+          "deckPath": "/deck/cardio-36",
+          "learningObjectives": [
+            "Definición de Síncope: Pérdida transitoria de la conciencia de inicio rápido, corta duración y recuperación espontánea completa",
+            "Síncope Vasovagal / Reflejo (Benigno): Pródromos autonómicos (náuseas, sudoración, visión borrosa), desencadenante ortostático o emocional",
+            "Banderas Rojas de Síncope Cardiogénico (Alto Riesgo EUNACOM): Síncope durante el esfuerzo físico, en decúbito supino, precedido de palpitaciones, o en paciente con cardiopatía estructural / antecedentes de muerte súbita familiar",
+            "Algoritmo de estudio en urgencias: ECG obligatorio en el 100% de los casos ➔ Holter de arritmias / Ecocardiograma / Tilt Test según sospecha clínica"
           ]
         }
       ]

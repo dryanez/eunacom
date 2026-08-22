@@ -4,441 +4,742 @@ import { Slide } from "../deck/Slide";
 import { Cover } from "../components/deck/Cover";
 import { Steps } from "../components/deck/Steps";
 import { Table } from "../components/deck/Table";
-import { Contrast } from "../components/deck/Contrast";
-import { Bento } from "../components/deck/Bento";
+import { Spotlight } from "../components/deck/Spotlight";
+import { FlowGrid } from "../components/deck/FlowGrid";
+import { DecisionFlowchart } from "../components/deck/DecisionFlowchart";
 import { QuestionSlide } from "../components/deck/QuestionSlide";
 
 export default function Cardio01Deck() {
   return (
-    <Deck title="Cardio 01: Insuficiencia Cardíaca (Masterclass)" classId="cardio-01">
-      {/* SLIDE 1: COVER */}
+    <Deck title="Cardio 01: Angina Crónica Estable & Cardiopatía Isquémica" classId="cardio-01">
+      
+      {/* SLIDE 1: PORTADA & CÓDIGOS OFICIALES */}
       <Slide
-        nav="Portada & Codigos"
-        notes="Bienvenidos a la Masterclass completa de Insuficiencia Cardiaca para el EUNACOM 2026. Cubriremos los codigos 1.01.1.018 y 1.01.2.005 con profundidad y rigor clinico."
+        nav="Portada & Códigos"
+        notes="Bienvenidos a la Masterclass de Angina Crónica Estable y Cardiopatía Isquémica para el EUNACOM 2026. Cubriremos los códigos 1.01.1.001 de Angina Estable, 1.01.4.004 de Test de Esfuerzo y 1.01.4.008 de AngioTAC coronario del Perfil V3."
       >
         <Cover
-          kicker="COD: 1.01.1.018 + 1.01.2.005"
+          classNumber="CLASE 01"
+          kicker="PERFIL V3 ASOFAMECH · CÓD: 1.01.1.001 + 1.01.4.004 + 1.01.4.008"
           badges={[
             { label: "EUNACOM 2026", bg: "#ffe4e6", color: "#e11d48", border: "#f43f5e" },
             { label: "Medicina Interna", bg: "#e0f2fe", color: "#0284c7", border: "#38bdf8" },
-            { label: "Perfil V3 Oficial", bg: "#dcfce7", color: "#16a34a", border: "#4ade80" }
+            { label: "Cardiología 01", bg: "#dcfce7", color: "#16a34a", border: "#4ade80" }
           ]}
-          title={<span>Insuficiencia <span style={{ color: "#e11d48", fontStyle: "italic" }}>Cardiaca</span></span>}
-          subtitle="Diagnostico Clinico de Framingham · Ecocardiograma FEVI · Los 4 Pilares de Sobrevida · Perfiles Hemodinamicos de Forrester"
+          title={<span>Angina Crónica <span style={{ color: "#e11d48", fontStyle: "italic" }}>Estable</span></span>}
+          subtitle="Criterios Diamond-Forrester · Test de Esfuerzo · Criterios de Alto Riesgo · Betabloqueo & Prevención Secundaria"
         />
       </Slide>
 
-      {/* SLIDE 2: MATRIZ DE AUDITORIA OFICIAL */}
+      {/* SLIDE 2: MATRIZ DE AUDITORÍA OFICIAL PERFIL V3 */}
       <Slide
         nav="Matriz Perfil V3"
-        notes="Esta es la matriz de exigencia legal de ASOFAMECh. Para IC cronica se exige diagnostico especifico y seguimiento completo en APS."
+        notes="Esta es la matriz de exigencia legal obligatoria evaluada por ASOFAMECh. Para Angina Crónica Estable se exige diagnóstico específico, inicio de tratamiento y seguimiento completo en APS."
       >
         <Table
-          title="Matriz de Codigos Oficiales Perfil V3"
-          subtitle="Exigencia legal obligatoria evaluada en el Examen Unico Nacional de Medicina."
-          headers={["Codigo", "Situacion Clinica / Examen", "Diagnostico", "Tratamiento", "Seguimiento", "Estado"]}
+          classNumber="CLASE 01"
+          title="Matriz de Exigencia Legal Perfil V3"
+          subtitle="Competencias legales obligatorias evaluadas en el Examen Único Nacional de Medicina."
+          headers={["Código", "Situación Clínica / Examen", "Diagnóstico", "Tratamiento", "Seguimiento", "Nivel Legal APS"]}
           highlightCol={1}
-          pearl="El nivel Especifico exige realizar el diagnostico autonomamente. El nivel Completo exige control en APS."
+          pearl="El médico general en APS debe realizar el diagnóstico clínico, indicar el estudio no invasivo y titular la terapia antiisquémica y preventiva."
           rows={[
-            { highlight: true, cells: ["1.01.1.018", "Insuficiencia Cardiaca Cronica (IC-FEr / IC-FEp)", "Especifico", "Inicial", "Completo APS", "✓ 100% Cubierto"] },
-            { highlight: true, cells: ["1.01.2.005", "Insuficiencia Cardiaca Aguda / Edema Pulmonar", "Especifico", "Inicial", "Derivar UCI", "✓ 100% Cubierto"] },
-            { cells: ["1.01.4.006", "Ecocardiografia Transtoracica", "Emplea Informe", "Indica segun FEVI", "Especialista", "✓ 100% Cubierto"] },
-            { cells: ["1.01.4.009", "Biomarcadores Peptidos (BNP / NT-proBNP)", "Interpreta y Emplea", "Triaje Urgencias", "VPN > 95%", "✓ 100% Cubierto"] }
+            { highlight: true, cells: ["1.01.1.001", "Angina Crónica Estable", "Específico", "Inicial", "Completo APS", "✓ Manejo en CESFAM"] },
+            { cells: ["1.01.4.004", "Test de Esfuerzo / Ergometría", "Emplea Informe", "Indica según riesgo", "Especialista", "✓ Interpreta criterios"] },
+            { cells: ["1.01.4.008", "AngioTAC Coronario", "Emplea Informe", "Indica en riesgo medio", "Especialista", "✓ VPN > 98%"] },
+            { cells: ["1.01.4.005", "Coronariografía Invasiva", "Conoce Indicación", "Deriva a Hemodinamia", "Especialista", "✓ Si alto riesgo"] }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 3: ETIOLOGIAS & CHAMPIT (SCANNABLE BULLETS & ARROWS) */}
+      {/* SLIDE 3: DIAGRAMA DE FLUJO DIAMOND-FORRESTER (HORIZONTAL FLOWGRID) */}
       <Slide
-        nav="Etiologias & CHAMPIT"
-        notes="Cardiopatia isquemica es la causa numero 1 de IC-FEr. Para descompensaciones agudas en urgencias, recuerda siempre la mnemotecnia CHAMPIT."
+        nav="Criterios Diamond-Forrester"
+        notes="El diagnóstico de la angina es fundamentalmente clínico. La escala de Diamond-Forrester evalúa 3 características esenciales que se deben cumplir simultáneamente para clasificar el dolor como Angina Típica."
       >
-        <Bento
-          title="Etiologias Principales & Gatillantes Agudos"
-          subtitle="Causas de base y factores de descompensacion en el Servicio de Urgencias."
-          tiles={[
+        <FlowGrid
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="SEMIOLOGÍA DEL DOLOR"
+          title="Los 3 Criterios de Diamond-Forrester"
+          subtitle="Secuencia obligatoria de evaluación clínica del dolor torácico en la consulta médica."
+          steps={[
             {
-              tag: "Causa #1 IC-FEr",
-              stat: "50-60%",
-              pillBg: "#e11d48",
-              title: "Cardiopatia Isquemica",
-              bullets: [
-                "Infartos previos (IAM) ➔ Necrosis y perdida de miocitos",
-                "Remodelado ventricular ➔ Miocardiopatia dilatada",
-                "Causa principal de FEVI Reducida (FEVI <= 40%)"
+              title: "1. Dolor Opresivo",
+              desc: "Opresión o pesadez retroesternal con irradiación a mandíbula, cuello, hombro o brazo izquierdo.",
+              tag: "Carácter",
+              footer: "Localización retroesternal profunda",
+              footerColor: "#0284c7"
+            },
+            {
+              title: "2. Gatillado por Esfuerzo",
+              desc: "Aparece de forma predecible ante actividad física (subir cuestas/escaleras) o estrés emocional intenso.",
+              tag: "Desencadenante",
+              footer: "Aumento del consumo de O2",
+              footerColor: "#e11d48"
+            },
+            {
+              title: "3. Alivio Rápido",
+              desc: "Cede en menos de 5 a 10 minutos con el reposo inmediato o con la administración de Nitratos sublinguales.",
+              tag: "Alivio",
+              footer: "Recupera la reserva coronaria",
+              footerColor: "#16a34a"
+            }
+          ]}
+          conclusion="✓ CUMPLE LOS 3 CRITERIOS = ANGINA TÍPICA (Probabilidad pretest de enfermedad coronaria > 85%)"
+          pearl="Si cumple 2 criterios = Angina Atípica (muy frecuente en diabéticos y mujeres). Si cumple 0 o 1 = Dolor Torácico No Cardíaco."
+        />
+      </Slide>
+
+      {/* SLIDE 4: TABLA COMPARATIVA DE TIPOS DE DOLOR TORÁCICO */}
+      <Slide
+        nav="Clasificación del Dolor"
+        notes="En el examen EUNACOM es clave clasificar el tipo de dolor para determinar la probabilidad pretest de cardiopatía coronaria."
+      >
+        <Table
+          classNumber="CLASE 01"
+          title="Clasificación Clínica del Dolor Torácico"
+          subtitle="Diferenciación semiológica según criterios de Diamond-Forrester para triaje diagnóstico."
+          headers={["Tipo de Dolor", "Criterios Cumplidos", "Población Frecuente", "Probabilidad Pretest", "Conducta Inicial"]}
+          highlightCol={0}
+          pearl="En pacientes diabéticos, la neuropatía autonómica puede cursar como 'isquemia silente' o manifestarse únicamente con disnea de esfuerzos."
+          rows={[
+            {
+              highlight: true,
+              cells: [
+                "Angina Típica",
+                "3 de 3 Criterios",
+                "Hombres > 50 años, tabaquismo, dislipidemia",
+                "Alta (> 85%)",
+                "Test de Esfuerzo / Fármacos antiisquémicos"
               ]
             },
             {
-              tag: "Causa #1 IC-FEp",
-              stat: "20-30%",
+              cells: [
+                "Angina Atípica",
+                "2 de 3 Criterios",
+                "Mujeres, Adultos Mayores y Diabéticos (Disnea)",
+                "Intermedia (15 - 85%)",
+                "AngioTAC coronario o Eco-Estrés"
+              ]
+            },
+            {
+              cells: [
+                "Dolor No Cardíaco",
+                "0 o 1 Criterio",
+                "Jóvenes, Ansiedad, Dolor punzante condral",
+                "Baja (< 15%)",
+                "Buscar osteocondritis (Tietze) o RGE"
+              ]
+            }
+          ]}
+        />
+      </Slide>
+
+      {/* SLIDE 5: TABLA DE LA ESCALA CANADIENSE (CCS I A IV) */}
+      <Slide
+        nav="Escala Canadiense (CCS)"
+        notes="La severidad de la limitación funcional de la angina se gradúa según la Sociedad Cardiovascular Canadiense de clase I a clase IV."
+      >
+        <Table
+          classNumber="CLASE 01"
+          title="Clasificación Funcional Canadiense (CCS I a IV)"
+          subtitle="Graduación del impacto de la angina en la actividad física de la vida diaria."
+          headers={["Grado CCS", "Limitación Física", "Actividad que Desencadena Angina", "Manejo Clínico"]}
+          highlightCol={0}
+          pearl="¡Regla de Urgencia!: Todo paciente que progresa rápidamente a CCS III-IV en las últimas semanas o tiene dolor en reposo es un SCASEST (Angina Inestable)."
+          rows={[
+            { cells: ["Clase I", "Sin limitación ordinaria", "Solo con esfuerzos extenuantes, rápidos o prolongados.", "Manejo ambulatorio en APS"] },
+            { cells: ["Clase II", "Ligera limitación", "Al caminar rápido, subir cuestas o más de 1 piso de escaleras.", "Titular Betabloqueador"] },
+            { cells: ["Clase III", "Marcada limitación", "Al caminar 1 o 2 cuadras en plano o subir 1 piso a paso normal.", "Optimizar terapia combinada"] },
+            { highlight: true, cells: ["Clase IV", "Incapacidad total", "Con mínimos esfuerzos o en reposo (sospecha de SCA).", "Derivar a Urgencias / UCI"] }
+          ]}
+        />
+      </Slide>
+
+      {/* SLIDE 6: DIAGRAMA DE LA CASCADA ISQUÉMICA (FLOWGRID) */}
+      <Slide
+        nav="Cascada Isquémica"
+        notes="La base fisiopatológica es la obstrucción coronaria fija mayor al 70%. La cascada isquémica demuestra que las alteraciones metabólicas y eléctricas ocurren antes de sentir dolor."
+      >
+        <FlowGrid
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="FISIOPATOLOGÍA CORONARIA"
+          title="La Cascada Isquémica Miocárdica"
+          subtitle="Secuencia cronológica de eventos desde la caída de perfusión hasta el síntoma clínico."
+          steps={[
+            {
+              title: "1. Falla Metabólica",
+              desc: "Desbalance de O2 ➔ Producción de lactato y caída de ATP intracelular miocárdico.",
+              tag: "Celular",
+              footer: "Minutos 0 - 1",
+              footerColor: "#64748b"
+            },
+            {
+              title: "2. Falla Diastólica",
+              desc: "Pérdida de la relajación activa del ventrículo izquierdo (aumento de presión telediastólica).",
+              tag: "Ecocardiograma",
+              footer: "Visible en Doppler tisular",
+              footerColor: "#0284c7"
+            },
+            {
+              title: "3. Cambios en ECG",
+              desc: "Infradesnivel del segmento ST e inversión simétrica de la onda T por isquemia subendocárdica.",
+              tag: "Electrocardiograma",
+              footer: "Depresión del ST ≥ 1 mm",
+              footerColor: "#f59e0b"
+            },
+            {
+              title: "4. Dolor Anginoso",
+              desc: "Estimulación de terminaciones nerviosas simpáticas por adenosina y bradicinina.",
+              tag: "Síntoma Clínico",
+              footer: "ÚLTIMO eslabón temporal",
+              footerColor: "#dc2626"
+            }
+          ]}
+          conclusion="💡 EL DOLOR ES EL ÚLTIMO EVENTO: Las alteraciones funcionales y eléctricas preceden siempre a la molestia del paciente."
+          pearl="Una estenosis coronaria > 70% preserva el flujo basal en reposo pero agota la reserva coronaria durante el esfuerzo físico."
+        />
+      </Slide>
+
+      {/* SLIDE 7: DIAGRAMA ALGORÍTMICO DE ESTUDIO DIAGNÓSTICO (DECISION FLOWCHART) */}
+      <Slide
+        nav="Algoritmo de Estudio Diagnóstico"
+        notes="La elección del examen complementario depende de la probabilidad pretest y de si el ECG basal permite una interpretación adecuada del segmento ST."
+      >
+        <DecisionFlowchart
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="ESTUDIO NO INVASIVO"
+          startNode={{
+            badge: "EVALUACIÓN EN APS",
+            title: "Paciente con Sospecha Clínica de Angina Estable",
+            subtitle: "Dolor torácico típico/atípico + Examen físico cardiopulmonar + ECG de 12 derivaciones basal"
+          }}
+          decisionNode="¿El ECG Basal es Interpretable y el Paciente Puede Caminar?"
+          branches={[
+            {
+              isYes: true,
+              pillText: "✓ SÍ (Elegible para Esfuerzo)",
+              tag: "1ra Línea APS",
+              title: "Test de Esfuerzo (Ergometría / Bruce)",
+              points: [
+                "Protocolo estándar en cinta rodante",
+                "Evalúa síntomas, capacidad física (METs) y ECG",
+                "Criterio (+) = Infradesnivel ST ≥ 1.0 mm a 80 ms"
+              ],
+              action: "Indicar PEG de esfuerzo en CESFAM"
+            },
+            {
+              label: "🔍 Riesgo Intermedio (15 - 50%)",
               pillBg: "#0284c7",
-              title: "Cardiopatia Hipertensiva",
-              bullets: [
-                "HTA de larga data ➔ Hipertrofia concentrica VI",
-                "Rigidez miocardica ➔ Aumento de presiones de llenado",
-                "Causa principal de FEVI Preservada (FEVI >= 50%)"
-              ]
+              tag: "Alta Precisión",
+              title: "AngioTAC Coronario Multislice",
+              points: [
+                "Visualización anatómica no invasiva de coronarias",
+                "Valor Predictivo Negativo > 98% (descarta obstrucción)",
+                "Score de Calcio coronario (Agatston)"
+              ],
+              action: "Excelente para descartar patología"
             },
             {
-              tag: "Otras Causas EUNACOM",
-              stat: "10-20%",
-              pillBg: "#16a34a",
-              title: "Valvular & Chagas",
-              bullets: [
-                "Estenosis Aortica ➔ Sobrecarga de presion en ancianos",
-                "Miocardiopatia Alcoholica ➔ Reversible con abstinencia",
-                "Chagas Cronico (IV Region) ➔ BCRD + HBPI + Aneurisma"
-              ]
-            },
-            {
-              colSpan: 3,
-              gridColumns: 2,
-              tag: "Gatillantes de Urgencia · Regla CHAMPIT",
-              pillBg: "#f59e0b",
-              pillColor: "#000",
-              bulletBg: "rgba(245, 158, 11, 0.08)",
-              title: "Factores de Descompensacion Aguda en Urgencias",
-              bullets: [
-                "[C] Coronario ➔ Isquemia miocardica aguda o infarto silente",
-                "[H] Hipertension ➔ Crisis hipertensiva con aumento brusco de poscarga",
-                "[A] Arritmias ➔ Fibrilacion Auricular con respuesta ventricular rapida",
-                "[M] Mecanicas ➔ Rotura de cuerda tendinosa o disfuncion de musculo papilar",
-                "[P] Pulmonar ➔ Tromboembolismo pulmonar (TEP) o Neumonia",
-                "[I] Infeccion ➔ Cuadro infeccioso sistemico o ITU en adulto mayor",
-                "[T] Toxicos / Farmacos ➔ AINEs (Retencion severa de sodio y agua)"
-              ]
+              isNo: true,
+              pillText: "✗ NO (ECG No Interpretable)",
+              tag: "Contraindicado PEG",
+              title: "Eco-Estrés / Resonancia Cardíaca",
+              points: [
+                "Presencia de BCRI, Marcapasos o WPW basal",
+                "Incapacidad motora o artrosis severa",
+                "Estrés farmacológico con Dobutamina / Dipiridamol"
+              ],
+              action: "Contraindicado Test de Esfuerzo común"
             }
+          ]}
+          bottomBanner={{
+            icon: "💡",
+            title: "Regla de Oro EUNACOM",
+            text: "Si el paciente tiene Bloqueo Completo de Rama Izquierda (BCRI), el Test de Esfuerzo convencional NO es interpretable y está contraindicado como método diagnóstico único."
+          }}
+        />
+      </Slide>
+
+      {/* SLIDE 8: TABLA DE CRITERIOS DE POSITIVIDAD EN TEST DE ESFUERZO */}
+      <Slide
+        nav="Test de Esfuerzo (Criterios)"
+        notes="Revisemos los criterios exactos que definen una prueba de esfuerzo positiva para isquemia miocárdica según las guías clínicas."
+      >
+        <Table
+          classNumber="CLASE 01"
+          title="Test de Esfuerzo: Criterios de Positividad & Contraindicaciones"
+          subtitle="Parámetros evaluados en el protocolo de Bruce en cinta rodante."
+          headers={["Parámetro", "Criterio EUNACOM", "Significado Clínico", "Conducta Terapéutica"]}
+          highlightCol={1}
+          pearl="Un infradesnivel ascendente rápido del ST es una respuesta fisiológica normal y NO se considera positivo."
+          rows={[
+            { highlight: true, cells: ["Infradesnivel del ST", "≥ 1.0 mm (0.1 mV) horizontal o descendente a 80 ms del punto J", "Positivo para Isquemia", "Optimizar fármacos antiisquémicos"] },
+            { highlight: true, cells: ["Supradesnivel del ST", "≥ 1.0 mm en derivaciones sin onda Q previa", "Isquemia transmural grave", "Detener prueba ➔ Coronariografía"] },
+            { cells: ["Respuesta de PA", "Aumento progresivo normal de PAS (hasta 200 mmHg)", "Reserva contráctil conservada", "Respuesta hemodinámica normal"] },
+            { cells: ["Contraindicación Absoluta", "Estenosis Aórtica Severa Sintomática, IAM reciente <48h o Arritmias malignas", "Riesgo de síncope o paro", "¡Contraindicado realizar PEG!"] }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 4: CRITERIOS DE FRAMINGHAM (CLEAN VERTICAL BULLETS) */}
+      {/* SLIDE 9: DIAGRAMA DE 4 CRITERIOS DE ALTO RIESGO (DECISION FLOWCHART) */}
       <Slide
-        nav="Criterios de Framingham"
-        notes="Para diagnostico se requieren 2 Mayores o 1 Mayor + 2 Menores. El R3 galope es el signo mas especifico."
+        nav="Criterios de Alto Riesgo"
+        notes="Estos 4 hallazgos en el test de esfuerzo definen alto riesgo de mortalidad cardiovascular (>3% anual) e indican derivación inmediata a coronariografía invasiva."
+      >
+        <DecisionFlowchart
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="ALTO RIESGO ISQUÉMICO"
+          startNode={{
+            badge: "HALLAZGOS DE ALARMA EN ERGOMETRÍA",
+            title: "4 Banderas Rojas de Alto Riesgo (Mortalidad > 3% Anual)",
+            subtitle: "Cualquiera de estos 4 hallazgos traduce isquemia miocárdica masiva o enfermedad de tronco coronario."
+          }}
+          decisionNode="¿El Paciente Presenta Alguna de estas 4 Banderas Rojas?"
+          branches={[
+            {
+              isNo: true,
+              pillText: "🚨 ST Severo",
+              tag: "Isquemia Extensa",
+              title: "Infradesnivel ST ≥ 2.0 mm",
+              points: [
+                "Morfología horizontal o descendente",
+                "Presente en ≥ 5 derivaciones simultáneas",
+                "Persistencia > 5 min en la recuperación"
+              ],
+              action: "Derivar a Coronariografía urgente"
+            },
+            {
+              isNo: true,
+              pillText: "🚨 Precoz",
+              tag: "Bajo Umbral",
+              title: "Isquemia en Estadio 1 de Bruce",
+              points: [
+                "Aparición con FC < 120 lpm",
+                "Carga de trabajo baja (< 5 METs)",
+                "Angina limitante a los 2-3 minutos"
+              ],
+              action: "Compromiso de Tronco Común Izquierdo"
+            },
+            {
+              isNo: true,
+              pillText: "🚨 Falla de Bomba",
+              tag: "Hemodinamia",
+              title: "Caída de Presión Sistólica",
+              points: [
+                "Descenso de la PAS durante el esfuerzo",
+                "Falla aguda contráctil del VI por isquemia",
+                "Enfermedad de 3 vasos coronarios"
+              ],
+              action: "Alto riesgo de shock / colapso"
+            }
+          ]}
+          bottomBanner={{
+            icon: "🚨",
+            title: "Conducta Obligatoria EUNACOM",
+            text: "Los criterios de alto riesgo isquémico exigen derivación urgente a Coronariografía Invasiva para evaluar revascularización miocárdica quirúrgica (CABG) o percutánea (ATC)."
+          }}
+        />
+      </Slide>
+
+      {/* SLIDE 10: TABLA DE PREVENCIÓN SECUNDARIA OBLIGATORIA */}
+      <Slide
+        nav="Prevención Secundaria"
+        notes="Todo paciente con cardiopatía isquémica demostrada debe recibir terapia de prevención secundaria obligatoria para reducir el riesgo de infarto y muerte."
       >
         <Table
-          title="Criterios Diagnosticos de Framingham"
-          subtitle="Regla de oro: Diagnostico clinico con 2 Criterios Mayores O 1 Mayor + 2 Menores."
-          headers={["Tipo de Criterio", "Signos y Sintomas Clinicos", "Especificidad / Perla EUNACOM"]}
-          pearl="El Galope por R3 y la Ingurgitacion Yugular a 45° son los mejores signos para diferenciar disnea cardiaca de respiratoria."
+          classNumber="CLASE 01"
+          title="Terapia de Prevención Secundaria Obligatoria en APS"
+          subtitle="Fármacos que modifican la sobrevida y previenen eventos coronarios mayores (MACE)."
+          headers={["Fármaco", "Dosis de Elección", "Mecanismo de Beneficio", "Meta EUNACOM"]}
+          highlightCol={0}
+          pearl="Las estatinas de alta potencia se indican SIEMPRE en cardiopatía isquémica, independientemente del nivel basal de colesterol."
           rows={[
             {
               highlight: true,
               cells: [
-                "Criterios Mayores",
-                [
-                  "Disnea Paroxistica Nocturna u Ortopnea (>= 2 almohadas)",
-                  "Ingurgitacion Yugular a 45° y Reflujo Hepatoyugular (+)",
-                  "Crepitaciones bibasales en auscultacion pulmonar",
-                  "Galope por Tercer Ruido (R3) ➔ SIGNO MAS ESPECIFICO",
-                  "Cardiomegalia en Rx de torax (Indice Cardiotoracico > 0.50)",
-                  "Edema Agudo de Pulmon (EAP)"
-                ],
-                "Alta Especificidad (R3 galope es el signo fisico mas especifico de sobrecarga de volumen)"
+                "Aspirina (AAS)",
+                "100 mg / día vo a permanencia",
+                "Inhibición irreversible de COX-1 plaquetaria ➔ Antiagregación",
+                "Previene trombosis sobre la placa (Clopidogrel 75 mg si alergia)"
+              ]
+            },
+            {
+              highlight: true,
+              cells: [
+                "Estatina de Alta Potencia",
+                "Atorvastatina 80 mg o Rosuvastatina 40 mg/d",
+                "Estabilización de placa, efecto pleiotrópico y reducción de lípidos",
+                "c-LDL < 55 mg/dL Y reducción ≥ 50% del valor basal"
               ]
             },
             {
               cells: [
-                "Criterios Menores",
-                [
-                  "Edema maleolar bilateral vespertino (blando)",
-                  "Tos nocturna irritativa y disnea de esfuerzo habitual",
-                  "Hepatomegalia congestiva dolorosa",
-                  "Derrame pleural (usualmente derecho o bilateral)",
-                  "Taquicardia en reposo (> 100 lpm)"
-                ],
-                "Menor Especificidad (requieren combinarse con al menos 1 criterio mayor)"
+                "IECA / ARA-II",
+                "Enalapril 10 - 20 mg/día vo",
+                "Bloqueo del eje RAA, previene remodelado y fibrosis",
+                "Indicado si asocia HTA, DM2, FEVI ≤ 40% o daño renal"
               ]
             }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 5: ECOCARDIOGRAMA & FEVI */}
+      {/* SLIDE 11: TABLA DE TERAPIA ANTIISQUÉMICA DE 1RA Y 2DA LÍNEA */}
       <Slide
-        nav="Ecocardiograma & FEVI"
-        notes="El ecocardiograma define si es IC-FEr, IC-FElr o IC-FEp. Los iSGLT2 han demostrado beneficio en todas las categorias."
+        nav="Terapia Antiisquémica"
+        notes="Los betabloqueadores son el fármaco antiisquémico de primera elección porque disminuyen el consumo miocárdico de oxígeno al reducir la frecuencia cardíaca y la contractilidad."
       >
         <Table
-          title="Ecocardiograma Transtoracico: Clasificacion FEVI"
-          subtitle="El reporte ecocardiografico determina la indicacion de farmacos con beneficio en mortalidad."
-          headers={["Categoria FEVI", "Rango FEVI", "Hallazgos Ecocardiograficos", "Tratamiento con Sobrevida"]}
+          classNumber="CLASE 01"
+          title="Farmacoterapia Antiisquémica: 1ra y 2da Línea"
+          subtitle="Manejo sintomático del dolor anginoso y control hemodinámico en APS."
+          headers={["Línea Terapéutica", "Fármacos de Elección", "Mecanismo Principal", "Meta & Precauciones"]}
+          highlightCol={0}
+          pearl="Meta antiisquémica obligatoria: Frecuencia Cardíaca en reposo entre 55 y 60 latidos por minuto."
           rows={[
             {
               highlight: true,
               cells: [
-                "1. IC con FEVI Reducida (IC-FEr)",
-                "FEVI <= 40%",
-                [
-                  "Disfuncion sistolica pura",
-                  "Dilatacion ventricular izquierda",
-                  "Acinesia segmentaria post-IAM"
-                ],
-                [
-                  "Los 4 Pilares Obligatorios:",
-                  "ARNI + Betabloqueador + ARM + iSGLT2"
-                ]
+                "1ra Línea: Betabloqueadores",
+                "Bisoprolol 5 - 10 mg/d o Carvedilol 25 mg c/12h",
+                "Bloqueo Beta-1: ↓ FC, ↓ contractilidad y ↑ tiempo de diástole",
+                "Meta FC reposo 55-60 lpm. Contraindicado en asma severa o BAV"
               ]
             },
             {
               cells: [
-                "2. IC con FEVI Levemente Reducida",
-                "FEVI 41 - 49%",
-                [
-                  "Disfuncion sistolica moderada",
-                  "Aumento leve de presiones de llenado"
-                ],
-                "iSGLT2 de primera linea + modulacion SRAA"
+                "Alternativa 1ra Línea: Calcioantagonistas No-DHP",
+                "Verapamilo 80-120 mg c/8h o Diltiazem 60-120 mg c/8h",
+                "Inótropo y cronótropo negativo (frena nodo AV)",
+                "Usar si intolerancia a BB. ¡NUNCA combinar con BB por riesgo de shock!"
               ]
             },
             {
               cells: [
-                "3. IC con FEVI Preservada (IC-FEp)",
-                "FEVI >= 50%",
-                [
-                  "Disfuncion diastolica",
-                  "Hipertrofia concentrica VI (E/e > 14)",
-                  "Dilatacion de auricula izquierda"
-                ],
-                "iSGLT2 (Dapagliflozina) + Diureticos de asa para sintomas"
+                "2da Línea (Asociación): Calcioantagonistas DHP",
+                "Amlodipino 5 - 10 mg / día vo",
+                "Vasodilatador arterial coronario y periférico",
+                "Excelente para sumar a Betabloqueador si persiste angina"
+              ]
+            },
+            {
+              cells: [
+                "Rescate Inmediato: Nitratos",
+                "Nitroglicerina sublingual 0.6 mg SOS",
+                "Venodilatador (↓ precarga) y vasodilatador coronario",
+                "Tomar en reposo (máx 3 comp en 15m). ¡Contraindicado con Sildenafil!"
               ]
             }
           ]}
-          pearl="Biomarcadores BNP: NT-proBNP < 300 pg/mL o BNP < 100 pg/mL descartan causa cardiaca con Valor Predictivo Negativo > 95%."
         />
       </Slide>
 
-      {/* SLIDE 6: LOS 4 PILARES DE SOBREVIDA */}
+      {/* SLIDE 12: DIAGRAMA DE ANGINA DE PRINZMETAL (DECISION FLOWCHART) */}
       <Slide
-        nav="Los 4 Pilares de Sobrevida"
-        notes="Terapia cuadruple fundamental en FEVI reducida. Revisa siempre la regla de 36h de lavado al cambiar de Enalapril a Sacubitril/Valsartan."
+        nav="Angina de Prinzmetal"
+        notes="La angina de Prinzmetal es causada por vasoespasmo coronario transitorio en reposo. Los Calcioantagonistas son el tratamiento de elección y los Betabloqueadores están estrictamente contraindicados."
+      >
+        <DecisionFlowchart
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="VASOESPASMO CORONARIO"
+          startNode={{
+            badge: "PATOLOGÍA ESPECIAL EUNACOM",
+            title: "Angina Vasoespástica de Prinzmetal",
+            subtitle: "Dolor anginoso típico de reposo (madrugada) + Supradesnivel ST transitorio que desaparece con Nitroglicerina"
+          }}
+          decisionNode="¿Cuál es la Conducta Terapéutica Correcta en Prinzmetal?"
+          branches={[
+            {
+              isYes: true,
+              pillText: "✓ FÁRMACO DE ELECCIÓN (SÍ)",
+              tag: "1ra Línea",
+              title: "Calcioantagonistas",
+              points: [
+                "Amlodipino 10 mg/d o Diltiazem 240 mg/d",
+                "Vasodilatación arterial directa de la musculatura lisa",
+                "Previenen las crisis de espasmo a largo plazo"
+              ],
+              action: "Tratamiento de elección a largo plazo"
+            },
+            {
+              label: "🚭 CESE DE TABACO",
+              pillBg: "#0284c7",
+              tag: "Medida Esencial",
+              title: "Suspensión del Cigarrillo",
+              points: [
+                "Principal gatillante endotelial del espasmo",
+                "La nicotina induce hiperreactividad vascular",
+                "Consejería antitabaco obligatoria en APS"
+              ],
+              action: "Reduce drásticamente las crisis"
+            },
+            {
+              isNo: true,
+              pillText: "🚨 CONTRAINDICACIÓN MORTAL (NO)",
+              tag: "¡Peligro Vital!",
+              title: "¡PROHIBIDOS BETABLOQUEADORES!",
+              points: [
+                "El bloqueo Beta-2 deja el tono Alfa-1 libre sin freno",
+                "Produce vasoespasmo severo e infarto agudo",
+                "Trampa repetida y clásica del banco de preguntas"
+              ],
+              action: "¡Estrictamente contraindicados!"
+            }
+          ]}
+          bottomBanner={{
+            icon: "💡",
+            title: "Regla de Oro de Examen",
+            text: "En Angina de Prinzmetal los Betabloqueadores están PROHIBIDOS porque agravan el espasmo por vasoconstricción alfa-1 refleja. El tratamiento de elección son los Calcioantagonistas."
+          }}
+        />
+      </Slide>
+
+      {/* SLIDE 13: LAS 4 TRAMPAS CRÍTICAS DEL EUNACOM */}
+      <Slide
+        nav="4 Trampas del EUNACOM"
+        notes="Repasemos las 4 trampas más frecuentes que aparecen en el banco de preguntas sobre cardiopatía isquémica estable."
       >
         <Steps
-          title="Los 4 Pilares de Sobrevida en IC-FEr (FEVI <= 40%)"
-          subtitle="Terapia cuadruple obligatoria para reducir hospitalizaciones y mortalidad cardiovascular."
+          classNumber="CLASE 01"
+          title="Las 4 Trampas Críticas del Banco EUNACOM"
+          subtitle="Errores clásicos de examen que debes evitar para asegurar el puntaje máximo."
           items={[
-            { tag: "Pilar 1 · SRAA", badgeBg: "#e11d48", title: "ARNI / IECA", desc: "Sacubitril/Valsartan de 1ra linea. Si se cambia de Enalapril a ARNI: esperar 36 horas de lavado para evitar angioedema." },
-            { tag: "Pilar 2 · Simpatico", badgeBg: "#0284c7", title: "Betabloqueadores", desc: "Solo 3 validados: Carvedilol, Bisoprolol y Metoprolol Succinato. Iniciar en paciente euvolemico. (Atenolol NO sirve)." },
-            { tag: "Pilar 3 · Mineralocorticoide", badgeBg: "#16a34a", title: "Espironolactona", desc: "Dosis 25-50 mg/dia. Requisitos de inicio seguro: Creatinina < 2.5 mg/dL y Potasio K+ < 5.0 mEq/L." },
-            { tag: "Pilar 4 · Metabolico", badgeBg: "#f59e0b", title: "iSGLT2 (Dapa/Empa)", desc: "Dapagliflozina 10 mg/dia. Obligatorio en pacientes diabeticos y NO diabeticos. Reduce muerte CV desde el 1er mes." }
-          ]}
-        />
-      </Slide>
-
-      {/* SLIDE 7: CONTRASTE: SOBREVIDA VS PROHIBIDOS */}
-      <Slide
-        nav="Sobrevida vs Prohibidos"
-        notes="Pregunta trampa recurrente: Furosemida alivia congestion pero no reduce mortalidad. Los AINEs y Verapamilo estan contraindicados."
-      >
-        <Contrast
-          title="Farmacos Prohibidos vs Manejo del Hierro"
-          leftTitle="Farmacos Prohibidos / Trampas EUNACOM"
-          leftItems={[
-            "AINEs (Ibuprofeno, Ketorolaco, Diclofenaco): Retienen agua y sodio, provocan descompensacion aguda.",
-            "Calcioantagonistas No Dihidropiridinicos (Verapamilo, Diltiazem): Inotropos negativos potentes, empeoran IC.",
-            "Tiazolidinedionas (Pioglitazona): Retencion hidrica severa.",
-            "Furosemida Oral: Es el diuretico sintomatico de eleccion, pero NO disminuye la mortalidad a largo plazo."
-          ]}
-          rightTitle="Manejo del Hierro & Analgesia Segura"
-          rightItems={[
-            "Deficit de Hierro: Ferritina < 100 ng/mL o 100-299 con Sat. Transferrina < 20%.",
-            "Tratamiento: Hierro Carboximaltosa Endovenoso (el hierro oral no se absorbe por edema intestinal).",
-            "Analgesia de Eleccion en IC: Paracetamol o Tramadol (evitar formalmente los AINEs).",
-            "Digoxina: Indicada solo en FA concomitante o sintomas refractarios; no reduce mortalidad."
-          ]}
-        />
-      </Slide>
-
-      {/* SLIDE 8: DISPOSITIVOS DAI & TRC */}
-      <Slide
-        nav="Dispositivos DAI / TRC"
-        notes="Criterios de derivacion a electrofisiologia: DAI para prevenir muerte subita si FEVI <= 35%, TRC si hay BCRI con QRS ancho."
-      >
-        <Bento
-          title="Terapia con Dispositivos: DAI vs Resincronizador TRC"
-          subtitle="Criterios formales de derivacion a especialista tras 3 meses de terapia medica optima."
-          tiles={[
             {
-              tag: "Prevencion Muerte Subita",
-              pillBg: "#e11d48",
-              title: "Desfibrilador Automatico (DAI)",
-              bullets: [
-                "FEVI <= 35% persistente tras >= 3 meses con 4 Pilares",
-                "Clase funcional NYHA II o III",
-                "Sobrevida estimada > 1 ano"
-              ]
+              num: "1",
+              title: "Trampa de la Estatina con Colesterol Normal",
+              desc: "En un paciente coronario con Angina Estable, la Atorvastatina 80 mg es obligatoria independientemente de que su colesterol basal esté normal (meta LDL < 55 mg/dL)."
             },
             {
-              tag: "Disincronia Ventricular",
-              pillBg: "#0284c7",
-              title: "Resincronizador Cardiaco (TRC)",
-              bullets: [
-                "FEVI <= 35% en ritmo sinusal",
-                "Sintomaticos a pesar de terapia optima",
-                "QRS ancho >= 130-150 ms con patron BCRI"
-              ]
+              num: "2",
+              title: "Trampa del BCRI en Test de Esfuerzo",
+              desc: "Un paciente con Bloqueo de Rama Izquierda o Marcapasos NO puede evaluarse con Test de Esfuerzo convencional; requiere Eco-Estrés o Resonancia Cardíaca."
             },
             {
-              colSpan: 3,
-              gridColumns: 2,
-              tag: "Algoritmo de Derivacion APS ➔ Especialista",
-              pillBg: "#16a34a",
-              bulletBg: "rgba(22, 163, 74, 0.08)",
-              title: "Seguimiento en APS & Criterio de Derivacion",
-              bullets: [
-                "Medico General: Inicia y titula los 4 Pilares durante 3 meses",
-                "Control con Ecocardiograma a los 3 meses de terapia optima",
-                "Si FEVI se mantiene <= 35% ➔ Derivar a Electrofisiologia para DAI",
-                "Si FEVI <= 35% + BCRI (QRS >= 130 ms) ➔ Derivar para TRC"
-              ]
+              num: "3",
+              title: "Trampa de los Betabloqueadores en Prinzmetal",
+              desc: "En angina vasoespástica, los betabloqueadores empeoran el cuadro por vasoconstricción alfa refleja; el tratamiento de elección son los Calcioantagonistas."
+            },
+            {
+              num: "4",
+              title: "Trampa de la Angina Inestable Disfrazada",
+              desc: "Si la angina aparece en reposo o con mínimos esfuerzos (CCS IV) o progresa rápidamente en las últimas semanas, ya NO es estable: es un SCASEST y requiere hospitalización."
             }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 9: IC AGUDA & FORRESTER */}
+      {/* SLIDE 14: CASO CLÍNICO EUNACOM #1 */}
       <Slide
-        nav="Cuadricula de Forrester"
-        notes="En urgencias se evalua Perfusion (Caliente/Frio) y Congestion (Humedo/Seco). El 80% de los pacientes consultan como Caliente y Humedo."
+        nav="Caso Clínico 1 (Diagnóstico)"
+        notes="Analicemos este caso clínico de diagnóstico y conducta inicial en APS."
       >
-        <Table
-          title="Insuficiencia Cardiaca Aguda: Cuadricula de Forrester"
-          subtitle="Evaluacion hemodinamica inmediata en el Servicio de Urgencias (Codigo 1.01.2.005)."
-          headers={["Perfil Clinico", "Hemodinamia", "Manifestaciones Clinicas", "Conducta Terapeutica Inmediata"]}
-          rows={[
+        <QuestionSlide
+          classNumber="CLASE 01"
+          questionNumber={1}
+          specialty="Cardiología"
+          code="1.01.1.001"
+          question="Hombre de 56 años, hipertenso y fumador activo. Consulta en el CESFAM por dolor retroesternal opresivo que aparece al subir 2 pisos de escaleras o caminar rápido en subida, de 3 meses de evolución. El dolor cede completamente tras 3 a 5 minutos de reposo. Examen físico: PA 138/84 mmHg, FC 76 lpm regular, examen cardiopulmonar normal. Su ECG basal de 12 derivaciones es estrictamente normal. ¿Cuál es el diagnóstico más probable y la conducta diagnóstica inicial más adecuada?"
+          correctOptionId="B"
+          options={[
             {
-              cells: [
-                "Perfil A (Caliente y Seco)",
-                "Normoperfundido + Seco",
-                ["Sin disnea en reposo", "Sin crépitos pulmonares", "Sin edemas periféricos"],
-                "Mantener y titular los 4 Pilares orales en APS."
-              ]
+              id: "A",
+              text: "Dolor torácico no coronario; tranquilizar al paciente e indicar kinesioterapia respiratoria.",
+              explanation: "Incorrecto. El paciente cumple los 3 criterios de Diamond-Forrester para Angina Típica.",
+              isCorrect: false
             },
             {
-              highlight: true,
-              cells: [
-                "Perfil B (Caliente y Humedo) - 80% Urgencias",
-                "Normoperfundido + Humedo",
-                ["Crisis hipertensiva", "Edema Agudo de Pulmon (EAP)", "Ortopnea y crepitos masivos"],
-                "VNI (CPAP) + Furosemida EV bolo + Nitroglicerina EV en infusion continua."
-              ]
+              id: "B",
+              text: "Angina Crónica Estable; indicar Test de Esfuerzo (Ergometría) e iniciar Aspirina 100 mg, Atorvastatina 80 mg y Bisoprolol.",
+              explanation: "Correcto. El cuadro cumple criterios de Angina Típica en clase funcional CCS II. Con ECG basal normal y capacidad para caminar, el Test de Esfuerzo es el estudio indicado, asociando prevención secundaria y betabloqueo.",
+              isCorrect: true
             },
             {
-              cells: [
-                "Perfil L (Frio y Seco)",
-                "Hipoperfundido + Seco",
-                ["Deshidratacion / exceso diureticos", "Extremidades frias", "Llene capilar lento"],
-                "Prueba controlada de volumen con Cristaloides (Suero Fisiologico)."
-              ]
+              id: "C",
+              text: "Síndrome Coronario Agudo SCACEST; derivar de inmediato en ambulancia con sirena a Hemodinamia para angioplastía primaria.",
+              explanation: "Incorrecto. El cuadro es estable de 3 meses de evolución, cede con el reposo y el ECG basal es normal sin supradesnivel del ST.",
+              isCorrect: false
             },
             {
-              cells: [
-                "Perfil C (Frio y Humedo) - Shock Cardiogenico",
-                "Hipoperfundido + Humedo",
-                ["Hipotension (PAS < 90)", "Mala perfusion distal", "Crepitos y congestion alveolar"],
-                "Noradrenalina + Dobutamina + Traslado inmediato a UCI."
-              ]
+              id: "D",
+              text: "Angina de Prinzmetal; iniciar Verapamilo 80 mg cada 8 horas y contraindicar el ejercicio físico.",
+              explanation: "Incorrecto. La angina de Prinzmetal ocurre en reposo y de noche, no desencadenada por esfuerzo físico predecible.",
+              isCorrect: false
+            },
+            {
+              id: "E",
+              text: "Osteocondritis condrocostal (Síndrome de Tietze); indicar antiinflamatorios no esteroidales orales.",
+              explanation: "Incorrecto. La osteocondritis produce dolor punzante reproducible a la palpación costal, no dolor opresivo retroesternal de esfuerzo.",
+              isCorrect: false
             }
           ]}
-          pearl="En Edema Agudo de Pulmon normoperfundido (Caliente y Humedo), la triada salvadora es: VNI + Furosemida EV + Vasodilatador EV."
         />
       </Slide>
 
-      {/* SLIDE 10: MANEJO DEL EDEMA AGUDO DE PULMON */}
+      {/* SLIDE 15: CASO CLÍNICO EUNACOM #2 */}
       <Slide
-        nav="Manejo del EAP"
-        notes="Protocolo secuencial de urgencia: Posicion sentada, CPAP precoz para evitar IOT, Furosemida EV y Nitroglicerina si PAS > 110."
+        nav="Caso Clínico 2 (Manejo Farmacológico)"
+        notes="Analicemos este caso de titulación y metas de frecuencia cardíaca."
+      >
+        <QuestionSlide
+          classNumber="CLASE 01"
+          questionNumber={2}
+          specialty="Cardiología"
+          code="1.01.1.001"
+          question="Mujer de 64 años con diagnóstico confirmado de Angina Crónica Estable mediante test de esfuerzo positivo en estadio 3 de Bruce. Actualmente en tratamiento con Aspirina 100 mg/día, Atorvastatina 80 mg/día y Atenolol 25 mg/día. En su control refiere que persiste con episodios de opresión precordial al caminar 3 cuadras. Al examen físico: PA 132/80 mmHg, FC 82 lpm regular. ¿Cuál es la conducta farmacológica más adecuada para optimizar el control de sus síntomas?"
+          correctOptionId="C"
+          options={[
+            {
+              id: "A",
+              text: "Suspender Atenolol e iniciar Diltiazem 60 mg cada 8 horas.",
+              explanation: "Incorrecto. El betabloqueador es el fármaco de primera línea y su dosis actual es subterapéutica con FC de 82 lpm.",
+              isCorrect: false
+            },
+            {
+              id: "B",
+              text: "Agregar Clopidogrel 75 mg/día para realizar doble antiagregación plaquetaria.",
+              explanation: "Incorrecto. La doble antiagregación no está indicada en angina crónica estable sin angioplastía reciente.",
+              isCorrect: false
+            },
+            {
+              id: "C",
+              text: "Aumentar la dosis del Betabloqueador para alcanzar una frecuencia cardíaca meta en reposo de 55 a 60 lpm.",
+              explanation: "Correcto. El objetivo terapéutico antiisquémico con betabloqueadores es titular la dosis hasta lograr una FC en reposo entre 55 y 60 lpm.",
+              isCorrect: true
+            },
+            {
+              id: "D",
+              text: "Derivar de urgencia para cirugía de Bypass Aortocoronario (CABG) inmediata.",
+              explanation: "Incorrecto. Primero se debe optimizar la terapia médica farmacológica antes de considerar revascularización invasiva.",
+              isCorrect: false
+            },
+            {
+              id: "E",
+              text: "Indicar Digoxina 0.25 mg/día para mejorar el inotropismo miocárdico.",
+              explanation: "Incorrecto. La digoxina no tiene indicación en angina estable y puede aumentar el consumo miocárdico de oxígeno.",
+              isCorrect: false
+            }
+          ]}
+        />
+      </Slide>
+
+      {/* SLIDE 16: CASO CLÍNICO EUNACOM #3 */}
+      <Slide
+        nav="Caso Clínico 3 (Prinzmetal)"
+        notes="Analicemos este caso de angina vasoespástica y contraindicación de fármacos."
+      >
+        <QuestionSlide
+          classNumber="CLASE 01"
+          questionNumber={3}
+          specialty="Cardiología"
+          code="1.01.1.001"
+          question="Hombre de 42 años, fumador de 20 cigarrillos diarios, sin otros antecedentes. Consulta en Urgencias por dolor torácico opresivo intenso que lo despierta a las 4:00 AM en reposo. Al ingreso el ECG muestra supradesnivel del ST de 2.5 mm en D2, D3 y aVF. Se le administra Nitroglicerina sublingual y a los 8 minutos el dolor desaparece por completo; un nuevo ECG repetido muestra resolución total del supradesnivel del ST con trazado normal. Las enzimas cardíacas seriadas resultan negativas. ¿Cuál es el tratamiento de elección a largo plazo y qué fármaco está estrictamente contraindicado?"
+          correctOptionId="D"
+          options={[
+            {
+              id: "A",
+              text: "Tratamiento de elección: Propranolol; Fármaco contraindicado: Nitratos.",
+              explanation: "Incorrecto. Los betabloqueadores como propranolol están estrictamente contraindicados en Prinzmetal.",
+              isCorrect: false
+            },
+            {
+              id: "B",
+              text: "Tratamiento de elección: Angioplastía coronaria con stent; Fármaco contraindicado: Aspirina.",
+              explanation: "Incorrecto. En Prinzmetal no hay placa obstructiva fija que requiera stent; el mecanismo es espasmo dinámico.",
+              isCorrect: false
+            },
+            {
+              id: "C",
+              text: "Tratamiento de elección: Amiodarona oral; Fármaco contraindicado: Calcioantagonistas.",
+              explanation: "Incorrecto. La amiodarona es un antiarrítmico y los calcioantagonistas son precisamente el tratamiento de elección.",
+              isCorrect: false
+            },
+            {
+              id: "D",
+              text: "Tratamiento de elección: Calcioantagonistas (Amlodipino o Diltiazem); Fármaco contraindicado: Betabloqueadores.",
+              explanation: "Correcto. El cuadro corresponde a Angina Vasoespástica de Prinzmetal. Los calcioantagonistas previenen el espasmo coronario y los betabloqueadores están contraindicados por dejar tono alfa vasoconstrictor libre.",
+              isCorrect: true
+            },
+            {
+              id: "E",
+              text: "Tratamiento de elección: Trombolisis con Alteplase; Fármaco contraindicado: Heparina.",
+              explanation: "Incorrecto. No hay trombo oclusivo; el supradesnivel resolvió espontáneamente y las troponinas fueron negativas.",
+              isCorrect: false
+            }
+          ]}
+        />
+      </Slide>
+
+      {/* SLIDE 17: ALGORITMO DE DECISIÓN RESUMIDO */}
+      <Slide
+        nav="Checklist & Algoritmo Resumen"
+        notes="Repasemos el checklist final para resolver cualquier pregunta de angina crónica estable en el EUNACOM 2026."
       >
         <Steps
-          title="Manejo Protocolizado del Edema Agudo de Pulmon"
-          subtitle="Secuencia terapeutica en Urgencias para paciente en perfil Caliente y Humedo con PA preservada."
+          classNumber="CLASE 01"
+          title="Algoritmo Clínico Resumido: Angina Estable"
+          subtitle="Checklist de alta fidelidad para el Médico General en APS."
           items={[
-            { tag: "Paso 1 · Posicion & O2", badgeBg: "#0f172a", title: "Posicion Sentada", desc: "Sentar al paciente con piernas colgando para disminuir el retorno venoso. Oxigeno solo si SatO2 < 90%." },
-            { tag: "Paso 2 · VNI Precoz", badgeBg: "#0284c7", title: "Ventilacion No Invasiva (CPAP)", desc: "Disminuye el trabajo respiratorio y la precarga. Reduce la necesidad de intubacion endotraqueal en un 50%." },
-            { tag: "Paso 3 · Diuretico EV", badgeBg: "#16a34a", title: "Furosemida Endovenosa", desc: "Bolo de 20 a 40 mg EV (o el doble de la dosis oral si ya era usuario cronico) para iniciar diuresis rapida." },
-            { tag: "Paso 4 · Vasodilatador", badgeBg: "#e11d48", title: "Nitroglicerina EV", desc: "Infusion continua si la Presion Arterial Sistolica es > 110 mmHg para reducir rapidamente la poscarga." }
+            {
+              num: "1",
+              title: "Diagnóstico Clínico (Diamond-Forrester)",
+              desc: "Opresión retroesternal + Esfuerzo + Alivio con reposo/nitratos en <10 min. Clasificar clase funcional CCS I-IV."
+            },
+            {
+              num: "2",
+              title: "Estudio No Invasivo Inicial",
+              desc: "Test de Esfuerzo si ECG basal normal y puede caminar. AngioTAC en riesgo intermedio o Eco-Estrés si hay BCRI."
+            },
+            {
+              num: "3",
+              title: "Terapia Preventiva Obligatoria",
+              desc: "Aspirina 100 mg/d + Atorvastatina 80 mg/d (meta c-LDL <55 mg/dL) + IECA/ARA-II si es hipertenso o diabético."
+            },
+            {
+              num: "4",
+              title: "Terapia Antiisquémica",
+              desc: "Betabloqueador (Bisoprolol/Carvedilol) con meta de FC reposo 55-60 lpm + Amlodipino si persiste angina + Nitratos SOS."
+            }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 11: CASO CLINICO 1 */}
+      {/* SLIDE 18: CIERRE DE LA CLASE */}
       <Slide
-        nav="Caso Clinico 1"
-        notes="Caso de optimizacion de sobrevida en APS. El paciente tiene FEVI 32% y ya toma Enalapril y Carvedilol; requiere Espironolactona y Dapagliflozina."
+        nav="Conclusión & Siguiente Clase"
+        notes="Hemos completado la Masterclass de Angina Crónica Estable. En la siguiente clase abordaremos el Síndrome Coronario Agudo sin Supradesnivel del ST y la Angina Inestable (Cardio 02)."
       >
-        <QuestionSlide
-          number={1}
-          caseText="Hombre de 64 anos, diabetico e hipertenso, con antecedente de infarto miocardico hace 2 anos. Acude a control en APS por disnea que aparece al caminar 1 cuadra (Capacidad Funcional III) y ortopnea de 2 almohadas. Al examen fisico: PA 128/76 mmHg, FC 72 lpm regular. Ingurgitacion yugular (+) y crepitaciones en ambas bases pulmonares. Ecocardiograma: FEVI 32% con acinesia anterior. Tratamiento actual: Enalapril 10 mg c/12h y Carvedilol 25 mg c/12h."
-          question="Cual es la conducta terapeutica mas adecuada a agregar para disminuir la mortalidad a largo plazo?"
-          options={[
-            { text: "Suspender Carvedilol y agregar Furosemida 40 mg/dia por via oral.", isCorrect: false },
-            { text: "Cambiar Carvedilol por Atenolol 50 mg/dia para mejor control adrenergico.", isCorrect: false },
-            { text: "Agregar Espironolactona 25 mg/dia y Dapagliflozina 10 mg/dia. (Completa los 4 Pilares)", isCorrect: true },
-            { text: "Agregar Digoxina 0.25 mg al dia y programar estudio electrofisiologico.", isCorrect: false },
-            { text: "Aumentar la dosis de Enalapril a 40 mg cada 12 horas como unica medida.", isCorrect: false }
+        <Spotlight
+          classNumber="CLASE 01"
+          category="CARDIOLOGÍA"
+          topic="ANGINA CRÓNICA ESTABLE"
+          subtopic="CIERRE DE LA MASTERCLASS"
+          badge="100% CUBIERTO"
+          badgeBg="#16a34a"
+          title="¡Clase Completada con Éxito!"
+          stat="18 / 18"
+          statLabel="Conceptos & Algoritmos Dominados"
+          bullets={[
+            "✓ Códigos Perfil V3 dominados: 1.01.1.001 (Angina Estable), 1.01.4.004 (PEG), 1.01.4.008 (AngioTAC).",
+            "✓ Dominio de Criterios Diamond-Forrester, Escala Canadiense CCS y Criterios de Alto Riesgo.",
+            "✓ Farmacoterapia completa: Dosis, metas de FC y prevención secundaria.",
+            "👉 Siguiente Clase: Cardio 02 — SCASEST: Angina Inestable e Infarto sin Supradesnivel del ST."
           ]}
-          explanation="El paciente tiene IC-FEr sintomatica (FEVI 32%). Para disminuir la mortalidad debe recibir la terapia cuadruple completa: a su esquema actual (Enalapril + Carvedilol) se deben agregar obligatoriamente un ARM (Espironolactona) y un iSGLT2 (Dapagliflozina)."
+          pearl="Continúa revisando el capítulo correspondiente en el Manual EUNACOM 2026 y resolviendo las preguntas asociadas en el banco de pruebas."
+          accentColor="#16a34a"
         />
       </Slide>
 
-      {/* SLIDE 12: CASO CLINICO 2 */}
-      <Slide
-        nav="Caso Clinico 2"
-        notes="Caso de edema pulmonar en urgencias con perfil Caliente y Humedo. Requiere CPAP + Furosemida EV + Nitroglicerina EV."
-      >
-        <QuestionSlide
-          number={2}
-          caseText="Mujer de 72 anos con antecedentes de HTA e IC con FEVI 35%, consulta a urgencias por disnea de inicio subito en reposo con expectoracion rosada y sudoracion profusa. Examen: Polipneica a 32 rpm, SatO2 84% aire ambiental. PA 185/105 mmHg, FC 118 lpm regular. Crepitaciones hasta campos superiores y sibilancias difusas. Llene capilar 2 segundos, extremidades tibias."
-          question="Cual es la combinacion terapeutica inicial de eleccion para esta paciente?"
-          options={[
-            { text: "Hidratacion con Suero Fisiologico 1000 mL EV y Nebulizacion con Salbutamol.", isCorrect: false },
-            { text: "Ventilacion No Invasiva (CPAP) + Furosemida EV en bolo + Infusion de Nitroglicerina EV.", isCorrect: true },
-            { text: "Intubacion orotraqueal inmediata + Infusion de Noradrenalina y Dobutamina.", isCorrect: false },
-            { text: "Bolo de Morfina 10 mg EV + Hidrocortisona 200 mg EV + Furosemida oral.", isCorrect: false }
-          ]}
-          explanation="La paciente presenta un Edema Agudo de Pulmon en perfil Caliente y Humedo con crisis hipertensiva. El manejo inmediato consiste en CPAP para reclutar alveolos, Furosemida EV para descongestion y Nitroglicerina EV para reducir la poscarga."
-        />
-      </Slide>
-
-      {/* SLIDE 13: CASO CLINICO 3 */}
-      <Slide
-        nav="Caso Clinico 3"
-        notes="Caso de deficit de hierro y dolor. El hierro en IC se trata con Carboximaltosa EV y los AINEs estan prohibidos."
-      >
-        <QuestionSlide
-          number={3}
-          caseText="Hombre de 68 anos con IC-FEr (FEVI 28%), en tratamiento con los 4 pilares (Sacubitril/Valsartan, Bisoprolol, Espironolactona y Empagliflozina). Refiere astenia marcada y disnea CF II persistente sin edemas. Laboratorio: Hb 11.2 g/dL, Creatinina 1.1 mg/dL. Cinetica de hierro: Ferritina 48 ng/mL, Saturacion de Transferrina 14%. Ademas consulta por dolor lumbociatico agudo y pregunta si puede tomar Ibuprofeno 600 mg."
-          question="Cual es la indicacion medica correcta respecto al hierro y la analgesia?"
-          options={[
-            { text: "Indicar Sulfato Ferroso 200 mg/dia por via oral y autorizar Ibuprofeno por 5 dias.", isCorrect: false },
-            { text: "Indicar Sulfato Ferroso oral y cambiar analgesia por Celecoxib 200 mg/dia.", isCorrect: false },
-            { text: "Indicar Hierro Carboximaltosa Endovenoso y contraindicar formalmente los AINEs (indicar Paracetamol).", isCorrect: true },
-            { text: "Transfundir 2 unidades de globulos rojos e indicar Ketoprofeno intramuscular.", isCorrect: false }
-          ]}
-          explanation="En IC con deficit de hierro (Ferritina < 100 ng/mL), el tratamiento de eleccion es el Hierro Carboximaltosa Endovenoso, ya que el hierro oral no se absorbe bien. Los AINEs (como Ibuprofeno o Celecoxib) estan formalmente contraindicados porque provocan retencion hidrosalina y descompensacion."
-        />
-      </Slide>
-
-      {/* SLIDE 14: CHECKLIST FINAL */}
-      <Slide
-        nav="Checklist Final"
-        notes="Checklist de oro para memorizar antes de rendir el examen. Cubrimos al 100% los codigos 1.01.1.018 y 1.01.2.005."
-      >
-        <Table
-          title="Checklist Final de Dominio: Insuficiencia Cardiaca"
-          subtitle="Reglas de oro indispensables para responder preguntas en el EUNACOM 2026."
-          headers={["Concepto Clinico", "Regla de Oro de Examen", "Nivel Exigencia"]}
-          rows={[
-            { highlight: true, cells: ["Diagnostico Clinico (Framingham)", "2 Mayores o 1 Mayor + 2 Menores. R3 Galope es el signo mas especifico.", "Especifico"] },
-            { cells: ["Biomarcadores BNP en Urgencia", "NT-proBNP < 300 o BNP < 100 descartan causa cardiaca (VPN > 95%).", "Emplea Informe"] },
-            { highlight: true, cells: ["Los 4 Pilares de Sobrevida", "ARNI (36h lavado) + BB (Carvedilol/Biso/Metoprolol) + ARM (K < 5.0) + iSGLT2 (Dapa/Empa).", "Completo APS"] },
-            { cells: ["Manejo EAP en Urgencias", "Posicion sentada + CPAP precoz + Furosemida EV + Nitroglicerina EV.", "Inicial Urgencias"] },
-            { cells: ["Farmacos Contraindicados", "AINEs (Ibuprofeno/Diclofenaco) y Calcioantagonistas No DHP (Verapamilo/Diltiazem).", "Prohibicion Absoluta"] }
-          ]}
-          pearl="Proxima Masterclass: Cardiologia 02 · Fibrilacion Auricular & Flutter (Codigo 1.01.1.012 - CHA2DS2-VASc, DOACs y Cardioversion)."
-        />
-      </Slide>
     </Deck>
   );
 }

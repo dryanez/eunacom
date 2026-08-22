@@ -197,7 +197,7 @@ export default function StudioHub() {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8' }}>
-                      CLASE {c.lessonNumber} · {c.durationEstimate}
+                      {c.id ? c.id.toUpperCase() : `CLASE ${c.lessonNumber}`} · {c.slideCount ? `${c.slideCount} Slides` : ''}
                     </span>
                     <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: status.bg, color: status.color }}>
                       {status.label}
@@ -206,8 +206,20 @@ export default function StudioHub() {
                   <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : '#cbd5e1', lineHeight: 1.3 }}>
                     {c.title}
                   </div>
-                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
-                    Perfil: {c.perfilCode}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 11, color: '#64748b', marginTop: 4 }}>
+                    <span>Perfil: {Array.isArray(c.perfilCodes) ? c.perfilCodes.join(', ') : c.perfilCode || '1.01'}</span>
+                    {c.tier && (
+                      <span style={{
+                        fontSize: 10,
+                        fontWeight: 700,
+                        padding: '1px 6px',
+                        borderRadius: 4,
+                        background: c.tier.includes('Tier 3') ? 'rgba(239, 68, 68, 0.2)' : c.tier.includes('Tier 1') ? 'rgba(34, 197, 94, 0.2)' : 'rgba(234, 179, 8, 0.2)',
+                        color: c.tier.includes('Tier 3') ? '#f87171' : c.tier.includes('Tier 1') ? '#4ade80' : '#facc15'
+                      }}>
+                        {c.tier}
+                      </span>
+                    )}
                   </div>
                 </div>
               )
