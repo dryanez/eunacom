@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Sparkles, Trophy, Star, ArrowRight, Zap, Award, X, Check } from 'lucide-react'
 import { getDoctorForLevel } from '../utils/xpSystem'
-import { playVictoryFanfare, playTapSound } from '../utils/medlingoAudio'
+import { playLevelCompleteSound, playTapSound } from '../utils/medlingoAudio'
 import '../styles/levelUpModal.css'
 
 export default function LevelUpModal({
@@ -17,7 +17,7 @@ export default function LevelUpModal({
   const doctor = getDoctorForLevel(newLevel)
 
   useEffect(() => {
-    playVictoryFanfare()
+    playLevelCompleteSound()
   }, [])
 
   return (

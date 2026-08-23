@@ -8,12 +8,13 @@ import {
   Video, ArrowRight, PlayCircle, ShieldCheck, Heart, Star
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchProgress, fetchLeaderboard, fetchUserProfile } from '../lib/api'
-import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
+import { fetchProgress, fetchLeaderboard, fetchUserProfile, saveUserProfile } from '../lib/api'
+import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP, getDoctorForLevel } from '../utils/xpSystem'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
 import { getDoctorAvatar, DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import LevelUpModal from '../components/LevelUpModal'
 import '../styles/dashboardProMax.css'
 
 const TOPIC_PRESETS = [
@@ -67,6 +68,7 @@ const Dashboard = () => {
   const [todayAnswers, setTodayAnswers] = useState(0)
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
+  const [levelUpModalData, setLevelUpModalData] = useState(null)
   const DAILY_GOAL = 50
 
   // MedSchool Topics State
@@ -344,7 +346,35 @@ const Dashboard = () => {
       })
 
       setStats(prev => ({ ...prev, totalAnswered, correctAnswers, totalExams, xp: remainingXP, totalXP, level: newLevel }))
+
+      // Level up detection
+      if (user?.id) {
+        const lastLevelKey = `last_seen_level_${user.id}`
+        const lastLevelRaw = localStorage.getItem(lastLevelKey)
+        if (lastLevelRaw) {
+          const lastLevel = parseInt(lastLevelRaw, 10)
+          if (newLevel > lastLevel) {
+            setLevelUpModalData({
+              oldLevel: lastLevel,
+              newLevel: newLevel
+            })
+          }
+        }
+        localStorage.setItem(lastLevelKey, String(newLevel))
+      }
     } catch (e) { console.error('Dashboard stats error:', e) }
+  }
+
+  const handleEquipDoctor = async (doctorId) => {
+    if (user?.id) {
+      const updated = { ...(userProfile || {}), selected_doctor: doctorId }
+      setUserProfile(updated)
+      try {
+        await saveUserProfile(updated)
+      } catch (err) {
+        console.error('Error equipping doctor:', err)
+      }
+    }
   }
 
   useEffect(() => {
@@ -1491,6 +1521,18 @@ const Dashboard = () => {
           )
         )}
       </div>
+
+      {/* ─── LEVEL UP CELEBRATION MODAL ─── */}
+      {levelUpModalData && (
+        <LevelUpModal
+          isOpen={Boolean(levelUpModalData)}
+          onClose={() => setLevelUpModalData(null)}
+          oldLevel={levelUpModalData.oldLevel}
+          newLevel={levelUpModalData.newLevel}
+          onEquipDoctor={handleEquipDoctor}
+        />
+      )}
+
     </div>
   </div>
 )
