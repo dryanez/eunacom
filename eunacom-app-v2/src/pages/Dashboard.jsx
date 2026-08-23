@@ -56,7 +56,7 @@ const Dashboard = () => {
   const [leaderboard, setLeaderboard] = useState([])
   const [sedeLeaderboard, setSedeLeaderboard] = useState([])
   const [countryLeaderboard, setCountryLeaderboard] = useState([])
-  const [lbPeriod, setLbPeriod] = useState('week')
+  const [lbPeriod, setLbPeriod] = useState('all')
   const [lbView, setLbView] = useState('doctors') // 'doctors' | 'sedes' | 'countries'
   const [filterUniversity, setFilterUniversity] = useState('')
   const [filterCountry, setFilterCountry] = useState('')

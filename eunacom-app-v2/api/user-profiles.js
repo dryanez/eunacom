@@ -14,13 +14,14 @@ export default async function handler(req, res) {
   const db = getTurso()
 
   try {
-    // Ensure table exists
+    // Ensure table exists and has all columns
     await db.execute({
       sql: `CREATE TABLE IF NOT EXISTS user_profiles (
         id TEXT PRIMARY KEY,
         email TEXT NOT NULL,
         first_name TEXT,
         last_name TEXT,
+        avatar_character TEXT,
         exam_month TEXT,
         exam_year TEXT,
         prep_months TEXT,
@@ -30,14 +31,37 @@ export default async function handler(req, res) {
         whatsapp TEXT,
         inscrito_eunacom TEXT,
         ayuda_inscripcion TEXT,
+        profile_type TEXT,
+        graduation_year TEXT,
+        university TEXT,
+        sede TEXT,
+        goal TEXT,
+        study_hours TEXT,
+        weak_area TEXT,
+        xp INTEGER DEFAULT 50,
         onboarding_done INTEGER DEFAULT 0,
         is_premium INTEGER DEFAULT 0,
         premium_until TEXT,
+        plan_months INTEGER,
         created_at TEXT DEFAULT (datetime('now')),
         updated_at TEXT DEFAULT (datetime('now'))
       )`,
       args: []
-    })
+    }).catch(() => {})
+
+    const ensureCols = [
+      'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
+      'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+      'nationality TEXT', 'country TEXT', 'country_code TEXT',
+      'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+      'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+      'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+      'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+      'premium_until TEXT', 'plan_months INTEGER'
+    ]
+    for (const col of ensureCols) {
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+    }
 
     // --- WEBHOOK HANDLING ---
     if (req.method === 'POST' && req.body?.type) {
