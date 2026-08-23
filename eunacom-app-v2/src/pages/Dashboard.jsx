@@ -556,6 +556,30 @@ const Dashboard = () => {
               >
                 <span>Iniciar sesión</span>
               </button>
+              <button
+                onClick={() => setLevelUpModalData({
+                  oldLevel: 6,
+                  newLevel: 7,
+                  earnedGems: 200
+                })}
+                style={{
+                  padding: '0.7rem 1.4rem',
+                  background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.3) 100%)',
+                  color: '#fed7aa',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  border: '1px solid #f97316',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                }}
+              >
+                <Sparkles size={16} color="#fbbf24" />
+                <span>✨ Probar Subida de Nivel</span>
+              </button>
             </div>
           </div>
         </div>
@@ -594,9 +618,23 @@ const Dashboard = () => {
         <div className="dash-hero-level-bento">
           <div className="dash-level-progress-col">
             <div className="dash-level-top-row">
-              <div className="dash-rank-badge">
-                <Zap size={14} />
-                <span>Nivel {stats.level} · {levelTitle}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                <div className="dash-rank-badge">
+                  <Zap size={14} />
+                  <span>Nivel {stats.level} · {levelTitle}</span>
+                </div>
+                <button
+                  onClick={() => setLevelUpModalData({
+                    oldLevel: Math.max(1, (stats.level || 7) - 1),
+                    newLevel: stats.level || 7,
+                    earnedGems: 200
+                  })}
+                  className="dash-demo-levelup-btn"
+                  title="Toca para probar la animación y modal de subida de nivel"
+                >
+                  <Sparkles size={13} color="#f97316" />
+                  <span>✨ Ver Promoción</span>
+                </button>
               </div>
               <div className="dash-xp-fraction">
                 <strong>{formatXP(stats.xp)}</strong> / {formatXP(levelCapXP)} XP

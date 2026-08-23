@@ -239,3 +239,65 @@ export const getLevelProgress = (currentXP = 0, currentLevel = 1) => {
 export const formatXP = (xp = 0) => {
   return Number(xp || 0).toLocaleString()
 }
+
+// Unified user stats and level calculation across Sidebar & Dashboard
+export const calculateUserOverallStats = async (userId) => {
+  if (!userId) return { totalXP: 0, level: 1, totalAnswered: 0, correctAnswers: 0, totalExams: 0, remainingXP: 0 }
+  try {
+    const { fetchTests, fetchClaseProgress } = await import('../lib/api')
+    const [userTests, userClasesProgress] = await Promise.all([
+      fetchTests(userId).catch(() => []),
+      fetchClaseProgress(userId).catch(() => [])
+    ])
+
+    let totalAnswered = 0
+    let correctAnswers = 0
+    let totalExams = 0
+
+    for (const t of (userTests || [])) {
+      if (t.status === 'completed') {
+        let numQuestions = t.total_questions || 0
+        if (numQuestions === 0 && t.answers) {
+          try {
+            const ansObj = typeof t.answers === 'string' ? JSON.parse(t.answers) : t.answers
+            numQuestions = Object.keys(ansObj || {}).length
+          } catch {}
+        }
+        const pct = Math.min(t.score || 0, 100)
+        const actualCorrect = Math.round((pct / 100) * numQuestions)
+        totalAnswered += numQuestions
+        correctAnswers += actualCorrect
+        totalExams++
+      }
+    }
+
+    for (const cp of (userClasesProgress || [])) {
+      if (cp.quiz_completed) {
+        const numQuestions = cp.quiz_total || 0
+        const numCorrect = cp.quiz_correct || 0
+        if (numQuestions > 0) {
+          totalAnswered += numQuestions
+          correctAnswers += numCorrect
+          totalExams++
+        }
+      }
+    }
+
+    const incorrectAnswers = Math.max(0, totalAnswered - correctAnswers)
+    const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT)
+    const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
+
+    return {
+      totalAnswered,
+      correctAnswers,
+      totalExams,
+      totalXP,
+      level: newLevel,
+      remainingXP
+    }
+  } catch (e) {
+    console.error('Error calculating overall stats:', e)
+    return { totalXP: 0, level: 1, totalAnswered: 0, correctAnswers: 0, totalExams: 0, remainingXP: 0 }
+  }
+}
+

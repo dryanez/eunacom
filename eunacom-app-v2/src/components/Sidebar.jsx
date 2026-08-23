@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchProgress, fetchUserProfile } from '../lib/api'
-import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getLevelTitle } from '../utils/xpSystem'
+import { calculateUserOverallStats, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
@@ -58,11 +58,8 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
 
     useEffect(() => {
         if (!user) return
-        fetchProgress(user.id).then(data => {
-            const correct = data.filter(p => p.is_correct).length
-            const totalXP = (correct * XP_PER_CORRECT) + ((data.length - correct) * XP_PER_INCORRECT)
-            const { newLevel } = calculateLevelUp(totalXP, 1)
-            setUserLevel(newLevel)
+        calculateUserOverallStats(user.id).then(stats => {
+            if (stats?.level) setUserLevel(stats.level)
         }).catch(() => {})
         fetchUserProfile(user.id).then(profile => {
             if (profile?.first_name) {
