@@ -165,7 +165,9 @@ export default async function handler(req, res) {
         id, email, first_name, last_name,
         exam_month, exam_year, prep_months,
         nationality, country, country_code, whatsapp,
-        inscrito_eunacom, ayuda_inscripcion, onboarding_done
+        inscrito_eunacom, ayuda_inscripcion, onboarding_done,
+        profile_type, graduation_year, university, sede, goal,
+        study_hours, weak_area, xp
       } = req.body
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
@@ -175,6 +177,9 @@ export default async function handler(req, res) {
         'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
         'nationality TEXT', 'country TEXT', 'country_code TEXT',
         'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+        'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+        'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+        'avatar_character TEXT',
         'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
         'premium_until TEXT', 'plan_months INTEGER',
         "created_at TEXT DEFAULT (datetime('now'))",
@@ -185,12 +190,18 @@ export default async function handler(req, res) {
       }
 
       await db.execute({
-        sql: `INSERT INTO user_profiles (id, email, first_name, last_name, exam_month, exam_year, prep_months, nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion, onboarding_done, is_premium, updated_at)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+        sql: `INSERT INTO user_profiles (
+                id, email, first_name, last_name, avatar_character, exam_month, exam_year, prep_months,
+                nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion,
+                profile_type, graduation_year, university, sede, goal, study_hours, weak_area, xp,
+                onboarding_done, is_premium, updated_at
+              )
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
               ON CONFLICT(id) DO UPDATE SET
                 email = excluded.email,
                 first_name = COALESCE(excluded.first_name, user_profiles.first_name),
                 last_name = COALESCE(excluded.last_name, user_profiles.last_name),
+                avatar_character = COALESCE(excluded.avatar_character, user_profiles.avatar_character),
                 exam_month = COALESCE(excluded.exam_month, user_profiles.exam_month),
                 exam_year = COALESCE(excluded.exam_year, user_profiles.exam_year),
                 prep_months = COALESCE(excluded.prep_months, user_profiles.prep_months),
@@ -200,14 +211,23 @@ export default async function handler(req, res) {
                 whatsapp = COALESCE(excluded.whatsapp, user_profiles.whatsapp),
                 inscrito_eunacom = COALESCE(excluded.inscrito_eunacom, user_profiles.inscrito_eunacom),
                 ayuda_inscripcion = COALESCE(excluded.ayuda_inscripcion, user_profiles.ayuda_inscripcion),
+                profile_type = COALESCE(excluded.profile_type, user_profiles.profile_type),
+                graduation_year = COALESCE(excluded.graduation_year, user_profiles.graduation_year),
+                university = COALESCE(excluded.university, user_profiles.university),
+                sede = COALESCE(excluded.sede, user_profiles.sede),
+                goal = COALESCE(excluded.goal, user_profiles.goal),
+                study_hours = COALESCE(excluded.study_hours, user_profiles.study_hours),
+                weak_area = COALESCE(excluded.weak_area, user_profiles.weak_area),
+                xp = COALESCE(excluded.xp, user_profiles.xp, 50),
                 onboarding_done = MAX(excluded.onboarding_done, user_profiles.onboarding_done),
                 updated_at = datetime('now')`,
         args: [
-          id, email, first_name || null, last_name || null,
-          exam_month || null, exam_year || null, prep_months || null,
-          nationality || null, country || null, country_code || null, whatsapp || null,
-          inscrito_eunacom || null, ayuda_inscripcion || null,
-          onboarding_done ? 1 : 0
+          id, email, first_name || '', last_name || '', req.body.avatar_character || 'dr_strange',
+          exam_month || 'Diciembre', exam_year || '2026', prep_months || '',
+          nationality || '', country || '', country_code || '', whatsapp || '',
+          inscrito_eunacom || '', ayuda_inscripcion || '',
+          profile_type || '', graduation_year || '', university || '', sede || '', goal || '',
+          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0
         ]
       })
       return res.json({ ok: true })

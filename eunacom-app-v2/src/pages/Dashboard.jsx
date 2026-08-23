@@ -1,8 +1,39 @@
 import React, { useState, useEffect } from 'react'
-import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download, X, Sparkles, Stethoscope, LogIn } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download, X, Sparkles, Stethoscope, LogIn, ChevronRight, BookOpen } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
+import { TopicCard } from '../components/TopicCard'
+import { TopicQuickModal } from '../components/TopicQuickModal'
+
+const TOPIC_PRESETS = [
+  // Módulo 1 · Medicina Interna
+  { topic: 'Cardiología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Neurología y Geriatría', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Respiratorio', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Gastroenterología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Hematología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Infectología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Endocrinología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Diabetes', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Nefrología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+  { topic: 'Reumatología', specialty: 'Módulo 1', module: 'modulo-1', tag: 'Med. Interna' },
+
+  // Módulo 2 · Cirugía y Especialidades
+  { topic: 'Cirugía General', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Cirugía' },
+  { topic: 'Traumatología', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Especialidades' },
+  { topic: 'Oftalmología', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Especialidades' },
+  { topic: 'Otorrinolaringología', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Especialidades' },
+  { topic: 'Dermatología', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Especialidades' },
+  { topic: 'Psiquiatría', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Salud Mental' },
+  { topic: 'Urología', specialty: 'Módulo 2', module: 'modulo-2', tag: 'Cirugía' },
+
+  // Módulo 3 · Pediatría y Gineco-Obstetricia
+  { topic: 'Pediatría', specialty: 'Módulo 3', module: 'modulo-3', tag: 'Materno-Infantil' },
+  { topic: 'Obstetricia', specialty: 'Módulo 3', module: 'modulo-3', tag: 'Materno-Infantil' },
+  { topic: 'Ginecología', specialty: 'Módulo 3', module: 'modulo-3', tag: 'Materno-Infantil' },
+]
 
 const PERIODS = [
   { key: 'today', label: 'Hoy' },
@@ -12,6 +43,7 @@ const PERIODS = [
 
 const Dashboard = () => {
   const { user, openAuthModal } = useAuth()
+  const navigate = useNavigate()
   const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
   const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0, exams: 0 }, custom: { answered: 0, correct: 0, exams: 0 }, clases: { answered: 0, correct: 0, exams: 0 } })
   const [activeTab, setActiveTab] = useState('general') // general, clases, reconstructions, custom
@@ -21,6 +53,12 @@ const Dashboard = () => {
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
   const DAILY_GOAL = 50
+
+  // MedSchool Topics State
+  const [topicsList, setTopicsList] = useState([])
+  const [topicModuleFilter, setTopicModuleFilter] = useState('all')
+  const [selectedTopicForModal, setSelectedTopicForModal] = useState(null)
+  const [topicsLoading, setTopicsLoading] = useState(true)
 
   // PWA Install State
   const [deferredPrompt, setDeferredPrompt] = useState(window.globalDeferredPrompt || null)
@@ -108,7 +146,106 @@ const Dashboard = () => {
   useEffect(() => {
     if (user) fetchStats()
     loadLeaderboard('week')
+    fetchTopicStats()
   }, [user])
+
+  const fetchTopicStats = async () => {
+    setTopicsLoading(true)
+    try {
+      const { fetchClases, fetchClaseProgress } = await import('../lib/api');
+      const [allClases, userClasesProgress, pruebasIdx] = await Promise.all([
+        fetchClases().catch(() => []),
+        user ? fetchClaseProgress(user.id).catch(() => []) : Promise.resolve([]),
+        fetch('/data/pruebas/index.json').then(r => r.json()).catch(() => ({}))
+      ]);
+
+      const progressMap = {}
+      userClasesProgress.forEach(p => {
+        progressMap[p.clase_id] = p
+      })
+
+      // Normalize string for matching
+      const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+      // Compute topic list
+      const enriched = TOPIC_PRESETS.map(preset => {
+        const topicNorm = norm(preset.topic)
+        // Find matching classes
+        const matchingLessons = allClases.filter(c => {
+          const subNorm = norm(c.subsystem)
+          return subNorm === topicNorm || subNorm.includes(topicNorm) || topicNorm.includes(subNorm)
+        })
+
+        // Count completed classes
+        const completedCount = matchingLessons.filter(l => {
+          const p = progressMap[l.id]
+          return p && (p.video_watched === 1 || p.quiz_completed === 1)
+        }).length
+
+        // Find question count from pruebas index
+        let qCount = 0
+        let correctCount = 0
+        let wrongCount = 0
+
+        // Look through pruebasIndex
+        if (pruebasIdx && typeof pruebasIdx === 'object') {
+          Object.entries(pruebasIdx).forEach(([modName, subs]) => {
+            if (subs && typeof subs === 'object') {
+              Object.entries(subs).forEach(([subName, subObj]) => {
+                const sn = norm(subName)
+                if (sn === topicNorm || sn.includes(topicNorm) || topicNorm.includes(sn)) {
+                  if (subObj && Array.isArray(subObj.pruebas)) {
+                    subObj.pruebas.forEach(pr => {
+                      qCount += (pr.questionCount || 20)
+                    })
+                  }
+                }
+              })
+            }
+          })
+        }
+
+        // Sum quiz correct/wrong from userClasesProgress for this topic
+        matchingLessons.forEach(l => {
+          const p = progressMap[l.id]
+          if (p && p.quiz_completed) {
+            const tot = p.quiz_total || 5
+            const corr = p.quiz_correct || Math.round(((p.quiz_score || 0) / 100) * tot)
+            correctCount += corr
+            wrongCount += Math.max(0, tot - corr)
+          }
+        })
+
+        if (qCount === 0) qCount = matchingLessons.length * 15 || 120
+
+        // Mastery calculation: combination of classes completed and quiz score
+        let mastery = 0
+        if (matchingLessons.length > 0) {
+          const classPct = (completedCount / matchingLessons.length) * 50
+          const quizPct = (correctCount + wrongCount) > 0 ? (correctCount / (correctCount + wrongCount)) * 50 : (completedCount > 0 ? 30 : 0)
+          mastery = Math.min(100, Math.round(classPct + quizPct))
+        }
+
+        return {
+          ...preset,
+          lessons: matchingLessons,
+          classesCount: matchingLessons.length,
+          completedClasses: completedCount,
+          questionsCount: qCount,
+          correctCount,
+          wrongCount,
+          masteryPct: mastery,
+          progressMap,
+        }
+      })
+
+      setTopicsList(enriched)
+    } catch (e) {
+      console.error('Error fetching topic stats:', e)
+    } finally {
+      setTopicsLoading(false)
+    }
+  }
 
   const fetchStats = async () => {
     try {
@@ -546,6 +683,104 @@ const Dashboard = () => {
         </>
       )}
 
+
+      {/* ─── TEMAS Y CLASES EUNACOM (MEDSCHOOL TOPIC CARDS) ─── */}
+      <div style={{ marginBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
+          <div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', margin: '0 0 0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Sparkles size={20} color="#38bdf8" />
+              Temas y Especialidades EUNACOM
+            </h3>
+            <p style={{ fontSize: '0.84rem', color: '#94a3b8', margin: 0 }}>
+              Tarjetas interactivas con porcentaje de dominio, clases y acceso directo
+            </p>
+          </div>
+
+          {/* Module Filter Pills */}
+          <div style={{
+            display: 'flex',
+            gap: '0.35rem',
+            background: 'var(--surface-800)',
+            padding: '0.25rem',
+            borderRadius: '100px',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            overflowX: 'auto',
+            maxWidth: '100%',
+            scrollbarWidth: 'none',
+          }}>
+            {[
+              { key: 'all', label: 'Todos' },
+              { key: 'modulo-1', label: 'Módulo 1 · Med. Interna' },
+              { key: 'modulo-2', label: 'Módulo 2 · Cirugía & Espec.' },
+              { key: 'modulo-3', label: 'Módulo 3 · Pediatría & Gineco' },
+            ].map(f => (
+              <button
+                key={f.key}
+                onClick={() => setTopicModuleFilter(f.key)}
+                style={{
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: '100px',
+                  border: 'none',
+                  background: topicModuleFilter === f.key ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'transparent',
+                  color: topicModuleFilter === f.key ? '#ffffff' : 'var(--surface-400)',
+                  fontSize: '0.78rem',
+                  fontWeight: topicModuleFilter === f.key ? 700 : 500,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.15s',
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Responsive Grid of MedSchool Topic Cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '1.25rem',
+        }}>
+          {topicsList
+            .filter(t => topicModuleFilter === 'all' || t.module === topicModuleFilter)
+            .map((t, idx) => (
+              <TopicCard
+                key={t.topic || idx}
+                topic={t.topic}
+                specialty={t.specialty}
+                tag={t.tag}
+                questionsCount={t.questionsCount}
+                classesCount={t.classesCount}
+                completedClasses={t.completedClasses}
+                correctCount={t.correctCount}
+                wrongCount={t.wrongCount}
+                masteryPct={t.masteryPct}
+                onClick={() => setSelectedTopicForModal(t)}
+                onDirectNavigate={() => {
+                  navigate('/mis-clases', { state: { specialty: t.specialty, subsystem: t.topic } })
+                }}
+              />
+            ))}
+        </div>
+      </div>
+
+      {/* Pop-up Bigger Modal for Topics */}
+      <TopicQuickModal
+        isOpen={!!selectedTopicForModal}
+        onClose={() => setSelectedTopicForModal(null)}
+        topicData={selectedTopicForModal}
+        onOpenClass={(claseId) => {
+          const selectedTopic = selectedTopicForModal
+          setSelectedTopicForModal(null)
+          navigate('/mis-clases', { state: { specialty: selectedTopic?.specialty, subsystem: selectedTopic?.topic, openLesson: selectedTopic?.lessons?.find(l => l.id === claseId)?.lessonNumber } })
+        }}
+        onNavigateToSubsystem={(topicName, specialtyName) => {
+          setSelectedTopicForModal(null)
+          navigate('/mis-clases', { state: { specialty: specialtyName, subsystem: topicName } })
+        }}
+      />
 
       {/* ─── LEADERBOARD ─── */}
       <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>

@@ -1,30 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronDown, Menu, LogIn } from 'lucide-react'
+import { ChevronDown, Menu, LogIn, Settings, CreditCard, User, Shield } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
-
+import { fetchUserProfile } from '../lib/api'
+import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
 
 const DashboardHeader = ({ onMenuToggle }) => {
     const { user, signOut, openAuthModal } = useAuth()
-    const { isFounder } = useSubscription()
+    const { isFounder, isPremium } = useSubscription()
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
+    const [displayName, setDisplayName] = useState('')
+    const [avatarEmoji, setAvatarEmoji] = useState('🩺')
+    const [avatarImage, setAvatarImage] = useState('/avatars/dr_strange.png')
 
-    const userName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Guest'
-    console.log("BANNER REMOVED VERIFICATION");
+    useEffect(() => {
+        if (!user) return
+        fetchUserProfile(user.id).then(profile => {
+            if (profile?.first_name) {
+                setDisplayName(`Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim())
+            } else if (user.user_metadata?.full_name) {
+                setDisplayName(`Dr(a). ${user.user_metadata.full_name}`)
+            } else {
+                setDisplayName(user.email?.split('@')[0] || 'Doctor')
+            }
+            if (profile?.avatar_character) {
+                const doc = DOCTOR_CHARACTERS.find(d => d.id === profile.avatar_character)
+                if (doc) {
+                    setAvatarEmoji(doc.emoji)
+                    if (doc.image) setAvatarImage(doc.image)
+                }
+            }
+        }).catch(() => {
+            setDisplayName(user.email?.split('@')[0] || 'Doctor')
+        })
+    }, [user])
 
     const handleLogout = async () => {
         await signOut()
         navigate('/login')
     }
 
-
-
     return (
         <>
-
-
             {/* Header bar */}
             <header className="header">
                 <button className="mobile-menu-btn" onClick={onMenuToggle} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
@@ -32,14 +51,22 @@ const DashboardHeader = ({ onMenuToggle }) => {
                     <span style={{ fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.03em', color: 'var(--surface-200)' }}>Menú</span>
                 </button>
 
-
-
                 <div style={{ marginLeft: 'auto', position: 'relative' }}>
                     {user ? (
                         <>
-                            <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)}>
-                                <img src="/logo.png" alt={userName} />
-                                <span>{userName}</span>
+                            <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)} style={{ cursor: 'pointer' }}>
+                                <img
+                                    src={avatarImage}
+                                    alt="Avatar"
+                                    style={{
+                                        width: '28px',
+                                        height: '28px',
+                                        borderRadius: '50%',
+                                        objectFit: 'cover',
+                                        border: '1.5px solid rgba(255, 255, 255, 0.4)',
+                                    }}
+                                />
+                                <span style={{ fontWeight: 700 }}>{displayName || 'Doctor'}</span>
                                 {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800 }}>Founder 🚀</span>}
                                 <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
                             </div>
@@ -47,12 +74,46 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                 <div style={{
                                     position: 'absolute', top: '100%', right: 0, marginTop: '0.5rem',
                                     background: 'var(--surface-700)', borderRadius: 'var(--radius)',
-                                    boxShadow: 'var(--shadow-lg)', minWidth: '180px', zIndex: 1000,
+                                    boxShadow: 'var(--shadow-lg)', minWidth: '200px', zIndex: 1000,
                                     border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden'
                                 }}>
+                                    <button 
+                                        onClick={() => {
+                                            setShowMenu(false)
+                                            navigate('/settings')
+                                        }} 
+                                        style={{
+                                            width: '100%', padding: '0.75rem 1rem', background: 'transparent',
+                                            color: '#f8fafc', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
+                                            border: 'none', cursor: 'pointer', fontFamily: 'var(--font)',
+                                            display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                            borderBottom: '1px solid rgba(255,255,255,0.06)'
+                                        }}
+                                    >
+                                        <User size={15} color="#38bdf8" />
+                                        <span>Mi Perfil & Objetivos</span>
+                                    </button>
+
+                                    <button 
+                                        onClick={() => {
+                                            setShowMenu(false)
+                                            navigate('/mi-plan')
+                                        }} 
+                                        style={{
+                                            width: '100%', padding: '0.75rem 1rem', background: 'transparent',
+                                            color: '#f8fafc', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
+                                            border: 'none', cursor: 'pointer', fontFamily: 'var(--font)',
+                                            display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                            borderBottom: '1px solid rgba(255,255,255,0.06)'
+                                        }}
+                                    >
+                                        <CreditCard size={15} color="#10b981" />
+                                        <span>Mi Plan & Pagos</span>
+                                    </button>
+
                                     <button onClick={handleLogout} style={{
                                         width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                        color: '#ef4444', fontWeight: 600, fontSize: '0.9rem', textAlign: 'left',
+                                        color: '#ef4444', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
                                         border: 'none', cursor: 'pointer', fontFamily: 'var(--font)'
                                     }}>
                                         Cerrar Sesión

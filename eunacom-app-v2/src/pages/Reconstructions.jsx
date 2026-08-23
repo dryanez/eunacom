@@ -2,7 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchProgress, fetchTests } from '../lib/api'
-import { Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp, BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock, GraduationCap, Lock } from 'lucide-react'
+import {
+  Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp,
+  BookOpen, X, ChevronDown, ChevronUp, PlayCircle, ArrowLeft, Clock,
+  GraduationCap, Lock, Check, CheckCircle, Flame, Award, Sparkles
+} from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
@@ -22,7 +26,7 @@ function toTestRunnerFormat(q, examId) {
   return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '', imageUrl: q.imageUrl }
 }
 
-/* ── Inline Quiz ── */
+/* ── Inline Quiz (Hero Shot Style) ── */
 function InlineQuiz({ questions, title, onClose }) {
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)
@@ -31,60 +35,186 @@ function InlineQuiz({ questions, title, onClose }) {
   const [done, setDone] = useState(false)
   const q = questions[idx]
 
-  const handleReveal = () => {
-    if (!selected) return
+  const handleSelect = (optId) => {
+    if (revealed) return
+    setSelected(optId)
     setRevealed(true)
-    if (selected === q.correctAnswer) setScore(s => s + 1)
+    if (optId.toLowerCase() === q.correctAnswer?.toLowerCase()) {
+      setScore(s => s + 1)
+    }
   }
+
   const handleNext = () => {
     if (idx + 1 >= questions.length) { setDone(true); return }
     setIdx(i => i + 1); setSelected(null); setRevealed(false)
   }
 
   if (done) return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <div style={{ fontSize: '3.5rem', fontWeight: 900, color: score/questions.length >= 0.6 ? 'var(--accent-green)' : 'var(--accent-red)', marginBottom: '0.25rem' }}>{Math.round(score/questions.length*100)}%</div>
-      <div style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>{score} / {questions.length} correctas</div>
+    <div style={{ padding: '2.5rem 1.5rem', textAlign: 'center' }}>
+      <div style={{ fontSize: '3.8rem', fontWeight: 900, color: score/questions.length >= 0.6 ? '#10b981' : '#ef4444', marginBottom: '0.5rem', lineHeight: 1 }}>
+        {Math.round(score/questions.length*100)}%
+      </div>
+      <div style={{ color: 'var(--surface-300)', marginBottom: '1.75rem', fontSize: '1rem' }}>
+        {score} de {questions.length} correctas
+      </div>
       <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn-primary" onClick={() => { setIdx(0); setSelected(null); setRevealed(false); setScore(0); setDone(false) }}>Repetir</button>
-        <button onClick={onClose} style={{ padding: '0.65rem 1.5rem', borderRadius: 8, background: 'var(--surface-700)', color: 'var(--surface-200)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Cerrar</button>
+        <button className="btn-primary" onClick={() => { setIdx(0); setSelected(null); setRevealed(false); setScore(0); setDone(false) }} style={{ padding: '0.75rem 1.5rem', borderRadius: 10, fontWeight: 700 }}>
+          Repetir Práctica
+        </button>
+        <button onClick={onClose} style={{ padding: '0.75rem 1.5rem', borderRadius: 10, background: 'var(--surface-700)', color: 'var(--surface-200)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
+          Cerrar
+        </button>
       </div>
     </div>
   )
 
+  const isCorrectChoice = selected && selected.toLowerCase() === q.correctAnswer?.toLowerCase()
+
   return (
     <div style={{ padding: '1.25rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-        <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700 }}>{idx+1}/{questions.length}</span>
-        <div style={{ flex: 1, height: 4, background: 'var(--surface-700)', borderRadius: 2 }}>
-          <div style={{ height: '100%', width: `${((idx+1)/questions.length)*100}%`, background: 'var(--primary-500)', borderRadius: 2, transition: 'width 0.3s' }} />
+      {/* Top progress & close header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+        <span style={{ fontSize: '0.8rem', color: 'var(--surface-300)', fontWeight: 700 }}>{idx+1} de {questions.length}</span>
+        <div style={{ flex: 1, height: 6, background: 'var(--surface-700)', borderRadius: 9999, overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: `${((idx+1)/questions.length)*100}%`, background: '#0284c7', borderRadius: 9999, transition: 'width 0.3s' }} />
         </div>
-        <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 4 }}><X size={16}/></button>
+        <button onClick={onClose} style={{ background: 'var(--surface-700)', border: 'none', color: 'var(--surface-300)', cursor: 'pointer', padding: 6, borderRadius: 8, display: 'flex', alignItems: 'center' }}>
+          <X size={16}/>
+        </button>
       </div>
-      <p style={{ fontSize: '1rem', lineHeight: 1.65, color: 'var(--surface-100)', marginBottom: '1.25rem' }}>{q.question}</p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
-        {q.choices.map(opt => {
-          let bg = 'var(--surface-800)', border = 'var(--surface-600)', color = 'var(--surface-100)'
-          if (revealed) {
-            if (opt.id === q.correctAnswer) { bg = 'rgba(52,211,153,0.1)'; border = 'var(--accent-green)'; color = 'var(--accent-green)' }
-            else if (opt.id === selected) { bg = 'rgba(248,113,113,0.1)'; border = 'var(--accent-red)'; color = 'var(--accent-red)' }
-          } else if (opt.id === selected) { bg = 'rgba(99,102,241,0.15)'; border = 'var(--primary-400)' }
-          return (
-            <button key={opt.id} onClick={() => !revealed && setSelected(opt.id)} style={{ textAlign: 'left', padding: '0.85rem 1rem', background: bg, border: `2px solid ${border}`, borderRadius: 8, color, fontSize: '0.9rem', cursor: revealed ? 'default' : 'pointer', transition: 'all 0.15s', display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-              <strong style={{ flexShrink: 0, opacity: 0.7, minWidth: 16 }}>{opt.id}.</strong>{opt.text}
-            </button>
-          )
-        })}
-      </div>
-      {revealed && q.explanation && (
-        <div style={{ padding: '0.85rem', background: 'rgba(99,102,241,0.08)', borderRadius: 8, marginBottom: '1rem', fontSize: '0.85rem', color: 'var(--surface-300)', lineHeight: 1.6 }}>
-          💡 {q.explanation}
+
+      {/* Hero Shot Question Card */}
+      <div style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 18,
+        padding: '22px 18px',
+        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.15)',
+        marginBottom: '1.25rem'
+      }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+            {title || 'Reconstrucción EUNACOM'}
+          </span>
+          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Award size={12} color="#d97706" /> Reconstrucción Oficial
+          </span>
         </div>
+
+        {/* Question Text */}
+        <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: '#1e293b', marginBottom: 16, fontWeight: 500 }}>
+          {q.question}
+        </p>
+
+        {q.imageUrl && (
+          <div style={{ marginBottom: '1.25rem' }}>
+            <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
+          </div>
+        )}
+
+        {/* Options list in Hero Shot style */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          {q.choices.map((opt, i) => {
+            const isCorrectOpt = opt.id.toLowerCase() === q.correctAnswer?.toLowerCase()
+            const isSelected = opt.id === selected
+            
+            let bg = '#ffffff'
+            let border = '#e2e8f0'
+            let textColor = '#334155'
+            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+
+            if (revealed) {
+              if (isCorrectOpt) {
+                bg = '#ecfdf5'
+                border = '#10b981'
+                textColor = '#065f46'
+                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+              } else if (isSelected && !isCorrectOpt) {
+                bg = '#fef2f2'
+                border = '#ef4444'
+                textColor = '#991b1b'
+                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+              } else {
+                bg = '#f8fafc'
+                border = '#f1f5f9'
+                textColor = '#94a3b8'
+                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+              }
+            }
+
+            return (
+              <button
+                key={opt.id}
+                onClick={() => handleSelect(opt.id)}
+                disabled={revealed}
+                style={{
+                  textAlign: 'left',
+                  padding: '12px 14px',
+                  borderRadius: 12,
+                  border: `1.5px solid ${border}`,
+                  backgroundColor: bg,
+                  color: textColor,
+                  fontSize: '0.92rem',
+                  lineHeight: 1.5,
+                  cursor: revealed ? 'default' : 'pointer',
+                  transition: 'all 0.15s ease',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                  width: '100%',
+                  opacity: (revealed && !isCorrectOpt && !isSelected) ? 0.45 : 1
+                }}
+              >
+                <div style={{
+                  width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                  backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0, marginTop: 1
+                }}>
+                  {badgeContent}
+                </div>
+                <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                {revealed && isCorrectOpt && (
+                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
+                    ✓ Correcto
+                  </span>
+                )}
+                {revealed && isSelected && !isCorrectOpt && (
+                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
+                    ✗ Incorrecto
+                  </span>
+                )}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Retroalimentación Clínica Official Card */}
+        {revealed && q.explanation && (
+          <div style={{
+            marginTop: 16,
+            padding: '16px 18px',
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: 14
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            </div>
+            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+              {q.explanation}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Action CTA */}
+      {revealed && (
+        <button onClick={handleNext} className="btn-primary btn-primary--full" style={{ padding: '0.9rem', borderRadius: 10, fontWeight: 700, fontSize: '0.95rem' }}>
+          {idx+1 >= questions.length ? '🏁 Ver resultado del bloque' : 'Siguiente Pregunta →'}
+        </button>
       )}
-      {!revealed
-        ? <button onClick={handleReveal} disabled={!selected} className="btn-primary btn-primary--full" style={{ opacity: selected ? 1 : 0.4 }}>Ver respuesta</button>
-        : <button onClick={handleNext} className="btn-primary btn-primary--full">{idx+1 >= questions.length ? '🏁 Ver resultado' : 'Siguiente →'}</button>
-      }
     </div>
   )
 }

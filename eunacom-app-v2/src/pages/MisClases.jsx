@@ -20,6 +20,8 @@ import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
+import { TopicCard } from '../components/TopicCard'
+import { TopicQuickModal } from '../components/TopicQuickModal'
 
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
@@ -395,95 +397,123 @@ function EunacomQuestionsSection({ claseId, eunacomCode }) {
   const isWrongPick  = (opt) => picked === opt.id && !isCorrectOpt(opt)
 
   return (
-    <div>
-      {/* Header bar */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-        <Target size={17} style={{ color: qColor.accent }} />
-        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-          Pregunta {currentQ + 1} de {total} · Banco EUNACOM
-        </span>
-        {q.eunacomCode && (
-          <span style={{ marginLeft: 'auto', fontSize: '0.72rem', fontWeight: 700, color: '#10b981', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: 6, padding: '0.2rem 0.5rem' }}>
-            {q.eunacomCode}
-          </span>
-        )}
-      </div>
-
-      {/* Progress dots */}
-      <div style={{ display: 'flex', gap: '0.3rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+    <div style={{ margin: '1.5rem 0' }}>
+      {/* Question tracker dots */}
+      <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1rem', alignItems: 'center' }}>
         {questions.map((_, i) => {
           const s = selected[i]
           const isOk = s && s === questions[i].respuestaCorrecta
           return (
             <div key={i} onClick={() => setCurrentQ(i)} style={{
-              width: i === currentQ ? 22 : 9, height: 9, borderRadius: 5, cursor: 'pointer', transition: 'all 0.3s',
-              background: !s ? (i === currentQ ? qColor.accent : 'var(--surface-600)') : isOk ? 'var(--success-500)' : 'var(--danger-500)',
+              width: i === currentQ ? 24 : 10, height: 8, borderRadius: 9999, cursor: 'pointer', transition: 'all 0.3s',
+              background: !s ? (i === currentQ ? '#0284c7' : '#cbd5e1') : isOk ? '#10b981' : '#ef4444',
             }} />
           )
         })}
       </div>
 
-      <div className="card" style={{ padding: '2rem', borderTop: `3px solid ${qColor.accent}`, background: qColor.bg }}>
-        <p style={{ fontWeight: 700, fontSize: '1.05rem', marginBottom: '1.5rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>
+      {/* Hero Shot Question Card */}
+      <div style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 18,
+        padding: '24px 20px',
+        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
+      }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+            Pregunta {currentQ + 1} de {total}
+          </span>
+          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Award size={12} color="#d97706" /> Evaluación de Clase
+          </span>
+        </div>
+
+        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
           {q.pregunta}
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-          {q.opciones.map(opt => {
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {q.opciones.map((opt, optIdx) => {
             const isCorrect = isCorrectOpt(opt)
             const isWrong   = isWrongPick(opt)
-            let bg = 'var(--surface-700)', border = 'var(--border-color)', leftBar = 'transparent'
+            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
+            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+
             if (answered) {
-              if (isCorrect) { bg = 'rgba(52,211,153,0.12)'; border = 'var(--success-500)'; leftBar = 'var(--success-500)' }
-              else if (isWrong) { bg = 'rgba(248,113,113,0.12)'; border = 'var(--danger-500)'; leftBar = 'var(--danger-500)' }
-              else { bg = 'var(--surface-800)' }
+              if (isCorrect) {
+                bg = '#ecfdf5'
+                border = '#10b981'
+                textColor = '#065f46'
+                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+              } else if (isWrong) {
+                bg = '#fef2f2'
+                border = '#ef4444'
+                textColor = '#991b1b'
+                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+              } else {
+                bg = '#f8fafc'
+                border = '#f1f5f9'
+                textColor = '#94a3b8'
+                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+              }
             }
+
             return (
               <div key={opt.id}>
                 <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '0.9rem 1.1rem',
-                  background: bg, border: `1px solid ${border}`, borderLeft: `4px solid ${leftBar}`,
-                  borderRadius: '10px', color: 'var(--text-primary)',
+                  width: '100%', textAlign: 'left', padding: '12px 14px',
+                  background: bg, border: `1.5px solid ${border}`,
+                  borderRadius: 12, color: textColor,
                   cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isWrong ? 0.4 : 1,
-                  transition: 'all 0.2s', fontSize: '0.9rem',
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
+                  opacity: answered && !isCorrect && !isWrong ? 0.45 : 1,
+                  transition: 'all 0.15s ease', fontSize: '0.92rem',
+                  lineHeight: 1.5,
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
                 }}>
                   <div style={{
-                    width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.8rem', fontWeight: 700,
-                    background: answered && (isCorrect || isWrong) ? (isCorrect ? 'var(--success-500)' : 'var(--danger-500)') : `${qColor.accent}22`,
-                    color: answered && (isCorrect || isWrong) ? '#fff' : qColor.accent,
+                    flexShrink: 0, marginTop: 1
                   }}>
-                    {answered && isCorrect ? <CheckCircle2 size={15} /> : answered && isWrong ? <XCircle size={15} /> : opt.id}
+                    {badgeContent}
                   </div>
-                  <span>{opt.text}</span>
+                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                  {answered && isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                      ✓ Correcto
+                    </span>
+                  )}
+                  {answered && isWrong && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
+                      ✗ Incorrecto
+                    </span>
+                  )}
                 </button>
-                {answered && isCorrect && q.explicacion && (
-                  <div style={{ padding: '0.75rem 1rem', marginTop: '0.4rem', borderRadius: '8px', marginLeft: '2.5rem', fontSize: '0.83rem', lineHeight: 1.6, background: 'rgba(52,211,153,0.08)', color: 'var(--success-500)', borderLeft: '3px solid var(--success-500)' }}>
-                    <strong>Correcto:</strong> {q.explicacion}
-                  </div>
-                )}
-                {answered && isWrong && (
-                  <div style={{ padding: '0.75rem 1rem', marginTop: '0.4rem', borderRadius: '8px', marginLeft: '2.5rem', fontSize: '0.83rem', lineHeight: 1.6, background: 'rgba(248,113,113,0.08)', color: 'var(--danger-500)', borderLeft: '3px solid var(--danger-500)' }}>
-                    <strong>Incorrecto.</strong> La respuesta correcta es la opción {q.respuestaCorrecta}.
-                    {q.explicacionIncorrectas
-                      ? (() => {
-                          // Find the explanation for this specific wrong option
-                          const letter = opt.id;
-                          const re = new RegExp(`\\*?\\*?\\s*${letter}[:\\.][\\s\\S]*?(?=\\*?\\*?\\s*[BCDE]:|$)`, 'i');
-                          const m = q.explicacionIncorrectas.match(re);
-                          const text = m ? m[0].replace(/\*\*/g, '').replace(/^\s*[A-E][:.]\s*/i, '').trim() : null;
-                          return text ? <span> {text}</span> : null;
-                        })()
-                      : q.explicacion ? <span> {q.explicacion}</span> : null
-                    }
-                  </div>
-                )}
               </div>
             )
           })}
         </div>
+
+        {/* Retroalimentación Clínica Official Card */}
+        {answered && q.explicacion && (
+          <div style={{
+            marginTop: 16,
+            padding: '16px 18px',
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: 14
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            </div>
+            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+              {q.explicacion}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Navigation */}
@@ -630,59 +660,108 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
         </div>
       </div>
 
-      <div className="card" style={{ padding: '2rem', borderTop: `3px solid ${qColor.accent}`, background: qColor.bg }}>
-        <p style={{ fontWeight: 700, fontSize: '1.05rem', marginBottom: '1.5rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>
+      {/* Hero Shot Question Card */}
+      <div style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 18,
+        padding: '24px 20px',
+        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
+      }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+            Pregunta {currentQ + 1} de {total}
+          </span>
+          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Award size={12} color="#d97706" /> Quiz de Especialidad
+          </span>
+        </div>
+
+        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
           {q.questionText}
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-          {q.options.map(opt => {
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {q.options.map((opt, optIdx) => {
             const isSelected = picked === opt.id
             const isCorrect = opt.isCorrect
-            let bg = 'var(--surface-700)', border = 'var(--border-color)', leftBar = 'transparent'
+            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
+            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+
             if (answered) {
-              if (isCorrect) { bg = 'rgba(52,211,153,0.12)'; border = 'var(--success-500)'; leftBar = 'var(--success-500)' }
-              else if (isSelected) { bg = 'rgba(248,113,113,0.12)'; border = 'var(--danger-500)'; leftBar = 'var(--danger-500)' }
-              else { bg = 'var(--surface-800)' }
+              if (isCorrect) {
+                bg = '#ecfdf5'
+                border = '#10b981'
+                textColor = '#065f46'
+                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+              } else if (isSelected) {
+                bg = '#fef2f2'
+                border = '#ef4444'
+                textColor = '#991b1b'
+                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+              } else {
+                bg = '#f8fafc'
+                border = '#f1f5f9'
+                textColor = '#94a3b8'
+                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+              }
             }
+
             return (
               <div key={opt.id}>
                 <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '0.9rem 1.1rem',
-                  background: bg, border: `1px solid ${border}`, borderLeft: `4px solid ${leftBar}`,
-                  borderRadius: '10px', color: 'var(--text-primary)',
+                  width: '100%', textAlign: 'left', padding: '12px 14px',
+                  background: bg, border: `1.5px solid ${border}`,
+                  borderRadius: 12, color: textColor,
                   cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isSelected ? 0.4 : 1,
-                  transition: 'all 0.2s', fontSize: '0.9rem',
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
+                  opacity: answered && !isCorrect && !isSelected ? 0.45 : 1,
+                  transition: 'all 0.15s ease', fontSize: '0.92rem',
+                  lineHeight: 1.5,
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
                 }}>
                   <div style={{
-                    width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.8rem', fontWeight: 700,
-                    background: (answered && (isSelected || isCorrect))
-                      ? (isCorrect ? 'var(--success-500)' : 'var(--danger-500)') : `${qColor.accent}22`,
-                    color: (answered && (isSelected || isCorrect)) ? '#fff' : qColor.accent,
+                    flexShrink: 0, marginTop: 1
                   }}>
-                    {answered && isCorrect ? <CheckCircle2 size={15} /> :
-                     answered && isSelected ? <XCircle size={15} /> : opt.id}
+                    {badgeContent}
                   </div>
-                  <span>{opt.text}</span>
+                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                  {answered && isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                      ✓ Correcto
+                    </span>
+                  )}
+                  {answered && isSelected && !isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
+                      ✗ Incorrecto
+                    </span>
+                  )}
                 </button>
-                {answered && (isSelected || isCorrect) && (
-                  <div style={{
-                    padding: '0.75rem 1rem', marginTop: '0.4rem', borderRadius: '8px',
-                    marginLeft: '2.5rem', fontSize: '0.83rem', lineHeight: 1.6,
-                    background: isCorrect ? 'rgba(52,211,153,0.08)' : 'rgba(248,113,113,0.08)',
-                    color: isCorrect ? 'var(--success-500)' : 'var(--danger-500)',
-                    borderLeft: `3px solid ${isCorrect ? 'var(--success-500)' : 'var(--danger-500)'}`,
-                  }}>
-                    <strong>{isCorrect ? 'Correcto' : 'Incorrecto'}:</strong> {opt.explanation}
-                  </div>
-                )}
               </div>
             )
           })}
         </div>
+
+        {/* Retroalimentación Clínica Official Card */}
+        {answered && (
+          <div style={{
+            marginTop: 16,
+            padding: '16px 18px',
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: 14
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            </div>
+            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+              {q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'}
+            </p>
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.25rem' }}>
@@ -2954,15 +3033,33 @@ const MisClases = () => {
 
   useEffect(() => { loadData() }, [user])
 
-  // Auto-open a class when navigated from FelipeCalendar with { openSubsystem, openLesson } state
+  // Auto-navigate when navigated from Dashboard or FelipeCalendar with state
   useEffect(() => {
     if (loading || !clases.length || handledNavState.current) return
-    const { openSubsystem, openLesson } = location.state || {}
-    if (!openSubsystem || !openLesson) return
-    handledNavState.current = true
-    const target = clases.find(c => c.subsystem === openSubsystem && c.lessonNumber === openLesson)
-    if (target) openClase(target.id)
-  }, [loading, clases.length])
+    const state = location.state || {}
+    const params = new URLSearchParams(location.search)
+    const spec = state.specialty || params.get('specialty')
+    const sub = state.subsystem || state.openSubsystem || params.get('subsystem')
+    const lessonNum = state.openLesson || (params.get('lesson') ? parseInt(params.get('lesson')) : null)
+    const sv = state.subView || params.get('view')
+
+    if (spec || sub || lessonNum) {
+      handledNavState.current = true
+      if (spec) setCurrentSpecialty(spec)
+      if (sub) {
+        if (!spec) {
+          const match = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase())
+          if (match) setCurrentSpecialty(match.specialty)
+        }
+        setCurrentSubsystem(sub)
+        if (sv) setSubView(sv)
+      }
+      if (lessonNum && sub) {
+        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && c.lessonNumber === lessonNum)
+        if (target) openClase(target.id)
+      }
+    }
+  }, [loading, clases.length, location])
 
   // ─── Aggregate Quiz view ───
   if (aggregateQuiz) {
@@ -3251,44 +3348,50 @@ const MisClases = () => {
         </div>
         </>
       ) : !currentSubsystem ? (
-        /* ─── Level 2: Subsystems ─── */
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        /* ─── Level 2: Subsystems (MedSchool Cards) ─── */
+        <>
+        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '1.25rem',
+        }}>
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
-            const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
+            
+            // Calculate quiz correct/wrong answers
+            let correctCount = 0
+            let wrongCount = 0
+            lessons.forEach(l => {
+              const p = progressMap[l.id]
+              if (p && p.quiz_completed) {
+                const tot = p.quiz_total || 5
+                const corr = p.quiz_correct || Math.round(((p.quiz_score || 0) / 100) * tot)
+                correctCount += corr
+                wrongCount += Math.max(0, tot - corr)
+              }
+            })
+
+            const questionsCount = lessons.length * 20
+
             return (
-              <div key={sub} className="card" onClick={() => setCurrentSubsystem(sub)} style={{
-                padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
-                borderLeft: `3px solid ${subStyle.color}`,
-                background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
-                position: 'relative',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{
-                      width: 44, height: 44, borderRadius: 12, background: subStyle.bg,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: subStyle.color, border: `1px solid ${subStyle.color}25`,
-                    }}>
-                      {subStyle.icon}
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{sub}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
-                        {lessons.length} clases · {completed} completadas
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ProgressRing percent={subPct} size={36} stroke={3} />
-                    <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
-                  </div>
-                </div>
-              </div>
+              <TopicCard
+                key={sub}
+                topic={sub}
+                specialty={currentSpecialty}
+                questionsCount={questionsCount}
+                classesCount={lessons.length}
+                completedClasses={completed}
+                correctCount={correctCount}
+                wrongCount={wrongCount}
+                masteryPct={subPct}
+                onClick={() => setCurrentSubsystem(sub)}
+              />
             )
           })}
         </div>
+        </>
       ) : subView === 'pruebas' ? (
         /* ─── Pruebas View ─── */
         <PruebasView

@@ -4,19 +4,18 @@ import {
   Calendar, FileText, CheckCircle, HelpCircle,
   Stethoscope, BookOpen, Clock, AlertTriangle, ArrowRight
 } from 'lucide-react'
+import { usePageSeo } from '../lib/seo'
 
 export default function GuiaCompletaLanding() {
   const navigate = useNavigate()
 
+  usePageSeo({
+    title: 'Guía Completa EUNACOM 2026 | Temario Oficial V3, Fechas y Requisitos ASOFAMECH',
+    description: 'Guía oficial y completa del EUNACOM 2026 en Chile. Requisitos para médicos extranjeros, fechas de inscripción, temario oficial ASOFAMECH y estrategias de aprobación.',
+    canonical: 'https://www.eunacomapp.cl/guia-eunacom-2026'
+  })
+
   useEffect(() => {
-    document.title = 'Guía Completa EUNACOM 2026 | Temario Oficial V3, Fechas y Requisitos ASOFAMECH'
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Guía oficial y completa del EUNACOM 2026 en Chile. Requisitos para médicos extranjeros, fechas de inscripción, temario oficial ASOFAMECH y estrategias de aprobación.'
-      )
-    }
     window.scrollTo(0, 0)
   }, [])
 

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardiología 01: Insuficiencia Cardíaca · Capsule Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F5F5F0;
+      --fg: #141414;
+      --outline: #1E1E1E;
+      --coral: #E85D4E;
+      --coral-light: #FCECE9;
+      --mint: #A8E6CF;
+      --mint-light: #EBF8F3;
+      --sky: #8BB4F7;
+      --sky-light: #EBF2FD;
+      --lavender: #C5B5E0;
+      --lavender-light: #F3EFF9;
+      --yellow: #F2D160;
+      --yellow-light: #FDF8E7;
+      --lime: #C4D94E;
+      --peach: #F5B895;
+      --card-bg: #FFFFFF;
+      --font-display: 'Bodoni Moda', Georgia, serif;
+      --font-body: 'Space Grotesk', -apple-system, sans-serif;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #E8E8E2;
+      font-family: var(--font-body);
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #stage-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #stage {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+      transform-origin: center center;
+      box-shadow: 0 25px 60px -15px rgba(20, 20, 20, 0.25);
+      border: 3px solid var(--outline);
+      border-radius: 12px;
+    }
+
+    /* Grain texture overlay */
+    .grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      padding: 50px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-out;
+      background: var(--bg);
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Pill Elements */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 9999px;
+      border: 2px solid var(--outline);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0px var(--outline);
+    }
+
+    .pill-coral { background: var(--coral); color: #fff; }
+    .pill-mint { background: var(--mint); color: #141414; }
+    .pill-sky { background: var(--sky); color: #141414; }
+    .pill-yellow { background: var(--yellow); color: #141414; }
+    .pill-lavender { background: var(--lavender); color: #141414; }
+    .pill-lime { background: var(--lime); color: #141414; }
+    .pill-white { background: #fff; color: #141414; }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--outline);
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #141414;
+      margin-top: 4px;
+    }
+
+    .slide-title em {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--coral);
+    }
+
+    .slide-subtitle {
+      font-size: 19px;
+      font-weight: 500;
+      color: #4b5563;
+      margin-top: 4px;
+    }
+
+    /* Capsule Cards */
+    .capsule-card {
+      background: var(--card-bg);
+      border: 2.5px solid var(--outline);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 4px 4px 0px var(--outline);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .capsule-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 2px solid var(--outline);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      font-size: 15px;
+    }
+
+    .capsule-table th {
+      background: #fafaf8;
+      color: #141414;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--outline);
+      border-right: 1.5px solid var(--outline);
+      text-align: left;
+    }
+
+    .capsule-table th:last-child { border-right: none; }
+
+    .capsule-table td {
+      padding: 11px 16px;
+      border-bottom: 1.5px solid #e5e5dc;
+      border-right: 1.5px solid #e5e5dc;
+      color: #262626;
+      line-height: 1.4;
+      vertical-align: middle;
+    }
+
+    .capsule-table td:last-child { border-right: none; }
+    .capsule-table tr:last-child td { border-bottom: none; }
+    .capsule-table tr:nth-child(even) td { background: #fafaf7; }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bullet-list li {
+      font-size: 16px;
+      color: #262626;
+      line-height: 1.45;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .bullet-list li strong {
+      color: #141414;
+      font-weight: 700;
+    }
+
+    .bullet-list li::before {
+      content: "●";
+      color: var(--coral);
+      font-size: 12px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .pearl-capsule {
+      background: var(--yellow-light);
+      border: 2px solid var(--outline);
+      border-radius: 16px;
+      padding: 12px 20px;
+      font-size: 16px;
+      color: #141414;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 3px 3px 0px var(--outline);
+    }
+
+    /* Question Pill Box */
+    .question-capsule {
+      background: #FFFFFF;
+      border: 2.5px solid var(--outline);
+      border-radius: 20px;
+      padding: 20px 24px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #141414;
+      box-shadow: 4px 4px 0px var(--outline);
+    }
+
+    .option-capsule {
+      background: #FFFFFF;
+      border: 2px solid var(--outline);
+      border-radius: 9999px;
+      padding: 10px 20px;
+      font-size: 15.5px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--outline);
+      transition: all 0.15s;
+    }
+
+    .option-capsule:hover {
+      background: var(--bg);
+      transform: translateY(-1px);
+      box-shadow: 3px 3px 0px var(--outline);
+    }
+
+    .option-capsule.correct {
+      background: var(--mint) !important;
+      font-weight: 700;
+    }
+
+    .option-capsule.wrong {
+      background: #FCECE9 !important;
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    .option-tag {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--outline);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Bottom Nav Bar */
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 2px solid var(--outline);
+    }
+
+    .nav-btn {
+      background: #fff;
+      border: 2px solid var(--outline);
+      border-radius: 9999px;
+      padding: 6px 18px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--outline);
+    }
+
+    .nav-btn:hover { background: var(--yellow); }
+    .nav-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+  </style>
+</head>
+<body>
+
+  <div id="stage-container">
+    <div id="stage">
+      <div class="grain"></div>
+
+      <!-- SLIDE 1: PORTADA CAPSULE -->
+      <div class="slide active" data-slide="1">
+        <div class="top-bar">
+          <div style="display: flex; gap: 10px;">
+            <span class="pill pill-coral">EUNACOM 2026</span>
+            <span class="pill pill-sky">MEDICINA INTERNA</span>
+            <span class="pill pill-mint">PERFIL V3 OFICIAL</span>
+          </div>
+          <span class="pill pill-white" style="font-family: 'JetBrains Mono';">CÓD: 1.01.1.018 + 1.01.2.005</span>
+        </div>
+
+        <div style="margin: 20px 0;">
+          <span class="pill pill-yellow" style="font-size: 14px; margin-bottom: 12px;">CARDIOLOGÍA · CLASE 01 MASTERCLASS</span>
+          <h1 class="slide-title" style="font-size: 58px; margin: 8px 0 12px;">
+            Insuficiencia <em>Cardíaca</em>
+          </h1>
+          <p class="slide-subtitle" style="font-size: 24px;">
+            Diagnóstico Clínico de Framingham · Ecocardiograma FEVI · <strong>Los 4 Pilares de Sobrevida</strong> · Perfiles de Forrester
+          </p>
+        </div>
+
+        <!-- Capsule Grid -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div class="capsule-card" style="background: var(--sky-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-sky">1. SOSPECHA</span>
+              <span style="font-size: 13px; font-weight: 700;">1.01.1.018</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 700; color: #141414;">Criterios de Framingham</div>
+            <p style="font-size: 14.5px; color: #4b5563; line-height: 1.4;">
+              2 Mayores o 1 Mayor + 2 Menores. Galope por R3 es el signo físico más específico de sobrecarga.
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: var(--mint-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-mint">2. TRATAMIENTO</span>
+              <span style="font-size: 13px; font-weight: 700;">4 PILARES</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 700; color: #141414;">Reducción de Mortalidad</div>
+            <p style="font-size: 14.5px; color: #4b5563; line-height: 1.4;">
+              ARNI (Sacubitril/Valsartán) + Betabloqueador + Espironolactona + iSGLT2 (Dapagliflozina).
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: var(--coral-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-coral">3. URGENCIAS</span>
+              <span style="font-size: 13px; font-weight: 700;">1.01.2.005</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 700; color: #141414;">Edema Pulmonar & Forrester</div>
+            <p style="font-size: 14.5px; color: #4b5563; line-height: 1.4;">
+              Caliente vs Frío (Perfusión) × Húmedo vs Seco (Congestión). Protocolo VNI + Furosemida + NTG.
+            </p>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-weight: 700; font-size: 14px; color: #4b5563;">EUNACOM 2026 Masterclass Series · 100% Cobertura de Códigos ASOFAMECh</span>
+          <div style="display: flex; gap: 10px;">
+            <button class="nav-btn" onclick="nextSlide()">Comenzar Clase ▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: MATRIZ DE AUDITORÍA OFICIAL (PERFIL V3) -->
+      <div class="slide" data-slide="2">
+        <div class="top-bar">
+          <span class="pill pill-yellow">AUDITORÍA LEGAL ASOFAMECH</span>
+          <span class="pill pill-white">MATRIZ DE CÓDIGOS OFICIALES</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Matriz de Códigos Oficiales <em>Perfil V3</em></h2>
+          <p class="slide-subtitle">Exigencia ministerial obligatoria para el Examen Único Nacional de Medicina.</p>
+        </div>
+
+        <table class="capsule-table">
+          <thead>
+            <tr>
+              <th style="width: 120px;">Código</th>
+              <th>Situación Clínica / Examen</th>
+              <th style="width: 140px;">Diagnóstico</th>
+              <th style="width: 130px;">Tratamiento</th>
+              <th style="width: 150px;">Seguimiento</th>
+              <th style="width: 110px; text-align: center;">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family: 'JetBrains Mono'; font-weight: 800; color: var(--coral);">1.01.1.018</td>
+              <td><strong>Insuficiencia Cardíaca Crónica</strong> (FEVI Reducida y Preservada)</td>
+              <td><span class="pill pill-sky" style="font-size: 10px; padding: 2px 8px;">Específico</span></td>
+              <td><span class="pill pill-yellow" style="font-size: 10px; padding: 2px 8px;">Inicial</span></td>
+              <td><span class="pill pill-mint" style="font-size: 10px; padding: 2px 8px;">Completo APS</span></td>
+              <td style="text-align: center; font-weight: 800; color: #166534;">✓ Cubierto</td>
+            </tr>
+            <tr>
+              <td style="font-family: 'JetBrains Mono'; font-weight: 800; color: var(--coral);">1.01.2.005</td>
+              <td><strong>Insuficiencia Cardíaca Aguda / Edema Pulmonar</strong></td>
+              <td><span class="pill pill-sky" style="font-size: 10px; padding: 2px 8px;">Específico</span></td>
+              <td><span class="pill pill-yellow" style="font-size: 10px; padding: 2px 8px;">Inicial</span></td>
+              <td><span class="pill pill-coral" style="font-size: 10px; padding: 2px 8px;">Derivar UCI</span></td>
+              <td style="text-align: center; font-weight: 800; color: #166534;">✓ Cubierto</td>
+            </tr>
+            <tr>
+              <td style="font-family: 'JetBrains Mono'; font-weight: 800; color: var(--coral);">1.01.4.006</td>
+              <td><strong>Ecocardiografía</strong> (FEVI ≤ 40% vs 41-49% vs ≥ 50%)</td>
+              <td colspan="3"><span class="pill pill-white" style="font-size: 10px; padding: 2px 8px;">Emplea Informe</span> (Indica tratamiento según FEVI)</td>
+              <td style="text-align: center; font-weight: 800; color: #166534;">✓ Cubierto</td>
+            </tr>
+            <tr>
+              <td style="font-family: 'JetBrains Mono'; font-weight: 800; color: var(--coral);">1.01.4.009</td>
+              <td><strong>Biomarcadores Péptidos</strong> (BNP / NT-proBNP)</td>
+              <td colspan="3"><span class="pill pill-white" style="font-size: 10px; padding: 2px 8px;">Interpreta y Emplea</span> (Valor Predictivo Negativo &gt; 95%)</td>
+              <td style="text-align: center; font-weight: 800; color: #166534;">✓ Cubierto</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pearl-capsule">
+          📌 <strong>Garantía de Auditoría:</strong> El nivel <em>"Específico"</em> exige hacer el diagnóstico de forma autónoma. El nivel <em>"Completo"</em> exige resolver el seguimiento en APS sin derivar a especialista.
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 02 / 10 · Matriz Oficial</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: CRITERIOS DE FRAMINGHAM -->
+      <div class="slide" data-slide="3">
+        <div class="top-bar">
+          <span class="pill pill-sky">DIAGNÓSTICO CLÍNICO</span>
+          <span class="pill pill-white">CÓD: 1.01.1.018</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Criterios Clínicos de <em>Framingham</em></h2>
+          <p class="slide-subtitle">Regla diagnóstica oficial: <strong>2 Criterios Mayores</strong> O <strong>1 Mayor + 2 Menores</strong></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px;">
+          <div class="capsule-card" style="background: #fff;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="pill pill-coral">MAYORES</span>
+              <span style="font-weight: 700; font-size: 15px;">Alta Especificidad</span>
+            </div>
+            <ul class="bullet-list" style="font-size: 15px;">
+              <li><strong>Disnea Paroxística Nocturna u Ortopnea</strong> (≥ 2 almohadas).</li>
+              <li><strong>Ingurgitación Yugular a 45°</strong> y Reflujo Hepatoyugular (+).</li>
+              <li><strong>Crepitaciones Bibasales</strong> pulmonares.</li>
+              <li><strong>Tercer Ruido Cardíaco (R3 / Galope):</strong> <strong style="color:var(--coral);">Signo MÁS ESPECÍFICO</strong> de sobrecarga de volumen.</li>
+              <li><strong>Cardiomegalia en Rx</strong> (Índice Cardiotorácico &gt; 0.50).</li>
+              <li><strong>Edema Agudo de Pulmón.</strong></li>
+            </ul>
+          </div>
+
+          <div class="capsule-card" style="background: var(--bg);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="pill pill-yellow">MENORES</span>
+              <span style="font-weight: 700; font-size: 15px;">Menor Especificidad</span>
+            </div>
+            <ul class="bullet-list" style="font-size: 14.5px;">
+              <li><strong>Edema maleolar bilateral</strong> (vespertino, blando).</li>
+              <li><strong>Tos nocturna irritativa</strong> y disnea de esfuerzo habitual.</li>
+              <li><strong>Hepatomegalia</strong> congestiva dolorosa.</li>
+              <li><strong>Derrame pleural</strong> (usualmente derecho o bilateral).</li>
+              <li><strong>Taquicardia en reposo</strong> (&gt; 100 lpm).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pearl-capsule">
+          💡 <strong>Perla EUNACOM:</strong> Ante fibrilación auricular o EPOC previo, el <strong>R3 galope</strong> y la <strong>Ingurgitación Yugular</strong> son los mejores discriminadores de causa cardíaca.
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 03 / 10 · Semiología</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: ECOCARDIOGRAMA & FEVI -->
+      <div class="slide" data-slide="4">
+        <div class="top-bar">
+          <span class="pill pill-mint">ESTUDIO & GOLD STANDARD</span>
+          <span class="pill pill-white">CÓD: 1.01.4.006</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Clasificación según <em>Fracción de Eyección</em></h2>
+          <p class="slide-subtitle">El Ecocardiograma Transtorácico dicta la indicación farmacológica de sobrevida.</p>
+        </div>
+
+        <table class="capsule-table">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>FEVI</th>
+              <th>Hallazgo Ecocardiográfico</th>
+              <th>Terapia con Reducción de Mortalidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: var(--sky-light);">
+              <td><strong>1. IC con FEVI Reducida (IC-FEr)</strong><br><span class="pill pill-coral" style="font-size:9px; padding:2px 6px; margin-top:3px;">EL MÁS EVALUADO</span></td>
+              <td style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 800; color: var(--coral);">FEVI ≤ 40%</td>
+              <td>Disfunción sistólica. Dilatación de cavidades y acinesia post-IAM.</td>
+              <td><strong>Los 4 Pilares Obligatorios:</strong><br>ARNI + Betabloqueador + ARM + iSGLT2</td>
+            </tr>
+            <tr>
+              <td><strong>2. IC con FEVI Levemente Reducida</strong></td>
+              <td style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 800; color: #b45309;">FEVI 41 - 49%</td>
+              <td>Disfunción sistólica leve + aumento de presiones de llenado.</td>
+              <td><strong>iSGLT2</strong> de primera línea con beneficio demostrado.</td>
+            </tr>
+            <tr>
+              <td><strong>3. IC con FEVI Preservada (IC-FEp)</strong></td>
+              <td style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 800; color: #15803d;">FEVI ≥ 50%</td>
+              <td>Disfunción diastólica (HVI concéntrica, AI dilatada, E/e' > 14).</td>
+              <td><strong>iSGLT2 (Dapagliflozina)</strong> + Diuréticos para congestión.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pearl-capsule" style="background: var(--sky-light);">
+          🔬 <strong>Biomarcadores BNP en Urgencias (1.01.4.009):</strong> NT-proBNP &lt; 300 pg/mL o BNP &lt; 100 pg/mL descarta causa cardíaca de disnea con un <strong>Valor Predictivo Negativo &gt; 95%</strong>.
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 04 / 10 · Ecocardiografía</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: LOS 4 PILARES DE SOBREVIDA -->
+      <div class="slide" data-slide="5">
+        <div class="top-bar">
+          <span class="pill pill-mint">FARMACOTERAPIA 2026</span>
+          <span class="pill pill-coral">DISMINUCIÓN DE MORTALIDAD</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Los 4 Pilares de la IC con <em>FEVI Reducida (≤ 40%)</em></h2>
+          <p class="slide-subtitle">Terapia cuádruple fundamental: Todo paciente debe recibir las 4 familias simultáneas.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+          <div class="capsule-card" style="background: #fff;">
+            <span class="pill pill-coral" style="align-self: flex-start;">PILAR 1</span>
+            <div style="font-size: 16px; font-weight: 800;">ARNI / IECA</div>
+            <div style="font-size: 13.5px; font-weight: 700; color: var(--coral);">Sacubitril/Valsartán</div>
+            <p style="font-size: 12.5px; color: #4b5563; line-height: 1.4;">
+              De elección sobre Enalapril. Si se cambia de IECA a ARNI, <strong style="color:var(--coral);">esperar 36 hrs de lavado</strong> para evitar angioedema.
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: #fff;">
+            <span class="pill pill-sky" style="align-self: flex-start;">PILAR 2</span>
+            <div style="font-size: 16px; font-weight: 800;">Betabloqueadores</div>
+            <div style="font-size: 13.5px; font-weight: 700; color: var(--sky);">3 con Evidencia</div>
+            <p style="font-size: 12.5px; color: #4b5563; line-height: 1.4;">
+              <strong>Carvedilol, Bisoprolol y Metoprolol Succinato</strong>. Iniciar en paciente euvolémico/compensado. <span style="color:var(--coral);">Atenolol NO sirve</span>.
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: #fff;">
+            <span class="pill pill-mint" style="align-self: flex-start;">PILAR 3</span>
+            <div style="font-size: 16px; font-weight: 800;">Antag. Aldosterona</div>
+            <div style="font-size: 13.5px; font-weight: 700; color: #166534;">Espironolactona</div>
+            <p style="font-size: 12.5px; color: #4b5563; line-height: 1.4;">
+              Dosis 25-50 mg/día. Requisitos de inicio: <strong>Creatinina &lt; 2.5 mg/dL y K+ &lt; 5.0 mEq/L</strong>.
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: #fff;">
+            <span class="pill pill-yellow" style="align-self: flex-start;">PILAR 4</span>
+            <div style="font-size: 16px; font-weight: 800;">Inhibidores SGLT2</div>
+            <div style="font-size: 13.5px; font-weight: 700; color: #b45309;">Dapa / Empagliflozina</div>
+            <p style="font-size: 12.5px; color: #4b5563; line-height: 1.4;">
+              10 mg/día. <strong>Obligatorio en diabéticos y NO diabéticos</strong>. Reduce muerte CV y hospitalizaciones un 25%.
+            </p>
+          </div>
+        </div>
+
+        <div class="pearl-capsule" style="background: var(--coral-light);">
+          ⚠️ <strong>Pregunta Trampa EUNACOM:</strong> ¿La Furosemida reduce la mortalidad? <strong>NO</strong>. Es el diurético de asa sintomático de elección para descongestión, pero no modifica sobrevida.
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 05 / 10 · Los 4 Pilares</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: URGENCIAS & PERFILES DE FORRESTER -->
+      <div class="slide" data-slide="6">
+        <div class="top-bar">
+          <span class="pill pill-coral">URGENCIAS & SHOCK</span>
+          <span class="pill pill-white">CÓD: 1.01.2.005</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">IC Aguda: Cuadrícula de <em>Forrester</em></h2>
+          <p class="slide-subtitle">Evaluación hemodinámica inmediata: Perfusión (Caliente/Frío) y Congestión (Húmedo/Seco).</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+          <div class="capsule-card" style="background: var(--mint-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-mint">PERFIL A · COMPENSADO</span>
+              <span style="font-size: 13px; font-weight: 700;">Normoperfundido + Seco</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 800;">1. Caliente y Seco</div>
+            <p style="font-size: 14px; color: #4b5563;">Paciente compensado en APS. Titular y optimizar los 4 pilares orales de sobrevida.</p>
+          </div>
+
+          <div class="capsule-card" style="background: var(--sky-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-sky">PERFIL B · 80% EN URGENCIAS</span>
+              <span style="font-size: 13px; font-weight: 700;">Normoperfundido + Húmedo</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 800; color: var(--coral);">2. Caliente y Húmedo (Edema Pulmonar)</div>
+            <p style="font-size: 14px; color: #4b5563;">
+              <strong>Manejo:</strong> <strong>VNI (CPAP) + Furosemida EV en bolo + Nitroglicerina EV</strong> (si PAS &gt; 110 mmHg).
+            </p>
+          </div>
+
+          <div class="capsule-card" style="background: var(--bg);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-white">PERFIL L · HIPOVOLÉMICO</span>
+              <span style="font-size: 13px; font-weight: 700;">Hipoperfundido + Seco</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 800;">3. Frío y Seco</div>
+            <p style="font-size: 14px; color: #4b5563;">Exceso de diuréticos o deshidratación. Manejo con prueba controlada de volumen isotónico.</p>
+          </div>
+
+          <div class="capsule-card" style="background: var(--coral-light);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill pill-coral">PERFIL C · SHOCK CARDIOGÉNICO</span>
+              <span style="font-size: 13px; font-weight: 700;">Hipoperfundido + Húmedo</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 800; color: var(--coral);">4. Frío y Húmedo</div>
+            <p style="font-size: 14px; color: #4b5563;">
+              <strong>Manejo:</strong> <strong>Noradrenalina + Dobutamina</strong> + Soporte UCI inmediato.
+            </p>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 06 / 10 · Cuadrícula de Forrester</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: CASO CLÍNICO 1 EUNACOM (PILL OPTIONS) -->
+      <div class="slide" data-slide="7">
+        <div class="top-bar">
+          <span class="pill pill-yellow">CASO CLÍNICO 1</span>
+          <span class="pill pill-white">EUNACOM TEST EVALUATION</span>
+        </div>
+
+        <div class="question-capsule">
+          Hombre de 64 años, diabético e hipertenso, con antecedente de infarto miocárdico hace 2 años. Acude a control en APS por disnea que aparece al caminar 1 cuadra (Capacidad Funcional III) y ortopnea de 2 almohadas.
+          Examen: PA 128/76 mmHg, FC 72 lpm regular. Ingurgitación yugular (+) y crepitaciones bibasales.
+          Ecocardiograma: <strong>FEVI 32%</strong> con acinesia de pared anterior.
+          Tratamiento actual: <em>Enalapril 10 mg c/12h</em> y <em>Carvedilol 25 mg c/12h</em>.
+          <br><br>
+          <strong>¿Cuál es la conducta terapéutica más adecuada a agregar para disminuir la mortalidad a largo plazo?</strong>
+        </div>
+
+        <div class="options-grid" style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'A')">
+            <div class="option-tag">A</div>
+            <span>Suspender Carvedilol y agregar Furosemida 40 mg/día por vía oral.</span>
+          </div>
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'B')">
+            <div class="option-tag">B</div>
+            <span>Cambiar Carvedilol por Atenolol 50 mg/día para mejor control adrenérgico.</span>
+          </div>
+          <div class="option-capsule correct" onclick="revealAnswer(this, 'correct', 'C')">
+            <div class="option-tag">C</div>
+            <span><strong>Agregar Espironolactona 25 mg/día y Dapagliflozina 10 mg/día. (CORRECTA: Completa los 4 Pilares)</strong></span>
+          </div>
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'D')">
+            <div class="option-tag">D</div>
+            <span>Agregar Digoxina 0.25 mg al día y programar estudio electrofisiológico.</span>
+          </div>
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'E')">
+            <div class="option-tag">E</div>
+            <span>Aumentar la dosis de Enalapril a 40 mg cada 12 horas como única medida.</span>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 07 / 10 · Caso Clínico 1</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: CASO CLÍNICO 2 EUNACOM (EDEMA PULMONAR) -->
+      <div class="slide" data-slide="8">
+        <div class="top-bar">
+          <span class="pill pill-coral">CASO CLÍNICO 2</span>
+          <span class="pill pill-white">URGENCIAS & EAP</span>
+        </div>
+
+        <div class="question-capsule">
+          Mujer de 72 años con antecedentes de HTA e IC con FEVI 35%, consulta a urgencias por disnea de inicio súbito en reposo con expectoración rosada y sudoración profusa.
+          Examen: Polipneica a 32 rpm, SatO2 84% aire ambiental. PA 185/105 mmHg, FC 118 lpm regular. Crepitaciones hasta campos superiores y sibilancias difusas. Llene capilar 2 segundos, extremidades tibias.
+          <br><br>
+          <strong>¿Cuál es la combinación terapéutica inicial de elección para esta paciente?</strong>
+        </div>
+
+        <div class="options-grid" style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'A')">
+            <div class="option-tag">A</div>
+            <span>Hidratación con Suero Fisiológico 1000 mL EV y Nebulización con Salbutamol.</span>
+          </div>
+          <div class="option-capsule correct" onclick="revealAnswer(this, 'correct', 'B')">
+            <div class="option-tag">B</div>
+            <span><strong>Ventilación No Invasiva (CPAP) + Furosemida EV en bolo + Infusión de Nitroglicerina EV. (CORRECTA)</strong></span>
+          </div>
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'C')">
+            <div class="option-tag">C</div>
+            <span>Intubación orotraqueal inmediata + Infusión de Noradrenalina y Dobutamina.</span>
+          </div>
+          <div class="option-capsule" onclick="revealAnswer(this, 'wrong', 'D')">
+            <div class="option-tag">D</div>
+            <span>Bolo de Morfina 10 mg EV + Hidrocortisona 200 mg EV + Furosemida oral.</span>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 08 / 10 · Caso Clínico 2</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: HIERRO & FÁRMACOS PROHIBIDOS -->
+      <div class="slide" data-slide="9">
+        <div class="top-bar">
+          <span class="pill pill-lavender">COMORBILIDADES & PROHIBICIONES</span>
+          <span class="pill pill-white">GUÍAS CLÍNICAS 2026</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Manejo del Hierro & Fármacos <em>Prohibidos</em></h2>
+          <p class="slide-subtitle">Conceptos farmacológicos recurrentes en preguntas de alta dificultad.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="capsule-card" style="background: var(--lavender-light);">
+            <span class="pill pill-lavender" style="align-self: flex-start;">DÉFICIT DE HIERRO</span>
+            <div style="font-size: 17px; font-weight: 800;">Hierro Carboximaltosa Endovenoso</div>
+            <ul class="bullet-list" style="font-size: 14.5px;">
+              <li><strong>Diagnóstico:</strong> Ferritina &lt; 100 ng/mL o Ferritina 100-299 con Sat. Transferrina &lt; 20%.</li>
+              <li><strong>Tratamiento:</strong> <strong style="color:#141414;">Hierro Endovenoso</strong> (el hierro oral NO funciona por edema de mucosa intestinal).</li>
+              <li>Mejora capacidad funcional y reduce rehospitalizaciones.</li>
+            </ul>
+          </div>
+
+          <div class="capsule-card" style="background: var(--coral-light);">
+            <span class="pill pill-coral" style="align-self: flex-start;">CONTRAINDICACIONES FORMALES</span>
+            <div style="font-size: 17px; font-weight: 800; color: var(--coral);">Fármacos Prohibidos en IC-FEr</div>
+            <ul class="bullet-list" style="font-size: 14.5px;">
+              <li><strong>AINEs (Ibuprofeno, Ketoprofeno):</strong> Retienen agua/sodio y empeoran función renal.</li>
+              <li><strong>Verapamilo y Diltiazem:</strong> Inótropos negativos potentes.</li>
+              <li><strong>Pioglitazona:</strong> Retención hídrica grave.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pearl-capsule">
+          💡 <strong>Pregunta EUNACOM:</strong> Ante paciente con IC y lumbago, ¿cuál analgésico está contraindicado? <strong>AINEs</strong> (indicar Paracetamol o Tramadol).
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 09 / 10 · Farmacología Avanzada</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="nextSlide()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: CHECKLIST FINAL DE DOMINIO -->
+      <div class="slide" data-slide="10">
+        <div class="top-bar">
+          <span class="pill pill-mint">100% CÓDIGOS AUDITADOS</span>
+          <span class="pill pill-white">EUNACOM 2026</span>
+        </div>
+
+        <div>
+          <h2 class="slide-title" style="font-size: 38px;">Checklist Final de Dominio: <em>Insuficiencia Cardíaca</em></h2>
+          <p class="slide-subtitle">Memoriza estas 4 reglas antes de rendir tu examen:</p>
+        </div>
+
+        <table class="capsule-table">
+          <thead>
+            <tr>
+              <th style="width: 250px;">Concepto Clínico</th>
+              <th>Regla de Oro de Examen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Criterios de Framingham</strong></td>
+              <td>2 Mayores o 1 Mayor + 2 Menores. <strong>R3 galope</strong> es el signo más específico.</td>
+            </tr>
+            <tr>
+              <td><strong>Biomarcadores en Urgencia</strong></td>
+              <td>NT-proBNP &lt; 300 o BNP &lt; 100 descarta causa cardíaca con <strong>VPN &gt; 95%</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Los 4 Pilares (Sobrevida)</strong></td>
+              <td><strong>ARNI + Betabloqueador (Carvedilol/Bisoprolol/Metoprolol) + ARM (Espironolactona) + iSGLT2 (Dapagliflozina)</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Manejo EAP en Urgencia</strong></td>
+              <td><strong>Posición Sentada + CPAP (VNI) + Furosemida EV + Nitroglicerina EV</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="padding: 14px 20px; background: #fff; border: 2px solid var(--outline); border-radius: 9999px; display: flex; justify-content: space-between; align-items: center; box-shadow: 3px 3px 0px var(--outline);">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="pill pill-coral" style="padding: 3px 10px; font-size: 11px;">PRÓXIMA CLASE</span>
+            <span style="font-weight: 700; font-size: 15px;">Cardiología 02: Fibrilación Auricular & Flutter (CHA2DS2-VASc, DOACs & Cardioversión)</span>
+          </div>
+          <span class="pill pill-sky" style="font-family: 'JetBrains Mono'; font-size: 12px;">CÓD: 1.01.1.012 ➔</span>
+        </div>
+
+        <div class="bottom-bar">
+          <span style="font-family: 'JetBrains Mono'; font-size: 13px; opacity: 0.6;">Slide 10 / 10 · Resumen de Oro</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="nav-btn" onclick="prevSlide()">◀</button>
+            <button class="nav-btn" onclick="toggleFullscreen()">⛶ Pantalla Completa</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+
+    function updateStageScale() {
+      const stage = document.getElementById('stage');
+      const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      stage.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', updateStageScale);
+    updateStageScale();
+
+    function showSlide(index) {
+      if (index < 0 || index >= total) return;
+      slides[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+    }
+
+    function nextSlide() {
+      if (current < total - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+      } else {
+        document.exitFullscreen().catch(err => {});
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    function revealAnswer(el, type, letter) {
+      if (type === 'wrong') {
+        el.classList.add('wrong');
+      } else {
+        const parent = el.closest('.options-grid');
+        parent.querySelectorAll('.option-capsule').forEach(item => {
+          if (item !== el) item.classList.add('wrong');
+        });
+        el.classList.add('correct');
+      }
+    }
+  </script>
+</body>
+</html>

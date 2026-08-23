@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:ios": "vite --config vite.config.ios.js",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-seo.js",
     "build:ios": "vite build --config vite.config.ios.js && mv dist-ios/index-ios.html dist-ios/index.html",
     "lint": "eslint .",
     "preview": "vite preview"

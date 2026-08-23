@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react'
 import { BLOG_POSTS } from '../data/blogPosts'
+import { usePageSeo } from '../lib/seo'
 
 function renderMarkdown(md) {
   if (!md) return ''
@@ -25,22 +26,16 @@ export default function BlogPost() {
   const { slug } = useParams()
   const post = BLOG_POSTS.find(p => p.slug === slug)
 
-  useEffect(() => {
-    if (!post) return
-    document.title = post.metaTitle
-    let metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) metaDesc.setAttribute('content', post.metaDescription)
-    let ogTitle = document.querySelector('meta[property="og:title"]')
-    if (ogTitle) ogTitle.setAttribute('content', post.metaTitle)
-    let ogDesc = document.querySelector('meta[property="og:description"]')
-    if (ogDesc) ogDesc.setAttribute('content', post.metaDescription)
-    let canonical = document.querySelector('link[rel="canonical"]')
-    if (canonical) canonical.setAttribute('href', `https://eunacomapp.cl/blog/${slug}`)
+  usePageSeo({
+    title: post?.metaTitle || 'Artículo EUNACOM | Blog Eunacom App',
+    description: post?.metaDescription || 'Guías y artículos de preparación para el EUNACOM.',
+    canonical: `https://www.eunacomapp.cl/blog/${slug}`,
+    ogType: 'article'
+  })
 
-    return () => {
-      document.title = 'EUNACOM 2026 | +10.000 Preguntas, Clases y Simulacros – Eunacom App'
-    }
-  }, [post, slug])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [slug])
 
   if (!post) {
     return (

@@ -7,6 +7,8 @@ import {
   Sparkles, Check, X, Award, Stethoscope, HelpCircle, Flame, Layers, ExternalLink, Menu
 } from 'lucide-react'
 
+import { usePageSeo } from '../lib/seo'
+
 // ─── SAMPLE INTERACTIVE QUESTION DEMO ──────────────────────────────────────────
 const DEMO_QUESTION = {
   area: 'Medicina Interna · Cardiología',
@@ -135,6 +137,12 @@ export default function LandingPage() {
   const [showExplanation, setShowExplanation] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  usePageSeo({
+    title: 'EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +10.000 Preguntas)',
+    description: 'Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +10.000 preguntas, reconstrucciones y simulacros. Desde $14.990 CLP.',
+    canonical: 'https://www.eunacomapp.cl/'
+  })
 
   // ── Auto-redirect logged-in users straight to their dashboard ──
   useEffect(() => {

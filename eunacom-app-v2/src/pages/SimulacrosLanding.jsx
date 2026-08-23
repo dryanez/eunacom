@@ -4,19 +4,18 @@ import {
   Clock, Target, CheckCircle2, BarChart3, AlertCircle,
   Award, Shield, ArrowRight, Play, BookOpen, Layers
 } from 'lucide-react'
+import { usePageSeo } from '../lib/seo'
 
 export default function SimulacrosLanding() {
   const navigate = useNavigate()
 
+  usePageSeo({
+    title: 'Simulacros Oficiales EUNACOM 2026 | Banco de +10.000 Preguntas Clínicas',
+    description: 'Practica con simulacros de 180 preguntas cronometradas idénticas al examen EUNACOM-ST oficial de ASOFAMECH. Retroalimentación justificada con Guías GES y MINSAL vigentes.',
+    canonical: 'https://www.eunacomapp.cl/simulacros-eunacom'
+  })
+
   useEffect(() => {
-    document.title = 'Simulacros Oficiales EUNACOM 2026 | Banco de +10.000 Preguntas Clínicas'
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Practica con simulacros de 180 preguntas cronometradas idénticas al examen EUNACOM-ST oficial de ASOFAMECH. Retroalimentación justificada con Guías GES y MINSAL vigentes.'
-      )
-    }
     window.scrollTo(0, 0)
   }, [])
 

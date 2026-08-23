@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Home, Video, Target, Shield, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock } from 'lucide-react'
+import { Home, Video, Target, Shield, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
 const BottomNavigation = ({ onMenuToggle }) => {
@@ -11,6 +11,10 @@ const BottomNavigation = ({ onMenuToggle }) => {
             <NavLink to="/dashboard" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
                 <Home size={22} />
                 <span>Inicio</span>
+            </NavLink>
+            <NavLink to="/medlingo" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#f97316' }}>
+                <Flame size={22} />
+                <span>Racha 🔥</span>
             </NavLink>
             {isAdmin() && (
                 <NavLink to="/study-plan" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>

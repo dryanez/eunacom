@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight, Zap, PlayCircle } from 'lucide-react'
+import {
+    ChevronLeft, MoreHorizontal, Flag, Lightbulb, ChevronRight,
+    Zap, PlayCircle, Check, X, CheckCircle, AlertCircle, Flame, Award, Sparkles
+} from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
@@ -111,7 +114,6 @@ const TestRunner = () => {
             
             // Save progress in tutor mode too
             if (location.state?.testId) {
-                // Must calculate new tutorState since state updates are async
                 const newFirstAttempts = qid in firstAttempts ? firstAttempts : { ...firstAttempts, [qid]: optionId }
                 const newWrongAttempts = isCorrect ? wrongAttempts : { 
                     ...wrongAttempts, 
@@ -213,10 +215,9 @@ const TestRunner = () => {
 
     if (isFinished) {
         let score = 0
-        // On review (startFinished), firstAttempts is empty — always use saved answers
         const results = questions.map(q => {
             const firstAns = (!startFinished && isTutorMode) ? firstAttempts[q.id] : answers[q.id]
-            const userAns = firstAns  // show first attempt in review
+            const userAns = firstAns
             const correct = userAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
             if (correct) score++
             const userChoice = q.choices?.find(c => c.id === userAns)
@@ -229,66 +230,66 @@ const TestRunner = () => {
         const sessionXP = (score * XP_PER_CORRECT) + (incorrectCount * XP_PER_INCORRECT)
 
         return (
-            <div className="test-review-page" style={{ padding: '1rem' }}>
-                <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                    <div className="card text-center" style={{ marginBottom: '1.5rem', width: '100%', padding: '2rem 1rem' }}>
+            <div className="test-review-page" style={{ padding: '1.5rem 1rem', background: 'var(--surface-900)', minHeight: '100vh' }}>
+                <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+                    <div className="card text-center" style={{ marginBottom: '1.5rem', width: '100%', padding: '2.5rem 1.5rem', borderRadius: 20 }}>
                         <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
                             {startFinished ? 'Revisión del Examen' : '¡Examen Finalizado!'}
                         </h1>
                         {!startFinished && <p style={{ color: 'var(--surface-300)', marginBottom: '1rem' }}>Tiempo: {timeLimitSeconds > 0 ? formatTime(timeLimitSeconds - timeLeft) : formatTime(timeElapsed)}</p>}
                         
                         {!startFinished && (
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(251,191,36,0.15)', color: 'var(--accent-amber)', padding: '0.5rem 1rem', borderRadius: '2rem', fontWeight: 700, marginBottom: '1.5rem' }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(251,191,36,0.15)', color: 'var(--accent-amber)', padding: '0.5rem 1.25rem', borderRadius: '2rem', fontWeight: 700, marginBottom: '1.5rem' }}>
                                 <Zap size={18} fill="currentColor" /> +{sessionXP} XP Obtenida
                             </div>
                         )}
 
-                        <div style={{ fontSize: '4rem', fontWeight: 800, color: pct >= 60 ? 'var(--accent-green)' : 'var(--accent-red)', marginBottom: '0.5rem' }}>
+                        <div style={{ fontSize: '4.5rem', fontWeight: 900, color: pct >= 60 ? '#10b981' : '#ef4444', marginBottom: '0.5rem', lineHeight: 1 }}>
                             {pct}%
                         </div>
-                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem' }}>
+                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
                             {score} de {totalQuestions} correctas
                         </p>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(52,211,153,0.1)', borderRadius: 'var(--radius)' }}>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-green)' }}>{score}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Correctas</div>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: 12, minWidth: 100 }}>
+                                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#10b981' }}>{score}</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--surface-300)', fontWeight: 600 }}>Correctas</div>
                             </div>
-                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(248,113,113,0.1)', borderRadius: 'var(--radius)' }}>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-red)' }}>{results.filter(r => !r.correct && !r.omitted).length}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Incorrectas</div>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 12, minWidth: 100 }}>
+                                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444' }}>{results.filter(r => !r.correct && !r.omitted).length}</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--surface-300)', fontWeight: 600 }}>Incorrectas</div>
                             </div>
-                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(251,191,36,0.1)', borderRadius: 'var(--radius)' }}>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-amber)' }}>{results.filter(r => r.omitted).length}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>Omitidas</div>
+                            <div style={{ textAlign: 'center', padding: '0.75rem 1.5rem', background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 12, minWidth: 100 }}>
+                                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fbbf24' }}>{results.filter(r => r.omitted).length}</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--surface-300)', fontWeight: 600 }}>Omitidas</div>
                             </div>
                         </div>
                     </div>
 
                     {/* Question grid navigator */}
-                    <div className="card" style={{ marginBottom: '1.5rem' }}>
+                    <div className="card" style={{ marginBottom: '1.5rem', borderRadius: 18, padding: '1.25rem' }}>
                         <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.07em', marginBottom: '0.75rem' }}>
                             VISTA RÁPIDA — {totalQuestions} PREGUNTAS
                         </div>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
                             {results.map((r, i) => {
                                 const wrongIdx = wrongResults.findIndex(wr => wr.q.id === r.q.id)
                                 const isWrongOrOmitted = wrongIdx !== -1
-                                const color = r.correct ? '#34d399' : (r.omitted ? '#fbbf24' : '#f87171')
-                                const bg = r.correct ? 'rgba(52,211,153,0.15)' : (r.omitted ? 'rgba(251,191,36,0.15)' : 'rgba(248,113,113,0.15)')
+                                const color = r.correct ? '#10b981' : (r.omitted ? '#fbbf24' : '#ef4444')
+                                const bg = r.correct ? 'rgba(16,185,129,0.15)' : (r.omitted ? 'rgba(245,158,11,0.15)' : 'rgba(239,68,68,0.15)')
                                 return (
                                     <button
                                         key={r.q.id}
                                         title={`P${i + 1}: ${r.correct ? 'Correcta' : (r.omitted ? 'Omitida' : 'Incorrecta')}`}
                                         onClick={() => isWrongOrOmitted && document.getElementById(`review-wrong-${wrongIdx}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
                                         style={{
-                                            width: 28, height: 28, borderRadius: 4, border: 'none',
-                                            background: bg, color, fontSize: '0.6rem', fontWeight: 700,
+                                            width: 30, height: 30, borderRadius: 6, border: 'none',
+                                            background: bg, color, fontSize: '0.7rem', fontWeight: 700,
                                             cursor: isWrongOrOmitted ? 'pointer' : 'default',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                                             transition: 'filter 0.15s',
                                         }}
-                                        onMouseEnter={e => { if (isWrongOrOmitted) e.currentTarget.style.filter = 'brightness(1.4)' }}
+                                        onMouseEnter={e => { if (isWrongOrOmitted) e.currentTarget.style.filter = 'brightness(1.3)' }}
                                         onMouseLeave={e => { e.currentTarget.style.filter = 'none' }}
                                     >
                                         {i + 1}
@@ -296,66 +297,165 @@ const TestRunner = () => {
                                 )
                             })}
                         </div>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.5rem', marginTop: '0.75rem', fontSize: '0.75rem' }}>
-                            <span style={{ color: '#34d399' }}>■ Correctas: {score}</span>
-                            <span style={{ color: '#f87171' }}>■ Incorrectas: {results.filter(r => !r.correct && !r.omitted).length}</span>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem 1.5rem', marginTop: '0.85rem', fontSize: '0.78rem', fontWeight: 600 }}>
+                            <span style={{ color: '#10b981' }}>■ Correctas: {score}</span>
+                            <span style={{ color: '#ef4444' }}>■ Incorrectas: {results.filter(r => !r.correct && !r.omitted).length}</span>
                             <span style={{ color: '#fbbf24' }}>■ Omitidas: {results.filter(r => r.omitted).length}</span>
                         </div>
                     </div>
 
                     {wrongResults.length > 0 && (
-                        <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: '1.5rem' }}>
-                            <div className="test-review-header">
-                                <h3 style={{ margin: 0, fontSize: '1rem' }}>Preguntas para Repasar ({wrongResults.length})</h3>
+                        <div style={{ marginBottom: '2rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '1rem', color: 'var(--surface-100)', fontWeight: 800, fontSize: '1.2rem' }}>
+                                <AlertCircle size={22} color="#ef4444" /> Preguntas para Repasar ({wrongResults.length})
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                                {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => (
-                                    <div key={q.id} id={`review-wrong-${i}`} className="test-review-item" style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
-                                        <p style={{ margin: '0 0 0.75rem', fontSize: '0.93rem', lineHeight: 1.5, color: 'var(--surface-100)' }}>
-                                            <strong style={{ color: 'var(--surface-400)', marginRight: '0.5rem' }}>{i + 1}.</strong>
-                                            {q.question}
-                                        </p>
-                                        {q.imageUrl && (
-                                            <div style={{ marginBottom: '1rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(q.imageUrl)}>
-                                                <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '6px', border: '1px solid var(--surface-700)' }} />
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                                {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => {
+                                    const qArea = [q.category, q.topic || q.specialty].filter(Boolean).join(' · ') || q.topic || q.specialty || q.category || 'Medicina General'
+                                    return (
+                                        <div key={q.id} id={`review-wrong-${i}`} style={{
+                                            backgroundColor: '#ffffff',
+                                            border: '1px solid #cbd5e1',
+                                            borderRadius: 18,
+                                            padding: '24px 20px',
+                                            boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.14)'
+                                        }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                                    <span style={{ background: '#f1f5f9', color: '#475569', fontWeight: 800, fontSize: '0.76rem', padding: '3px 10px', borderRadius: 9999 }}>
+                                                        #{i + 1}
+                                                    </span>
+                                                    <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+                                                        {qArea}
+                                                    </span>
+                                                </div>
+                                                <span style={{
+                                                    backgroundColor: omitted ? '#fef3c7' : '#fef2f2',
+                                                    border: omitted ? '1px solid #fde68a' : '1px solid #fecaca',
+                                                    color: omitted ? '#92400e' : '#dc2626',
+                                                    fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4
+                                                }}>
+                                                    {omitted ? '⊘ Omitida' : '✗ Incorrecta'}
+                                                </span>
                                             </div>
-                                        )}
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.85rem' }}>
-                                            {!omitted && (
-                                                <div style={{ color: 'var(--accent-red)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                                                    <span style={{ flexShrink: 0 }}>✗ Tu respuesta:</span>
-                                                    <span>{userChoice ? `${userChoice.id}. ${userChoice.text}` : userChoice?.id}</span>
+
+                                            <p style={{ margin: '0 0 16px', fontSize: '1rem', lineHeight: 1.65, color: '#1e293b', fontWeight: 500 }}>
+                                                {q.question}
+                                            </p>
+
+                                            {q.imageUrl && (
+                                                <div style={{ marginBottom: '1.25rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(q.imageUrl)}>
+                                                    <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '280px', borderRadius: '10px', border: '1px solid #cbd5e1' }} />
                                                 </div>
                                             )}
-                                            {omitted && <div style={{ color: 'var(--accent-amber)' }}>⊘ Omitida</div>}
-                                            <div style={{ color: 'var(--accent-green)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                                                <span style={{ flexShrink: 0 }}>✓ Correcta:</span>
-                                                <span>{correctChoice ? `${correctChoice.id}. ${correctChoice.text}` : q.correctAnswer}</span>
+
+                                            {/* Options list in Hero Shot style */}
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 14 }}>
+                                                {q.choices?.map((opt, optIdx) => {
+                                                    const isCorrectOpt = opt.id.toLowerCase() === q.correctAnswer?.toLowerCase()
+                                                    const isUserPick = opt.id === userChoice?.id
+                                                    
+                                                    let bg = '#ffffff'
+                                                    let border = '#e2e8f0'
+                                                    let textColor = '#334155'
+                                                    let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.82rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+                                                    let statusLabel = null
+
+                                                    if (isCorrectOpt) {
+                                                        bg = '#ecfdf5'
+                                                        border = '#10b981'
+                                                        textColor = '#065f46'
+                                                        badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+                                                        statusLabel = <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>✓ Respuesta Correcta</span>
+                                                    } else if (isUserPick && !omitted) {
+                                                        bg = '#fef2f2'
+                                                        border = '#ef4444'
+                                                        textColor = '#991b1b'
+                                                        badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+                                                        statusLabel = <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>✗ Tu Selección</span>
+                                                    }
+
+                                                    return (
+                                                        <div key={opt.id} style={{
+                                                            padding: '12px 16px',
+                                                            borderRadius: 12,
+                                                            border: `1.5px solid ${border}`,
+                                                            backgroundColor: bg,
+                                                            color: textColor,
+                                                            fontSize: '0.92rem',
+                                                            lineHeight: 1.5,
+                                                            display: 'flex',
+                                                            alignItems: 'flex-start',
+                                                            gap: 12,
+                                                            opacity: (!isCorrectOpt && !isUserPick) ? 0.45 : 1
+                                                        }}>
+                                                            <div style={{
+                                                                width: 26, height: 26, minWidth: 26, borderRadius: 8,
+                                                                backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
+                                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                                flexShrink: 0, marginTop: 1
+                                                            }}>
+                                                                {badgeContent}
+                                                            </div>
+                                                            <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                                                            {statusLabel}
+                                                        </div>
+                                                    )
+                                                })}
                                             </div>
+
+                                            {/* Retroalimentación clínica official card */}
                                             {q.explanation && (
-                                                <div style={{ marginTop: '0.75rem', padding: '0.85rem', background: 'rgba(99, 102, 241, 0.08)', borderRadius: '8px', fontSize: '0.85rem', color: 'var(--surface-300)', lineHeight: 1.6 }}>
-                                                    💡 {q.explanation}
+                                                <div style={{
+                                                    marginTop: 16,
+                                                    padding: '16px 18px',
+                                                    backgroundColor: '#f0fdf4',
+                                                    border: '1px solid #bbf7d0',
+                                                    borderRadius: 14
+                                                }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 8 }}>
+                                                        <CheckCircle size={17} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+                                                    </div>
+                                                    <p style={{ fontSize: '0.9rem', color: '#15803d', lineHeight: 1.65, margin: 0 }}>
+                                                        {q.explanation}
+                                                    </p>
+                                                    {q.videoUrl && (
+                                                        <div style={{ marginTop: 12 }}>
+                                                            <a href={q.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 16px', background: '#0284c7', border: 'none', color: '#ffffff', borderRadius: 8, fontSize: '0.82rem', fontWeight: 700, textDecoration: 'none' }}>
+                                                                <PlayCircle size={15} /> Ver clase en video
+                                                            </a>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            )}
-                                            {q.videoUrl && (
-                                                <a href={q.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.6rem 1rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                                                    <PlayCircle size={16} /> Ver clase en video
-                                                </a>
                                             )}
                                         </div>
-                                    </div>
-                                ))}
+                                    )
+                                })}
                             </div>
                         </div>
                     )}
 
-                    <button className="btn-primary btn-primary--full" onClick={() => navigate('/dashboard')} style={{ padding: '1rem' }}>
+                    <button className="btn-primary btn-primary--full" onClick={() => navigate('/dashboard')} style={{ padding: '1rem', borderRadius: 12, fontWeight: 700 }}>
                         Volver al Dashboard
                     </button>
                 </div>
             </div>
         )
     }
+
+    const areaBadge = [currentQuestion.category, currentQuestion.topic || currentQuestion.specialty]
+        .filter(Boolean)
+        .join(' · ') || currentQuestion.topic || currentQuestion.specialty || currentQuestion.category || 'Medicina General'
+
+    const isRecon = location.state?.testId?.includes('recon') || (currentQuestion.id && String(currentQuestion.id).includes('_q'))
+
+    const highYieldBadge = isSimulation
+        ? { label: 'Simulacro Oficial 180Q', icon: <Flame size={12} color="#f59e0b" /> }
+        : isRecon
+            ? { label: 'Reconstrucción EUNACOM', icon: <Award size={12} color="#f59e0b" /> }
+            : isTutorMode
+                ? { label: 'Modo Tutor Clínico', icon: <Sparkles size={12} color="#f59e0b" /> }
+                : { label: 'Alta Frecuencia EUNACOM', icon: <Flame size={12} color="#f59e0b" /> }
 
     return (
         <div style={{ background: 'var(--surface-900)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -367,57 +467,74 @@ const TestRunner = () => {
                     alert('¡El tiempo ha finalizado!')
                 })
             }} />
+
             {/* Top bar */}
-            <div style={{ background: 'var(--surface-800)', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--surface-700)' }}>
-                    <button onClick={() => setShowExitModal(true)} style={{ background: 'transparent', border: 'none', color: 'var(--surface-50)', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '0.5rem' }}>
-                        <ChevronLeft size={20} /> Volver
-                    </button>
-                <div style={{ fontWeight: 700 }}>Examen EUNACOM — {currentQuestion.topic}</div>
-                <button style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer' }}><MoreHorizontal size={24} /></button>
+            <div style={{ background: 'var(--surface-800)', padding: '0.9rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--surface-700)' }}>
+                <button onClick={() => setShowExitModal(true)} style={{ background: 'transparent', border: 'none', color: 'var(--surface-50)', display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', padding: '0.4rem 0.6rem', borderRadius: 8, fontSize: '0.9rem', fontWeight: 600 }}>
+                    <ChevronLeft size={20} /> Volver
+                </button>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--surface-100)' }}>Examen EUNACOM — {currentQuestion.topic || 'Práctica'}</div>
+                <button style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer' }}><MoreHorizontal size={22} /></button>
             </div>
 
             {/* Status bar */}
-            <div style={{ background: 'var(--primary-600)', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'white' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>Q {currentIndex + 1} / {totalQuestions}</div>
+            <div style={{ background: '#0284c7', padding: '0.75rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'white' }}>
+                <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.01em' }}>Pregunta {currentIndex + 1} de {totalQuestions}</div>
                 {isTutorMode
-                    ? <div style={{ fontWeight: 600, fontSize: '0.9rem', opacity: 0.9 }}>💡 Modo Tutor</div>
-                    : <div style={{ fontWeight: 700, fontSize: '1.2rem', fontFamily: 'monospace', color: (timeLimitSeconds > 0 && timeLeft < 60) ? '#f87171' : 'white' }}>
+                    ? <div style={{ fontWeight: 700, fontSize: '0.86rem', display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(255,255,255,0.15)', padding: '3px 10px', borderRadius: 9999 }}>💡 Modo Tutor</div>
+                    : <div style={{ fontWeight: 800, fontSize: '1.15rem', fontFamily: 'monospace', color: (timeLimitSeconds > 0 && timeLeft < 60) ? '#fca5a5' : 'white' }}>
                         {timeLimitSeconds > 0 ? formatTime(timeLeft) : formatTime(timeElapsed)}
                       </div>
                 }
             </div>
-            <div style={{ height: '4px', background: 'rgba(0,0,0,0.2)' }}>
-                <div style={{ height: '100%', width: `${((currentIndex + 1) / totalQuestions) * 100}%`, background: 'white', transition: 'width 0.3s' }} />
+            <div style={{ height: '4px', background: 'rgba(0,0,0,0.25)' }}>
+                <div style={{ height: '100%', width: `${((currentIndex + 1) / totalQuestions) * 100}%`, background: '#38bdf8', transition: 'width 0.3s' }} />
             </div>
 
-            {/* Content */}
-            <div className="test-runner-content">
-                <div className="card" style={{ marginBottom: '2rem' }}>
-                    <p style={{ fontSize: '1.1rem', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>{currentQuestion.question}</p>
+            {/* Main Content Area */}
+            <div className="test-runner-content" style={{ maxWidth: '820px', margin: '0 auto', padding: '1.5rem 1rem 6rem', width: '100%' }}>
+                
+                {/* ── Crisp White Floating Hero Shot Card ── */}
+                <div style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #cbd5e1',
+                    borderRadius: 18,
+                    padding: '24px 20px',
+                    boxShadow: '0 12px 32px -4px rgba(0, 0, 0, 0.18)',
+                    marginBottom: '1.5rem'
+                }}>
+                    {/* Header Badges */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+                        <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.76rem', fontWeight: 700, padding: '4px 12px', borderRadius: 9999 }}>
+                            {areaBadge}
+                        </span>
+                        <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.76rem', fontWeight: 700, padding: '4px 12px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 5 }}>
+                            {highYieldBadge.icon} {highYieldBadge.label}
+                        </span>
+                    </div>
+
+                    {/* Question text */}
+                    <p style={{ fontSize: '1.02rem', lineHeight: 1.65, color: '#1e293b', marginBottom: 18, whiteSpace: 'pre-wrap', fontWeight: 500 }}>
+                        {currentQuestion.question}
+                    </p>
+
                     {currentQuestion.imageUrl && (
-                        <div style={{ marginTop: '1rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(currentQuestion.imageUrl)}>
-                            <img src={currentQuestion.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '400px', borderRadius: '8px', border: '1px solid var(--surface-600)' }} />
+                        <div style={{ marginBottom: '1.25rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(currentQuestion.imageUrl)}>
+                            <img src={currentQuestion.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '350px', borderRadius: '10px', border: '1px solid #cbd5e1' }} />
                         </div>
                     )}
-                </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
-                    {currentQuestion.choices.map(opt => {
-                        const qid = currentQuestion.id
-                        const isCorrectOpt = opt.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
-                        
-                        let isSelected = false
-                        let hasAnswered = false
-                        let tutorSolved = false
-                        let isWrongAttempt = false
-                        
-                        if (isFinished) {
-                            // In Review Mode (finished test), we show their FIRST attempt in tutor mode, or their final answer in timed mode.
-                            const userFinalAnswer = (isTutorMode && firstAttempts[qid]) ? firstAttempts[qid] : answers[qid]
-                            isSelected = userFinalAnswer === opt.id
-                            hasAnswered = !!userFinalAnswer
-                        } else {
-                            // In Active Mode
+                    {/* Options list in Hero Shot style */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        {currentQuestion.choices.map((opt, i) => {
+                            const qid = currentQuestion.id
+                            const isCorrectOpt = opt.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                            
+                            let isSelected = false
+                            let hasAnswered = false
+                            let tutorSolved = false
+                            let isWrongAttempt = false
+                            
                             if (isTutorMode) {
                                 tutorSolved = answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
                                 isWrongAttempt = (wrongAttempts[qid] || new Set()).has(opt.id)
@@ -425,143 +542,269 @@ const TestRunner = () => {
                                 hasAnswered = !!answers[qid]
                                 isSelected = answers[qid] === opt.id
                             }
-                        }
 
-                        // Disable: if finished, OR in active tutor mode if already got correct, or if this option was already tried wrong, OR in active timed mode if answered
-                        const isDisabled = isFinished || (isTutorMode && !isFinished && (tutorSolved || isWrongAttempt)) || (!isTutorMode && !isFinished && hasAnswered)
+                            const isDisabled = (isTutorMode && (tutorSolved || isWrongAttempt)) || (!isTutorMode && hasAnswered)
 
-                        let bg = 'var(--surface-800)'
-                        let border = 'var(--surface-600)'
-                        let dotColor = 'var(--surface-400)'
-                        let showDot = false
+                            let bg = '#ffffff'
+                            let border = '#e2e8f0'
+                            let textColor = '#334155'
+                            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.88rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
 
-                        if (isFinished) {
-                            // Review Mode styling (same for both Timed and Tutor)
-                            if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
-                            else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171'; showDot = true; }
-                        } else {
-                            // Active Mode styling
                             if (isTutorMode) {
-                                if (tutorSolved && isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
-                                else if (isWrongAttempt) { bg = 'rgba(248,113,113,0.1)'; border = 'rgba(248,113,113,0.5)'; dotColor = '#f87171'; showDot = true; }
-                            } else if (hasAnswered) {
-                                if (isCorrectOpt) { bg = 'rgba(52,211,153,0.15)'; border = '#34d399'; dotColor = '#34d399'; showDot = true; }
-                                else if (isSelected) { bg = 'rgba(248,113,113,0.15)'; border = '#f87171'; dotColor = '#f87171'; showDot = true; }
-                            } else if (isSelected) {
-                                bg = 'rgba(19,91,236,0.15)'; border = 'var(--primary-500)'; dotColor = 'var(--primary-400)'; showDot = true;
+                                if (tutorSolved && isCorrectOpt) {
+                                    bg = '#ecfdf5'
+                                    border = '#10b981'
+                                    textColor = '#065f46'
+                                    badgeContent = <Check size={16} color="#10b981" strokeWidth={2.5} />
+                                } else if (isWrongAttempt) {
+                                    bg = '#fef2f2'
+                                    border = '#ef4444'
+                                    textColor = '#991b1b'
+                                    badgeContent = <X size={16} color="#ef4444" strokeWidth={2.5} />
+                                } else if (tutorSolved) {
+                                    bg = '#f8fafc'
+                                    border = '#f1f5f9'
+                                    textColor = '#94a3b8'
+                                    badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.88rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+                                }
+                            } else {
+                                if (isSelected) {
+                                    bg = '#f0f9ff'
+                                    border = '#0284c7'
+                                    textColor = '#0369a1'
+                                    badgeContent = <span style={{ color: '#0284c7', fontWeight: 800, fontSize: '0.88rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+                                }
                             }
-                        }
 
-                        return (
-                            <button key={opt.id} className="test-runner-option" onClick={() => !isDisabled && handleSelectOption(opt.id)} style={{
-                                background: bg,
-                                border: `2px solid ${border}`,
-                                borderRadius: 'var(--radius)', color: isDisabled && !isCorrectOpt && !isWrongAttempt && !isSelected ? 'var(--surface-400)' : 'white', fontSize: '1.05rem',
-                                display: 'flex', alignItems: 'center', gap: '1rem',
-                                cursor: isDisabled ? 'default' : 'pointer', transition: 'all 0.1s',
-                                opacity: isDisabled && !isWrongAttempt && !isCorrectOpt && !isSelected ? 0.45 : 1,
+                            return (
+                                <button
+                                    key={opt.id}
+                                    onClick={() => !isDisabled && handleSelectOption(opt.id)}
+                                    disabled={isDisabled}
+                                    style={{
+                                        textAlign: 'left',
+                                        padding: '13px 16px',
+                                        borderRadius: 14,
+                                        border: `1.5px solid ${border}`,
+                                        backgroundColor: bg,
+                                        color: textColor,
+                                        fontSize: '0.94rem',
+                                        lineHeight: 1.5,
+                                        cursor: isDisabled ? 'default' : 'pointer',
+                                        transition: 'all 0.15s ease',
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                        gap: 12,
+                                        minHeight: '48px',
+                                        width: '100%',
+                                        opacity: (isTutorMode && tutorSolved && !isCorrectOpt) ? 0.45 : 1,
+                                    }}
+                                >
+                                    <div style={{
+                                        width: 26,
+                                        height: 26,
+                                        minWidth: 26,
+                                        borderRadius: 8,
+                                        backgroundColor: 'rgba(0,0,0,0.03)',
+                                        border: '1px solid rgba(0,0,0,0.06)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0,
+                                        marginTop: 1,
+                                    }}>
+                                        {badgeContent}
+                                    </div>
+                                    <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                                    {isTutorMode && isWrongAttempt && (
+                                        <span style={{ marginLeft: 'auto', fontSize: '0.82rem', color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 3 }}>
+                                            ✗ Incorrecto
+                                        </span>
+                                    )}
+                                    {isTutorMode && tutorSolved && isCorrectOpt && (
+                                        <span style={{ marginLeft: 'auto', fontSize: '0.82rem', color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 3 }}>
+                                            ✓ Correcto
+                                        </span>
+                                    )}
+                                </button>
+                            )
+                        })}
+                    </div>
+
+                    {/* Tutor mode feedback panel */}
+                    {isTutorMode && (() => {
+                        const qid = currentQuestion.id
+                        const tutorSolved = answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
+                        const wrongCount = (wrongAttempts[qid] || new Set()).size
+                        const hasTriedWrong = wrongCount > 0
+                        const isShowingExplanation = showExplanation[qid]
+
+                        if (!tutorSolved && !hasTriedWrong) return null
+
+                        return tutorSolved ? (
+                            <div style={{
+                                marginTop: '20px',
+                                padding: '18px 20px',
+                                backgroundColor: '#f0fdf4',
+                                border: '1px solid #bbf7d0',
+                                borderRadius: 14
                             }}>
-                                <div style={{ minWidth: '24px', height: '24px', borderRadius: '50%', border: `2px solid ${dotColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                    {showDot && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: dotColor }} />}
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#166534', fontWeight: 700, fontSize: '0.94rem', marginBottom: 8 }}>
+                                    <CheckCircle size={18} color="#16a34a" />
+                                    <span>Retroalimentación Clínica (Guías GES / MINSAL)</span>
+                                    {wrongCount > 0 && (
+                                        <span style={{ fontWeight: 500, fontSize: '0.8rem', color: '#15803d', marginLeft: 4 }}>
+                                            ({wrongCount} intento{wrongCount > 1 ? 's' : ''} previo{wrongCount > 1 ? 's' : ''})
+                                        </span>
+                                    )}
                                 </div>
-                                <span>
-                                    <strong style={{ color: 'var(--surface-300)', marginRight: '0.5rem' }}>{opt.id}.</strong>
-                                    {opt.text}
-                                </span>
-                                {isTutorMode && isWrongAttempt && <span style={{ marginLeft: 'auto', fontSize: '0.85rem', color: '#f87171', flexShrink: 0 }}>✗ Incorrecto</span>}
-                                {isTutorMode && tutorSolved && isCorrectOpt && <span style={{ marginLeft: 'auto', fontSize: '0.85rem', color: '#34d399', flexShrink: 0 }}>✓ Correcto</span>}
-                            </button>
-                        )
-                    })}
-                </div>
-
-                {/* Tutor mode feedback panel */}
-                {isTutorMode && (() => {
-                    const qid = currentQuestion.id
-                    const tutorSolved = answers[qid]?.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase()
-                    const wrongCount = (wrongAttempts[qid] || new Set()).size
-                    const hasTriedWrong = wrongCount > 0
-                    const isShowingExplanation = showExplanation[qid]
-                    const correctChoice = currentQuestion.choices?.find(c => c.id.toLowerCase() === currentQuestion.correctAnswer?.toLowerCase())
-
-                    if (!tutorSolved && !hasTriedWrong) return null // nothing yet
-
-                    return (
-                        <div className="tutor-feedback-panel" style={{
-                            background: tutorSolved ? 'rgba(52,211,153,0.08)' : 'rgba(248,113,113,0.08)',
-                            border: `1px solid ${tutorSolved ? 'rgba(52,211,153,0.3)' : 'rgba(248,113,113,0.3)'}`,
-                        }}>
-                            {tutorSolved ? (
-                                <>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34d399', fontWeight: 700, marginBottom: currentQuestion.explanation ? '0.75rem' : 0, fontSize: '1rem' }}>
-                                        ✅ ¡Correcto! {wrongCount > 0 && <span style={{ fontWeight: 400, fontSize: '0.85rem', color: '#6ee7b7' }}>({wrongCount} intento{wrongCount > 1 ? 's' : ''} previo{wrongCount > 1 ? 's' : ''})</span>}
-                                    </div>
-                                    {currentQuestion.explanation && (
-                                        <div style={{ color: 'var(--surface-200)', lineHeight: 1.6, fontSize: '0.93rem' }}>
-                                            💡 {currentQuestion.explanation}
-                                        </div>
-                                    )}
-                                    {currentQuestion.videoUrl && (
-                                        <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
-                                            <PlayCircle size={14} /> Ver clase en video
+                                {currentQuestion.explanation && (
+                                    <p style={{ fontSize: '0.9rem', color: '#15803d', lineHeight: 1.65, margin: 0 }}>
+                                        {currentQuestion.explanation}
+                                    </p>
+                                )}
+                                {currentQuestion.videoUrl && (
+                                    <div style={{ marginTop: 14 }}>
+                                        <a
+                                            href={currentQuestion.videoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'inline-flex', alignItems: 'center', gap: 6,
+                                                padding: '8px 16px', background: '#0284c7',
+                                                border: 'none', color: '#ffffff',
+                                                borderRadius: 8, fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none'
+                                            }}
+                                        >
+                                            <PlayCircle size={16} /> Ver clase en video
                                         </a>
-                                    )}
-                                </>
-                            ) : (
-                                <>
-                                    <div style={{ color: '#f87171', fontWeight: 700, marginBottom: '0.5rem', fontSize: '1rem' }}>
-                                        ❌ Incorrecto — inténtalo de nuevo
                                     </div>
-                                    {isShowingExplanation && currentQuestion.explanation && (
-                                        <div style={{ color: 'var(--surface-300)', lineHeight: 1.6, fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                                            💡 <em>Pista:</em> {currentQuestion.explanation}
-                                        </div>
-                                    )}
-                                    {isShowingExplanation && currentQuestion.videoUrl && (
-                                        <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.75rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
-                                            <PlayCircle size={14} /> Ver clase en video
-                                        </a>
-                                    )}
+                                )}
+                            </div>
+                        ) : (
+                            <div style={{
+                                marginTop: '20px',
+                                padding: '18px 20px',
+                                backgroundColor: '#fffbeb',
+                                border: '1px solid #fde68a',
+                                borderRadius: 14
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: isShowingExplanation ? 8 : 0 }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#92400e', fontWeight: 700, fontSize: '0.94rem' }}>
+                                        <AlertCircle size={18} color="#d97706" />
+                                        <span>Respuesta Incorrecta — Revisa el caso e inténtalo de nuevo</span>
+                                    </div>
                                     {!isShowingExplanation && (
-                                        <button onClick={handleShowHint} style={{ background: 'none', border: '1px solid rgba(248,113,113,0.4)', color: '#f87171', borderRadius: 6, padding: '4px 12px', fontSize: '0.8rem', cursor: 'pointer', marginTop: '0.25rem' }}>
-                                            💡 Ver pista
+                                        <button
+                                            onClick={handleShowHint}
+                                            style={{
+                                                background: '#fef3c7', border: '1px solid #fde68a',
+                                                color: '#b45309', borderRadius: 8, padding: '6px 14px', fontSize: '0.8rem',
+                                                fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5
+                                            }}
+                                        >
+                                            <Lightbulb size={14} /> Ver pista
                                         </button>
                                     )}
-                                </>
+                                </div>
+                                {isShowingExplanation && currentQuestion.explanation && (
+                                    <div style={{ marginTop: 8 }}>
+                                        <div style={{ fontSize: '0.88rem', color: '#78350f', lineHeight: 1.6 }}>
+                                            💡 <strong>Pista clínica:</strong> {currentQuestion.explanation}
+                                        </div>
+                                    </div>
+                                )}
+                                {isShowingExplanation && currentQuestion.videoUrl && (
+                                    <div style={{ marginTop: 12 }}>
+                                        <a
+                                            href={currentQuestion.videoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'inline-flex', alignItems: 'center', gap: 6,
+                                                padding: '8px 16px', background: '#0284c7',
+                                                border: 'none', color: '#ffffff',
+                                                borderRadius: 8, fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none'
+                                            }}
+                                        >
+                                            <PlayCircle size={16} /> Ver clase en video
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    })()}
+
+                    {/* Non-tutor explanation panel (lightbulb toggle) */}
+                    {!isTutorMode && showExplanation[currentQuestion.id] && currentQuestion.explanation && (
+                        <div style={{
+                            marginTop: '20px',
+                            padding: '18px 20px',
+                            backgroundColor: '#f0fdf4',
+                            border: '1px solid #bbf7d0',
+                            borderRadius: 14
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#166534', fontWeight: 700, fontSize: '0.94rem', marginBottom: 8 }}>
+                                <CheckCircle size={18} color="#16a34a" />
+                                <span>Retroalimentación Clínica (Guías GES / MINSAL)</span>
+                            </div>
+                            <p style={{ fontSize: '0.9rem', color: '#15803d', lineHeight: 1.65, margin: 0 }}>
+                                {currentQuestion.explanation}
+                            </p>
+                            {currentQuestion.videoUrl && (
+                                <div style={{ marginTop: 14 }}>
+                                    <a
+                                        href={currentQuestion.videoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            display: 'inline-flex', alignItems: 'center', gap: 6,
+                                            padding: '8px 16px', background: '#0284c7',
+                                            border: 'none', color: '#ffffff',
+                                            borderRadius: 8, fontSize: '0.84rem', fontWeight: 700, textDecoration: 'none'
+                                        }}
+                                    >
+                                        <PlayCircle size={16} /> Ver clase en video
+                                    </a>
+                                </div>
                             )}
                         </div>
-                    )
-                })()}
+                    )}
+                </div>
 
-                {/* Non-tutor explanation panel (lightbulb) */}
-                {!isTutorMode && showExplanation[currentQuestion.id] && currentQuestion.explanation && (
-                    <div className="tutor-feedback-panel" style={{ background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.3)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#06b6d4', fontWeight: 700, marginBottom: '0.75rem' }}>
-                            <Lightbulb size={18} /> Explicación
-                        </div>
-                        <div style={{ color: 'var(--surface-200)', lineHeight: 1.6, fontSize: '0.93rem' }}>
-                            {currentQuestion.explanation}
-                        </div>
-                        {currentQuestion.videoUrl && (
-                            <a href={currentQuestion.videoUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '1rem', padding: '0.5rem 0.85rem', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, textDecoration: 'none' }}>
-                                <PlayCircle size={14} /> Ver clase en video
-                            </a>
-                        )}
-                    </div>
-                )}
-
+                {/* Bottom Navigation Buttons */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
-                    <button onClick={handlePrev} disabled={currentIndex === 0} style={{ padding: '1rem', borderRadius: 'var(--radius)', background: 'var(--surface-800)', color: 'white', border: 'none', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', opacity: currentIndex === 0 ? 0.3 : 1, cursor: currentIndex === 0 ? 'default' : 'pointer' }}>
+                    <button
+                        onClick={handlePrev}
+                        disabled={currentIndex === 0}
+                        style={{
+                            padding: '1rem', borderRadius: 12, background: 'var(--surface-800)',
+                            color: 'white', border: '1px solid var(--surface-700)', flex: 1,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                            opacity: currentIndex === 0 ? 0.3 : 1, cursor: currentIndex === 0 ? 'default' : 'pointer',
+                            fontWeight: 600
+                        }}
+                    >
                         <ChevronLeft size={20} /> Anterior
                     </button>
-                    <button onClick={handleNext} disabled={isSubmitting} style={{ padding: '1rem', borderRadius: 'var(--radius)', background: 'var(--primary-600)', color: 'white', border: 'none', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: isSubmitting ? 'wait' : 'pointer', fontWeight: 600, opacity: isSubmitting ? 0.7 : 1 }}>
+                    <button
+                        onClick={handleNext}
+                        disabled={isSubmitting}
+                        style={{
+                            padding: '1rem', borderRadius: 12, background: '#0284c7',
+                            color: 'white', border: 'none', flex: 1,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                            cursor: isSubmitting ? 'wait' : 'pointer', fontWeight: 700,
+                            opacity: isSubmitting ? 0.7 : 1, boxShadow: '0 4px 14px rgba(2, 132, 199, 0.3)'
+                        }}
+                    >
                         {isSubmitting ? 'Guardando...' : currentIndex < totalQuestions - 1 ? 'Siguiente' : 'Finalizar Examen'} <ChevronRight size={20} />
                     </button>
                 </div>
             </div>
 
-            {/* Floating buttons */}
-            <div style={{ position: 'fixed', bottom: '2rem', right: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {/* Floating Quick Action Buttons */}
+            <div style={{ position: 'fixed', bottom: '2rem', right: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', zIndex: 40 }}>
                 <button
                     onClick={() => setFlaggedQuestions(prev => {
                         const next = new Set(prev)
@@ -569,35 +812,57 @@ const TestRunner = () => {
                         else next.add(currentQuestion.id)
                         return next
                     })}
-                    style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-300)', border: `1px solid ${flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-700)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
-                    <Flag size={20} />
+                    title="Marcar pregunta"
+                    style={{
+                        width: '48px', height: '48px', borderRadius: '50%',
+                        background: 'var(--surface-800)',
+                        color: flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-300)',
+                        border: `1px solid ${flaggedQuestions.has(currentQuestion.id) ? 'var(--accent-amber)' : 'var(--surface-700)'}`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        boxShadow: '0 4px 16px rgba(0,0,0,0.4)', cursor: 'pointer', transition: 'all 0.2s'
+                    }}
+                >
+                    <Flag size={18} />
                 </button>
                 {!isSimulation && !isTutorMode && (
-                    <button onClick={handleShowHint} style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'var(--surface-800)', color: showExplanation[currentQuestion.id] ? 'var(--primary-400)' : 'var(--surface-300)', border: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'all 0.2s' }}>
-                        <Lightbulb size={24} />
+                    <button
+                        onClick={handleShowHint}
+                        title="Ver explicación"
+                        style={{
+                            width: '48px', height: '48px', borderRadius: '50%',
+                            background: 'var(--surface-800)',
+                            color: showExplanation[currentQuestion.id] ? '#38bdf8' : 'var(--surface-300)',
+                            border: `1px solid ${showExplanation[currentQuestion.id] ? '#38bdf8' : 'var(--surface-700)'}`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            boxShadow: '0 4px 16px rgba(0,0,0,0.4)', cursor: 'pointer', transition: 'all 0.2s'
+                        }}
+                    >
+                        <Lightbulb size={20} />
                     </button>
                 )}
             </div>
+
             {fullscreenImage && (
-                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.9)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', padding: '2rem', cursor: 'zoom-out' }} onClick={() => setFullscreenImage(null)}>
-                    <img src={fullscreenImage} alt="Fullscreen" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '8px' }} />
+                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', cursor: 'zoom-out' }} onClick={() => setFullscreenImage(null)}>
+                    <img src={fullscreenImage} alt="Fullscreen" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: '10px' }} />
                 </div>
             )}
+
             {showExitModal && (
-                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-                    <div style={{ background: 'var(--surface-800)', padding: '2rem', borderRadius: '16px', maxWidth: '400px', width: '100%', border: '1px solid var(--surface-600)', textAlign: 'center' }}>
-                        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>¿Estás seguro que deseas salir?</h2>
-                        <p style={{ color: 'var(--surface-300)', marginBottom: '2rem', lineHeight: 1.5 }}>
+                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+                    <div style={{ background: 'var(--surface-800)', padding: '2rem', borderRadius: '20px', maxWidth: '420px', width: '100%', border: '1px solid var(--surface-600)', textAlign: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
+                        <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.75rem', color: 'white' }}>¿Deseas salir del examen?</h2>
+                        <p style={{ color: 'var(--surface-300)', marginBottom: '1.75rem', lineHeight: 1.5, fontSize: '0.92rem' }}>
                             Puedes guardar tu progreso para continuar después, o terminar el test ahora mismo.
                         </p>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            <button onClick={handleSaveAndExit} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: 'none', background: 'var(--primary-600)', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                            <button onClick={handleSaveAndExit} disabled={isSubmitting} style={{ width: '100%', padding: '0.9rem', borderRadius: '10px', border: 'none', background: '#0284c7', color: 'white', fontWeight: 700, cursor: 'pointer' }}>
                                 {isSubmitting ? 'Guardando...' : 'Guardar y salir'}
                             </button>
-                            <button onClick={() => { setShowExitModal(false); handleSubmitTest(); }} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--surface-600)', background: 'transparent', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                            <button onClick={() => { setShowExitModal(false); handleSubmitTest(); }} disabled={isSubmitting} style={{ width: '100%', padding: '0.9rem', borderRadius: '10px', border: '1px solid var(--surface-600)', background: 'transparent', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
                                 Terminar test
                             </button>
-                            <button onClick={() => setShowExitModal(false)} disabled={isSubmitting} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: 'none', background: 'var(--surface-700)', color: 'white', fontWeight: 600, cursor: 'pointer' }}>
+                            <button onClick={() => setShowExitModal(false)} disabled={isSubmitting} style={{ width: '100%', padding: '0.9rem', borderRadius: '10px', border: 'none', background: 'var(--surface-700)', color: 'var(--surface-200)', fontWeight: 600, cursor: 'pointer' }}>
                                 Cancelar
                             </button>
                         </div>

@@ -4,19 +4,18 @@ import {
   FileCheck2, Award, Sparkles, CheckCircle2,
   BookOpen, Layers, ArrowRight, ShieldCheck
 } from 'lucide-react'
+import { usePageSeo } from '../lib/seo'
 
 export default function ReconstruccionesLanding() {
   const navigate = useNavigate()
 
+  usePageSeo({
+    title: 'Reconstrucciones EUNACOM Reales 2024-2026 | Exámenes Anteriores Explicados',
+    description: 'Accede a la recopilación más completa de reconstrucciones reales del EUNACOM. Practica con preguntas oficiales de exámenes anteriores justificadas por alternativa.',
+    canonical: 'https://www.eunacomapp.cl/reconstrucciones-eunacom'
+  })
+
   useEffect(() => {
-    document.title = 'Reconstrucciones EUNACOM Reales 2024-2026 | Exámenes Anteriores Explicados'
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Accede a la recopilación más completa de reconstrucciones reales del EUNACOM. Practica con preguntas oficiales de exámenes anteriores justificadas por alternativa.'
-      )
-    }
     window.scrollTo(0, 0)
   }, [])
 

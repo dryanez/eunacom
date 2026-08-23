@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown, ArrowLeft, BookOpen, HelpCircle, ArrowRight } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { usePageSeo } from '../lib/seo'
 
 const FAQ_SECTIONS = [
   {
@@ -63,6 +64,12 @@ const FAQ_SECTIONS = [
 export default function FAQ() {
   const navigate = useNavigate()
   const [openIndex, setOpenIndex] = useState(null)
+
+  usePageSeo({
+    title: 'Preguntas Frecuentes EUNACOM 2026 | Respuestas y Dudas Oficiales – Eunacom App',
+    description: 'Encuentra respuestas a todas las dudas sobre el examen EUNACOM teórico (ST) y práctico (SP), fechas 2026, puntajes de aprobación, temarios y uso de la plataforma Eunacom App.',
+    canonical: 'https://www.eunacomapp.cl/faq'
+  })
 
   const faqSchema = {
     '@context': 'https://schema.org',

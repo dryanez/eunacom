@@ -18,7 +18,8 @@ const AuthModal = ({
     closeAuthModal,
     signInWithGoogle,
     signIn,
-    signUp
+    signUp,
+    createDevTestUser
   } = useAuth()
 
   // Determine whether we are controlled via props or global authModal context
@@ -493,7 +494,7 @@ const AuthModal = ({
               cursor: loading ? 'wait' : 'pointer',
               transition: 'all 0.2s',
               boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-              marginBottom: '1.25rem',
+              marginBottom: '0.75rem',
               minHeight: '46px',
             }}
             onMouseEnter={(e) => {
@@ -510,6 +511,36 @@ const AuthModal = ({
             />
             <span>{mode === 'register' ? 'Registrarse con Google' : 'Continuar con Google'}</span>
           </button>
+
+          {/* Local Dev / Fast Onboarding Testing Button */}
+          {window.location.hostname === 'localhost' && (
+            <button
+              type="button"
+              onClick={() => {
+                createDevTestUser(null, 'Dr(a). Aspirante')
+                handleClose()
+              }}
+              style={{
+                width: '100%',
+                padding: '0.65rem 1rem',
+                backgroundColor: '#eff6ff',
+                border: '1.5px dashed #3b82f6',
+                borderRadius: '12px',
+                color: '#1d4ed8',
+                fontWeight: 700,
+                fontSize: '0.86rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                marginBottom: '1.25rem',
+              }}
+            >
+              <span>🧪 Crear Nuevo Usuario de Prueba (Test Onboarding)</span>
+            </button>
+          )}
 
           {/* Divider */}
           <div

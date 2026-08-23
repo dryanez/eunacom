@@ -4,19 +4,18 @@ import {
   Check, X, Star, ArrowRight, Shield, Award, Users, BookOpen,
   Video, HelpCircle, Zap, ChevronRight, ArrowLeft
 } from 'lucide-react'
+import { usePageSeo } from '../lib/seo'
 
 export default function CursoComparativa() {
   const navigate = useNavigate()
 
+  usePageSeo({
+    title: 'Mejor Curso EUNACOM 2026 | Tabla Comparativa y Plataforma #1 en Chile',
+    description: 'Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +10.000 preguntas reales, 650+ clases y precios desde $14.990 CLP.',
+    canonical: 'https://www.eunacomapp.cl/curso-eunacom-2026'
+  })
+
   useEffect(() => {
-    document.title = 'Mejor Curso EUNACOM 2026 | Tabla Comparativa y Plataforma #1 en Chile'
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +10.000 preguntas reales, 650+ clases y precios desde $14.990 CLP.'
-      )
-    }
     window.scrollTo(0, 0)
   }, [])
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import Sidebar from '../components/Sidebar'
 import DashboardHeader from '../components/DashboardHeader'
@@ -12,9 +12,12 @@ import { fetchUserProfile, saveUserProfile } from '../lib/api'
 // but gate actual content actions behind LoginGateModal inside each page.
 const PublicLayout = () => {
   const { user, loading: authLoading } = useAuth()
+  const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [showOnboarding, setShowOnboarding] = useState(false)
   const [profileChecked, setProfileChecked] = useState(false)
+
+  const isMedLingo = location.pathname === '/medlingo' || location.pathname === '/racha'
 
   // If a user is logged in, check if they completed onboarding — only once per session
   useEffect(() => {
@@ -57,15 +60,15 @@ const PublicLayout = () => {
         />
       )}
       <div className="main-content">
-        <DashboardHeader onMenuToggle={() => setMobileOpen(!mobileOpen)} />
-        <div className="page">
-          <Outlet />
+        {!isMedLingo && <DashboardHeader onMenuToggle={() => setMobileOpen(!mobileOpen)} />}
+        <div className={isMedLingo ? "page page--fullbleed" : "page"}>
+          <Outlet context={{ onMenuToggle: () => setMobileOpen(!mobileOpen) }} />
         </div>
       </div>
       {showOnboarding && (
         <Onboarding user={user} onComplete={handleOnboardingComplete} />
       )}
-      <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />
+      {!isMedLingo && <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />}
     </div>
   )
 }

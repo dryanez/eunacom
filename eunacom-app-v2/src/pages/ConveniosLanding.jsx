@@ -4,19 +4,18 @@ import {
   Building2, Users, Handshake, CheckCircle2,
   Mail, ShieldCheck, ArrowRight, Percent
 } from 'lucide-react'
+import { usePageSeo } from '../lib/seo'
 
 export default function ConveniosLanding() {
   const navigate = useNavigate()
 
+  usePageSeo({
+    title: 'Convenios y Descuentos para Médicos e Instituciones | Eunacom App',
+    description: 'Convenios especiales y tarifas grupales para médicos extranjeros, agrupaciones profesionales, centros de salud y clínicas en Chile para la preparación del EUNACOM.',
+    canonical: 'https://www.eunacomapp.cl/convenios'
+  })
+
   useEffect(() => {
-    document.title = 'Convenios y Descuentos para Médicos e Instituciones | Eunacom App'
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Convenios especiales y tarifas grupales para médicos extranjeros, agrupaciones profesionales, centros de salud y clínicas en Chile para la preparación del EUNACOM.'
-      )
-    }
     window.scrollTo(0, 0)
   }, [])
 

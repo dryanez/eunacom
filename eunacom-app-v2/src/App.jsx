@@ -24,6 +24,8 @@ import StudyGuides from './pages/StudyGuides'
 import ReviewErrors from './pages/ReviewErrors'
 import StudioHub from './pages/StudioHub'
 import DeckRunner from './slides/DeckRunner'
+import UserSettings from './pages/UserSettings'
+import MedLingoPage from './pages/MedLingoPage'
 // SEO Public pages
 import LandingPage from './pages/LandingPage'
 import FAQ from './pages/FAQ'
@@ -89,6 +91,8 @@ function App() {
             {/* ── Public App Pages ── */}
             <Route element={<PublicLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/medlingo" element={<MedLingoPage />} />
+              <Route path="/racha" element={<MedLingoPage />} />
               <Route path="/reconstructions" element={<Reconstructions />} />
               <Route path="/mis-clases" element={<MisClases />} />
               <Route path="/test" element={<TestCreator />} />
@@ -108,6 +112,9 @@ function App() {
               <Route path="/script-progress" element={<ScriptProgress />} />
               <Route path="/admin/users" element={<AdminUsers />} />
               <Route path="/study-guides" element={<StudyGuides />} />
+              <Route path="/settings" element={<UserSettings />} />
+              <Route path="/configuracion" element={<UserSettings />} />
+              <Route path="/mi-plan" element={<UserSettings />} />
             </Route>
 
             {/* ── Catch-all ── */}

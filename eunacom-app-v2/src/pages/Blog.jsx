@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { BLOG_POSTS } from '../data/blogPosts'
+import { usePageSeo } from '../lib/seo'
 
 const CATEGORY_COLORS = {
   'Estrategia de Estudio': { bg: '#e0f2fe', text: '#0369a1', border: '#bae6fd' },
@@ -13,6 +14,12 @@ const CATEGORY_COLORS = {
 export default function Blog() {
   const navigate = useNavigate()
   const { openAuthModal } = useAuth()
+
+  usePageSeo({
+    title: 'Blog EUNACOM 2026 | Artículos, Guías de Estudio y Novedades Médicas',
+    description: 'Estrategias de estudio comprobadas, resúmenes clínicos, análisis de fechas y novedades del examen EUNACOM en Chile para médicos nacionales y extranjeros.',
+    canonical: 'https://www.eunacomapp.cl/blog'
+  })
 
   return (
     <div style={{ backgroundColor: '#ffffff', color: '#0f172a', fontFamily: 'Lexend, -apple-system, sans-serif', minHeight: '100vh' }}>

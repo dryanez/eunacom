@@ -6,9 +6,10 @@ export default async function handler(req, res) {
   try {
     try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
     try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+    try { await db.execute('ALTER TABLE user_profiles ADD COLUMN sede TEXT') } catch {}
 
     if (req.method === 'GET') {
-      const { period, userId } = req.query // period: 'today' | 'week' | 'all'
+      const { period, userId, university, sede, country } = req.query // period: 'today' | 'week' | 'all'
 
       // Leaderboard: top users by XP (correct*10 + incorrect*2)
       // We read directly from tests where status = 'completed'
@@ -19,12 +20,57 @@ export default async function handler(req, res) {
         dateFilter = "AND t.completed_at >= datetime('now', '-7 days')"
       }
 
+      let filterSql = ''
+      const filterArgs = []
+
+      if (university) {
+        filterSql += ' AND LOWER(pr.university) LIKE ?'
+        filterArgs.push(`%${university.toLowerCase().trim()}%`)
+      }
+      if (sede) {
+        filterSql += ' AND LOWER(pr.sede) LIKE ?'
+        filterArgs.push(`%${sede.toLowerCase().trim()}%`)
+      }
+      if (country) {
+        filterSql += ' AND (LOWER(pr.country) LIKE ? OR LOWER(pr.nationality) LIKE ?)'
+        const cLower = `%${country.toLowerCase().trim()}%`
+        filterArgs.push(cLower, cLower)
+      }
+
+      // 1. INDIVIDUAL LEADERBOARD
       const lb = await db.execute({
         sql: `SELECT 
           t.user_id,
           COALESCE(pr.first_name, '') as first_name,
           COALESCE(pr.last_name, '') as last_name,
           COALESCE(pr.email, t.user_id) as email,
+          COALESCE(pr.university, '') as university,
+          COALESCE(pr.sede, '') as sede,
+          COALESCE(pr.country, pr.nationality, 'Chile') as country,
+          COALESCE(pr.country_code, '+56') as country_code,
+          COALESCE(pr.avatar_character, 'dr_strange') as avatar_character,
+          SUM(t.total_questions) as total_answers,
+          SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as correct,
+          SUM(
+              ROUND((t.score * 1.0 / 100) * t.total_questions) * 10 + 
+              (t.total_questions - ROUND((t.score * 1.0 / 100) * t.total_questions)) * 2
+          ) as xp
+        FROM tests t
+        LEFT JOIN user_profiles pr ON t.user_id = pr.id
+        WHERE t.status = 'completed' ${dateFilter} ${filterSql}
+        GROUP BY t.user_id
+        ORDER BY xp DESC
+        LIMIT 100`,
+        args: filterArgs
+      })
+
+      // 2. AGGREGATED LEADERBOARD BY SEDE & UNIVERSITY
+      const sedeLb = await db.execute({
+        sql: `SELECT 
+          COALESCE(NULLIF(pr.university, ''), 'Otra Universidad') as university,
+          COALESCE(NULLIF(pr.sede, ''), 'Sede Principal') as sede,
+          COALESCE(pr.country, 'Chile') as country,
+          COUNT(DISTINCT t.user_id) as total_doctors,
           SUM(t.total_questions) as total_answers,
           SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as correct,
           SUM(
@@ -34,13 +80,36 @@ export default async function handler(req, res) {
         FROM tests t
         LEFT JOIN user_profiles pr ON t.user_id = pr.id
         WHERE t.status = 'completed' ${dateFilter}
-        GROUP BY t.user_id
+        GROUP BY university, sede
+        HAVING xp > 0
         ORDER BY xp DESC
         LIMIT 50`,
         args: []
       })
 
-      // Streak for requesting user
+      // 3. AGGREGATED LEADERBOARD BY COUNTRY
+      const countryLb = await db.execute({
+        sql: `SELECT 
+          COALESCE(NULLIF(pr.country, ''), NULLIF(pr.nationality, ''), 'Chile') as country,
+          COALESCE(pr.country_code, '+56') as country_code,
+          COUNT(DISTINCT t.user_id) as total_doctors,
+          SUM(t.total_questions) as total_answers,
+          SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as correct,
+          SUM(
+              ROUND((t.score * 1.0 / 100) * t.total_questions) * 10 + 
+              (t.total_questions - ROUND((t.score * 1.0 / 100) * t.total_questions)) * 2
+          ) as xp
+        FROM tests t
+        LEFT JOIN user_profiles pr ON t.user_id = pr.id
+        WHERE t.status = 'completed' ${dateFilter}
+        GROUP BY country
+        HAVING xp > 0
+        ORDER BY xp DESC
+        LIMIT 30`,
+        args: []
+      })
+
+      // Streak & user stats for requesting user
       let streak = 0
       if (userId) {
         const days = await db.execute({
@@ -95,13 +164,20 @@ export default async function handler(req, res) {
 
         return res.json({
           leaderboard: lb.rows,
+          sedeLeaderboard: sedeLb.rows,
+          countryLeaderboard: countryLb.rows,
           streak,
           todayAnswers: todayStats.rows[0]?.today_answers || 0,
           todayCorrect: todayStats.rows[0]?.today_correct || 0,
         })
       }
 
-      return res.json({ leaderboard: lb.rows, streak: 0 })
+      return res.json({ 
+        leaderboard: lb.rows, 
+        sedeLeaderboard: sedeLb.rows,
+        countryLeaderboard: countryLb.rows,
+        streak: 0 
+      })
     }
 
     return res.status(405).json({ error: 'Method not allowed' })

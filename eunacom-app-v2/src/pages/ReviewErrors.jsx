@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchReviewQuestions } from '../lib/api'
-import { RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp, Layers, Tag, Video, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp,
+  Layers, Tag, Video, ChevronLeft, ChevronRight, Check, CheckCircle, PlayCircle, Flame, Award
+} from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const ReviewErrors = () => {
@@ -193,57 +196,108 @@ const ReviewErrors = () => {
                 const isExpanded = expandedQ === q.id
                 
                 return (
-                  <div key={q.id} className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
+                  <div key={q.id} className="glass-card" style={{ padding: 0, overflow: 'hidden', borderRadius: 16, border: '1px solid var(--surface-700)' }}>
                     <div 
-                      style={{ padding: '0.75rem', cursor: 'pointer', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}
+                      style={{ padding: '1rem', cursor: 'pointer', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}
                       onClick={() => setExpandedQ(isExpanded ? null : q.id)}
                     >
-                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(239,68,68,0.1)', color: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 700, fontSize: '0.9rem' }}>
+                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(239,68,68,0.15)', color: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800, fontSize: '0.85rem' }}>
                         {idx + 1}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-                          <span style={{ fontSize: '0.7rem', padding: '2px 8px', background: 'var(--surface-700)', borderRadius: 12, color: 'var(--surface-200)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <span style={{ fontSize: '0.74rem', padding: '2px 10px', background: 'rgba(14, 165, 233, 0.12)', border: '1px solid rgba(14, 165, 233, 0.3)', borderRadius: 12, color: '#38bdf8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
                             <Layers size={12} /> {q.specialty || 'General'}
                           </span>
                           {q.tags && q.tags.split(',').map(t => (
-                            <span key={t} style={{ fontSize: '0.7rem', padding: '2px 8px', background: 'rgba(14, 165, 233, 0.1)', borderRadius: 12, color: 'var(--primary-300)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                              <Tag size={12} /> {t.trim()}
+                            <span key={t} style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: 12, color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <Tag size={11} /> {t.trim()}
                             </span>
                           ))}
-                          <span style={{ fontSize: '0.7rem', color: 'var(--surface-400)', marginLeft: 'auto' }}>
+                          <span style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginLeft: 'auto' }}>
                             {new Date(q.answeredAt).toLocaleDateString()}
                           </span>
                         </div>
-                        <div style={{ fontSize: '1rem', color: 'var(--surface-50)', lineHeight: 1.5 }}>
+                        <div style={{ fontSize: '0.98rem', color: 'var(--surface-50)', lineHeight: 1.6, fontWeight: 500 }}>
                           {q.pregunta}
                           {q.imageUrl && (
                               <div style={{ marginTop: '0.75rem', cursor: 'zoom-in' }} onClick={(e) => { e.stopPropagation(); setFullscreenImage(q.imageUrl) }}>
-                                  <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '6px', border: '1px solid var(--surface-700)' }} />
+                                  <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '8px', border: '1px solid var(--surface-700)' }} />
                               </div>
                           )}
                         </div>
                       </div>
-                      <div style={{ color: 'var(--surface-400)' }}>
+                      <div style={{ color: 'var(--surface-400)', marginTop: 2 }}>
                         {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                       </div>
                     </div>
 
                     {isExpanded && (
-                      <div style={{ padding: '0.75rem', borderTop: '1px solid var(--surface-700)', background: 'var(--surface-900)' }}>
-                        <div style={{ marginBottom: '1.5rem' }}>
-                          <h4 style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Respuesta Correcta</h4>
-                          <div style={{ padding: '1rem', background: 'rgba(16,185,129,0.05)', borderLeft: '4px solid #10b981', borderRadius: '0 8px 8px 0', color: 'var(--surface-50)' }}>
-                            {q.opciones?.find(o => o.id.toLowerCase() === q.respuestaCorrecta?.toLowerCase())?.text || `Opción ${q.respuestaCorrecta}`}
-                          </div>
-                        </div>
-
-                        {q.explicacion && (
-                          <div style={{ marginBottom: '1.5rem' }}>
-                            <h4 style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Explicación</h4>
-                            <div style={{ fontSize: '0.95rem', color: 'var(--surface-200)', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
-                              {q.explicacion}
+                      <div style={{ padding: '1.25rem 1.25rem 1.5rem', borderTop: '1px solid #e2e8f0', background: '#f8fafc' }}>
+                        {/* Options rendered in Hero Shot style */}
+                        {q.opciones && q.opciones.length > 0 && (
+                          <div style={{ marginBottom: '1.25rem' }}>
+                            <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.6rem' }}>
+                              Alternativas del Examen
                             </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                              {q.opciones.map((opt, optIdx) => {
+                                const isCorrect = opt.id.toLowerCase() === q.respuestaCorrecta?.toLowerCase()
+                                return (
+                                  <div
+                                    key={opt.id}
+                                    style={{
+                                      padding: '11px 14px',
+                                      borderRadius: 12,
+                                      border: isCorrect ? '1.5px solid #10b981' : '1.5px solid #e2e8f0',
+                                      backgroundColor: isCorrect ? '#ecfdf5' : '#ffffff',
+                                      color: isCorrect ? '#065f46' : '#475569',
+                                      fontSize: '0.9rem',
+                                      lineHeight: 1.5,
+                                      display: 'flex',
+                                      alignItems: 'flex-start',
+                                      gap: 10,
+                                      opacity: isCorrect ? 1 : 0.6
+                                    }}
+                                  >
+                                    <div style={{
+                                      width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                                      backgroundColor: 'rgba(0,0,0,0.03)',
+                                      border: '1px solid rgba(0,0,0,0.06)',
+                                      color: isCorrect ? '#10b981' : '#64748b',
+                                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                      flexShrink: 0, marginTop: 1
+                                    }}>
+                                      {isCorrect ? <Check size={15} color="#10b981" strokeWidth={2.5} /> : <span style={{ fontWeight: 700, fontSize: '0.8rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>}
+                                    </div>
+                                    <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                                    {isCorrect && (
+                                      <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                                        ✓ Correcta
+                                      </span>
+                                    )}
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Retroalimentación Clínica Official Card */}
+                        {q.explicacion && (
+                          <div style={{
+                            marginTop: 14,
+                            padding: '14px 16px',
+                            backgroundColor: '#f0fdf4',
+                            border: '1px solid #bbf7d0',
+                            borderRadius: 12
+                          }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.88rem', marginBottom: 6 }}>
+                              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+                            </div>
+                            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>
+                              {q.explicacion}
+                            </p>
                           </div>
                         )}
 

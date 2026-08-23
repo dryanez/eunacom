@@ -77,21 +77,62 @@ export async function askTutor(payload) {
   return data.message || data.error
 }
 
-// ── MIS CLASES (MedScribe) ───────────────────────────────────────────────────
-// In production: calls Vercel API (Turso). In dev: calls MedScribe backend (port 3001).
+// ── MIS CLASES (MedScribe & Catalog) ──────────────────────────────────────────
+let _cachedCatalog = null
+
+async function getLocalClassesCatalog() {
+  if (_cachedCatalog) return _cachedCatalog
+  try {
+    const res = await fetch('/data/classesCatalog.json')
+    if (res.ok) {
+      _cachedCatalog = await res.json()
+      return _cachedCatalog
+    }
+  } catch {}
+  return []
+}
 
 async function clasesFetch(path, options = {}) {
   return apiFetch(path, options)
 }
 
 export async function fetchClases() {
-  const data = await clasesFetch('/api/clases')
-  return data.data || []
+  try {
+    const data = await clasesFetch('/api/clases')
+    if (data && Array.isArray(data.data) && data.data.length > 0) {
+      return data.data
+    }
+  } catch (err) {
+    console.warn('API /api/clases error, using bundled catalog:', err)
+  }
+  // Fallback to bundled catalog
+  const catalog = await getLocalClassesCatalog()
+  return catalog.map(r => ({
+    id: r.id,
+    saved_at: r.saved_at,
+    specialty: r.specialty || 'General',
+    subsystem: r.subsystem || 'General',
+    lesson_number: r.lesson_number || 1,
+    topic: r.topic,
+    slides_file: r.slides_file || null,
+    video_dir: r.video_dir || null,
+  }))
 }
 
 export async function fetchClase(id) {
-  const data = await clasesFetch(`/api/clases?id=${id}`)
-  return data.data || null
+  try {
+    const data = await clasesFetch(`/api/clases?id=${id}`)
+    if (data && data.data) {
+      return data.data
+    }
+  } catch (err) {
+    console.warn('API /api/clases?id error, checking bundled catalog:', err)
+  }
+  // Fallback to bundled catalog
+  const catalog = await getLocalClassesCatalog()
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  const found = catalog.find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
+  return found || null
 }
 
 export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {
@@ -143,9 +184,30 @@ export async function fetchPerfil(params = {}) {
 
 // ── LEADERBOARD & STREAKS ────────────────────────────────────────────────────
 
-export async function fetchLeaderboard(period = 'all', userId = null) {
+export async function fetchLeaderboard(options = {}, maybeUserId = null) {
+  let period = 'all'
+  let userId = null
+  let university = null
+  let sede = null
+  let country = null
+
+  if (typeof options === 'string') {
+    period = options
+    userId = maybeUserId
+  } else if (typeof options === 'object' && options !== null) {
+    period = options.period || 'all'
+    userId = options.userId || null
+    university = options.university || null
+    sede = options.sede || null
+    country = options.country || null
+  }
+
   const params = new URLSearchParams({ period })
   if (userId) params.set('userId', userId)
+  if (university) params.set('university', university)
+  if (sede) params.set('sede', sede)
+  if (country) params.set('country', country)
+
   return apiFetch(`/api/leaderboard?${params.toString()}`)
 }
 
