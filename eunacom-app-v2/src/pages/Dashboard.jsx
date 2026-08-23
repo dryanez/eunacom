@@ -12,6 +12,7 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getL
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
+import { getDoctorAvatar } from '../utils/doctorAvatars'
 
 const TOPIC_PRESETS = [
   // Módulo 1 · Medicina Interna
@@ -392,239 +393,255 @@ const Dashboard = () => {
   const myRank = leaderboard.findIndex(u => u.user_id === user?.id) + 1
 
   return (
-    <div style={{ paddingBottom: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-        <div>
-          <h1 className="page__title">Inicio</h1>
-          <p className="page__subtitle">{user ? 'Tu progreso general' : 'La plataforma de estudio EUNACOM más completa de Chile'}</p>
-        </div>
-      </div>
-
-      {/* ─── PWA INSTALL BANNER ─── */}
+    <div style={{ paddingBottom: '2.5rem' }}>
+      {/* ─── PWA INSTALL BANNER (Subtle & Non-Intrusive) ─── */}
       {!isStandalone && !dismissed && (
-        isInstallClicked ? (
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.95)',
-            border: '1px solid rgba(56, 189, 248, 0.35)',
-            borderRadius: '100px',
-            padding: '0.45rem 1rem',
-            marginBottom: '1.25rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '0.75rem',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.4)'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', fontWeight: 600, color: '#f8fafc' }}>
-              <Download size={15} color="#38bdf8" />
-              <span>Instalar App EUNACOM</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <button onClick={handleInstallClick} style={{
-                padding: '0.35rem 0.9rem',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-                color: '#fff',
-                borderRadius: '100px',
-                border: 'none',
-                fontWeight: 700,
-                fontSize: '0.8rem',
-                cursor: 'pointer'
-              }}>
-                Instalar
-              </button>
-              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}>
-                <X size={16} />
-              </button>
-            </div>
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.8)',
+          border: '1px solid rgba(56, 189, 248, 0.2)',
+          borderRadius: '10px',
+          padding: '0.5rem 0.9rem',
+          marginBottom: '1.25rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: '#cbd5e1' }}>
+            <Download size={15} color="#38bdf8" />
+            <span>Instala <strong>EUNACOM App</strong> en tu dispositivo para un acceso directo rápido.</span>
           </div>
-        ) : (
-          <div style={{
-            position: 'relative',
-            background: 'linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(19,31,60,0.95) 100%)',
-            border: '1.5px solid rgba(56, 189, 248, 0.35)',
-            borderRadius: '20px',
-            padding: '1.25rem 1.5rem',
-            marginBottom: '1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-            flexWrap: 'wrap',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
-          }}>
-            <div style={{ flex: 1, minWidth: '200px' }}>
-              <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#ffffff', margin: '0 0 0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Download size={18} color="#38bdf8" />
-                Instala la App de Eunacom
-              </h2>
-              <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>
-                No tienes que descargar la aplicación desde App Store o Google Play. Instálala de forma directa en tu {isIOS ? 'dispositivo' : 'computador o celular'} para tener un acceso directo rápido.
-              </p>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <button onClick={handleInstallClick} style={{
-                display: 'flex', alignItems: 'center', gap: '0.5rem',
-                padding: '0.65rem 1.25rem',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-                color: '#fff',
-                borderRadius: '100px',
-                border: 'none',
-                fontWeight: 700,
-                fontSize: '0.85rem',
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+            <button
+              onClick={handleInstallClick}
+              style={{
+                padding: '0.3rem 0.75rem',
+                background: 'rgba(56, 189, 248, 0.15)',
+                color: '#38bdf8',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
+                borderRadius: '6px',
+                fontWeight: 600,
+                fontSize: '0.75rem',
                 cursor: 'pointer',
-                boxShadow: '0 4px 15px rgba(6, 182, 212, 0.4)',
-                whiteSpace: 'nowrap'
-              }}>
-                Instalar App
-              </button>
-              <button onClick={handleDismiss} title="Cerrar" style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 4, display: 'flex', alignItems: 'center' }}>
-                <X size={18} />
-              </button>
-            </div>
+              }}
+            >
+              Instalar
+            </button>
+            <button
+              onClick={handleDismiss}
+              title="Cerrar"
+              style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}
+            >
+              <X size={15} />
+            </button>
           </div>
-        )
+        </div>
       )}
 
-      {/* ─── GUEST CTA ─── */}
+      {/* ─── GUEST HERO BANNER ─── */}
       {!user && (
         <div style={{
           position: 'relative',
-          background: 'linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(19,31,60,0.95) 100%)',
-          border: '1.5px solid rgba(56, 189, 248, 0.4)',
-          borderRadius: '24px',
-          padding: '2.25rem 1.75rem',
-          marginBottom: '2rem',
-          textAlign: 'center',
-          boxShadow: '0 20px 50px rgba(19, 91, 236, 0.3), 0 0 35px rgba(6, 182, 212, 0.2), inset 0 1px 1px rgba(255,255,255,0.15)',
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%)',
+          border: '1px solid rgba(56, 189, 248, 0.25)',
+          borderRadius: '16px',
+          padding: '2rem 1.75rem',
+          marginBottom: '1.75rem',
           overflow: 'hidden',
         }}>
-          {/* Subtle glowing ambient orb background */}
-          <div style={{
-            position: 'absolute', top: '-40px', left: '50%', transform: 'translateX(-50%)',
-            width: '240px', height: '140px',
-            background: 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.25) 0%, rgba(19, 91, 236, 0.15) 50%, transparent 80%)',
-            filter: 'blur(20px)', pointerEvents: 'none'
-          }} />
-
-          {/* Top Pill Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.35rem 0.9rem', borderRadius: '100px',
-            background: 'rgba(56, 189, 248, 0.12)', border: '1px solid rgba(56, 189, 248, 0.3)',
-            color: '#38bdf8', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.04em',
-            marginBottom: '1rem', textTransform: 'uppercase'
-          }}>
-            <Sparkles size={14} /> Acceso Gratuito Ilimitado
+          <div style={{ maxWidth: '620px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.25rem 0.65rem',
+              borderRadius: '6px',
+              background: 'rgba(56, 189, 248, 0.1)',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
+              color: '#38bdf8',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              marginBottom: '0.85rem',
+            }}>
+              <span>🩺 Preparación Médica EUNACOM 2026</span>
+            </div>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.5rem', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
+              La plataforma médica estándar para rendir el EUNACOM
+            </h2>
+            <p style={{ fontSize: '0.9rem', color: '#94a3b8', margin: '0 0 1.5rem', lineHeight: 1.5 }}>
+              Banco con +10.000 preguntas clínicas justificadas, +650 videoclases según perfil ASOFAMECH, reconstrucciones oficiales y simulacros cronometrados.
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => openAuthModal('register')}
+                style={{
+                  padding: '0.7rem 1.4rem',
+                  background: '#0284c7',
+                  color: '#ffffff',
+                  borderRadius: '8px',
+                  fontWeight: 600,
+                  fontSize: '0.9rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#0369a1' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#0284c7' }}
+              >
+                <span>Crear cuenta gratis</span>
+                <ChevronRight size={16} />
+              </button>
+              <button
+                onClick={() => openAuthModal('login')}
+                style={{
+                  padding: '0.7rem 1.4rem',
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  color: '#f8fafc',
+                  borderRadius: '8px',
+                  fontWeight: 600,
+                  fontSize: '0.9rem',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)' }}
+              >
+                <span>Iniciar sesión</span>
+              </button>
+            </div>
           </div>
+        </div>
+      )}
 
-          <h2 style={{
-            fontSize: '1.45rem', fontWeight: 800, color: '#ffffff',
-            margin: '0 0 0.6rem', letterSpacing: '-0.02em', lineHeight: 1.3
-          }}>
-            Únete gratis y prepara tu EUNACOM
-          </h2>
-          
-          <p style={{
-            fontSize: '0.92rem', color: '#94a3b8',
-            marginBottom: '1.75rem', lineHeight: 1.6, maxWidth: '520px', margin: '0 auto 1.75rem'
-          }}>
-            Más de 6.000 preguntas reales, exámenes completos, clases en video y ranking en tiempo real.
-          </p>
-
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 2 }}>
-            <button
-              onClick={() => openAuthModal('register')}
-              style={{
-                padding: '0.85rem 2rem',
-                background: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-                color: '#ffffff',
-                borderRadius: '100px',
-                fontWeight: 700,
-                fontSize: '0.98rem',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 8px 25px rgba(6, 182, 212, 0.4), 0 2px 4px rgba(0,0,0,0.2)',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                fontFamily: 'inherit',
-              }}
-            >
-              <Stethoscope size={18} /> Crear cuenta gratis
-            </button>
-            
-            <button
-              onClick={() => openAuthModal('login')}
-              style={{
-                padding: '0.85rem 2rem',
-                background: 'rgba(255, 255, 255, 0.08)',
-                color: '#f8fafc',
-                borderRadius: '100px',
-                fontWeight: 700,
-                fontSize: '0.98rem',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(8px)',
-                cursor: 'pointer',
-                transition: 'background 0.2s ease',
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                fontFamily: 'inherit',
-              }}
-            >
-              <LogIn size={18} /> Iniciar sesión
-            </button>
+      {/* ─── LOGGED IN USER GREETING ─── */}
+      {user && (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
+          <div>
+            <h1 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#f8fafc', margin: 0, letterSpacing: '-0.02em' }}>
+              Hola, {userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : 'Doctor'} 👋
+            </h1>
+            <p style={{ fontSize: '0.84rem', color: '#94a3b8', margin: '3px 0 0' }}>
+              Continúa tu preparación y revisa tus métricas de dominio
+            </p>
           </div>
         </div>
       )}
 
       {/* ─── XP + STREAK BAR (logged-in only) ─── */}
       {user && (
-        <div className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.5rem', marginBottom: '1.5rem', background: 'var(--surface-700)', gap: '1.5rem', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--primary-300)', fontWeight: 600, marginBottom: '0.25rem' }}>
-              <Zap size={14} style={{ verticalAlign: 'middle', marginRight: 4 }} />
-              Nivel {stats.level} · {levelTitle}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '1rem 1.25rem',
+          marginBottom: '1.5rem',
+          background: 'rgba(30, 41, 59, 0.45)',
+          backdropFilter: 'blur(12px)',
+          borderRadius: '14px',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          gap: '1.5rem',
+          flexWrap: 'wrap'
+        }}>
+          <div style={{ flex: 1, minWidth: 220 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+              <div style={{ fontSize: '0.82rem', color: '#38bdf8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                <Zap size={14} color="#38bdf8" />
+                <span>Nivel {stats.level} · {levelTitle}</span>
+              </div>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                {formatXP(stats.xp)} / {formatXP(levelCapXP)} XP
+              </span>
             </div>
-            <div className="xp-labels">
-              <span>{formatXP(Math.max(0, levelCapXP - stats.xp))} XP para subir</span>
-              <span>{formatXP(stats.xp)}/{formatXP(levelCapXP)} XP</span>
+            <div style={{ height: '6px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '6px', overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${xpProgress}%`, background: '#38bdf8', borderRadius: '6px', transition: 'width 0.4s ease' }} />
             </div>
-            <div className="xp-bar"><div className="xp-bar__fill" style={{ width: `${xpProgress}%` }} /></div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', marginTop: 4 }}>Total: {formatXP(stats.totalXP)} XP</div>
+            <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 4 }}>
+              {formatXP(Math.max(0, levelCapXP - stats.xp))} XP para el siguiente nivel
+            </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1.5rem', borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
-            <Flame size={36} color={stats.streak > 0 ? 'var(--accent-amber)' : 'var(--surface-500)'} fill={stats.streak > 0 ? 'var(--accent-amber)' : 'none'} />
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1.25rem', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+            <Flame size={32} color={stats.streak > 0 ? '#f59e0b' : '#64748b'} fill={stats.streak > 0 ? '#f59e0b' : 'none'} />
             <div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Racha</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: stats.streak > 0 ? 'var(--accent-amber)' : 'var(--surface-300)' }}>{stats.streak}<span style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--surface-400)' }}> días</span></div>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Racha Actual</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: stats.streak > 0 ? '#f8fafc' : '#94a3b8' }}>
+                {stats.streak} <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#64748b' }}>días</span>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* ─── QUICK ACTIONS ─── */}
-      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--surface-200)' }}>Accesos Rápidos</h3>
-      <div className="action-grid" style={{ marginBottom: '1.5rem' }}>
-        <a href="/mis-clases" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(6,182,212,0.15)' }}><CreditCard size={24} color="var(--accent-teal)" /></div>
-          <div className="action-card__label">Clases</div>
-        </a>
-        <a href="/test" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><FileText size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Exámenes</div>
-        </a>
-        <a href="/reconstructions" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(16,185,129,0.15)' }}><Layers size={24} color="var(--accent-green)" /></div>
-          <div className="action-card__label">Reconstrucciones</div>
-        </a>
-        {user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t' && (
-          <a href="/study-plan" className="action-card">
-            <div className="action-card__icon" style={{ background: 'rgba(16,163,74,0.15)' }}><TrendingUp size={24} color="var(--accent-green)" /></div>
-            <div className="action-card__label">Plan de Estudio</div>
-          </a>
-        )}
-        <a href="/stats" className="action-card">
-          <div className="action-card__icon" style={{ background: 'rgba(19,91,236,0.15)' }}><Activity size={24} color="var(--primary-400)" /></div>
-          <div className="action-card__label">Estadísticas</div>
-        </a>
+      {/* ─── QUICK ACTIONS GRID ─── */}
+      <div style={{ marginBottom: '1.75rem' }}>
+        <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.75rem', color: '#f8fafc' }}>Accesos Rápidos</h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '0.75rem'
+        }}>
+          {[
+            { to: '/mis-clases', title: 'Videoclases', subtitle: '+650 lecciones teóricas', icon: BookOpen, color: '#0ea5e9', bg: 'rgba(14, 165, 233, 0.12)' },
+            { to: '/test', title: 'Banco de Preguntas', subtitle: '+10.000 preguntas clínicas', icon: FileText, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.12)' },
+            { to: '/reconstructions', title: 'Reconstrucciones', subtitle: 'Exámenes oficiales ASOFAMECH', icon: Layers, color: '#10b981', bg: 'rgba(16, 185, 129, 0.12)' },
+            { to: '/stats', title: 'Estadísticas', subtitle: 'Métricas de dominio y precisión', icon: Activity, color: '#a855f7', bg: 'rgba(168, 85, 247, 0.12)' },
+          ].map(action => {
+            const IconComp = action.icon
+            return (
+              <a
+                key={action.to}
+                href={action.to}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '0.85rem 1rem',
+                  background: 'rgba(30, 41, 59, 0.45)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.07)',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'
+                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.7)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.07)'
+                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.45)'
+                }}
+              >
+                <div style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: '9px',
+                  background: action.bg,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  color: action.color,
+                }}>
+                  <IconComp size={18} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.86rem', fontWeight: 600, color: '#f8fafc' }}>{action.title}</div>
+                  <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{action.subtitle}</div>
+                </div>
+              </a>
+            )
+          })}
+        </div>
       </div>
 
       {/* ─── STATS GRID (logged-in only) ─── */}
@@ -710,52 +727,66 @@ const Dashboard = () => {
         </>
       )}
 
-
       {/* ─── TEMAS Y CLASES EUNACOM (MEDSCHOOL TOPIC CARDS) ─── */}
       <div style={{ marginBottom: '2.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
-          <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', margin: '0 0 0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Sparkles size={20} color="#38bdf8" />
-              Temas y Especialidades EUNACOM
-            </h3>
-            <p style={{ fontSize: '0.84rem', color: '#94a3b8', margin: 0 }}>
-              Tarjetas interactivas con porcentaje de dominio, clases y acceso directo
-            </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{
+              width: 36,
+              height: 36,
+              borderRadius: '10px',
+              background: 'rgba(56, 189, 248, 0.1)',
+              border: '1px solid rgba(56, 189, 248, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#38bdf8'
+            }}>
+              <BookOpen size={18} />
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f8fafc', margin: 0, letterSpacing: '-0.01em' }}>
+                Temas y Especialidades
+              </h3>
+              <p style={{ fontSize: '0.8rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                Progreso curricular, videoclases y banco de preguntas por área
+              </p>
+            </div>
           </div>
 
-          {/* Module Filter Pills */}
+          {/* Module Filter Segmented Control */}
           <div style={{
-            display: 'flex',
-            gap: '0.35rem',
-            background: 'var(--surface-800)',
-            padding: '0.25rem',
-            borderRadius: '100px',
+            display: 'inline-flex',
+            background: 'rgba(15, 23, 42, 0.7)',
+            padding: '4px',
+            borderRadius: '10px',
             border: '1px solid rgba(255, 255, 255, 0.08)',
+            gap: '3px',
             overflowX: 'auto',
             maxWidth: '100%',
             scrollbarWidth: 'none',
           }}>
             {[
               { key: 'all', label: 'Todos' },
-              { key: 'modulo-1', label: 'Módulo 1 · Med. Interna' },
-              { key: 'modulo-2', label: 'Módulo 2 · Cirugía & Espec.' },
-              { key: 'modulo-3', label: 'Módulo 3 · Pediatría & Gineco' },
+              { key: 'modulo-1', label: 'Medicina Interna' },
+              { key: 'modulo-2', label: 'Cirugía & Especialidades' },
+              { key: 'modulo-3', label: 'Pediatría & Gineco' },
             ].map(f => (
               <button
                 key={f.key}
                 onClick={() => setTopicModuleFilter(f.key)}
                 style={{
                   padding: '0.4rem 0.85rem',
-                  borderRadius: '100px',
+                  borderRadius: '7px',
                   border: 'none',
-                  background: topicModuleFilter === f.key ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'transparent',
-                  color: topicModuleFilter === f.key ? '#ffffff' : 'var(--surface-400)',
+                  background: topicModuleFilter === f.key ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
+                  color: topicModuleFilter === f.key ? '#38bdf8' : '#94a3b8',
+                  boxShadow: topicModuleFilter === f.key ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
                   fontSize: '0.78rem',
-                  fontWeight: topicModuleFilter === f.key ? 700 : 500,
+                  fontWeight: topicModuleFilter === f.key ? 600 : 500,
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  transition: 'all 0.15s',
+                  transition: 'all 0.15s ease',
                 }}
               >
                 {f.label}
@@ -810,45 +841,45 @@ const Dashboard = () => {
       />
 
       {/* ─── LEADERBOARD SECTION ─── */}
-      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 30, 0.98) 100%)', border: '1px solid rgba(56, 189, 248, 0.2)', borderRadius: '20px' }}>
+      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 30, 0.98) 100%)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '16px' }}>
         
         {/* Header with Title & Period Selector */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <div style={{ padding: '0.45rem', background: 'rgba(234, 179, 8, 0.12)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Trophy size={22} color="#eab308" />
+            <div style={{ width: 36, height: 36, background: 'rgba(234, 179, 8, 0.1)', borderRadius: '10px', border: '1px solid rgba(234, 179, 8, 0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Trophy size={18} color="#eab308" />
             </div>
             <div>
-              <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.01em' }}>
-                Leaderboards & Ligas EUNACOM
+              <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc', letterSpacing: '-0.01em' }}>
+                Tabla de Clasificación
               </h3>
               <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: '#94a3b8' }}>
-                Competencia médica inter-universitaria y global por sedes y países
+                Rendimiento y actividad de la comunidad médica en preparación
               </p>
             </div>
             {myRank > 0 && lbView === 'doctors' && (
-              <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 700, background: 'rgba(56, 189, 248, 0.12)', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '0.2rem 0.6rem', borderRadius: '100px', marginLeft: '0.25rem' }}>
-                Tú #{myRank}
+              <span style={{ fontSize: '0.72rem', color: '#38bdf8', fontWeight: 600, background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.25)', padding: '0.2rem 0.6rem', borderRadius: '6px', marginLeft: '0.25rem' }}>
+                Tu puesto: #{myRank}
               </span>
             )}
           </div>
 
-          {/* Period Selector Pills */}
-          <div style={{ display: 'flex', background: 'rgba(255,255,255,0.06)', padding: '3px', borderRadius: '100px', gap: '2px' }}>
+          {/* Period Selector */}
+          <div style={{ display: 'flex', background: 'rgba(255,255,255,0.04)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)', gap: '2px' }}>
             {PERIODS.map(p => (
               <button
                 key={p.key}
                 onClick={() => loadLeaderboard(p.key, filterUniversity, filterCountry)}
                 style={{
                   padding: '0.35rem 0.75rem',
-                  borderRadius: '100px',
+                  borderRadius: '6px',
                   border: 'none',
-                  background: lbPeriod === p.key ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'transparent',
-                  color: lbPeriod === p.key ? '#fff' : 'var(--surface-300)',
-                  fontSize: '0.76rem',
-                  fontWeight: lbPeriod === p.key ? 700 : 500,
+                  background: lbPeriod === p.key ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
+                  color: lbPeriod === p.key ? '#38bdf8' : '#94a3b8',
+                  boxShadow: lbPeriod === p.key ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
+                  fontSize: '0.75rem',
+                  fontWeight: lbPeriod === p.key ? 600 : 500,
                   cursor: 'pointer',
-                  fontFamily: 'var(--font)',
                   transition: 'all 0.15s ease'
                 }}
               >
@@ -858,11 +889,11 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* ─── SCOPE NAVIGATION TABS (MÉDICOS | POR SEDE / UNIVERSIDAD | POR PAÍS) ─── */}
+        {/* ─── SCOPE NAVIGATION TABS ─── */}
         <div style={{
           display: 'flex',
-          gap: '0.5rem',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          gap: '0.4rem',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
           paddingBottom: '0.75rem',
           marginBottom: '1rem',
           overflowX: 'auto',
@@ -874,19 +905,20 @@ const Dashboard = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.5rem 0.9rem',
-              borderRadius: '12px',
-              border: lbView === 'doctors' ? '1.5px solid #38bdf8' : '1px solid rgba(255,255,255,0.08)',
-              background: lbView === 'doctors' ? 'rgba(56, 189, 248, 0.14)' : 'rgba(255,255,255,0.02)',
-              color: lbView === 'doctors' ? '#38bdf8' : '#94a3b8',
-              fontSize: '0.82rem',
-              fontWeight: 700,
+              padding: '0.45rem 0.85rem',
+              borderRadius: '8px',
+              border: 'none',
+              background: lbView === 'doctors' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+              color: lbView === 'doctors' ? '#f8fafc' : '#94a3b8',
+              boxShadow: lbView === 'doctors' ? 'inset 0 0 0 1px rgba(255, 255, 255, 0.15)' : 'none',
+              fontSize: '0.8rem',
+              fontWeight: lbView === 'doctors' ? 600 : 500,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'all 0.15s ease'
             }}
           >
-            <Stethoscope size={16} />
+            <Users size={15} />
             <span>Médicos Postulantes</span>
           </button>
 
@@ -896,20 +928,21 @@ const Dashboard = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.5rem 0.9rem',
-              borderRadius: '12px',
-              border: lbView === 'sedes' ? '1.5px solid #a855f7' : '1px solid rgba(255,255,255,0.08)',
-              background: lbView === 'sedes' ? 'rgba(168, 85, 247, 0.14)' : 'rgba(255,255,255,0.02)',
-              color: lbView === 'sedes' ? '#c084fc' : '#94a3b8',
-              fontSize: '0.82rem',
-              fontWeight: 700,
+              padding: '0.45rem 0.85rem',
+              borderRadius: '8px',
+              border: 'none',
+              background: lbView === 'sedes' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+              color: lbView === 'sedes' ? '#f8fafc' : '#94a3b8',
+              boxShadow: lbView === 'sedes' ? 'inset 0 0 0 1px rgba(255, 255, 255, 0.15)' : 'none',
+              fontSize: '0.8rem',
+              fontWeight: lbView === 'sedes' ? 600 : 500,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'all 0.15s ease'
             }}
           >
-            <Building2 size={16} />
-            <span>Por Sede / Universidad</span>
+            <Building2 size={15} />
+            <span>Universidades y Sedes</span>
           </button>
 
           <button
@@ -918,20 +951,21 @@ const Dashboard = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.5rem 0.9rem',
-              borderRadius: '12px',
-              border: lbView === 'countries' ? '1.5px solid #10b981' : '1px solid rgba(255,255,255,0.08)',
-              background: lbView === 'countries' ? 'rgba(16, 185, 129, 0.14)' : 'rgba(255,255,255,0.02)',
-              color: lbView === 'countries' ? '#34d399' : '#94a3b8',
-              fontSize: '0.82rem',
-              fontWeight: 700,
+              padding: '0.45rem 0.85rem',
+              borderRadius: '8px',
+              border: 'none',
+              background: lbView === 'countries' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+              color: lbView === 'countries' ? '#f8fafc' : '#94a3b8',
+              boxShadow: lbView === 'countries' ? 'inset 0 0 0 1px rgba(255, 255, 255, 0.15)' : 'none',
+              fontSize: '0.8rem',
+              fontWeight: lbView === 'countries' ? 600 : 500,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'all 0.15s ease'
             }}
           >
-            <Globe size={16} />
-            <span>Por Países</span>
+            <Globe size={15} />
+            <span>Países</span>
           </button>
         </div>
 
@@ -944,16 +978,13 @@ const Dashboard = () => {
             flexWrap: 'wrap',
             gap: '0.5rem',
             marginBottom: '1rem',
-            background: 'rgba(255,255,255,0.02)',
-            padding: '0.5rem 0.75rem',
-            borderRadius: '12px',
-            border: '1px solid rgba(255,255,255,0.05)'
+            background: 'rgba(255, 255, 255, 0.02)',
+            padding: '0.45rem 0.65rem',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.04)'
           }}>
             {/* Quick Filter Buttons */}
             <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 600, marginRight: '0.2rem' }}>
-                Filtrar:
-              </span>
               <button
                 onClick={() => {
                   setFilterUniversity('')
@@ -961,13 +992,14 @@ const Dashboard = () => {
                   loadLeaderboard(lbPeriod, '', '')
                 }}
                 style={{
-                  padding: '0.25rem 0.6rem',
-                  borderRadius: '100px',
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: '6px',
                   border: 'none',
-                  background: !filterUniversity && !filterCountry ? '#38bdf8' : 'rgba(255,255,255,0.08)',
-                  color: !filterUniversity && !filterCountry ? '#0f172a' : '#cbd5e1',
+                  background: !filterUniversity && !filterCountry ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.05)',
+                  color: !filterUniversity && !filterCountry ? '#38bdf8' : '#94a3b8',
+                  boxShadow: !filterUniversity && !filterCountry ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
                   fontSize: '0.74rem',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   cursor: 'pointer'
                 }}
               >
@@ -986,18 +1018,19 @@ const Dashboard = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
-                    padding: '0.25rem 0.6rem',
-                    borderRadius: '100px',
+                    padding: '0.25rem 0.65rem',
+                    borderRadius: '6px',
                     border: 'none',
-                    background: filterUniversity === userProfile.university ? '#a855f7' : 'rgba(255,255,255,0.08)',
-                    color: filterUniversity === userProfile.university ? '#fff' : '#cbd5e1',
+                    background: filterUniversity === userProfile.university ? 'rgba(168, 85, 247, 0.15)' : 'rgba(255,255,255,0.05)',
+                    color: filterUniversity === userProfile.university ? '#c084fc' : '#94a3b8',
+                    boxShadow: filterUniversity === userProfile.university ? 'inset 0 0 0 1px rgba(168, 85, 247, 0.3)' : 'none',
                     fontSize: '0.74rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     cursor: 'pointer'
                   }}
                 >
                   <UserInstitutionBadge user={userProfile} size={14} />
-                  <span>Mi Sede ({userProfile.sede || 'Mi Uni'})</span>
+                  <span>Mi Sede ({userProfile.sede || 'Mi Universidad'})</span>
                 </button>
               )}
 
@@ -1013,13 +1046,14 @@ const Dashboard = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
-                    padding: '0.25rem 0.6rem',
-                    borderRadius: '100px',
+                    padding: '0.25rem 0.65rem',
+                    borderRadius: '6px',
                     border: 'none',
-                    background: filterCountry === userProfile.country ? '#10b981' : 'rgba(255,255,255,0.08)',
-                    color: filterCountry === userProfile.country ? '#fff' : '#cbd5e1',
+                    background: filterCountry === userProfile.country ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
+                    color: filterCountry === userProfile.country ? '#34d399' : '#94a3b8',
+                    boxShadow: filterCountry === userProfile.country ? 'inset 0 0 0 1px rgba(16, 185, 129, 0.3)' : 'none',
                     fontSize: '0.74rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     cursor: 'pointer'
                   }}
                 >
@@ -1039,9 +1073,9 @@ const Dashboard = () => {
                   loadLeaderboard(lbPeriod, val, filterCountry)
                 }}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '8px',
+                  background: 'rgba(15, 23, 42, 0.9)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '6px',
                   padding: '0.25rem 0.5rem',
                   fontSize: '0.74rem',
                   color: filterUniversity ? '#38bdf8' : '#94a3b8',
@@ -1050,7 +1084,7 @@ const Dashboard = () => {
                   maxWidth: '160px'
                 }}
               >
-                <option value="">🏛️ Todas las Sedes</option>
+                <option value="">Todas las Sedes</option>
                 {CHILEAN_UNIVERSITIES.map(u => (
                   <option key={u.id} value={u.name}>{u.shortName} ({u.country})</option>
                 ))}
@@ -1064,18 +1098,18 @@ const Dashboard = () => {
                   loadLeaderboard(lbPeriod, filterUniversity, val)
                 }}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '8px',
+                  background: 'rgba(15, 23, 42, 0.9)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '6px',
                   padding: '0.25rem 0.5rem',
                   fontSize: '0.74rem',
-                  color: filterCountry ? '#10b981' : '#94a3b8',
+                  color: filterCountry ? '#34d399' : '#94a3b8',
                   outline: 'none',
                   cursor: 'pointer',
                   maxWidth: '140px'
                 }}
               >
-                <option value="">🌐 Todos los Países</option>
+                <option value="">Todos los Países</option>
                 {COUNTRIES.map(c => (
                   <option key={c.code} value={c.name}>{c.flag} {c.name}</option>
                 ))}
@@ -1097,13 +1131,34 @@ const Dashboard = () => {
               Aún no hay actividad registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''} {filterUniversity ? `en ${filterUniversity}` : ''} {filterCountry ? `en ${filterCountry}` : ''}. ¡Sé el primero en responder casos!
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
               {leaderboard.slice(0, 20).map((u, i) => {
                 const isMe = u.user_id === user?.id
-                const name = (u.first_name ? `Dr(a). ${u.first_name} ${(u.last_name || '').charAt(0)}.` : u.email?.split('@')[0] || 'Médico Anónimo')
-                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+                const rawFirst = (u.first_name || '').trim()
+                const rawLast = (u.last_name || '').trim()
+                const cleanName = rawFirst
+                  ? `Dr(a). ${rawFirst.charAt(0).toUpperCase() + rawFirst.slice(1).toLowerCase()}${rawLast ? ` ${rawLast.charAt(0).toUpperCase()}.` : ''}`
+                  : (u.email ? `Dr(a). ${u.email.split('@')[0]}` : 'Médico Postulante')
+                const initial = rawFirst ? rawFirst.charAt(0).toUpperCase() : (u.email ? u.email.charAt(0).toUpperCase() : 'M')
+                
+                const avatarGradients = [
+                  'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                  'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
+                  'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+                  'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+                  'linear-gradient(135deg, #0d9488 0%, #115e59 100%)',
+                  'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                  'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                ]
+                const avatarBg = isMe
+                  ? 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)'
+                  : avatarGradients[initial.charCodeAt(0) % avatarGradients.length]
+
+                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#cbd5e1' : i === 2 ? '#d97706' : '#64748b'
+                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#cbd5e1" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
                 const uLvl = calculateLevelUp(Number(u.xp || 0), 1).newLevel
                 const correctPct = u.total_answers > 0 ? Math.round((u.correct / u.total_answers) * 100) : 0
+                const institutionText = u.university ? (u.university.split('(')[0] || u.university) : (u.country || 'Chile')
 
                 return (
                   <div
@@ -1113,40 +1168,39 @@ const Dashboard = () => {
                       alignItems: 'center',
                       gap: '0.75rem',
                       padding: '0.65rem 0.85rem',
-                      borderRadius: '12px',
-                      background: isMe ? 'rgba(56, 189, 248, 0.1)' : i < 3 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)',
-                      border: isMe ? '1.5px solid rgba(56, 189, 248, 0.35)' : '1px solid rgba(255,255,255,0.04)',
+                      borderRadius: '10px',
+                      background: isMe ? 'rgba(56, 189, 248, 0.08)' : i < 3 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)',
+                      border: isMe ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid rgba(255,255,255,0.04)',
                       transition: 'all 0.15s ease'
                     }}
                   >
                     {/* Rank Number / Medal */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.9rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
                       {rankIcon || (i + 1)}
                     </div>
 
-                    {/* Doctor Avatar with Institution Logo Badge */}
+                    {/* Doctor Avatar with Character Image & Institution Logo Badge */}
                     <div style={{ position: 'relative', flexShrink: 0 }}>
-                      <div style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: '50%',
-                        background: isMe ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'var(--surface-700)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontWeight: 700,
-                        fontSize: '0.85rem',
-                        color: '#fff',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
-                      }}>
-                        {name.charAt(0).toUpperCase()}
-                      </div>
+                      <img
+                        src={getDoctorAvatar(u).image}
+                        alt={getDoctorAvatar(u).name}
+                        style={{
+                          width: 38,
+                          height: 38,
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          border: isMe ? '2px solid #38bdf8' : '1.5px solid rgba(255, 255, 255, 0.15)',
+                          boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                          background: 'rgba(30, 41, 59, 0.8)',
+                          display: 'block'
+                        }}
+                      />
                       
-                      {/* University Logo / Country Flag badge positioned on bottom-right of avatar */}
+                      {/* University Logo / Country Flag badge */}
                       <div style={{ position: 'absolute', bottom: -3, right: -4 }}>
                         <UserInstitutionBadge
                           user={u}
-                          size={18}
+                          size={16}
                         />
                       </div>
                     </div>
@@ -1155,34 +1209,33 @@ const Dashboard = () => {
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
                         <span style={{ fontWeight: isMe ? 700 : 600, fontSize: '0.88rem', color: isMe ? '#38bdf8' : '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {name}
+                          {cleanName}
                         </span>
                         {isMe && (
-                          <span style={{ fontSize: '0.68rem', color: '#0284c7', background: '#e0f2fe', padding: '1px 5px', borderRadius: '4px', fontWeight: 800 }}>
+                          <span style={{ fontSize: '0.68rem', color: '#38bdf8', background: 'rgba(56, 189, 248, 0.15)', border: '1px solid rgba(56, 189, 248, 0.25)', padding: '1px 5px', borderRadius: '4px', fontWeight: 700 }}>
                             Tú
                           </span>
                         )}
                       </div>
 
-                      <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap', marginTop: 1 }}>
+                      <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap', marginTop: 2 }}>
                         <span style={{ color: '#38bdf8', fontWeight: 600 }}>Nvl {uLvl}</span>
                         <span>·</span>
-                        <span style={{ fontStyle: 'italic' }}>{getLevelTitle(uLvl)}</span>
+                        <span style={{ color: '#cbd5e1' }}>{getLevelTitle(uLvl)}</span>
                         <span>·</span>
-                        <span style={{ color: '#cbd5e1' }}>
-                          {u.university ? (u.university.split('(')[0] || u.university) : (u.country || 'Chile')}
-                          {u.sede ? ` (${u.sede})` : ''}
+                        <span style={{ color: '#94a3b8' }}>
+                          {institutionText}{u.sede ? ` · ${u.sede}` : ''}
                         </span>
                       </div>
                     </div>
 
                     {/* Stats & XP */}
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                        <Zap size={14} color="#eab308" /> {Number(u.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>XP</span>
+                      <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                        <Zap size={13} color="#fbbf24" /> {Number(u.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 500 }}>XP</span>
                       </div>
-                      <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
-                        {u.total_answers || 0} pregs · {correctPct}%
+                      <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: 1 }}>
+                        {u.total_answers || 0} pregs · {correctPct}% acierto
                       </div>
                     </div>
                   </div>
@@ -1197,9 +1250,10 @@ const Dashboard = () => {
               Aún no hay actividad de sedes registradas {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
               {sedeLeaderboard.map((s, i) => {
-                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#cbd5e1' : i === 2 ? '#d97706' : '#64748b'
+                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#cbd5e1" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
 
                 return (
                   <div
@@ -1214,48 +1268,48 @@ const Dashboard = () => {
                       alignItems: 'center',
                       gap: '0.85rem',
                       padding: '0.75rem 1rem',
-                      borderRadius: '14px',
-                      background: i < 3 ? 'rgba(168, 85, 247, 0.07)' : 'rgba(255,255,255,0.02)',
-                      border: i === 0 ? '1.5px solid rgba(234, 179, 8, 0.4)' : '1px solid rgba(255,255,255,0.06)',
+                      borderRadius: '10px',
+                      background: i < 3 ? 'rgba(168, 85, 247, 0.05)' : 'rgba(255,255,255,0.01)',
+                      border: i === 0 ? '1px solid rgba(234, 179, 8, 0.3)' : '1px solid rgba(255,255,255,0.04)',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
                     title="Haz clic para ver los médicos de esta sede"
                   >
                     {/* Rank */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.95rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
                       {rankIcon || (i + 1)}
                     </div>
 
                     {/* University Logo */}
                     <UserInstitutionBadge
                       user={{ university: s.university, sede: s.sede, country: s.country }}
-                      size={36}
+                      size={34}
                     />
 
                     {/* Info */}
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {s.university}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#a855f7', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: 2 }}>
+                      <div style={{ fontSize: '0.74rem', color: '#c084fc', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: 2 }}>
                         <span>📍 {s.sede}</span>
                         <span>·</span>
-                        <span style={{ color: '#94a3b8' }}>👥 {s.total_doctors} médico{s.total_doctors > 1 ? 's' : ''} activo{s.total_doctors > 1 ? 's' : ''}</span>
+                        <span style={{ color: '#94a3b8' }}>👥 {s.total_doctors} médico{s.total_doctors > 1 ? 's' : ''}</span>
                       </div>
                     </div>
 
                     {/* XP & Action */}
                     <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       <div>
-                        <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                          <Zap size={15} color="#eab308" /> {Number(s.xp || 0).toLocaleString()} <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>XP</span>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                          <Zap size={13} color="#fbbf24" /> {Number(s.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 500 }}>XP</span>
                         </div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                        <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: 1 }}>
                           {s.total_answers || 0} respuestas
                         </div>
                       </div>
-                      <ArrowUpRight size={16} color="#38bdf8" />
+                      <ArrowUpRight size={15} color="#38bdf8" />
                     </div>
                   </div>
                 )
@@ -1269,9 +1323,10 @@ const Dashboard = () => {
               Aún no hay actividad de países registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
               {countryLeaderboard.map((c, i) => {
-                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#cbd5e1' : i === 2 ? '#d97706' : '#64748b'
+                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#cbd5e1" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
 
                 return (
                   <div
@@ -1286,48 +1341,48 @@ const Dashboard = () => {
                       alignItems: 'center',
                       gap: '0.85rem',
                       padding: '0.75rem 1rem',
-                      borderRadius: '14px',
-                      background: i < 3 ? 'rgba(16, 185, 129, 0.07)' : 'rgba(255,255,255,0.02)',
-                      border: i === 0 ? '1.5px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(255,255,255,0.06)',
+                      borderRadius: '10px',
+                      background: i < 3 ? 'rgba(16, 185, 129, 0.05)' : 'rgba(255,255,255,0.01)',
+                      border: i === 0 ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(255,255,255,0.04)',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
                     title="Haz clic para ver los médicos de este país"
                   >
                     {/* Rank */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.95rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
                       {rankIcon || (i + 1)}
                     </div>
 
                     {/* Flag Badge */}
                     <UserInstitutionBadge
                       user={{ country: c.country }}
-                      size={36}
+                      size={34}
                     />
 
                     {/* Info */}
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#f8fafc' }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.92rem', color: '#f8fafc' }}>
                         {c.country}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#34d399', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: 2 }}>
-                        <span>👥 {c.total_doctors} médico{c.total_doctors > 1 ? 's' : ''} postulante{c.total_doctors > 1 ? 's' : ''}</span>
+                      <div style={{ fontSize: '0.74rem', color: '#34d399', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: 2 }}>
+                        <span>👥 {c.total_doctors} médico{c.total_doctors > 1 ? 's' : ''}</span>
                         <span>·</span>
-                        <span style={{ color: '#94a3b8' }}>{c.total_answers || 0} casos resueltos</span>
+                        <span style={{ color: '#94a3b8' }}>{c.total_answers || 0} casos</span>
                       </div>
                     </div>
 
                     {/* XP & Action */}
                     <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       <div>
-                        <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                          <Zap size={15} color="#eab308" /> {Number(c.xp || 0).toLocaleString()} <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>XP</span>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                          <Zap size={13} color="#fbbf24" /> {Number(c.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 500 }}>XP</span>
                         </div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                        <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: 1 }}>
                           Puntaje Nacional
                         </div>
                       </div>
-                      <ArrowUpRight size={16} color="#38bdf8" />
+                      <ArrowUpRight size={15} color="#38bdf8" />
                     </div>
                   </div>
                 )

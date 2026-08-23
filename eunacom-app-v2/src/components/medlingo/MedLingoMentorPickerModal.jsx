@@ -1,5 +1,5 @@
 import React from 'react'
-import { X, Check, Stethoscope } from 'lucide-react'
+import { X, Check, Stethoscope, Sparkles } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { playTapSound } from '../../utils/medlingoAudio'
 
@@ -9,59 +9,65 @@ export default function MedLingoMentorPickerModal({
   onClose
 }) {
   return (
-    <div className="medlingo-modal-overlay">
-      <div className="medlingo-modal-container mentor-picker animate-scale-up">
+    <div className="medlingo-modal-overlay" onClick={onClose}>
+      <div 
+        className="medlingo-modal-container mentor-picker animate-scale-up"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header */}
-        <div className="medlingo-shop-header">
-          <div className="shop-title-wrap">
-            <Stethoscope size={22} className="shop-gold-sparkle" />
-            <h2>Elige a tu Mentor Clínico</h2>
+        <div className="mentor-picker-header">
+          <div className="mentor-picker-title-group">
+            <div className="mentor-picker-icon-badge">
+              <Stethoscope size={20} color="#38bdf8" />
+            </div>
+            <div>
+              <h2>Elige a tu Mentor</h2>
+              <p>Te acompañará en cada lección clínica</p>
+            </div>
           </div>
           <button 
-            className="medlingo-close-btn"
+            className="mentor-picker-close-btn"
             onClick={() => {
               playTapSound()
               onClose()
             }}
             title="Cerrar"
           >
-            <X size={22} />
+            <X size={20} />
           </button>
         </div>
 
-        <p className="mentor-picker-sub">
-          Tu mentor te acompañará en cada lección con consejos de guardia, nemotecnias y pistas clínicas.
-        </p>
-
-        {/* Grid of Mentors */}
-        <div className="mentors-grid">
+        {/* Snappy List of Mentors */}
+        <div className="mentor-picker-list">
           {DOCTOR_CHARACTERS.map((doc) => {
             const isSelected = doc.id === activeMentorId
             return (
-              <div
+              <button
                 key={doc.id}
-                className={`mentor-card ${isSelected ? 'selected' : ''}`}
+                type="button"
+                className={`mentor-picker-item ${isSelected ? 'active' : ''}`}
                 onClick={() => {
                   playTapSound()
                   onSelectMentor(doc.id)
                   onClose()
                 }}
               >
-                <div className="mentor-avatar-frame">
+                {/* Avatar Frame */}
+                <div className="mentor-picker-avatar-wrap">
                   {doc.image ? (
                     <img 
                       src={doc.image} 
                       alt={doc.name} 
-                      className="mentor-avatar-img"
+                      className="mentor-picker-avatar-img"
                       onError={(e) => {
                         e.target.style.display = 'none'
-                        e.target.nextSibling.style.display = 'flex'
+                        if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex'
                       }}
                     />
                   ) : null}
                   <div 
-                    className="mentor-avatar-fallback" 
+                    className="mentor-picker-avatar-fallback" 
                     style={{ 
                       display: doc.image ? 'none' : 'flex',
                       background: doc.avatarBg 
@@ -69,19 +75,23 @@ export default function MedLingoMentorPickerModal({
                   >
                     <span>{doc.emoji}</span>
                   </div>
-                  {isSelected && (
-                    <div className="selected-check-badge">
-                      <Check size={14} strokeWidth={3} />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mentor-card-body">
-                  <div className="mentor-name-title">{doc.name}</div>
-                  <div className="mentor-spec-badge">{doc.specialty}</div>
-                  <div className="mentor-quote-text">"{doc.quote}"</div>
+                {/* Doctor Info */}
+                <div className="mentor-picker-info">
+                  <span className="mentor-picker-name">{doc.name}</span>
+                  <div className="mentor-picker-meta">
+                    <span className="mentor-picker-show">{doc.show}</span>
+                    <span className="mentor-picker-dot">·</span>
+                    <span className="mentor-picker-spec">{doc.shortSpec || doc.specialty}</span>
+                  </div>
                 </div>
-              </div>
+
+                {/* Selection Indicator */}
+                <div className={`mentor-picker-indicator ${isSelected ? 'selected' : ''}`}>
+                  {isSelected ? <Check size={16} strokeWidth={3} /> : null}
+                </div>
+              </button>
             )
           })}
         </div>

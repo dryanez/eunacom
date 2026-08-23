@@ -10,11 +10,23 @@ export function useSubscription() {
 }
 
 export function SubscriptionProvider({ children }) {
-  const { user } = useAuth();
-  const [isPremium, setIsPremium] = useState(true);
+  const { user, isAdmin, loading: authLoading } = useAuth();
+  const isUserAdmin = typeof isAdmin === 'function' && isAdmin();
+
+  const [isPremium, setIsPremium] = useState(() => {
+    if (isUserAdmin) return true;
+    if (user?.id) {
+      try {
+        const cached = localStorage.getItem(`eunacom_cached_is_premium_${user.id}`);
+        if (cached !== null) return JSON.parse(cached);
+      } catch (e) {}
+    }
+    return false;
+  });
+
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [isFounder, setIsFounder] = useState(true);
-  const [loadingPremium, setLoadingPremium] = useState(false);
+  const [isFounder, setIsFounder] = useState(() => isUserAdmin);
+  const [loadingPremium, setLoadingPremium] = useState(() => !isUserAdmin && !!user);
   const [freemiumMode, setFreemiumMode] = useState('strict'); // strict or usage
   
   // Freemium usage tracking
@@ -33,6 +45,13 @@ export function SubscriptionProvider({ children }) {
   useEffect(() => {
     let mounted = true;
 
+    // If admin is active, immediately ensure premium without waiting for server response
+    if (isUserAdmin) {
+      setIsPremium(true);
+      setIsFounder(true);
+      setLoadingPremium(false);
+    }
+
     // Always fetch global settings, regardless of user auth state
     fetchAppSettings()
       .then(settings => {
@@ -43,7 +62,9 @@ export function SubscriptionProvider({ children }) {
       .catch(err => console.error("Error fetching app settings:", err));
 
     if (user) {
-      setLoadingPremium(true);
+      if (!isUserAdmin) {
+        setLoadingPremium(true);
+      }
       
       // Fetch profile and usage stats in parallel
       Promise.all([
@@ -55,7 +76,9 @@ export function SubscriptionProvider({ children }) {
           if (mounted && profile) {
             // Check if user is premium and hasn't expired
             let valid = false;
-            if (profile.is_premium === 1) {
+            if (isUserAdmin) {
+              valid = true;
+            } else if (profile.is_premium === 1) {
               if (profile.premium_until) {
                 const expiresAt = new Date(profile.premium_until);
                 if (expiresAt > new Date()) {
@@ -67,7 +90,10 @@ export function SubscriptionProvider({ children }) {
               }
             }
             setIsPremium(valid);
-            setIsFounder(valid && profile.plan_months === 1200);
+            setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200));
+            try {
+              localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid));
+            } catch (e) {}
           }
           
           if (mounted && tests && claseProgress) {
@@ -115,25 +141,29 @@ export function SubscriptionProvider({ children }) {
         });
     } else {
       setIsPremium(false);
+      setIsFounder(false);
       setLoadingPremium(false);
       setUsageStats({ clasesOpened: 0, reconstructionsCompleted: 0, simulationsCompleted: 0, customQuestionsAnswered: 0 });
     }
     
     return () => { mounted = false; };
-  }, [user]);
+  }, [user, isUserAdmin]);
+
+  const effectiveIsPremium = isUserAdmin || isPremium;
+  const effectiveIsFounder = isUserAdmin || isFounder;
 
   // Convenience flags for the UI
-  const hasExceededClasses = !isPremium && usageStats.clasesOpened >= 3;
-  const hasExceededReconstructions = !isPremium && usageStats.reconstructionsCompleted >= 1;
-  const hasExceededSimulations = !isPremium && usageStats.simulationsCompleted >= 1;
-  const hasExceededQuestions = !isPremium && usageStats.customQuestionsAnswered >= 20;
+  const hasExceededClasses = !effectiveIsPremium && usageStats.clasesOpened >= 3;
+  const hasExceededReconstructions = !effectiveIsPremium && usageStats.reconstructionsCompleted >= 1;
+  const hasExceededSimulations = !effectiveIsPremium && usageStats.simulationsCompleted >= 1;
+  const hasExceededQuestions = !effectiveIsPremium && usageStats.customQuestionsAnswered >= 20;
 
   return (
     <SubscriptionContext.Provider value={{ 
-      isPremium, 
-      isFounder, 
+      isPremium: effectiveIsPremium, 
+      isFounder: effectiveIsFounder, 
       togglePremium, 
-      loadingPremium,
+      loadingPremium: loadingPremium || authLoading,
       freemiumMode,
       usageStats,
       hasExceededClasses,

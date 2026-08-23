@@ -31,8 +31,8 @@ const ProgressItem = ({ label, used, total }) => {
 };
 
 const SidebarIOS = ({ mobileOpen, onToggle }) => {
-    const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview, openAuthModal } = useAuth()
-    const { isPremium, usageStats, setShowPaymentModal } = useSubscription()
+    const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview, openAuthModal, loading: authLoading } = useAuth()
+    const { isPremium, usageStats, setShowPaymentModal, loadingPremium } = useSubscription()
     const navigate = useNavigate()
     const location = useLocation()
     const [examenesOpen, setExamenesOpen] = useState(false)
@@ -132,7 +132,7 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
             </nav>
 
             <div className="sidebar__footer">
-                {!isPremium && user && (
+                {!isPremium && !isAdmin() && !loadingPremium && !authLoading && user && (
                     <div style={{ marginBottom: '0.65rem', padding: '0.65rem 0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.1)' }}>
                         <div style={{ fontSize: '0.72rem', color: '#f8fafc', fontWeight: 800, marginBottom: '0.4rem', textAlign: 'center', letterSpacing: '0.5px' }}>
                             TU PLAN GRATUITO

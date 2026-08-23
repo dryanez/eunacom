@@ -17,14 +17,26 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [adminPreviewMode, setAdminPreviewMode] = useState(false)
-
     const [localDevUser, setLocalDevUser] = useState(() => {
         const stored = localStorage.getItem('eunacom_local_dev_user')
         return stored ? JSON.parse(stored) : null
     })
+
+    const [user, setUser] = useState(() => {
+        try {
+            const storedDev = localStorage.getItem('eunacom_local_dev_user')
+            if (storedDev) return JSON.parse(storedDev)
+            const cached = localStorage.getItem('eunacom_cached_user')
+            if (cached) return JSON.parse(cached)
+        } catch (e) {}
+        return null
+    })
+
+    const [loading, setLoading] = useState(() => {
+        const hasStoredUser = !!(localStorage.getItem('eunacom_local_dev_user') || localStorage.getItem('eunacom_cached_user'))
+        return !hasStoredUser
+    })
+    const [adminPreviewMode, setAdminPreviewMode] = useState(false)
 
     useEffect(() => {
         if (localDevUser) {
@@ -38,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         if (storedVersion !== SESSION_VERSION) {
             supabase.auth.signOut().finally(() => {
                 localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+                localStorage.removeItem('eunacom_cached_user')
                 setUser(null)
                 setLoading(false)
             })
@@ -47,7 +60,15 @@ export const AuthProvider = ({ children }) => {
         // Check active sessions and sets the user
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (!localDevUser) {
-                setUser(session?.user ?? null)
+                const activeUser = session?.user ?? null
+                if (activeUser) {
+                    try {
+                        localStorage.setItem('eunacom_cached_user', JSON.stringify(activeUser))
+                    } catch (e) {}
+                } else {
+                    localStorage.removeItem('eunacom_cached_user')
+                }
+                setUser(activeUser)
             }
             setLoading(false)
         })
@@ -58,9 +79,14 @@ export const AuthProvider = ({ children }) => {
             if (session?.user) {
                 // Stamp the current version so they won't be kicked out again
                 localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+                try {
+                    localStorage.setItem('eunacom_cached_user', JSON.stringify(session.user))
+                } catch (e) {}
                 if (window.location.hash && window.location.hash.includes('access_token')) {
                     window.history.replaceState(null, '', window.location.pathname)
                 }
+            } else {
+                localStorage.removeItem('eunacom_cached_user')
             }
             setUser(session?.user ?? null)
             setLoading(false)
@@ -150,6 +176,10 @@ export const AuthProvider = ({ children }) => {
 
     const signOut = async () => {
         localStorage.removeItem('eunacom_local_dev_user')
+        localStorage.removeItem('eunacom_cached_user')
+        if (user?.id) {
+            localStorage.removeItem(`eunacom_cached_is_premium_${user.id}`)
+        }
         setLocalDevUser(null)
         const { error } = await supabase.auth.signOut().catch(() => ({ error: null }))
         setUser(null)

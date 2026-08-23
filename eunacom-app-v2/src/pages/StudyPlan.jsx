@@ -224,6 +224,29 @@ const StudyPlan = () => {
 
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', paddingBottom: '4rem' }}>
+      <style>{`
+        .studyplan-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+        .studyplan-cal-grid {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 0.35rem;
+          text-align: center;
+        }
+        @media (max-width: 640px) {
+          .studyplan-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+          }
+          .studyplan-cal-grid {
+            gap: 2px;
+          }
+        }
+      `}</style>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div>
@@ -257,7 +280,7 @@ const StudyPlan = () => {
       )}
 
       {/* ─── Progress overview ─── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
+      <div className="studyplan-stats-grid">
         <ProgressCard label="Progreso Total" value={`${progressByTopic.overallPct}%`} color="var(--primary-400)" icon={<Target size={18} />} bar={progressByTopic.overallPct} />
         <ProgressCard label="Clases" value={`${progressByTopic.classesCompleted}/${progressByTopic.totalClasses}`} color="var(--accent-teal)" icon={<BookOpen size={18} />} bar={progressByTopic.classPct} />
         <ProgressCard label="Preguntas" value={`${progressByTopic.questionsCompleted}/${progressByTopic.totalQuestions}`} color="var(--accent-green)" icon={<FileText size={18} />} bar={progressByTopic.questionPct} />
@@ -265,13 +288,13 @@ const StudyPlan = () => {
       </div>
 
       {/* ─── Calendar ─── */}
-      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
+      <div className="card" style={{ padding: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
           <button onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1))} style={navBtn}><ChevronLeft size={18} /></button>
           <h3 style={{ margin: 0, fontSize: '1.05rem', textTransform: 'capitalize' }}>{fmtMonth(currentMonth)}</h3>
           <button onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1))} style={navBtn}><ChevronRight size={18} /></button>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.5rem', textAlign: 'center' }}>
+        <div className="studyplan-cal-grid">
           {['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d => (
             <div key={d} style={{ color: 'var(--surface-400)', fontSize: '0.75rem', fontWeight: 700, paddingBottom: '0.25rem' }}>{d}</div>
           ))}

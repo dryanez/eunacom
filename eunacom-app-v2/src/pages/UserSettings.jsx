@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
-import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar } from '../utils/doctorAvatars'
 import { CHILEAN_UNIVERSITIES, COUNTRIES, getSedesForUniversity, UserInstitutionBadge } from '../utils/universityAndCountry'
 import {
-  User, Settings, Shield, Lock, CreditCard, Target, Sparkles,
+  User, Settings, Shield, Lock, CreditCard, Target,
   CheckCircle2, AlertTriangle, ExternalLink, LogOut, ChevronRight,
   Calendar, Building2, GraduationCap, Clock, Award, Key, Save,
-  Flame, Check, Loader2, Globe, MapPin
+  Flame, Check, Loader2, Globe, MapPin, Shuffle, Sparkles, RefreshCw
 } from 'lucide-react'
 
 const PRIVACY_URL = 'https://eunacom.app/privacy'
@@ -20,7 +20,7 @@ const UserSettings = () => {
   const { isPremium, isFounder, setShowPaymentModal } = useSubscription()
   const navigate = useNavigate()
 
-  const [activeTab, setActiveTab] = useState('profile') // 'profile' | 'plan' | 'goals' | 'security' | 'legal'
+  const [activeTab, setActiveTab] = useState('profile')
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -30,7 +30,7 @@ const UserSettings = () => {
   // Form Fields
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [avatarCharacter, setAvatarCharacter] = useState('dr_strange')
+  const [avatarCharacter, setAvatarCharacter] = useState('dr_house')
   const [university, setUniversity] = useState('')
   const [sede, setSede] = useState('')
   const [country, setCountry] = useState('Chile')
@@ -58,7 +58,7 @@ const UserSettings = () => {
         setProfile(data)
         setFirstName(data.first_name || user.user_metadata?.full_name?.split(' ')[0] || '')
         setLastName(data.last_name || user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '')
-        setAvatarCharacter(data.avatar_character || 'dr_strange')
+        setAvatarCharacter(data.avatar_character || getDoctorAvatar(data).id)
         setUniversity(data.university || '')
         setSede(data.sede || '')
         setCountry(data.country || data.nationality || 'Chile')
@@ -67,6 +67,9 @@ const UserSettings = () => {
         setExamMonth(data.exam_month || 'Diciembre')
         setExamYear(data.exam_year || '2026')
         setWeakArea(data.weak_area || 'Medicina Interna / Cardiología')
+      } else {
+        const defaultDoc = getDoctorAvatar(user)
+        setAvatarCharacter(defaultDoc.id)
       }
       setLoading(false)
     }).catch(() => setLoading(false))
@@ -103,6 +106,11 @@ const UserSettings = () => {
     }
   }
 
+  const handleRandomAvatar = () => {
+    const randomDoc = getRandomDoctorAvatar()
+    setAvatarCharacter(randomDoc.id)
+  }
+
   const handleUpdatePassword = async (e) => {
     e.preventDefault()
     if (!newPassword || newPassword.length < 6) {
@@ -131,233 +139,214 @@ const UserSettings = () => {
     }
   }
 
-  const handleDeleteAccount = async () => {
-    if (deleteInput !== 'ELIMINAR') return
-    setDeleting(true)
-    try {
-      await fetch('/api/user-profiles', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id })
-      })
-      await signOut()
-      navigate('/login')
-    } catch (err) {
-      setError(err.message)
-      setDeleting(false)
-    }
-  }
-
   const selectedDoctor = DOCTOR_CHARACTERS.find((d) => d.id === avatarCharacter) || DOCTOR_CHARACTERS[0]
 
   if (!user) return null
 
   return (
-    <div style={{ maxWidth: '1080px', margin: '0 auto', padding: '1.5rem 1rem 3rem' }}>
+    <div style={{ maxWidth: '980px', margin: '0 auto', padding: '1rem 1rem 3rem' }}>
+      <style>{`
+        .settings-layout {
+          display: grid;
+          grid-template-columns: 210px 1fr;
+          gap: 1.25rem;
+          align-items: start;
+        }
+        .settings-tabs-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+        .settings-form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.85rem;
+          margin-bottom: 1rem;
+        }
+        .doctor-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+          gap: 0.65rem;
+        }
+        @media (max-width: 768px) {
+          .settings-layout {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .settings-tabs-list {
+            flex-direction: row;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 0.35rem;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+          }
+          .settings-tabs-list button {
+            flex-shrink: 0;
+          }
+          .settings-form-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+          }
+          .doctor-grid {
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.5rem;
+          }
+        }
+      `}</style>
+
       {/* Header */}
-      <div style={{ marginBottom: '1.5rem' }}>
-        <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.35rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <Settings size={28} color="#2563eb" /> Configuración
+      <div style={{ marginBottom: '1.25rem' }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <Settings size={24} color="#38bdf8" /> Configuración
         </h1>
-        <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0 }}>
-          Gestiona tu cuenta, tu avatar de médico(a), plan y objetivos de estudio.
+        <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: 0 }}>
+          Gestiona tu cuenta, tu avatar de médico(a), plan y objetivos de estudio
         </p>
       </div>
 
-      {/* Sync Banner */}
-      <div style={{
-        backgroundColor: '#ecfdf5',
-        border: '1px solid #a7f3d0',
-        borderRadius: '14px',
-        padding: '0.75rem 1rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-        fontSize: '0.85rem',
-        fontWeight: 600,
-        color: '#065f46',
-        marginBottom: '1rem',
-      }}>
-        <CheckCircle2 size={18} color="#059669" />
-        <span>Todo tu progreso y respuestas están sincronizados en la nube.</span>
-      </div>
-
-      {/* Subscription Banner */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1.5px solid #e2e8f0',
-        borderRadius: '16px',
-        padding: '1rem 1.25rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.5rem',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Shield size={22} color="#2563eb" />
-          </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontWeight: 800, fontSize: '0.96rem', color: '#0f172a' }}>
-                {isPremium ? 'Suscripción Prime Activa' : 'Prueba Gratuita 3 Días'}
-              </span>
-              <span style={{ backgroundColor: '#ecfdf5', color: '#059669', fontSize: '0.72rem', fontWeight: 700, padding: '2px 8px', borderRadius: '6px' }}>
-                Activo
-              </span>
-            </div>
-            <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '2px' }}>
-              Acceso completo a simulacros, 6.000+ preguntas y video clases EUNACOM 2026.
-            </div>
-          </div>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setShowPaymentModal(true)}
-          style={{
-            padding: '0.6rem 1.1rem',
-            backgroundColor: '#0f172a',
-            color: '#ffffff',
-            borderRadius: '10px',
-            border: 'none',
-            fontWeight: 700,
-            fontSize: '0.85rem',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            transition: 'all 0.15s ease',
-          }}
-        >
-          <span>{isPremium ? 'Gestionar Plan' : 'Extender Plan Prime'}</span>
-          <ChevronRight size={16} />
-        </button>
-      </div>
-
       {/* Main Grid: Tabs Sidebar + Content Panel */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 240px) 1fr', gap: '1.25rem', alignItems: 'start' }}>
+      <div className="settings-layout">
         
-        {/* Left Navigation Tabs (Matching user screenshot) */}
+        {/* Left Navigation Tabs */}
         <div style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '16px',
+          backgroundColor: 'rgba(30, 41, 59, 0.45)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '14px',
           padding: '0.5rem',
-          border: '1.5px solid #e2e8f0',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.25rem',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
         }}>
-          {[
-            { id: 'profile', label: 'Mi Perfil', icon: User },
-            { id: 'goals', label: 'Objetivos', icon: Target },
-            { id: 'plan', label: 'Mi Plan & Pagos', icon: CreditCard },
-            { id: 'security', label: 'Seguridad', icon: Lock },
-            { id: 'legal', label: 'Legal y Ayuda', icon: Shield },
-          ].map((tab) => {
-            const Icon = tab.icon
-            const isSelected = activeTab === tab.id
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  padding: '0.75rem 1rem',
-                  borderRadius: '10px',
-                  border: 'none',
-                  backgroundColor: isSelected ? '#2563eb' : 'transparent',
-                  color: isSelected ? '#ffffff' : '#475569',
-                  fontWeight: isSelected ? 700 : 600,
-                  fontSize: '0.88rem',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <Icon size={18} />
-                <span>{tab.label}</span>
-              </button>
-            )
-          })}
+          <div className="settings-tabs-list">
+            {[
+              { id: 'profile', label: 'Mi Perfil', icon: User },
+              { id: 'goals', label: 'Objetivos', icon: Target },
+              { id: 'plan', label: 'Plan & Pagos', icon: CreditCard },
+              { id: 'security', label: 'Seguridad', icon: Lock },
+              { id: 'legal', label: 'Legal & Ayuda', icon: Shield },
+            ].map((tab) => {
+              const Icon = tab.icon
+              const isSelected = activeTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    padding: '0.65rem 0.85rem',
+                    borderRadius: '8px',
+                    border: 'none',
+                    backgroundColor: isSelected ? 'rgba(56, 189, 248, 0.15)' : 'transparent',
+                    color: isSelected ? '#38bdf8' : '#94a3b8',
+                    boxShadow: isSelected ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
+                    fontWeight: isSelected ? 700 : 500,
+                    fontSize: '0.84rem',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'all 0.15s ease',
+                  }}
+                >
+                  <Icon size={16} />
+                  <span>{tab.label}</span>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* Right Content Panel */}
         <div style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '20px',
-          border: '1.5px solid #e2e8f0',
-          padding: '1.5rem',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
+          backgroundColor: 'rgba(30, 41, 59, 0.45)',
+          backdropFilter: 'blur(12px)',
+          borderRadius: '14px',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          padding: '1.25rem',
         }}>
 
           {/* ═══════════════════════════════════════════════════════════════
-              TAB 1: MI PERFIL (INCLUYE 10 MÉDICOS FAMOSOS DE FICCIÓN)
+              TAB 1: MI PERFIL (AVATAR + INFO)
           ═══════════════════════════════════════════════════════════════ */}
           {activeTab === 'profile' && (
             <div>
-              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem 0' }}>
-                  Información Personal & Avatar Clínico
-                </h3>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>
-                  Personaliza tu nombre y elige tu médico favorito de series y películas para tu ranking.
-                </p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                    Información Personal & Avatar Clínico
+                  </h3>
+                  <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                    Personaliza tu nombre y tu avatar de médico para la comunidad y el ranking
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleRandomAvatar}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    padding: '0.4rem 0.8rem',
+                    background: 'rgba(56, 189, 248, 0.12)',
+                    border: '1px solid rgba(56, 189, 248, 0.25)',
+                    borderRadius: '8px',
+                    color: '#38bdf8',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(56, 189, 248, 0.2)' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(56, 189, 248, 0.12)' }}
+                >
+                  <Shuffle size={13} />
+                  <span>Avatar Aleatorio</span>
+                </button>
               </div>
 
-              {/* 10 Top Fictional Doctor Avatar Selector */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#334155', marginBottom: '0.65rem' }}>
-                  Elige tu Médico / Personaje de Ficción (10 Opciones Icónicas)
-                </label>
-
-                {/* Selected Doctor Hero Card */}
-                <div style={{
-                  backgroundColor: '#f8fafc',
-                  border: '1.5px solid #e2e8f0',
-                  borderRadius: '18px',
-                  padding: '1rem 1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1.25rem',
-                  marginBottom: '1rem',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
-                }}>
-                  <img
-                    src={selectedDoctor.image || '/avatars/dr_strange.png'}
-                    alt={selectedDoctor.name}
-                    style={{
-                      width: '74px',
-                      height: '74px',
-                      borderRadius: '16px',
-                      objectFit: 'cover',
-                      flexShrink: 0,
-                      boxShadow: '0 6px 16px rgba(0,0,0,0.15)',
-                      border: '2px solid #ffffff',
-                    }}
-                  />
-                  <div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
-                      {selectedDoctor.name}
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: '#2563eb', fontWeight: 700, marginTop: '2px' }}>
-                      {selectedDoctor.specialty} • {selectedDoctor.show}
-                    </div>
-                    <div style={{ fontSize: '0.76rem', color: '#64748b', fontStyle: 'italic', marginTop: '3px' }}>
-                      "{selectedDoctor.quote}"
-                    </div>
+              {/* Selected Doctor Hero Card */}
+              <div style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                border: '1px solid rgba(56, 189, 248, 0.25)',
+                borderRadius: '12px',
+                padding: '0.85rem 1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+              }}>
+                <img
+                  src={selectedDoctor.image || '/avatars/dr_strange.png'}
+                  alt={selectedDoctor.name}
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '12px',
+                    objectFit: 'cover',
+                    flexShrink: 0,
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                    border: '1.5px solid rgba(56, 189, 248, 0.4)',
+                  }}
+                />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 700, color: '#f8fafc' }}>
+                    {selectedDoctor.name}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, marginTop: '1px' }}>
+                    {selectedDoctor.specialty} · {selectedDoctor.show}
+                  </div>
+                  <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontStyle: 'italic', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    "{selectedDoctor.quote}"
                   </div>
                 </div>
+              </div>
 
-                {/* 10 Fictional Doctor Badges Grid with 3D Animated Portraits */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.65rem' }}>
+              {/* 10 Fictional Doctor Badges Grid */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.5rem' }}>
+                  Selecciona tu personaje médico favorito:
+                </label>
+                <div className="doctor-grid">
                   {DOCTOR_CHARACTERS.map((doc) => {
                     const isPicked = avatarCharacter === doc.id
                     return (
@@ -366,18 +355,16 @@ const UserSettings = () => {
                         type="button"
                         onClick={() => setAvatarCharacter(doc.id)}
                         style={{
-                          padding: '0.65rem 0.5rem',
-                          borderRadius: '14px',
-                          border: isPicked ? '2.5px solid #2563eb' : '1.5px solid #e2e8f0',
-                          backgroundColor: isPicked ? '#eff6ff' : '#ffffff',
+                          padding: '0.55rem 0.45rem',
+                          borderRadius: '10px',
+                          border: isPicked ? '1.5px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.08)',
+                          backgroundColor: isPicked ? 'rgba(56, 189, 248, 0.15)' : 'rgba(15, 23, 42, 0.5)',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
-                          gap: '6px',
+                          gap: '4px',
                           cursor: 'pointer',
                           textAlign: 'center',
-                          boxShadow: isPicked ? '0 4px 12px rgba(37,99,235,0.2)' : 'none',
-                          transform: isPicked ? 'scale(1.02)' : 'none',
                           transition: 'all 0.15s ease',
                         }}
                       >
@@ -385,18 +372,18 @@ const UserSettings = () => {
                           src={doc.image}
                           alt={doc.name}
                           style={{
-                            width: '52px',
-                            height: '52px',
-                            borderRadius: '12px',
+                            width: '46px',
+                            height: '46px',
+                            borderRadius: '10px',
                             objectFit: 'cover',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
                           }}
                         />
-                        <div>
-                          <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isPicked ? '#1d4ed8' : '#0f172a', lineHeight: 1.2 }}>
-                            {doc.name}
+                        <div style={{ width: '100%' }}>
+                          <div style={{ fontSize: '0.74rem', fontWeight: 700, color: isPicked ? '#38bdf8' : '#f8fafc', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {doc.name.split(' ')[1] || doc.name}
                           </div>
-                          <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '1px' }}>
+                          <div style={{ fontSize: '0.64rem', color: '#94a3b8', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                             {doc.show}
                           </div>
                         </div>
@@ -408,9 +395,9 @@ const UserSettings = () => {
 
               {/* Form inputs */}
               <form onSubmit={handleSaveProfile}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1rem' }}>
+                <div className="settings-form-grid">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Nombre
                     </label>
                     <input
@@ -421,17 +408,18 @@ const UserSettings = () => {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Apellido
                     </label>
                     <input
@@ -442,10 +430,11 @@ const UserSettings = () => {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     />
@@ -453,8 +442,8 @@ const UserSettings = () => {
                 </div>
 
                 <div style={{ marginBottom: '1rem' }}>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
-                    Email
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
+                    Correo Electrónico (Registrado)
                   </label>
                   <input
                     type="email"
@@ -463,18 +452,18 @@ const UserSettings = () => {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      borderRadius: '10px',
-                      border: '1px solid #e2e8f0',
-                      backgroundColor: '#f8fafc',
-                      fontSize: '0.88rem',
+                      borderRadius: '8px',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.3)',
                       color: '#64748b',
+                      fontSize: '0.86rem',
                     }}
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1rem' }}>
+                <div className="settings-form-grid">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       País de Formación / Origen
                     </label>
                     <select
@@ -483,11 +472,11 @@ const UserSettings = () => {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
-                        backgroundColor: '#fff',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     >
@@ -498,7 +487,7 @@ const UserSettings = () => {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Año de Egreso
                     </label>
                     <input
@@ -509,19 +498,20 @@ const UserSettings = () => {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     />
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <div className="settings-form-grid">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Universidad / Escuela Médica
                     </label>
                     <input
@@ -536,14 +526,15 @@ const UserSettings = () => {
                         }
                       }}
                       list="universities-list"
-                      placeholder="Ej: Universidad de Chile (UCH)"
+                      placeholder="Ej: Universidad de Chile"
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     />
@@ -555,7 +546,7 @@ const UserSettings = () => {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Sede / Campus
                     </label>
                     <input
@@ -563,14 +554,15 @@ const UserSettings = () => {
                       value={sede}
                       onChange={(e) => setSede(e.target.value)}
                       list="sedes-list"
-                      placeholder="Ej: Santiago / Concepción / Valparaíso"
+                      placeholder="Ej: Santiago / Central"
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
-                        fontWeight: 600,
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
                         outline: 'none',
                       }}
                     />
@@ -585,9 +577,9 @@ const UserSettings = () => {
                 {/* Badge Preview */}
                 <div style={{
                   padding: '0.75rem 1rem',
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '12px',
+                  backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
@@ -595,24 +587,30 @@ const UserSettings = () => {
                   gap: '0.75rem'
                 }}>
                   <div>
-                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1e293b' }}>
-                      Insignia Institucional en Leaderboard
+                    <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#f8fafc' }}>
+                      Insignia en el Ranking
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
-                      {university ? 'Logo oficial de tu casa de estudios' : 'Bandera de tu país'}
+                    <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+                      {university ? 'Escuela médica oficial' : 'País de origen'}
                     </div>
                   </div>
                   <UserInstitutionBadge
                     user={{ university, sede, country }}
-                    size={30}
+                    size={28}
                     showLabel={true}
-                    labelStyle={{ color: '#0f172a', fontWeight: 700, fontSize: '0.84rem' }}
+                    labelStyle={{ color: '#f8fafc', fontWeight: 600, fontSize: '0.82rem' }}
                   />
                 </div>
 
                 {saveSuccess && (
-                  <div style={{ backgroundColor: '#ecfdf5', color: '#059669', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.85rem' }}>
+                  <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.85rem' }}>
                     ✓ Perfil actualizado correctamente.
+                  </div>
+                )}
+
+                {error && (
+                  <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.85rem' }}>
+                    ✕ {error}
                   </div>
                 )}
 
@@ -620,20 +618,23 @@ const UserSettings = () => {
                   type="submit"
                   disabled={saving}
                   style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#2563eb',
+                    padding: '0.65rem 1.35rem',
+                    backgroundColor: '#0284c7',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: '12px',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
+                    borderRadius: '8px',
+                    fontWeight: 600,
+                    fontSize: '0.88rem',
                     cursor: saving ? 'wait' : 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
+                    gap: '0.45rem',
+                    transition: 'all 0.15s ease',
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#0369a1' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = '#0284c7' }}
                 >
-                  {saving ? <Loader2 size={16} className="spin" /> : <Save size={16} />}
+                  {saving ? <Loader2 size={15} className="spin" /> : <Save size={15} />}
                   <span>Guardar Cambios</span>
                 </button>
               </form>
@@ -641,57 +642,37 @@ const UserSettings = () => {
           )}
 
           {/* ═══════════════════════════════════════════════════════════════
-              TAB 2: MI PLAN & PAGOS (EXACT COPY OF SCREENSHOT 1)
+              TAB 2: PLAN & PAGOS
           ═══════════════════════════════════════════════════════════════ */}
           {activeTab === 'plan' && (
             <div>
-              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem 0' }}>
+              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
                   Mi Plan & Membresía
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>
-                  Gestiona tu acceso Prime a eunacomapp y tus métodos de pago.
+                <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                  Estado de tu suscripción y acceso a la plataforma
                 </p>
               </div>
 
-              {/* Grid with Plan Card + Payment Method Card (Screenshot 1) */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
-                
-                {/* Active Plan Card with Warning / Expire */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
                 <div style={{
-                  backgroundColor: '#fffbeb',
-                  border: '1.5px solid #fde68a',
-                  borderRadius: '16px',
-                  padding: '1.25rem',
-                  position: 'relative',
+                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                  border: isPremium ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(56, 189, 248, 0.25)',
+                  borderRadius: '12px',
+                  padding: '1.1rem',
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: '#b45309', fontWeight: 700, marginBottom: '0.85rem' }}>
-                    <AlertTriangle size={15} />
-                    <span>Tu plan expira en 3 días. ¡Renueva ahora!</span>
-                  </div>
-
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.75rem' }}>
                     <div>
-                      <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>
-                        {isPremium ? 'Plan Prime Mensual' : 'Prueba Prime 3 Días'}
+                      <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f8fafc' }}>
+                        {isPremium ? 'Plan Prime Ilimitado' : 'Acceso Estándar'}
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '2px' }}>
-                        📅 Acceso hasta: 26 de agosto de 2026
+                      <div style={{ fontSize: '0.76rem', color: '#94a3b8', marginTop: '2px' }}>
+                        {isPremium ? 'Membresía completa activa' : 'Preguntas, clases y simulacros'}
                       </div>
                     </div>
-
-                    <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Shield size={20} color="#2563eb" />
-                    </div>
-                  </div>
-
-                  <div style={{ marginTop: '1rem', marginBottom: '1.25rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                      <span>Días restantes</span>
-                      <span>3</span>
-                    </div>
-                    <div style={{ width: '100%', height: '6px', backgroundColor: '#e2e8f0', borderRadius: '999px', overflow: 'hidden' }}>
-                      <div style={{ width: '30%', height: '100%', backgroundColor: '#f59e0b', borderRadius: '999px' }} />
+                    <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8' }}>
+                      <Shield size={18} />
                     </div>
                   </div>
 
@@ -700,107 +681,65 @@ const UserSettings = () => {
                     onClick={() => setShowPaymentModal(true)}
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
-                      backgroundColor: '#2563eb',
+                      padding: '0.65rem',
+                      backgroundColor: '#0284c7',
                       color: '#ffffff',
                       border: 'none',
-                      borderRadius: '12px',
-                      fontWeight: 700,
-                      fontSize: '0.9rem',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      fontSize: '0.85rem',
                       cursor: 'pointer',
-                      boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.4rem',
                     }}
                   >
-                    🔄 Extender Acceso
+                    <span>{isPremium ? 'Gestionar Membresía' : 'Ver Planes Prime'}</span>
+                    <ChevronRight size={14} />
                   </button>
                 </div>
 
-                {/* Payment Method Card */}
                 <div style={{
-                  backgroundColor: '#ffffff',
-                  border: '1.5px solid #e2e8f0',
-                  borderRadius: '16px',
-                  padding: '1.25rem',
+                  backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '12px',
+                  padding: '1.1rem',
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
-                    <CreditCard size={18} color="#2563eb" />
-                    <span>Método de Pago</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.84rem', fontWeight: 600, color: '#f8fafc', marginBottom: '0.75rem' }}>
+                    <CreditCard size={16} color="#38bdf8" />
+                    <span>Pagos Seguros</span>
                   </div>
-
-                  <div style={{
-                    backgroundColor: '#f8fafc',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '12px',
-                    padding: '0.85rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1rem',
-                  }}>
-                    <div style={{ width: '40px', height: '26px', backgroundColor: '#f59e0b', borderRadius: '4px' }} />
-                    <div>
-                      <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#0f172a' }}>Pagos vía Flow.cl</div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748b' }}>Webpay, Tarjetas y Transferencias Chile</div>
-                    </div>
-                  </div>
-
-                  <div style={{
-                    backgroundColor: '#eff6ff',
-                    border: '1px solid #bfdbfe',
-                    borderRadius: '12px',
-                    padding: '0.75rem',
-                    display: 'flex',
-                    alignItems: 'start',
-                    gap: '0.5rem',
-                  }}>
-                    <Lock size={16} color="#2563eb" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <div style={{ fontSize: '0.72rem', color: '#1e40af' }}>
-                      <strong>Pago 100% Seguro:</strong> Encriptación bancaria SSL certificada.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Payment History Card */}
-              <div style={{
-                backgroundColor: '#f8fafc',
-                border: '1px solid #e2e8f0',
-                borderRadius: '16px',
-                padding: '1.5rem',
-                textAlign: 'center',
-              }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#475569', marginBottom: '0.25rem' }}>
-                  Aún no hay pagos registrados
-                </div>
-                <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>
-                  Tu historial y boletas electrónicas aparecerán aquí después de completar una compra.
+                  <p style={{ fontSize: '0.76rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>
+                    Transacciones encriptadas mediante Webpay y Flow.cl con boleta electrónica automática.
+                  </p>
                 </div>
               </div>
             </div>
           )}
 
           {/* ═══════════════════════════════════════════════════════════════
-              TAB 3: OBJETIVOS & METAS DE EXAMEN
+              TAB 3: OBJETIVOS
           ═══════════════════════════════════════════════════════════════ */}
           {activeTab === 'goals' && (
             <div>
-              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem 0' }}>
+              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
                   Objetivo de Estudio & Examen
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>
-                  Ajusta tu meta de puntaje y fecha de rendición.
+                <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                  Ajusta tu meta de puntaje y fecha de rendición
                 </p>
               </div>
 
               <form onSubmit={handleSaveProfile}>
                 <div style={{ marginBottom: '1.25rem' }}>
-                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#334155', marginBottom: '0.5rem' }}>
-                    Tu Gran Meta
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.5rem' }}>
+                    Meta de Rendimiento
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.5rem' }}>
                     {[
-                      { id: 'beca', label: 'Beca >75-80%', sub: 'Alta Competitividad' },
+                      { id: 'beca', label: 'Beca >75%', sub: 'Especialidad' },
                       { id: 'pass_51', label: 'Aprobar ≥51%', sub: 'Corte Oficial' },
                       { id: 'reval', label: 'Revalidación', sub: 'Homologación' },
                     ].map((g) => (
@@ -809,30 +748,38 @@ const UserSettings = () => {
                         type="button"
                         onClick={() => setGoal(g.id)}
                         style={{
-                          padding: '0.75rem 0.5rem',
-                          borderRadius: '12px',
-                          border: goal === g.id ? '2px solid #2563eb' : '1px solid #e2e8f0',
-                          backgroundColor: goal === g.id ? '#eff6ff' : '#ffffff',
+                          padding: '0.65rem 0.5rem',
+                          borderRadius: '8px',
+                          border: goal === g.id ? '1.5px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.08)',
+                          backgroundColor: goal === g.id ? 'rgba(56, 189, 248, 0.15)' : 'rgba(15, 23, 42, 0.5)',
                           cursor: 'pointer',
                           textAlign: 'center',
                         }}
                       >
-                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: goal === g.id ? '#1d4ed8' : '#0f172a' }}>{g.label}</div>
-                        <div style={{ fontSize: '0.68rem', color: '#64748b' }}>{g.sub}</div>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: goal === g.id ? '#38bdf8' : '#f8fafc' }}>{g.label}</div>
+                        <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>{g.sub}</div>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <div className="settings-form-grid">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Mes de Examen
                     </label>
                     <select
                       value={examMonth}
                       onChange={(e) => setExamMonth(e.target.value)}
-                      style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.88rem', fontWeight: 600 }}
+                      style={{
+                        width: '100%',
+                        padding: '0.65rem 0.85rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
+                      }}
                     >
                       <option value="Julio">Julio</option>
                       <option value="Diciembre">Diciembre</option>
@@ -840,13 +787,21 @@ const UserSettings = () => {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Año de Examen
                     </label>
                     <select
                       value={examYear}
                       onChange={(e) => setExamYear(e.target.value)}
-                      style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.88rem', fontWeight: 600 }}
+                      style={{
+                        width: '100%',
+                        padding: '0.65rem 0.85rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
+                      }}
                     >
                       <option value="2025">2025</option>
                       <option value="2026">2026</option>
@@ -856,7 +811,7 @@ const UserSettings = () => {
                 </div>
 
                 {saveSuccess && (
-                  <div style={{ backgroundColor: '#ecfdf5', color: '#059669', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.85rem' }}>
+                  <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.85rem' }}>
                     ✓ Metas actualizadas correctamente.
                   </div>
                 )}
@@ -865,13 +820,13 @@ const UserSettings = () => {
                   type="submit"
                   disabled={saving}
                   style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#2563eb',
+                    padding: '0.65rem 1.35rem',
+                    backgroundColor: '#0284c7',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: '12px',
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
+                    borderRadius: '8px',
+                    fontWeight: 600,
+                    fontSize: '0.88rem',
                     cursor: 'pointer',
                   }}
                 >
@@ -882,24 +837,23 @@ const UserSettings = () => {
           )}
 
           {/* ═══════════════════════════════════════════════════════════════
-              TAB 4: SEGURIDAD & CONTRASEÑA
+              TAB 4: SEGURIDAD
           ═══════════════════════════════════════════════════════════════ */}
           {activeTab === 'security' && (
             <div>
-              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem 0' }}>
-                  Seguridad de la Cuenta
+              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                  Seguridad & Contraseña
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>
-                  Cambia tu contraseña o gestiona tu sesión activa.
+                <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                  Actualiza tu contraseña de acceso
                 </p>
               </div>
 
-              {/* Change Password Form */}
-              <form onSubmit={handleUpdatePassword} style={{ marginBottom: '2rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1rem' }}>
+              <form onSubmit={handleUpdatePassword} style={{ marginBottom: '1.5rem' }}>
+                <div className="settings-form-grid">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Nueva Contraseña
                     </label>
                     <input
@@ -910,55 +864,49 @@ const UserSettings = () => {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
+                        outline: 'none',
                       }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.35rem' }}>
                       Confirmar Contraseña
                     </label>
                     <input
                       type="password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="Repite la contraseña"
+                      placeholder="Repite tu contraseña"
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        borderRadius: '10px',
-                        border: '1.5px solid #e2e8f0',
-                        fontSize: '0.88rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                        color: '#f8fafc',
+                        fontSize: '0.86rem',
+                        outline: 'none',
                       }}
                     />
                   </div>
                 </div>
 
-                {passwordSuccess && (
-                  <div style={{ backgroundColor: '#ecfdf5', color: '#059669', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.85rem' }}>
-                    ✓ Contraseña actualizada correctamente.
-                  </div>
-                )}
-
-                {error && (
-                  <div style={{ backgroundColor: '#fef2f2', color: '#dc2626', padding: '0.5rem 0.75rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.85rem' }}>
-                    {error}
-                  </div>
-                )}
-
                 <button
                   type="submit"
                   disabled={passwordLoading}
                   style={{
-                    padding: '0.7rem 1.4rem',
-                    backgroundColor: '#0f172a',
+                    padding: '0.65rem 1.35rem',
+                    backgroundColor: '#0284c7',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: '10px',
-                    fontWeight: 700,
+                    borderRadius: '8px',
+                    fontWeight: 600,
                     fontSize: '0.88rem',
                     cursor: 'pointer',
                   }}
@@ -966,90 +914,20 @@ const UserSettings = () => {
                   {passwordLoading ? 'Actualizando...' : 'Actualizar Contraseña'}
                 </button>
               </form>
-
-              {/* Danger Zone: Delete Account */}
-              <div style={{
-                borderTop: '1px solid #fee2e2',
-                paddingTop: '1.25rem',
-              }}>
-                <h4 style={{ color: '#dc2626', fontSize: '0.95rem', fontWeight: 800, margin: '0 0 0.35rem 0' }}>
-                  Zona de Peligro: Eliminar Cuenta
-                </h4>
-                <p style={{ fontSize: '0.78rem', color: '#64748b', margin: '0 0 0.85rem 0' }}>
-                  Esta acción borrará de forma permanente todas tus estadísticas, historial de exámenes y progreso.
-                </p>
-
-                {!showDeleteConfirm ? (
-                  <button
-                    type="button"
-                    onClick={() => setShowDeleteConfirm(true)}
-                    style={{
-                      padding: '0.55rem 1rem',
-                      backgroundColor: '#fee2e2',
-                      color: '#dc2626',
-                      border: '1px solid #fca5a5',
-                      borderRadius: '8px',
-                      fontWeight: 700,
-                      fontSize: '0.82rem',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Eliminar mi cuenta
-                  </button>
-                ) : (
-                  <div style={{ backgroundColor: '#fef2f2', padding: '1rem', borderRadius: '12px', border: '1px solid #fca5a5' }}>
-                    <p style={{ fontSize: '0.82rem', color: '#991b1b', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
-                      Escribe "ELIMINAR" para confirmar:
-                    </p>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <input
-                        type="text"
-                        value={deleteInput}
-                        onChange={(e) => setDeleteInput(e.target.value)}
-                        placeholder="ELIMINAR"
-                        style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #dc2626', fontSize: '0.85rem', fontWeight: 700 }}
-                      />
-                      <button
-                        type="button"
-                        disabled={deleteInput !== 'ELIMINAR' || deleting}
-                        onClick={handleDeleteAccount}
-                        style={{
-                          padding: '0.5rem 1rem',
-                          backgroundColor: '#dc2626',
-                          color: '#ffffff',
-                          border: 'none',
-                          borderRadius: '8px',
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {deleting ? 'Eliminando...' : 'Confirmar Eliminación'}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setShowDeleteConfirm(false)}
-                        style={{ padding: '0.5rem 1rem', backgroundColor: '#e2e8f0', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
-                      >
-                        Cancelar
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
             </div>
           )}
 
           {/* ═══════════════════════════════════════════════════════════════
-              TAB 5: LEGAL Y AYUDA
+              TAB 5: LEGAL & AYUDA
           ═══════════════════════════════════════════════════════════════ */}
           {activeTab === 'legal' && (
             <div>
-              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem 0' }}>
-                  Legal & Soporte Académico
+              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                  Información Legal & Soporte
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#64748b', margin: 0 }}>
-                  Términos de servicio, política de privacidad y canal de ayuda.
+                <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                  Políticas y canales oficiales de asistencia médica
                 </p>
               </div>
 
@@ -1057,74 +935,76 @@ const UserSettings = () => {
                 <a
                   href={PRIVACY_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     padding: '0.85rem 1rem',
-                    borderRadius: '12px',
-                    border: '1px solid #e2e8f0',
+                    borderRadius: '10px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    backgroundColor: 'rgba(15, 23, 42, 0.5)',
                     textDecoration: 'none',
-                    color: '#0f172a',
+                    color: '#f8fafc',
                     fontWeight: 600,
-                    fontSize: '0.88rem',
+                    fontSize: '0.86rem',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield size={18} color="#2563eb" />
+                    <Shield size={16} color="#38bdf8" />
                     <span>Política de Privacidad</span>
                   </div>
-                  <ExternalLink size={16} color="#94a3b8" />
+                  <ExternalLink size={14} color="#94a3b8" />
                 </a>
 
                 <a
                   href={TERMS_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     padding: '0.85rem 1rem',
-                    borderRadius: '12px',
-                    border: '1px solid #e2e8f0',
+                    borderRadius: '10px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    backgroundColor: 'rgba(15, 23, 42, 0.5)',
                     textDecoration: 'none',
-                    color: '#0f172a',
+                    color: '#f8fafc',
                     fontWeight: 600,
-                    fontSize: '0.88rem',
+                    fontSize: '0.86rem',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield size={18} color="#2563eb" />
-                    <span>Términos y Condiciones</span>
+                    <Shield size={16} color="#38bdf8" />
+                    <span>Términos y Condiciones de Uso</span>
                   </div>
-                  <ExternalLink size={16} color="#94a3b8" />
+                  <ExternalLink size={14} color="#94a3b8" />
                 </a>
 
                 <a
                   href="https://wa.me/56900000000"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     padding: '0.85rem 1rem',
-                    borderRadius: '12px',
-                    border: '1.5px solid #a7f3d0',
-                    backgroundColor: '#ecfdf5',
+                    borderRadius: '10px',
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.12)',
                     textDecoration: 'none',
-                    color: '#065f46',
-                    fontWeight: 700,
-                    fontSize: '0.88rem',
+                    color: '#34d399',
+                    fontWeight: 600,
+                    fontSize: '0.86rem',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span>💬</span>
                     <span>Soporte Académico vía WhatsApp</span>
                   </div>
-                  <ExternalLink size={16} color="#059669" />
+                  <ExternalLink size={14} color="#34d399" />
                 </a>
               </div>
             </div>
