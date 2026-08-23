@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { 
   X, Heart, Sparkles, Flame, CheckCircle2, AlertCircle, 
-  ArrowRight, Trophy, Star, Stethoscope, Zap, Shield, Check, PartyPopper
+  ArrowRight, Trophy, Star, Stethoscope, Zap, Shield, Check, PartyPopper, Lightbulb
 } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { 
@@ -30,6 +30,7 @@ export default function MedLingoLessonModal({
   const [mistakesCount, setMistakesCount] = useState(0)
   const [showVictory, setShowVictory] = useState(false)
   const [outOfHearts, setOutOfHearts] = useState(false)
+  const [showHint, setShowHint] = useState(false)
 
   // Current question interaction state
   const [selectedChoice, setSelectedChoice] = useState(null)
@@ -63,6 +64,7 @@ export default function MedLingoLessonModal({
     setUserPairs([])
     setSelectedLeft(null)
     setAnswerStatus('idle')
+    setShowHint(false)
 
     if (currentQuestion.type === 'concept_card') {
       playChestOpenSound()
@@ -478,18 +480,43 @@ export default function MedLingoLessonModal({
               <>
                 {/* Question Prompt with Doctor Buddy in header */}
                 <div className="medlingo-question-header-row">
-                  <div className="question-mentor-mini">
+                  <div className="question-mentor-mini" title={`Mentor: ${activeMentor.name}`}>
                     <img src={mentorImage} alt={activeMentor.name} className="mini-avatar-img" onError={(e) => { e.target.style.display = 'none' }} />
                   </div>
                   <div className="question-prompt-text-wrap">
-                    <div className="prompt-type-badge">
-                      {currentQuestion.type === 'flash_mcq' && 'Caso Clínico Flash'}
-                      {currentQuestion.type === 'match_pairs' && 'Empareja los Conceptos'}
-                      {currentQuestion.type === 'order_sequence' && 'Ordena el Algoritmo'}
-                      {currentQuestion.type === 'fill_blanks' && 'Completa la Norma'}
-                      {currentQuestion.type === 'speed_true_false' && 'Triage Rápido V/F'}
+                    <div className="prompt-header-top-row">
+                      <div className="prompt-type-badge">
+                        {currentQuestion.type === 'flash_mcq' && 'Caso Clínico Flash'}
+                        {currentQuestion.type === 'match_pairs' && 'Empareja los Conceptos'}
+                        {currentQuestion.type === 'order_sequence' && 'Ordena el Algoritmo'}
+                        {currentQuestion.type === 'fill_blanks' && 'Completa la Norma'}
+                        {currentQuestion.type === 'speed_true_false' && 'Triage Rápido V/F'}
+                      </div>
+                      {currentQuestion.hint && answerStatus === 'idle' && (
+                        <button
+                          type="button"
+                          className={`medlingo-inline-hint-pill ${showHint ? 'active' : ''}`}
+                          onClick={() => {
+                            playTapSound()
+                            setShowHint(prev => !prev)
+                          }}
+                          title="Ver pista clínica"
+                        >
+                          <Lightbulb size={13} />
+                          <span>{showHint ? 'Ocultar Pista' : 'Pista'}</span>
+                        </button>
+                      )}
                     </div>
                     <h3>{currentQuestion.prompt}</h3>
+                    {showHint && currentQuestion.hint && answerStatus === 'idle' && (
+                      <div className="medlingo-inline-hint-card animate-scale-up">
+                        <div className="hint-card-header">
+                          <Lightbulb size={14} color="#eab308" />
+                          <span>Pista de Guardia ({activeMentor.name})</span>
+                        </div>
+                        <p className="hint-card-body">{currentQuestion.hint}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -664,14 +691,14 @@ export default function MedLingoLessonModal({
           </div>
         )}
 
-        {/* ── Floating Corner Character Mascot with Speech & Hints ── */}
-        {!showVictory && !outOfHearts && !isConceptCard && (
+        {/* ── Floating Corner Character Mascot with Speech & Hints (Desktop idle only) ── */}
+        {!showVictory && !outOfHearts && !isConceptCard && answerStatus === 'idle' && (
           <MedLingoMentorWidget
             mentorId={currentQuestion?.mentorTip?.mentorId || state.activeMentorId}
             hintText={currentQuestion?.hint}
             mentorQuote={currentQuestion?.mentorTip?.dialogue}
             combo={combo}
-            isCorrect={answerStatus === 'incorrect' ? false : answerStatus === 'correct' ? true : null}
+            isCorrect={null}
           />
         )}
 

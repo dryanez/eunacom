@@ -2198,6 +2198,15 @@
   flex: 1;
 }
 
+.prompt-header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
 .prompt-type-badge {
   display: inline-block;
   background: var(--duo-blue-tint);
@@ -2207,8 +2216,62 @@
   font-size: 0.72rem;
   font-weight: 900;
   text-transform: uppercase;
-  margin-bottom: 0.3rem;
   letter-spacing: 0.5px;
+}
+
+.medlingo-inline-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(234, 179, 8, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.medlingo-inline-hint-pill:hover,
+.medlingo-inline-hint-pill.active {
+  background: #fbbf24;
+  color: #18181b;
+  border-color: #fbbf24;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
+}
+
+.medlingo-inline-hint-card {
+  margin-top: 0.65rem;
+  margin-bottom: 0.35rem;
+  padding: 0.75rem 0.95rem;
+  background: rgba(234, 179, 8, 0.12);
+  border: 1.5px solid rgba(234, 179, 8, 0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.hint-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hint-card-body {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #fef08a;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
 .question-prompt-text-wrap h3 {
@@ -2524,6 +2587,13 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
+}
+
+/* On phones & mobile devices, hide floating corner overlay to prevent blocking choices & drawers */
+@media (max-width: 900px) {
+  .medlingo-corner-mentor {
+    display: none !important;
+  }
 }
 
 .medlingo-mascot-actions {
