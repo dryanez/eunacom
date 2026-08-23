@@ -390,7 +390,9 @@ const Dashboard = () => {
   const xpProgress = getLevelProgress(stats.xp, stats.level)
   const levelTitle = getLevelTitle(stats.level)
   const dailyPct = Math.min((todayAnswers / DAILY_GOAL) * 100, 100)
-  const myRank = leaderboard.findIndex(u => u.user_id === user?.id) + 1
+  const myRank = (Array.isArray(leaderboard) && user?.id)
+    ? Math.max(0, leaderboard.findIndex(u => u?.user_id === user.id) + 1)
+    : 0
   const activeDoctor = DOCTOR_CHARACTERS.find(d => d.id === (userProfile?.selected_doctor || 'dr_house')) || DOCTOR_CHARACTERS[0]
 
   return (
