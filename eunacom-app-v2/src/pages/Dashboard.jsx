@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PieChart, FileText, Target, Activity, CreditCard, RotateCcw, Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp, Layers, Download, X, Sparkles, Stethoscope, LogIn, ChevronRight, BookOpen } from 'lucide-react'
+import {
+  PieChart, FileText, Target, Activity, CreditCard, RotateCcw,
+  Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp,
+  Layers, Download, X, Sparkles, Stethoscope, LogIn, ChevronRight,
+  BookOpen, Building2, Globe, Users, ArrowUpRight, Filter
+} from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchProgress, fetchLeaderboard } from '../lib/api'
+import { fetchProgress, fetchLeaderboard, fetchUserProfile } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP } from '../utils/xpSystem'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
+import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
 
 const TOPIC_PRESETS = [
   // Módulo 1 · Medicina Interna
@@ -48,7 +54,13 @@ const Dashboard = () => {
   const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0, exams: 0 }, custom: { answered: 0, correct: 0, exams: 0 }, clases: { answered: 0, correct: 0, exams: 0 } })
   const [activeTab, setActiveTab] = useState('general') // general, clases, reconstructions, custom
   const [leaderboard, setLeaderboard] = useState([])
+  const [sedeLeaderboard, setSedeLeaderboard] = useState([])
+  const [countryLeaderboard, setCountryLeaderboard] = useState([])
   const [lbPeriod, setLbPeriod] = useState('week')
+  const [lbView, setLbView] = useState('doctors') // 'doctors' | 'sedes' | 'countries'
+  const [filterUniversity, setFilterUniversity] = useState('')
+  const [filterCountry, setFilterCountry] = useState('')
+  const [userProfile, setUserProfile] = useState(null)
   const [todayAnswers, setTodayAnswers] = useState(0)
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
@@ -332,12 +344,27 @@ const Dashboard = () => {
     } catch (e) { console.error('Dashboard stats error:', e) }
   }
 
-  const loadLeaderboard = async (period) => {
+  useEffect(() => {
+    if (user?.id) {
+      fetchUserProfile(user.id).then(p => {
+        if (p) setUserProfile(p)
+      }).catch(() => {})
+    }
+  }, [user])
+
+  const loadLeaderboard = async (period = lbPeriod, customUni = filterUniversity, customCountry = filterCountry) => {
     setLbPeriod(period)
     setLbLoading(true)
     try {
-      const data = await fetchLeaderboard(period, user?.id || null)
+      const data = await fetchLeaderboard({
+        period,
+        userId: user?.id || null,
+        university: customUni || null,
+        country: customCountry || null
+      })
       setLeaderboard(data.leaderboard || [])
+      setSedeLeaderboard(data.sedeLeaderboard || [])
+      setCountryLeaderboard(data.countryLeaderboard || [])
       if (user) {
         setStats(prev => ({ ...prev, streak: data.streak || 0 }))
         setTodayAnswers(data.todayAnswers || 0)
@@ -782,69 +809,531 @@ const Dashboard = () => {
         }}
       />
 
-      {/* ─── LEADERBOARD ─── */}
-      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Trophy size={20} color="var(--accent-amber)" />
-            <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800 }}>Leaderboard</h3>
-            {myRank > 0 && <span style={{ fontSize: '0.78rem', color: 'var(--primary-300)', fontWeight: 600, background: 'rgba(19,91,236,0.1)', padding: '0.15rem 0.5rem', borderRadius: 'var(--radius-full)' }}>Tú #{myRank}</span>}
+      {/* ─── LEADERBOARD SECTION ─── */}
+      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 30, 0.98) 100%)', border: '1px solid rgba(56, 189, 248, 0.2)', borderRadius: '20px' }}>
+        
+        {/* Header with Title & Period Selector */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{ padding: '0.45rem', background: 'rgba(234, 179, 8, 0.12)', borderRadius: '12px', border: '1px solid rgba(234, 179, 8, 0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Trophy size={22} color="#eab308" />
+            </div>
+            <div>
+              <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.01em' }}>
+                Leaderboards & Ligas EUNACOM
+              </h3>
+              <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: '#94a3b8' }}>
+                Competencia médica inter-universitaria y global por sedes y países
+              </p>
+            </div>
+            {myRank > 0 && lbView === 'doctors' && (
+              <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 700, background: 'rgba(56, 189, 248, 0.12)', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '0.2rem 0.6rem', borderRadius: '100px', marginLeft: '0.25rem' }}>
+                Tú #{myRank}
+              </span>
+            )}
           </div>
-          <div style={{ display: 'flex', gap: '0.25rem' }}>
+
+          {/* Period Selector Pills */}
+          <div style={{ display: 'flex', background: 'rgba(255,255,255,0.06)', padding: '3px', borderRadius: '100px', gap: '2px' }}>
             {PERIODS.map(p => (
-              <button key={p.key} onClick={() => loadLeaderboard(p.key)} style={{
-                padding: '0.3rem 0.65rem', borderRadius: 'var(--radius-full)', border: 'none',
-                background: lbPeriod === p.key ? 'var(--primary-500)' : 'var(--surface-600)',
-                color: lbPeriod === p.key ? '#fff' : 'var(--surface-300)',
-                fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font)',
-              }}>{p.label}</button>
+              <button
+                key={p.key}
+                onClick={() => loadLeaderboard(p.key, filterUniversity, filterCountry)}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '100px',
+                  border: 'none',
+                  background: lbPeriod === p.key ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'transparent',
+                  color: lbPeriod === p.key ? '#fff' : 'var(--surface-300)',
+                  fontSize: '0.76rem',
+                  fontWeight: lbPeriod === p.key ? 700 : 500,
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font)',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                {p.label}
+              </button>
             ))}
           </div>
         </div>
 
+        {/* ─── SCOPE NAVIGATION TABS (MÉDICOS | POR SEDE / UNIVERSIDAD | POR PAÍS) ─── */}
+        <div style={{
+          display: 'flex',
+          gap: '0.5rem',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          paddingBottom: '0.75rem',
+          marginBottom: '1rem',
+          overflowX: 'auto',
+          scrollbarWidth: 'none'
+        }}>
+          <button
+            onClick={() => setLbView('doctors')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              padding: '0.5rem 0.9rem',
+              borderRadius: '12px',
+              border: lbView === 'doctors' ? '1.5px solid #38bdf8' : '1px solid rgba(255,255,255,0.08)',
+              background: lbView === 'doctors' ? 'rgba(56, 189, 248, 0.14)' : 'rgba(255,255,255,0.02)',
+              color: lbView === 'doctors' ? '#38bdf8' : '#94a3b8',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <Stethoscope size={16} />
+            <span>Médicos Postulantes</span>
+          </button>
+
+          <button
+            onClick={() => setLbView('sedes')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              padding: '0.5rem 0.9rem',
+              borderRadius: '12px',
+              border: lbView === 'sedes' ? '1.5px solid #a855f7' : '1px solid rgba(255,255,255,0.08)',
+              background: lbView === 'sedes' ? 'rgba(168, 85, 247, 0.14)' : 'rgba(255,255,255,0.02)',
+              color: lbView === 'sedes' ? '#c084fc' : '#94a3b8',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <Building2 size={16} />
+            <span>Por Sede / Universidad</span>
+          </button>
+
+          <button
+            onClick={() => setLbView('countries')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              padding: '0.5rem 0.9rem',
+              borderRadius: '12px',
+              border: lbView === 'countries' ? '1.5px solid #10b981' : '1px solid rgba(255,255,255,0.08)',
+              background: lbView === 'countries' ? 'rgba(16, 185, 129, 0.14)' : 'rgba(255,255,255,0.02)',
+              color: lbView === 'countries' ? '#34d399' : '#94a3b8',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <Globe size={16} />
+            <span>Por Países</span>
+          </button>
+        </div>
+
+        {/* ─── FILTERS ROW (When in Médicos view) ─── */}
+        {lbView === 'doctors' && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '0.5rem',
+            marginBottom: '1rem',
+            background: 'rgba(255,255,255,0.02)',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(255,255,255,0.05)'
+          }}>
+            {/* Quick Filter Buttons */}
+            <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 600, marginRight: '0.2rem' }}>
+                Filtrar:
+              </span>
+              <button
+                onClick={() => {
+                  setFilterUniversity('')
+                  setFilterCountry('')
+                  loadLeaderboard(lbPeriod, '', '')
+                }}
+                style={{
+                  padding: '0.25rem 0.6rem',
+                  borderRadius: '100px',
+                  border: 'none',
+                  background: !filterUniversity && !filterCountry ? '#38bdf8' : 'rgba(255,255,255,0.08)',
+                  color: !filterUniversity && !filterCountry ? '#0f172a' : '#cbd5e1',
+                  fontSize: '0.74rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                Todos
+              </button>
+
+              {userProfile?.university && (
+                <button
+                  onClick={() => {
+                    const uni = userProfile.university
+                    setFilterUniversity(uni)
+                    setFilterCountry('')
+                    loadLeaderboard(lbPeriod, uni, '')
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    padding: '0.25rem 0.6rem',
+                    borderRadius: '100px',
+                    border: 'none',
+                    background: filterUniversity === userProfile.university ? '#a855f7' : 'rgba(255,255,255,0.08)',
+                    color: filterUniversity === userProfile.university ? '#fff' : '#cbd5e1',
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <UserInstitutionBadge user={userProfile} size={14} />
+                  <span>Mi Sede ({userProfile.sede || 'Mi Uni'})</span>
+                </button>
+              )}
+
+              {userProfile?.country && (
+                <button
+                  onClick={() => {
+                    const c = userProfile.country
+                    setFilterCountry(c)
+                    setFilterUniversity('')
+                    loadLeaderboard(lbPeriod, '', c)
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    padding: '0.25rem 0.6rem',
+                    borderRadius: '100px',
+                    border: 'none',
+                    background: filterCountry === userProfile.country ? '#10b981' : 'rgba(255,255,255,0.08)',
+                    color: filterCountry === userProfile.country ? '#fff' : '#cbd5e1',
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <span>{userProfile.country === 'Chile' ? '🇨🇱' : '🌐'}</span>
+                  <span>Mi País ({userProfile.country})</span>
+                </button>
+              )}
+            </div>
+
+            {/* Dropdown Selectors */}
+            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <select
+                value={filterUniversity}
+                onChange={(e) => {
+                  const val = e.target.value
+                  setFilterUniversity(val)
+                  loadLeaderboard(lbPeriod, val, filterCountry)
+                }}
+                style={{
+                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '8px',
+                  padding: '0.25rem 0.5rem',
+                  fontSize: '0.74rem',
+                  color: filterUniversity ? '#38bdf8' : '#94a3b8',
+                  outline: 'none',
+                  cursor: 'pointer',
+                  maxWidth: '160px'
+                }}
+              >
+                <option value="">🏛️ Todas las Sedes</option>
+                {CHILEAN_UNIVERSITIES.map(u => (
+                  <option key={u.id} value={u.name}>{u.shortName} ({u.country})</option>
+                ))}
+              </select>
+
+              <select
+                value={filterCountry}
+                onChange={(e) => {
+                  const val = e.target.value
+                  setFilterCountry(val)
+                  loadLeaderboard(lbPeriod, filterUniversity, val)
+                }}
+                style={{
+                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '8px',
+                  padding: '0.25rem 0.5rem',
+                  fontSize: '0.74rem',
+                  color: filterCountry ? '#10b981' : '#94a3b8',
+                  outline: 'none',
+                  cursor: 'pointer',
+                  maxWidth: '140px'
+                }}
+              >
+                <option value="">🌐 Todos los Países</option>
+                {COUNTRIES.map(c => (
+                  <option key={c.code} value={c.name}>{c.flag} {c.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
+
+        {/* ─── LEADERBOARD CONTENT ─── */}
         {lbLoading ? (
-          <div style={{ textAlign: 'center', padding: '1rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>Cargando...</div>
-        ) : leaderboard.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
-            Aún no hay actividad {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}. ¡Sé el primero!
+          <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
+            <div className="spinner" style={{ margin: '0 auto 0.5rem', width: 24, height: 24 }} />
+            Cargando clasificaciones...
           </div>
+        ) : lbView === 'doctors' ? (
+          /* 1. DOCTORS VIEW */
+          leaderboard.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
+              Aún no hay actividad registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''} {filterUniversity ? `en ${filterUniversity}` : ''} {filterCountry ? `en ${filterCountry}` : ''}. ¡Sé el primero en responder casos!
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {leaderboard.slice(0, 20).map((u, i) => {
+                const isMe = u.user_id === user?.id
+                const name = (u.first_name ? `Dr(a). ${u.first_name} ${(u.last_name || '').charAt(0)}.` : u.email?.split('@')[0] || 'Médico Anónimo')
+                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+                const uLvl = calculateLevelUp(Number(u.xp || 0), 1).newLevel
+                const correctPct = u.total_answers > 0 ? Math.round((u.correct / u.total_answers) * 100) : 0
+
+                return (
+                  <div
+                    key={u.user_id || i}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      padding: '0.65rem 0.85rem',
+                      borderRadius: '12px',
+                      background: isMe ? 'rgba(56, 189, 248, 0.1)' : i < 3 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)',
+                      border: isMe ? '1.5px solid rgba(56, 189, 248, 0.35)' : '1px solid rgba(255,255,255,0.04)',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    {/* Rank Number / Medal */}
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.9rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                      {rankIcon || (i + 1)}
+                    </div>
+
+                    {/* Doctor Avatar with Institution Logo Badge */}
+                    <div style={{ position: 'relative', flexShrink: 0 }}>
+                      <div style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: '50%',
+                        background: isMe ? 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)' : 'var(--surface-700)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 700,
+                        fontSize: '0.85rem',
+                        color: '#fff',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+                      }}>
+                        {name.charAt(0).toUpperCase()}
+                      </div>
+                      
+                      {/* University Logo / Country Flag badge positioned on bottom-right of avatar */}
+                      <div style={{ position: 'absolute', bottom: -3, right: -4 }}>
+                        <UserInstitutionBadge
+                          user={u}
+                          size={18}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Doctor Info */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        <span style={{ fontWeight: isMe ? 700 : 600, fontSize: '0.88rem', color: isMe ? '#38bdf8' : '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {name}
+                        </span>
+                        {isMe && (
+                          <span style={{ fontSize: '0.68rem', color: '#0284c7', background: '#e0f2fe', padding: '1px 5px', borderRadius: '4px', fontWeight: 800 }}>
+                            Tú
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap', marginTop: 1 }}>
+                        <span style={{ color: '#38bdf8', fontWeight: 600 }}>Nvl {uLvl}</span>
+                        <span>·</span>
+                        <span style={{ fontStyle: 'italic' }}>{getLevelTitle(uLvl)}</span>
+                        <span>·</span>
+                        <span style={{ color: '#cbd5e1' }}>
+                          {u.university ? (u.university.split('(')[0] || u.university) : (u.country || 'Chile')}
+                          {u.sede ? ` (${u.sede})` : ''}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Stats & XP */}
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                        <Zap size={14} color="#eab308" /> {Number(u.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>XP</span>
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
+                        {u.total_answers || 0} pregs · {correctPct}%
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )
+        ) : lbView === 'sedes' ? (
+          /* 2. SEDES & UNIVERSITIES VIEW */
+          sedeLeaderboard.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
+              Aún no hay actividad de sedes registradas {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {sedeLeaderboard.map((s, i) => {
+                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+
+                return (
+                  <div
+                    key={`${s.university}-${s.sede}-${i}`}
+                    onClick={() => {
+                      setFilterUniversity(s.university)
+                      setLbView('doctors')
+                      loadLeaderboard(lbPeriod, s.university, '')
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.85rem',
+                      padding: '0.75rem 1rem',
+                      borderRadius: '14px',
+                      background: i < 3 ? 'rgba(168, 85, 247, 0.07)' : 'rgba(255,255,255,0.02)',
+                      border: i === 0 ? '1.5px solid rgba(234, 179, 8, 0.4)' : '1px solid rgba(255,255,255,0.06)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                    title="Haz clic para ver los médicos de esta sede"
+                  >
+                    {/* Rank */}
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.95rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                      {rankIcon || (i + 1)}
+                    </div>
+
+                    {/* University Logo */}
+                    <UserInstitutionBadge
+                      user={{ university: s.university, sede: s.sede, country: s.country }}
+                      size={36}
+                    />
+
+                    {/* Info */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#f8fafc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {s.university}
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: '#a855f7', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: 2 }}>
+                        <span>📍 {s.sede}</span>
+                        <span>·</span>
+                        <span style={{ color: '#94a3b8' }}>👥 {s.total_doctors} médico{s.total_doctors > 1 ? 's' : ''} activo{s.total_doctors > 1 ? 's' : ''}</span>
+                      </div>
+                    </div>
+
+                    {/* XP & Action */}
+                    <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <div>
+                        <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                          <Zap size={15} color="#eab308" /> {Number(s.xp || 0).toLocaleString()} <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>XP</span>
+                        </div>
+                        <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                          {s.total_answers || 0} respuestas
+                        </div>
+                      </div>
+                      <ArrowUpRight size={16} color="#38bdf8" />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-            {leaderboard.slice(0, 10).map((u, i) => {
-              const isMe = u.user_id === user?.id
-              const name = (u.first_name ? `${u.first_name} ${(u.last_name || '').charAt(0)}.` : u.email?.split('@')[0] || 'Anónimo')
-              const rankIcon = i === 0 ? <Crown size={16} color="#FFD700" /> : i === 1 ? <Medal size={16} color="#C0C0C0" /> : i === 2 ? <Medal size={16} color="#CD7F32" /> : null
-              const uLvl = calculateLevelUp(Number(u.xp || 0), 1).newLevel
-              return (
-                <div key={u.user_id} style={{
-                  display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 0.75rem',
-                  borderRadius: 'var(--radius)',
-                  background: isMe ? 'rgba(19,91,236,0.08)' : i < 3 ? 'rgba(255,255,255,0.02)' : 'transparent',
-                  border: isMe ? '1px solid rgba(19,91,236,0.2)' : '1px solid transparent',
-                }}>
-                  <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.85rem', color: i < 3 ? 'var(--accent-amber)' : 'var(--surface-400)' }}>
-                    {rankIcon || (i + 1)}
-                  </div>
-                  <div style={{ width: 32, height: 32, borderRadius: 'var(--radius-full)', background: isMe ? 'var(--primary-500)' : 'var(--surface-600)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', color: '#fff', flexShrink: 0 }}>
-                    {name.charAt(0).toUpperCase()}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontWeight: isMe ? 700 : 500, fontSize: '0.88rem', color: 'var(--surface-100)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {name} {isMe && <span style={{ fontSize: '0.72rem', color: 'var(--primary-300)' }}>(tú)</span>}
+          /* 3. COUNTRIES VIEW */
+          countryLeaderboard.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
+              Aún no hay actividad de países registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {countryLeaderboard.map((c, i) => {
+                const rankIcon = i === 0 ? <Crown size={18} color="#FFD700" /> : i === 1 ? <Medal size={18} color="#C0C0C0" /> : i === 2 ? <Medal size={18} color="#CD7F32" /> : null
+
+                return (
+                  <div
+                    key={`${c.country}-${i}`}
+                    onClick={() => {
+                      setFilterCountry(c.country)
+                      setLbView('doctors')
+                      loadLeaderboard(lbPeriod, '', c.country)
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.85rem',
+                      padding: '0.75rem 1rem',
+                      borderRadius: '14px',
+                      background: i < 3 ? 'rgba(16, 185, 129, 0.07)' : 'rgba(255,255,255,0.02)',
+                      border: i === 0 ? '1.5px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(255,255,255,0.06)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                    title="Haz clic para ver los médicos de este país"
+                  >
+                    {/* Rank */}
+                    <div style={{ width: 28, textAlign: 'center', fontWeight: 800, fontSize: '0.95rem', color: i < 3 ? '#eab308' : 'var(--surface-400)', flexShrink: 0 }}>
+                      {rankIcon || (i + 1)}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <span style={{ color: 'var(--primary-300)', fontWeight: 600 }}>Nvl {uLvl}</span>
-                      <span>·</span>
-                      <span style={{ fontStyle: 'italic' }}>{getLevelTitle(uLvl)}</span>
+
+                    {/* Flag Badge */}
+                    <UserInstitutionBadge
+                      user={{ country: c.country }}
+                      size={36}
+                    />
+
+                    {/* Info */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#f8fafc' }}>
+                        {c.country}
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: '#34d399', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: 2 }}>
+                        <span>👥 {c.total_doctors} médico{c.total_doctors > 1 ? 's' : ''} postulante{c.total_doctors > 1 ? 's' : ''}</span>
+                        <span>·</span>
+                        <span style={{ color: '#94a3b8' }}>{c.total_answers || 0} casos resueltos</span>
+                      </div>
+                    </div>
+
+                    {/* XP & Action */}
+                    <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <div>
+                        <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
+                          <Zap size={15} color="#eab308" /> {Number(c.xp || 0).toLocaleString()} <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>XP</span>
+                        </div>
+                        <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                          Puntaje Nacional
+                        </div>
+                      </div>
+                      <ArrowUpRight size={16} color="#38bdf8" />
                     </div>
                   </div>
-                  <div style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--accent-amber)', display: 'flex', alignItems: 'center', gap: 3 }}>
-                    <Zap size={14} /> {Number(u.xp).toLocaleString()}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          )
         )}
       </div>
     </div>

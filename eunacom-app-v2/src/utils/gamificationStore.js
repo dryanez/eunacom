@@ -1,5 +1,8 @@
 // Gamification State Store for MedLingo EUNACOM
 // Manages Hearts, Streaks, Gems, XP, Mentors, Daily Quests & Node Progression
+// Supports LocalStorage (Offline instant cache) + Supabase Cloud Sync
+
+import { supabase } from '../lib/supabase'
 
 const STORAGE_KEY_PREFIX = 'medlingo_state_'
 const HEART_REGEN_MINUTES = 30
@@ -68,7 +71,7 @@ export const getNextHeartCountdownSeconds = (state) => {
   return Math.max(0, Math.floor(diffMs / 1000))
 }
 
-// Load gamification state from localStorage
+// Load gamification state from localStorage (and sync with remote if available)
 export const loadGamificationState = (userId = 'guest') => {
   try {
     const raw = localStorage.getItem(`${STORAGE_KEY_PREFIX}${userId}`)
@@ -98,10 +101,31 @@ export const loadGamificationState = (userId = 'guest') => {
   }
 }
 
-// Save state to localStorage
-export const saveGamificationState = (userId = 'guest', state) => {
+// Save state to localStorage & asynchronously sync to Supabase Cloud
+export const saveGamificationState = async (userId = 'guest', state) => {
   try {
+    // 1. Instant local persistence for zero-latency UI
     localStorage.setItem(`${STORAGE_KEY_PREFIX}${userId}`, JSON.stringify(state))
+
+    // 2. Cloud Sync if authenticated in Supabase
+    if (userId && userId !== 'guest' && userId !== 'guest_user') {
+      try {
+        if (supabase) {
+          // Attempt to update Supabase user metadata / profile
+          supabase.auth.updateUser({
+            data: {
+              medlingo_xp: state.xp || 0,
+              medlingo_streak: state.currentStreak || 1,
+              medlingo_gems: state.gems || 0,
+              medlingo_last_sync: new Date().toISOString()
+            }
+          }).catch(() => {})
+        }
+      } catch (cloudErr) {
+        // Non-blocking sync error
+        console.warn('MedLingo cloud background sync:', cloudErr)
+      }
+    }
   } catch (err) {
     console.error('Error saving gamification state:', err)
   }

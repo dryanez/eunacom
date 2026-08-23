@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Trophy, Clock, Sparkles, ArrowUp, ArrowDown, Crown } from 'lucide-react'
 import { LEAGUE_TIERS, getLeagueCohort, getWeeklyResetTimeLeft } from '../../../utils/leagueSystem'
 import { playTapSound } from '../../../utils/medlingoAudio'
+import { UserInstitutionBadge } from '../../../utils/universityAndCountry'
 
 export default function MedLingoLeaguesTab({ state, onOpenShop }) {
   const [selectedLeagueIndex, setSelectedLeagueIndex] = useState(0)
@@ -10,7 +11,7 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
   const displayedTier = LEAGUE_TIERS[selectedLeagueIndex] || currentTier
 
   // Get weekly cohort rankings
-  const cohort = getLeagueCohort(state.xp || 120, 1, displayedTier.id)
+  const cohort = getLeagueCohort(state?.xp || 120, 1, displayedTier.id, state?.profile || null)
   const resetTimeLeft = getWeeklyResetTimeLeft()
 
   return (
@@ -77,7 +78,7 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
       <div className="league-standings-card">
         <div className="standings-header-row">
           <span className="col-rank">#</span>
-          <span className="col-doctor">Médico / Colega</span>
+          <span className="col-doctor">Médico / Casa de Estudios</span>
           <span className="col-xp">EXP Semanal</span>
         </div>
 
@@ -101,11 +102,23 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
                   {idx > 2 && <span className="rank-num">{idx + 1}</span>}
                 </div>
 
-                <div className="doctor-info-cell">
-                  <span className="doctor-avatar-emoji">{player.avatar}</span>
+                <div className="doctor-info-cell" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <div style={{ position: 'relative', display: 'inline-flex' }}>
+                    <span className="doctor-avatar-emoji">{player.avatar}</span>
+                    <div style={{ position: 'absolute', bottom: -3, right: -5 }}>
+                      <UserInstitutionBadge
+                        user={{ university: player.university, sede: player.sede, country: player.country }}
+                        size={16}
+                      />
+                    </div>
+                  </div>
                   <div className="doctor-meta">
-                    <span className="doctor-name">{player.name}</span>
-                    <span className="doctor-streak">🔥 1 día de racha</span>
+                    <span className="doctor-name" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      {player.name}
+                    </span>
+                    <span className="doctor-streak" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+                      {player.university?.split('(')[0] || player.country} · {player.sede || player.country}
+                    </span>
                   </div>
                 </div>
 

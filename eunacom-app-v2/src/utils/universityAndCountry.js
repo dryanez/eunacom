@@ -532,75 +532,68 @@ export function UserInstitutionBadge({
   const containerSize = size
   const imgSize = Math.max(14, Math.round(size * 0.85))
 
-  return (
-    <div 
-      className={`user-institution-badge ${className}`}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.4rem',
-        ...style
-      }}
-      title={`${badge.fullName || badge.primaryLabel} ${badge.sede ? `(${badge.sede})` : ''} - ${badge.countryName}`}
-    >
-      <div
-        style={{
-          width: `${containerSize}px`,
-          height: `${containerSize}px`,
-          minWidth: `${containerSize}px`,
-          minHeight: `${containerSize}px`,
-          borderRadius: '50%',
-          backgroundColor: '#ffffff',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
-          border: '1.5px solid rgba(255, 255, 255, 0.8)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          flexShrink: 0,
-          backgroundClip: 'padding-box'
-        }}
-      >
-        {badge.hasLogo && badge.logoUrl && !imgError ? (
-          <img
-            src={badge.logoUrl}
-            alt={badge.primaryLabel}
-            onError={() => setImgError(true)}
-            style={{
-              width: `${imgSize}px`,
-              height: `${imgSize}px`,
-              objectFit: 'contain',
-              display: 'block'
-            }}
-          />
-        ) : (
-          <span 
-            style={{
-              fontSize: `${Math.max(11, Math.round(size * 0.58))}px`,
-              lineHeight: 1,
-              userSelect: 'none'
-            }}
-          >
-            {badge.flag || '🇨🇱'}
-          </span>
-        )}
-      </div>
+  const iconElement = (badge.hasLogo && badge.logoUrl && !imgError)
+    ? React.createElement('img', {
+        src: badge.logoUrl,
+        alt: badge.primaryLabel,
+        onError: () => setImgError(true),
+        style: {
+          width: `${imgSize}px`,
+          height: `${imgSize}px`,
+          objectFit: 'contain',
+          display: 'block'
+        }
+      })
+    : React.createElement('span', {
+        style: {
+          fontSize: `${Math.max(11, Math.round(size * 0.58))}px`,
+          lineHeight: 1,
+          userSelect: 'none'
+        }
+      }, badge.flag || '🇨🇱')
 
-      {showLabel && (
-        <span
-          style={{
-            fontSize: '0.78rem',
-            fontWeight: 600,
-            color: 'var(--surface-300, #94a3b8)',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            ...labelStyle
-          }}
-        >
-          {badge.primaryLabel} {badge.subLabel && badge.subLabel !== badge.primaryLabel ? `· ${badge.subLabel}` : ''}
-        </span>
-      )}
-    </div>
-  )
+  const containerElement = React.createElement('div', {
+    style: {
+      width: `${containerSize}px`,
+      height: `${containerSize}px`,
+      minWidth: `${containerSize}px`,
+      minHeight: `${containerSize}px`,
+      borderRadius: '50%',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
+      border: '1.5px solid rgba(255, 255, 255, 0.8)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      flexShrink: 0,
+      backgroundClip: 'padding-box'
+    }
+  }, iconElement)
+
+  const labelElement = showLabel
+    ? React.createElement('span', {
+        style: {
+          fontSize: '0.78rem',
+          fontWeight: 600,
+          color: 'var(--surface-300, #94a3b8)',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          ...labelStyle
+        }
+      }, `${badge.primaryLabel} ${badge.subLabel && badge.subLabel !== badge.primaryLabel ? `· ${badge.subLabel}` : ''}`)
+    : null
+
+  return React.createElement('div', {
+    className: `user-institution-badge ${className}`,
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.4rem',
+      ...style
+    },
+    title: `${badge.fullName || badge.primaryLabel} ${badge.sede ? `(${badge.sede})` : ''} - ${badge.countryName}`
+  }, containerElement, labelElement)
 }
+

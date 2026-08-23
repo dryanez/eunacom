@@ -59,16 +59,24 @@ export const LEAGUE_TIERS = [
 ]
 
 // Generate simulated weekly cohort competitors
-export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'residente') => {
+export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'residente', userProfile = null) => {
   const sampleNames = [
-    { name: 'Dra. Camila Soto', avatar: '🩺', xp: userXp + 45 },
-    { name: 'Dr. Matías Valenzuela', avatar: '⚡', xp: userXp + 25 },
-    { name: 'Dra. Fernanda Rojas', avatar: '❤️', xp: userXp + 10 },
-    { name: 'Tú (Médico Postulante)', avatar: '🥼', xp: userXp, isUser: true },
-    { name: 'Dr. Ignacio Bravo', avatar: '🧩', xp: Math.max(10, userXp - 15) },
-    { name: 'Dra. Valentina Castro', avatar: '🔮', xp: Math.max(5, userXp - 30) },
-    { name: 'Dr. Gonzalo Morales', avatar: '🎈', xp: Math.max(0, userXp - 45) },
-    { name: 'Dra. Javiera Silva', avatar: '🚀', xp: Math.max(0, userXp - 60) }
+    { name: 'Dra. Camila Soto', avatar: '🩺', university: 'Universidad de Chile (UCH)', sede: 'Santiago (Norte)', country: 'Chile', xp: userXp + 45 },
+    { name: 'Dr. Matías Valenzuela', avatar: '⚡', university: 'Pontificia Universidad Católica de Chile (PUC)', sede: 'Santiago (Casa Central)', country: 'Chile', xp: userXp + 25 },
+    { name: 'Dra. Fernanda Rojas', avatar: '❤️', university: 'Universidad de Concepción (UdeC)', sede: 'Concepción', country: 'Chile', xp: userXp + 10 },
+    { 
+      name: userProfile?.first_name ? `Dr(a). ${userProfile.first_name} ${userProfile.last_name || ''}` : 'Tú (Médico Postulante)', 
+      avatar: '🥼', 
+      university: userProfile?.university || 'Universidad de Chile (UCH)',
+      sede: userProfile?.sede || 'Santiago',
+      country: userProfile?.country || 'Chile',
+      xp: userXp, 
+      isUser: true 
+    },
+    { name: 'Dr. Carlos Mendoza', avatar: '🧩', university: 'Universidad Central de Venezuela', sede: 'Caracas', country: 'Venezuela', xp: Math.max(10, userXp - 15) },
+    { name: 'Dra. Valentina Castro', avatar: '🔮', university: 'Universidad Andrés Bello (UNAB)', sede: 'Viña del Mar', country: 'Chile', xp: Math.max(5, userXp - 30) },
+    { name: 'Dr. Andrés Ospina', avatar: '🎈', university: 'Universidad de Antioquia', sede: 'Medellín', country: 'Colombia', xp: Math.max(0, userXp - 45) },
+    { name: 'Dra. Javiera Silva', avatar: '🚀', university: 'Universidad de Valparaíso (UV)', sede: 'Valparaíso', country: 'Chile', xp: Math.max(0, userXp - 60) }
   ]
 
   // Sort by XP descending

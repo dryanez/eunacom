@@ -4,11 +4,12 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import { CHILEAN_UNIVERSITIES, COUNTRIES, getSedesForUniversity, UserInstitutionBadge } from '../utils/universityAndCountry'
 import {
   User, Settings, Shield, Lock, CreditCard, Target, Sparkles,
   CheckCircle2, AlertTriangle, ExternalLink, LogOut, ChevronRight,
   Calendar, Building2, GraduationCap, Clock, Award, Key, Save,
-  Flame, Check, Loader2
+  Flame, Check, Loader2, Globe, MapPin
 } from 'lucide-react'
 
 const PRIVACY_URL = 'https://eunacom.app/privacy'
@@ -31,6 +32,8 @@ const UserSettings = () => {
   const [lastName, setLastName] = useState('')
   const [avatarCharacter, setAvatarCharacter] = useState('dr_strange')
   const [university, setUniversity] = useState('')
+  const [sede, setSede] = useState('')
+  const [country, setCountry] = useState('Chile')
   const [graduationYear, setGraduationYear] = useState('')
   const [goal, setGoal] = useState('beca')
   const [examMonth, setExamMonth] = useState('Diciembre')
@@ -57,6 +60,8 @@ const UserSettings = () => {
         setLastName(data.last_name || user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '')
         setAvatarCharacter(data.avatar_character || 'dr_strange')
         setUniversity(data.university || '')
+        setSede(data.sede || '')
+        setCountry(data.country || data.nationality || 'Chile')
         setGraduationYear(data.graduation_year || '2025')
         setGoal(data.goal || 'beca')
         setExamMonth(data.exam_month || 'Diciembre')
@@ -80,6 +85,9 @@ const UserSettings = () => {
         last_name: lastName.trim(),
         avatar_character: avatarCharacter,
         university,
+        sede,
+        country,
+        nationality: country,
         graduation_year: graduationYear,
         goal,
         exam_month: examMonth,
@@ -464,16 +472,14 @@ const UserSettings = () => {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
-                      Universidad / Institución
+                      País de Formación / Origen
                     </label>
-                    <input
-                      type="text"
-                      value={university}
-                      onChange={(e) => setUniversity(e.target.value)}
-                      placeholder="Ej: Universidad de Chile (UCH)"
+                    <select
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
@@ -481,9 +487,14 @@ const UserSettings = () => {
                         border: '1.5px solid #e2e8f0',
                         fontSize: '0.88rem',
                         fontWeight: 600,
+                        backgroundColor: '#fff',
                         outline: 'none',
                       }}
-                    />
+                    >
+                      {COUNTRIES.map((c) => (
+                        <option key={c.code} value={c.name}>{c.flag} {c.name}</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
@@ -506,6 +517,97 @@ const UserSettings = () => {
                       }}
                     />
                   </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                      Universidad / Escuela Médica
+                    </label>
+                    <input
+                      type="text"
+                      value={university}
+                      onChange={(e) => {
+                        const val = e.target.value
+                        setUniversity(val)
+                        const sedes = getSedesForUniversity(val)
+                        if (sedes && sedes.length > 0 && !sede) {
+                          setSede(sedes[0])
+                        }
+                      }}
+                      list="universities-list"
+                      placeholder="Ej: Universidad de Chile (UCH)"
+                      style={{
+                        width: '100%',
+                        padding: '0.65rem 0.85rem',
+                        borderRadius: '10px',
+                        border: '1.5px solid #e2e8f0',
+                        fontSize: '0.88rem',
+                        fontWeight: 600,
+                        outline: 'none',
+                      }}
+                    />
+                    <datalist id="universities-list">
+                      {CHILEAN_UNIVERSITIES.map((u) => (
+                        <option key={u.id} value={u.name} />
+                      ))}
+                    </datalist>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.35rem' }}>
+                      Sede / Campus
+                    </label>
+                    <input
+                      type="text"
+                      value={sede}
+                      onChange={(e) => setSede(e.target.value)}
+                      list="sedes-list"
+                      placeholder="Ej: Santiago / Concepción / Valparaíso"
+                      style={{
+                        width: '100%',
+                        padding: '0.65rem 0.85rem',
+                        borderRadius: '10px',
+                        border: '1.5px solid #e2e8f0',
+                        fontSize: '0.88rem',
+                        fontWeight: 600,
+                        outline: 'none',
+                      }}
+                    />
+                    <datalist id="sedes-list">
+                      {getSedesForUniversity(university).map((s) => (
+                        <option key={s} value={s} />
+                      ))}
+                    </datalist>
+                  </div>
+                </div>
+
+                {/* Badge Preview */}
+                <div style={{
+                  padding: '0.75rem 1rem',
+                  backgroundColor: '#f8fafc',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '1.25rem',
+                  gap: '0.75rem'
+                }}>
+                  <div>
+                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1e293b' }}>
+                      Insignia Institucional en Leaderboard
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                      {university ? 'Logo oficial de tu casa de estudios' : 'Bandera de tu país'}
+                    </div>
+                  </div>
+                  <UserInstitutionBadge
+                    user={{ university, sede, country }}
+                    size={30}
+                    showLabel={true}
+                    labelStyle={{ color: '#0f172a', fontWeight: 700, fontSize: '0.84rem' }}
+                  />
                 </div>
 
                 {saveSuccess && (

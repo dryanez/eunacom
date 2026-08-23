@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchUserProfile } from '../lib/api'
 import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const DashboardHeader = ({ onMenuToggle }) => {
     const { user, signOut, openAuthModal } = useAuth()
@@ -14,10 +15,12 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const [displayName, setDisplayName] = useState('')
     const [avatarEmoji, setAvatarEmoji] = useState('🩺')
     const [avatarImage, setAvatarImage] = useState('/avatars/dr_strange.png')
+    const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
         if (!user) return
         fetchUserProfile(user.id).then(profile => {
+            if (profile) setUserProfile(profile)
             if (profile?.first_name) {
                 setDisplayName(`Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim())
             } else if (user.user_metadata?.full_name) {
@@ -54,20 +57,25 @@ const DashboardHeader = ({ onMenuToggle }) => {
                 <div style={{ marginLeft: 'auto', position: 'relative' }}>
                     {user ? (
                         <>
-                            <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)} style={{ cursor: 'pointer' }}>
-                                <img
-                                    src={avatarImage}
-                                    alt="Avatar"
-                                    style={{
-                                        width: '28px',
-                                        height: '28px',
-                                        borderRadius: '50%',
-                                        objectFit: 'cover',
-                                        border: '1.5px solid rgba(255, 255, 255, 0.4)',
-                                    }}
-                                />
+                            <div className="header__user-pill" onClick={() => setShowMenu(!showMenu)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                                <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+                                    <img
+                                        src={avatarImage}
+                                        alt="Avatar"
+                                        style={{
+                                            width: '28px',
+                                            height: '28px',
+                                            borderRadius: '50%',
+                                            objectFit: 'cover',
+                                            border: '1.5px solid rgba(255, 255, 255, 0.4)',
+                                        }}
+                                    />
+                                    <div style={{ position: 'absolute', bottom: -3, right: -4 }}>
+                                        <UserInstitutionBadge user={userProfile} size={15} />
+                                    </div>
+                                </div>
                                 <span style={{ fontWeight: 700 }}>{displayName || 'Doctor'}</span>
-                                {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800 }}>Founder 🚀</span>}
+                                {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '2px', fontWeight: 800 }}>Founder 🚀</span>}
                                 <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
                             </div>
                             {showMenu && (

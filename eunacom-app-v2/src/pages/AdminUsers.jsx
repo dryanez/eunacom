@@ -5,9 +5,10 @@ import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
   CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings,
-  Download, CreditCard, HelpCircle
+  Download, CreditCard, HelpCircle, Building2
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
+import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
 
@@ -190,12 +191,14 @@ const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
             {initials}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '1.1rem', fontWeight: 800 }}>
-              {user.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : user.email}
+            <div style={{ fontSize: '1.1rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <UserInstitutionBadge user={user} size={20} />
+              <span>{user.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : user.email}</span>
               {user.plan_months === 1200 && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800, verticalAlign: 'middle' }}>Founder 🚀</span>}
             </div>
             <div style={{ fontSize: '0.82rem', color: 'var(--surface-400)', marginTop: 2 }}>{user.email}</div>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
+              {user.university && <Tag icon={<Building2 size={12} />} label={`${user.university} ${user.sede ? `(${user.sede})` : ''}`} color="var(--primary-300)" />}
               {user.country && <Tag icon={<Globe size={12} />} label={user.country} />}
               {user.exam_month && <Tag icon={<Calendar size={12} />} label={`${user.exam_month} ${user.exam_year || ''}`} />}
               {user.prep_months && <Tag icon={<Clock size={12} />} label={`${user.prep_months} meses prep`} />}
@@ -644,8 +647,9 @@ const AdminUsers = () => {
                   onMouseLeave={e => { if (selectedUser?.id !== u.id) e.currentTarget.style.background = 'transparent' }}
                 >
                   <TD>
-                    <div style={{ fontWeight: 600 }}>
-                      {u.first_name ? `${u.first_name} ${u.last_name || ''}`.trim() : '—'}
+                    <div style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                      <UserInstitutionBadge user={u} size={18} />
+                      <span>{u.first_name ? `${u.first_name} ${u.last_name || ''}`.trim() : '—'}</span>
                       {u.plan_months === 1200 && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.6rem', padding: '2px 4px', borderRadius: '4px', marginLeft: '6px', fontWeight: 800 }}>Founder 🚀</span>}
                     </div>
                   </TD>
