@@ -57,7 +57,7 @@
 
 
 
-:root {
+:root, [data-theme="dark"], body.dark-theme {
   /* === Primary Sky/Cyan (Midnight Azure) === */
   --primary-900: #082f49;
   --primary-800: #0c4a6e;
@@ -108,6 +108,48 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.35);
+
+  /* === Question Themes (Night / Dark Mode) === */
+  --q-card-bg: #0f172a;
+  --q-card-border: #334155;
+  --q-card-text: #f8fafc;
+  --q-card-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+  --q-option-bg: rgba(30, 41, 59, 0.6);
+  --q-option-border: #334155;
+  --q-option-text: #e2e8f0;
+}
+
+[data-theme="light"], body.light-theme {
+  /* === Light Surfaces === */
+  --surface-900: #f1f5f9;
+  --surface-800: #ffffff;
+  --surface-700: #e2e8f0;
+  --surface-600: #cbd5e1;
+  --surface-500: #94a3b8;
+  --surface-400: #64748b;
+  --surface-300: #475569;
+  --surface-200: #334155;
+  --surface-100: #1e293b;
+  --surface-50: #0f172a;
+
+  /* === Light Gradients === */
+  --gradient-sidebar: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(14, 165, 233, 0.04) 100%);
+
+  /* === Shadows in Light Mode === */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.09);
+  --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.18);
+
+  /* === Question Themes (Light Mode) === */
+  --q-card-bg: #ffffff;
+  --q-card-border: #cbd5e1;
+  --q-card-text: #1e293b;
+  --q-card-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.12);
+  --q-option-bg: #ffffff;
+  --q-option-border: #e2e8f0;
+  --q-option-text: #334155;
 }
 
 *, *::before, *::after {

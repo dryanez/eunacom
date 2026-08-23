@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Home, Video, Target, Shield, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame } from 'lucide-react'
+import { Home, Video, Target, Shield, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame, Settings } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
 const BottomNavigation = ({ onMenuToggle }) => {
@@ -39,6 +39,10 @@ const BottomNavigation = ({ onMenuToggle }) => {
             <NavLink to="/history" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
                 <Clock size={22} />
                 <span>Historial</span>
+            </NavLink>
+            <NavLink to="/settings" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
+                <Settings size={22} />
+                <span>Ajustes</span>
             </NavLink>
             {isAdmin() && (
                 <NavLink to="/biblioteca" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>

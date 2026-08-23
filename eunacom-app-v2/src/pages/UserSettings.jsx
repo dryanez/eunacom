@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar } from '../utils/doctorAvatars'
 import { CHILEAN_UNIVERSITIES, COUNTRIES, getSedesForUniversity, UserInstitutionBadge } from '../utils/universityAndCountry'
@@ -9,7 +10,8 @@ import {
   User, Settings, Shield, Lock, CreditCard, Target,
   CheckCircle2, AlertTriangle, ExternalLink, LogOut, ChevronRight,
   Calendar, Building2, GraduationCap, Clock, Award, Key, Save,
-  Flame, Check, Loader2, Globe, MapPin, Shuffle, Sparkles, RefreshCw
+  Flame, Check, Loader2, Globe, MapPin, Shuffle, Sparkles, RefreshCw,
+  Sun, Moon, Palette
 } from 'lucide-react'
 
 const PRIVACY_URL = 'https://eunacom.app/privacy'
@@ -18,6 +20,7 @@ const TERMS_URL = 'https://eunacom.app/terms'
 const UserSettings = () => {
   const { user, signOut } = useAuth()
   const { isPremium, isFounder, setShowPaymentModal } = useSubscription()
+  const { theme, isDark, toggleTheme, setTheme } = useTheme()
   const navigate = useNavigate()
 
   const [activeTab, setActiveTab] = useState('profile')
@@ -196,13 +199,39 @@ const UserSettings = () => {
       `}</style>
 
       {/* Header */}
-      <div style={{ marginBottom: '1.25rem' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <Settings size={24} color="#38bdf8" /> Configuración
-        </h1>
-        <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: 0 }}>
-          Gestiona tu cuenta, tu avatar de médico(a), plan y objetivos de estudio
-        </p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
+        <div>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <Settings size={24} color="#38bdf8" /> Configuración
+          </h1>
+          <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: 0 }}>
+            Gestiona tu cuenta, tu avatar de médico(a), apariencia, plan y objetivos de estudio
+          </p>
+        </div>
+
+        {/* Quick Theme Toggle Pill in Header */}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.45rem 0.9rem',
+            borderRadius: '9999px',
+            background: isDark ? 'rgba(56, 189, 248, 0.12)' : '#e0f2fe',
+            border: `1px solid ${isDark ? 'rgba(56, 189, 248, 0.3)' : '#bae6fd'}`,
+            color: isDark ? '#38bdf8' : '#0369a1',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease'
+          }}
+          title={isDark ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Noche'}
+        >
+          {isDark ? <Moon size={15} /> : <Sun size={15} />}
+          <span>{isDark ? 'Modo Noche' : 'Modo Claro'}</span>
+        </button>
       </div>
 
       {/* Main Grid: Tabs Sidebar + Content Panel */}
@@ -219,6 +248,7 @@ const UserSettings = () => {
           <div className="settings-tabs-list">
             {[
               { id: 'profile', label: 'Mi Perfil', icon: User },
+              { id: 'appearance', label: 'Apariencia', icon: isDark ? Moon : Sun },
               { id: 'goals', label: 'Objetivos', icon: Target },
               { id: 'plan', label: 'Plan & Pagos', icon: CreditCard },
               { id: 'security', label: 'Seguridad', icon: Lock },
@@ -638,6 +668,153 @@ const UserSettings = () => {
                   <span>Guardar Cambios</span>
                 </button>
               </form>
+            </div>
+          )}
+
+          {/* ═══════════════════════════════════════════════════════════════
+              TAB: APARIENCIA & TEMA
+          ═══════════════════════════════════════════════════════════════ */}
+          {activeTab === 'appearance' && (
+            <div>
+              <div style={{ marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                  Tema & Modo de Visualización
+                </h3>
+                <p style={{ fontSize: '0.78rem', color: '#94a3b8', margin: '2px 0 0' }}>
+                  Elige cómo deseas visualizar las preguntas en banco, simulacros, reconstrucciones y toda la plataforma.
+                </p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '1.5rem' }}>
+                
+                {/* Night Theme Card */}
+                <div 
+                  onClick={() => setTheme('dark')}
+                  style={{
+                    backgroundColor: '#0f172a',
+                    border: `2px solid ${isDark ? '#38bdf8' : 'rgba(255,255,255,0.1)'}`,
+                    borderRadius: '16px',
+                    padding: '1.25rem',
+                    cursor: 'pointer',
+                    boxShadow: isDark ? '0 0 20px rgba(56, 189, 248, 0.25)' : '0 4px 12px rgba(0,0,0,0.3)',
+                    transition: 'all 0.2s ease',
+                    position: 'relative'
+                  }}
+                >
+                  {isDark && (
+                    <div style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(56, 189, 248, 0.2)', border: '1px solid #38bdf8', color: '#38bdf8', fontSize: '0.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <Check size={12} /> ACTIVO
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(56, 189, 248, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8' }}>
+                      <Moon size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ margin: 0, fontSize: '1rem', color: '#f8fafc', fontWeight: 700 }}>Modo Noche (Oscuro)</h4>
+                      <span style={{ fontSize: '0.74rem', color: '#38bdf8', fontWeight: 600 }}>Recomendado · Alto Contraste</span>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5, marginBottom: '1rem' }}>
+                    Fondo medianoche y tarjetas oscuras con acentos luminosos. Reduce la fatiga visual en sesiones prolongadas de estudio.
+                  </p>
+
+                  {/* Mini Preview Box */}
+                  <div style={{ background: '#020617', border: '1px solid #334155', borderRadius: 10, padding: '0.75rem', fontSize: '0.76rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ background: 'rgba(14,165,233,0.2)', color: '#38bdf8', padding: '1px 6px', borderRadius: 4, fontWeight: 700 }}>Cardiología</span>
+                      <span style={{ color: '#fbbf24', fontWeight: 700 }}>★ EUNACOM</span>
+                    </div>
+                    <div style={{ color: '#f8fafc', fontWeight: 600, marginBottom: 6 }}>¿Cuál es el tratamiento de primera línea...?</div>
+                    <div style={{ background: 'rgba(16,185,129,0.18)', border: '1px solid #10b981', color: '#34d399', padding: '4px 8px', borderRadius: 6, fontWeight: 600 }}>
+                      ✓ A) Inhibidores de la ECA
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setTheme('dark'); }}
+                    style={{
+                      marginTop: '1rem',
+                      width: '100%',
+                      padding: '0.65rem',
+                      borderRadius: '8px',
+                      border: isDark ? 'none' : '1px solid rgba(255,255,255,0.15)',
+                      background: isDark ? '#0284c7' : 'transparent',
+                      color: '#ffffff',
+                      fontWeight: 700,
+                      fontSize: '0.84rem',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {isDark ? '✓ Modo Noche Seleccionado' : 'Activar Modo Noche'}
+                  </button>
+                </div>
+
+                {/* Light Theme Card */}
+                <div 
+                  onClick={() => setTheme('light')}
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: `2px solid ${!isDark ? '#0284c7' : 'rgba(255,255,255,0.1)'}`,
+                    borderRadius: '16px',
+                    padding: '1.25rem',
+                    cursor: 'pointer',
+                    boxShadow: !isDark ? '0 0 20px rgba(2, 132, 199, 0.3)' : '0 4px 12px rgba(0,0,0,0.3)',
+                    transition: 'all 0.2s ease',
+                    position: 'relative'
+                  }}
+                >
+                  {!isDark && (
+                    <div style={{ position: 'absolute', top: 12, right: 12, background: '#ecfdf5', border: '1px solid #10b981', color: '#065f46', fontSize: '0.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <Check size={12} /> ACTIVO
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d97706' }}>
+                      <Sun size={20} />
+                    </div>
+                    <div>
+                      <h4 style={{ margin: 0, fontSize: '1rem', color: '#1e293b', fontWeight: 700 }}>Modo Claro (Light Version)</h4>
+                      <span style={{ fontSize: '0.74rem', color: '#0284c7', fontWeight: 600 }}>Versión Clásica</span>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: '#475569', lineHeight: 1.5, marginBottom: '1rem' }}>
+                    Fondo claro y tarjetas blancas nítidas para preguntas y opciones. Ideal para ambientes iluminados o simulación de examen tradicional.
+                  </p>
+
+                  {/* Mini Preview Box */}
+                  <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 10, padding: '0.75rem', fontSize: '0.76rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ background: '#e0f2fe', color: '#0369a1', padding: '1px 6px', borderRadius: 4, fontWeight: 700 }}>Cardiología</span>
+                      <span style={{ color: '#92400e', fontWeight: 700 }}>★ EUNACOM</span>
+                    </div>
+                    <div style={{ color: '#1e293b', fontWeight: 600, marginBottom: 6 }}>¿Cuál es el tratamiento de primera línea...?</div>
+                    <div style={{ background: '#ecfdf5', border: '1px solid #10b981', color: '#065f46', padding: '4px 8px', borderRadius: 6, fontWeight: 600 }}>
+                      ✓ A) Inhibidores de la ECA
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setTheme('light'); }}
+                    style={{
+                      marginTop: '1rem',
+                      width: '100%',
+                      padding: '0.65rem',
+                      borderRadius: '8px',
+                      border: !isDark ? 'none' : '1px solid #cbd5e1',
+                      background: !isDark ? '#0284c7' : '#f1f5f9',
+                      color: !isDark ? '#ffffff' : '#334155',
+                      fontWeight: 700,
+                      fontSize: '0.84rem',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {!isDark ? '✓ Modo Claro Seleccionado' : 'Activar Modo Claro'}
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 

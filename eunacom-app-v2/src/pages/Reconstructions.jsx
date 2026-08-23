@@ -11,6 +11,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
+import { useTheme } from '../contexts/ThemeContext'
 
 const LETTERS = ['A','B','C','D','E']
 
@@ -28,6 +29,7 @@ function toTestRunnerFormat(q, examId) {
 
 /* ── Inline Quiz (Hero Shot Style) ── */
 function InlineQuiz({ questions, title, onClose }) {
+  const { isDark } = useTheme()
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
@@ -83,63 +85,73 @@ function InlineQuiz({ questions, title, onClose }) {
         </button>
       </div>
 
-      {/* Hero Shot Question Card */}
+      {/* Question Card (Night/Light Theme) */}
       <div style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #cbd5e1',
+        backgroundColor: isDark ? '#0f172a' : '#ffffff',
+        border: isDark ? '1px solid #334155' : '1px solid #cbd5e1',
         borderRadius: 18,
         padding: '22px 18px',
-        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.15)',
+        boxShadow: isDark ? '0 10px 28px -4px rgba(0, 0, 0, 0.4)' : '0 10px 28px -4px rgba(0, 0, 0, 0.15)',
         marginBottom: '1.25rem'
       }}>
         {/* Badges row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+          <span style={{
+            backgroundColor: isDark ? 'rgba(14, 165, 233, 0.15)' : '#e0f2fe',
+            border: isDark ? '1px solid rgba(14, 165, 233, 0.3)' : '1px solid #bae6fd',
+            color: isDark ? '#38bdf8' : '#0369a1',
+            fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999
+          }}>
             {title || 'Reconstrucción EUNACOM'}
           </span>
-          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Award size={12} color="#d97706" /> Reconstrucción Oficial
+          <span style={{
+            backgroundColor: isDark ? 'rgba(245, 158, 11, 0.15)' : '#fef3c7',
+            border: isDark ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid #fde68a',
+            color: isDark ? '#fbbf24' : '#92400e',
+            fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4
+          }}>
+            <Award size={12} color={isDark ? '#fbbf24' : '#d97706'} /> Reconstrucción Oficial
           </span>
         </div>
 
         {/* Question Text */}
-        <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: '#1e293b', marginBottom: 16, fontWeight: 500 }}>
+        <p style={{ fontSize: '0.98rem', lineHeight: 1.65, color: isDark ? '#f8fafc' : '#1e293b', marginBottom: 16, fontWeight: 500 }}>
           {q.question}
         </p>
 
         {q.imageUrl && (
           <div style={{ marginBottom: '1.25rem' }}>
-            <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
+            <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '8px', border: isDark ? '1px solid #334155' : '1px solid #cbd5e1' }} />
           </div>
         )}
 
-        {/* Options list in Hero Shot style */}
+        {/* Options list */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
           {q.choices.map((opt, i) => {
             const isCorrectOpt = opt.id.toLowerCase() === q.correctAnswer?.toLowerCase()
             const isSelected = opt.id === selected
             
-            let bg = '#ffffff'
-            let border = '#e2e8f0'
-            let textColor = '#334155'
-            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+            let bg = isDark ? 'rgba(30, 41, 59, 0.6)' : '#ffffff'
+            let border = isDark ? '#334155' : '#e2e8f0'
+            let textColor = isDark ? '#e2e8f0' : '#334155'
+            let badgeContent = <span style={{ color: isDark ? '#94a3b8' : '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
 
             if (revealed) {
               if (isCorrectOpt) {
-                bg = '#ecfdf5'
+                bg = isDark ? 'rgba(16, 185, 129, 0.18)' : '#ecfdf5'
                 border = '#10b981'
-                textColor = '#065f46'
+                textColor = isDark ? '#34d399' : '#065f46'
                 badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
               } else if (isSelected && !isCorrectOpt) {
-                bg = '#fef2f2'
+                bg = isDark ? 'rgba(239, 68, 68, 0.18)' : '#fef2f2'
                 border = '#ef4444'
-                textColor = '#991b1b'
+                textColor = isDark ? '#f87171' : '#991b1b'
                 badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
               } else {
-                bg = '#f8fafc'
-                border = '#f1f5f9'
-                textColor = '#94a3b8'
-                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
+                bg = isDark ? 'rgba(15, 23, 42, 0.4)' : '#f8fafc'
+                border = isDark ? '#1e293b' : '#f1f5f9'
+                textColor = isDark ? '#64748b' : '#94a3b8'
+                badgeContent = <span style={{ color: isDark ? '#475569' : '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + i)}</span>
               }
             }
 
@@ -168,7 +180,8 @@ function InlineQuiz({ questions, title, onClose }) {
               >
                 <div style={{
                   width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                  backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
+                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0,0,0,0.03)',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0,0,0,0.06)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0, marginTop: 1
                 }}>
@@ -176,12 +189,12 @@ function InlineQuiz({ questions, title, onClose }) {
                 </div>
                 <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
                 {revealed && isCorrectOpt && (
-                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: isDark ? '#34d399' : '#059669', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
                     ✓ Correcto
                   </span>
                 )}
                 {revealed && isSelected && !isCorrectOpt && (
-                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: isDark ? '#f87171' : '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>
                     ✗ Incorrecto
                   </span>
                 )}
@@ -195,14 +208,14 @@ function InlineQuiz({ questions, title, onClose }) {
           <div style={{
             marginTop: 16,
             padding: '16px 18px',
-            backgroundColor: '#f0fdf4',
-            border: '1px solid #bbf7d0',
+            backgroundColor: isDark ? 'rgba(16, 185, 129, 0.1)' : '#f0fdf4',
+            border: isDark ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid #bbf7d0',
             borderRadius: 14
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: isDark ? '#34d399' : '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color={isDark ? '#34d399' : '#16a34a'} /> Retroalimentación Clínica (Guías GES / MINSAL)
             </div>
-            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: '0.88rem', color: isDark ? '#a7f3d0' : '#15803d', lineHeight: 1.6, margin: 0 }}>
               {q.explanation}
             </p>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { fetchReviewQuestions } from '../lib/api'
 import {
   RotateCcw, AlertCircle, BookOpen, Target, ChevronDown, ChevronUp,
@@ -9,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const ReviewErrors = () => {
   const { user } = useAuth()
+  const { isDark } = useTheme()
   const navigate = useNavigate()
   const [questions, setQuestions] = useState([])
   const [loading, setLoading] = useState(true)
@@ -233,11 +235,15 @@ const ReviewErrors = () => {
                     </div>
 
                     {isExpanded && (
-                      <div style={{ padding: '1.25rem 1.25rem 1.5rem', borderTop: '1px solid #e2e8f0', background: '#f8fafc' }}>
+                      <div style={{
+                        padding: '1.25rem 1.25rem 1.5rem',
+                        borderTop: isDark ? '1px solid #334155' : '1px solid #e2e8f0',
+                        background: isDark ? 'rgba(15, 23, 42, 0.75)' : '#f8fafc'
+                      }}>
                         {/* Options rendered in Hero Shot style */}
                         {q.opciones && q.opciones.length > 0 && (
                           <div style={{ marginBottom: '1.25rem' }}>
-                            <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.6rem' }}>
+                            <div style={{ fontSize: '0.78rem', fontWeight: 700, color: isDark ? '#94a3b8' : '#64748b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.6rem' }}>
                               Alternativas del Examen
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -249,9 +255,9 @@ const ReviewErrors = () => {
                                     style={{
                                       padding: '11px 14px',
                                       borderRadius: 12,
-                                      border: isCorrect ? '1.5px solid #10b981' : '1.5px solid #e2e8f0',
-                                      backgroundColor: isCorrect ? '#ecfdf5' : '#ffffff',
-                                      color: isCorrect ? '#065f46' : '#475569',
+                                      border: isCorrect ? '1.5px solid #10b981' : (isDark ? '1.5px solid #334155' : '1.5px solid #e2e8f0'),
+                                      backgroundColor: isCorrect ? (isDark ? 'rgba(16, 185, 129, 0.18)' : '#ecfdf5') : (isDark ? 'rgba(30, 41, 59, 0.6)' : '#ffffff'),
+                                      color: isCorrect ? (isDark ? '#34d399' : '#065f46') : (isDark ? '#e2e8f0' : '#475569'),
                                       fontSize: '0.9rem',
                                       lineHeight: 1.5,
                                       display: 'flex',
@@ -262,9 +268,9 @@ const ReviewErrors = () => {
                                   >
                                     <div style={{
                                       width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                                      backgroundColor: 'rgba(0,0,0,0.03)',
-                                      border: '1px solid rgba(0,0,0,0.06)',
-                                      color: isCorrect ? '#10b981' : '#64748b',
+                                      backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)',
+                                      border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.06)',
+                                      color: isCorrect ? '#10b981' : (isDark ? '#94a3b8' : '#64748b'),
                                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                                       flexShrink: 0, marginTop: 1
                                     }}>
@@ -272,7 +278,7 @@ const ReviewErrors = () => {
                                     </div>
                                     <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
                                     {isCorrect && (
-                                      <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                                      <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: isDark ? '#34d399' : '#059669', fontWeight: 700, flexShrink: 0 }}>
                                         ✓ Correcta
                                       </span>
                                     )}
@@ -288,14 +294,14 @@ const ReviewErrors = () => {
                           <div style={{
                             marginTop: 14,
                             padding: '14px 16px',
-                            backgroundColor: '#f0fdf4',
-                            border: '1px solid #bbf7d0',
+                            backgroundColor: isDark ? 'rgba(16, 185, 129, 0.1)' : '#f0fdf4',
+                            border: isDark ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid #bbf7d0',
                             borderRadius: 12
                           }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.88rem', marginBottom: 6 }}>
-                              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: isDark ? '#34d399' : '#166534', fontWeight: 700, fontSize: '0.88rem', marginBottom: 6 }}>
+                              <CheckCircle size={16} color={isDark ? '#34d399' : '#16a34a'} /> Retroalimentación Clínica (Guías GES / MINSAL)
                             </div>
-                            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>
+                            <p style={{ fontSize: '0.88rem', color: isDark ? '#a7f3d0' : '#15803d', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>
                               {q.explicacion}
                             </p>
                           </div>

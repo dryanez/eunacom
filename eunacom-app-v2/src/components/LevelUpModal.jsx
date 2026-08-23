@@ -15,6 +15,7 @@ export default function LevelUpModal({
   if (!isOpen) return null
 
   const doctor = getDoctorForLevel(newLevel)
+  const displayOldLevel = oldLevel === newLevel ? Math.max(1, newLevel - 1) : oldLevel
 
   useEffect(() => {
     playLevelCompleteSound()
@@ -48,7 +49,7 @@ export default function LevelUpModal({
 
         {/* Level Progression Indicator */}
         <div className="levelup-transition-row">
-          <div className="lvl-pill prev">Nivel {oldLevel}</div>
+          <div className="lvl-pill prev">Nivel {displayOldLevel}</div>
           <div className="lvl-arrow">➔</div>
           <div className="lvl-pill next">Nivel {newLevel}</div>
         </div>

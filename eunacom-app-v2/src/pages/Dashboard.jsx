@@ -69,7 +69,19 @@ const Dashboard = () => {
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
   const [levelUpModalData, setLevelUpModalData] = useState(null)
+  const [demoStep, setDemoStep] = useState(1)
   const DAILY_GOAL = 50
+
+  const triggerDemoLevelUp = () => {
+    const current = demoStep
+    const next = current >= 10 ? 1 : current + 1
+    setDemoStep(next)
+    setLevelUpModalData({
+      oldLevel: current,
+      newLevel: next,
+      earnedGems: 50 + next * 25
+    })
+  }
 
   // MedSchool Topics State
   const [topicsList, setTopicsList] = useState([])
@@ -557,11 +569,7 @@ const Dashboard = () => {
                 <span>Iniciar sesión</span>
               </button>
               <button
-                onClick={() => setLevelUpModalData({
-                  oldLevel: 6,
-                  newLevel: 7,
-                  earnedGems: 200
-                })}
+                onClick={triggerDemoLevelUp}
                 style={{
                   padding: '0.7rem 1.4rem',
                   background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.3) 100%)',
@@ -624,11 +632,7 @@ const Dashboard = () => {
                   <span>Nivel {stats.level} · {levelTitle}</span>
                 </div>
                 <button
-                  onClick={() => setLevelUpModalData({
-                    oldLevel: Math.max(1, (stats.level || 7) - 1),
-                    newLevel: stats.level || 7,
-                    earnedGems: 200
-                  })}
+                  onClick={triggerDemoLevelUp}
                   className="dash-demo-levelup-btn"
                   title="Toca para probar la animación y modal de subida de nivel"
                 >
