@@ -87,6 +87,36 @@
 
 .medlingo-header__left {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.medlingo-exit-to-app-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+  flex-shrink: 0;
+}
+
+.medlingo-exit-to-app-btn:hover {
+  border-color: var(--duo-blue);
+  color: var(--duo-blue);
+}
+
+.medlingo-exit-to-app-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 .medlingo-header__module-btn {
@@ -1799,6 +1829,36 @@
 
 .achieve-badge.locked {
   color: #64748b;
+}
+
+.profile-exit-to-dashboard-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  transition: all 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.profile-exit-to-dashboard-btn:hover {
+  border-color: var(--duo-blue);
+  color: var(--duo-blue);
+  transform: translateY(-2px);
+}
+
+.profile-exit-to-dashboard-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /* ══════════════════════════════════════════════════════════════

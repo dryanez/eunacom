@@ -84,7 +84,7 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
 
                 <div className="sidebar__section-title">Aprendizaje</div>
                 <NavLink to="/medlingo" data-tour="medlingo" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316', fontWeight: 700 }}>
-                    <Flame size={18} style={{ color: '#f97316' }} /> Modo Racha 🔥
+                    <Flame size={18} style={{ color: '#f97316' }} /> MedLingo 🔥
                 </NavLink>
                 <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
                     <Video size={18} /> Mis Clases

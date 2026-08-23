@@ -149,12 +149,12 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 <NavLink 
                     to="/medlingo" 
                     data-tour="medlingo" 
-                    title="Modo Racha (MedLingo)" 
+                    title="MedLingo" 
                     className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
                     onClick={onToggle}
                     style={{ color: '#f97316', fontWeight: 700 }}
                 >
-                    <Flame size={18} style={{ color: '#f97316' }} /> {!collapsed && <span>Modo Racha 🔥</span>}
+                    <Flame size={18} style={{ color: '#f97316' }} /> {!collapsed && <span>MedLingo 🔥</span>}
                 </NavLink>
 
                 <NavLink 

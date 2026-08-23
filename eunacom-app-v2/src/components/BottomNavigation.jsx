@@ -14,7 +14,7 @@ const BottomNavigation = ({ onMenuToggle }) => {
             </NavLink>
             <NavLink to="/medlingo" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#f97316' }}>
                 <Flame size={22} />
-                <span>Racha 🔥</span>
+                <span>MedLingo</span>
             </NavLink>
             {isAdmin() && (
                 <NavLink to="/study-plan" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Flame, Heart, Sparkles, ShoppingBag, ChevronDown, Award } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Flame, Heart, Sparkles, ShoppingBag, ChevronDown, Award, ArrowLeft } from 'lucide-react'
 import { MAX_HEARTS, getNextHeartCountdownSeconds } from '../../utils/gamificationStore'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { MEDLINGO_MODULES } from '../../data/medlingo/modulePaths'
@@ -15,7 +16,7 @@ export default function MedLingoHeader({
   const [countdownSecs, setCountdownSecs] = useState(0)
   const [moduleDropdownOpen, setModuleDropdownOpen] = useState(false)
 
-  const activeMentor = DOCTOR_CHARACTERS.find(d => d.id === state.activeMentorId) || DOCTOR_CHARACTERS[1]
+  const activeMentor = DOCTOR_CHARACTERS.find(d => d.id === state.activeMentorId) || DOCTOR_CHARACTERS[0]
   const currentModule = MEDLINGO_MODULES.find(m => m.id === currentModuleId) || MEDLINGO_MODULES[0]
 
   // Calculate module completion %
@@ -43,8 +44,17 @@ export default function MedLingoHeader({
 
   return (
     <header className="medlingo-header">
-      {/* ── Left: Module Selector ── */}
+      {/* ── Left: Back Arrow to Main App + Module Selector ── */}
       <div className="medlingo-header__left">
+        <Link 
+          to="/dashboard" 
+          className="medlingo-exit-to-app-btn"
+          title="Salir de MedLingo y volver a la plataforma EUNACOM"
+          onClick={playTapSound}
+        >
+          <ArrowLeft size={18} strokeWidth={2.8} />
+        </Link>
+
         <div 
           className="medlingo-header__module-btn"
           onClick={() => {
@@ -147,7 +157,7 @@ export default function MedLingoHeader({
           title={`Mentor actual: ${activeMentor.name}. Toca para cambiar de mentor.`}
         >
           <div className="medlingo-mentor-avatar" style={{ background: activeMentor.avatarBg }}>
-            <span>{activeMentor.emoji}</span>
+            <img src={activeMentor.image} alt={activeMentor.name} onError={(e) => { e.target.style.display = 'none' }} />
           </div>
         </div>
 

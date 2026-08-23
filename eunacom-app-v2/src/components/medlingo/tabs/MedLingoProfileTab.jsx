@@ -1,5 +1,6 @@
 import React from 'react'
-import { User, Flame, Sparkles, Trophy, Shield, Heart, Award, ChevronRight, Stethoscope, Zap, Star } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { User, Flame, Sparkles, Trophy, Shield, Heart, Award, ChevronRight, Stethoscope, Zap, Star, Home } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../../utils/doctorAvatars'
 import { LEAGUE_TIERS } from '../../../utils/leagueSystem'
 import { playTapSound } from '../../../utils/medlingoAudio'
@@ -9,9 +10,10 @@ export default function MedLingoProfileTab({
   onOpenMentorPicker,
   onOpenShop
 }) {
-  const activeMentor = DOCTOR_CHARACTERS.find(d => d.id === state.activeMentorId) || DOCTOR_CHARACTERS[1]
+  const navigate = useNavigate()
+  const activeMentor = DOCTOR_CHARACTERS.find(d => d.id === state.activeMentorId) || DOCTOR_CHARACTERS[0]
   const currentTier = LEAGUE_TIERS[state.leagueTierIndex || 0] || LEAGUE_TIERS[0]
-  const mentorImage = activeMentor.image || (activeMentor.id === 'dr_yang' ? '/assets/medlingo/dra_yang.jpg' : activeMentor.id === 'dr_house' ? '/assets/medlingo/dr_house.jpg' : '/assets/medlingo/dr_murphy.jpg')
+  const mentorImage = activeMentor.image || '/avatars/dr_house.png'
 
   // Weekly XP Data (Mon - Sun)
   const weeklyData = [
@@ -190,6 +192,18 @@ export default function MedLingoProfileTab({
 
         </div>
       </div>
+
+      {/* ── Return to Platform Button ── */}
+      <button 
+        className="profile-exit-to-dashboard-btn"
+        onClick={() => {
+          playTapSound()
+          navigate('/dashboard')
+        }}
+      >
+        <Home size={18} />
+        <span>Volver a la Plataforma Principal</span>
+      </button>
 
     </div>
   )
