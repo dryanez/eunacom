@@ -4,7 +4,7 @@ import { ChevronDown, Menu, LogIn, Settings, CreditCard, User, Shield } from 'lu
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchUserProfile } from '../lib/api'
-import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const DashboardHeader = ({ onMenuToggle }) => {
@@ -13,8 +13,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [displayName, setDisplayName] = useState('')
-    const [avatarEmoji, setAvatarEmoji] = useState('🩺')
-    const [avatarImage, setAvatarImage] = useState('/avatars/dr_strange.png')
+    const [avatarImage, setAvatarImage] = useState('/avatars/dr_house.png')
     const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
@@ -28,14 +27,11 @@ const DashboardHeader = ({ onMenuToggle }) => {
             } else {
                 setDisplayName(user.email?.split('@')[0] || 'Doctor')
             }
-            if (profile?.avatar_character) {
-                const doc = DOCTOR_CHARACTERS.find(d => d.id === profile.avatar_character)
-                if (doc) {
-                    setAvatarEmoji(doc.emoji)
-                    if (doc.image) setAvatarImage(doc.image)
-                }
-            }
+            const doc = getDoctorAvatar(profile || user)
+            if (doc?.image) setAvatarImage(doc.image)
         }).catch(() => {
+            const doc = getDoctorAvatar(user)
+            if (doc?.image) setAvatarImage(doc.image)
             setDisplayName(user.email?.split('@')[0] || 'Doctor')
         })
     }, [user])

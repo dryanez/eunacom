@@ -10,7 +10,7 @@ import {
     LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff
 } from 'lucide-react'
 import { EunacomLogo } from './EunacomLogo'
-import { DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
 
 const ProgressItem = ({ label, used, total }) => {
     const isMaxed = used >= total;
@@ -70,14 +70,12 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             } else if (user.user_metadata?.full_name) {
                 setDisplayName(`Dr(a). ${user.user_metadata.full_name}`)
             }
-            if (profile?.avatar_character) {
-                const doc = DOCTOR_CHARACTERS.find(d => d.id === profile.avatar_character)
-                if (doc) {
-                    setAvatarEmoji(doc.emoji)
-                    if (doc.image) setAvatarImage(doc.image)
-                }
-            }
-        }).catch(() => {})
+            const doc = getDoctorAvatar(profile || user)
+            if (doc?.image) setAvatarImage(doc.image)
+        }).catch(() => {
+            const doc = getDoctorAvatar(user)
+            if (doc?.image) setAvatarImage(doc.image)
+        })
     }, [user])
 
     const handleLogout = async () => {
@@ -147,6 +145,17 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                 {collapsed && <div className="sidebar__section-divider" />}
 
                 <NavLink 
+                    to="/mis-clases" 
+                    data-tour="mis-clases" 
+                    title="Mis Clases" 
+                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
+                    onClick={onToggle}
+                    style={{ color: '#818cf8', fontWeight: 700 }}
+                >
+                    <Video size={18} style={{ color: '#818cf8' }} /> {!collapsed && <span>Mis Clases 📺</span>}
+                </NavLink>
+
+                <NavLink 
                     to="/medlingo" 
                     data-tour="medlingo" 
                     title="MedLingo" 
@@ -155,16 +164,6 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     style={{ color: '#f97316', fontWeight: 700 }}
                 >
                     <Flame size={18} style={{ color: '#f97316' }} /> {!collapsed && <span>MedLingo 🔥</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/mis-clases" 
-                    data-tour="mis-clases" 
-                    title="Mis Clases" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <Video size={18} /> {!collapsed && <span>Mis Clases</span>}
                 </NavLink>
 
                 {isAdmin() && (

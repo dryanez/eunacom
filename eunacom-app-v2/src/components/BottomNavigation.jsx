@@ -12,19 +12,13 @@ const BottomNavigation = ({ onMenuToggle }) => {
                 <Home size={22} />
                 <span>Inicio</span>
             </NavLink>
+            <NavLink to="/mis-clases" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#818cf8' }}>
+                <Video size={22} />
+                <span>Clases</span>
+            </NavLink>
             <NavLink to="/medlingo" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#f97316' }}>
                 <Flame size={22} />
                 <span>MedLingo</span>
-            </NavLink>
-            {isAdmin() && (
-                <NavLink to="/study-plan" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                    <Calendar size={22} />
-                    <span>Plan</span>
-                </NavLink>
-            )}
-            <NavLink to="/mis-clases" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <Video size={22} />
-                <span>Clases</span>
             </NavLink>
             <NavLink to="/reconstructions" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
                 <FileText size={22} />

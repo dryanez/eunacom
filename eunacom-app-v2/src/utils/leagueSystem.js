@@ -58,25 +58,28 @@ export const LEAGUE_TIERS = [
   }
 ]
 
+import { DOCTOR_CHARACTERS, getDoctorAvatar } from './doctorAvatars'
+
 // Generate simulated weekly cohort competitors
 export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'residente', userProfile = null) => {
   const sampleNames = [
-    { name: 'Dra. Camila Soto', avatar: '🩺', university: 'Universidad de Chile (UCH)', sede: 'Santiago (Norte)', country: 'Chile', xp: userXp + 45 },
-    { name: 'Dr. Matías Valenzuela', avatar: '⚡', university: 'Pontificia Universidad Católica de Chile (PUC)', sede: 'Santiago (Casa Central)', country: 'Chile', xp: userXp + 25 },
-    { name: 'Dra. Fernanda Rojas', avatar: '❤️', university: 'Universidad de Concepción (UdeC)', sede: 'Concepción', country: 'Chile', xp: userXp + 10 },
+    { name: 'Dra. Camila Soto', avatar_character: 'dr_yang', image: '/avatars/dr_yang.png', university: 'Universidad de Chile (UCH)', sede: 'Santiago (Norte)', country: 'Chile', xp: userXp + 45 },
+    { name: 'Dr. Matías Valenzuela', avatar_character: 'dr_shepherd', image: '/avatars/dr_shepherd.png', university: 'Pontificia Universidad Católica de Chile (PUC)', sede: 'Santiago (Casa Central)', country: 'Chile', xp: userXp + 25 },
+    { name: 'Dra. Fernanda Rojas', avatar_character: 'dr_grey', image: '/avatars/dr_grey.png', university: 'Universidad de Concepción (UdeC)', sede: 'Concepción', country: 'Chile', xp: userXp + 10 },
     { 
       name: userProfile?.first_name ? `Dr(a). ${userProfile.first_name} ${userProfile.last_name || ''}` : 'Tú (Médico Postulante)', 
-      avatar: '🥼', 
+      avatar_character: userProfile?.avatar_character || 'dr_house', 
+      image: getDoctorAvatar(userProfile || { avatar_character: 'dr_house' }).image,
       university: userProfile?.university || 'Universidad de Chile (UCH)',
       sede: userProfile?.sede || 'Santiago',
       country: userProfile?.country || 'Chile',
       xp: userXp, 
       isUser: true 
     },
-    { name: 'Dr. Carlos Mendoza', avatar: '🧩', university: 'Universidad Central de Venezuela', sede: 'Caracas', country: 'Venezuela', xp: Math.max(10, userXp - 15) },
-    { name: 'Dra. Valentina Castro', avatar: '🔮', university: 'Universidad Andrés Bello (UNAB)', sede: 'Viña del Mar', country: 'Chile', xp: Math.max(5, userXp - 30) },
-    { name: 'Dr. Andrés Ospina', avatar: '🎈', university: 'Universidad de Antioquia', sede: 'Medellín', country: 'Colombia', xp: Math.max(0, userXp - 45) },
-    { name: 'Dra. Javiera Silva', avatar: '🚀', university: 'Universidad de Valparaíso (UV)', sede: 'Valparaíso', country: 'Chile', xp: Math.max(0, userXp - 60) }
+    { name: 'Dr. Carlos Mendoza', avatar_character: 'dr_murphy', image: '/avatars/dr_murphy.png', university: 'Universidad Central de Venezuela', sede: 'Caracas', country: 'Venezuela', xp: Math.max(10, userXp - 15) },
+    { name: 'Dra. Valentina Castro', avatar_character: 'dr_strange', image: '/avatars/dr_strange.png', university: 'Universidad Andrés Bello (UNAB)', sede: 'Viña del Mar', country: 'Chile', xp: Math.max(5, userXp - 30) },
+    { name: 'Dr. Andrés Ospina', avatar_character: 'dr_adams', image: '/avatars/dr_adams.png', university: 'Universidad de Antioquia', sede: 'Medellín', country: 'Colombia', xp: Math.max(0, userXp - 45) },
+    { name: 'Dra. Javiera Silva', avatar_character: 'dr_cox', image: '/avatars/dr_cox.png', university: 'Universidad de Valparaíso (UV)', sede: 'Valparaíso', country: 'Chile', xp: Math.max(0, userXp - 60) }
   ]
 
   // Sort by XP descending
@@ -88,6 +91,7 @@ export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'res
 
     return {
       ...player,
+      avatarImage: player.image || getDoctorAvatar(player).image,
       rank: idx + 1,
       zone
     }

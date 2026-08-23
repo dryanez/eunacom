@@ -104,7 +104,20 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
 
                 <div className="doctor-info-cell" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                   <div style={{ position: 'relative', display: 'inline-flex' }}>
-                    <span className="doctor-avatar-emoji">{player.avatar}</span>
+                    <img
+                      src={player.avatarImage || '/avatars/dr_house.png'}
+                      alt={player.name}
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        border: isUser ? '2px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.15)',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                        background: 'rgba(30, 41, 59, 0.8)',
+                        display: 'block'
+                      }}
+                    />
                     <div style={{ position: 'absolute', bottom: -3, right: -5 }}>
                       <UserInstitutionBadge
                         user={{ university: player.university, sede: player.sede, country: player.country }}

@@ -9,6 +9,7 @@ import {
     Clock, BarChart3, RotateCcw, Settings,
     LogOut, LogIn, ChevronDown, Video, Shield, Users, Flame, Eye, EyeOff
 } from 'lucide-react'
+import { getDoctorAvatar } from '../utils/doctorAvatars'
 
 const ProgressItem = ({ label, used, total }) => {
     const isMaxed = used >= total;
@@ -38,6 +39,7 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
     const [displayName, setDisplayName] = useState(null)
+    const [avatarImage, setAvatarImage] = useState('/avatars/dr_house.png')
 
     useEffect(() => {
         if (!user) return
@@ -51,7 +53,12 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
             if (profile?.first_name) {
                 setDisplayName(`${profile.first_name} ${profile.last_name || ''}`.trim())
             }
-        }).catch(() => {})
+            const doc = getDoctorAvatar(profile || user)
+            if (doc?.image) setAvatarImage(doc.image)
+        }).catch(() => {
+            const doc = getDoctorAvatar(user)
+            if (doc?.image) setAvatarImage(doc.image)
+        })
     }, [user])
 
     useEffect(() => {
@@ -83,11 +90,11 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
                 )}
 
                 <div className="sidebar__section-title">Aprendizaje</div>
+                <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#818cf8', fontWeight: 700 }}>
+                    <Video size={18} style={{ color: '#818cf8' }} /> Mis Clases 📺
+                </NavLink>
                 <NavLink to="/medlingo" data-tour="medlingo" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316', fontWeight: 700 }}>
                     <Flame size={18} style={{ color: '#f97316' }} /> MedLingo 🔥
-                </NavLink>
-                <NavLink to="/mis-clases" data-tour="mis-clases" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                    <Video size={18} /> Mis Clases
                 </NavLink>
                 {isAdmin() && (
                     <NavLink to="/studio" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#38bdf8', fontWeight: 700 }}>
@@ -183,8 +190,8 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
                             </>
                         )}
                         <div className="sidebar__user">
-                            <div className="sidebar__avatar">
-                                {(displayName || user.email || 'U').charAt(0).toUpperCase()}
+                            <div className="sidebar__avatar" style={{ padding: 0, overflow: 'hidden', border: '1.5px solid rgba(255,255,255,0.25)', flexShrink: 0 }}>
+                                <img src={avatarImage} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                             <div>
                                 <div className="sidebar__user-name">{displayName || user.email?.split('@')[0] || 'Usuario'}</div>

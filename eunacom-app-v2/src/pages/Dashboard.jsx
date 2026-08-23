@@ -4,7 +4,8 @@ import {
   PieChart, FileText, Target, Activity, CreditCard, RotateCcw,
   Flame, Trophy, Medal, Crown, ChevronDown, Zap, TrendingUp,
   Layers, Download, X, Sparkles, Stethoscope, LogIn, ChevronRight,
-  BookOpen, Building2, Globe, Users, ArrowUpRight, Filter
+  BookOpen, Building2, Globe, Users, ArrowUpRight, Filter,
+  Video, ArrowRight, PlayCircle, ShieldCheck, Heart, Star
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard, fetchUserProfile } from '../lib/api'
@@ -12,7 +13,8 @@ import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getL
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
-import { getDoctorAvatar } from '../utils/doctorAvatars'
+import { getDoctorAvatar, DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
+import '../styles/dashboardProMax.css'
 
 const TOPIC_PRESETS = [
   // Módulo 1 · Medicina Interna
@@ -389,12 +391,19 @@ const Dashboard = () => {
   const levelTitle = getLevelTitle(stats.level)
   const dailyPct = Math.min((todayAnswers / DAILY_GOAL) * 100, 100)
 
-  // Find user's rank in leaderboard
-  const myRank = leaderboard.findIndex(u => u.user_id === user?.id) + 1
+  const activeDoctor = DOCTOR_CHARACTERS.find(d => d.id === (userProfile?.selected_doctor || 'dr_house')) || DOCTOR_CHARACTERS[0]
 
   return (
-    <div style={{ paddingBottom: '2.5rem' }}>
-      {/* ─── PWA INSTALL BANNER (Subtle & Non-Intrusive) ─── */}
+    <div className="dash-promax-wrapper">
+      {/* Ambient Textured Lighting & Depth Glows */}
+      <div className="dash-promax-ambient-bg">
+        <div className="dash-ambient-glow-1" />
+        <div className="dash-ambient-glow-2" />
+        <div className="dash-ambient-glow-3" />
+      </div>
+
+      <div className="dash-content-layer" style={{ paddingBottom: '2.5rem' }}>
+        {/* ─── PWA INSTALL BANNER (Subtle & Non-Intrusive) ─── */}
       {!isStandalone && !dismissed && (
         <div style={{
           background: 'rgba(15, 23, 42, 0.8)',
@@ -520,127 +529,216 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* ─── LOGGED IN USER GREETING ─── */}
+      {/* ─── LOGGED IN USER GREETING & DOCTOR PROFILE ─── */}
       {user && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
-          <div>
-            <h1 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#f8fafc', margin: 0, letterSpacing: '-0.02em' }}>
-              Hola, {userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : 'Doctor'} 👋
-            </h1>
-            <p style={{ fontSize: '0.84rem', color: '#94a3b8', margin: '3px 0 0' }}>
-              Continúa tu preparación y revisa tus métricas de dominio
-            </p>
+        <div className="dash-header-greeting">
+          <div className="dash-greeting-left">
+            <div className="dash-user-avatar-frame">
+              <img 
+                src={activeDoctor.image || '/avatars/dr_house.png'} 
+                alt={activeDoctor.name} 
+                onError={(e) => { e.target.src = '/avatars/dr_house.png' }}
+              />
+            </div>
+            <div className="dash-greeting-titles">
+              <h1>
+                Hola, {userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : 'Doctor'} 👋
+              </h1>
+              <p>
+                {activeDoctor.name} · {activeDoctor.quote || 'Continúa tu preparación y revisa tus métricas de dominio'}
+              </p>
+            </div>
           </div>
+          {userProfile && (userProfile.university || userProfile.country) && (
+            <div className="dash-greeting-right">
+              <UserInstitutionBadge user={userProfile} size={28} showLabel={true} />
+            </div>
+          )}
         </div>
       )}
 
-      {/* ─── XP + STREAK BAR (logged-in only) ─── */}
+      {/* ─── HERO BENTO: LEVEL, XP & RACHA WIDGET ─── */}
       {user && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '1rem 1.25rem',
-          marginBottom: '1.5rem',
-          background: 'rgba(30, 41, 59, 0.45)',
-          backdropFilter: 'blur(12px)',
-          borderRadius: '14px',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          gap: '1.5rem',
-          flexWrap: 'wrap'
-        }}>
-          <div style={{ flex: 1, minWidth: 220 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <div style={{ fontSize: '0.82rem', color: '#38bdf8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                <Zap size={14} color="#38bdf8" />
+        <div className="dash-hero-level-bento">
+          <div className="dash-level-progress-col">
+            <div className="dash-level-top-row">
+              <div className="dash-rank-badge">
+                <Zap size={14} />
                 <span>Nivel {stats.level} · {levelTitle}</span>
               </div>
-              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                {formatXP(stats.xp)} / {formatXP(levelCapXP)} XP
-              </span>
+              <div className="dash-xp-fraction">
+                <strong>{formatXP(stats.xp)}</strong> / {formatXP(levelCapXP)} XP
+              </div>
             </div>
-            <div style={{ height: '6px', width: '100%', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '6px', overflow: 'hidden' }}>
-              <div style={{ height: '100%', width: `${xpProgress}%`, background: '#38bdf8', borderRadius: '6px', transition: 'width 0.4s ease' }} />
+            
+            <div className="dash-progress-track">
+              <div 
+                className="dash-progress-fill" 
+                style={{ width: `${Math.max(4, Math.min(100, xpProgress))}%` }} 
+              />
             </div>
-            <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 4 }}>
-              {formatXP(Math.max(0, levelCapXP - stats.xp))} XP para el siguiente nivel
+
+            <div className="dash-level-sub-meta">
+              <span>{formatXP(Math.max(0, levelCapXP - stats.xp))} XP para el siguiente nivel</span>
+              <span>Total acumulado: {formatXP(stats.totalXP || stats.xp)} XP</span>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingLeft: '1.25rem', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-            <Flame size={32} color={stats.streak > 0 ? '#f59e0b' : '#64748b'} fill={stats.streak > 0 ? '#f59e0b' : 'none'} />
-            <div>
-              <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Racha Actual</div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: stats.streak > 0 ? '#f8fafc' : '#94a3b8' }}>
-                {stats.streak} <span style={{ fontSize: '0.8rem', fontWeight: 500, color: '#64748b' }}>días</span>
-              </div>
+          {/* Quick Streak Widget Linking Directly to MedLingo */}
+          <a href="/medlingo" className="dash-streak-quick-widget" title="Toca para entrenar tu racha en MedLingo">
+            <div className="dash-streak-flame-box">
+              <Flame size={24} className="dash-flame-anim" />
             </div>
-          </div>
+            <div className="dash-streak-data">
+              <span className="dash-streak-lbl">Racha Activa</span>
+              <span className="dash-streak-val">
+                {stats.streak || 1} <span>{stats.streak === 1 ? 'día' : 'días'}</span>
+              </span>
+            </div>
+            <ChevronRight size={18} color="#f97316" />
+          </a>
         </div>
       )}
 
-      {/* ─── QUICK ACTIONS GRID ─── */}
-      <div style={{ marginBottom: '1.75rem' }}>
-        <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.75rem', color: '#f8fafc' }}>Accesos Rápidos</h3>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '0.75rem'
-        }}>
-          {[
-            { to: '/mis-clases', title: 'Videoclases', subtitle: '+650 lecciones teóricas', icon: BookOpen, color: '#0ea5e9', bg: 'rgba(14, 165, 233, 0.12)' },
-            { to: '/test', title: 'Banco de Preguntas', subtitle: '+10.000 preguntas clínicas', icon: FileText, color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.12)' },
-            { to: '/reconstructions', title: 'Reconstrucciones', subtitle: 'Exámenes oficiales ASOFAMECH', icon: Layers, color: '#10b981', bg: 'rgba(16, 185, 129, 0.12)' },
-            { to: '/stats', title: 'Estadísticas', subtitle: 'Métricas de dominio y precisión', icon: Activity, color: '#a855f7', bg: 'rgba(168, 85, 247, 0.12)' },
-          ].map(action => {
-            const IconComp = action.icon
-            return (
-              <a
-                key={action.to}
-                href={action.to}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  padding: '0.85rem 1rem',
-                  background: 'rgba(30, 41, 59, 0.45)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255, 255, 255, 0.07)',
-                  textDecoration: 'none',
-                  transition: 'all 0.15s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'
-                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.7)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.07)'
-                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.45)'
-                }}
-              >
-                <div style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: '9px',
-                  background: action.bg,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  color: action.color,
-                }}>
-                  <IconComp size={18} />
+      {/* ─── UI/UX PRO MAX BENTO GRID (1st: MIS CLASES, 2nd: MEDLINGO) ─── */}
+      <div className="dash-bento-section">
+        <div className="dash-bento-section-header">
+          <h2 className="dash-bento-section-title">
+            <Sparkles size={18} color="#38bdf8" />
+            <span>Módulos de Preparación EUNACOM</span>
+          </h2>
+        </div>
+
+        <div className="dash-bento-grid">
+          {/* 1. HERO BENTO #1: MIS CLASES (First & Prominent) */}
+          <a href="/mis-clases" className="dash-bento-card bento-card-clases">
+            <div className="dash-card-ambient-tint" />
+            <div>
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <Video size={24} />
                 </div>
-                <div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: 600, color: '#f8fafc' }}>{action.title}</div>
-                  <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{action.subtitle}</div>
+                <span className="dash-card-badge">📺 Masterclasses HD</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">Mis Clases Teóricas</h3>
+                <p className="dash-card-desc">
+                  +650 videoclases de alto rendimiento según perfil ASOFAMECH, resúmenes MINSAL, fisiopatología y algoritmos clínicos.
+                </p>
+              </div>
+            </div>
+            <div className="dash-card-footer">
+              <span className="dash-card-tag">⚡ Módulos 1, 2 y 3</span>
+              <span className="dash-card-action-link">
+                <span>Ver Clases</span>
+                <ArrowRight size={16} />
+              </span>
+            </div>
+          </a>
+
+          {/* 2. HERO BENTO #2: MEDLINGO EUNACOM (Second & Prominent) */}
+          <a href="/medlingo" className="dash-bento-card bento-card-medlingo">
+            <div className="dash-card-ambient-tint" />
+            <div>
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <Flame size={24} className="dash-flame-anim" />
                 </div>
-              </a>
-            )
-          })}
+                <span className="dash-card-badge">🦉 Modo Gamificado</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">MedLingo EUNACOM</h3>
+                <p className="dash-card-desc">
+                  Aprende semiología y farmacología jugando con vidas, niveles, misiones diarias y torneos semanales de ligas médicas.
+                </p>
+              </div>
+            </div>
+            <div className="dash-card-footer">
+              <span className="dash-card-tag">🔥 Racha & 6 Ligas</span>
+              <span className="dash-card-action-link">
+                <span>Entrenar Racha</span>
+                <ArrowRight size={16} />
+              </span>
+            </div>
+          </a>
+
+          {/* 3. BENTO #3: BANCO DE PREGUNTAS & SIMULADOR */}
+          <a href="/test" className="dash-bento-card bento-card-test">
+            <div className="dash-card-ambient-tint" />
+            <div>
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <FileText size={22} />
+                </div>
+                <span className="dash-card-badge">🎯 +10.000 Preguntas</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">Banco & Simulacros</h3>
+                <p className="dash-card-desc">
+                  Preguntas clínicas con justificación instantánea, modo tutor AI y filtros personalizados por tema.
+                </p>
+              </div>
+            </div>
+            <div className="dash-card-footer">
+              <span className="dash-card-tag">🩺 Modo Tutor & Examen</span>
+              <span className="dash-card-action-link">
+                <span>Iniciar Test</span>
+                <ArrowRight size={16} />
+              </span>
+            </div>
+          </a>
+
+          {/* 4. BENTO #4: RECONSTRUCCIONES OFICIALES */}
+          <a href="/reconstructions" className="dash-bento-card bento-card-reconstructions">
+            <div className="dash-card-ambient-tint" />
+            <div>
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <Layers size={22} />
+                </div>
+                <span className="dash-card-badge">🏛️ Oficiales 2020–2026</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">Reconstrucciones</h3>
+                <p className="dash-card-desc">
+                  Exámenes oficiales ASOFAMECH completos con pautas oficiales corregidas y estadísticas históricas.
+                </p>
+              </div>
+            </div>
+            <div className="dash-card-footer">
+              <span className="dash-card-tag">📋 Pruebas ST y SP</span>
+              <span className="dash-card-action-link">
+                <span>Resolver</span>
+                <ArrowRight size={16} />
+              </span>
+            </div>
+          </a>
+
+          {/* 5. BENTO #5: ANALÍTICA & PLAN DE ESTUDIO */}
+          <a href="/stats" className="dash-bento-card bento-card-plan">
+            <div className="dash-card-ambient-tint" />
+            <div>
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <Activity size={22} />
+                </div>
+                <span className="dash-card-badge">📊 Analítica EUNACOM</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">Estadísticas & Métricas</h3>
+                <p className="dash-card-desc">
+                  Métricas de dominio, tasa de acierto por especialidad, análisis de debilidades y proyección de puntaje.
+                </p>
+              </div>
+            </div>
+            <div className="dash-card-footer">
+              <span className="dash-card-tag">📈 Proyección en Vivo</span>
+              <span className="dash-card-action-link">
+                <span>Ver Reportes</span>
+                <ArrowRight size={16} />
+              </span>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -1392,7 +1490,9 @@ const Dashboard = () => {
         )}
       </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default Dashboard
+
