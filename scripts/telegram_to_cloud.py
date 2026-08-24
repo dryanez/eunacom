@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Telegram Group Video Downloader & Cloudflare R2 / S3 Cloud Uploader
-===================================================================
-Extracts ONLY video files from a specified Telegram group/channel,
-downloads them locally, and streams/uploads them directly into your Cloud Storage (R2 / S3),
-cleaning up local storage immediately to save disk space.
+High-Speed Telegram Video Downloader & Category Organizer
+==========================================================
+- Reliable High-Speed Streaming (cryptg C-accelerated) with Live Percentage & Speed
+- Smart Category & Topic Auto-Organizing (BnB Subjects, Forum Topics, Hashtags, Lesson Numbers)
+- Destination: D:\Telegram_BnB_Videos
 """
 
 import os
@@ -14,70 +14,124 @@ import json
 import asyncio
 from pathlib import Path
 from datetime import datetime
+
+# UTF-8 Encoding for Windows
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# Third-party modules (install via pip install -r scripts/requirements_telegram.txt)
 try:
-    from telethon import TelegramClient, events
+    from telethon import TelegramClient, errors
     from telethon.tl.types import (
         MessageMediaDocument,
         DocumentAttributeVideo,
         DocumentAttributeFilename,
     )
+    from telethon.tl.functions.messages import GetForumTopicsRequest
     import boto3
     from boto3.s3.transfer import TransferConfig
+    import qrcode
+    import cryptg
 except ImportError:
-    print("\n[!] Missing required dependencies.")
-    print("Please install them with: pip install telethon boto3 python-dotenv tqdm\n")
+    print("\n[!] Missing dependencies. Run: pip install telethon boto3 python-dotenv tqdm qrcode[pil] cryptg\n")
     sys.exit(1)
 
-# Load .env from workspace or current directory
+# Environment configuration
 env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
-load_dotenv()  # Fallback to local .env
+load_dotenv()
 
-# Configuration Constants
-TELEGRAM_API_ID = os.getenv("TELEGRAM_API_ID")
-TELEGRAM_API_HASH = os.getenv("TELEGRAM_API_HASH")
-R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID") or os.getenv("VITE_R2_ACCOUNT_ID")
-R2_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID") or os.getenv("VITE_R2_ACCESS_KEY_ID")
-R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY") or os.getenv("VITE_R2_SECRET_ACCESS_KEY")
-R2_BUCKET = os.getenv("R2_BUCKET") or os.getenv("VITE_R2_BUCKET") or "eunacomvideos"
-R2_PREFIX = os.getenv("R2_PREFIX", "bnb_videos/")
+TELEGRAM_API_ID = os.getenv("TELEGRAM_API_ID", "36321519")
+TELEGRAM_API_HASH = os.getenv("TELEGRAM_API_HASH", "97ad5a2457575eae8ee5dd46a3db960b")
 
-TEMP_DOWNLOAD_DIR = Path(__file__).resolve().parent / "temp_downloads"
-MANIFEST_FILE = Path(__file__).resolve().parent / "telegram_video_manifest.json"
+# Storage on Drive D
+BASE_DOWNLOAD_DIR = Path("D:/Telegram_BnB_Videos")
+MANIFEST_FILE = BASE_DOWNLOAD_DIR / "telegram_video_manifest.json"
 SESSION_NAME = str(Path(__file__).resolve().parent / "telegram_session")
+QR_IMAGE_PATH = Path(__file__).resolve().parent / "qr_login.png"
+
+# Known Boards & Beyond / Medical Topics for Automatic Detection
+BNB_KNOWN_SUBJECTS = [
+    "Biochemistry", "Cardiology", "Cell Biology", "Dermatology", "Endocrinology",
+    "Gastroenterology", "Genetics", "Hematology", "Immunology", "Infectious Disease",
+    "Musculoskeletal", "Neurology", "Pathology", "Pharmacology", "Psychiatry",
+    "Pulmonary", "Renal", "Reproductive", "Pediatrics", "Surgery", "Epidemiology",
+    "Biostatistics", "Anatomy", "Physiology", "Microbiology", "Ophthalmology",
+    "ENT", "Emergency Medicine", "Obstetrics", "Gynecology"
+]
 
 
-def sanitize_filename(name: str) -> str:
-    """Removes invalid filesystem/URL characters."""
-    clean = re.sub(r'[\\/*?:"<>|]', "", name)
-    clean = re.sub(r"\s+", "_", clean.strip())
-    return clean[:120] if clean else "video"
+def sanitize_name(name: str) -> str:
+    """Sanitize string for Windows directories and filenames."""
+    if not name:
+        return "General"
+    clean = re.sub(r'[\\/*?:"<>|]', " ", name)
+    clean = re.sub(r"\s+", " ", clean).strip()
+    return clean[:100] if clean else "General"
 
 
-def init_s3_client():
-    """Initializes Cloudflare R2 / S3 client."""
-    if not R2_ACCOUNT_ID or not R2_ACCESS_KEY_ID or not R2_SECRET_ACCESS_KEY:
-        print("\n[!] Warning: Missing Cloudflare R2 credentials in .env")
-        print("Required: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY")
-        print("Videos will still be downloaded locally to temp_downloads/ until credentials are set.\n")
-        return None
+def extract_topic_and_title(msg, topics_map: dict) -> tuple[str, str]:
+    """Extracts the subject/topic and lesson title/number."""
+    topic_name = "General_Videos"
+    raw_text = (msg.message or "").strip()
+    lines = [l.strip() for l in raw_text.split("\n") if l.strip()]
 
-    endpoint = f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
-    return boto3.client(
-        "s3",
-        endpoint_url=endpoint,
-        aws_access_key_id=R2_ACCESS_KEY_ID,
-        aws_secret_access_key=R2_SECRET_ACCESS_KEY,
-        region_name="auto",
-    )
+    # 1. Telegram Forum Topic match
+    if msg.reply_to:
+        reply_id = getattr(msg.reply_to, "reply_to_top_id", None) or getattr(msg.reply_to, "reply_to_msg_id", None)
+        if reply_id and reply_id in topics_map:
+            topic_name = topics_map[reply_id]
+
+    # 2. Check hashtags (e.g. #Biochemistry, #Cardio)
+    if topic_name == "General_Videos":
+        hashtags = re.findall(r"#([A-Za-z0-9_]+)", raw_text)
+        for ht in hashtags:
+            for subj in BNB_KNOWN_SUBJECTS:
+                if ht.lower() in subj.lower() or subj.lower() in ht.lower():
+                    topic_name = subj
+                    break
+            if topic_name != "General_Videos":
+                break
+
+    # 3. Check known BnB subject keywords in text lines
+    if topic_name == "General_Videos":
+        for line in lines:
+            for subj in BNB_KNOWN_SUBJECTS:
+                if re.search(rf"\b{re.escape(subj)}\b", line, re.IGNORECASE):
+                    topic_name = subj
+                    break
+            if topic_name != "General_Videos":
+                break
+
+    # 4. Multi-line caption check: if line 1 looks like a section header
+    if topic_name == "General_Videos" and len(lines) >= 2:
+        if len(lines[0]) < 40 and not re.search(r"\.(mp4|mkv|avi)$", lines[0], re.I):
+            topic_name = lines[0]
+
+    # Extract lesson title
+    title = ""
+    if lines:
+        title = lines[-1] if len(lines) > 1 and topic_name in lines[0] else lines[0]
+
+    # Fallback to document original filename
+    if (not title or title == topic_name) and msg.document:
+        for attr in msg.document.attributes:
+            if isinstance(attr, DocumentAttributeFilename):
+                title = Path(attr.file_name).stem
+
+    if not title:
+        title = f"lesson_{msg.id}"
+
+    return sanitize_name(topic_name), sanitize_name(title)
 
 
 def load_manifest() -> dict:
-    """Loads history of already uploaded videos to avoid duplicates."""
     if MANIFEST_FILE.exists():
         try:
             with open(MANIFEST_FILE, "r", encoding="utf-8") as f:
@@ -88,113 +142,159 @@ def load_manifest() -> dict:
 
 
 def save_manifest(data: dict):
-    """Saves updated manifest."""
+    BASE_DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
     with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def upload_to_r2(s3_client, local_file_path: Path, r2_key: str) -> bool:
-    """Uploads file to Cloudflare R2 with multipart acceleration and progress bar."""
-    if not s3_client:
-        return False
+async def authenticate_telegram(client: TelegramClient):
+    await client.connect()
+    if await client.is_user_authorized():
+        print("✅ Telegram session authorized!")
+        return
 
-    file_size = local_file_path.stat().st_size
-    config = TransferConfig(
-        multipart_threshold=1024 * 25,  # 25MB
-        max_concurrency=10,
-        multipart_chunksize=1024 * 25,
-        use_threads=True,
-    )
+    print("\n" + "=" * 60)
+    print("🔐 TELEGRAM LOGIN")
+    print("=" * 60)
+    print("[1] Scan QR Code on Screen (Instant - No code needed)")
+    print("[2] Enter Phone Number & Telegram Code")
+    choice = input("\nSelect [1] or [2] (default 1): ").strip() or "1"
 
-    with tqdm(
-        total=file_size,
-        unit="B",
-        unit_scale=True,
-        unit_divisor=1024,
-        desc=f"☁️ Uploading {local_file_path.name[:25]}",
-        leave=False,
-    ) as pbar:
+    if choice == "1":
+        qr_login = await client.qr_login()
+        print("\n" + "-" * 60)
+        print("📱 SCAN THIS QR CODE WITH YOUR PHONE TELEGRAM APP:")
+        print("Telegram -> Settings -> Devices -> Link Desktop Device")
+        print("-" * 60)
+
+        qr = qrcode.QRCode()
+        qr.add_data(qr_login.url)
+        qr.print_ascii(invert=True)
+
+        qr_img = qrcode.make(qr_login.url)
+        qr_img.save(QR_IMAGE_PATH)
+        print(f"\n🖼️ QR Code image opened: {QR_IMAGE_PATH}")
         try:
-            s3_client.upload_file(
-                str(local_file_path),
-                R2_BUCKET,
-                r2_key,
-                Config=config,
-                Callback=lambda bytes_transferred: pbar.update(bytes_transferred),
-                ExtraArgs={"ContentType": "video/mp4"},
-            )
-            return True
-        except Exception as e:
-            print(f"\n[!] Upload error for {local_file_path.name}: {e}")
-            return False
+            if sys.platform == "win32":
+                os.startfile(str(QR_IMAGE_PATH))
+        except Exception:
+            pass
+
+        print("⏳ Waiting for scan from your Telegram app...")
+        while True:
+            try:
+                await qr_login.wait(timeout=60)
+                break
+            except asyncio.TimeoutError:
+                print("🔄 Refreshing QR code...")
+                await qr_login.recreate()
+                qr_img = qrcode.make(qr_login.url)
+                qr_img.save(QR_IMAGE_PATH)
+            except errors.SessionPasswordNeededError:
+                pwd = input("\nEnter your 2-Step Verification Password: ").strip()
+                await client.sign_in(password=pwd)
+                break
+
+        print("\n🎉 Logged in successfully!")
+        if QR_IMAGE_PATH.exists():
+            try:
+                QR_IMAGE_PATH.unlink()
+            except Exception:
+                pass
+    else:
+        phone = input("\nEnter phone (with country code): ").strip()
+        await client.send_code_request(phone)
+        code = input("Enter code received in Telegram: ").strip()
+        try:
+            await client.sign_in(phone, code)
+        except errors.SessionPasswordNeededError:
+            pwd = input("Enter 2-Step Verification password: ").strip()
+            await client.sign_in(password=pwd)
 
 
-async def select_target_chat(client: TelegramClient):
-    """Prompts the user to select the Telegram group/channel or provide a link."""
-    print("\n🔍 Scanning your Telegram dialogs...")
-    dialogs = await client.get_dialogs(limit=30)
+async def select_target_chat(client: TelegramClient, auto_match: str = None):
+    print("\n🔍 Loading your Telegram groups...")
+    dialogs = await client.get_dialogs(limit=50)
     groups = [d for d in dialogs if d.is_group or d.is_channel]
 
-    print("\n--- Recent Groups / Channels ---")
+    # Auto match if specified via argument or fallback
+    if auto_match:
+        for g in groups:
+            if auto_match.lower() in g.name.lower():
+                print(f"🎯 Auto-selected group: {g.name} (ID: {g.id})")
+                return g.entity
+
+    print("\n--- Available Groups / Channels ---")
     for idx, g in enumerate(groups):
-        print(f"[{idx + 1}] {g.name} (ID: {g.id})")
-    print("[M] Enter group username / invite link manually")
+        print(f"[{idx + 1}] {g.name}")
+    print("[M] Paste group invite link / username manually")
+
+    if not sys.stdin.isatty():
+        # Non-interactive mode: find Boards and Beyonds or first group
+        for g in groups:
+            if "board" in g.name.lower() or "beyond" in g.name.lower() or "bnb" in g.name.lower():
+                print(f"🎯 Auto-selected: {g.name}")
+                return g.entity
+        return groups[0].entity if groups else None
 
     choice = input("\nSelect group number or 'M': ").strip()
     if choice.upper() == "M":
-        manual_input = input("Enter group invite link or @username: ").strip()
-        return await client.get_entity(manual_input)
+        link = input("Enter group invite link or @username: ").strip()
+        return await client.get_entity(link)
     elif choice.isdigit() and 1 <= int(choice) <= len(groups):
         return groups[int(choice) - 1].entity
-    else:
-        print("[!] Invalid selection.")
-        return None
+    return None
 
 
 async def main():
-    print("=" * 65)
-    print("🚀 Telegram Group Video Downloader & Cloud Storage Uploader")
-    print("=" * 65)
+    print("=" * 70)
+    print("⚡ HIGH-SPEED TELEGRAM VIDEO DOWNLOADER")
+    print(f"📂 Destination Folder: {BASE_DOWNLOAD_DIR} (Volume D)")
+    print("=" * 70)
 
-    global TELEGRAM_API_ID, TELEGRAM_API_HASH, R2_PREFIX
-
-    # Validate Telegram credentials
-    if not TELEGRAM_API_ID or not TELEGRAM_API_HASH:
-        print("\n[!] Telegram API credentials missing.")
-        print("Get your API ID and API Hash from: https://my.telegram.org (under 'API development tools')")
-        TELEGRAM_API_ID = input("Enter TELEGRAM_API_ID: ").strip()
-        TELEGRAM_API_HASH = input("Enter TELEGRAM_API_HASH: ").strip()
-
-    TEMP_DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    BASE_DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
     manifest = load_manifest()
-    s3_client = init_s3_client()
 
-    print("\n🔐 Connecting to Telegram...")
     client = TelegramClient(SESSION_NAME, int(TELEGRAM_API_ID), TELEGRAM_API_HASH)
-    await client.start()
-    print("✅ Telegram authentication successful!")
+    await authenticate_telegram(client)
 
-    target_chat = await select_target_chat(client)
+    group_arg = None
+    if len(sys.argv) > 1:
+        group_arg = " ".join(sys.argv[1:]).replace("--group", "").strip()
+    target_chat = await select_target_chat(client, auto_match=group_arg or "Boards and beyond")
     if not target_chat:
-        print("[!] No group selected. Exiting.")
+        print("[!] No group selected.")
         return
 
     chat_title = getattr(target_chat, "title", "group")
-    print(f"\n📂 Target Group: {chat_title}")
-    print(f"☁️ Destination Bucket: {R2_BUCKET}/{R2_PREFIX}")
+    print(f"\n📂 Scanning Group: {chat_title}")
+
+    # Load Forum Topics if group is a forum
+    topics_map = {}
+    if getattr(target_chat, "forum", False):
+        try:
+            res = await client(GetForumTopicsRequest(
+                channel=target_chat,
+                offset_date=0,
+                offset_id=0,
+                offset_topic=0,
+                limit=100,
+            ))
+            for t in res.topics:
+                topics_map[t.id] = t.title
+            print(f"📑 Identified {len(topics_map)} Forum Topics in group!")
+        except Exception:
+            pass
+
     print("⏳ Scanning messages for videos...\n")
 
-    # Count & collect video messages
-    video_messages = []
+    video_items = []
     async for message in client.iter_messages(target_chat):
         if not message.media:
             continue
 
-        # Check if media is a video
         is_video = False
         duration = 0
-        original_filename = None
-
         if getattr(message, "video", None):
             is_video = True
         elif isinstance(message.media, MessageMediaDocument) and message.document:
@@ -205,125 +305,103 @@ async def main():
                 if isinstance(attr, DocumentAttributeVideo):
                     is_video = True
                     duration = attr.duration
-                if isinstance(attr, DocumentAttributeFilename):
-                    original_filename = attr.file_name
 
         if is_video:
-            video_messages.append({
+            topic_name, lesson_title = extract_topic_and_title(message, topics_map)
+            video_items.append({
                 "message": message,
+                "topic": topic_name,
+                "title": lesson_title,
                 "duration": duration,
-                "original_filename": original_filename,
             })
 
-    total_videos = len(video_messages)
-    print(f"🎬 Found {total_videos} videos in '{chat_title}'.")
+    total_videos = len(video_items)
+    print(f"🎬 Found {total_videos} videos.")
     if total_videos == 0:
-        print("No videos found to download.")
         return
 
-    # Process videos chronologically (oldest to newest)
-    video_messages.reverse()
+    # Process chronologically (oldest to newest)
+    video_items.reverse()
 
-    uploaded_count = 0
+    downloaded_count = 0
     skipped_count = 0
 
-    for idx, item in enumerate(video_messages, 1):
+    for idx, item in enumerate(video_items, 1):
         msg = item["message"]
         msg_id = str(msg.id)
 
-        # Check if already processed
         if msg_id in manifest:
             skipped_count += 1
             continue
 
-        caption = (msg.message or "").strip().split("\n")[0]
-        base_name = item["original_filename"] or caption or f"video_msg_{msg_id}"
-        clean_name = sanitize_filename(base_name)
-        if not clean_name.endswith(".mp4"):
-            clean_name += ".mp4"
+        topic_folder = BASE_DOWNLOAD_DIR / item["topic"]
+        topic_folder.mkdir(parents=True, exist_ok=True)
 
-        final_filename = f"{msg_id.zfill(5)}_{clean_name}"
-        local_filepath = TEMP_DOWNLOAD_DIR / final_filename
-        r2_key = f"{R2_PREFIX.rstrip('/')}/{final_filename}"
+        filename = f"{msg_id.zfill(4)}_{item['title']}.mp4"
+        local_filepath = topic_folder / filename
+        file_size = msg.file.size if msg.file else 0
 
-        print(f"\n[{idx}/{total_videos}] Processing: {final_filename}")
+        print(f"\n[{idx}/{total_videos}] 📁 Topic: {item['topic']} | 🎬 {filename}")
 
-        # Step 1: Download from Telegram with progress bar
+        # Real-Time Progress Bar with Speed & Percentage
         with tqdm(
-            total=msg.file.size if msg.file else 0,
+            total=file_size,
             unit="B",
             unit_scale=True,
             unit_divisor=1024,
-            desc="📥 Downloading from Telegram",
-            leave=False,
+            desc=f"⚡ Downloading {filename[:22]}",
+            leave=True,
+            miniters=1,
+            smoothing=0.1,
         ) as pbar:
             last_bytes = 0
 
-            def download_callback(received_bytes, total_bytes):
+            def progress_callback(received, total):
                 nonlocal last_bytes
-                pbar.update(received_bytes - last_bytes)
-                last_bytes = received_bytes
+                pbar.update(received - last_bytes)
+                last_bytes = received
 
             try:
-                await msg.download_media(
+                await client.download_media(
+                    msg,
                     file=str(local_filepath),
-                    progress_callback=download_callback,
+                    progress_callback=progress_callback,
                 )
             except Exception as e:
-                print(f"[!] Failed to download message {msg_id}: {e}")
+                print(f"[!] Download failed for #{msg_id}: {e}")
                 if local_filepath.exists():
-                    local_filepath.unlink()
+                    try:
+                        local_filepath.unlink()
+                    except Exception:
+                        pass
                 continue
 
-        # Step 2: Upload to Cloudflare R2 / S3
-        if s3_client and local_filepath.exists():
-            upload_success = upload_to_r2(s3_client, local_filepath, r2_key)
-            if upload_success:
-                print(f"✅ Uploaded to cloud: {r2_key}")
-                # Update manifest
-                manifest[msg_id] = {
-                    "r2_key": r2_key,
-                    "filename": final_filename,
-                    "date": str(msg.date),
-                    "caption": msg.message or "",
-                    "duration": item["duration"],
-                    "file_size": local_filepath.stat().st_size,
-                    "uploaded_at": datetime.utcnow().isoformat(),
-                }
-                save_manifest(manifest)
-                uploaded_count += 1
+        # Record in manifest
+        manifest[msg_id] = {
+            "topic": item["topic"],
+            "title": item["title"],
+            "filename": filename,
+            "local_path": str(local_filepath),
+            "date": str(msg.date),
+            "duration": item["duration"],
+            "file_size": file_size,
+            "downloaded_at": datetime.utcnow().isoformat(),
+        }
+        save_manifest(manifest)
+        downloaded_count += 1
 
-                # Clean up local file immediately to save disk space
-                try:
-                    local_filepath.unlink()
-                except Exception:
-                    pass
-            else:
-                print(f"[!] Upload failed, local file preserved in {local_filepath}")
-        else:
-            # If no R2 client configured, keep local file
-            print(f"📁 Saved locally to {local_filepath}")
-            manifest[msg_id] = {
-                "local_path": str(local_filepath),
-                "filename": final_filename,
-                "date": str(msg.date),
-                "caption": msg.message or "",
-                "duration": item["duration"],
-                "saved_at": datetime.utcnow().isoformat(),
-            }
-            save_manifest(manifest)
-
-    print("\n" + "=" * 65)
-    print("🎉 All operations completed!")
-    print(f"• Total videos found: {total_videos}")
-    print(f"• Newly uploaded: {uploaded_count}")
-    print(f"• Previously skipped: {skipped_count}")
-    print(f"• Manifest catalog saved to: {MANIFEST_FILE.name}")
-    print("=" * 65)
+    print("\n" + "=" * 70)
+    print("🎉 ALL VIDEOS DOWNLOADED AND ORGANIZED!")
+    print(f"📁 Destination Folder: {BASE_DOWNLOAD_DIR}")
+    print(f"• Total videos: {total_videos}")
+    print(f"• Newly downloaded: {downloaded_count}")
+    print(f"• Skipped (Already done): {skipped_count}")
+    print(f"• Manifest catalog: {MANIFEST_FILE}")
+    print("=" * 70)
 
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n\n🛑 Process stopped by user. Progress was saved in manifest.")
+        print("\n\n🛑 Stopped by user. Progress saved in manifest.")

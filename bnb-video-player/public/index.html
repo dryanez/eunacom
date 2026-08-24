@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boards & Beyond - Video Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col h-screen overflow-hidden antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Header -->
+  <header class="h-16 bg-slate-900/90 backdrop-blur border-b border-slate-800 flex items-center justify-between px-6 z-20 shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
+        <i data-lucide="play-circle" class="w-6 h-6 text-white"></i>
+      </div>
+      <div>
+        <h1 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
+          Boards & Beyond <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">Studio Player</span>
+        </h1>
+        <p class="text-xs text-slate-400">Offline Study & Medical Library</p>
+      </div>
+    </div>
+
+    <!-- Live Sync & Stats -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="text-slate-300 font-medium" id="stats-total">0 Videos</span>
+        <span class="text-slate-500">•</span>
+        <span class="text-slate-400" id="stats-size">0.0 GB</span>
+      </div>
+
+      <button onclick="fetchVideos(true)" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-medium border border-slate-700/60">
+        <i data-lucide="refresh-cw" class="w-3.5 h-3.5" id="refresh-icon"></i>
+        <span>Sync</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- Sidebar: Topics & Playlists -->
+    <aside class="w-80 md:w-96 bg-slate-900/60 border-r border-slate-800 flex flex-col shrink-0">
+      
+      <!-- Search Box -->
+      <div class="p-4 border-b border-slate-800/80">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input 
+            type="text" 
+            id="search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="Search lessons or topics..." 
+            class="w-full pl-10 pr-4 py-2 bg-slate-950/80 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+          >
+        </div>
+      </div>
+
+      <!-- Topics Accordion List -->
+      <div class="flex-1 overflow-y-auto p-3 space-y-2" id="topics-list">
+        <div class="p-8 text-center text-slate-500 text-xs flex flex-col items-center gap-2">
+          <i data-lucide="loader-2" class="w-5 h-5 animate-spin text-indigo-400"></i>
+          <span>Loading downloaded library...</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content: Video Stage -->
+    <main class="flex-1 flex flex-col bg-slate-950 overflow-y-auto">
+      
+      <!-- Active Video Stage -->
+      <div id="player-container" class="flex-1 flex flex-col p-6 max-w-6xl w-full mx-auto">
+        
+        <!-- Video Screen Container -->
+        <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center group">
+          <video 
+            id="main-video" 
+            controls 
+            preload="metadata"
+            class="w-full h-full object-contain"
+            onplay="saveProgress()"
+            onpause="saveProgress()"
+            ontimeupdate="trackTime()"
+            onended="handleVideoEnded()"
+          ></video>
+
+          <!-- Empty State Screen -->
+          <div id="empty-screen" class="absolute inset-0 bg-slate-900/95 flex flex-col items-center justify-center text-center p-6">
+            <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 shadow-xl">
+              <i data-lucide="clapperboard" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Select a Video Lesson</h3>
+            <p class="text-xs text-slate-400 max-w-sm">Choose any video from the left sidebar to start watching. Real-time seeking and speed controls are enabled.</p>
+          </div>
+        </div>
+
+        <!-- Video Info & Controls Bar -->
+        <div class="mt-5 bg-slate-900/70 border border-slate-800/80 rounded-2xl p-5 backdrop-blur">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span id="current-topic-badge" class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Topic</span>
+                <span id="current-size-badge" class="text-xs text-slate-400">0 MB</span>
+              </div>
+              <h2 id="current-title" class="text-lg font-bold text-white">No video selected</h2>
+            </div>
+
+            <!-- Custom Action Buttons -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <!-- Speed Selector -->
+              <div class="flex items-center bg-slate-950 border border-slate-800 rounded-xl p-1 text-xs">
+                <button onclick="setSpeed(1.0)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1">1x</button>
+                <button onclick="setSpeed(1.25)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1.25">1.25x</button>
+                <button onclick="setSpeed(1.5)" class="speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold" data-speed="1.5">1.5x</button>
+                <button onclick="setSpeed(1.75)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1.75">1.75x</button>
+                <button onclick="setSpeed(2.0)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="2">2x</button>
+              </div>
+
+              <!-- Jump Buttons -->
+              <button onclick="seekVideo(-5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Rewind 5s">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              </button>
+              <button onclick="seekVideo(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Forward 10s">
+                <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+              </button>
+
+              <!-- Next / Prev Video -->
+              <button onclick="playPrev()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Previous Lesson">
+                <i data-lucide="skip-back" class="w-4 h-4"></i>
+              </button>
+              <button onclick="playNext()" class="p-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs transition flex items-center gap-1 shadow-lg shadow-indigo-600/30" title="Next Lesson">
+                <span>Next</span>
+                <i data-lucide="skip-forward" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Shortcuts & Keyboard Tips -->
+          <div class="mt-3 flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center gap-4">
+              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">Space</kbd> Play/Pause</span>
+              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">← / →</kbd> Jump 5s</span>
+              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">F</kbd> Fullscreen</span>
+            </div>
+            <div id="storage-info" class="text-slate-400 font-mono">
+              Folder: D:\Telegram_BnB_Videos
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    let libraryData = { topics: {}, totalVideos: 0, totalSize: '0.0 GB' };
+    let flatPlaylist = [];
+    let currentIndex = -1;
+    let currentSpeed = 1.5;
+
+    const videoEl = document.getElementById('main-video');
+    const emptyScreen = document.getElementById('empty-screen');
+
+    async function fetchVideos(isManual = false) {
+      const refreshIcon = document.getElementById('refresh-icon');
+      if (isManual && refreshIcon) refreshIcon.classList.add('animate-spin');
+
+      try {
+        const res = await fetch('/api/videos');
+        const data = await res.json();
+        libraryData = data;
+        renderLibrary();
+      } catch (err) {
+        console.error('Failed to load videos:', err);
+      } finally {
+        if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+      }
+    }
+
+    function renderLibrary(filterText = '') {
+      document.getElementById('stats-total').textContent = `${libraryData.totalVideos} Videos`;
+      document.getElementById('stats-size').textContent = libraryData.totalSize;
+
+      const container = document.getElementById('topics-list');
+      const topics = Object.keys(libraryData.topics);
+
+      if (topics.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center text-slate-500 text-xs">
+            <i data-lucide="download-cloud" class="w-8 h-8 text-slate-600 mx-auto mb-2"></i>
+            <p class="font-medium text-slate-400">Downloading in progress...</p>
+            <p class="text-[11px] text-slate-500 mt-1">Downloaded videos will appear here automatically.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      flatPlaylist = [];
+      let html = '';
+
+      topics.forEach((topic, tIdx) => {
+        let videos = libraryData.topics[topic];
+        if (filterText) {
+          videos = videos.filter(v => v.filename.toLowerCase().includes(filterText.toLowerCase()) || topic.toLowerCase().includes(filterText.toLowerCase()));
+        }
+
+        if (videos.length === 0) return;
+
+        html += `
+          <div class="rounded-xl bg-slate-950/60 border border-slate-800/80 overflow-hidden">
+            <button onclick="toggleTopic('topic-${tIdx}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left hover:bg-slate-800/40 transition">
+              <div class="flex items-center gap-2 truncate">
+                <i data-lucide="folder" class="w-4 h-4 text-indigo-400 shrink-0"></i>
+                <span class="text-xs font-bold text-slate-200 truncate">${topic}</span>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 shrink-0">${videos.length}</span>
+            </button>
+
+            <div id="topic-${tIdx}" class="border-t border-slate-800/60 divide-y divide-slate-800/40">
+              ${videos.map((vid) => {
+                const globalIndex = flatPlaylist.length;
+                flatPlaylist.push(vid);
+                const isPlaying = currentIndex === globalIndex;
+                const cleanName = vid.filename.replace(/^\d+_/, '').replace(/\.mp4$/i, '');
+
+                return `
+                  <button 
+                    onclick="playVideo(${globalIndex})" 
+                    class="w-full px-3.5 py-2 flex items-start gap-2.5 text-left text-xs transition ${isPlaying ? 'bg-indigo-600/20 text-indigo-300 font-bold border-l-2 border-indigo-500' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200'}"
+                  >
+                    <i data-lucide="${isPlaying ? 'play' : 'file-video'}" class="w-3.5 h-3.5 ${isPlaying ? 'text-indigo-400' : 'text-slate-500'} shrink-0 mt-0.5"></i>
+                    <div class="flex-1 truncate">
+                      <div class="truncate text-[11px] leading-tight">${cleanName}</div>
+                      <div class="text-[10px] text-slate-500 mt-0.5">${vid.sizeFormatted}</div>
+                    </div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html || `<div class="p-6 text-center text-xs text-slate-500">No videos match "${filterText}"</div>`;
+      lucide.createIcons();
+    }
+
+    function toggleTopic(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden');
+    }
+
+    function playVideo(index) {
+      if (index < 0 || index >= flatPlaylist.length) return;
+      currentIndex = index;
+      const vid = flatPlaylist[index];
+
+      emptyScreen.classList.add('hidden');
+      videoEl.src = vid.url;
+      videoEl.playbackRate = currentSpeed;
+      videoEl.play();
+
+      document.getElementById('current-title').textContent = vid.filename.replace(/^\d+_/, '').replace(/\.mp4$/i, '');
+      document.getElementById('current-topic-badge').textContent = vid.topic;
+      document.getElementById('current-size-badge').textContent = vid.sizeFormatted;
+
+      renderLibrary(document.getElementById('search-input').value);
+    }
+
+    function setSpeed(speed) {
+      currentSpeed = speed;
+      videoEl.playbackRate = speed;
+      document.querySelectorAll('.speed-btn').forEach(btn => {
+        if (parseFloat(btn.dataset.speed) === speed) {
+          btn.className = 'speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold';
+        } else {
+          btn.className = 'speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium';
+        }
+      });
+    }
+
+    function seekVideo(seconds) {
+      videoEl.currentTime = Math.max(0, Math.min(videoEl.duration || 0, videoEl.currentTime + seconds));
+    }
+
+    function playNext() {
+      if (currentIndex + 1 < flatPlaylist.length) playVideo(currentIndex + 1);
+    }
+
+    function playPrev() {
+      if (currentIndex - 1 >= 0) playVideo(currentIndex - 1);
+    }
+
+    function handleVideoEnded() {
+      playNext();
+    }
+
+    function handleSearch(val) {
+      renderLibrary(val.trim());
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        videoEl.paused ? videoEl.play() : videoEl.pause();
+      } else if (e.code === 'ArrowLeft') {
+        seekVideo(-5);
+      } else if (e.code === 'ArrowRight') {
+        seekVideo(5);
+      } else if (e.code === 'KeyF') {
+        if (!document.fullscreenElement) videoEl.requestFullscreen();
+        else document.exitFullscreen();
+      }
+    });
+
+    // Auto-refresh library every 5 seconds as downloader downloads videos
+    fetchVideos();
+    setInterval(() => fetchVideos(false), 5000);
+  </script>
+</body>
+</html>

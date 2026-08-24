@@ -1,24 +1,18 @@
 import React from "react";
 import Deck from "../deck/Deck";
 import { Slide } from "../deck/Slide";
-import { BnBSlide } from "../components/deck/BnBSlide";
-import {
-  VesselPlaqueGraphic,
-  OxygenBalanceGraphic,
-  ECGDepressionGraphic,
-  ECGElevationGraphic,
-  BnBMiniTable
-} from "../components/deck/BnBGraphics";
+import { GuevaraAlgorithm } from "../components/deck/GuevaraAlgorithm";
+import { GuevaraTable } from "../components/deck/GuevaraTable";
 import { QuestionSlide } from "../components/deck/QuestionSlide";
 
 export default function Cardio01Deck() {
   return (
     <Deck title="Cardio 01: Angina Crónica Estable & Cardiopatía Isquémica" classId="cardio-01">
       
-      {/* SLIDE 1: PORTADA OFICIAL (Boards & Beyond Minimalist Style) */}
+      {/* ── SLIDE 1: PORTADA HERO HIGH-IMPACT ── */}
       <Slide
         nav="Portada & Códigos"
-        notes="Bienvenidos a la Masterclass oficial de Angina Crónica Estable y Cardiopatía Isquémica para el EUNACOM 2026. Cubriremos los códigos 1.01.1.001, 1.01.4.004 y 1.01.4.008 del Perfil V3."
+        notes="Bienvenidos a la Masterclass oficial de Angina Crónica Estable para el EUNACOM 2026. Cubriremos los algoritmos diagnósticos, test de esfuerzo, manejo médico y las 4 trampas clásicas del examen."
       >
         <div style={{
           display: "flex",
@@ -28,635 +22,393 @@ export default function Cardio01Deck() {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          background: "#ffffff",
+          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+          color: "#ffffff",
           padding: "40px"
         }}>
-          <div style={{ fontSize: 14, fontWeight: 800, color: "#0284c7", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
-            ASOFAMECh Perfil V3 Oficial · Medicina Interna
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <span style={{ background: "#e11d48", color: "#fff", padding: "6px 16px", borderRadius: 8, fontSize: 14, fontWeight: 900, letterSpacing: "0.08em" }}>
+              [CLASE 01]
+            </span>
+            <span style={{ fontSize: 16, fontWeight: 800, color: "#38bdf8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+              MEDICINA INTERNA · CARDIOLOGÍA
+            </span>
           </div>
+
           <h1 style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: 64,
-            fontWeight: 700,
-            color: "#0f2942",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+            fontSize: 58,
+            fontWeight: 900,
+            color: "#f8fafc",
             margin: "0 0 16px",
             lineHeight: 1.15
           }}>
             Angina Crónica Estable
           </h1>
-          <div style={{ fontSize: 24, color: "#475569", maxWidth: 900, lineHeight: 1.4, marginBottom: 28 }}>
-            Cardiopatía Isquémica · Test de Esfuerzo · Criterios de Alto Riesgo · Prevención Secundaria
+
+          <div style={{ fontSize: 24, color: "#94a3b8", maxWidth: 900, lineHeight: 1.4, marginBottom: 36 }}>
+            Algoritmos Diagnósticos · Test de Esfuerzo · Criterios de Alto Riesgo · Terapia Antiisquémica
           </div>
-          <div style={{ display: "flex", gap: 12 }}>
-            <span style={{ background: "#0f2942", color: "#fff", padding: "6px 16px", borderRadius: 9999, fontSize: 13, fontWeight: 800 }}>
-              CÓD: 1.01.1.001
+
+          <div style={{ display: "flex", gap: 14 }}>
+            <span style={{ background: "rgba(56, 189, 248, 0.15)", border: "1.5px solid #38bdf8", color: "#38bdf8", padding: "8px 20px", borderRadius: 9999, fontSize: 14, fontWeight: 800 }}>
+              CÓD: 1.01.1.001 (Angina Estable)
             </span>
-            <span style={{ background: "#e0f2fe", color: "#0369a1", padding: "6px 16px", borderRadius: 9999, fontSize: 13, fontWeight: 800 }}>
-              CÓD: 1.01.4.004 (PEG)
+            <span style={{ background: "rgba(245, 158, 11, 0.15)", border: "1.5px solid #f59e0b", color: "#fbbf24", padding: "8px 20px", borderRadius: 9999, fontSize: 14, fontWeight: 800 }}>
+              CÓD: 1.01.4.004 (PEG Bruce)
             </span>
-            <span style={{ background: "#dcfce7", color: "#166534", padding: "6px 16px", borderRadius: 9999, fontSize: 13, fontWeight: 800 }}>
+            <span style={{ background: "rgba(34, 197, 94, 0.15)", border: "1.5px solid #22c55e", color: "#4ade80", padding: "8px 20px", borderRadius: 9999, fontSize: 14, fontWeight: 800 }}>
               EUNACOM 2026
             </span>
           </div>
         </div>
       </Slide>
 
-      {/* SLIDE 2: MATRIZ DE COMPETENCIA LEGAL (PERFIL V3) */}
+      {/* ── SLIDE 2: MATRIZ DE EXIGENCIA LEGAL PERFIL V3 (FULL-SCREEN TABLE) ── */}
       <Slide
         nav="Matriz Perfil V3"
-        notes="El código 1.01.1.001 clasifica la Angina Crónica Estable con Diagnóstico Específico, Tratamiento Inicial y Seguimiento Completo en APS."
+        notes="El Perfil V3 exige al médico general diagnosticar de forma específica la Angina Estable, realizar el tratamiento inicial y el seguimiento completo en APS."
       >
-        <BnBSlide
+        <GuevaraTable
           classNumber="CLASE 01"
-          title="Matriz de Exigencia Legal Perfil V3"
-          subtitle="Competencias obligatorias evaluadas en el EUNACOM"
-          bullets={[
-            {
-              text: "Nivel de Diagnóstico: Específico",
-              sub: ["El médico general en APS debe diagnosticarla autónomamente mediante clínica"]
-            },
-            {
-              text: "Nivel de Tratamiento: Inicial y de Mantención",
-              sub: ["Iniciar terapia antiisquémica y prevención secundaria completa"]
-            },
-            {
-              text: "Nivel de Seguimiento: Completo en APS",
-              sub: ["Control periódico en CESFAM; derivar solo si refractariedad o alto riesgo"]
-            }
+          title="Matriz de Exigencia Legal Perfil V3 (ASOFAMECh)"
+          subtitle="Alcance de práctica obligatorio para el Médico General en Chile"
+          headers={["Código", "Entidad Clínica", "Diagnóstico", "Tratamiento", "Seguimiento APS"]}
+          rows={[
+            ["1.01.1.001", "Angina Crónica Estable", "Específico", "Completo", "✓ APS (CESFAM)"],
+            ["1.01.4.004", "Test de Esfuerzo (PEG)", "Interpreta", "Solicita", "✓ APS"],
+            ["1.01.4.008", "AngioTAC Coronario", "Interpreta", "Deriva", "Especialidad"],
+            ["1.01.1.002", "Angina Inestable (SCA)", "Sospecha", "Inicial Urgencia", "🚨 Hospitaliza"]
           ]}
-          rightContent={
-            <BnBMiniTable
-              headers={["Código", "Situación Clínica", "Diagnóstico", "APS"]}
-              rows={[
-                ["1.01.1.001", "Angina Crónica Estable", "Específico", "✓ Completo"],
-                ["1.01.4.004", "Test de Esfuerzo (PEG)", "Interpreta", "✓ Solicita"],
-                ["1.01.4.008", "AngioTAC Coronario", "Interpreta", "✓ Riesgo medio"]
-              ]}
-            />
-          }
-          bottomCallout="💡 En APS: El médico general titula fármacos y evalúa criterios de alto riesgo isquémico."
+          highlightColIndex={4}
+          bottomNote="En APS el médico general es legalmente responsable del diagnóstico, titulación de betabloqueadores y detección de alto riesgo."
         />
       </Slide>
 
-      {/* SLIDE 3: STABLE ANGINA (DEFINITION) */}
+      {/* ── SLIDE 3: ALGORITMO DIAGNÓSTICO DEL DOLOR TORÁCICO (GUEVARA FLOWCHART) ── */}
       <Slide
-        nav="Definición de Angina"
-        notes="La angina es la manifestación clínica de la isquemia miocárdica transitoria generada por un desbalance entre la oferta y la demanda de oxígeno."
+        nav="Algoritmo Dolor Torácico"
+        notes="Ante un paciente con dolor torácico en APS, la primera pregunta es determinar si el dolor ocurre en esfuerzo predecible o en reposo agudo."
       >
-        <BnBSlide
+        <GuevaraAlgorithm
           classNumber="CLASE 01"
-          title="Angina Crónica Estable"
-          subtitle="Definición & Fisiopatología Básica"
-          bullets={[
+          title="Algoritmo de Dolor Torácico en Atención Primaria"
+          rootNode={{
+            badge: "EVALUACIÓN CLÍNICA INICIAL",
+            title: "Paciente consulta por Dolor Torácico en APS",
+            desc: "Anamnesis + Examen Físico + ECG de 12 derivaciones en < 10 minutos"
+          }}
+          decisionQuestion="¿El dolor es gatillado por Esfuerzo y cede en < 10 min de Reposo?"
+          branches={[
             {
-              text: "Isquemia miocárdica transitoria",
-              sub: ["Desbalance: Demanda de O₂ >> Oferta de O₂ coronario"]
+              isYes: true,
+              decisionTag: "✓ SÍ (Esfuerzo Fijo)",
+              tag: "Cuadro Crónico",
+              title: "Angina Crónica Estable",
+              bullets: [
+                "Dolor opresivo retroesternal con esfuerzo",
+                "Cede rápidamente con reposo o NTG",
+                "ECG basal habitualmente normal"
+              ],
+              action: "Indicar Test de Esfuerzo (Bruce) e Iniciar AAS + Atorvastatina + Bisoprolol"
             },
             {
-              text: "Causa: Placa aterosclerótica fija",
-              sub: [
-                "Placa estable con capa fibrosa gruesa",
-                "Sin ulceración ni trombo oclusivo agudo",
-                "Obstrucción ≥ 70–75% del lumen arterial"
-              ]
+              isNo: true,
+              decisionTag: "✗ NO (Dolor en Reposo)",
+              tag: "Urgencia Médica",
+              title: "Síndrome Coronario Agudo",
+              bullets: [
+                "Dolor en reposo prolongado (> 20 min)",
+                "Angina de reciente comienzo (CCS III-IV)",
+                "ST elevado o Infradesnivel / Troponinas (+)"
+              ],
+              action: "AAS 250mg + Clopidogrel 300mg + Derivación Inmediata a Urgencias (SAMU)"
             },
             {
-              text: "Síntomas gatillados por esfuerzo o estrés",
-              sub: ["Alivio predecible con reposo o nitroglicerina"]
+              decisionTag: "🌙 SÍ (Reposo Nocturno)",
+              borderColor: "#a855f7",
+              tag: "Vasoespasmo",
+              title: "Angina de Prinzmetal",
+              bullets: [
+                "Hombre/mujer joven fumador",
+                "Dolor nocturno con ST elevado transitorio",
+                "Coronarias angiográficamente sanas"
+              ],
+              action: "Indicar Calcioantagonistas (Amlodipino) · 🚨 PROHIBIDO Betabloqueadores"
             }
           ]}
-          rightContent={<VesselPlaqueGraphic occlusion="75%" label="Obstrucción Fija ≥ 70%" status="Flujo Insuficiente en Esfuerzo" />}
-          bottomCallout="💡 En reposo el flujo coronario es normal; la isquemia aparece al aumentar el consumo de O2."
+          bottomBanner="Si la angina aparece en reposo o dura más de 20 minutos, trátelo como Síndrome Coronario Agudo hasta demostrar lo contrario."
         />
       </Slide>
 
-      {/* SLIDE 4: OXYGEN SUPPLY VS DEMAND */}
+      {/* ── SLIDE 4: CRITERIOS DE DIAMOND-FORRESTER (FULL-SCREEN TABLE) ── */}
       <Slide
-        nav="Oferta vs Demanda de O2"
-        notes="El miocardio no puede aumentar la extracción de oxígeno porque en reposo ya extrae el 75-80%. Por tanto, el único mecanismo para suplir mayor demanda es aumentar el flujo coronario dilatando arterias y prolongando la diástole."
+        nav="Diamond-Forrester"
+        notes="La probabilidad pre-test se define según los 3 criterios de Diamond-Forrester: Opresión, Esfuerzo y Alivio rápido."
       >
-        <BnBSlide
+        <GuevaraTable
           classNumber="CLASE 01"
-          title="Balance de Oxígeno Miocárdico"
-          subtitle="Determinantes de la Isquemia"
-          bullets={[
-            {
-              text: "Extracción basal de O₂ miocárdica: ~75–80%",
-              sub: ["El corazón NO puede extraer más O₂ ante mayor trabajo"]
-            },
-            {
-              text: "Para aumentar oferta de O₂:",
-              sub: [
-                "Vasodilatación coronaria",
-                "Aumento del tiempo de diástole (FC más lenta)"
-              ]
-            },
-            {
-              text: "Factores que aumentan la Demanda de O₂:",
-              sub: [
-                "Frecuencia cardíaca (FC)",
-                "Contractilidad miocárdica (inotropismo)",
-                "Tensión de pared / Postcarga (Ley de Laplace)"
-              ]
-            }
+          title="Clasificación de Diamond-Forrester"
+          subtitle="Estratificación diagnóstica del dolor torácico"
+          headers={["Categoría", "1. Opresión Retroesternal", "2. Desencadenado por Esfuerzo", "3. Alivio < 10m Reposo", "Probabilidad Pre-Test"]}
+          rows={[
+            ["Angina Típica", "✓ Presente", "✓ Presente", "✓ Presente", "ALTA (> 85%)"],
+            ["Angina Atípica", "✓ Presente (o 2/3)", "✓ Presente", "✗ Ausente", "INTERMEDIA (15–85%)"],
+            ["Dolor No Cardíaco", "✗ Puntada / Pleurítico", "✗ No esfuerzo", "✗ No cede reposo", "BAJA (< 15%)"]
           ]}
-          rightContent={<OxygenBalanceGraphic supplyText="Oferta: Flujo Coronario" demandText="Demanda: FC + Tensión Pared" />}
-          bottomCallout="💡 Principio terapéutico: Toda la medicación antiisquémica busca reducir la demanda de O2."
+          highlightColIndex={4}
+          bottomNote="Angina Típica (3/3) en hombres >50 años o mujeres >60 años tiene probabilidad pre-test >90% de enfermedad coronaria."
         />
       </Slide>
 
-      {/* SLIDE 5: LOS 3 CRITERIOS DE DIAMOND-FORRESTER */}
+      {/* ── SLIDE 5: ALGORITMO DE ELECCIÓN DE EXAMEN NO INVASIVO (GUEVARA FLOWCHART) ── */}
       <Slide
-        nav="Criterios Diamond-Forrester"
-        notes="Para diagnosticar la angina y clasificarla en típica, atípica o dolor no cardíaco se emplean los 3 criterios de Diamond-Forrester."
+        nav="Algoritmo Examen No Invasivo"
+        notes="Algoritmo clave del EUNACOM: ¿Qué examen pedir? Si el ECG basal es normal y camina -> Test de esfuerzo. Si tiene BCRI o no camina -> Eco-estrés con Dobutamina."
       >
-        <BnBSlide
+        <GuevaraAlgorithm
           classNumber="CLASE 01"
-          title="Criterios de Diamond-Forrester"
-          subtitle="Clasificación clínica del dolor torácico"
-          bullets={[
+          title="Algoritmo de Elección de Examen No Invasivo en APS"
+          rootNode={{
+            badge: "INDICACIÓN DIAGNÓSTICA",
+            title: "Paciente con Sospecha de Cardiopatía Isquémica Estable",
+            desc: "Objetivo: Confirmar isquemia inducible y estratificar riesgo de mortalidad cardiovascular"
+          }}
+          decisionQuestion="¿El ECG Basal es Interpretable y el Paciente Puede Caminar?"
+          branches={[
             {
-              text: "1. Localización y Carácter:",
-              sub: ["Opresión o pesadez retroesternal (irradiación a cuello, mandíbula, brazo izq.)"]
+              isYes: true,
+              decisionTag: "✓ SÍ (Elegible Esfuerzo)",
+              tag: "1ra Línea APS",
+              title: "Test de Esfuerzo (Bruce)",
+              bullets: [
+                "Cinta rodante con monitorización ECG continua",
+                "Criterio (+) = Infradesnivel ST ≥ 1.0 mm horizontal",
+                "Evalúa capacidad funcional en METs"
+              ],
+              action: "Examen de 1ra Elección en Atención Primaria"
             },
             {
-              text: "2. Gatillante Fisiológico:",
-              sub: ["Desencadenado por esfuerzo físico o estrés emocional"]
+              decisionTag: "🔍 RIESGO MEDIO (15-50%)",
+              borderColor: "#38bdf8",
+              tag: "No Invasivo Anatómico",
+              title: "AngioTAC Coronario",
+              bullets: [
+                "Visualiza directamente la anatomía coronaria",
+                "Valor Predictivo Negativo > 98%",
+                "Ideal para DESCARTAR enfermedad coronaria"
+              ],
+              action: "De elección en probabilidad intermedia baja"
             },
             {
-              text: "3. Alivio Rápido:",
-              sub: ["Cede en < 5–10 minutos con reposo o nitratos sublinguales"]
+              isNo: true,
+              decisionTag: "✗ NO (ECG Alterado / No Camina)",
+              tag: "Alternativa",
+              title: "Eco-Estrés Dobutamina",
+              bullets: [
+                "Indicado en: BCRI, Marcapasos, WPW, amputados",
+                "Evalúa motilidad parietal inducida por estrés",
+                "Alternativa: Resonancia Cardíaca de Estrés"
+              ],
+              action: "Contraindicado PEG convencional; solicitar Eco-Estrés"
             }
           ]}
-          rightContent={
-            <BnBMiniTable
-              headers={["Clasificación", "Criterios", "Probabilidad"]}
-              rows={[
-                ["Angina Típica", "3 de 3", "Alta (> 85%)"],
-                ["Angina Atípica", "2 de 3", "Intermedia (15-85%)"],
-                ["No Cardíaco", "0 o 1 de 3", "Baja (< 15%)"]
-              ]}
-            />
-          }
-          bottomCallout="💡 Angina Típica = Cumple los 3 criterios. Angina Atípica = Cumple 2 (frecuente en mujeres y ancianos)."
+          bottomBanner="Si el paciente tiene Bloqueo Completo de Rama Izquierda (BCRI), el Test de Esfuerzo está formalmente contraindicado."
         />
       </Slide>
 
-      {/* SLIDE 6: EQUIVALENTES ANGINOSOS & DIABÉTICOS */}
-      <Slide
-        nav="Equivalentes Anginosos"
-        notes="En pacientes diabéticos, la neuropatía autonómica simpática puede enmascarar el dolor torácico, cursando con isquemia silente o presentándose como disnea aislada de esfuerzo."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Presentaciones Especiales"
-          subtitle="Isquemia silente & Equivalentes anginosos"
-          bullets={[
-            {
-              text: "Pacientes Diabéticos:",
-              sub: [
-                "Neuropatía autonómica sensorial cardíaca",
-                "Frecuente isquemia silente (sin dolor torácico)",
-                "Sospechar ante disnea de esfuerzo o fatiga súbita"
-              ]
-            },
-            {
-              text: "Mujeres y Adultos Mayores:",
-              sub: [
-                "Presentación atípica frecuente (disnea, náuseas, dolor epigástrico)",
-                "Menor prevalencia de angina opresiva clásica"
-              ]
-            },
-            {
-              text: "Dolor No Cardíaco (Osteocondritis / Tietze):",
-              sub: [
-                "Puntada de costado reproducible a la palpación costal",
-                "Modifica con movimientos respiratorios"
-              ]
-            }
-          ]}
-          rightContent={
-            <div style={{ background: "#fef3c7", border: "2px solid #d97706", borderRadius: 14, padding: "18px 20px", width: "100%", boxShadow: "3px 3px 0px #d97706" }}>
-              <div style={{ fontSize: 14, fontWeight: 900, color: "#92400e", textTransform: "uppercase", marginBottom: 6 }}>
-                ⚠️ Regla EUNACOM en Diabetes
-              </div>
-              <div style={{ fontSize: 16, color: "#78350f", lineHeight: 1.45, fontWeight: 600 }}>
-                Paciente diabético con disnea de esfuerzos de inicio reciente = <strong>Equivalente Anginoso</strong>. Indicar estudio isquémico prioritario.
-              </div>
-            </div>
-          }
-          bottomCallout="💡 La disnea de esfuerzos aislada en un paciente diabético debe estudiarse como cardiopatía isquémica."
-        />
-      </Slide>
-
-      {/* SLIDE 7: ESCALA CANADIENSE CCS */}
-      <Slide
-        nav="Clasificación CCS"
-        notes="La severidad funcional de la angina se gradúa según la Sociedad Cardiovascular Canadiense de clase I a IV."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Clasificación Funcional Canadiense"
-          subtitle="Canadian Cardiovascular Society (CCS I a IV)"
-          bullets={[
-            {
-              text: "Clase I: Angina solo con esfuerzos extenuantes o prolongados",
-              sub: ["La actividad física ordinaria (caminar, subir escaleras) no causa angina"]
-            },
-            {
-              text: "Clase II: Ligera limitación de la actividad ordinaria",
-              sub: ["Angina al caminar rápido, subir cuestas o subir más de 1 piso"]
-            },
-            {
-              text: "Clase III: Marcada limitación de la actividad ordinaria",
-              sub: ["Angina al caminar 1 a 2 cuadras en plano o subir 1 piso a paso normal"]
-            },
-            {
-              text: "Clase IV: Incapacidad para cualquier actividad / Angina en reposo",
-              sub: ["¡Alerta!: Angina en reposo o con mínimos esfuerzos = Síndrome Coronario Agudo"]
-            }
-          ]}
-          rightContent={
-            <BnBMiniTable
-              headers={["Grado", "Actividad Desencadenante", "Severidad"]}
-              rows={[
-                ["CCS I", "Esfuerzos extenuantes", "Leve"],
-                ["CCS II", "Caminar rápido / >1 piso", "Moderada"],
-                ["CCS III", "Caminar 1-2 cuadras", "Marcada"],
-                ["CCS IV", "Mínimo esfuerzo / Reposo", "Urgencia (SCA)"]
-              ]}
-            />
-          }
-          bottomCallout="💡 Cambio brusco a clase CCS III-IV en <2 meses = Angina Inestable (SCASEST)."
-        />
-      </Slide>
-
-      {/* SLIDE 8: TEST DE ESFUERZO / ERGOMETRÍA */}
-      <Slide
-        nav="Test de Esfuerzo (PEG)"
-        notes="El Test de Esfuerzo convencional con protocolo de Bruce es el estudio diagnóstico inicial de elección en APS cuando el ECG basal es normal y el paciente puede caminar."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Test de Esfuerzo (Ergometría)"
-          subtitle="Estudio diagnóstico no invasivo de 1ra línea en APS"
-          bullets={[
-            {
-              text: "Indicación de 1ra Línea en APS:",
-              sub: [
-                "Paciente con capacidad motora para caminar",
-                "ECG basal normal e interpretable"
-              ]
-            },
-            {
-              text: "Criterio de Positividad para Isquemia:",
-              sub: [
-                "Infradesnivel del ST ≥ 1.0 mm (0.1 mV)",
-                "Morfología horizontal o descendente",
-                "Medido a 80 ms del punto J"
-              ]
-            },
-            {
-              text: "Respuesta Normal:",
-              sub: ["Infradesnivel ascendente rápido = Variante normal", "Aumento fisiológico de PAS con el ejercicio"]
-            }
-          ]}
-          rightContent={<ECGDepressionGraphic />}
-          bottomCallout="💡 Infradesnivel horizontal o descendente ≥ 1 mm = Positivo para Isquemia Miocárdica."
-        />
-      </Slide>
-
-      {/* SLIDE 9: CRITERIOS DE ALTO RIESGO EN TEST DE ESFUERZO */}
+      {/* ── SLIDE 6: CRITERIOS DE ALTO RIESGO EN TEST DE ESFUERZO (GUEVARA FLOWCHART) ── */}
       <Slide
         nav="Criterios de Alto Riesgo"
         notes="Estos 4 hallazgos en el test de esfuerzo definen alto riesgo de mortalidad anual (>3%) e indican derivación inmediata a coronariografía invasiva."
       >
-        <BnBSlide
+        <GuevaraAlgorithm
           classNumber="CLASE 01"
-          title="Criterios de Alto Riesgo en PEG"
-          subtitle="Banderas rojas que exigen Coronariografía Invasiva"
-          bullets={[
+          title="Algoritmo ante Test de Esfuerzo Positivo"
+          rootNode={{
+            badge: "RESULTADO DE ERGOMETRÍA",
+            title: "Test de Esfuerzo Positivo para Isquemia (ST ↓ ≥ 1.0 mm)",
+            desc: "Estratificación de Riesgo: Determinar si requiere manejo médico exclusivo o revascularización invasiva"
+          }}
+          decisionQuestion="¿Presenta algún Criterio de Alto Riesgo Isquémico?"
+          branches={[
             {
-              text: "1. Infradesnivel Severo del ST:",
-              sub: ["Depresión del ST ≥ 2.0 mm o presente en ≥ 5 derivaciones"]
+              isNo: true,
+              decisionTag: "🚨 SÍ: CRITERIOS DE ALTO RIESGO",
+              tag: "Mortalidad > 3%/año",
+              title: "4 Banderas Rojas en PEG",
+              bullets: [
+                "1. Infradesnivel del ST ≥ 2.0 mm o en ≥ 5 derivaciones",
+                "2. Isquemia precoz en Estadio 1 Bruce (< 5 METs / FC < 120)",
+                "3. Caída de la Presión Arterial Sistólica con el ejercicio",
+                "4. Taquicardia Ventricular durante el esfuerzo"
+              ],
+              action: "Derivación Inmediata a Coronariografía Invasiva (Sospecha Tronco Común o 3 Vasos)"
             },
             {
-              text: "2. Isquemia Precoz:",
-              sub: ["Aparición en Estadio 1 de Bruce (FC < 120 lpm o < 5 METs)"]
-            },
-            {
-              text: "3. Caída de la Presión Arterial Sistólica:",
-              sub: ["Descenso de PAS durante el ejercicio = Falla de bomba por isquemia masiva"]
-            },
-            {
-              text: "4. Arritmias Ventriculares:",
-              sub: ["Taquicardia ventricular durante el esfuerzo o recuperación"]
+              isYes: true,
+              decisionTag: "✓ NO: RIESGO LEVE / MODERADO",
+              tag: "Mortalidad < 1%/año",
+              title: "Isquemia Leve en Altos METs",
+              bullets: [
+                "Infradesnivel ST < 2.0 mm en estadio 3 o 4 (> 7 METs)",
+                "Buena respuesta presora (PAS sube normalmente)",
+                "Sin arritmias ventriculares complejas"
+              ],
+              action: "Manejo Médico Completo en APS: Optimizar Antiisquémicos y Prevención Secundaria"
             }
           ]}
-          rightContent={
-            <div style={{ background: "#fee2e2", border: "2.5px solid #dc2626", borderRadius: 16, padding: "20px", textAlign: "center", width: "100%" }}>
-              <div style={{ fontSize: 28, marginBottom: 4 }}>🚨</div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: "#991b1b", textTransform: "uppercase" }}>
-                Conducta Obligatoria
-              </div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#7f1d1d", marginTop: 6, lineHeight: 1.4 }}>
-                Derivación Inmediata a <strong>Coronariografía Invasiva</strong> (Sospecha de Tronco Común Izquierdo o 3 Vasos).
-              </div>
-            </div>
-          }
-          bottomCallout="💡 La caída de la presión arterial sistólica durante el test de esfuerzo es un signo de pésimo pronóstico."
+          bottomBanner="La caída de la PAS durante el esfuerzo físico refleja falla ventricular aguda por isquemia extensa y exige coronariografía."
         />
       </Slide>
 
-      {/* SLIDE 10: ALTERNATIVAS CUANDO EL ECG NO ES INTERPRETABLE */}
+      {/* ── SLIDE 7: TABLA MAESTRA DE FÁRMACOS (FULL-SCREEN TABLE) ── */}
       <Slide
-        nav="Alternativas al PEG"
-        notes="Si el ECG basal tiene alteraciones basales como Bloqueo Completo de Rama Izquierda, marcapasos o WPW, el PEG convencional no es interpretable y se debe solicitar Eco-Estrés o AngioTAC."
+        nav="Farmacología Maestra"
+        notes="Tabla maestra de tratamiento farmacológico en APS: Prevención secundaria obligatoria y terapia antiisquémica sintomática."
       >
-        <BnBSlide
+        <GuevaraTable
           classNumber="CLASE 01"
-          title="Alternativas al Test de Esfuerzo"
-          subtitle="¿Cuándo NO realizar Ergometría convencional?"
-          bullets={[
-            {
-              text: "ECG Basal No Interpretable:",
-              sub: [
-                "Bloqueo Completo de Rama Izquierda (BCRI)",
-                "Ritmo de Marcapasos ventricular",
-                "Preexcitación (Síndrome de WPW)",
-                "Depresión basal del ST > 1 mm por HVI o digital"
-              ]
-            },
-            {
-              text: "Estudios de Elección Alternativos:",
-              sub: [
-                "Eco-Estrés Farmacológico (Dobutamina o Dipiridamol)",
-                "Resonancia Cardíaca de Estrés",
-                "AngioTAC Coronario (en riesgo intermedio 15–50%, VPN >98%)"
-              ]
-            }
+          title="Tabla Maestra de Tratamiento Farmacológico en APS"
+          subtitle="Dosis, metas terapéuticas y precauciones en Atención Primaria"
+          headers={["Fármaco", "Clase", "Dosis Habitual", "Objetivo / Meta", "Alerta EUNACOM"]}
+          rows={[
+            ["Aspirina (AAS)", "Antiagregante", "100 mg/día vo", "Inhibe COX-1 plaquetaria", "Clopidogrel 75mg si alergia"],
+            ["Atorvastatina", "Estatina Potente", "80 mg/día noche", "c-LDL < 55 mg/dL", "Obligatoria siempre (incluso LDL normal)"],
+            ["Bisoprolol", "Betabloqueador", "5–10 mg/día vo", "FC reposo 55–60 lpm", "1ra línea antiisquémica"],
+            ["Amlodipino", "Calcioantagonista DHP", "5–10 mg/día vo", "Vasodilatación arterial", "Asociar a BB si persiste angina"],
+            ["Nitroglicerina", "Nitrato SL", "0.6 mg SOS", "Alivio sintomático rápido", "🚨 PROHIBIDO con Sildenafil (<24h)"]
           ]}
-          rightContent={
-            <div style={{ background: "#eff6ff", border: "2px solid #3b82f6", borderRadius: 14, padding: "18px 20px", width: "100%" }}>
-              <div style={{ fontSize: 14, fontWeight: 900, color: "#1e40af", textTransform: "uppercase", marginBottom: 6 }}>
-                🔍 AngioTAC Coronario
-              </div>
-              <div style={{ fontSize: 15, color: "#1e3a8a", lineHeight: 1.45 }}>
-                • Excelente para <strong>descartar enfermedad coronaria</strong> en probabilidad media gracias a su <strong>VPN &gt; 98%</strong>.
-              </div>
-            </div>
-          }
-          bottomCallout="💡 En presencia de BCRI: El Test de Esfuerzo convencional está formalmente contraindicado."
+          highlightColIndex={3}
+          bottomNote="Las estatinas de alta potencia reducen la mortalidad en cardiopatía isquémica independientemente del nivel basal de colesterol."
         />
       </Slide>
 
-      {/* SLIDE 11: PREVENCIÓN SECUNDARIA OBLIGATORIA */}
+      {/* ── SLIDE 8: ALGORITMO DE TITULACIÓN ANTIISQUÉMICA (GUEVARA FLOWCHART) ── */}
       <Slide
-        nav="Prevención Secundaria"
-        notes="Todo paciente con cardiopatía coronaria demostrada debe recibir terapia de prevención secundaria obligatoria para reducir infarto y mortalidad."
+        nav="Algoritmo de Titulación"
+        notes="Algoritmo de titulación antiisquémica: iniciar Betabloqueador y titular hasta FC 55-60 lpm. Si persiste con angina, agregar Amlodipino."
       >
-        <BnBSlide
+        <GuevaraAlgorithm
           classNumber="CLASE 01"
-          title="Prevención Secundaria Obligatoria"
-          subtitle="Fármacos que modifican la sobrevida en cardiopatía isquémica"
-          bullets={[
+          title="Algoritmo de Titulación Antiisquémica en APS"
+          rootNode={{
+            badge: "PASO 1: INICIO TERAPÉUTICO",
+            title: "Iniciar Betabloqueador de 1ra Línea (Bisoprolol o Carvedilol)",
+            desc: "Asociar Aspirina 100 mg + Atorvastatina 80 mg + Nitroglicerina SL SOS"
+          }}
+          decisionQuestion="¿El paciente alcanza FC 55–60 lpm y está asintomático?"
+          branches={[
             {
-              text: "Aspirina (AAS) 100 mg/día a permanencia",
-              sub: [
-                "Inhibe irreversiblemente la COX-1 plaquetaria",
-                "Clopidogrel 75 mg/día si alergia a la aspirina"
-              ]
+              isYes: true,
+              decisionTag: "✓ SÍ (Control Óptimo)",
+              tag: "Meta Cumplida",
+              title: "Control Sintomático Exitoso",
+              bullets: [
+                "FC en reposo entre 55 y 60 lpm",
+                "Sin episodios de dolor anginoso en actividades diarias",
+                "Tolerancia adecuada sin hipotensión ni bradicardia extrema"
+              ],
+              action: "Mantener dosis actual y control periódico semestral en CESFAM"
             },
             {
-              text: "Estatina de Alta Potencia (Obligatoria)",
-              sub: [
-                "Atorvastatina 80 mg o Rosuvastatina 40 mg/día",
-                "Estabilización de placa y efecto pleiotrópico",
-                "Meta: c-LDL < 55 mg/dL Y reducción ≥ 50% del valor basal",
-                "Se indica SIEMPRE, incluso con colesterol basal 'normal'"
-              ]
+              decisionTag: "⚠️ NO (FC > 60 lpm con Angina)",
+              borderColor: "#f59e0b",
+              tag: "Dosis Subterapéutica",
+              title: "Titular Betabloqueador",
+              bullets: [
+                "Aumentar dosis (ej. Bisoprolol 5mg ➔ 10mg/d)",
+                "Verificar adherencia y técnica de toma",
+                "Monitorear PA y ECG de control"
+              ],
+              action: "Aumentar dosis de BB hasta alcanzar FC meta de 55–60 lpm"
             },
             {
-              text: "IECA (Enalapril 10–20 mg/día):",
-              sub: ["Si asocia HTA, Diabetes Mellitus, FEVI ≤ 40% o daño renal"]
+              isNo: true,
+              decisionTag: "✗ PERSISTE ANGINA CON FC 55-60",
+              tag: "Terapia Combinada",
+              title: "Asociar Calcioantagonista",
+              bullets: [
+                "Agregar Amlodipino 5–10 mg/día (DHP)",
+                "Alternativa: Verapamilo/Diltiazem SOLO si intolerancia a BB",
+                "🚨 NUNCA combinar Verapamilo + Betabloqueador"
+              ],
+              action: "Terapia Dual: Betabloqueador + Calcioantagonista Dihidropiridínico"
             }
           ]}
-          rightContent={
-            <div style={{ background: "#f0fdf4", border: "2.5px solid #16a34a", borderRadius: 16, padding: "20px", textAlign: "center", width: "100%" }}>
-              <div style={{ fontSize: 14, fontWeight: 900, color: "#166534", textTransform: "uppercase" }}>Meta de c-LDL</div>
-              <div style={{ fontSize: 44, fontWeight: 900, color: "#15803d", fontFamily: "monospace", margin: "8px 0" }}>&lt; 55</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#166534" }}>mg/dL en Prevención Secundaria</div>
-            </div>
-          }
-          bottomCallout="💡 Las estatinas de alta potencia son obligatorias independientemente del nivel basal de colesterol."
+          bottomBanner="Nunca combine Verapamilo o Diltiazem con Betabloqueadores por riesgo de bloqueo AV completo y shock cardiogénico."
         />
       </Slide>
 
-      {/* SLIDE 12: TERAPIA ANTIISQUÉMICA (BETABLOQUEADORES) */}
-      <Slide
-        nav="Betabloqueadores"
-        notes="Los betabloqueadores son el fármaco antiisquémico de primera elección porque disminuyen el consumo miocárdico de oxígeno al reducir la frecuencia cardíaca y la contractilidad."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Betabloqueadores (1ra Línea)"
-          subtitle="Tratamiento antiisquémico sintomático de elección"
-          bullets={[
-            {
-              text: "Fármaco Antiisquémico de 1ra Elección:",
-              sub: [
-                "Bisoprolol 5–10 mg/día o Carvedilol 25 mg c/12h",
-                "Mecanismo: Bloqueo Beta-1 ➔ ↓ FC y ↓ Contractilidad",
-                "Prolonga la diástole ➔ Aumenta la perfusión coronaria"
-              ]
-            },
-            {
-              text: "Meta Terapéutica Obligatoria:",
-              sub: ["Frecuencia Cardíaca en reposo entre 55 y 60 lpm"]
-            },
-            {
-              text: "Contraindicaciones Principales:",
-              sub: ["Asma severa, Bloqueo AV de 2do/3er grado o bradicardia <50 lpm"]
-            }
-          ]}
-          rightContent={
-            <div style={{ background: "#eff6ff", border: "2.5px solid #0284c7", borderRadius: 16, padding: "20px", textAlign: "center", width: "100%" }}>
-              <div style={{ fontSize: 14, fontWeight: 900, color: "#0369a1", textTransform: "uppercase" }}>Meta de Frecuencia Cardíaca</div>
-              <div style={{ fontSize: 42, fontWeight: 900, color: "#0284c7", fontFamily: "monospace", margin: "8px 0" }}>55 - 60</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#0369a1" }}>lpm en Reposo</div>
-            </div>
-          }
-          bottomCallout="💡 Si el paciente persiste sintomático con FC >60 lpm, titular primero la dosis del Betabloqueador."
-        />
-      </Slide>
-
-      {/* SLIDE 13: CALCIOANTAGONISTAS & NITRATOS */}
-      <Slide
-        nav="Calcioantagonistas & Nitratos"
-        notes="Revisemos el rol de los Calcioantagonistas y el uso de nitratos sublinguales como rescate sintomático."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Calcioantagonistas & Nitratos"
-          subtitle="Terapia combinada y rescate sintomático"
-          bullets={[
-            {
-              text: "Calcioantagonistas Dihidropiridínicos (Amlodipino 5–10 mg/d):",
-              sub: [
-                "Vasodilatador arterial periférico y coronario",
-                "Excelente para asociar a Betabloqueador si persiste angina"
-              ]
-            },
-            {
-              text: "Calcioantagonistas No-DHP (Verapamilo / Diltiazem):",
-              sub: ["Alternativa de 1ra línea si existe contraindicación o intolerancia a BB"]
-            },
-            {
-              text: "Nitroglicerina Sublingual 0.6 mg SOS:",
-              sub: [
-                "Venodilatación ➔ Disminuye la precarga y el retorno venoso",
-                "Tomar sentado; repetir cada 5 min (máx 3 dosis). Si no cede ➔ Urgencias"
-              ]
-            }
-          ]}
-          rightContent={
-            <div style={{ background: "#fee2e2", border: "2px solid #dc2626", borderRadius: 14, padding: "16px 18px", width: "100%" }}>
-              <div style={{ fontSize: 13, fontWeight: 900, color: "#991b1b", textTransform: "uppercase", marginBottom: 4 }}>
-                🚫 Contraindicación Absoluta
-              </div>
-              <div style={{ fontSize: 15, color: "#7f1d1d", lineHeight: 1.4, fontWeight: 600 }}>
-                NUNCA administrar nitratos si el paciente consumió <strong>Sildenafil (&lt;24h)</strong> o <strong>Tadalafil (&lt;48h)</strong> por riesgo de shock e hipotensión mortal.
-              </div>
-            </div>
-          }
-          bottomCallout="💡 ¡Peligro!: Nunca combinar Verapamilo con Betabloqueadores por riesgo de bradicardia severa y shock."
-        />
-      </Slide>
-
-      {/* SLIDE 14: ANGINA VASOESPÁSTICA DE PRINZMETAL */}
+      {/* ── SLIDE 9: ALGORITMO DE ANGINA DE PRINZMETAL (GUEVARA FLOWCHART) ── */}
       <Slide
         nav="Angina de Prinzmetal"
-        notes="La angina de Prinzmetal se debe a vasoespasmo coronario transitorio en reposo, típica en pacientes jóvenes fumadores."
+        notes="Algoritmo de la Angina de Prinzmetal: Vasoespasmo coronario en reposo. Calcioantagonistas son de 1ra línea; los Betabloqueadores están formalmente PROHIBIDOS."
       >
-        <BnBSlide
+        <GuevaraAlgorithm
           classNumber="CLASE 01"
-          title="Angina Vasoespástica (Prinzmetal)"
-          subtitle="Vasoespasmo coronario en reposo"
-          bullets={[
+          title="Algoritmo de Angina Vasoespástica (Prinzmetal)"
+          rootNode={{
+            badge: "SOSPECHA CLÍNICA",
+            title: "Dolor Torácico Anginoso en Reposo (Típicamente Nocturno / Madrugada)",
+            desc: "Paciente joven fumador sin factores de riesgo tradicionales. ECG durante el dolor: Supradesnivel ST transitorio"
+          }}
+          decisionQuestion="¿El Supradesnivel del ST desaparece al administrar Nitroglicerina SL?"
+          branches={[
             {
-              text: "Presentación Clínica:",
-              sub: [
-                "Dolor anginoso de reposo, típicamente en la noche / madrugada",
-                "Pacientes jóvenes sin factores de riesgo clásicos excepto Tabaquismo"
-              ]
+              isYes: true,
+              decisionTag: "✓ SÍ (Vasoespasmo Reversible)",
+              tag: "1ra Línea",
+              title: "Calcioantagonistas",
+              bullets: [
+                "Amlodipino 10 mg/día o Diltiazem 180–240 mg/día",
+                "Efecto vasodilatador coronario potente",
+                "Cese estricto del consumo de tabaco y drogas"
+              ],
+              action: "Indicar Calcioantagonistas + Nitratos sublinguales SOS + Cese Tabaco"
             },
             {
-              text: "Electrocardiograma Característico:",
-              sub: [
-                "Supradesnivel transitorio del ST DURANTE el episodio de dolor",
-                "Normalización total del trazado tras ceder el espasmo con Nitratos"
-              ]
-            },
-            {
-              text: "Tratamiento de Elección:",
-              sub: [
-                "Calcioantagonistas (Amlodipino o Diltiazem) + Cese de Tabaco"
-              ]
+              isNo: true,
+              decisionTag: "🚫 PROHIBICIÓN ABSOLUTA",
+              tag: "Efecto Adverso Grave",
+              title: "¡NUNCA Betabloqueadores!",
+              bullets: [
+                "El bloqueo Beta-2 deja libre el tono vasoconstrictor Alfa-1",
+                "Empeora severamente el vasoespasmo coronario",
+                "Puede precipitar IAM transmural extenso y muerte súbita"
+              ],
+              action: "🚨 BETABLOQUEADORES FORMALMENTE CONTRAINDICADOS EN PRINZMETAL"
             }
           ]}
-          rightContent={<ECGElevationGraphic />}
-          bottomCallout="💡 Supradesnivel transitorio del ST que desaparece con Nitroglicerina = Angina de Prinzmetal."
+          bottomBanner="En Angina de Prinzmetal: Calcioantagonistas SÍ, Betabloqueadores NUNCA."
         />
       </Slide>
 
-      {/* SLIDE 15: PRINZMETAL — CONTRAINDICACIÓN DE BETABLOQUEO */}
+      {/* ── SLIDE 10: TABLA DIFERENCIAL DE SÍNDROMES CORONARIOS (FULL-SCREEN TABLE) ── */}
       <Slide
-        nav="Peligro de Betabloqueo"
-        notes="Pregunta clásica de examen: En Angina de Prinzmetal los betabloqueadores están formalmente contraindicados porque dejan el tono alfa vasoconstrictor sin oposición."
+        nav="Tabla Diferencial SCA"
+        notes="Tabla maestra comparativa de los 4 síndromes coronarios: Estable vs Inestable vs IAM sin SDST vs IAM con SDST."
       >
-        <BnBSlide
+        <GuevaraTable
           classNumber="CLASE 01"
-          title="Prinzmetal: ¿Por qué NO Betabloqueo?"
-          subtitle="Peligro farmacológico clásico del EUNACOM"
-          bullets={[
-            {
-              text: "Mecanismo del Efecto Adverso:",
-              sub: [
-                "Las arterias coronarias tienen receptores vasodilatadores Beta-2 y vasoconstrictores Alfa-1",
-                "Al bloquear los receptores Beta-2, el tono vasoconstrictor Alfa-1 queda libre sin oposición",
-                "El vasoespasmo coronario EMPEORA severamente pudiendo precipitar un infarto transmural"
-              ]
-            },
-            {
-              text: "Fármaco Contraindicado: Betabloqueadores (Propranolol, Atenolol, etc.)",
-              sub: []
-            },
-            {
-              text: "Fármaco Indicado: Calcioantagonistas (Amlodipino, Diltiazem)",
-              sub: []
-            }
+          title="Tabla Diferencial de Síndromes Coronarios"
+          subtitle="Diagnóstico diferencial clave para el EUNACOM"
+          headers={["Entidad", "Dolor Torácico", "Troponinas", "ECG Típico", "Trombo / Fisiopatología", "Conducta"]}
+          rows={[
+            ["Angina Estable", "Solo con esfuerzo (<10m)", "Negativas (-)", "Normal en reposo", "Placa fija ≥70% sin trombo", "Ambulatorio APS (PEG)"],
+            ["Angina Inestable", "En reposo / Reciente (<2m)", "Negativas (-)", "ST normal o infradesnivel", "Placa rota + Trombo suboclusivo", "🚨 Hospitalizar (SCASEST)"],
+            ["IAM sin SDST", "En reposo (>20m)", "POSITIVAS (+)", "Infradesnivel ST / Onda T (-)", "Placa rota + Trombo + Necrosis", "🚨 Coronariografía precoz"],
+            ["IAM con SDST", "En reposo severo", "POSITIVAS (+)", "Supradesnivel ST persistente", "Trombo 100% Oclusivo Rojo", "🚨 Reperfusión (<120m PCI)"]
           ]}
-          rightContent={
-            <div style={{ background: "#fee2e2", border: "3px solid #dc2626", borderRadius: 16, padding: "22px", textAlign: "center", width: "100%" }}>
-              <div style={{ fontSize: 32, marginBottom: 4 }}>🚫</div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "#991b1b", textTransform: "uppercase" }}>
-                ¡PROHIBIDOS BETABLOQUEADORES!
-              </div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#7f1d1d", marginTop: 8, lineHeight: 1.4 }}>
-                En Angina de Prinzmetal empeoran el vasoespasmo por vasoconstricción Alfa-1 refleja.
-              </div>
-            </div>
-          }
-          bottomCallout="💡 Regla de Examen: Prinzmetal = Calcioantagonistas SÍ, Betabloqueadores NUNCA."
+          highlightColIndex={0}
+          bottomNote="La diferencia entre Angina Inestable e IAM sin SDST es exclusivamente la elevación de biomarcadores cardíacos (Troponinas)."
         />
       </Slide>
 
-      {/* SLIDE 16: LAS 4 TRAMPAS DEL EUNACOM */}
-      <Slide
-        nav="4 Trampas del EUNACOM"
-        notes="Repasemos las 4 trampas clásicas del banco de preguntas en cardiopatía isquémica estable."
-      >
-        <BnBSlide
-          classNumber="CLASE 01"
-          title="Las 4 Trampas Críticas del EUNACOM"
-          subtitle="Errores clásicos que debes evitar en el examen"
-          bullets={[
-            {
-              text: "1. Estatina con Colesterol Normal:",
-              sub: ["En cardiopatía coronaria la Atorvastatina 80 mg es obligatoria siempre (meta LDL <55 mg/dL)"]
-            },
-            {
-              text: "2. BCRI en Test de Esfuerzo:",
-              sub: ["El PEG convencional pierde validez; se debe solicitar Eco-Estrés o Resonancia"]
-            },
-            {
-              text: "3. Betabloqueo en Prinzmetal:",
-              sub: ["Empeora el vasoespasmo; el fármaco de elección son los Calcioantagonistas"]
-            },
-            {
-              text: "4. Angina Inestable Disfrazada:",
-              sub: ["Angina en reposo o con mínimos esfuerzos (CCS IV) es un SCA; requiere hospitalización"]
-            }
-          ]}
-          rightContent={
-            <BnBMiniTable
-              headers={["Situación", "Error Común", "Conducta Correcta"]}
-              rows={[
-                ["Colesterol normal", "No dar estatina", "Atorvastatina 80 mg"],
-                ["BCRI basal", "Pedir PEG", "Pedir Eco-Estrés"],
-                ["Prinzmetal", "Dar Betabloqueo", "Dar Calcioantagonista"],
-                ["Angina reposo", "Tratar como estable", "Hospitalizar por SCA"]
-              ]}
-            />
-          }
-          bottomCallout="💡 Revisa siempre el ECG basal antes de indicar un test de esfuerzo en APS."
-        />
-      </Slide>
-
-      {/* SLIDE 17: CASO CLÍNICO EUNACOM #1 */}
+      {/* ── SLIDE 11: CASO CLÍNICO #1 ── */}
       <Slide
         nav="Caso Clínico 1"
-        notes="Analicemos este caso clínico de diagnóstico y conducta inicial en APS."
+        notes="Caso clínico de diagnóstico y conducta inicial en APS."
       >
         <QuestionSlide
           classNumber="CLASE 01"
@@ -668,36 +420,36 @@ export default function Cardio01Deck() {
           options={[
             {
               id: "A",
-              text: "Dolor torácico no coronario; tranquilizar e indicar kinesioterapia.",
+              text: "Dolor torácico no coronario; tranquilizar e indicar analgesia con AINEs.",
               explanation: "Incorrecto. Cumple los 3 criterios de Diamond-Forrester para Angina Típica.",
               isCorrect: false
             },
             {
               id: "B",
-              text: "Angina Crónica Estable; indicar Test de Esfuerzo (Ergometría) e iniciar Aspirina 100 mg, Atorvastatina 80 mg y Bisoprolol.",
+              text: "Angina Crónica Estable; indicar Test de Esfuerzo (PEG) e iniciar Aspirina 100 mg, Atorvastatina 80 mg y Bisoprolol.",
               explanation: "Correcto. Angina Típica CCS II con ECG normal. El Test de Esfuerzo es el estudio indicado en APS.",
               isCorrect: true
             },
             {
               id: "C",
               text: "SCACEST; derivar de urgencia para angioplastía primaria inmediata.",
-              explanation: "Incorrecto. Cuadro crónico estable de 3 meses con ECG normal.",
+              explanation: "Incorrecto. Cuadro crónico de 3 meses de evolución con ECG normal.",
               isCorrect: false
             },
             {
               id: "D",
               text: "Angina de Prinzmetal; iniciar Verapamilo y reposo absoluto.",
-              explanation: "Incorrecto. Ocurre con esfuerzo predecible, no en reposo nocturno.",
+              explanation: "Incorrecto. Ocurre con esfuerzo físico predecible, no en reposo nocturno.",
               isCorrect: false
             }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 18: CASO CLÍNICO EUNACOM #2 */}
+      {/* ── SLIDE 12: CASO CLÍNICO #2 ── */}
       <Slide
         nav="Caso Clínico 2"
-        notes="Analicemos este caso de titulación y metas de frecuencia cardíaca."
+        notes="Caso de titulación y metas de frecuencia cardíaca."
       >
         <QuestionSlide
           classNumber="CLASE 01"
@@ -716,7 +468,7 @@ export default function Cardio01Deck() {
             {
               id: "B",
               text: "Agregar Clopidogrel 75 mg/día para doble antiagregación plaquetaria.",
-              explanation: "Incorrecto. La DAPT no está indicada en angina estable crónica.",
+              explanation: "Incorrecto. La DAPT no está indicada en angina estable crónica sin stent reciente.",
               isCorrect: false
             },
             {
@@ -728,17 +480,17 @@ export default function Cardio01Deck() {
             {
               id: "D",
               text: "Derivar de urgencia para cirugía de bypass coronario inmediato.",
-              explanation: "Incorrecto. Primero se optimiza la terapia médica ambulatoria.",
+              explanation: "Incorrecto. Primero se optimiza la dosis del tratamiento médico ambulatorio.",
               isCorrect: false
             }
           ]}
         />
       </Slide>
 
-      {/* SLIDE 19: CASO CLÍNICO EUNACOM #3 */}
+      {/* ── SLIDE 13: CASO CLÍNICO #3 ── */}
       <Slide
         nav="Caso Clínico 3"
-        notes="Analicemos este caso de angina vasoespástica y contraindicación de fármacos."
+        notes="Caso de angina vasoespástica y contraindicación de fármacos."
       >
         <QuestionSlide
           classNumber="CLASE 01"
@@ -751,19 +503,19 @@ export default function Cardio01Deck() {
             {
               id: "A",
               text: "Tratamiento: Propranolol; Contraindicado: Nitratos.",
-              explanation: "Incorrecto. Los betabloqueadores están contraindicados en Prinzmetal.",
+              explanation: "Incorrecto. Los betabloqueadores están formalmente contraindicados en Prinzmetal.",
               isCorrect: false
             },
             {
               id: "B",
               text: "Tratamiento: Angioplastía coronaria; Contraindicado: Aspirina.",
-              explanation: "Incorrecto. El mecanismo es vasoespasmo funcional sin trombo.",
+              explanation: "Incorrecto. El mecanismo es vasoespasmo funcional sin placa obstructiva fija.",
               isCorrect: false
             },
             {
               id: "C",
               text: "Tratamiento: Amiodarona; Contraindicado: Calcioantagonistas.",
-              explanation: "Incorrecto. Los calcioantagonistas son precisamente la primera línea.",
+              explanation: "Incorrecto. Los calcioantagonistas son precisamente la primera línea de elección.",
               isCorrect: false
             },
             {
@@ -776,46 +528,25 @@ export default function Cardio01Deck() {
         />
       </Slide>
 
-      {/* SLIDE 20: SUMMARY & HIGH YIELD TAKEAWAYS */}
+      {/* ── SLIDE 14: RESUMEN MAESTRO & REGLAS DE ORO ── */}
       <Slide
-        nav="Resumen High Yield"
-        notes="Hemos completado la Masterclass de Angina Crónica Estable con el estándar Boards and Beyond. En la siguiente clase abordaremos el SCASEST (Cardio 02)."
+        nav="Resumen Maestro"
+        notes="Hemos completado la Masterclass de Angina Crónica Estable con algoritmos de decisión clínica. En la siguiente clase abordaremos el SCASEST (Cardio 02)."
       >
-        <BnBSlide
+        <GuevaraTable
           classNumber="CLASE 01"
-          title="Resumen de Conceptos Clave"
-          subtitle="Boards & Beyond Standard · EUNACOM 2026"
-          bullets={[
-            {
-              text: "Diagnóstico: 3/3 Criterios de Diamond-Forrester (Opresión + Esfuerzo + Alivio <10m)",
-              sub: []
-            },
-            {
-              text: "Estudio: Test de Esfuerzo (PEG) si ECG basal normal. Eco-Estrés si BCRI",
-              sub: []
-            },
-            {
-              text: "Prevención Secundaria: Aspirina 100 mg + Atorvastatina 80 mg (meta LDL <55 mg/dL)",
-              sub: []
-            },
-            {
-              text: "Antiisquémico de 1ra Línea: Betabloqueadores (Meta FC reposo 55–60 lpm)",
-              sub: []
-            },
-            {
-              text: "Prinzmetal: Calcioantagonistas SÍ, Betabloqueadores PROHIBIDOS",
-              sub: []
-            }
+          title="Resumen Maestro: 5 Reglas de Oro EUNACOM"
+          subtitle="Conceptos de máxima rentabilidad para el examen"
+          headers={["#", "Situación Clínica", "Regla de Decisión", "Conducta Obligatoria"]}
+          rows={[
+            ["1", "Diagnóstico Clínico", "3/3 Diamond-Forrester (Opresión + Esfuerzo + Alivio <10m)", "Angina Típica ➔ Test de Esfuerzo en APS"],
+            ["2", "ECG Basal con BCRI", "PEG pierde validez diagnóstica", "Contraindicado PEG ➔ Solicitar Eco-Estrés"],
+            ["3", "Prevención Secundaria", "Estatina de alta potencia obligatoria siempre", "Atorvastatina 80 mg (Meta c-LDL < 55 mg/dL)"],
+            ["4", "Meta Betabloqueador", "Titular dosis según frecuencia cardíaca", "Meta FC en reposo: 55 a 60 lpm"],
+            ["5", "Angina de Prinzmetal", "Vasoespasmo nocturno con ST ↑ transitorio", "Calcioantagonistas SÍ ➔ Betabloqueadores NUNCA"]
           ]}
-          rightContent={
-            <div style={{ background: "#f0fdf4", border: "2px solid #16a34a", borderRadius: 16, padding: "20px", textAlign: "center", width: "100%" }}>
-              <div style={{ fontSize: 24, fontWeight: 900, color: "#166534", textTransform: "uppercase" }}>✓ Clase 01 Dominada</div>
-              <div style={{ fontSize: 15, color: "#14532d", marginTop: 8, fontWeight: 600 }}>
-                👉 Siguiente Clase: <strong>Cardio 02 — SCASEST: Angina Inestable e IAM sin SDST</strong>
-              </div>
-            </div>
-          }
-          bottomCallout="💡 Revisa el capítulo correspondiente en el Manual EUNACOM y practica las preguntas del banco."
+          highlightColIndex={3}
+          bottomNote="Próxima Clase: Cardio 02 — SCASEST: Angina Inestable e Infarto Agudo al Miocardio sin SDST."
         />
       </Slide>
 
