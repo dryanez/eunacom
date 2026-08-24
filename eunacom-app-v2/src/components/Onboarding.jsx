@@ -5,7 +5,7 @@ import {
   Calendar, Award, Target, Flame, HeartPulse, Clock,
   ArrowRight, ShieldCheck, X, Loader2
 } from 'lucide-react'
-import { EunacomLogo } from './EunacomLogo'
+import { EunacomLogo, EunacomLogoIcon } from './EunacomLogo'
 import { CHILEAN_UNIVERSITIES, getSedesForUniversity, UserInstitutionBadge, COUNTRIES } from '../utils/universityAndCountry'
 
 // ─── COUNTRY CODES & PHONE VALIDATION ────────────────────────────────────
