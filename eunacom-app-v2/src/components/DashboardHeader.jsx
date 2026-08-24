@@ -4,7 +4,8 @@ import { ChevronDown, Menu, LogIn, Settings, CreditCard, User, Shield } from 'lu
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchUserProfile } from '../lib/api'
-import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
+import { getDoctorAvatar } from '../utils/doctorAvatars'
+import { calculateUserOverallStats } from '../utils/xpSystem'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const DashboardHeader = ({ onMenuToggle }) => {
@@ -13,12 +14,16 @@ const DashboardHeader = ({ onMenuToggle }) => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [displayName, setDisplayName] = useState('')
-    const [avatarImage, setAvatarImage] = useState('/avatars/dr_house.png')
+    const [avatarImage, setAvatarImage] = useState('/avatars/dr_dorian.png')
     const [userProfile, setUserProfile] = useState(null)
 
     useEffect(() => {
         if (!user) return
-        fetchUserProfile(user.id).then(profile => {
+        Promise.all([
+            fetchUserProfile(user.id).catch(() => null),
+            calculateUserOverallStats(user.id).catch(() => ({ level: 1 }))
+        ]).then(([profile, stats]) => {
+            const userLvl = stats?.level || 1
             if (profile) setUserProfile(profile)
             if (profile?.first_name) {
                 setDisplayName(`Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim())
@@ -27,10 +32,10 @@ const DashboardHeader = ({ onMenuToggle }) => {
             } else {
                 setDisplayName(user.email?.split('@')[0] || 'Doctor')
             }
-            const doc = getDoctorAvatar(profile || user)
+            const doc = getDoctorAvatar(profile || user, userLvl)
             if (doc?.image) setAvatarImage(doc.image)
         }).catch(() => {
-            const doc = getDoctorAvatar(user)
+            const doc = getDoctorAvatar(user, 1)
             if (doc?.image) setAvatarImage(doc.image)
             setDisplayName(user.email?.split('@')[0] || 'Doctor')
         })

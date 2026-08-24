@@ -435,7 +435,7 @@ const Dashboard = () => {
   const myRank = (Array.isArray(leaderboard) && user?.id)
     ? Math.max(0, leaderboard.findIndex(u => u?.user_id === user.id) + 1)
     : 0
-  const activeDoctor = DOCTOR_CHARACTERS.find(d => d.id === (userProfile?.selected_doctor || 'dr_house')) || DOCTOR_CHARACTERS[0]
+  const activeDoctor = getDoctorAvatar(userProfile || user, stats.level)
 
   return (
     <div className="dash-promax-wrapper">
@@ -1354,8 +1354,9 @@ const Dashboard = () => {
                     {/* Doctor Avatar with Character Image & Institution Logo Badge */}
                     <div style={{ position: 'relative', flexShrink: 0 }}>
                       <img
-                        src={getDoctorAvatar(u).image}
-                        alt={getDoctorAvatar(u).name}
+                        src={getDoctorAvatar(u, uLvl).image}
+                        alt={getDoctorAvatar(u, uLvl).name}
+                        title={`${getDoctorAvatar(u, uLvl).name} (Nivel ${uLvl})`}
                         style={{
                           width: 38,
                           height: 38,

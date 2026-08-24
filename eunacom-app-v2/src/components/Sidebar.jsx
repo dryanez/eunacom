@@ -58,19 +58,21 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
 
     useEffect(() => {
         if (!user) return
-        calculateUserOverallStats(user.id).then(stats => {
-            if (stats?.level) setUserLevel(stats.level)
-        }).catch(() => {})
-        fetchUserProfile(user.id).then(profile => {
+        Promise.all([
+            fetchUserProfile(user.id).catch(() => null),
+            calculateUserOverallStats(user.id).catch(() => ({ level: 1 }))
+        ]).then(([profile, stats]) => {
+            const userLvl = stats?.level || 1
+            setUserLevel(userLvl)
             if (profile?.first_name) {
                 setDisplayName(`Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim())
             } else if (user.user_metadata?.full_name) {
                 setDisplayName(`Dr(a). ${user.user_metadata.full_name}`)
             }
-            const doc = getDoctorAvatar(profile || user)
+            const doc = getDoctorAvatar(profile || user, userLvl)
             if (doc?.image) setAvatarImage(doc.image)
         }).catch(() => {
-            const doc = getDoctorAvatar(user)
+            const doc = getDoctorAvatar(user, 1)
             if (doc?.image) setAvatarImage(doc.image)
         })
     }, [user])

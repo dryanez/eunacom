@@ -59,27 +59,28 @@ export const LEAGUE_TIERS = [
 ]
 
 import { DOCTOR_CHARACTERS, getDoctorAvatar } from './doctorAvatars'
+import { calculateLevelUp } from './xpSystem'
 
 // Generate simulated weekly cohort competitors
 export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'residente', userProfile = null) => {
   const sampleNames = [
-    { name: 'Dra. Camila Soto', avatar_character: 'dr_yang', image: '/avatars/dr_yang.png', university: 'Universidad de Chile (UCH)', sede: 'Santiago (Norte)', country: 'Chile', xp: userXp + 45 },
-    { name: 'Dr. Matías Valenzuela', avatar_character: 'dr_shepherd', image: '/avatars/dr_shepherd.png', university: 'Pontificia Universidad Católica de Chile (PUC)', sede: 'Santiago (Casa Central)', country: 'Chile', xp: userXp + 25 },
-    { name: 'Dra. Fernanda Rojas', avatar_character: 'dr_grey', image: '/avatars/dr_grey.png', university: 'Universidad de Concepción (UdeC)', sede: 'Concepción', country: 'Chile', xp: userXp + 10 },
+    { name: 'Dra. Camila Soto', university: 'Universidad de Chile (UCH)', sede: 'Santiago (Norte)', country: 'Chile', xp: userXp + 45 },
+    { name: 'Dr. Matías Valenzuela', university: 'Pontificia Universidad Católica de Chile (PUC)', sede: 'Santiago (Casa Central)', country: 'Chile', xp: userXp + 25 },
+    { name: 'Dra. Fernanda Rojas', university: 'Universidad de Concepción (UdeC)', sede: 'Concepción', country: 'Chile', xp: userXp + 10 },
     { 
-      name: userProfile?.first_name ? `Dr(a). ${userProfile.first_name} ${userProfile.last_name || ''}` : 'Tú (Médico Postulante)', 
-      avatar_character: userProfile?.avatar_character || 'dr_house', 
-      image: getDoctorAvatar(userProfile || { avatar_character: 'dr_house' }).image,
+      name: userProfile?.first_name ? `Dr(a). ${userProfile.first_name} ${userProfile.last_name || ''}`.trim() : 'Tú (Médico Postulante)', 
+      avatar_character: userProfile?.avatar_character, 
       university: userProfile?.university || 'Universidad de Chile (UCH)',
       sede: userProfile?.sede || 'Santiago',
       country: userProfile?.country || 'Chile',
       xp: userXp, 
+      level: userLevel,
       isUser: true 
     },
-    { name: 'Dr. Carlos Mendoza', avatar_character: 'dr_murphy', image: '/avatars/dr_murphy.png', university: 'Universidad Central de Venezuela', sede: 'Caracas', country: 'Venezuela', xp: Math.max(10, userXp - 15) },
-    { name: 'Dra. Valentina Castro', avatar_character: 'dr_strange', image: '/avatars/dr_strange.png', university: 'Universidad Andrés Bello (UNAB)', sede: 'Viña del Mar', country: 'Chile', xp: Math.max(5, userXp - 30) },
-    { name: 'Dr. Andrés Ospina', avatar_character: 'dr_adams', image: '/avatars/dr_adams.png', university: 'Universidad de Antioquia', sede: 'Medellín', country: 'Colombia', xp: Math.max(0, userXp - 45) },
-    { name: 'Dra. Javiera Silva', avatar_character: 'dr_cox', image: '/avatars/dr_cox.png', university: 'Universidad de Valparaíso (UV)', sede: 'Valparaíso', country: 'Chile', xp: Math.max(0, userXp - 60) }
+    { name: 'Dr. Carlos Mendoza', university: 'Universidad Central de Venezuela', sede: 'Caracas', country: 'Venezuela', xp: Math.max(10, userXp - 15) },
+    { name: 'Dra. Valentina Castro', university: 'Universidad Andrés Bello (UNAB)', sede: 'Viña del Mar', country: 'Chile', xp: Math.max(5, userXp - 30) },
+    { name: 'Dr. Andrés Ospina', university: 'Universidad de Antioquia', sede: 'Medellín', country: 'Colombia', xp: Math.max(0, userXp - 45) },
+    { name: 'Dra. Javiera Silva', university: 'Universidad de Valparaíso (UV)', sede: 'Valparaíso', country: 'Chile', xp: Math.max(0, userXp - 60) }
   ]
 
   // Sort by XP descending
@@ -89,9 +90,15 @@ export const getLeagueCohort = (userXp = 50, userLevel = 1, currentTierId = 'res
     if (idx < 3) zone = 'promotion' // Top 3 promote ⬆
     else if (idx >= sorted.length - 2) zone = 'demotion' // Bottom 2 demote ⬇
 
+    const playerLvl = player.level || calculateLevelUp(player.xp, 1).newLevel
+    const doc = getDoctorAvatar(player, playerLvl)
+
     return {
       ...player,
-      avatarImage: player.image || getDoctorAvatar(player).image,
+      level: playerLvl,
+      avatarImage: doc.image,
+      avatarName: doc.name,
+      avatarCharacter: doc.id,
       rank: idx + 1,
       zone
     }

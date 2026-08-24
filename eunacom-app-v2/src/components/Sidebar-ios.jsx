@@ -39,21 +39,23 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
     const [examenesOpen, setExamenesOpen] = useState(false)
     const [userLevel, setUserLevel] = useState(1)
     const [displayName, setDisplayName] = useState(null)
-    const [avatarImage, setAvatarImage] = useState('/avatars/dr_house.png')
+    const [avatarImage, setAvatarImage] = useState('/avatars/dr_dorian.png')
 
     useEffect(() => {
         if (!user) return
-        calculateUserOverallStats(user.id).then(stats => {
-            if (stats?.level) setUserLevel(stats.level)
-        }).catch(() => {})
-        fetchUserProfile(user.id).then(profile => {
+        Promise.all([
+            fetchUserProfile(user.id).catch(() => null),
+            calculateUserOverallStats(user.id).catch(() => ({ level: 1 }))
+        ]).then(([profile, stats]) => {
+            const userLvl = stats?.level || 1
+            setUserLevel(userLvl)
             if (profile?.first_name) {
                 setDisplayName(`${profile.first_name} ${profile.last_name || ''}`.trim())
             }
-            const doc = getDoctorAvatar(profile || user)
+            const doc = getDoctorAvatar(profile || user, userLvl)
             if (doc?.image) setAvatarImage(doc.image)
         }).catch(() => {
-            const doc = getDoctorAvatar(user)
+            const doc = getDoctorAvatar(user, 1)
             if (doc?.image) setAvatarImage(doc.image)
         })
     }, [user])

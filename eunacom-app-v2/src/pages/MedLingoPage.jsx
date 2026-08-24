@@ -238,6 +238,7 @@ export default function MedLingoPage() {
       {showMentorPicker && (
         <MedLingoMentorPickerModal
           activeMentorId={gameState.activeMentorId}
+          userLevel={gameState.userLevel || 1}
           onSelectMentor={handleSelectMentor}
           onClose={() => setShowMentorPicker(false)}
         />

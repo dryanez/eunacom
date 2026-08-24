@@ -4,7 +4,8 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
-import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar } from '../utils/doctorAvatars'
+import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar, isDoctorUnlocked } from '../utils/doctorAvatars'
+import { calculateUserOverallStats, getDoctorForLevel } from '../utils/xpSystem'
 import { CHILEAN_UNIVERSITIES, COUNTRIES, getSedesForUniversity, UserInstitutionBadge } from '../utils/universityAndCountry'
 import {
   User, Settings, Shield, Lock, CreditCard, Target,
@@ -25,6 +26,8 @@ const UserSettings = () => {
 
   const [activeTab, setActiveTab] = useState('profile')
   const [profile, setProfile] = useState(null)
+  const [userLevel, setUserLevel] = useState(1)
+  const [lockNotice, setLockNotice] = useState(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
@@ -33,7 +36,7 @@ const UserSettings = () => {
   // Form Fields
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [avatarCharacter, setAvatarCharacter] = useState('dr_house')
+  const [avatarCharacter, setAvatarCharacter] = useState('dr_dorian')
   const [university, setUniversity] = useState('')
   const [sede, setSede] = useState('')
   const [country, setCountry] = useState('Chile')
@@ -56,12 +59,26 @@ const UserSettings = () => {
 
   useEffect(() => {
     if (!user) return
-    fetchUserProfile(user.id).then((data) => {
+    Promise.all([
+      fetchUserProfile(user.id).catch(() => null),
+      calculateUserOverallStats(user.id).catch(() => ({ level: 1 }))
+    ]).then(([data, stats]) => {
+      const currentLevel = stats?.level || 1
+      setUserLevel(currentLevel)
       if (data) {
         setProfile(data)
         setFirstName(data.first_name || user.user_metadata?.full_name?.split(' ')[0] || '')
         setLastName(data.last_name || user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '')
-        setAvatarCharacter(data.avatar_character || getDoctorAvatar(data).id)
+        
+        // Ensure chosen avatar is unlocked for user's level
+        const defaultDoc = getDoctorForLevel(currentLevel)
+        const chosen = data.avatar_character
+        if (chosen && isDoctorUnlocked(chosen, currentLevel)) {
+          setAvatarCharacter(chosen)
+        } else {
+          setAvatarCharacter(defaultDoc.id)
+        }
+        
         setUniversity(data.university || '')
         setSede(data.sede || '')
         setCountry(data.country || data.nationality || 'Chile')
@@ -71,7 +88,7 @@ const UserSettings = () => {
         setExamYear(data.exam_year || '2026')
         setWeakArea(data.weak_area || 'Medicina Interna / Cardiología')
       } else {
-        const defaultDoc = getDoctorAvatar(user)
+        const defaultDoc = getDoctorForLevel(currentLevel)
         setAvatarCharacter(defaultDoc.id)
       }
       setLoading(false)
@@ -110,8 +127,12 @@ const UserSettings = () => {
   }
 
   const handleRandomAvatar = () => {
-    const randomDoc = getRandomDoctorAvatar()
-    setAvatarCharacter(randomDoc.id)
+    const unlockedDocs = DOCTOR_CHARACTERS.filter(d => (d.level || 1) <= userLevel)
+    if (unlockedDocs.length > 0) {
+      const randomDoc = unlockedDocs[Math.floor(Math.random() * unlockedDocs.length)]
+      setAvatarCharacter(randomDoc.id)
+      setLockNotice(null)
+    }
   }
 
   const handleUpdatePassword = async (e) => {
@@ -373,48 +394,120 @@ const UserSettings = () => {
 
               {/* 10 Fictional Doctor Badges Grid */}
               <div style={{ marginBottom: '1.25rem' }}>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.5rem' }}>
-                  Selecciona tu personaje médico favorito:
-                </label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8' }}>
+                    Selecciona tu personaje médico (Desbloqueados hasta tu Nivel {userLevel}):
+                  </label>
+                  <span style={{ fontSize: '0.72rem', color: '#38bdf8', fontWeight: 600 }}>
+                    Nivel {userLevel} · {DOCTOR_CHARACTERS.filter(d => (d.level || 1) <= userLevel).length}/{DOCTOR_CHARACTERS.length} desbloqueados
+                  </span>
+                </div>
+
+                {lockNotice && (
+                  <div style={{ 
+                    padding: '0.55rem 0.85rem', 
+                    borderRadius: '8px', 
+                    background: 'rgba(239, 68, 68, 0.15)', 
+                    border: '1px solid rgba(239, 68, 68, 0.35)', 
+                    color: '#fca5a5', 
+                    fontSize: '0.76rem', 
+                    fontWeight: 600, 
+                    marginBottom: '0.65rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}>
+                    <Lock size={14} />
+                    {lockNotice}
+                  </div>
+                )}
+
                 <div className="doctor-grid">
                   {DOCTOR_CHARACTERS.map((doc) => {
                     const isPicked = avatarCharacter === doc.id
+                    const isUnlocked = (doc.level || 1) <= userLevel
                     return (
                       <button
                         key={doc.id}
                         type="button"
-                        onClick={() => setAvatarCharacter(doc.id)}
+                        onClick={() => {
+                          if (isUnlocked) {
+                            setAvatarCharacter(doc.id)
+                            setLockNotice(null)
+                          } else {
+                            setLockNotice(`🔒 ${doc.name} se desbloquea al alcanzar el Nivel ${doc.level} (${doc.minXp} XP). Actualmente eres Nivel ${userLevel}.`)
+                          }
+                        }}
                         style={{
                           padding: '0.55rem 0.45rem',
                           borderRadius: '10px',
-                          border: isPicked ? '1.5px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.08)',
-                          backgroundColor: isPicked ? 'rgba(56, 189, 248, 0.15)' : 'rgba(15, 23, 42, 0.5)',
+                          border: isPicked ? '1.5px solid #38bdf8' : isUnlocked ? '1px solid rgba(255, 255, 255, 0.08)' : '1px dashed rgba(255, 255, 255, 0.08)',
+                          backgroundColor: isPicked ? 'rgba(56, 189, 248, 0.15)' : isUnlocked ? 'rgba(15, 23, 42, 0.5)' : 'rgba(15, 23, 42, 0.25)',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           gap: '4px',
-                          cursor: 'pointer',
+                          cursor: isUnlocked ? 'pointer' : 'not-allowed',
                           textAlign: 'center',
                           transition: 'all 0.15s ease',
+                          position: 'relative',
+                          opacity: isUnlocked ? 1 : 0.45,
+                          filter: isUnlocked ? 'none' : 'grayscale(0.65)',
                         }}
                       >
-                        <img
-                          src={doc.image}
-                          alt={doc.name}
-                          style={{
-                            width: '46px',
-                            height: '46px',
-                            borderRadius: '10px',
-                            objectFit: 'cover',
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-                          }}
-                        />
+                        <div style={{ position: 'relative' }}>
+                          <img
+                            src={doc.image}
+                            alt={doc.name}
+                            style={{
+                              width: '46px',
+                              height: '46px',
+                              borderRadius: '10px',
+                              objectFit: 'cover',
+                              boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                            }}
+                          />
+                          {!isUnlocked && (
+                            <div style={{
+                              position: 'absolute',
+                              inset: 0,
+                              background: 'rgba(0,0,0,0.6)',
+                              borderRadius: '10px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#fbbf24'
+                            }}>
+                              <Lock size={15} />
+                              <span style={{ fontSize: '0.58rem', fontWeight: 800, marginTop: '2px', color: '#fbbf24' }}>Nv.{doc.level}</span>
+                            </div>
+                          )}
+                          {isUnlocked && isPicked && (
+                            <div style={{
+                              position: 'absolute',
+                              top: -4,
+                              right: -4,
+                              background: '#38bdf8',
+                              color: '#0f172a',
+                              borderRadius: '50%',
+                              width: 16,
+                              height: 16,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              boxShadow: '0 1px 4px rgba(0,0,0,0.3)'
+                            }}>
+                              <Check size={10} strokeWidth={3} />
+                            </div>
+                          )}
+                        </div>
                         <div style={{ width: '100%' }}>
-                          <div style={{ fontSize: '0.74rem', fontWeight: 700, color: isPicked ? '#38bdf8' : '#f8fafc', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          <div style={{ fontSize: '0.74rem', fontWeight: 700, color: isPicked ? '#38bdf8' : isUnlocked ? '#f8fafc' : '#64748b', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                             {doc.name.split(' ')[1] || doc.name}
                           </div>
-                          <div style={{ fontSize: '0.64rem', color: '#94a3b8', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {doc.show}
+                          <div style={{ fontSize: '0.64rem', color: isUnlocked ? '#94a3b8' : '#475569', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {isUnlocked ? `Nv. ${doc.level}` : `🔒 Nv. ${doc.level}`}
                           </div>
                         </div>
                       </button>
