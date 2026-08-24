@@ -1,0 +1,343 @@
+/* ══════════════════════════════════════════════════════════════
+   LEVEL UP MODAL — CELEBRATION & DOCTOR UNLOCK
+   ══════════════════════════════════════════════════════════════ */
+
+.levelup-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.levelup-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.animate-levelup-pop {
+  animation: levelupPopIn 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes levelupPopIn {
+  0% { transform: scale(0.65) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.levelup-ambient-glow {
+  position: absolute;
+  top: -80px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  opacity: 0.35;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.levelup-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+
+.levelup-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Confetti */
+.levelup-confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-item {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: confettiFloat 2.5s infinite ease-in-out;
+}
+
+.confetti-item.c1 { top: 12%; left: 10%; animation-delay: 0.1s; }
+.confetti-item.c2 { top: 15%; right: 12%; animation-delay: 0.3s; }
+.confetti-item.c3 { top: 40%; left: 6%; animation-delay: 0.5s; }
+.confetti-item.c4 { top: 42%; right: 8%; animation-delay: 0.2s; }
+.confetti-item.c5 { top: 70%; left: 12%; animation-delay: 0.6s; }
+.confetti-item.c6 { top: 68%; right: 10%; animation-delay: 0.4s; }
+
+@keyframes confettiFloat {
+  0% { transform: translateY(10px) scale(0.6) rotate(0deg); opacity: 0; }
+  50% { opacity: 1; transform: translateY(-5px) scale(1.1) rotate(15deg); }
+  100% { transform: translateY(-20px) scale(0.8) rotate(30deg); opacity: 0; }
+}
+
+.levelup-top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.3) 100%);
+  border: 1.5px solid #f97316;
+  color: #fed7aa;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 1000;
+  letter-spacing: 0.8px;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.4);
+}
+
+.levelup-transition-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lvl-pill {
+  padding: 0.45rem 1rem;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 0.95rem;
+}
+
+.lvl-pill.prev {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+}
+
+.lvl-arrow {
+  color: #38bdf8;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.lvl-pill.next {
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.5);
+}
+
+/* Doctor Unlocked Card */
+.levelup-doctor-card {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.levelup-avatar-frame {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.5), 0 8px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: floatAvatar 3s infinite ease-in-out;
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.levelup-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.levelup-doctor-emoji-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #1e293b;
+  border: 2px solid #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.levelup-doctor-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.levelup-unlock-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.levelup-doctor-name {
+  font-size: 1.25rem;
+  font-weight: 1000;
+  color: #ffffff;
+  margin: 0;
+}
+
+.levelup-doctor-title {
+  font-size: 0.84rem;
+  color: #fb923c;
+  font-weight: 800;
+}
+
+.levelup-doctor-quote {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  font-style: italic;
+  margin: 0.35rem 0 0;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* Rewards Box */
+.levelup-rewards-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rewards-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.rewards-badges-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reward-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.reward-chip.gems {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+}
+
+.reward-chip.rank {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+/* Actions Row */
+.levelup-actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.levelup-equip-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(56, 189, 248, 0.15);
+  border: 2px solid #38bdf8;
+  color: #38bdf8;
+  padding: 0.85rem 1.25rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.levelup-equip-btn:hover {
+  background: #38bdf8;
+  color: #0b0f19;
+}
+
+.levelup-continue-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  color: #ffffff;
+  padding: 0.95rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 1000;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+  transition: all 0.15s ease;
+}
+
+.levelup-continue-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.levelup-continue-btn:active {
+  transform: translateY(1px);
+}

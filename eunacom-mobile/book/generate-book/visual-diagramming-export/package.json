@@ -1,0 +1,28 @@
+{
+  "name": "visual-diagramming-export",
+  "version": "1.0.0",
+  "description": "AI Skills for Antigravity, Claude Code, Gemini CLI & Cursor to generate and export editable visual diagrams (Excalidraw, Markmap, PlantUML).",
+  "keywords": [
+    "antigravity",
+    "claude-code",
+    "gemini-cli",
+    "ai-skills",
+    "excalidraw",
+    "markmap",
+    "plantuml",
+    "diagram-generator",
+    "visual-diagrams",
+    "mind-map",
+    "cursor",
+    "copilot",
+    "uml",
+    "flowchart"
+  ],
+  "license": "MIT",
+  "author": "SMARTbrain Activity",
+  "homepage": "https://github.com/smartbrainactivity/visual-diagramming-export",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smartbrainactivity/visual-diagramming-export.git"
+  }
+}

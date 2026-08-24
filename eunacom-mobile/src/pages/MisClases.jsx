@@ -1,0 +1,3631 @@
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
+import { fetchClases, fetchClase, fetchPerfil, fetchClaseProgress, saveClaseProgress, fetchEunacomQuestions } from '../lib/api'
+import { getVideoUrl } from '../lib/videoMap'
+import VideoPlayer from '../components/VideoPlayer'
+import {
+  Video, ChevronRight, ChevronLeft, BookOpen, HelpCircle,
+  CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lightbulb,
+  Target, Award, RotateCcw, FolderOpen, Folder, FileText, Stethoscope,
+  Presentation, Play, ClipboardList, BarChart3, Trophy, Clock, Hash,
+  HeartPulse, Brain, Droplets, FlaskConical, Wind, Bone, Microscope,
+  Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
+  Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
+  TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
+  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle
+} from 'lucide-react'
+import LoadingScreen from '../components/LoadingScreen'
+import LoginGateModal from '../components/LoginGateModal'
+import PaymentModal from '../components/PaymentModal'
+import { useSubscription } from '../contexts/SubscriptionContext'
+import { TopicCard } from '../components/TopicCard'
+import { TopicQuickModal } from '../components/TopicQuickModal'
+import '../styles/proMaxPages.css'
+
+/* ════════════════════════════════════════════════════════════════
+   PROGRESS RING
+   ════════════════════════════════════════════════════════════════ */
+function ProgressRing({ percent, size = 48, stroke = 4 }) {
+  const r = (size - stroke) / 2
+  const circ = 2 * Math.PI * r
+  const offset = circ - (percent / 100) * circ
+  const color = percent >= 100 ? '#10b981' : percent > 0 ? '#3b82f6' : 'var(--surface-500)'
+  
+  return (
+    <div style={{ position: 'relative', width: size, height: size, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <svg width={size} height={size} style={{ transform: 'rotate(-90deg)', position: 'absolute', top: 0, left: 0 }}>
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="var(--surface-600)" strokeWidth={stroke} />
+        {percent > 0 && <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" style={{ transition: 'stroke-dashoffset 0.5s' }} />}
+      </svg>
+      <span style={{ fontSize: size <= 42 ? '0.8rem' : '0.9rem', fontWeight: 800, color: percent >= 100 ? '#10b981' : 'var(--text-primary)', zIndex: 1, letterSpacing: '-0.03em' }}>
+        {percent}%
+      </span>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   STEP PROGRESS BAR
+   ════════════════════════════════════════════════════════════════ */
+function StepBar({ steps, current, onStep }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: '2rem' }}>
+      {steps.map((s, i) => {
+        const isActive = i === current
+        const isDone = i < current
+        return (
+          <React.Fragment key={s.id}>
+            {i > 0 && (
+              <div style={{
+                flex: 1, height: 2, margin: '0 -1px',
+                background: isDone ? 'var(--primary-500)' : 'var(--border-color)',
+                transition: 'background 0.3s'
+              }} />
+            )}
+            <button onClick={() => onStep(i)} style={{
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+              padding: '0.6rem 1.2rem', borderRadius: '50px', border: 'none', cursor: 'pointer',
+              fontSize: '0.82rem', fontWeight: 600, whiteSpace: 'nowrap',
+              background: isActive ? 'var(--primary-500)' : isDone ? 'rgba(19,91,236,0.15)' : 'var(--surface-700)',
+              color: isActive ? '#fff' : isDone ? 'var(--primary-500)' : 'var(--text-tertiary)',
+              transition: 'all 0.3s', transform: isActive ? 'scale(1.05)' : 'scale(1)',
+              boxShadow: isActive ? '0 4px 12px rgba(19,91,236,0.3)' : 'none',
+            }}>
+              <div style={{
+                width: 22, height: 22, borderRadius: '50%', fontSize: '0.7rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: isActive ? 'rgba(255,255,255,0.25)' : isDone ? 'var(--primary-500)' : 'var(--surface-600)',
+                color: isActive || isDone ? '#fff' : 'var(--text-tertiary)',
+              }}>
+                {isDone ? <CheckCircle2 size={13} /> : i + 1}
+              </div>
+              {s.label}
+            </button>
+          </React.Fragment>
+        )
+      })}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BOLD TEXT HELPER
+   ════════════════════════════════════════════════════════════════ */
+function BoldText({ text, onNavigate }) {
+  // Parse **bold** and [[wiki links]]
+  const parts = text.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g)
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} style={{ color: 'var(--text-primary)' }}>{part.slice(2, -2)}</strong>
+    }
+    if (part.startsWith('[[') && part.endsWith(']]')) {
+      const linkText = part.slice(2, -2)
+      return (
+        <span key={i} onClick={(e) => { e.stopPropagation(); onNavigate?.(linkText) }}
+          style={{
+            color: 'var(--primary-500)', cursor: onNavigate ? 'pointer' : 'default',
+            borderBottom: '1px dashed var(--primary-500)',
+            fontWeight: 600, transition: 'opacity 0.2s',
+          }}
+          title={`Ver: ${linkText}`}
+        >
+          {linkText}
+        </span>
+      )
+    }
+    return <span key={i}>{part}</span>
+  })
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESUMEN SECTION
+   ════════════════════════════════════════════════════════════════ */
+function ResumenSection({ summary }) {
+  const paragraphs = summary.split('\n').filter(p => p.trim())
+  return (
+    <div className="card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary-500)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
+        <div style={{
+          width: 32, height: 32, borderRadius: 8, background: 'rgba(19,91,236,0.1)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <BookOpen size={17} style={{ color: 'var(--primary-500)' }} />
+        </div>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Resumen de la Clase</h3>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {paragraphs.map((p, i) => (
+          <p key={i} style={{ fontSize: '0.93rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
+            <BoldText text={p} />
+          </p>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PUNTOS CLAVE SECTION
+   ════════════════════════════════════════════════════════════════ */
+function cleanKeyPoint(text) {
+  const t = text.trim()
+  // Drop markdown table rows (start with |) and separators
+  if (t.startsWith('|')) return null
+  // Drop lines that are only dashes/pipes (table separators that lost leading |)
+  if (/^[-|: ]+$/.test(t)) return null
+  // Drop empty or whitespace-only
+  if (!t) return null
+  return t
+}
+
+function PuntosClaveSection({ keyPoints }) {
+  const [flipped, setFlipped] = useState({})
+
+  const cleanedPoints = keyPoints.map(cleanKeyPoint).filter(Boolean)
+
+  const cardStyles = [
+    { gradient: 'linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.03) 100%)', accent: '#3b82f6', glow: 'rgba(59,130,246,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(16,185,129,0.10) 0%, rgba(16,185,129,0.03) 100%)', accent: '#10b981', glow: 'rgba(16,185,129,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.03) 100%)', accent: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(139,92,246,0.10) 0%, rgba(139,92,246,0.03) 100%)', accent: '#8b5cf6', glow: 'rgba(139,92,246,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(236,72,153,0.10) 0%, rgba(236,72,153,0.03) 100%)', accent: '#ec4899', glow: 'rgba(236,72,153,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(14,165,233,0.10) 0%, rgba(14,165,233,0.03) 100%)', accent: '#0ea5e9', glow: 'rgba(14,165,233,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(244,63,94,0.10) 0%, rgba(244,63,94,0.03) 100%)', accent: '#f43f5e', glow: 'rgba(244,63,94,0.15)' },
+    { gradient: 'linear-gradient(135deg, rgba(34,197,94,0.10) 0%, rgba(34,197,94,0.03) 100%)', accent: '#22c55e', glow: 'rgba(34,197,94,0.15)' },
+  ]
+
+  // Split a point into a "headline" and optional "detail" at the first colon, period, or dash pattern
+  const splitPoint = (text) => {
+    // Try splitting at patterns like "Word = explanation", "Word: explanation"
+    const colonMatch = text.match(/^([^:.=]+[:.=])\s*(.+)$/s)
+    if (colonMatch && colonMatch[1].length < 80) {
+      const rawHeadline = colonMatch[1].replace(/[:.=]$/, '').trim()
+      // Don't split if the "headline" is just a number (e.g. "1.", "2.") — numbered list prefix
+      if (!/^\d+$/.test(rawHeadline)) {
+        return { headline: rawHeadline, detail: colonMatch[2].trim() }
+      }
+    }
+    // If the text is short enough, it's all headline
+    if (text.length < 100) return { headline: text, detail: null }
+    // Otherwise split at first sentence — but not on a numbered list prefix
+    const sentenceMatch = text.match(/^([^.]+\.)\s*(.+)$/s)
+    if (sentenceMatch && !/^\d+$/.test(sentenceMatch[1].replace(/\.$/, '').trim())) {
+      return { headline: sentenceMatch[1], detail: sentenceMatch[2] }
+    }
+    return { headline: text, detail: null }
+  }
+
+  const toggleFlip = (i) => setFlipped(prev => ({ ...prev, [i]: !prev[i] }))
+
+  const anyHasDetail = cleanedPoints.some(p => splitPoint(p).detail !== null)
+
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+        <div style={{
+          width: 32, height: 32, borderRadius: 8, background: 'rgba(251,191,36,0.12)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <Lightbulb size={17} style={{ color: '#f59e0b' }} />
+        </div>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Puntos Clave</h3>
+      </div>
+      {anyHasDetail && (
+        <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: '1.25rem', marginLeft: '2.75rem' }}>
+          Toca una tarjeta para ver el detalle
+        </p>
+      )}
+
+      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
+      <div className="grid-auto-responsive" style={{
+        marginTop: anyHasDetail ? 0 : '1.25rem',
+      }}>
+        {cleanedPoints.map((point, i) => {
+          const s = cardStyles[i % cardStyles.length]
+          const { headline, detail } = splitPoint(point)
+          const isFlipped = flipped[i]
+
+          return (
+            <div
+              key={i}
+              onClick={() => detail && toggleFlip(i)}
+              className="card"
+              style={{
+                padding: 0,
+                background: isFlipped ? s.gradient : 'var(--surface-700)',
+                border: `1px solid ${isFlipped ? s.accent + '40' : 'var(--border-color)'}`,
+                borderRadius: '14px',
+                cursor: detail ? 'pointer' : 'default',
+                transition: 'all 0.3s ease',
+                overflow: 'hidden',
+                boxShadow: isFlipped ? `0 4px 20px ${s.glow}` : 'none',
+                transform: isFlipped ? 'scale(1.02)' : 'scale(1)',
+              }}
+            >
+              {/* Top accent bar */}
+              <div style={{ height: 3, background: s.accent, opacity: isFlipped ? 1 : 0.4, transition: 'opacity 0.3s' }} />
+
+              <div style={{ padding: '1.1rem 1.2rem' }}>
+                {/* Number badge + headline */}
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <div style={{
+                    minWidth: 26, height: 26, borderRadius: '8px',
+                    background: s.accent + '20',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.72rem', fontWeight: 800, color: s.accent, flexShrink: 0,
+                    marginTop: '0.1rem',
+                  }}>
+                    {i + 1}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      fontSize: '0.88rem', fontWeight: 700, lineHeight: 1.5,
+                      color: 'var(--text-primary)',
+                    }}>
+                      <BoldText text={headline} />
+                    </div>
+
+                    {/* Detail — shown when flipped */}
+                    {detail && isFlipped && (
+                      <div style={{
+                        marginTop: '0.6rem', paddingTop: '0.6rem',
+                        borderTop: `1px dashed ${s.accent}30`,
+                        fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
+                        animation: 'fadeIn 0.3s ease',
+                      }}>
+                        <BoldText text={detail} />
+                      </div>
+                    )}
+
+                    {/* Expand hint */}
+                    {detail && !isFlipped && (
+                      <div style={{
+                        marginTop: '0.4rem', fontSize: '0.72rem', color: s.accent,
+                        opacity: 0.7, fontWeight: 500,
+                      }}>
+                        ver más →
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Inline animation */}
+      <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PREGUNTAS EUNACOM — Real past-exam questions for this class
+   ════════════════════════════════════════════════════════════════ */
+function EunacomQuestionsSection({ claseId, eunacomCode }) {
+  const [questions, setQuestions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [currentQ, setCurrentQ] = useState(0)
+  const [selected, setSelected] = useState({})
+  const [showScore, setShowScore] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    setSelected({})
+    setCurrentQ(0)
+    setShowScore(false)
+    const params = claseId ? { claseId } : eunacomCode ? { eunacomCode } : null
+    if (!params) { setLoading(false); return }
+    fetchEunacomQuestions({ ...params, limit: 50 })
+      .then(qs => setQuestions(qs))
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
+  }, [claseId, eunacomCode])
+
+  if (loading) return (
+    <div className="card" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-tertiary)' }}>
+      Cargando preguntas EUNACOM…
+    </div>
+  )
+  if (error) return (
+    <div className="card" style={{ padding: '2rem', color: 'var(--danger-500)' }}>Error: {error}</div>
+  )
+  if (!questions.length) return (
+    <div className="card" style={{ padding: '3rem', textAlign: 'center' }}>
+      <Target size={36} style={{ color: 'var(--text-tertiary)', marginBottom: '1rem' }} />
+      <div style={{ fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
+        Sin preguntas EUNACOM para esta clase
+      </div>
+      <div style={{ fontSize: '0.83rem', color: 'var(--text-tertiary)' }}>
+        Las preguntas se asignan por código EUNACOM. Esta clase aún no tiene preguntas de banco asociadas.
+      </div>
+    </div>
+  )
+
+  const total = questions.length
+  const q = questions[currentQ]
+  const picked = selected[currentQ]
+  const answered = !!picked
+  const correctCount = Object.entries(selected).filter(([qi, optId]) => {
+    const qq = questions[Number(qi)]
+    return qq && qq.respuestaCorrecta && optId === qq.respuestaCorrecta
+  }).length
+  const allAnswered = Object.keys(selected).length === total
+
+  const handleSelect = (optId) => { if (!answered) setSelected(prev => ({ ...prev, [currentQ]: optId })) }
+  const goNext = () => { if (currentQ < total - 1) setCurrentQ(q => q + 1); else if (allAnswered) setShowScore(true) }
+  const goPrev = () => { if (currentQ > 0) setCurrentQ(q => q - 1) }
+  const reset = () => { setSelected({}); setCurrentQ(0); setShowScore(false) }
+
+  const qColors = [
+    { accent: '#0ea5e9', bg: 'rgba(14,165,233,0.06)' },
+    { accent: '#8b5cf6', bg: 'rgba(139,92,246,0.06)' },
+    { accent: '#f59e0b', bg: 'rgba(245,158,11,0.06)' },
+    { accent: '#10b981', bg: 'rgba(16,185,129,0.06)' },
+    { accent: '#ec4899', bg: 'rgba(236,72,153,0.06)' },
+  ]
+  const qColor = qColors[currentQ % qColors.length]
+
+  if (showScore) {
+    const pct = Math.round((correctCount / total) * 100)
+    return (
+      <div className="card" style={{ padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+        <div style={{ width: 80, height: 80, borderRadius: '50%', background: pct >= 60 ? 'rgba(52,211,153,0.12)' : 'rgba(248,113,113,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Award size={36} style={{ color: pct >= 60 ? 'var(--success-500)' : 'var(--danger-500)' }} />
+        </div>
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>{pct}%</div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+            {pct >= 80 ? 'Excelente' : pct >= 60 ? 'Bien' : 'Sigue practicando'}
+          </div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', marginTop: '0.5rem' }}>
+            {correctCount} de {total} correctas · Banco EUNACOM
+          </div>
+        </div>
+        <button onClick={reset} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.7rem 1.5rem', borderRadius: '10px', border: 'none', background: 'var(--primary-500)', color: '#fff', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 600 }}>
+          <RotateCcw size={16} /> Reintentar
+        </button>
+      </div>
+    )
+  }
+
+  const isCorrectOpt = (opt) => q.respuestaCorrecta && opt.id === q.respuestaCorrecta
+  const isWrongPick  = (opt) => picked === opt.id && !isCorrectOpt(opt)
+
+  return (
+    <div style={{ margin: '1.5rem 0' }}>
+      {/* Question tracker dots */}
+      <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1rem', alignItems: 'center' }}>
+        {questions.map((_, i) => {
+          const s = selected[i]
+          const isOk = s && s === questions[i].respuestaCorrecta
+          return (
+            <div key={i} onClick={() => setCurrentQ(i)} style={{
+              width: i === currentQ ? 24 : 10, height: 8, borderRadius: 9999, cursor: 'pointer', transition: 'all 0.3s',
+              background: !s ? (i === currentQ ? '#0284c7' : '#cbd5e1') : isOk ? '#10b981' : '#ef4444',
+            }} />
+          )
+        })}
+      </div>
+
+      {/* Hero Shot Question Card */}
+      <div style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 18,
+        padding: '24px 20px',
+        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
+      }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+            Pregunta {currentQ + 1} de {total}
+          </span>
+          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Award size={12} color="#d97706" /> Evaluación de Clase
+          </span>
+        </div>
+
+        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
+          {q.pregunta}
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {q.opciones.map((opt, optIdx) => {
+            const isCorrect = isCorrectOpt(opt)
+            const isWrong   = isWrongPick(opt)
+            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
+            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+
+            if (answered) {
+              if (isCorrect) {
+                bg = '#ecfdf5'
+                border = '#10b981'
+                textColor = '#065f46'
+                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+              } else if (isWrong) {
+                bg = '#fef2f2'
+                border = '#ef4444'
+                textColor = '#991b1b'
+                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+              } else {
+                bg = '#f8fafc'
+                border = '#f1f5f9'
+                textColor = '#94a3b8'
+                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+              }
+            }
+
+            return (
+              <div key={opt.id}>
+                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
+                  width: '100%', textAlign: 'left', padding: '12px 14px',
+                  background: bg, border: `1.5px solid ${border}`,
+                  borderRadius: 12, color: textColor,
+                  cursor: answered ? 'default' : 'pointer',
+                  opacity: answered && !isCorrect && !isWrong ? 0.45 : 1,
+                  transition: 'all 0.15s ease', fontSize: '0.92rem',
+                  lineHeight: 1.5,
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
+                }}>
+                  <div style={{
+                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, marginTop: 1
+                  }}>
+                    {badgeContent}
+                  </div>
+                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                  {answered && isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                      ✓ Correcto
+                    </span>
+                  )}
+                  {answered && isWrong && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
+                      ✗ Incorrecto
+                    </span>
+                  )}
+                </button>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Retroalimentación Clínica Official Card */}
+        {answered && q.explicacion && (
+          <div style={{
+            marginTop: 16,
+            padding: '16px 18px',
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: 14
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            </div>
+            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+              {q.explicacion}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Navigation */}
+      <div style={{ display: 'flex', justifyContent: currentQ === 0 ? 'flex-end' : 'space-between', marginTop: '1rem' }}>
+        {currentQ > 0 && (
+          <button onClick={goPrev} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.65rem 1.2rem', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--surface-700)', color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}>
+            <ArrowLeft size={16} /> Anterior
+          </button>
+        )}
+        <button
+          onClick={goNext}
+          disabled={!answered}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.65rem 1.2rem', borderRadius: '10px', border: 'none', background: answered ? 'var(--primary-500)' : 'var(--surface-600)', color: answered ? '#fff' : 'var(--text-tertiary)', cursor: answered ? 'pointer' : 'not-allowed', fontSize: '0.85rem', fontWeight: 600, transition: 'all 0.2s' }}
+        >
+          {currentQ < total - 1 ? 'Siguiente' : 'Ver resultados'} <ArrowRight size={16} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   QUIZ SECTION — One question at a time
+   ════════════════════════════════════════════════════════════════ */
+function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
+  const containerRef = useRef(null)
+  const [currentQ, setCurrentQ] = useState(0)
+  const [selected, setSelected] = useState({})
+  const [showScore, setShowScore] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 60)
+    return () => clearTimeout(timer)
+  }, [currentQ, showScore])
+
+  const total = quiz.length
+  const q = quiz[currentQ]
+  const picked = selected[currentQ]
+  const answered = !!picked
+
+  const correctCount = Object.entries(selected).filter(
+    ([qi, optId]) => quiz[Number(qi)]?.options.find(o => o.id === optId)?.isCorrect
+  ).length
+  const allAnswered = Object.keys(selected).length === total
+
+  const handleSelect = (optId) => { if (!answered) setSelected(prev => ({ ...prev, [currentQ]: optId })) }
+  const goNext = () => {
+    if (currentQ < total - 1) setCurrentQ(currentQ + 1)
+    else if (allAnswered) {
+      setShowScore(true)
+      const pct = Math.round((correctCount / total) * 100)
+      const wrongIndices = Object.entries(selected).filter(([qi, optId]) => !quiz[Number(qi)]?.options.find(o => o.id === optId)?.isCorrect).map(([qi]) => Number(qi))
+      onComplete?.(pct, correctCount, total, wrongIndices)
+    }
+  }
+  const goPrev = () => { if (currentQ > 0) setCurrentQ(currentQ - 1) }
+  const resetQuiz = () => { setSelected({}); setCurrentQ(0); setShowScore(false) }
+
+  const qColors = [
+    { accent: '#3b82f6', bg: 'rgba(59,130,246,0.06)' },
+    { accent: '#8b5cf6', bg: 'rgba(139,92,246,0.06)' },
+    { accent: '#ec4899', bg: 'rgba(236,72,153,0.06)' },
+    { accent: '#f59e0b', bg: 'rgba(245,158,11,0.06)' },
+    { accent: '#10b981', bg: 'rgba(16,185,129,0.06)' },
+  ]
+  const qColor = qColors[currentQ % qColors.length]
+
+  if (showScore) {
+    const pct = Math.round((correctCount / total) * 100)
+    return (
+      <div ref={containerRef} className="card" style={{
+        scrollMarginTop: '16px',
+        padding: '3rem 2rem', textAlign: 'center',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem'
+      }}>
+        <div style={{
+          width: 80, height: 80, borderRadius: '50%',
+          background: pct >= 60 ? 'rgba(52,211,153,0.12)' : 'rgba(248,113,113,0.12)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <Award size={36} style={{ color: pct >= 60 ? 'var(--success-500)' : 'var(--danger-500)' }} />
+        </div>
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>{pct}%</div>
+          <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+            {pct >= 80 ? 'Excelente' : pct >= 60 ? 'Bien' : 'Sigue practicando'}
+          </div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', marginTop: '0.5rem' }}>
+            {correctCount} de {total} correctas
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.5rem' }}>
+          {onNextClass && (
+            <button onClick={onNextClass} style={{
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+              padding: '0.75rem 1.6rem', borderRadius: '10px', border: 'none',
+              background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+              fontSize: '0.95rem', fontWeight: 700, boxShadow: '0 4px 15px rgba(19,91,236,0.35)',
+              touchAction: 'manipulation'
+            }}>
+              Siguiente Clase <ArrowRight size={18} />
+            </button>
+          )}
+          <button onClick={resetQuiz} style={{
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+            padding: '0.75rem 1.4rem', borderRadius: '10px',
+            border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: 'var(--text-primary)', cursor: 'pointer',
+            fontSize: '0.9rem', fontWeight: 600,
+            touchAction: 'manipulation'
+          }}>
+            <RotateCcw size={16} /> Reintentar Quiz
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div ref={containerRef} style={{ scrollMarginTop: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+        <Target size={17} style={{ color: qColor.accent }} />
+        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+          Pregunta {currentQ + 1} de {total}
+        </span>
+        <div style={{ flex: 1 }} />
+        <div style={{ display: 'flex', gap: '0.35rem' }}>
+          {quiz.map((_, i) => {
+            const s = selected[i]
+            const isCorrect = s && quiz[i].options.find(o => o.id === s)?.isCorrect
+            return (
+              <div key={i} onClick={() => setCurrentQ(i)} style={{
+                width: i === currentQ ? 24 : 10, height: 10, borderRadius: 5,
+                cursor: 'pointer', transition: 'all 0.3s',
+                background: !s ? (i === currentQ ? qColor.accent : 'var(--surface-600)')
+                  : isCorrect ? 'var(--success-500)' : 'var(--danger-500)',
+              }} />
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Hero Shot Question Card */}
+      <div style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: 18,
+        padding: '24px 20px',
+        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
+      }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
+          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
+            Pregunta {currentQ + 1} de {total}
+          </span>
+          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Award size={12} color="#d97706" /> Quiz de Especialidad
+          </span>
+        </div>
+
+        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
+          {q.questionText}
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {q.options.map((opt, optIdx) => {
+            const isSelected = picked === opt.id
+            const isCorrect = opt.isCorrect
+            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
+            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+
+            if (answered) {
+              if (isCorrect) {
+                bg = '#ecfdf5'
+                border = '#10b981'
+                textColor = '#065f46'
+                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
+              } else if (isSelected) {
+                bg = '#fef2f2'
+                border = '#ef4444'
+                textColor = '#991b1b'
+                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
+              } else {
+                bg = '#f8fafc'
+                border = '#f1f5f9'
+                textColor = '#94a3b8'
+                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
+              }
+            }
+
+            return (
+              <div key={opt.id}>
+                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
+                  width: '100%', textAlign: 'left', padding: '12px 14px',
+                  background: bg, border: `1.5px solid ${border}`,
+                  borderRadius: 12, color: textColor,
+                  cursor: answered ? 'default' : 'pointer',
+                  opacity: answered && !isCorrect && !isSelected ? 0.45 : 1,
+                  transition: 'all 0.15s ease', fontSize: '0.92rem',
+                  lineHeight: 1.5,
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
+                }}>
+                  <div style={{
+                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
+                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, marginTop: 1
+                  }}>
+                    {badgeContent}
+                  </div>
+                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
+                  {answered && isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
+                      ✓ Correcto
+                    </span>
+                  )}
+                  {answered && isSelected && !isCorrect && (
+                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
+                      ✗ Incorrecto
+                    </span>
+                  )}
+                </button>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Retroalimentación Clínica Official Card */}
+        {answered && (
+          <div style={{
+            marginTop: 16,
+            padding: '16px 18px',
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: 14
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
+              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
+            </div>
+            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
+              {q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.25rem' }}>
+        <button onClick={goPrev} disabled={currentQ === 0} style={{
+          display: 'flex', alignItems: 'center', gap: '0.4rem',
+          padding: '0.6rem 1.2rem', borderRadius: '10px',
+          border: '1px solid var(--border-color)', background: 'var(--surface-700)',
+          color: currentQ === 0 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+          cursor: currentQ === 0 ? 'default' : 'pointer', fontSize: '0.85rem', fontWeight: 600,
+          opacity: currentQ === 0 ? 0.5 : 1,
+        }}>
+          <ArrowLeft size={16} /> Anterior
+        </button>
+        <button onClick={goNext} disabled={!answered} style={{
+          display: 'flex', alignItems: 'center', gap: '0.4rem',
+          padding: '0.6rem 1.2rem', borderRadius: '10px', border: 'none',
+          background: answered ? 'var(--primary-500)' : 'var(--surface-600)',
+          color: answered ? '#fff' : 'var(--text-tertiary)',
+          cursor: answered ? 'pointer' : 'default', fontSize: '0.85rem', fontWeight: 600,
+          boxShadow: answered ? '0 2px 8px rgba(19,91,236,0.3)' : 'none',
+        }}>
+          {currentQ === total - 1 && allAnswered ? 'Ver Resultado' : 'Siguiente'} <ArrowRight size={16} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TRANSCRIPT SECTION — The actual class content
+   ════════════════════════════════════════════════════════════════ */
+/* Callout box styles */
+const calloutStyles = {
+  tip: { bg: 'rgba(16,185,129,0.08)', border: '#10b981', icon: '💡', label: 'PRO TIP', color: '#10b981' },
+  important: { bg: 'rgba(239,68,68,0.08)', border: '#ef4444', icon: '🎯', label: 'CLAVE EUNACOM', color: '#ef4444' },
+  warning: { bg: 'rgba(245,158,11,0.08)', border: '#f59e0b', icon: '⚠️', label: 'OJO', color: '#f59e0b' },
+  note: { bg: 'rgba(59,130,246,0.08)', border: '#3b82f6', icon: '📝', label: 'NOTA', color: '#3b82f6' },
+}
+
+function CalloutBox({ type, children, onNavigate }) {
+  const s = calloutStyles[type] || calloutStyles.note
+  return (
+    <div style={{
+      padding: '1rem 1.25rem', borderRadius: 10, margin: '0.5rem 0',
+      background: s.bg, borderLeft: `4px solid ${s.border}`,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: 800, color: s.color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        {s.icon} {s.label}
+      </div>
+      <div style={{ fontSize: '0.88rem', lineHeight: 1.75, color: 'var(--text-primary)', fontWeight: 500 }}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function TranscriptSection({ transcript, summary, onNavigate }) {
+  const content = transcript || summary || ''
+  const lines = content.split('\n')
+
+  // Parse into blocks: headings, paragraphs, bullets, callouts
+  const blocks = []
+  let i = 0
+  while (i < lines.length) {
+    const line = lines[i].trim()
+    if (!line) { i++; continue }
+
+    // Heading
+    if (line.startsWith('## ')) {
+      blocks.push({ type: 'heading', text: line.slice(3) })
+      i++; continue
+    }
+
+    // Callout block :::tip / :::important / :::warning / :::note
+    const calloutMatch = line.match(/^:::(tip|important|warning|note)$/)
+    if (calloutMatch) {
+      const calloutType = calloutMatch[1]
+      const calloutLines = []
+      i++
+      while (i < lines.length && lines[i].trim() !== ':::') {
+        calloutLines.push(lines[i].trim())
+        i++
+      }
+      i++ // skip closing :::
+      blocks.push({ type: 'callout', calloutType, text: calloutLines.join('\n') })
+      continue
+    }
+
+    // Bullet list (collect consecutive - lines)
+    if (line.startsWith('- ')) {
+      const items = []
+      while (i < lines.length && lines[i].trim().startsWith('- ')) {
+        items.push(lines[i].trim().slice(2))
+        i++
+      }
+      blocks.push({ type: 'bullets', items })
+      continue
+    }
+
+    // Numbered list (collect consecutive 1. 2. lines)
+    if (/^\d+[\.\)]\s/.test(line)) {
+      const items = []
+      while (i < lines.length && /^\d+[\.\)]\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+[\.\)]\s/, ''))
+        i++
+      }
+      blocks.push({ type: 'numbered', items })
+      continue
+    }
+
+    // Table (lines starting with |)
+    if (line.startsWith('|')) {
+      const rows = []
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        const row = lines[i].trim()
+        if (!row.match(/^\|[\s-:|]+\|$/)) { // skip separator rows like |---|---|
+          rows.push(row.split('|').filter(c => c.trim()).map(c => c.trim()))
+        }
+        i++
+      }
+      if (rows.length > 0) blocks.push({ type: 'table', header: rows[0], rows: rows.slice(1) })
+      continue
+    }
+
+    // Regular paragraph
+    blocks.push({ type: 'paragraph', text: line })
+    i++
+  }
+
+  const sectionColors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#0ea5e9', '#f43f5e', '#22c55e']
+  let headingIndex = 0
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+      {blocks.map((block, bi) => {
+        if (block.type === 'heading') {
+          const color = sectionColors[headingIndex++ % sectionColors.length]
+          return (
+            <div key={bi} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: bi > 0 ? '0.75rem' : 0 }}>
+              <div style={{ width: 4, height: 24, borderRadius: 2, background: color }} />
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+                {block.text}
+              </h3>
+            </div>
+          )
+        }
+
+        if (block.type === 'callout') {
+          return (
+            <CalloutBox key={bi} type={block.calloutType} onNavigate={onNavigate}>
+              <BoldText text={block.text} onNavigate={onNavigate} />
+            </CalloutBox>
+          )
+        }
+
+        if (block.type === 'bullets') {
+          return (
+            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {block.items.map((item, ii) => (
+                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--primary-500)', fontSize: '0.7rem', marginTop: '0.45rem', flexShrink: 0 }}>●</span>
+                  <span><BoldText text={item} onNavigate={onNavigate} /></span>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        if (block.type === 'numbered') {
+          return (
+            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {block.items.map((item, ii) => (
+                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
+                  <span style={{
+                    minWidth: 22, height: 22, borderRadius: 6, background: 'rgba(59,130,246,0.1)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.7rem', fontWeight: 700, color: 'var(--primary-500)', flexShrink: 0, marginTop: '0.2rem',
+                  }}>
+                    {ii + 1}
+                  </span>
+                  <span><BoldText text={item} onNavigate={onNavigate} /></span>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        // Table
+        if (block.type === 'table') {
+          return (
+            <div key={bi} style={{ overflowX: 'auto', margin: '0.5rem 0', paddingLeft: '1.25rem' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                <thead>
+                  <tr>
+                    {block.header.map((h, hi) => (
+                      <th key={hi} style={{
+                        padding: '0.6rem 0.8rem', textAlign: 'left', fontWeight: 700,
+                        color: 'var(--text-primary)', borderBottom: '2px solid var(--primary-500)',
+                        background: 'rgba(59,130,246,0.06)', whiteSpace: 'nowrap',
+                      }}>
+                        <BoldText text={h} onNavigate={onNavigate} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {block.rows.map((row, ri) => (
+                    <tr key={ri} style={{ background: ri % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
+                      {row.map((cell, ci) => (
+                        <td key={ci} style={{
+                          padding: '0.5rem 0.8rem', borderBottom: '1px solid var(--border-color)',
+                          color: ci === 0 ? 'var(--text-primary)' : 'var(--text-secondary)',
+                          fontWeight: ci === 0 ? 600 : 400, lineHeight: 1.6,
+                        }}>
+                          <BoldText text={cell} onNavigate={onNavigate} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+
+        // Paragraph
+        return (
+          <p key={bi} style={{ fontSize: '0.92rem', lineHeight: 1.85, color: 'var(--text-secondary)', margin: 0, paddingLeft: '1.25rem' }}>
+            <BoldText text={block.text} onNavigate={onNavigate} />
+          </p>
+        )
+      })}
+
+      {!transcript && summary && (
+        <div style={{
+          padding: '0.75rem 1rem', borderRadius: 8, marginTop: '0.5rem',
+          background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)',
+          fontSize: '0.8rem', color: '#f59e0b',
+        }}>
+          Esta clase muestra solo el resumen. El contenido completo de la clase estará disponible próximamente.
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CLASS DETAIL VIEW
+   ════════════════════════════════════════════════════════════════ */
+function PerfilBadge({ label, prefix }) {
+  const colors = {
+    'Específico': { bg: 'rgba(16,185,129,0.12)', color: '#10b981' },
+    'Sospecha': { bg: 'rgba(245,158,11,0.12)', color: '#f59e0b' },
+    'Completo': { bg: 'rgba(59,130,246,0.12)', color: '#3b82f6' },
+    'Inicial': { bg: 'rgba(168,85,247,0.12)', color: '#8b5cf6' },
+    'Derivar': { bg: 'rgba(236,72,153,0.12)', color: '#ec4899' },
+    'No requiere': { bg: 'rgba(107,114,128,0.12)', color: '#6b7280' },
+  }
+  const c = colors[label] || colors['No requiere']
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.2rem 0.5rem', borderRadius: 6, fontSize: '0.7rem', fontWeight: 600, background: c.bg, color: c.color }}>
+      <span style={{ opacity: 0.7 }}>{prefix}:</span> {label}
+    </span>
+  )
+}
+
+function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuizComplete, onVideoWatched, progressMap, onNextClass, nextClase }) {
+  const [step, setStep] = useState(0)
+  const [showQuizPrompt, setShowQuizPrompt] = useState(false)
+  const hasTranscript = !!clase.cleanTranscript
+  const videoUrl = getVideoUrl(clase.subsystem, clase.lessonNumber)
+  const isVideoWatched = !!(progressMap?.[clase.id]?.video_watched)
+
+  const steps = [
+    { id: 'clase',     label: 'Clase',             icon: <BookOpen size={14} /> },
+    { id: 'puntos',    label: 'Puntos Clave',       icon: <Lightbulb size={14} /> },
+    { id: 'quiz',      label: 'Quiz',               icon: <Target size={14} /> },
+    { id: 'preguntas', label: 'Banco EUNACOM',      icon: <HelpCircle size={14} /> },
+  ]
+  const maxStep = steps.length - 1
+
+  // Track progress when changing tabs
+  const handleStep = (newStep) => {
+    setStep(newStep)
+    setShowQuizPrompt(false)
+    if (newStep === 0) onTrackProgress?.(clase.id, 'read_clase')
+    if (newStep === 1) onTrackProgress?.(clase.id, 'read_puntos')
+  }
+  // Track initial tab visit
+  useEffect(() => { onTrackProgress?.(clase.id, 'read_clase') }, [clase.id])
+
+  const goNext = () => { if (step < maxStep) handleStep(step + 1) }
+  const goPrev = () => { if (step > 0) handleStep(step - 1) }
+
+  const handleVideoWatched = () => {
+    onVideoWatched?.(clase.id)
+    setShowQuizPrompt(true)
+  }
+
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+        <button onClick={onBack} style={{
+          background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+          borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
+          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
+        }}>
+          <ChevronLeft size={16} /> Volver
+        </button>
+      </div>
+
+      <div className="card" style={{
+        padding: '1.5rem 1.75rem', marginBottom: '1.5rem',
+        background: 'linear-gradient(135deg, rgba(19,91,236,0.06) 0%, rgba(168,85,247,0.06) 100%)',
+        borderLeft: '4px solid var(--primary-500)'
+      }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-500)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          {clase.specialty} / {clase.subsystem}
+        </div>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+          Clase {clase.lessonNumber}: {clase.topic}
+        </h2>
+        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
+          {clase.quiz?.length > 0 && <span>{clase.quiz.length} preguntas</span>}
+          {clase.keyPoints?.length > 0 && <span>{clase.keyPoints.length} puntos clave</span>}
+          {videoUrl && (
+            <span style={{ color: isVideoWatched ? '#10b981' : 'var(--primary-400)', fontWeight: 600 }}>
+              {isVideoWatched ? '✓ Video visto' : '▶ Video disponible'}
+            </span>
+          )}
+        </div>
+        {/* Perfil EUNACOM badges — show only the primary (first) match */}
+        {clase.perfilData && clase.perfilData.length > 0 && (() => {
+          const p = clase.perfilData[0] // Primary perfil item for this class
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', padding: '0.5rem 0.8rem', borderRadius: 8, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)' }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                EUNACOM {p.codigo}:
+              </span>
+              {p.diagnostico && <PerfilBadge label={p.diagnostico} prefix="Dx" />}
+              {p.tratamiento && <PerfilBadge label={p.tratamiento} prefix="Tx" />}
+              {p.seguimiento && <PerfilBadge label={p.seguimiento} prefix="Seg" />}
+            </div>
+          )
+        })()}
+      </div>
+
+      {/* ─── VIDEO PLAYER (above tabs) ─── */}
+      {videoUrl && (
+        <VideoPlayer
+          src={videoUrl}
+          title={`Clase ${clase.lessonNumber}: ${clase.topic}`}
+          watched={isVideoWatched}
+          onWatched={handleVideoWatched}
+        />
+      )}
+
+      {/* ─── POST-VIDEO QUIZ PROMPT ─── */}
+      {showQuizPrompt && !isVideoWatched && (
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '1rem',
+          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
+          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
+          border: '1px solid rgba(16,185,129,0.3)',
+          animation: 'slideIn 0.4s ease',
+        }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Zap size={20} style={{ color: '#10b981' }} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
+          </div>
+          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
+            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
+            background: '#10b981', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
+            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
+          }}>
+            Ir al Quiz →
+          </button>
+          <button onClick={() => setShowQuizPrompt(false)} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
+          }}>×</button>
+        </div>
+      )}
+      {showQuizPrompt && isVideoWatched && (
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '1rem',
+          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
+          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
+          border: '1px solid rgba(16,185,129,0.3)',
+          animation: 'slideIn 0.4s ease',
+        }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Zap size={20} style={{ color: '#10b981' }} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
+          </div>
+          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
+            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
+            background: '#10b981', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
+            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
+          }}>
+            Ir al Quiz →
+          </button>
+          <button onClick={() => setShowQuizPrompt(false)} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
+          }}>×</button>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
+
+      <StepBar steps={steps} current={step} onStep={handleStep} />
+
+      {step === 0 && (
+        <div className="card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary-500)' }}>
+          <TranscriptSection transcript={clase.cleanTranscript} summary={clase.summary} onNavigate={onNavigateToTopic} />
+        </div>
+      )}
+      {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
+      {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onNextClass={onNextClass} nextClase={nextClase} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
+      {step === 3 && (
+        <PruebasView
+          specialty={clase.specialty}
+          subsystem={clase.subsystem}
+          subsystemStyle={getSubsystemStyle(clase.subsystem)}
+          onBack={() => handleStep(2)}
+        />
+      )}
+
+      <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
+        {step > 0 && (
+          <button onClick={goPrev} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.3rem', borderRadius: '10px',
+            border: '1px solid var(--border-color)', background: 'var(--surface-700)',
+            color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600,
+          }}>
+            <ArrowLeft size={16} /> {steps[step - 1].label}
+          </button>
+        )}
+
+        {step === 2 && onNextClass ? (
+          <button onClick={onNextClass} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
+            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
+          }}>
+            Siguiente Clase <ArrowRight size={16} />
+          </button>
+        ) : step < maxStep ? (
+          <button onClick={goNext} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.3rem', borderRadius: '10px', border: 'none',
+            background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
+          }}>
+            {steps[step + 1].label} <ArrowRight size={16} />
+          </button>
+        ) : onNextClass ? (
+          <button onClick={onNextClass} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
+            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
+            touchAction: 'manipulation'
+          }}>
+            Siguiente Clase <ArrowRight size={16} />
+          </button>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PRUEBAS PROGRESS HELPERS  (localStorage)
+   ════════════════════════════════════════════════════════════════ */
+const PRUEBA_KEY = 'eunacom_prueba_progress'
+
+// Load all progress for the current user from Supabase (or localStorage if not logged in)
+export async function loadPruebaProgress(user) {
+  if (!user) {
+    try { return JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch { return {} }
+  }
+  const { data, error } = await supabase
+    .from('prueba_progress')
+    .select('prueba_id, data')
+    .eq('user_id', user.id)
+  if (error) {
+    console.error('Supabase loadPruebaProgress error', error)
+    return {}
+  }
+  const result = {}
+  for (const row of data) {
+    result[row.prueba_id] = row.data
+  }
+  return result
+}
+
+// Save progress for a single prueba for the current user (and localStorage for offline)
+export async function savePruebaProgress(user, pruebaId, data) {
+  // Save to localStorage for offline support
+  let all = {}
+  try { all = JSON.parse(localStorage.getItem(PRUEBA_KEY) || '{}') } catch {}
+  const prev = all[pruebaId] || {}
+  const history = prev.history || []
+  history.push({ ...data, date: Date.now() })
+  all[pruebaId] = { ...prev, ...data, history, updatedAt: Date.now() }
+  localStorage.setItem(PRUEBA_KEY, JSON.stringify(all))
+
+  if (!user) return all
+
+  // Save to Supabase
+  const { error } = await supabase
+    .from('prueba_progress')
+    .upsert({
+      user_id: user.id,
+      prueba_id: pruebaId,
+      data: all[pruebaId],
+      updated_at: new Date().toISOString(),
+    }, { onConflict: ['user_id', 'prueba_id'] })
+  if (error) {
+    console.error('Supabase savePruebaProgress error', error)
+  }
+  return all
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MIS ERRORES — 3-STATE SPACED REPETITION TRACKER
+   State machine per question (key = pruebaId_numero):
+     undefined  → not yet seen wrong
+     'wrong'    → answered wrong and NOT corrected this session
+     'once_right' → was 'wrong', then answered correctly in a later session
+     (deleted)  → was 'once_right', then answered correctly again → learned ✅
+   ════════════════════════════════════════════════════════════════ */
+const ERRORES_KEY = 'eunacom_errores'
+function loadErrores() {
+  try { return JSON.parse(localStorage.getItem(ERRORES_KEY) || '{}') } catch { return {} }
+}
+function saveErrores(data) {
+  localStorage.setItem(ERRORES_KEY, JSON.stringify(data))
+  return data
+}
+
+/**
+ * Call after every finishPrueba (not on review-wrong sessions).
+ * @param {string} pruebaId
+ * @param {Array}  questions      — full question objects for this prueba
+ * @param {number[]} wrongIndices — indices of questions with at least one wrong attempt
+ * @param {Object}  correctFound  — { [qIdx]: true } questions answered correctly this session
+ * @param {Object}  attemptsMap   — { [qIdx]: ['A','C',…] } wrong option IDs tried
+ */
+function updateErrorStates(pruebaId, questions, wrongIndices, correctFound, attemptsMap) {
+  const all = loadErrores()
+  const now = Date.now()
+
+  questions.forEach((q, i) => {
+    const key = `${pruebaId}_${q.numero}`
+    const prev = all[key]
+    const prevState = prev?.state
+    const hadWrongAttempt = (attemptsMap[i]?.length || 0) > 0
+    const gotRightThisSession = !!correctFound[i]
+    // "Made an error" = had at least one wrong attempt this session (even if eventually correct)
+    // "Fixed it this session" = also got the right answer before finishing
+    // For spaced-rep: getting it right on first try in a *later* session is what counts.
+    // We only promote state when the student got it right with NO wrong attempts this session.
+    const cleanCorrect = gotRightThisSession && !hadWrongAttempt
+
+    if (hadWrongAttempt) {
+      // Wrong this session (may or may not have eventually got it right)
+      // Always reset to 'wrong' — needs a clean correct in a separate session
+      all[key] = {
+        state: 'wrong',
+        pruebaId,
+        question: {
+          numero: q.numero,
+          pregunta: q.pregunta,
+          opciones: q.opciones,
+          respuestaCorrecta: q.respuestaCorrecta,
+          explicacion: q.explicacion,
+          tags: q.tags,
+        },
+        tag: (q.tags || '').split(',')[0].trim() || 'General',
+        updatedAt: now,
+      }
+    } else if (cleanCorrect && prevState === 'wrong') {
+      // Was wrong in a prior session, now got it cleanly right → once_right
+      all[key] = { ...prev, state: 'once_right', updatedAt: now }
+    } else if (cleanCorrect && prevState === 'once_right') {
+      // Got it cleanly right a second time in a separate session → learned → remove
+      delete all[key]
+    }
+    // First-time clean correct with no prior state → ignore (never was wrong)
+  })
+
+  return saveErrores(all)
+}
+
+function printPruebaHtml(pruebas, title) {
+  const qs = pruebas.flatMap((p, pi) =>
+    p.questions.map((q, qi) => ({ ...q, _pruebaName: p.name, _globalIdx: pi * 1000 + qi }))
+  )
+  const questionsHtml = qs.map((q, i) => `
+    <div class="question">
+      <div class="q-header"><span class="q-num">${i + 1}.</span> <span class="q-prueba">${q._pruebaName}</span></div>
+      <div class="q-text">${q.pregunta.replace(/\n/g, '<br>')}</div>
+      <ol type="A" class="options">
+        ${q.opciones.map(o => `<li>${o.text}</li>`).join('')}
+      </ol>
+    </div>`).join('')
+  const answerKey = qs.map((q, i) => `<span class="ans">${i + 1}:${q.respuestaCorrecta}</span>`).join(' ')
+  return `<!DOCTYPE html><html><head><meta charset="utf-8">
+  <title>${title}</title>
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 11pt; margin: 1.5cm 2cm; color: #111; }
+    h1 { font-size: 15pt; border-bottom: 2px solid #333; padding-bottom: 6px; margin-bottom: 1rem; }
+    .question { margin-bottom: 1.2rem; page-break-inside: avoid; }
+    .q-header { font-size: 9pt; color: #666; margin-bottom: 3px; }
+    .q-num { font-weight: bold; font-size: 11pt; color: #000; }
+    .q-text { margin: 2px 0 6px 0; line-height: 1.45; }
+    .options { margin: 0 0 0 1.2rem; padding: 0; line-height: 1.6; }
+    .options li { margin-bottom: 1px; }
+    .answer-key { margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 0.75rem; font-size: 9.5pt; line-height: 1.8; }
+    .ans { display: inline-block; margin-right: 8px; font-weight: bold; }
+    @page { margin: 1.5cm 2cm; }
+    @media print { body { margin: 0; } }
+  </style></head><body>
+  <h1>${title}</h1>
+  ${questionsHtml}
+  <div class="answer-key"><strong>Clave de respuestas:</strong><br>${answerKey}</div>
+  </body></html>`
+}
+
+function openPrint(pruebas, title) {
+  const w = window.open('', '_blank')
+  if (!w) return
+  w.document.write(printPruebaHtml(pruebas, title))
+  w.document.close()
+  w.focus()
+  setTimeout(() => w.print(), 400)
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FLASHCARD PANEL — AI-generated review cards from wrong answers
+   ════════════════════════════════════════════════════════════════ */
+function FlashcardPanel({ flashcards, onClose }) {
+  const [current, setCurrent] = useState(0)
+  const [flipped, setFlipped] = useState(false)
+
+  if (!flashcards?.length) return null
+  const card = flashcards[current]
+
+  return (
+    <div style={{
+      marginTop: '1.75rem',
+      background: 'linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(59,130,246,0.06) 100%)',
+      border: '1px solid rgba(124,58,237,0.25)',
+      borderRadius: 16, padding: '1.5rem',
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <BookMarked size={18} style={{ color: '#7c3aed' }} />
+          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)' }}>Flashcards de Repaso</span>
+          <span style={{
+            fontSize: '0.72rem', fontWeight: 700, padding: '2px 8px', borderRadius: 999,
+            background: 'rgba(124,58,237,0.12)', color: '#7c3aed'
+          }}>{current + 1}/{flashcards.length}</span>
+        </div>
+        <button onClick={onClose} style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          color: 'var(--text-tertiary)', fontSize: '1.1rem', lineHeight: 1, padding: '2px 6px'
+        }}>✕</button>
+      </div>
+
+      {/* Tag */}
+      {card.tag && (
+        <div style={{
+          fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
+          color: '#7c3aed', marginBottom: '0.75rem'
+        }}>{card.tag}</div>
+      )}
+
+      {/* Flip Card */}
+      <div
+        onClick={() => setFlipped(f => !f)}
+        style={{
+          cursor: 'pointer',
+          minHeight: 160,
+          borderRadius: 12,
+          padding: '1.5rem',
+          background: flipped
+            ? 'linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(59,130,246,0.08) 100%)'
+            : 'var(--surface-700)',
+          border: `1.5px solid ${flipped ? '#10b98140' : 'var(--border-color)'}`,
+          transition: 'all 0.25s ease',
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          userSelect: 'none',
+        }}
+      >
+        <div style={{
+          fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em',
+          color: flipped ? '#10b981' : 'var(--primary-400)', marginBottom: '0.75rem',
+          display: 'flex', alignItems: 'center', gap: '0.4rem'
+        }}>
+          {flipped ? <CheckCircle2 size={12} /> : <HelpCircle size={12} />}
+          {flipped ? 'Concepto Clave' : 'Pregunta — toca para ver la respuesta'}
+        </div>
+        <div style={{
+          fontSize: '0.92rem', lineHeight: 1.65,
+          color: flipped ? 'var(--text-primary)' : 'var(--text-secondary)',
+          fontWeight: flipped ? 500 : 400,
+          whiteSpace: 'pre-wrap'
+        }}>
+          {flipped ? card.back : card.front}
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem', justifyContent: 'center', alignItems: 'center' }}>
+        <button
+          onClick={() => { setCurrent(c => Math.max(0, c - 1)); setFlipped(false) }}
+          disabled={current === 0}
+          style={{
+            padding: '0.45rem 1rem', borderRadius: 8, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: current === 0 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: current === 0 ? 'default' : 'pointer', fontSize: '0.82rem', fontWeight: 600,
+            opacity: current === 0 ? 0.4 : 1,
+          }}
+        >
+          ← Anterior
+        </button>
+
+        {/* Dots */}
+        <div style={{ display: 'flex', gap: '0.3rem' }}>
+          {flashcards.map((_, i) => (
+            <div key={i} onClick={() => { setCurrent(i); setFlipped(false) }} style={{
+              width: i === current ? 20 : 8, height: 8, borderRadius: 999,
+              background: i === current ? '#7c3aed' : 'var(--surface-600)',
+              cursor: 'pointer', transition: 'all 0.2s',
+            }} />
+          ))}
+        </div>
+
+        <button
+          onClick={() => { setCurrent(c => Math.min(flashcards.length - 1, c + 1)); setFlipped(false) }}
+          disabled={current === flashcards.length - 1}
+          style={{
+            padding: '0.45rem 1rem', borderRadius: 8, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: current === flashcards.length - 1 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: current === flashcards.length - 1 ? 'default' : 'pointer', fontSize: '0.82rem', fontWeight: 600,
+            opacity: current === flashcards.length - 1 ? 0.4 : 1,
+          }}
+        >
+          Siguiente →
+        </button>
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>
+        Toca la tarjeta para girarla
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PRUEBAS VIEW — shown when user picks "Pruebas" on a subsystem
+   Shows all available Pruebas with progress + score, and runs the
+   test inline when one is selected.
+   ════════════════════════════════════════════════════════════════ */
+function PruebasView({ specialty, subsystem, subsystemStyle, onBack }) {
+  const { user } = useAuth()
+  const [index, setIndex] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [topicData, setTopicData] = useState(null)
+  const [activePrueba, setActivePrueba] = useState(null) // prueba object being taken
+  const [currentQ, setCurrentQ] = useState(0)
+  const [answers, setAnswers] = useState({})        // { qIndex: 'A'|'B'|… } — final correct answer
+  const [showResult, setShowResult] = useState(false)
+  const [pruebaProgress, setPruebaProgress] = useState(() => {
+    // Start with localStorage for instant render
+    try { return JSON.parse(localStorage.getItem('eunacom_prueba_progress') || '{}') } catch { return {} }
+  })
+  const [attempts, setAttempts] = useState({})       // { qIndex: ['C','D'] } — wrong attempts
+  const [correctFound, setCorrectFound] = useState({}) // { qIndex: true } — correct answer found
+  const [answerStats, setAnswerStats] = useState({}) // { questionId: { A: 5, B: 3 } }
+  const [errores, setErrores] = useState(loadErrores) // 3-state error tracker
+  const [erroresLoading, setErroresLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState('pruebas') // 'pruebas' | 'errores'
+  const [flashcards, setFlashcards] = useState(null)   // generated flashcards
+
+  // Build flashcards from wrong questions — pure client-side, no API
+  const buildFlashcards = (wrongQs) => wrongQs.map(wq => {
+    const correctOpt = wq.opciones?.find(o => o.id === wq.respuestaCorrecta)
+    return {
+      front: wq.pregunta,
+      back: [
+        `✓ ${wq.respuestaCorrecta}) ${correctOpt?.text || ''}`,
+        wq.explicacion ? `\n${wq.explicacion}` : ''
+      ].join('').trim(),
+      tag: (wq.tags || '').split(',')[0].trim() || 'General'
+    }
+  })
+
+  // Load pruebas index
+  useEffect(() => {
+    fetch('/data/pruebas/index.json')
+      .then(r => r.json())
+      .then(idx => { setIndex(idx); setLoading(false) })
+      .catch(() => setLoading(false))
+  }, [])
+
+  // Sync progress from Supabase on mount — merges with localStorage so scores are never lost
+  useEffect(() => {
+    if (!user) return
+    loadPruebaProgress(user).then(serverProgress => {
+      if (!serverProgress || Object.keys(serverProgress).length === 0) return
+      // Merge: server wins per-prueba (server is source of truth)
+      setPruebaProgress(prev => ({ ...prev, ...serverProgress }))
+      // Also keep localStorage in sync
+      try {
+        const local = JSON.parse(localStorage.getItem('eunacom_prueba_progress') || '{}')
+        localStorage.setItem('eunacom_prueba_progress', JSON.stringify({ ...local, ...serverProgress }))
+      } catch {}
+    }).catch(e => console.warn('Could not sync prueba progress from Supabase:', e))
+  }, [user]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Match subsystem name to pruebas index key (fuzzy)
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
+  // Explicit aliases: DB subsystem name → index.json topic key
+  const SUBSYSTEM_ALIASES = {
+    'Cirugia General':        'Cirugía y Anestesia',
+    'Cirugía General':        'Cirugía y Anestesia',
+    'Cirugía General y Anestesia': 'Cirugía y Anestesia',
+    'Cirugia General y Anestesia': 'Cirugía y Anestesia',
+    'Neurología y Geriatría': 'Neurología',
+    'Neurologia y Geriatria': 'Neurología',
+  }
+  const findTopicKey = () => {
+    if (!index || !index[specialty]) return null
+    const topics = index[specialty]
+    // check alias first
+    const aliased = SUBSYSTEM_ALIASES[subsystem]
+    if (aliased && topics[aliased]) return aliased
+    // exact match
+    if (topics[subsystem]) return subsystem
+    // fuzzy
+    const target = norm(subsystem)
+    return Object.keys(topics).find(k => norm(k) === target) || Object.keys(topics).find(k => norm(k).includes(target) || target.includes(norm(k))) || null
+  }
+
+  const topicKey = index ? findTopicKey() : null
+  const topicMeta = topicKey ? index[specialty][topicKey] : null
+
+  // Lazy-load topic questions when entering a prueba
+  const loadTopic = async () => {
+    if (topicData || !topicMeta) return topicData
+    const r = await fetch(`/data/pruebas/${topicMeta.slug}.json`)
+    const d = await r.json()
+    setTopicData(d)
+    return d
+  }
+
+  // Bootstrap errores from ALL subsystems that have wrongIndices in pruebaProgress.
+  // Fetches only the JSON files that are actually needed (have wrong questions).
+  const bootstrapAllErrores = async () => {
+    if (!index) return
+    setErroresLoading(true)
+    const progress = loadPruebaProgress()
+    const current = loadErrores()
+
+    // Collect every slug that contains a prueba with wrongIndices
+    const slugsNeeded = new Set()
+    const slugToPruebaIds = {}
+    Object.values(index).forEach(topicMap => {
+      Object.values(topicMap).forEach(meta => {
+        const hasWrong = meta.pruebas?.some(p => progress[p.id]?.wrongIndices?.length > 0)
+        if (hasWrong) {
+          slugsNeeded.add(meta.slug)
+          slugToPruebaIds[meta.slug] = meta.pruebas.map(p => p.id)
+        }
+      })
+    })
+
+    if (slugsNeeded.size === 0) { setErroresLoading(false); return }
+
+    // Fetch all needed files in parallel
+    try {
+    const files = await Promise.all(
+      [...slugsNeeded].map(slug =>
+        fetch(`/data/pruebas/${slug}.json`).then(r => r.json()).catch(() => null)
+      )
+    )
+
+    let changed = false
+    files.forEach(data => {
+      if (!data) return
+      const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+      allPruebas.forEach(p => {
+        const prog = progress[p.id]
+        if (!prog?.wrongIndices?.length) return
+        prog.wrongIndices.forEach(idx => {
+          const q = p.questions[idx]
+          if (!q) return
+          const key = `${p.id}_${q.numero}`
+          if (!current[key]) {
+            current[key] = {
+              state: 'wrong',
+              pruebaId: p.id,
+              question: {
+                numero: q.numero,
+                pregunta: q.pregunta,
+                opciones: q.opciones,
+                respuestaCorrecta: q.respuestaCorrecta,
+                explicacion: q.explicacion,
+                tags: q.tags,
+              },
+              tag: (q.tags || '').split(',')[0].trim() || 'General',
+              updatedAt: prog.updatedAt || Date.now(),
+            }
+            changed = true
+          }
+        })
+      })
+    })
+
+    if (changed) {
+      saveErrores(current)
+      setErrores({ ...current })
+    }
+    } catch (e) {
+      console.error('bootstrapAllErrores error:', e)
+    } finally {
+    setErroresLoading(false)
+    }
+  }
+
+  // Also bootstrap when topicData loads (covers newly finished pruebas in this subsystem)
+  useEffect(() => {
+    if (!topicData) return
+    const allPruebas = Array.isArray(topicData.pruebas) ? topicData.pruebas : Object.values(topicData.pruebas)
+    const progress = loadPruebaProgress()
+    const current = loadErrores()
+    let changed = false
+    allPruebas.forEach(p => {
+      const prog = progress[p.id]
+      if (!prog?.wrongIndices?.length) return
+      prog.wrongIndices.forEach(idx => {
+        const q = p.questions[idx]
+        if (!q) return
+        const key = `${p.id}_${q.numero}`
+        if (!current[key]) {
+          current[key] = {
+            state: 'wrong',
+            pruebaId: p.id,
+            question: {
+              numero: q.numero,
+              pregunta: q.pregunta,
+              opciones: q.opciones,
+              respuestaCorrecta: q.respuestaCorrecta,
+              explicacion: q.explicacion,
+              tags: q.tags,
+            },
+            tag: (q.tags || '').split(',')[0].trim() || 'General',
+            updatedAt: prog.updatedAt || Date.now(),
+          }
+          changed = true
+        }
+      })
+    })
+    if (changed) {
+      saveErrores(current)
+      setErrores({ ...current })
+    }
+  }, [topicData]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const startPrueba = async (pruebaMeta) => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const pruebas = data.pruebas
+    const p = Array.isArray(pruebas)
+      ? pruebas.find(pp => pp.id === pruebaMeta.id)
+      : Object.values(pruebas).find(pp => pp.id === pruebaMeta.id)
+    if (!p) return
+    setActivePrueba(p)
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+    // Pre-fetch answer stats for all questions in this prueba
+    const qIds = p.questions.map(q => `${p.id}_${q.numero}`)
+    fetch('/api/progress?stats=true', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionIds: qIds })
+    }).then(r => r.json()).then(d => setAnswerStats(d.data || {})).catch(() => {})
+  }
+
+  const startReviewWrong = async () => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    const wrongQs = allPruebas.flatMap(p => {
+      const prog = pruebaProgress[p.id]
+      if (!prog?.wrongIndices?.length) return []
+      return prog.wrongIndices.map(idx => p.questions[idx]).filter(Boolean)
+    })
+    if (wrongQs.length === 0) return
+    setActivePrueba({ id: `review_wrong_${subsystem}`, name: `Repaso de Incorrectas — ${subsystem}`, questions: wrongQs })
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  // Start a mini-prueba from a "Mis Errores" tag group
+  const startErrorMiniPrueba = (questions, tagName) => {
+    if (!questions?.length) return
+    setActivePrueba({
+      id: `errores_mini_${subsystem}_${tagName}`,
+      name: `Mis Errores — ${tagName}`,
+      questions: questions.map(e => e.question),
+      _isErrorMini: true,
+      _errorKeys: questions.map(e => e.key),
+      _errorStates: Object.fromEntries(questions.map(e => [e.question.numero, e.state])),
+    })
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  // After finishing an error mini-prueba, update 3-state for those specific questions
+  const finishErrorMiniPrueba = () => {
+    if (!activePrueba?._isErrorMini) return
+    const qs = activePrueba.questions
+    const all = loadErrores()
+    const now = Date.now()
+    qs.forEach((q, i) => {
+      // Find the key from _errorKeys by matching numero
+      const key = activePrueba._errorKeys?.find(k => k.endsWith(`_${q.numero}`))
+      if (!key) return
+      const prev = all[key]
+      if (!prev) return
+      const hadWrongAttempt = (attempts[i]?.length || 0) > 0
+      const gotRightThisSession = !!correctFound[i]
+      const cleanCorrect = gotRightThisSession && !hadWrongAttempt
+
+      if (hadWrongAttempt) {
+        // Wrong again → reset to 'wrong'
+        all[key] = { ...prev, state: 'wrong', updatedAt: now }
+      } else if (cleanCorrect && prev.state === 'wrong') {
+        all[key] = { ...prev, state: 'once_right', updatedAt: now }
+      } else if (cleanCorrect && prev.state === 'once_right') {
+        delete all[key]
+      }
+    })
+    const updated = saveErrores(all)
+    setErrores(updated)
+  }
+
+  const handlePrintOne = async (pruebaMeta) => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    const p = allPruebas.find(pp => pp.id === pruebaMeta.id)
+    if (!p) return
+    openPrint([p], `${pruebaMeta.name} — ${subsystem}`)
+  }
+
+  const handlePrintAll = async () => {
+    const data = topicData || await loadTopic()
+    if (!data) return
+    const allPruebas = Array.isArray(data.pruebas) ? data.pruebas : Object.values(data.pruebas)
+    openPrint(allPruebas, `Todas las Pruebas — ${subsystem}`)
+  }
+
+  const selectAnswer = (qIdx, optId) => {
+    if (correctFound[qIdx]) return // already got it right
+    const q = activePrueba.questions[qIdx]
+    const questionId = `${activePrueba.id}_${q.numero}`
+
+    // Record this pick in answer stats (fire and forget)
+    fetch('/api/progress?stats=true', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ questionId, optionId: optId })
+    }).then(r => r.json()).then(() => {
+      // Update local stats cache
+      setAnswerStats(prev => {
+        const qStats = { ...(prev[questionId] || {}) }
+        qStats[optId] = (qStats[optId] || 0) + 1
+        return { ...prev, [questionId]: qStats }
+      })
+    }).catch(() => {})
+
+    if (optId === q.respuestaCorrecta) {
+      // Correct!
+      setAnswers(prev => ({ ...prev, [qIdx]: optId }))
+      setCorrectFound(prev => ({ ...prev, [qIdx]: true }))
+    } else {
+      // Wrong — record this attempt
+      setAttempts(prev => ({
+        ...prev,
+        [qIdx]: [...(prev[qIdx] || []), optId]
+      }))
+    }
+  }
+
+  const finishPrueba = () => {
+    if (!activePrueba) return
+    const qs = activePrueba.questions
+    let correct = 0
+    qs.forEach((q, i) => {
+      if (correctFound[i] && !(attempts[i]?.length > 0)) correct++
+    })
+    const wrongIndices = qs.map((_, i) => i).filter(i => attempts[i]?.length > 0)
+    const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
+    const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
+    const pct = Math.round((answered / qs.length) * 100)
+    savePruebaProgress(user, activePrueba.id, { done: pct, score, correct, wrong: wrongIndices.length, total: qs.length, answered, wrongIndices })
+      .then(updated => setPruebaProgress(updated))
+
+    // Update 3-state error tracker (skip review-wrong sessions to avoid double-counting)
+    if (!activePrueba.id.startsWith('review_wrong_') && !activePrueba.id.startsWith('errores_mini_')) {
+      const updatedErrores = updateErrorStates(activePrueba.id, qs, wrongIndices, correctFound, attempts)
+      setErrores(updatedErrores)
+    } else if (activePrueba._isErrorMini) {
+      finishErrorMiniPrueba()
+    }
+
+    setShowResult(true)
+  }
+
+  const resetPrueba = () => {
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  const retryPrueba = () => {
+    // Start fresh attempt — history is preserved in localStorage
+    setCurrentQ(0)
+    setAnswers({})
+    setShowResult(false)
+    setAttempts({})
+    setCorrectFound({})
+  }
+
+  // ─── If taking a prueba ───
+  if (activePrueba) {
+    const qs = activePrueba.questions
+    const q = qs[currentQ]
+    const totalQ = qs.length
+
+    // ─── Results screen ───
+    if (showResult) {
+      let correct = 0
+      qs.forEach((qq, i) => { if (correctFound[i] && !(attempts[i]?.length > 0)) correct++ })
+      const attempted = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
+      const score = qs.length > 0 ? Math.round((correct / qs.length) * 100) : 0
+      const wrong = qs.map((qq, i) => ({ ...qq, idx: i })).filter(qq => attempts[qq.idx]?.length > 0)
+      const omitted = qs.length - attempted
+
+      return (
+        <div style={{ paddingBottom: '2rem' }}>
+          <button onClick={() => setActivePrueba(null)} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+            marginBottom: '1.25rem'
+          }}>
+            <ChevronLeft size={16} /> Volver a Pruebas
+          </button>
+
+          <div className="card" style={{
+            padding: '2rem', textAlign: 'center',
+            background: score >= 70 ? 'linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(59,130,246,0.06) 100%)' : 'linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(245,158,11,0.06) 100%)',
+            borderTop: `4px solid ${score >= 70 ? '#10b981' : '#f59e0b'}`
+          }}>
+            <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{score >= 70 ? '🎉' : '📝'}</div>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+              {activePrueba.name} — {score}%
+            </h2>
+            <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+              {correct} correctas · {wrong.length} incorrectas · {omitted} omitidas
+            </p>
+
+            {/* Attempt history */}
+            {(() => {
+              const hist = (pruebaProgress[activePrueba.id]?.history || [])
+              if (hist.length > 1) return (
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    Intentos anteriores
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {hist.slice(0, -1).map((h, idx) => (
+                      <div key={idx} style={{
+                        padding: '0.3rem 0.75rem', borderRadius: 20, fontSize: '0.78rem', fontWeight: 700,
+                        background: h.score >= 70 ? 'rgba(16,185,129,0.12)' : h.score >= 50 ? 'rgba(245,158,11,0.12)' : 'rgba(239,68,68,0.1)',
+                        color: h.score >= 70 ? '#10b981' : h.score >= 50 ? '#f59e0b' : '#ef4444',
+                        border: `1px solid ${h.score >= 70 ? '#10b98140' : h.score >= 50 ? '#f59e0b40' : '#ef444440'}`,
+                      }}>
+                        #{idx + 1} — {h.score}%
+                      </div>
+                    ))}
+                    <div style={{
+                      padding: '0.3rem 0.75rem', borderRadius: 20, fontSize: '0.78rem', fontWeight: 700,
+                      background: score >= 70 ? 'rgba(16,185,129,0.2)' : score >= 50 ? 'rgba(245,158,11,0.2)' : 'rgba(239,68,68,0.15)',
+                      color: score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444',
+                      border: `2px solid ${score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444'}`,
+                    }}>
+                      #{hist.length} — {score}% (este)
+                    </div>
+                  </div>
+                </div>
+              )
+              return null
+            })()}
+
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button onClick={retryPrueba} style={{
+                padding: '0.6rem 1.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+                background: 'var(--primary-500)', color: '#fff', fontWeight: 600, fontSize: '0.9rem',
+                display: 'flex', alignItems: 'center', gap: '0.4rem'
+              }}>
+                <RotateCcw size={15} /> Hacer de nuevo
+              </button>
+              {wrong.length > 0 && (
+                <button
+                  onClick={() => {
+                    setFlashcards(flashcards ? null : buildFlashcards(wrong))
+                  }}
+                  style={{
+                    padding: '0.6rem 1.5rem', borderRadius: 10,
+                    border: '1.5px solid rgba(124,58,237,0.4)',
+                    background: flashcards ? 'rgba(124,58,237,0.18)' : 'rgba(124,58,237,0.1)',
+                    color: '#7c3aed', fontWeight: 600, fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <BookMarked size={15} /> {flashcards ? 'Cerrar Flashcards' : `Flashcards (${wrong.length})`}
+                </button>
+              )}
+              <button onClick={() => setActivePrueba(null)} style={{
+                padding: '0.6rem 1.5rem', borderRadius: 10, border: '1px solid var(--border-color)',
+                background: 'var(--surface-700)', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem',
+                cursor: 'pointer'
+              }}>
+                Volver a Pruebas
+              </button>
+            </div>
+          </div>
+
+          {/* Wrong answers review */}
+          {wrong.length > 0 && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <XCircle size={18} style={{ color: '#ef4444' }} /> Respuestas Incorrectas ({wrong.length})
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {wrong.map((wq) => {
+                  const wrongAttempts = attempts[wq.idx] || []
+                  return (
+                  <div key={wq.idx} className="card" style={{ padding: '1.25rem', borderLeft: '3px solid #ef4444' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.6rem' }}>
+                      {wq.numero}. {wq.pregunta}
+                    </div>
+                    {wrongAttempts.map((wa, wi) => (
+                      <div key={wi} style={{ fontSize: '0.8rem', color: '#ef4444', marginBottom: '0.25rem' }}>
+                        ✗ Intento {wi + 1}: {wa}) {wq.opciones?.find(o => o.id === wa)?.text || ''}
+                      </div>
+                    ))}
+                    <div style={{ fontSize: '0.8rem', color: '#10b981', marginBottom: '0.5rem' }}>
+                      ✓ Correcta: {wq.respuestaCorrecta}) {wq.opciones?.find(o => o.id === wq.respuestaCorrecta)?.text || ''}
+                    </div>
+                    {wq.explicacion && (
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', lineHeight: 1.6, background: 'var(--surface-700)', borderRadius: 8, padding: '0.75rem', marginTop: '0.4rem', whiteSpace: 'pre-wrap' }}>
+                        {wq.explicacion}
+                      </div>
+                    )}
+                  </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* AI Flashcards */}
+          {flashcards?.length > 0 && (
+            <FlashcardPanel flashcards={flashcards} onClose={() => setFlashcards(null)} />
+          )}
+        </div>
+      )
+    }
+
+    // ─── Question view ───
+    const isCorrect = correctFound[currentQ]
+    const wrongAttempts = attempts[currentQ] || []
+    const selectedOpt = answers[currentQ]
+    const questionId = `${activePrueba.id}_${q.numero}`
+    const qStats = answerStats[questionId] || {}
+    const statsTotal = Object.values(qStats).reduce((s, v) => s + v, 0)
+    const answered = Object.keys(correctFound).length + Object.keys(attempts).filter(k => !correctFound[k]).length
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        {/* Top bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <button onClick={() => { if (window.confirm('¿Salir de la prueba? Tu progreso parcial se guardará.')) { finishPrueba(); setActivePrueba(null) }}} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
+          }}>
+            <ChevronLeft size={16} /> Salir
+          </button>
+          <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            {activePrueba.name}
+          </div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
+            {answered}/{totalQ}
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div style={{ height: 4, background: 'var(--surface-600)', borderRadius: 2, marginBottom: '1.5rem', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: `${(answered / totalQ) * 100}%`, background: 'var(--primary-500)', borderRadius: 2, transition: 'width 0.3s' }} />
+        </div>
+
+        {/* Question card */}
+        <div className="card" style={{ padding: '1.5rem', marginBottom: '1rem' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--primary-500)', marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+            Pregunta {currentQ + 1} de {totalQ}
+          </div>
+          <p style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.7, color: 'var(--text-primary)', marginBottom: '1.25rem', whiteSpace: 'pre-wrap' }}>
+            {q.pregunta}
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {(q.opciones || []).map(opt => {
+              const isThisCorrect = opt.id === q.respuestaCorrecta
+              const wasAttempted = wrongAttempts.includes(opt.id)
+              const isSelectedCorrect = isCorrect && opt.id === selectedOpt
+              let bg = 'var(--surface-700)'
+              let border = 'var(--border-color)'
+              let color = 'var(--text-primary)'
+              let disabled = false
+
+              if (isCorrect) {
+                // Question solved — show correct in green, wrong attempts in red, rest neutral
+                if (isThisCorrect) { bg = 'rgba(16,185,129,0.12)'; border = '#10b981'; color = '#10b981' }
+                else if (wasAttempted) { bg = 'rgba(239,68,68,0.08)'; border = '#ef4444'; color = '#ef4444' }
+                disabled = true
+              } else if (wasAttempted) {
+                // Wrong attempt — grey it out
+                bg = 'rgba(239,68,68,0.06)'; border = '#ef444480'; color = 'var(--text-tertiary)'
+                disabled = true
+              }
+
+              return (
+                <button key={opt.id} onClick={() => selectAnswer(currentQ, opt.id)} disabled={disabled} style={{
+                  display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
+                  padding: '0.85rem 1rem', borderRadius: 10,
+                  background: bg, border: `1.5px solid ${border}`,
+                  cursor: disabled ? 'default' : 'pointer',
+                  textAlign: 'left', transition: 'all 0.2s', color,
+                  opacity: disabled && !isThisCorrect && !wasAttempted ? 0.5 : 1,
+                }}>
+                  <span style={{
+                    minWidth: 26, height: 26, borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.78rem', fontWeight: 800, flexShrink: 0,
+                    background: isCorrect && isThisCorrect ? '#10b981' : wasAttempted ? '#ef4444' : 'var(--surface-600)',
+                    color: (isCorrect && isThisCorrect) || wasAttempted ? '#fff' : 'var(--text-secondary)',
+                  }}>
+                    {isCorrect && isThisCorrect ? <CheckCircle2 size={14} /> : wasAttempted ? <XCircle size={14} /> : opt.id}
+                  </span>
+                  <span style={{ fontSize: '0.88rem', lineHeight: 1.5, fontWeight: isCorrect && isThisCorrect ? 700 : 400, flex: 1 }}>
+                    {opt.text}
+                  </span>
+                  {/* Show answer stats percentages when correct found AND 10+ total responses */}
+                  {isCorrect && statsTotal >= 10 && (
+                    <span style={{
+                      fontSize: '0.72rem', fontWeight: 700, flexShrink: 0,
+                      color: isThisCorrect ? '#10b981' : 'var(--text-tertiary)',
+                      background: isThisCorrect ? 'rgba(16,185,129,0.1)' : 'var(--surface-600)',
+                      padding: '2px 8px', borderRadius: 999,
+                    }}>
+                      {statsTotal > 0 ? Math.round(((qStats[opt.id] || 0) / statsTotal) * 100) : 0}%
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Wrong attempt feedback */}
+          {wrongAttempts.length > 0 && !isCorrect && (() => {
+            const lastWrong = wrongAttempts[wrongAttempts.length - 1]
+            const lastWrongOpt = (q.opciones || []).find(o => o.id === lastWrong)
+            // Try to find per-option explanation from explicacionIncorrectas
+            const wrongExplanation = q.explicacionIncorrectas
+              ? (() => {
+                  // Try to extract explanation for the specific option
+                  const regex = new RegExp(`(?:${lastWrong}\\)|${lastWrong}\\.|${lastWrong}\\s*[-–—])\\s*(.+?)(?=\\s*(?:[A-E]\\)|[A-E]\\.|$))`, 'is')
+                  const match = q.explicacionIncorrectas.match(regex)
+                  return match ? match[1].trim() : null
+                })()
+              : null
+            return (
+              <div style={{
+                marginTop: '1rem', padding: '1rem', borderRadius: 10,
+                background: 'rgba(239,68,68,0.06)', borderLeft: '3px solid #ef4444',
+              }}>
+                <div style={{ fontWeight: 700, color: '#ef4444', marginBottom: '0.4rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <XCircle size={15} /> Incorrecto
+                </div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  <strong>{lastWrong}) {lastWrongOpt?.text || ''}</strong> no es la respuesta correcta.
+                  {wrongExplanation && <span style={{ display: 'block', marginTop: '0.4rem', color: 'var(--text-tertiary)' }}>{wrongExplanation}</span>}
+                  <span style={{ display: 'block', marginTop: '0.5rem', color: 'var(--primary-400)', fontWeight: 600, fontSize: '0.8rem' }}>
+                    Intenta de nuevo · {q.opciones.length - wrongAttempts.length - 1} opciones restantes
+                  </span>
+                </div>
+              </div>
+            )
+          })()}
+
+          {/* Full explanation shown when correct answer is found */}
+          {isCorrect && q.explicacion && (
+            <div style={{
+              marginTop: '1rem', padding: '1rem', borderRadius: 10,
+              background: 'var(--surface-700)', borderLeft: '3px solid #10b981',
+              fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
+            }}>
+              <div style={{ fontWeight: 700, color: '#10b981', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <CheckCircle2 size={14} /> {wrongAttempts.length === 0 ? '¡Correcto!' : '¡Correcto al intento ' + (wrongAttempts.length + 1) + '!'}
+              </div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>{q.explicacion}</div>
+            </div>
+          )}
+
+          {/* Show why other options are incorrect — only after getting correct */}
+          {isCorrect && q.explicacionIncorrectas && (
+            <div style={{
+              marginTop: '0.75rem', padding: '1rem', borderRadius: 10,
+              background: 'rgba(245,158,11,0.04)', borderLeft: '3px solid #f59e0b',
+              fontSize: '0.8rem', lineHeight: 1.6, color: 'var(--text-tertiary)',
+            }}>
+              <div style={{ fontWeight: 700, color: '#f59e0b', marginBottom: '0.4rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <Lightbulb size={14} /> ¿Por qué las otras opciones son incorrectas?
+              </div>
+              <div style={{ whiteSpace: 'pre-wrap' }}>{q.explicacionIncorrectas}</div>
+            </div>
+          )}
+
+          {/* Answer stats summary when correct + 10+ respondents */}
+          {isCorrect && statsTotal >= 10 && (
+            <div style={{
+              marginTop: '0.75rem', padding: '0.75rem 1rem', borderRadius: 10,
+              background: 'var(--surface-700)', fontSize: '0.78rem', color: 'var(--text-tertiary)',
+              display: 'flex', alignItems: 'center', gap: '0.5rem',
+            }}>
+              <BarChart3 size={14} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+              <span>{statsTotal} personas han respondido esta pregunta</span>
+            </div>
+          )}
+        </div>
+
+        {/* Navigation */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.75rem' }}>
+          <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} style={{
+            flex: 1, padding: '0.7rem', borderRadius: 10, border: '1px solid var(--border-color)',
+            background: 'var(--surface-700)', color: currentQ === 0 ? 'var(--text-tertiary)' : 'var(--text-primary)',
+            cursor: currentQ === 0 ? 'default' : 'pointer', fontWeight: 600, fontSize: '0.85rem',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+            opacity: currentQ === 0 ? 0.4 : 1,
+          }}>
+            <ArrowLeft size={15} /> Anterior
+          </button>
+          {currentQ < totalQ - 1 ? (
+            <button onClick={() => setCurrentQ(currentQ + 1)} style={{
+              flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none',
+              background: 'var(--primary-500)', color: '#fff',
+              cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem'
+            }}>
+              Siguiente <ArrowRight size={15} />
+            </button>
+          ) : (
+            <button onClick={finishPrueba} style={{
+              flex: 1, padding: '0.7rem', borderRadius: 10, border: 'none',
+              background: '#10b981', color: '#fff',
+              cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem'
+            }}>
+              <Trophy size={15} /> Finalizar Prueba
+            </button>
+          )}
+        </div>
+
+        {/* Question dots navigator */}
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: '1rem',
+          padding: '0.75rem', borderRadius: 10, background: 'var(--surface-700)',
+          justifyContent: 'center',
+        }}>
+          {qs.map((_, i) => {
+            const isAnsweredCorrect = correctFound[i]
+            const hasWrongAttempts = (attempts[i]?.length || 0) > 0
+            const isCurrent = i === currentQ
+            return (
+              <button key={i} onClick={() => setCurrentQ(i)} style={{
+                width: 28, height: 28, borderRadius: '50%', border: 'none', cursor: 'pointer',
+                fontSize: '0.65rem', fontWeight: 700,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: isCurrent ? 'var(--primary-500)' : isAnsweredCorrect ? 'rgba(16,185,129,0.2)' : hasWrongAttempts ? 'rgba(239,68,68,0.2)' : 'var(--surface-600)',
+                color: isCurrent ? '#fff' : isAnsweredCorrect ? '#10b981' : hasWrongAttempts ? '#ef4444' : 'var(--text-tertiary)',
+                outline: isCurrent ? '2px solid var(--primary-500)' : 'none',
+                outlineOffset: 2,
+              }}>
+                {i + 1}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // ─── Pruebas list ───
+  if (loading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid var(--primary-500)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite', margin: '0 auto' }} />
+        <p style={{ color: 'var(--text-tertiary)', marginTop: '1rem' }}>Cargando pruebas...</p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    )
+  }
+
+  if (!topicMeta) {
+    return (
+      <div>
+        <button onClick={onBack} style={{
+          background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+          borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+          marginBottom: '1.25rem'
+        }}>
+          <ChevronLeft size={16} /> Volver
+        </button>
+        <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+          <ClipboardList size={40} style={{ color: 'var(--text-tertiary)', opacity: 0.5, marginBottom: '0.75rem' }} />
+          <p style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>No hay pruebas disponibles para {subsystem}</p>
+          <p style={{ color: 'var(--text-tertiary)', fontSize: '0.82rem', marginTop: '0.5rem' }}>Estamos preparando las pruebas para este tema.</p>
+        </div>
+      </div>
+    )
+  }
+
+  const pruebas = topicMeta.pruebas
+  const totalQs = pruebas.reduce((s, p) => s + p.questionCount, 0)
+  const doneCount = pruebas.filter(p => (pruebaProgress[p.id]?.done || 0) >= 100).length
+  const overallPct = pruebas.length ? Math.round((doneCount / pruebas.length) * 100) : 0
+  const avgScore = (() => {
+    const done = pruebas.filter(p => pruebaProgress[p.id]?.score !== undefined)
+    if (done.length === 0) return null
+    return Math.round(done.reduce((s, p) => s + pruebaProgress[p.id].score, 0) / done.length)
+  })()
+  const totalCorrect = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.correct || 0), 0)
+  const totalWrong = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrong || 0), 0)
+  const totalWrongQuestions = pruebas.reduce((s, p) => s + (pruebaProgress[p.id]?.wrongIndices?.length || 0), 0)
+
+  // ── "Mis Errores" data — filter errores for THIS subsystem's prueba IDs ──
+  // Show ALL errores (across all subsystems), not just this one
+  const allErrores = Object.entries(errores).map(([key, v]) => ({ key, ...v }))
+  const wrongCount = allErrores.filter(e => e.state === 'wrong').length
+  const onceRightCount = allErrores.filter(e => e.state === 'once_right').length
+
+  // Group by primary tag
+  const errorsByTag = allErrores.reduce((acc, e) => {
+    const tag = e.tag || 'General'
+    if (!acc[tag]) acc[tag] = []
+    acc[tag].push(e)
+    return acc
+  }, {})
+  // Sort tags: most 🔴 wrong first
+  const sortedTags = Object.entries(errorsByTag).sort((a, b) => {
+    const aWrong = a[1].filter(e => e.state === 'wrong').length
+    const bWrong = b[1].filter(e => e.state === 'wrong').length
+    return bWrong - aWrong
+  })
+
+  return (
+    <div style={{ paddingBottom: '2rem' }}>
+      <button onClick={onBack} style={{
+        background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+        borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+        cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+        marginBottom: '1.25rem'
+      }}>
+        <ChevronLeft size={16} /> Volver
+      </button>
+
+      {/* ── Tab bar ── */}
+      <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.25rem', background: 'var(--surface-700)', padding: '0.3rem', borderRadius: 12, border: '1px solid var(--border-color)' }}>
+        <button onClick={() => setActiveTab('pruebas')} style={{
+          flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
+          fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s',
+          background: activeTab === 'pruebas' ? 'var(--primary-500)' : 'transparent',
+          color: activeTab === 'pruebas' ? '#fff' : 'var(--text-secondary)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+        }}>
+          <ClipboardList size={15} /> Pruebas
+        </button>
+        <button onClick={() => { setActiveTab('errores'); bootstrapAllErrores() }} style={{
+          flex: 1, padding: '0.5rem 0.75rem', borderRadius: 9, border: 'none', cursor: 'pointer',
+          fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s', position: 'relative',
+          background: activeTab === 'errores' ? '#ef4444' : 'transparent',
+          color: activeTab === 'errores' ? '#fff' : wrongCount > 0 ? '#ef4444' : 'var(--text-secondary)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+        }}>
+          <XCircle size={15} /> Mis Errores
+          {(wrongCount + onceRightCount) > 0 && (
+            <span style={{
+              background: activeTab === 'errores' ? 'rgba(255,255,255,0.25)' : 'rgba(239,68,68,0.15)',
+              color: activeTab === 'errores' ? '#fff' : '#ef4444',
+              fontSize: '0.7rem', fontWeight: 800, padding: '1px 7px', borderRadius: 999, marginLeft: 2,
+            }}>
+              {wrongCount + onceRightCount}
+            </span>
+          )}
+        </button>
+      </div>
+
+      {/* ════════════════════════════════════════════════════
+          MIS ERRORES TAB
+          ════════════════════════════════════════════════════ */}
+      {activeTab === 'errores' && (
+        <div>
+          {erroresLoading ? (
+            <div style={{ padding: '2.5rem', textAlign: 'center' }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', border: '3px solid #ef4444', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite', margin: '0 auto 1rem' }} />
+              <p style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>Cargando tus errores de todas las secciones...</p>
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          ) : allErrores.length === 0 ? (
+            <div className="card" style={{ padding: '2.5rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>🎉</div>
+              <p style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1rem' }}>Sin errores activos</p>
+              <p style={{ color: 'var(--text-tertiary)', fontSize: '0.83rem', marginTop: '0.4rem' }}>
+                Haz pruebas para que aparezcan aquí las preguntas que necesitas repasar.
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Summary bar */}
+              <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.1rem', flexWrap: 'wrap' }}>
+                {wrongCount > 0 && (
+                  <div style={{ flex: 1, minWidth: 100, background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>{wrongCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>🔴 Para repasar</div>
+                  </div>
+                )}
+                {onceRightCount > 0 && (
+                  <div style={{ flex: 1, minWidth: 100, background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f59e0b', lineHeight: 1 }}>{onceRightCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>🟡 Casi dominado</div>
+                  </div>
+                )}
+                <div style={{ flex: 1, minWidth: 100, background: 'var(--surface-700)', border: '1px solid var(--border-color)', borderRadius: 12, padding: '0.75rem', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', lineHeight: 1.5 }}>
+                    <strong style={{ color: 'var(--text-secondary)' }}>Cómo funciona</strong><br />
+                    🔴 Incorrecta → 🟡 Una vez bien → 🟢 Dominada (eliminada)
+                  </div>
+                </div>
+              </div>
+
+              {/* "Repasar todos" button */}
+              {wrongCount > 0 && (
+                <button onClick={() => startErrorMiniPrueba(allErrores.filter(e => e.state === 'wrong'), 'Todos los errores')} style={{
+                  width: '100%', padding: '0.7rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+                  background: '#ef4444', color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  marginBottom: '1.25rem', boxShadow: '0 4px 12px rgba(239,68,68,0.3)',
+                }}>
+                  <RotateCcw size={16} /> Repasar todos los errores ({wrongCount})
+                </button>
+              )}
+
+              {/* Tag groups */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                {sortedTags.map(([tag, items]) => {
+                  const tagWrong = items.filter(e => e.state === 'wrong')
+                  const tagOnceRight = items.filter(e => e.state === 'once_right')
+                  return (
+                    <div key={tag} className="card" style={{
+                      padding: '1rem 1.25rem',
+                      borderLeft: `3px solid ${tagWrong.length > 0 ? '#ef4444' : '#f59e0b'}`,
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                            {tag}
+                          </div>
+                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            {tagWrong.length > 0 && (
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ef4444', background: 'rgba(239,68,68,0.1)', padding: '2px 8px', borderRadius: 999 }}>
+                                🔴 {tagWrong.length} errores
+                              </span>
+                            )}
+                            {tagOnceRight.length > 0 && (
+                              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f59e0b', background: 'rgba(245,158,11,0.1)', padding: '2px 8px', borderRadius: 999 }}>
+                                🟡 {tagOnceRight.length} casi
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        {tagWrong.length > 0 && (
+                          <button onClick={() => startErrorMiniPrueba(tagWrong, tag)} style={{
+                            padding: '0.45rem 0.9rem', borderRadius: 8, border: 'none', cursor: 'pointer',
+                            background: 'rgba(239,68,68,0.12)', color: '#ef4444',
+                            fontSize: '0.78rem', fontWeight: 700, flexShrink: 0,
+                            display: 'flex', alignItems: 'center', gap: '0.35rem',
+                          }}>
+                            <RotateCcw size={12} /> Practicar
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {activeTab === 'pruebas' && (
+      <>
+      {/* Overview card */}
+      <div className="card" style={{
+        padding: '1.5rem', marginBottom: '1.25rem',
+        background: `linear-gradient(135deg, ${subsystemStyle.bg} 0%, transparent 100%)`,
+        borderLeft: `4px solid ${subsystemStyle.color}`,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 12, background: subsystemStyle.bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: subsystemStyle.color, border: `1px solid ${subsystemStyle.color}25`,
+              }}>
+                {subsystemStyle.icon}
+              </div>
+              <div>
+                <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  Pruebas de {subsystem}
+                </h2>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                  {pruebas.length} pruebas · {totalQs} preguntas
+                </div>
+              </div>
+            </div>
+          </div>
+          <ProgressRing percent={overallPct} size={50} stroke={4} />
+        </div>
+
+        {/* Big stats row */}
+        {(totalCorrect > 0 || totalWrong > 0 || avgScore !== null) && (
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.1rem', flexWrap: 'wrap' }}>
+            {avgScore !== null && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: `1px solid ${avgScore >= 70 ? 'rgba(16,185,129,0.3)' : 'rgba(245,158,11,0.3)'}`,
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: avgScore >= 70 ? '#10b981' : avgScore >= 50 ? '#f59e0b' : '#ef4444', lineHeight: 1 }}>{avgScore}%</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Promedio</div>
+              </div>
+            )}
+            {totalCorrect > 0 && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: '1px solid rgba(16,185,129,0.3)',
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#10b981', lineHeight: 1 }}>{totalCorrect}</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Correctas</div>
+              </div>
+            )}
+            {totalWrong > 0 && (
+              <div style={{
+                flex: 1, minWidth: 90, background: 'var(--surface-700)', borderRadius: 12,
+                padding: '0.75rem 1rem', textAlign: 'center', border: '1px solid rgba(239,68,68,0.3)',
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>{totalWrong}</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.3rem' }}>Incorrectas</div>
+              </div>
+            )}
+          </div>
+        )}
+        {/* Small footer row */}
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
+            <CheckCircle2 size={14} style={{ color: '#10b981' }} />
+            <span style={{ color: 'var(--text-secondary)' }}>{doneCount}/{pruebas.length} completadas</span>
+          </div>
+        </div>
+        {/* Action buttons */}
+        <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+          {totalWrongQuestions > 0 && (
+            <button onClick={startReviewWrong} style={{
+              display: 'flex', alignItems: 'center', gap: '0.4rem',
+              background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.35)',
+              borderRadius: 9, padding: '0.45rem 0.85rem', color: '#ef4444',
+              cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600,
+            }}>
+              <RefreshCw size={13} /> Repasar incorrectas ({totalWrongQuestions})
+            </button>
+          )}
+          <button onClick={handlePrintAll} style={{
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 9, padding: '0.45rem 0.85rem', color: 'var(--text-secondary)',
+            cursor: 'pointer', fontSize: '0.8rem',
+          }}>
+            <Printer size={13} /> Imprimir todo
+          </button>
+        </div>
+      </div>
+
+      {/* Pruebas grid */}
+      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
+      <div className="grid-auto-responsive">
+        {pruebas.map((p, i) => {
+          const prog = pruebaProgress[p.id] || {}
+          const done = prog.done || 0
+          const score = prog.score
+          const hasScore = score !== undefined
+          const pCorrect = prog.correct || 0
+          const pWrong = prog.wrong || 0
+          const history = prog.history || []
+          return (
+            <div key={p.id} className="card" onClick={() => startPrueba(p)} style={{
+              padding: '1.1rem 1.25rem', cursor: 'pointer', transition: 'all 0.25s',
+              borderLeft: `3px solid ${done >= 100 ? '#10b981' : hasScore ? '#f59e0b' : subsystemStyle.color}`,
+              position: 'relative', overflow: 'hidden',
+            }}>
+              {/* Print icon */}
+              <button onClick={e => { e.stopPropagation(); handlePrintOne(p) }} title="Imprimir prueba" style={{
+                position: 'absolute', top: 8, right: done >= 100 ? 36 : 8,
+                background: 'transparent', border: 'none', cursor: 'pointer',
+                color: 'var(--text-tertiary)', padding: 4, borderRadius: 6,
+              }}>
+                <Printer size={13} />
+              </button>
+              {/* Completed badge */}
+              {done >= 100 && (
+                <div style={{
+                  position: 'absolute', top: 8, right: 8,
+                  background: 'rgba(16,185,129,0.12)', borderRadius: '50%',
+                  width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <CheckCircle2 size={14} style={{ color: '#10b981' }} />
+                </div>
+              )}
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{
+                  width: 38, height: 38, borderRadius: 10,
+                  background: done >= 100 ? 'rgba(16,185,129,0.12)' : subsystemStyle.bg,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.85rem', fontWeight: 800,
+                  color: done >= 100 ? '#10b981' : subsystemStyle.color,
+                }}>
+                  {i + 1}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                    {p.name}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: '0.15rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <Hash size={11} /> {p.questionCount} preguntas
+                    </span>
+                    {hasScore && (
+                      <span style={{
+                        display: 'flex', alignItems: 'center', gap: '0.25rem',
+                        fontWeight: 700, color: score >= 70 ? '#10b981' : score >= 50 ? '#f59e0b' : '#ef4444'
+                      }}>
+                        <Target size={11} /> {score}% último
+                      </span>
+                    )}
+                    {history.length > 1 && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-tertiary)' }}>
+                        <RefreshCw size={11} /> {history.length} intentos
+                      </span>
+                    )}
+                  </div>
+                  {/* Attempt history badges */}
+                  {history.length > 0 && (
+                    <div style={{ display: 'flex', gap: '0.35rem', marginTop: '0.4rem', flexWrap: 'wrap' }}>
+                      {history.map((h, idx) => (
+                        <span key={idx} style={{
+                          fontSize: '0.68rem', fontWeight: 700, padding: '0.15rem 0.5rem',
+                          borderRadius: 20,
+                          background: h.score >= 70 ? 'rgba(16,185,129,0.1)' : h.score >= 50 ? 'rgba(245,158,11,0.1)' : 'rgba(239,68,68,0.08)',
+                          color: h.score >= 70 ? '#10b981' : h.score >= 50 ? '#f59e0b' : '#ef4444',
+                        }}>
+                          #{idx + 1} {h.score}%
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <ChevronRight size={16} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
+              </div>
+
+              {/* Mini progress bar */}
+              {done > 0 && (
+                <div style={{ height: 3, background: 'var(--surface-600)', borderRadius: 2, marginTop: '0.75rem', overflow: 'hidden' }}>
+                  <div style={{
+                    height: '100%', borderRadius: 2, transition: 'width 0.3s',
+                    width: `${done}%`,
+                    background: done >= 100 ? '#10b981' : '#f59e0b',
+                  }} />
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+      </>
+      )}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SPECIALTY ICONS
+   ════════════════════════════════════════════════════════════════ */
+const specialtyConfig = {
+  'Módulo 1': { color: '#3b82f6', bg: 'rgba(59,130,246,0.1)', icon: <Stethoscope size={22} /> }, // Medicina Interna
+  'Módulo 2': { color: '#f59e0b', bg: 'rgba(245,158,11,0.1)', icon: <Sparkles size={22} /> }, // Cirugía, Psiquiatría, Especialidades
+  'Módulo 3': { color: '#ec4899', bg: 'rgba(236,72,153,0.1)', icon: <Baby size={22} /> }, // Pediatría, Ginecología, Obstetricia
+}
+
+// Subsystem-specific icons and colors
+const subsystemConfig = {
+  'Cardiología': { color: '#ef4444', bg: 'rgba(239,68,68,0.1)', icon: <HeartPulse size={20} /> },
+  'Diabetes': { color: '#f59e0b', bg: 'rgba(245,158,11,0.1)', icon: <Droplets size={20} /> },
+  'Endocrinología': { color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)', icon: <Activity size={20} /> },
+  'Gastroenterología': { color: '#22c55e', bg: 'rgba(34,197,94,0.1)', icon: <Beaker size={20} /> },
+  'Hematología': { color: '#dc2626', bg: 'rgba(220,38,38,0.1)', icon: <Droplets size={20} /> },
+  'Infectología': { color: '#f97316', bg: 'rgba(249,115,22,0.1)', icon: <Microscope size={20} /> },
+  'Nefrología': { color: '#06b6d4', bg: 'rgba(6,182,212,0.1)', icon: <FlaskConical size={20} /> },
+  'Neurología y Geriatría': { color: '#a855f7', bg: 'rgba(168,85,247,0.1)', icon: <Brain size={20} /> },
+  'Respiratorio': { color: '#0ea5e9', bg: 'rgba(14,165,233,0.1)', icon: <Wind size={20} /> },
+  'Reumatología': { color: '#ec4899', bg: 'rgba(236,72,153,0.1)', icon: <Bone size={20} /> },
+  'Cirugia General': { color: '#ef4444', bg: 'rgba(239,68,68,0.1)', icon: <Scissors size={20} /> },
+  'Traumatología': { color: '#f97316', bg: 'rgba(249,115,22,0.1)', icon: <Bone size={20} /> },
+  'Urología': { color: '#6366f1', bg: 'rgba(99,102,241,0.1)', icon: <FlaskConical size={20} /> },
+  'Dermatología': { color: '#f43f5e', bg: 'rgba(244,63,94,0.1)', icon: <ScanHeart size={20} /> },
+  'Oftalmología': { color: '#14b8a6', bg: 'rgba(20,184,166,0.1)', icon: <Eye size={20} /> },
+  'Otorrinolaringología': { color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)', icon: <Ear size={20} /> },
+  'Psiquiatría': { color: '#a855f7', bg: 'rgba(168,85,247,0.1)', icon: <Brain size={20} /> },
+  'Pediatría': { color: '#10b981', bg: 'rgba(16,185,129,0.1)', icon: <Baby size={20} /> },
+  'Obstetricia': { color: '#ec4899', bg: 'rgba(236,72,153,0.1)', icon: <Ribbon size={20} /> },
+}
+
+function getSpecialtyStyle(name) {
+  return specialtyConfig[name] || { color: 'var(--primary-500)', bg: 'rgba(19,91,236,0.1)', icon: <Stethoscope size={22} /> }
+}
+
+function getSubsystemStyle(name) {
+  return subsystemConfig[name] || { color: '#3b82f6', bg: 'rgba(59,130,246,0.1)', icon: <FileText size={20} /> }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MAIN PAGE — Folder Navigation
+   ════════════════════════════════════════════════════════════════ */
+const MisClases = () => {
+  const { user } = useAuth()
+  const location = useLocation()
+  const handledNavState = useRef(false)
+  const [clases, setClases] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [selectedId, setSelectedId] = useState(null)
+  const [showLoginGate, setShowLoginGate] = useState(false)
+  const [currentSpecialty, setCurrentSpecialty] = useState(null)
+  const [currentSubsystem, setCurrentSubsystem] = useState(null)
+  const [subView, setSubView] = useState(null) // null | 'clases' | 'pruebas'
+  const { isPremium, hasExceededClasses, freemiumMode } = useSubscription()
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
+
+  // Normalize quiz questions from any format to: { questionText, options: [{id, text, isCorrect, explanation}] }
+  const normalizeQuiz = (rawQuiz) => {
+    if (!rawQuiz || !Array.isArray(rawQuiz)) return []
+    return rawQuiz.map(q => {
+      // Already in expected format
+      if (q.questionText && Array.isArray(q.options) && q.options[0]?.id) return q
+
+      const questionText = q.questionText || q.question || ''
+
+      // Format: options as array with "letter" instead of "id"
+      if (Array.isArray(q.options) && q.options[0]?.letter) {
+        return {
+          questionText,
+          options: q.options.map(o => ({
+            id: o.letter || o.id,
+            text: o.text,
+            isCorrect: !!o.isCorrect,
+            explanation: o.explanation || ''
+          }))
+        }
+      }
+
+      // Format: options as dict {A: "text", B: "text"} + correctAnswer
+      if (q.options && !Array.isArray(q.options)) {
+        return {
+          questionText,
+          options: Object.entries(q.options).map(([letter, text]) => ({
+            id: letter,
+            text,
+            isCorrect: letter === q.correctAnswer,
+            explanation: letter === q.correctAnswer ? (q.explanation || '') : ''
+          }))
+        }
+      }
+
+      // Format: options as array with text "A) texto" but no id/letter field
+      if (Array.isArray(q.options) && q.options.length && !q.options[0]?.id && !q.options[0]?.letter) {
+        // Sub-format A: options are plain strings + correct is index
+        if (typeof q.options[0] === 'string') {
+          const letters = ['A', 'B', 'C', 'D', 'E']
+          const correctIdx = typeof q.correct === 'number' ? q.correct : -1
+          return {
+            questionText,
+            options: q.options.map((text, i) => ({
+              id: letters[i] || String(i),
+              text,
+              isCorrect: i === correctIdx,
+              explanation: i === correctIdx ? (q.explanation || '') : ''
+            }))
+          }
+        }
+        // Sub-format B: options are objects with text "A) texto"
+        const letterMatch = q.options[0]?.text?.match(/^([A-E])\)/)
+        if (letterMatch) {
+          return {
+            questionText,
+            options: q.options.map(o => {
+              const m = o.text?.match(/^([A-E])\)\s*(.+)$/)
+              return {
+                id: m ? m[1] : String(o.text?.[0] || ''),
+                text: m ? m[2] : (o.text || ''),
+                isCorrect: !!o.isCorrect,
+                explanation: o.explanation || ''
+              }
+            })
+          }
+        }
+      }
+
+      return { questionText, options: q.options || [] }
+    })
+  }
+
+  const [selectedClase, setSelectedClase] = useState(null)
+  const [loadingDetail, setLoadingDetail] = useState(false)
+  const [progressMap, setProgressMap] = useState({}) // { claseId: { read_clase, read_puntos, quiz_completed, quiz_score } }
+  const [aggregateQuiz, setAggregateQuiz] = useState(null) // { subsystem, questions: [{...q, claseId, claseTopic}] }
+
+  // List: only fetches lightweight metadata (no summary/quiz/keyPoints)
+  // Classes are shared catalog — available to ALL users
+  // Progress is per-user and loaded separately
+  const loadData = async () => {
+    try {
+      const [rows, progress] = await Promise.all([
+        fetchClases(),
+        user ? fetchClaseProgress(user.id).catch(() => []) : Promise.resolve([])
+      ])
+      setClases(rows.map(r => ({
+        id: r.id,
+        savedAt: r.saved_at,
+        specialty: r.specialty || 'General',
+        subsystem: r.subsystem || 'General',
+        lessonNumber: r.lesson_number || 1,
+        topic: r.topic,
+        slidesFile: r.slides_file || null,
+        videoDir: r.video_dir || null,
+      })))
+      // Build progress map
+      const pMap = {}
+      progress.forEach(p => {
+        pMap[p.clase_id] = p
+      })
+      setProgressMap(pMap)
+    } catch (err) {
+      console.error('Error loading clases:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Calculate progress percentage for a class
+  // NEW formula: 50% from video watched + 50% from quiz score
+  // Falls back to old 3-step formula if no video exists for this class
+  const getProgress = (claseId) => {
+    const p = progressMap[claseId]
+    if (!p) return 0
+    const c = clases.find(cl => cl.id === claseId)
+    const hasVideo = !!(c && getVideoUrl(c.subsystem, c.lessonNumber))
+
+    if (hasVideo) {
+      const videoPct  = p.video_watched ? 50 : 0
+      const quizPct   = p.quiz_completed
+        ? Math.round((p.quiz_score ?? 0) / 100 * 50)
+        : 0
+      return videoPct + quizPct
+    }
+    // Legacy formula for classes without video
+    let pct = 0
+    if (p.read_clase)     pct += 33
+    if (p.read_puntos)    pct += 33
+    if (p.quiz_completed) pct += 34
+    return pct
+  }
+
+  // Track a step and save (per-user, persisted to Turso)
+  const trackProgress = async (claseId, field) => {
+    if (!user) return
+    const current = progressMap[claseId] || {}
+    if (current[field]) return // already tracked
+    const fieldMap = {
+      read_clase:    'readClase',
+      read_puntos:   'readPuntos',
+      quiz_completed:'quizCompleted',
+      video_watched: 'videoWatched',
+    }
+    const apiField = fieldMap[field]
+    if (!apiField) return
+    const update = { userId: user.id, claseId, [apiField]: 1 }
+    try {
+      await saveClaseProgress(update)
+      setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], [field]: 1 } }))
+    } catch {}
+  }
+
+  // Detail: fetch full data for one class on demand
+  const openClase = async (id) => {
+    if (!user) { setShowLoginGate(true); return }
+    const isClassDone = progressMap[id]?.video_watched === 1 || progressMap[id]?.quiz_completed === 1
+    const completedClassesCount = Object.values(progressMap || {}).filter(
+      p => p && (p.video_watched === 1 || p.quiz_completed === 1)
+    ).length
+
+    if (!isPremium && completedClassesCount >= 3 && !isClassDone) {
+      setShowPaymentModal(true)
+      return
+    }
+    setSelectedId(id)
+    setLoadingDetail(true)
+    try {
+      const r = await fetchClase(id)
+      if (r) {
+        const rawQuiz = typeof r.quiz === 'string' ? JSON.parse(r.quiz) : (r.quiz || [])
+        const perfilCodes = r.perfil_codes ? (typeof r.perfil_codes === 'string' ? JSON.parse(r.perfil_codes) : r.perfil_codes) : []
+
+        // Fetch perfil data only for THIS class's own codes (not hyperlinked topics)
+        let perfilData = []
+        if (perfilCodes.length > 0) {
+          try {
+            const perfilResult = await fetchPerfil({ codes: perfilCodes.join(',') })
+            perfilData = (perfilResult.data || []).filter(p =>
+              p.seccion?.includes('Situaciones clínicas') // Only show clinical situation badges
+            )
+          } catch {}
+        }
+
+        setSelectedClase({
+          id: r.id,
+          savedAt: r.saved_at,
+          specialty: r.specialty || 'General',
+          subsystem: r.subsystem || 'General',
+          lessonNumber: r.lesson_number || 1,
+          topic: r.topic,
+          summary: r.summary || '',
+          cleanTranscript: r.article_content || r.clean_transcript || '',
+          keyPoints: typeof r.key_points === 'string' ? JSON.parse(r.key_points) : (r.key_points || []),
+          quiz: normalizeQuiz(rawQuiz),
+          slidesFile: r.slides_file || null,
+          videoDir: r.video_dir || null,
+          perfilCodes,
+          perfilData,
+        })
+      }
+    } catch (err) {
+      console.error('Error loading clase detail:', err)
+    } finally {
+      setLoadingDetail(false)
+    }
+  }
+
+  // Navigate to another class by topic name (from [[wiki links]])
+  const navigateToTopic = (topicName) => {
+    const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    const target = clases.find(c => {
+      const ct = norm(c.topic)
+      const tn = norm(topicName)
+      return ct === tn || ct.includes(tn) || tn.includes(ct)
+    })
+    if (target) {
+      openClase(target.id)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const closeDetail = () => {
+    setSelectedId(null)
+    setSelectedClase(null)
+  }
+
+  // Launch aggregate quiz for a subsystem
+  const startAggregateQuiz = async (subsystem) => {
+    const lessons = clases.filter(c => c.subsystem === subsystem)
+    // Fetch full data for all classes in this subsystem
+    const allQuestions = []
+    for (const lesson of lessons) {
+      try {
+        const r = await fetchClase(lesson.id)
+        if (r) {
+          const rawQuiz = typeof r.quiz === 'string' ? JSON.parse(r.quiz) : (r.quiz || [])
+          const normalized = normalizeQuiz(rawQuiz)
+          normalized.forEach(q => {
+            allQuestions.push({ ...q, claseId: lesson.id, claseTopic: lesson.topic })
+          })
+        }
+      } catch {}
+    }
+    // Shuffle
+    for (let i = allQuestions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]]
+    }
+    setAggregateQuiz({ subsystem, questions: allQuestions })
+  }
+
+  useEffect(() => { loadData() }, [user])
+
+  // Auto-navigate when navigated from Dashboard or FelipeCalendar with state
+  useEffect(() => {
+    if (loading || !clases.length || handledNavState.current) return
+    const state = location.state || {}
+    const params = new URLSearchParams(location.search)
+    const spec = state.specialty || params.get('specialty')
+    const sub = state.subsystem || state.openSubsystem || params.get('subsystem')
+    const lessonNum = state.openLesson || (params.get('lesson') ? parseInt(params.get('lesson')) : null)
+    const sv = state.subView || params.get('view')
+
+    if (spec || sub || lessonNum) {
+      handledNavState.current = true
+      if (spec) setCurrentSpecialty(spec)
+      if (sub) {
+        if (!spec) {
+          const match = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase())
+          if (match) setCurrentSpecialty(match.specialty)
+        }
+        setCurrentSubsystem(sub)
+        if (sv) setSubView(sv)
+      }
+      if (lessonNum && sub) {
+        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && c.lessonNumber === lessonNum)
+        if (target) openClase(target.id)
+      }
+    }
+  }, [loading, clases.length, location])
+
+  // ─── Aggregate Quiz view ───
+  if (aggregateQuiz) {
+    const { subsystem, questions } = aggregateQuiz
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+          <button onClick={() => setAggregateQuiz(null)} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
+          }}>
+            <ChevronLeft size={16} /> Volver
+          </button>
+        </div>
+        <div className="card" style={{
+          padding: '1.5rem', marginBottom: '1.5rem',
+          background: 'linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(59,130,246,0.06) 100%)',
+          borderLeft: '4px solid #10b981'
+        }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#10b981', marginBottom: '0.4rem', textTransform: 'uppercase' }}>
+            Quiz Agregado
+          </div>
+          <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+            {subsystem}
+          </h2>
+          <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)' }}>
+            {questions.length} preguntas de todas las clases · Orden aleatorio
+          </div>
+        </div>
+        <QuizSection
+          quiz={questions}
+          onComplete={(score, correct, total, wrongIndices) => {
+            // Save progress per class
+            const byClase = {}
+            questions.forEach((q, i) => {
+              if (!byClase[q.claseId]) byClase[q.claseId] = { correct: 0, total: 0, wrong: [], topic: q.claseTopic }
+              byClase[q.claseId].total++
+              if (wrongIndices.includes(i)) byClase[q.claseId].wrong.push(i)
+              else byClase[q.claseId].correct++
+            })
+            // Save each class's quiz result
+            Object.entries(byClase).forEach(async ([claseId, data]) => {
+              const claseScore = data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0
+              try {
+                await saveClaseProgress({ userId: user.id, claseId, quizCompleted: 1, quizScore: claseScore, quizCorrect: data.correct, quizTotal: data.total })
+                setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], quiz_completed: 1, quiz_score: claseScore } }))
+              } catch {}
+            })
+            // Show review after quiz ends (the QuizSection shows its own score screen)
+          }}
+        />
+      </div>
+    )
+  }
+
+  // ─── Detail view ───
+  if (selectedId) {
+    if (loadingDetail || !selectedClase) {
+      return <LoadingScreen context="clases" />
+    }
+    const currentIndex = clases.findIndex(c => c.id === selectedClase.id)
+    const nextClase = currentIndex >= 0 && currentIndex < clases.length - 1 ? clases[currentIndex + 1] : null
+    const completedClassesCount = Object.values(progressMap || {}).filter(
+      p => p && (p.video_watched === 1 || p.quiz_completed === 1)
+    ).length
+    const isCurrentClassDone = progressMap[selectedClase.id]?.video_watched === 1 || progressMap[selectedClase.id]?.quiz_completed === 1
+
+    if (!isPremium && completedClassesCount >= 3 && !isCurrentClassDone) {
+      return (
+        <div style={{ paddingBottom: '2rem' }}>
+          <PaymentModal onClose={() => { setShowPaymentModal(false); closeDetail() }} />
+        </div>
+      )
+    }
+
+    const handleNextClass = () => {
+      if (nextClase) {
+        const isNextAlreadyDone = progressMap[nextClase.id]?.video_watched === 1 || progressMap[nextClase.id]?.quiz_completed === 1
+        if (!isPremium && completedClassesCount >= 3 && !isNextAlreadyDone) {
+          setShowPaymentModal(true)
+          return
+        }
+        openClase(nextClase.id)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        closeDetail()
+      }
+    }
+
+    return (
+      <div style={{ paddingBottom: '2rem' }}>
+        {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+        <ClaseDetail
+          clase={selectedClase}
+          onBack={closeDetail}
+          onNavigateToTopic={navigateToTopic}
+          onTrackProgress={trackProgress}
+          progressMap={progressMap}
+          nextClase={nextClase}
+          onNextClass={handleNextClass}
+          onVideoWatched={async (claseId) => {
+            const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
+            if (!isPremium && completedClassesCount >= 3 && !isAlreadyDone) {
+              setShowPaymentModal(true)
+              return
+            }
+            try {
+              await saveClaseProgress({ userId: user.id, claseId, videoWatched: 1 })
+              setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], video_watched: 1 } }))
+            } catch {}
+          }}
+          onQuizComplete={async (claseId, score, correct, total, wrongAnswers) => {
+            const isAlreadyDone = progressMap[claseId]?.video_watched === 1 || progressMap[claseId]?.quiz_completed === 1
+            if (!isPremium && completedClassesCount >= 3 && !isAlreadyDone) {
+              setShowPaymentModal(true)
+              return
+            }
+            try {
+              await saveClaseProgress({ userId: user.id, claseId, quizCompleted: 1, quizScore: score, quizCorrect: correct, quizTotal: total, quizAnswers: wrongAnswers })
+              setProgressMap(prev => ({ ...prev, [claseId]: { ...prev[claseId], quiz_completed: 1, quiz_score: score } }))
+            } catch {}
+          }}
+        />
+      </div>
+    )
+  }
+
+  if (loading) return <LoadingScreen context="clases" />
+
+  // ─── Build folder tree ───
+  const tree = {}
+  clases.forEach(c => {
+    if (!tree[c.specialty]) tree[c.specialty] = {}
+    if (!tree[c.specialty][c.subsystem]) tree[c.specialty][c.subsystem] = []
+    tree[c.specialty][c.subsystem].push(c)
+  })
+  // Sort lessons by number
+  Object.values(tree).forEach(subs => Object.values(subs).forEach(lessons => lessons.sort((a, b) => a.lessonNumber - b.lessonNumber)))
+
+  const specialties = Object.keys(tree)
+
+  // ─── Breadcrumb ───
+  const breadcrumb = []
+  breadcrumb.push({ label: 'Mis Clases', onClick: () => { setCurrentSpecialty(null); setCurrentSubsystem(null); setSubView(null) } })
+  if (currentSpecialty) breadcrumb.push({ label: currentSpecialty, onClick: () => { setCurrentSubsystem(null); setSubView(null) } })
+  if (currentSubsystem) breadcrumb.push({ label: currentSubsystem, onClick: () => setSubView(null) })
+  if (subView) breadcrumb.push({ label: subView === 'clases' ? 'Clases' : 'Pruebas', onClick: null })
+
+  return (
+    <div style={{ paddingBottom: '2rem' }}>
+      {showLoginGate && (
+        <LoginGateModal
+          onClose={() => setShowLoginGate(false)}
+          message="Inicia sesión para acceder a las clases en video y pruebas EUNACOM."
+        />
+      )}
+      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
+        <h1 className="page__title">Mis Clases</h1>
+        {(() => {
+          const totalClases = clases.length
+          const completedClases = clases.filter(c => getProgress(c.id) >= 100).length
+          const pct = totalClases ? Math.round(clases.reduce((sum, c) => sum + getProgress(c.id), 0) / totalClases) : 0
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textAlign: 'right' }}>
+                <span style={{ fontWeight: 700, color: pct > 0 ? '#10b981' : 'var(--text-secondary)' }}>{completedClases}</span>/{totalClases} completadas
+              </div>
+              <ProgressRing percent={pct} size={40} stroke={3} />
+            </div>
+          )
+        })()}
+      </div>
+      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
+        {clases.length} clases disponibles · Tu progreso se guarda automáticamente.
+      </p>
+
+      {!isPremium && (
+        <div style={{
+          background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
+          borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.25rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
+        }}>
+          <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
+            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
+          </span>
+          <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
+            Desbloquear Ilimitado
+          </button>
+        </div>
+      )}
+
+      {/* Breadcrumb */}
+      {(currentSpecialty || currentSubsystem) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '1.25rem', fontSize: '0.82rem' }}>
+          {breadcrumb.map((b, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <ChevronRight size={14} style={{ color: 'var(--text-tertiary)' }} />}
+              {b.onClick ? (
+                <button onClick={b.onClick} style={{
+                  background: 'none', border: 'none', cursor: 'pointer', padding: '0.2rem 0.4rem',
+                  borderRadius: '4px', color: 'var(--primary-500)', fontWeight: 600,
+                }}>
+                  {b.label}
+                </button>
+              ) : (
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, padding: '0.2rem 0.4rem' }}>{b.label}</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+
+      {clases.length === 0 ? (
+        <div className="card" style={{
+          padding: '3rem 2rem', textAlign: 'center',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem'
+        }}>
+          {loading ? (
+            <>
+              <div className="spinner" style={{ width: 40, height: 40, border: '3px solid var(--border-color)', borderTop: '3px solid var(--primary-500)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-tertiary)' }}>Cargando clases...</p>
+            </>
+          ) : (
+            <>
+              <Video size={48} style={{ color: 'var(--text-tertiary)', opacity: 0.5 }} />
+              <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>No hay clases disponibles</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)', maxWidth: 400 }}>
+                Las clases estarán disponibles pronto. Mientras tanto, puedes practicar con las Pruebas EUNACOM.
+              </p>
+            </>
+          )}
+        </div>
+      ) : !currentSpecialty ? (
+        /* ─── Level 1: Specialties ─── */
+        <>
+        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
+        <div className="grid-auto-responsive">
+          {specialties.map((spec, i) => {
+            const style = getSpecialtyStyle(spec)
+            const subsCount = Object.keys(tree[spec]).length
+            const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
+            const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
+            const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
+            return (
+              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
+                padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
+                borderLeft: `4px solid ${style.color}`,
+                background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
+                position: 'relative',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div style={{
+                    width: 48, height: 48, borderRadius: 14, background: style.bg,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: style.color, border: `1px solid ${style.color}25`,
+                  }}>
+                    {style.icon}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{spec}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
+                      {lessonCount} clases · {completedCount > 0 ? `${completedCount} completadas` : `${subsCount} subsistemas`}
+                    </div>
+                  </div>
+                  <ProgressRing percent={specPct} size={42} stroke={3} />
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                  {Object.keys(tree[spec]).map(sub => {
+                    const subStyle = getSubsystemStyle(sub)
+                    return (
+                      <span key={sub} style={{
+                        fontSize: '0.72rem', padding: '0.2rem 0.6rem', borderRadius: '50px',
+                        background: subStyle.bg, color: subStyle.color, fontWeight: 600,
+                        display: 'flex', alignItems: 'center', gap: '0.3rem',
+                      }}>
+                        {React.cloneElement(subStyle.icon, { size: 11 })} {sub}
+                      </span>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        </>
+      ) : !currentSubsystem ? (
+        /* ─── Level 2: Subsystems (MedSchool Cards) ─── */
+        <>
+        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '1.25rem',
+        }}>
+          {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
+            const completed = lessons.filter(l => getProgress(l.id) >= 100).length
+            const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
+            
+            // Calculate quiz correct/wrong answers
+            let correctCount = 0
+            let wrongCount = 0
+            lessons.forEach(l => {
+              const p = progressMap[l.id]
+              if (p && p.quiz_completed) {
+                const tot = p.quiz_total || 5
+                const corr = p.quiz_correct || Math.round(((p.quiz_score || 0) / 100) * tot)
+                correctCount += corr
+                wrongCount += Math.max(0, tot - corr)
+              }
+            })
+
+            const questionsCount = lessons.length * 20
+
+            return (
+              <TopicCard
+                key={sub}
+                topic={sub}
+                specialty={currentSpecialty}
+                questionsCount={questionsCount}
+                classesCount={lessons.length}
+                completedClasses={completed}
+                correctCount={correctCount}
+                wrongCount={wrongCount}
+                masteryPct={subPct}
+                onClick={() => setCurrentSubsystem(sub)}
+              />
+            )
+          })}
+        </div>
+        </>
+      ) : subView === 'pruebas' ? (
+        /* ─── Pruebas View ─── */
+        <PruebasView
+          specialty={currentSpecialty}
+          subsystem={currentSubsystem}
+          subsystemStyle={getSubsystemStyle(currentSubsystem)}
+          onBack={() => setSubView(null)}
+        />
+      ) : subView === 'clases' ? (
+        /* ─── Level 3: Lessons ─── */
+        <div style={{ paddingBottom: '2rem' }}>
+          <button onClick={() => setSubView(null)} style={{
+            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
+            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
+            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
+            marginBottom: '1.25rem'
+          }}>
+            <ChevronLeft size={16} /> Volver
+          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
+              const isAlreadyDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
+              const completedCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
+              const isLocked = !isPremium && completedCount >= 5 && !isAlreadyDone;
+              const style = getSpecialtyStyle(currentSpecialty)
+              const pct = getProgress(clase.id)
+              return (
+                <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
+                  padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
+                  position: 'relative',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1rem', fontWeight: 800, color: pct >= 100 ? '#10b981' : style.color,
+                    }}>
+                      {pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {clase.topic}
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
+                        {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
+                        Clase {clase.lessonNumber}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: isLocked ? 0.5 : 1 }}>
+                    {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
+                    <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ) : (
+        /* ─── Choice Screen: Clases vs Pruebas ─── */
+        (() => {
+          const subStyle = getSubsystemStyle(currentSubsystem)
+          const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
+          const completed = lessons.filter(l => getProgress(l.id) >= 100).length
+          const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
+          const totalQuestionsEst = lessons.length * 20
+
+          return (
+            <div className="promax-page-wrapper" style={{ paddingBottom: '2.5rem' }}>
+              {/* Ambient Glows */}
+              <div className="promax-ambient-bg">
+                <div className="promax-ambient-glow promax-glow-cyan" style={{ top: -60, left: '5%', width: 480, height: 320 }} />
+                <div className="promax-ambient-glow promax-glow-indigo" style={{ top: 120, right: '5%', width: 440, height: 300 }} />
+              </div>
+
+              <div className="promax-content-layer">
+                {/* Subject Hero Bento Header */}
+                <div className="promax-hero-bento" style={{
+                  '--hero-accent-gradient': `linear-gradient(90deg, ${subStyle.color} 0%, #38bdf8 50%, #10b981 100%)`
+                }}>
+                  <div className="promax-hero-header-row">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', flex: 1, minWidth: 260 }}>
+                      <div className="promax-hero-avatar-box" style={{
+                        '--avatar-bg': subStyle.bg,
+                        '--avatar-border': `${subStyle.color}40`,
+                        '--avatar-color': subStyle.color,
+                        '--avatar-glow': `${subStyle.color}30`
+                      }}>
+                        {React.cloneElement(subStyle.icon, { size: 28 })}
+                      </div>
+                      <div className="promax-hero-titles">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
+                          <h2>{currentSubsystem}</h2>
+                          <span className="promax-badge-pill promax-badge-cyan">
+                            <Sparkles size={11} /> {currentSpecialty}
+                          </span>
+                        </div>
+                        <p>
+                          {lessons.length} clases interactivas · ~{totalQuestionsEst} preguntas tipo EUNACOM explicadas
+                        </p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                          Progreso del Tema
+                        </div>
+                        <div style={{ fontSize: '1rem', fontWeight: 800, color: subPct >= 100 ? '#10b981' : '#f8fafc', marginTop: '0.15rem' }}>
+                          {completed}/{lessons.length} completadas
+                        </div>
+                      </div>
+                      <ProgressRing percent={subPct} size={52} stroke={4} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Two Big Bento Cards: Clases & Pruebas */}
+                <div className="promax-bento-grid-2">
+                  {/* Bento Card 1: Clases Interactivas */}
+                  <div
+                    className="promax-bento-card promax-theme-indigo"
+                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }}
+                  >
+                    <div className="promax-card-ambient-tint" />
+                    <div className="promax-card-top-line" />
+
+                    <div>
+                      <div className="promax-card-header">
+                        <div className="promax-card-icon-box">
+                          <Presentation size={26} />
+                        </div>
+                        <span className="promax-badge-pill promax-badge-indigo">
+                          <BookOpen size={11} /> Video + Resúmenes
+                        </span>
+                      </div>
+
+                      <h3 className="promax-card-title">Clases Interactivas</h3>
+                      <p className="promax-card-desc">
+                        Aprende con videos, resúmenes diagnósticos, esquemas de manejo clínico y perfiles de alta frecuencia EUNACOM.
+                      </p>
+
+                      <div className="promax-card-features-list">
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> {lessons.length} videoclases explicativas estructuradas
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> Algoritmos terapéuticos y guías GES/MINSAL
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> Quizzes interactivos de retención por clase
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="promax-card-footer">
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                        fontSize: '0.78rem', fontWeight: 700,
+                        color: completed === lessons.length && lessons.length > 0 ? '#10b981' : '#c7d2fe',
+                      }}>
+                        {completed === lessons.length && lessons.length > 0 ? (
+                          <><CheckCircle2 size={14} color="#10b981" /> 100% Completado</>
+                        ) : (
+                          <><Clock size={13} /> {completed}/{lessons.length} clases vistas</>
+                        )}
+                      </div>
+
+                      <div className="promax-card-action-btn">
+                        Ver Clases <ArrowRight size={14} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bento Card 2: Pruebas EUNACOM */}
+                  <div
+                    className="promax-bento-card promax-theme-emerald"
+                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}
+                  >
+                    <div className="promax-card-ambient-tint" />
+                    <div className="promax-card-top-line" />
+
+                    <div>
+                      <div className="promax-card-header">
+                        <div className="promax-card-icon-box">
+                          <ClipboardList size={26} />
+                        </div>
+                        <span className="promax-badge-pill promax-badge-emerald">
+                          <Target size={11} /> Banco Clínico
+                        </span>
+                      </div>
+
+                      <h3 className="promax-card-title">Pruebas EUNACOM</h3>
+                      <p className="promax-card-desc">
+                        Entrena con sets de preguntas oficiales justificadas por alternativa, estadísticas de respuesta y repaso de errores.
+                      </p>
+
+                      <div className="promax-card-features-list">
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Preguntas tipo examen con justificación inmediata
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Estadísticas y tasa de aciertos de la comunidad
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Sistema inteligente para reentrenar errores
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="promax-card-footer">
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                        fontSize: '0.78rem', fontWeight: 700, color: '#6ee7b7'
+                      }}>
+                        <Award size={14} color="#10b981" /> Modo Entrenamiento & Examen
+                      </div>
+
+                      <div className="promax-card-action-btn">
+                        Practicar Ahora <ArrowRight size={14} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })()
+      )}
+    </div>
+  )
+}
+
+export default MisClases

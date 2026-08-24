@@ -1,0 +1,83 @@
+import React, { useState, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import Sidebar from '../components/Sidebar'
+import DashboardHeader from '../components/DashboardHeader'
+import Onboarding from '../components/Onboarding'
+import FounderPopup from '../components/FounderPopup'
+import BottomNavigation from '../components/BottomNavigation'
+import TopLoadingBar from '../components/TopLoadingBar'
+import { fetchUserProfile, saveUserProfile } from '../lib/api'
+
+const DashboardLayout = () => {
+    const { user, loading: authLoading } = useAuth()
+    const navigate = useNavigate()
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const [showOnboarding, setShowOnboarding] = useState(false)
+    const [profileChecked, setProfileChecked] = useState(false)
+
+    React.useEffect(() => {
+        if (authLoading) return
+        if (!user) navigate('/login')
+    }, [user, authLoading, navigate])
+
+    // Check if user has completed onboarding — only once per session
+    useEffect(() => {
+        if (!user) return
+        // If already checked this session, don't re-fetch
+        const sessionKey = `onboarding_checked_${user.id}`
+        if (sessionStorage.getItem(sessionKey)) {
+            setProfileChecked(true)
+            return
+        }
+        fetchUserProfile(user.id).then(profile => {
+            if (!profile || !profile.onboarding_done) {
+                setShowOnboarding(true)
+            } else {
+                // Mark as checked so we never re-fetch this session
+                sessionStorage.setItem(sessionKey, '1')
+            }
+            setProfileChecked(true)
+        }).catch((err) => {
+            console.warn('Error loading user profile for onboarding check:', err)
+            setProfileChecked(true)
+        })
+    }, [user?.id])
+
+    const handleOnboardingComplete = async (profileData) => {
+        await saveUserProfile(profileData)
+        sessionStorage.setItem(`onboarding_checked_${user.id}`, '1')
+        setShowOnboarding(false)
+    }
+
+    if (authLoading || !user) return null
+    // Don't render the app until we know whether onboarding is needed
+    if (!profileChecked) return null
+
+    return (
+        <div className="app-layout">
+            <TopLoadingBar />
+            <Sidebar mobileOpen={mobileOpen} onToggle={() => setMobileOpen(false)} />
+            {mobileOpen && (
+                <div
+                    onClick={() => setMobileOpen(false)}
+                    style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 999 }}
+                    className="sidebar-backdrop"
+                />
+            )}
+            <div className="main-content">
+                <DashboardHeader onMenuToggle={() => setMobileOpen(!mobileOpen)} />
+                <div className="page">
+                    <Outlet />
+                </div>
+            </div>
+            {showOnboarding && (
+                <Onboarding user={user} onComplete={handleOnboardingComplete} />
+            )}
+            <FounderPopup user={user} />
+            <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />
+        </div>
+    )
+}
+
+export default DashboardLayout

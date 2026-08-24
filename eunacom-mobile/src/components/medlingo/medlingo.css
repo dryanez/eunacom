@@ -1,0 +1,3520 @@
+/* ══════════════════════════════════════════════════════════════
+   DUOLINGO DESIGN SYSTEM (EUNACOM MEDLINGO)
+   Based on official design.duolingo.com & mobile references
+   ══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900;1000&display=swap');
+
+:root {
+  /* Duolingo Brand Tokens */
+  --duo-green: #58cc02;
+  --duo-green-shadow: #58a700;
+  --duo-green-tint: rgba(88, 204, 2, 0.16);
+
+  --duo-blue: #1cb0f6;
+  --duo-blue-shadow: #1899d6;
+  --duo-blue-tint: rgba(28, 176, 246, 0.16);
+
+  --duo-orange: #ff9600;
+  --duo-orange-shadow: #e58700;
+  --duo-orange-tint: rgba(255, 150, 0, 0.16);
+
+  --duo-red: #ff4b4b;
+  --duo-red-shadow: #ea2b2b;
+  --duo-red-tint: rgba(255, 75, 75, 0.16);
+
+  --duo-gold: #ffc800;
+  --duo-gold-shadow: #e5b400;
+
+  --duo-purple: #ce82ff;
+  --duo-purple-shadow: #a560e8;
+
+  /* Surfaces & Dark Theme */
+  --duo-bg: #131f24;
+  --duo-card-bg: #1e293b;
+  --duo-card-border: #37464f;
+  --duo-card-shadow: #202f36;
+  --duo-text-main: #f8fafc;
+  --duo-text-muted: #77909b;
+  --duo-text-sub: #94a3b8;
+}
+
+/* Fullbleed helper for router layout */
+.page--fullbleed {
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.medlingo-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--duo-bg);
+  color: var(--duo-text-main);
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.medlingo-main-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px; /* Space for the bottom nav */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER (TOP BAR - 100% RESPONSIVE)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: rgba(19, 31, 36, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--duo-card-border);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.medlingo-header__left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.medlingo-exit-to-app-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+  flex-shrink: 0;
+}
+
+.medlingo-exit-to-app-btn:hover {
+  border-color: var(--duo-blue);
+  color: var(--duo-blue);
+}
+
+.medlingo-exit-to-app-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.medlingo-header__module-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+}
+
+.medlingo-header__module-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.medlingo-header__module-emoji {
+  font-size: 1.35rem;
+}
+
+.medlingo-header__module-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.medlingo-header__module-name {
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.medlingo-header__module-bar-wrap {
+  width: 80px;
+  height: 6px;
+  background: var(--duo-card-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.medlingo-header__module-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.medlingo-header__chevron {
+  transition: transform 0.2s ease;
+  color: var(--duo-text-muted);
+}
+
+.medlingo-header__chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.medlingo-header__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 280px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  padding: 0.6rem;
+  z-index: 50;
+  animation: scaleUp 0.15s ease-out;
+}
+
+.medlingo-header__dropdown-title {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--duo-text-muted);
+  padding: 0.4rem 0.6rem;
+  letter-spacing: 0.8px;
+}
+
+.medlingo-header__dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.medlingo-header__dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.medlingo-header__dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.medlingo-header__dropdown-item.selected {
+  background: var(--duo-blue-tint);
+  border: 2px solid var(--duo-blue);
+}
+
+.medlingo-header__dropdown-emoji {
+  font-size: 1.3rem;
+}
+
+.medlingo-header__dropdown-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.medlingo-header__dropdown-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.medlingo-header__dropdown-sub {
+  font-size: 0.75rem;
+  color: var(--duo-text-muted);
+}
+
+.medlingo-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.medlingo-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.medlingo-stat-pill:active {
+  transform: translateY(2px);
+}
+
+.medlingo-stat-pill--streak {
+  background: var(--duo-orange-tint);
+  color: var(--duo-orange);
+  border: 2px solid rgba(255, 150, 0, 0.4);
+}
+
+.medlingo-stat-pill--streak .flame-icon.animated {
+  animation: pulseFlame 1.5s infinite alternate;
+}
+
+.medlingo-stat-pill--gems {
+  background: rgba(255, 200, 0, 0.15);
+  color: var(--duo-gold);
+  border: 2px solid rgba(255, 200, 0, 0.4);
+}
+
+.medlingo-stat-pill--hearts {
+  background: var(--duo-red-tint);
+  color: var(--duo-red);
+  border: 2px solid rgba(255, 75, 75, 0.4);
+}
+
+.medlingo-stat-pill--hearts.critical {
+  animation: heartAlert 1s infinite alternate;
+}
+
+.medlingo-mentor-badge {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.medlingo-mentor-badge:hover {
+  transform: scale(1.08);
+}
+
+.medlingo-mentor-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+  overflow: hidden;
+  background: #131f24;
+}
+
+.medlingo-mentor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.medlingo-shop-btn {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.medlingo-shop-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+/* Mobile Responsive Header Rules */
+@media (max-width: 640px) {
+  .desktop-only-item {
+    display: none !important;
+  }
+  .medlingo-header {
+    padding: 0.5rem 0.65rem;
+  }
+  .medlingo-header__module-btn {
+    padding: 0.35rem 0.65rem;
+    gap: 0.4rem;
+  }
+  .medlingo-header__module-bar-wrap {
+    display: none;
+  }
+  .medlingo-header__module-name {
+    font-size: 0.84rem;
+  }
+  .medlingo-header__right {
+    gap: 0.4rem;
+  }
+  .medlingo-stat-pill {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.82rem;
+    gap: 0.25rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DEDICATED DUOLINGO BOTTOM NAVIGATION BAR
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  background: rgba(19, 31, 36, 0.96);
+  backdrop-filter: blur(20px);
+  border-top: 2px solid var(--duo-card-border);
+  padding: 0.35rem 0.5rem;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.medlingo-bottom-nav__inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.medlingo-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 14px;
+  color: var(--duo-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  min-width: 58px;
+}
+
+.medlingo-tab-btn .tab-icon-wrapper {
+  padding: 0.3rem 0.65rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medlingo-tab-btn.active {
+  color: #ffffff;
+}
+
+.medlingo-tab-btn.active .tab-icon-wrapper {
+  background: var(--tab-color);
+  color: #131f24;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.medlingo-tab-btn .tab-label {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.medlingo-tab-btn.active .tab-label {
+  color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BODY & ROAD PATH (DUOLINGO SNAKE)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-body-container {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1.75rem 1.25rem;
+  max-width: 1050px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.medlingo-path-column {
+  flex: 1;
+  max-width: 540px;
+}
+
+.medlingo-path {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.medlingo-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.medlingo-unit-banner {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.medlingo-unit-banner__title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+}
+
+.medlingo-unit-banner__desc {
+  font-size: 0.85rem;
+  opacity: 0.95;
+  font-weight: 700;
+}
+
+.medlingo-unit-banner__badge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.6rem;
+  border-radius: 14px;
+}
+
+.medlingo-nodes-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.medlingo-node-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3D Duolingo Node Buttons */
+.medlingo-node-btn {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.12s ease;
+  user-select: none;
+  background: var(--theme-color, var(--duo-blue));
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.medlingo-node-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.medlingo-node-btn:active:not(:disabled) {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Active Node Glowing Halo Ring */
+.medlingo-active-halo {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  animation: haloPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes haloPulse {
+  0% { transform: scale(0.95); opacity: 1; border-color: rgba(255, 255, 255, 0.9); }
+  100% { transform: scale(1.3); opacity: 0; border-color: var(--duo-blue); }
+}
+
+.medlingo-node-btn.locked {
+  background: #37464f !important;
+  color: var(--duo-text-muted);
+  cursor: not-allowed;
+  box-shadow: 0 6px 0 #202f36;
+}
+
+.medlingo-node-btn.completed {
+  background: var(--duo-green);
+  box-shadow: 0 8px 0 var(--duo-green-shadow), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.medlingo-node-btn.boss {
+  width: 86px;
+  height: 86px;
+  background: linear-gradient(135deg, var(--duo-gold) 0%, var(--duo-orange) 100%);
+  box-shadow: 0 8px 0 var(--duo-orange-shadow), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.medlingo-node-btn.chest {
+  background: linear-gradient(135deg, var(--duo-purple) 0%, #9333ea 100%);
+  box-shadow: 0 8px 0 var(--duo-purple-shadow);
+}
+
+.medlingo-node-btn.chest .medlingo-chest-icon.pulsing {
+  animation: floatBounce 2s infinite ease-in-out;
+}
+
+.medlingo-node-stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 0.4rem;
+}
+
+.star-icon.filled {
+  color: var(--duo-gold);
+  fill: var(--duo-gold);
+  filter: drop-shadow(0 0 4px rgba(255, 200, 0, 0.6));
+}
+
+.star-icon.empty {
+  color: #4b5563;
+}
+
+.medlingo-node-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.3rem;
+  max-width: 140px;
+  text-align: center;
+}
+
+.medlingo-node-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--duo-text-main);
+}
+
+.medlingo-node-tag {
+  font-size: 0.65rem;
+  background: var(--duo-card-border);
+  padding: 0.1rem 0.45rem;
+  border-radius: 6px;
+  margin-top: 0.2rem;
+  color: var(--duo-text-muted);
+  font-weight: 800;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DESKTOP SIDEBAR PANEL (Missions & Leagues in Snake Tab)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-sidebar-panel {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .medlingo-sidebar-panel {
+    display: none !important;
+  }
+}
+
+.medlingo-panel-tab-bar {
+  display: flex;
+  background: #131f24;
+  padding: 0.3rem;
+  border-radius: 16px;
+  border: 2px solid var(--duo-card-border);
+  gap: 0.3rem;
+}
+
+.panel-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: var(--duo-text-muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.panel-tab-btn.active {
+  background: var(--duo-card-bg);
+  color: #ffffff;
+  box-shadow: 0 2px 0 var(--duo-card-shadow);
+}
+
+.medlingo-panel-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.medlingo-panel-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.medlingo-panel-card__header h3 {
+  font-size: 0.95rem;
+  font-weight: 1000;
+  margin: 0;
+  color: #ffffff;
+}
+
+.medlingo-panel-card__header.league {
+  justify-content: space-between;
+}
+
+.league-title-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.league-icon-emoji {
+  font-size: 1.7rem;
+}
+
+.league-time-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--duo-blue);
+  font-weight: 800;
+}
+
+.medlingo-quests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.medlingo-quest-item {
+  background: #131f24;
+  border-radius: 14px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 2px solid var(--duo-card-border);
+}
+
+.quest-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.quest-reward {
+  color: var(--duo-gold);
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.quest-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: var(--duo-card-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.quest-bar {
+  height: 100%;
+  background: var(--duo-blue);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.quest-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--duo-text-muted);
+  font-weight: 700;
+}
+
+.quest-claim-btn {
+  background: var(--duo-gold);
+  color: #131f24;
+  border: none;
+  font-weight: 1000;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--duo-gold-shadow);
+  transition: transform 0.15s ease;
+}
+
+.quest-claim-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.quest-badge.claimed {
+  color: var(--duo-green);
+  font-weight: 900;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB CONTENT WRAPPER (COMMON)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-tab-content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 1000;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB: COLLECTION & PEARLS
+   ══════════════════════════════════════════════════════════════ */
+.collection-hero-banner {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 22px;
+  padding: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.collection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #fed7aa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.collection-hero-text h2 {
+  font-size: 1.25rem;
+  font-weight: 1000;
+  margin: 0 0 0.25rem;
+  color: #ffffff;
+}
+
+.collection-hero-text p {
+  font-size: 0.84rem;
+  color: #e0e7ff;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.collection-stats-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.45rem 0.8rem;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.collection-controls-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.collection-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  padding: 0.65rem 0.95rem;
+  box-shadow: 0 3px 0 var(--duo-card-shadow);
+}
+
+.collection-search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  flex: 1;
+}
+
+.collection-category-pills {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cat-pill {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: var(--duo-text-muted);
+  padding: 0.45rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+
+.cat-pill.active {
+  background: var(--duo-purple);
+  color: #131f24;
+  border-color: var(--duo-purple);
+  box-shadow: 0 3px 0 var(--duo-purple-shadow);
+}
+
+.collection-modules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.collection-module-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 18px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  transition: all 0.15s ease;
+}
+
+.collection-module-card:hover {
+  border-color: var(--card-accent);
+  transform: translateY(-2px);
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-emoji {
+  font-size: 1.6rem;
+}
+
+.card-info-badge {
+  color: var(--duo-text-muted);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.card-progress-bar-wrap {
+  height: 6px;
+  background: var(--duo-card-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.card-progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.card-meta-text {
+  font-size: 0.75rem;
+  color: var(--duo-text-muted);
+  font-weight: 700;
+}
+
+.pearls-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pearl-interactive-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all 0.12s ease;
+}
+
+.pearl-interactive-card:hover {
+  border-color: #556975;
+  transform: translateY(-2px);
+}
+
+.pearl-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pearl-pill-badge {
+  color: #ffffff;
+  padding: 0.15rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.pearl-card-title {
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 0;
+  color: #ffffff;
+}
+
+.pearl-card-summary {
+  font-size: 0.84rem;
+  color: var(--duo-text-muted);
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.pearl-card-rule-snippet {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 200, 0, 0.08);
+  border: 1px solid rgba(255, 200, 0, 0.3);
+  padding: 0.4rem 0.65rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  color: #fef08a;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.pearl-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.pearl-detail-section strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--duo-blue);
+  margin-bottom: 0.25rem;
+  font-weight: 900;
+}
+
+.pearl-detail-section p {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.pearl-detail-section.highlight {
+  background: rgba(28, 176, 246, 0.1);
+  border: 2px solid var(--duo-blue);
+  padding: 0.85rem;
+  border-radius: 14px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB: LEAGUES (TORNEO SEMANAL)
+   ══════════════════════════════════════════════════════════════ */
+.league-hero-header {
+  border: 2px solid;
+  border-radius: 22px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.league-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.league-tier-icon-big {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+}
+
+.league-tag-pill {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.15rem;
+}
+
+.league-hero-info h2 {
+  font-size: 1.35rem;
+  font-weight: 1000;
+  margin: 0 0 0.2rem;
+  color: #ffffff;
+}
+
+.league-hero-info p {
+  font-size: 0.84rem;
+  color: var(--duo-text-muted);
+  margin: 0;
+  font-weight: 700;
+}
+
+.league-timer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.55rem 0.85rem;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.timer-left {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.prizes-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--duo-gold);
+}
+
+.league-tiers-selector-row {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tier-pill-btn {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: var(--duo-text-muted);
+  padding: 0.45rem 0.75rem;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.tier-pill-btn.active {
+  border-color: var(--tier-accent);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.current-dot {
+  font-size: 0.65rem;
+  background: var(--duo-blue);
+  color: #131f24;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  font-weight: 900;
+}
+
+.league-standings-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 22px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.standings-header-row {
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--duo-text-muted);
+  padding: 0 0.5rem;
+}
+
+.col-rank { width: 32px; }
+.col-doctor { flex: 1; }
+.col-xp { text-align: right; }
+
+.standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.standings-row {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  background: #131f24;
+  border: 2px solid transparent;
+  gap: 0.5rem;
+}
+
+.standings-row.user-row {
+  background: var(--duo-blue-tint);
+  border-color: var(--duo-blue);
+}
+
+.standings-row.promo-zone {
+  border-left: 4px solid var(--duo-green);
+}
+
+.standings-row.demo-zone {
+  border-left: 4px solid var(--duo-red);
+}
+
+.rank-badge-cell {
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.doctor-info-cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.doctor-avatar-emoji {
+  font-size: 1.3rem;
+}
+
+.doctor-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-name {
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.doctor-streak {
+  font-size: 0.72rem;
+  color: var(--duo-orange);
+  font-weight: 800;
+}
+
+.xp-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.xp-value {
+  font-size: 0.92rem;
+  font-weight: 1000;
+  color: var(--duo-blue);
+}
+
+.zone-indicator {
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.zone-indicator.up { color: var(--duo-green); }
+.zone-indicator.down { color: var(--duo-red); }
+
+.standings-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--duo-card-border);
+}
+
+.legend-item.promo { color: var(--duo-green); display: flex; align-items: center; gap: 0.25rem; }
+.legend-item.demo { color: var(--duo-red); display: flex; align-items: center; gap: 0.25rem; }
+
+/* ══════════════════════════════════════════════════════════════
+   TAB: MISSIONS & QUESTS
+   ══════════════════════════════════════════════════════════════ */
+.missions-hero-banner {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 22px;
+  padding: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.missions-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #ffedd5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.missions-hero-left h2 {
+  font-size: 1.25rem;
+  font-weight: 1000;
+  margin: 0 0 0.25rem;
+  color: #ffffff;
+}
+
+.missions-hero-left p {
+  font-size: 0.84rem;
+  color: #ffedd5;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.missions-counter {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.count-num {
+  font-size: 1.1rem;
+  font-weight: 1000;
+  color: #ffffff;
+}
+
+.count-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fdba74;
+}
+
+.missions-card-container {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 22px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.missions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.mission-item-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  border-radius: 18px;
+  padding: 0.95rem;
+}
+
+.mission-item-card.claimed {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.mission-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mission-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mission-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-title {
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin: 0;
+  color: #ffffff;
+}
+
+.mission-reward-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--duo-gold);
+}
+
+.mission-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--duo-card-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.mission-bar-fill {
+  height: 100%;
+  background: var(--duo-orange);
+  border-radius: 9999px;
+}
+
+.mission-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.mission-count-text { color: var(--duo-text-muted); }
+.claimed-badge { color: var(--duo-green); }
+.in-progress-text { color: var(--duo-text-sub); }
+
+.claim-reward-btn {
+  background: var(--duo-gold);
+  color: #131f24;
+  border: none;
+  font-weight: 1000;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--duo-gold-shadow);
+}
+
+.missions-buffs-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 22px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.buffs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.buff-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.buff-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.buff-icon-box.freeze { background: var(--duo-blue-tint); color: var(--duo-blue); border: 2px solid var(--duo-blue); }
+.buff-icon-box.potion { background: rgba(255, 200, 0, 0.15); color: var(--duo-gold); border: 2px solid var(--duo-gold); }
+
+.buff-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.buff-info strong { font-size: 0.82rem; color: #ffffff; }
+.buff-info span { font-size: 0.72rem; color: var(--duo-text-muted); font-weight: 700; }
+
+.buff-action-btn {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB: PROFILE & WEEKLY PROGRESS GRAPH
+   ══════════════════════════════════════════════════════════════ */
+.profile-hero-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 24px;
+  padding: 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.profile-hero-avatar-wrap {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--duo-blue);
+  box-shadow: 0 0 16px rgba(28, 176, 246, 0.35), 0 3px 0 var(--duo-blue-shadow);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #131f24;
+  overflow: hidden;
+}
+
+.profile-standing-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.mentor-change-floating-btn {
+  position: absolute;
+  bottom: 0;
+  background: var(--duo-blue);
+  color: #131f24;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--duo-blue-shadow);
+}
+
+.profile-hero-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.profile-badge-tier {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.profile-doctor-name {
+  font-size: 1.25rem;
+  font-weight: 1000;
+  margin: 0;
+  color: #ffffff;
+}
+
+.profile-doctor-quote {
+  font-size: 0.82rem;
+  color: var(--duo-text-muted);
+  margin: 0 0 0.35rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.profile-stats-row {
+  display: flex;
+  gap: 0.85rem;
+  border-top: 1px solid var(--duo-card-border);
+  padding-top: 0.45rem;
+}
+
+.p-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-stat-val {
+  font-size: 0.95rem;
+  font-weight: 1000;
+  color: #ffffff;
+}
+
+.p-stat-val.streak { color: var(--duo-orange); }
+.p-stat-val.gems { color: var(--duo-gold); }
+
+.p-stat-lbl {
+  font-size: 0.65rem;
+  color: var(--duo-text-muted);
+  font-weight: 800;
+}
+
+/* Weekly Progress Chart Card */
+.profile-progress-chart-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 24px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.chart-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 1000;
+  color: #ffffff;
+  letter-spacing: 0.6px;
+}
+
+.chart-subtitle {
+  font-size: 0.75rem;
+  color: var(--duo-text-muted);
+  font-weight: 700;
+}
+
+.chart-total-xp strong {
+  font-size: 1.25rem;
+  font-weight: 1000;
+  color: var(--duo-blue);
+}
+
+.chart-svg-container {
+  width: 100%;
+  height: 140px;
+}
+
+.progress-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart-grid-line {
+  stroke: #37464f;
+  stroke-dasharray: 4 4;
+  stroke-width: 1;
+}
+
+.chart-grid-line.zero {
+  stroke: #475569;
+  stroke-dasharray: none;
+}
+
+.chart-axis-label {
+  fill: #64748b;
+  font-size: 9px;
+  font-family: inherit;
+  font-weight: 800;
+  text-anchor: end;
+}
+
+.chart-line-glow {
+  stroke: var(--duo-blue);
+  stroke-width: 6;
+  opacity: 0.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-line-main {
+  stroke: var(--duo-blue);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: var(--duo-blue);
+}
+
+.chart-dot-inner {
+  fill: #ffffff;
+}
+
+.chart-day-label {
+  fill: #94a3b8;
+  font-size: 10px;
+  font-weight: 900;
+  text-anchor: middle;
+  font-family: inherit;
+}
+
+.chart-day-label.active {
+  fill: #ffffff;
+}
+
+.profile-achievements-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 24px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  padding: 0.85rem;
+}
+
+.achieve-icon-frame {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achieve-icon-frame.gold { background: rgba(255, 200, 0, 0.15); color: var(--duo-gold); border: 2px solid var(--duo-gold); }
+.achieve-icon-frame.flame { background: var(--duo-orange-tint); color: var(--duo-orange); border: 2px solid var(--duo-orange); }
+.achieve-icon-frame.locked { background: #1e293b; color: #64748b; border: 2px solid #37464f; }
+
+.achieve-details {
+  flex: 1;
+}
+
+.achieve-details strong { font-size: 0.88rem; color: #ffffff; display: block; }
+.achieve-details p { font-size: 0.75rem; color: var(--duo-text-muted); margin: 0; font-weight: 600; line-height: 1.3; }
+
+.achieve-badge {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--duo-green);
+}
+
+.achieve-badge.locked {
+  color: #64748b;
+}
+
+.profile-exit-to-dashboard-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  transition: all 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.profile-exit-to-dashboard-btn:hover {
+  border-color: var(--duo-blue);
+  color: var(--duo-blue);
+  transform: translateY(-2px);
+}
+
+.profile-exit-to-dashboard-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LESSON MODAL & FULLSCREEN ENGINE
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(8, 14, 26, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.medlingo-modal-container {
+  width: 100%;
+  max-width: 640px;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--duo-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top Progress Bar */
+.medlingo-lesson-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  height: 60px;
+}
+
+.medlingo-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--duo-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.medlingo-close-btn:hover {
+  color: #ffffff;
+}
+
+.medlingo-progressbar-track {
+  flex: 1;
+  height: 16px;
+  background: #37464f;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.medlingo-progressbar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.medlingo-progressbar-fill::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  right: 6px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+}
+
+.medlingo-hearts-display {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--duo-red);
+  font-weight: 900;
+  font-size: 1.15rem;
+}
+
+.medlingo-question-content {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TEACH FIRST: DUOLINGO PRO HERO CONCEPT CARD (ENHANCED FLASHCARDS)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-duo-concept-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.duo-hero-character-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.duo-hero-mascot-standing {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: #131f24;
+  border: 3px solid var(--duo-blue);
+  box-shadow: 0 0 16px rgba(28, 176, 246, 0.35), 0 4px 0 var(--duo-blue-shadow);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  animation: floatBounce 3.5s infinite ease-in-out;
+}
+
+.duo-standing-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.duo-standing-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+}
+
+.duo-hero-speech-bubble {
+  flex: 1;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-blue);
+  border-radius: 22px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 0 var(--duo-blue-shadow);
+  position: relative;
+}
+
+.duo-hero-speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 10px 10px 10px 0;
+  border-style: solid;
+  border-color: transparent var(--duo-card-bg) transparent transparent;
+  display: block;
+  width: 0;
+}
+
+.duo-speech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: var(--duo-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.25rem;
+}
+
+.duo-speech-title {
+  font-size: 1.2rem;
+  font-weight: 1000;
+  color: #ffffff;
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
+}
+
+.duo-speech-quote {
+  font-size: 0.88rem;
+  color: var(--duo-text-main);
+  margin: 0;
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* High-Yield Key Points Stack */
+.duo-concept-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.duo-keypoint-card-clean {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  padding: 0.95rem 1.15rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  transition: all 0.15s ease;
+}
+
+.card-emoji-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.card-content-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.card-main-title {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.card-diagnosis-pill {
+  background: rgba(28, 176, 246, 0.15);
+  border: 1.5px solid var(--duo-blue);
+  color: #38bdf8;
+  font-size: 0.74rem;
+  font-weight: 900;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+}
+
+.card-desc-text {
+  font-size: 0.86rem;
+  color: var(--duo-text-sub);
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.duo-mnemonic-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: rgba(255, 200, 0, 0.12);
+  border: 2px solid var(--duo-gold);
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 0 var(--duo-gold-shadow);
+}
+
+.ribbon-sparkle {
+  color: var(--duo-gold);
+  flex-shrink: 0;
+}
+
+.ribbon-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ribbon-tag {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: var(--duo-gold);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.ribbon-rule {
+  font-size: 0.9rem;
+  color: #fff4a3;
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   QUESTION FORMATS (DUOLINGO TOUCH DESIGN)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-question-header-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.question-mentor-mini {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid var(--duo-blue);
+  box-shadow: 0 3px 0 var(--duo-blue-shadow);
+  flex-shrink: 0;
+  background: var(--duo-card-bg);
+}
+
+.mini-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.question-prompt-text-wrap {
+  flex: 1;
+}
+
+.prompt-header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.prompt-type-badge {
+  display: inline-block;
+  background: var(--duo-blue-tint);
+  color: var(--duo-blue);
+  padding: 0.15rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.medlingo-inline-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(234, 179, 8, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.medlingo-inline-hint-pill:hover,
+.medlingo-inline-hint-pill.active {
+  background: #fbbf24;
+  color: #18181b;
+  border-color: #fbbf24;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
+}
+
+.medlingo-inline-hint-card {
+  margin-top: 0.65rem;
+  margin-bottom: 0.35rem;
+  padding: 0.75rem 0.95rem;
+  background: rgba(234, 179, 8, 0.12);
+  border: 1.5px solid rgba(234, 179, 8, 0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.hint-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hint-card-body {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #fef08a;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.question-prompt-text-wrap h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.35;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Flash MCQ Grid */
+.medlingo-mcq-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.medlingo-choice-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.05rem 1.25rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 18px;
+  color: var(--duo-text-main);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 800;
+  transition: all 0.1s ease;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  min-height: 58px;
+}
+
+.medlingo-choice-card:hover:not(:disabled) {
+  border-color: #556975;
+}
+
+.medlingo-choice-card.selected {
+  border-color: var(--duo-blue);
+  background: var(--duo-blue-tint);
+  box-shadow: 0 4px 0 var(--duo-blue-shadow);
+}
+
+.medlingo-choice-card.correct {
+  border-color: var(--duo-green) !important;
+  background: var(--duo-green-tint) !important;
+  box-shadow: 0 4px 0 var(--duo-green-shadow) !important;
+  color: #84f046;
+}
+
+.medlingo-choice-card.wrong {
+  border-color: var(--duo-red) !important;
+  background: var(--duo-red-tint) !important;
+  box-shadow: 0 4px 0 var(--duo-red-shadow) !important;
+  color: #ffa1a1;
+}
+
+.choice-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* Speed True/False */
+.medlingo-tf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.medlingo-tf-statement-card {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  padding: 1.5rem;
+  border-radius: 18px;
+  font-size: 1.1rem;
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  font-weight: 700;
+}
+
+.medlingo-tf-buttons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.medlingo-tf-btn {
+  flex: 1;
+  padding: 1.15rem;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.medlingo-tf-btn.true {
+  background: var(--duo-green);
+  box-shadow: 0 5px 0 var(--duo-green-shadow);
+  color: white;
+}
+
+.medlingo-tf-btn.true.selected {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.medlingo-tf-btn.false {
+  background: var(--duo-red);
+  box-shadow: 0 5px 0 var(--duo-red-shadow);
+  color: white;
+}
+
+.medlingo-tf-btn.false.selected {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* Match Pairs */
+.medlingo-pairs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.pairs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pair-card {
+  padding: 0.85rem 0.95rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  color: var(--duo-text-main);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.1s ease;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.pair-card.selected {
+  border-color: var(--duo-blue);
+  background: var(--duo-blue-tint);
+  box-shadow: 0 4px 0 var(--duo-blue-shadow);
+}
+
+.pair-card.matched {
+  border-color: var(--duo-green);
+  background: var(--duo-green-tint);
+  color: #84f046;
+  cursor: default;
+  opacity: 0.5;
+  box-shadow: none;
+  transform: translateY(2px);
+}
+
+.pair-check {
+  position: absolute;
+  right: 8px;
+  color: var(--duo-green);
+}
+
+/* Order Sequence */
+.medlingo-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.step-num {
+  font-weight: 900;
+  color: var(--duo-blue);
+  font-size: 1.15rem;
+}
+
+.step-text {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.step-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.step-arrows button {
+  background: #131f24;
+  border: 2px solid var(--duo-card-border);
+  color: white;
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.step-arrows button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* Fill Blanks */
+.fill-blanks-sentence {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  background: var(--duo-card-bg);
+  padding: 1.25rem;
+  border-radius: 18px;
+  border: 2px solid var(--duo-card-border);
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  font-weight: 700;
+}
+
+.blank-slot {
+  display: inline-block;
+  padding: 0.1rem 0.65rem;
+  margin: 0 0.3rem;
+  border-radius: 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.blank-slot.empty {
+  border-bottom: 3px dashed var(--duo-blue);
+  color: var(--duo-blue);
+}
+
+.blank-slot.filled {
+  background: var(--duo-blue);
+  color: #131f24;
+  box-shadow: 0 2px 0 var(--duo-blue-shadow);
+}
+
+.word-bank-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.word-chip {
+  padding: 0.65rem 1rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 14px;
+  color: white;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+  transition: all 0.1s ease;
+}
+
+.word-chip:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.word-chip.used {
+  opacity: 0.25;
+  cursor: default;
+  box-shadow: none;
+  transform: translateY(3px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CORNER CHARACTER MASCOT WIDGET
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-corner-mentor {
+  position: absolute;
+  bottom: 85px;
+  right: 16px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* On phones & mobile devices, hide floating corner overlay to prevent blocking choices & drawers */
+@media (max-width: 900px) {
+  .medlingo-corner-mentor {
+    display: none !important;
+  }
+}
+
+.medlingo-mascot-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.medlingo-hint-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--duo-gold);
+  color: #131f24;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 900;
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--duo-gold-shadow);
+  transition: transform 0.15s ease;
+}
+
+.medlingo-hint-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.medlingo-mascot-avatar-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  position: relative;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  background: #131f24;
+}
+
+.medlingo-mascot-avatar-btn:hover {
+  transform: scale(1.1);
+}
+
+.medlingo-mascot-avatar-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.combo-flame-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--duo-orange);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 0.1rem 0.35rem;
+  border-radius: 9999px;
+  border: 1px solid white;
+}
+
+.medlingo-corner-bubble {
+  width: 270px;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 18px;
+  padding: 0.85rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bubble-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mentor-name-text {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--duo-blue);
+}
+
+.mentor-spec-text {
+  font-size: 0.68rem;
+  color: var(--duo-text-muted);
+}
+
+.bubble-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--duo-text-muted);
+  cursor: pointer;
+}
+
+.hint-pill, .pearl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.hint-pill { color: var(--duo-gold); }
+.pearl-pill { color: var(--duo-blue); }
+
+.hint-message, .pearl-message {
+  font-size: 0.82rem;
+  color: var(--duo-text-main);
+  line-height: 1.35;
+  margin: 0;
+  font-weight: 600;
+}
+
+.bubble-footer {
+  display: flex;
+  gap: 0.4rem;
+  border-top: 1px solid var(--duo-card-border);
+  padding-top: 0.45rem;
+}
+
+.bubble-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  background: #131f24;
+  border: 1px solid var(--duo-card-border);
+  padding: 0.35rem;
+  border-radius: 8px;
+  color: var(--duo-text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.bubble-tab-btn.active {
+  background: var(--duo-blue);
+  color: #131f24;
+  border-color: var(--duo-blue);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BOTTOM FEEDBACK DRAWER & 3D BUTTONS
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-bottom-drawer {
+  padding: 1.1rem 1.25rem;
+  padding-bottom: max(1.1rem, env(safe-area-inset-bottom));
+  border-top: 2px solid var(--duo-card-border);
+  background: var(--duo-card-bg);
+}
+
+.medlingo-bottom-drawer.correct {
+  background: rgba(88, 204, 2, 0.15);
+  border-color: var(--duo-green);
+}
+
+.medlingo-bottom-drawer.incorrect {
+  background: rgba(255, 75, 75, 0.15);
+  border-color: var(--duo-red);
+}
+
+.medlingo-bottom-drawer.concept {
+  background: var(--duo-card-bg);
+}
+
+.feedback-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feedback-title {
+  font-size: 1.2rem;
+  font-weight: 1000;
+}
+
+.feedback-content.correct .feedback-title,
+.feedback-content.correct .feedback-icon {
+  color: var(--duo-green);
+}
+
+.feedback-content.incorrect .feedback-title,
+.feedback-content.incorrect .feedback-icon {
+  color: var(--duo-red);
+}
+
+.feedback-pearl {
+  font-size: 0.88rem;
+  color: #bbf7d0;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.feedback-explanation {
+  font-size: 0.88rem;
+  color: #fecaca;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.medlingo-action-btn {
+  padding: 0.95rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 1000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition: all 0.1s ease;
+}
+
+.medlingo-action-btn.full {
+  width: 100%;
+}
+
+.duo-big-btn {
+  background: var(--duo-green) !important;
+  box-shadow: 0 5px 0 var(--duo-green-shadow) !important;
+}
+
+.duo-big-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.duo-big-btn:active:not(:disabled) {
+  transform: translateY(4px) !important;
+  box-shadow: 0 1px 0 var(--duo-green-shadow) !important;
+}
+
+.medlingo-action-btn:disabled {
+  background: #37464f !important;
+  color: var(--duo-text-muted) !important;
+  cursor: not-allowed;
+  box-shadow: 0 4px 0 #202f36 !important;
+}
+
+.medlingo-action-btn.success {
+  background: var(--duo-green);
+  box-shadow: 0 5px 0 var(--duo-green-shadow);
+}
+
+.medlingo-action-btn.danger {
+  background: var(--duo-red);
+  box-shadow: 0 5px 0 var(--duo-red-shadow);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SHOP MODAL STYLING (PREMIUM CARDS & 3D BUTTONS)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-modal-container.shop {
+  height: auto;
+  max-height: 88vh;
+  max-width: 540px;
+  width: 95%;
+  background: var(--duo-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  padding: 1.5rem;
+  margin: auto;
+}
+
+.medlingo-shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--duo-card-border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.shop-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.shop-gold-sparkle {
+  color: var(--duo-gold);
+}
+
+.shop-title-wrap h2 {
+  font-size: 1.3rem;
+  font-weight: 1000;
+  margin: 0;
+  color: #ffffff;
+}
+
+.shop-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.shop-gems-balance {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 200, 0, 0.15);
+  border: 2px solid var(--duo-gold);
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: var(--duo-gold);
+}
+
+.medlingo-shop-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.medlingo-shop-item-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  border-radius: 20px;
+  padding: 1.15rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.item-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.item-icon-box.heart {
+  background: var(--duo-red-tint);
+  border: 2px solid var(--duo-red);
+  color: var(--duo-red);
+}
+
+.item-icon-box.freeze {
+  background: var(--duo-blue-tint);
+  border: 2px solid var(--duo-blue);
+  color: var(--duo-blue);
+}
+
+.item-icon-box.potion {
+  background: rgba(255, 200, 0, 0.15);
+  border: 2px solid var(--duo-gold);
+  color: var(--duo-gold);
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.item-details h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 0;
+  color: #ffffff;
+}
+
+.item-details p {
+  font-size: 0.82rem;
+  color: var(--duo-text-muted);
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.item-current-status {
+  font-size: 0.78rem;
+  color: var(--duo-text-sub);
+  margin-top: 0.2rem;
+  font-weight: 700;
+}
+
+.status-highlight {
+  color: #ffffff;
+}
+
+.status-active {
+  color: var(--duo-orange);
+  font-weight: 900;
+}
+
+.medlingo-shop-buy-btn {
+  background: var(--duo-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.75rem 1.1rem;
+  font-weight: 900;
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--duo-blue-shadow);
+  transition: all 0.1s ease;
+  flex-shrink: 0;
+}
+
+.medlingo-shop-buy-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.medlingo-shop-buy-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--duo-blue-shadow);
+}
+
+.medlingo-shop-buy-btn:disabled {
+  background: #37464f;
+  color: var(--duo-text-muted);
+  cursor: not-allowed;
+  box-shadow: 0 4px 0 #202f36;
+}
+
+.buy-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MENTOR PICKER MODAL STYLING (SNAPPY & PHONE FRIENDLY)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-modal-container.mentor-picker {
+  height: auto;
+  max-height: 85vh;
+  max-height: 85dvh;
+  width: 94%;
+  max-width: 440px;
+  background: #0f172a;
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  padding: 1.2rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mentor-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.mentor-picker-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mentor-picker-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mentor-picker-title-group h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.mentor-picker-title-group p {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  margin: 2px 0 0;
+}
+
+.mentor-picker-close-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mentor-picker-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.mentor-picker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  overflow-y: auto;
+  padding-right: 2px;
+  max-height: calc(85vh - 100px);
+}
+
+.mentor-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.12s ease;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+
+.mentor-picker-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateY(-1px);
+}
+
+.mentor-picker-item:active {
+  transform: scale(0.98);
+}
+
+.mentor-picker-item.active {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.15);
+}
+
+.mentor-picker-avatar-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  background: #1e293b;
+  position: relative;
+}
+
+.mentor-picker-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mentor-picker-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.mentor-picker-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mentor-picker-name {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mentor-picker-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mentor-picker-show {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.mentor-picker-dot {
+  color: #64748b;
+}
+
+.mentor-picker-spec {
+  color: #94a3b8;
+}
+
+.mentor-picker-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.mentor-picker-indicator.selected {
+  border-color: #38bdf8;
+  background: #38bdf8;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CELEBRATION VICTORY SCREEN (ANIMATED POPUP & CONFETTI)
+   ══════════════════════════════════════════════════════════════ */
+.medlingo-victory-card,
+.medlingo-out-of-hearts-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  gap: 0.9rem;
+  position: relative;
+}
+
+.animate-victory-pop {
+  animation: victoryPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes victoryPop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Confetti Particles */
+.confetti-burst-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: particleFly 2s infinite ease-out;
+}
+
+.confetti-particle.p1 { top: 10%; left: 15%; animation-delay: 0.1s; }
+.confetti-particle.p2 { top: 12%; right: 18%; animation-delay: 0.3s; }
+.confetti-particle.p3 { top: 35%; left: 8%; animation-delay: 0.5s; }
+.confetti-particle.p4 { top: 38%; right: 10%; animation-delay: 0.2s; }
+.confetti-particle.p5 { top: 60%; left: 18%; animation-delay: 0.6s; }
+.confetti-particle.p6 { top: 58%; right: 16%; animation-delay: 0.4s; }
+
+@keyframes particleFly {
+  0% { transform: scale(0.4) rotate(0deg) translateY(20px); opacity: 0; }
+  40% { opacity: 1; transform: scale(1.2) rotate(15deg) translateY(-10px); }
+  100% { opacity: 0; transform: scale(0.8) rotate(45deg) translateY(-40px); }
+}
+
+/* Glowing Trophy */
+.medlingo-victory-trophy-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.35rem;
+}
+
+.trophy-halo-glow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 0, 0.4) 0%, transparent 70%);
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 1; }
+}
+
+.trophy-gold-icon {
+  color: var(--duo-gold);
+  filter: drop-shadow(0 8px 24px rgba(255, 200, 0, 0.7));
+  animation: floatBounce 2.5s infinite ease-in-out;
+}
+
+/* Sequential Bouncing Stars */
+.medlingo-stars-celebration {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 0.2rem 0;
+}
+
+.star-bounce-item {
+  animation: starPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.star-bounce-item.s1 { animation-delay: 0.15s; }
+.star-bounce-item.s2 { animation-delay: 0.35s; }
+.star-bounce-item.s3 { animation-delay: 0.55s; }
+
+.star-bounce-item.missed .star-icon {
+  color: #37464f !important;
+  fill: #37464f !important;
+  filter: none !important;
+}
+
+@keyframes starPopIn {
+  0% { transform: scale(0) rotate(-30deg); opacity: 0; }
+  70% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.victory-text-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.medlingo-victory-title {
+  font-size: 1.6rem;
+  font-weight: 1000;
+  margin: 0;
+  color: #ffffff;
+}
+
+.medlingo-victory-sub {
+  color: var(--duo-text-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.medlingo-victory-sub strong {
+  color: #ffffff;
+}
+
+.medlingo-victory-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+
+.medlingo-victory-stat-box {
+  background: var(--duo-card-bg);
+  border: 2px solid var(--duo-card-border);
+  padding: 0.85rem;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 4px 0 var(--duo-card-shadow);
+}
+
+.medlingo-victory-stat-box.stat-xp { border-color: rgba(28, 176, 246, 0.4); }
+.medlingo-victory-stat-box.stat-gems { border-color: rgba(255, 200, 0, 0.4); }
+.medlingo-victory-stat-box.stat-streak { border-color: rgba(255, 150, 0, 0.4); }
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--duo-text-muted);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stat-val {
+  font-size: 1.15rem;
+  font-weight: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-val.xp { color: var(--duo-blue); }
+.stat-val.gems { color: var(--duo-gold); }
+.stat-val.streak { color: var(--duo-orange); }
+
+.victory-mentor-cheer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--duo-card-border);
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cheer-avatar-frame {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--duo-blue);
+  flex-shrink: 0;
+  background: var(--duo-card-bg);
+}
+
+.cheer-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cheer-quote {
+  font-size: 0.8rem;
+  color: var(--duo-text-main);
+  text-align: left;
+  line-height: 1.35;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.cheer-quote strong {
+  color: var(--duo-blue);
+  font-style: normal;
+}
+
+.heart-broken-icon {
+  font-size: 4rem;
+}
+
+.out-of-hearts-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 340px;
+}
+
+/* Animations */
+@keyframes pulseFlame {
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px var(--duo-orange)); }
+  100% { transform: scale(1.18); filter: drop-shadow(0 0 8px #ea580c); }
+}
+
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes heartAlert {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); box-shadow: 0 0 12px var(--duo-red); }
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slide-up {
+  animation: slideUp 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

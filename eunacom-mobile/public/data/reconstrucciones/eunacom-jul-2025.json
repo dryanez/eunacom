@@ -1,0 +1,2181 @@
+{
+  "id": "eunacom-jul-2025",
+  "name": "EUNACOM Julio 2025",
+  "month": "Julio",
+  "year": 2025,
+  "total_questions": 167,
+  "questions_with_answers": 167,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Mujer de 68 años con diagnóstico de insuficiencia cardíaca con fracción de eyección reducida (FEVI 35%), clase funcional NYHA III. En tratamiento con furosemida y enalapril. ¿Cuál es el diurético que se debe agregar para mejorar el pronóstico?",
+      "options": [
+        "a. Hidroclorotiazida",
+        "b. Indapamida",
+        "c. Clortalidona",
+        "d. Espironolactona",
+        "e. Torasemida"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Espironolactona (antagonista de aldosterona) reduce la mortalidad en ICC con FEVI ≤35% y NYHA III-IV (estudio RALES). Se agrega a furosemida + IECA. Monitorizar kalemia y función renal."
+    },
+    {
+      "id": 2,
+      "question": "Recién nacido de término con diagnóstico prenatal de hernia diafragmática izquierda. Al nacer presenta cianosis, dificultad respiratoria severa y abdomen excavado. ¿Cuál es la maniobra inicial más importante?",
+      "options": [
+        "a. Ventilación con bolsa-mascarilla",
+        "b. Aspiración orofaríngea",
+        "c. Oxígeno por cánula nasal",
+        "d. Intubación orotraqueal inmediata",
+        "e. CPAP nasal"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Hernia diafragmática: la ventilación con bolsa-mascarilla está CONTRAINDICADA (distensión intestinal comprime el pulmón). Se debe intubar de inmediato para ventilar con presiones bajas y descomprimir la vía aérea."
+    },
+    {
+      "id": 3,
+      "question": "Recién nacido de 3 días con protuberancia blanda en la línea media abdominal, de 1 cm de diámetro, reductible, sin signos inflamatorios. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Cirugía electiva inmediata",
+        "b. Cirugía de urgencia",
+        "c. Derivación a cirugía pediátrica urgente",
+        "d. Antibióticos profilácticos",
+        "e. Observación: la mayoría se cierra espontáneamente antes de los 4 años"
+      ],
+      "correctAnswer": "e",
+      "explanation": "Hernia umbilical en RN: es fisiológica y se cierra espontáneamente en el 90% de los casos antes de los 4 años. No requiere cirugía ni antibióticos. Solo observar; cirugía si persiste después de los 4-5 años o si se complica."
+    },
+    {
+      "id": 4,
+      "question": "Mujer de 17 años, con IMC 15.5 kg/m², niega sentirse enferma, refiere que todas sus amigas hacen lo mismo, realiza ejercicio intenso a diario y come menos de un cuarto de su ración habitual. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Anorexia nerviosa",
+        "b. Bulimia nerviosa",
+        "c. Trastorno por atracón",
+        "d. Depresión mayor con anhedonia",
+        "e. Trastorno de ansiedad generalizada"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Bajo peso severo + restricción alimentaria voluntaria + negación de la enfermedad + ejercicio compulsivo = anorexia nerviosa restrictiva."
+    },
+    {
+      "id": 5,
+      "question": "Hombre de 65 años con dolor abdominal postprandial, pérdida de peso de 6 kg y soplo abdominal. Antecedente de tabaquismo y cardiopatía coronaria. Se sospecha isquemia mesentérica crónica (angina intestinal) en etapa estable. ¿Cuál es el estudio de elección para confirmar el diagnóstico?",
+      "options": [
+        "a. AngioTAC de vasos mesentéricos",
+        "b. Resonancia magnética",
+        "c. Angiografía convencional",
+        "d. Ecografía Doppler mesentérica",
+        "e. Radiografía simple de abdomen"
+      ],
+      "correctAnswer": "a",
+      "explanation": "AngioTAC de vasos mesentéricos es el estudio inicial de elección para isquemia mesentérica crónica estable: no invasivo, permite visualizar el tronco celíaco, AMS y AMI. La angiografía convencional se reserva si se planifica revascularización."
+    },
+    {
+      "id": 6,
+      "question": "Lactante de 4 meses con infecciones respiratorias a repetición, deposiciones grasas malolientes y retraso pondoestatural. La madre refiere que el sudor del niño \"sabe salado\". ¿Cuál es el examen diagnóstico de elección?",
+      "options": [
+        "a. Broncoscopía",
+        "b. Test del sudor (electrolitos en sudor)",
+        "c. Test de metacolina",
+        "d. TAC de tórax de alta resolución",
+        "e. Espirometría"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Fibrosis quística: infecciones respiratorias recurrentes + esteatorrea + sudor salado (elevado NaCl). Diagnóstico: test del sudor (cloro en sudor ≥60 mEq/L = positivo). Es el gold standard diagnóstico en pediatría."
+    },
+    {
+      "id": 7,
+      "question": "Paciente de 28 años llega a urgencias con fiebre alta, cefalea intensa, mialgias, compromiso respiratorio progresivo y antecedente de trabajo en zona rural del sur de Chile. Hemograma con leucopenia y trombocitopenia. ¿Cuál es el agente causal más probable?",
+      "options": [
+        "a. Hantavirus (Sin Nombre)",
+        "b. Leptospira interrogans",
+        "c. Rickettsia conorii",
+        "d. Yersinia pestis",
+        "e. Francisella tularensis"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hantavirus pulmonar en Chile es transmitido por ratón colilargo. Fase cardiopulmonar: edema pulmonar no cardiogénico + leucopenia + trombocitopenia. Es la causa más probable en zona rural del sur."
+    },
+    {
+      "id": 8,
+      "question": "Mujer de 58 años con calcio sérico de 11.8 mg/dL detectado en examen de rutina. Asintomática. Sin uso de suplementos de calcio ni vitamina D. ¿Cuál es el estudio inicial de elección para determinar la causa de la hipercalcemia?",
+      "options": [
+        "a. PTH sérica",
+        "b. Fósforo sérico",
+        "c. Calcitonina",
+        "d. Calcio en orina de 24h",
+        "e. Vitamina D (25-OH)"
+      ],
+      "correctAnswer": "a",
+      "explanation": "PTH es el primer examen a solicitar en hipercalcemia: PTH elevada = hiperparatiroidismo primario (causa más frecuente en ambulatorio). PTH suprimida = hipercalcemia de malignidad, intoxicación vitamina D u otras causas. Orienta todo el estudio."
+    },
+    {
+      "id": 9,
+      "question": "Adolescente de 15 años con dolor en la rodilla derecha de 3 meses de evolución. Refiere haber tenido un golpe previo que no mejora. Radiografía: masa osteolítica con reacción perióstica en triángulo de Codman en la metáfisis distal del fémur. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Fractura patológica",
+        "b. Osteomielitis crónica",
+        "c. Sarcoma de Ewing",
+        "d. Osteosarcoma",
+        "e. Condrosarcoma"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Osteosarcoma: masa osteolítica en METÁFISIS de huesos largos (fémur distal / tibia proximal) en adolescentes + triángulo de Codman (reacción perióstica) = osteosarcoma. El Sarcoma de Ewing ocurre en DIÁFISIS y produce patrón \"cebolla\". Ambos tratados con cirugía + quimioterapia."
+    },
+    {
+      "id": 10,
+      "question": "Hombre de 35 años sin antecedentes previos consulta por edema facial al despertar, orina espumosa y aumento de peso de 5 kg en 2 semanas. Proteinuria 24h: 8 g. Albúmina 2.0 g/dL. Sin hematuria. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Síndrome nefrótico puro",
+        "b. Síndrome nefrítico agudo",
+        "c. Glomerulonefritis membranoproliferativa",
+        "d. Nefropatía IgA",
+        "e. Pielonefritis crónica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Proteinuria masiva (>3.5 g/24h) + hipoalbuminemia + edema + sin hematuria = síndrome nefrótico puro. En adulto joven sin causa secundaria, la causa más frecuente es nefropatía por cambios mínimos."
+    },
+    {
+      "id": 11,
+      "question": "Niño de 8 años con fiebre de 39°C por 7 días de evolución, exantema polimorfo, adenopatías cervicales, conjuntivitis bilateral no exudativa y lengua en fresa. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Enfermedad de Kawasaki",
+        "b. Mononucleosis infecciosa",
+        "c. Escarlatina",
+        "d. Artritis idiopática juvenil",
+        "e. Sarampión"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Kawasaki: fiebre ≥5 días + ≥4 criterios (exantema polimorfo, adenopatía cervical, conjuntivitis no exudativa, labios/lengua enrojecidos, edema palmoplantar). Requiere ecocardio y tratamiento con IGIV + aspirina para prevenir aneurismas coronarios."
+    },
+    {
+      "id": 12,
+      "question": "Mujer de 78 años con diagnóstico de Alzheimer moderado. Presenta agitación nocturna severa, intentos de golpear a cuidadores y deambulación sin propósito, que no cede con medidas no farmacológicas. ¿Cuál es el fármaco más apropiado?",
+      "options": [
+        "a. Donepezilo",
+        "b. Haloperidol en dosis alta",
+        "c. Risperidona 0.5 mg nocturno",
+        "d. Memantina",
+        "e. Quetiapina 25 mg nocturno"
+      ],
+      "correctAnswer": "e",
+      "explanation": "Trastorno conductual en Alzheimer: quetiapina a dosis bajas (12.5-25 mg) es preferida por su mejor perfil de seguridad en el adulto mayor (menos efectos extrapiramidales que haloperidol/risperidona). Usar solo si medidas no farmacológicas fallan."
+    },
+    {
+      "id": 13,
+      "question": "Lactante de 8 meses con fiebre de 39.5°C durante 5 días. Al sexto día la fiebre cede y aparece exantema rosado generalizado no pruriginoso. El niño está en buen estado general. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Control sano habitual: exantema súbito, evolución benigna",
+        "b. Derivar a especialista",
+        "c. Hospitalizar",
+        "d. Iniciar aciclovir",
+        "e. Solicitar serología viral urgente"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Exantema súbito (roséola infantil, HHV-6): fiebre alta 3-5 días → cede bruscamente → exantema rosado generalizado. Diagnóstico clínico, evolución benigna y autolimitada. No requiere tratamiento antiviral. Control de rutina."
+    },
+    {
+      "id": 14,
+      "question": "Mujer de 35 años con placas eritematosas en cuero cabelludo con alopecia cicatricial, fotosensibilidad y presencia de tapones foliculares. Lesiones similares en mejillas. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Tinea capitis",
+        "b. Alopecia androgénica",
+        "c. Tricotilomanía",
+        "d. Lupus eritematoso discoide",
+        "e. Alopecia areata"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Lupus discoide: placas eritematosas con escamas adherentes, tapones foliculares y alopecia cicatricial en cuero cabelludo + fotosensibilidad en mejillas. Alopecia cicatricial permanente. Tratamiento: antipalúdicos (cloroquina) + protección solar."
+    },
+    {
+      "id": 15,
+      "question": "Paciente de 30 años con tos nocturna y disnea de esfuerzo. Espirometría basal normal. Se realiza test de provocación con metacolina: caída del VEF1 del 22% con dosis de 8 mg/mL. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Asma bronquial",
+        "b. EPOC",
+        "c. Bronquiectasias",
+        "d. Fibrosis pulmonar",
+        "e. Bronquiolitis obliterante"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Caída del VEF1 ≥20% con metacolina = hiperreactividad bronquial = test positivo para asma. Es el gold standard cuando la espirometría basal es normal."
+    },
+    {
+      "id": 16,
+      "question": "Paciente de 22 años con episodios de disnea y sibilancias. Radiografía de tórax PA y lateral: hiperinsuflación bilateral, horizontalización de costillas. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Asma bronquial",
+        "b. Neumotórax espontáneo",
+        "c. Derrame pleural bilateral",
+        "d. Neumonía bilateral",
+        "e. Fibrosis quística"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hiperinsuflación en radiografía de tórax durante crisis de disnea con sibilancias en joven = asma bronquial. El atrapamiento aéreo produce la imagen de hiperinsuflación."
+    },
+    {
+      "id": 17,
+      "question": "Paciente de 25 años con tos y sibilancias recurrentes. Espirometría muestra VEF1/CVF 68% (< 70%), VEF1 72% del predicho. Post broncodilatador: VEF1 aumenta 15% y 220 mL. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Asma bronquial",
+        "b. EPOC leve",
+        "c. Bronquiectasias",
+        "d. Fibrosis pulmonar idiopática",
+        "e. Traqueomalacia"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Obstrucción espirométrica + prueba broncodilatadora positiva (aumento VEF1 ≥12% y ≥200 mL) = asma bronquial. La reversibilidad distingue asma de EPOC."
+    },
+    {
+      "id": 18,
+      "question": "RN con microcefalia, calcificaciones periventriculares y coriorretinitis. Madre con serología IgG positiva para CMV y IgM positiva. ¿Cuál es el agente causante de la infección congénita?",
+      "options": [
+        "a. Citomegalovirus (CMV)",
+        "b. Toxoplasma gondii",
+        "c. Virus herpes simplex tipo 2",
+        "d. Treponema pallidum",
+        "e. Virus de rubéola"
+      ],
+      "correctAnswer": "a",
+      "explanation": "CMV congénito es la infección congénita viral más frecuente. Calcificaciones periventriculares (vs parenquimatosas en toxoplasma) + microcefalia + coriorretinitis = TORCH por CMV."
+    },
+    {
+      "id": 19,
+      "question": "Hombre de 70 años con HPB conocida llega a urgencias con incapacidad de orinar desde hace 8 horas, vejiga palpable en hipogastrio y dolor intenso. ¿Cuál es el manejo inicial de elección?",
+      "options": [
+        "a. Sonda Foley vesical",
+        "b. Diurético EV",
+        "c. Alfa-bloqueador oral y esperar",
+        "d. Cistostomía suprapúbica inmediata",
+        "e. Cateterismo intermitente"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Retención urinaria aguda: manejo inmediato = sonda Foley para drenaje vesical. Alivia el dolor y previene daño renal. Cistostomía solo si falla la sonda. Alfa-bloqueador se agrega DESPUÉS del episodio agudo para prevención de recurrencia."
+    },
+    {
+      "id": 20,
+      "question": "Mujer de 28 años con urticaria generalizada de 48h de evolución, prurito intenso. Sin angioedema ni compromiso hemodinámico. ¿Cuál es el tratamiento de primera línea?",
+      "options": [
+        "a. Levocetirizina oral",
+        "b. Adrenalina subcutánea",
+        "c. Metilprednisolona EV",
+        "d. Omalizumab subcutáneo",
+        "e. Inmunoterapia sublingual"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Urticaria aguda sin anafilaxia: antihistamínicos H1 de segunda generación (cetirizina, levocetirizina, loratadina) son primera línea. Corticoides se reservan para casos refractarios."
+    },
+    {
+      "id": 21,
+      "question": "Paciente de 35 años VIH (+) con tos productiva de 3 semanas, baja de peso y sudoración nocturna. Baciloscopia de esputo positiva. ¿Cuál es el tratamiento de primera línea?",
+      "options": [
+        "a. Isoniazida + Rifampicina + Pirazinamida + Etambutol por 2 meses, luego Isoniazida + Rifampicina por 4 meses",
+        "b. Claritromicina + Etambutol por 6 meses",
+        "c. Moxifloxacino + Rifampicina por 9 meses",
+        "d. Isoniazida en monoterapia por 9 meses",
+        "e. Cotrimoxazol forte por 6 meses"
+      ],
+      "correctAnswer": "a",
+      "explanation": "TBC pulmonar activa: esquema HRZE 2 meses + HR 4 meses (total 6 meses), independiente del status VIH. En VIH se inicia TARV dentro de 2-8 semanas del inicio del tratamiento anti-TBC."
+    },
+    {
+      "id": 22,
+      "question": "Paciente masculino de 55 años con dolor torácico desgarrador de inicio súbito, irradiado a la espalda. TA en brazo derecho 185/100 y en brazo izquierdo 140/80. TC: disección de aorta tipo B de Stanford. ¿Cuál es el manejo inicial?",
+      "options": [
+        "a. Manejo médico: control de frecuencia cardíaca y presión arterial",
+        "b. Cirugía de emergencia",
+        "c. Trombólisis sistémica",
+        "d. Endoprótesis aórtica de urgencia",
+        "e. Anticoagulación con heparina EV"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Disección aórtica tipo B de Stanford (no compromete aorta ascendente): manejo médico con betabloqueadores para reducir FC <60 lpm y PA sistólica 100-120 mmHg. Cirugía solo si hay complicaciones."
+    },
+    {
+      "id": 23,
+      "question": "Embarazada de 8 semanas consulta por exámenes. Se realiza PTGO 75g: glicemia ayuno 88 mg/dL y a las 2 horas 140 mg/dL. ¿Cómo se interpreta este resultado?",
+      "options": [
+        "a. Resistencia a la insulina",
+        "b. Normal para el embarazo",
+        "c. Diabetes pregestacional",
+        "d. Diabetes gestacional",
+        "e. Intolerancia a la glucosa gestacional"
+      ],
+      "correctAnswer": "b",
+      "explanation": "PTGO en embarazo (ADA/OMS): diagnóstico de DG requiere glicemia ayuno ≥92, 1h ≥180 o 2h ≥153 mg/dL. Con 2h en 140 mg/dL (< 153), el resultado es NORMAL. Se realiza nueva PTGO a las 24-28 semanas si el riesgo persiste."
+    },
+    {
+      "id": 24,
+      "question": "Mujer de 55 años con DM2 en tratamiento con metformina, requiere corticoterapia con prednisona 40 mg/día por enfermedad pulmonar. Sus glicemias de ayuno eran 130 mg/dL y post-prandiales suben a 280 mg/dL. ¿Cuál es el ajuste más adecuado?",
+      "options": [
+        "a. Iniciar insulina",
+        "b. Agregar metformina adicional",
+        "c. Pioglitazona",
+        "d. Glibenclamida",
+        "e. Sitagliptina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Corticoides causan hiperglicemia postprandial marcada por resistencia a la insulina. La insulina es el tratamiento de elección en este contexto (flexibilidad de ajuste, control rápido). Los hipoglicemiantes orales no dan el control necesario con dosis altas de corticoides."
+    },
+    {
+      "id": 25,
+      "question": "RN por parto distocico y que requirió reanimación, presenta astenia, hipotonía y otros síntomas horas después",
+      "options": [
+        "a. Sepsis neonatal",
+        "b. encefalopatia hipoxico isquemica",
+        "c. Meningitis neonatal",
+        "d. Hipoglicemia neonatal",
+        "e. Hemorragia intraventricular"
+      ],
+      "correctAnswer": "a",
+      "explanation": "encefalopatia hipoxico isquemica"
+    },
+    {
+      "id": 26,
+      "question": "Mujer de 45 años con várices en extremidades inferiores bilaterales, sin úlceras ni tromboflebitis. Sin otros antecedentes mórbidos. ¿Cuál es el manejo inicial más adecuado?",
+      "options": [
+        "a. Anticoagulación oral",
+        "b. Flebectomía inmediata",
+        "c. Escleroterapia de urgencia",
+        "d. Medidas conservadoras: dieta, ejercicio y medias compresivas",
+        "e. Derivación vascular urgente"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Varices simples sin complicaciones: manejo inicial conservador con elevación de extremidades, ejercicio (caminata), control de peso y medias de compresión elástica. La cirugía/escleroterapia se reserva para cuando las medidas conservadoras fallan o hay complicaciones."
+    },
+    {
+      "id": 27,
+      "question": "Paciente de 52 años con hemorroides externas trombosadas desde hace 6 horas, violáceas, protruidas, irreducibles y muy dolorosas. ¿Cuál es el manejo más adecuado?",
+      "options": [
+        "a. Hemorroidectomía de urgencia",
+        "b. Trombectomía hemorroidal bajo anestesia local",
+        "c. Ligadura con banda elástica",
+        "d. Manejo médico conservador con analgesia y baños de asiento",
+        "e. Escleroterapia"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Hemorroides externas trombosadas en primeras 72h: trombectomía bajo anestesia local alivia el dolor en forma inmediata. Después de 72h, el manejo es conservador pues el trombo se reabsorbe."
+    },
+    {
+      "id": 28,
+      "question": "paciente embarazada con hemograma patológico, enzimas hepáticas elevadas, litisis vesicular, hta, hipoglicemia, dolor y fiebre",
+      "options": [
+        "a. sd hellp o higado graso agudo (en discusión)",
+        "b. Hepatitis viral",
+        "c. Preeclampsia severa",
+        "d. Colestasia intrahepática",
+        "e. Hígado graso agudo del embarazo"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Embarazada con HELLP + hígado graso agudo del embarazo (HGAE): ambas son emergencias obstétricas con laboratorio similar. En contexto de embarazo con hepatopatía grave, interrupción urgente es la conducta."
+    },
+    {
+      "id": 29,
+      "question": "Imagen radiográfica de tórax PA en hombre de 62 años, fumador, que muestra masa hiliar derecha irregular con atelectasia del lóbulo superior derecho. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Carcinoma espinocelular (epidermoide) de pulmón",
+        "b. Derrame pleural",
+        "c. Neumotórax espontáneo",
+        "d. Neumonía por aspiración",
+        "e. Adenocarcinoma periférico"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Masa hiliar central en fumador con atelectasia lobar = carcinoma espinocelular (epidermoide), el más frecuente en fumadores y de localización central. Produce obstrucción bronquial y atelectasia distal."
+    },
+    {
+      "id": 30,
+      "question": "Hombre de 48 años con glicemia de ayuno de 115 mg/dL en dos ocasiones. IMC 28. Sin otros factores de riesgo. ¿Cuál es la intervención más importante para reducir la progresión a diabetes?",
+      "options": [
+        "a. Dieta estricta baja en carbohidratos",
+        "b. Metformina 500 mg dos veces al día",
+        "c. Ejercicio aeróbico 150 minutos por semana",
+        "d. Orlistat",
+        "e. Insulina basal"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Prediabetes (glucosa ayuno 100-125 mg/dL): la intervención más efectiva para prevenir progresión es el cambio de estilo de vida: ejercicio ≥150 min/semana de intensidad moderada + dieta saludable. Reduce riesgo de DM en 58% (estudio DPP). Metformina es segunda línea en pacientes de alto riesgo."
+    },
+    {
+      "id": 31,
+      "question": "Lactante de 7 meses cuya madre nota que al iluminar sus ojos con linterna, el ojo derecho refleja luz blanca (leucocoria) en vez del habitual reflejo rojo. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Descartar toxoplasmosis ocular: solicitar serología",
+        "b. Catarata congénita: derivar urgente a oftalmología",
+        "c. Retinoblastoma: derivar urgente a oftalmología",
+        "d. Retinopatía del prematuro: si no fue prematuro, tranquilizar",
+        "e. Glaucoma congénito: iniciar colirio"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Leucocoria (reflejo pupilar blanco) en lactante: principal diagnóstico a descartar es CATARATA CONGÉNITA y retinoblastoma. A los 7 meses sin antecedente de prematuridad, catarata congénita es lo más frecuente. Derivación urgente a oftalmología para tratamiento precoz (cirugía antes de los 10 semanas para evitar ambliopía)."
+    },
+    {
+      "id": 32,
+      "question": "Hombre de 55 años hipertenso en tratamiento con enalapril, bien controlado. Consulta por tos seca persistente desde que inició el tratamiento hace 3 meses. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Amlodipino (mantener enalapril y agregar calcioantagonista)",
+        "b. Hidroclorotiazida (agregar diurético)",
+        "c. Losartán (cambiar enalapril por ARA II)",
+        "d. Atenolol (agregar betabloqueador)",
+        "e. Suspender enalapril sin reemplazar"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Tos seca por IECA (enalapril): efecto de clase por acumulación de bradicinina, ocurre en 10-15% de pacientes. Solución: cambiar a ARA II (Losartán, Valsartán) que no causan tos. El control hipertensivo se mantiene con igual eficacia sin el efecto adverso."
+    },
+    {
+      "id": 33,
+      "question": "Adulto mayor de 78 años con sonda Foley permanente. Urocultivo de rutina: E. coli >100.000 UFC/mL. El paciente está asintomático y afebril. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. No tratar; bacteriuria asintomática en portador de sonda no requiere antibióticos",
+        "b. Iniciar nitrofurantoína por 7 días",
+        "c. Iniciar ciprofloxacino por 7 días",
+        "d. Cambiar sonda y tratar con cefazolina",
+        "e. Repetir urocultivo en 48 horas"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Bacteriuria asintomática en portador de catéter urinario: no se trata con antibióticos (guías IDSA). El tratamiento aumenta resistencia sin beneficio clínico, salvo en embarazadas o previo a procedimiento urológico."
+    },
+    {
+      "id": 34,
+      "question": "Embarazada de 20 semanas con urocultivo positivo para E. coli sensible. Sin alergias. ¿Cuál es el antibiótico de elección para la infección urinaria en el embarazo?",
+      "options": [
+        "a. Cefalexina oral por 7 días",
+        "b. Amoxicilina oral",
+        "c. Cotrimoxazol (contraindicado en tercer trimestre)",
+        "d. Ciprofloxacino (contraindicado en embarazo)",
+        "e. Nitrofurantoína (evitar en tercer trimestre)"
+      ],
+      "correctAnswer": "a",
+      "explanation": "ITU en embarazo: cefalexina oral 500 mg c/6-8h por 7 días es de primera línea en Chile. Ciprofloxacino: contraindicado (artropatía fetal). Cotrimoxazol: contraindicado en tercer trimestre (kernicterus). Nitrofurantoína: evitar en tercer trimestre. Cefalexina: segura en todos los trimestres."
+    },
+    {
+      "id": 35,
+      "question": "Niño de 8 años con otorrea crónica serosa, hipoacusia conductiva bilateral y tímpano con perforación central. ¿Cuál es el manejo inicial más adecuado?",
+      "options": [
+        "a. Gotas óticas de ciprofloxacino + taponamiento con algodón",
+        "b. Miringoplastia electiva",
+        "c. Timpanotomía de urgencia",
+        "d. Audiometría y derivación a otorrinolaringología",
+        "e. Antibiótico oral por 14 días"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Perforación timpánica crónica con hipoacusia conductiva: audiometría para evaluar pérdida auditiva y derivación a ORL para considerar timpanoplastía. No se tapona el oído perforado."
+    },
+    {
+      "id": 36,
+      "question": "Hombre de 25 años con secreción uretral purulenta y disuria de 4 días de evolución. Tinción de Gram: diplococos gram negativos intracelulares. ¿Cuál es el tratamiento de elección?",
+      "options": [
+        "a. Azitromicina 1 g oral dosis única",
+        "b. Doxiciclina 100 mg c/12h por 7 días",
+        "c. Ciprofloxacino 500 mg oral dosis única",
+        "d. Amoxicilina 3 g oral dosis única",
+        "e. Ceftriaxona 500 mg IM dosis única"
+      ],
+      "correctAnswer": "e",
+      "explanation": "Gonorrea uretral: ceftriaxona 500 mg IM dosis única es el tratamiento de elección (guías CDC 2021). Alta resistencia a ciprofloxacino y amoxicilina. Se agrega azitromicina o doxiciclina para cubrir Chlamydia concomitante (coinfección en ~40% de casos)."
+    },
+    {
+      "id": 37,
+      "question": "Hombre de 30 años consulta por úlcera indolora en glande de 5 días de evolución, bordes indurados, fondo limpio. Sin adenopatías inguinales dolorosas. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Sífilis primaria (chancro sifilítico)",
+        "b. Herpes genital",
+        "c. Chancroide (Haemophilus ducreyi)",
+        "d. Linfogranuloma venéreo",
+        "e. Carcinoma espinocelular de pene"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Úlcera genital única, indolora, bordes indurados, fondo limpio = chancro sifilítico (sífilis primaria por Treponema pallidum). El herpes es doloroso y con vesículas; el chancroide es doloroso."
+    },
+    {
+      "id": 38,
+      "question": "Adolescente de 14 años que presenta ausencias repetidas al colegio, peleas con compañeros, robos dentro del hogar y consumo de alcohol desde los 12 años. Los padres refieren que \"no respeta ninguna norma\". ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Discapacidad intelectual",
+        "b. TDAH",
+        "c. Trastorno de conducta",
+        "d. Trastorno del espectro autista",
+        "e. Fobia social"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Trastorno de conducta: patrón repetitivo y persistente de comportamiento que viola los derechos básicos de otros o normas sociales (agresión, robo, absentismo, consumo de sustancias). Inicio antes de los 15 años. Requiere intervención multidisciplinaria."
+    },
+    {
+      "id": 39,
+      "question": "Joven de 22 años que abandonó su carrera universitaria hace 8 meses, pasa la mayor parte del tiempo en casa, habla solo, ríe sin motivo aparente y cree que sus compañeros lo persiguen. Sin consumo de sustancias. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Esquizofrenia",
+        "b. Trastorno esquizoafectivo",
+        "c. Trastorno de personalidad esquizoide",
+        "d. Trastorno bipolar con psicosis",
+        "e. Trastorno delirante crónico"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Esquizofrenia: síntomas positivos (alucinaciones, ideas de persecución) + negativos (aislamiento social, abandono de actividades) + desorganización (habla solo, risa inapropiada) por >6 meses en adulto joven. Requiere antipsicótico + rehabilitación."
+    },
+    {
+      "id": 40,
+      "question": "Mujer embarazada de 34 semanas es encontrada convulsionando en la calle. Previamente tenía presión arterial de 165/110 mmHg. Al llegar a urgencias persiste con crisis convulsiva. ¿Cuál es el tratamiento de elección?",
+      "options": [
+        "a. Fenitoína IV",
+        "b. Sulfato de magnesio IV",
+        "c. Diazepam IV",
+        "d. Nifedipino sublingual",
+        "e. Labetalol IV"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Eclampsia (convulsiones en contexto de preeclampsia): el sulfato de magnesio es el anticonvulsivante de elección (no es un anticonvulsivante clásico, actúa bloqueando NMDA). Fenitoína no tiene evidencia en eclampsia y es teratogénica. Luego control de PA y evaluar interrupción del embarazo."
+    },
+    {
+      "id": 41,
+      "question": "Mujer de 45 años con ecografía mamaria que informa BIRADS 0. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Completar estudio con mamografía bilateral",
+        "b. Biopsia core guiada por ecografía",
+        "c. Control en 6 meses",
+        "d. Alta y control anual",
+        "e. RMN mamaria de urgencia"
+      ],
+      "correctAnswer": "a",
+      "explanation": "BIRADS 0 = evaluación incompleta, se requieren imágenes adicionales para concluir. La ecografía BIRADS 0 se completa con mamografía u otras proyecciones. No es resultado final."
+    },
+    {
+      "id": 42,
+      "question": "Mujer de 52 años con menopausia hace 2 años y sequedad vaginal severa. Inicia estrógenos tópicos vaginales. ¿Con qué frecuencia se deben aplicar en la fase de mantenimiento?",
+      "options": [
+        "a. Una vez al día",
+        "b. Dos veces al día",
+        "c. Dos o tres veces por semana",
+        "d. Una vez por semana",
+        "e. Solo durante el período sintomático"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Estrógenos tópicos vaginales: fase inicial diaria por 2 semanas, luego mantenimiento 2-3 veces por semana. Dos veces al día en mantenimiento es dosis excesiva innecesaria."
+    },
+    {
+      "id": 43,
+      "question": "Mujer de 56 años postmenopáusica con sequedad vaginal severa, dispareunia y urgencia urinaria. Sin tratamiento actual. ¿Cuál es el tratamiento de primera línea?",
+      "options": [
+        "a. Estrógenos tópicos vaginales",
+        "b. Estrógenos orales sistémicos",
+        "c. Lubricantes vaginales sin hormonas",
+        "d. Ospemifeno oral",
+        "e. Testosterona tópica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Síndrome genitourinario de la menopausia (sequedad vaginal + dispareunia + síntomas urinarios): primera línea = estrógenos tópicos vaginales (crema, óvulos o anillo). Acción local, mínima absorción sistémica, pueden usarse incluso en pacientes con CA mama en muchos contextos."
+    },
+    {
+      "id": 44,
+      "question": "Joven de 22 años con palpitaciones súbitas de inicio y término brusco. ECG en crisis: taquicardia regular de QRS estrecho a 180 lpm. Cede con maniobra de Valsalva. ¿Cuál es el tratamiento farmacológico de elección si reaparece?",
+      "options": [
+        "a. Adenosina IV en bolo rápido",
+        "b. Amiodarona EV",
+        "c. Metoprolol oral",
+        "d. Digoxina IV",
+        "e. Cardioversión eléctrica sincronizada"
+      ],
+      "correctAnswer": "a",
+      "explanation": "TPSV (taquicardia paroxística supraventricular) estable: si maniobras vagales fallan, adenosina IV 6 mg en bolo rápido es el tratamiento de elección por su efecto ultrabreve sobre el nodo AV."
+    },
+    {
+      "id": 45,
+      "question": "Adolescente masculino de 14 años con aumento bilateral del tejido mamario subareolar, sensible al tacto, sin secreción. Sin medicamentos. Desarrollo puberal Tanner 3. ¿Cuál es el diagnóstico y conducta?",
+      "options": [
+        "a. Ginecomastia puberal fisiológica; tranquilizar y observar",
+        "b. Cáncer de mama masculino; biopsia urgente",
+        "c. Hiperprolactinemia; solicitar prolactina",
+        "d. Hipogonadismo; solicitar testosterona",
+        "e. Tumor testicular; solicitar ecografía testicular"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Ginecomastia bilateral en adolescente Tanner 3 sin medicamentos ni masa firme = ginecomastia puberal fisiológica. Ocurre en 50-70% de los púberes. Regresa espontáneamente en 1-2 años."
+    },
+    {
+      "id": 46,
+      "question": "Madre consulta por evaluación de desarrollo de su hijo de 1 año y 3 meses. El niño camina solo, dice 3 palabras con significado y construye una torre de 3 cubos. ¿Cómo se interpreta su desarrollo psicomotor?",
+      "options": [
+        "a. Retraso en el lenguaje",
+        "b. Retraso en el área motora",
+        "c. Desarrollo normal para su edad",
+        "d. Retraso global del desarrollo",
+        "e. Requiere evaluación neurológica urgente"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Hitos normales a los 15 meses: marcha independiente (esperada a 12 m) ✓, 3-5 palabras (esperadas 12-15 m) ✓, torre de 2 cubos (esperada 15 m, torre 3 cubos es adelantado) ✓. Desarrollo completamente normal. Control de salud infantil de rutina."
+    },
+    {
+      "id": 47,
+      "question": "Niño de 4 años con masa cervical anterior en la línea media, móvil con la deglución y la protrusión de la lengua, sin dolor ni fiebre. ¿Cuál es el diagnóstico más probable y la conducta?",
+      "options": [
+        "a. Quiste tirogloso; derivar a cirugía para extirpación electiva",
+        "b. Adenopatía cervical reactiva; observar",
+        "c. Linfoma cervical; biopsia",
+        "d. Bocio difuso; solicitar TSH",
+        "e. Quiste braquial; observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Masa cervical anterior en línea media que sube con deglución y protrusión lingual = quiste tirogloso. Tratamiento: cirugía de Sistrunk (extirpación del quiste + cuerpo del hioides) para evitar recidivas."
+    },
+    {
+      "id": 48,
+      "question": "Hombre de 20 años con odinofagia severa, fiebre 39°C, dificultad para abrir la boca (trismus) y desviación de la úvula hacia el lado contrario. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Angina de Ludwig",
+        "b. Faringitis estreptocócica",
+        "c. Absceso periamigdalino",
+        "d. Mononucleosis infecciosa",
+        "e. Epiglotitis"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Absceso periamigdalino: trismus + desviación uvular contralateral + odinofagia severa + voz gangosa = tríada clásica. Complicación de faringoamigdalitis bacteriana. Tratamiento: punción-drenaje + ATB (penicilina + metronidazol o amoxicilina-clavulánico) + analgesia."
+    },
+    {
+      "id": 49,
+      "question": "RN de término con líquido amniótico meconial espeso. Al nacer llora vigoroso, frecuencia cardíaca 130 lpm, buen tono muscular. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Intubación y aspiración traqueal inmediata",
+        "b. Manejo de rutina: contacto piel a piel, no aspirar si vigoroso",
+        "c. Aspiración orofaríngea con pera de goma",
+        "d. Oxígeno por mascarilla al 100%",
+        "e. Hospitalización en UCI neonatal"
+      ],
+      "correctAnswer": "b",
+      "explanation": "RN con meconio pero vigoroso (llanto, FC>100, buen tono): no se realiza intubación ni aspiración traqueal. Manejo de rutina. La aspiración rutinaria en RN vigoroso no mejora resultados (guías NRP 2020)."
+    },
+    {
+      "id": 50,
+      "question": "Recién nacido de término por parto vaginal, con líquido amniótico claro. Al nacer llora inmediatamente, frecuencia cardíaca 145 lpm, buen tono muscular, piel rosada. ¿Cuál es la primera maniobra a realizar?",
+      "options": [
+        "a. Aspiración rutinaria de vías aéreas",
+        "b. Contacto piel a piel con la madre (apego precoz)",
+        "c. Vitamina K intramuscular",
+        "d. Profilaxis ocular con eritromicina",
+        "e. Oxígeno suplementario"
+      ],
+      "correctAnswer": "b",
+      "explanation": "RN vigoroso con líquido claro: según guías NRP 2020, NO se realiza aspiración rutinaria. El primer paso es proporcionar calor y APEGO PRECOZ (piel a piel). Vitamina K y profilaxis ocular se realizan después, pero el apego inmediato es la primera prioridad en el RN sano."
+    },
+    {
+      "id": 51,
+      "question": "Según la Comisión sobre Determinantes Sociales de la Salud de la OMS, ¿cuál de los siguientes factores tiene mayor impacto en la salud de la población?",
+      "options": [
+        "a. Nivel educacional",
+        "b. Vivienda",
+        "c. Alimentación",
+        "d. Ingreso económico",
+        "e. Acceso a servicios de salud"
+      ],
+      "correctAnswer": "a",
+      "explanation": "La educación es el determinante social de la salud más potente y consistente: mayor educación → mejor comprensión de la salud, acceso a empleo estable, mayor ingreso y mejores hábitos. Actúa como determinante de otros determinantes. Reduce mortalidad de todas las causas."
+    },
+    {
+      "id": 52,
+      "question": "Hombre de 58 años llega a urgencias con dolor precordial opresivo intenso de 2 horas de evolución, irradiado al brazo izquierdo, sudoración profusa y disnea. ECG: supradesnivel del ST en V1-V4. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Insuficiencia cardíaca aguda",
+        "b. Fibrilación auricular",
+        "c. Infarto agudo al miocardio con SDST",
+        "d. Tromboembolismo pulmonar",
+        "e. Pericarditis aguda"
+      ],
+      "correctAnswer": "c",
+      "explanation": "IAM con SDST: dolor precordial opresivo + irradiación + sudoración + ECG con supradesnivel del ST = IAM con SDST (STEMI). Manejo urgente: aspirina + clopidogrel + anticoagulación + reperfusión (angioplastia primaria o trombolisis según disponibilidad)."
+    },
+    {
+      "id": 53,
+      "question": "Embarazada de 20 semanas con hemoglobina de 9.0 g/dL, VCM 72 fL (microcítica), ferritina 8 ng/mL. Sin síntomas. ¿Cuál es el tratamiento de elección?",
+      "options": [
+        "a. Hierro oral elemental 200 mg/día",
+        "b. Transfusión de glóbulos rojos",
+        "c. Hierro endovenoso",
+        "d. Vitamina B12 intramuscular",
+        "e. Ácido fólico"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Anemia ferropénica en embarazo (Hb <11 g/dL + microcitosis + ferritina baja): tratamiento de primera línea = hierro oral elemental 200 mg/día. Hierro EV se reserva para intolerancia oral, malabsorción o anemia severa. Transfusión solo en anemia grave sintomática."
+    },
+    {
+      "id": 54,
+      "question": "Mujer de 38 años con dismenorrea severa, dispareunia profunda y menometrorragia. Ecografía transvaginal: útero aumentado de tamaño con ecotextura heterogénea, sin miomas definidos. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Endometriosis",
+        "b. Pólipo endometrial",
+        "c. Hiperplasia endometrial",
+        "d. Mioma uterino intramural",
+        "e. Adenomiosis"
+      ],
+      "correctAnswer": "e",
+      "explanation": "Adenomiosis: endometrio ectópico dentro del miometrio → útero grande, globuloso, heterogéneo en ecografía + dismenorrea severa + menometrorragia + dispareunia. Afecta mujeres multíparas >35 años. Tratamiento: AINEs, gestágenos, DIU hormonal o histerectomía."
+    },
+    {
+      "id": 55,
+      "question": "Lactante de 8 meses con inmunodeficiencia combinada severa (SCID) diagnosticada. ¿Cuál de las siguientes vacunas está absolutamente contraindicada?",
+      "options": [
+        "a. Vacuna antihepatitis B",
+        "b. Vacuna polio oral (OPV) de virus vivos atenuados",
+        "c. Vacuna antineumocócica conjugada",
+        "d. BCG inactivada",
+        "e. Vacuna antiinfluenza inactivada"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Vacunas con virus vivos atenuados (OPV, SRP, varicela, BCG) están contraindicadas en inmunodeficiencias graves. La OPV puede causar poliomielitis paralítica por virus vacunal en inmunocomprometidos. Se usa vacuna IPV (inactivada) en su lugar."
+    },
+    {
+      "id": 56,
+      "question": "Durante una pandemia respiratoria, el Ministerio de Salud debe decidir la intervención de salud pública con mayor impacto para reducir la mortalidad poblacional a largo plazo. ¿Cuál es la medida más eficaz?",
+      "options": [
+        "a. Profilaxis antibiótica masiva",
+        "b. Desinfección ambiental de espacios públicos",
+        "c. Cuarentena de contactos",
+        "d. Vacunación masiva de la población",
+        "e. Aislamiento de casos positivos solamente"
+      ],
+      "correctAnswer": "d",
+      "explanation": "La vacunación masiva es la intervención de salud pública con mayor impacto en mortalidad por enfermedades infecciosas respiratorias. Genera inmunidad de rebaño, protege a los no vacunados y es costo-efectiva. Las demás medidas son complementarias pero no sustituyen a la vacunación."
+    },
+    {
+      "id": 57,
+      "question": "Mujer de 40 años con fractura de muñeca que fue enyesada. 3 horas después refiere dolor intenso progresivo en el antebrazo que no cede con analgesia, parestesias y sensación de tensión bajo el yeso. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Síndrome compartimental agudo",
+        "b. Trombosis venosa profunda",
+        "c. Reacción alérgica al yeso",
+        "d. Fractura secundaria",
+        "e. Distrofia simpática refleja"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Dolor desproporcionado + parestesias + tensión bajo yeso en extremidad inmovilizada = síndrome compartimental agudo. Emergencia: retirar yeso inmediatamente y fasciotomía si no mejora."
+    },
+    {
+      "id": 58,
+      "question": "Hombre de 60 años con tos de 3 meses de evolución y baja de peso. La radiografía de tórax muestra una masa hiliar derecha. ¿Cuál es el siguiente examen a solicitar?",
+      "options": [
+        "a. Resonancia magnética de tórax",
+        "b. Radiografía de tórax lateral",
+        "c. TAC de tórax con contraste",
+        "d. Cintigrafía ósea",
+        "e. Ecografía de tórax"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Masa pulmonar sospechosa en Rx de tórax: el siguiente paso es TAC de tórax con contraste para caracterizar la lesión (tamaño, morfología, densidad, adenopatías mediastínicas). Es imprescindible para estadificación y planificación de biopsia. La Rx frontal ya fue realizada."
+    },
+    {
+      "id": 59,
+      "question": "Mujer de 32 años con PAP que informa \"células glandulares atípicas de significado indeterminado\" (AGC-NOS). ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Colposcopía con biopsia y legrado endocervical",
+        "b. Biopsia endometrial únicamente",
+        "c. Conización cervical diagnóstica",
+        "d. Histerectomía total",
+        "e. Repetir PAP en 6 meses"
+      ],
+      "correctAnswer": "a",
+      "explanation": "AGC en PAP: mayor riesgo de adenocarcinoma cervical o endometrial. Conducta: colposcopía + biopsia dirigida + legrado endocervical (para mujeres >35 años o con riesgo). No es suficiente solo repetir el PAP. La conización se realiza si la colposcopía es inadecuada."
+    },
+    {
+      "id": 60,
+      "question": "Mujer de 34 años con PAP que informa células glandulares atípicas (AGC). ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Colposcopía con biopsia dirigida y legrado endocervical",
+        "b. Repetir PAP en 6 meses",
+        "c. Histerectomía total",
+        "d. Conización diagnóstica",
+        "e. Cepillado endocervical y repetir PAP en 3 meses"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Células glandulares atípicas (AGC) en PAP tienen mayor riesgo de lesión endocervical o endometrial significativa. Conducta: colposcopía + biopsia + legrado endocervical para descartar adenocarcinoma."
+    },
+    {
+      "id": 61,
+      "question": "Paciente con leucemia en quimioterapia. Recuento absoluto de neutrófilos: 400/mm³. Inicia fiebre 38.5°C. Inicia ATB de amplio espectro. A las 72 horas persiste febril sin foco identificado. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Agregar antifúngico empírico (anfotericina B liposomal o voriconazol)",
+        "b. Cambiar antibiótico a vancomicina",
+        "c. Realizar PET-CT para buscar foco",
+        "d. Suspender ATB y observar",
+        "e. Agregar metronidazol"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Neutropenia febril que no responde a ATB de amplio espectro en 72-96h: agregar antifúngico empírico (aspergilosis invasiva o candidiasis). Guías IDSA recomiendan anfotericina liposomal o equinocandinas."
+    },
+    {
+      "id": 62,
+      "question": "Niño de 5 años con incapacidad de retraer el prepucio sobre el glande. Sin dolor ni infecciones previas. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Circuncisión electiva inmediata",
+        "b. Tranquilizar: fimosis fisiológica normal hasta los 6-7 años; observar",
+        "c. Corticoides tópicos en el prepucio",
+        "d. Derivar a urología",
+        "e. Dilatación manual bajo anestesia"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Fimosis fisiológica en niño de 5 años es normal; el 90% de los niños tienen prepucio retráctil a los 5 años pero la fimosis es aún fisiológica hasta los 6-7 años. No requiere intervención."
+    },
+    {
+      "id": 63,
+      "question": "Paciente con linfoma en quimioterapia. Post primer ciclo presenta hiperuricemia, hiperkalemia, hiperfosfatemia e hipocalcemia. Creatinina en ascenso. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Síndrome de lisis tumoral",
+        "b. Insuficiencia renal aguda prerenal",
+        "c. Nefrotoxicidad por cisplatino",
+        "d. Síndrome hemolítico urémico",
+        "e. Hiperparatiroidismo secundario"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Post quimioterapia: hiperuricemia + hiperkalemia + hiperfosfatemia + hipocalcemia + IRA = síndrome de lisis tumoral. Ocurre por destrucción masiva de células tumorales que liberan su contenido."
+    },
+    {
+      "id": 64,
+      "question": "Niño de 3 años con tos súbita, sibilancias unilaterales y disminución del murmullo vesicular en hemitórax derecho. Los padres refieren que estaba comiendo maní. Radiografía de tórax: hiperinsuflación derecha. ¿Cuál es el tratamiento definitivo?",
+      "options": [
+        "a. Fibrobroncoscopía virtual (no es terapéutica)",
+        "b. Broncoscopía rígida con extracción del cuerpo extraño",
+        "c. Espirometría",
+        "d. TAC de tórax y observación",
+        "e. Antibióticos y kinesioterapia"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Cuerpo extraño en vía aérea: tratamiento definitivo = broncoscopía rígida bajo anestesia general para extracción. La broncoscopía flexible puede ser diagnóstica pero la rígida permite la extracción segura. No diferir: riesgo de atelectasia y neumonía distal."
+    },
+    {
+      "id": 65,
+      "question": "En un estudio se analiza la tasa de infarto al miocardio en distintos países según el consumo de grasas saturadas, sin seguir a individuos en el tiempo. ¿Qué tipo de diseño epidemiológico corresponde?",
+      "options": [
+        "a. Estudio ecológico",
+        "b. Estudio de cohorte",
+        "c. Estudio de casos y controles",
+        "d. Ensayo clínico aleatorizado",
+        "e. Estudio transversal"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Estudio ecológico: la unidad de análisis son poblaciones o grupos (no individuos). Se comparan tasas de enfermedad entre diferentes grupos. Limitación principal: falacia ecológica (no se puede inferir asociación individual)."
+    },
+    {
+      "id": 66,
+      "question": "Paciente de 72 años llega a urgencias con hemiparesia derecha y afasia de inicio súbito hace 5 horas. TAC de cerebro sin contraste: normal. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Antiagregación plaquetaria (aspirina 250 mg) e hospitalización",
+        "b. Trombolizar con rtPA (ya pasaron >4.5h, fuera de ventana)",
+        "c. Trombectomía mecánica (evaluar si hay oclusión de gran vaso)",
+        "d. Observación domiciliaria",
+        "e. Anticoagulación con heparina inmediata"
+      ],
+      "correctAnswer": "a",
+      "explanation": "ACV isquémico a las 5 horas: fuera de ventana para trombolisis (>4.5h). Si no hay oclusión de gran vaso, el tratamiento es antiagregación (aspirina) + hospitalización para monitoreo y estudios etiológicos. Anticoagulación no está indicada en ACV isquémico agudo de forma rutinaria."
+    },
+    {
+      "id": 67,
+      "question": "La tasa de natalidad de un país se calcula como el número de nacidos vivos en un año dividido por la población total a mediados de año, multiplicado por 1.000. ¿Cuál es el denominador correcto de este indicador?",
+      "options": [
+        "a. Población total a mediados del año",
+        "b. Número de mujeres en edad fértil",
+        "c. Número de embarazos totales",
+        "d. Población mayor de 15 años",
+        "e. Total de defunciones del año"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Tasa bruta de natalidad = (nacidos vivos en el año / población total a mitad del año) × 1.000. El denominador es la población total (no solo mujeres fértiles, que corresponde a la tasa de fecundidad)."
+    },
+    {
+      "id": 68,
+      "question": "Mujer de 28 años con antecedente de 3 abortos espontáneos en primer trimestre y episodio de sangrado vaginal profuso durante el embarazo actual. ¿Cuál es el estudio más adecuado para investigar la causa?",
+      "options": [
+        "a. Panel de trombofilias (anticoagulante lúpico, anticuerpos anticardiolipina, anti-β2-glicoproteína I)",
+        "b. Cariotipo de los padres",
+        "c. Histeroscopia diagnóstica",
+        "d. Progesterona en fase lútea",
+        "e. TSH y T4 libre"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Pérdida recurrente de embarazo (≥2 abortos): descartar síndrome antifosfolípido (SAF) → anticoagulante lúpico + anticardiolipina + anti-β2-GPI. Es la causa tratable más importante."
+    },
+    {
+      "id": 69,
+      "question": "Lactante de 2 meses con hemograma: hemoglobina 10.2 g/dL, VCM normal, sin síntomas. La madre pregunta si debe iniciar suplemento de hierro. ¿Cuál es la explicación correcta?",
+      "options": [
+        "a. Anemia fisiológica del lactante: normal, no requiere tratamiento",
+        "b. Anemia ferropénica: iniciar hierro elemental 2 mg/kg/día",
+        "c. Anemia hemolítica: solicitar Coombs directo",
+        "d. Anemia por déficit de folato: iniciar ácido fólico",
+        "e. Anemia aplásica: derivar a hematología"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Nadir fisiológico a los 2-3 meses: la Hb cae a 9.5-11 g/dL por dilución, disminución de eritropoyetina y destrucción de eritrocitos fetales. Es normal y no requiere tratamiento."
+    },
+    {
+      "id": 70,
+      "question": "Paciente de 35 años sufre traumatismo en la región posterior del húmero. Al examen: no puede extender la muñeca ni los dedos (caída de muñeca). ¿Qué nervio fue lesionado?",
+      "options": [
+        "a. Nervio radial (en canal de torsión)",
+        "b. Nervio cubital",
+        "c. Nervio mediano",
+        "d. Nervio musculocutáneo",
+        "e. Nervio axilar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Fractura de húmero + caída de muñeca (wrist drop) = lesión del nervio radial en el canal de torsión (surco espiral). Inerva extensores de muñeca y dedos (ECC, ECD, ELP)."
+    },
+    {
+      "id": 71,
+      "question": "Paciente de 25 años tras accidente de tránsito llega con timpanismo a la percusión del hemitórax derecho, ausencia de murmullo vesicular derecho, disnea severa y desviación traqueal hacia la izquierda. ¿Cuál es el diagnóstico y conducta inmediata?",
+      "options": [
+        "a. Neumotórax a tensión: descompresión con aguja en 2° espacio intercostal",
+        "b. Hemotórax masivo: drenaje pleural",
+        "c. Contusión pulmonar: oxígeno y observación",
+        "d. Fractura de costillas: analgesia",
+        "e. Taponamiento cardíaco: pericardiocentesis"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Timpanismo + ausencia MV + desviación traqueal contralateral = neumotórax a tensión. Emergencia: descompresión inmediata con aguja (2° EIC línea medioclavicular) sin esperar Rx."
+    },
+    {
+      "id": 72,
+      "question": "Lactante con emesis pero que “no tenía relación con la alimentación” pero tenía oliva pilorica y otros signos sugerentes",
+      "options": [
+        "a. Alergia a proteína de leche",
+        "b. estenosis hipertrofica piloro",
+        "c. Atresia pilórica",
+        "d. Invaginación intestinal",
+        "e. Reflujo gastroesofágico"
+      ],
+      "correctAnswer": "a",
+      "explanation": "estenosis hipertrofica piloro"
+    },
+    {
+      "id": 73,
+      "question": "Hombre de 50 años operado de bypass gástrico hace 1 año. Consulta por episodios de sudoración, temblor y mareo 2 horas después de las comidas. Glicemia capilar durante el episodio: 52 mg/dL. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Úlcera marginal",
+        "b. Obstrucción de la anastomosis",
+        "c. Dumping tardío (hipoglicemia reactiva postprandial)",
+        "d. Hipoglicemia por insulinoma",
+        "e. Síndrome de asa aferente"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Dumping tardío: hipoglicemia 1-3h postprandial por liberación exagerada de insulina tras la hiperglicemia inicial del dumping precoz. Exclusivo del bypass gástrico. Tratamiento: comidas pequeñas y frecuentes, reducción de carbohidratos simples, acarbosa."
+    },
+    {
+      "id": 74,
+      "question": "Niño de 2 años con gastroenteritis aguda de 24h de evolución, con vómitos y diarrea. Sin fiebre alta, sin sangre en deposiciones, mucosas hidratadas, llenado capilar normal, orina presente. ¿Cuál es el manejo más adecuado?",
+      "options": [
+        "a. Hospitalización y suero EV",
+        "b. Sales de rehidratación oral fraccionada en domicilio",
+        "c. Ayuno absoluto por 6 horas",
+        "d. Antibióticos orales empíricos",
+        "e. Antidiarreico (loperamida)"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Gastroenteritis sin deshidratación significativa: sales de rehidratación oral (SRO) fraccionada en domicilio es el manejo de primera línea. 5-10 mL cada 5 min al inicio. Loperamida contraindicada en menores de 2 años. Antibióticos solo si hay fiebre alta + sangre (disentería)."
+    },
+    {
+      "id": 75,
+      "question": "Niño de 6 años previamente sano, sin medicamentos, consulta por púrpura petequial generalizada de inicio súbito posterior a infección viral. Plaquetas: 10.000/mm³. Resto del hemograma normal. Sin adenopatías ni visceromegalias. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Púrpura trombocitopénica inmune (PTI)",
+        "b. Púrpura trombótica trombocitopénica",
+        "c. Síndrome hemolítico urémico",
+        "d. Coagulación intravascular diseminada",
+        "e. Leucemia aguda linfoide"
+      ],
+      "correctAnswer": "a",
+      "explanation": "PTI: trombocitopenia aislada severa en niño sano post-viral, sin anemia hemolítica ni IRA (descarta SHU/PTT), sin blastos (descarta leucemia). El PTI pediátrico es autolimitado en el 80% en 6 meses. Tratamiento: observación si asintomático, IGIV o corticoides si hay sangrado."
+    },
+    {
+      "id": 76,
+      "question": "Recién nacido con pie equino varo bilateral (CTEV) detectado al nacimiento. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Control en el próximo control de salud infantil",
+        "b. Derivar a ortopedia infantil para inicio de método Ponseti",
+        "c. Hospitalizar para cirugía inmediata",
+        "d. Observación domiciliaria: se corrige solo",
+        "e. Kinesiología ambulatoria y férulas"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Pie equino varo congénito: derivación URGENTE a ortopedia pediátrica para inicio del método de Ponseti (yesos seriados + tenotomía percutánea del Aquiles si necesario). Debe comenzarse en las primeras semanas de vida para mejores resultados. Es corregible con tratamiento precoz."
+    },
+    {
+      "id": 77,
+      "question": "Mujer de 24 años con amenorrea de 5 semanas y dolor hipogástrico leve. B-hCG cuantitativa: 800 mUI/mL. Ecografía transvaginal: no se visualiza saco gestacional intrauterino. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Alta con control en 1 semana",
+        "b. Repetir B-hCG en 48 horas (debe duplicar si el embarazo es viable)",
+        "c. Ecografía abdominal",
+        "d. Laparoscopia diagnóstica inmediata",
+        "e. Metotrexato intramuscular inmediato"
+      ],
+      "correctAnswer": "b",
+      "explanation": "B-hCG 800 sin saco visible: la \"zona discriminatoria\" es ~1500-2000 mUI/mL para visibilizar saco por ecografía TV. Con 800, puede ser embarazo intrauterino muy precoz. Conducta: repetir B-hCG en 48h → si duplica, probablemente viable intrauterino; si sube <50% o baja, probable ectópico."
+    },
+    {
+      "id": 78,
+      "question": "Escolar femenina de 12 años con artritis en múltiples articulaciones, fotosensibilidad, úlceras orales, proteinuria 4 g/24h, hematuria microscópica y ANA positivo 1:640. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Lupus eritematoso sistémico",
+        "b. Artritis idiopática juvenil",
+        "c. Dermatomiositis juvenil",
+        "d. Vasculitis sistémica",
+        "e. Enfermedad de Kawasaki"
+      ],
+      "correctAnswer": "a",
+      "explanation": "LES: artritis + fotosensibilidad + úlceras orales + nefritis lúpica (proteinuria >3.5g + hematuria) + ANA positivo en patrón homogéneo. Cumple criterios SLICC para diagnóstico."
+    },
+    {
+      "id": 79,
+      "question": "Hombre de 55 años con hipercalcemia severa (Ca 13.5 mg/dL), náuseas, poliuria, confusión y deshidratación. PTH elevada. ¿Cuál es el tratamiento inicial de urgencia?",
+      "options": [
+        "a. Resonancia magnética",
+        "b. Cintigrafía con sestamibi (localización de adenoma paratiroideo)",
+        "c. Hidratación EV con solución salina 0.9%",
+        "d. Paratiroidectomía de urgencia",
+        "e. Carbonato de calcio oral"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Hipercalcemia sintomática/severa (Ca >12 mg/dL con síntomas): tratamiento de urgencia = hidratación EV agresiva con SF 0.9% (200-300 mL/h) para promover calciuria. Luego agregar bifosfonatos (zoledronato) o calcitonina. La cintigrafía es para planificación quirúrgica electiva, no urgente."
+    },
+    {
+      "id": 80,
+      "question": "Escolar de 10 años con fiebre alta, rigidez de nuca, fotofobia y petequias en piel. Sospecha de meningitis bacteriana. ¿Cuál es el esquema antibiótico empírico de elección?",
+      "options": [
+        "a. Ceftriaxona + vancomicina EV",
+        "b. Ciprofloxacino EV",
+        "c. Doxiciclina oral",
+        "d. Azitromicina oral",
+        "e. Amoxicilina oral"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Meningitis bacteriana en escolar (>3 meses): patógenos principales = S. pneumoniae y N. meningitidis. ATB empírico: ceftriaxona 100 mg/kg/día (cobre ambos) + vancomicina (por neumococo resistente a penicilina). Se agrega dexametasona antes o junto al ATB para reducir secuelas."
+    },
+    {
+      "id": 81,
+      "question": "Niño de 4 años llega a urgencias con miosis puntiforme, bradicardia, hipersecreción (lagrimeo, sialorrea, broncoespasmo) y compromiso de conciencia. Antecedente de acceso a bodega con pesticidas. ¿Cuál es la conducta inmediata?",
+      "options": [
+        "a. Hospitalizar: atropina EV + pralidoxima + lavado gástrico",
+        "b. Derivar a especialista de forma ambulatoria",
+        "c. Control sano habitual",
+        "d. Observación domiciliaria 24h",
+        "e. Solo anticonvulsivantes EV"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Síndrome colinérgico por organofosforados (pesticida): miosis + bradicardia + hipersecreción + compromiso neurológico = emergencia. Tratamiento: atropina EV a dosis altas (antídoto) + pralidoxima (reactiva AChE si precoz) + hospitalización."
+    },
+    {
+      "id": 82,
+      "question": "Paciente de 35 años con episodios previos de tristeza profunda de 3 semanas de duración. Ahora consulta por irritabilidad, euforia, grandiosidad, insomnio sin cansancio y gastó todos sus ahorros en 4 días. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Trastorno bipolar tipo I",
+        "b. Trastorno depresivo mayor recurrente",
+        "c. Trastorno de ansiedad generalizada",
+        "d. Trastorno obsesivo compulsivo",
+        "e. Trastorno de personalidad borderline"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Episodios depresivos previos + episodio maníaco actual (grandiosidad, insomnio, gastos impulsivos, euforia) = trastorno bipolar tipo I. Un episodio maníaco es suficiente para el diagnóstico."
+    },
+    {
+      "id": 83,
+      "question": "Hombre de 38 años con disminución de la libido, disfunción eréctil, fatiga y ginecomastia bilateral. Testículos de tamaño normal. ¿Cuál es el estudio de elección inicial?",
+      "options": [
+        "a. Testosterona total sérica matinal",
+        "b. Ecografía testicular",
+        "c. Espermograma",
+        "d. FSH y LH",
+        "e. Prolactina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hipogonadismo masculino: el estudio inicial es testosterona total sérica en la mañana (máxima entre 8-10 AM). Si está baja, se complementa con LH/FSH para clasificar en primario o secundario."
+    },
+    {
+      "id": 84,
+      "question": "Mujer de 55 años con antecedente de cáncer de mama tratado hace 3 años, en seguimiento. Mamografía: BIRADS 4 en mama derecha y BIRADS 0 en mama izquierda. ¿Cuál es la conducta?",
+      "options": [
+        "a. Biopsia de la lesión BIRADS 4 y completar estudio de mama izquierda",
+        "b. Solo observar en 6 meses",
+        "c. RMN mamaria bilateral",
+        "d. PET-CT para etapificación",
+        "e. Mastectomía bilateral profiláctica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "BIRADS 4 = sospechosa, requiere biopsia. BIRADS 0 = evaluación incompleta, requiere imágenes adicionales. Ambas conductas deben realizarse en forma paralela."
+    },
+    {
+      "id": 85,
+      "question": "Embarazada de 35 semanas con rotura prematura de membranas hace 48 horas. Sin contracciones, sin fiebre, sin signos de infección. Feto en cefálica, sin signos de sufrimiento. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Hospitalizar, maduración pulmonar con corticoides, antibióticos y vigilancia",
+        "b. Inducción del parto inmediata",
+        "c. Cesárea de urgencia",
+        "d. Alta con control ambulatorio",
+        "e. Amnioinfusión"
+      ],
+      "correctAnswer": "a",
+      "explanation": "RPM a las 35 semanas: manejo conservador con hospitalización, corticoides (betametasona) para maduración pulmonar, antibióticos profilácticos (ampicilina + eritromicina) y monitoreo fetal estrecho."
+    },
+    {
+      "id": 86,
+      "question": "Mujer de 65 años operada de rodilla hace 48 horas presenta disnea súbita, taquicardia 115 lpm, saturación 89% y dolor pleurítico. Se sospecha tromboembolismo pulmonar. ¿Cuál es el examen diagnóstico de elección?",
+      "options": [
+        "a. Resonancia magnética",
+        "b. Angiografía pulmonar convencional",
+        "c. AngioTAC de tórax (protocolo TEP)",
+        "d. Radiografía de tórax",
+        "e. Ecografía Doppler de extremidades"
+      ],
+      "correctAnswer": "c",
+      "explanation": "AngioTAC de tórax (angiografía por TC) es el gold standard diagnóstico de TEP: sensibilidad y especificidad >90%. La angiografía convencional es invasiva y raramente usada. Ecografía Doppler solo si hay contraindicación para TAC. Radiografía es inespecífica."
+    },
+    {
+      "id": 87,
+      "question": "Hombre de 32 años que tuvo leucemia linfoblástica en la infancia. Curado. Ahora consulta por lavado de manos compulsivo más de 30 veces al día, incapacitante, relacionado con miedo a contaminarse. Reconoce que es excesivo pero no puede parar. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Trastorno obsesivo compulsivo (TOC)",
+        "b. Fobia específica a gérmenes",
+        "c. Hipocondría",
+        "d. Trastorno de ansiedad generalizada",
+        "e. TEPT por su historia oncológica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Compulsiones (lavado de manos) repetitivas + egodistónicas (reconoce que es excesivo) + incapacitantes = TOC. La compulsión de limpieza es la más frecuente en TOC."
+    },
+    {
+      "id": 88,
+      "question": "Paciente con diagnóstico de episodio depresivo mayor en tratamiento con escitalopram a dosis máxima por 2 meses sin respuesta. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Cambiar a otro antidepresivo (venlafaxina o mirtazapina)",
+        "b. Agregar segundo antidepresivo (augmentación)",
+        "c. Derivar a psiquiatría para terapia electroconvulsiva",
+        "d. Continuar el mismo fármaco por 2 meses más",
+        "e. Agregar benzodiacepina a largo plazo"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Falta de respuesta a ISRS a dosis máxima por 8 semanas = indicación de cambio de antidepresivo (switch) a otra clase: venlafaxina (IRSN), mirtazapina o bupropión, antes de considerar augmentación."
+    },
+    {
+      "id": 89,
+      "question": "Paciente de 28 años con miedo intenso y síntomas físicos ante situaciones de hablar en público o comer frente a otros. Evita reuniones sociales y ha rechazado ascensos laborales por esto. ¿Cuál es el tratamiento farmacológico de primera línea?",
+      "options": [
+        "a. Escitalopram (ISRS)",
+        "b. Propranolol a demanda",
+        "c. Alprazolam a diario",
+        "d. Haloperidol",
+        "e. Carbamazepina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Fobia social / trastorno de ansiedad social: el tratamiento farmacológico de primera línea son los ISRS (sertralina, escitalopram, paroxetina). Se combinan con TCC. El propranolol es para situaciones puntuales."
+    },
+    {
+      "id": 90,
+      "question": "Hombre de 45 años con dolor lumbar derecho irradiado a la región inguinal, tipo cólico, de inicio súbito. Uroanálisis: microhematuria, sin piuria. Urocultivo pendiente. ¿Cuál es el examen de elección para confirmar el diagnóstico?",
+      "options": [
+        "a. Ecografía renal y de vías urinarias",
+        "b. Resonancia magnética",
+        "c. UroTAC (PieloTAC sin contraste)",
+        "d. Radiografía simple de abdomen",
+        "e. Cintigrafía renal"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Cólico renal (ureterolitiasis): UroTAC sin contraste es el gold standard diagnóstico (sensibilidad 97%, especificidad 96%). Detecta cálculos de cualquier composición, localización y tamaño. La ecografía renal es alternativa inicial (menos sensible para uréteres)."
+    },
+    {
+      "id": 91,
+      "question": "Lactante de 2 meses con diarrea, vómitos y dermatitis perioral y perianal tras introducción de fórmula láctea. Test de parche positivo para proteína de leche de vaca. ¿Cuál es el manejo?",
+      "options": [
+        "a. Cambiar a fórmula extensamente hidrolizada o elemental",
+        "b. Continuar fórmula habitual y agregar antihistamínico",
+        "c. Hospitalizar para estudio endoscópico",
+        "d. Iniciar corticoides orales",
+        "e. Cambiar a leche de soja"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Alergia a proteína de leche de vaca (APLV): tratamiento = fórmula extensamente hidrolizada (FEH). Si se usa leche materna, la madre elimina lácteos. Soja no recomendada bajo 6 meses (cross-reactividad)."
+    },
+    {
+      "id": 92,
+      "question": "Paciente con trastorno bipolar tipo I presenta episodio de manía aguda con agitación, desinhibición y grandiosidad. ¿Cuál es el tratamiento de elección en fase aguda?",
+      "options": [
+        "a. Litio + antipsicótico atípico (quetiapina u olanzapina)",
+        "b. Solo antidepresivos ISRS",
+        "c. Benzodiacepinas en monoterapia",
+        "d. Lamotrigina en dosis progresiva",
+        "e. Ácido valproico en monoterapia oral"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Manía aguda: tratamiento combinado con estabilizador del ánimo (litio o ácido valproico) más antipsicótico atípico para control rápido de síntomas. Litio + quetiapina es esquema estándar."
+    },
+    {
+      "id": 93,
+      "question": "Mujer de 55 años con ITU a repetición (>3 episodios/año) que recibe profilaxis con nitrofurantoína. Tiene antecedente de fibrosis pulmonar idiopática. ¿Cuál es el cambio terapéutico más adecuado?",
+      "options": [
+        "a. Amoxicilina profiláctica",
+        "b. Cefalexina profiláctica",
+        "c. Cotrimoxazol profiláctico",
+        "d. Suspender profilaxis y observar",
+        "e. Mantener nitrofurantoína sin cambios"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Nitrofurantoína está contraindicada en fibrosis pulmonar (puede agravar la enfermedad pulmonar y causa toxicidad pulmonar crónica). Cambio a cotrimoxazol (trimetoprim-sulfametoxazol) profiláctico postcoital o cíclico es la alternativa de elección para ITU recurrente."
+    },
+    {
+      "id": 94,
+      "question": "Paciente con derrame pleural unilateral. Se realiza toracocentesis. ¿Cuál es el examen del líquido pleural que permite clasificarlo como exudado o trasudado según los criterios de Light?",
+      "options": [
+        "a. Proteínas y LDH en líquido pleural y suero",
+        "b. Glucosa en líquido pleural",
+        "c. ADA en líquido pleural",
+        "d. pH del líquido pleural",
+        "e. Recuento celular diferencial"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Criterios de Light: proteínas LP/suero >0.5, LDH LP/suero >0.6, LDH LP >2/3 del límite normal = exudado. La presencia de uno o más criterios clasifica como exudado."
+    },
+    {
+      "id": 95,
+      "question": "Hombre de 45 años con lumbalgia mecánica de 5 días de evolución, sin irradiación, sin signos de alarma. EF: dolor a la palpación paravertebral lumbar, sin déficit neurológico. ¿Cuál es el manejo más adecuado?",
+      "options": [
+        "a. Analgesia (AINEs o paracetamol) + kinesioterapia activa; no reposo en cama",
+        "b. Reposo absoluto por 7 días",
+        "c. Cirugía de columna",
+        "d. Infiltración epidural de corticoides",
+        "e. Resonancia magnética urgente"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Lumbalgia mecánica aguda sin alarma: AINEs por corto plazo + actividad física progresiva + kinesioterapia. El reposo en cama prolonga la incapacidad. Sin indicación de imagen en fase aguda."
+    },
+    {
+      "id": 96,
+      "question": "Paciente con IAM con SDST llega a hospital sin capacidad de angioplastia primaria. El centro con ICPP más cercano se encuentra a 60 minutos. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Trombolisis inmediata y traslado a centro con hemodinamia",
+        "b. Esperar traslado a centro con angioplastia",
+        "c. Angioplastia de rescate de urgencia en el mismo centro",
+        "d. Manejo médico solo con heparina y AAS",
+        "e. Trombolisis y no trasladar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "IAM SDST sin capacidad de ICPP: si el traslado a centro con angioplastia demora >120 min desde el primer contacto médico, se realiza trombolisis inmediata + traslado para angiografía en 3-24h."
+    },
+    {
+      "id": 97,
+      "question": "Mujer de 78 años con fibrilación auricular permanente no valvular, CHA₂DS₂-VASc de 4. Sin antecedente de hemorragia. ¿Cuál es el manejo antitrombótico más adecuado?",
+      "options": [
+        "a. Anticoagulación oral con apixabán o rivaroxabán",
+        "b. Aspirina 100 mg/día",
+        "c. No anticoagular por edad avanzada",
+        "d. Heparina de bajo peso molecular",
+        "e. Clopidogrel + aspirina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "FA no valvular con CHA₂DS₂-VASc ≥2 en mujer: anticoagulación oral indicada. ACODs (apixabán, rivaroxabán) son preferibles a warfarina en el adulto mayor por menor riesgo de hemorragia intracraneal."
+    },
+    {
+      "id": 98,
+      "question": "Hombre de 65 años con antecedente de enfermedad de Parkinson. Su pareja refiere que durante el sueño emite gritos, golpea y patea. El paciente no recuerda nada al despertar. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Trastorno de conducta del sueño REM (RBD)",
+        "b. Sonambulismo",
+        "c. Terrores nocturnos",
+        "d. Apnea obstructiva del sueño",
+        "e. Epilepsia nocturna del lóbulo frontal"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Comportamientos violentos durante el sueño REM en paciente con Parkinson = trastorno de conducta del sueño REM (RBD). Es el parasomnia más frecuente en sinucleinopatías. El sujeto actúa sus sueños."
+    },
+    {
+      "id": 99,
+      "question": "Mujer de 30 años, 3 semanas post parto vaginal, consulta por llanto fácil, tristeza, insomnio, sentimiento de incompetencia como madre y pensamientos de hacerse daño. ¿Cuál es el diagnóstico y tratamiento?",
+      "options": [
+        "a. Depresión postparto: iniciar antidepresivo (sertralina) + psicoterapia",
+        "b. Blues postparto: tranquilizar, resolverá espontáneamente en días",
+        "c. Psicosis puerperal: hospitalización de urgencia",
+        "d. Trastorno adaptativo: solo psicoterapia",
+        "e. Trastorno bipolar postparto: iniciar litio"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Depresión postparto: debut >2 semanas posparto, síntomas depresivos + pensamientos de autolesión. Tratamiento: sertralina (segura en lactancia) + psicoterapia. Blues se resuelve en 2 semanas sin tratamiento."
+    },
+    {
+      "id": 100,
+      "question": "Hombre de 62 años con pérdida de peso de 10 kg en 3 meses, ictericia progresiva, coluria y heces acólicas. Ecografía: dilatación de vía biliar intra y extrahepática, páncreas no visualizado. ¿Cuál es el examen siguiente más apropiado?",
+      "options": [
+        "a. Ecografía de control en 1 mes",
+        "b. Radiografía de abdomen",
+        "c. AngioTAC de páncreas y vía biliar",
+        "d. Endoscopía digestiva alta",
+        "e. Resonancia magnética de columna"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Ictericia obstructiva con dilatación biliar y sospecha de tumor pancreático: el siguiente examen es AngioTAC de páncreas (protocolo páncreas) o CRMN para caracterizar la lesión, evaluar extensión vascular y ganglionar para etapificación y decisión quirúrgica."
+    },
+    {
+      "id": 101,
+      "question": "Paciente de 45 años con diarrea crónica de 6 meses. Se realiza colonoscopía que muestra imágenes de parásitos adheridos a la mucosa del colon ascendente. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Giardia lamblia (duodenal, no colónica)",
+        "b. Entamoeba histolytica (colitis amebiana)",
+        "c. Trichuris trichiura (tricocefalosis)",
+        "d. Ascaris lumbricoides (se ve en intestino delgado)",
+        "e. Cryptosporidium (microscópico, no visible)"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Trichuris trichiura (tricocefalosis): parásito de aspecto de \"látigo\" visible en colonoscopía adherido a la mucosa del ciego y colon ascendente. Causa diarrea crónica y en infecciones masivas, disentería. Tratamiento: albendazol 400 mg dosis única o mebendazol."
+    },
+    {
+      "id": 102,
+      "question": "Niño de 7 años con asma en crisis, frecuencia respiratoria 40/min, SatO₂ 91%, sibilancias bilaterales, sin uso de musculatura accesoria. ¿Cuál es el manejo inicial más adecuado?",
+      "options": [
+        "a. Salbutamol inhalado + ipratropio + corticoides sistémicos + oxígeno",
+        "b. Adrenalina subcutánea",
+        "c. Intubación orotraqueal inmediata",
+        "d. Antibióticos EV",
+        "e. Solo oxígeno y observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Crisis asmática moderada: broncodilatadores β2 (salbutamol) + anticolinérgico (ipratropio) + corticoides sistémicos (prednisona oral o hidrocortisona EV) + oxígeno para SatO₂ >94%."
+    },
+    {
+      "id": 103,
+      "question": "Paciente de 55 años alcohólico crónico, 48 horas después de dejar de beber presenta agitación severa, alucinaciones visuales de insectos, temblor generalizado, taquicardia 120 lpm, sudoración y fiebre 38°C. ¿Cuál es el diagnóstico y tratamiento?",
+      "options": [
+        "a. Delirium tremens: diazepam EV + tiamina + corrección hidrolectrolítica",
+        "b. Psicosis alcohólica: haloperidol",
+        "c. Meningoencefalitis: antibióticos EV",
+        "d. Hipoglicemia: glucosa EV en bolo",
+        "e. ACV isquémico: tPA"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Delirium tremens: síndrome de abstinencia alcohólica grave (48-72h post cese). Tratamiento: benzodiacepinas IV (diazepam o lorazepam) para prevenir convulsiones + tiamina IM + fluidos."
+    },
+    {
+      "id": 104,
+      "question": "Hombre de 72 años con cefalea holocraneal progresiva de 3 meses de evolución, asociada a ataxia de la marcha y deterioro cognitivo leve. TAC de cerebro: colección hipodensa crónicamente organizada entre el córtex y el hueso craneal, sin efecto de masa severo. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Tumor cerebral primario",
+        "b. Metástasis cerebrales",
+        "c. Hematoma subdural crónico",
+        "d. Hidrocefalia normotensiva",
+        "e. Enfermedad de Alzheimer"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Hematoma subdural crónico en adulto mayor: cefalea crónica + ataxia + deterioro cognitivo + colección hipodensa (crónica >3 semanas) entre córtex y cráneo en TAC = hematoma subdural crónico. Frecuentemente sin traumatismo recordado. Tratamiento: trépano de drenaje si sintomático."
+    },
+    {
+      "id": 105,
+      "question": "Niño de 3 años con antecedente de autismo. Presenta episodios de golpear su cabeza contra la pared repetidamente, varias veces al día. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Derivar a psiquiatría infantil para evaluación y manejo conductual",
+        "b. Hospitalizar de urgencia",
+        "c. Iniciar haloperidol",
+        "d. Solicitar EEG para descartar epilepsia",
+        "e. Solo observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Conductas autolesivas en niño con TEA (autismo): derivar a psiquiatría infantil + equipo de terapia conductual (ABA). Las conductas repetitivas y autolesivas son parte del espectro autista y requieren manejo especializado."
+    },
+    {
+      "id": 106,
+      "question": "El médico de un CESFAM detecta un brote de hepatitis A en su sector. ¿A qué autoridad sanitaria debe notificar de forma inmediata?",
+      "options": [
+        "a. SEREMI de Salud",
+        "b. Ministerio de Salud directamente",
+        "c. FONASA",
+        "d. ISP",
+        "e. Municipalidad"
+      ],
+      "correctAnswer": "a",
+      "explanation": "En Chile, las enfermedades de notificación obligatoria inmediata (ENNOI) como brotes de hepatitis A se notifican al SEREMI de Salud de la región correspondiente dentro de las 24 horas."
+    },
+    {
+      "id": 107,
+      "question": "Respecto al DIEP (Departamento de Infecciones y Epidemiología del Paciente) en hospitales chilenos, ¿cuál es su función principal?",
+      "options": [
+        "a. Vigilar, prevenir y controlar las infecciones asociadas a la atención de salud (IAAS)",
+        "b. Gestionar los recursos humanos del hospital",
+        "c. Supervisar la farmacia hospitalaria",
+        "d. Coordinar las licencias médicas",
+        "e. Auditar los estados financieros del hospital"
+      ],
+      "correctAnswer": "a",
+      "explanation": "El DIEP (o Comité de IAAS) en hospitales chilenos tiene como función primordial la vigilancia epidemiológica, prevención y control de infecciones asociadas a la atención de salud (IAAS)."
+    },
+    {
+      "id": 108,
+      "question": "Mujer de 25 años con infecciones urinarias recurrentes (>3 episodios/año) claramente asociadas a relaciones sexuales. ¿Cuál es la profilaxis más adecuada?",
+      "options": [
+        "a. Nitrofurantoína 50 mg o cotrimoxazol post coito",
+        "b. Ciprofloxacino 500 mg diario indefinido",
+        "c. Amoxicilina 500 mg diario",
+        "d. Solo higiene y micción postcoital",
+        "e. Vacuna anti-E. coli"
+      ],
+      "correctAnswer": "a",
+      "explanation": "ITU recurrente postcoital: profilaxis antibiótica postcoito con una dosis única de nitrofurantoína 50-100 mg o cotrimoxazol 480 mg reduce recurrencias en >95% de los casos."
+    },
+    {
+      "id": 109,
+      "question": "Mujer de 45 años operada de colecistectomía hace 6 meses. Ahora con dolor cólico en hipocondrio derecho, ictericia leve y coledocolitiasis residual confirmada por ecografía. ¿Cuál es el manejo?",
+      "options": [
+        "a. CPRE con esfinterotomía y extracción del cálculo",
+        "b. Reoperación para exploración de vía biliar",
+        "c. Tratamiento médico con ácido ursodesoxicólico",
+        "d. Observar y controlar en 3 meses",
+        "e. Litotricia extracorpórea"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Coledocolitiasis residual sintomática: primera línea = CPRE con esfinterotomía endoscópica y extracción del cálculo. Evita reoperación y tiene alta tasa de éxito (>90%)."
+    },
+    {
+      "id": 110,
+      "question": "Puérpera de 5 días con deposiciones líquidas múltiples con moco y sangre, calambres abdominales y fiebre 38.5°C. Hospitalizada durante el parto. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Infección por Clostridioides difficile",
+        "b. Gastroenteritis viral",
+        "c. Colitis ulcerosa de novo",
+        "d. Salmonelosis",
+        "e. Síndrome de intestino irritable postinfeccioso"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Diarrea con sangre + fiebre en paciente hospitalizada reciente + puérpera (exposición a antibióticos perinatales) = infección por C. difficile. Diagnóstico: toxina A/B en deposiciones. Tratamiento: vancomicina oral."
+    },
+    {
+      "id": 111,
+      "question": "Niño de 7 años con tres lesiones eritematosas con costra melicérica en el abdomen, pruriginosas, sin fiebre. ¿Cuál es el tratamiento más adecuado?",
+      "options": [
+        "a. Mupirocina tópica al 2%",
+        "b. Amoxicilina oral 7 días",
+        "c. Cefadroxilo oral 10 días",
+        "d. Clindamicina oral",
+        "e. Peróxido de benzoilo tópico"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Impétigo no bulloso localizado (3 lesiones pequeñas) sin fiebre: tratamiento tópico con mupirocina al 2% es suficiente y de primera línea. ATB oral se reserva para enfermedad extensa o sistémica."
+    },
+    {
+      "id": 112,
+      "question": "Hombre de 55 años con disfunción eréctil de 6 meses de evolución, sin causa aparente. HTA controlada con enalapril. Sin síntomas de hipogonadismo. ¿Cuál es el tratamiento de primera línea?",
+      "options": [
+        "a. Inhibidores de la fosfodiesterasa tipo 5 (sildenafil o tadalafil)",
+        "b. Testosterona intramuscular",
+        "c. Alprostadil intracavernoso",
+        "d. Prótesis de pene",
+        "e. Solo consejería psicológica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Disfunción eréctil: primera línea = inhibidores de PDE5 (sildenafil, tadalafil). Contraindicados con nitratos. Enalapril no contraindica su uso. La testosterona solo si hay hipogonadismo confirmado."
+    },
+    {
+      "id": 113,
+      "question": "Hombre de 30 años con eyaculación que ocurre antes o dentro del minuto de la penetración en el 90% de los encuentros, con angustia y evitación de relaciones. ¿Cuál es el tratamiento más adecuado?",
+      "options": [
+        "a. Dapoxetina (ISRS de acción corta) + técnicas conductuales (stop-start)",
+        "b. Alprazolam previo al coito",
+        "c. Testosterona intramuscular",
+        "d. Sildenafil",
+        "e. Antidepresivos tricíclicos"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Eyaculación precoz primaria: tratamiento combinado con ISRS (dapoxetina o paroxetina a demanda) + terapia conductual (técnica stop-start o squeeze) tiene la mejor tasa de éxito."
+    },
+    {
+      "id": 114,
+      "question": "Paciente de 40 años con ojo rojo, sensación de arenilla, lagrimeo y fotofobia desde hace 3 meses. Usa lentes de contacto hace años. Antecedente de artritis reumatoide. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Síndrome de ojo seco (queratoconjuntivitis sicca)",
+        "b. Conjuntivitis bacteriana",
+        "c. Úlcera corneal por Acanthamoeba",
+        "d. Escleritis",
+        "e. Glaucoma agudo"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Síntomas crónicos de ojo seco (arenilla, lagrimeo reflejo, fotofobia) + artritis reumatoide (síndrome de Sjögren secundario) = queratoconjuntivitis sicca. Tratamiento: lágrimas artificiales."
+    },
+    {
+      "id": 115,
+      "question": "Embarazada de 36 semanas con presión arterial 170/110 y cefalea frontal intensa que no cede con analgesia. Sin convulsiones. ¿Cuál es el manejo más adecuado?",
+      "options": [
+        "a. Hospitalizar, labetalol EV para control de PA, sulfato de magnesio profiláctico e interrupción del embarazo",
+        "b. Nifedipino oral y control ambulatorio",
+        "c. Sulfato de magnesio solo",
+        "d. Inducción con oxitocina inmediata sin otro manejo",
+        "e. Hidralazina oral y observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Preeclampsia severa a ≥34 semanas: hospitalización + control de PA (labetalol o hidralazina EV) + sulfato de magnesio para prevenir eclampsia + interrupción del embarazo una vez estabilizada."
+    },
+    {
+      "id": 116,
+      "question": "En un gráfico de salud pública se observa que la tasa de mortalidad infantil ha disminuido progresivamente en los últimos 40 años en Chile. ¿Cuál es el principal determinante de esta tendencia?",
+      "options": [
+        "a. Mejoras en condiciones socioeconómicas, educación materna y acceso a agua potable",
+        "b. Introducción de nuevos antibióticos",
+        "c. Vacunación masiva universal",
+        "d. Aumento del número de médicos",
+        "e. Disminución de la natalidad"
+      ],
+      "correctAnswer": "a",
+      "explanation": "La caída histórica de la mortalidad infantil se atribuye principalmente a determinantes sociales: mejor nivel educacional, condiciones sanitarias, acceso a agua potable y saneamiento, más que a intervenciones médicas aisladas."
+    },
+    {
+      "id": 117,
+      "question": "Un gráfico muestra la distribución de causas de muerte en Chile: las enfermedades cardiovasculares y el cáncer representan el 60% de las muertes, mientras las enfermedades infecciosas son <5%. ¿A qué concepto corresponde este patrón?",
+      "options": [
+        "a. Transición epidemiológica",
+        "b. Transición demográfica",
+        "c. Transición nutricional",
+        "d. Envejecimiento poblacional",
+        "e. Brecha epidemiológica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Transición epidemiológica: cambio en el patrón de mortalidad desde enfermedades infecciosas y perinatales hacia enfermedades crónicas no transmisibles (cardiovasculares, cáncer). Asociado a desarrollo económico y envejecimiento."
+    },
+    {
+      "id": 118,
+      "question": "Paciente de 22 años con embarazo de 18 semanas acude a urgencias solicitando interrupción voluntaria del embarazo. No presenta ninguna de las tres causales legales vigentes en Chile. ¿Cuál es la conducta médica correcta?",
+      "options": [
+        "a. Informar que la interrupción no procede legalmente y derivar a consejería",
+        "b. Realizar la interrupción por solicitud de la paciente",
+        "c. Derivar de urgencia a matrona",
+        "d. Hospitalizar para observación",
+        "e. Referir a comité de ética del hospital"
+      ],
+      "correctAnswer": "a",
+      "explanation": "En Chile (Ley 21.030), la IVE es legal solo en 3 causales: riesgo vital, inviabilidad fetal y violación. Sin causales presentes, no procede la interrupción. El médico debe informar, orientar y derivar a apoyo psicosocial."
+    },
+    {
+      "id": 119,
+      "question": "Hombre de 55 años con diabetes mellitus de larga data. Presenta debilidad asimétrica en extremidades, afectando nervio peroneo derecho y cubital izquierdo. Sin compromiso de pares craneanos. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Mononeuritis múltiple",
+        "b. Polineuropatía diabética simétrica",
+        "c. Síndrome de Guillain-Barré",
+        "d. ACV múltiple",
+        "e. Miopatía inflamatoria"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Afectación de nervios periféricos individuales, no contiguos y asimétricos en diabético = mononeuritis múltiple (mononeuropatía múltiple). Causas: diabetes, vasculitis, lepra."
+    },
+    {
+      "id": 120,
+      "question": "Mujer de 35 años con placas eritematosas bien delimitadas, cubiertas de escamas plateadas en rodillas y codos, con fenómeno de Auspitz positivo. Compromete el 10% de la superficie corporal. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Psoriasis en placas",
+        "b. Dermatitis atópica",
+        "c. Dermatitis de contacto",
+        "d. Liquen plano",
+        "e. Micosis fungoide"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Placas eritematosas con escamas plateadas en superficies extensoras + fenómeno de Auspitz (sangrado puntiforme al retirar escama) = psoriasis en placas. Compromiso 10% = psoriasis moderada."
+    },
+    {
+      "id": 121,
+      "question": "Mujer de 28 años con dispareunia (dolor a la penetración), flujo vaginal gris homogéneo con mal olor (peor post coito) y pH vaginal 5.5. Test de aminas positivo (KOH). ¿Cuál es el diagnóstico y tratamiento?",
+      "options": [
+        "a. Vaginosis bacteriana: metronidazol oral 500 mg c/12h x 7 días",
+        "b. Candidiasis vaginal: fluconazol oral 150 mg dosis única",
+        "c. Tricomoniasis: metronidazol 2 g dosis única",
+        "d. Herpes genital: aciclovir",
+        "e. Cervicitis por clamidia: azitromicina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Criterios de Amsel: flujo gris homogéneo + pH >4.5 + test de aminas + (+) células clave = vaginosis bacteriana. Tratamiento: metronidazol oral 500 mg c/12h x 7 días o clindamicina vaginal."
+    },
+    {
+      "id": 122,
+      "question": "Mujer de 55 años postmenopáusica con miomas uterinos conocidos. Llega a urgencias por metrorragia severa con hipotensión 90/60 mmHg y FC 118 lpm. ¿Cuál es el manejo inmediato?",
+      "options": [
+        "a. Estabilización hemodinámica + histerectomía de urgencia",
+        "b. Ácido tranexámico EV y observar",
+        "c. Progestágenos EV en dosis alta",
+        "d. Embolización uterina electiva",
+        "e. Solo transfusión de GR y alta"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Sangrado uterino masivo con inestabilidad hemodinámica en postmenopáusica con miomatosis: prioridad = estabilización (fluidos + transfusión si necesario) + histerectomía de urgencia."
+    },
+    {
+      "id": 123,
+      "question": "Paciente de 45 años con pérdida súbita de audición unilateral de 48 horas de evolución, sin vértigo ni acúfenos. Audiometría: hipoacusia neurosensorial unilateral de 50 dB. ¿Cuál es el tratamiento?",
+      "options": [
+        "a. Corticoides orales (prednisona 1 mg/kg/día x 10 días)",
+        "b. Antibióticos orales",
+        "c. Antivirales (aciclovir)",
+        "d. Solo observar, resolución espontánea",
+        "e. Cirugía descompresiva del nervio auditivo"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hipoacusia súbita neurosensorial: tratamiento estándar = corticoides orales en alta dosis (prednisona 1 mg/kg/día) iniciados dentro de las primeras 72h. Mejoran pronóstico en ~50% de los casos."
+    },
+    {
+      "id": 124,
+      "question": "pte diabetico con fondo de ojo alterado tenia buen control metabolico, cual era la medida mas adecuada",
+      "options": [
+        "a. Pioglitazona",
+        "b. Sitagliptina",
+        "c. Insulina NPH",
+        "d. Glibenclamida",
+        "e. subir metformina??"
+      ],
+      "correctAnswer": "d",
+      "explanation": "subir metformina??"
+    },
+    {
+      "id": 125,
+      "question": "Niño de 3 años hospitalizado por neumonía. SatO₂ 88% con oxígeno por naricera a 3 L/min. FR 50/min, uso de musculatura accesoria. ¿Cuál es el siguiente paso en el manejo ventilatorio?",
+      "options": [
+        "a. Ventilación no invasiva (VNI/CPAP) o cambio a mascarilla de alto flujo",
+        "b. Intubación orotraqueal inmediata",
+        "c. Aumentar flujo de oxígeno por naricera a 6 L/min",
+        "d. Adrenalina nebulizada",
+        "e. Alta con oxígeno domiciliario"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Niño con neumonía grave que no responde a oxigenoterapia convencional + signos de trabajo respiratorio aumentado: siguiente escalón = VNI (CPAP o BPAP) antes de intubación, según protocolo actual."
+    },
+    {
+      "id": 126,
+      "question": "Hombre de 60 años con dolor, calor y aumento de volumen en la rodilla derecha de inicio súbito. Artrocentesis: líquido turbio, 50.000 GB con 90% PMN. Gram: cocos gram positivos en racimos. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Artritis séptica por Staphylococcus aureus",
+        "b. Gota aguda",
+        "c. Artritis reumatoide",
+        "d. Pseudogota (artritis por pirofosfato)",
+        "e. Artritis reactiva"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Artritis séptica: líquido articular >50.000 GB con PMN predominante + gram con cocos en racimos = Staphylococcus aureus. Requiere drenaje articular urgente + cloxacilina EV."
+    },
+    {
+      "id": 127,
+      "question": "Hombre de 55 años con dolor en el hombro derecho al elevar el brazo entre 60-120° (arco doloroso). Prueba de Neer y Hawkins positivas. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Síndrome de pinzamiento subacromial (manguito rotador)",
+        "b. Luxación glenohumeral",
+        "c. Capsulitis adhesiva (hombro congelado)",
+        "d. Artritis reumatoide de hombro",
+        "e. Fractura de clavícula"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Arco doloroso 60-120° + Neer (+) + Hawkins (+) = síndrome de pinzamiento subacromial por tendinitis/desgarro del manguito rotador. Tratamiento: kinesioterapia + AINEs ± corticoides locales."
+    },
+    {
+      "id": 128,
+      "question": "Paciente con ECG que muestra fibrilación auricular con respuesta ventricular rápida (130 lpm) y función ventricular conservada. Hemodinámicamente estable. ¿Cuál es el fármaco de elección para control de frecuencia?",
+      "options": [
+        "a. Metoprolol oral",
+        "b. Amiodarona EV",
+        "c. Digoxina EV",
+        "d. Flecainida oral",
+        "e. Sotalol oral"
+      ],
+      "correctAnswer": "a",
+      "explanation": "FA con respuesta ventricular rápida estable y FEVI conservada: control de frecuencia con betabloqueador (metoprolol) o calcioantagonista (diltiazem/verapamilo). Metoprolol es primera línea."
+    },
+    {
+      "id": 129,
+      "question": "Paciente cirrótico hospitalizado con ascitis en tratamiento con cefotaxima por PBE. A las 72h persiste fiebre y deterioro. Cultivo del líquido ascítico: Escherichia coli. ¿Cuál es el significado clínico?",
+      "options": [
+        "a. E. coli es el agente más frecuente en PBE; el tratamiento es correcto si hay sensibilidad",
+        "b. Cambiar a ceftriaxona",
+        "c. Agregar metronidazol",
+        "d. Cambiar a vancomicina",
+        "e. Realizar paracentesis evacuadora urgente"
+      ],
+      "correctAnswer": "a",
+      "explanation": "E. coli es el microorganismo más frecuente en PBE (40-50% de los casos). Si el antibiograma confirma sensibilidad a cefotaxima, el tratamiento es correcto. La falta de respuesta obliga a revisar antibiograma y buscar complicaciones."
+    },
+    {
+      "id": 130,
+      "question": "Niño de 9 años con cojera indolora progresiva de 3 semanas. Rx de cadera: aplanamiento y fragmentación de la cabeza femoral derecha. ¿Cuál es el diagnóstico y conducta?",
+      "options": [
+        "a. Enfermedad de Legg-Calvé-Perthes: derivar a ortopedia infantil",
+        "b. Sinovitis transitoria: reposo y AINEs",
+        "c. Artritis séptica: hospitalizar y cirugía",
+        "d. Displasia del desarrollo de cadera: arnés de Pavlik",
+        "e. Osteosarcoma: biopsia urgente"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Necrosis avascular de la cabeza femoral en niño 4-10 años + Rx con fragmentación y aplanamiento = enfermedad de Perthes. Derivar a ortopedia para decidir tratamiento conservador vs quirúrgico según clasificación."
+    },
+    {
+      "id": 131,
+      "question": "Paciente hospitalizado en anticoagulación con heparina no fraccionada. Exámenes: TP 14s (normal), TTPA 120s (normal 25-35s), plaquetas 45.000/mm³ (bajaron de 180.000 hace 5 días). ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Trombocitopenia inducida por heparina (HIT) tipo II",
+        "b. CID",
+        "c. PTT",
+        "d. Trombocitopenia por sepsis",
+        "e. Efecto del anticoagulante sobre el conteo plaquetario"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Caída de plaquetas >50% a los 5-10 días de inicio de heparina = HIT tipo II (mediada por anticuerpos anti-PF4/heparina). Suspender heparina inmediatamente y cambiar a anticoagulación alternativa (argatrobán)."
+    },
+    {
+      "id": 132,
+      "question": "Puérpera con una cesárea anterior presenta trabajo de parto espontáneo. A las 2 horas de trabajo de parto activo, refiere dolor uterino súbito diferente a las contracciones, y el MEFI muestra bradicardia fetal sostenida. ¿Cuál es la conducta inmediata?",
+      "options": [
+        "a. Fórceps de urgencia",
+        "b. Conducción con oxitocina",
+        "c. Vacuum",
+        "d. Cesárea de urgencia inmediata",
+        "e. Espera activa y analgesia"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Rotura uterina (dolor súbito diferente a contracciones + bradicardia fetal + antecedente de cicatriz uterina): emergencia obstétrica máxima. Cesárea de urgencia INMEDIATA. El fórceps/vacuum están absolutamente contraindicados. Sin tratamiento puede ser fatal para madre y feto."
+    },
+    {
+      "id": 133,
+      "question": "Embarazada de 12 semanas con translucencia nucal aumentada en ecografía. ¿Cuál es el examen definitivo para confirmar trisomía 21?",
+      "options": [
+        "a. Biopsia de vellosidades coriales (11-14 semanas)",
+        "b. Amniocentesis (15-20 semanas)",
+        "c. ADN fetal en sangre materna (NIPT)",
+        "d. Fetoscopia",
+        "e. Marcadores séricos maternos (triple marcador)"
+      ],
+      "correctAnswer": "a",
+      "explanation": "A las 12 semanas: biopsia de vellosidades coriales (BVC) es el examen invasivo de elección para cariotipo fetal (ventana 10-14 semanas). La amniocentesis se hace después de las 15 semanas."
+    },
+    {
+      "id": 134,
+      "question": "Mujer de 25 años con palpitaciones paroxísticas. ECG en sinusal muestra intervalo PR corto y onda delta. Episodio de TPSV con QRS ancho. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Síndrome de Wolff-Parkinson-White (WPW)",
+        "b. Fibrilación auricular",
+        "c. Taquicardia ventricular",
+        "d. Bloqueo AV completo",
+        "e. Síndrome de QT largo"
+      ],
+      "correctAnswer": "a",
+      "explanation": "PR corto + onda delta + TPSV con QRS ancho = síndrome de WPW (preexcitación ventricular por vía accesoria). La taquicardia puede ser ortodrómica (QRS estrecho) o antidrómica (QRS ancho)."
+    },
+    {
+      "id": 135,
+      "question": "En el examen microscópico de una muestra de esputo se observan cocos gram positivos agrupados en racimos. ¿A qué bacteria corresponde este patrón morfológico?",
+      "options": [
+        "a. Staphylococcus aureus",
+        "b. Streptococcus pneumoniae",
+        "c. Enterococcus faecalis",
+        "d. Listeria monocytogenes",
+        "e. Neisseria meningitidis"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Cocos gram positivos en racimos (como uvas) = Staphylococcus spp. Los estreptococos forman cadenas, los enterococos pares o cortas cadenas, y Neisseria son gram negativos en diplococo."
+    },
+    {
+      "id": 136,
+      "question": "Paciente operado de válvula cardíaca hace 2 meses. Presenta fiebre, soplo cardíaco nuevo y hemocultivos positivos. ¿Cuál es el agente más probable en endocarditis infecciosa post-cirugía cardíaca precoz?",
+      "options": [
+        "a. Staphylococcus aureus o S. epidermidis",
+        "b. Streptococcus viridans",
+        "c. Enterococcus faecalis",
+        "d. HACEK group",
+        "e. Candida albicans"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Endocarditis protésica precoz (<2 meses post-cirugía): causada por gérmenes hospitalarios, principalmente Staphylococcus aureus y S. epidermidis (estafilococos coagulasa negativos), adquiridos intraoperatoriamente."
+    },
+    {
+      "id": 137,
+      "question": "Lactante de 3 meses con fiebre 39°C, rigidez de nuca, fontanela abombada y letargia. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Hospitalizar, punción lumbar y ATB empírico EV inmediato (ampicilina + cefotaxima)",
+        "b. ATB oral y control en 24h",
+        "c. Solo antipiréticos y observar",
+        "d. Solicitar TAC antes de la punción lumbar",
+        "e. Alta con instrucciones"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Meningitis bacteriana en lactante <3 meses: hospitalización urgente + punción lumbar + ATB empírico inmediato (ampicilina para cubrir Listeria + cefotaxima para S. agalactiae, E. coli, S. pneumoniae)."
+    },
+    {
+      "id": 138,
+      "question": "Hombre de 75 años con neumonía adquirida en la comunidad. Sin hospitalización reciente ni antibióticos en los últimos 3 meses. Sin alergias. ¿Cuál es el antibiótico de primera línea más adecuado?",
+      "options": [
+        "a. Amoxicilina-clavulánico oral",
+        "b. Ciprofloxacino oral",
+        "c. Clindamicina oral",
+        "d. Cefalexina oral",
+        "e. Azitromicina oral"
+      ],
+      "correctAnswer": "a",
+      "explanation": "NAC en adulto mayor: mayor riesgo de flora gram negativa, anaerobios y bacterias atípicas. Amoxicilina-clavulánico oral (875/125 mg c/12h) ofrece cobertura ampliada vs amoxicilina sola. En adulto mayor se prefiere sobre amoxicilina sola o macrólidos en monoterapia."
+    },
+    {
+      "id": 139,
+      "question": "Paciente usuario de cocaína y en tratamiento con carbamazepina por epilepsia. Llega a urgencias con agitación, taquicardia y midriasis. ¿Cuál es el examen de urgencia más relevante a solicitar?",
+      "options": [
+        "a. Niveles séricos de carbamazepina y ECG",
+        "b. TAC de cerebro",
+        "c. Ecografía abdominal",
+        "d. Radiografía de tórax",
+        "e. Hemograma y VHS"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Cocaína + carbamazepina: riesgo de interacción (cocaína aumenta niveles de carbamazepina) y toxicidad cardíaca (QRS ancho, arritmias). Urgencia: ECG para evaluar arritmias + niveles de carbamazepina."
+    },
+    {
+      "id": 140,
+      "question": "Hombre de 55 años, alcohólico crónico y fumador, con dolor epigástrico que se irradia a la espalda, aparece con la ingesta de alimentos y se calma al inclinarse hacia adelante. Presenta baja de peso de 8 kg. Transaminasas y amilasa levemente elevadas. Radiografía: calcificaciones en epigastrio. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Úlcera gástrica perforada",
+        "b. Obstrucción intestinal",
+        "c. Pancreatitis crónica",
+        "d. Colecistitis aguda",
+        "e. Hepatitis alcohólica"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Pancreatitis crónica: dolor epigástrico irradiado a la espalda + ingesta de alcohol crónico + posición antiálgica en flexión + baja de peso + CALCIFICACIONES pancreáticas en radiografía = tríada diagnóstica. El dolor mejora en reposo y empeora con la ingesta."
+    },
+    {
+      "id": 141,
+      "question": "Embarazada de 39 semanas en trabajo de parto activo. Lleva 4 horas en fase activa con dilatación cervical detenida en 5 cm, dinámica uterina regular (4 contracciones de 45 segundos cada 10 minutos) y presentación encajada. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Fórceps",
+        "b. Conducción con oxitocina",
+        "c. Espera activa 2 horas más",
+        "d. Cesárea de urgencia",
+        "e. Vacuum extractor"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Detención de la fase activa con dinámica insuficiente: conducción con oxitocina para aumentar la dinámica uterina. La detención del trabajo de parto sin desproporción cefalopélvica ni sufrimiento fetal NO es indicación de cesárea de inmediato. Primero se intenta conducción activa."
+    },
+    {
+      "id": 142,
+      "question": "Paciente en tratamiento con acenocumarol (warfarina) por FA. INR actual: 7.8 (meta 2-3). Sin sangrado activo. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Suspender acenocumarol y administrar vitamina K1 oral 2.5-5 mg",
+        "b. Transfusión de plasma fresco congelado urgente",
+        "c. Solo suspender el anticoagulante y observar",
+        "d. Administrar protamina",
+        "e. Continuar la misma dosis y controlar en 1 semana"
+      ],
+      "correctAnswer": "a",
+      "explanation": "INR >5 sin sangrado: suspender anticoagulante + vitamina K1 oral 2.5-5 mg para reversión gradual. Plasma fresco solo si hay sangrado mayor. Objetivo: no revertir completamente para no crear estado protrombótico."
+    },
+    {
+      "id": 143,
+      "question": "Hombre de 78 años con pérdida de masa muscular, fuerza de prensión <16 kg y velocidad de marcha 0.7 m/s. ¿Cuál es el diagnóstico y la intervención más eficaz?",
+      "options": [
+        "a. Sarcopenia: ejercicio de resistencia progresivo + aporte proteico adecuado (1.2-1.5 g/kg/día)",
+        "b. Desnutrición: solo suplementos nutricionales orales",
+        "c. Depresión en adulto mayor: antidepresivos",
+        "d. Osteoporosis: bifosfonatos",
+        "e. Hipotiroidismo: levotiroxina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Sarcopenia (masa + fuerza muscular reducidas + velocidad de marcha lenta): intervención más efectiva = ejercicio de resistencia progresivo + ingesta proteica aumentada. No hay fármaco aprobado de primera línea."
+    },
+    {
+      "id": 144,
+      "question": "Niño de 8 años con lesiones eritematosas papulosas en manos, pies, axilas y zona interdigital, muy pruriginosas, que empeoran de noche. También afectados su hermano y su madre. ¿Cuál es el diagnóstico y tratamiento?",
+      "options": [
+        "a. Escabiosis: permetrina 5% tópica + tratar a todos los contactos",
+        "b. Dermatitis atópica: emolientes y corticoides tópicos",
+        "c. Tinea pedis: clotrimazol tópico",
+        "d. Erupción por contacto: evitar alérgeno",
+        "e. Impétigo: mupirocina tópica"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Sarna (escabiosis): prurito nocturno + lesiones en espacios interdigitales, axilas, manos y pies + afecta convivientes = Sarcoptes scabiei. Tratamiento: permetrina 5% cuerpo completo + tratar todos los contactos simultáneamente."
+    },
+    {
+      "id": 145,
+      "question": "Mujer de 28 años con antecedente de 3 abortos espontáneos en el primer trimestre. Sin causa identificada aún. Desea volver a quedar embarazada. ¿Cuál es la suplementación periconcepcional más importante?",
+      "options": [
+        "a. Calcio 1200 mg/día",
+        "b. Ácido fólico 5 mg/día (dosis alta por abortos recurrentes)",
+        "c. Progesterona vaginal",
+        "d. Hierro elemental 60 mg/día",
+        "e. Aspirina 100 mg/día"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Abortos recurrentes: el ácido fólico periconcepcional (5 mg/día en dosis alta por antecedente de pérdidas) reduce riesgo de defectos del tubo neural y se asocia a mejor resultado gestacional. Aspirina + heparina solo si se confirma síndrome antifosfolípido. El ácido fólico es la suplementación base siempre."
+    },
+    {
+      "id": 146,
+      "question": "Lactante de 10 meses con diarrea acuosa de 3 días de evolución, que mejora tras rehidratación oral. Hemograma y electrolitos: normales. ¿Cuál es el diagnóstico más probable de la gastroenteritis?",
+      "options": [
+        "a. Gastroenteritis bacteriana (Salmonella)",
+        "b. Gastroenteritis por Rotavirus",
+        "c. Infección urinaria",
+        "d. Enfermedad celíaca de debut",
+        "e. Fibrosis quística"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Gastroenteritis en lactante de 10 meses: Rotavirus es el agente más frecuente (diarrea acuosa, electrolitos normales, responde bien a rehidratación oral, curso benigno). La gastroenteritis bacteriana típicamente tiene fiebre alta y sangre. Rotavirus tiene vacuna desde los 2 meses."
+    },
+    {
+      "id": 147,
+      "question": "Mujer de 45 años que recuerda que durante un embarazo hace 20 años le diagnosticaron un soplo cardíaco. Actualmente asintomática, tolera el ejercicio normal. Auscultación: soplo sistólico II/VI en foco pulmonar con desdoblamiento fijo del segundo ruido. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Tetralogía de Fallot",
+        "b. Ductus arterioso persistente",
+        "c. Estenosis pulmonar",
+        "d. Comunicación interauricular (CIA)",
+        "e. Comunicación interventricular"
+      ],
+      "correctAnswer": "d",
+      "explanation": "CIA: soplo sistólico de eyección en foco pulmonar (por hiperflujo pulmonar) + desdoblamiento FIJO del S2 (por sobrecarga de volumen en VD independiente de la respiración) = signo casi patognomónico de CIA. Suele diagnosticarse en embarazo por el aumento del gasto cardíaco."
+    },
+    {
+      "id": 148,
+      "question": "Mujer de 20 años tras parto vaginal con episiotomía presenta aumento de volumen doloroso, azulado y fluctuante en el labio mayor derecho de 48 horas de evolución. Sin fiebre. ¿Cuál es el diagnóstico y manejo más adecuado?",
+      "options": [
+        "a. Hematoma vulvar: compresas frías y analgesia si no aumenta",
+        "b. Absceso vulvar: drenaje + antibióticos",
+        "c. Quiste de Bartolino: observación ambulatoria",
+        "d. Linfocele: punción aspirativa",
+        "e. Tromboflebitis pélvica: anticoagulación"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Absceso vulvar/hematoma infectado post-parto: aumento de volumen azulado + fluctuante + doloroso a las 48h del parto = hematoma infectado o absceso. Requiere drenaje quirúrgico + antibióticos (amoxicilina-clavulánico). El hematoma no infectado (<24h, sin fiebre) se maneja con compresas frías."
+    },
+    {
+      "id": 149,
+      "question": "Mujer de 35 años con exoftalmo bilateral, palpitaciones, pérdida de peso y temblor fino en manos. TSH suprimida, T4 libre elevada. Bocio difuso. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Enfermedad de Graves-Basedow",
+        "b. Tiroiditis de Hashimoto",
+        "c. Bocio multinodular tóxico",
+        "d. Adenoma tóxico de tiroides",
+        "e. Tiroiditis subaguda de De Quervain"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hipertiroidismo + exoftalmo (oftalmopatía de Graves) + bocio difuso en mujer joven = enfermedad de Graves-Basedow (autoinmune, anticuerpos anti-TSH-R). El exoftalmo es patognomónico."
+    },
+    {
+      "id": 150,
+      "question": "Hombre de 70 años desdentado con disfagia alta para sólidos de inicio súbito tras comer. Endoscopia: cuerpo extraño (trozo de carne) impactado en esófago superior. Ya se realizó endoscopia de extracción exitosa. ¿Cuál es el estudio de seguimiento más importante?",
+      "options": [
+        "a. Nueva endoscopía para evaluar mucosa esofágica subyacente y descartar estenosis o tumor",
+        "b. Rx de tórax de control",
+        "c. TAC de cuello y tórax",
+        "d. Alta directa sin más estudio",
+        "e. Esofagografía con bario"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Impactación de alimento en esófago, especialmente en adulto mayor, debe hacer sospechar patología esofágica subyacente (estenosis péptica, anillo de Schatzki, tumor). Nueva endoscopía de evaluación es obligatoria."
+    },
+    {
+      "id": 151,
+      "question": "Mujer de 55 años con colecistitis aguda de 48 horas de evolución. Estable hemodinámicamente, fiebre 38°C, leucocitos 14.000. ¿Cuál es el manejo quirúrgico más adecuado?",
+      "options": [
+        "a. Colecistectomía laparoscópica precoz (dentro de 72h)",
+        "b. Cirugía electiva en 6 semanas",
+        "c. Drenaje percutáneo y cirugía diferida",
+        "d. Solo ATB EV y observación",
+        "e. Colecistostomía abierta de urgencia"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Colecistitis aguda no complicada: colecistectomía laparoscópica precoz (<72h del diagnóstico) es superior al manejo diferido. Menor complicaciones, estadía hospitalaria y conversión a cirugía abierta."
+    },
+    {
+      "id": 152,
+      "question": "Paciente de 60 años con fiebre, ictericia y dolor en hipocondrio derecho (tríada de Charcot). Ecografía: vía biliar dilatada, cálculo en colédoco. ¿Cuál es el diagnóstico y tratamiento?",
+      "options": [
+        "a. Colangitis aguda: ATB EV + CPRE urgente para drenaje biliar",
+        "b. Hepatitis aguda: manejo conservador",
+        "c. Colecistitis aguda: colecistectomía laparoscópica",
+        "d. Absceso hepático: drenaje percutáneo",
+        "e. Pancreatitis aguda: reposo y fluidos"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Tríada de Charcot (fiebre + ictericia + dolor en HD) + coledocolitiasis = colangitis aguda. Emergencia: ATB de amplio espectro + drenaje biliar endoscópico urgente (CPRE) para descompresión."
+    },
+    {
+      "id": 153,
+      "question": "Paciente de 45 años con otorrea crónica recurrente, hipoacusia conductiva y perforación timpánica central con colesteatoma evidenciado en TAC de oídos. ¿Cuál es el tratamiento?",
+      "options": [
+        "a. Timpanomastoidectomía (cirugía)",
+        "b. Antibióticos tópicos indefinidos",
+        "c. Corticoides tópicos",
+        "d. Audífonos",
+        "e. Solo observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Colesteatoma (otitis media crónica con colesteatoma): tratamiento quirúrgico obligatorio (timpanomastoidectomía) para erradicar el colesteatoma y prevenir complicaciones (mastoiditis, meningitis, parálisis facial)."
+    },
+    {
+      "id": 154,
+      "question": "Paciente de 50 años con episodios de vértigo rotatorio, tinnitus unilateral fluctuante e hipoacusia neurosensorial ipsilateral. Los síntomas duran horas. Audiometría disponible en una semana. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Enfermedad de Ménière",
+        "b. Vértigo posicional paroxístico benigno (VPPB)",
+        "c. Neuritis vestibular",
+        "d. ACV de fosa posterior",
+        "e. Schwannoma vestibular"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Tríada de Ménière: vértigo episódico + hipoacusia neurosensorial fluctuante + tinnitus, todo ipsilateral, episodios de horas = enfermedad de Ménière. El VPPB dura segundos y no tiene hipoacusia."
+    },
+    {
+      "id": 155,
+      "question": "Hombre de 30 años que presenció un accidente de tránsito grave en que su mejor amigo resultó herido de gravedad. Desde entonces, hace 2 semanas, presenta insomnio, tristeza, dificultad de concentración en el trabajo y anhedonia. Sin ideación suicida. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Trastorno de pánico",
+        "b. Trastorno de ansiedad generalizada",
+        "c. Trastorno adaptativo",
+        "d. Depresión mayor",
+        "e. Trastorno de estrés agudo"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Trastorno adaptativo: síntomas emocionales/conductuales dentro de los 3 meses de un estresor identificable (accidente del amigo), con deterioro funcional pero sin cumplir criterios de depresión mayor (necesita ≥5 síntomas por ≥2 semanas con humor depresivo o anhedonia). Resolución espontánea esperada."
+    },
+    {
+      "id": 156,
+      "question": "Paciente con agudeza visual 20/40 bilateral que no mejora con agujero estenopeico. Refracción sin cambios. ¿Cuál es la causa más probable de esta alteración visual?",
+      "options": [
+        "a. Opacidad de medios (catarata u otra causa no refractiva)",
+        "b. Error refractivo no corregido",
+        "c. Ambliopía",
+        "d. Glaucoma",
+        "e. Degeneración macular"
+      ],
+      "correctAnswer": "a",
+      "explanation": "El agujero estenopeico mejora la AV solo en errores refractivos. Si NO mejora, la causa es una opacidad de medios (catarata, opacidad corneal, vítreo) o patología retinal/neural. En adulto: pensar en catarata."
+    },
+    {
+      "id": 157,
+      "question": "Mujer de 28 años con amenorrea de 4 meses, hirsutismo, acné y obesidad central. Ecografía: ovarios con múltiples folículos periféricos. Testosterona libre levemente elevada. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Síndrome de ovario poliquístico (SOP)",
+        "b. Hiperprolactinemia",
+        "c. Insuficiencia ovárica prematura",
+        "d. Síndrome de Cushing",
+        "e. Hiperplasia suprarrenal congénita"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Amenorrea + hiperandrogenismo (hirsutismo, acné, testosterona elevada) + ecografía con patrón poliquístico = SOP (criterios de Rotterdam: 2 de 3 criterios). Causa más frecuente de amenorrea secundaria en mujeres jóvenes."
+    },
+    {
+      "id": 158,
+      "question": "Paciente con hidronefrosis izquierda severa por urolitiasis y antecedente de nefrectomía derecha previa (monorreno). Sin infección activa. ¿Cuál es el manejo más adecuado?",
+      "options": [
+        "a. Catéter doble J para aliviar la obstrucción y preservar la función renal",
+        "b. Nefrectomía izquierda",
+        "c. Nefrostomía percutánea de urgencia",
+        "d. Litotricia extracorpórea sin derivación",
+        "e. Solo analgesia y observar"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Monorreno con obstrucción ureteral por cálculo: urgencia urológica. Catéter doble J (endoprótesis ureteral) descomprime el sistema colector y preserva la función del único riñón funcionante."
+    },
+    {
+      "id": 159,
+      "question": "Niño de 8 años con pie plano flexible asintomático. Arco plantar presente al pararse en puntillas. Sin dolor, sin limitación funcional. ¿Cuál es la conducta más adecuada?",
+      "options": [
+        "a. Tranquilizar a los padres: pie plano flexible fisiológico, no requiere plantillas ni tratamiento",
+        "b. Plantillas correctoras",
+        "c. Derivar a ortopedia",
+        "d. Fisioterapia intensiva",
+        "e. Cirugía correctora"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Pie plano flexible en niño (<10 años) con arco que reaparece al puntillas = fisiológico. No hay evidencia de que las plantillas modifiquen el desarrollo del arco. Solo se trata si es doloroso o rígido."
+    },
+    {
+      "id": 160,
+      "question": "Mujer de 74 años con epigastralgia de 3 semanas de evolución, sin irradiación, sin baja de peso. Antecedente de dispepsia tratada hace 10 años. AINES ocasionales. ¿Cuál es la conducta inicial más adecuada?",
+      "options": [
+        "a. Endoscopía digestiva alta (EDA) para descartar lesión orgánica (criterios de alarma por edad >60 años)",
+        "b. Iniciar IBP y controlar en 4 semanas",
+        "c. Test de Helicobacter pylori no invasivo y tratar si positivo",
+        "d. Radiografía de abdomen",
+        "e. Ecografía abdominal"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Dispepsia en >60 años = criterio de alarma por edad → EDA obligatoria para descartar cáncer gástrico, úlcera péptica u otras lesiones orgánicas. No se puede tratar empíricamente en este grupo etario."
+    },
+    {
+      "id": 161,
+      "question": "Paciente de 65 años con DM2 en tratamiento con insulina NPH nocturna. Presenta hiperglicemias en ayuno de 200-240 mg/dL. Glicemias a las 3 AM: 65 mg/dL. ¿Cuál es el ajuste más adecuado?",
+      "options": [
+        "a. Agregar glibenclamida",
+        "b. Agregar sitagliptina",
+        "c. Agregar pioglitazona",
+        "d. Reducir dosis de insulina NPH nocturna",
+        "e. Cambiar a insulina basada en metformina"
+      ],
+      "correctAnswer": "d",
+      "explanation": "Fenómeno de Somogyi: hipoglicemia nocturna (3 AM) → hiperglicemia de rebote en ayuno. La glicemia de 65 mg/dL a las 3 AM confirma hipoglicemia nocturna. La solución es REDUCIR la insulina NPH, no aumentarla. Confirmar midiendo glicemia a las 3 AM."
+    },
+    {
+      "id": 162,
+      "question": "Futbolista de 22 años que sufre giro brusco con la rodilla semiflexionada. Presenta edema articular rápido (hemartros), signo del cajón anterior positivo y prueba de Lachman positiva. ¿Qué estructura se lesionó?",
+      "options": [
+        "a. Ligamento cruzado anterior (LCA)",
+        "b. Ligamento cruzado posterior (LCP)",
+        "c. Ligamento colateral medial (LCM)",
+        "d. Menisco medial",
+        "e. Ligamento patelofemoral"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Cajón anterior (+) + Lachman (+) + hemartros post trauma en valgus/rotación = ruptura del ligamento cruzado anterior (LCA). Es la lesión ligamentaria más frecuente en deportistas jóvenes."
+    },
+    {
+      "id": 163,
+      "question": "Joven de 25 años con diarrea crónica de 8 meses, 5-6 deposiciones al día sin sangre, pérdida de peso de 7 kg, úlceras orales recurrentes, dolor abdominal periumbilical y fístula perianal. Colonoscopía: úlceras aftosas con mucosa normal entre ellas (patrón en empedrado). ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Síndrome de intestino irritable",
+        "b. Colitis ulcerosa",
+        "c. Enfermedad de Crohn",
+        "d. Tuberculosis intestinal",
+        "e. Linfoma intestinal"
+      ],
+      "correctAnswer": "c",
+      "explanation": "Enfermedad de Crohn: compromiso transmural + patrón en empedrado + úlceras aftosas con mucosa intercalada normal + fístula perianal + úlceras orales + localización que puede ser cualquier tramo del tubo digestivo. La CU no tiene fístulas ni compromiso ileal típico ni úlceras orales."
+    },
+    {
+      "id": 164,
+      "question": "Mujer de 35 años con diarrea crónica mucosanguinolenta de 6 meses de evolución, urgencia defecatoria, pujo y tenesmo. Colonoscopía: mucosa eritematosa, granular, con pseudopólipos, desde el recto continuo hasta el ángulo esplénico, sin mucosa sana intercalada. ¿Cuál es el diagnóstico?",
+      "options": [
+        "a. Colitis isquémica",
+        "b. Colitis ulcerosa",
+        "c. Síndrome de intestino irritable",
+        "d. Colitis infecciosa",
+        "e. Enfermedad de Crohn"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Colitis ulcerosa: compromiso mucoso continuo desde el recto hacia proximal + diarrea mucosanguinolenta + tenesmo + pseudopólipos en endoscopía. No hay mucosa sana intercalada (a diferencia de Crohn). Tratamiento: 5-aminosalicilatos (mesalazina) tópicos + orales según extensión."
+    },
+    {
+      "id": 165,
+      "question": "paciente adulta mayor con signos de fractura de pie, aumento de volumen, limitación funcional y con mucho dolor al apoyar pie, decía cual era estudio dx de elección",
+      "options": [
+        "a. Ecografía",
+        "b. Resonancia magnética",
+        "c. Cintigrafía",
+        "d. TAC",
+        "e. RX"
+      ],
+      "correctAnswer": "d",
+      "explanation": "RX"
+    },
+    {
+      "id": 166,
+      "question": "paciente con diabetes gestacional 28 semanas, con tto metformina pero con cifras elevadas de glicemia, se preguntaba cómo continuar tto",
+      "options": [
+        "a. Pioglitazona",
+        "b. agregar insulina",
+        "c. Glibenclamida",
+        "d. Sitagliptina",
+        "e. Metformina"
+      ],
+      "correctAnswer": "a",
+      "explanation": "agregar insulina"
+    },
+    {
+      "id": 167,
+      "question": "Hombre de 55 años asintomático con calcio sérico 11.2 mg/dL, fósforo 2.1 mg/dL (bajo) y PTH 145 pg/mL (elevada). Sin otros hallazgos. ¿Cuál es el diagnóstico más probable?",
+      "options": [
+        "a. Hiperparatiroidismo primario",
+        "b. Hipercalcemia hipocalciúrica familiar",
+        "c. Hipercalcemia de malignidad",
+        "d. Intoxicación por vitamina D",
+        "e. Sarcoidosis"
+      ],
+      "correctAnswer": "a",
+      "explanation": "Hipercalcemia + hipofosforemia + PTH inapropiadamente elevada en paciente asintomático = hiperparatiroidismo primario. Es la causa más frecuente de hipercalcemia en pacientes ambulatorios. PTH suprimida en malignidad."
+    }
+  ]
+}

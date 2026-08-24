@@ -1,0 +1,314 @@
+{
+  "1.01.1.001": {
+    "name": "Angina crónica estable",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.1.002": {
+    "name": "Bloqueos aurículo-ventriculares",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.003": {
+    "name": "Cardiopatía congénita en adulto",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.004": {
+    "name": "Corazón pulmonar crónico",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.005": {
+    "name": "Dislipidemias",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.01.1.006": {
+    "name": "Embolia pulmonar (TEP)",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.007": {
+    "name": "Endocarditis infecciosa y no infecciosa",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.008": {
+    "name": "Enfermedad reumática activa",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.01.1.009": {
+    "name": "Estenosis aórtica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.010": {
+    "name": "Estenosis mitral",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.011": {
+    "name": "Extrasistolía ventricular benigna",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.1.012": {
+    "name": "Fibrilación auricular crónica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.1.013": {
+    "name": "Fibrilación auricular paroxística",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.014": {
+    "name": "Flutter auricular",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.015": {
+    "name": "Hipertensión arterial esencial",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.01.1.016": {
+    "name": "Hipertensión arterial secundaria",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.017": {
+    "name": "Insuficiencia aórtica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.018": {
+    "name": "Insuficiencia cardíaca",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.1.019": {
+    "name": "Insuficiencia mitral",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.020": {
+    "name": "Miocardiopatías",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.021": {
+    "name": "Paciente con soplo",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.1.022": {
+    "name": "Pericarditis aguda",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "No requiere"
+  },
+  "1.01.1.023": {
+    "name": "Síndrome metabólico",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.01.1.024": {
+    "name": "Taquicardia paroxística supraventricular (TPSV)",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.2.001": {
+    "name": "Angina inestable",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.2.002": {
+    "name": "Disección aórtica",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.2.003": {
+    "name": "Embolia cardiogénica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.2.004": {
+    "name": "Infarto agudo al miocardio",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.01.2.005": {
+    "name": "Insuficiencia cardíaca aguda",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar UCI"
+  },
+  "1.01.2.006": {
+    "name": "Paro cardiorespiratorio",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Derivar UCI"
+  },
+  "1.01.2.007": {
+    "name": "Shock",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar UCI"
+  },
+  "1.01.2.008": {
+    "name": "Taponamiento pericárdico",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.2.009": {
+    "name": "Taqui y bradiarritmia con compromiso hemodinámico",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.01.3.003": {
+    "name": "Manejo del paciente en tratamiento anticoagulante",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.01.4.001": {
+    "name": "Coronariografía",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.002": {
+    "name": "Angiotac de tórax y aorta",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.003": {
+    "name": "Radiografía de tórax",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.005": {
+    "name": "Cintigrafía de perfusión miocárdica",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.006": {
+    "name": "Ecocardiografía",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.007": {
+    "name": "Electrocardiograma de 12 derivaciones",
+    "diag": "Realiza, interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.008": {
+    "name": "Test de esfuerzo",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.009": {
+    "name": "Enzimas cardíacas (Troponinas / BNP)",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.011": {
+    "name": "Holter de presión arterial (MAPA)",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.013": {
+    "name": "Perfil lipídico",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.4.014": {
+    "name": "Holter de ritmo",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.002": {
+    "name": "Cardioversión eléctrica",
+    "diag": "Derivar / Conocer técnica",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.004": {
+    "name": "Desfibrilación eléctrica",
+    "diag": "Realizar",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.005": {
+    "name": "Intubación traqueal",
+    "diag": "Realizar",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.006": {
+    "name": "Resucitación cardiorespiratoria (ACLS)",
+    "diag": "Realizar",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.007": {
+    "name": "Punción pericárdica (Pericardiocentesis)",
+    "diag": "Derivar a especialista",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.01.5.009": {
+    "name": "Trombolisis (Fibrinolisis sistémica)",
+    "diag": "Realizar",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.04.1.002": {
+    "name": "Enfermedad de Chagas (Infecciosas)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  }
+}

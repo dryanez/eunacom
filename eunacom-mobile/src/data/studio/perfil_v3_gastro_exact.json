@@ -1,0 +1,308 @@
+{
+  "1.06.1.001": {
+    "name": "Ascitis",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.002": {
+    "name": "Cáncer de páncreas",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.003": {
+    "name": "Cáncer de vesícula y vías biliares",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.004": {
+    "name": "Cáncer gástrico",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.005": {
+    "name": "Cirrosis hepática",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.006": {
+    "name": "Colelitiasis",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.007": {
+    "name": "Colestasia",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.008": {
+    "name": "Trastornos digestivos funcionales (SII)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.009": {
+    "name": "Constipación",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.010": {
+    "name": "Diarrea asociada a antibióticos (C. difficile)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.011": {
+    "name": "Diarrea crónica",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.012": {
+    "name": "Diarrea en inmunosuprimidos",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.013": {
+    "name": "Disfagia (Lógica vs Ilógica)",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.014": {
+    "name": "Dispepsia (Funcional vs Orgánica)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.015": {
+    "name": "Enfermedad celíaca",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.016": {
+    "name": "Enfermedad diverticular complicada",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.017": {
+    "name": "Enfermedad diverticular no complicada",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Completo APS"
+  },
+  "1.06.1.018": {
+    "name": "Enfermedad inflamatoria intestinal (CU vs Crohn)",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.019": {
+    "name": "Hepatitis aguda A no complicada",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.020": {
+    "name": "Hepatitis agudas B, C, por otros virus y tóxicas",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.021": {
+    "name": "Hepatitis crónica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.022": {
+    "name": "Insuficiencia hepática crónica",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.023": {
+    "name": "Intolerancia a la lactosa",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.024": {
+    "name": "Masa hepática",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.025": {
+    "name": "Pancreatitis crónica",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.026": {
+    "name": "Parasitosis intestinales",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.027": {
+    "name": "Reflujo gastroesofágico (ERGE)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.1.028": {
+    "name": "Síndrome de malabsorción",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.029": {
+    "name": "Tumores de colon (Cáncer Colorrectal)",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.1.030": {
+    "name": "Úlcera péptica",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.2.001": {
+    "name": "Abdomen agudo",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.002": {
+    "name": "Afagia aguda",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.003": {
+    "name": "Colangitis aguda",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.004": {
+    "name": "Colecistitis aguda",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.005": {
+    "name": "Diarrea aguda",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Completo APS"
+  },
+  "1.06.2.006": {
+    "name": "Encefalopatía hepática",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.007": {
+    "name": "Hemorragia digestiva alta y baja",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.008": {
+    "name": "Hepatitis aguda A complicada",
+    "diag": "Específico",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.009": {
+    "name": "Insuficiencia hepática aguda (Falla Fulminante)",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.010": {
+    "name": "Pancreatitis aguda",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.2.011": {
+    "name": "Peritonitis bacteriana espontánea (PBE)",
+    "diag": "Específico",
+    "trat": "Completo",
+    "seg": "Derivar"
+  },
+  "1.06.2.012": {
+    "name": "Síndrome hepatorrenal",
+    "diag": "Sospecha",
+    "trat": "Inicial",
+    "seg": "Derivar"
+  },
+  "1.06.4.004": {
+    "name": "Colangiografía endoscópica (CPRE)",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.005": {
+    "name": "TAC abdominal",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.006": {
+    "name": "Ecotomografía abdominal",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.007": {
+    "name": "Endoscopía digestiva alta y baja",
+    "diag": "Emplea informe",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.009": {
+    "name": "Sangre oculta en deposiciones (TSOH/FIT)",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.010": {
+    "name": "Estudio de perfil hepático",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.012": {
+    "name": "Marcadores virales hepatitis A, B y C",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.4.014": {
+    "name": "Toxina C. difficile en deposiciones",
+    "diag": "Interpreta y emplea",
+    "trat": "-",
+    "seg": "-"
+  },
+  "1.06.5.001": {
+    "name": "Paracentesis diagnóstica y evacuadora",
+    "diag": "Realizar",
+    "trat": "-",
+    "seg": "-"
+  }
+}

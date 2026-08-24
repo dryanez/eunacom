@@ -1,0 +1,80 @@
+{
+    "redirects": [
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "eunacom.vercel.app"
+                }
+            ],
+            "destination": "https://www.eunacomapp.cl/:path*",
+            "permanent": true
+        }
+    ],
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                { "key": "Access-Control-Allow-Credentials", "value": "true" },
+                { "key": "Access-Control-Allow-Origin", "value": "*" },
+                { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+                { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization" }
+            ]
+        },
+        {
+            "source": "/index.html",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-cache, no-store, must-revalidate"
+                },
+                {
+                    "key": "Pragma",
+                    "value": "no-cache"
+                },
+                {
+                    "key": "Expires",
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "source": "/assets/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        },
+        {
+            "source": "/sitemap.xml",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml; charset=utf-8"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, must-revalidate"
+                }
+            ]
+        },
+        {
+            "source": "/robots.txt",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/plain; charset=utf-8"
+                }
+            ]
+        }
+    ],
+    "rewrites": [
+        { "source": "/api/(.*)", "destination": "/api/$1" },
+        { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+        { "source": "/robots.txt", "destination": "/robots.txt" },
+        { "source": "/((?!assets/|data/|img/|favicon.ico|manifest.webmanifest|sw.js|workbox-.*|sitemap\\.xml|robots\\.txt|.*\\.png|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.json).*)", "destination": "/index.html" }
+    ]
+}

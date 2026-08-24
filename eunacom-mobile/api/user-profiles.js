@@ -1,0 +1,278 @@
+import { getTurso } from './_turso.js'
+
+const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
+
+const PLANS = {
+  '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
+  '3m': { title: 'EUNACOM Examen - 3 Meses Premium', price: 34990 },
+  '6m': { title: 'EUNACOM Examen - 6 Meses Premium', price: 54990 },
+  '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 },
+  'offer': { title: 'Oferta Última Semana - 1 Mes', price: 5000 }
+}
+
+export default async function handler(req, res) {
+  const db = getTurso()
+
+  try {
+    // Ensure table exists and has all columns
+    await db.execute({
+      sql: `CREATE TABLE IF NOT EXISTS user_profiles (
+        id TEXT PRIMARY KEY,
+        email TEXT NOT NULL,
+        first_name TEXT,
+        last_name TEXT,
+        avatar_character TEXT,
+        exam_month TEXT,
+        exam_year TEXT,
+        prep_months TEXT,
+        nationality TEXT,
+        country TEXT,
+        country_code TEXT,
+        whatsapp TEXT,
+        inscrito_eunacom TEXT,
+        ayuda_inscripcion TEXT,
+        profile_type TEXT,
+        graduation_year TEXT,
+        university TEXT,
+        sede TEXT,
+        goal TEXT,
+        study_hours TEXT,
+        weak_area TEXT,
+        xp INTEGER DEFAULT 50,
+        onboarding_done INTEGER DEFAULT 0,
+        is_premium INTEGER DEFAULT 0,
+        premium_until TEXT,
+        plan_months INTEGER,
+        created_at TEXT DEFAULT (datetime('now')),
+        updated_at TEXT DEFAULT (datetime('now'))
+      )`,
+      args: []
+    }).catch(() => {})
+
+    const ensureCols = [
+      'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
+      'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+      'nationality TEXT', 'country TEXT', 'country_code TEXT',
+      'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+      'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+      'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+      'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+      'premium_until TEXT', 'plan_months INTEGER'
+    ]
+    for (const col of ensureCols) {
+      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+    }
+
+    // --- WEBHOOK HANDLING ---
+    if (req.method === 'POST' && req.body?.type) {
+      const type = req.body?.type;
+      const topic = req.body?.topic || req.query?.topic;
+      const action = req.body?.action;
+      
+      if (type === 'payment' || topic === 'payment' || action === 'payment.created') {
+        let paymentId = req.body?.data?.id || req.body?.resource || req.query?.id || req.query['data.id'];
+        if (!paymentId) return res.status(200).json({ received: true, msg: "Not a payment event or missing ID" })
+  
+        const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+          headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+        })
+  
+        if (!mpRes.ok) return res.status(200).json({ received: true, msg: "Failed to fetch payment details" })
+  
+        const paymentData = await mpRes.json()
+        if (paymentData.status === 'approved') {
+          const externalReference = paymentData.external_reference
+          if (externalReference) {
+            const [userId, planId] = externalReference.split('|')
+            if (userId) {
+               // Calculate expiration date
+               const now = new Date()
+               let planMonths = 1;
+               if (planId === '1m' || planId === 'offer') { now.setMonth(now.getMonth() + 1); planMonths = 1; }
+               else if (planId === '3m') { now.setMonth(now.getMonth() + 3); planMonths = 3; }
+               else if (planId === '6m') { now.setMonth(now.getMonth() + 6); planMonths = 6; }
+               else if (planId === '1y') { now.setFullYear(now.getFullYear() + 1); planMonths = 12; }
+               const premiumUntil = now.toISOString()
+
+               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
+               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+
+               await db.execute({
+                 sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
+                 args: [premiumUntil, planMonths, userId]
+               })
+            }
+          }
+        }
+        return res.status(200).json({ received: true })
+      }
+    }
+
+    // --- CHECKOUT CREATION ---
+    if (req.method === 'POST' && req.body?.action === 'checkout') {
+      const { userId, planId } = req.body
+      if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+
+      const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
+      let payerEmail = 'test@test.com'
+      if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
+
+      const plan = PLANS[planId]
+      const externalReference = `${userId}|${planId}|${Date.now()}`
+
+      const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ title: plan.title, quantity: 1, unit_price: plan.price, currency_id: 'CLP' }],
+          payer: { email: payerEmail },
+          external_reference: externalReference,
+          back_urls: {
+            success: 'https://eunacom.vercel.app/dashboard?payment=success',
+            failure: 'https://eunacom.vercel.app/dashboard?payment=failure',
+            pending: 'https://eunacom.vercel.app/dashboard?payment=pending'
+          },
+          auto_return: 'approved',
+          notification_url: 'https://eunacom.vercel.app/api/user-profiles'
+        })
+      })
+
+      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia Mercado Pago' })
+      const data = await mpRes.json()
+      return res.json({ init_point: data.init_point })
+    }
+
+    // --- DONATE CREATION ---
+    if (req.method === 'POST' && req.body?.action === 'donate') {
+      const { userId } = req.body
+      if (!userId) return res.status(400).json({ error: 'userId required' })
+
+      const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
+      let payerEmail = 'test@test.com'
+      if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
+      
+      const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ title: "Donación App EUNACOM", description: "Aporte voluntario (USD $9 approx)", quantity: 1, unit_price: 9000, currency_id: "CLP" }],
+          payer: { email: payerEmail },
+          back_urls: {
+            success: "https://eunacom.vercel.app/dashboard?donation=success",
+            failure: "https://eunacom.vercel.app/dashboard?donation=failure",
+            pending: "https://eunacom.vercel.app/dashboard?donation=pending"
+          },
+          auto_return: "approved"
+        })
+      })
+
+      if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia de donación' })
+      const data = await mpRes.json()
+      return res.json({ init_point: data.init_point })
+    }
+
+    // --- GET PROFILE ---
+    if (req.method === 'GET') {
+      const userId = req.query.userId
+      if (!userId) return res.status(400).json({ error: 'userId required' })
+
+      const result = await db.execute({
+        sql: 'SELECT * FROM user_profiles WHERE id = ?',
+        args: [userId]
+      })
+      return res.json({ data: result.rows[0] || null })
+    }
+
+    // --- CREATE / UPDATE PROFILE ---
+    if (req.method === 'POST') {
+      const {
+        id, email, first_name, last_name,
+        exam_month, exam_year, prep_months,
+        nationality, country, country_code, whatsapp,
+        inscrito_eunacom, ayuda_inscripcion, onboarding_done,
+        profile_type, graduation_year, university, sede, goal,
+        study_hours, weak_area, xp
+      } = req.body
+
+      if (!id || !email) return res.status(400).json({ error: 'id and email required' })
+
+      // Ensure all columns exist if adding to old DB (catch errors if they already exist)
+      const newCols = [
+        'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+        'nationality TEXT', 'country TEXT', 'country_code TEXT',
+        'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+        'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+        'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+        'avatar_character TEXT',
+        'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+        'premium_until TEXT', 'plan_months INTEGER',
+        "created_at TEXT DEFAULT (datetime('now'))",
+        "updated_at TEXT DEFAULT (datetime('now'))"
+      ]
+      for (const col of newCols) {
+        await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      }
+
+      await db.execute({
+        sql: `INSERT INTO user_profiles (
+                id, email, first_name, last_name, avatar_character, exam_month, exam_year, prep_months,
+                nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion,
+                profile_type, graduation_year, university, sede, goal, study_hours, weak_area, xp,
+                onboarding_done, is_premium, updated_at
+              )
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+              ON CONFLICT(id) DO UPDATE SET
+                email = excluded.email,
+                first_name = COALESCE(excluded.first_name, user_profiles.first_name),
+                last_name = COALESCE(excluded.last_name, user_profiles.last_name),
+                avatar_character = COALESCE(excluded.avatar_character, user_profiles.avatar_character),
+                exam_month = COALESCE(excluded.exam_month, user_profiles.exam_month),
+                exam_year = COALESCE(excluded.exam_year, user_profiles.exam_year),
+                prep_months = COALESCE(excluded.prep_months, user_profiles.prep_months),
+                nationality = COALESCE(excluded.nationality, user_profiles.nationality),
+                country = COALESCE(excluded.country, user_profiles.country),
+                country_code = COALESCE(excluded.country_code, user_profiles.country_code),
+                whatsapp = COALESCE(excluded.whatsapp, user_profiles.whatsapp),
+                inscrito_eunacom = COALESCE(excluded.inscrito_eunacom, user_profiles.inscrito_eunacom),
+                ayuda_inscripcion = COALESCE(excluded.ayuda_inscripcion, user_profiles.ayuda_inscripcion),
+                profile_type = COALESCE(excluded.profile_type, user_profiles.profile_type),
+                graduation_year = COALESCE(excluded.graduation_year, user_profiles.graduation_year),
+                university = COALESCE(excluded.university, user_profiles.university),
+                sede = COALESCE(excluded.sede, user_profiles.sede),
+                goal = COALESCE(excluded.goal, user_profiles.goal),
+                study_hours = COALESCE(excluded.study_hours, user_profiles.study_hours),
+                weak_area = COALESCE(excluded.weak_area, user_profiles.weak_area),
+                xp = COALESCE(excluded.xp, user_profiles.xp, 50),
+                onboarding_done = MAX(excluded.onboarding_done, user_profiles.onboarding_done),
+                updated_at = datetime('now')`,
+        args: [
+          id, email, first_name || '', last_name || '', req.body.avatar_character || 'dr_strange',
+          exam_month || 'Diciembre', exam_year || '2026', prep_months || '',
+          nationality || '', country || '', country_code || '', whatsapp || '',
+          inscrito_eunacom || '', ayuda_inscripcion || '',
+          profile_type || '', graduation_year || '', university || '', sede || '', goal || '',
+          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0
+        ]
+      })
+      return res.json({ ok: true })
+    }
+    // --- DELETE PROFILE ---
+    if (req.method === 'DELETE') {
+      const { userId } = req.body
+      if (!userId) return res.status(400).json({ error: 'userId required' })
+
+      // Delete all user data across all tables
+      await db.execute({ sql: 'DELETE FROM tests WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM user_progress WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM clase_progress WHERE user_id = ?', args: [userId] }).catch(() => {})
+      await db.execute({ sql: 'DELETE FROM user_profiles WHERE id = ?', args: [userId] })
+      
+      return res.json({ ok: true })
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' })
+  } catch (err) {
+    console.error('user-profiles error:', err)
+    return res.status(500).json({ error: err.message })
+  }
+}

@@ -1,0 +1,190 @@
+// GET /api/questions?clase_id=xxx        → questions for a specific class
+// GET /api/questions?eunacom_code=x.xx   → questions for a code
+// GET /api/questions?specialty=xxx&limit=N → questions by specialty
+import { getTurso } from './_turso.js';
+
+export default async function handler(req, res) {
+  const db = getTurso()
+
+  if (req.query.migrate === 'true') {
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+    try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+    try { await db.execute('CREATE UNIQUE INDEX IF NOT EXISTS idx_up_user_question ON user_progress(user_id, question_id)') } catch (e) {
+      try {
+        await db.execute(`DELETE FROM user_progress WHERE rowid NOT IN (SELECT MIN(rowid) FROM user_progress GROUP BY user_id, question_id)`)
+        await db.execute('CREATE UNIQUE INDEX idx_up_user_question ON user_progress(user_id, question_id)')
+      } catch (err) {}
+    }
+    const result = await db.execute("SELECT * FROM tests WHERE status = 'completed'")
+    let totalTests = 0
+    let totalSynced = 0
+    
+    // Fetch questionDB to map IDs to correct answers
+    const protocol = req.headers['x-forwarded-proto'] || 'https'
+    const host = req.headers.host || 'eunacom.vercel.app'
+    let qdbMap = new Map()
+    try {
+      const qdb = await fetch(`${protocol}://${host}/data/questionDB.json`).then(r => r.json())
+      qdbMap = new Map(qdb.map(q => [q.id, q]))
+    } catch (e) {
+      return res.status(500).json({ error: 'Failed to fetch questionDB.json for migration: ' + e.message })
+    }
+    
+    const promises = []
+    let currentBatch = []
+    
+    for (const test of result.rows) {
+      const { id, user_id, questions: qsRaw, answers: ansRaw } = test
+      let parsedQuestions = []
+      try { parsedQuestions = JSON.parse(qsRaw || '[]') } catch {}
+      let parsedAnswers = {}
+      try { parsedAnswers = JSON.parse(ansRaw || '{}') } catch {}
+      
+      if (!Array.isArray(parsedQuestions)) continue;
+      
+      for (const qItem of parsedQuestions) {
+        // qsRaw can be array of IDs (strings) or objects
+        const qId = typeof qItem === 'string' ? qItem : qItem?.id
+        if (!qId) continue;
+        
+        const qData = qdbMap.get(qId)
+        if (!qData) continue; // Skip if we can't verify the correct answer
+        
+        const userPick = parsedAnswers[qId]
+        const isCorrect = userPick ? (userPick.toLowerCase() === qData.correctAnswer?.toLowerCase()) : false
+        const isOmitted = !userPick
+        
+        currentBatch.push({
+          sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, is_flagged, answered_at)
+                VALUES (lower(hex(randomblob(16))), ?, ?, ?, ?, 0, datetime('now'))
+                ON CONFLICT(user_id, question_id) DO UPDATE SET
+                is_correct = excluded.is_correct,
+                is_omitted = excluded.is_omitted,
+                answered_at = datetime('now')`,
+          args: [user_id, qId, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
+        })
+      }
+      
+      if (currentBatch.length >= 150) {
+        promises.push(db.batch([...currentBatch]))
+        totalSynced += currentBatch.length
+        currentBatch = []
+      }
+      totalTests++
+    }
+    
+    if (currentBatch.length > 0) {
+      promises.push(db.batch(currentBatch))
+      totalSynced += currentBatch.length
+    }
+    
+    try {
+      await Promise.all(promises)
+      return res.json({ ok: true, message: `Migrated ${totalTests} tests and synced ${totalSynced} questions to user_progress.` })
+    } catch (e) {
+      return res.status(500).json({ error: e.message })
+    }
+  }
+
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
+
+  // Ensure table exists (idempotent – safe if already created by upload script)
+  await db.execute({ sql: `
+    CREATE TABLE IF NOT EXISTS eunacom_questions (
+      id TEXT PRIMARY KEY,
+      eunacom_code TEXT,
+      specialty TEXT,
+      pregunta TEXT NOT NULL,
+      opcion_a TEXT,
+      opcion_b TEXT,
+      opcion_c TEXT,
+      opcion_d TEXT,
+      opcion_e TEXT,
+      respuesta_correcta TEXT,
+      explicacion TEXT,
+      tags TEXT,
+      video_recomendado TEXT,
+      clase_id TEXT,
+      saved_at TEXT DEFAULT (datetime('now'))
+    )
+  `, args: [] })
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_code ON eunacom_questions(eunacom_code)', args: [] }) } catch {}
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)', args: [] }) } catch {}
+  try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)', args: [] }) } catch {}
+
+  const { clase_id, eunacom_code, specialty, limit = '50', offset = '0' } = req.query
+  const lim = Math.min(parseInt(limit) || 50, 200)
+  const off = parseInt(offset) || 0
+
+  try {
+    let rows = []
+
+    if (req.query.reviewUserId) {
+      // Ensure columns exist just in case
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+      try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
+      const result = await db.execute({
+        sql: `
+          SELECT 
+            q.*, up.answered_at
+          FROM user_progress up
+          JOIN eunacom_questions q ON up.question_id = q.id
+          WHERE up.user_id = ? AND up.is_correct = 0
+          ORDER BY up.answered_at DESC
+          LIMIT 200
+        `,
+        args: [req.query.reviewUserId]
+      })
+      rows = result.rows
+    } else if (clase_id) {
+      // Primary: questions matched directly to this class
+      const direct = await db.execute({
+        sql: `SELECT * FROM eunacom_questions WHERE clase_id = ? ORDER BY id LIMIT ? OFFSET ?`,
+        args: [clase_id, lim, off]
+      })
+      rows = direct.rows
+    } else if (eunacom_code) {
+      const result = await db.execute({
+        sql: `SELECT * FROM eunacom_questions WHERE eunacom_code = ? ORDER BY id LIMIT ? OFFSET ?`,
+        args: [eunacom_code, lim, off]
+      })
+      rows = result.rows
+    } else if (specialty) {
+      const result = await db.execute({
+        sql: `SELECT * FROM eunacom_questions WHERE specialty = ? ORDER BY id LIMIT ? OFFSET ?`,
+        args: [specialty, lim, off]
+      })
+      rows = result.rows
+    } else {
+      return res.status(400).json({ error: 'Provide clase_id, eunacom_code, specialty, or reviewUserId' })
+    }
+
+    // Normalise rows into a consistent shape for the frontend
+    const questions = rows.map(r => ({
+      id: r.id,
+      eunacomCode: r.eunacom_code,
+      modulo: r.modulo,
+      specialty: r.specialty,
+      pregunta: r.pregunta,
+      opciones: [
+        r.opcion_a && { id: 'A', text: r.opcion_a },
+        r.opcion_b && { id: 'B', text: r.opcion_b },
+        r.opcion_c && { id: 'C', text: r.opcion_c },
+        r.opcion_d && { id: 'D', text: r.opcion_d },
+        r.opcion_e && { id: 'E', text: r.opcion_e },
+      ].filter(Boolean),
+      respuestaCorrecta: r.respuesta_correcta,
+      explicacion: r.explicacion,
+      explicacionIncorrectas: r.explicacion_incorrectas || '',
+      tags: r.tags || '',
+      videoRecomendado: r.video_recomendado,
+      claseId: r.clase_id,
+    }))
+
+    return res.json({ data: questions, total: questions.length })
+  } catch (err) {
+    console.error('[questions]', err)
+    return res.status(500).json({ error: err.message })
+  }
+}

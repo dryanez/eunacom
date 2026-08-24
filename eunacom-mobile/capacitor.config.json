@@ -1,0 +1,6 @@
+{
+  "appId": "com.eunacom.mobile",
+  "appName": "EUNACOM Examen",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

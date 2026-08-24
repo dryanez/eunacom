@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="197px" preserveAspectRatio="none" style="width:743px;height:197px;background:#FFFFFF;" version="1.1" viewBox="0 0 743 197" width="743px" zoomAndPan="magnify">
+<defs/><g>
+<rect fill="#F1F1F1" height="30" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="340" x="201.5000" y="12"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" x="371.5000" y="31">IAM Inferior (DII, DIII, aVF) con Hipotensión e Ingurgitación Yugular</text>
+<polygon fill="#F1F1F1" points="223.5000,52 519.5000,52 531.5000,65 519.5000,78 223.5000,78 211.5000,65 223.5000,52" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" x="371.5000" y="69">¿Supradesnivel ST ≥ 1 mm en Derivaciones Derechas V3R-V4R?</text>
+<line style="stroke:#181818;stroke-width:1;" x1="371.5000" x2="371.5000" y1="42" y2="52"/>
+<polygon fill="#181818" points="368.0000,46 371.5000,52 375.0000,46 371.5000,48" style="stroke:#181818;stroke-width:1;"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" x="126.5000" y="62">SÍ - IAM VD</text><text fill="#000000" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" x="546.5000" y="62">NO - IAM Inferior</text><rect fill="#E0F2FE" height="30" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="330" x="26.5000" y="95.0000"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" x="191.5000" y="114.0000">SOBRECARGA DE VOLUMEN (Suero Fisiológico 500-1000 cc EV)</text>
+<rect fill="#FFE4E6" height="30" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="310" x="36.5000" y="140.0000"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" x="191.5000" y="159.0000">⚠️ CONTRAINDICADOS: Nitratos, Morfina, Diuréticos</text>
+<line style="stroke:#181818;stroke-width:1;" x1="191.5000" x2="191.5000" y1="125.0000" y2="140.0000"/>
+<polygon fill="#181818" points="188.0000,133.0000 191.5000,140.0000 195.0000,133.0000 191.5000,136.0000" style="stroke:#181818;stroke-width:1;"/>
+<rect fill="#F1F1F1" height="30" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="290" x="406.5000" y="95.0000"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" x="551.5000" y="114.0000">Manejo Estándar de Infarto de Pared Inferior</text>
+<rect fill="#F1F1F1" height="30" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="280" x="411.5000" y="140.0000"/>
+<text fill="#000000" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" x="551.5000" y="159.0000">Monitorización Hemodinámica Contínua</text>
+<line style="stroke:#181818;stroke-width:1;" x1="551.5000" x2="551.5000" y1="125.0000" y2="140.0000"/>
+<polygon fill="#181818" points="548.0000,133.0000 551.5000,140.0000 555.0000,133.0000 551.5000,136.0000" style="stroke:#181818;stroke-width:1;"/>
+<line style="stroke:#181818;stroke-width:1;" x1="211.5000" x2="191.5000" y1="65" y2="65"/>
+<line style="stroke:#181818;stroke-width:1;" x1="191.5000" x2="191.5000" y1="65" y2="95"/>
+<polygon fill="#181818" points="188.0000,88 191.5000,95 195.0000,88 191.5000,91" style="stroke:#181818;stroke-width:1;"/>
+
+<line style="stroke:#181818;stroke-width:1;" x1="531.5000" x2="551.5000" y1="65" y2="65"/>
+<line style="stroke:#181818;stroke-width:1;" x1="551.5000" x2="551.5000" y1="65" y2="95"/>
+<polygon fill="#181818" points="548.0000,88 551.5000,95 555.0000,88 551.5000,91" style="stroke:#181818;stroke-width:1;"/>
+</g></svg>

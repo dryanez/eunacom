@@ -1,0 +1,722 @@
+[
+  {
+    "question": "1. Un paciente de 14 años consulta por disnea y malestar general, asociado a tos frecuente. Refiere que hace 15 días inició un cuadro catarral, con rinorrea y tos y que esta última fue aumentando, agregándose disnea de esfuerzo en el último tiempo. Al examen físico se auscultan algunas sibilancias y crepitaciones difusas. La radiografía de tórax muestra engrosamientos peribronquiales y un patrón alveolointersticial. El tratamiento más adecuado es:",
+    "choices": [
+      "a.Amoxicilina",
+      "b.Ceftriaxona",
+      "c.Levofloxacino",
+      "d.Broncodilatadores + corticoides",
+      "e.Amoxicilina + ácido clavulánico"
+    ],
+    "correctAnswer": "Levofloxacino",
+    "explanation": "La clínica es de una neumonía atípica, causadas habitualmente por Mycoplasma pneumoniae y Chlamydia pneumoniae. Comienza como un cuadro catarral (parecido a viral y luego empeora y aparecen los signos de afectación pulmonar. Asimismo, suele tener compromiso bilateral, mayores en las bases y síntomas obstructivos (sibilancias). La radiografía también suele mostrar un patrón alveolointersticial y afectación peribronquial. Como el Mycoplasma no tiene pared celular, no sirve ningún betalactámico (penicilinas y ni cefalosporinas), ya que actúan inhibiendo la síntesis de la pared celular. Se debe tratar con macrólidos de elección (azitromicina / claritromicina) o bien con quinolonas respiratorias (levofloxacino / moxifloxacino, aunque el moxifloxacino suele reservarse para cuando es necesario cubrir, además, a los anaerobios). La respuesta correcta es: Levofloxacino"
+  },
+  {
+    "question": "2. Un paciente de 60 años, fumador, consulta por disnea que aparece al caminar una cuadra. Al examen físico presenta espiración prolongada y aumento del diámetro torácico. Se solicita una radiografía de tórax que muestra aplanamiento del diafragma, gases arteriales que son normales y una espirometría que muestra VEF1: 75% del teórico, CVF: 105% del teórico, VEF1/CVF: 60%. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar corticoides orales y suspender el cigarrillo",
+      "b.Iniciar oxígeno domiciliario y suspender el cigarrillo",
+      "c.Iniciar corticoides inhalados y suspender el cigarrillo",
+      "d.Iniciar broncodilatadores inhalados y suspender el cigarrillo",
+      "e.Iniciar antibióticos orales y suspender el cigarrillo"
+    ],
+    "correctAnswer": "Iniciar broncodilatadores inhalados y suspender el cigarrillo",
+    "explanation": "La clínica es sugerente de un EPOC y la espirometría muestra un patrón obstructivo (relación VEF1/CVF menor a 70%). No indican si cambia o no con broncodilatador (si revirtiera o cambiara al menos 15% sería asma), pero por la edad y antecedente de fumar, se asume que es un EPOC. Eso sí, si en las alternativas saliera \"repetir la espirometría luego de administrar broncodilatador\", aquella sería la respuesta correcta, ya que el diagnóstico de EPOC exige un patrón obstructivo que no mejore con broncodilatador. La severidad se determina con el VEF1, como porcentaje del teórico. En este caso es moderado, por tener un VEF1 entre 50% y 80% (75%). Leve es mayor a 80%; severo es menor a 50% y muy severo es menor a 30%. La indicación de O2 domiciliario es solo cuando hay una PaO2 menor a 60 mmHg más hipertensión pulmonar, cor pulmonar o poliglobulia, o bien cuando la PaO2 está menor a 55 mmHg. En este caso los gases están normales, por lo que no requiere O2 domiciliario. El tratamiento del EPOC consiste en dejar de fumar (aumenta la sobrevida), O2 domiciliario (aumenta la sobrevida, pero solo cuando está indicado) y tratar los síntomas con broncodilatadores de larga acción c/12 horas y de corta acción SOS (solo se indican los corticoides inhalados cuando sigue habiendo síntomas y no aumentan la sobrevida). La respuesta correcta es: Iniciar broncodilatadores inhalados y suspender el cigarrillo"
+  },
+  {
+    "question": "3. Un recién nacido postérmino, presenta un cuadro de dificultad respiratoria grave, con saturación arterial de 85% a FiO2 ambiental y aleteo nasal. Al examen físico se auscultan sibilancias bilaterales y se aprecia signos de hiperinsuflación pulmonar. El diagnóstico más probable es:",
+    "choices": [
+      "a.Enfermedad de membrana hialina",
+      "b.Hernia diafragmática congénita",
+      "c.Taquipnea transitoria",
+      "d.Síndrome de aspiración meconial",
+      "e.Cardiopatía congénita"
+    ],
+    "correctAnswer": "Síndrome de aspiración meconial",
+    "explanation": "Es un síndrome de aspiración meconial clásico. Factores de riesgo: postérmino y asfixia. Clínica: dificultad respiratoria, signos obstructivos: sibilancias e hiperinsuflación. Radiografía: patrón de relleno alveolar multifocal e hiperinsuflación. Importante recordar que, ante la presencia de meconio en un recién nacido vigoroso, a lo más se aspira la boca, pero en un recién nacido que nace deprimido, se debe intubar de inmediato y se debe aspirar el meconio a través del tubo orotraqueal antes de ventilar (a diferencia de cuando no hay meconio, en que se estimula y luego se ventila a presión positiva). La EMH tiene antecedente de prematurez menor a 34 semanas y radiografía con pulmones en vidrio esmerilado y broncograma aéreo. La HDC tiene dificultad respiratoria grave (por hipoplasia pulmonar), excavación abdominal y ruidos hidroaéreos en el tórax. La radiografía muestra las asas intestinales en el tórax. La respuesta correcta es: Síndrome de aspiración meconial"
+  },
+  {
+    "question": "4. ¿Cuál de los siguientes hallazgos es MENOS compatible con una fibrosis pulmonar?",
+    "choices": [
+      "a.Hipocratismo digital",
+      "b.Desaturación arterial con el ejercicio",
+      "c.Crepitaciones pulmonares intensas",
+      "d.Aumento de la capacidad vital forzada",
+      "e.Radiografía con patrón intersticial en panal de abeja"
+    ],
+    "correctAnswer": "Aumento de la capacidad vital forzada",
+    "explanation": "La capacidad vital forzada (CVF) está disminuida en la fibrosis pulmonar, ya que tiene un patrón restrictivo en la espirometría, que se caracteriza por disminuir la CVF y el VEF1, pero manteniendo una relación VEF1/CVF normal. Las demás opciones son hallazgos frecuentes en esta patología. La respuesta correcta es: Aumento de la capacidad vital forzada"
+  },
+  {
+    "question": "5. Un paciente de 68 años, fumador de 30 paquetes-año consulta por malestar general y tos con expectoración, que la suele ser hemoptoica. Se solicita una radiografía de tórax, que muestra un nódulo pulmonar de 4,5 cm de diámetro, el que se confirma con el TAC, ubicado en el lóbulo superior izquierdo, sin adenopatías asociadas. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar broncoscopía",
+      "b.Solicitar RMN de tórax",
+      "c.Solicitar angioTAC de tórax",
+      "d.Iniciar clindamicina endovenosa",
+      "e.Realizar lobectomía pulmonar superior izquierda"
+    ],
+    "correctAnswer": "Solicitar broncoscopía",
+    "explanation": "Tiene una masa pulmonar (nódulo pulmonar mayor a 3 cm), que en la mayoría de los casos corresponde a cáncer. También orienta a cáncer el antecedente de fumar y la hemoptisis. Ya se estudió con el examen inicial (radiografía de tórax) y con el examen de elección para la evaluación de los nódulos y masas pulmonares (TAC de tórax). Por tanto, la conducta actual es proceder a la biopsia, que se hace idealmente por broncoscopía. Solo si está en una localización muy periférica, se hace mediante punción percutánea. La lobectomía probablemente se hará, pero primero es necesario hacer la biopsia, para determinar el tipo histológico del cáncer (ej. Células pequeñas se suele tratar con quimioterapia, en lugar de cirugía y las metástasis se manejan diferente según el tumor primario). La respuesta correcta es: Solicitar broncoscopía"
+  },
+  {
+    "question": "6. Un paciente de 45 años es diagnosticado de TBC pulmonar bacilífera. Recibe 1 mes de tratamiento con rifampicina, isoniazida, pirazinamida y etambutol. Se controla con una baciloscopía, la que resulta positiva. La conducta más adecuada es:",
+    "choices": [
+      "a.Solicitar PPD y radiografía de tórax",
+      "b.Solicitar PPD",
+      "c.Mantener el tratamiento con los 4 fármacos y controlar en un mes con nueva baciloscopía",
+      "d.Derivar para inicio de tratamiento en esquema secundario",
+      "e.Solicitar TAC de tórax, de cortes finos"
+    ],
+    "correctAnswer": "Mantener el tratamiento con los 4 fármacos y controlar en un mes con nueva baciloscopía",
+    "explanation": "Las BK son el examen para hacer el seguimiento, aunque lo más importante siempre es el cultivo del cuarto mes. Tiene solo una BK positiva postratamiento, lo que no tiene importancia. Debemos recordar que el diagnóstico de fracaso a tratamiento se hace con el cultivo positivo, al cuarto mes de tratamiento (en ese caso sí se hubiese derivado a tratamiento secundario, con otros antibióticos, además de hacer estudio de sensibilidad a los distintos antibióticos). Eso sí, si es que las BK se mantienen positivas hasta el cuarto mes (o hay 2 positivas seguidas desde el 4to mes en adelante, igualmente se sospecha un fracaso, a la espera de confirmación con el cultivo). En algunos países se hace también un cultivo al segundo mes, que no cambia mucho la conducta, ya que sea que esté positivo o negativo, se pasa de la fase diaria (con 4 fármacos) a la fase trisemanal (con 2 fármacos), pero aumenta el riesgo de que siga positivo al 4to mes (es decir, de que haya un fracaso). La respuesta correcta es: Mantener el tratamiento con los 4 fármacos y controlar en un mes con nueva baciloscopía"
+  },
+  {
+    "question": "7. Un paciente presenta un cuadro de tos con expectoración y dolor tipo puntada de costado. Se solicita una radiografía que muestra una zona de relleno alveolar, asociada a un derrame pleural moderado. Se punciona el derrame, dando salida a un líquido pleural turbio, con 2.000 células por mm3, 96% polimorfonucleares, con pH: 7,0, lactato: 12 mmol/L, LDH: 230 UI/L, proteínas: 7 g/dl y ADA: 100 UI/L. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar tratamiento antituberculoso",
+      "b.Solicitar biopsias pleurales",
+      "c.Iniciar tratamiento antibiótico endovenoso e instalar un tubo pleural con trampa de agua",
+      "d.Iniciar tratamiento antibiótico endovenoso y drenar el drenaje mediante la toracocentesis",
+      "e.Iniciar tratamiento antibiótico endovenoso, biasociado, con cobertura para anaerobios"
+    ],
+    "correctAnswer": "Iniciar tratamiento antibiótico endovenoso e instalar un tubo pleural con trampa de agua",
+    "explanation": "Es un empiema, por lo que se debe tratar con antibióticos endovenosos más drebaje con tubo pleural. Es un empiema tanto por el aspecto turbio del derrame, como por el análisis del líquido pleural: es un exudado (LDH mayor a 180), de tipo polimorfonuclear, con pH menor a 7,2 y lactato mayor a 5 mmol/L. Que la ADA esté alta no hace que sea tuberculoso, ya que el empiema también tiene ADA alta y la TBC suele ser mononuclear (sí puede ser PMN en un 10% de los casos, pero no tiene pH bajo). La respuesta correcta es: Iniciar tratamiento antibiótico endovenoso e instalar un tubo pleural con trampa de agua"
+  },
+  {
+    "question": "8. Un paciente asmático consulta por disnea de reposo, que no ha cedido a pesar del uso frecuente de salbutamol. Al examen físico está taquipneico a 28 rpm, con aumento del diámetro anteroposterior. Presenta sibilancias espiratorias intensas, bilaterales y uso de musculatura accesoria. Su saturación arterial es de 88% a FiO2 ambiental. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar oxígeno al 24%, nebulizar con salbutamol y administrar corticoides y antibióticos por vía endovenosa",
+      "b.Administrar oxígeno hasta normalizar la saturación arterial, nebulizar con salbutamol y administrar corticoides por vía endovenosa",
+      "c.Administrar oxígeno al 100% y conectar a ventilación mecánica no invasiva",
+      "d.Administrar oxígeno a 2 L/min, administrar adrenalina racémica y corticoides en nebulización",
+      "e.Administrar oxígeno hasta normalizar la saturación arterial, nebulizar con salbutamol, administrar corticoides orales e iniciar ceftriaxona endovenosa"
+    ],
+    "correctAnswer": "Administrar oxígeno hasta normalizar la saturación arterial, nebulizar con salbutamol y administrar corticoides por vía endovenosa",
+    "explanation": "Es una crisis asmática, que se trata con 3 pilares: 1. O2 para saturar sobre 93%, 2. Salbutamol en nebulizaciones y 3. Corticoides sistémicos (vía oral si es posible). Si clínicamente está muy apremiado, se pueden pedir gases arteriales, para objetivar el estado respiratorio (gravedad se determina con la clínica y, además, sirven los GSA). El EPOC descompensado, en cambio, se trata con oxígeno en bajas concentraciones, salbutamol, corticoides y antibióticos, además de solicitar gases arteriales para determinar si se conecta o no ventilación mecánica (no invasiva con BiPAP, idealmente, salvo que esté comprometido de conciencia, en que se seda e intuba). La respuesta correcta es: Administrar oxígeno hasta normalizar la saturación arterial, nebulizar con salbutamol y administrar corticoides por vía endovenosa"
+  },
+  {
+    "question": "9. Un paciente sufre un traumatismo de tórax, con fracturas costales segmentarias que dejan una parte del tórax que se mueve de manera independiente al resto de la pared torácica. Además evoluciona con dificultad respiratoria y desaturación arterial de 80%, a pesar de administrar oxígeno. La radiografía de tórax es compatible con una contusión pulmonar izquierda, sin neumotórax ni derrame pleural. La conducta más adecuada es:",
+    "choices": [
+      "a.Realizar resolución quirúrgica de inmediato y brindar soporte respiratorio",
+      "b.Conectar al ventilador mecánico, con presión de ventilación positiva e iniciar analgésicos endovenosos",
+      "c.Iniciar oxígeno al 100% y realizar nebulizaciones con salbutamol",
+      "d.Conectar a BiPAP e instalar tubo pleural con trampa de agua",
+      "e.Solicitar videotoracoscopía de urgencia e iniciar analgésicos y soporte respiratorio"
+    ],
+    "correctAnswer": "Conectar al ventilador mecánico, con presión de ventilación positiva e iniciar analgésicos endovenosos",
+    "explanation": "Tiene un tórax volante (zona del tórax que se mueve independientemente, por fracturas costales segmentarias múltiples). El tratamiento es el soporte respiratorio y la analgesia. Habitualmente requiere de ventilación mecánica, en especial cuando está complicado con una contusión pulmonar (hemorragia intralveolar por traumatismo). El tubo pleural solo se utiliza, en caso de que esté asociado a neumotórax o hemotórax y la cirugía (toracostomía) se reserva a los casos con hemotórax masivo, neumotórax abierto y laceración traqueobronquial. Las fracturas costales suelen manejarse solo con analgesia y la cirugía de estabilización solo se hace en casos excepcionales (dolor muy intenso, que genera mala ventilación y que no responde a analgésicos) y también se evalúa hacerla en los casos en que se debe hacer una toracostomía por otras causas. La respuesta correcta es: Conectar al ventilador mecánico, con presión de ventilación positiva e iniciar analgésicos endovenosos"
+  },
+  {
+    "question": "10. Un niño de 8 años consulta por fiebre y odinofagia intensa que inició hace 24 horas y que le impide tragar. No ha presentado otros síntomas y al examen físico se aprecia febril hasta 40°C, con gran eritema faríngeo, con algunas petequias y exudado grisáceo en ambas amígdalas. Además se palpan varias adenopatías cervicales anteriores, dolorosas a la palpación. El agente etiológico más probable es:",
+    "choices": [
+      "a.Neumococo",
+      "b.Rinovirus",
+      "c.Virus influenza",
+      "d.Streptococcus pyogenes",
+      "e.Virus de Ebstein Baar"
+    ],
+    "correctAnswer": "Streptococcus pyogenes",
+    "explanation": "Es una amigdalitis bacteriana clásica: odinofagia intensa, fiebre alta, exudado, adenopatías y ausencia de signos catarrales (no hay tos, rinorrea ni disfonía). . Las petequias también orientan a causa bacteriana. La causa de las amigdalitis bacterianas es el estreptococo A (Streptococcus pyogenes). Tiene 5 puntos del score de Centor (1. Fiebre de 38 o más; 2. Adenopatías; 3. Exudado o edema amigdalino; 4. Ausencia de tos y 5. Edad 3 a 15 años. Por tanto, se debe tratar con antibióticos de inmediato (igual se recomienda solicitar el cultivo faríngeo para objetivar la infección estreptocócica, en los lugares donde está disponible). El neumococo no produce amigdalitis, sino otitis, sinusitis, neumonías y meningitis. El rinovirus produce un resfrío común (síntomas catarrales). La parainfluenza cursa con disfonía. El virus de Ebstein Baar produce la mononucleosis infecciosa (odinofagia, fiebre, adenopatías, pero más ictericia, hepatomegalia, esplenomegalia, linfocitosis y, a veces, rash). La respuesta correcta es: Streptococcus pyogenes"
+  },
+  {
+    "question": "11. ¿Cuál de las siguientes conductas es MENOS indicada en un paciente EPOC cursando una neumonía y que satura 80% a FiO2 ambiental?",
+    "choices": [
+      "a.Iniciar oxígeno al 50%",
+      "b.Administrar corticoides sistémicos",
+      "c.Realizar nebulización con broncodilatadores de corta acción por vía inhalatoria",
+      "d.Solicitar gases de sangre arterial",
+      "e.Administrar antibióticos endovenosos"
+    ],
+    "correctAnswer": "Iniciar oxígeno al 50%",
+    "explanation": "El manejo del EPOC descompensado (recordando que la mayoría de las descompensaciones se deben a infecciones bacterianas), se realiza con O2 en dosis bajas (al 24% de elección), ya que de lo contrario, aumenta el riesgo de evolucionar a una hipercarbia severa, con encefalopatía, ya que el oxígeno deprime el centro respiratorio y se produce hipoventilación. De hecho, cuando es necesario dar dosis mayores de oxígeno, necesariamente se debe conectar al ventilador mecánico (ej. PaO2 menor a 35 mmHg o PCO2 mayor a 50 mmHg) La respuesta correcta es: Iniciar oxígeno al 50%"
+  },
+  {
+    "question": "12. Un paciente de 20 años, sin antecedentes de importancia, presenta un cuadro de 3 días de evolución de malestar general, asociado a fiebre, tos y expectoración mucopurulenta, al que luego se agregó disnea de pequeños esfuerzos. Al examen está vigil, con FC: 102 x', PA: 110/75 mmHg, FR: 33 rpm y saturación arterial 90% a FiO2 ambiental. Se solicita una radiografía de tórax, que muestra signos de condensación en los lóbulos medio e inferior derechos. Su hemograma muestra leucocitosis de 19.000 por mm3. ¿Qué antibiótico es más adecuado?",
+    "choices": [
+      "a.Amoxicilina",
+      "b.Claritromicina",
+      "c.Ceftriaxona",
+      "d.Amoxicilina + ácido clavulánico",
+      "e.Clindamicina"
+    ],
+    "correctAnswer": "Ceftriaxona",
+    "explanation": "Por puntaje CURB65, solo tiene 1 punto (FR mayor a 30), por lo que debería manejarse con tratamiento ambulatorio (amoxicilina sola, por tener menos de 65 años y no tener patología de base). Sin embargo, al analizar bien el caso, tiene una saturación de apenas 90% (equivale a una PaO2 de 60 mmHg), por lo que está en el límite de caer en insuficiencia respiratoria. Además tiene compromiso de 2 lóbulos. Por todo lo anterior, se debe hospitalizar y tratar con ceftriaxona. En general no recomendamos utilizar el CURB65 para responder las preguntas del Eunacom. La respuesta correcta es: Ceftriaxona"
+  },
+  {
+    "question": "13. Un paciente de 20 años presenta dolor torácico tipo puntada de costado, que inició hace 2 horas, sin otros síntomas. Al examen físico está en buenas condiciones generales, con signos vitales normales y saturación arterial de 98%. Se solicita radiografía de tórax, que muestra un neumotórax pequeño, que solo se ve en el ápice izquierdo, de 1 cm de ancho. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar analgésicos y observar por 4-6 horas, controlando con nueva radiografía de tórax",
+      "b.Puncionar el segundo espacio intercostal de manera urgente",
+      "c.Instalar tubo pleural de inmediato",
+      "d.Solicitar un TAC de tórax",
+      "e.Resolver quirúrgicamente de inmediato"
+    ],
+    "correctAnswer": "Administrar analgésicos y observar por 4-6 horas, controlando con nueva radiografía de tórax",
+    "explanation": "El manejo del neumotórax espontáneo es muy variable, según la fuente que se revise, pero nos quedaremos con lo siguiente: - Los neumotórax pequeños (<15%, <3 cm en la zona apical o <2 cm a la altura del hilio), se manejan con analgesia y observación. Inicialmente se controlan con una nueva radiografía de tórax en 6 horas y, si no han crecido o mejoran, se envían a domicilio con analgesia y control en 24 horas. - Los neumotórax grandes (>15%, >3 cm en la zona apical o >2 cm a la altura del hilio) se deben drenar con una aguja o con un tubo pleural / sonda de toracostomía (esto último es obligatorio si el pulmón está colapsado, si la aguja no es capaz de expandir el pulmón, luego de haber sacado 4 litros de aire, si requerirá de manejo definitivo de prevención. - El manejo definitivo de prevención consiste en cirugía (idealmente por videotoracoscopía: VAT) o médico (sellamiento pleural con talco o tetraciclina). Este tratamiento definitivo por regla general no se hace en los primeros episodios de un neumotórax espontáneo primario y pequeño (10%-30% de recurrencia). Sí se hace en 1. neumotórax recurrente, 2. neumotórax secundarios (por patologías de base, como EPOC, que tiene cerca de 50% de recurrencia), 3. pacientes deportistas de alto riesgo o con hobbies peligrosos, 4. presencia de múltiples bulas y quistes y 5. neumotórax muy grandes (discutible) o que siguen filtrando después de 5 días de estar con el tubo pleural. Si tuviese clínica de neumotórax a tensión (hipotensión, ingurgitación yugular, asimetría torácica, desviación de la tráquea), estaría indicada la descomprensión de inmediato con aguja o sonda de toracostomía o incluso un catéter vascular. En este caso, la punción suele hacerse o en el 2º espacio intercostal, línea media clavicular; o en el 5º espacio intercostal, línea axilar anterior. La cirugía sería correcta si fuese el segundo caso (neumotórax recurrente), si fuese un neumotórax abierto, si fuera traumático con hemotórax asociado (ya requeriría una videotoracoscopía o una cirugía abierta). La respuesta correcta es: Administrar analgésicos y observar por 4-6 horas, controlando con nueva radiografía de tórax"
+  },
+  {
+    "question": "14. Un paciente de 45 años sufre un accidente de tránsito con golpe en el tórax. Evoluciona con dificultad respiratoria y al examen físico se constata abolición del murmullo pulmonar izquierdo, con matidez a la percusión de dicho campo pulmonar. ¿Cuál es el diagnóstico más probable?",
+    "choices": [
+      "a.Contusión pulmonar",
+      "b.Neumotórax",
+      "c.Distrés respiratorio",
+      "d.Hemotórax",
+      "e.Lesión traqueobronquial"
+    ],
+    "correctAnswer": "Hemotórax",
+    "explanation": "El hemotórax tiene clínica de derrame: disminución del MP y matidez (desplazable y con curva de Damoisseau). La contusión generalmente tiene crepitaciones en la zona del golpe y dificultad respiratoria). El neumotórax tiene la disminución del MP, pero con hipersonoridad a la percusión. El distrés respiratorio es un edema pulmonar, por lo que tiene insuficiencia respiratoria severa, con crepitaciones difusas. La lesión traqueobronquial se presenta como un neumotórax severo, que al instalarle el tubo pleural, continúa burbujeando sin parar. La respuesta correcta es: Hemotórax"
+  },
+  {
+    "question": "15. Un paciente de 60 años, diagnosticado de derrame pleural, se realiza toracocentesis diagnóstica, obteniéndose un líquido amarillo, transparente, con proteínas de 2,1 g/dl, LDH: 90 UI/l, células: 60 x mm3, con 80% mononucleares, pH: 7,4 y lactato: 3 mmol/l. Las proteínas plasmáticas son 6,4 g/dl y la LDH plasmática es 190 UI/l. El diagnóstico más probable es",
+    "choices": [
+      "a.Tuberculosis",
+      "b.Cáncer",
+      "c.Empiema",
+      "d.Derrame paraneumónico simple",
+      "e.Insuficiencia cardíaca"
+    ],
+    "correctAnswer": "Insuficiencia cardíaca",
+    "explanation": "Es un trasudado pleural, ya que no cumple con ninguno de los criterios de Light: su LDH pleural es menor a 0,6 en relación al plasma y es menor a 180 UI/L (90 vs 190 del plasma). Las proteínas son menores a 0,5, en relación al plasma (2,1 vs 6,4 del plasma). En los trasudados no importa si son de predominio mononuclear o polimorfonuclear. La TBC es un exudado mononuclear. El cáncer también. El empiema y el DPNS son exudados polimorfonucleares. La ICC es la única causa de trasudado de las alternativas. La respuesta correcta es: Insuficiencia cardíaca"
+  },
+  {
+    "question": "16. Un paciente presenta los siguientes gases arteriales: PaO2: 50 mmHg, PaCO2: 60 mmHg, pH: 7,24, HCO3: 25. ¿Cuál es el diagnóstico?",
+    "choices": [
+      "a.Insuficiencia respiratoria global con acidosis metabólica",
+      "b.Insuficiencia respiratoria parcial con acidosis metabólica",
+      "c.Insuficiencia respiratoria global con acidosis respiratoria",
+      "d.Insuficiencia respiratoria parcial con acidosis respiratoria",
+      "e.Error en la toma de muestra, con gases venosos en lugar de arteriales"
+    ],
+    "correctAnswer": "Insuficiencia respiratoria global con acidosis respiratoria",
+    "explanation": "Tiene el O2 menor a 60 mmHg, por lo que hay una insuficiencia respiratoria. El CO2 está mayor a 49, por lo que es de tipo global (con hipoventilación / hipercarbia severa). Además, el pH está menor a 7,36, por lo que hay una acidemia, lo que asociado al CO2 alto, hace que sea una acidosis respiratoria. La respuesta correcta es: Insuficiencia respiratoria global con acidosis respiratoria"
+  },
+  {
+    "question": "17. ¿Cuál de los siguientes es la mejor opción para un paciente alérgico a la penicilina, con una NAC de manejo ambulatorio?",
+    "choices": [
+      "a.Amoxicilina + ácido clavulánico",
+      "b.Azitromicina",
+      "c.Ceftriaxona",
+      "d.Clindamicina",
+      "e.Ampicilina + clorfenamina"
+    ],
+    "correctAnswer": "Azitromicina",
+    "explanation": "La amoxicilina y ampicilina son penicilinas, así que no se pueden indicar, por ser alérgico. La azitromicina (y los macrólidos en general) son el tratamiento de elección en alérgicos, ya que cubren muy bien al neumococo y al Haemophilus influenzae, que son los agentes más frecuentes. También cubren a los atípicos (micoplasma, Chlamydia), por lo que además son de elección en la neumonía atípica. La ceftriaxona se da por vía endovenosa, así que se da en pacientes hospitalizados. Además, hay reactividad alérgica cruzada entre las penicilinas y las cefalosporinas en un 10% de los casos, por lo que hay una contraindicación relativa. Eso sí, solo el shock anafiláctico o el angioedema laríngeo, en relación al uso de penicilinas, son contraindicación absoluta del uso de cefalosporinas. La respuesta correcta es: Azitromicina"
+  },
+  {
+    "question": "18. El derrame pleural canceroso se caracteriza por ser:",
+    "choices": [
+      "a.Un trasudado pleural mononuclear",
+      "b.Un trasudado pleural polimorfonuclear con pH normal",
+      "c.Un exudado pleural mononuclear",
+      "d.Un exudado pleural polimorfonuclear con pH normal",
+      "e.Un exudado pleural con ADA mayor a 50 UI/L"
+    ],
+    "correctAnswer": "Un exudado pleural mononuclear",
+    "explanation": "Tanto la TBC, como el cáncer son exudados, de predominio mononuclear. Además, el cáncer suele tener ADA menor a 30 UI/L, mientras que la TBC suele estar sobre 50 UI/L. La respuesta correcta es: Un exudado pleural mononuclear"
+  },
+  {
+    "question": "19. Un paciente de 68 años, presenta un cuadro de baja de peso y constipación de 2 meses de evolución, el que ha tratado con aumento de fibra en la dieta, sin lograr mejoría. Acude al servicio de urgencia por un cuadro de inicio súbito de disnea y dolor torácico de tipo puntada en el lado derecho. Al examen físico está sudoroso, taquipneico y taquicárdico, sin otras alteraciones. Satura 89% a FiO2 ambiental y la radiografía de tórax solo muestra un derrame pleural pequeño en el ángulo costofrénico derecho. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar antibióticos endovenosos y oxígeno",
+      "b.Solicitar dímero D e iniciar oxígeno",
+      "c.Solicitar angioTAC de tórax e iniciar oxígeno",
+      "d.Instalar un tubo pleural y brindar soporte ventilatorio con BiPAP",
+      "e.Conectar a ventilación mecánica"
+    ],
+    "correctAnswer": "Solicitar angioTAC de tórax e iniciar oxígeno",
+    "explanation": "Tiene una clínica sugerente de cáncer de colon (adulto mayor con baja de peso y constipación). Este antecedente es un factor de riesgo para TEP. La clínica sugiere también el TEP (inicio súbito, disnea y dolor, desaturación y el derrame, que suele ser hemorrágico). Dado que viene con un factor de riesgo y con afectación de la función respiratoria (satura 89%), es de alto riesgo de TEP, por lo que se debe estudiar con un angioTAC de tórax como primer examen. El dímero D habría sido la respuesta correcta en un paciente joven, sin factores de riesgo, con disnea y/o dolor súbito, pero sin hallazgos en el examen físico (en otras palabras, cuando parece una crisis de pánico, pero se quiere desacartar el TEP). La respuesta correcta es: Solicitar angioTAC de tórax e iniciar oxígeno"
+  },
+  {
+    "question": "20. Un paciente asmático está en tratamiento con fluticasona inhalada, dos veces al día, la que usa con una aerocámara. Además usa salbutamol cuando está con síntomas. Presenta síntomas nocturnos cerca de 2 veces a la semana y tose con frecuencia, en especial después de realizar esfuerzos. La conducta más adecuada es:",
+    "choices": [
+      "a.Reemplazar la fluticasona por mometasona inhalada",
+      "b.Reemplazar la fluticasona por prednisona oral",
+      "c.Reemplazar el salbutamol por ipatropio",
+      "d.Reemplazar el salbutamol por formoterol SOS",
+      "e.Agregar salmeterol inhalado cada 12 horas al tratamiento"
+    ],
+    "correctAnswer": "Agregar salmeterol inhalado cada 12 horas al tratamiento",
+    "explanation": "Es un paciente asmático, con síntomas a pesar del tratamiento, por lo que se debe avanzar en dicho tratamiento. Actualmente recibe el tratamiento base (corticoides inhalados c/12 horas, más broncodilatadores de corta acción SOS). Al no funcionar, se deben agregar broncodilatadores de larga acción c/12 horas, como el salmeterol o el formoterol, pero manteniendo el tratamiento de base. También habría sido correcto aumentar la dosis de corticoides inhalados o agregar inhibidores de los leucotrienos, o bien agregar el salmeterol junto con subir la dosis de corticoides inhalados. Los corticoides orales solo están indicados, cuando todo ha fallado (incluyendo los BD de larga acción más subir la dosis del corticoide inhalado, más agregar los inhibidores de leucotrienos). La respuesta correcta es: Agregar salmeterol inhalado cada 12 horas al tratamiento"
+  },
+  {
+    "question": "1. Un paciente de 65 años, fumador de una cajetilla al día, consulta por disnea de esfuerzos de un mes de evolución. Al examen físico se constata aumento del diámetro anteroposterior del tórax, asociado a espiración prolongada y algunas sibilancias espiratorias. El diagnóstico más probable es:",
+    "choices": [
+      "a.Bronquiectasias",
+      "b.Cáncer bronquial",
+      "c.Bronquitis crónica",
+      "d.Enfermedad pulmonar obstructiva crónica",
+      "e.Fibrosis pulmonar"
+    ],
+    "correctAnswer": "Enfermedad pulmonar obstructiva crónica",
+    "explanation": "Tiene un EPOC clásico: antecedente de fumar mucho, más clínica obtructiva (aumento del diámetro torácico, espiración prolongada y sibilancias / roncus). Las bronquiectasias suelen tener antecedente de infecciones previas y cursan con broncorrea mayor en la mañana, neumonías recurrentes y hemoptisis. También pueden tener clínica obstructiva y patrón obstructivo en la espirometría. El cáncer también tiene antecedente de fumar, con disnea, tos, neumonías recurrentes, hemoptisis, baja de peso y un examen pulmonar inespecífico. La bronquitis crónica tiene antecedente de fumar y tos con broncorrea, mayor en la mañana, sin hemoptisis ni disnea (a menos que se asocie a EPOC). La fibrosis pulmonar tiene crepitaciones gruesas, disnea, tos seca y disminución del tamaño de los campos pulmonares. El hipocratismo digital puede verse en bronquiectasias, cáncer y fibrosis pulmonar (en EPOC obliga a descartar cáncer). La respuesta correcta es: Enfermedad pulmonar obstructiva crónica"
+  },
+  {
+    "question": "2. Un paciente cursando una neumonía grave, presenta los siguientes gases arteriales: PaO2: 55 mmHg, PaCO2: 28 mmHg, HCO3: 13 y pH: 7,29. El diagnostico gasométrico es:",
+    "choices": [
+      "a.Insuficiencia respiratoria global con acidosis respiratoria",
+      "b.Insuficiencia respiratoria parcial con acidosis respiratoria",
+      "c.Insuficiencia respiratoria global con acidosis metabólica",
+      "d.Insuficiencia respiratoria parcial con acidosis metabólica",
+      "e.Error de la muestra, con toma de gases venosos"
+    ],
+    "correctAnswer": "Insuficiencia respiratoria parcial con acidosis metabólica",
+    "explanation": "Tiene la PaO2 menor a 60, por lo que tiene una insuficiencia respiratoria. La PaCO2 es menor a 49 por lo que no es global y, es más, está bajo 35, por lo que hay hiperventilación. Finalmente, tiene el pH bajo (menor a 7,36), lo que asociado al HCO3 bajo, es una acidosis metabólica (ej. acidosis láctica por hipoxia). Además, el CO2 (28) es similar al valor que sigue al 7 en el pH (29), por lo que no hay alteración respiratoria en el equilibrio ácido base. La respuesta correcta es: Insuficiencia respiratoria parcial con acidosis metabólica"
+  },
+  {
+    "question": "3. Un paciente de 60 años, sintomático, se realiza una radiografía de tórax, como parte de un chequeo médico, que detecta un nódulo pulmonar solitario de 3 cm de diámetro en el lóbulo superior derecho. No cuenta con radiografías previas y su examen físico es normal. La conducta más adecuada es:",
+    "choices": [
+      "a.Controlar con nueva radiografía de tórax en 3 meses",
+      "b.Controlar con nueva radiografía de tórax en 6 meses",
+      "c.Controlar con nueva radiografía de tórax en 12 meses",
+      "d.Solicitar un TAC de tórax",
+      "e.Realizar biopsia excisional"
+    ],
+    "correctAnswer": "Solicitar un TAC de tórax",
+    "explanation": "El estudio del nódulo pulmonar solitario (NPS) comienza con radiografías y en caso de que existan radiografías previas, lo primero es revisarlas (ej. si está estable hace más de 2 años, probablemente es benigno). Luego se estudia con un TAC de tórax, que es el examen de elección para localizarlo, determinar su aspecto benigno o maligno y evaluar las adenopatías metastásicas que pudiese haber. Si parece maligno, se prosigue el estudio con la biopsia, idealmente por broncoscopía, aunque si está localizado muy periférico, debe hacerse con punción. En este caso, por tener 3 cm, ya se denomina masa pulmonar y, por tanto, lo más probable es que sea maligna (a menos que haya una clínica muy sugerente de algo benigno, como una hidatidosis pulmonar, por ejemplo). Las masas pulmonares habitualmente se estudian con TAC, aunque siempre es bueno revisar primero las radiografías previas, en caso de estar disponibles, ya que la velocidad con la que crecen aporta mucha información (cáncer crece \"lento pero seguro\"; benignos no crecen o crecen muy rápido). La respuesta correcta es: Solicitar un TAC de tórax"
+  },
+  {
+    "question": "4. Un paciente de 50 años, en situación de calle, presenta un cuadro clínico compatible con una tuberculosis pulmonar, por lo que se solicitan baciloscopías de expectoración, que resultan positivas. Se inicia tratamiento antituberculoso, el que recibe por un mes (rifampicina, isoniazida, pirazinamida y etambutol), sin embargo no acude a los controles posteriores y no termina su tratamiento. Usted lo recibe 4 meses después, con síntomas respiratorios, por lo que solicita nuevas baciloscopías, que resultan positivas. La conducta más adecuada es:",
+    "choices": [
+      "a.Retomar el tratamiento donde lo dejó",
+      "b.Diagnosticar fracaso a tratamiento e iniciar tratamiento secundario",
+      "c.Iniciar tratamiento con 2 fármacos: isoniazida y rifampicina",
+      "d.Solicitar PPD y decidir conducta según resultado",
+      "e.Reiniciar el tratamiento, desde el comienzo"
+    ],
+    "correctAnswer": "Reiniciar el tratamiento, desde el comienzo",
+    "explanation": "Tiene un abandono del tratamiento (más de 4 semanas sin recibirlo). Por tanto, se debe reiniciar el tratamiento primario (con RIPE), desde el comienzo y reforzar la adherencia a tratamiento. Además, se debe pedir un cultivo para Mycobacterias, con antibiograma, para evaluar el eventual desarrollo de resistencia, lo que obligaría a cambiar el tratamiento a un esquema secundario. Si llevase menos de 4 semanas, la respuesta correcta sería la retomarlo donde lo dejó. El fracaso, en cambio, se diagnostica cuando el cultivo se mantiene positivo al 4º mes, a pesar de recibir un tratamiento adecuado (no es el caso). El fracaso se debe a resistencia, por lo que se debe derivar a tratamiento en esquema secundario (con otros antibióticos). La respuesta correcta es: Reiniciar el tratamiento, desde el comienzo"
+  },
+  {
+    "question": "5. Un paciente de 70 años consulta por malestar general, fiebre, tos con expectoración mucopurulenta y dolor tipo puntada de costado. Se solicita una radiografía de tórax, que muestra derrame pulmonar izquierdo de un 60% del hemitórax. Se realiza pleurocentesis, obteniéndose un líquido con 1.200 células por mm3, con un 95% de polimorfonucleares, LDH: 210 UI/L, ADA: 110 UI/L y pH: 7,0. El diagnóstico más probable es:",
+    "choices": [
+      "a.Cáncer",
+      "b.Derrame paraneumónico simple",
+      "c.Tuberculosis pulmonar",
+      "d.Trasudado pleural",
+      "e.Empiema"
+    ],
+    "correctAnswer": "Empiema",
+    "explanation": "El cuadro clínico inicial sugiere una neumonía. Luego, se confirma que tiene asociado un derrame pleural, de tipo exudado (LDH mayor a 180), de predominio polimorfonuclear (95%), con pH bajo (menor a 7,2), por lo que se trata de un empiema o al menos un derrame paraneumónico complicado (equivalente al empiema, pero de diagnóstico de laboratorio), el que se trata con instalación de un tubo pleural, más los antibióticos de la neumonía (ej. ceftriaxona), recomendándose actualmente que se agregue cobertura para anaerobios (ej. ceftriaxona más metronidazol). El empiema puede tener ADA (adenosin deaminasa) muy alta. Si el drenaje falla (ej. empiema loculado, sin contacto con el tubo pleural), se suelen indicar trombolíticos intrapleurales (se administran por el tubo) y si falla nuevamente, se realiza videotoracoscopía para decorticarlo y drenarlo. El cáncer y la TBC son derrames mononucleares (TBC con ADA alta y cáncer con ADA baja). El DPN simple tiene pH mayor a 7,2 (sí es exudado PMN). El trasudado pleural tiene LDH baja (menor a 180). La respuesta correcta es: Empiema"
+  },
+  {
+    "question": "6. Un niño de 2 años presenta un cuadro de fiebre hasta 41°C y malestar general marcado, asociado a tos disfónica y dificultad para respirar. Al examen físico está en malas condiciones generales, presenta estridor inspiratorio, uso de musculatura accesoria y se inclina hacia atrás para poder respirar. El diagnóstico más probable es:",
+    "choices": [
+      "a.Laringitis obstructiva",
+      "b.Bronquiolitis aguda",
+      "c.Neumonía",
+      "d.Coqueluche",
+      "e.Epiglotitis bacteriana"
+    ],
+    "correctAnswer": "Epiglotitis bacteriana",
+    "explanation": "Tanto la laringitis obstructiva como la epiglotitis bacteriana (por Hib) presentan tos disfónica y obstrucción respiratoria alta, con estridor inspiratorio. Sin embargo, la epiglotitis se caracteriza porque el paciente está séptico (fiebre alta, mucho compromiso del estado general, signos de shock) y por adoptar la posición del trípode (se inclina hacia atrás para respirar). La laringitis obstructiva sí puede tener fiebre y suele tenerla. La radiografía de cuello muestra una imagen \"en dedo de guante\" en la epiglotitis; en cambio, en la laringitis se ve como \"punta de lápiz\". La bronquiolitis tiene obstrucción baja (sibilancias) y suele ocurrir antes de los 2 años, habitualmente en el primer año de vida (según algunas definiciones, la bronquiolitis debe ser en el menor de un año de vida). El coqueluche se caracteriza por tos en accesos, con gallo inspiratorio y se asocia a apneas, petequias, vómitos y convulsiones, en relación a la tos. El hemograma muestra linfocitosis en la laringitis, bronquiolitis y coqueluche, en cambio, muestra neutrofilia en las neumonías bacterianas y la epiglotitis. La respuesta correcta es: Epiglotitis bacteriana"
+  },
+  {
+    "question": "7. Un paciente de 65 años consulta por disnea y dolor tipo puntada de costado, de una semana de evolución. Se solicita una radiografía de tórax, que muestra un derrame pleural derecho de tamaño moderado. Se realiza toracocentesis y estudio del líquido pleural obteniéndose un líquido de color amarillo, transparente, con proteínas de 5 g/dl y LDH: 200 UI/L. Presenta 110 células por mm3, con un 90% de mononucleares y ADA de 10 UI/L. La LDH plasmática es 300 mg/dl y las proteínas plasmáticas son 7,9 mg/dl. El diagnóstico más probable es:",
+    "choices": [
+      "a.Derrame tuberculoso",
+      "b.Derrame canceroso",
+      "c.Derrame plaraneumónico simple",
+      "d.Insuficiencia cardíaca",
+      "e.Quilotórax"
+    ],
+    "correctAnswer": "Derrame canceroso",
+    "explanation": "Cumple con los 3 criterios de Light (LDH mayor a 180; LDH mayor a 0,6 en relación al plasma; proteínas mayor a 0,5 en relación al plasma) y basta solo uno para ser un exudado. Además tiene predominio mononuclear, por lo que es TBC o cáncer. Dado que la ADA está baja (menor a 30 UI/L), lo más probable es que sea cáncer. La respuesta correcta es: Derrame canceroso"
+  },
+  {
+    "question": "8. Un niño de 10 años, asmático, en tratamiento con fluticasona y salbutamol, consulta por un cuadro de disnea, que no ha cedido, a pesar del uso frecuente de salbutamol. Al examen se auscultan sibilancias bilaterales, inspiratorias y espiratorias y se observa uso de musculatura accesoria y taquipnea. ¿Qué examen es más adecuado para determinar la gravedad de este paciente?",
+    "choices": [
+      "a.PEF (flujo espiratorio máximo)",
+      "b.Gases en sangre arterial",
+      "c.Test de metacolina",
+      "d.Espirometría",
+      "e.Radiografía de tórax"
+    ],
+    "correctAnswer": "Gases en sangre arterial",
+    "explanation": "Es una pregunta discutible. El diagnóstico es una crisis asmática y la gravedad de la crisis asmática se determina con la clínica (frecuencia respiratoria, cianosis, uso de musculatura accesoria, intensidad de las sibilancias, etc). Sin embargo, no aparece la clínica como opción, por lo que de las alternativas que aparecen, la más correcta son los gases arteriales, ya que reflejan la función respiratoria, que es lo que, a fin de cuentas, es lo más importante para determinar la gravedad de cualquier cuadro respiratorio agudo. El PEF sirve para el seguimiento del paciente con asma y algo podría ayudar a determinar la gravedad. El test de metacolina y la espirometría son útiles para el diagnóstico de asma (se hace de elección con la clínica, pero se apoya en esos exámenes, cuando queda alguna duda). La espirometría se prefiere en el paciente basalmente obstruido (muestra patrón obstructivo que mejora con broncodilatador) y el test de provocación bronquial con metacolina se prefiere en el paciente que no tiene obstrucción basal (el paciente se obstruye con la metacolina, informándose como \"hiperreactividad bronquial\"). La radiografía de tórax tiene poca utilidad, pero puede mostrar signos de obstrucción (diafragmas planos, costillas horizontales y pulmones grandes) y sirve para buscar causas descompensantes (neumonía, por ejemplo). La respuesta correcta es: Gases en sangre arterial"
+  },
+  {
+    "question": "9. Un paciente de 7 años presenta un cuadro de tos con expectoración mucosa de 15 días de evolución, que ha ido en aumento, hasta asociarse a disnea. Al examen físico se auscultan sibilancias bilaterales espiratorias y crepitaciones difusas, mayores en las bases. Su hermana de 14 años está con síntomas similares. El tratamiento para la patología descrita es:",
+    "choices": [
+      "a.Amoxicilina",
+      "b.Azitromicina",
+      "c.Ciprofloxacino",
+      "d.Amoxicilina más ácido clavulánico",
+      "e.Sintomático"
+    ],
+    "correctAnswer": "Azitromicina",
+    "explanation": "Es una neumonía atípica clásica (curso arrastrado, que inicialmente parecía viral; tos y clínica obstructiva: subilancias). Además, está en la edad clásica: escolares y adolescentes, aunque puede afectar a cualquier edad. El tratamiento de elección son los macrólidos (azitromicina, claritromicina y eritromicina) y en los adultos también se usan las \"quinolonas respiratorias\", como el levofloxacino. Recordar que los \"atípicos\" son el Mycoplasma pneumoniae, la Chlamydia pneumoniae y la Legionella pneumophila, las que no responden bien a las penicilinas ni cefalosporinas. La respuesta correcta es: Azitromicina"
+  },
+  {
+    "question": "10. Un paciente de 67 años, diagnosticado de EPOC tabáquico, en tratamiento con broncodilatadores de larga acción, consulta por disnea mayor a la habitual, asociada a cianosis y tos con expectoración. Se inicia oxígeno al 35%, evolucionando con compromiso de conciencia. Se solicitan gases arteriales, que son compatibles con una insuficiencia respiratoria aguda, de tipo global. La conducta más adecuada es:",
+    "choices": [
+      "a.Realizar nebulizaciones con corticoides",
+      "b.Suspender el oxígeno",
+      "c.Aumentar el oxígeno a 100%",
+      "d.Realizar nebulizaciones con ipatropio y salbutamol",
+      "e.Conectar a ventilación mecánica"
+    ],
+    "correctAnswer": "Conectar a ventilación mecánica",
+    "explanation": "El diagnóstico es un EPOC descompensado, complicado con una encefalopatía hipercárbica, secundaria a negligencia médica (dado que se le inició oxígeno al 35% y lo recomendado es que sea al 24%, por el riesgo de producir la encefalopatía hipercárbica). El tratamiento de la hipercarbia grave y de la encefalopatía hipercárbica es la ventilación mecánica (VM). Por regla general, se prefiere la VM no invasiva, con BiPAP, pero si el paciente no la tolera, o está comprometido de conciencia (como en este caso), se prefiere la VM invasiva, con un tubo orotraqueal y sedación. La respuesta correcta es: Conectar a ventilación mecánica"
+  },
+  {
+    "question": "11. Un paciente, diagnosticado de \"disnea en estudio\", se realiza una espirometría que demuestra VEF1: 56% del teórico, CVF: 60% del teórico, VEF1/CVF: 80%, que no mejora con broncodilatadores. El diagnóstico más probable, de entre los siguientes, es:",
+    "choices": [
+      "a.Asma",
+      "b.Fibrosis pulmonar",
+      "c.EPOC",
+      "d.Bronquiectasias",
+      "e.Hipertensión pulmonar primaria"
+    ],
+    "correctAnswer": "Fibrosis pulmonar",
+    "explanation": "La relación VEF1/CVF está mayor a 70%, por lo que no hay obstrucción. La CVF está baja (menor a 80%), por lo que hay un patrón restrictivo. De las opciones, la única con patrón restrictivo es la fibrosis pulmonar. El asma es obstructivo, que mejora con broncodilatador. El EPOC también es obstructivo, pero no mejora con broncodilatador. Las bronquiectasias también son obstructivas y no mejoran. La hipertensión pulmonar primaria tiene la espirometría normal, ya que la vía respiratoria no tiene alteraciones (lo que sí se afecta es el árbol vascular, por lo que se estudia con ecocardiografía, que objetiva la elevación de la presión pulmonar (PAP) y luego se confirma con un cateterismo cardiaco, que mide la PAP directamente. La respuesta correcta es: Fibrosis pulmonar"
+  },
+  {
+    "question": "12. ¿Cuál de las siguientes medidas incide más en el pronóstico de un paciente diagnosticado de EPOC?",
+    "choices": [
+      "a.Realizar actividad física",
+      "b.Abandonar el hábito tabáquico",
+      "c.Usar corticoides inhalados",
+      "d.Usar broncodilatadores de corta acción",
+      "e.Usar broncodilatadores de larga acción"
+    ],
+    "correctAnswer": "Abandonar el hábito tabáquico",
+    "explanation": "Las únicas medidas que aumentan la sobrevida en el EPOC son: 1. Dejar de fumar y 2. Indicar O2 domiciliario, si es que cursa con ciertos criterios. El ejercicio físico podría mejorar la sobrevida, pero aún no hay certeza y su eficacia es menor, en comparación a dejar de fumar. Las demás opciones (inhaladores de todo tipo) solo sirven para los síntomas. La respuesta correcta es: Abandonar el hábito tabáquico"
+  },
+  {
+    "question": "13. La asociación de matidez, crepitaciones y broncofonía, en un lóbulo pulmonar, sugiere un(a):",
+    "choices": [
+      "a.Derrame pleural",
+      "b.Neumotórax",
+      "c.Neumonía",
+      "d.Cuerpo extraño",
+      "e.Atelectasia"
+    ],
+    "correctAnswer": "Neumonía",
+    "explanation": "El derrame tiene matidez, disminución del MP. El neumotórax tiene hipersonoridad y disminución del MP. La neumonía tiene todo lo descrito. El CE tiene clínica obstructiva (disminución del MP, sibilancias e hipersonoridad), pero localizada en una zona, o bien tiene clínica de atelectasia. La atelectasia tiene una clínica similar a la neumonía, con la única diferencia que suele presentar disminución de las vibraciones vocales (la neumonía las aumenta y tiene broncofonía), salvo excepciones. Además, la atelectasia puede desviar la tráquea o el mediastino hacia ipsilateral. La respuesta correcta es: Neumonía"
+  },
+  {
+    "question": "14. Un paciente de 20 años consulta por dolor tipo puntada de costado derecho. Se solicita radiografía de tórax, que muestra un neumotórax del 50% del campo pulmonar derecho. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar analgésicos intravenosos y controlar con una nueva radiografía en 6 horas",
+      "b.Puncionar el segundo espacio intercostal en la línea media clavicular",
+      "c.Instalar una sonda pleural, conectada a trampa de agua",
+      "d.Realizar ventilación mecánica no invasiva",
+      "e.Resolver quirúrgicamente"
+    ],
+    "correctAnswer": "Instalar una sonda pleural, conectada a trampa de agua",
+    "explanation": "El manejo del neumotórax espontáneo es muy variable, según la fuente que se revise, pero nos quedaremos con lo siguiente: - Los neumotórax pequeños (<15%, <3 cm en la zona apical o <2 cm a la altura del hilio), se manejan con analgesia y observación. Inicialmente se controlan con una nueva radiografía de tórax en 6 horas y, si no han crecido o mejoran, se envían a domicilio con analgesia y control en 24 horas. - Los neumotórax grandes (>15%, >3 cm en la zona apical o >2 cm a la altura del hilio) se deben drenar con una aguja o con un tubo pleural / sonda de toracostomía (esto último es obligatorio si el pulmón está colapsado, si la aguja no es capaz de expandir el pulmón, luego de haber sacado 4 litros de aire, si requerirá de manejo definitivo de prevención. - El manejo definitivo de prevención consiste en cirugía (idealmente por videotoracoscopía: VAT) o médico (sellamiento pleural con talco o tetraciclina). Este tratamiento definitivo por regla general no se hace en los primeros episodios de un neumotórax espontáneo primario y pequeño (10%-30% de recurrencia). Sí se hace en 1. neumotórax recurrente, 2. neumotórax secundarios (por patologías de base, como EPOC, que tiene cerca de 50% de recurrencia), 3. pacientes deportistas de alto riesgo o con hobbies peligrosos, 4. presencia de múltiples bulas y quistes y 5. neumotórax muy grandes (discutible) o que siguen filtrando después de 5 días de estar con el tubo pleural. Si tuviese clínica de neumotórax a tensión (hipotensión, ingurgitación yugular, asimetría torácica, desviación de la tráquea), estaría indicada la descomprensión de inmediato con aguja o sonda de toracostomía o incluso un catéter vascular. En este caso, la punción suele hacerse o en el 2º espacio intercostal, línea media clavicular; o en el 5º espacio intercostal, línea axilar anterior. La cirugía sería correcta si fuese el segundo caso (neumotórax recurrente), si fuese un neumotórax abierto, si fuera traumático con hemotórax asociado (ya requeriría una videotoracoscopía o una cirugía abierta). La respuesta correcta es: Instalar una sonda pleural, conectada a trampa de agua"
+  },
+  {
+    "question": "15. El distrés respiratorio del adulto se produce por:",
+    "choices": [
+      "a.Aumento de la presión de la arteria pulmonar",
+      "b.Aumento de la presión hidrostática a nivel capilar pulmonar",
+      "c.Aumento de la presión oncótica a nivel capilar pulmonar",
+      "d.Aumento de la presión oncótica intersticial",
+      "e.Aumento de la permeabilidad capilar pulmonar"
+    ],
+    "correctAnswer": "Aumento de la permeabilidad capilar pulmonar",
+    "explanation": "Por definición, el distrés respiratorio o edema pulmonar no cardiogénico se produce por aumento de la permeabilidad capilar (generalmente por respuestas inflamatorias sistémicas: ej. sepsis, quemaduras, pancreatitis). En cambio, el EPA cardiogénico se debe a aumento de la presión hidrostática capilar (aumenta la PCP). La respuesta correcta es: Aumento de la permeabilidad capilar pulmonar"
+  },
+  {
+    "question": "16. Un niño de 12 meses ha presentado 3 episodios de obstrucción bronquial, los que respondieron bien después del manejo en urgencia durante dos horas con salbutamol inhalado y oxígeno. Usted lo recibe al día siguiente del tercer episodio, derivado por el médico de urgencias. No presenta otros síntomas, está en buenas condiciones, manteniendo algo de tos y su examen físico es normal. La indicación más adecuada es:",
+    "choices": [
+      "a.Indicar uso de salbutamol SOS",
+      "b.Iniciar corticoides inhalados cada 12 horas y salbutamol SOS",
+      "c.Iniciar salmeterol inhalado cada 12 horas y salbutamol SOS",
+      "d.Solicitar espirometría",
+      "e.Indicar salbutamol cada 6 horas por 3 meses"
+    ],
+    "correctAnswer": "Iniciar corticoides inhalados cada 12 horas y salbutamol SOS",
+    "explanation": "Tiene un SBO recurrente (3 o más SBO en un año). El manejo es igual al asma, es decir, corticoides inhalados cada 12 horas más broncodilatadores de corta acción SOS. Solo si no funciona, se agregan los broncodilatadores de larga acción. Si no fuera recurrente (ej. 1 o 2 episodios) simplemente se observaría. La respuesta correcta es: Iniciar corticoides inhalados cada 12 horas y salbutamol SOS"
+  },
+  {
+    "question": "17. ¿Qué medicamento es más importante para prevenir la aparición de crisis asmáticas en un paciente asmático?",
+    "choices": [
+      "a.Betaagonistas de larga acción inhalados",
+      "b.Corticoides inhalados",
+      "c.Betaagonistas de corta acción inhalados",
+      "d.Antihistamínicos orales",
+      "e.Inhibidores del receptor de leucotrienos orales"
+    ],
+    "correctAnswer": "Corticoides inhalados",
+    "explanation": "El tratamiento básico del asma es evitar la exposición a los alérgenos, más el uso de corticoides inhalados cada 12 horas (para prevenir las crisis), asociados a broncodilatadores SOS (para tratar las crisis). Por tanto, los corticoides previenen. La respuesta correcta es: Corticoides inhalados"
+  },
+  {
+    "question": "18. Un paciente de 30 años presenta un cuadro de disnea de inicio súbito. Al examen físico está angustiado, en buenas condiciones, con FR: 20x', saturación arterial 99% a FiO2 ambiental, presión arterial 120/80 mmHg, FC: 70x'. Su examen cardiopulmonar muestra un RR2T sin soplos y MP(+), sin ruidos agregados. Se solicita una radiografía de tórax, que resulta normal y niveles plasmáticos de dímero D, que resultan normales. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar anticoagulación con heparina",
+      "b.Iniciar trombolisis con activador tisular del plasminógeno, recombinante (rtPA)",
+      "c.Solicitar ecografía doppler de extremidades inferiores",
+      "d.Solicitar angiografía pulmonar",
+      "e.Descartar el diagnóstico de TEP"
+    ],
+    "correctAnswer": "Descartar el diagnóstico de TEP",
+    "explanation": "Es un paciente de bajo riesgo y su clínica parece una crisis de pánico (examen físico normal, angustia, con disnea súbita). La radiografía descartó el neumotórax, que era uno de los diagnósticos posibles y el dímero D (que solo se pide en pacientes de baja probabilidad de TEP, como en este caso) descartó el TEP (si el DD sale negativo descarta; en cambio, si el DD sale positivo, se debe confirmar con un angioTAC). La heparina habría sido el tratamiento del TEP. La trombólisis habría sido el tratamiento del TEP masivo (con compromiso hemodinámico). La ecografía-doppler sirve para el diagnóstico de trombosis venosa profunda, pero también se usa en el TEP, cuando hay una sospecha muy fuerte, a pesar de tener el angioTAC negativo (\"si la clínica le grita TEP, pero el angioTAC le dice que no, primero mírele las piernas, antes de descartarlo\"). La respuesta correcta es: Descartar el diagnóstico de TEP"
+  },
+  {
+    "question": "19. Un paciente sufre un accidente de tránsito, resultando con un golpe en el tórax. Evoluciona con disnea y caída de la saturación arterial de oxígeno. Al examen físico se auscultan crepitaciones difusas bilaterales y la radiografía de tórax muestra infiltrados pulmonares de tipo alveolar, en distintas zonas de los pulmones. El diagnóstico más probable es:",
+    "choices": [
+      "a.Hemotórax",
+      "b.Lesión traqueal",
+      "c.Neumonía",
+      "d.Contusión pulmonar",
+      "e.Tromboembolismo pulmonar"
+    ],
+    "correctAnswer": "Contusión pulmonar",
+    "explanation": "Es una contusión pulmonar clásica: trauma torácico, insuficiencia respiratoria e infiltrados alveolares pulmonares en la zona de trauma. El hemotórax se muestra como un derrame. La lesión traqueal suele hacer neumotórax (que burbujea continuamente) o neumomediastino, muchas veces con enfisema subcutáneo. La neumonía puede tener la misma imagen que la contusión pulmonar, solo que en lugar de antecedente de trauma, tiene la clínica de neumonía (tos, expectoración, fiebre, etc). El TEP tiene una clínica súbita, de disnea y dolor torácico, y la radiografía suele estar normal o presentar alteraciones inespecíficas (derrame: recordar que puede dar un exudado hemático; relleno; alteración de la trama vascular). La respuesta correcta es: Contusión pulmonar"
+  },
+  {
+    "question": "20. Un paciente de 30 años presenta un cuadro de fiebre y tos con expectoración, asociado a malestar general intenso y disnea. Al examen físico está taquipneico con 35 rpm, satura 85% a FiO2 ambiental y se auscultan crepitaciones en la base pulmonar derecha. Se solicita una radiografía de tórax, que muestra una imagen de condensación de los lóbulos medio y superior derecho. El tratamiento más adecuado es:",
+    "choices": [
+      "a.Clindamcicina",
+      "b.Ceftriaxona",
+      "c.Amoxicilina",
+      "d.Amoxicilina + ácido clavulánico",
+      "e.Moxifloxacino"
+    ],
+    "correctAnswer": "Ceftriaxona",
+    "explanation": "Tiene una neumonía adquirida en la comunidad (NAC). Por CURB-65 tiene solo 1 punto (FR mayor a 30), sin embargo, no es posible manejarlo de manera ambulatoria, ya que 1. Satura apenas 85% (recordar que bajo 90%, suele haber una PaO2 menor a 60 mmHg, es decir, suele estar en insuficiencia respiratoria) y 2. Tiene compromiso de 2 lóbulos. Por tanto, se debe hospitalizar y tratar con ceftriaxona endovenosa, que es el antibiótico de elección para el manejo de las neumonías graves en los adultos (los niños se tratan sin problemas con ampicilina o penicilina endovenosa, aunque también se pueden tratar con ceftriaxona). La respuesta correcta es: Ceftriaxona"
+  },
+  {
+    "question": "1. Un paciente de 59 años, diagnosticado de fibrosis pulmonar, consulta por fiebre hasta 38,6°C, asociado a malestar general y tos con expectoración mucopurulenta. Al examen físico se encuentra en buenas condiciones, satura 95% a FiO2 ambiental y tiene una frecuencia cardíaca de 90x'. El examen pulmonar muestra crepitaciones difusas, compatibles con su patología de base. Se solicita una radiografía de tórax que muestra imágenes compatibles con fibrosis pulmonar, asociadas a una zona de relleno alveolar en el lóbulo superior izquierdo. ¿Cuál es la conducta más adecuada?",
+    "choices": [
+      "a.Indicar tratamiento ambulatorio con amoxicilina",
+      "b.Indicar tratamiento ambulatorio con amoxicilina más ácido clavulánico",
+      "c.Indicar tratamiento endovenoso con ceftriaxona",
+      "d.Indicar tratamiento endovenoso con ceftazidima más clindamicina",
+      "e.Indicar tratamiento endovenoso con ceftriaxona más metronidazol"
+    ],
+    "correctAnswer": "Indicar tratamiento ambulatorio con amoxicilina más ácido clavulánico",
+    "explanation": "Es una neumonía, en un paciente en buenas condiciones generales, sin criterios de hospitalización. Por tanto debe ser manejado de manera ambulatoria. Por tener de base una patología pulmonar, el tratamiento de elección es la amoxicilina más ácido clavulánico (cubrir además Haemophilus: en mayores de 65 años y en patología pulmonar). La amoxicilina sola habría sido la respuesta, si no tuviese la fibrosis pulmonar. La respuesta correcta es: Indicar tratamiento ambulatorio con amoxicilina más ácido clavulánico"
+  },
+  {
+    "question": "2. Un paciente de 60 años consulta por disnea de esfuerzos desde hace un mes, que aparecen al caminar una cuadra. Además, presenta tos, sin expectoración. Al examen físico presenta hipocratismo digital y crepitaciones pulmonares intensas, bilaterales, mayores en las bases pulmonares. El diagnóstico de sospecha es:",
+    "choices": [
+      "a.Neumonía atípica",
+      "b.Fibrosis pulmonar",
+      "c.EPOC",
+      "d.Asma",
+      "e.Cáncer pulmonar"
+    ],
+    "correctAnswer": "Fibrosis pulmonar",
+    "explanation": "Tiene una clínica clásica de fibrosis pulmonar: disnea, tos seca, crepitaciones gruesas bilaterales e hipocratismo digital (este también se ve en el cáncer). La NAC atípica tendría un cuadro de menos semanas, con expectoración (inicia similar a una infección viral y luego evoluciona a una neumonía bilateral, con clínica obstructiva). El EPOC tiene disnea más clínica obstructiva, con el antecedente de fumar. El asma también tiene clínica obstructiva. El cáncer puede tener la tos y el hipocratismo digital, pero no tiene crepitaciones bilaterales, sino que por el contrario, su examen pulmonar es normal o inespecífico. La respuesta correcta es: Fibrosis pulmonar"
+  },
+  {
+    "question": "3. Un paciente consulta por dolor torácico, tipo puntada de costado, por lo que se realiza una radiografía de tórax, que muestra un derrame pleural moderado. Se procede a la toracocentesis, obteniéndose un líquido pleural amarillo, transparente, con pH: 7,30, lactato: 2,5 mmol/L, LDH: 190 UI/L, proteínas: 4,0 g/L, células: 560 por mm3, con 90% de mononucleares. La LDH plasmática es 250 U/L y las proteínas plasmáticas son 7,0 g/dL. El diagnóstico más probable es:",
+    "choices": [
+      "a.Empiema",
+      "b.Derrame paraneumónico simple",
+      "c.Tuberculosis pleural",
+      "d.Tromboembolismo pulmonar crónico",
+      "e.Insuficiencia cardíaca"
+    ],
+    "correctAnswer": "Tuberculosis pleural",
+    "explanation": "Es un exudado pleural, ya que tiene elevadas la LDH y las proteínas (no dan los valores plasmáticos, como para hacer la relación, pero en general una LDH sobre 180 UI/L es un exudado). Además es de predominio mononuclear, por lo que puede ser TBC o cáncer (no está en las alternativas). El empiema y el DPNS son exudados de tipo polimorfonuclear. El TEP crónico es raro y suele presentarse más como una causa de hipertensión pulmonar secundaria y cuando el TEP hace derrame, suele ser en agudo y con un exudado hemorrágico. La ICC es un trasudado (con LDH baja). La respuesta correcta es: Tuberculosis pleural"
+  },
+  {
+    "question": "4. El distrés respiratorio del adulto requiere para su diagnóstico la presencia de:",
+    "choices": [
+      "a.Presión arterial menor a 140/90 mmHg",
+      "b.Ausencia de hipertensión pulmonar",
+      "c.Presión capilar pulmonar menor a 18 mmHg",
+      "d.Ausencia de patologías pulmonares de base",
+      "e.Normalidad de la Pa/Fi (cociente entre la presión arterial de oxígeno y la fracción inspirada de oxígeno)"
+    ],
+    "correctAnswer": "Presión capilar pulmonar menor a 18 mmHg",
+    "explanation": "Por definición el SDRA (síndrome de distrés respiratorio del adulto) debe cumplir con los siguientes criterios: 1. Edema pulmonar agudo (menor a 1 semana, con lateración de la radiografía de tórax), 2. No explicable por insuficiencia cardíaca (PCP menor a 18 mmHg, por regla general; si es mayor a 18 mmHg, es EPA cardiogénico) y 3. Gran compromiso de la función respiratoria (con Pa/Fi menor a 200 por lo general, aunque varía según si está en ventilación mecánica). La respuesta correcta es: Presión capilar pulmonar menor a 18 mmHg"
+  },
+  {
+    "question": "5. Un paciente consulta por un cuadro de 2 días de evolución de rinorrea abundante, asociada a estornudos y malestar general. Además, ha presentado fiebre hasta 38°C, sensación de descarga posterior, hiposmia y obstrucción nasal. El examen físico sólo muestra rinorrea mucosa y eritema faríngeo, sin otras alteraciones. La conducta más adecuada es:",
+    "choices": [
+      "a.Indicar tratamiento sintomático",
+      "b.Solicitar TAC de cavidades paranasales",
+      "c.Iniciar amoxicilina oral",
+      "d.Iniciar amoxicilina + ácido clavulánico oral",
+      "e.Solicitar nasofibroscopía"
+    ],
+    "correctAnswer": "Indicar tratamiento sintomático",
+    "explanation": "Tiene una infección respiratoria alta, probablemente un resfrío. Sin embargo, mencionan muchos síntomas de sinusitis aguda, por lo que tiene una sinusitis aguda (el diagnóstico es clínico). De todos modos, debemos recordar que el 90% de las sinusitis agudas son virales y que por regla general, si duran menos de 7 días, son virales con seguridad. Por tanto, se debe dar tratamiento sintomático. Si llevara más de 7 días y no tuviese tendencia a mejorar, probablemente sería bacteriana y la respuesta habría sido amoxicilina oral. Si llevara más de 4 semanas, sería subaguda y se debería estudiar con TAC y tratar al menor con amoxicilina más ácido clavulánico. La respuesta correcta es: Indicar tratamiento sintomático"
+  },
+  {
+    "question": "6. Un recién nacido de 36 semanas de edad gestacional, presenta taquipnea y quejido al nacer. Al examen físico presenta crepitaciones pulmonares escasas y satura 90%, normalizándose con O2 al 28%. El diagnóstico más probable es:",
+    "choices": [
+      "a.Enfermedad de membrana hialina",
+      "b.Hipertensión pulmonar persistente",
+      "c.Síndrome de aspiración de meconio",
+      "d.Taquipnea transitoria del recién nacido",
+      "e.Neumonía neonatal"
+    ],
+    "correctAnswer": "Taquipnea transitoria del recién nacido",
+    "explanation": "Tiene un síndrome de distrés respiratorio del recién nacido. Por tener más de 34 semanas, es casi imposible que se trate de una membrana hialina; sin embargo, por ser menor a 37 semanas, tiene factor de riesgo para ser una taquipnea transitoria. El hecho de que mejore con oxígeno en baja concentración, hace que la respuesta sea la taquipnea transitoria sin duda. La EMH sería un prematuro menor a 34 semanas, con un cuadro grave, que requeriría altas concentraciones de O2. La HPP sería un cuadro de cianosis que no responde a O2, con antecedente de asfixia o alguna patología pulmonar grave (ej. EMH). El SAM sería un cuadro más grave, con signología obstructiva y con antecedente de asfixia o recién nacido postérmino. La neumonía aparecería varias horas después de nacer y sería más grave, con un cuadro de sepsis neonatal asociado. La respuesta correcta es: Taquipnea transitoria del recién nacido"
+  },
+  {
+    "question": "7. La asociación de dolor tipo puntada de costado, disminución del murmullo pulmonar e hipersonoridad a la percusión torácica es característica de:",
+    "choices": [
+      "a.Tromboembolismo pulmonar",
+      "b.Neumonía",
+      "c.Neumotórax",
+      "d.Atelectasia",
+      "e.Cuerpo extraño bronquial"
+    ],
+    "correctAnswer": "Neumotórax",
+    "explanation": "El neumotórax tiene hipersonoridad y disminución del MP. La neumonía tiene tos, expectoración, fiebre, matidez a la percusión, crepitaciones localizadas, brocofonía, soplo tubario. La atelectasia tiene una clínica similar a la neumonía, con la única diferencia que suele presentar disminución de las vibraciones vocales (la neumonía las aumenta y tiene broncofonía), salvo excepciones. Además, la atelectasia, si es grande, puede desviar la tráquea o el mediastino hacia ipsilateral. El CE tiene clínica obstructiva (disminución del MP, sibilancias e hipersonoridad), pero localizada en una zona; o bien tiene clínica de atelectasia. La respuesta correcta es: Neumotórax"
+  },
+  {
+    "question": "8. Identifique la asociación CORRECTA entre la patología y el mecanismo de hipoxemia:",
+    "choices": [
+      "a.Alteración neuromuscular - Trastorno V/Q",
+      "b.Neumonía - Shunt",
+      "c.EPOC - Trastorno de la Difusión",
+      "d.Fibrosis pulmonar - Hipoventilación",
+      "e.Tromboembolismo pulmonar - Shunt"
+    ],
+    "correctAnswer": "Neumonía - Shunt",
+    "explanation": "Las neumonías producen hipoxemia principalmente por el mecanismo de shunt o cortocircuito. Por ello es que no responden bien a oxígeno y toda neumonía con insuficiencia respiratoria asociada, debería conectarse al ventilador mecánico, en lugar de simplemente administrar oxígeno. Respecto a las demás: Alteración neuromuscular - Hipoventilación. EPOC - Trastorno V/Q (se afecta la ventilación). Fibrosis pulmonar - Trastorno de la difusión. Tromboembolismo pulmonar - Trastorno V/Q (se afecta la perfusión). La respuesta correcta es: Neumonía - Shunt"
+  },
+  {
+    "question": "9. Un paciente EPOC crónico, en tratamiento con broncodilatadores, consulta por la opción de uso de oxígeno domiciliario. Lo más correcto es indicarle que:",
+    "choices": [
+      "a.Está indicado en todos los pacientes con EPOC",
+      "b.Está indicado solo en aquellos pacientes que continúan fumando",
+      "c.Está indicado solo en pacientes con insuficiencia respiratoria crónica grave, o con comorbilidades específicas",
+      "d.Está indicado solo en pacientes con síntomas a pesar del uso de corticoides y broncodilatadores",
+      "e.Está indicado solo en pacientes con disnea de reposo"
+    ],
+    "correctAnswer": "Está indicado solo en pacientes con insuficiencia respiratoria crónica grave, o con comorbilidades específicas",
+    "explanation": "El oxígeno domiciliario está indicado para aumentar la sobrevida en los pacientes con EPOC estable y presión arterial de oxígeno (PaO2) menor a 55 mmHg o menor a 60 mmHg, pero con 1. Poliglobulia (hematocrito >55%), 2. Hipertensión pulmonar (Presión arteria pulmonar >25 mmHg) o 3. Corazón pulmonar (insuficiencia cardíaca derecha, secundaria a HTP por patología pulmonar). En los demás pacientes, se debe suspender el cigarrillo (aumenta la sobrevida) y se indican broncodilatadores de larga acción c/12h y corta acción SOS para los síntomas. La respuesta correcta es: Está indicado solo en pacientes con insuficiencia respiratoria crónica grave, o con comorbilidades específicas"
+  },
+  {
+    "question": "10. Un niño de 3 años presenta un cuadro de dificultad respiratoria, asociado a estridor inspiratorio. La madre refiere que el día de ayer comenzó con fiebre hasta 38°C, disfonía y tos disfónica. No presentó mayor compromiso del estado general, pero que desde hace 20 minutos se le agregó disnea y respiración ruidosa. El agente etiológico más probable es:",
+    "choices": [
+      "a.Virus respiratorio sincicial",
+      "b.Virus influenza",
+      "c.Virus parainfluenza",
+      "d.Neumococo",
+      "e.Haemophilus influenzae"
+    ],
+    "correctAnswer": "Virus parainfluenza",
+    "explanation": "Es una laringitis obstructiva clásica (dificultad respiratoria, con obstrucción alta y estridor inspiratorio), causada por virus parainfluenza. También se llama croup laríngeo y no se debe confundir con el croup espasmódico, que es un cuadro agudo y autolimitado (dura algunos minutos), que suele ocurrir siempre de noche, se asocia a reflujo y que no viene con el cuadro de tos disfónica previa (sí puede tener síntomas de resfrío). La respuesta correcta es: Virus parainfluenza"
+  },
+  {
+    "question": "11. ¿Qué tratamiento antibiótico le parece más adecuado para un paciente cursando una neumonía grave, que requiere ventilación mecánica y uso de drogas vasoactivas?",
+    "choices": [
+      "a.Ceftriaxona sola",
+      "b.Ceftriaxona + penicilina",
+      "c.Clindamicina + penicilina",
+      "d.Ceftriaxona + levofloxacino",
+      "e.Cefotaximo + metronidazol"
+    ],
+    "correctAnswer": "Ceftriaxona + levofloxacino",
+    "explanation": "En general, los pacientes con neumonías graves, que requieren de cuidados intensivos, deben recibir antibióticos biasociados con una cefalosporina de tercera generación (ceftriaxona o cefotaximo) más un macrólido (ej. Azitromicina/claritromicina) o quinolona respiratoria (levofloxacino). Si es una neumonía intrahospitalaria, en cambio, se debe indicar antibióticos que cubran además los gérmenes de dicho centro hospitalario (ej. Carbapenémicos, cefepime, etc, según la flora específica del hospital). La respuesta correcta es: Ceftriaxona + levofloxacino"
+  },
+  {
+    "question": "12. Un paciente de 40 años, sin antecedentes ni hábitos de importancia, hace 2 años sufre una neumonía en el lóbulo inferior izquierdo, la que fue tratada con antibióticos, con buena respuesta. Sin embargo, evoluciona posteriormente con broncorrea crónica, mayor en las mañanas, que en ocasiones viene acompañada de expectoración hemoptoica. El diagnóstico más probable es:",
+    "choices": [
+      "a.Cuerpo extraño bronquial",
+      "b.Tuberculosis",
+      "c.Cáncer pulmonar",
+      "d.Bronquitis crónica",
+      "e.Bronquiectasias"
+    ],
+    "correctAnswer": "Bronquiectasias",
+    "explanation": "Son bronquiectasias clásicas. El antecedente de una infección previa es característico (la infección previa es la causa de las bronquiectasias: ej. TBC, adenovirus, pseudomona). La clínica de broncorrea mayor en la mañana y hemoptisis también es característica. Se diagnostican con la TAC de tórax, aunque el primer examen sigue siendo la radiografía, que puede estar normal o mostrar imágenes circulares de los bronquios dilatados. La TBC puede tener una clínica similar, pero es un cuadro más subagudo, con fiebre, baja de peso, con afectación de los lóbulos superiores, más que los otros. El cáncer suele tener el antecedente de fumar y unidad edad mayor. Sí puede tener neumonías a repetición y hemoptisis. La bronquitis crónica también tiene broncorrea matinal y tos, pero tiene el antecedente de fumar y no tiene hemoptisis por lo general. La respuesta correcta es: Bronquiectasias"
+  },
+  {
+    "question": "13. Una paciente es diagnosticada de tuberculosis bacilífera, por lo que inicia tratamiento antituberculoso, con 4 drogas por 2 meses y luego con 2 drogas por 4 meses más. Las baciloscopías negativizaron al segundo mes de tratamiento y presentó mejora sintomática. Acude 4 meses después de haber terminado el tratamiento, con tos y expectoración, por lo que se solicita una nueva baciloscopía, que resulta positiva. El diagnóstico es:",
+    "choices": [
+      "a.Fracaso",
+      "b.Abandono",
+      "c.Recaída",
+      "d.Infección por Nocardia sp.",
+      "e.Infección por Mycobacterium avium"
+    ],
+    "correctAnswer": "Recaída",
+    "explanation": "Es una recaída: se curó con el tratamiento (completó los 6 meses y tuvo criterios clínicos y bacteriológicos de curación), pero luego se volvió a enfermar algún tiempo después. La causa es que se volvió a contagiar, porque en su medio convive con pacientes bacilíferos, de hecho lo más frecuente es que sea por la misma cepa de mycobacterias. Se debe volver a notificar como un caso nuevo y generalmente responde bien al tratamiento primario, ya que no hay resistencia, sino una reinfección. El fracaso, en cambio, sí se debe a resistencia y se diagnostica cuando los cultivos se mantienen positivos al 4º mes de tratamiento. Algo importante es que tanto recaída como fracaso requieren de estudio de sensibilidad a los antibióticos, pero, mientras se tiene el resultado, la recaída se trata con esquema primario y el fracaso con esquema secundario. Luego de recibir los estudios de sensibilidad, se ajustan los antibióticos. La respuesta correcta es: Recaída"
+  },
+  {
+    "question": "14. Un paciente de 10 años presenta tos nocturna y sibilancias luego de realizar deporte o durante las infecciones respiratorias virales. Al examen físico sólo presenta alargamiento de la espiración. ¿Qué examen es más adecuado para confirmar la sospecha diagnóstica?",
+    "choices": [
+      "a.Test de difusión de CO",
+      "b.Espirometría",
+      "c.Prick test",
+      "d.Radiografía de tórax",
+      "e.TAC de tórax de cortes finos"
+    ],
+    "correctAnswer": "Espirometría",
+    "explanation": "Tiene clínica de un asma clásico (tos y sibilancias, desencadenadas por ejercicio, infecciones virales y en la noche: por exposición a los ácaros del polvo en la habitación), por lo que el diagnóstico ya está hecho (el diagnóstico es clínico). Sin embargo, la espirometría es el examen de elección para apoyar el diagnóstico y suele mostrar un patrón obstructivo, que revierte con broncodilatador. La única excepción es el paciente que no tiene nada de obstrucción clínica, ya que tendrá una espirometría normal y deberá solicitarse un test de metacolina (que busca la hiperreactividad bronquial). El test de difusión de monóxido de carbono sirve para ver el grado de enfisema en los pacientes con EPOC y para objetivar el trastorno de la difusión en los pacientes con fibrosis pulmonar u otras enfermedades pulmonares intersticiales. El prick test solo sirve para identificar los alérgenos a los que está sensibilizados, de modo de evitarlos. Eso sí, cuando hay duda diagnóstica, si hay sensibilización a alérgenos respiratorios, apoya el diagnóstico de asma. La respuesta correcta es: Espirometría"
+  },
+  {
+    "question": "15. Un paciente cursando un síndrome neumónico, se realiza una radiografía, que visualiza una zona de condensación en el lóbulo inferior izquierdo, asociado a un derrame pleural que abarca el 25% inferior del campo pulmonar izquierdo. La conducta más adecuada es:",
+    "choices": [
+      "a.Instalar un tubo pleural y administrar antibióticos por vía endovenosa e intrapleural",
+      "b.Iniciar antibióticos y realizar pleurocentesis, con análisis del líquido pleural y decidir conducta según hallazgos",
+      "c.Iniciar ceftriaxona, asociada a fármacos antituberculosos",
+      "d.Iniciar antibióticos y solicitar biopsias pleurales",
+      "e.Indicar ceftriaxona + clindamicina y controlar evolución"
+    ],
+    "correctAnswer": "Iniciar antibióticos y realizar pleurocentesis, con análisis del líquido pleural y decidir conducta según hallazgos",
+    "explanation": "Todo derrame debe ser puncionado, en particular si está asociado a una neumonía, ya que se debe diferenciar entre un empiema y un derrame paraneumónico simple (DPNS), ya que tienen tratamientos distintos. El empiema se trata con antibióticos más un tubo pleural y el DPNS con antibióticos, más el drenaje del derrame, mediante una punción pleural (sin necesidad de instalar y dejar un tubo). En ambos casos los antibióticos deben cubrir los gérmenes propios de las neumonías, más anaerobios (ej. ceftriaxona + metronidazol / clindamicina; amoxicilina + ácido clavulánico solo si oral). La respuesta correcta es: Iniciar antibióticos y realizar pleurocentesis, con análisis del líquido pleural y decidir conducta según hallazgos"
+  },
+  {
+    "question": "16. Acude a urgencias un paciente de 20 años, con un cuadro sugerente de un neumotórax espontáneo. Además tiene antecedente de haber sufrido uno, el año pasado, el que fue manejado con pleurocentesis. Se solicita una radiografía de tórax, que confirma el diagnóstico, demostrando la presencia de un neumotórax derecho, del 30% del campo pulmonar. La conducta más adecuada es:",
+    "choices": [
+      "a.Administrar analgésicos y observar evolución por 4 a 6 horas, controlando con una nueva radiografía de tórax",
+      "b.Realizar aspiración con jeringa y llave de 3 pasos",
+      "c.Iniciar analgesia e instalar un tubo pleural con trampa de agua, sin necesidad de cirugía",
+      "d.Conectar a ventilación mecánica con presión positiva",
+      "e.Resolver quirúrgicamente"
+    ],
+    "correctAnswer": "Resolver quirúrgicamente",
+    "explanation": "Dado que tiene un neumotórax recurrente, se debe operar, indiferentemente del tamaño del neumotórax. La recomendación actual es hacerlo mediante videotoracoscopía (VAT) y solo en casos en que no se pueda hacer, se elige la pleurodesis química con talco o tetraciclina. Los AINES y control con radiografía en 4 a 6 horas sería correcto si fuera el primer neumotórax y fuera pequeño menor a 3 cm hacia apical, 2 cm hacia lateral o 15% (según como se describa). El tubo pleural sería correcto si fuese el primer neumotórax grade (mayor a los puntos de corte mencionados). Si hubiese estado a tensión, lo correcto sería puncionar el segundo espacio intercostal en la línea medioclavicular o el quinto espacio intercostal en la línea axilar anterior. En estricto rigor, en este caso sí se deben administrar AINES, sí se debe instalar un tubo pleural (ejemplo, después de la cirugía o antes de ella si es que la cirugía no se puede hacer de inmediato), pero lo que se está preguntando el el manejo del neumotórax recurrente. La respuesta correcta es: Resolver quirúrgicamente"
+  },
+  {
+    "question": "17. Un paciente EPOC, presenta marcado aumento de la disnea de 24 horas de evolución, que en las últimas horas se volvió intensa incluso en el reposo. Al examen físico presenta cianosis y taquipnea importante. Se solicitan gases arteriales que muestran PaO2: 45 mmHg, PaCO2: 65 mmHg y pH: 7,26. La conducta más adecuada es:",
+    "choices": [
+      "a.Iniciar oxígeno al 100% y nebulizarlo con salbutamol de inmediato",
+      "b.Administrar corticoides endovenosos y realizar nebulizaciones con salbutamol",
+      "c.Conectar a ventilación mecánica no invasiva",
+      "d.Realizar nebulizaciones con corticoides y broncodilatadores de larga acción",
+      "e.Administrar aminofilina endovenosa, albutamol inhalado y oxígeno por mascarilla de recirculación"
+    ],
+    "correctAnswer": "Conectar a ventilación mecánica no invasiva",
+    "explanation": "Tiene un EPOC descompensado, que por regla general se trata con oxígeno al 24% (mayores concentraciones pueden generar hipercarbia), nebulizaciones con salbutamol, corticoides sistémicos y antibióticos. Sin embargo, en este caso además tiene una insuficiencia respiratoria global, con hipercarbia severa, por lo que deberá conectarse al ventilador mecánico cuanto antes. Mientras no esté desorientado y tolere el BiPAP, lo mejos es la ventilación mecánica no invasiva, ya que ha demostrado ser tan buena como la invasiva, sin necesidad de tener al paciente intubado y sedado. La respuesta correcta es: Conectar a ventilación mecánica no invasiva"
+  },
+  {
+    "question": "18. ¿Cuál de los siguientes tratamientos le parece más adecuado para un paciente asmático, que presenta síntomas 1 a 2 veces por semana, los que controla con salbutamol?",
+    "choices": [
+      "a.Mantener el salbutamol SOS",
+      "b.Agregar salmeterol inhalado cada 12 horas",
+      "c.Agregar fluticasona inhalada cada 12 horas",
+      "d.Agregar aspirina oral cada 12 horas",
+      "e.Agregar ipatropio SOS, asociado con el salbutamol"
+    ],
+    "correctAnswer": "Mantener el salbutamol SOS",
+    "explanation": "La base del tratamiento del asma es evitar los alérgenos, más el tratamiento con corticoides inhalados (c/12 horas, para prevenir los síntomas) y los broncodilatadores inhalados (en caso de síntomas). En este caso, calza con la definición de asma intermitente: síntomas que aparecen máximo 2 veces a la semana, sin síntomas nocturnos y que responden al uso de salbutamol, por lo que, en estricto rigor, no requieren de tratamiento preventivo con corticoides y puede mantener el salbutamol SOS. Sin embargo, hay quienes sí recomiendan iniciar los corticoides en este momento o, al menos, indicarlos si presenta infecciones virales, durante el tiempo que dure la infección. Aprender los criterios de asma intermitente, ya que es el único que no requiere corticoides. La fluticasona, mometasona, budesonida y triamcinolona son los corticoides inhalados clásicos. Los broncodilatadores de larga acción (salmeterol / formoterol) solo se inician cuando sigue con síntomas, a pesar de todo lo anterior. En el EPOC, en cambio, se indican los broncodilatadores de larga acción antes que los corticoides inhalados. La respuesta correcta es: Mantener el salbutamol SOS"
+  },
+  {
+    "question": "19. Se obtienen los siguientes gases arteriales PaO2: 80mmHg, PaCO2: 30 mmHg, pH: 7.47, HCO3: 21 mmol/L. ¿A qué estado ácido base corresponden?",
+    "choices": [
+      "a.Alcalosis respiratoria",
+      "b.Alcalosis metabólica",
+      "c.Acidosis respiratoria con alcalosis metabólica",
+      "d.Alcalosis mixta",
+      "e.Gases venosos"
+    ],
+    "correctAnswer": "Alcalosis respiratoria",
+    "explanation": "Dado que la PaO2 está en 80 mmHg, es imposible que sean gases venosos (suelen tener PaO2 cercanas a 40 y PaCO2 cercana a 46 mmHg). El CO2 en 30, demuestra una hipocarbia o hiperventilación, lo que asociado al pH elevado (sobre 7,44) es diagnóstico de una alcalosis respiratoria (debida a la hiperventilación). La respuesta correcta es: Alcalosis respiratoria"
+  },
+  {
+    "question": "20. ¿Qué histología del cáncer pulmonar se asocia más frecuentemente a un síndrome paraneoplásico?",
+    "choices": [
+      "a.Espinocelular",
+      "b.Células pequeñas",
+      "c.Adenocarcinoma",
+      "d.Carcinoma bronquioloalveolar",
+      "e.Células grandes"
+    ],
+    "correctAnswer": "Células pequeñas",
+    "explanation": "El cáncer de células pequeñas se caracteriza por liberar distintas sustancias activas, por lo que genera muchos síndromes paraneoplásicos. Esto debido a su origen neuroendocrino. Por ejemplo, puede producir 1. Síndrome de secreción de ACTH ectópica, 2. Síndrome de secreción inadecuada de ADH, 3. Hipercalcemia por liberación de péptido símil PTH (PTH-like) y 4. Síndrome de carcinoide, entre otros. El cáncer espinocelular, sin embargo, es la causa más frecuente de hipercalcemia maligna asociada a cáncer de pulmón. La respuesta correcta es: Células pequeñas"
+  }
+]

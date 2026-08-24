@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 42 743 320" width="100%" height="240px" style="max-width:743px;height:240px;font-family:'Inter',system-ui,sans-serif;">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#991b1b" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  
+    <g filter="url(#cardShadow)">
+      <rect x="20" y="55" width="215" height="110" rx="6" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5"/>
+      <rect x="20" y="55" width="215" height="22" rx="6" fill="url(#blueGrad)"/>
+      <text x="127" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">1ª LÍNEA: BASE GENERAL</text>
+      <text x="30" y="93" fill="#1e3a8a" font-size="8.5" font-weight="700">Metformina 850 – 2550 mg/d</text>
+      <text x="30" y="108" fill="#334155" font-size="8">+ Estilo de Vida Saludable</text>
+      <text x="30" y="122" fill="#64748b" font-size="7.5">• Titular lento por síntomas GI</text>
+      <text x="30" y="136" fill="#64748b" font-size="7.5">• Contraindicada si VFG &lt; 30 mL/min</text>
+      <text x="30" y="150" fill="#dc2626" font-size="7.5">• Riesgo de acidosis láctica</text>
+    </g>
+
+    <!-- Center Box: Comorbilidades -->
+    <g filter="url(#cardShadow)">
+      <rect x="260" y="55" width="220" height="110" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+      <rect x="260" y="55" width="220" height="22" rx="6" fill="url(#amberGrad)"/>
+      <text x="370" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">2ª LÍNEA: COMORBILIDAD</text>
+      <text x="270" y="93" fill="#b45309" font-size="8.5" font-weight="700">• ECV Aterosclerótica:</text>
+      <text x="280" y="106" fill="#334155" font-size="8">arGLP-1 o iSGLT2 (beneficio CV)</text>
+      <text x="270" y="121" fill="#b45309" font-size="8.5" font-weight="700">• Insuficiencia Cardíaca / ERC:</text>
+      <text x="280" y="134" fill="#334155" font-size="8">iSGLT2 (Dapa / Empagliflozina)</text>
+      <text x="270" y="149" fill="#047857" font-size="8">• Obesidad: arGLP-1 / Tirzepatida</text>
+    </g>
+
+    <!-- Right Box: Sin Comorbilidad -->
+    <g filter="url(#cardShadow)">
+      <rect x="505" y="55" width="215" height="110" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+      <rect x="505" y="55" width="215" height="22" rx="6" fill="url(#greenGrad)"/>
+      <text x="612" y="70" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">SEGUNDA LÍNEA (SIN ECV)</text>
+      <text x="515" y="93" fill="#065f46" font-size="8.5" font-weight="700">• iDPP-4 (Vildagliptina/Lina):</text>
+      <text x="525" y="106" fill="#334155" font-size="8">Seguros, neutros en peso</text>
+      <text x="515" y="121" fill="#065f46" font-size="8.5" font-weight="700">• Sulfonilureas (Gliclazida):</text>
+      <text x="525" y="134" fill="#334155" font-size="8">Bajo costo. Riesgo hipoglicemia</text>
+      <text x="515" y="149" fill="#dc2626" font-size="8">• Glibenclamida: Evitar en AM</text>
+    </g>
+
+    <!-- Bottom Box: Metas y Descompensación -->
+    <g filter="url(#cardShadow)">
+      <rect x="20" y="180" width="700" height="125" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+      <rect x="20" y="180" width="700" height="22" rx="6" fill="#1e293b"/>
+      <text x="370" y="195" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">METAS DE CONTROL GLICÉMICO (HbA1c) &amp; CRITERIOS DE INSULINIZACIÓN</text>
+      
+      <text x="35" y="220" fill="#1e3a8a" font-size="8.5" font-weight="700">Metas HbA1c Individualizadas:</text>
+      <text x="35" y="235" fill="#334155" font-size="8">• Joven, sin comorbilidad: &lt; 6.5% - 7.0%</text>
+      <text x="35" y="248" fill="#334155" font-size="8">• Adulto mayor frágil / hipoglicemias: &lt; 8.0% - 8.5%</text>
+      <text x="35" y="261" fill="#64748b" font-size="7.5">• Embarazo: &lt; 6.0% - 6.5%</text>
+
+      <text x="380" y="220" fill="#dc2626" font-size="8.5" font-weight="700">Indicaciones Inmediatas de Insulina:</text>
+      <text x="380" y="235" fill="#334155" font-size="8">• HbA1c &gt; 10% o Glicemia &gt; 300 mg/dL sintomática</text>
+      <text x="380" y="248" fill="#334155" font-size="8">• Pérdida de peso acelerada o cetonuria / CAD</text>
+      <text x="380" y="261" fill="#334155" font-size="8">• Embarazo descompensado, Falla renal VFG &lt; 30</text>
+    </g>
+  
+</svg>

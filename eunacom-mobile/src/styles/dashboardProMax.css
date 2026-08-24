@@ -1,0 +1,814 @@
+/* ══════════════════════════════════════════════════════════════
+   UI/UX PRO MAX DESIGN SYSTEM — DASHBOARD EUNACOM
+   Rich Textures, Bento Grid Hierarchy & Ambient Glassmorphism
+   ══════════════════════════════════════════════════════════════ */
+
+.dash-promax-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  color: #f8fafc;
+}
+
+/* Ambient Textured Background Glows */
+.dash-promax-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.dash-ambient-glow-1 {
+  position: absolute;
+  top: -100px;
+  left: 5%;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.14) 0%, transparent 70%);
+  filter: blur(60px);
+}
+
+.dash-ambient-glow-2 {
+  position: absolute;
+  top: 150px;
+  right: 5%;
+  width: 500px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+  filter: blur(50px);
+}
+
+.dash-ambient-glow-3 {
+  position: absolute;
+  top: 600px;
+  left: 30%;
+  width: 450px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+  filter: blur(50px);
+}
+
+.dash-content-layer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GREETING & DOCTOR PROFILE HEADER
+   ══════════════════════════════════════════════════════════════ */
+.dash-header-greeting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dash-greeting-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dash-user-avatar-frame {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(56, 189, 248, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.dash-user-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dash-greeting-titles h1 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-greeting-titles p {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin: 0.25rem 0 0;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO BENTO: LEVEL, XP & RACHA WIDGET
+   ══════════════════════════════════════════════════════════════ */
+.dash-hero-level-bento {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 1.35rem 1.6rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-hero-level-bento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #f97316 100%);
+}
+
+.dash-level-progress-col {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dash-level-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dash-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.2px;
+}
+
+.dash-demo-levelup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(249, 115, 22, 0.12);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  color: #fed7aa;
+  padding: 0.22rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dash-demo-levelup-btn:hover {
+  background: rgba(249, 115, 22, 0.28);
+  border-color: #f97316;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.dash-xp-fraction {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.dash-xp-fraction strong {
+  color: #ffffff;
+}
+
+.dash-progress-track {
+  width: 100%;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dash-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  position: relative;
+}
+
+.dash-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  right: 2px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+}
+
+.dash-level-sub-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Streak / MedLingo Quick Card inside Level Bento */
+.dash-streak-quick-widget {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 1.15rem;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1.5px solid rgba(249, 115, 22, 0.25);
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+}
+
+.dash-streak-quick-widget:hover {
+  transform: translateY(-2px);
+  background: rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+}
+
+.dash-streak-flame-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(249, 115, 22, 0.18);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f97316;
+  flex-shrink: 0;
+}
+
+.dash-flame-anim {
+  animation: flamePulse 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes flamePulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.5)); }
+  100% { transform: scale(1.15); filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.9)); }
+}
+
+.dash-streak-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-streak-lbl {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fb923c;
+  letter-spacing: 0.5px;
+}
+
+.dash-streak-val {
+  font-size: 1.35rem;
+  font-weight: 1000;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.dash-streak-val span {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BENTO GRID ARCHITECTURE (1ST: MIS CLASES, 2ND: MEDLINGO)
+   ══════════════════════════════════════════════════════════════ */
+.dash-bento-section {
+  margin-bottom: 2.25rem;
+}
+
+.dash-bento-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.dash-bento-section-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.1rem;
+}
+
+/* Base Bento Card */
+.dash-bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  padding: 1.45rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 185px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.dash-bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 28px var(--card-glow, rgba(56, 189, 248, 0.2));
+}
+
+.dash-bento-card:active {
+  transform: translateY(1px);
+}
+
+.dash-card-ambient-tint {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--card-glow, rgba(56, 189, 248, 0.15));
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.dash-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.85rem;
+}
+
+.dash-card-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--icon-bg, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--icon-border, rgba(255, 255, 255, 0.15));
+  color: var(--icon-color, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.dash-card-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.dash-card-body {
+  margin-bottom: 1rem;
+}
+
+.dash-card-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
+}
+
+.dash-card-desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.dash-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.75rem;
+}
+
+.dash-card-tag {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.dash-card-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--icon-color, #38bdf8);
+  transition: transform 0.2s ease;
+}
+
+.dash-bento-card:hover .dash-card-action-link {
+  transform: translateX(3px);
+}
+
+/* ─── Bento Item Specific Spans ─── */
+
+/* 1. HERO BENTO #1: MIS CLASES (Span 7) */
+.bento-card-clases {
+  grid-column: span 7;
+  background: linear-gradient(135deg, rgba(49, 46, 129, 0.35) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --card-glow: rgba(99, 102, 241, 0.3);
+  --icon-bg: rgba(99, 102, 241, 0.2);
+  --icon-border: rgba(99, 102, 241, 0.4);
+  --icon-color: #818cf8;
+}
+
+.bento-card-clases .dash-card-badge {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #c7d2fe;
+}
+
+/* 2. HERO BENTO #2: MEDLINGO (Span 5) */
+.bento-card-medlingo {
+  grid-column: span 5;
+  background: linear-gradient(135deg, rgba(124, 45, 18, 0.35) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --card-glow: rgba(249, 115, 22, 0.3);
+  --icon-bg: rgba(249, 115, 22, 0.2);
+  --icon-border: rgba(249, 115, 22, 0.4);
+  --icon-color: #fb923c;
+}
+
+.bento-card-medlingo .dash-card-badge {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #fed7aa;
+}
+
+/* 3. BENTO #3: BANCO DE PREGUNTAS (Span 4) */
+.bento-card-test {
+  grid-column: span 4;
+  background: linear-gradient(135deg, rgba(12, 74, 110, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --card-glow: rgba(14, 165, 233, 0.25);
+  --icon-bg: rgba(14, 165, 233, 0.2);
+  --icon-border: rgba(14, 165, 233, 0.4);
+  --icon-color: #38bdf8;
+}
+
+/* 4. BENTO #4: RECONSTRUCCIONES (Span 4) */
+.bento-card-reconstructions {
+  grid-column: span 4;
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --card-glow: rgba(16, 185, 129, 0.25);
+  --icon-bg: rgba(16, 185, 129, 0.2);
+  --icon-border: rgba(16, 185, 129, 0.4);
+  --icon-color: #34d399;
+}
+
+/* 5. BENTO #5: PLAN DE ESTUDIO / ANALÍTICA (Span 4) */
+.bento-card-plan {
+  grid-column: span 4;
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --card-glow: rgba(168, 85, 247, 0.25);
+  --icon-bg: rgba(168, 85, 247, 0.2);
+  --icon-border: rgba(168, 85, 247, 0.4);
+  --icon-color: #c084fc;
+}
+
+/* Responsive Rules for Bento Grid */
+@media (max-width: 950px) {
+  .bento-card-clases {
+    grid-column: span 12;
+  }
+  .bento-card-medlingo {
+    grid-column: span 12;
+  }
+  .bento-card-test {
+    grid-column: span 6;
+  }
+  .bento-card-reconstructions {
+    grid-column: span 6;
+  }
+  .bento-card-plan {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .bento-card-clases,
+  .bento-card-medlingo,
+  .bento-card-test,
+  .bento-card-reconstructions,
+  .bento-card-plan {
+    grid-column: span 1;
+  }
+  .dash-hero-level-bento {
+    padding: 1.15rem;
+    gap: 1.25rem;
+  }
+  .dash-streak-quick-widget {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES FOR DASHBOARD PRO MAX
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="light"] .dash-promax-wrapper,
+body.light-theme .dash-promax-wrapper {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-ambient-glow-1,
+body.light-theme .dash-ambient-glow-1 {
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+}
+[data-theme="light"] .dash-ambient-glow-2,
+body.light-theme .dash-ambient-glow-2 {
+  background: radial-gradient(ellipse, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+}
+[data-theme="light"] .dash-ambient-glow-3,
+body.light-theme .dash-ambient-glow-3 {
+  background: radial-gradient(ellipse, rgba(249, 115, 22, 0.04) 0%, transparent 70%);
+}
+
+[data-theme="light"] .dash-greeting-titles h1,
+body.light-theme .dash-greeting-titles h1 {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-greeting-titles p,
+body.light-theme .dash-greeting-titles p {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .dash-user-avatar-frame,
+body.light-theme .dash-user-avatar-frame {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+  border: 2px solid var(--surface-600);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .dash-hero-level-bento,
+body.light-theme .dash-hero-level-bento {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .dash-xp-fraction,
+body.light-theme .dash-xp-fraction {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-xp-fraction strong,
+body.light-theme .dash-xp-fraction strong {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-progress-track,
+body.light-theme .dash-progress-track {
+  background: var(--surface-600);
+}
+
+[data-theme="light"] .dash-level-sub-meta,
+body.light-theme .dash-level-sub-meta {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .dash-streak-quick-widget,
+body.light-theme .dash-streak-quick-widget {
+  background: #fff7ed;
+  border-color: rgba(249, 115, 22, 0.35);
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.08);
+}
+[data-theme="light"] .dash-streak-val,
+body.light-theme .dash-streak-val {
+  color: #0f172a;
+}
+[data-theme="light"] .dash-streak-val span,
+body.light-theme .dash-streak-val span {
+  color: #64748b;
+}
+
+[data-theme="light"] .dash-bento-section-title,
+body.light-theme .dash-bento-section-title {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-bento-card,
+body.light-theme .dash-bento-card {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md);
+}
+[data-theme="light"] .dash-bento-card:hover,
+body.light-theme .dash-bento-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--surface-500);
+}
+
+[data-theme="light"] .dash-card-title,
+body.light-theme .dash-card-title {
+  color: var(--surface-50);
+}
+[data-theme="light"] .dash-card-desc,
+body.light-theme .dash-card-desc {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-card-tag,
+body.light-theme .dash-card-tag {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-card-footer,
+body.light-theme .dash-card-footer {
+  border-top: 1px solid var(--surface-700);
+}
+[data-theme="light"] .dash-card-badge,
+body.light-theme .dash-card-badge {
+  background: var(--surface-700);
+  border-color: var(--surface-600);
+  color: var(--surface-300);
+}
+[data-theme="light"] .dash-card-icon-box,
+body.light-theme .dash-card-icon-box {
+  background: var(--surface-700);
+  border-color: var(--surface-600);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Light Bento Card Specifics */
+[data-theme="light"] .bento-card-clases,
+body.light-theme .bento-card-clases {
+  background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+  border-color: #c7d2fe;
+  --icon-color: #4f46e5;
+}
+[data-theme="light"] .bento-card-clases .dash-card-badge,
+body.light-theme .bento-card-clases .dash-card-badge {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+[data-theme="light"] .bento-card-clases .dash-card-icon-box,
+body.light-theme .bento-card-clases .dash-card-icon-box {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+}
+[data-theme="light"] .bento-card-clases .dash-card-action-link,
+body.light-theme .bento-card-clases .dash-card-action-link {
+  color: #4f46e5;
+}
+
+[data-theme="light"] .bento-card-medlingo,
+body.light-theme .bento-card-medlingo {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border-color: #fed7aa;
+  --icon-color: #ea580c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-badge,
+body.light-theme .bento-card-medlingo .dash-card-badge {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-icon-box,
+body.light-theme .bento-card-medlingo .dash-card-icon-box {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #ea580c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-action-link,
+body.light-theme .bento-card-medlingo .dash-card-action-link {
+  color: #ea580c;
+}
+
+[data-theme="light"] .bento-card-test,
+body.light-theme .bento-card-test {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border-color: #bae6fd;
+  --icon-color: #0284c7;
+}
+[data-theme="light"] .bento-card-test .dash-card-badge,
+body.light-theme .bento-card-test .dash-card-badge {
+  background: #e0f2fe;
+  border-color: #bae6fd;
+  color: #0369a1;
+}
+[data-theme="light"] .bento-card-test .dash-card-icon-box,
+body.light-theme .bento-card-test .dash-card-icon-box {
+  background: #e0f2fe;
+  border-color: #bae6fd;
+  color: #0284c7;
+}
+[data-theme="light"] .bento-card-test .dash-card-action-link,
+body.light-theme .bento-card-test .dash-card-action-link {
+  color: #0284c7;
+}
+
+[data-theme="light"] .bento-card-reconstructions,
+body.light-theme .bento-card-reconstructions {
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+  border-color: #a7f3d0;
+  --icon-color: #059669;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-badge,
+body.light-theme .bento-card-reconstructions .dash-card-badge {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-icon-box,
+body.light-theme .bento-card-reconstructions .dash-card-icon-box {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #059669;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-action-link,
+body.light-theme .bento-card-reconstructions .dash-card-action-link {
+  color: #059669;
+}
+
+[data-theme="light"] .bento-card-plan,
+body.light-theme .bento-card-plan {
+  background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+  border-color: #e9d5ff;
+  --icon-color: #7e22ce;
+}
+[data-theme="light"] .bento-card-plan .dash-card-badge,
+body.light-theme .bento-card-plan .dash-card-badge {
+  background: #f3e8ff;
+  border-color: #e9d5ff;
+  color: #6b21a8;
+}
+[data-theme="light"] .bento-card-plan .dash-card-icon-box,
+body.light-theme .bento-card-plan .dash-card-icon-box {
+  background: #f3e8ff;
+  border-color: #e9d5ff;
+  color: #7e22ce;
+}
+[data-theme="light"] .bento-card-plan .dash-card-action-link,
+body.light-theme .bento-card-plan .dash-card-action-link {
+  color: #7e22ce;
+}

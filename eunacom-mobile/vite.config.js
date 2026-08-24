@@ -1,0 +1,587 @@
+import { defineConfig, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
+import { createClient } from '@libsql/client'
+import fs from 'fs'
+import path from 'path'
+
+// Dev middleware: serve /api/clases locally using Turso
+function clasesApiPlugin() {
+  let db
+  return {
+    name: 'clases-api',
+    configureServer(server) {
+      // Load .env vars into process.env for server-side use
+      const env = loadEnv('development', process.cwd(), '')
+      Object.assign(process.env, env)
+
+      // ── Cloudflare R2 Video Streaming Redirect (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/video')) return next()
+        const url = new URL(req.url, 'http://localhost')
+        const subsystem = url.searchParams.get('subsystem')
+        const lessonNumber = url.searchParams.get('lessonNumber')
+        
+        if (!subsystem || !lessonNumber) {
+          res.statusCode = 400
+          return res.end(JSON.stringify({ error: 'Missing parameters' }))
+        }
+
+        try {
+          // Dynamic import of S3 SDK
+          const { S3Client, GetObjectCommand } = await import('@aws-sdk/client-s3')
+          const { getSignedUrl } = await import('@aws-sdk/s3-request-presigner')
+          
+          const videoIndex = JSON.parse(fs.readFileSync(path.resolve('./src/lib/videoIndex.json'), 'utf8'))
+          const subsystemIndex = videoIndex[subsystem]
+          const r2Key = subsystemIndex ? subsystemIndex[String(lessonNumber)] : null
+          
+          if (!r2Key) {
+            res.statusCode = 404
+            return res.end(JSON.stringify({ error: 'Video not mapped' }))
+          }
+
+          const accountId = process.env.VITE_R2_ACCOUNT_ID
+          const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID
+          const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY
+          const bucketName = process.env.VITE_R2_BUCKET || 'eunacomvideos'
+
+          if (!accountId || !accessKeyId || !secretAccessKey) {
+            res.statusCode = 500
+            return res.end(JSON.stringify({ error: 'Missing R2 environment variables' }))
+          }
+
+          const s3 = new S3Client({
+            region: 'auto',
+            endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+            credentials: { accessKeyId, secretAccessKey },
+            forcePathStyle: true,
+          })
+
+          const command = new GetObjectCommand({ Bucket: bucketName, Key: r2Key })
+          const signedUrl = await getSignedUrl(s3, command, { expiresIn: 14400 })
+
+          // Redirect the <video src> to the Cloudflare URL instantly
+          res.writeHead(302, { Location: signedUrl })
+          res.end()
+
+        } catch (err) {
+          console.error('R2 URL Error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Progress API ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/progress')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+          return res.end(JSON.stringify({ data: [], ok: true }))
+        }
+        if (!db) {
+          db = createClient({
+            url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
+            authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
+          })
+        }
+        const url = new URL(req.url, 'http://localhost')
+        try {
+          try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
+          try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
+          if (req.method === 'GET') {
+            const userId = url.searchParams.get('userId')
+            if (!userId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId required' })) }
+            const result = await db.execute({ sql: 'SELECT * FROM user_progress WHERE user_id = ?', args: [userId] })
+            return res.end(JSON.stringify({ data: result.rows }))
+          }
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { userId, questionId, isCorrect, isOmitted } = body
+            if (!userId || !questionId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId and questionId required' })) }
+            await db.execute({
+              sql: `INSERT INTO user_progress (id, user_id, question_id, is_correct, is_omitted, answered_at)
+                    VALUES (?, ?, ?, ?, ?, datetime('now'))
+                    ON CONFLICT(user_id, question_id) DO UPDATE SET
+                    is_correct = excluded.is_correct,
+                    is_omitted = excluded.is_omitted,
+                    answered_at = datetime('now')`,
+              args: [userId + '_' + questionId, userId, questionId, isCorrect ? 1 : 0, isOmitted ? 1 : 0]
+            })
+            return res.end(JSON.stringify({ ok: true }))
+          }
+          if (req.method === 'PATCH') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { userId, questionId, isFlagged } = body
+            if (!userId || !questionId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId and questionId required' })) }
+            await db.execute({
+              sql: `UPDATE user_progress SET is_flagged = ? WHERE user_id = ? AND question_id = ?`,
+              args: [isFlagged ? 1 : 0, userId, questionId]
+            })
+            return res.end(JSON.stringify({ ok: true }))
+          }
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          console.error('progress-api error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Tests API ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/tests')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+          return res.end(JSON.stringify({ data: [], ok: true }))
+        }
+        if (!db) {
+          db = createClient({
+            url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
+            authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
+          })
+        }
+        const url = new URL(req.url, 'http://localhost')
+        try {
+          if (req.method === 'GET') {
+            const { userId, id } = Object.fromEntries(url.searchParams)
+            if (id) {
+              const result = await db.execute({ sql: 'SELECT * FROM tests WHERE id = ?', args: [id] })
+              return res.end(JSON.stringify({ data: result.rows[0] || null }))
+            }
+            if (!userId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId required' })) }
+            const result = await db.execute({
+              sql: 'SELECT * FROM tests WHERE user_id = ? ORDER BY created_at DESC',
+              args: [userId]
+            })
+            return res.end(JSON.stringify({ data: result.rows }))
+          }
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { id, userId, mode, timeLimitSeconds, totalQuestions, questions } = body
+            await db.execute({
+              sql: `INSERT INTO tests (id, user_id, mode, time_limit_seconds, total_questions, questions, status, current_question_index, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, 'in_progress', 0, datetime('now'))`,
+              args: [id, userId, mode, timeLimitSeconds || null, totalQuestions, JSON.stringify(questions)]
+            })
+            return res.end(JSON.stringify({ ok: true, id }))
+          }
+          if (req.method === 'PATCH') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { id, answers, currentIndex, status, score } = body
+            if (status === 'completed') {
+              await db.execute({
+                sql: `UPDATE tests SET answers = ?, current_question_index = ?, status = 'completed', score = ?, completed_at = datetime('now') WHERE id = ?`,
+                args: [JSON.stringify(answers || {}), currentIndex ?? 0, score ?? 0, id]
+              })
+            } else {
+              await db.execute({
+                sql: 'UPDATE tests SET answers = ?, current_question_index = ? WHERE id = ?',
+                args: [JSON.stringify(answers || {}), currentIndex ?? 0, id]
+              })
+            }
+            return res.end(JSON.stringify({ ok: true }))
+          }
+          if (req.method === 'DELETE') {
+            const id = url.searchParams.get('id')
+            await db.execute({ sql: 'DELETE FROM tests WHERE id = ?', args: [id] })
+            return res.end(JSON.stringify({ ok: true }))
+          }
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          console.error('tests-api error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Perfil EUNACOM API ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/perfil')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+          return res.end(JSON.stringify({ data: [] }))
+        }
+        if (!db) {
+          db = createClient({
+            url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
+            authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
+          })
+        }
+        const url = new URL(req.url, 'http://localhost')
+        try {
+          const search = url.searchParams.get('q')
+          const area = url.searchParams.get('area')
+          const specialty = url.searchParams.get('specialty')
+          const seccion = url.searchParams.get('seccion')
+          const codes = url.searchParams.get('codes')
+
+          let sql = 'SELECT * FROM perfil_items WHERE 1=1'
+          const args = []
+          if (codes) {
+            const codeList = codes.split(',').map(c => c.trim())
+            sql += ` AND codigo IN (${codeList.map(() => '?').join(',')})`
+            args.push(...codeList)
+          }
+          if (area) { sql += ' AND area = ?'; args.push(area) }
+          if (specialty) { sql += ' AND specialty = ?'; args.push(specialty) }
+          if (seccion) { sql += ' AND seccion = ?'; args.push(seccion) }
+          if (search) { sql += ' AND (situacion LIKE ? OR codigo LIKE ?)'; args.push(`%${search}%`, `%${search}%`) }
+          sql += ' ORDER BY codigo'
+
+          const result = await db.execute({ sql, args })
+          return res.end(JSON.stringify({ data: result.rows }))
+        } catch (err) {
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Clase Progress API ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/clase-progress')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+          return res.end(JSON.stringify({ data: [], ok: true }))
+        }
+        if (!db) {
+          db = createClient({
+            url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
+            authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
+          })
+        }
+        res.setHeader('Content-Type', 'application/json')
+        const url = new URL(req.url, 'http://localhost')
+        try {
+          if (req.method === 'GET') {
+            const userId = url.searchParams.get('userId')
+            if (!userId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId required' })) }
+            const result = await db.execute({ sql: 'SELECT * FROM clase_progress WHERE user_id = ?', args: [userId] })
+            return res.end(JSON.stringify({ data: result.rows }))
+          }
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { userId, claseId, readClase, readPuntos, quizCompleted, quizScore, quizCorrect, quizTotal, quizAnswers } = body
+            if (!userId || !claseId) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId and claseId required' })) }
+            // Migrate: add video_watched column if missing
+            try { await db.execute('ALTER TABLE clase_progress ADD COLUMN video_watched INTEGER DEFAULT 0') } catch {}
+
+            const { videoWatched } = body
+            await db.execute({
+              sql: `INSERT INTO clase_progress (id, user_id, clase_id, read_clase, read_puntos, quiz_completed, quiz_score, quiz_correct, quiz_total, quiz_answers, video_watched, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                    ON CONFLICT(user_id, clase_id) DO UPDATE SET
+                    read_clase = COALESCE(excluded.read_clase, read_clase),
+                    read_puntos = COALESCE(excluded.read_puntos, read_puntos),
+                    quiz_completed = COALESCE(excluded.quiz_completed, quiz_completed),
+                    quiz_score = COALESCE(excluded.quiz_score, quiz_score),
+                    quiz_correct = COALESCE(excluded.quiz_correct, quiz_correct),
+                    quiz_total = COALESCE(excluded.quiz_total, quiz_total),
+                    quiz_answers = COALESCE(excluded.quiz_answers, quiz_answers),
+                    video_watched = COALESCE(excluded.video_watched, video_watched),
+                    updated_at = datetime('now')`,
+              args: [userId + '_' + claseId, userId, claseId, readClase ?? null, readPuntos ?? null, quizCompleted ?? null, quizScore ?? null, quizCorrect ?? null, quizTotal ?? null, quizAnswers ? JSON.stringify(quizAnswers) : null, videoWatched ?? null]
+            })
+            return res.end(JSON.stringify({ ok: true }))
+          }
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Clases API ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/clases')) return next()
+
+        res.setHeader('Content-Type', 'application/json')
+        const url = new URL(req.url, 'http://localhost')
+
+        const loadLocalCatalog = () => {
+          try {
+            const catPath = path.resolve('./src/data/classesCatalog.json')
+            if (fs.existsSync(catPath)) {
+              return JSON.parse(fs.readFileSync(catPath, 'utf8'))
+            }
+          } catch {}
+          return []
+        }
+
+        try {
+          if (req.method === 'GET') {
+            const id = url.searchParams.get('id')
+
+            // If Turso is available, query Turso first
+            if (process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL) {
+              if (!db) {
+                db = createClient({
+                  url: process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL,
+                  authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
+                })
+              }
+
+              if (id) {
+                let result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id] })
+                if (!result.rows.length) {
+                  result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id.normalize('NFD')] })
+                }
+                if (!result.rows.length) {
+                  result = await db.execute({ sql: 'SELECT * FROM clases WHERE id = ?', args: [id.normalize('NFC')] })
+                }
+                if (result.rows.length > 0) {
+                  return res.end(JSON.stringify({ data: result.rows[0] }))
+                }
+              } else {
+                const result = await db.execute({
+                  sql: 'SELECT id, user_id, topic, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at FROM clases ORDER BY specialty, subsystem, lesson_number',
+                  args: []
+                })
+                if (result.rows.length > 0) {
+                  return res.end(JSON.stringify({ data: result.rows }))
+                }
+              }
+            }
+
+            // Fallback to local catalog
+            const catalog = loadLocalCatalog()
+            if (id) {
+              const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+              const found = catalog.find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
+              return res.end(JSON.stringify({ data: found || null }))
+            }
+
+            return res.end(JSON.stringify({
+              data: catalog.map(r => ({
+                id: r.id,
+                saved_at: r.saved_at,
+                specialty: r.specialty || 'General',
+                subsystem: r.subsystem || 'General',
+                lesson_number: r.lesson_number || 1,
+                topic: r.topic,
+                slides_file: r.slides_file || null,
+                video_dir: r.video_dir || null,
+              }))
+            }))
+          }
+
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const { id, userId, topic, summary, keyPoints, quiz, specialty, subsystem, lessonNumber, slidesFile, videoDir } = body
+            if (!userId || !topic) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'userId and topic required' })) }
+            await db.execute({
+              sql: `INSERT INTO clases (id, user_id, topic, summary, key_points, quiz, specialty, subsystem, lesson_number, slides_file, video_dir, saved_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now')) ON CONFLICT(id) DO UPDATE SET
+                    topic=excluded.topic, summary=excluded.summary, key_points=excluded.key_points, quiz=excluded.quiz,
+                    specialty=excluded.specialty, subsystem=excluded.subsystem, lesson_number=excluded.lesson_number,
+                    slides_file=excluded.slides_file, video_dir=excluded.video_dir`,
+              args: [id || crypto.randomUUID(), userId, topic, summary || '', JSON.stringify(keyPoints || []), JSON.stringify(quiz || []),
+                     specialty || 'General', subsystem || 'General', lessonNumber || 1, slidesFile || null, videoDir || null]
+            })
+            return res.end(JSON.stringify({ ok: true, id }))
+          }
+
+          if (req.method === 'DELETE') {
+            const id = url.searchParams.get('id')
+            if (!id) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'id required' })) }
+            await db.execute({ sql: 'DELETE FROM clases WHERE id = ?', args: [id] })
+            return res.end(JSON.stringify({ ok: true }))
+          }
+
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          console.error('clases-api error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Admin Users API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/admin-users')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        try {
+          if (req.method === 'GET') {
+            const url = new URL(req.url, 'http://localhost')
+            const action = url.searchParams.get('action')
+            if (action === 'settings') {
+              return res.end(JSON.stringify({ settings: { freemium_mode: 'strict' } }))
+            }
+            return res.end(JSON.stringify({ users: [], total: 0 }))
+          }
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            
+            if (!process.env.RESEND_API_KEY) {
+              return res.end(JSON.stringify({ error: 'RESEND_API_KEY is missing in local .env' }))
+            }
+            
+            const { Resend } = await import('resend')
+            const resend = new Resend(process.env.RESEND_API_KEY)
+            const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacom.app'
+            const targets = body.targetEmails || []
+            
+            if (targets.length === 0) {
+              return res.end(JSON.stringify({ error: 'No target emails provided' }))
+            }
+
+            console.log(`Sending campaign via Resend to ${targets.length} users...`)
+            
+            const chunkArray = (arr, size) => arr.length > size ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)] : [arr]
+            const batches = chunkArray(targets, 100)
+            let totalSent = 0
+            
+            console.log('Campaign successfully sent!')
+            return res.end(JSON.stringify({ success: true, message: `Campaign sent to ${totalSent} users` }))
+          }
+          res.statusCode = 405
+          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+        } catch (err) {
+          console.error('campaign-api error:', err)
+          res.statusCode = 500
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Leaderboard API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/leaderboard')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        return res.end(JSON.stringify({
+          data: [
+            { user_id: 'user_1', name: 'Dr. Matías Silva', points: 1450, rank: 1, streak: 18, is_current_user: false },
+            { user_id: 'user_2', name: 'Dra. Camila Morales', points: 1320, rank: 2, streak: 14, is_current_user: false },
+            { user_id: 'user_3', name: 'Dr. Sebastián Soto', points: 1180, rank: 3, streak: 9, is_current_user: false },
+          ]
+        }))
+      })
+
+      // ── User Profiles API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/user-profiles')) return next()
+        res.setHeader('Content-Type', 'application/json')
+        const url = new URL(req.url, 'http://localhost')
+        
+        try {
+          if (req.method === 'GET') {
+            const userId = url.searchParams.get('userId')
+            if (db) {
+              try {
+                const result = await db.execute({ sql: 'SELECT * FROM user_profiles WHERE id = ?', args: [userId] })
+                return res.end(JSON.stringify({ data: result.rows[0] || null }))
+              } catch (e) {}
+            }
+            return res.end(JSON.stringify({ data: null }))
+          }
+
+          if (req.method === 'POST') {
+            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            if (db && body.id && body.email) {
+              try {
+                await db.execute({
+                  sql: `INSERT INTO user_profiles (id, email, first_name, last_name, onboarding_done, updated_at)
+                        VALUES (?, ?, ?, ?, ?, datetime('now'))
+                        ON CONFLICT(id) DO UPDATE SET first_name=excluded.first_name, last_name=excluded.last_name, onboarding_done=excluded.onboarding_done`,
+                  args: [body.id, body.email, body.first_name || '', body.last_name || '', body.onboarding_done ? 1 : 0]
+                })
+              } catch (e) {}
+            }
+            return res.end(JSON.stringify({ ok: true }))
+          }
+        } catch (err) {
+          return res.end(JSON.stringify({ ok: true }))
+        }
+      })
+    }
+  }
+}
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    clasesApiPlugin(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png'],
+      workbox: {
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
+        navigateFallbackDenylist: [
+          /^\/api/,
+          /^\/sitemap\.xml$/,
+          /^\/robots\.txt$/,
+          /\.(xml|txt|png|jpg|jpeg|svg|webp|ico|pdf|json)$/i
+        ],
+        // Network-first for navigation so users always get fresh HTML/JS
+        // This prevents old cached JS bundles from running after a domain change
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'pages-cache',
+              networkTimeoutSeconds: 5,
+            },
+          },
+        ],
+
+      },
+      manifest: {
+        name: 'EUNACOM Examen',
+        short_name: 'EUNACOM',
+        description: 'No tienes que descargar la aplicación desde la App Store o Google Play. Instálala de forma segura y directa en tu dispositivo para tener un acceso directo y cargar todo más rápido.',
+        theme_color: '#0b1120',
+        background_color: '#0b1120',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      }
+    })
+  ],
+  build: {
+    // Increase chunk size limit — questionDB.json is ~1.6MB
+    chunkSizeWarningLimit: 3000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('questionDB')) return 'question-db'
+          if (id.includes('node_modules')) return 'vendor'
+        }
+      }
+    }
+  },
+  server: {
+    // Proxy AI tutor calls to local AI server in dev
+    // /api/progress and /api/tests are handled by Vite middleware (clasesApiPlugin)
+    proxy: {
+      '/api/tutor': 'http://localhost:5001',
+      '/api': {
+        target: 'https://eunacom.vercel.app',
+        changeOrigin: true,
+      }
+    }
+  }
+})

@@ -1,0 +1,76 @@
+import React, { useState, useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import Sidebar from '../components/Sidebar'
+import DashboardHeader from '../components/DashboardHeader'
+import Onboarding from '../components/Onboarding'
+import BottomNavigation from '../components/BottomNavigation'
+import TopLoadingBar from '../components/TopLoadingBar'
+import { fetchUserProfile, saveUserProfile } from '../lib/api'
+
+// Layout for pages that are visible without login (dashboard, reconstructions list)
+// but gate actual content actions behind LoginGateModal inside each page.
+const PublicLayout = () => {
+  const { user, loading: authLoading } = useAuth()
+  const location = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [showOnboarding, setShowOnboarding] = useState(false)
+  const [profileChecked, setProfileChecked] = useState(false)
+
+  const isMedLingo = location.pathname === '/medlingo' || location.pathname === '/racha'
+
+  // If a user is logged in, check if they completed onboarding — only once per session
+  useEffect(() => {
+    if (!user) { setProfileChecked(true); return }
+    const sessionKey = `onboarding_checked_${user.id}`
+    if (sessionStorage.getItem(sessionKey)) {
+      setProfileChecked(true)
+      return
+    }
+    fetchUserProfile(user.id).then(profile => {
+      if (!profile || !profile.onboarding_done) {
+        setShowOnboarding(true)
+      } else {
+        sessionStorage.setItem(sessionKey, '1')
+      }
+      setProfileChecked(true)
+    }).catch((err) => {
+      console.warn('Error loading user profile for onboarding check:', err)
+      setProfileChecked(true)
+    })
+  }, [user?.id])
+
+  const handleOnboardingComplete = async (profileData) => {
+    await saveUserProfile(profileData)
+    sessionStorage.setItem(`onboarding_checked_${user.id}`, '1')
+    setShowOnboarding(false)
+  }
+
+  if (authLoading || !profileChecked) return null
+
+  return (
+    <div className="app-layout">
+      <TopLoadingBar />
+      <Sidebar mobileOpen={mobileOpen} onToggle={() => setMobileOpen(false)} />
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 999 }}
+          className="sidebar-backdrop"
+        />
+      )}
+      <div className="main-content">
+        {!isMedLingo && <DashboardHeader onMenuToggle={() => setMobileOpen(!mobileOpen)} />}
+        <div className={isMedLingo ? "page page--fullbleed" : "page"}>
+          <Outlet context={{ onMenuToggle: () => setMobileOpen(!mobileOpen) }} />
+        </div>
+      </div>
+      {showOnboarding && (
+        <Onboarding user={user} onComplete={handleOnboardingComplete} />
+      )}
+      {!isMedLingo && <BottomNavigation onMenuToggle={() => setMobileOpen(!mobileOpen)} />}
+    </div>
+  )
+}
+
+export default PublicLayout
