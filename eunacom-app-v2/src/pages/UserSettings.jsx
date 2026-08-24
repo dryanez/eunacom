@@ -222,10 +222,10 @@ const UserSettings = () => {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <Settings size={24} color="#38bdf8" /> Configuración
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <Settings size={24} color="#0284c7" /> Configuración
           </h1>
-          <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: 0 }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--surface-400)', margin: 0, fontWeight: 500 }}>
             Gestiona tu cuenta, tu avatar de médico(a), apariencia, plan y objetivos de estudio
           </p>
         </div>
@@ -260,11 +260,12 @@ const UserSettings = () => {
         
         {/* Left Navigation Tabs */}
         <div style={{
-          backgroundColor: 'rgba(30, 41, 59, 0.45)',
+          backgroundColor: 'var(--card-bg)',
           backdropFilter: 'blur(10px)',
           borderRadius: '14px',
           padding: '0.5rem',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          border: '1px solid var(--card-border)',
+          boxShadow: 'var(--shadow-sm)',
         }}>
           <div className="settings-tabs-list">
             {[
@@ -290,7 +291,7 @@ const UserSettings = () => {
                     borderRadius: '8px',
                     border: 'none',
                     backgroundColor: isSelected ? 'rgba(56, 189, 248, 0.15)' : 'transparent',
-                    color: isSelected ? '#38bdf8' : '#94a3b8',
+                    color: isSelected ? '#0284c7' : 'var(--surface-400)',
                     boxShadow: isSelected ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
                     fontWeight: isSelected ? 700 : 500,
                     fontSize: '0.84rem',
@@ -309,11 +310,12 @@ const UserSettings = () => {
 
         {/* Right Content Panel */}
         <div style={{
-          backgroundColor: 'rgba(30, 41, 59, 0.45)',
+          backgroundColor: 'var(--card-bg)',
           backdropFilter: 'blur(12px)',
           borderRadius: '14px',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          border: '1px solid var(--card-border)',
           padding: '1.25rem',
+          boxShadow: 'var(--shadow-sm)',
         }}>
 
           {/* ═══════════════════════════════════════════════════════════════

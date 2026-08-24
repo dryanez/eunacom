@@ -55,11 +55,11 @@ export const TopicCard = ({
       style={{
         position: 'relative',
         borderRadius: '14px',
-        background: 'rgba(30, 41, 59, 0.5)',
+        background: 'var(--card-bg, rgba(30, 41, 59, 0.5))',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+        border: '1px solid var(--card-border, rgba(255, 255, 255, 0.08))',
+        boxShadow: 'var(--shadow-sm)',
         overflow: 'hidden',
         cursor: 'pointer',
         transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -71,12 +71,12 @@ export const TopicCard = ({
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-2px)'
         e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.3)'
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.35)'
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)'
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)'
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'
-        e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)'
+        e.currentTarget.style.borderColor = 'var(--card-border, rgba(255, 255, 255, 0.08))'
+        e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
       }}
     >
       {/* Subtle Background Watermark Vector Illustration */}
@@ -106,17 +106,17 @@ export const TopicCard = ({
               alignItems: 'center',
               gap: '0.3rem',
               fontSize: '0.68rem',
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: '0.02em',
               padding: '0.15rem 0.5rem',
               borderRadius: '6px',
-              background: 'rgba(56, 189, 248, 0.1)',
-              color: '#38bdf8',
-              border: '1px solid rgba(56, 189, 248, 0.2)',
+              background: 'rgba(56, 189, 248, 0.12)',
+              color: '#0284c7',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
               marginBottom: '0.4rem',
             }}
           >
-            <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#38bdf8' }} />
+            <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#0284c7' }} />
             {tag}
           </div>
         )}
@@ -126,7 +126,7 @@ export const TopicCard = ({
           style={{
             fontSize: '1.05rem',
             fontWeight: 700,
-            color: '#f8fafc',
+            color: 'var(--surface-50, #f8fafc)',
             margin: '0 0 0.4rem',
             letterSpacing: '-0.01em',
             paddingRight: '40px',
@@ -142,7 +142,7 @@ export const TopicCard = ({
             style={{
               height: '4px',
               width: '100%',
-              background: 'rgba(255, 255, 255, 0.08)',
+              background: 'var(--surface-600, rgba(255, 255, 255, 0.08))',
               borderRadius: '4px',
               overflow: 'hidden',
               display: 'flex',
@@ -191,16 +191,16 @@ export const TopicCard = ({
         }}
       >
         {/* Left Stats: Question count + Classes count */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.75rem', color: 'var(--surface-400, #94a3b8)', fontWeight: 600 }}>
           {questionsCount > 0 && (
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }} title={`${questionsCount} preguntas disponibles`}>
-              <Target size={12} color="#38bdf8" />
+              <Target size={12} color="#0284c7" />
               <span>{questionsCount.toLocaleString()}</span>
             </span>
           )}
           {classesCount > 0 && (
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }} title={`${classesCount} clases disponibles`}>
-              <BookOpen size={12} color="#a855f7" />
+              <BookOpen size={12} color="#9333ea" />
               <span>{classesCount}</span>
             </span>
           )}
@@ -212,12 +212,12 @@ export const TopicCard = ({
           <div
             style={{
               fontSize: '0.72rem',
-              fontWeight: 600,
+              fontWeight: 700,
               padding: '0.18rem 0.5rem',
               borderRadius: '6px',
-              background: displayMastery >= 70 ? 'rgba(16, 185, 129, 0.12)' : displayMastery > 0 ? 'rgba(56, 189, 248, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-              color: displayMastery >= 70 ? '#34d399' : displayMastery > 0 ? '#38bdf8' : '#94a3b8',
-              border: `1px solid ${displayMastery >= 70 ? 'rgba(16, 185, 129, 0.25)' : displayMastery > 0 ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255, 255, 255, 0.06)'}`,
+              background: displayMastery >= 70 ? 'rgba(16, 185, 129, 0.12)' : displayMastery > 0 ? 'rgba(56, 189, 248, 0.12)' : 'var(--surface-700, rgba(255, 255, 255, 0.05))',
+              color: displayMastery >= 70 ? '#059669' : displayMastery > 0 ? '#0284c7' : 'var(--surface-400, #94a3b8)',
+              border: `1px solid ${displayMastery >= 70 ? 'rgba(16, 185, 129, 0.3)' : displayMastery > 0 ? 'rgba(56, 189, 248, 0.3)' : 'var(--surface-600, rgba(255, 255, 255, 0.06))'}`,
               display: 'flex',
               alignItems: 'center',
               gap: '0.2rem',
@@ -231,11 +231,11 @@ export const TopicCard = ({
             <div
               style={{
                 fontSize: '0.72rem',
-                fontWeight: 600,
+                fontWeight: 700,
                 padding: '0.18rem 0.4rem',
                 borderRadius: '6px',
                 background: 'rgba(16, 185, 129, 0.12)',
-                color: '#34d399',
+                color: '#059669',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.15rem',
@@ -252,11 +252,11 @@ export const TopicCard = ({
             <div
               style={{
                 fontSize: '0.72rem',
-                fontWeight: 600,
+                fontWeight: 700,
                 padding: '0.18rem 0.4rem',
                 borderRadius: '6px',
                 background: 'rgba(239, 68, 68, 0.12)',
-                color: '#f87171',
+                color: '#dc2626',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.15rem',
@@ -276,26 +276,26 @@ export const TopicCard = ({
                 onDirectNavigate()
               }}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'var(--surface-700, rgba(255, 255, 255, 0.05))',
+                border: '1px solid var(--surface-600, rgba(255, 255, 255, 0.08))',
                 borderRadius: '6px',
                 width: '24px',
                 height: '24px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#94a3b8',
+                color: 'var(--surface-400, #94a3b8)',
                 cursor: 'pointer',
                 transition: 'all 0.15s',
                 padding: 0,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(56, 189, 248, 0.15)'
-                e.currentTarget.style.color = '#38bdf8'
+                e.currentTarget.style.color = '#0284c7'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                e.currentTarget.style.color = '#94a3b8'
+                e.currentTarget.style.background = 'var(--surface-700, rgba(255, 255, 255, 0.05))'
+                e.currentTarget.style.color = 'var(--surface-400, #94a3b8)'
               }}
               title="Ir a clases de este tema"
             >

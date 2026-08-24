@@ -1,0 +1,725 @@
+/* ══════════════════════════════════════════════════════════════
+   UI/UX PRO MAX DESIGN SYSTEM — SHARED PAGE STYLES
+   Ambient Textures, Bento Cards, Glassmorphic Surfaces & Micro-interactions
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── Ambient Glow Containers ─── */
+.promax-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  color: #f8fafc;
+}
+
+.promax-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.promax-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.promax-glow-cyan {
+  background: radial-gradient(ellipse, rgba(14, 165, 233, 0.14) 0%, transparent 70%);
+}
+
+.promax-glow-indigo {
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+}
+
+.promax-glow-emerald {
+  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.13) 0%, transparent 70%);
+}
+
+.promax-glow-amber {
+  background: radial-gradient(ellipse, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+}
+
+.promax-glow-rose {
+  background: radial-gradient(ellipse, rgba(244, 63, 94, 0.12) 0%, transparent 70%);
+}
+
+.promax-glow-purple {
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.13) 0%, transparent 70%);
+}
+
+.promax-content-layer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Hero Bento Containers ─── */
+.promax-hero-bento {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.promax-hero-bento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--hero-accent-gradient, linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #10b981 100%));
+}
+
+.promax-hero-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.promax-hero-avatar-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: var(--avatar-bg, linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%));
+  border: 1.5px solid var(--avatar-border, rgba(255, 255, 255, 0.15));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px var(--avatar-glow, rgba(56, 189, 248, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--avatar-color, #ffffff);
+  flex-shrink: 0;
+}
+
+.promax-hero-titles h1,
+.promax-hero-titles h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.promax-hero-titles p {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin: 0.3rem 0 0;
+  font-weight: 500;
+}
+
+/* ─── Bento Cards Architecture ─── */
+.promax-bento-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .promax-bento-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.promax-bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.6rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  cursor: pointer;
+  min-height: 220px;
+}
+
+.promax-bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5), 0 0 32px var(--card-glow, rgba(56, 189, 248, 0.2));
+}
+
+.promax-bento-card:active {
+  transform: translateY(0);
+}
+
+.promax-card-ambient-tint {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: var(--card-glow, rgba(56, 189, 248, 0.15));
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.promax-card-top-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-border-top, transparent);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.promax-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.promax-card-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--icon-bg, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--icon-border, rgba(255, 255, 255, 0.15));
+  color: var(--icon-color, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 12px var(--icon-glow, transparent);
+  flex-shrink: 0;
+}
+
+.promax-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.28rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.promax-badge-indigo {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.35);
+  color: #c7d2fe;
+}
+
+.promax-badge-emerald {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #a7f3d0;
+}
+
+.promax-badge-amber {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fef08a;
+}
+
+.promax-badge-cyan {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(14, 165, 233, 0.35);
+  color: #bae6fd;
+}
+
+.promax-card-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 0.4rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.promax-card-desc {
+  font-size: 0.86rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.promax-card-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.9rem 0;
+}
+
+.promax-card-feature-item {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+}
+
+.promax-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.promax-card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--action-color, #38bdf8);
+  background: var(--action-bg, rgba(56, 189, 248, 0.1));
+  border: 1px solid var(--action-border, rgba(56, 189, 248, 0.25));
+  padding: 0.45rem 0.95rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.promax-bento-card:hover .promax-card-action-btn {
+  background: var(--action-color, #38bdf8);
+  color: #0f172a;
+  box-shadow: 0 4px 14px var(--action-glow, rgba(56, 189, 248, 0.4));
+  transform: translateX(3px);
+}
+
+/* ─── Specific Color Themes ─── */
+.promax-theme-indigo {
+  --card-glow: rgba(99, 102, 241, 0.28);
+  --card-border-top: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+  --icon-bg: rgba(99, 102, 241, 0.18);
+  --icon-border: rgba(99, 102, 241, 0.4);
+  --icon-color: #818cf8;
+  --icon-glow: rgba(99, 102, 241, 0.35);
+  --action-color: #a5b4fc;
+  --action-bg: rgba(99, 102, 241, 0.12);
+  --action-border: rgba(99, 102, 241, 0.3);
+  --action-glow: rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, rgba(49, 46, 129, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+.promax-theme-emerald {
+  --card-glow: rgba(16, 185, 129, 0.28);
+  --card-border-top: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  --icon-bg: rgba(16, 185, 129, 0.18);
+  --icon-border: rgba(16, 185, 129, 0.4);
+  --icon-color: #34d399;
+  --icon-glow: rgba(16, 185, 129, 0.35);
+  --action-color: #6ee7b7;
+  --action-bg: rgba(16, 185, 129, 0.12);
+  --action-border: rgba(16, 185, 129, 0.3);
+  --action-glow: rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+.promax-theme-cyan {
+  --card-glow: rgba(14, 165, 233, 0.28);
+  --card-border-top: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+  --icon-bg: rgba(14, 165, 233, 0.18);
+  --icon-border: rgba(14, 165, 233, 0.4);
+  --icon-color: #38bdf8;
+  --icon-glow: rgba(14, 165, 233, 0.35);
+  --action-color: #7dd3fc;
+  --action-bg: rgba(14, 165, 233, 0.12);
+  --action-border: rgba(14, 165, 233, 0.3);
+  --action-glow: rgba(14, 165, 233, 0.5);
+  background: linear-gradient(135deg, rgba(12, 74, 110, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+.promax-theme-amber {
+  --card-glow: rgba(245, 158, 11, 0.28);
+  --card-border-top: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+  --icon-bg: rgba(245, 158, 11, 0.18);
+  --icon-border: rgba(245, 158, 11, 0.4);
+  --icon-color: #fbbf24;
+  --icon-glow: rgba(245, 158, 11, 0.35);
+  --action-color: #fde68a;
+  --action-bg: rgba(245, 158, 11, 0.12);
+  --action-border: rgba(245, 158, 11, 0.3);
+  --action-glow: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+.promax-theme-purple {
+  --card-glow: rgba(168, 85, 247, 0.28);
+  --card-border-top: linear-gradient(90deg, #a855f7 0%, #c084fc 100%);
+  --icon-bg: rgba(168, 85, 247, 0.18);
+  --icon-border: rgba(168, 85, 247, 0.4);
+  --icon-color: #c084fc;
+  --icon-glow: rgba(168, 85, 247, 0.35);
+  --action-color: #e9d5ff;
+  --action-bg: rgba(168, 85, 247, 0.12);
+  --action-border: rgba(168, 85, 247, 0.3);
+  --action-glow: rgba(168, 85, 247, 0.5);
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%);
+}
+
+/* ─── Stat Counters Bento Row ─── */
+.promax-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.promax-stat-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.promax-stat-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.promax-stat-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.promax-stat-val {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.promax-stat-lbl {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-top: 0.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Tabs Switcher Pro Max ─── */
+.promax-tab-bar {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.35rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.promax-tab-btn {
+  flex: 1;
+  padding: 0.65rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: transparent;
+  color: #94a3b8;
+}
+
+.promax-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.promax-tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2);
+}
+
+/* ─── Pro Max Modal Styling ─── */
+.promax-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.promax-modal-panel {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.promax-modal-header {
+  padding: 1.25rem 1.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.promax-modal-close-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.promax-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* ─── Responsive Adjustments ─── */
+@media (max-width: 768px) {
+  .promax-hero-bento {
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+  .promax-bento-card {
+    padding: 1.3rem;
+    border-radius: 20px;
+  }
+  .promax-hero-avatar-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES FOR PRO MAX SHARED PAGES
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="light"] .promax-page-wrapper,
+body.light-theme .promax-page-wrapper {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .promax-hero-bento,
+body.light-theme .promax-hero-bento {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .promax-hero-titles h1,
+[data-theme="light"] .promax-hero-titles h2,
+body.light-theme .promax-hero-titles h1,
+body.light-theme .promax-hero-titles h2 {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .promax-hero-titles p,
+body.light-theme .promax-hero-titles p {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .promax-bento-card,
+body.light-theme .promax-bento-card {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md);
+}
+[data-theme="light"] .promax-bento-card:hover,
+body.light-theme .promax-bento-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--surface-500);
+}
+
+[data-theme="light"] .promax-card-title,
+body.light-theme .promax-card-title {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .promax-card-desc,
+body.light-theme .promax-card-desc {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .promax-card-feature-item,
+body.light-theme .promax-card-feature-item {
+  color: var(--surface-300);
+}
+
+[data-theme="light"] .promax-card-footer,
+body.light-theme .promax-card-footer {
+  border-top: 1px solid var(--surface-700);
+}
+
+[data-theme="light"] .promax-stat-card,
+body.light-theme .promax-stat-card {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .promax-stat-val,
+body.light-theme .promax-stat-val {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .promax-stat-lbl,
+body.light-theme .promax-stat-lbl {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .promax-tab-bar,
+body.light-theme .promax-tab-bar {
+  background: var(--surface-700);
+  border: 1px solid var(--surface-600);
+}
+
+[data-theme="light"] .promax-tab-btn,
+body.light-theme .promax-tab-btn {
+  color: var(--surface-400);
+}
+[data-theme="light"] .promax-tab-btn:hover,
+body.light-theme .promax-tab-btn:hover {
+  color: var(--surface-50);
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .promax-tab-btn.active,
+body.light-theme .promax-tab-btn.active {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  color: var(--primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .promax-modal-backdrop,
+body.light-theme .promax-modal-backdrop {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+[data-theme="light"] .promax-modal-panel,
+body.light-theme .promax-modal-panel {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .promax-modal-header,
+body.light-theme .promax-modal-header {
+  border-bottom: 1px solid var(--surface-600);
+}
+
+/* Light Promax Theme Colors */
+[data-theme="light"] .promax-theme-indigo,
+body.light-theme .promax-theme-indigo {
+  background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+  border-color: #c7d2fe;
+  --icon-bg: #e0e7ff;
+  --icon-border: #c7d2fe;
+  --icon-color: #4f46e5;
+  --action-color: #4338ca;
+  --action-bg: #e0e7ff;
+  --action-border: #c7d2fe;
+}
+
+[data-theme="light"] .promax-theme-emerald,
+body.light-theme .promax-theme-emerald {
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+  border-color: #a7f3d0;
+  --icon-bg: #d1fae5;
+  --icon-border: #a7f3d0;
+  --icon-color: #059669;
+  --action-color: #047857;
+  --action-bg: #d1fae5;
+  --action-border: #a7f3d0;
+}
+
+[data-theme="light"] .promax-theme-cyan,
+body.light-theme .promax-theme-cyan {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border-color: #bae6fd;
+  --icon-bg: #e0f2fe;
+  --icon-border: #bae6fd;
+  --icon-color: #0284c7;
+  --action-color: #0369a1;
+  --action-bg: #e0f2fe;
+  --action-border: #bae6fd;
+}
+
+[data-theme="light"] .promax-theme-amber,
+body.light-theme .promax-theme-amber {
+  background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+  border-color: #fde68a;
+  --icon-bg: #fef3c7;
+  --icon-border: #fde68a;
+  --icon-color: #d97706;
+  --action-color: #b45309;
+  --action-bg: #fef3c7;
+  --action-border: #fde68a;
+}
+
+[data-theme="light"] .promax-theme-purple,
+body.light-theme .promax-theme-purple {
+  background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+  border-color: #e9d5ff;
+  --icon-bg: #f3e8ff;
+  --icon-border: #e9d5ff;
+  --icon-color: #7e22ce;
+  --action-color: #6b21a8;
+  --action-bg: #f3e8ff;
+  --action-border: #e9d5ff;
+}

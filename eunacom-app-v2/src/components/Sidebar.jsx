@@ -91,7 +91,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     onClick={() => navigate('/dashboard')}
                     title="eunacomapp"
                 >
-                    <EunacomLogo size={collapsed ? 28 : 30} showWordmark={!collapsed} textColor="#ffffff" accentColor="#38bdf8" />
+                    <EunacomLogo size={collapsed ? 28 : 30} showWordmark={!collapsed} textColor="var(--surface-50)" accentColor="#38bdf8" />
                 </div>
 
                 <button
@@ -99,16 +99,16 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     onClick={toggleCollapse}
                     title={collapsed ? "Expandir barra lateral" : "Minimizar barra lateral"}
                     style={{
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        background: 'var(--sidebar-btn-bg, rgba(255, 255, 255, 0.08))',
+                        border: '1px solid var(--sidebar-btn-border, rgba(255, 255, 255, 0.15))',
                         borderRadius: '8px',
-                        color: 'rgba(255, 255, 255, 0.8)',
+                        color: 'var(--sidebar-btn-color, rgba(255, 255, 255, 0.8))',
                         cursor: 'pointer',
                         padding: '4px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        transition: 'background 0.15s ease',
+                        transition: 'all 0.15s ease',
                         flexShrink: 0,
                     }}
                 >
@@ -275,17 +275,17 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             {/* Sidebar Footer */}
             <div className="sidebar__footer">
                 {!isPremium && !isAdmin() && !loadingPremium && !authLoading && user && !collapsed && (
-                    <div style={{ marginBottom: '0.65rem', padding: '0.65rem 0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                        <div style={{ fontSize: '0.72rem', color: '#f8fafc', fontWeight: 800, marginBottom: '0.4rem', textAlign: 'center', letterSpacing: '0.5px' }}>
+                    <div style={{ marginBottom: '0.65rem', padding: '0.65rem 0.75rem', background: 'var(--sidebar-card-bg, rgba(255,255,255,0.05))', borderRadius: '10px', border: '1px solid var(--sidebar-card-border, rgba(255,255,255,0.1))' }}>
+                        <div style={{ fontSize: '0.72rem', color: 'var(--surface-50, #f8fafc)', fontWeight: 800, marginBottom: '0.4rem', textAlign: 'center', letterSpacing: '0.5px' }}>
                             TU PLAN GRATUITO
                         </div>
                         
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem 0.5rem', marginBottom: '0.5rem' }}>
-                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                            <div style={{ fontSize: '0.72rem', color: 'var(--surface-400, #94a3b8)', display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Preguntas:</span>
                                 <span style={{ color: (usageStats?.customQuestionsAnswered || 0) >= 20 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.customQuestionsAnswered || 0, 20)}/20</span>
                             </div>
-                            <div style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'flex', justifyContent: 'space-between' }}>
+                            <div style={{ fontSize: '0.72rem', color: 'var(--surface-400, #94a3b8)', display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Clases:</span>
                                 <span style={{ color: (usageStats?.clasesOpened || 0) >= 3 ? '#ef4444' : '#38bdf8', fontWeight: 700 }}>{Math.min(usageStats?.clasesOpened || 0, 3)}/3</span>
                             </div>

@@ -22,6 +22,7 @@ import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
+import '../styles/proMaxPages.css'
 
 /* ════════════════════════════════════════════════════════════════
    PROGRESS RING
@@ -3459,104 +3460,163 @@ const MisClases = () => {
           const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
           const completed = lessons.filter(l => getProgress(l.id) >= 100).length
           const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
-          // Get prueba stats from localStorage
-          const pruebaProgress = loadPruebaProgress()
-          const pruebaIndex = (() => {
-            try { return JSON.parse(sessionStorage.getItem('_prueba_idx') || 'null') } catch { return null }
-          })()
-          // We'll show a simple count hint
+          const totalQuestionsEst = lessons.length * 20
+
           return (
-            <div style={{ paddingBottom: '2rem' }}>
-              {/* Subject header */}
-              <div className="card" style={{
-                padding: '1.5rem', marginBottom: '1.5rem',
-                background: `linear-gradient(135deg, ${subStyle.bg} 0%, transparent 100%)`,
-                borderLeft: `4px solid ${subStyle.color}`,
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{
-                    width: 48, height: 48, borderRadius: 14, background: subStyle.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: subStyle.color, border: `1px solid ${subStyle.color}25`,
-                    flexShrink: 0,
-                  }}>
-                    {subStyle.icon}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {currentSubsystem}
-                    </h2>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                      {currentSpecialty} · {lessons.length} clases
-                    </div>
-                  </div>
-                  <ProgressRing percent={subPct} size={46} stroke={3} />
-                </div>
+            <div className="promax-page-wrapper" style={{ paddingBottom: '2.5rem' }}>
+              {/* Ambient Glows */}
+              <div className="promax-ambient-bg">
+                <div className="promax-ambient-glow promax-glow-cyan" style={{ top: -60, left: '5%', width: 480, height: 320 }} />
+                <div className="promax-ambient-glow promax-glow-indigo" style={{ top: 120, right: '5%', width: 440, height: 300 }} />
               </div>
 
-              {/* Two big cards: Clases and Pruebas */}
-              <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-              <div className="grid-auto-responsive">
-                {/* Clases card */}
-                <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }} style={{
-                  padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
-                  borderTop: `4px solid ${subStyle.color}`,
-                  textAlign: 'center',
+              <div className="promax-content-layer">
+                {/* Subject Hero Bento Header */}
+                <div className="promax-hero-bento" style={{
+                  '--hero-accent-gradient': `linear-gradient(90deg, ${subStyle.color} 0%, #38bdf8 50%, #10b981 100%)`
                 }}>
-                  <div style={{
-                    width: 56, height: 56, borderRadius: 16, margin: '0 auto 1rem',
-                    background: subStyle.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: subStyle.color,
-                  }}>
-                    <Presentation size={26} />
-                  </div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-                    Clases
-                  </h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
-                    Videos, resúmenes y puntos clave de cada tema
-                  </p>
-                  <div style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                    padding: '0.4rem 1rem', borderRadius: 50, fontSize: '0.78rem', fontWeight: 600,
-                    background: completed === lessons.length && lessons.length > 0 ? 'rgba(16,185,129,0.12)' : subStyle.bg,
-                    color: completed === lessons.length && lessons.length > 0 ? '#10b981' : subStyle.color,
-                  }}>
-                    {completed === lessons.length && lessons.length > 0 ? (
-                      <><CheckCircle2 size={13} /> Completadas</>
-                    ) : (
-                      <>{completed}/{lessons.length} completadas</>
-                    )}
+                  <div className="promax-hero-header-row">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', flex: 1, minWidth: 260 }}>
+                      <div className="promax-hero-avatar-box" style={{
+                        '--avatar-bg': subStyle.bg,
+                        '--avatar-border': `${subStyle.color}40`,
+                        '--avatar-color': subStyle.color,
+                        '--avatar-glow': `${subStyle.color}30`
+                      }}>
+                        {React.cloneElement(subStyle.icon, { size: 28 })}
+                      </div>
+                      <div className="promax-hero-titles">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
+                          <h2>{currentSubsystem}</h2>
+                          <span className="promax-badge-pill promax-badge-cyan">
+                            <Sparkles size={11} /> {currentSpecialty}
+                          </span>
+                        </div>
+                        <p>
+                          {lessons.length} clases interactivas · ~{totalQuestionsEst} preguntas tipo EUNACOM explicadas
+                        </p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                          Progreso del Tema
+                        </div>
+                        <div style={{ fontSize: '1rem', fontWeight: 800, color: subPct >= 100 ? '#10b981' : '#f8fafc', marginTop: '0.15rem' }}>
+                          {completed}/{lessons.length} completadas
+                        </div>
+                      </div>
+                      <ProgressRing percent={subPct} size={52} stroke={4} />
+                    </div>
                   </div>
                 </div>
 
-                {/* Pruebas card */}
-                <div className="card" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }} style={{
-                  padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
-                  borderTop: '4px solid #10b981',
-                  textAlign: 'center',
-                }}>
-                  <div style={{
-                    width: 56, height: 56, borderRadius: 16, margin: '0 auto 1rem',
-                    background: 'rgba(16,185,129,0.1)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#10b981',
-                  }}>
-                    <ClipboardList size={26} />
+                {/* Two Big Bento Cards: Clases & Pruebas */}
+                <div className="promax-bento-grid-2">
+                  {/* Bento Card 1: Clases Interactivas */}
+                  <div
+                    className="promax-bento-card promax-theme-indigo"
+                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }}
+                  >
+                    <div className="promax-card-ambient-tint" />
+                    <div className="promax-card-top-line" />
+
+                    <div>
+                      <div className="promax-card-header">
+                        <div className="promax-card-icon-box">
+                          <Presentation size={26} />
+                        </div>
+                        <span className="promax-badge-pill promax-badge-indigo">
+                          <BookOpen size={11} /> Video + Resúmenes
+                        </span>
+                      </div>
+
+                      <h3 className="promax-card-title">Clases Interactivas</h3>
+                      <p className="promax-card-desc">
+                        Aprende con videos, resúmenes diagnósticos, esquemas de manejo clínico y perfiles de alta frecuencia EUNACOM.
+                      </p>
+
+                      <div className="promax-card-features-list">
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> {lessons.length} videoclases explicativas estructuradas
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> Algoritmos terapéuticos y guías GES/MINSAL
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#818cf8" /> Quizzes interactivos de retención por clase
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="promax-card-footer">
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                        fontSize: '0.78rem', fontWeight: 700,
+                        color: completed === lessons.length && lessons.length > 0 ? '#10b981' : '#c7d2fe',
+                      }}>
+                        {completed === lessons.length && lessons.length > 0 ? (
+                          <><CheckCircle2 size={14} color="#10b981" /> 100% Completado</>
+                        ) : (
+                          <><Clock size={13} /> {completed}/{lessons.length} clases vistas</>
+                        )}
+                      </div>
+
+                      <div className="promax-card-action-btn">
+                        Ver Clases <ArrowRight size={14} />
+                      </div>
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-                    Pruebas EUNACOM
-                  </h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: '0.75rem', lineHeight: 1.5 }}>
-                    Sets de preguntas tipo examen con explicaciones
-                  </p>
-                  <div style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                    padding: '0.4rem 1rem', borderRadius: 50, fontSize: '0.78rem', fontWeight: 600,
-                    background: 'rgba(16,185,129,0.12)', color: '#10b981',
-                  }}>
-                    <Target size={13} /> Practica ahora
+
+                  {/* Bento Card 2: Pruebas EUNACOM */}
+                  <div
+                    className="promax-bento-card promax-theme-emerald"
+                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}
+                  >
+                    <div className="promax-card-ambient-tint" />
+                    <div className="promax-card-top-line" />
+
+                    <div>
+                      <div className="promax-card-header">
+                        <div className="promax-card-icon-box">
+                          <ClipboardList size={26} />
+                        </div>
+                        <span className="promax-badge-pill promax-badge-emerald">
+                          <Target size={11} /> Banco Clínico
+                        </span>
+                      </div>
+
+                      <h3 className="promax-card-title">Pruebas EUNACOM</h3>
+                      <p className="promax-card-desc">
+                        Entrena con sets de preguntas oficiales justificadas por alternativa, estadísticas de respuesta y repaso de errores.
+                      </p>
+
+                      <div className="promax-card-features-list">
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Preguntas tipo examen con justificación inmediata
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Estadísticas y tasa de aciertos de la comunidad
+                        </div>
+                        <div className="promax-card-feature-item">
+                          <CheckCircle2 size={13} color="#34d399" /> Sistema inteligente para reentrenar errores
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="promax-card-footer">
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                        fontSize: '0.78rem', fontWeight: 700, color: '#6ee7b7'
+                      }}>
+                        <Award size={14} color="#10b981" /> Modo Entrenamiento & Examen
+                      </div>
+
+                      <div className="promax-card-action-btn">
+                        Practicar Ahora <ArrowRight size={14} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import {
   ArrowRight, ShieldCheck, X, Loader2
 } from 'lucide-react'
 import { EunacomLogo, EunacomLogoIcon } from './EunacomLogo'
-import { CHILEAN_UNIVERSITIES, getSedesForUniversity, UserInstitutionBadge, COUNTRIES } from '../utils/universityAndCountry'
+import { CHILEAN_UNIVERSITIES, getSedesForUniversity, UserInstitutionBadge, getUserInstitutionBadge, COUNTRIES } from '../utils/universityAndCountry'
 
 // ─── COUNTRY CODES & PHONE VALIDATION ────────────────────────────────────
 const COUNTRY_CODES = [
@@ -213,15 +213,17 @@ const Onboarding = ({ user, onComplete }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '16px 14px calc(16px + env(safe-area-inset-bottom))',
-        paddingTop: 'max(16px, env(safe-area-inset-top))',
+        padding: '12px 10px calc(12px + env(safe-area-inset-bottom))',
+        paddingTop: 'max(12px, env(safe-area-inset-top))',
+        boxSizing: 'border-box',
       }}>
         <div style={{
           backgroundColor: '#ffffff',
-          borderRadius: '24px',
-          padding: '2rem 1.6rem',
+          borderRadius: '22px',
+          padding: 'clamp(1.25rem, 4vw, 1.85rem) clamp(0.95rem, 3.6vw, 1.6rem)',
           maxWidth: '460px',
           width: '100%',
+          boxSizing: 'border-box',
           boxShadow: '0 25px 70px rgba(0, 0, 0, 0.45), 0 0 30px rgba(37, 99, 235, 0.15)',
           border: '1px solid rgba(226, 232, 240, 0.9)',
           position: 'relative',
@@ -373,21 +375,22 @@ const Onboarding = ({ user, onComplete }) => {
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#475569', marginBottom: '0.3rem' }}>
                     WhatsApp
                   </label>
-                  <div style={{ display: 'flex', gap: '0.4rem' }}>
+                  <div style={{ display: 'flex', gap: '0.4rem', width: '100%', boxSizing: 'border-box' }}>
                     <select
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
                       style={{
-                        padding: '0.75rem 0.5rem',
+                        padding: '0.75rem 0.4rem',
                         backgroundColor: '#f8fafc',
                         border: '1.5px solid #e2e8f0',
                         borderRadius: '14px',
                         color: '#1e293b',
-                        fontSize: '0.88rem',
+                        fontSize: '0.85rem',
                         fontWeight: 600,
                         outline: 'none',
-                        width: '115px',
+                        width: '105px',
                         flexShrink: 0,
+                        boxSizing: 'border-box',
                       }}
                     >
                       {COUNTRY_CODES.map((c) => (
@@ -397,15 +400,15 @@ const Onboarding = ({ user, onComplete }) => {
                       ))}
                     </select>
 
-                    <div className="ob-input-row" style={{ flex: 1 }}>
-                      <Phone size={16} color="#94a3b8" />
+                    <div className="ob-input-row" style={{ flex: 1, minWidth: 0 }}>
+                      <Phone size={16} color="#94a3b8" style={{ flexShrink: 0 }} />
                       <input
                         type="tel"
                         inputMode="tel"
                         placeholder={selectedRule.placeholder}
                         value={whatsapp}
                         onChange={(e) => setWhatsapp(e.target.value)}
-                        style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '0.95rem', color: '#1e293b', fontWeight: 600 }}
+                        style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '0.95rem', color: '#1e293b', fontWeight: 600, minWidth: 0 }}
                       />
                     </div>
                   </div>
@@ -458,7 +461,7 @@ const Onboarding = ({ user, onComplete }) => {
               </div>
 
               {/* Location Toggle */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem', marginBottom: '0.85rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.4rem', marginBottom: '0.85rem', width: '100%', boxSizing: 'border-box' }}>
                 <button
                   type="button"
                   onClick={() => {
@@ -466,23 +469,27 @@ const Onboarding = ({ user, onComplete }) => {
                     setProfileType('Médico Titulado (Chile)')
                   }}
                   style={{
-                    padding: '0.65rem 0.5rem',
+                    padding: '0.65rem 0.4rem',
                     borderRadius: '12px',
                     border: studyLocation === 'chile' ? '1.5px solid #2563eb' : '1.5px solid #e2e8f0',
                     backgroundColor: studyLocation === 'chile' ? '#eff6ff' : '#f8fafc',
                     color: studyLocation === 'chile' ? '#1d4ed8' : '#64748b',
                     fontWeight: 700,
-                    fontSize: '0.84rem',
+                    fontSize: '0.82rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '5px',
+                    gap: '4px',
                     transition: 'all 0.15s ease',
+                    minWidth: 0,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}
                 >
                   <span>🇨🇱</span>
-                  <span>Estudié en Chile</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>En Chile</span>
                 </button>
 
                 <button
@@ -493,23 +500,27 @@ const Onboarding = ({ user, onComplete }) => {
                     setGoal('reval')
                   }}
                   style={{
-                    padding: '0.65rem 0.5rem',
+                    padding: '0.65rem 0.4rem',
                     borderRadius: '12px',
                     border: studyLocation === 'extranjero' ? '1.5px solid #2563eb' : '1.5px solid #e2e8f0',
                     backgroundColor: studyLocation === 'extranjero' ? '#eff6ff' : '#f8fafc',
                     color: studyLocation === 'extranjero' ? '#1d4ed8' : '#64748b',
                     fontWeight: 700,
-                    fontSize: '0.84rem',
+                    fontSize: '0.82rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '5px',
+                    gap: '4px',
                     transition: 'all 0.15s ease',
+                    minWidth: 0,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}
                 >
                   <span>🌎</span>
-                  <span>Fuera de Chile</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>Fuera de Chile</span>
                 </button>
               </div>
 
@@ -636,21 +647,25 @@ const Onboarding = ({ user, onComplete }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  minWidth: 0,
+                  boxSizing: 'border-box',
                 }}>
-                  <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>
-                    Insignia en tu perfil & ranking:
+                  <span style={{ fontSize: '0.76rem', color: '#64748b', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    Insignia de perfil:
                   </span>
-                  <UserInstitutionBadge
-                    user={{
-                      university: studyLocation === 'chile' ? university : customUniversity,
-                      sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
-                      country: studyLocation === 'chile' ? 'Chile' : studyCountry
-                    }}
-                    size={26}
-                    showLabel={true}
-                    labelStyle={{ color: '#1e293b', fontWeight: 700, fontSize: '0.8rem', maxWidth: '170px' }}
-                  />
+                  <div style={{ minWidth: 0, overflow: 'hidden', flexShrink: 0 }}>
+                    <UserInstitutionBadge
+                      user={{
+                        university: studyLocation === 'chile' ? university : customUniversity,
+                        sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
+                        country: studyLocation === 'chile' ? 'Chile' : studyCountry
+                      }}
+                      size={26}
+                      showLabel={true}
+                      labelStyle={{ color: '#1e293b', fontWeight: 700, fontSize: '0.8rem', maxWidth: '150px' }}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -749,16 +764,15 @@ const Onboarding = ({ user, onComplete }) => {
                 </div>
 
                 {/* Fecha Examen */}
-                <div style={{ marginTop: '0.4rem' }}>
+                <div style={{ marginTop: '0.4rem', width: '100%', boxSizing: 'border-box' }}>
                   <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#475569', marginBottom: '0.3rem' }}>
                     <Calendar size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> ¿Cuándo rindes el examen?
                   </label>
-                  <div style={{ display: 'flex', gap: '0.4rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.4rem', width: '100%', boxSizing: 'border-box' }}>
                     <select
                       value={examMonth}
                       onChange={(e) => setExamMonth(e.target.value)}
                       style={{
-                        flex: 1,
                         padding: '0.65rem 0.5rem',
                         backgroundColor: '#f8fafc',
                         border: '1.5px solid #e2e8f0',
@@ -767,6 +781,9 @@ const Onboarding = ({ user, onComplete }) => {
                         fontWeight: 600,
                         color: '#1e293b',
                         outline: 'none',
+                        minWidth: 0,
+                        width: '100%',
+                        boxSizing: 'border-box',
                       }}
                     >
                       <option value="Julio">Julio</option>
@@ -777,7 +794,6 @@ const Onboarding = ({ user, onComplete }) => {
                       value={examYear}
                       onChange={(e) => setExamYear(e.target.value)}
                       style={{
-                        flex: 1,
                         padding: '0.65rem 0.5rem',
                         backgroundColor: '#f8fafc',
                         border: '1.5px solid #e2e8f0',
@@ -786,6 +802,9 @@ const Onboarding = ({ user, onComplete }) => {
                         fontWeight: 600,
                         color: '#1e293b',
                         outline: 'none',
+                        minWidth: 0,
+                        width: '100%',
+                        boxSizing: 'border-box',
                       }}
                     >
                       <option value="2025">2025</option>
@@ -882,11 +901,11 @@ const Onboarding = ({ user, onComplete }) => {
                 ))}
 
                 {/* Tiempo de estudio */}
-                <div style={{ marginTop: '0.4rem' }}>
+                <div style={{ marginTop: '0.4rem', width: '100%', boxSizing: 'border-box' }}>
                   <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: '#475569', marginBottom: '0.3rem' }}>
                     <Clock size={13} style={{ verticalAlign: 'middle', marginRight: 4 }} /> Tiempo diario disponible:
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.4rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.35rem', width: '100%', boxSizing: 'border-box' }}>
                     {[
                       { label: '15-20 min', sub: 'Express' },
                       { label: '45 min', sub: 'Recomendado' },
@@ -904,12 +923,14 @@ const Onboarding = ({ user, onComplete }) => {
                           backgroundColor: studyHours.includes(opt.label) ? '#eff6ff' : '#f8fafc',
                           color: studyHours.includes(opt.label) ? '#1d4ed8' : '#475569',
                           fontWeight: 700,
-                          fontSize: '0.78rem',
+                          fontSize: '0.76rem',
                           cursor: 'pointer',
+                          minWidth: 0,
+                          boxSizing: 'border-box',
                         }}
                       >
-                        <div>{opt.label}</div>
-                        <div style={{ fontSize: '0.66rem', fontWeight: 500, color: '#64748b' }}>{opt.sub}</div>
+                        <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{opt.label}</div>
+                        <div style={{ fontSize: '0.64rem', fontWeight: 500, color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{opt.sub}</div>
                       </button>
                     ))}
                   </div>
@@ -1007,160 +1028,291 @@ const Onboarding = ({ user, onComplete }) => {
           {/* ═══════════════════════════════════════════════════════════════
               STEP 6: REVEAL FINAL & BOTÓN DE ARRANQUE (PREMIUM REDESIGN)
           ═══════════════════════════════════════════════════════════════ */}
-          {step === 6 && (
-            <div>
-              {/* Header with Celebration Badge */}
-              <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  backgroundColor: '#ecfdf5',
-                  border: '1px solid #6ee7b7',
-                  borderRadius: '999px',
-                  padding: '4px 14px',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#047857',
-                  marginBottom: '0.75rem',
-                }}>
-                  <span>✨</span>
-                  <span>Plan Personalizado 2026</span>
+          {/* ═══════════════════════════════════════════════════════════════
+              STEP 6: REVEAL FINAL & BOTÓN DE ARRANQUE (PREMIUM REDESIGN)
+          ═══════════════════════════════════════════════════════════════ */}
+          {step === 6 && (() => {
+            const userBadge = getUserInstitutionBadge({
+              university: studyLocation === 'chile' ? university : (customUniversity || studyCountry),
+              sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
+              country: studyLocation === 'chile' ? 'Chile' : studyCountry
+            })
+
+            const formationDisplay = studyLocation === 'chile'
+              ? (userBadge.primaryLabel || university || 'Chile')
+              : (customUniversity.trim() || studyCountry || 'Extranjero')
+
+            const formationFull = studyLocation === 'chile'
+              ? (university || 'Chile')
+              : (customUniversity.trim() ? `${studyCountry} - ${customUniversity.trim()}` : studyCountry)
+
+            const goalDisplay = goal === 'beca'
+              ? 'Beca >75%'
+              : goal === 'pass_51'
+                ? 'Aprobar ≥51%'
+                : 'Revalidación'
+
+            const priorityDisplay = weakArea.split('/')[0].trim()
+
+            return (
+              <div style={{ width: '100%', boxSizing: 'border-box' }}>
+                {/* Header with Celebration Badge */}
+                <div style={{ textAlign: 'center', marginBottom: '1.15rem' }}>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    backgroundColor: '#ecfdf5',
+                    border: '1px solid #6ee7b7',
+                    borderRadius: '999px',
+                    padding: '4px 12px',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    color: '#047857',
+                    marginBottom: '0.65rem',
+                  }}>
+                    <span>✨</span>
+                    <span>Plan Personalizado 2026</span>
+                  </div>
+
+                  <h2 style={{
+                    fontSize: 'clamp(1.2rem, 4.5vw, 1.42rem)',
+                    fontWeight: 800,
+                    color: '#0f172a',
+                    margin: '0 0 0.35rem 0',
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1.25,
+                    wordBreak: 'break-word',
+                  }}>
+                    ¡Listo, Dr(a). {firstName || 'Doctor(a)'}! 🚀
+                  </h2>
+
+                  <p style={{ fontSize: '0.82rem', color: '#64748b', margin: 0, lineHeight: 1.35 }}>
+                    Tu algoritmo de estudio ha sido calibrado a tu meta.
+                  </p>
                 </div>
 
-                <h2 style={{
-                  fontSize: '1.45rem',
-                  fontWeight: 800,
-                  color: '#0f172a',
-                  margin: '0 0 0.35rem 0',
-                  letterSpacing: '-0.02em',
-                }}>
-                  ¡Listo, Dr(a). {firstName || 'Doctor(a)'}! 🚀
-                </h2>
-
-                <p style={{ fontSize: '0.84rem', color: '#64748b', margin: 0 }}>
-                  Tu algoritmo de estudio ha sido calibrado a tu meta.
-                </p>
-              </div>
-
-              {/* Main Plan Pass Card */}
-              <div style={{
-                background: 'linear-gradient(145deg, #0f172a 0%, #1e293b 100%)',
-                borderRadius: '18px',
-                padding: '1.2rem',
-                color: '#ffffff',
-                boxShadow: '0 12px 30px rgba(15, 23, 42, 0.25)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                marginBottom: '1.25rem',
-                position: 'relative',
-                overflow: 'hidden',
-              }}>
-                {/* Decorative background glow */}
+                {/* Main Plan Pass Card */}
                 <div style={{
-                  position: 'absolute',
-                  top: '-30px',
-                  right: '-30px',
-                  width: '100px',
-                  height: '100px',
-                  background: 'radial-gradient(circle, rgba(37,99,235,0.4) 0%, transparent 70%)',
-                  pointerEvents: 'none',
-                }} />
+                  background: 'linear-gradient(145deg, #0b1324 0%, #1e293b 100%)',
+                  borderRadius: '18px',
+                  padding: 'clamp(0.95rem, 3.5vw, 1.2rem)',
+                  color: '#ffffff',
+                  boxShadow: '0 12px 30px rgba(15, 23, 42, 0.28), 0 0 20px rgba(37, 99, 235, 0.2)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  marginBottom: '1.2rem',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                }}>
+                  {/* Decorative background glow */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-35px',
+                    right: '-35px',
+                    width: '110px',
+                    height: '110px',
+                    background: 'radial-gradient(circle, rgba(37,99,235,0.45) 0%, transparent 70%)',
+                    pointerEvents: 'none',
+                  }} />
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <EunacomLogoIcon size={24} />
-                    <span style={{ fontSize: '0.85rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#ffffff' }}>
-                      eunacom<span style={{ color: '#38bdf8' }}>app</span>
+                  {/* Pass Header */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: '0.85rem',
+                    borderBottom: '1px solid rgba(255,255,255,0.1)',
+                    paddingBottom: '0.65rem',
+                    gap: '0.5rem',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }}>
+                      <EunacomLogoIcon size={22} />
+                      <span style={{ fontSize: '0.84rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#ffffff', whiteSpace: 'nowrap' }}>
+                        eunacom<span style={{ color: '#38bdf8' }}>app</span>
+                      </span>
+                    </div>
+                    <span style={{
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      backgroundColor: 'rgba(37,99,235,0.3)',
+                      border: '1px solid rgba(56,189,248,0.45)',
+                      color: '#38bdf8',
+                      padding: '2px 8px',
+                      borderRadius: '6px',
+                      flexShrink: 0,
+                    }}>
+                      Perfil 2026
                     </span>
                   </div>
-                  <span style={{
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    backgroundColor: 'rgba(37,99,235,0.3)',
-                    border: '1px solid rgba(56,189,248,0.4)',
-                    color: '#38bdf8',
-                    padding: '2px 8px',
-                    borderRadius: '6px',
+
+                  {/* 2x2 Grid for Clean Stats */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                    gap: '0.55rem',
+                    width: '100%',
+                    boxSizing: 'border-box',
                   }}>
-                    Perfil 2026
-                  </span>
+                    {/* Objetivo */}
+                    <div style={{
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      borderRadius: '12px',
+                      padding: '0.6rem 0.7rem',
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      boxSizing: 'border-box',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                    }} title={`Meta: ${goalDisplay}`}>
+                      <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        🎯 Objetivo
+                      </div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {goalDisplay}
+                      </div>
+                    </div>
+
+                    {/* Fecha Examen */}
+                    <div style={{
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      borderRadius: '12px',
+                      padding: '0.6rem 0.7rem',
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      boxSizing: 'border-box',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                    }} title={`Examen: ${examMonth} ${examYear}`}>
+                      <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        📅 Fecha Examen
+                      </div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {examMonth} {examYear}
+                      </div>
+                    </div>
+
+                    {/* Formación */}
+                    <div style={{
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      borderRadius: '12px',
+                      padding: '0.6rem 0.7rem',
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      boxSizing: 'border-box',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                    }} title={formationFull}>
+                      <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        🏛️ Formación
+                      </div>
+                      <div style={{
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        minWidth: 0,
+                      }}>
+                        <span style={{ fontSize: '0.75rem', flexShrink: 0 }}>{userBadge.flag || '🇨🇱'}</span>
+                        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {formationDisplay}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Prioridad */}
+                    <div style={{
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      borderRadius: '12px',
+                      padding: '0.6rem 0.7rem',
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      boxSizing: 'border-box',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                    }} title={`Prioridad: ${weakArea}`}>
+                      <div style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        ⚡ Prioridad
+                      </div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#38bdf8', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {priorityDisplay}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom micro-bar inside card */}
+                  <div style={{
+                    marginTop: '0.65rem',
+                    paddingTop: '0.55rem',
+                    borderTop: '1px solid rgba(255,255,255,0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '0.72rem',
+                    color: '#94a3b8',
+                    fontWeight: 600,
+                    minWidth: 0,
+                    gap: '0.5rem',
+                  }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <span>⏱️</span>
+                      <span style={{ color: '#e2e8f0', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {studyHours.split('(')[0].trim()}
+                      </span>
+                    </span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', color: '#34d399', fontWeight: 700, flexShrink: 0 }}>
+                      <CheckCircle2 size={12} />
+                      <span>Algoritmo activo</span>
+                    </span>
+                  </div>
                 </div>
 
-                {/* 2x2 Grid for Clean Stats */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                  <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '0.65rem 0.75rem' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px' }}>🎯 Objetivo</div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff' }}>
-                      {goal === 'beca' ? 'Beca >75-80%' : goal === 'pass_51' ? 'Aprobar ≥51%' : 'Revalidación'}
-                    </div>
+                {error && (
+                  <div style={{ marginBottom: '0.85rem', color: '#dc2626', fontSize: '0.8rem', textAlign: 'center', fontWeight: 600 }}>
+                    {error}
                   </div>
-
-                  <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '0.65rem 0.75rem' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px' }}>📅 Fecha Examen</div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff' }}>
-                      {examMonth} {examYear}
-                    </div>
-                  </div>
-
-                  <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '0.65rem 0.75rem' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px' }}>🏛️ Formación</div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {studyLocation === 'chile' ? (university || 'Chile') : (studyCountry || 'Extranjero')}
-                    </div>
-                  </div>
-
-                  <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '0.65rem 0.75rem' }}>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600, marginBottom: '2px' }}>⚡ Prioridad</div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#38bdf8', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {weakArea.split('/')[0].trim()}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {error && (
-                <div style={{ marginBottom: '0.85rem', color: '#dc2626', fontSize: '0.8rem', textAlign: 'center', fontWeight: 600 }}>
-                  {error}
-                </div>
-              )}
-
-              {/* High-Converting Launch Button */}
-              <button
-                type="button"
-                onClick={handleFinish}
-                disabled={saving}
-                style={{
-                  width: '100%',
-                  padding: '0.95rem 1rem',
-                  backgroundColor: '#2563eb',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '16px',
-                  fontSize: '1.02rem',
-                  fontWeight: 700,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.6rem',
-                  cursor: saving ? 'wait' : 'pointer',
-                  boxShadow: '0 8px 24px rgba(37, 99, 235, 0.4)',
-                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-              >
-                {saving ? (
-                  <>
-                    <Loader2 size={20} className="spin" />
-                    <span>Guardando tu plan...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>¡Empezar a Estudiar Ahora!</span>
-                    <ArrowRight size={20} />
-                  </>
                 )}
-              </button>
-            </div>
-          )}
+
+                {/* High-Converting Launch Button */}
+                <button
+                  type="button"
+                  onClick={handleFinish}
+                  disabled={saving}
+                  style={{
+                    width: '100%',
+                    padding: '0.9rem 1rem',
+                    backgroundColor: '#2563eb',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '14px',
+                    fontSize: 'clamp(0.92rem, 3.8vw, 1rem)',
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    cursor: saving ? 'wait' : 'pointer',
+                    boxShadow: '0 8px 24px rgba(37, 99, 235, 0.4)',
+                    transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                >
+                  {saving ? (
+                    <>
+                      <Loader2 size={18} className="spin" />
+                      <span>Guardando tu plan...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>¡Empezar a Estudiar Ahora!</span>
+                      <ArrowRight size={18} />
+                    </>
+                  )}
+                </button>
+              </div>
+            )
+          })()}
         </div>
       </div>
     </>

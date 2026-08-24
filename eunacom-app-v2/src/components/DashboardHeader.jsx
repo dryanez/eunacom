@@ -82,9 +82,9 @@ const DashboardHeader = ({ onMenuToggle }) => {
                             {showMenu && (
                                 <div style={{
                                     position: 'absolute', top: '100%', right: 0, marginTop: '0.5rem',
-                                    background: 'var(--surface-700)', borderRadius: 'var(--radius)',
+                                    background: 'var(--surface-800)', borderRadius: 'var(--radius)',
                                     boxShadow: 'var(--shadow-lg)', minWidth: '200px', zIndex: 1000,
-                                    border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden'
+                                    border: '1px solid var(--surface-600)', overflow: 'hidden'
                                 }}>
                                     <button 
                                         onClick={() => {
@@ -93,10 +93,10 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                         }} 
                                         style={{
                                             width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                            color: '#f8fafc', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
+                                            color: 'var(--surface-50)', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
                                             border: 'none', cursor: 'pointer', fontFamily: 'var(--font)',
                                             display: 'flex', alignItems: 'center', gap: '0.5rem',
-                                            borderBottom: '1px solid rgba(255,255,255,0.06)'
+                                            borderBottom: '1px solid var(--surface-600)'
                                         }}
                                     >
                                         <User size={15} color="#38bdf8" />
@@ -106,14 +106,14 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                     <button 
                                         onClick={() => {
                                             setShowMenu(false)
-                                            navigate('/mi-plan')
+                                            navigate('/settings')
                                         }} 
                                         style={{
                                             width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                            color: '#f8fafc', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
+                                            color: 'var(--surface-50)', fontWeight: 600, fontSize: '0.86rem', textAlign: 'left',
                                             border: 'none', cursor: 'pointer', fontFamily: 'var(--font)',
                                             display: 'flex', alignItems: 'center', gap: '0.5rem',
-                                            borderBottom: '1px solid rgba(255,255,255,0.06)'
+                                            borderBottom: '1px solid var(--surface-600)'
                                         }}
                                     >
                                         <CreditCard size={15} color="#10b981" />

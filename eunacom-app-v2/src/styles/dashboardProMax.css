@@ -571,3 +571,244 @@
     justify-content: flex-start;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES FOR DASHBOARD PRO MAX
+   ══════════════════════════════════════════════════════════════ */
+[data-theme="light"] .dash-promax-wrapper,
+body.light-theme .dash-promax-wrapper {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-ambient-glow-1,
+body.light-theme .dash-ambient-glow-1 {
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+}
+[data-theme="light"] .dash-ambient-glow-2,
+body.light-theme .dash-ambient-glow-2 {
+  background: radial-gradient(ellipse, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+}
+[data-theme="light"] .dash-ambient-glow-3,
+body.light-theme .dash-ambient-glow-3 {
+  background: radial-gradient(ellipse, rgba(249, 115, 22, 0.04) 0%, transparent 70%);
+}
+
+[data-theme="light"] .dash-greeting-titles h1,
+body.light-theme .dash-greeting-titles h1 {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-greeting-titles p,
+body.light-theme .dash-greeting-titles p {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .dash-user-avatar-frame,
+body.light-theme .dash-user-avatar-frame {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+  border: 2px solid var(--surface-600);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .dash-hero-level-bento,
+body.light-theme .dash-hero-level-bento {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .dash-xp-fraction,
+body.light-theme .dash-xp-fraction {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-xp-fraction strong,
+body.light-theme .dash-xp-fraction strong {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-progress-track,
+body.light-theme .dash-progress-track {
+  background: var(--surface-600);
+}
+
+[data-theme="light"] .dash-level-sub-meta,
+body.light-theme .dash-level-sub-meta {
+  color: var(--surface-400);
+}
+
+[data-theme="light"] .dash-streak-quick-widget,
+body.light-theme .dash-streak-quick-widget {
+  background: #fff7ed;
+  border-color: rgba(249, 115, 22, 0.35);
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.08);
+}
+[data-theme="light"] .dash-streak-val,
+body.light-theme .dash-streak-val {
+  color: #0f172a;
+}
+[data-theme="light"] .dash-streak-val span,
+body.light-theme .dash-streak-val span {
+  color: #64748b;
+}
+
+[data-theme="light"] .dash-bento-section-title,
+body.light-theme .dash-bento-section-title {
+  color: var(--surface-50);
+}
+
+[data-theme="light"] .dash-bento-card,
+body.light-theme .dash-bento-card {
+  background: #ffffff;
+  border: 1px solid var(--surface-600);
+  box-shadow: var(--shadow-md);
+}
+[data-theme="light"] .dash-bento-card:hover,
+body.light-theme .dash-bento-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--surface-500);
+}
+
+[data-theme="light"] .dash-card-title,
+body.light-theme .dash-card-title {
+  color: var(--surface-50);
+}
+[data-theme="light"] .dash-card-desc,
+body.light-theme .dash-card-desc {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-card-tag,
+body.light-theme .dash-card-tag {
+  color: var(--surface-400);
+}
+[data-theme="light"] .dash-card-footer,
+body.light-theme .dash-card-footer {
+  border-top: 1px solid var(--surface-700);
+}
+[data-theme="light"] .dash-card-badge,
+body.light-theme .dash-card-badge {
+  background: var(--surface-700);
+  border-color: var(--surface-600);
+  color: var(--surface-300);
+}
+[data-theme="light"] .dash-card-icon-box,
+body.light-theme .dash-card-icon-box {
+  background: var(--surface-700);
+  border-color: var(--surface-600);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Light Bento Card Specifics */
+[data-theme="light"] .bento-card-clases,
+body.light-theme .bento-card-clases {
+  background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+  border-color: #c7d2fe;
+  --icon-color: #4f46e5;
+}
+[data-theme="light"] .bento-card-clases .dash-card-badge,
+body.light-theme .bento-card-clases .dash-card-badge {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+[data-theme="light"] .bento-card-clases .dash-card-icon-box,
+body.light-theme .bento-card-clases .dash-card-icon-box {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+}
+[data-theme="light"] .bento-card-clases .dash-card-action-link,
+body.light-theme .bento-card-clases .dash-card-action-link {
+  color: #4f46e5;
+}
+
+[data-theme="light"] .bento-card-medlingo,
+body.light-theme .bento-card-medlingo {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border-color: #fed7aa;
+  --icon-color: #ea580c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-badge,
+body.light-theme .bento-card-medlingo .dash-card-badge {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-icon-box,
+body.light-theme .bento-card-medlingo .dash-card-icon-box {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #ea580c;
+}
+[data-theme="light"] .bento-card-medlingo .dash-card-action-link,
+body.light-theme .bento-card-medlingo .dash-card-action-link {
+  color: #ea580c;
+}
+
+[data-theme="light"] .bento-card-test,
+body.light-theme .bento-card-test {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border-color: #bae6fd;
+  --icon-color: #0284c7;
+}
+[data-theme="light"] .bento-card-test .dash-card-badge,
+body.light-theme .bento-card-test .dash-card-badge {
+  background: #e0f2fe;
+  border-color: #bae6fd;
+  color: #0369a1;
+}
+[data-theme="light"] .bento-card-test .dash-card-icon-box,
+body.light-theme .bento-card-test .dash-card-icon-box {
+  background: #e0f2fe;
+  border-color: #bae6fd;
+  color: #0284c7;
+}
+[data-theme="light"] .bento-card-test .dash-card-action-link,
+body.light-theme .bento-card-test .dash-card-action-link {
+  color: #0284c7;
+}
+
+[data-theme="light"] .bento-card-reconstructions,
+body.light-theme .bento-card-reconstructions {
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+  border-color: #a7f3d0;
+  --icon-color: #059669;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-badge,
+body.light-theme .bento-card-reconstructions .dash-card-badge {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-icon-box,
+body.light-theme .bento-card-reconstructions .dash-card-icon-box {
+  background: #d1fae5;
+  border-color: #a7f3d0;
+  color: #059669;
+}
+[data-theme="light"] .bento-card-reconstructions .dash-card-action-link,
+body.light-theme .bento-card-reconstructions .dash-card-action-link {
+  color: #059669;
+}
+
+[data-theme="light"] .bento-card-plan,
+body.light-theme .bento-card-plan {
+  background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+  border-color: #e9d5ff;
+  --icon-color: #7e22ce;
+}
+[data-theme="light"] .bento-card-plan .dash-card-badge,
+body.light-theme .bento-card-plan .dash-card-badge {
+  background: #f3e8ff;
+  border-color: #e9d5ff;
+  color: #6b21a8;
+}
+[data-theme="light"] .bento-card-plan .dash-card-icon-box,
+body.light-theme .bento-card-plan .dash-card-icon-box {
+  background: #f3e8ff;
+  border-color: #e9d5ff;
+  color: #7e22ce;
+}
+[data-theme="light"] .bento-card-plan .dash-card-action-link,
+body.light-theme .bento-card-plan .dash-card-action-link {
+  color: #7e22ce;
+}

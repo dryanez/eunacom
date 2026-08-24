@@ -12,6 +12,7 @@ import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { useTheme } from '../contexts/ThemeContext'
+import '../styles/proMaxPages.css'
 
 const LETTERS = ['A','B','C','D','E']
 
@@ -462,199 +463,403 @@ const Reconstructions = () => {
   index.exams.forEach(e => { if (!examsByYear[e.year]) examsByYear[e.year] = []; examsByYear[e.year].push(e) })
   const years = Object.keys(examsByYear).sort((a,b) => Number(b)-Number(a))
 
+  const completedExamsCount = Object.keys(examResults).length
+  const avgScoreAcrossExams = completedExamsCount > 0
+    ? Math.round(Object.values(examResults).reduce((sum, r) => sum + r.pct, 0) / completedExamsCount)
+    : null
+
   return (
-    <div className="page" style={{ paddingBottom: '3rem' }}>
-      {showLoginGate && <LoginGateModal onClose={() => setShowLoginGate(false)} message="Inicia sesión para practicar con los exámenes EUNACOM reales."/>}
-      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+    <div className="promax-page-wrapper" style={{ paddingBottom: '3.5rem' }}>
+      {/* Ambient Backdrop Glows */}
+      <div className="promax-ambient-bg">
+        <div className="promax-ambient-glow promax-glow-cyan" style={{ top: -80, left: '8%', width: 520, height: 380 }} />
+        <div className="promax-ambient-glow promax-glow-indigo" style={{ top: 180, right: '6%', width: 460, height: 340 }} />
+        <div className="promax-ambient-glow promax-glow-emerald" style={{ top: 600, left: '20%', width: 420, height: 300 }} />
+      </div>
 
-      {/* Quiz Modal */}
-      {activeQuiz && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 640, maxHeight: '92vh', overflow: 'auto', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
-            <div style={{ padding: '0.9rem 1.25rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <BookOpen size={16} color="var(--primary-400)"/>
-              <span style={{ fontWeight: 700, fontSize: '0.9rem', flex: 1, color: 'var(--surface-200)' }}>{activeQuiz.title}</span>
+      <div className="promax-content-layer">
+        {showLoginGate && <LoginGateModal onClose={() => setShowLoginGate(false)} message="Inicia sesión para practicar con los exámenes EUNACOM reales."/>}
+        {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+
+        {/* Quiz Modal */}
+        {activeQuiz && (
+          <div className="promax-modal-backdrop">
+            <div className="promax-modal-panel" style={{ maxWidth: 680, maxHeight: '92vh', overflow: 'auto' }}>
+              <div className="promax-modal-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <BookOpen size={18} color="#38bdf8" />
+                  <span style={{ fontWeight: 800, fontSize: '0.95rem', color: '#f8fafc' }}>{activeQuiz.title}</span>
+                </div>
+                <button onClick={() => setActiveQuiz(null)} className="promax-modal-close-btn">
+                  <X size={18} />
+                </button>
+              </div>
+              <InlineQuiz questions={activeQuiz.questions} title={activeQuiz.title} onClose={() => setActiveQuiz(null)}/>
             </div>
-            <InlineQuiz questions={activeQuiz.questions} title={activeQuiz.title} onClose={() => setActiveQuiz(null)}/>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Exam Mode Modal */}
-      {selectedExam && !resumePrompt && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 480, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
-            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--surface-100)' }}>Modo de Examen</h3>
-              <button onClick={() => setSelectedExam(null)} style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer' }}><X size={20}/></button>
-            </div>
-            <div style={{ padding: '1.5rem' }}>
-              <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                Estás a punto de comenzar <strong>{selectedExam.name}</strong> ({selectedExam.total_questions} preguntas). ¿Cómo te gustaría rendirlo?
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <button onClick={() => handleStartExam(selectedExam, 'tutor')} style={{ display: 'flex', gap: '1rem', padding: '1.25rem', background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(99,102,241,0.15)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(99,102,241,0.1)'}>
-                  <div style={{ color: 'var(--primary-400)', marginTop: '0.2rem' }}><GraduationCap size={24}/></div>
-                  <div>
-                    <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>Modo Tutor</div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', lineHeight: 1.4 }}>Sin límite de tiempo. Obtén pistas y explicaciones en tiempo real para aprender de tus errores al instante.</div>
-                  </div>
+        {/* Exam Mode Modal */}
+        {selectedExam && !resumePrompt && (
+          <div className="promax-modal-backdrop">
+            <div className="promax-modal-panel" style={{ maxWidth: 500 }}>
+              <div className="promax-modal-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Award size={18} color="#38bdf8" />
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>Modo de Examen</h3>
+                </div>
+                <button onClick={() => setSelectedExam(null)} className="promax-modal-close-btn">
+                  <X size={18} />
                 </button>
-                <button onClick={() => handleStartExam(selectedExam, 'exam')} style={{ display: 'flex', gap: '1rem', padding: '1.25rem', background: 'rgba(251,191,36,0.1)', border: '1px solid rgba(251,191,36,0.3)', borderRadius: 10, cursor: 'pointer', textAlign: 'left', transition: 'all 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(251,191,36,0.15)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(251,191,36,0.1)'}>
-                  <div style={{ color: 'var(--accent-amber)', marginTop: '0.2rem' }}><Clock size={24}/></div>
-                  <div>
-                    <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '1.05rem', marginBottom: '0.25rem' }}>Modo Simulacro</div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--surface-400)', lineHeight: 1.4 }}>Igual que el EUNACOM. Tiempo calculado ({selectedExam.total_questions} minutos). Sin pistas hasta el final de la prueba.</div>
-                  </div>
-                </button>
+              </div>
+              <div style={{ padding: '1.6rem' }}>
+                <p style={{ color: '#94a3b8', marginBottom: '1.4rem', fontSize: '0.92rem', lineHeight: 1.5 }}>
+                  Estás a punto de comenzar <strong style={{ color: '#ffffff' }}>{selectedExam.name}</strong> ({selectedExam.total_questions} preguntas). Selecciona tu método de entrenamiento:
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <button
+                    onClick={() => handleStartExam(selectedExam, 'tutor')}
+                    style={{
+                      display: 'flex', gap: '1rem', padding: '1.25rem',
+                      background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.7) 100%)',
+                      border: '1px solid rgba(99, 102, 241, 0.35)',
+                      borderRadius: 16, cursor: 'pointer', textAlign: 'left',
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = '#818cf8'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.35)'; e.currentTarget.style.transform = 'none' }}
+                  >
+                    <div style={{
+                      width: 44, height: 44, borderRadius: 12,
+                      background: 'rgba(99, 102, 241, 0.25)', border: '1px solid rgba(99, 102, 241, 0.4)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#a5b4fc', flexShrink: 0
+                    }}>
+                      <GraduationCap size={22} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '1rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        Modo Tutor <span className="promax-badge-pill promax-badge-indigo">Recomendado</span>
+                      </div>
+                      <div style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.45 }}>
+                        Sin límite de tiempo. Obtén pistas y explicaciones en tiempo real para aprender de tus errores al instante.
+                      </div>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => handleStartExam(selectedExam, 'exam')}
+                    style={{
+                      display: 'flex', gap: '1rem', padding: '1.25rem',
+                      background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.7) 100%)',
+                      border: '1px solid rgba(245, 158, 11, 0.35)',
+                      borderRadius: 16, cursor: 'pointer', textAlign: 'left',
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = '#fbbf24'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245, 158, 11, 0.35)'; e.currentTarget.style.transform = 'none' }}
+                  >
+                    <div style={{
+                      width: 44, height: 44, borderRadius: 12,
+                      background: 'rgba(245, 158, 11, 0.25)', border: '1px solid rgba(245, 158, 11, 0.4)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#fde68a', flexShrink: 0
+                    }}>
+                      <Clock size={22} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '1rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        Modo Simulacro <span className="promax-badge-pill promax-badge-amber">Cronometrado</span>
+                      </div>
+                      <div style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.45 }}>
+                        Igual que el EUNACOM. Tiempo calculado ({selectedExam.total_questions} minutos). Sin pistas hasta el final de la prueba.
+                      </div>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Resume Prompt Modal */}
-      {resumePrompt && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(4px)' }}>
-          <div style={{ background: 'var(--surface-800)', borderRadius: 14, border: '1px solid var(--surface-600)', width: '100%', maxWidth: 400, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.6)' }}>
-            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--surface-700)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--surface-100)' }}>Examen en Curso</h3>
-              <button onClick={() => setResumePrompt(null)} style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer' }}><X size={20}/></button>
-            </div>
-            <div style={{ padding: '1.5rem' }}>
-              <p style={{ color: 'var(--surface-300)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                Tienes un intento previo de este examen. ¿Deseas retomarlo donde lo dejaste o empezar uno nuevo desde cero?
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <button onClick={() => handleResumeChoice(true)} className="btn-primary" style={{ padding: '0.85rem', fontWeight: 600, fontSize: '0.95rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
-                  <PlayCircle size={18}/> Continuar examen
+        {/* Resume Prompt Modal */}
+        {resumePrompt && (
+          <div className="promax-modal-backdrop">
+            <div className="promax-modal-panel" style={{ maxWidth: 440 }}>
+              <div className="promax-modal-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Clock size={18} color="#fbbf24" />
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>Examen en Curso</h3>
+                </div>
+                <button onClick={() => setResumePrompt(null)} className="promax-modal-close-btn">
+                  <X size={18} />
                 </button>
-                <button onClick={() => handleResumeChoice(false)} style={{ padding: '0.85rem', background: 'transparent', color: 'var(--surface-300)', border: '1px solid var(--surface-600)', borderRadius: 8, fontWeight: 600, fontSize: '0.95rem', cursor: 'pointer', transition: 'all 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                  Empezar de nuevo
-                </button>
+              </div>
+              <div style={{ padding: '1.5rem' }}>
+                <p style={{ color: '#94a3b8', marginBottom: '1.5rem', fontSize: '0.92rem', lineHeight: 1.5 }}>
+                  Tienes un intento previo de este examen. ¿Deseas retomarlo donde lo dejaste o empezar uno nuevo desde cero?
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <button
+                    onClick={() => handleResumeChoice(true)}
+                    className="btn-primary"
+                    style={{ padding: '0.9rem', fontWeight: 700, fontSize: '0.95rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', borderRadius: 12 }}
+                  >
+                    <PlayCircle size={18}/> Continuar examen
+                  </button>
+                  <button
+                    onClick={() => handleResumeChoice(false)}
+                    style={{
+                      padding: '0.85rem', background: 'rgba(255, 255, 255, 0.05)', color: '#cbd5e1',
+                      border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: 12, fontWeight: 700,
+                      fontSize: '0.92rem', cursor: 'pointer', transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'}
+                  >
+                    Empezar de nuevo
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        <div style={{ marginBottom: '1.25rem' }}>
-          <h1 className="page__title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Stethoscope size={26}/> Reconstrucciones EUNACOM
-          </h1>
-          <p style={{ color: 'var(--surface-400)', fontSize: '0.88rem', marginTop: '0.2rem' }}>
-            {index.total_exams} exámenes reales · {index.total_questions.toLocaleString()} preguntas
-          </p>
-        </div>
+        <div style={{ maxWidth: 880, margin: '0 auto' }}>
+          {/* Hero Bento Header */}
+          <div className="promax-hero-bento" style={{
+            '--hero-accent-gradient': 'linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #10b981 100%)'
+          }}>
+            <div className="promax-hero-header-row">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', flex: 1, minWidth: 260 }}>
+                <div className="promax-hero-avatar-box" style={{
+                  '--avatar-bg': 'linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%)',
+                  '--avatar-border': 'rgba(56, 189, 248, 0.4)',
+                  '--avatar-color': '#38bdf8',
+                  '--avatar-glow': 'rgba(56, 189, 248, 0.3)'
+                }}>
+                  <Stethoscope size={28} />
+                </div>
+                <div className="promax-hero-titles">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
+                    <h1>Reconstrucciones EUNACOM</h1>
+                    <span className="promax-badge-pill promax-badge-cyan">
+                      <Sparkles size={11} /> Exámenes Oficiales
+                    </span>
+                  </div>
+                  <p>
+                    {index.total_exams} exámenes recopilados y verificados · {index.total_questions.toLocaleString()} preguntas reales
+                  </p>
+                </div>
+              </div>
 
-        {/* Stats */}
-        <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-          {[
-            { icon: <FileText size={16}/>, label: 'Exámenes', value: index.total_exams, color: 'var(--primary-400)' },
-            { icon: <AlertCircle size={16}/>, label: 'Preguntas', value: index.total_questions.toLocaleString(), color: 'var(--accent-amber)' },
-            { icon: <CheckCircle2 size={16}/>, label: 'Completados', value: Object.keys(examResults).length, color: 'var(--accent-green)' },
-          ].map(s => (
-            <div key={s.label} style={{ flex: '1 1 110px', background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.65rem', border: '1px solid var(--surface-700)' }}>
-              <div style={{ color: s.color }}>{s.icon}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0 }}>
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Exámenes Rendidos
+                  </div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#ffffff', marginTop: '0.15rem' }}>
+                    {completedExamsCount} <span style={{ color: '#64748b', fontSize: '0.85rem' }}>/ {index.total_exams}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Bento Grid */}
+          <div className="promax-stats-grid">
+            <div className="promax-stat-card">
+              <div className="promax-stat-icon-wrap" style={{ background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
+                <FileText size={20} />
+              </div>
               <div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--surface-100)' }}>{s.value}</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{s.label}</div>
+                <div className="promax-stat-val">{index.total_exams}</div>
+                <div className="promax-stat-lbl">Exámenes</div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Tabs */}
-        <div style={{ display: 'flex', gap: 0, marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)' }}>
-          {[
-            { id: 'exams', label: '📋 Por examen' },
-            { id: 'topics', label: '🔥 Temas más preguntados' },
-          ].map(tab => (
-            <button key={tab.id} onClick={() => { setActiveTab(tab.id); setSelectedTopic(null) }} style={{ padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
-              {tab.label}
+            <div className="promax-stat-card">
+              <div className="promax-stat-icon-wrap" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
+                <AlertCircle size={20} />
+              </div>
+              <div>
+                <div className="promax-stat-val">{index.total_questions.toLocaleString()}</div>
+                <div className="promax-stat-lbl">Preguntas</div>
+              </div>
+            </div>
+
+            <div className="promax-stat-card">
+              <div className="promax-stat-icon-wrap" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
+                <CheckCircle2 size={20} />
+              </div>
+              <div>
+                <div className="promax-stat-val">{completedExamsCount}</div>
+                <div className="promax-stat-lbl">Completados</div>
+              </div>
+            </div>
+
+            <div className="promax-stat-card">
+              <div className="promax-stat-icon-wrap" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
+                <TrendingUp size={20} />
+              </div>
+              <div>
+                <div className="promax-stat-val" style={{ color: avgScoreAcrossExams >= 60 ? '#34d399' : '#ffffff' }}>
+                  {avgScoreAcrossExams !== null ? `${avgScoreAcrossExams}%` : '—'}
+                </div>
+                <div className="promax-stat-lbl">Promedio</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pro Max Tabs Switcher */}
+          <div className="promax-tab-bar">
+            <button
+              onClick={() => { setActiveTab('exams'); setSelectedTopic(null) }}
+              className={`promax-tab-btn ${activeTab === 'exams' ? 'active' : ''}`}
+            >
+              <FileText size={16} /> Por Examen Oficial
             </button>
-          ))}
-        </div>
+            <button
+              onClick={() => { setActiveTab('topics'); setSelectedTopic(null) }}
+              className={`promax-tab-btn ${activeTab === 'topics' ? 'active' : ''}`}
+            >
+              <Flame size={16} /> Temas Más Preguntados
+            </button>
+          </div>
 
-        {/* Tab: Exams */}
-        {activeTab === 'exams' && years.map(year => (
-          <div key={year} style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--surface-300)', marginBottom: '0.6rem', paddingBottom: '0.4rem', borderBottom: '1px solid var(--surface-700)' }}>{year}</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {examsByYear[year].map(exam => {
-                const result = examResults[exam.id]
-                const pct = result?.pct
-                const isLocked = hasExceededReconstructions;
-                return (
-                  <div key={exam.id} style={{ position: 'relative', background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', border: `1px solid ${result ? 'var(--surface-600)' : 'var(--surface-700)'}`, cursor: 'pointer', transition: 'all 0.15s' }}
-                    onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
-                    onMouseEnter={e => { if (!isLocked) { e.currentTarget.style.borderColor='var(--primary-400)'; e.currentTarget.style.transform='translateY(-1px)' } }}
-                    onMouseLeave={e => { if (!isLocked) { e.currentTarget.style.borderColor=result?'var(--surface-600)':'var(--surface-700)'; e.currentTarget.style.transform='none' } }}>
-                    
-                    {isLocked && (
-                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,17,32,0.6)', backdropFilter: 'blur(2px)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-700)', padding: '0.5rem 1rem', borderRadius: '10px', color: 'white', fontWeight: 600, fontSize: '0.85rem' }}>
-                          <Lock size={16} color="#fbbf24" /> Upgrade to Full Access
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div style={{ flex: 1, minWidth: 0, opacity: isLocked ? 0.5 : 1 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-                        <span style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--surface-100)' }}>{exam.name}</span>
-                        {!exam.questions_with_answers && <span style={{ fontSize: '0.62rem', padding: '0.12rem 0.45rem', borderRadius: '999px', background: 'rgba(251,191,36,0.15)', color: 'var(--accent-amber)' }}>Sin pauta</span>}
-                      </div>
-                      <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem', color: 'var(--surface-400)' }}>
-                        <span>{exam.total_questions} preguntas</span>
-                        {exam.month && <span>{exam.month} {exam.year}</span>}
-                        {exam.questions_with_answers > 0 && <span style={{ color: 'var(--accent-green)' }}>{exam.questions_with_answers} con respuesta</span>}
-                      </div>
-                      {result && (
-                        <div style={{ marginTop: '0.5rem' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--surface-400)', marginBottom: '0.2rem' }}>
-                            <span>{result.correct}/{result.answered} correctas</span>
-                            <span style={{ color: pct>=60?'var(--accent-green)':'var(--accent-red)', fontWeight: 700 }}>{pct}%</span>
-                          </div>
-                          <div style={{ height: 3, borderRadius: 2, background: 'var(--surface-700)', overflow: 'hidden' }}>
-                            <div style={{ height: '100%', width: `${pct}%`, background: pct>=60?'var(--accent-green)':'var(--accent-red)', transition: 'width 0.3s' }}/>
+          {/* Tab: Exams */}
+          {activeTab === 'exams' && years.map(year => (
+            <div key={year} style={{ marginBottom: '1.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.85rem' }}>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#ffffff', margin: 0 }}>{year}</h2>
+                <span className="promax-badge-pill promax-badge-cyan" style={{ fontSize: '0.68rem', padding: '0.15rem 0.5rem' }}>
+                  {examsByYear[year].length} {examsByYear[year].length === 1 ? 'Examen' : 'Exámenes'}
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {examsByYear[year].map(exam => {
+                  const result = examResults[exam.id]
+                  const pct = result?.pct
+                  const isLocked = hasExceededReconstructions;
+
+                  return (
+                    <div
+                      key={exam.id}
+                      className="promax-bento-card"
+                      style={{
+                        padding: '1.25rem 1.5rem',
+                        minHeight: 'auto',
+                        borderLeft: `4px solid ${result ? (pct >= 60 ? '#10b981' : '#ef4444') : '#38bdf8'}`,
+                        '--card-glow': 'rgba(56, 189, 248, 0.25)',
+                      }}
+                      onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
+                    >
+                      {isLocked && (
+                        <div style={{
+                          position: 'absolute', inset: 0, background: 'rgba(11, 17, 32, 0.75)',
+                          backdropFilter: 'blur(3px)', zIndex: 10, display: 'flex',
+                          alignItems: 'center', justifyContent: 'center', borderRadius: 24
+                        }}>
+                          <div style={{
+                            display: 'flex', alignItems: 'center', gap: '0.5rem',
+                            background: 'rgba(30, 41, 59, 0.95)', border: '1px solid rgba(251, 191, 36, 0.4)',
+                            padding: '0.6rem 1.2rem', borderRadius: 12, color: '#ffffff',
+                            fontWeight: 700, fontSize: '0.88rem', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
+                          }}>
+                            <Lock size={16} color="#fbbf24" /> Desbloquear Acceso Ilimitado
                           </div>
                         </div>
                       )}
-                    </div>
-                    <div style={{ color: 'var(--primary-400)', fontSize: '0.82rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.2rem', flexShrink: 0 }}>
-                      {result ? 'Repetir' : 'Iniciar'}<ChevronRight size={15}/>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        ))}
 
-        {/* Tab: Topics */}
-        {activeTab === 'topics' && (
-          <div>
-            {!selectedTopic ? (
-              <>
-                <div style={{ marginBottom: '1.25rem', padding: '0.85rem 1rem', background: 'rgba(99,102,241,0.08)', borderRadius: 10, border: '1px solid rgba(99,102,241,0.2)', fontSize: '0.84rem', color: 'var(--surface-300)', lineHeight: 1.6 }}>
-                  🔥 <strong style={{ color: 'var(--primary-300)' }}>Practica por tema.</strong> Haz clic en una especialidad para ver los temas más preguntados. Luego entra en un tema para ver el desglose exacto por subtema y practicar.
-                </div>
-                {topicIndex ? topicIndex.map((subject, i) => (
-                  <SubjectCard key={subject.subject} subject={subject} onSelectTopic={setSelectedTopic} isLocked={hasExceededReconstructions} onShowPayment={() => setShowPaymentModal(true)} />
-                )) : <p style={{ color: 'var(--surface-400)' }}>Cargando...</p>}
-              </>
-            ) : (
-              <TopicDetail topic={selectedTopic} onPractice={handlePractice} onBack={() => setSelectedTopic(null)}/>
-            )}
-          </div>
-        )}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div style={{ flex: 1, minWidth: 240, opacity: isLocked ? 0.4 : 1 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
+                            <span style={{ fontWeight: 800, fontSize: '1rem', color: '#ffffff' }}>
+                              {exam.name}
+                            </span>
+                            {!exam.questions_with_answers ? (
+                              <span className="promax-badge-pill promax-badge-amber" style={{ fontSize: '0.65rem' }}>
+                                Sin pauta
+                              </span>
+                            ) : (
+                              <span className="promax-badge-pill promax-badge-emerald" style={{ fontSize: '0.65rem' }}>
+                                <Check size={11} /> Con pauta oficial
+                              </span>
+                            )}
+                          </div>
+
+                          <div style={{ display: 'flex', gap: '1rem', fontSize: '0.78rem', color: '#94a3b8', flexWrap: 'wrap' }}>
+                            <span>{exam.total_questions} preguntas oficiales</span>
+                            {exam.month && <span>· {exam.month} {exam.year}</span>}
+                            {exam.questions_with_answers > 0 && (
+                              <span style={{ color: '#34d399', fontWeight: 600 }}>
+                                · {exam.questions_with_answers} justificadas
+                              </span>
+                            )}
+                          </div>
+
+                          {result && (
+                            <div style={{ marginTop: '0.75rem', maxWidth: 380 }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.74rem', color: '#94a3b8', marginBottom: '0.3rem' }}>
+                                <span>{result.correct} de {result.answered} correctas</span>
+                                <span style={{ color: pct >= 60 ? '#34d399' : '#f87171', fontWeight: 800 }}>{pct}%</span>
+                              </div>
+                              <div style={{ height: 6, borderRadius: 9999, background: 'rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}>
+                                <div style={{
+                                  height: '100%', width: `${pct}%`,
+                                  background: pct >= 60 ? 'linear-gradient(90deg, #10b981 0%, #34d399 100%)' : 'linear-gradient(90deg, #ef4444 0%, #f87171 100%)',
+                                  borderRadius: 9999, transition: 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                                }}/>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="promax-card-action-btn" style={{ flexShrink: 0 }}>
+                          {result ? 'Repetir' : 'Iniciar'} <ChevronRight size={15}/>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
+
+          {/* Tab: Topics */}
+          {activeTab === 'topics' && (
+            <div>
+              {!selectedTopic ? (
+                <>
+                  <div style={{
+                    marginBottom: '1.5rem', padding: '1rem 1.25rem',
+                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(15, 23, 42, 0.7) 100%)',
+                    borderRadius: 18, border: '1px solid rgba(99, 102, 241, 0.25)',
+                    fontSize: '0.88rem', color: '#cbd5e1', lineHeight: 1.6
+                  }}>
+                    🔥 <strong style={{ color: '#a5b4fc' }}>Práctica Estratégica por Tema.</strong> Haz clic en una especialidad para ver los temas más preguntados de exámenes anteriores y practica por subtema.
+                  </div>
+                  {topicIndex ? topicIndex.map((subject, i) => (
+                    <SubjectCard
+                      key={subject.subject}
+                      subject={subject}
+                      onSelectTopic={setSelectedTopic}
+                      isLocked={hasExceededReconstructions}
+                      onShowPayment={() => setShowPaymentModal(true)}
+                    />
+                  )) : (
+                    <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>
+                      Cargando índice de temas...
+                    </div>
+                  )}
+                </>
+              ) : (
+                <TopicDetail topic={selectedTopic} onPractice={handlePractice} onBack={() => setSelectedTopic(null)}/>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

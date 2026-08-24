@@ -56,10 +56,10 @@ export const TopicQuickModal = ({
           width: '100%',
           maxWidth: '560px',
           maxHeight: '90vh',
-          background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)',
+          background: 'var(--surface-800)',
           borderRadius: '24px',
-          border: '1.5px solid rgba(56, 189, 248, 0.3)',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.15)',
+          border: '1.5px solid var(--surface-600)',
+          boxShadow: 'var(--shadow-lg)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
@@ -84,8 +84,8 @@ export const TopicQuickModal = ({
           style={{
             position: 'relative',
             padding: '1.5rem 1.75rem 1.25rem',
-            background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'var(--surface-700)',
+            borderBottom: '1px solid var(--surface-600)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -113,21 +113,21 @@ export const TopicQuickModal = ({
               position: 'absolute',
               top: '1.25rem',
               right: '1.25rem',
-              background: 'rgba(255, 255, 255, 0.08)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              background: 'var(--surface-600)',
+              border: '1px solid var(--surface-500)',
               borderRadius: '50%',
               width: '32px',
               height: '32px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#94a3b8',
+              color: 'var(--surface-400)',
               cursor: 'pointer',
               zIndex: 10,
               transition: 'all 0.15s',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--surface-50)'; e.currentTarget.style.background = 'var(--surface-500)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--surface-400)'; e.currentTarget.style.background = 'var(--surface-600)' }}
           >
             <X size={18} />
           </button>
@@ -141,7 +141,7 @@ export const TopicQuickModal = ({
                 gap: '0.35rem',
                 fontSize: '0.72rem',
                 fontWeight: 700,
-                color: '#38bdf8',
+                color: '#0284c7',
                 background: 'rgba(56, 189, 248, 0.12)',
                 border: '1px solid rgba(56, 189, 248, 0.25)',
                 padding: '0.2rem 0.6rem',
@@ -153,10 +153,10 @@ export const TopicQuickModal = ({
             >
               <Sparkles size={12} /> {specialty || 'EUNACOM'}
             </div>
-            <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#ffffff', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+            <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
               {topic}
             </h2>
-            <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: '0.35rem 0 0' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--surface-400)', margin: '0.35rem 0 0', fontWeight: 500 }}>
               {lessons.length || classesCount} clases interactivas · {questionsCount > 0 ? `${questionsCount.toLocaleString()} preguntas reales` : 'Contenido completo de examen'}
             </p>
           </div>
@@ -181,15 +181,15 @@ export const TopicQuickModal = ({
             {/* Dominio Card */}
             <div
               style={{
-                background: 'rgba(15, 23, 42, 0.6)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
+                background: 'var(--surface-700)',
+                border: '1px solid var(--surface-600)',
                 borderRadius: '14px',
                 padding: '0.85rem',
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase' }}>Dominio</div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: displayMastery >= 70 ? '#34d399' : '#38bdf8', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase' }}>Dominio</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: displayMastery >= 70 ? '#059669' : '#0284c7', marginTop: '0.2rem' }}>
                 {displayMastery}%
               </div>
             </div>
@@ -197,15 +197,15 @@ export const TopicQuickModal = ({
             {/* Aciertos Card */}
             <div
               style={{
-                background: 'rgba(15, 23, 42, 0.6)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
+                background: 'var(--surface-700)',
+                border: '1px solid var(--surface-600)',
                 borderRadius: '14px',
                 padding: '0.85rem',
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase' }}>Aciertos</div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#34d399', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase' }}>Aciertos</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#059669', marginTop: '0.2rem' }}>
                 ✓ {correctCount}
               </div>
             </div>
@@ -213,15 +213,15 @@ export const TopicQuickModal = ({
             {/* Por Repasar Card */}
             <div
               style={{
-                background: 'rgba(15, 23, 42, 0.6)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
+                background: 'var(--surface-700)',
+                border: '1px solid var(--surface-600)',
                 borderRadius: '14px',
                 padding: '0.85rem',
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase' }}>Errores</div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: wrongCount > 0 ? '#f87171' : '#94a3b8', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase' }}>Errores</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: wrongCount > 0 ? '#dc2626' : 'var(--surface-400)', marginTop: '0.2rem' }}>
                 ✕ {wrongCount}
               </div>
             </div>
@@ -230,16 +230,16 @@ export const TopicQuickModal = ({
           {/* List of Lessons / Classes inside */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <h4 style={{ fontSize: '0.92rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+              <h4 style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--surface-50)', margin: 0 }}>
                 Clases del Tema ({lessons.length})
               </h4>
-              <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>
+              <span style={{ fontSize: '0.78rem', color: 'var(--surface-400)', fontWeight: 600 }}>
                 {completedClasses} completadas
               </span>
             </div>
 
             {lessons.length === 0 ? (
-              <div style={{ padding: '1.5rem', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', background: 'rgba(0,0,0,0.2)', borderRadius: '12px' }}>
+              <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--surface-400)', fontSize: '0.85rem', background: 'var(--surface-700)', borderRadius: '12px' }}>
                 No hay clases registradas en este tema aún.
               </div>
             ) : (
@@ -256,19 +256,19 @@ export const TopicQuickModal = ({
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         padding: '0.65rem 0.85rem',
-                        background: 'rgba(15, 23, 42, 0.5)',
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        background: 'var(--surface-700)',
+                        border: '1px solid var(--surface-600)',
                         borderRadius: '12px',
                         cursor: 'pointer',
-                        transition: 'background 0.15s, border-color 0.15s',
+                        transition: 'all 0.15s ease',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(56, 189, 248, 0.08)'
-                        e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.25)'
+                        e.currentTarget.style.background = 'rgba(56, 189, 248, 0.1)'
+                        e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.3)'
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(15, 23, 42, 0.5)'
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)'
+                        e.currentTarget.style.background = 'var(--surface-700)'
+                        e.currentTarget.style.borderColor = 'var(--surface-600)'
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1, minWidth: 0 }}>
@@ -277,8 +277,8 @@ export const TopicQuickModal = ({
                             width: '28px',
                             height: '28px',
                             borderRadius: '8px',
-                            background: isDone ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255, 255, 255, 0.08)',
-                            color: isDone ? '#34d399' : '#94a3b8',
+                            background: isDone ? 'rgba(16, 185, 129, 0.15)' : 'var(--surface-600)',
+                            color: isDone ? '#059669' : 'var(--surface-400)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -289,12 +289,12 @@ export const TopicQuickModal = ({
                         >
                           {isDone ? <CheckCircle2 size={16} /> : (lesson.lessonNumber || idx + 1)}
                         </div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#f8fafc', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--surface-50)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {lesson.topic}
                         </div>
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#38bdf8', fontSize: '0.75rem', fontWeight: 600 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#0284c7', fontSize: '0.75rem', fontWeight: 700 }}>
                         <span>Ver</span>
                         <ChevronRight size={14} />
                       </div>
@@ -310,8 +310,8 @@ export const TopicQuickModal = ({
         <div
           style={{
             padding: '1rem 1.75rem',
-            background: 'rgba(15, 23, 42, 0.9)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'var(--surface-700)',
+            borderTop: '1px solid var(--surface-600)',
             display: 'flex',
             gap: '0.75rem',
             justifyContent: 'flex-end',
