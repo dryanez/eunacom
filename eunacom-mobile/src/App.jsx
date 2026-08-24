@@ -57,9 +57,9 @@ function App() {
                 <Route path="/register" element={<RegisterIOS />} />
               </Route>
 
-              {/* Core Mobile App Layout */}
+              {/* Core Mobile Application Shell */}
               <Route element={<MobileAppLayout />}>
-                {/* 5 Mobbin-Standard Core Tabs */}
+                {/* 5 Core Tabs */}
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/mis-clases" element={<MisClases />} />
                 <Route path="/practica" element={<MobilePracticeHub />} />
@@ -78,7 +78,7 @@ function App() {
                 <Route path="/study-guides" element={<StudyGuides />} />
                 <Route path="/oferta" element={<Offer />} />
 
-                {/* Admin/Internal Tools */}
+                {/* Admin Tools */}
                 <Route path="/biblioteca" element={<Biblioteca />} />
                 <Route path="/script-progress" element={<ScriptProgress />} />
                 <Route path="/admin/users" element={<AdminUsers />} />

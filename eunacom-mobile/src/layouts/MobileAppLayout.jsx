@@ -7,6 +7,7 @@ import BottomNavigation from '../components/BottomNavigation'
 import Onboarding from '../components/Onboarding'
 import FounderPopup from '../components/FounderPopup'
 import MobilePaywallSheet from '../components/MobilePaywallSheet'
+import AuthModal from '../components/AuthModal'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 
 const LoadingScreen = () => (
@@ -76,10 +77,10 @@ export default function MobileAppLayout() {
 
   return (
     <div className="mobile-app-shell">
-      {/* Top Header */}
+      {/* Top Mobile Header */}
       <MobileHeader />
 
-      {/* Main Content Area */}
+      {/* Scrollable Page Content */}
       <main className="mobile-page-content">
         <Outlet />
       </main>
@@ -97,7 +98,10 @@ export default function MobileAppLayout() {
         <MobilePaywallSheet onClose={() => setShowPaymentModal(false)} />
       )}
 
-      {/* Founder Popup for early members */}
+      {/* Mobile Login / Register Modal */}
+      <AuthModal />
+
+      {/* Founder Popup */}
       <FounderPopup user={user} />
     </div>
   )

@@ -1,0 +1,124 @@
+{
+  "identifier" : "EUNACOM_StoreKit_Config",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "299990",
+      "familyShareable" : true,
+      "internalID" : "founder_001",
+      "localizations" : [
+        {
+          "description" : "Acceso vitalicio ilimitado a toda la plataforma EUNACOM",
+          "displayName" : "Pase Fundador Vitalicio",
+          "locale" : "es_CL"
+        }
+      ],
+      "productID" : "cl.eunacom.iap.founder.lifetime",
+      "referenceName" : "Founder Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_billingGracePeriodEnabled" : true,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "es_CL",
+    "_storefront" : "CHL",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "eunacom_subscriptions",
+      "localizations" : [
+        {
+          "description" : "Planes de Preparación EUNACOM",
+          "displayName" : "EUNACOM Pro",
+          "locale" : "es_CL"
+        }
+      ],
+      "name" : "EUNACOM Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "24990",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "sub_monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Acceso mensual completo a +6.000 preguntas y Tutor IA",
+              "displayName" : "Plan Mensual",
+              "locale" : "es_CL"
+            }
+          ],
+          "productID" : "cl.eunacom.subscription.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly Subscription",
+          "subscriptionGroupID" : "eunacom_subscriptions",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "119990",
+          "familyShareable" : true,
+          "groupNumber" : 2,
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Preparación completa semestral con Masterclasses y Simulacros",
+              "displayName" : "Plan Semestral",
+              "locale" : "es_CL"
+            }
+          ],
+          "productID" : "cl.eunacom.subscription.semestral",
+          "recurringSubscriptionPeriod" : "P6M",
+          "referenceName" : "Semestral Subscription",
+          "subscriptionGroupID" : "eunacom_subscriptions",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "189990",
+          "familyShareable" : true,
+          "groupNumber" : 3,
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Pase anual completo con garantía de aprobación EUNACOM",
+              "displayName" : "Plan Anual",
+              "locale" : "es_CL"
+            }
+          ],
+          "productID" : "cl.eunacom.subscription.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual Subscription",
+          "subscriptionGroupID" : "eunacom_subscriptions",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
