@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess, fetchAppSettings, updateAppSetting, fetchPaypalTransactions, downloadPaypalCsv } from '../lib/api'
+import {
+  fetchAdminUsers, fetchAdminUserDetail, grantPremiumAccess,
+  fetchAppSettings, updateAppSetting, fetchPaypalTransactions,
+  downloadPaypalCsv, fetchAdminFinances, downloadFinancesCsv
+} from '../lib/api'
 import {
   Users, Search, Globe, Calendar, Clock, BarChart3,
   ChevronDown, ChevronUp, X, BookOpen, ClipboardList,
   CheckCircle, AlertCircle, Phone, Mail, Star, Key, Send, Settings,
-  Download, CreditCard, HelpCircle, Building2
+  Download, CreditCard, HelpCircle, Building2, DollarSign,
+  TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight,
+  Sparkles, RefreshCw, Filter, CheckCircle2, XCircle, Tag as TagIcon,
+  Layers, ArrowRight
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
@@ -22,6 +29,16 @@ const fmtDateTime = (d) => {
   if (!d) return '—'
   try { return new Date(d).toLocaleString('es-CL', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) }
   catch { return d }
+}
+
+const fmtCLP = (val) => {
+  if (val === null || val === undefined) return '$0 CLP'
+  return `$${Math.round(Number(val)).toLocaleString('es-CL')} CLP`
+}
+
+const fmtUSD = (val) => {
+  if (val === null || val === undefined) return '$0.00 USD'
+  return `$${Number(val).toFixed(2)} USD`
 }
 
 const modeLabel = (mode) => {
@@ -313,17 +330,37 @@ const AdminUsers = () => {
   const [showCampaignModal, setShowCampaignModal] = useState(false)
   const [freemiumMode, setFreemiumMode] = useState('strict')
   const [updatingMode, setUpdatingMode] = useState(false)
-  const [activeTab, setActiveTab] = useState('users') // 'users' | 'paypal'
+  const [activeTab, setActiveTab] = useState('users') // 'users' | 'finances' | 'paypal'
   const [paypalTxns, setPaypalTxns] = useState([])
   const [paypalLoading, setPaypalLoading] = useState(false)
+  const [financesData, setFinancesData] = useState({ kpis: null, monthly: [], globalPlans: {}, transactions: [] })
+  const [financesLoading, setFinancesLoading] = useState(false)
+  const [financesSearch, setFinancesSearch] = useState('')
+  const [financesGateway, setFinancesGateway] = useState('all')
+  const [financesStatus, setFinancesStatus] = useState('all')
+  const [financesMonth, setFinancesMonth] = useState('all')
+  const [financesPlan, setFinancesPlan] = useState('all')
 
   useEffect(() => {
     if (user && isAdmin()) {
       loadUsers()
       loadSettings()
       loadPaypalTxns()
+      loadFinances()
     }
   }, [user])
+
+  const loadFinances = async () => {
+    setFinancesLoading(true)
+    try {
+      const data = await fetchAdminFinances(user.email)
+      setFinancesData(data)
+    } catch (e) {
+      console.error('Error loading finances:', e)
+    } finally {
+      setFinancesLoading(false)
+    }
+  }
 
   const loadUsers = async () => {
     setLoading(true)
@@ -470,7 +507,7 @@ const AdminUsers = () => {
       </div>
 
       {/* Tab Selector */}
-      <div style={{ display: 'flex', gap: '0.25rem', background: 'var(--surface-800)', padding: '0.25rem', borderRadius: 'var(--radius)', marginBottom: '1.5rem', width: 'fit-content' }}>
+      <div style={{ display: 'flex', gap: '0.25rem', background: 'var(--surface-800)', padding: '0.25rem', borderRadius: 'var(--radius)', marginBottom: '1.5rem', width: 'fit-content', flexWrap: 'wrap' }}>
         <button
           onClick={() => setActiveTab('users')}
           style={{
@@ -480,7 +517,18 @@ const AdminUsers = () => {
             color: activeTab === 'users' ? '#fff' : 'var(--surface-400)'
           }}
         >
-          <Users size={16} /> Usuarios
+          <Users size={16} /> Usuarios ({users.length})
+        </button>
+        <button
+          onClick={() => setActiveTab('finances')}
+          style={{
+            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: activeTab === 'finances' ? 'linear-gradient(135deg, #059669, #10b981)' : 'transparent',
+            color: activeTab === 'finances' ? '#fff' : 'var(--surface-400)'
+          }}
+        >
+          <DollarSign size={16} /> Finanzas & Ingresos {financesData?.kpis?.totalRevenueCLP ? `(${fmtCLP(financesData.kpis.totalRevenueCLP).replace(' CLP', '')})` : ''}
         </button>
         <button
           onClick={() => setActiveTab('paypal')}
@@ -702,6 +750,528 @@ const AdminUsers = () => {
       />
     </>
       )}
+
+      {/* ═══ FINANCES & REVENUE TAB ═══ */}
+      {activeTab === 'finances' && (() => {
+        const kpis = financesData?.kpis || {}
+        const monthly = financesData?.monthly || []
+        const globalPlans = financesData?.globalPlans || {}
+        const txns = financesData?.transactions || []
+
+        const filteredFinancesTxns = txns.filter(t => {
+          if (financesGateway !== 'all' && t.gateway !== financesGateway) return false
+          const isApproved = t.status === 'approved' || t.status === 'completed' || t.status === 'COMPLETED'
+          const isRejected = t.status === 'rejected' || t.status === 'cancelled'
+          if (financesStatus === 'approved' && !isApproved) return false
+          if (financesStatus === 'rejected' && !isRejected) return false
+          if (financesStatus === 'pending' && (isApproved || isRejected)) return false
+          if (financesMonth !== 'all' && !(t.date || '').startsWith(financesMonth)) return false
+          if (financesPlan !== 'all' && t.plan_id !== financesPlan) return false
+          if (financesSearch.trim()) {
+            const q = financesSearch.toLowerCase()
+            const match =
+              (t.payer_name || '').toLowerCase().includes(q) ||
+              (t.payer_email || '').toLowerCase().includes(q) ||
+              (t.user_name || '').toLowerCase().includes(q) ||
+              (t.user_email || '').toLowerCase().includes(q) ||
+              (t.id || '').toLowerCase().includes(q) ||
+              (t.user_university || '').toLowerCase().includes(q) ||
+              (t.user_country || '').toLowerCase().includes(q) ||
+              (t.user_whatsapp || '').toLowerCase().includes(q) ||
+              (t.external_reference || '').toLowerCase().includes(q)
+            if (!match) return false
+          }
+          return true
+        })
+
+        const maxMonthRevenue = Math.max(1, ...monthly.map(m => m.totalEstimatedCLP || 0))
+
+        return (
+          <>
+            {/* Finances Header Controls */}
+            <div style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.08), rgba(16, 185, 129, 0.04))',
+              border: '1px solid rgba(16, 185, 129, 0.2)',
+              borderRadius: 'var(--radius)', padding: '1.25rem', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, color: '#34d399', fontSize: '1.1rem' }}>
+                  <DollarSign size={20} /> Control de Ingresos & Facturación EUNACOM
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginTop: '0.2rem' }}>
+                  Recaudación exclusiva de la app mediante Mercado Pago (CLP) y PayPal (USD) · Tasa ref: 1 USD ≈ ${kpis.usdToClpRate || 930} CLP
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => downloadFinancesCsv(user.email)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.65rem 1.25rem', background: '#059669',
+                    border: 'none', borderRadius: 'var(--radius)', color: '#fff',
+                    fontWeight: 700, cursor: 'pointer', outline: 'none', fontSize: '0.88rem',
+                    boxShadow: '0 4px 12px rgba(5, 150, 105, 0.3)'
+                  }}
+                >
+                  <Download size={16} /> Descargar Reporte CSV
+                </button>
+                <button
+                  onClick={loadFinances}
+                  disabled={financesLoading}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.65rem 1rem', background: 'var(--surface-700)',
+                    border: '1px solid rgba(255,255,255,0.08)', borderRadius: 'var(--radius)', color: 'var(--surface-200)',
+                    fontWeight: 600, cursor: financesLoading ? 'wait' : 'pointer', outline: 'none', fontSize: '0.88rem'
+                  }}
+                >
+                  <RefreshCw size={15} style={{ animation: financesLoading ? 'spin 1s linear infinite' : 'none' }} />
+                  {financesLoading ? 'Actualizando...' : 'Refrescar'}
+                </button>
+              </div>
+            </div>
+
+            {/* Global KPI Cards Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.85rem', marginBottom: '1.75rem' }}>
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total Facturado</span>
+                  <Sparkles size={16} color="#34d399" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#34d399' }}>
+                  {fmtCLP(kpis.totalEstimatedCLP)}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  CLP + USD equivalentes
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(56, 189, 248, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Mercado Pago</span>
+                  <CreditCard size={16} color="#38bdf8" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#38bdf8' }}>
+                  {fmtCLP(kpis.totalRevenueCLP)}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  Neto estimado: <strong style={{ color: '#bae6fd' }}>{fmtCLP(kpis.totalNetCLP)}</strong>
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(96, 165, 250, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>PayPal Directo</span>
+                  <Globe size={16} color="#60a5fa" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#60a5fa' }}>
+                  {fmtUSD(kpis.totalRevenueUSD)}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  ≈ {fmtCLP((kpis.totalRevenueUSD || 0) * (kpis.usdToClpRate || 930))}
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(251, 191, 36, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{kpis.currentMonth?.monthLabel || 'Mes Actual'}</span>
+                  <Calendar size={16} color="#fbbf24" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#fbbf24' }}>
+                  {fmtCLP(kpis.currentMonth?.totalEstimatedCLP)}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  {kpis.currentMonth?.successfulCount || 0} compras este mes
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(168, 85, 247, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Ticket Promedio</span>
+                  <BarChart3 size={16} color="#c084fc" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#c084fc' }}>
+                  {fmtCLP(kpis.averageTicketCLP)}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  Por compra aprobada
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.1rem', border: '1px solid rgba(236, 72, 153, 0.25)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--surface-400)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tasa de Conversión</span>
+                  <CheckCircle size={16} color="#f472b6" />
+                </div>
+                <div style={{ fontSize: '1.55rem', fontWeight: 900, color: '#f472b6' }}>
+                  {kpis.totalApprovedCount > 0 ? `${Math.round((kpis.totalApprovedCount / (kpis.totalApprovedCount + (kpis.totalRejectedCount || 0))) * 100)}%` : '0%'}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '0.3rem' }}>
+                  {kpis.totalApprovedCount || 0} exitosas · {kpis.totalRejectedCount || 0} rechazadas
+                </div>
+              </div>
+            </div>
+
+            {/* Monthly Evolution Section */}
+            <div style={{
+              background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1.5rem',
+              border: '1px solid rgba(255,255,255,0.06)', marginBottom: '1.75rem'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div>
+                  <h2 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Calendar size={18} color="var(--primary-400)" /> Facturación Mes a Mes
+                  </h2>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--surface-400)', margin: '0.2rem 0 0 0' }}>
+                    Desglose cronológico de ingresos por pasarela y planes vendidos
+                  </p>
+                </div>
+                {financesMonth !== 'all' && (
+                  <button
+                    onClick={() => setFinancesMonth('all')}
+                    style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 4, padding: '4px 8px', color: '#fff', fontSize: '0.78rem', cursor: 'pointer' }}
+                  >
+                    Mostrar todos los meses ✕
+                  </button>
+                )}
+              </div>
+
+              {financesLoading ? (
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)' }}>Cargando desglose mensual...</div>
+              ) : monthly.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)' }}>No hay datos mensuales registrados aún.</div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {monthly.map(m => {
+                    const pct = Math.round((m.totalEstimatedCLP / maxMonthRevenue) * 100)
+                    const isSelectedMonth = financesMonth === m.monthKey
+                    return (
+                      <div
+                        key={m.monthKey}
+                        style={{
+                          background: isSelectedMonth ? 'rgba(5, 150, 105, 0.12)' : 'var(--surface-700)',
+                          border: isSelectedMonth ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(255,255,255,0.05)',
+                          borderRadius: 'var(--radius)', padding: '1.1rem', transition: 'all 0.2s'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.65rem' }}>
+                          <div>
+                            <span style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--surface-100)', marginRight: '0.75rem' }}>
+                              {m.monthLabel}
+                            </span>
+                            <span style={{ fontSize: '0.78rem', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: 4, color: 'var(--surface-300)' }}>
+                              {m.successfulCount} compras exitosas
+                            </span>
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                            <div style={{ textAlign: 'right' }}>
+                              <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#34d399' }}>
+                                {fmtCLP(m.totalEstimatedCLP)}
+                              </div>
+                              <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>
+                                MP: {fmtCLP(m.mpTotalCLP)} {m.paypalTotalUSD > 0 ? `· PayPal: ${fmtUSD(m.paypalTotalUSD)}` : ''}
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => setFinancesMonth(isSelectedMonth ? 'all' : m.monthKey)}
+                              style={{
+                                padding: '0.4rem 0.8rem',
+                                background: isSelectedMonth ? '#059669' : 'rgba(255,255,255,0.08)',
+                                border: 'none', borderRadius: 4, color: '#fff', fontSize: '0.78rem', fontWeight: 600,
+                                cursor: 'pointer'
+                              }}
+                            >
+                              {isSelectedMonth ? 'Filtrado ✓' : 'Filtrar transacciones'}
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Progress Bar */}
+                        <div style={{ width: '100%', height: 6, background: 'rgba(255,255,255,0.06)', borderRadius: 3, overflow: 'hidden', marginBottom: '0.75rem' }}>
+                          <div style={{ width: `${pct}%`, height: '100%', background: 'linear-gradient(90deg, #059669, #10b981)', borderRadius: 3 }} />
+                        </div>
+
+                        {/* Plan Badges for this month */}
+                        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                          {m.plans['1m']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(59, 130, 246, 0.15)', color: '#93c5fd', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['1m'].count}x 1 Mes ({fmtCLP(m.plans['1m'].totalCLP)})
+                            </span>
+                          )}
+                          {m.plans['3m']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(168, 85, 247, 0.15)', color: '#d8b4fe', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['3m'].count}x 3 Meses ({fmtCLP(m.plans['3m'].totalCLP)})
+                            </span>
+                          )}
+                          {m.plans['6m']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(236, 72, 153, 0.15)', color: '#f472b6', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['6m'].count}x 6 Meses ({fmtCLP(m.plans['6m'].totalCLP)})
+                            </span>
+                          )}
+                          {m.plans['1y']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(251, 191, 36, 0.15)', color: '#fcd34d', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['1y'].count}x 1 Año ({fmtCLP(m.plans['1y'].totalCLP)})
+                            </span>
+                          )}
+                          {m.plans['offer']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(20, 184, 166, 0.15)', color: '#5eead4', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['offer'].count}x Oferta ({fmtCLP(m.plans['offer'].totalCLP)})
+                            </span>
+                          )}
+                          {m.plans['donation']?.count > 0 && (
+                            <span style={{ fontSize: '0.74rem', background: 'rgba(249, 115, 22, 0.15)', color: '#fdba74', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
+                              {m.plans['donation'].count}x Donación ({fmtCLP(m.plans['donation'].totalCLP)})
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Plan Distribution Breakdown */}
+            <div style={{
+              background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1.5rem',
+              border: '1px solid rgba(255,255,255,0.06)', marginBottom: '1.75rem'
+            }}>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Layers size={18} color="var(--primary-400)" /> Distribución Global por Plan
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '0.75rem' }}>
+                {Object.entries(globalPlans).map(([pId, p]) => (
+                  <div
+                    key={pId}
+                    onClick={() => setFinancesPlan(financesPlan === pId ? 'all' : pId)}
+                    style={{
+                      background: financesPlan === pId ? 'rgba(5, 150, 105, 0.15)' : 'var(--surface-700)',
+                      border: financesPlan === pId ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.06)',
+                      borderRadius: 'var(--radius)', padding: '1rem', cursor: 'pointer', transition: 'all 0.2s'
+                    }}
+                  >
+                    <div style={{ fontSize: '0.78rem', color: 'var(--surface-400)', fontWeight: 600 }}>{p.name}</div>
+                    <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--surface-100)', marginTop: '0.2rem' }}>
+                      {fmtCLP(p.totalCLP)}
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: '#34d399', fontWeight: 600, marginTop: '0.2rem' }}>
+                      {p.count} ventas {financesPlan === pId ? '✓' : ''}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Unified Transactions Table with Filters */}
+            <div style={{
+              background: 'var(--surface-800)', borderRadius: 'var(--radius)', padding: '1.5rem',
+              border: '1px solid rgba(255,255,255,0.06)'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <div>
+                  <h2 style={{ fontSize: '1.15rem', fontWeight: 800, margin: 0 }}>
+                    Historial Unificado de Pagos ({filteredFinancesTxns.length})
+                  </h2>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--surface-400)', margin: '0.2rem 0 0 0' }}>
+                    Todas las transacciones registradas en Mercado Pago y PayPal
+                  </p>
+                </div>
+
+                {/* Filter Pills / Selectors */}
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  {/* Search */}
+                  <div style={{ position: 'relative', width: '220px' }}>
+                    <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />
+                    <input
+                      type="text"
+                      placeholder="Buscar por nombre, email, RUT..."
+                      value={financesSearch}
+                      onChange={e => setFinancesSearch(e.target.value)}
+                      style={{
+                        width: '100%', padding: '0.45rem 0.5rem 0.45rem 1.9rem',
+                        background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: 6, color: '#fff', fontSize: '0.8rem', outline: 'none'
+                      }}
+                    />
+                  </div>
+
+                  {/* Gateway */}
+                  <select
+                    value={financesGateway}
+                    onChange={e => setFinancesGateway(e.target.value)}
+                    style={{
+                      padding: '0.45rem 0.65rem', background: 'var(--surface-700)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#fff', fontSize: '0.8rem', outline: 'none'
+                    }}
+                  >
+                    <option value="all">Todas las Pasarelas</option>
+                    <option value="mercadopago">Mercado Pago</option>
+                    <option value="paypal">PayPal</option>
+                  </select>
+
+                  {/* Status */}
+                  <select
+                    value={financesStatus}
+                    onChange={e => setFinancesStatus(e.target.value)}
+                    style={{
+                      padding: '0.45rem 0.65rem', background: 'var(--surface-700)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#fff', fontSize: '0.8rem', outline: 'none'
+                    }}
+                  >
+                    <option value="all">Todos los Estados</option>
+                    <option value="approved">Aprobados / Completados</option>
+                    <option value="rejected">Rechazados / Fallidos</option>
+                    <option value="pending">Pendientes</option>
+                  </select>
+
+                  {/* Month */}
+                  <select
+                    value={financesMonth}
+                    onChange={e => setFinancesMonth(e.target.value)}
+                    style={{
+                      padding: '0.45rem 0.65rem', background: 'var(--surface-700)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#fff', fontSize: '0.8rem', outline: 'none'
+                    }}
+                  >
+                    <option value="all">Todos los Meses</option>
+                    {monthly.map(m => (
+                      <option key={m.monthKey} value={m.monthKey}>{m.monthLabel}</option>
+                    ))}
+                  </select>
+
+                  {/* Plan */}
+                  <select
+                    value={financesPlan}
+                    onChange={e => setFinancesPlan(e.target.value)}
+                    style={{
+                      padding: '0.45rem 0.65rem', background: 'var(--surface-700)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#fff', fontSize: '0.8rem', outline: 'none'
+                    }}
+                  >
+                    <option value="all">Todos los Planes</option>
+                    <option value="1m">1 Mes ($14.990)</option>
+                    <option value="3m">3 Meses ($34.990)</option>
+                    <option value="6m">6 Meses ($54.990)</option>
+                    <option value="1y">1 Año ($89.990)</option>
+                    <option value="offer">Oferta 1 Mes ($5.000)</option>
+                    <option value="donation">Donación ($9.000)</option>
+                  </select>
+                </div>
+              </div>
+
+              {financesLoading ? (
+                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--surface-400)' }}>Cargando transacciones...</div>
+              ) : filteredFinancesTxns.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--surface-400)' }}>
+                  No se encontraron transacciones con los filtros seleccionados.
+                </div>
+              ) : (
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.83rem' }}>
+                    <thead>
+                      <tr>
+                        <th style={thStyle}>Fecha</th>
+                        <th style={thStyle}>Pasarela</th>
+                        <th style={thStyle}>Plan / Concepto</th>
+                        <th style={thStyle}>Monto</th>
+                        <th style={thStyle}>Estado</th>
+                        <th style={thStyle}>Pagador</th>
+                        <th style={thStyle}>Usuario Plataforma</th>
+                        <th style={thStyle}>Universidad / País</th>
+                        <th style={thStyle}>ID / Ref</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredFinancesTxns.map(t => {
+                        const isApproved = t.status === 'approved' || t.status === 'completed' || t.status === 'COMPLETED'
+                        const isRejected = t.status === 'rejected' || t.status === 'cancelled'
+
+                        return (
+                          <tr key={`${t.gateway}_${t.id}`} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                            <TD style={{ whiteSpace: 'nowrap' }}>
+                              {fmtDateTime(t.date)}
+                            </TD>
+
+                            <TD>
+                              <span style={{
+                                display: 'inline-flex', alignItems: 'center', gap: 4,
+                                padding: '2px 8px', borderRadius: 4, fontSize: '0.75rem', fontWeight: 700,
+                                background: t.gateway === 'mercadopago' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(0, 48, 135, 0.3)',
+                                color: t.gateway === 'mercadopago' ? '#38bdf8' : '#93c5fd',
+                                border: t.gateway === 'mercadopago' ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid rgba(0, 48, 135, 0.5)'
+                              }}>
+                                {t.gateway === 'mercadopago' ? 'Mercado Pago' : 'PayPal'}
+                              </span>
+                            </TD>
+
+                            <TD>
+                              <span style={{
+                                background: t.plan_id === '1y' ? 'rgba(251, 191, 36, 0.15)' : t.plan_id === '6m' ? 'rgba(236, 72, 153, 0.15)' : t.plan_id === '3m' ? 'rgba(168, 85, 247, 0.15)' : 'rgba(59, 130, 246, 0.15)',
+                                color: t.plan_id === '1y' ? '#fcd34d' : t.plan_id === '6m' ? '#f472b6' : t.plan_id === '3m' ? '#d8b4fe' : 'var(--accent-blue)',
+                                padding: '2px 8px', borderRadius: 4, fontSize: '0.76rem', fontWeight: 600
+                              }}>
+                                {t.plan_name}
+                              </span>
+                            </TD>
+
+                            <TD style={{ fontWeight: 800, whiteSpace: 'nowrap' }}>
+                              <div>{t.currency === 'USD' ? fmtUSD(t.amount) : fmtCLP(t.amount)}</div>
+                              {t.fee > 0 && (
+                                <div style={{ fontSize: '0.7rem', color: 'var(--surface-400)', fontWeight: 400 }}>
+                                  Neto: {fmtCLP(t.net_amount)}
+                                </div>
+                              )}
+                            </TD>
+
+                            <TD>
+                              <span style={{
+                                background: isApproved ? 'rgba(16, 185, 129, 0.15)' : isRejected ? 'rgba(239, 68, 68, 0.15)' : 'rgba(251, 191, 36, 0.15)',
+                                color: isApproved ? '#34d399' : isRejected ? '#f87171' : '#fcd34d',
+                                padding: '2px 8px', borderRadius: 4, fontSize: '0.74rem', fontWeight: 700
+                              }}>
+                                {isApproved ? 'Aprobado ✓' : isRejected ? 'Rechazado ✕' : (t.status || 'Pendiente')}
+                              </span>
+                            </TD>
+
+                            <TD>
+                              <div style={{ fontWeight: 600, color: 'var(--surface-100)' }}>{t.payer_name || '—'}</div>
+                              <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)' }}>{t.payer_email || '—'}</div>
+                            </TD>
+
+                            <TD>
+                              {t.user_id ? (
+                                <div>
+                                  <div style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                                    {t.is_user_premium ? <Star size={12} fill="var(--accent-amber)" color="var(--accent-amber)" /> : null}
+                                    <span>{t.user_name || t.user_email}</span>
+                                  </div>
+                                  <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)' }}>{t.user_email}</div>
+                                </div>
+                              ) : (
+                                <span style={{ color: 'var(--surface-500)', fontSize: '0.75rem' }}>No registrado</span>
+                              )}
+                            </TD>
+
+                            <TD>
+                              <div>{t.user_university || t.user_country || '—'}</div>
+                              {t.user_whatsapp && <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{t.user_whatsapp}</div>}
+                            </TD>
+
+                            <TD style={{ fontSize: '0.72rem', color: 'var(--surface-400)', fontFamily: 'monospace' }}>
+                              <span title={t.id}>{t.id?.slice(0, 12)}...</span>
+                            </TD>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </>
+        )
+      })()}
 
       {/* ═══ PAYPAL TRANSACTIONS TAB ═══ */}
       {activeTab === 'paypal' && (

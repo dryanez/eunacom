@@ -285,6 +285,16 @@ export function downloadPaypalCsv(adminEmail) {
   window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
 }
 
+// ── FINANCES & REVENUE (Admin) ────────────────────────────────────────────────
+
+export async function fetchAdminFinances(adminEmail) {
+  return apiFetch(`/api/admin-finances?adminEmail=${encodeURIComponent(adminEmail)}`)
+}
+
+export function downloadFinancesCsv(adminEmail) {
+  window.open(`/api/admin-finances?adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+}
+
 // ── MAILING CAMPAIGNS ─────────────────────────────────────────────────────────
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {

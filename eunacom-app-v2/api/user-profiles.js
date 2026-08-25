@@ -63,48 +63,107 @@ export default async function handler(req, res) {
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
     }
 
-    // --- WEBHOOK HANDLING ---
-    if (req.method === 'POST' && req.body?.type) {
-      const type = req.body?.type;
-      const topic = req.body?.topic || req.query?.topic;
-      const action = req.body?.action;
-      
-      if (type === 'payment' || topic === 'payment' || action === 'payment.created') {
-        let paymentId = req.body?.data?.id || req.body?.resource || req.query?.id || req.query['data.id'];
-        if (!paymentId) return res.status(200).json({ received: true, msg: "Not a payment event or missing ID" })
-  
+    // --- MERCADO PAGO WEBHOOK & IPN HANDLING ---
+    const topic = req.query?.topic || req.body?.topic || req.query?.type || req.body?.type
+    const action = req.body?.action
+    const isMpWebhook =
+      topic === 'payment' ||
+      topic === 'merchant_order' ||
+      req.body?.type === 'payment' ||
+      (typeof action === 'string' && action.startsWith('payment.')) ||
+      (req.query?.id && req.query?.topic) ||
+      (req.query?.['data.id'] && (req.query?.type || req.query?.topic)) ||
+      Boolean(req.body?.data?.id && (req.body?.type === 'payment' || (typeof action === 'string' && action.startsWith('payment.'))))
+
+    if (isMpWebhook) {
+      try {
+        let paymentId =
+          req.body?.data?.id ||
+          req.query?.['data.id'] ||
+          req.query?.id ||
+          req.body?.id ||
+          (req.body?.resource ? String(req.body.resource).split('/').pop() : null)
+
+        if (topic === 'merchant_order' && paymentId) {
+          const moRes = await fetch(`https://api.mercadopago.com/merchant_orders/${paymentId}`, {
+            headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+          })
+          if (moRes.ok) {
+            const moData = await moRes.json()
+            const approvedPayment = moData.payments?.find(p => p.status === 'approved')
+            if (approvedPayment?.id) {
+              paymentId = approvedPayment.id
+            }
+          }
+        }
+
+        if (!paymentId) {
+          return res.status(200).json({ received: true, msg: 'Not a payment event or missing ID' })
+        }
+
+        console.log(`[MP Webhook] Processing payment ID: ${paymentId}`)
+
         const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
           headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
         })
-  
-        if (!mpRes.ok) return res.status(200).json({ received: true, msg: "Failed to fetch payment details" })
-  
+
+        if (!mpRes.ok) {
+          console.error(`[MP Webhook] Failed to fetch payment ${paymentId}: ${mpRes.status}`)
+          return res.status(200).json({ received: true, msg: 'Failed to fetch payment details' })
+        }
+
         const paymentData = await mpRes.json()
+        console.log(`[MP Webhook] Payment ${paymentId} status: ${paymentData.status}, ext_ref: ${paymentData.external_reference}`)
+
         if (paymentData.status === 'approved') {
           const externalReference = paymentData.external_reference
           if (externalReference) {
             const [userId, planId] = externalReference.split('|')
             if (userId) {
-               // Calculate expiration date
-               const now = new Date()
-               let planMonths = 1;
-               if (planId === '1m' || planId === 'offer') { now.setMonth(now.getMonth() + 1); planMonths = 1; }
-               else if (planId === '3m') { now.setMonth(now.getMonth() + 3); planMonths = 3; }
-               else if (planId === '6m') { now.setMonth(now.getMonth() + 6); planMonths = 6; }
-               else if (planId === '1y') { now.setFullYear(now.getFullYear() + 1); planMonths = 12; }
-               const premiumUntil = now.toISOString()
+              // Calculate expiration date - accumulate if existing subscription is active
+              const existing = await db.execute({
+                sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE id = ?`,
+                args: [userId]
+              }).catch(() => ({ rows: [] }))
 
-               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
-               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+              let baseDate = new Date()
+              if (existing.rows && existing.rows.length > 0 && existing.rows[0].premium_until) {
+                const currentExpires = new Date(existing.rows[0].premium_until)
+                if (currentExpires > baseDate) {
+                  baseDate = currentExpires
+                }
+              }
 
-               await db.execute({
-                 sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
-                 args: [premiumUntil, planMonths, userId]
-               })
+              let monthsToAdd = 1
+              if (planId === '1m' || planId === 'offer') monthsToAdd = 1
+              else if (planId === '3m') monthsToAdd = 3
+              else if (planId === '6m') monthsToAdd = 6
+              else if (planId === '1y') monthsToAdd = 12
+
+              if (monthsToAdd === 12) {
+                baseDate.setFullYear(baseDate.getFullYear() + 1)
+              } else {
+                baseDate.setMonth(baseDate.getMonth() + monthsToAdd)
+              }
+              const premiumUntil = baseDate.toISOString()
+
+              await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
+              await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
+              await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+
+              await db.execute({
+                sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
+                args: [premiumUntil, monthsToAdd, userId]
+              })
+
+              console.log(`[MP Webhook] Premium activated for ${userId} until ${premiumUntil}`)
             }
           }
         }
         return res.status(200).json({ received: true })
+      } catch (err) {
+        console.error('[MP Webhook] Error:', err)
+        return res.status(200).json({ received: true, error: err.message })
       }
     }
 
