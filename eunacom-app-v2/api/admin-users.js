@@ -1,5 +1,6 @@
 import { getTurso } from './_turso.js'
 import { Resend } from 'resend'
+import financesHandler from './admin-finances.js'
 
 // Admin-only endpoint — lists all user profiles + stats
 export default async function handler(req, res) {
@@ -74,6 +75,11 @@ export default async function handler(req, res) {
 
       if (adminEmail !== 'dr.felipeyanez@gmail.com') {
         return res.status(403).json({ error: 'Forbidden' })
+      }
+
+      // Finances route
+      if (action === 'finances') {
+        return financesHandler(req, res)
       }
 
       // Temporary cleanup route
