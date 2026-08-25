@@ -75,6 +75,6 @@
         { "source": "/api/(.*)", "destination": "/api/$1" },
         { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
         { "source": "/robots.txt", "destination": "/robots.txt" },
-        { "source": "/((?!assets/|data/|img/|favicon.ico|manifest.webmanifest|sw.js|workbox-.*|sitemap\\.xml|robots\\.txt|.*\\.png|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.json).*)", "destination": "/index.html" }
+        { "source": "/((?!api/|assets/|data/|img/|favicon.ico|manifest.webmanifest|sw.js|workbox-.*|sitemap\\.xml|robots\\.txt|.*\\.png|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.json).*)", "destination": "/index.html" }
     ]
 }
