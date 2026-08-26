@@ -1,6 +1,6 @@
 import { getTurso } from './_turso.js'
 import { Resend } from 'resend'
-import financesHandler from './admin-finances.js'
+import financesHandler from './_admin-finances.js'
 
 // Admin-only endpoint — lists all user profiles + stats
 export default async function handler(req, res) {
