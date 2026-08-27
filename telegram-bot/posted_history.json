@@ -1,0 +1,218 @@
+{
+  "postedIds": [
+    "49c187c8-48e0-47e6-b832-45c541bac901",
+    "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
+    "9bf4d0e5-5659-4012-9776-cc3964ab529f",
+    "84b125a7-a009-4635-b23b-8ae44c394fdd",
+    "csv_Reumatología_328_1776130338245",
+    "a3280366-594c-4701-a918-626ffb695469",
+    "ea7ac807-762a-475b-990c-1818d35cd1de",
+    "816e80b8-2a74-4c4b-9968-c16767891540",
+    "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
+    "cbe7794f-84da-4052-a48f-cac7c0a36a38",
+    "csv_Cardiología_20_1776129957533"
+  ],
+  "channelHistory": {
+    "@exameneunacom": [
+      "49c187c8-48e0-47e6-b832-45c541bac901",
+      "84b125a7-a009-4635-b23b-8ae44c394fdd",
+      "ea7ac807-762a-475b-990c-1818d35cd1de",
+      "cbe7794f-84da-4052-a48f-cac7c0a36a38"
+    ],
+    "@eunacomteorico2026": [
+      "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
+      "9bf4d0e5-5659-4012-9776-cc3964ab529f",
+      "csv_Reumatología_328_1776130338245",
+      "816e80b8-2a74-4c4b-9968-c16767891540",
+      "csv_Cardiología_20_1776129957533"
+    ],
+    "@Preguntas_Eunacom": [
+      "a3280366-594c-4701-a918-626ffb695469",
+      "2a342247-a3d1-4555-a31f-59f3db8c2c2d"
+    ]
+  },
+  "history": [
+    {
+      "postedAt": "2026-08-25T12:06:26.022Z",
+      "channels": [
+        {
+          "channelId": "@preguntas_eunacom",
+          "questionId": "8110b268-4a36-4a75-a08b-b3f4e9c00c73",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Bad Request: chat not found (Code: 400)"
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "4ec78edd-af45-43e3-8f2f-40fc1c310bf2",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Forbidden: bot is not a member of the channel chat (Code: 403)"
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "a2a8c245-2f9a-4d72-a44b-0534a11dbbaf",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Forbidden: bot is not a member of the channel chat (Code: 403)"
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-25T12:39:35.978Z",
+      "channels": [
+        {
+          "channelId": "@preguntas_eunacom",
+          "questionId": "f163baea-4a99-4dba-85ba-6eefe8bfaa29",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Bad Request: chat not found (Code: 400)"
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "49c187c8-48e0-47e6-b832-45c541bac901",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 2,
+          "pollMessageId": 3,
+          "explanationMessageId": 4
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 2,
+          "pollMessageId": 3,
+          "explanationMessageId": 4
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-25T12:39:56.643Z",
+      "channels": [
+        {
+          "channelId": "@preguntaseunacom",
+          "questionId": "e9349d86-c2b8-4c3c-878c-7b3b73093e41",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Forbidden: bot is not a member of the channel chat (Code: 403)"
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-25T12:47:08.137Z",
+      "channels": [
+        {
+          "channelId": "@preguntaseunacom",
+          "questionId": "73c08b58-ada7-44ed-a9c9-8fc1a40702ad",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Forbidden: bot is not a member of the channel chat (Code: 403)"
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "f7a6d53d-ce53-4396-920b-9f6e4f6e06e1",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 1701 (Code: 400)"
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "9bf4d0e5-5659-4012-9776-cc3964ab529f",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 7,
+          "pollMessageId": 8,
+          "explanationMessageId": 9
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-25T12:47:31.504Z",
+      "channels": [
+        {
+          "channelId": "@preguntaseunacom",
+          "questionId": "a66fcc4c-a15e-40ea-a45e-e0f16cfdc88f",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Forbidden: bot is not a member of the channel chat (Code: 403)"
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "84b125a7-a009-4635-b23b-8ae44c394fdd",
+          "topic": "Respiratorio",
+          "success": true,
+          "vignetteMessageId": 9,
+          "pollMessageId": 10,
+          "explanationMessageId": 11
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "csv_Reumatología_328_1776130338245",
+          "topic": "Reumatología",
+          "success": true,
+          "vignetteMessageId": 10,
+          "pollMessageId": 11,
+          "explanationMessageId": 12
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-25T12:49:11.306Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "a3280366-594c-4701-a918-626ffb695469",
+          "topic": "Neurología",
+          "success": true,
+          "vignetteMessageId": 3,
+          "pollMessageId": 4,
+          "explanationMessageId": 5
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "ea7ac807-762a-475b-990c-1818d35cd1de",
+          "topic": "Pediatría",
+          "success": true,
+          "vignetteMessageId": 12,
+          "pollMessageId": 13,
+          "explanationMessageId": 14
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "816e80b8-2a74-4c4b-9968-c16767891540",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 13,
+          "pollMessageId": 14,
+          "explanationMessageId": 15
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-27T16:46:12.831Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
+          "topic": "Dermatología",
+          "success": true,
+          "vignetteMessageId": 6,
+          "pollMessageId": 7,
+          "explanationMessageId": 8
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "cbe7794f-84da-4052-a48f-cac7c0a36a38",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 15,
+          "pollMessageId": 16,
+          "explanationMessageId": 17
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "csv_Cardiología_20_1776129957533",
+          "topic": "Cardiología",
+          "success": true,
+          "vignetteMessageId": 16,
+          "pollMessageId": 17,
+          "explanationMessageId": 18
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+name: Daily EUNACOM Telegram Quiz Broadcast
+
+on:
+  schedule:
+    # Runs everyday at 12:00 UTC (09:00 AM America/Santiago standard time)
+    - cron: '0 12 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  broadcast-daily-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish Daily EUNACOM Quiz to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_IDS: ${{ secrets.TELEGRAM_CHANNEL_IDS }}
+          SITE_URL: 'https://www.eunacomapp.cl'
+        run: |
+          node telegram-bot/publish_daily_quiz.js
+
+      - name: Commit and push updated history
+        run: |
+          git config --global user.name "EUNACOM Bot"
+          git config --global user.email "bot@eunacomapp.cl"
+          git add telegram-bot/posted_history.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(telegram): update posted question history [skip ci]" && git push)

@@ -25,3 +25,8 @@ dist-ssr
 public/videos
 *.pdf
 eunacom-app-v2/book/*.pdf
+
+# Environment Variables
+*.env
+.env
+.env.*
