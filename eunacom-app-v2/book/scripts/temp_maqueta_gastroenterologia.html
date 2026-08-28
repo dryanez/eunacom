@@ -1,0 +1,545 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Spectral:wght@400;600;700&display=swap');
+:root{--acc:#15803d;--acc-d:#116631;--acc-dp:#0d4d25;--acc-t:#eff6f1;--acc-p:#c2decd;--acc-l:#96c6a8;--acc-ink:#09361a}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0 0 22px}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:#15181d;font-size:10.2px;line-height:1.5;background:#fff}
+
+/* cada sección = una tabla; el <thead> (banda de color) se repite en cada página */
+.secwrap{width:794px;border-collapse:collapse;table-layout:fixed;page-break-after:always}
+.secwrap:last-child{page-break-after:auto}
+.secwrap thead{display:table-header-group}
+.secwrap>thead>tr>td{padding:0}
+.gbar{height:22px;background:var(--acc);-webkit-print-color-adjust:exact;display:flex;align-items:center;justify-content:center;
+  font:700 8.5px/1 'IBM Plex Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#fff7ed}
+.gbar.green{background:#166534}
+.secbody{padding:18px 42px 14px;vertical-align:top}
+.secbody.flush{padding:0}
+.watch-row{margin-top:8px}
+
+.eyebrow{display:block;font:600 9px/1.3 'IBM Plex Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--acc-d)}
+.mono{font-family:'JetBrains Mono',monospace}
+.rule{height:3px;background:var(--acc);margin-top:8px}
+.rule.green{background:#166534}
+.pg-lead h2{font:700 25px/1.15 'Spectral',serif;letter-spacing:-.01em;margin-top:3px}
+.pg-lead-p{font:400 10.2px/1.5 'IBM Plex Sans',sans-serif;color:#475569;max-width:640px;margin-top:6px}
+
+/* COVER */
+.cover{position:relative;background:#0f172a;color:#fff;height:1079px;overflow:hidden}
+.cover-spine{position:absolute;left:0;top:0;bottom:0;width:38px;background:var(--acc);display:flex;align-items:center;justify-content:center}
+.cover-spine span{font:700 10px/1 'IBM Plex Sans',sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--acc-t);writing-mode:vertical-rl;transform:rotate(180deg)}
+.cover-inner{position:absolute;inset:0 0 0 38px;padding:54px 58px 46px;display:flex;flex-direction:column}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cover-eyebrow{display:flex;flex-direction:column;gap:6px}
+.cover-eyebrow .l1{font:700 12px/1 'IBM Plex Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--acc-l)}
+.cover-eyebrow .l2{font:400 10px/1 'IBM Plex Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#94a3b8}
+.cover-codebox{border:1px solid #334155;padding:8px 12px;display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+.cover-codebox .k{font:400 8px/1 'JetBrains Mono',monospace;letter-spacing:.1em;color:#94a3b8}
+.cover-codebox .v{font:700 9.5px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.cover-hero{margin-top:104px;display:flex;flex-direction:column;gap:16px}
+.cover-numrow{display:flex;align-items:flex-end;gap:22px}
+.bignum{font:700 144px/.8 'Barlow Condensed',sans-serif;color:var(--acc);letter-spacing:-.02em}
+.cover-numlabel{display:flex;flex-direction:column;gap:4px;padding-bottom:14px}
+.cover-numlabel .k{font:600 10px/1 'IBM Plex Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#94a3b8}
+.cover-numlabel .v{font:700 42px/.9 'Barlow Condensed',sans-serif;color:#475569}
+.cover h1{font:700 72px/.95 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+.cover-rule{height:4px;width:300px;background:var(--acc)}
+.cover-desc{max-width:540px;font:400 13px/1.55 'IBM Plex Sans',sans-serif;color:#cbd5e1}
+.cover-foot{margin-top:auto;display:flex;flex-direction:column;gap:16px}
+.cover-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#1e293b;border:1px solid #1e293b}
+.cover-stats>div{background:#0f172a;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.cover-stats .n{font:700 26px/1 'Barlow Condensed',sans-serif;color:var(--acc-l)}
+.cover-stats .t{font:400 9px/1.3 'IBM Plex Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8}
+.cover-foot-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.cover-foot-row span{font:400 9px/1.5 'IBM Plex Sans',sans-serif;color:#64748b;max-width:430px}
+.cover-foot-row .brand{font:700 10px/1.4 'IBM Plex Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-align:right}
+.cover-foot-row .brand em{font-weight:400;font-style:normal;color:#64748b}
+
+/* ÍNDICE */
+.idx-chap{margin-top:18px}
+.idx-chap-head{display:flex;align-items:baseline;gap:12px}
+.idx-cn{font:700 26px/1 'Barlow Condensed',sans-serif;color:var(--acc);width:34px;flex:none}
+.idx-ct{flex:1;font:700 13px/1.3 'IBM Plex Sans',sans-serif}
+.idx-cp{font:700 12px/1 'JetBrains Mono',monospace;color:#1e3a8a}
+.idx-topics{display:flex;flex-direction:column;gap:3px;padding-left:46px;margin-top:5px}
+.idx-t{display:flex;align-items:baseline;gap:8px;font:400 11px/1.5 'IBM Plex Sans',sans-serif}
+.idx-dots{flex:1;border-bottom:1px dotted #cbd5e1;position:relative;top:-3px}
+.idx-tp{font:400 10px/1 'JetBrains Mono',monospace;color:#475569}
+.idx-sol{margin-top:20px;display:flex;align-items:baseline;gap:12px;background:#f1f5f9;padding:9px 12px;border-left:3px solid #16a34a}
+.idx-sol-t{flex:1;font:700 12px/1.3 'IBM Plex Sans',sans-serif}
+.idx-sol-p{font:700 12px/1 'JetBrains Mono',monospace;color:#166534}
+
+/* CARDS */
+.card{border:1px solid #cbd5e1;margin-top:12px;break-inside:avoid}
+.card-accent{border-top:3px solid var(--acc)}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 12px;background:var(--acc-t);border-bottom:1px solid var(--acc-p);font:700 9.5px/1.25 'IBM Plex Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--acc-dp)}
+.card-head.navy{background:#1e3a8a;border-bottom:none;color:#fff}
+.card-head.grey{background:#f8fafc;border-bottom:1px solid #cbd5e1;color:#334155}
+.card-head.dark{background:#1e293b;border-bottom:none;color:#fff}
+.pill{font:700 8px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:2px;white-space:nowrap}
+.pill.dark{background:var(--acc-dp);color:#fff}
+.pill.light{background:#fff;color:#1e3a8a}
+.pill.plain{background:transparent;color:#64748b;padding:0;font-weight:600}
+.pill.outline{background:var(--acc-t);border:1px solid var(--acc-p);color:var(--acc-dp)}
+.pill.mono{font-family:'JetBrains Mono',monospace;letter-spacing:.02em}
+.card-body-p{padding:9px 12px;font:400 10px/1.5 'IBM Plex Sans',sans-serif;text-align:justify;hyphens:auto}
+.dtbl{width:100%;border-collapse:collapse;font-size:9px}
+.dtbl th{text-align:left;padding:4.5px 8px;font:700 8px/1.2 'IBM Plex Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#1e3a8a;background:#e2e8f0}
+.dtbl td{padding:4.5px 8px;border-bottom:1px solid #eef2f6;vertical-align:top;line-height:1.35}
+.dtbl tr.alt td{background:#f1f5f9}
+.dtbl td.mono{font-family:'JetBrains Mono',monospace;font-size:8px}
+.dtbl td.ges{color:#1e3a8a;font-weight:600}
+.dtbl td.do{font-weight:600}
+.dtbl td.err{color:#991b1b}
+
+/* PORTADILLA */
+.op-title{display:flex;align-items:flex-start;gap:18px}
+.op-num{font:700 58px/.9 'Barlow Condensed',sans-serif;color:var(--acc)}
+.op-title h1{font:700 25px/1.15 'IBM Plex Sans',sans-serif;letter-spacing:-.02em;max-width:600px;margin-top:2px}
+.hist-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e2e8f0}
+.hist-item{background:#fff;padding:6px 10px;display:flex;flex-direction:column;gap:2px}
+.hist-tag{font:700 8px/1 'JetBrains Mono',monospace;color:var(--acc)}
+.hist-txt{font:400 9.5px/1.35 'IBM Plex Sans',sans-serif}
+.concept-list{display:flex;flex-direction:column}
+.concept{padding:7px 12px;border-bottom:1px solid #eef2f6;font:400 10px/1.45 'IBM Plex Sans',sans-serif}
+.concept:last-child{border-bottom:none}
+.concept.trap{background:#fef2f2;color:#991b1b;border-bottom-color:#fecaca}
+.concept.trap strong{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase}
+
+/* TEMA */
+.topic-title h2{font:700 20px/1.2 'IBM Plex Sans',sans-serif;letter-spacing:-.02em;margin-top:3px}
+.topic-eyebrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-right:150px}
+.lnk{font:700 8px/1.3 'IBM Plex Sans',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--acc);padding:4px 9px;border-radius:3px;text-decoration:none;white-space:nowrap}
+.lnk.ghost{background:transparent;color:var(--acc-d);border:1px solid var(--acc-p);text-transform:none;letter-spacing:.01em}
+.contexto{margin-top:10px;border-left:3px solid var(--acc);background:var(--acc-t);padding:7px 12px;break-inside:avoid}
+.contexto-tag{font:700 8px/1 'IBM Plex Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-dp)}
+.contexto p{margin-top:3px;font:400 9.6px/1.5 'IBM Plex Sans',sans-serif;color:#334155;text-align:justify}
+.qbank-foot{border:1px solid #cbd5e1;border-top:none;padding:7px 10px;display:flex;justify-content:flex-end}
+.prose{padding:14px 0 0;column-count:2;column-gap:22px;font:400 10.2px/1.5 'IBM Plex Sans',sans-serif;text-align:justify;hyphens:auto}
+.prose h3{font:700 9px/1.3 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-d);margin:10px 0 5px;break-after:avoid}
+.prose h3:first-child{margin-top:0}
+.prose p{margin:0 0 8px}
+.prose strong{color:#1e3a8a}
+.figblock{margin:14px 0 4px;break-inside:avoid}
+.figblock.full{column-span:all;-webkit-column-span:all}
+.figrow{display:flex;flex-wrap:wrap;gap:14px 16px;justify-content:center;align-items:flex-end}
+.figrow .fx{margin:0;display:flex;flex-direction:column;gap:5px;align-items:center;max-width:100%}
+.figrow .fx img{display:block;width:auto;height:auto;max-width:100%;border:1px solid #e2e8f0;border-radius:3px;background:#fff}
+.figblock.full .fx img{max-height:340px}
+.figblock.wide .fx img{max-height:250px}
+.figrow .fx figcaption{font:600 7.6px/1.3 'IBM Plex Sans',sans-serif;letter-spacing:.03em;text-transform:uppercase;color:#64748b;text-align:center;max-width:280px}
+.figrow .fx figcaption b{color:#1e3a8a}
+.figcap{margin-top:8px;font:400 8.8px/1.45 'IBM Plex Sans',sans-serif;color:#334155;text-align:justify}
+.figcap b{color:var(--acc-d);font-weight:700}
+.figblock.full .figcap{max-width:720px;margin-left:auto;margin-right:auto}
+.algo-card{border:1px solid #cbd5e1;margin:14px 0 4px;column-span:all;-webkit-column-span:all;break-inside:avoid}
+.algo-head{padding:6px 12px;background:#f1f5f9;border-bottom:1px solid #cbd5e1;font:700 9.5px/1.25 'IBM Plex Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:#1e3a8a}
+.algo-body{padding:10px 12px;display:flex;justify-content:center}
+.algo-body svg{width:100%!important;max-width:100%!important;height:auto!important;display:block}
+.tbl-card{break-inside:avoid;margin-top:12px}
+.case-row{display:flex;gap:14px;margin-top:12px;break-inside:avoid}
+.case{flex:1.35;border:1px solid #cbd5e1;border-left:4px solid #1e3a8a;display:flex;flex-direction:column}
+.case-head{display:flex;justify-content:space-between;padding:5px 10px;background:#f8fafc;border-bottom:1px solid #e2e8f0;font:700 9px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1e3a8a}
+.case-head .mono{color:#64748b}
+.case-body{padding:8px 10px;display:flex;flex-direction:column;gap:5px}
+.case-body p{font:400 9.6px/1.45 'IBM Plex Sans',sans-serif;text-align:justify}
+.case-body .conducta{color:#334155}
+.case-body .conducta strong{color:var(--acc-d)}
+.rules{flex:1;border:1px solid var(--acc-p);background:var(--acc-t);display:flex;flex-direction:column}
+.rules-head{padding:5px 10px;border-bottom:1px solid var(--acc-p);font:700 9px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-dp)}
+.rules-body{padding:8px 10px;display:flex;flex-direction:column;gap:4px;font:400 9.4px/1.4 'IBM Plex Sans',sans-serif;color:var(--acc-ink)}
+.qbank{margin-top:12px;break-inside:avoid}
+.qbank-head{display:flex;justify-content:space-between;align-items:center;padding:5px 10px;background:#1e293b;font:700 9px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.qbank-note{font-weight:600;font-size:8px;color:#94a3b8}
+.qbank-body{display:flex;gap:14px;border:1px solid #cbd5e1;border-top:none;padding:9px 10px}
+.q{flex:1;display:flex;flex-direction:column;gap:3px}
+.q-tag{font:700 8px/1 'JetBrains Mono',monospace;color:var(--acc)}
+.q-stem{font:400 9.6px/1.4 'IBM Plex Sans',sans-serif;text-align:justify}
+.q-opts{font:400 9.2px/1.5 'IBM Plex Sans',sans-serif;color:#334155}
+
+/* SÍNTESIS */
+.synth-title{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.synth-title h2{font:700 20px/1.2 'IBM Plex Sans',sans-serif;letter-spacing:-.02em;margin-top:3px}
+.synth-two{display:flex;gap:12px;align-items:flex-start}
+.synth-two .card{flex:1;margin-top:12px}
+.cifra-grid{padding:8px 10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cifra{display:flex;flex-direction:column}
+.cifra-n{font:700 16px/1.1 'Barlow Condensed',sans-serif;color:#1e3a8a}
+.cifra-t{font:400 8.8px/1.3 'IBM Plex Sans',sans-serif;color:#475569}
+.mnemo{padding:8px 10px;display:flex;flex-direction:column;gap:6px;font:400 9.6px/1.4 'IBM Plex Sans',sans-serif;color:var(--acc-ink)}
+.ges-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#e2e8f0}
+.ges-item{background:#fff;padding:7px 10px;display:flex;flex-direction:column;gap:2px}
+.ges-t{font:700 9px/1.2 'IBM Plex Sans',sans-serif;color:#1e3a8a}
+.ges-d{font:400 8.6px/1.3 'IBM Plex Sans',sans-serif;color:#475569}
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e2e8f0}
+.chk-item{background:#fff;padding:6px 10px;font:400 9.4px/1.4 'IBM Plex Sans',sans-serif}
+.chk-ref{font:400 8px/1 'JetBrains Mono',monospace;color:var(--acc)}
+
+/* SOLUCIONARIO */
+.sol-grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.sol-card{border:1px solid #cbd5e1;display:flex;flex-direction:column;break-inside:avoid}
+.sol-card-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 10px;background:#f8fafc;border-bottom:1px solid #cbd5e1;font:700 8.5px/1.2 'JetBrains Mono',monospace;color:#334155}
+.sol-card-head .light{color:#64748b;font-weight:400;font-size:8px}
+.sol-card-body{padding:8px 10px;display:flex;flex-direction:column;gap:6px}
+.sol-recap{font:400 9.4px/1.4 'IBM Plex Sans',sans-serif;color:#475569}
+.sol-clave{display:flex;align-items:center;gap:8px}
+.sol-pill{font:700 9px/1 'IBM Plex Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#dcfce7;color:#166534;border:1px solid #86efac;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.sol-opt{font:600 9.4px/1.3 'IBM Plex Sans',sans-serif}
+.sol-just{font:400 9.6px/1.45 'IBM Plex Sans',sans-serif}
+.sol-perla{background:var(--acc-t);border-left:3px solid var(--acc);padding:5px 8px;font:400 9.2px/1.4 'IBM Plex Sans',sans-serif;color:var(--acc-ink)}
+.sol-perla.trap{background:#fef2f2;border-left-color:#b91c1c;color:#7f1d1d}
+</style></head><body>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología</span></div></td></tr></thead><tbody><tr><td class="secbody flush">
+  <div class="cover">
+    <div class="cover-spine"><span>Módulo 1 · Medicina Interna</span></div>
+    <div class="cover-inner">
+      <div class="cover-top">
+        <div class="cover-eyebrow">
+          <span class="l1">Manual EUNACOM de Medicina</span>
+          <span class="l2">Edición Chile 2026 · 1.ª edición</span>
+        </div>
+        <div class="cover-codebox"><span class="k">perfil v3 asofamech</span><span class="v">3 códigos oficiales</span></div>
+      </div>
+      <div class="cover-hero">
+        <div class="cover-numrow">
+          <span class="bignum">08</span>
+          <div class="cover-numlabel"><span class="k">Bloques temáticos</span><span class="v">03</span></div>
+        </div>
+        <h1>Gastroenterología</h1>
+        <div class="cover-rule"></div>
+        <p class="cover-desc">Esófago y estómago, intestino y colon, hígado e hipertensión portal, vía biliar y páncreas. Texto oficial de estudio, 100&nbsp;% adaptado al Perfil de Conocimientos V3 de ASOFAMECh y a las Garantías Explícitas en Salud (GES).</p>
+      </div>
+      <div class="cover-foot">
+        <div class="cover-stats">
+          <div><span class="n">3</span><span class="t">clases granulares de alta densidad</span></div>
+          <div><span class="n">9</span><span class="t">reconstrucciones oficiales fechadas</span></div>
+          <div><span class="n">GES</span><span class="t">normas técnicas MINSAL vigentes</span></div>
+        </div>
+        <div class="cover-foot-row">
+          <span>Banco de preguntas oficiales con solucionario razonado al final del manual · Formato editorial de alta densidad</span>
+          <span class="brand">Academia EUNACOM<br><em>Masterclass</em></span>
+        </div>
+      </div>
+    </div>
+  </div></td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Índice general</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="pg-lead">
+      <h2>Índice general</h2><div class="rule"></div>
+    </div>
+    
+    <div class="idx-chap">
+      <div class="idx-chap-head">
+        <span class="idx-cn">01</span><span class="idx-ct">Esófago y Estómago</span><span class="idx-cp">3</span>
+      </div>
+      <div class="idx-topics">
+        <div class="idx-t"><span class="idx-tt">1.1. Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</span><span class="idx-dots"></span><span class="idx-tp">4</span></div>
+      </div>
+    </div>
+    <div class="idx-chap">
+      <div class="idx-chap-head">
+        <span class="idx-cn">02</span><span class="idx-ct">Intestino y Colon</span><span class="idx-cp">7</span>
+      </div>
+      <div class="idx-topics">
+        <div class="idx-t"><span class="idx-tt">2.1. Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</span><span class="idx-dots"></span><span class="idx-tp">8</span></div>
+      </div>
+    </div>
+    <div class="idx-chap">
+      <div class="idx-chap-head">
+        <span class="idx-cn">03</span><span class="idx-ct">Vía biliar y Páncreas</span><span class="idx-cp">11</span>
+      </div>
+      <div class="idx-topics">
+        <div class="idx-t"><span class="idx-tt">3.1. Pancreatitis Aguda</span><span class="idx-dots"></span><span class="idx-tp">12</span></div>
+      </div>
+    </div>
+    <div class="idx-sol"><span class="idx-sol-t">Solucionario &amp; Justificaciones Razonadas EUNACOM</span><span class="idx-sol-p">15</span></div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 01 — Esófago y Estómago</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="op-title">
+      <span class="op-num">01</span>
+      <div><span class="eyebrow">1 competencia oficial del Perfil V3</span><h1>Esófago y Estómago</h1></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-head"><span>Orientación EUNACOM · impacto en el examen</span><span class="pill dark">2 preguntas de banco</span></div>
+      <p class="card-body-p">Este bloque reúne <strong>1 competencia oficial</strong> del Perfil V3 de ASOFAMECh
+      y <strong>3+ reconstrucciones históricas fechadas</strong> del EUNACOM. Es obligatorio dominar la conducta
+      de primera línea de cada escenario, las cifras que se preguntan literalmente y las trampas que anulan la respuesta.</p>
+    </div>
+    <div class="card">
+      <div class="card-head navy"><span>Matriz legal Perfil V3 ASOFAMECh · competencias oficiales</span><span class="pill light">1 códigos</span></div>
+      <table class="dtbl"><thead><tr><th>Código V3</th><th>Tema / patología oficial</th><th>Dx</th><th>Tx</th><th>Seg</th><th>Régimen / garantía GES</th></tr></thead><tbody>
+    <tr>
+      <td class="mono">1.06.1.027</td><td>Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</td><td>Específico</td><td>Completo</td><td>Completo</td><td class="ges">Sin garantía GES específica · Norma MINSAL de dispepsia y uso racional de IBP</td>
+    </tr></tbody></table>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Historial de preguntas EUNACOM</span><span class="pill plain">3 reconstrucciones</span></div>
+      <div class="hist-grid"><div class="hist-item"><span class="hist-tag">EUNACOM 2013 · #12</span><span class="hist-txt">Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2015 · #124</span><span class="hist-txt">Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2019 · #88</span><span class="hist-txt">Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</span></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Conceptos clave &amp; trampas frecuentes</span><span class="pill plain">Alto rendimiento</span></div>
+      <div class="concept-list"><p class="concept">Pirosis + regurgitación típicas, sin alarma y < 50 años: diagnóstico clínico y prueba con IBP; no se endoscopia de entrada.</p><p class="concept">El IBP se toma en ayunas, 30–60 min antes de comer. Los antagonistas H₂ están obsoletos y no se combinan con IBP.</p><p class="concept">Signos de alarma (disfagia, baja de peso, anemia, hemorragia, síntomas nocturnos, > 50 años, > 5 años de pirosis) obligan a endoscopía.</p><p class="concept">Barrett = biopsia con metaplasia intestinal. Lo que decide la cirugía es la displasia, no la metaplasia — son conceptos distintos.</p><p class="concept">No se erradica H. pylori por ERGE; sí es obligatorio erradicarlo en úlcera péptica y linfoma MALT.</p></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 01 · Tema 1.1</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="topic-title">
+      <h2>1.1. Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</h2><div class="rule"></div>
+    </div>
+    <div class="watch-row"><a class="lnk" href="https://www.eunacomapp.cl/clase/gastro-01">▶&nbsp;Ver masterclass de este tema</a></div>
+    <div class="contexto"><span class="contexto-tag">¿Por qué?</span><p>El esfínter esofágico inferior no es una válvula anatómica sino un tono muscular mantenido que se relaja de forma transitoria decenas de veces al día. El reflujo se vuelve patológico cuando esas relajaciones son demasiado frecuentes o el aclaramiento esofágico falla: por eso el tratamiento es funcional (suprimir ácido, mejorar el vaciamiento) y la cirugía queda reservada para la excepción.</p></div>
+    <div class="prose"><h3>1. Definición y presentación clínica</h3><p>La enfermedad por reflujo gastroesofágico (ERGE) es el paso retrógrado del contenido gástrico al esófago con síntomas o lesión de la mucosa. Su mecanismo es la <strong>relajación transitoria del esfínter esofágico inferior</strong>, no una obstrucción.</p><p><strong>Presentación típica:</strong> pirosis retroesternal y regurgitación ácida, que empeoran al acostarse y con la ingesta abundante. <strong>Presentación atípica:</strong> tos crónica, asma de difícil control, disfonía, erosiones dentales y dolor torácico no cardíaco.</p><h3>2. Diagnóstico: cuándo basta la clínica y cuándo se endoscopia</h3><p>En un paciente menor de 40–50 años con pirosis y regurgitación <strong>típicas y sin signos de alarma</strong>, el diagnóstico es clínico y se inicia prueba terapéutica con inhibidor de la bomba de protones (IBP) por 4 a 8 semanas: la respuesta confirma el diagnóstico.</p><p>La <strong>pH-metría esofágica de 24 horas</strong> es el patrón de referencia y se reserva para la duda diagnóstica, la clínica atípica o la evaluación prequirúrgica.</p><p><strong>Endoscopía digestiva alta obligatoria</strong> si hay signos de alarma: disfagia, odinofagia, baja de peso, anemia o hemorragia, síntomas que despiertan al paciente, inicio después de los 50 años o pirosis de más de 5 años de evolución (riesgo de esófago de Barrett).</p><h3>3. Tratamiento</h3><p><strong>Medidas generales:</strong> fraccionar la alimentación, elevar la cabecera de la cama, bajar de peso, suspender tabaco y evitar alcohol, cafeína, comidas grasas y relajantes musculares antes de dormir.</p><p><strong>Farmacoterapia:</strong> el IBP (omeprazol, esomeprazol, lansoprazol) es el fármaco de elección y debe tomarse <strong>en ayunas, 30–60 minutos antes del desayuno</strong>. Los antagonistas H₂ (ranitidina, famotidina) están desplazados y no deben combinarse con IBP.</p><p><strong>Cirugía antirreflujo (funduplicatura de Nissen):</strong> paciente joven con ERGE grave dependiente de IBP, hernia hiatal voluminosa sintomática, o esófago de Barrett con displasia de alto grado.</p><h3>4. Esófago de Barrett</h3><p>Es la <strong>metaplasia intestinal</strong> del epitelio esofágico (reemplazo del epitelio plano por cilíndrico) secundaria a la exposición ácida crónica. Es asintomático; los síntomas son los del RGE de base.</p><p>Su importancia es el riesgo de progresión a <strong>adenocarcinoma de esófago</strong>. La conducta la define la biopsia: metaplasia sin displasia → IBP y endoscopía de vigilancia; displasia de bajo grado → ablación endoscópica; <strong>displasia de alto grado → resección endoscópica o esofagectomía</strong>.</p></div>
+    
+    
+    
+    <div class="card tbl-card">
+      <div class="card-head navy"><span>Tabla 1.1 · ERGE — decisiones clave que se preguntan en el EUNACOM</span><span class="pill light mono">1.06.1.027</span></div>
+      <table class="dtbl"><thead><tr><th>Escenario</th><th>Conducta correcta</th><th>Error frecuente</th></tr></thead>
+      <tbody><tr><td>Pirosis típica, < 50 años, sin alarma</td><td>Prueba con IBP 4–8 semanas</td><td>Pedir endoscopía de entrada</td></tr><tr class="alt"><td>Pirosis + disfagia o baja de peso</td><td>Endoscopía digestiva alta</td><td>Subir la dosis de IBP sin estudiar</td></tr><tr><td>Duda diagnóstica / clínica atípica</td><td>pH-metría de 24 h</td><td>Tratar empíricamente de forma indefinida</td></tr><tr class="alt"><td>Barrett con metaplasia sin displasia</td><td>IBP + vigilancia endoscópica</td><td>Indicar cirugía por el hallazgo de metaplasia</td></tr><tr><td>Barrett con displasia de alto grado</td><td>Resección endoscópica / esofagectomía</td><td>Solo aumentar IBP y controlar</td></tr></tbody></table>
+    </div>
+    <div class="case-row">
+      <div class="case">
+        <div class="case-head"><span>Caso clínico tipo EUNACOM</span><span class="mono">1.1</span></div>
+        <div class="case-body"><p>Mujer de 44 años consulta por pirosis retroesternal y regurgitación ácida de 2 años de evolución, que empeora al acostarse. Ha usado antiácidos ocasionales con alivio parcial. No refiere disfagia, baja de peso ni anemia. Examen físico normal.</p><p class="conducta"><strong>Conducta oficial. </strong>ERGE no complicada en una paciente menor de 50 años sin signos de alarma: la conducta es prueba terapéutica con IBP en ayunas por 4 a 8 semanas junto con medidas antirreflujo, sin necesidad de endoscopía inicial. La endoscopía se reservaría para falta de respuesta, recurrencia precoz al suspender el IBP o aparición de signos de alarma.</p></div>
+      </div>
+      <div class="rules"><div class="rules-head">Reglas de oro del examen</div><div class="rules-body"><span>▸ Pirosis + regurgitación típicas, sin alarma y < 50 años: diagnóstico clínico y prueba con IBP; no se endoscopia de entrada.</span><span>▸ El IBP se toma en ayunas, 30–60 min antes de comer. Los antagonistas H₂ están obsoletos y no se combinan con IBP.</span><span>▸ Signos de alarma (disfagia, baja de peso, anemia, hemorragia, síntomas nocturnos, > 50 años, > 5 años de pirosis) obligan a endoscopía.</span><span>▸ Barrett = biopsia con metaplasia intestinal. Lo que decide la cirugía es la displasia, no la metaplasia — son conceptos distintos.</span><span>▸ No se erradica H. pylori por ERGE; sí es obligatorio erradicarlo en úlcera péptica y linfoma MALT.</span></div></div>
+    </div>
+    
+    <div class="qbank">
+      <div class="qbank-head"><span>Banco de autoevaluación EUNACOM · Tema 1.1</span><span class="qbank-note">Solucionario razonado al final del libro</span></div>
+      <div class="qbank-body">
+        <div class="q"><span class="q-tag">Reconstrucción EUNACOM 2013 · Pregunta #12</span><p class="q-stem"><strong>1.</strong> Hombre de 27 años, sin antecedentes, consulta por 3 meses de dolor epigástrico urente que aumenta con el ayuno y el estrés, con pirosis ocasional. La endoscopía digestiva alta muestra una úlcera duodenal activa y el test de ureasa resulta negativo. No usa AINE. ¿Cuál es la conducta más adecuada?</p><div class="q-opts">A) Iniciar omeprazol, amoxicilina y claritromicina por 14 días<br>B) Indicar omeprazol y repetir la endoscopía en 6 semanas<br>C) Solicitar una nueva endoscopía con test de ureasa<br>D) Iniciar medidas antirreflujo y omeprazol a permanencia<br>E) Indicar solo omeprazol por 8 semanas y control clínico</div></div><div class="q"><span class="q-tag">Reconstrucción EUNACOM Julio 2015 · Pregunta #124</span><p class="q-stem"><strong>2.</strong> Paciente con úlcera gástrica y test de ureasa positivo recibe amoxicilina, claritromicina y omeprazol por 10 días, seguido de omeprazol por 4 semanas. El control con test de ureasa a las 6 semanas post-tratamiento sigue positivo. ¿Cuál es la conducta más adecuada?</p><div class="q-opts">A) Repetir el mismo esquema por 14 días<br>B) Realizar endoscopía digestiva alta con biopsias<br>C) Indicar terapia erradicadora de segunda línea<br>D) Repetir el test de ureasa en 3 meses<br>E) Observar la evolución clínica</div></div>
+      </div>
+      <div class="qbank-foot"><a class="lnk ghost" href="https://www.eunacomapp.cl/preguntas/gastro-01">Más preguntas online de Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett →</a></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Síntesis · Bloque 01</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="synth-title">
+      <h2>Síntesis operativa: qué responder en el examen</h2>
+      <span class="pill outline">Repaso de 10 minutos</span>
+    </div>
+    <div class="rule"></div>
+    <div class="card">
+      <div class="card-head navy"><span>Tabla 1.S · Conducta obligatoria por escenario clínico</span><span class="pill light mono">temas 1.1 a 1.1</span></div>
+      <table class="dtbl"><thead><tr><th>Escenario</th><th>Hallazgo decisivo</th><th>Conducta de 1.ª línea</th><th>Error que anula la respuesta</th></tr></thead><tbody><tr><td><strong>Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett</strong></td><td>Pirosis + regurgitación típicas, sin alarma y < 50 años: diagnóstico clínico y prueba…</td><td class="do">El IBP se toma en ayunas, 30–60 min antes de comer. Los antagonistas H₂ están obsoletos…</td><td class="err">—</td></tr></tbody></table>
+    </div>
+    <div class="synth-two">
+      <div class="card"><div class="card-head grey"><span>Cifras que se preguntan literalmente</span></div><div class="cifra-grid"><div class="cifra"><span class="cifra-n">60 min</span><span class="cifra-t">El IBP se toma en ayunas, 30</span></div></div></div>
+      <div class="card card-accent"><div class="card-head"><span>Reglas y mnemotecnias del bloque</span></div><div class="mnemo"><div>Pirosis + regurgitación típicas, sin alarma y < 50 años: diagnóstico clínico y prueba con IBP; no se endoscopia de entrada.</div><div>El IBP se toma en ayunas, 30–60 min antes de comer. Los antagonistas H₂ están obsoletos y no se combinan con IBP.</div><div>Signos de alarma (disfagia, baja de peso, anemia, hemorragia, síntomas nocturnos, > 50 años, > 5 años de pirosis) obligan a…</div><div>Barrett = biopsia con metaplasia intestinal. Lo que decide la cirugía es la displasia, no la metaplasia — son conceptos…</div></div></div>
+    </div>
+    <div class="card"><div class="card-head grey"><span>Cobertura GES del bloque</span><span class="pill plain">Garantías explícitas aplicables</span></div><div class="ges-grid"><div class="ges-item"><span class="ges-t">Sin garantía GES específica · Norma MINSAL de…</span><span class="ges-d">Tema 1.1 · Enfermedad por Reflujo Gastroesofágico y Esófago de Barrett · código 1.06.1.027</span></div></div></div>
+    <div class="card"><div class="card-head dark"><span>Autochequeo final · si no puedes responder esto, vuelve al tema indicado</span></div><div class="chk-grid"><div class="chk-item">Pirosis + regurgitación típicas, sin alarma y < 50 años: diagnóstico clínico y prueba con IBP… <span class="chk-ref">→ 1.1</span></div></div></div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 02 — Intestino y Colon</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="op-title">
+      <span class="op-num">02</span>
+      <div><span class="eyebrow">1 competencia oficial del Perfil V3</span><h1>Intestino y Colon</h1></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-head"><span>Orientación EUNACOM · impacto en el examen</span><span class="pill dark">2 preguntas de banco</span></div>
+      <p class="card-body-p">Este bloque reúne <strong>1 competencia oficial</strong> del Perfil V3 de ASOFAMECh
+      y <strong>2+ reconstrucciones históricas fechadas</strong> del EUNACOM. Es obligatorio dominar la conducta
+      de primera línea de cada escenario, las cifras que se preguntan literalmente y las trampas que anulan la respuesta.</p>
+    </div>
+    <div class="card">
+      <div class="card-head navy"><span>Matriz legal Perfil V3 ASOFAMECh · competencias oficiales</span><span class="pill light">1 códigos</span></div>
+      <table class="dtbl"><thead><tr><th>Código V3</th><th>Tema / patología oficial</th><th>Dx</th><th>Tx</th><th>Seg</th><th>Régimen / garantía GES</th></tr></thead><tbody>
+    <tr>
+      <td class="mono">1.06.1.008</td><td>Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</td><td>Específico</td><td>Completo</td><td>Completo</td><td class="ges">Sin garantía GES · manejo completo en Atención Primaria</td>
+    </tr></tbody></table>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Historial de preguntas EUNACOM</span><span class="pill plain">2 reconstrucciones</span></div>
+      <div class="hist-grid"><div class="hist-item"><span class="hist-tag">EUNACOM 2018 · #41</span><span class="hist-txt">Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2022 · #66</span><span class="hist-txt">Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</span></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Conceptos clave &amp; trampas frecuentes</span><span class="pill plain">Alto rendimiento</span></div>
+      <div class="concept-list"><p class="concept">El diagnóstico de SII es clínico y positivo (criterios de Roma IV), no de descarte: no se necesita endoscopía si no hay signos de alarma.</p><p class="concept">Signos de alarma (ABCDEFH): anemia, baja de peso, cambio del hábito, disfagia, edad > 50 a, familiar con cáncer, hemorragia y síntomas nocturnos.</p><p class="concept trap"><strong>! Trampa · </strong>Cualquier signo de alarma obliga a estudio con endoscopía o colonoscopía para descartar cáncer.</p><p class="concept">Tratamiento: educación + manejo del estrés + dieta baja en FODMAP; amitriptilina si predomina la diarrea, polietilenglicol si predomina la constipación.</p></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 02 · Tema 2.1</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="topic-title">
+      <h2>2.1. Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</h2><div class="rule"></div>
+    </div>
+    <div class="watch-row"><a class="lnk" href="https://www.eunacomapp.cl/clase/gastro-06">▶&nbsp;Ver masterclass de este tema</a></div>
+    
+    <div class="prose"><h3>1. Concepto y peso en el examen</h3><p>Los trastornos digestivos funcionales (TDF) son síntomas digestivos crónicos o recurrentes sin una anomalía estructural o bioquímica que los explique. Son la <strong>primera causa de consulta gastroenterológica</strong> y la principal causa de dolor abdominal crónico, diarrea crónica y constipación crónica.</p><p>Hoy se entienden como trastornos del <strong>eje cerebro-intestino</strong>: hipersensibilidad visceral y alteración de la motilidad, gatilladas por estrés, dieta y disbiosis. El síndrome de intestino irritable (SII) es el prototipo.</p><h3>2. Diagnóstico del SII (criterios de Roma IV)</h3><p><strong>Dolor abdominal recurrente</strong> al menos 1 día por semana en los últimos 3 meses, asociado a <strong>2 o más</strong> de: relación con la defecación, cambio en la frecuencia de las deposiciones o cambio en su consistencia.</p><p>Es un diagnóstico <strong>clínico y positivo</strong>, no de descarte: si el paciente cumple los criterios y no tiene signos de alarma, no se requiere una batería de exámenes. Sí se solicitan de rutina hemograma, PCR, TSH, anticuerpos de enfermedad celíaca y —en diarrea— calprotectina fecal.</p><h3>3. Signos de alarma que obligan a estudio orgánico</h3><p>Cualquier signo de alarma cambia la conducta: se abandona la hipótesis funcional y se estudia con <strong>endoscopía digestiva alta o colonoscopía</strong> según la localización del síntoma.</p><p>Regla mnemotécnica <strong>ABCDEFH</strong>: <strong>A</strong>nemia, <strong>B</strong>aja de peso, <strong>C</strong>ambio reciente del hábito o del patrón de síntomas, <strong>D</strong>isfagia, <strong>E</strong>dad de inicio &gt; 50 años, <strong>F</strong>amiliar de primer grado con cáncer digestivo, <strong>H</strong>emorragia (rectorragia, melena) y síntomas nocturnos que despiertan al paciente.</p><h3>4. Tratamiento del SII</h3><p>Base: <strong>educación</strong> (explicar la naturaleza benigna y descartar cáncer explícitamente en la conversación), <strong>manejo del estrés</strong> y ajuste dietético (dieta baja en FODMAP, fibra soluble).</p><p>Farmacoterapia dirigida al síntoma predominante: antiespasmódicos (trimebutino, bromuro de pinaverio) para el dolor; <strong>antidepresivos tricíclicos en dosis baja (amitriptilina)</strong> para el SII con predominio de diarrea; laxantes osmóticos (polietilenglicol) para el predominio de constipación.</p></div>
+    
+    
+    
+    <div class="card tbl-card">
+      <div class="card-head navy"><span>Tabla 2.1 · Funcional vs orgánico — cómo se distingue en la práctica</span><span class="pill light mono">1.06.1.008</span></div>
+      <table class="dtbl"><thead><tr><th>Rasgo</th><th>Trastorno funcional (SII)</th><th>Enfermedad orgánica</th></tr></thead>
+      <tbody><tr><td>Edad de inicio</td><td>Joven (< 50 años)</td><td>> 50 años</td></tr><tr class="alt"><td>Síntomas nocturnos</td><td>Ausentes (no despiertan)</td><td>Presentes</td></tr><tr><td>Baja de peso / anemia</td><td>Ausentes</td><td>Presentes</td></tr><tr class="alt"><td>Relación con la defecación</td><td>Característica (alivia o cambia)</td><td>Sin relación clara</td></tr><tr><td>Exámenes de rutina</td><td>Normales</td><td>Alterados (VHS, PCR, calprotectina, Hb)</td></tr></tbody></table>
+    </div>
+    <div class="case-row">
+      <div class="case">
+        <div class="case-head"><span>Caso clínico tipo EUNACOM</span><span class="mono">2.1</span></div>
+        <div class="case-body"><p>Mujer de 32 años consulta por dolor abdominal en hipogastrio de 8 meses de evolución que alivia tras defecar, con períodos alternados de diarrea y constipación. Sin baja de peso, rectorragia ni anemia. Examen físico y hemograma normales.</p><p class="conducta"><strong>Conducta oficial. </strong>Cumple criterios de Roma IV para síndrome de intestino irritable (dolor recurrente relacionado con la defecación y con cambio en la frecuencia y la forma de las deposiciones) y no presenta signos de alarma. El diagnóstico es clínico y positivo, no requiere endoscopía. El manejo es educación, dieta baja en FODMAP y fármacos según el síntoma predominante.</p></div>
+      </div>
+      <div class="rules"><div class="rules-head">Reglas de oro del examen</div><div class="rules-body"><span>▸ El diagnóstico de SII es clínico y positivo (criterios de Roma IV), no de descarte: no se necesita endoscopía si no hay signos de alarma.</span><span>▸ Signos de alarma (ABCDEFH): anemia, baja de peso, cambio del hábito, disfagia, edad > 50 a, familiar con cáncer, hemorragia y síntomas nocturnos.</span><span>▸ Cualquier signo de alarma obliga a estudio con endoscopía o colonoscopía para descartar cáncer.</span><span>▸ Tratamiento: educación + manejo del estrés + dieta baja en FODMAP; amitriptilina si predomina la diarrea, polietilenglicol si predomina la constipación.</span></div></div>
+    </div>
+    
+    <div class="qbank">
+      <div class="qbank-head"><span>Banco de autoevaluación EUNACOM · Tema 2.1</span><span class="qbank-note">Solucionario razonado al final del libro</span></div>
+      <div class="qbank-body">
+        <div class="q"><span class="q-tag">Reconstrucción EUNACOM Diciembre 2018 · Pregunta #41</span><p class="q-stem"><strong>1.</strong> Mujer de 48 años consulta por distensión y dolor abdominal de 1 año, alternando diarrea y constipación. En los últimos 2 meses refiere deposiciones más frecuentes, baja de 4 kg de peso no buscada y un episodio de rectorragia. Su madre tuvo cáncer de colon a los 55 años. ¿Cuál es la conducta más adecuada?</p><div class="q-opts">A) Diagnosticar síndrome de intestino irritable e iniciar dieta baja en FODMAP<br>B) Solicitar colonoscopía<br>C) Indicar antiespasmódicos y control en 3 meses<br>D) Solicitar test de sangre oculta en deposiciones y repetir en 1 año<br>E) Iniciar amitriptilina en dosis baja</div></div><div class="q"><span class="q-tag">Caso tipo EUNACOM (banco 2022)</span><p class="q-stem"><strong>2.</strong> Hombre de 29 años consulta por dolor abdominal recurrente de 6 meses que alivia al defecar, asociado a deposiciones más blandas cuando aparece el dolor. Sin baja de peso, anemia ni antecedentes familiares. Hemograma, PCR y anticuerpos anti-transglutaminasa normales. ¿Cuál es la conducta más adecuada?</p><div class="q-opts">A) Colonoscopía para descartar enfermedad inflamatoria intestinal<br>B) Diagnóstico de síndrome de intestino irritable e iniciar manejo<br>C) Endoscopía digestiva alta con biopsias duodenales<br>D) TAC de abdomen y pelvis con contraste<br>E) Prueba terapéutica con inhibidor de la bomba de protones</div></div>
+      </div>
+      <div class="qbank-foot"><a class="lnk ghost" href="https://www.eunacomapp.cl/preguntas/gastro-06">Más preguntas online de Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable →</a></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Síntesis · Bloque 02</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="synth-title">
+      <h2>Síntesis operativa: qué responder en el examen</h2>
+      <span class="pill outline">Repaso de 10 minutos</span>
+    </div>
+    <div class="rule"></div>
+    <div class="card">
+      <div class="card-head navy"><span>Tabla 2.S · Conducta obligatoria por escenario clínico</span><span class="pill light mono">temas 2.1 a 2.1</span></div>
+      <table class="dtbl"><thead><tr><th>Escenario</th><th>Hallazgo decisivo</th><th>Conducta de 1.ª línea</th><th>Error que anula la respuesta</th></tr></thead><tbody><tr><td><strong>Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable</strong></td><td>El diagnóstico de SII es clínico y positivo (criterios de Roma IV), no de descarte: no…</td><td class="do">Signos de alarma (ABCDEFH): anemia, baja de peso, cambio del hábito, disfagia, edad >…</td><td class="err">Cualquier signo de alarma obliga a estudio con endoscopía o colonoscopía para descartar…</td></tr></tbody></table>
+    </div>
+    <div class="synth-two">
+      <div class="card"><div class="card-head grey"><span>Cifras que se preguntan literalmente</span></div><div class="cifra-grid"><div class="cifra"><span class="cifra-t">Sin cifras numéricas destacadas.</span></div></div></div>
+      <div class="card card-accent"><div class="card-head"><span>Reglas y mnemotecnias del bloque</span></div><div class="mnemo"><div>El diagnóstico de SII es clínico y positivo (criterios de Roma IV), no de descarte: no se necesita endoscopía si no hay signos…</div><div>Signos de alarma (ABCDEFH): anemia, baja de peso, cambio del hábito, disfagia, edad > 50 a, familiar con cáncer, hemorragia y…</div><div>Cualquier signo de alarma obliga a estudio con endoscopía o colonoscopía para descartar cáncer.</div><div>Tratamiento: educación + manejo del estrés + dieta baja en FODMAP; amitriptilina si predomina la diarrea, polietilenglicol si…</div></div></div>
+    </div>
+    <div class="card"><div class="card-head grey"><span>Cobertura GES del bloque</span><span class="pill plain">Garantías explícitas aplicables</span></div><div class="ges-grid"><div class="ges-item"><span class="ges-t">Sin garantía GES · manejo completo en…</span><span class="ges-d">Tema 2.1 · Trastornos Digestivos Funcionales y Síndrome de Intestino Irritable · código 1.06.1.008</span></div></div></div>
+    <div class="card"><div class="card-head dark"><span>Autochequeo final · si no puedes responder esto, vuelve al tema indicado</span></div><div class="chk-grid"><div class="chk-item">El diagnóstico de SII es clínico y positivo (criterios de Roma IV), no de descarte: no se… <span class="chk-ref">→ 2.1</span></div></div></div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 03 — Vía biliar y Páncreas</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="op-title">
+      <span class="op-num">03</span>
+      <div><span class="eyebrow">1 competencia oficial del Perfil V3</span><h1>Vía biliar y Páncreas</h1></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-head"><span>Orientación EUNACOM · impacto en el examen</span><span class="pill dark">2 preguntas de banco</span></div>
+      <p class="card-body-p">Este bloque reúne <strong>1 competencia oficial</strong> del Perfil V3 de ASOFAMECh
+      y <strong>4+ reconstrucciones históricas fechadas</strong> del EUNACOM. Es obligatorio dominar la conducta
+      de primera línea de cada escenario, las cifras que se preguntan literalmente y las trampas que anulan la respuesta.</p>
+    </div>
+    <div class="card">
+      <div class="card-head navy"><span>Matriz legal Perfil V3 ASOFAMECh · competencias oficiales</span><span class="pill light">1 códigos</span></div>
+      <table class="dtbl"><thead><tr><th>Código V3</th><th>Tema / patología oficial</th><th>Dx</th><th>Tx</th><th>Seg</th><th>Régimen / garantía GES</th></tr></thead><tbody>
+    <tr>
+      <td class="mono">1.06.2.010</td><td>Pancreatitis Aguda</td><td>Específico</td><td>Inicial</td><td>Derivar</td><td class="ges">Sin garantía GES específica · manejo hospitalario según Norma MINSAL de urgencia abdominal</td>
+    </tr></tbody></table>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Historial de preguntas EUNACOM</span><span class="pill plain">4 reconstrucciones</span></div>
+      <div class="hist-grid"><div class="hist-item"><span class="hist-tag">EUNACOM 2013 · #66</span><span class="hist-txt">Pancreatitis Aguda</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2013 · #121</span><span class="hist-txt">Pancreatitis Aguda</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2016 · #54</span><span class="hist-txt">Pancreatitis Aguda</span></div><div class="hist-item"><span class="hist-tag">EUNACOM 2019 · #101</span><span class="hist-txt">Pancreatitis Aguda</span></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head grey"><span>Conceptos clave &amp; trampas frecuentes</span><span class="pill plain">Alto rendimiento</span></div>
+      <div class="concept-list"><p class="concept">Diagnóstico = 2 de 3: dolor típico + lipasa/amilasa > 3× el límite superior + imagen compatible. Con los dos primeros no se necesita TAC.</p><p class="concept">La magnitud de la elevación enzimática NO se correlaciona con la gravedad; el hematocrito y el BUN en ascenso a las 24 h sí predicen necrosis.</p><p class="concept">Pilar del tratamiento: reposición de volumen precoz y agresiva con Ringer lactato, ajustada a diuresis. Es lo que más reduce la mortalidad.</p><p class="concept">Realimentación oral precoz (24–72 h) apenas cede el dolor, incluso en pancreatitis grave. Se evita la nutrición parenteral.</p><p class="concept">NO antibióticos profilácticos en pancreatitis no infectada. CPRE urgente (< 24 h) solo si hay colangitis asociada.</p><p class="concept">Pancreatitis biliar leve: colecistectomía en el mismo ingreso para prevenir la recurrencia.</p></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Bloque 03 · Tema 3.1</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="topic-title">
+      <h2>3.1. Pancreatitis Aguda</h2><div class="rule"></div>
+    </div>
+    <div class="watch-row"><a class="lnk" href="https://www.eunacomapp.cl/clase/gastro-29">▶&nbsp;Ver masterclass de este tema</a></div>
+    <div class="contexto"><span class="contexto-tag">¿Por qué?</span><p>La pancreatitis aguda es autodigestión: la activación intraacinar prematura del tripsinógeno desencadena una cascada de enzimas que digieren el propio páncreas y el retroperitoneo. Eso explica el dolor transfixiante, el íleo, la pérdida masiva de líquido al tercer espacio y por qué el pilar del tratamiento en las primeras 24 horas es la reposición agresiva de volumen — el paciente está perdiendo litros hacia el retroperitoneo aunque su piel esté seca.</p></div>
+    <div class="prose"><h3>1. Diagnóstico: 2 de 3 criterios</h3><p>El diagnóstico de pancreatitis aguda requiere <strong>2 de los siguientes 3</strong> (criterios de Atlanta revisada 2012): (1) dolor abdominal compatible —epigástrico, intenso, transfixiante, irradiado en faja al dorso—; (2) <strong>lipasa o amilasa &gt; 3 veces el límite superior normal</strong>; (3) hallazgos de pancreatitis en imagen (TAC con contraste, ecografía o resonancia).</p><p>La <strong>lipasa es más sensible y específica</strong> que la amilasa y permanece elevada más días. La magnitud de la elevación enzimática <strong>no</strong> se correlaciona con la gravedad.</p><p>Si el paciente cumple los dos primeros criterios, <strong>no se necesita TAC para el diagnóstico</strong>. La TAC con contraste se indica a las 72 horas si hay duda diagnóstica o si el paciente evoluciona mal (para evaluar necrosis).</p><h3>2. Etiología: buscar siempre la causa</h3><p>Las dos causas más frecuentes en Chile son la <strong>litiasis biliar</strong> (cálculo que obstruye la ampolla de Vater; más frecuente en mujeres, con elevación de transaminasas y de fosfatasas alcalinas) y el <strong>alcohol</strong> (varón, consumo intenso y sostenido).</p><p>Otras: hipertrigliceridemia (&gt; 1000 mg/dL), post-CPRE, fármacos, hipercalcemia, autoinmune, trauma y tumores. A todo paciente se le solicita <strong>ecografía abdominal</strong> en las primeras 24–48 h para buscar colelitiasis y perfil lipídico y calcemia.</p><h3>3. Estratificación de gravedad</h3><p>La clasificación de Atlanta revisada define pancreatitis <strong>leve</strong> (sin falla orgánica ni complicaciones locales), <strong>moderadamente grave</strong> (falla orgánica transitoria &lt; 48 h o complicación local) y <strong>grave</strong> (falla orgánica persistente &gt; 48 h).</p><p>Scores predictivos: <strong>BISAP</strong> (BUN &gt; 25, alteración de conciencia, SIRS, edad &gt; 60, derrame pleural) es el más simple; APACHE-II el más usado en UCI; los criterios de Ranson requieren 48 h. Un <strong>hematocrito elevado y en ascenso, o un BUN que sube</strong> a las 24 h, predicen necrosis y mala evolución.</p><h3>4. Manejo inicial (primeras 24–48 horas)</h3><p><strong>Reposición de volumen agresiva y precoz:</strong> cristaloides, de preferencia <strong>Ringer lactato</strong>, 5–10 mL/kg/h ajustando por diuresis (meta &gt; 0,5 mL/kg/h), frecuencia cardíaca y hematocrito. Es la intervención que más impacta en la mortalidad.</p><p><strong>Analgesia</strong> potente (opioides; la meperidina ya no se prefiere). <strong>Régimen cero</strong> inicial, con <strong>realimentación oral precoz</strong> (dentro de 24–72 h) apenas cede el dolor y el íleo, incluso en pancreatitis grave (nutrición enteral por sonda nasoyeyunal si no tolera vía oral). La nutrición parenteral se evita.</p><p><strong>NO se indican antibióticos profilácticos</strong> en la pancreatitis aguda no infectada, ni siquiera en la necrótica estéril. Los antibióticos se reservan para la necrosis infectada demostrada o la colangitis concomitante.</p><p><strong>Pancreatitis biliar:</strong> colecistectomía en el mismo ingreso una vez resuelto el episodio leve; <strong>CPRE urgente (&lt; 24 h)</strong> solo si hay colangitis asociada u obstrucción biliar persistente.</p></div>
+    
+    
+    
+    <div class="card tbl-card">
+      <div class="card-head navy"><span>Tabla 3.1 · Dolor epigástrico agudo — cómo se separa la pancreatitis de sus imitadores</span><span class="pill light mono">1.06.2.010</span></div>
+      <table class="dtbl"><thead><tr><th>Diagnóstico</th><th>Clave que lo distingue</th><th>Examen que confirma</th></tr></thead>
+      <tbody><tr><td>Pancreatitis aguda</td><td>Dolor transfixiante al dorso + lipasa > 3× · íleo</td><td>Lipasa/amilasa; TAC a las 72 h si evoluciona mal</td></tr><tr class="alt"><td>Coledocolitiasis</td><td>Dolor + ictericia, sin fiebre · lipasa normal o poco elevada</td><td>Ecografía (colédoco > 7 mm) → colangio-RM</td></tr><tr><td>Colangitis aguda</td><td>Tríada de Charcot: dolor + ictericia + fiebre</td><td>Ecografía + hemocultivos → CPRE</td></tr><tr class="alt"><td>Úlcera perforada</td><td>Dolor brusco "en puñalada", abdomen en tabla</td><td>Radiografía de tórax de pie: neumoperitoneo</td></tr><tr><td>IAM de cara inferior</td><td>Factores de riesgo CV, síntomas vagales</td><td>ECG de 12 derivaciones + troponina</td></tr><tr class="alt"><td>Isquemia mesentérica</td><td>Dolor desproporcionado al examen, FA, acidosis con lactato</td><td>Angio-TAC de abdomen</td></tr></tbody></table>
+    </div>
+    <div class="case-row">
+      <div class="case">
+        <div class="case-head"><span>Caso clínico tipo EUNACOM</span><span class="mono">3.1</span></div>
+        <div class="case-body"><p>Hombre de 45 años, sin antecedentes, consulta por dolor epigástrico intenso de 12 horas irradiado al dorso, con vómitos biliosos. Al examen: FC 90/min, PA 140/90, escleras levemente ictéricas, abdomen blando y doloroso a la palpación epigástrica sin signos peritoneales. Laboratorio: leucocitos 13.000/mm³, PCR 55 mg/L, lipasa 640 U/L (VN < 60), bilirrubina total 2,8 mg/dL de predominio directo, ecografía con colelitiasis y colédoco de 6 mm.</p><p class="conducta"><strong>Conducta oficial. </strong>Cumple 2 de 3 criterios de Atlanta (dolor típico + lipasa > 3 veces el límite superior), por lo que el diagnóstico es pancreatitis aguda, de etiología biliar (colelitiasis, patrón colestásico leve). Aunque coexista una probable coledocolitiasis, "manda" la pancreatitis por ser la condición más grave. El manejo inicial es hospitalización, reposición agresiva con Ringer lactato ajustada a diuresis, analgesia, régimen cero con realimentación precoz y ecografía ya realizada; NO se inician antibióticos profilácticos. La CPRE urgente solo se justificaría si apareciera colangitis (fiebre alta, mayor ictericia, compromiso hemodinámico).</p></div>
+      </div>
+      <div class="rules"><div class="rules-head">Reglas de oro del examen</div><div class="rules-body"><span>▸ Diagnóstico = 2 de 3: dolor típico + lipasa/amilasa > 3× el límite superior + imagen compatible. Con los dos primeros no se necesita TAC.</span><span>▸ La magnitud de la elevación enzimática NO se correlaciona con la gravedad; el hematocrito y el BUN en ascenso a las 24 h sí predicen necrosis.</span><span>▸ Pilar del tratamiento: reposición de volumen precoz y agresiva con Ringer lactato, ajustada a diuresis. Es lo que más reduce la mortalidad.</span><span>▸ Realimentación oral precoz (24–72 h) apenas cede el dolor, incluso en pancreatitis grave. Se evita la nutrición parenteral.</span><span>▸ NO antibióticos profilácticos en pancreatitis no infectada. CPRE urgente (< 24 h) solo si hay colangitis asociada.</span><span>▸ Pancreatitis biliar leve: colecistectomía en el mismo ingreso para prevenir la recurrencia.</span></div></div>
+    </div>
+    
+    <div class="qbank">
+      <div class="qbank-head"><span>Banco de autoevaluación EUNACOM · Tema 3.1</span><span class="qbank-note">Solucionario razonado al final del libro</span></div>
+      <div class="qbank-body">
+        <div class="q"><span class="q-tag">Reconstrucción EUNACOM 2013 · Pregunta #121</span><p class="q-stem"><strong>1.</strong> Hombre de 45 años consulta por dolor epigástrico intenso y vómitos biliosos. Al examen: FC 90/min, PA 140/90, escleras levemente ictéricas, abdomen blando y doloroso a la palpación epigástrica. Exámenes: escleras ictéricas leves, lipasa 190 U/L (VN < 60), bilirrubina total 3,1 mg/dL directa, ecografía con colédoco de 9 mm y microlitiasis. ¿Cuál es el diagnóstico más probable?</p><div class="q-opts">A) Colangitis aguda<br>B) Pancreatitis aguda<br>C) Coledocolitiasis<br>D) Colecistitis aguda<br>E) Cólico biliar simple</div></div><div class="q"><span class="q-tag">Reconstrucción EUNACOM Julio 2016 · Pregunta #54</span><p class="q-stem"><strong>2.</strong> Paciente de 55 años con pancreatitis aguda biliar de 36 horas de evolución. Está hemodinámicamente estable, afebril, con dolor en disminución y tolera líquidos. Ecografía: colelitiasis, vía biliar de calibre normal, sin cálculos en el colédoco. ¿Cuál es la conducta más adecuada respecto de la vía biliar?</p><div class="q-opts">A) CPRE de urgencia en las próximas 24 horas<br>B) Colecistectomía laparoscópica durante el mismo ingreso, una vez resuelto el episodio<br>C) Alta con colecistectomía programada en 6 a 8 semanas<br>D) Colangiorresonancia y luego CPRE si es positiva<br>E) Manejo médico indefinido, sin cirugía, por el riesgo quirúrgico</div></div>
+      </div>
+      <div class="qbank-foot"><a class="lnk ghost" href="https://www.eunacomapp.cl/preguntas/gastro-29">Más preguntas online de Pancreatitis Aguda →</a></div>
+    </div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Síntesis · Bloque 03</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="synth-title">
+      <h2>Síntesis operativa: qué responder en el examen</h2>
+      <span class="pill outline">Repaso de 10 minutos</span>
+    </div>
+    <div class="rule"></div>
+    <div class="card">
+      <div class="card-head navy"><span>Tabla 3.S · Conducta obligatoria por escenario clínico</span><span class="pill light mono">temas 3.1 a 3.1</span></div>
+      <table class="dtbl"><thead><tr><th>Escenario</th><th>Hallazgo decisivo</th><th>Conducta de 1.ª línea</th><th>Error que anula la respuesta</th></tr></thead><tbody><tr><td><strong>Pancreatitis Aguda</strong></td><td>Diagnóstico = 2 de 3: dolor típico + lipasa/amilasa > 3× el límite superior + imagen…</td><td class="do">La magnitud de la elevación enzimática NO se correlaciona con la gravedad; el…</td><td class="err">—</td></tr></tbody></table>
+    </div>
+    <div class="synth-two">
+      <div class="card"><div class="card-head grey"><span>Cifras que se preguntan literalmente</span></div><div class="cifra-grid"><div class="cifra"><span class="cifra-n">24 h</span><span class="cifra-t">La magnitud de la elevación enzimática NO se…</span></div><div class="cifra"><span class="cifra-n">72 h</span><span class="cifra-t">Realimentación oral precoz (24</span></div><div class="cifra"><span class="cifra-n">< 24 h</span><span class="cifra-t">NO antibióticos profilácticos en pancreatitis…</span></div></div></div>
+      <div class="card card-accent"><div class="card-head"><span>Reglas y mnemotecnias del bloque</span></div><div class="mnemo"><div>Diagnóstico = 2 de 3: dolor típico + lipasa/amilasa > 3× el límite superior + imagen compatible. Con los dos primeros no se…</div><div>La magnitud de la elevación enzimática NO se correlaciona con la gravedad; el hematocrito y el BUN en ascenso a las 24 h sí…</div><div>Pilar del tratamiento: reposición de volumen precoz y agresiva con Ringer lactato, ajustada a diuresis. Es lo que más reduce la…</div><div>Realimentación oral precoz (24–72 h) apenas cede el dolor, incluso en pancreatitis grave. Se evita la nutrición parenteral.</div></div></div>
+    </div>
+    <div class="card"><div class="card-head grey"><span>Cobertura GES del bloque</span><span class="pill plain">Garantías explícitas aplicables</span></div><div class="ges-grid"><div class="ges-item"><span class="ges-t">Sin garantía GES específica · manejo…</span><span class="ges-d">Tema 3.1 · Pancreatitis Aguda · código 1.06.2.010</span></div></div></div>
+    <div class="card"><div class="card-head dark"><span>Autochequeo final · si no puedes responder esto, vuelve al tema indicado</span></div><div class="chk-grid"><div class="chk-item">Diagnóstico = 2 de 3: dolor típico + lipasa/amilasa > 3× el límite superior + imagen… <span class="chk-ref">→ 3.1</span></div></div></div>
+  </td></tr></tbody></table>
+<table class="secwrap"><thead><tr><td><div class="gbar green"><span>Manual EUNACOM de Gastroenterología&nbsp;&nbsp;·&nbsp;&nbsp;Solucionario razonado</span></div></td></tr></thead><tbody><tr><td class="secbody">
+    <div class="pg-lead">
+      <h2>Solucionario &amp; Justificaciones Razonadas EUNACOM</h2>
+      <p class="pg-lead-p">Clave oficial y justificación clínica de cada reconstrucción. Las preguntas se presentan sin clave en la página del tema; aquí se resuelven con la perla de examen correspondiente.</p>
+      <div class="rule green"></div>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 1.1 · PREGUNTA 1</span><span class="mono light">Reconstrucción EUNACOM 2013 · Pregunta #12</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Hombre de 27 años, sin antecedentes, consulta por 3 meses de dolor epigástrico urente que aumenta con el ayuno y el…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave A</span><span class="sol-opt">Iniciar omeprazol, amoxicilina y claritromicina por 14 días</span></div>
+          <p class="sol-just">Úlcera duodenal activa en un paciente que no usa AINE: se asume infección por Helicobacter pylori aunque el test de ureasa sea negativo (falso negativo frecuente si hay sangrado reciente o uso previo de IBP/antibióticos), porque el 90 % de las úlceras duodenales son por H. pylori. La conducta es la terapia erradicadora de primera línea (IBP + amoxicilina + claritromicina, 14 días), no solo supresión ácida. B y E tratan la úlcera pero no la causa. D corresponde a manejo de ERGE, no de úlcera.</p>
+          <p class="sol-perla"><strong>Perla. </strong>C retrasa el tratamiento sin cambiar la conducta.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 1.1 · PREGUNTA 2</span><span class="mono light">Reconstrucción EUNACOM Julio 2015 · Pregunta #124</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Paciente con úlcera gástrica y test de ureasa positivo recibe amoxicilina, claritromicina y omeprazol por 10 días…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave C</span><span class="sol-opt">Indicar terapia erradicadora de segunda línea</span></div>
+          <p class="sol-just">Falla de la erradicación de primera línea confirmada por test de control positivo: se indica un esquema de segunda línea que evite la claritromicina (terapia cuádruple con bismuto, o levofloxacino + amoxicilina + IBP). Repetir el mismo esquema (A) mantiene la resistencia a claritromicina. La endoscopía (B) sería obligatoria para el control de la úlcera gástrica en sí, pero la pregunta apunta a la conducta frente a la falla de erradicación.</p>
+          <p class="sol-perla"><strong>Perla. </strong>D y E no corrigen la infección persistente.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 2.1 · PREGUNTA 3</span><span class="mono light">Reconstrucción EUNACOM Diciembre 2018 · Pregunta #41</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Mujer de 48 años consulta por distensión y dolor abdominal de 1 año, alternando diarrea y constipación. En los últimos…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave B</span><span class="sol-opt">Solicitar colonoscopía</span></div>
+          <p class="sol-just">Tiene múltiples signos de alarma: edad > 50 (límite), baja de peso involuntaria, cambio reciente del hábito intestinal, rectorragia y antecedente familiar de cáncer de colon. Eso descarta el manejo como trastorno funcional (A, C, E) y obliga a colonoscopía para descartar cáncer colorrectal.</p>
+          <p class="sol-perla"><strong>Perla. </strong>El test de sangre oculta (D) es una herramienta de tamizaje poblacional en personas asintomáticas, no sirve para estudiar a un paciente sintomático con banderas rojas.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 2.1 · PREGUNTA 4</span><span class="mono light">Caso tipo EUNACOM (banco 2022)</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Hombre de 29 años consulta por dolor abdominal recurrente de 6 meses que alivia al defecar, asociado a deposiciones más…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave B</span><span class="sol-opt">Diagnóstico de síndrome de intestino irritable e iniciar manejo</span></div>
+          <p class="sol-just">Cumple criterios de Roma IV (dolor recurrente que alivia con la defecación y se asocia a cambio en la consistencia de las deposiciones) sin ningún signo de alarma y con exámenes básicos normales, incluyendo serología celíaca negativa. El diagnóstico de SII es clínico y positivo; corresponde iniciar tratamiento (educación, dieta, fármacos según síntoma) sin más estudios.</p>
+          <p class="sol-perla"><strong>Perla. </strong>Las alternativas A, C y D son estudios invasivos innecesarios en ausencia de banderas rojas.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 3.1 · PREGUNTA 5</span><span class="mono light">Reconstrucción EUNACOM 2013 · Pregunta #121</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Hombre de 45 años consulta por dolor epigástrico intenso y vómitos biliosos. Al examen: FC 90/min, PA 140/90, escleras…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave B</span><span class="sol-opt">Pancreatitis aguda</span></div>
+          <p class="sol-just">La lipasa está sobre 3 veces el límite superior (> 180 U/L) junto con dolor típico: cumple criterios de pancreatitis aguda, y aunque coexista una coledocolitiasis (colédoco dilatado, patrón colestásico), "manda" la pancreatitis por ser la condición más grave y la que define la conducta. No hay fiebre ni compromiso hemodinámico que hagan pensar en colangitis (A).</p>
+          <p class="sol-perla trap"><strong>Trampa. </strong>El colédoco dilatado y la ictericia descartan un cólico biliar simple (E) y la colecistitis (D) cursaría con Murphy y sin esta magnitud de ictericia.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card-head"><span class="mono">TEMA 3.1 · PREGUNTA 6</span><span class="mono light">Reconstrucción EUNACOM Julio 2016 · Pregunta #54</span></div>
+        <div class="sol-card-body">
+          <p class="sol-recap">Paciente de 55 años con pancreatitis aguda biliar de 36 horas de evolución. Está hemodinámicamente estable, afebril…</p>
+          <div class="sol-clave"><span class="sol-pill">Clave B</span><span class="sol-opt">Colecistectomía laparoscópica durante el mismo ingreso, una vez resuelto el episodio</span></div>
+          <p class="sol-just">En la pancreatitis biliar leve que ya resolvió, la colecistectomía laparoscópica debe realizarse en el mismo ingreso, porque diferirla se asocia a alta tasa de recurrencia de pancreatitis, colecistitis o colangitis en las semanas siguientes. La CPRE urgente (A) solo se indica si hay colangitis u obstrucción biliar persistente, lo que aquí no ocurre (afebril, vía biliar normal). La colangiorresonancia (D) no aporta porque la probabilidad de coledocolitiasis es baja.</p>
+          <p class="sol-perla"><strong>Perla. </strong>Diferir la cirugía (C) o no operar (E) deja al paciente expuesto a un nuevo evento.</p>
+        </div>
+      </div></div>
+  </td></tr></tbody></table>
+</body></html>

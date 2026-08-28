@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCACEST - Estilo 4: Modern Bento Grid (14 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100vw; height: 100vh; overflow: hidden; background: #0b1120; color: #f8fafc; font-family: 'Manrope', sans-serif; }
+    
+    #viewport { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #020617; }
+    #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; flex-shrink: 0; overflow: hidden; background: #0f172a; }
+    
+    .slide {
+      position: absolute; inset: 0; padding: 60px 80px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    .bento-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+    }
+    .bento-title {
+      font-size: 38px; font-weight: 900; letter-spacing: -0.03em; color: #ffffff;
+    }
+    .bento-sub { font-size: 14px; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; }
+    
+    .bento-pill {
+      padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 800;
+    }
+    .bento-pill.blue { background: #0284c7; color: #fff; }
+    .bento-pill.purple { background: #7c3aed; color: #fff; }
+    .bento-pill.red { background: #e11d48; color: #fff; }
+
+    /* Bento Grid Base */
+    .bento-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(2, 1fr);
+      gap: 20px; flex: 1; margin-bottom: 20px;
+    }
+    .bento-box {
+      background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px;
+      padding: 26px; display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+    .bento-box h4 {
+      font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+    }
+    .bento-box h3 {
+      font-size: 22px; font-weight: 800; color: #ffffff; margin-bottom: 8px;
+    }
+    .bento-box p {
+      font-size: 14px; color: #94a3b8; line-height: 1.5; font-family: 'Inter', sans-serif;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+    .row-span-2 { grid-row: span 2; }
+
+    /* Bento Question Box */
+    .bento-qbox {
+      background: #1e293b; border: 2px solid #38bdf8; border-radius: 16px; padding: 32px;
+      display: flex; flex-direction: column; justify-content: space-between; flex: 1; margin-bottom: 20px;
+    }
+    .bento-opt-btn {
+      background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px;
+      padding: 16px 20px; color: #f1f5f9; font-family: inherit; font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s ease; margin-bottom: 10px; width: 100%; text-align: left;
+    }
+    .bento-opt-btn:hover { background: rgba(56, 189, 248, 0.15); border-color: #38bdf8; }
+    .bento-opt-btn.correct { background: rgba(16, 185, 129, 0.25) !important; border-color: #10b981 !important; color: #34d399 !important; }
+    .bento-opt-btn.wrong { background: rgba(239, 68, 68, 0.25) !important; border-color: #ef4444 !important; color: #fca5a5 !important; }
+    .bento-fb {
+      display: none; background: #0f172a; border: 1px solid #10b981; padding: 16px 20px; border-radius: 10px; font-size: 14px; color: #cbd5e1; font-family: 'Inter', sans-serif;
+    }
+
+    #bento-hud {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewport">
+  <div id="stage">
+
+    <!-- S1: COVER -->
+    <div class="slide active" id="s1" style="justify-content: center; align-items: center; text-align: center;">
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <span class="bento-pill blue">EUNACOM 2026</span>
+        <span class="bento-pill purple">STEP 2 CK</span>
+        <span class="bento-pill red">URGENCIA GES</span>
+      </div>
+      <h1 style="font-size: 64px; font-weight: 900; letter-spacing: -0.03em; color: #ffffff; margin-bottom: 16px;">
+        SCACEST: Manejo Integral & Protocolo GES
+      </h1>
+      <p style="font-size: 22px; color: #94a3b8; max-width: 1000px; line-height: 1.5; margin-bottom: 32px; font-family: 'Inter';">
+        Infarto Agudo al Miocardio con Supradesnivel del ST · Angioplastía Primaria vs Tenecteplase · DAPT · Killip I-IV · Casos Clínicos
+      </p>
+      <div style="display: flex; gap: 14px;">
+        <span style="background: #1e293b; border: 1px solid rgba(255,255,255,0.1); padding: 8px 18px; border-radius: 8px; font-family: 'Space Mono'; font-size: 14px;">CÓD: 1.01.2.002</span>
+        <span style="background: #1e293b; border: 1px solid rgba(255,255,255,0.1); padding: 8px 18px; border-radius: 8px; font-family: 'Space Mono'; font-size: 14px;">CÓD: 1.01.3.005</span>
+      </div>
+    </div>
+
+    <!-- S2: MATRIZ V3 -->
+    <div class="slide" id="s2">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Exigencia Legal ASOFAMECh</div>
+          <h2 class="bento-title">Matriz de Competencias Perfil V3</h2>
+        </div>
+        <span class="bento-pill red">NIVEL URGENCIA</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-4 row-span-2" style="border-color: #38bdf8;">
+          <div>
+            <h4>Diagnóstico Específico</h4>
+            <h3>ECG &le; 10 Minutos</h3>
+            <p>El médico general debe realizar e interpretar el electrocardiograma de 12 derivaciones en los primeros 10 minutos desde el contacto médico. Reconocer SDST o nuevo BCRI.</p>
+          </div>
+          <span style="background: rgba(56,189,248,0.15); color: #38bdf8; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 800;">PERFIL V3 OBLIGATORIO</span>
+        </div>
+        <div class="bento-box span-4 row-span-2" style="border-color: #e11d48;">
+          <div>
+            <h4 style="color: #f43f5e;">Tratamiento Urgente</h4>
+            <h3>Reperfusión Inmediata</h3>
+            <p>Administración precoz de DAPT de carga (AAS + Ticagrelor o Clopidogrel), anticoagulación con Enoxaparina y activación de Angioplastía Primaria (&lt;90m) o Fibrinolisis TNK (&lt;30m).</p>
+          </div>
+          <span style="background: rgba(225,29,72,0.15); color: #f43f5e; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 800;">VENTANA &lt; 12 HORAS</span>
+        </div>
+        <div class="bento-box span-4 row-span-2" style="border-color: #10b981;">
+          <div>
+            <h4 style="color: #34d399;">Red & APS</h4>
+            <h3>Derivación & Control</h3>
+            <p>Coordinación de traslado asistido medicalizado en SAMU. Tras el alta, seguimiento crónico en APS con prevención secundaria (AAS + Estatina alta intensidad + BB + IECA/ARAII).</p>
+          </div>
+          <span style="background: rgba(16,185,129,0.15); color: #34d399; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 800;">GARANTÍA GES 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3: FISIOPATOLOGÍA -->
+    <div class="slide" id="s3">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Fisiopatología & Criterios</div>
+          <h2 class="bento-title">Isquemia Transmural & Criterios ECG</h2>
+        </div>
+        <span class="bento-pill blue">ISQUEMIA AGUDA</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-6">
+          <h4>Mecanismo Fisiopatológico</h4>
+          <h3>Trombosis Oclusiva 100%</h3>
+          <p>Ruptura de placa aterosclerótica vulnerable ➔ Adhesión y agregación plaquetaria masiva ➔ Trombo oclusivo rojo rico en fibrina ➔ Necrosis celular transmural en onda de frente.</p>
+        </div>
+        <div class="bento-box span-6" style="border-color: #38bdf8;">
+          <h4>Electrocardiograma</h4>
+          <h3>Criterios de Supradesnivel ST</h3>
+          <p>• <strong>V2-V3:</strong> &ge;2.0mm (varones &ge;40a), &ge;2.5mm (&lt;40a), &ge;1.5mm (mujeres).<br>• <strong>Otras:</strong> &ge;1.0mm en 2 derivaciones contiguas.<br>• <strong>BCRI nuevo:</strong> Equivalente a SCACEST.</p>
+        </div>
+        <div class="bento-box span-12">
+          <h4>Perla de Examen</h4>
+          <h3 style="font-size: 18px;">No esperar biomarcadores cardíacos para activar la reperfusión</h3>
+          <p>Las troponinas ultrasensibles pueden ser negativas en las primeras 2-3 horas de inicio. El electrocardiograma con SDST es autosuficiente para definir el tratamiento inmediato.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S4: ABCDE -->
+    <div class="slide" id="s4">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Reanimación Inicial</div>
+          <h2 class="bento-title">Algoritmo de Urgencias ABCDE</h2>
+        </div>
+        <span class="bento-pill blue">URGENCIAS</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-3">
+          <h4>Vía Aérea (A-B)</h4>
+          <h3>Oxígeno</h3>
+          <p>Únicamente si SatO2 &lt; 90% o PaO2 &lt; 60 mmHg. La hiperoxia induce vasoconstricción coronaria perjudicial.</p>
+        </div>
+        <div class="bento-box span-3">
+          <h4>Circulación (C)</h4>
+          <h3>Accesos & Monitor</h3>
+          <p>2 vías venosas periféricas #18G y monitorización continua ante el alto riesgo de FV primaria en las primeras horas.</p>
+        </div>
+        <div class="bento-box span-3">
+          <h4>Analgesia (D)</h4>
+          <h3>Dolor Isquémico</h3>
+          <p>Morfina 2-4mg EV si el dolor es severo y refractario; vigilar retardo en absorción de antiagregantes orales.</p>
+        </div>
+        <div class="bento-box span-3" style="border-color: #38bdf8;">
+          <h4>Diagnóstico (E)</h4>
+          <h3>ECG &lt; 10 min</h3>
+          <p>12 derivaciones estándar. Si se observa compromiso inferior, solicitar de inmediato derivadas derechas V3R-V4R.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5: FARMACOTERAPIA -->
+    <div class="slide" id="s5">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Farmacoterapia Inicial</div>
+          <h2 class="bento-title">Doble Antiagregación (DAPT) & Heparinas</h2>
+        </div>
+        <span class="bento-pill blue">FARMACOLOGÍA</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-6">
+          <h4>AAS (Aspirina)</h4>
+          <h3>250 a 500 mg VO Masticable</h3>
+          <p>Dosis de carga universal e inmediata para inhibición irreversible de la COX-1 plaquetaria. Mantención: 100 mg/día.</p>
+        </div>
+        <div class="bento-box span-6" style="border-color: #38bdf8;">
+          <h4>Ticagrelor (PCI)</h4>
+          <h3>180 mg VO (luego 90mg c/12h)</h3>
+          <p>Inhibidor P2Y12 preferente si la estrategia es Angioplastía Primaria. No requiere activación metabólica hepática.</p>
+        </div>
+        <div class="bento-box span-6" style="border-color: #f59e0b;">
+          <h4>Clopidogrel (TNK)</h4>
+          <h3>300 mg VO (75mg si &gt;75 años)</h3>
+          <p>Inhibidor P2Y12 de elección si el paciente recibe Trombólisis con Tenecteplase en hospital periférico.</p>
+        </div>
+        <div class="bento-box span-6" style="border-color: #10b981;">
+          <h4>Enoxaparina</h4>
+          <h3>30 mg EV bolo + 1 mg/kg SC</h3>
+          <p>Anticoagulante parenteral estándar. Si edad &gt; 75 años: omitir bolo EV y administrar 0.75 mg/kg SC cada 12 horas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S6: KILLIP -->
+    <div class="slide" id="s6">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Estratificación Hemodinámica</div>
+          <h2 class="bento-title">Clasificación Pronóstica Killip-Kimball</h2>
+        </div>
+        <span class="bento-pill purple">PROGNOSIS SCORE</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-3" style="border-color: #10b981;">
+          <h4 style="color: #34d399;">Killip I</h4>
+          <h3 style="font-size: 28px;">6% Mortalidad</h3>
+          <p>Sin signos de insuficiencia cardíaca. Sin estertores ni 3er ruido galope.</p>
+        </div>
+        <div class="bento-box span-3" style="border-color: #38bdf8;">
+          <h4 style="color: #38bdf8;">Killip II</h4>
+          <h3 style="font-size: 28px;">17% Mortalidad</h3>
+          <p>Insuficiencia leve-moderada: crepitaciones en &lt; 50% de campos pulmonares y R3.</p>
+        </div>
+        <div class="bento-box span-3" style="border-color: #f59e0b;">
+          <h4 style="color: #fbbf24;">Killip III</h4>
+          <h3 style="font-size: 28px;">38% Mortalidad</h3>
+          <p>Edema Agudo de Pulmón: crepitaciones en &gt; 50% de campos y distrés respiratorio.</p>
+        </div>
+        <div class="bento-box span-3" style="border-color: #e11d48; background: rgba(225,29,72,0.1);">
+          <h4 style="color: #f43f5e;">Killip IV</h4>
+          <h3 style="font-size: 28px;">81% Mortalidad</h3>
+          <p>Shock Cardiogénico: PAS &lt; 90 mmHg, oliguria, frialdad. Indicación de PCI emergente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S7: REPERFUSIÓN -->
+    <div class="slide" id="s7">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Estrategia Temporal</div>
+          <h2 class="bento-title">Regla de Reperfusión: 120 Minutos</h2>
+        </div>
+        <span class="bento-pill blue">DECISIÓN CLÍNICA</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-7" style="border-color: #38bdf8;">
+          <h4>Angioplastía Primaria (PCI)</h4>
+          <h3>Meta Puerta-Balón &lt; 90 min</h3>
+          <p>Estrategia de elección si el tiempo de traslado al centro con hemodinamia es <strong>&le; 120 minutos</strong>. Se realiza acceso vascular radial preferente y colocación de stent liberador de fármaco (DES).</p>
+        </div>
+        <div class="bento-box span-5" style="border-color: #e11d48;">
+          <h4 style="color: #f43f5e;">Trombólisis Tenecteplase</h4>
+          <h3>Meta Puerta-Aguja &lt; 30 min</h3>
+          <p>Indicada si el traslado supera los <strong>120 minutos</strong>. Administrar bolo peso-dependiente de TNK de inmediato en la posta/hospital periférico.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S8: TOPOGRAFÍA -->
+    <div class="slide" id="s8">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Mapeo Coronario</div>
+          <h2 class="bento-title">Localización por Derivaciones Electrocardiográficas</h2>
+        </div>
+        <span class="bento-pill blue">ANATOMÍA</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-4">
+          <h4>V1 a V4</h4>
+          <h3>Pared Anterior (LAD)</h3>
+          <p>Arteria Descendente Anterior. Mayor riesgo de shock cardiogénico y bloqueos de rama.</p>
+        </div>
+        <div class="bento-box span-4" style="border-color: #f59e0b;">
+          <h4 style="color: #fbbf24;">DII, DIII, aVF</h4>
+          <h3>Pared Inferior (RCA)</h3>
+          <p>Arteria Coronaria Derecha. Asociado a BAV completo y compromiso de Ventrículo Derecho.</p>
+        </div>
+        <div class="bento-box span-4">
+          <h4>DI, aVL, V5-V6</h4>
+          <h3>Pared Lateral (LCx)</h3>
+          <p>Arteria Circunfleja. En infarto posterior tomar V7-V9 para documentar SDST.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S9: CONTRAINDICACIONES -->
+    <div class="slide" id="s9">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Seguridad Fibrinolítica</div>
+          <h2 class="bento-title">Contraindicaciones Absolutas de Fibrinolisis</h2>
+        </div>
+        <span class="bento-pill red">PROHIBICIONES</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-6" style="border-color: #e11d48;">
+          <h4 style="color: #f43f5e;">Neurológicas</h4>
+          <h3>Hemorragia Intracraneal</h3>
+          <p>Cualquier antecedente de sangrado intracraneal previo, o ACV isquémico en los últimos 6 meses, o neoplasia/MAV conocida del SNC.</p>
+        </div>
+        <div class="bento-box span-6" style="border-color: #e11d48;">
+          <h4 style="color: #f43f5e;">Vasculares & Quirúrgicas</h4>
+          <h3>Sangrado Activo & Disección</h3>
+          <p>Sospecha clínica de Disección Aórtica, sangrado digestivo en el último mes, o cirugía mayor/TEC grave en los últimos 3 meses.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S10: 4 TRAMPAS -->
+    <div class="slide" id="s10">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">High-Yield EUNACOM</div>
+          <h2 class="bento-title">Las 4 Trampas Clásicas del Examen</h2>
+        </div>
+        <span class="bento-pill purple">PEARLS</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-6">
+          <h4>1. IAM Ventrículo Derecho</h4>
+          <p>Hipotensión con nitratos. Prohibidos nitratos y diuréticos; expandir con Suero Fisiológico 0.9%.</p>
+        </div>
+        <div class="bento-box span-6">
+          <h4>2. Fracaso Fibrinolítico</h4>
+          <p>Descenso de ST &lt;50% a los 90 min post-trombólisis exige Angioplastía de Rescate inmediata.</p>
+        </div>
+        <div class="bento-box span-6">
+          <h4>3. BCRI Nuevo</h4>
+          <p>Equivalente clínico de SCACEST. Si es previo, aplicar Criterios de Sgarbossa.</p>
+        </div>
+        <div class="bento-box span-6">
+          <h4>4. Ventana &gt; 12 Horas</h4>
+          <p>Paciente asintomático con &gt;12h: no trombolizar de urgencia, programar coronariografía diferida.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S11: CASO 1 -->
+    <div class="slide" id="s11">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Caso Clínico 1 de 3</div>
+          <h2 class="bento-title">Diagnóstico & Conducta Inmediata</h2>
+        </div>
+        <span class="bento-pill blue">CASO INTERACTIVO</span>
+      </div>
+      <div class="bento-qbox">
+        <div style="font-size: 18px; font-weight: 700; color: #ffffff; line-height: 1.5; margin-bottom: 20px; font-family: 'Inter';">
+          Hombre de 58 años con dolor torácico opresivo de 45 minutos. ECG muestra SDST de 3 mm en V1-V4. PA 150/90, SatO2 96%. ¿Conducta inicial prioritaria?
+        </div>
+        <div>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b1', 'Incorrecto. Con SatO2 96% no requiere oxígeno suplementario y no se deben retrasar decisiones esperando troponinas.')">A) O2 por mascarilla, solicitar troponinas ultrasensibles y esperar confirmación bioquímica.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, true, 'fb-b1', '¡Correcto! En SCACEST se indica DAPT de carga (AAS + Ticagrelor) y activación inmediata de Angioplastía Primaria.')">B) Administrar AAS 250 mg masticable + Ticagrelor 180 mg y activar inmediatamente Angioplastía Primaria.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b1', 'Incorrecto. La trombólisis no es de 1ra línea si hay disponibilidad de PCI.')">C) Administrar bolo de Tenecteplase y solicitar ecocardiograma transtorácico.</button>
+        </div>
+        <div class="bento-fb" id="fb-b1"></div>
+      </div>
+    </div>
+
+    <!-- S12: CASO 2 -->
+    <div class="slide" id="s12">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Caso Clínico 2 de 3</div>
+          <h2 class="bento-title">Estrategia en Hospital Periférico</h2>
+        </div>
+        <span class="bento-pill blue">CASO INTERACTIVO</span>
+      </div>
+      <div class="bento-qbox">
+        <div style="font-size: 18px; font-weight: 700; color: #ffffff; line-height: 1.5; margin-bottom: 20px; font-family: 'Inter';">
+          Mujer de 64 años con SCACEST anterior en hospital comunitario. Centro terciario con PCI está a 3.5 horas (&gt;120 min). ¿Manejo indicado?
+        </div>
+        <div>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b2', 'Incorrecto. 3.5 horas de traslado provocan necrosis transmural irreversible sin trombólisis previa.')">A) Trasladar en ambulancia de inmediato para Angioplastía Primaria sin trombolizar.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, true, 'fb-b2', '¡Correcto! Por exceder 120 minutos de traslado, la indicación GES es trombolizar inmediatamente con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado.')">B) Trombolizar de inmediato con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado posterior.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b2', 'Incorrecto. La trombólisis no suspende la necesidad de coronariografía posterior.')">C) Trombolizar y mantener en hospital comunitario sin derivar a centro terciario.</button>
+        </div>
+        <div class="bento-fb" id="fb-b2"></div>
+      </div>
+    </div>
+
+    <!-- S13: CASO 3 -->
+    <div class="slide" id="s13">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Caso Clínico 3 de 3</div>
+          <h2 class="bento-title">Infarto de Ventrículo Derecho</h2>
+        </div>
+        <span class="bento-pill blue">CASO INTERACTIVO</span>
+      </div>
+      <div class="bento-qbox">
+        <div style="font-size: 18px; font-weight: 700; color: #ffffff; line-height: 1.5; margin-bottom: 20px; font-family: 'Inter';">
+          Paciente con IAM inferior recibe Nitroglicerina y se hipotensa a 70/40 con yugulares ingurgitadas y campos limpios. ¿Paso siguiente?
+        </div>
+        <div>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b3', 'Incorrecto. La causa es la depleción de precarga en ventrículo derecho dependiente de volumen.')">A) Iniciar infusión de noradrenalina a dosis alta.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, true, 'fb-b3', '¡Correcto! Suspender nitratos y administrar bolo de Suero Fisiológico 0.9% para restablecer la precarga del VD.')">B) Suspender nitroglicerina y administrar un bolo rápido de Suero Fisiológico 0.9% EV.</button>
+          <button class="bento-opt-btn" onclick="checkBento(this, false, 'fb-b3', 'Incorrecto. La furosemida agravaría el colapso hemodinámico.')">C) Furosemida 40 mg EV para descomprimir las yugulares.</button>
+        </div>
+        <div class="bento-fb" id="fb-b3"></div>
+      </div>
+    </div>
+
+    <!-- S14: RESUMEN CHECKLIST -->
+    <div class="slide" id="s14">
+      <div class="bento-header">
+        <div>
+          <div class="bento-sub">Resumen de Alta Fidelidad</div>
+          <h2 class="bento-title">Checklist Final SCACEST 2026</h2>
+        </div>
+        <span class="bento-pill blue">RESUMEN</span>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-box span-4">
+          <h4>1. Diagnóstico & ECG</h4>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ ECG &le; 10 min.<br>
+            ✓ SDST en &ge; 2 contiguas.<br>
+            ✓ Carga AAS 250-500mg.<br>
+            ✓ O2 solo si Sat &lt; 90%.
+          </p>
+        </div>
+        <div class="bento-box span-4" style="border-color: #38bdf8;">
+          <h4>2. Reperfusión Oportuna</h4>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ PCI si traslado &le; 120m.<br>
+            ✓ TNK si traslado &gt; 120m.<br>
+            ✓ Ticagrelor (PCI) / Clopidogrel (TNK).<br>
+            ✓ Enoxaparina bolo + SC.
+          </p>
+        </div>
+        <div class="bento-box span-4" style="border-color: #10b981;">
+          <h4 style="color: #34d399;">3. Seguridad & Rescate</h4>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ No nitratos en IAM VD.<br>
+            ✓ ST &lt;50% a 90m ➔ Rescate.<br>
+            ✓ Prevención secundaria en APS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="bento-hud">
+      <div style="font-family: 'Space Mono'; font-size: 14px; color: #38bdf8;" id="b-counter">SLIDE 01 / 14</div>
+      <div>
+        <button style="background: #1e293b; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-weight: 700; cursor: pointer;" onclick="prevB()">◀ Anterior</button>
+        <button style="background: #0284c7; border: none; color: #fff; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-weight: 700; cursor: pointer; margin-left: 8px;" onclick="nextB()">Siguiente ▶</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let curB = 1;
+  const totB = 14;
+
+  function fitStage() {
+    const st = document.getElementById('stage');
+    const vp = document.getElementById('viewport');
+    const sc = Math.min(vp.clientWidth / 1920, vp.clientHeight / 1080);
+    st.style.transform = `scale(${sc})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  function showB(n) {
+    if (n < 1) n = 1;
+    if (n > totB) n = totB;
+    curB = n;
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i + 1 === curB));
+    document.getElementById('b-counter').innerText = `SLIDE ${String(curB).padStart(2, '0')} / ${String(totB).padStart(2, '0')}`;
+  }
+  function nextB() { showB(curB + 1); }
+  function prevB() { showB(curB - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextB();
+    if (e.key === 'ArrowLeft') prevB();
+  });
+
+  function checkBento(btn, ok, id, exp) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.bento-opt-btn').forEach(b => { b.disabled = true; });
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById(id);
+    fb.style.display = 'block';
+    fb.innerHTML = `<strong>${ok ? 'RESPUESTA CORRECTA: ' : 'RESPUESTA INCORRECTA: '}</strong>${exp}`;
+  }
+</script>
+</body>
+</html>

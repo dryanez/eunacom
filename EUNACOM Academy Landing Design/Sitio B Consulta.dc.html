@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0f1113;color:#eceae5;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#eceae5;text-decoration:none}
+a:hover{color:oklch(0.80 0.10 90)}
+button,input,select{font-family:inherit}
+</style>
+</helmet>
+
+<div style="background:#0f1113">
+
+<header style="position:sticky;top:0;z-index:40;background:rgba(15,17,19,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(236,234,229,.14)">
+<div style="max-width:1200px;margin:0 auto;padding:0 36px;min-height:64px;display:flex;align-items:center;gap:clamp(14px,2vw,32px)">
+<span style="font-family:'Instrument Serif',serif;font-size:24px">La Consulta</span>
+<nav style="display:flex;gap:24px;font-size:13px;color:rgba(236,234,229,.6);flex:1;white-space:nowrap">
+<a href="#examen" style="color:inherit">El examen hoy</a><a href="#trabajo" style="color:inherit">Cómo trabajamos</a><a href="#planes" style="color:inherit">Planes</a>
+</nav>
+<a href="#empezar" style="font-size:13px;font-weight:600;background:oklch(0.78 0.11 90);color:#0f1113;padding:10px 18px;border-radius:2px;white-space:nowrap">Medirme gratis</a>
+</div>
+</header>
+
+<section style="max-width:1200px;margin:0 auto;padding:80px 36px 0">
+<div style="display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.78 0.10 90);margin-bottom:30px">Julio 2026 · 214 días</div>
+<h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,7vw,92px);line-height:.98;letter-spacing:-.03em;margin:0 0 28px;max-width:17ch">El examen no mide cuánto sabes. Mide cómo decides.</h1>
+<p style="font-size:18px;line-height:1.6;color:rgba(236,234,229,.68);margin:0 0 34px;max-width:50ch">Por eso partimos midiendo. Responde el caso de al lado: si dudaste, ya sabes qué hay que entrenar y en qué orden.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+<a href="#empezar" style="font-size:15px;font-weight:600;background:oklch(0.78 0.11 90);color:#0f1113;padding:16px 26px;border-radius:2px">Hacer el diagnóstico completo</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(236,234,229,.45)">30 preguntas · 20 min</span>
+</div>
+</div>
+
+<div style="border:1px solid rgba(236,234,229,.2);background:#15181b">
+<div style="padding:16px 22px;border-bottom:1px solid rgba(236,234,229,.14);display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(236,234,229,.5)">
+<span>Caso 01 · Cardiología</span><span>Perfil V3</span>
+</div>
+<div style="padding:26px 24px;display:flex;flex-direction:column;gap:18px">
+<p style="font-size:14.5px;line-height:1.6;color:rgba(236,234,229,.8);margin:0">{{ enunciado }}</p>
+<div style="font-size:15px;font-weight:600">{{ pregunta }}</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ opciones }}" as="o" hint-placeholder-count="4">
+<button onClick="{{ o.pick }}" style="{{ o.style }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.5;flex:none">{{ o.letra }}</span>
+<span style="flex:1">{{ o.label }}</span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{ respondido }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+<p style="{{ feedbackStyle }}">{{ feedback }}</p>
+<button onClick="{{ resetQ }}" style="font-size:12.5px;color:rgba(236,234,229,.5);background:none;border:none;border-bottom:1px solid rgba(236,234,229,.3);padding:0 0 2px;cursor:pointer">Ver otro caso</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</section>
+
+<section id="examen" style="max-width:1200px;margin:0 auto;padding:88px 36px 0">
+<div style="border-top:1px solid rgba(236,234,229,.2);padding-top:34px;display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(236,234,229,.45);margin-bottom:20px">El examen hoy</div>
+<h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.05;letter-spacing:-.02em;margin:0 0 18px">Estudiaste bien. Con el mapa equivocado.</h2>
+<p style="font-size:16px;line-height:1.6;color:rgba(236,234,229,.65);margin:0">El Perfil V3 reordenó los pesos. Todo el material anterior a 2025 te hace repartir el tiempo como si nada hubiera cambiado.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(236,234,229,.18);border:1px solid rgba(236,234,229,.18)">
+<div style="background:#0f1113;padding:26px 24px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(236,234,229,.4);margin-bottom:18px">Curso antiguo</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:rgba(236,234,229,.5);line-height:1.4">
+<div>Temario en orden de facultad</div><div>Preguntas sueltas de memoria</div><div>Salud pública al final, si alcanza</div><div>Mismo plan para todos</div><div>Nadie sabe cómo vas</div>
+</div>
+</div>
+<div style="background:#0f1113;padding:26px 24px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.78 0.10 90);margin-bottom:18px">Acá</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.4">
+<div>Orden por peso real en el examen</div><div>Casos largos con razonamiento</div><div>Salud pública en la semana 1</div><div>Plan armado a tu fecha y tus brechas</div><div>Puntaje proyectado cada semana</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="trabajo" style="max-width:1200px;margin:0 auto;padding:88px 36px 0">
+<h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.05;letter-spacing:-.02em;margin:0 0 34px;max-width:22ch">Cómo trabajamos, semana a semana.</h2>
+<div style="display:grid;grid-template-columns:.7fr 1.3fr;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;border-top:1px solid rgba(236,234,229,.18)">
+<sc-for list="{{ pilares }}" as="p" hint-placeholder-count="4">
+<button onClick="{{ p.pick }}" style="{{ p.style }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.5">{{ p.num }}</span>
+<span style="font-family:'Instrument Serif',serif;font-size:22px">{{ p.nombre }}</span>
+</button>
+</sc-for>
+</div>
+<div style="border:1px solid rgba(236,234,229,.2);padding:36px 38px;min-height:300px;display:flex;flex-direction:column;gap:20px">
+<div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1.15">{{ pilarTitulo }}</div>
+<p style="font-size:16px;line-height:1.65;color:rgba(236,234,229,.7);margin:0;max-width:56ch">{{ pilarTexto }}</p>
+<div style="flex:1"></div>
+<div style="display:flex;gap:1px;background:rgba(236,234,229,.18)">
+<div style="flex:1;background:#0f1113;padding:15px 17px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(236,234,229,.4);margin-bottom:6px">Formato</div><div style="font-size:13.5px">{{ pilarFormato }}</div></div>
+<div style="flex:1;background:#0f1113;padding:15px 17px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(236,234,229,.4);margin-bottom:6px">Volumen</div><div style="font-size:13.5px">{{ pilarVolumen }}</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="planes" style="max-width:1200px;margin:0 auto;padding:88px 36px 0">
+<div style="border-top:1px solid rgba(236,234,229,.2);padding-top:34px;margin-bottom:32px;display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap">
+<h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.05;margin:0">¿Cuánto acompañamiento necesitas?</h2>
+<p style="font-size:14.5px;color:rgba(236,234,229,.6);margin:0;max-width:40ch">Acceso hasta el día de tu examen. Con Tutoría, si no apruebas repetimos completo sin costo.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(236,234,229,.18);border:1px solid rgba(236,234,229,.18)">
+<div style="background:#0f1113;padding:34px 30px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(236,234,229,.45)">Banco</div>
+<div style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">US$ 290</div>
+<p style="font-size:13.5px;line-height:1.6;color:rgba(236,234,229,.6);margin:0">4.000+ preguntas y 6 simulacros cronometrados. Sin clases ni manuales.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="text-align:center;font-size:14px;font-weight:600;border:1px solid rgba(236,234,229,.35);padding:13px;border-radius:2px">Elegir Banco</a>
+</div>
+<div style="background:#15181b;padding:34px 30px;display:flex;flex-direction:column;gap:16px;position:relative">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:oklch(0.78 0.11 90)"></div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.80 0.10 90)">Programa completo · el habitual</div>
+<div style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">US$ 690</div>
+<p style="font-size:13.5px;line-height:1.6;color:rgba(236,234,229,.7);margin:0">Todo lo del banco, más 86 clases, 6 tomos maquetados y el plan de 8 semanas a tu fecha.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="text-align:center;font-size:14px;font-weight:600;background:oklch(0.78 0.11 90);color:#0f1113;padding:13px;border-radius:2px">Elegir Programa completo</a>
+</div>
+<div style="background:#0f1113;padding:34px 30px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(236,234,229,.45)">Tutoría · 12 cupos</div>
+<div style="font-family:'Instrument Serif',serif;font-size:44px;line-height:1">US$ 1.890</div>
+<p style="font-size:13.5px;line-height:1.6;color:rgba(236,234,229,.6);margin:0">Todo lo anterior, sesiones 1-a-1, corrección de simulacros y garantía por escrito.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="text-align:center;font-size:14px;font-weight:600;border:1px solid rgba(236,234,229,.35);padding:13px;border-radius:2px">Postular a cupo</a>
+</div>
+</div>
+</section>
+
+<section id="empezar" style="max-width:1200px;margin:88px auto 0;padding:0 36px 88px">
+<div style="border:1px solid rgba(236,234,229,.2);padding:52px 46px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start">
+<div>
+<h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:46px;line-height:1.04;margin:0 0 18px;max-width:18ch">Dime cuándo rindes y armo tu plan.</h2>
+<p style="font-size:16px;line-height:1.6;color:rgba(236,234,229,.65);margin:0;max-width:46ch">Te llega el blueprint del Perfil V3 ajustado a tu fecha y el diagnóstico completo de 30 preguntas, con puntaje por especialidad.</p>
+</div>
+<div>
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'Instrument Serif',serif;font-size:28px;line-height:1.2">Listo, va en camino.</div>
+<p style="font-size:14.5px;line-height:1.6;color:rgba(236,234,229,.65);margin:0">Te lo mandé a <strong style="font-weight:600;color:#eceae5">{{ correoEnviado }}</strong>.</p>
+<button onClick="{{ reset }}" style="align-self:flex-start;font-size:13px;color:rgba(236,234,229,.6);background:none;border:none;border-bottom:1px solid rgba(236,234,229,.3);padding:0 0 3px;cursor:pointer">Usar otro correo</button>
+</div>
+</sc-if>
+<sc-if value="{{ abierto }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<input value="{{ correo }}" onChange="{{ onCorreo }}" placeholder="tu@correo.com" style="font-size:15px;padding:14px;border:1px solid rgba(236,234,229,.28);background:#15181b;color:#eceae5;outline:none" style-focus="border-color:oklch(0.78 0.11 90)">
+<select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:14px;border:1px solid rgba(236,234,229,.28);background:#15181b;color:#eceae5;outline:none"><option value="">¿Cuándo rindes?</option><option value="Julio 2026">Julio 2026</option><option value="Diciembre 2026">Diciembre 2026</option><option value="Aún no lo decido">Aún no lo decido</option></select>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:oklch(0.72 0.14 30)">{{ error }}</div></sc-if>
+<button onClick="{{ enviar }}" style="font-size:15px;font-weight:600;background:oklch(0.78 0.11 90);color:#0f1113;border:none;padding:15px;cursor:pointer">Mándame el diagnóstico</button>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.6;color:rgba(236,234,229,.4);margin:0">Sin spam. Te das de baja en un clic.</p>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<footer style="border-top:1px solid rgba(236,234,229,.14)">
+<div style="max-width:1200px;margin:0 auto;padding:30px 36px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:rgba(236,234,229,.4)">
+<span>© 2026 La Consulta · Santiago de Chile</span>
+<span>Programa independiente, no afiliado a ASOFAMECH</span>
+</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const CASO = {
+  e:"Hombre de 58 años, diabético, llega con dolor torácico opresivo de 40 minutos, sudoroso. ECG: supradesnivel ST de 3 mm en II, III y aVF.",
+  q:"¿Cuál es la conducta inicial más adecuada?",
+  opts:[
+    {t:"Solicitar troponinas y esperar resultado para decidir",ok:false,w:"El SCACEST se diagnostica con clínica y ECG. Esperar troponinas retrasa la reperfusión y cuesta miocardio."},
+    {t:"Activar reperfusión de inmediato y trasladar a centro con angioplastía",ok:true,w:"Correcto. Supradesnivel ST inferior con clínica compatible: la ventana manda. Reperfusión primero, confirmación después."},
+    {t:"Iniciar antiagregación y control ambulatorio en 48 horas",ok:false,w:"Es un infarto con supradesnivel en curso. El manejo ambulatorio no es opción."},
+    {t:"Realizar test de esfuerzo para confirmar isquemia",ok:false,w:"Contraindicado en un SCA agudo. El examen castiga fuerte esta alternativa."}
+  ]
+};
+
+const PILARES = [
+  {n:"01",nombre:"Diagnóstico",t:"Primero medimos, después estudiamos",x:"Treinta preguntas y un simulacro corto definen tu punto de partida por eje. El plan de 8 semanas se arma sobre ese resultado, no sobre un temario genérico.",f:"30 preg. + simulacro",v:"Semana 1"},
+  {n:"02",nombre:"Clases al punto",t:"Catorce diapositivas por tema",x:"Grabadas en estudio, en 1080p. Qué se pregunta, cómo se pregunta y cuál es el criterio de decisión que buscan los evaluadores. Sin relleno académico.",f:"Video 1080p",v:"86 clases · 42 h"},
+  {n:"03",nombre:"Banco explicado",t:"Cada alternativa tiene su por qué",x:"Más de 4.000 preguntas del Perfil V3. El sistema detecta tus ejes débiles y reordena la práctica sola, con explicación razonada de las correctas y las incorrectas.",f:"Banco adaptativo",v:"4.000+ preguntas"},
+  {n:"04",nombre:"Tutoría",t:"Alguien que te responde",x:"Sesiones 1-a-1 conmigo, corrección personalizada de simulacros y nota semanal sobre lo que hay que corregir. Doce cupos por convocatoria, no doscientos.",f:"Video 1-a-1",v:"12 cupos"}
+];
+
+class Component extends DCLogic {
+  state = {pick:-1, pilar:0, correo:"", fecha:"", error:"", enviado:false, correoEnviado:""};
+
+  renderVals() {
+    const pick = this.state.pick;
+    const p = PILARES[this.state.pilar];
+    const ok = pick >= 0 && CASO.opts[pick].ok;
+    return {
+      enunciado:CASO.e, pregunta:CASO.q,
+      opciones:CASO.opts.map((o,k)=>{
+        const picked = pick === k, revealed = pick >= 0;
+        return {label:o.t, letra:"ABCD"[k],
+          style:{display:"flex",alignItems:"baseline",gap:11,textAlign:"left",fontSize:14,lineHeight:1.4,padding:"12px 14px",
+            borderRadius:2,cursor:revealed?"default":"pointer",color:"#eceae5",transition:"all .14s ease",
+            border:"1px solid "+(revealed && o.ok ? "oklch(0.62 0.12 150)" : picked ? "oklch(0.58 0.14 30)" : "rgba(236,234,229,.2)"),
+            background:revealed && o.ok ? "oklch(0.28 0.05 150)" : picked ? "oklch(0.28 0.06 30)" : "#0f1113"},
+          pick:()=>{ if (this.state.pick < 0) this.setState({pick:k}); }};
+      }),
+      respondido:pick >= 0,
+      feedback:pick >= 0 ? CASO.opts[pick].w : "",
+      feedbackStyle:{fontSize:13.5,lineHeight:1.6,margin:0,padding:"14px 16px",
+        background: ok ? "oklch(0.26 0.05 150)" : "oklch(0.26 0.06 30)",
+        border:"1px solid "+(ok ? "oklch(0.50 0.10 150)" : "oklch(0.50 0.12 30)"),
+        color: ok ? "oklch(0.88 0.07 150)" : "oklch(0.88 0.08 30)"},
+      resetQ:()=>this.setState({pick:-1}),
+
+      pilares:PILARES.map((x,k)=>{
+        const on = this.state.pilar === k;
+        return {num:x.n, nombre:x.nombre,
+          style:{display:"flex",alignItems:"baseline",gap:13,padding:"18px 4px",background:"none",border:"none",
+            borderBottom:"1px solid rgba(236,234,229,.18)",borderLeft:on?"2px solid oklch(0.78 0.11 90)":"2px solid transparent",
+            paddingLeft:on?16:6,cursor:"pointer",textAlign:"left",
+            color:on?"#eceae5":"rgba(236,234,229,.5)",transition:"all .18s ease"},
+          pick:()=>this.setState({pilar:k})};
+      }),
+      pilarTitulo:p.t, pilarTexto:p.x, pilarFormato:p.f, pilarVolumen:p.v,
+
+      correo:this.state.correo, fecha:this.state.fecha, error:this.state.error,
+      onCorreo:e=>this.setState({correo:e.target.value, error:""}),
+      onFecha:e=>this.setState({fecha:e.target.value, error:""}),
+      enviado:this.state.enviado, abierto:!this.state.enviado, correoEnviado:this.state.correoEnviado,
+      enviar:()=>{
+        const {correo, fecha} = this.state;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.trim())) return this.setState({error:"Revisa el correo, parece incompleto."});
+        if (!fecha) return this.setState({error:"Dime cuándo rindes."});
+        this.setState({enviado:true, correoEnviado:correo.trim(), error:""});
+      },
+      reset:()=>this.setState({enviado:false, correo:"", fecha:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

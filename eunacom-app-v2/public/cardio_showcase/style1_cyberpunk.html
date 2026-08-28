@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCACEST - Estilo 1: Clinical Cyberpunk (14 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100vw; height: 100vh; overflow: hidden; background: #030712; color: #f1f5f9; font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    #viewport { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #020617; }
+    #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; flex-shrink: 0; overflow: hidden; background: #070b14; }
+    
+    /* Cyberpunk Theme Background */
+    .cyber-bg {
+      position: absolute; inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .glow-orb-1 { position: absolute; top: -120px; left: -120px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 242, 254, 0.16) 0%, transparent 70%); filter: blur(60px); pointer-events: none; }
+    .glow-orb-2 { position: absolute; bottom: -120px; right: -120px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(239, 68, 68, 0.16) 0%, transparent 70%); filter: blur(60px); pointer-events: none; }
+
+    /* Slide System */
+    .slide {
+      position: absolute; inset: 0; padding: 60px 90px 95px 90px;
+      display: flex; flex-direction: column; justify-content: flex-start; gap: 24px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      transform: scale(0.98);
+    }
+    .slide.active {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: scale(1);
+    }
+
+    /* Common Components */
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.3); padding-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .header-tagline {
+      font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: #38bdf8;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    }
+    .slide-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 50px; font-weight: 900; color: #ffffff;
+      line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .slide-title span {
+      background: linear-gradient(90deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .header-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 800; color: #00f2fe;
+      background: rgba(0, 242, 254, 0.12); border: 1.5px solid #00f2fe; padding: 10px 22px; border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 18px; padding: 32px;
+      position: relative;
+    }
+    .glass-card.alert {
+      background: rgba(239, 68, 68, 0.12); border-color: rgba(239, 68, 68, 0.5);
+    }
+
+    /* Tables */
+    .cyber-table {
+      width: 100%; border-collapse: separate; border-spacing: 0 12px;
+    }
+    .cyber-table th {
+      font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 800; color: #38bdf8;
+      text-transform: uppercase; padding: 16px 26px; text-align: left; background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .cyber-table td {
+      padding: 20px 26px; background: rgba(30, 41, 59, 0.7); font-size: 20px; color: #e2e8f0; line-height: 1.5;
+      border-top: 1px solid rgba(255, 255, 255, 0.08); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cyber-table tr td:first-child { border-left: 4px solid #00f2fe; border-radius: 10px 0 0 10px; font-weight: 800; color: #ffffff; }
+    .cyber-table tr td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0 10px 10px 0; }
+
+    /* Interactive Questions */
+    .question-box {
+      background: rgba(15, 23, 42, 0.9); border: 1.5px solid #38bdf8; border-radius: 20px;
+      padding: 36px 44px; display: flex; flex-direction: column; justify-content: center; flex: 1;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+    .question-stem { font-size: 23px; font-weight: 700; color: #ffffff; line-height: 1.6; margin-bottom: 24px; }
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .option-btn {
+      background: rgba(30, 41, 59, 0.8); border: 1.5px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
+      padding: 20px 26px; color: #f1f5f9; font-family: inherit; font-size: 19px; font-weight: 600; line-height: 1.4;
+      text-align: left; cursor: pointer; transition: all 0.25s ease; display: flex; align-items: flex-start; gap: 14px;
+    }
+    .option-btn:hover { background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; transform: translateY(-2px); }
+    .option-btn.correct { background: rgba(16, 185, 129, 0.35) !important; border-color: #10b981 !important; color: #34d399 !important; }
+    .option-btn.wrong { background: rgba(239, 68, 68, 0.35) !important; border-color: #ef4444 !important; color: #fca5a5 !important; }
+    .feedback-banner {
+      display: none; background: rgba(15, 23, 42, 0.98); border: 2px solid #10b981; border-radius: 14px;
+      padding: 22px 30px; margin-top: 20px; font-size: 20px; color: #e2e8f0; line-height: 1.5;
+    }
+
+    /* Dynamic Action Animation for Bold Keyphrases & Golden Rules */
+    strong {
+      color: #38bdf8;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .step-line strong, .stepper-item strong, .cyber-table strong, .question-stem strong {
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.15);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      padding: 3px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+      transition: all 0.3s ease;
+    }
+    .step-line.active-line strong, .item-active strong, .row-active strong {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.55), rgba(59, 130, 246, 0.55)) !important;
+      border: 1px solid #00f2fe !important;
+      box-shadow: 0 0 24px rgba(0, 242, 254, 0.9), inset 0 0 12px rgba(0, 242, 254, 0.5) !important;
+      transform: scale(1.05);
+      animation: pulseKeyRule 1.6s infinite alternate ease-in-out;
+    }
+    @keyframes pulseKeyRule {
+      0% {
+        box-shadow: 0 0 14px rgba(0, 242, 254, 0.7), inset 0 0 8px rgba(0, 242, 254, 0.4);
+        border-color: #00f2fe;
+      }
+      100% {
+        box-shadow: 0 0 30px rgba(0, 242, 254, 1), inset 0 0 16px rgba(0, 242, 254, 0.8);
+        border-color: #ffffff;
+      }
+    }
+
+    /* Cinematic Dynamic Focus & Line Highlight Engine */
+    .stepper-container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 10px; flex: 1;
+      position: relative;
+    }
+    .stepper-card {
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.45s ease,
+                  filter 0.45s ease,
+                  box-shadow 0.45s ease,
+                  border-color 0.45s ease;
+      position: relative;
+    }
+
+    /* Focus on Left Card (Cascada Fisiopatológica) */
+    .stepper-container.focus-left #card-fisiopatologia {
+      transform: scale(1.08) translateX(230px);
+      z-index: 20;
+      border-color: #00f2fe !important;
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .stepper-container.focus-left #card-criterios {
+      opacity: 0.12;
+      transform: scale(0.92) translateX(80px);
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    /* Focus on Right Card (Criterios ECG) */
+    .stepper-container.focus-right #card-fisiopatologia {
+      opacity: 0.12;
+      transform: scale(0.92) translateX(-80px);
+      filter: blur(4px);
+      pointer-events: none;
+    }
+    .stepper-container.focus-right #card-criterios {
+      transform: scale(1.08) translateX(-230px);
+      z-index: 20;
+      border-color: #00f2fe !important;
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    /* Line Highlight States for Slide 3 & nested numbered items */
+    .step-line {
+      padding: 14px 18px;
+      border-radius: 8px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      border-left: 4px solid transparent;
+      opacity: 0.35;
+      background: rgba(15, 23, 42, 0.5);
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+    .stepper-container.overview .step-line {
+      opacity: 0.95;
+      color: #cbd5e1;
+      background: rgba(15, 23, 42, 0.3);
+    }
+    .step-line.active-line {
+      opacity: 1 !important;
+      transform: translateX(14px) scale(1.04) !important;
+      background: rgba(0, 242, 254, 0.22) !important;
+      border-left: 5px solid #00f2fe !important;
+      color: #ffffff !important;
+      font-size: 16px !important;
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.45), 0 10px 25px rgba(0, 0, 0, 0.6) !important;
+    }
+    .step-line.active-line strong {
+      color: #00f2fe !important;
+      font-size: 17px !important;
+      text-shadow: 0 0 15px rgba(0, 242, 254, 0.8) !important;
+    }
+    .step-line.passed-line {
+      opacity: 0.7;
+      color: #cbd5e1;
+    }
+
+    /* Universal Grid & Card Stepper Engine */
+    .grid-stepper, .cards-stepper {
+      position: relative;
+    }
+    .stepper-item {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease,
+                  filter 0.4s ease,
+                  box-shadow 0.4s ease,
+                  border-color 0.4s ease;
+      position: relative;
+    }
+
+    /* Grid focus states (1 to 4) */
+    .has-focus .stepper-item {
+      opacity: 0.18;
+      transform: scale(0.94);
+      filter: blur(3px);
+      pointer-events: none;
+    }
+    .has-focus .stepper-item.item-active {
+      opacity: 1 !important;
+      transform: scale(1.07) !important;
+      filter: none !important;
+      z-index: 30;
+      border-color: #00f2fe !important;
+      box-shadow: 0 0 50px rgba(0, 242, 254, 0.5), 0 20px 40px rgba(0, 0, 0, 0.7) !important;
+      background: rgba(15, 23, 42, 0.98) !important;
+      pointer-events: auto;
+    }
+
+    /* Table Stepper Engine */
+    .table-stepper tbody tr {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .table-stepper.has-focus tbody tr {
+      opacity: 0.22;
+    }
+    .table-stepper.has-focus tbody tr.row-active {
+      opacity: 1 !important;
+      background: rgba(0, 242, 254, 0.22) !important;
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.4);
+      transform: scale(1.03) translateX(14px);
+    }
+    .table-stepper.has-focus tbody tr.row-active td {
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+    .table-stepper.has-focus tbody tr.row-active td:first-child {
+      border-left: 5px solid #00f2fe !important;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewport">
+  <div id="stage">
+    <div class="cyber-bg"></div>
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+
+    <!-- ====================================================================
+         SLIDE 1: PORTADA & CÓDIGOS OFICIALES
+         ==================================================================== -->
+    <div class="slide active" id="slide-1">
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; gap: 24px;">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <span style="background: #e11d48; color: #fff; font-family: 'JetBrains Mono'; font-size: 13px; font-weight: 900; padding: 6px 14px; border-radius: 6px;">
+            CLASE 08 / 23
+          </span>
+          <span style="font-family: 'JetBrains Mono'; font-size: 14px; font-weight: 700; color: #38bdf8; letter-spacing: 0.1em;">
+            MÓDULO 1: MEDICINA INTERNA · CARDIOLOGÍA
+          </span>
+        </div>
+
+        <h1 style="font-family: 'Space Grotesk'; font-size: 68px; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em; max-width: 1400px;">
+          SCACEST: <span style="background: linear-gradient(90deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Infarto Agudo con Supradesnivel ST & Protocolo de Reperfusión GES</span>
+        </h1>
+
+        <p style="font-size: 22px; color: #94a3b8; max-width: 1000px; line-height: 1.5;">
+          Fisiopatología de Rotura de Placa · Criterios Electrocardiográficos · Estrategia Puerta-Balón vs Puerta-Aguja · Antiagregación DAPT · Criterios Sgarbossa
+        </p>
+
+        <div style="display: flex; gap: 16px; margin-top: 10px;">
+          <span class="header-badge">CÓD V3: 1.01.2.002 (IAM con SDST)</span>
+          <span class="header-badge" style="border-color: #f59e0b; color: #fbbf24; background: rgba(245, 158, 11, 0.1);">CÓD V3: 1.01.3.005 (Reperfusión Coronaria)</span>
+          <span class="header-badge" style="border-color: #10b981; color: #34d399; background: rgba(16, 185, 129, 0.1);">GARANTÍA GES 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 2: MATRIZ DE AUDITORÍA PERFIL V3
+         ==================================================================== -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Exigencia Médico-Legal Oficial · ASOFAMECh</div>
+          <h2 class="slide-title">Matriz de Competencias <span>Perfil V3</span></h2>
+        </div>
+        <div class="header-badge" id="s2-badge">NIVEL: URGENCIA CRÍTICA</div>
+      </div>
+
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <table class="cyber-table table-stepper" id="s2-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Dimensión Clínica</th>
+              <th style="width: 25%;">Nivel Exigido</th>
+              <th style="width: 50%;">Alcance Clínico EUNACOM 2026</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="s2-r1">
+              <td style="font-size: 22px;">Diagnóstico</td>
+              <td style="color: #38bdf8; font-weight: 800; font-size: 21px;">Específico (Inmediato)</td>
+              <td style="font-size: 19px;">ECG 12 derivaciones en <strong>&le; 10 minutos</strong> desde el ingreso. Reconocimiento de SDST, nuevo BCRI o infarto posterior/VD.</td>
+            </tr>
+            <tr id="s2-r2">
+              <td style="font-size: 22px;">Tratamiento</td>
+              <td style="color: #ef4444; font-weight: 800; font-size: 21px;">Urgencia & Reperfusión</td>
+              <td style="font-size: 19px;">Activación código IAM: Carga DAPT (AAS + Ticagrelor/Clopidogrel), anticoagulación y decisión inmediata PCI vs Fibrinolisis TNK.</td>
+            </tr>
+            <tr id="s2-r3">
+              <td style="font-size: 22px;">Seguimiento & Red</td>
+              <td style="color: #10b981; font-weight: 800; font-size: 21px;">Derivación Inmediata</td>
+              <td style="font-size: 19px;">Traslado asistido medicalizado (SAMU) a hemodinamia. Control post-alta en APS con terapia médica óptima secundaria.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="glass-card alert stepper-item" id="s2-alert" style="display: flex; align-items: center; gap: 22px; padding: 22px 30px;">
+          <span style="font-size: 36px;">⚖️</span>
+          <div style="font-size: 18px; color: #fecaca; line-height: 1.5;">
+            <strong>RESPONSABILIDAD MÉDICO-LEGAL:</strong> El retraso injustificado en la toma del ECG (&gt;10 min) o la omisión de la terapia de reperfusión dentro de ventana constituye infracción directa de las Garantías Explícitas en Salud (GES N° 14).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 3: FISIOPATOLOGÍA & DIAGNÓSTICO ECG (CINEMATIC STEPPER)
+         ==================================================================== -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Bases Biológicas & Criterios Objetivos</div>
+          <h2 class="slide-title">Fisiopatología & <span>Criterios ECG</span></h2>
+        </div>
+        <div class="header-badge" id="slide3-badge">ISQUEMIA TRANSMURAL</div>
+      </div>
+
+      <div class="stepper-container overview" id="slide3-stepper">
+        <div class="glass-card stepper-card" id="card-fisiopatologia">
+          <h3 style="font-size: 24px; color: #38bdf8; margin-bottom: 20px; font-weight: 800; display: flex; align-items: center; justify-content: space-between;">
+            <span>Cascada Fisiopatológica</span>
+            <span style="font-size: 13px; font-family: 'JetBrains Mono'; color: #00f2fe; background: rgba(0,242,254,0.1); padding: 4px 8px; border-radius: 4px;">Pilar 1</span>
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <div class="step-line" id="s3-l1">
+              <strong>1. Ruptura de Placa:</strong> Erosión/ruptura de la capa fibrosa expone colágeno y factor tisular subendotelial.
+            </div>
+            <div class="step-line" id="s3-l2">
+              <strong>2. Adhesión & Agregación:</strong> Activación del receptor GP IIb/IIIa y secreción masiva de Tromboxano A2 y ADP.
+            </div>
+            <div class="step-line" id="s3-l3">
+              <strong>3. Trombo Oclusivo Rojo:</strong> Malla de fibrina y eritrocitos ocluyen el <strong>100% de la luz</strong> coronaria epicárdica.
+            </div>
+            <div class="step-line" id="s3-l4">
+              <strong>4. Isquemia Transmural:</strong> Necrosis miocárdica en onda de frente (endocardio ➔ epicardio en <strong>&lt;6h</strong>).
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card stepper-card" id="card-criterios" style="border-color: #00f2fe;">
+          <h3 style="font-size: 24px; color: #00f2fe; margin-bottom: 20px; font-weight: 800; display: flex; align-items: center; justify-content: space-between;">
+            <span>Criterios ECG de SDST (Punto J)</span>
+            <span style="font-size: 13px; font-family: 'JetBrains Mono'; color: #f59e0b; background: rgba(245,158,11,0.1); padding: 4px 8px; border-radius: 4px;">Pilar 2</span>
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <div class="step-line" id="s3-l5" style="background: rgba(0, 242, 254, 0.05);">
+              <strong>• V2 - V3:</strong> <strong>&ge; 2.0 mm</strong> (varones &ge; 40a), <strong>&ge; 2.5 mm</strong> (&lt; 40a), <strong>&ge; 1.5 mm</strong> (mujeres).
+            </div>
+            <div class="step-line" id="s3-l6" style="background: rgba(0, 242, 254, 0.05);">
+              <strong>• Resto derivaciones:</strong> <strong>&ge; 1.0 mm</strong> en <strong>&ge; 2 derivaciones contiguas</strong> concordantes.
+            </div>
+            <div class="step-line" id="s3-l7" style="background: rgba(245, 158, 11, 0.08); color: #fde68a;">
+              <strong>• Nuevo BCRI:</strong> Bloqueo completo de rama izquierda nuevo con dolor isquémico = <strong>SCACEST</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 4: ALGORITMO DE URGENCIAS & ABCDE
+         ==================================================================== -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Reanimación y Soporte Vital Inmediato</div>
+          <h2 class="slide-title">Algoritmo de Urgencias <span>& ABCDE</span></h2>
+        </div>
+        <div class="header-badge" id="s4-badge">PRIMEROS 10 MINUTOS</div>
+      </div>
+
+      <div class="grid-stepper" id="s4-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 10px; flex: 1;">
+        <div class="glass-card stepper-item" id="s4-c1" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 34px; color: #38bdf8; font-weight: 900;">A - B</div>
+            <h4 style="font-size: 22px; color: #fff; margin: 8px 0 12px; font-weight: 800;">Vía Aérea & O2</h4>
+            <p style="font-size: 17px; color: #cbd5e1; line-height: 1.5;">
+              Oxigenoterapia <strong>SOLO si SatO2 &lt; 90%</strong>. La hiperoxia rutinaria induce <strong>vasoconstricción coronaria</strong> y daño oxidativo.
+            </p>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Meta: SatO2 90 - 94%
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s4-c2" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 34px; color: #00f2fe; font-weight: 900;">C</div>
+            <h4 style="font-size: 22px; color: #fff; margin: 8px 0 12px; font-weight: 800;">Circulación</h4>
+            <p style="font-size: 17px; color: #cbd5e1; line-height: 1.5;">
+              <strong>2 VVP de grueso calibre</strong> (#18G). Monitor desfibrilador continuo en derivación DII/V5 por alto riesgo de <strong>Fibrilación Ventricular</strong>.
+            </p>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #00f2fe; font-weight: 700; background: rgba(0, 242, 254, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Monitor + Parches Listos
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s4-c3" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 34px; color: #f59e0b; font-weight: 900;">D</div>
+            <h4 style="font-size: 22px; color: #fff; margin: 8px 0 12px; font-weight: 800;">Alivio del Dolor</h4>
+            <p style="font-size: 17px; color: #cbd5e1; line-height: 1.5;">
+              <strong>Nitratos SL/EV</strong> (si PAS &ge; 90 mmHg). <strong>Morfina EV</strong> fraccionada solo si dolor refractario severo (puede retardar absorción de P2Y12).
+            </p>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #fbbf24; font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Precaución: No en IAM VD
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s4-c4" style="display: flex; flex-direction: column; justify-content: space-between; border-color: #10b981;">
+          <div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 34px; color: #10b981; font-weight: 900;">E</div>
+            <h4 style="font-size: 22px; color: #fff; margin: 8px 0 12px; font-weight: 800;">Electrocardiograma</h4>
+            <p style="font-size: 17px; color: #cbd5e1; line-height: 1.5;">
+              ECG 12D interpretado por médico en <strong>&le; 10 minutos</strong>. Si cara inferior afectada: tomar <strong>V3R-V4R</strong> y <strong>V7-V9</strong>.
+            </p>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #34d399; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Meta Puerta-ECG &le; 10 min
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 5: FARMACOTERAPIA & ANTIAGREGACIÓN DAPT
+         ==================================================================== -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Terapia Antitrombótica & Cardioprotectora</div>
+          <h2 class="slide-title">Farmacoterapia Inicial <span>& Dosis Exactas</span></h2>
+        </div>
+        <div class="header-badge" id="s5-badge">PROTOCOLO GES</div>
+      </div>
+
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <table class="cyber-table table-stepper" id="s5-table">
+          <thead>
+            <tr>
+              <th style="width: 22%;">Fármaco</th>
+              <th style="width: 32%;">Dosis de Carga Inicial</th>
+              <th style="width: 46%;">Mecanismo & Observación EUNACOM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="s5-r1">
+              <td style="font-size: 22px; font-weight: 900;">AAS (Aspirina)</td>
+              <td style="color: #38bdf8; font-weight: 800; font-size: 20px;">250 - 500 mg VO masticable</td>
+              <td style="font-size: 19px;">Inhibición irreversible de COX-1. Mantención indefinida: 100 mg/día. <strong>Indicar de inmediato.</strong></td>
+            </tr>
+            <tr id="s5-r2">
+              <td style="font-size: 22px; font-weight: 900;">Ticagrelor (PCI)</td>
+              <td style="color: #00f2fe; font-weight: 800; font-size: 20px;">180 mg VO (luego 90mg c/12h)</td>
+              <td style="font-size: 19px;">Inhibidor P2Y12 de 1ra línea si va a <strong>Angioplastía Primaria</strong>. Rápido inicio de acción.</td>
+            </tr>
+            <tr id="s5-r3">
+              <td style="font-size: 22px; font-weight: 900;">Clopidogrel (TNK)</td>
+              <td style="color: #f59e0b; font-weight: 800; font-size: 20px;">300 mg VO (75 mg si &gt;75a)</td>
+              <td style="font-size: 19px;">Inhibidor P2Y12 de elección si el paciente recibe <strong>Trombólisis con Tenecteplase</strong>.</td>
+            </tr>
+            <tr id="s5-r4">
+              <td style="font-size: 22px; font-weight: 900;">Enoxaparina</td>
+              <td style="color: #10b981; font-weight: 800; font-size: 20px;">30 mg EV bolo + 1 mg/kg SC</td>
+              <td style="font-size: 19px;">Anticoagulación parenteral de elección. En &gt;75 años: <strong>omitir bolo EV</strong> y dar 0.75 mg/kg SC.</td>
+            </tr>
+            <tr id="s5-r5">
+              <td style="font-size: 22px; font-weight: 900;">Atorvastatina</td>
+              <td style="color: #e2e8f0; font-weight: 800; font-size: 20px;">80 mg VO dosis única</td>
+              <td style="font-size: 19px;">Estatina de alta potencia: <strong>estabilización pleiotrópica precoz</strong> de la placa aterosclerótica.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="glass-card stepper-item" style="border-color: #00f2fe; padding: 18px 28px; display: flex; align-items: center; gap: 20px; background: rgba(0, 242, 254, 0.08);">
+          <span style="font-size: 32px;">💡</span>
+          <div style="font-size: 18px; color: #e2e8f0; line-height: 1.5;">
+            <strong>REGLA DE ORO DE GUARDIA:</strong> La carga de <strong>AAS masticable</strong> y el segundo antiagregante se indican en el <strong>minuto 0</strong>. <strong>JAMÁS demorar</strong> la terapia de reperfusión esperando enzimas cardíacas o troponinas.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 6: SCORE PRONÓSTICO KILLIP-KIMBALL
+         ==================================================================== -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Estratificación Hemodinámica al Ingreso</div>
+          <h2 class="slide-title">Clasificación Pronóstica <span>Killip-Kimball</span></h2>
+        </div>
+        <div class="header-badge" id="s6-badge">GOLD STANDARD EUNACOM</div>
+      </div>
+
+      <div class="grid-stepper" id="s6-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 24px; flex: 1;">
+        <div class="glass-card stepper-item" id="s6-c1">
+          <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; color: #10b981;">KILLIP I</div>
+          <div style="font-size: 14px; color: #34d399; font-weight: 700; margin: 4px 0 16px;">Mortalidad: 6%</div>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <strong>Sin signos de insuficiencia cardíaca.</strong> Sin estertores ni 3er ruido (R3). Buen pronóstico.
+          </p>
+        </div>
+
+        <div class="glass-card stepper-item" id="s6-c2">
+          <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; color: #38bdf8;">KILLIP II</div>
+          <div style="font-size: 14px; color: #38bdf8; font-weight: 700; margin: 4px 0 16px;">Mortalidad: 17%</div>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <strong>Insuficiencia cardíaca leve-moderada.</strong> Crepitaciones bibasales (<strong>&lt; 50%</strong> de campos), R3 galope, ingurgitación yugular.
+          </p>
+        </div>
+
+        <div class="glass-card stepper-item" id="s6-c3">
+          <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; color: #f59e0b;">KILLIP III</div>
+          <div style="font-size: 14px; color: #fbbf24; font-weight: 700; margin: 4px 0 16px;">Mortalidad: 38%</div>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <strong>Edema Agudo de Pulmón (EAP).</strong> Crepitaciones bilaterales extensas (<strong>&gt; 50%</strong> de campos), disnea grave, hipoxemia severa.
+          </p>
+        </div>
+
+        <div class="glass-card stepper-item" id="s6-c4" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.15);">
+          <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; color: #ef4444;">KILLIP IV</div>
+          <div style="font-size: 14px; color: #fca5a5; font-weight: 700; margin: 4px 0 16px;">Mortalidad: 81%</div>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.5;">
+            <strong>Shock Cardiogénico.</strong> PAS &lt; 90 mmHg refractaria, oliguria, frialdad, compromiso de conciencia. <strong>PCI urgente mandatoria</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 7: PROTOCOLO REPERFUSIÓN: ALGORITMO DE DECISIÓN CLÍNICA (DIAGRAMA)
+         ==================================================================== -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">El Tiempo es Miocardio · Regla de los 120 Minutos</div>
+          <h2 class="slide-title">Algoritmo de Reperfusión <span>PCI vs TNK</span></h2>
+        </div>
+        <div class="header-badge" id="s7-badge">&lt; 12 HORAS DESDE INICIO</div>
+      </div>
+
+      <!-- Flowchart Visual Algorithm Container -->
+      <div class="grid-stepper" id="s7-grid" style="display: flex; flex-direction: column; gap: 16px; margin-top: 18px; flex: 1;">
+        
+        <!-- Top Root Node: Diagnosis & Urgent DAPT -->
+        <div class="glass-card stepper-item" id="s7-c1" style="border-color: #00f2fe; padding: 14px 24px; text-align: center; max-width: 1000px; margin: 0 auto; width: 100%;">
+          <div style="display: flex; justify-content: center; align-items: center; gap: 16px;">
+            <span style="font-size: 26px;">🚨</span>
+            <span style="font-family: 'Space Grotesk'; font-size: 20px; font-weight: 900; color: #fff;">
+              DIAGNÓSTICO SCACEST CONFIRMADO (ECG <strong>&le; 10 min</strong>)
+            </span>
+            <span style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border: 1px solid #00f2fe; padding: 4px 12px; border-radius: 6px; font-family: 'JetBrains Mono'; font-size: 13px; font-weight: 800;">
+              CARGA DAPT INMEDIATA (AAS + P2Y12)
+            </span>
+          </div>
+        </div>
+
+        <!-- Connecting Neon Branches & Decision Split -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; position: relative;">
+          
+          <!-- Left Branch: Primary PCI -->
+          <div class="glass-card stepper-item" id="s7-c2" style="border-color: #10b981; background: rgba(16, 185, 129, 0.08); padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="background: #10b981; color: #fff; font-family: 'JetBrains Mono'; font-size: 13px; font-weight: 900; padding: 4px 10px; border-radius: 4px;">
+                TRASLADO &le; 120 MIN
+              </span>
+              <span style="color: #34d399; font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono';">ESTRATEGIA PREFERENTE</span>
+            </div>
+            <h4 style="font-size: 22px; color: #ffffff; font-weight: 800; margin-bottom: 8px;">Angioplastía Primaria (PCI)</h4>
+            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px;">
+              Derivación inmediata asistida por SAMU a centro con hemodinamia 24/7.
+            </p>
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #a7f3d0;">
+              ⏱️ <strong>Meta Puerta-Balón:</strong> &lt; 90 min (o &lt; 60 min en centro PCI).<br>
+              💊 <strong>Antiagregación:</strong> Ticagrelor 180 mg + Heparina.
+            </div>
+          </div>
+
+          <!-- Right Branch: Fibrinolysis (TNK) -->
+          <div class="glass-card stepper-item" id="s7-c3" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.08); padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="background: #ef4444; color: #fff; font-family: 'JetBrains Mono'; font-size: 13px; font-weight: 900; padding: 4px 10px; border-radius: 4px;">
+                TRASLADO &gt; 120 MIN
+              </span>
+              <span style="color: #fbbf24; font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono';">HOSPITAL PERIFÉRICO / SAMU</span>
+            </div>
+            <h4 style="font-size: 22px; color: #ffffff; font-weight: 800; margin-bottom: 8px;">Fibrinolisis con Tenecteplase (TNK)</h4>
+            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px;">
+              Bolo endovenoso único peso-dependiente (30 a 50 mg) en menos de 30 min.
+            </p>
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #fde68a;">
+              ⏱️ <strong>Meta Puerta-Aguja:</strong> &lt; 30 min desde el diagnóstico.<br>
+              💊 <strong>Antiagregación:</strong> Clopidogrel 300 mg + Enoxaparina.
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Evaluation Node (Post-Fibrinolisis Outcome) -->
+        <div class="glass-card stepper-item" id="s7-c4" style="border-color: #38bdf8; padding: 16px 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div style="font-family: 'Space Grotesk'; font-size: 16px; font-weight: 800; color: #38bdf8;">
+              EVALUACIÓN DE REPERFUSIÓN (ECG A LOS 60 - 90 MINUTOS POST-TNK)
+            </div>
+            <span style="font-family: 'JetBrains Mono'; font-size: 12px; color: #94a3b8;">MONITOREO ECG CONTINUO</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 14px;">
+            <div style="background: rgba(16, 185, 129, 0.15); border-left: 3px solid #10b981; padding: 8px 14px; border-radius: 6px; color: #e2e8f0;">
+              <strong style="color: #34d399;">✓ ÉXITO (Descenso ST &gt; 50% + Cese Dolor):</strong> Traslado para Coronariografía sistemática en <strong>2 a 24 horas</strong>.
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 8px 14px; border-radius: 6px; color: #fecaca;">
+              <strong style="color: #f87171;">❌ FRACASO (ST no baja o Dolor Persistente):</strong> 🚨 <strong>Angioplastía de Rescate Inmediata</strong> (Emergencia SAMU).
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 8: LOCALIZACIÓN CORONARIA POR ECG & DIFERENCIALES
+         ==================================================================== -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Correlación Anatómica & Territorios Isquémicos</div>
+          <h2 class="slide-title">Localización ECG <span>& Arteria Culpable</span></h2>
+        </div>
+        <div class="header-badge" id="s8-badge">MAPEO CORONARIO</div>
+      </div>
+
+      <div class="grid-stepper" id="s8-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; flex: 1;">
+        <div class="glass-card stepper-item" id="s8-c1">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h4 style="font-size: 18px; color: #38bdf8; font-weight: 800;">Pared Anterior / Septal</h4>
+            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">V1 - V4</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px;">Arteria Descendente Anterior (LAD)</div>
+          <div style="font-size: 14px; color: #34d399; font-weight: 700; margin-bottom: 14px;">Territorio de Mayor Masa Ventricular</div>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.5;">
+            Mayor masa miocárdica en riesgo. Alta incidencia de <strong>falla ventricular izquierda, Shock Cardiogénico</strong> y bloqueos de rama bifasciculares.
+          </p>
+        </div>
+
+        <div class="glass-card stepper-item" id="s8-c2">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h4 style="font-size: 18px; color: #f59e0b; font-weight: 800;">Pared Inferior & VD</h4>
+            <span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #fbbf24; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">DII, DIII, aVF</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px;">Arteria Coronaria Derecha (RCA)</div>
+          <div style="font-size: 14px; color: #fbbf24; font-weight: 700; margin-bottom: 14px;">Nodo AV & Ventrículo Derecho</div>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.5;">
+            Asociada a <strong>bradicardia sinusal, BAV completo</strong> y compromiso del <strong>Ventrículo Derecho</strong> (tomar <strong>V3R - V4R</strong> de inmediato).
+          </p>
+        </div>
+
+        <div class="glass-card stepper-item" id="s8-c3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h4 style="font-size: 18px; color: #a855f7; font-weight: 800;">Lateral Alta & Posterior</h4>
+            <span style="background: rgba(192, 132, 252, 0.2); color: #c084fc; border: 1px solid #c084fc; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">DI, aVL (V7 - V9)</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px;">Arteria Circunfleja (LCx)</div>
+          <div style="font-size: 14px; color: #c084fc; font-weight: 700; margin-bottom: 14px;">Pared Posterior & Lateral Izquierda</div>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.5;">
+            En infarto posterior: <strong>Infradesnivel del ST en V1-V3 con ondas R altas</strong> (imagen en espejo). Obligatorio tomar <strong>V7 - V9</strong>.
+          </p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 9: CONTRAINDICACIONES DE FIBRINOLISIS
+         ==================================================================== -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Seguridad Terapéutica & Criterios de Exclusión</div>
+          <h2 class="slide-title">Contraindicaciones <span>Fibrinolisis TNK</span></h2>
+        </div>
+        <div class="header-badge" id="s9-badge" style="border-color: #ef4444; color: #f87171;">ALERTA DE SEGURIDAD</div>
+      </div>
+
+      <div class="grid-stepper" id="s9-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; margin-top: 10px; flex: 1;">
+        <div class="glass-card stepper-item" id="s9-c1" style="border-color: #ef4444; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 24px; color: #ef4444; font-weight: 900; margin-bottom: 16px;">Contraindicaciones Absolutas (PCI Mandatoria)</h3>
+            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 18px; color: #e2e8f0; line-height: 1.5;">
+              <div>⛔ <strong>Hemorragia Intracraneal previa</strong> (cualquier momento histórico).</div>
+              <div>⛔ <strong>ACV isquémico</strong> en los últimos 6 meses.</div>
+              <div>⛔ <strong>Neoplasia del SNC</strong> o malformación vascular cerebral.</div>
+              <div>⛔ <strong>TEC o cirugía mayor</strong> en los últimos 3 meses.</div>
+              <div>⛔ <strong>Sangrado digestivo activo</strong> en el último mes.</div>
+              <div>⛔ <strong>Sospecha de Disección Aórtica</strong> Aguda.</div>
+            </div>
+          </div>
+          <div style="background: rgba(239, 68, 68, 0.15); color: #fca5a5; padding: 8px 14px; border-radius: 6px; font-size: 14px; font-weight: 700; font-family: 'JetBrains Mono';">
+            🚨 Traslado obligatorio para PCI Primaria (No trombolizar)
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s9-c2" style="border-color: #f59e0b; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 24px; color: #fbbf24; font-weight: 900; margin-bottom: 16px;">Contraindicaciones Relativas</h3>
+            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 18px; color: #e2e8f0; line-height: 1.5;">
+              <div>⚠️ <strong>AIT</strong> en los últimos 6 meses.</div>
+              <div>⚠️ Terapia anticoagulante oral activa (<strong>TACO / DOAC</strong>).</div>
+              <div>⚠️ <strong>Embarazo</strong> o primera semana postparto.</div>
+              <div>⚠️ <strong>HTA severa refractaria</strong> (PAS &gt; 180 o PAD &gt; 110 mmHg).</div>
+              <div>⚠️ <strong>RCP traumática prolongada</strong> (&gt;10 min).</div>
+            </div>
+          </div>
+          <div style="background: rgba(245, 158, 11, 0.15); color: #fde68a; padding: 8px 14px; border-radius: 6px; font-size: 14px; font-weight: 700; font-family: 'JetBrains Mono';">
+            ⚖️ Balance riesgo / beneficio individualizado
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 10: LAS 4 TRAMPAS CLÁSICAS DEL EUNACOM
+         ==================================================================== -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Patrones Frecuentes del Banco de Preguntas</div>
+          <h2 class="slide-title">Las 4 Trampas Clásicas <span>del EUNACOM</span></h2>
+        </div>
+        <div class="header-badge" id="s10-badge">HIGH-YIELD PEARLS</div>
+      </div>
+
+      <div class="grid-stepper" id="s10-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 10px; flex: 1;">
+        <div class="glass-card stepper-item" id="s10-c1" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(239, 68, 68, 0.4);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="color: #ef4444; font-weight: 900; font-size: 20px;">TRAMPA 1 · IAM VENTRÍCULO DERECHO</div>
+              <span style="background: rgba(239, 68, 68, 0.2); color: #f87171; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">ALTA FRECUENCIA</span>
+            </div>
+            <p style="font-size: 18px; color: #e2e8f0; line-height: 1.5; margin-bottom: 12px;">
+              <strong>Tríada Clásica:</strong> Hipotensión + Ingurgitación yugular + Campos pulmonares <strong>limpios</strong> (sin crépitos).
+            </p>
+          </div>
+          <div style="background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 10px 14px; border-radius: 6px; font-size: 16px; color: #fca5a5;">
+            ⛔ <strong>PROHIBIDOS:</strong> Nitratos, Morfina y Betabloqueadores (colapsan precarga).<br>
+            💧 <strong>Conducta:</strong> Suspender vasodilatadores y expandir con <strong>Bolo SF 0.9%</strong>.
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s10-c2" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.4);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="color: #f59e0b; font-weight: 900; font-size: 20px;">TRAMPA 2 · CRITERIOS DE REPERFUSIÓN FALLIDA</div>
+              <span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">META 60-90 MIN</span>
+            </div>
+            <p style="font-size: 18px; color: #e2e8f0; line-height: 1.5; margin-bottom: 12px;">
+              Evaluar ECG a los <strong>60 a 90 minutos</strong> post-trombólisis con Tenecteplase:
+            </p>
+          </div>
+          <div style="background: rgba(245, 158, 11, 0.15); border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 6px; font-size: 16px; color: #fde68a;">
+            ❌ Si el ST <strong>NO desciende &gt; 50%</strong> o persiste dolor anginoso severo ➔ <strong>Fracaso terapéutico</strong>.<br>
+            🚨 <strong>Conducta:</strong> Traslado inmediato para <strong>Angioplastía de Rescate Urgente</strong>.
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s10-c3" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="color: #38bdf8; font-weight: 900; font-size: 20px;">TRAMPA 3 · CRITERIOS DE SGARBOSSA EN BCRI</div>
+              <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">BCRI PREVIO</span>
+            </div>
+            <p style="font-size: 17px; color: #e2e8f0; line-height: 1.5; margin-bottom: 12px;">
+              Permite diagnosticar infarto transmural en presencia de bloqueo de rama izquierda previo:
+            </p>
+          </div>
+          <div style="background: rgba(56, 189, 248, 0.12); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 6px; font-size: 16px; color: #bae6fd;">
+            • SDST &ge; 1 mm concordante con el QRS (<strong>5 pts</strong>).<br>
+            • Infradesnivel ST &ge; 1 mm en V1, V2 o V3 (<strong>3 pts</strong>).<br>
+            • SDST &ge; 5 mm discordante con el QRS (<strong>2 pts</strong>).<br>
+            ✓ <strong>Puntaje &ge; 3 puntos:</strong> Confirma SCACEST y activa código reperfusión.
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s10-c4" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16, 185, 129, 0.4);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="color: #10b981; font-weight: 900; font-size: 20px;">TRAMPA 4 · PACIENTE CON VENTANA &gt; 12 HORAS</div>
+              <span style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-family: 'JetBrains Mono'; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 800;">LÍMITE TEMPORAL</span>
+            </div>
+            <p style="font-size: 17px; color: #e2e8f0; line-height: 1.5; margin-bottom: 12px;">
+              Manejo en consultas tardías (&gt;12h desde el inicio del dolor):
+            </p>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.12); border-left: 3px solid #10b981; padding: 10px 14px; border-radius: 6px; font-size: 16px; color: #a7f3d0;">
+            • Paciente <strong>estable y sin dolor:</strong> <strong>NO está indicada la fibrinolisis sistemática</strong>.<br>
+            • Se programa <strong>Coronariografía electiva diferida</strong>.<br>
+            • Si persiste con dolor isquémico activo o shock ➔ <strong>PCI urgente</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 11: RESUMEN CHECKLIST DE ALTA FIDELIDAD
+         ==================================================================== -->
+    <div class="slide" id="slide-11">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Reglas de Oro para la Guardia & Examen EUNACOM</div>
+          <h2 class="slide-title">Checklist de Decisión <span>SCACEST 2026</span></h2>
+        </div>
+        <div class="header-badge" id="s11-badge">RESUMEN EJECUTIVO</div>
+      </div>
+
+      <div class="grid-stepper" id="s11-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 10px; flex: 1;">
+        <div class="glass-card stepper-item" id="s11-c1" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="font-size: 22px; color: #38bdf8; margin-bottom: 14px; font-weight: 800;">1. Diagnóstico & ECG</h4>
+            <div style="font-size: 18px; color: #cbd5e1; line-height: 1.8; display: flex; flex-direction: column; gap: 8px;">
+              <div>✓ ECG médico en <strong>&le; 10 minutos</strong>.</div>
+              <div>✓ SDST <strong>&ge; 1 mm</strong> en derivaciones contiguas (<strong>&ge; 2 mm en V2-V3</strong>).</div>
+              <div>✓ <strong>Nuevo BCRI = SCACEST</strong>.</div>
+              <div>✓ <strong>NO esperar enzimas</strong> para reperfundir.</div>
+            </div>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Meta Puerta-ECG &le; 10m
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s11-c2" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="font-size: 22px; color: #00f2fe; margin-bottom: 14px; font-weight: 800;">2. Reperfusión & DAPT</h4>
+            <div style="font-size: 18px; color: #cbd5e1; line-height: 1.8; display: flex; flex-direction: column; gap: 8px;">
+              <div>✓ <strong>AAS 250-500mg masticable</strong> inmediata.</div>
+              <div>✓ <strong>PCI &lt; 90 min</strong> (Ticagrelor 180 mg).</div>
+              <div>✓ <strong>TNK &lt; 30 min</strong> (Clopidogrel 300 mg) si traslado &gt; 120 min.</div>
+              <div>✓ <strong>Enoxaparina bolo EV + SC</strong>.</div>
+            </div>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #00f2fe; background: rgba(0, 242, 254, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Regla de los 120 min
+          </div>
+        </div>
+
+        <div class="glass-card stepper-item" id="s11-c3" style="border-color: #10b981; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h4 style="font-size: 22px; color: #34d399; margin-bottom: 14px; font-weight: 800;">3. Reglas de Examen</h4>
+            <div style="font-size: 18px; color: #cbd5e1; line-height: 1.8; display: flex; flex-direction: column; gap: 8px;">
+              <div>✓ Oxígeno <strong>SOLO si SatO2 &lt; 90%</strong>.</div>
+              <div>✓ IAM inferior ➔ <strong>V3R-V4R</strong> (No nitratos).</div>
+              <div>✓ Criterio éxito TNK: <strong>descenso ST &gt;50% a 60-90m</strong>.</div>
+              <div>✓ Si fracaso TNK ➔ <strong>PCI de rescate urgente</strong>.</div>
+            </div>
+          </div>
+          <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #34d399; background: rgba(16, 185, 129, 0.1); padding: 6px; border-radius: 6px; text-align: center;">
+            Evitar Trampas EUNACOM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 12: CASO CLÍNICO EUNACOM #1
+         ==================================================================== -->
+    <div class="slide" id="slide-12">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Evaluación Interactiva Tipo EUNACOM · Caso 1 de 3</div>
+          <h2 class="slide-title">Caso Clínico 1: <span>Diagnóstico & Conducta Inmediata</span></h2>
+        </div>
+        <div class="header-badge">TIEMPO PUERTA-ECG</div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-stem">
+          Hombre de 58 años hipertenso y fumador consulta en el Servicio de Urgencia por dolor retroesternal opresivo de 45 minutos de duración, irradiado a mandíbula y brazo izquierdo, acompañado de diaforesis. Ingresa con PA 150/90 mmHg, FC 92 lpm, SatO2 96% ambiental. El ECG revela supradesnivel del segmento ST de 3 mm en derivaciones V1 a V4. ¿Cuál es la conducta inicial más adecuada?
+        </div>
+
+        <div class="options-grid">
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-1', 'Incorrecto. La SatO2 es 96%, el oxígeno suplementario no está indicado e induce vasoconstricción coronaria.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">A)</span> Administrar O2 por mascarilla, solicitar troponinas y esperar resultado para definir reperfusión.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, true, 'fb-1', '¡Correcto! En SCACEST no se espera el resultado de enzimas para activar reperfusión. Se debe administrar DAPT de carga (AAS + Ticagrelor) y activar PCI primaria urgente.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">B)</span> Administrar AAS 250 mg masticable + Ticagrelor 180 mg y activar inmediatamente Angioplastía Primaria.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-1', 'Incorrecto. La fibrinolisis se reserva cuando el traslado a PCI excede 120 minutos, y la dosis de AAS debe ser masticable sin esperar laboratorio.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">C)</span> Administrar bolo de Tenecteplase inmediatamente y luego solicitar ecocardiograma transtorácico.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-1', 'Incorrecto. Los nitratos alivian el síntoma pero no son la prioridad antes de la doble antiagregación y la activación de reperfusión.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">D)</span> Iniciar infusión de Nitroglicerina EV como monoterapia y diferir la antiagregación hasta ingreso a UCI.
+          </button>
+        </div>
+
+        <div class="feedback-banner" id="fb-1"></div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 13: CASO CLÍNICO EUNACOM #2
+         ==================================================================== -->
+    <div class="slide" id="slide-13">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Evaluación Interactiva Tipo EUNACOM · Caso 2 de 3</div>
+          <h2 class="slide-title">Caso Clínico 2: <span>Estrategia en Hospital Periférico</span></h2>
+        </div>
+        <div class="header-badge">REGLA 120 MINUTOS</div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-stem">
+          Mujer de 64 años consulta en un Hospital Comunitario sin laboratorio de hemodinamia por dolor torácico isquémico de 90 minutos de evolución. El ECG confirma SCACEST de pared anterior. El centro terciario más cercano con capacidad de Angioplastía Primaria se encuentra a 3.5 horas de traslado en ambulancia. La paciente no presenta contraindicaciones para fibrinolisis. ¿Cuál es el manejo indicado?
+        </div>
+
+        <div class="options-grid">
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-2', 'Incorrecto. El tiempo de traslado es de 3.5 horas (>120 min). Retrasar la reperfusión genera necrosis transmural irreversible.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">A)</span> Iniciar traslado inmediato en ambulancia hacia el centro terciario para Angioplastía Primaria sin trombolizar.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, true, 'fb-2', '¡Correcto! Dado que el traslado a PCI supera los 120 minutos, la indicación GES es trombolizar inmediatamente con Tenecteplase en bolo (meta <30 min) + DAPT con Clopidogrel y enoxaparina, coordinando posterior traslado.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">B)</span> Administrar Tenecteplase bolo EV + AAS + Clopidogrel 300mg + Enoxaparina, y coordinar traslado posterior.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-2', 'Incorrecto. Ticagrelor no es el fármaco de elección en esquemas fibrinolíticos periféricos según guías estándar; se utiliza Clopidogrel.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">C)</span> Administrar Tenecteplase asociado a Ticagrelor 180 mg y Heparina No Fraccionada en infusión continua.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-2', 'Incorrecto. La trombólisis no descarta el traslado; requiere angiografía sistemática entre 2 y 24 horas post-trombolisis.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">D)</span> Trombolizar y mantener hospitalizada en el hospital comunitario hasta el alta sin derivación a hemodinamia.
+          </button>
+        </div>
+
+        <div class="feedback-banner" id="fb-2"></div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SLIDE 14: CASO CLÍNICO EUNACOM #3
+         ==================================================================== -->
+    <div class="slide" id="slide-14">
+      <div class="slide-header">
+        <div>
+          <div class="header-tagline">Evaluación Interactiva Tipo EUNACOM · Caso 3 de 3</div>
+          <h2 class="slide-title">Caso Clínico 3: <span>Infarto de Ventrículo Derecho</span></h2>
+        </div>
+        <div class="header-badge">TRAMPA DE PRESIÓN ARTERIAL</div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-stem">
+          Varón de 71 años con SCACEST de pared inferior (SDST en DII, DIII, aVF). Al ingreso con PA 130/80 mmHg se le administra Nitroglicerina sublingual para alivio del dolor. A los 5 minutos el paciente evoluciona con mareos intensos, palidez, PA 70/40 mmHg, FC 88 lpm. Al examen físico destaca ingurgitación yugular marcada sin crepitaciones pulmonares. ¿Cuál es la conducta terapéutica prioritaria?
+        </div>
+
+        <div class="options-grid">
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-3', 'Incorrecto. La Dobutamina o Noradrenalina no son el paso inicial cuando la causa es la pérdida de precarga dependiente de volumen en ventrículo derecho.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">A)</span> Iniciar infusión continua inmediata de Noradrenalina para recuperar presión arterial media.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, true, 'fb-3', '¡Correcto! El paciente tiene compromiso de Ventrículo Derecho (isquemia VD). Los nitratos desploman la precarga del VD. La conducta de urgencia es suspender nitratos y expandir enérgicamente con Suero Fisiológico 0.9%.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">B)</span> Suspender nitroglicerina y administrar un bolo rápido de Suero Fisiológico 0.9% EV (500-1000 ml).
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-3', 'Incorrecto. La Furosemida está absolutamente contraindicada; empeoraría el colapso hemodinámico al reducir aún más la precarga.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">C)</span> Administrar Furosemida 40 mg EV para descomprimir la ingurgitación yugular.
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, false, 'fb-3', 'Incorrecto. La Atropina se utiliza en bradicardia sintomática; la frecuencia cardíaca del paciente es 88 lpm.')">
+            <span style="color: #38bdf8; font-weight: 800; font-size: 21px;">D)</span> Administrar Atropina 1 mg EV para aumentar el gasto cardíaco.
+          </button>
+        </div>
+
+        <div class="feedback-banner" id="fb-3"></div>
+      </div>
+    </div>
+
+    <!-- HUD Progress & Navigation -->
+    <div id="hud-bar">
+      <div class="hud-counter" id="hud-counter">SLIDE 01 / 14</div>
+      <div class="hud-progress"><div class="hud-fill" id="hud-fill"></div></div>
+      <div class="hud-btns">
+        <button class="hud-btn" onclick="prevStep()">◀ Anterior</button>
+        <button class="hud-btn" onclick="nextStep()" style="background: #0284c7; color: #fff; border-color: #38bdf8; box-shadow: 0 0 15px rgba(2,132,199,0.4);">Siguiente ▶</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let currentSlide = 1;
+  let subStep = 0;
+  const totalSlides = 14;
+
+  const slide3Scripts = [
+    {
+      state: 'overview',
+      focus: null,
+      activeLine: null,
+      badge: 'ISQUEMIA TRANSMURAL',
+      stepIndicator: 'SLIDE 03 · VISIÓN GENERAL',
+      text: 'Revisemos la fisiopatología molecular y los criterios electrocardiográficos cardinales del SCACEST.'
+    },
+    {
+      state: 'focus-left',
+      focus: 'card-fisiopatologia',
+      activeLine: 's3-l1',
+      badge: 'PASO 1 / 4: ROTURA DE PLACA',
+      stepIndicator: 'PASO 1 / 8 · FISIOPATOLOGÍA',
+      text: 'Paso 1: La disrupción de la capa fibrosa de la placa aterosclerótica expone colágeno y factor tisular al torrente coronario.'
+    },
+    {
+      state: 'focus-left',
+      focus: 'card-fisiopatologia',
+      activeLine: 's3-l2',
+      badge: 'PASO 2 / 4: AGREGACIÓN',
+      stepIndicator: 'PASO 2 / 8 · FISIOPATOLOGÍA',
+      text: 'Paso 2: Esto desencadena una masiva agregación plaquetaria mediada por el receptor GP IIb/IIIa y secreción de Tromboxano A2.'
+    },
+    {
+      state: 'focus-left',
+      focus: 'card-fisiopatologia',
+      activeLine: 's3-l3',
+      badge: 'PASO 3 / 4: TROMBOSIS 100%',
+      stepIndicator: 'PASO 3 / 8 · FISIOPATOLOGÍA',
+      text: 'Paso 3: Se estructura una densa red de fibrina y hematíes que ocluye en un cien por ciento el lumen arterial epicárdico.'
+    },
+    {
+      state: 'focus-left',
+      focus: 'card-fisiopatologia',
+      activeLine: 's3-l4',
+      badge: 'PASO 4 / 4: NECROSIS < 6H',
+      stepIndicator: 'PASO 4 / 8 · FISIOPATOLOGÍA',
+      text: 'Paso 4: La necrosis miocárdica transmural progresa en onda de frente de endocardio a epicardio en menos de 6 horas.'
+    },
+    {
+      state: 'focus-right',
+      focus: 'card-criterios',
+      activeLine: 's3-l5',
+      badge: 'CRITERIO 1: V2-V3',
+      stepIndicator: 'PASO 5 / 8 · CRITERIOS ECG',
+      text: 'Criterio V2-V3: Se exige supradesnivel del punto J ≥ 2 mm en hombres ≥ 40 años, ≥ 2.5 mm en < 40 años, y ≥ 1.5 mm en mujeres.'
+    },
+    {
+      state: 'focus-right',
+      focus: 'card-criterios',
+      activeLine: 's3-l6',
+      badge: 'CRITERIO 2: RESTO DERIVADAS',
+      stepIndicator: 'PASO 6 / 8 · CRITERIOS ECG',
+      text: 'Resto de derivaciones: La elevación del punto J debe ser de al menos 1 milímetro en dos o más derivaciones contiguas concordantes.'
+    },
+    {
+      state: 'focus-right',
+      focus: 'card-criterios',
+      activeLine: 's3-l7',
+      badge: 'CRITERIO 3: NUEVO BCRI',
+      stepIndicator: 'PASO 7 / 8 · CRITERIOS ECG',
+      text: 'Regla de Oro: Todo bloqueo completo de rama izquierda nuevo o presumiblemente nuevo con clínica isquémica se maneja como SCACEST.'
+    },
+    {
+      state: 'overview',
+      focus: null,
+      activeLine: null,
+      badge: 'AMBOS PILARES ACTIVOS',
+      stepIndicator: 'PASO 8 / 8 · RESUMEN DIAGNÓSTICO',
+      text: 'Ambos pilares configuran el diagnóstico de certeza para activar la reperfusión urgente en menos de 10 minutos.'
+    }
+  ];
+
+  const slideStepsData = {
+    1: [
+      {
+        badge: 'CLASE 08 / 23 · CARDIOLOGÍA',
+        stepIndicator: 'SLIDE 01 · PORTADA',
+        text: 'Bienvenidos a la Masterclass oficial de SCACEST y Protocolo de Reperfusión GES para el EUNACOM 2026.'
+      }
+    ],
+    2: [
+      {
+        focusRow: null,
+        focusAlert: false,
+        badge: 'NIVEL: URGENCIA CRÍTICA',
+        stepIndicator: 'SLIDE 02 · MATRIZ PERFIL V3',
+        text: 'El perfil V3 de ASOFAMECh establece las 3 dimensiones críticas de auditoría médico-legal para el médico general.'
+      },
+      {
+        focusRow: 's2-r1',
+        focusAlert: false,
+        badge: 'DIMENSIÓN 1: DIAGNÓSTICO',
+        stepIndicator: 'PASO 1 / 4 · DIAGNÓSTICO ESPECÍFICO',
+        text: 'Diagnóstico específico: Toma obligatoria de ECG de 12 derivaciones en menos de 10 minutos desde el ingreso.'
+      },
+      {
+        focusRow: 's2-r2',
+        focusAlert: false,
+        badge: 'DIMENSIÓN 2: TRATAMIENTO',
+        stepIndicator: 'PASO 2 / 4 · URGENCIA & REPERFUSIÓN',
+        text: 'Tratamiento de urgencia: Carga inmediata de doble antiagregación, anticoagulación y activación prioritaria del código IAM.'
+      },
+      {
+        focusRow: 's2-r3',
+        focusAlert: false,
+        badge: 'DIMENSIÓN 3: SEGUIMIENTO',
+        stepIndicator: 'PASO 3 / 4 · RED & DERIVACIÓN GES',
+        text: 'Seguimiento en red: Traslado asistido medicalizado en SAMU a hemodinamia y prevención secundaria con quíntuple terapia en APS.'
+      },
+      {
+        focusRow: null,
+        focusAlert: true,
+        badge: 'RESPONSABILIDAD LEGAL',
+        stepIndicator: 'PASO 4 / 4 · ALERTA MÉDICO-LEGAL',
+        text: 'Responsabilidad médico-legal: El retraso injustificado en la toma del ECG o la no administración de reperfusión dentro de ventana constituye negligencia en el estándar chileno GES.'
+      }
+    ],
+    3: slide3Scripts,
+    4: [
+      {
+        gridFocus: null,
+        badge: 'PRIMEROS 10 MINUTOS',
+        stepIndicator: 'SLIDE 04 · ALGORITMO ABCDE',
+        text: 'El algoritmo de urgencias para SCACEST se estructura en los pilares fundamentales del soporte vital inmediato.'
+      },
+      {
+        gridFocus: 's4-c1',
+        badge: 'A-B: VÍA AÉREA & O2',
+        stepIndicator: 'PASO 1 / 4 · OXIGENOTERAPIA RESTRICTIVA',
+        text: 'A - B: Oxigenoterapia suplementaria únicamente si la saturación es menor a 90%, evitando vasoconstricción coronaria por hiperoxia.'
+      },
+      {
+        gridFocus: 's4-c2',
+        badge: 'C: CIRCULACIÓN & ACCESOS',
+        stepIndicator: 'PASO 2 / 4 · ACCESOS #18G & MONITOR',
+        text: 'C: Instalar dos vías venosas periféricas gruesas número 18G y monitor desfibrilador continuo por riesgo de FV primaria.'
+      },
+      {
+        gridFocus: 's4-c3',
+        badge: 'D: ALIVIO DEL DOLOR',
+        stepIndicator: 'PASO 3 / 4 · ANALGESIA ISQUÉMICA',
+        text: 'D: Morfina fraccionada 2 a 4 miligramos endovenosa en dolor refractario, recordando que puede retardar la absorción oral de antiagregantes.'
+      },
+      {
+        gridFocus: 's4-c4',
+        badge: 'E: ELECTRO EN ≤10 MIN',
+        stepIndicator: 'PASO 4 / 4 · ECG 12 DERIVACIONES',
+        text: 'E: Electrocardiograma de 12 derivaciones interpretado por médico; si se afecta la cara inferior, tomar de inmediato V3R-V4R y V7-V9.'
+      }
+    ],
+    5: [
+      {
+        focusRow: null,
+        badge: 'PROTOCOLO GES',
+        stepIndicator: 'SLIDE 05 · FARMACOTERAPIA DAPT',
+        text: 'La farmacoterapia inicial del SCACEST combina antiagregación plaquetaria potente, anticoagulación y estabilización de placa.'
+      },
+      {
+        focusRow: 's5-r1',
+        badge: 'AAS 250-500 MG',
+        stepIndicator: 'PASO 1 / 5 · ASPIRINA MASTICABLE',
+        text: 'Aspirina: Dosis de carga de 250 a 500 miligramos masticables para inhibición irreversible inmediata de COX-1, manteniendo 100 mg diarios.'
+      },
+      {
+        focusRow: 's5-r2',
+        badge: 'TICAGRELOR 180 MG',
+        stepIndicator: 'PASO 2 / 5 · P2Y12 EN ANGIOPLASTÍA',
+        text: 'Ticagrelor: Carga de 180 miligramos por vía oral como inhibidor P2Y12 de primera línea si el paciente va a Angioplastía Primaria.'
+      },
+      {
+        focusRow: 's5-r3',
+        badge: 'CLOPIDOGREL 300 MG',
+        stepIndicator: 'PASO 3 / 5 · P2Y12 EN TROMBÓLISIS',
+        text: 'Clopidogrel: Carga de 300 miligramos (o 75 mg en mayores de 75 años) si el paciente recibe Trombólisis con Tenecteplase.'
+      },
+      {
+        focusRow: 's5-r4',
+        badge: 'ENOXAPARINA EV + SC',
+        stepIndicator: 'PASO 4 / 5 · ANTICOAGULACIÓN',
+        text: 'Enoxaparina: Bolo endovenoso de 30 miligramos más 1 miligramo por kilo subcutáneo como anticoagulante parenteral de elección.'
+      },
+      {
+        focusRow: 's5-r5',
+        badge: 'ATORVASTATINA 80 MG',
+        stepIndicator: 'PASO 5 / 5 · ALTA POTENCIA',
+        text: 'Atorvastatina: 80 miligramos en dosis única precoz para lograr estabilización pleiotrópica de la placa y reducción de eventos isquémicos.'
+      }
+    ],
+    6: [
+      {
+        gridFocus: null,
+        badge: 'GOLD STANDARD EUNACOM',
+        stepIndicator: 'SLIDE 06 · SCORE KILLIP-KIMBALL',
+        text: 'La clasificación de Killip-Kimball estratifica el compromiso hemodinámico y la mortalidad intrahospitalaria al ingreso.'
+      },
+      {
+        gridFocus: 's6-c1',
+        badge: 'KILLIP I · MORTALIDAD 6%',
+        stepIndicator: 'PASO 1 / 4 · SIN INSUFICIENCIA CARDÍACA',
+        text: 'Killip I: Sin signos clínicos de falla cardíaca ni estertores pulmonares. Excelente pronóstico con mortalidad del 6%.'
+      },
+      {
+        gridFocus: 's6-c2',
+        badge: 'KILLIP II · MORTALIDAD 17%',
+        stepIndicator: 'PASO 2 / 4 · INSUFICIENCIA LEVE-MODERADA',
+        text: 'Killip II: Insuficiencia cardíaca leve o moderada con estertores en menos del 50% de los campos o galope por tercer ruido. Mortalidad del 17%.'
+      },
+      {
+        gridFocus: 's6-c3',
+        badge: 'KILLIP III · MORTALIDAD 38%',
+        stepIndicator: 'PASO 3 / 4 · EDEMA AGUDO DE PULMÓN',
+        text: 'Killip III: Edema agudo de pulmón con estertores en más del 50% de los campos pulmonares y disnea severa. Mortalidad del 38%.'
+      },
+      {
+        gridFocus: 's6-c4',
+        badge: 'KILLIP IV · MORTALIDAD 81%',
+        stepIndicator: 'PASO 4 / 4 · SHOCK CARDIOGÉNICO',
+        text: 'Killip IV: Shock cardiogénico con presión sistólica menor a 90 mmHg refractaria, frialdad y oliguria. Mortalidad del 81% con angioplastía urgente mandatoria.'
+      }
+    ],
+    7: [
+      {
+        gridFocus: null,
+        badge: '< 12 HORAS DESDE INICIO',
+        stepIndicator: 'SLIDE 07 · ALGORITMO REPERFUSIÓN',
+        text: 'La elección entre Angioplastía Primaria y Trombólisis se rige por el algoritmo temporal de los 120 minutos.'
+      },
+      {
+        gridFocus: 's7-c1',
+        badge: 'DIAGNÓSTICO & DAPT',
+        stepIndicator: 'PASO 1 / 4 · INICIO DE URGENCIA',
+        text: 'Diagnóstico SCACEST en menos de 10 minutos e inicio inmediato de doble antiagregación plaquetaria.'
+      },
+      {
+        gridFocus: 's7-c2',
+        badge: 'PCI PRIMARIA ≤ 120 MIN',
+        stepIndicator: 'PASO 2 / 4 · ANGIOPLASTÍA PRIMARIA',
+        text: 'Si el traslado a hemodinamia demora 120 minutos o menos: Traslado inmediato a Angioplastía Primaria con meta Puerta-Balón menor a 90 minutos.'
+      },
+      {
+        gridFocus: 's7-c3',
+        badge: 'TROMBÓLISIS TNK > 120 MIN',
+        stepIndicator: 'PASO 3 / 4 · FIBRINOLISIS TENECTEPLASE',
+        text: 'Si el traslado excede 120 minutos: Trombolizar inmediatamente en el hospital periférico con Tenecteplase en bolo único con meta Puerta-Aguja menor a 30 minutos.'
+      },
+      {
+        gridFocus: 's7-c4',
+        badge: 'EVALUACIÓN A 60-90 MIN',
+        stepIndicator: 'PASO 4 / 4 · ÉXITO VS RESCATE',
+        text: 'Evaluación a los 60-90 min: Descenso de ST mayor a 50% confirma éxito para coronariografía en 2-24h; si fracasa, requiere Angioplastía de Rescate inmediata.'
+      }
+    ],
+    8: [
+      {
+        gridFocus: null,
+        badge: 'MAPEO CORONARIO',
+        stepIndicator: 'SLIDE 08 · LOCALIZACIÓN ECG',
+        text: 'La distribución anatómica del supradesnivel del ST identifica con precisión la arteria coronaria ocluida.'
+      },
+      {
+        gridFocus: 's8-c1',
+        badge: 'PARED ANTERIOR · LAD',
+        stepIndicator: 'PASO 1 / 3 · DESCENDENTE ANTERIOR',
+        text: 'Pared Anterior y Septal en V1 a V4: Arteria Descendente Anterior (LAD), con mayor masa miocárdica en riesgo de falla ventricular y shock.'
+      },
+      {
+        gridFocus: 's8-c2',
+        badge: 'PARED INFERIOR · RCA',
+        stepIndicator: 'PASO 2 / 3 · CORONARIA DERECHA',
+        text: 'Pared Inferior en DII, DIII y aVF: Arteria Coronaria Derecha (RCA), con riesgo de bradicardia, BAV completo y compromiso de Ventrículo Derecho.'
+      },
+      {
+        gridFocus: 's8-c3',
+        badge: 'LATERAL / POSTERIOR · LCX',
+        stepIndicator: 'PASO 3 / 3 · ARTERIA CIRCUNFLEJA',
+        text: 'Pared Lateral y Posterior en DI, aVL o V7 a V9: Arteria Circunfleja (LCx), sospechar ante infradesnivel de espejo en V1-V3.'
+      }
+    ],
+    9: [
+      {
+        gridFocus: null,
+        badge: 'ALERTA DE SEGURIDAD',
+        stepIndicator: 'SLIDE 09 · CONTRAINDICACIONES',
+        text: 'La seguridad de la fibrinolisis exige auditar de forma sistemática las contraindicaciones antes de indicar Tenecteplase.'
+      },
+      {
+        gridFocus: 's9-c1',
+        badge: 'CONTRAINDICACIONES ABSOLUTAS',
+        stepIndicator: 'PASO 1 / 2 · PCI MANDATORIA',
+        text: 'Contraindicaciones Absolutas: Cualquier antecedente de hemorragia intracraneal, ACV isquémico en los últimos 6 meses o sangrado digestivo activo obligan a derivar a Angioplastía.'
+      },
+      {
+        gridFocus: 's9-c2',
+        badge: 'CONTRAINDICACIONES RELATIVAS',
+        stepIndicator: 'PASO 2 / 2 · EVALUACIÓN RIESGO-BENEFICIO',
+        text: 'Contraindicaciones Relativas: Anticoagulación oral, crisis hipertensiva mayor a 180 sistólica o RCP traumática prolongada.'
+      }
+    ],
+    10: [
+      {
+        gridFocus: null,
+        badge: 'HIGH-YIELD PEARLS',
+        stepIndicator: 'SLIDE 10 · 4 TRAMPAS EUNACOM',
+        text: 'Repasemos los 4 escenarios de examen de mayor tasa de error en el EUNACOM sobre SCACEST.'
+      },
+      {
+        gridFocus: 's10-c1',
+        badge: 'TRAMPA 1: VENTRÍCULO DERECHO',
+        stepIndicator: 'PASO 1 / 4 · PROHIBIDOS NITRATOS',
+        text: 'Trampa 1: IAM de Ventrículo Derecho. Tríada de hipotensión, yugulares ingurgitadas y pulmones limpios. Prohibidos nitratos y diuréticos; expandir con Suero Fisiológico.'
+      },
+      {
+        gridFocus: 's10-c2',
+        badge: 'TRAMPA 2: FRACASO TROMBÓLISIS',
+        stepIndicator: 'PASO 2 / 4 · PCI DE RESCATE',
+        text: 'Trampa 2: Reperfusión fallida. Si el ST no desciende más del 50% a los 60-90 minutos o persiste el dolor, activar Angioplastía de Rescate Inmediata.'
+      },
+      {
+        gridFocus: 's10-c3',
+        badge: 'TRAMPA 3: CRITERIOS SGARBOSSA',
+        stepIndicator: 'PASO 3 / 4 · SCACEST EN BCRI',
+        text: 'Trampa 3: Criterios de Sgarbossa en bloqueo de rama izquierda. SDST concordante de 1 mm o discordante mayor a 5 mm confirma infarto agudo.'
+      },
+      {
+        gridFocus: 's10-c4',
+        badge: 'TRAMPA 4: VENTANA > 12 HORAS',
+        stepIndicator: 'PASO 4 / 4 · NO TROMBOLIZAR A CIEGAS',
+        text: 'Trampa 4: Ventana mayor a 12 horas en paciente asintomático y estable. No está indicada la fibrinolisis rutinaria; coordinar estudio diferido.'
+      }
+    ],
+    11: [
+      {
+        gridFocus: null,
+        badge: 'RESUMEN EJECUTIVO',
+        stepIndicator: 'SLIDE 11 · CHECKLIST FINAL',
+        text: 'Checklist de Decisión Final: Las 3 reglas cardinales que garantizan el 100% de acierto clínico y en el EUNACOM 2026.'
+      },
+      {
+        gridFocus: 's11-c1',
+        badge: '1. DIAGNÓSTICO & ECG ≤ 10 MIN',
+        stepIndicator: 'PASO 1 / 3 · DIAGNÓSTICO',
+        text: 'Pilar 1: Diagnóstico en menos de 10 minutos sin esperar enzimas cardiacas. Reconocimiento de SDST y nuevo bloqueo de rama izquierda.'
+      },
+      {
+        gridFocus: 's11-c2',
+        badge: '2. REPERFUSIÓN & DAPT',
+        stepIndicator: 'PASO 2 / 3 · REPERFUSIÓN',
+        text: 'Pilar 2: Doble antiagregación inmediata y reperfusión según ventana de los 120 minutos (Angioplastía vs Tenecteplase).'
+      },
+      {
+        gridFocus: 's11-c3',
+        badge: '3. REGLAS DE SEGURIDAD',
+        stepIndicator: 'PASO 3 / 3 · SEGURIDAD CLÍNICA',
+        text: 'Pilar 3: Oxígeno restrictivo, descarte de ventrículo derecho sin nitratos, evaluación de éxito a los 90 minutos y prevención secundaria.'
+      }
+    ],
+    12: [
+      {
+        badge: 'CASO CLÍNICO 1 DE 3',
+        stepIndicator: 'SLIDE 12 · CASO CLÍNICO 1',
+        text: 'Hombre de 58 años con dolor torácico de 45 minutos y SDST de 3 mm en V1-V4: ¿Cuál es la conducta inicial más adecuada?'
+      }
+    ],
+    13: [
+      {
+        badge: 'CASO CLÍNICO 2 DE 3',
+        stepIndicator: 'SLIDE 13 · CASO CLÍNICO 2',
+        text: 'Mujer de 64 años en hospital periférico a 3.5 horas de hemodinamia: ¿Cuál es la estrategia de reperfusión indicada?'
+      }
+    ],
+    14: [
+      {
+        badge: 'CASO CLÍNICO 3 DE 3',
+        stepIndicator: 'SLIDE 14 · CASO CLÍNICO 3',
+        text: 'Varón de 71 años con IAM inferior que sufre colapso hemodinámico tras nitroglicerina: ¿Cuál es la conducta terapéutica prioritaria?'
+      }
+    ]
+  };
+
+  function fitStage() {
+    const stage = document.getElementById('stage');
+    const viewport = document.getElementById('viewport');
+    const scale = Math.min(viewport.clientWidth / 1920, viewport.clientHeight / 1080);
+    stage.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  function updateSlideStepper() {
+    const steps = slideStepsData[currentSlide] || [];
+    if (!steps.length) return;
+    if (subStep >= steps.length) subStep = steps.length - 1;
+    if (subStep < 0) subStep = 0;
+
+    const data = steps[subStep];
+
+    // Special custom handler for Slide 3
+    if (currentSlide === 3) {
+      const container = document.getElementById('slide3-stepper');
+      const badge = document.getElementById('slide3-badge');
+      if (container) container.className = 'stepper-container ' + (data.state || 'overview');
+      if (badge && data.badge) badge.innerText = data.badge;
+
+      const allLines = document.querySelectorAll('#slide-3 .step-line');
+      allLines.forEach(line => line.classList.remove('active-line'));
+      if (data.activeLine) {
+        const activeEl = document.getElementById(data.activeLine);
+        if (activeEl) activeEl.classList.add('active-line');
+      }
+      return;
+    }
+
+    const currentSlideEl = document.getElementById(`slide-${currentSlide}`);
+    if (!currentSlideEl) return;
+
+    // Header badge update
+    const headerBadge = currentSlideEl.querySelector('.header-badge');
+    if (headerBadge && data.badge) {
+      headerBadge.innerText = data.badge;
+    }
+
+    // Grid stepper items focus
+    const grids = currentSlideEl.querySelectorAll('.grid-stepper');
+    grids.forEach(g => {
+      const items = g.querySelectorAll('.stepper-item');
+      if (data.gridFocus) {
+        g.classList.add('has-focus');
+        items.forEach(it => {
+          if (it.id === data.gridFocus) {
+            it.classList.add('item-active');
+          } else {
+            it.classList.remove('item-active');
+          }
+        });
+      } else {
+        g.classList.remove('has-focus');
+        items.forEach(it => it.classList.remove('item-active'));
+      }
+    });
+
+    // Sub-lines inside grids (e.g. Slide 7)
+    const subLines = currentSlideEl.querySelectorAll('.step-line');
+    subLines.forEach(sl => {
+      if (data.activeSubLine && sl.id === data.activeSubLine) {
+        sl.classList.add('active-line');
+      } else {
+        sl.classList.remove('active-line');
+      }
+    });
+
+    // Table stepper rows focus
+    const tables = currentSlideEl.querySelectorAll('.table-stepper');
+    tables.forEach(t => {
+      const rows = t.querySelectorAll('tbody tr');
+      if (data.focusRow) {
+        t.classList.add('has-focus');
+        rows.forEach(r => {
+          if (r.id === data.focusRow) {
+            r.classList.add('row-active');
+          } else {
+            r.classList.remove('row-active');
+          }
+        });
+      } else {
+        t.classList.remove('has-focus');
+        rows.forEach(r => r.classList.remove('row-active'));
+      }
+    });
+
+    // Alert Banner Focus (Slide 2)
+    const alertBanner = document.getElementById('s2-alert');
+    if (alertBanner && currentSlide === 2) {
+      if (data.focusAlert) {
+        alertBanner.classList.add('item-active');
+        alertBanner.style.borderColor = '#ef4444';
+        alertBanner.style.boxShadow = '0 0 35px rgba(239, 68, 68, 0.4)';
+        alertBanner.style.transform = 'scale(1.04)';
+      } else {
+        alertBanner.classList.remove('item-active');
+        alertBanner.style.borderColor = '';
+        alertBanner.style.boxShadow = '';
+        alertBanner.style.transform = '';
+      }
+    }
+  }
+
+  function showSlide(n) {
+    if (n < 1) n = 1;
+    if (n > totalSlides) n = totalSlides;
+    currentSlide = n;
+
+    document.querySelectorAll('.slide').forEach((s, idx) => {
+      s.classList.toggle('active', idx + 1 === currentSlide);
+    });
+
+    document.getElementById('hud-counter').innerText = `SLIDE ${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+    document.getElementById('hud-fill').style.width = `${(currentSlide / totalSlides) * 100}%`;
+
+    updateSlideStepper();
+  }
+
+  function nextStep() {
+    const steps = slideStepsData[currentSlide] || [];
+    if (subStep < steps.length - 1) {
+      subStep++;
+      updateSlideStepper();
+      return;
+    }
+    if (currentSlide < totalSlides) {
+      subStep = 0;
+      showSlide(currentSlide + 1);
+    }
+  }
+
+  function prevStep() {
+    if (subStep > 0) {
+      subStep--;
+      updateSlideStepper();
+      return;
+    }
+    if (currentSlide > 1) {
+      const prevSteps = slideStepsData[currentSlide - 1] || [];
+      subStep = Math.max(0, prevSteps.length - 1);
+      showSlide(currentSlide - 1);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { nextStep(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { prevStep(); }
+  });
+
+  function checkAnswer(btn, isCorrect, feedbackId, explanation) {
+    const parent = btn.closest('.question-box');
+    parent.querySelectorAll('.option-btn').forEach(b => {
+      b.disabled = true;
+      b.style.pointerEvents = 'none';
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('wrong');
+    }
+
+    const fb = document.getElementById(feedbackId);
+    fb.style.display = 'block';
+    fb.innerHTML = `<strong>${isCorrect ? '✅ RESPUESTA CORRECTA' : '❌ RESPUESTA INCORRECTA'}:</strong> ${explanation}`;
+    fb.style.borderColor = isCorrect ? '#10b981' : '#ef4444';
+  }
+</script>
+</body>
+</html>
+
+

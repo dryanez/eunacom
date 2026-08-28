@@ -1,0 +1,4176 @@
+{
+  "Step 1 - Preclinical": [
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Anesthesia",
+      "total_videos": 4,
+      "duration": "1 hour 15 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "1 hour 15 minutes",
+          "lessons": [
+            {
+              "title": "Inhaled Anesthetics",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Intravenous Anesthetics",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Local Anesthetics",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Neuromuscular Blockers",
+              "duration": "19 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Basic Pharmacology",
+      "total_videos": 5,
+      "duration": "1 hour 26 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "1 hour 26 minutes",
+          "lessons": [
+            {
+              "title": "Enzymes",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Enzyme Inhibitors",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Dose-Response",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Drug Elimination",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Pharmacokinetics",
+              "duration": "27 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Behavioral Science",
+      "total_videos": 9,
+      "duration": "2 hour 10 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "2 hour 10 minutes",
+          "lessons": [
+            {
+              "title": "Ethics Principles",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Informed Consent",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Confidentiality",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Decision-Making Capacity",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Public Health",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Quality and Safety",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "The Healthy Patient",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Geriatrics",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Pediatrics",
+              "duration": "22 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Biochemistry",
+      "total_videos": 28,
+      "duration": "9 hours 6 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Molecular Biochemistry",
+          "duration": "54 minutes",
+          "lessons": [
+            {
+              "title": "DNA Structure",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Purine Metabolism",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Pyrimidine Metabolism",
+              "duration": "22 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Metabolism",
+          "duration": "4 hours 12 minutes",
+          "lessons": [
+            {
+              "title": "Glucose",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Glycolysis",
+              "duration": "31 minutes"
+            },
+            {
+              "title": "Gluconeogenesis",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Glycogen",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "HMP Shunt",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Fructose and Galactose",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Pyruvate Dehydrogenase",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "TCA Cycle",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Electron Transport Chain",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Fatty Acids",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Ketone Bodies",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Ethanol Metabolism",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Exercise and Starvation",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Inborn Errors of Metabolism",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Amino Acids",
+          "duration": "1 hour 20 minutes",
+          "lessons": [
+            {
+              "title": "Amino Acids",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Phenylalanine and Tyrosine",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Other Amino Acids",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Ammonia",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Vitamins",
+          "duration": "1 hour 15 minutes",
+          "lessons": [
+            {
+              "title": "B Vitamins",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "B12 and Folate",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Other Vitamins",
+              "duration": "33 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Lipids",
+          "duration": "53 minutes",
+          "lessons": [
+            {
+              "title": "Lipid Metabolism",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Hyperlipidemia",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Lipid Drugs",
+              "duration": "23 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Other Topics",
+          "duration": "31 minutes",
+          "lessons": [
+            {
+              "title": "Lysosomal Storage Diseases",
+              "duration": "31 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Biostats/Epi",
+      "total_videos": 12,
+      "duration": "3 hours 33 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Biostatistics",
+          "duration": "1 hour 1 minute",
+          "lessons": [
+            {
+              "title": "Statistics",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Hypothesis Testing",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Tests of Significance",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Correlations",
+              "duration": "8 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Epidemiology",
+          "duration": "2 hour 32 minutes",
+          "lessons": [
+            {
+              "title": "Study Designs",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Risk Quantification",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Sensitivity and Specificity",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Predictive Value",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Diagnostic Tests",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Bias",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Clinical Trials",
+              "duration": "32 minutes"
+            },
+            {
+              "title": "Evidence-based Medicine",
+              "duration": "10 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Cardiology",
+      "total_videos": 47,
+      "duration": "16 hours 14 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Anatomy and Physiology",
+          "duration": "2 hours 47 minutes",
+          "lessons": [
+            {
+              "title": "Cardiac Anatomy",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Cardiac Physiology",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "CV Response to Exercise",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Blood Flow Mechanics",
+              "duration": "32 minutes"
+            },
+            {
+              "title": "Regulation of Blood Pressure",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "PV Loops",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Wiggers’ Diagram",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Venous Pressure Tracings",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Starling Curve",
+              "duration": "19 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Cardiac Ischemia",
+          "duration": "1 hour 46 minutes",
+          "lessons": [
+            {
+              "title": "Cardiac Ischemia I",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Cardiac Ischemia II",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Atherosclerosis",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "STEMI",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Unstable Angina/NSTEMI",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Stable Angina",
+              "duration": "25 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "EKGs",
+          "duration": "44 minutes",
+          "lessons": [
+            {
+              "title": "EKG Basics",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "High Yield EKGs",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Arrhythmias",
+          "duration": "2 hours 33 minutes",
+          "lessons": [
+            {
+              "title": "Cardiac Action Potentials",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "AV and Bundle Branch Blocks",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Atrial Fibrillation and Flutter",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Paroxysmal supraventricular tachycardia",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "WPW",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Antiarrhythmic Drugs I",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Antiarrhythmic Drugs II",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Antiarrhythmic Drugs III",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Cardiac Auscultation",
+          "duration": "50 minutes",
+          "lessons": [
+            {
+              "title": "Heart Murmurs",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Heart Sounds",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Heart Failure",
+          "duration": "1 hour 28 minutes",
+          "lessons": [
+            {
+              "title": "Heart Failure Basics",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Systolic and Diastolic Heart Failure",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Restrictive Cardiomyopathy",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Acute Heart Failure",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Chronic Heart Failure",
+              "duration": "25 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VII.",
+          "title": "The Developing Heart",
+          "duration": "1 hour 33 minutes",
+          "lessons": [
+            {
+              "title": "Cardiac Embryology",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Shunts",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Cyanotic Congenital Heart Disease",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Coarctation of the Aorta",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VIII.",
+          "title": "Hypertension",
+          "duration": "1 hour 22 minutes",
+          "lessons": [
+            {
+              "title": "Hypertension",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Secondary Hypertension",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Antihypertensives I",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Antihypertensives II",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IX.",
+          "title": "Other Cardiovascular Topics",
+          "duration": "2 hours 51 minutes",
+          "lessons": [
+            {
+              "title": "Valve Disease",
+              "duration": "38 minutes"
+            },
+            {
+              "title": "Shock",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Pericardial Disease",
+              "duration": "37 minutes"
+            },
+            {
+              "title": "Aortic Disease",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Cardiac Tumors",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Hypertrophic Cardiomyopathy",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Infective Endocarditis",
+              "duration": "24 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Cell Biology",
+      "total_videos": 14,
+      "duration": "3 hours 20 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Molecular Biology",
+          "duration": "1 hour 32 minutes",
+          "lessons": [
+            {
+              "title": "DNA Replication",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "DNA Mutations",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "DNA Repair",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Transcription",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Translation",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Laboratory Techniques",
+          "duration": "33 minutes",
+          "lessons": [
+            {
+              "title": "PCR",
+              "duration": "5 minutes"
+            },
+            {
+              "title": "Blotting",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Flow Cytometry",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "ELISA",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Microarrays and FISH",
+              "duration": "5 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Cellular Biology",
+          "duration": "1 hour 15 minutes",
+          "lessons": [
+            {
+              "title": "Cell Cycle",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Cell Structure",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Cytoskeleton",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Connective Tissue",
+              "duration": "25 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Dermatology",
+      "total_videos": 11,
+      "duration": "2 hours 31 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "2 hours 31 minutes",
+          "lessons": [
+            {
+              "title": "Skin",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Epithelial Cells",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Skin Disorders I",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Skin Disorders II",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Pigment Disorders",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Vascular Lesions",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Skin Infections",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Blistering Disorders",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Hypersensitivity Disorders",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Skin Cancer",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Neurocutaneous Disorders",
+              "duration": "21 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Endocrinology",
+      "total_videos": 30,
+      "duration": "11 hours 28 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Thyroid",
+          "duration": "1 hour 58 minutes",
+          "lessons": [
+            {
+              "title": "Thyroid Anatomy & Physiology",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Thyroid Hormone Synthesis & Labs",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Hyperthyroidism",
+              "duration": "34 minutes"
+            },
+            {
+              "title": "Hypothyroidism and Thyroiditis",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Thyroid Cancer",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Adrenals",
+          "duration": "2 hour 11 minutes",
+          "lessons": [
+            {
+              "title": "Adrenal Glands",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Cushing's Syndrome",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Adrenal Insufficiency",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Hyperaldosteronism",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Adrenal Tumors",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Congenital Adrenal Hyperplasia",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Pancreas",
+          "duration": "2 hour 25 minutes",
+          "lessons": [
+            {
+              "title": "Insulin",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Glucagon & Hypoglycemia",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Type I Diabetes",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Type II Diabetes",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Insulin Medications",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Treatment of Diabetes",
+              "duration": "29 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Reproductive",
+          "duration": "2 hour 44 minutes",
+          "lessons": [
+            {
+              "title": "Reproductive Hormones",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Male Reproductive Hormones",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Female Reproductive Hormones",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Contraceptives",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Menstrual Cycle",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Primary Amenorrhea",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Secondary Amenorrhea",
+              "duration": "29 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Topics",
+          "duration": "2 hour 7 minutes",
+          "lessons": [
+            {
+              "title": "Pituitary Anatomy & Physiology",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Pituitary Pathology",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Parathyroid Glands",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Parathyroid Pathology",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "MEN Syndromes",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Signaling Pathways",
+              "duration": "20 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Gastroenterology",
+      "total_videos": 28,
+      "duration": "8 hours 51 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Anatomy",
+          "duration": "2 hours 0 minutes",
+          "lessons": [
+            {
+              "title": "Gastrointestinal Embryology",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Gastrointestinal Anatomy",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Gastrointestinal Blood Supply",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Gastrointestinal Tract",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Liver, Gallbladder, and Pancreas",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Salivary Glands",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Hernias",
+              "duration": "19 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "GI Physiology",
+          "duration": "1 hour 37 minutes",
+          "lessons": [
+            {
+              "title": "Bile",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Bilirubin",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Gastrointestinal Secretions",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Gastrointestinal Hormones",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Exocrine Pancreas",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Clinical Gastroenterology",
+          "duration": "5 hours 14 minutes",
+          "lessons": [
+            {
+              "title": "Esophageal Disorders",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Liver Disease",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Cirrhosis",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Liver Tumors",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Wilson’s Disease and Hemochromatosis",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Gallstones",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Biliary Disorders",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Gastric Disorders",
+              "duration": "32 minutes"
+            },
+            {
+              "title": "Malabsorption",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Acute Pancreatitis",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Chronic Pancreatitis & Pancreatic Cancer",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Intestinal Disorders",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Inflammatory Bowel Disease",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Colon Cancer",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Carcinoid Tumors",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Gastrointestinal Pharmacology",
+              "duration": "22 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Genetics",
+      "total_videos": 12,
+      "duration": "2 hours 26 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Genetic Concepts",
+          "duration": "1 hour 28 minutes",
+          "lessons": [
+            {
+              "title": "Genetic Principles",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Gene Mapping",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Meiosis",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Hardy-Weinberg Law",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Pedigrees",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Imprinting",
+              "duration": "6 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Genetic Disorders",
+          "duration": "58 minutes",
+          "lessons": [
+            {
+              "title": "Down Syndrome",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Trisomies",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Muscular Dystrophy",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Trinucleotide Repeat Disorders",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Deletion Syndromes",
+              "duration": "5 minutes"
+            },
+            {
+              "title": "Turner and Klinefelter Syndromes",
+              "duration": "13 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Hematology",
+      "total_videos": 29,
+      "duration": "8 hours 15 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Hemostasis",
+          "duration": "2 hours 21 minutes",
+          "lessons": [
+            {
+              "title": "Coagulation",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Platelet Activation",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Hypercoagulable States",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Coagulopathies",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Platelet Disorders",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Antiplatelet Drugs",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Anticoagulants",
+              "duration": "29 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Red Blood Cells",
+          "duration": "2 hours 48 minutes",
+          "lessons": [
+            {
+              "title": "Hemolysis Basics",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Extrinsic Hemolysis",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Intrinsic Hemolysis",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Microcytic Anemias",
+              "duration": "33 minutes"
+            },
+            {
+              "title": "Thalassemias",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Sickle Cell Anemia",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Other Anemias",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Blood Groups",
+              "duration": "17 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "White Blood Cells",
+          "duration": "1 hour 50 minutes",
+          "lessons": [
+            {
+              "title": "Acute Leukemia",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Chronic Leukemia",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Hodgkin Lymphoma",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Non-Hodgkin Lymphoma",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Plasma Cell Disorders",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Amyloidosis",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Myeloproliferative Disorders",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Cancer Drugs",
+          "duration": "1 hour 3 minutes",
+          "lessons": [
+            {
+              "title": "Antimetabolites",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Alkylating Agents",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Antitumor Antibiotics",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Microtubule Inhibitors",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "DNA Drugs",
+              "duration": "4 minutes"
+            },
+            {
+              "title": "Other Cancer Drugs",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Topics",
+          "duration": "14 minutes",
+          "lessons": [
+            {
+              "title": "Porphyrias",
+              "duration": "14 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Immunology",
+      "total_videos": 19,
+      "duration": "6 hours 1 minute",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Basic Immunology",
+          "duration": "2 hours 12 minutes",
+          "lessons": [
+            {
+              "title": "Innate Immunity",
+              "duration": "36 minutes"
+            },
+            {
+              "title": "T-cells",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "B-cells",
+              "duration": "31 minutes"
+            },
+            {
+              "title": "The Complement System",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Lymph Nodes and Spleen",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Clinical Immunology",
+          "duration": "1 hour 14 minutes",
+          "lessons": [
+            {
+              "title": "Hypersensitivity",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Transplants",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Immune Deficiency Syndromes",
+              "duration": "36 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Pharmacology",
+          "duration": "35 minutes",
+          "lessons": [
+            {
+              "title": "Glucocorticoids and NSAIDs",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Immunosuppressive Drugs",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Autoimmune Disorders",
+          "duration": "1 hour 32 minutes",
+          "lessons": [
+            {
+              "title": "Systemic Lupus Erythematosus",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Rheumatoid Arthritis",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Scleroderma",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Sjogren’s Syndrome",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Vasculitis",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Seronegative Spondyloarthritis",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Inflammatory Disorders",
+          "duration": "28 minutes",
+          "lessons": [
+            {
+              "title": "Gout",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Gout Drugs",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "CPPD",
+              "duration": "7 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Infectious Disease",
+      "total_videos": 35,
+      "duration": "11 hours 34 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Basics of Microbiology",
+          "duration": "2 hours 2 minutes",
+          "lessons": [
+            {
+              "title": "Bacteria",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Shapes and Stains",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Bacterial Culture",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Special Growth Requirements",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Virulence",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Growth and Genetics",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Bacterial Identification",
+              "duration": "17 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Bacteria",
+          "duration": "2 hours 45 minutes",
+          "lessons": [
+            {
+              "title": "Staphylococci",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Streptococci",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Other Gram Positives",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Gram Negative Rods",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "Other Gram Negatives",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Spirochetes",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Zoonotic Infections",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Mycobacteria",
+              "duration": "11 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Antibiotics",
+          "duration": "1 hour 31 minutes",
+          "lessons": [
+            {
+              "title": "Penicillins",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Beta Lactams",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Sulfonamides",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Protein Synthesis Inhibitors",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Other Antibiotics",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Fungi",
+          "duration": "1 hour 5 minutes",
+          "lessons": [
+            {
+              "title": "Fungal Pneumonias",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Fungal Skin Infections",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Opportunistic Fungal Infections",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Antifungal Drugs",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Parasites and Helminths",
+          "duration": "1 hour 11 minutes",
+          "lessons": [
+            {
+              "title": "Malaria",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Protozoa",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Helminths",
+              "duration": "29 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Viruses",
+          "duration": "3 hours",
+          "lessons": [
+            {
+              "title": "Virus Structures",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "DNA Viruses",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Herpes Viruses",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "RNA Viruses",
+              "duration": "43 minutes"
+            },
+            {
+              "title": "Viral Hepatitis",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "HIV",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "HIV Drugs",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Antiviral Drugs",
+              "duration": "15 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Musculoskeletal",
+      "total_videos": 20,
+      "duration": "6 hours 9 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Anatomy and Orthopedics",
+          "duration": "2 hours 25 minutes",
+          "lessons": [
+            {
+              "title": "Knee",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Shoulder and Elbow",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Brachial Plexus",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Wrist",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Hand",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Lumbosacral Plexus",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Lumbar Radiculopathy",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Hip",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Cell Biology",
+          "duration": "1 hour 21 minutes",
+          "lessons": [
+            {
+              "title": "Skeletal Muscle",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Cardiac Muscle",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Smooth Muscle",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Bone",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Pathology",
+          "duration": "2 hours 22 minutes",
+          "lessons": [
+            {
+              "title": "Bone Disorders",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Osteoporosis",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Osteoporosis Drugs",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Benign Bone Tumors",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Malignent Bone Tumors",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Arthritis",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Muscle Disorders",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Common Musculoskeletal Conditions",
+              "duration": "15 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Neurology",
+      "total_videos": 46,
+      "duration": "11 hours 38 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Introduction to Neurology",
+          "duration": "51 minutes",
+          "lessons": [
+            {
+              "title": "Cells of the Nervous System",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Nerve Damage",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Blood Brain Barrier",
+              "duration": "4 minutes"
+            },
+            {
+              "title": "Neurotransmitters",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Dermatomes and Reflexes",
+              "duration": "12 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Nervous System Structures",
+          "duration": "2 hours 53 minutes",
+          "lessons": [
+            {
+              "title": "Cerebral Cortex",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Spinal Cord",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Spinal Cord Syndromes",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Brainstem",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Cranial Nerves",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Auditory System",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Vestibular System",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Thalamus, Hypothalamus, Limbic System",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Cerebellum",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Basal Ganglia",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Ventricles and Sinuses",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Neurovascular Disorders",
+          "duration": "1 hour 4 minutes",
+          "lessons": [
+            {
+              "title": "Cerebral and Lacunar Strokes",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Vertebrobasilar Stroke Syndromes",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "CNS Aneurysms",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Intracranial Bleeding",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Management of TIA/Stroke",
+              "duration": "7 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Autonomic Nervous System",
+          "duration": "1 hour 48 minutes",
+          "lessons": [
+            {
+              "title": "Autonomic Nervous System",
+              "duration": "39 minutes"
+            },
+            {
+              "title": "ANS Drugs: Norepinephrine",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "ANS Drugs: Acetylcholine",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Autonomic Receptors",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Other Neurology Topics",
+          "duration": "2 hours 38 minutes",
+          "lessons": [
+            {
+              "title": "Meningitis",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Seizures",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Neuroembryology",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Delirium and Dementia",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Demyelinating Disease",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Headaches",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Brain Tumors",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Parkinson’s, Huntington’s, and Movement Disorders",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "HIV CNS Infections",
+              "duration": "4 minutes"
+            },
+            {
+              "title": "Neuromuscular Disorders",
+              "duration": "12 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Ophthalmology",
+      "total_videos": 10,
+      "duration": "3 hours 14 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "2 hours 20 minutes",
+          "lessons": [
+            {
+              "title": "Eye Anatomy",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Eye Disorders",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Lens",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Glaucoma",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "The Retina",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Retinal Disorders I",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Retinal Disorders II",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Optic Nerve",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Gaze Disorders",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Visual Field Defects",
+              "duration": "13 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Pathology",
+      "total_videos": 11,
+      "duration": "3 hours 2 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "3 hours 2 minutes",
+          "lessons": [
+            {
+              "title": "Cellular Adaptations",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Cell Injury",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Free Radicals",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Apoptosis",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Necrosis",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Inflammation Principles",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Acute and Chronic Inflammation",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Granulomatous Inflammation",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Wound Healing and Scar",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Pathologic Calcification",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Neoplasia",
+              "duration": "25 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Psychiatry",
+      "total_videos": 22,
+      "duration": "4 hours 46 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Psychology",
+          "duration": "23 minutes",
+          "lessons": [
+            {
+              "title": "Conditioning and Transference",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Ego Defenses",
+              "duration": "12 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Pathology",
+          "duration": "2 hours 40 minutes",
+          "lessons": [
+            {
+              "title": "Child Abuse and Neglect",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Childhood Disorders",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "ADHD and Autism",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Cognitive Disorders",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Psychosis",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "Psychotic Disorders",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Dissociative Disorders",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Somatic and Factitious Disorders",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Personality Disorders",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Mood Disorders",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Anxiety Disorders",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Eating Disorders",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Sleep Disorders",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Substance Use Disorders",
+          "duration": "52 minutes",
+          "lessons": [
+            {
+              "title": "Alcohol and CNS Depressants",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Opioids",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Stimulants",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Other Drugs",
+              "duration": "9 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Pharmacology",
+          "duration": "51 minutes",
+          "lessons": [
+            {
+              "title": "Antidepressants",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Lithium",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Antipsychotics",
+              "duration": "22 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Pulmonary",
+      "total_videos": 30,
+      "duration": "10 hours 38 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Embryology, Anatomy and Physiology",
+          "duration": "5 hours 1 minute",
+          "lessons": [
+            {
+              "title": "Pulmonary Embryology",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Pulmonary Anatomy I",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Pulmonary Anatomy II",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Pulmonary Physiology I",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Pulmonary Physiology II",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Hemoglobin",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Pulmonary Circulation",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Pulmonary Hypertension",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Ventilation and Perfusion",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Dead Space",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Hypoxia",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Hypoxemia",
+              "duration": "34 minutes"
+            },
+            {
+              "title": "Carbon Dioxide",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Lug Physical Exam",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Obstructive and Restrictive Diseases",
+          "duration": "1 hour 52 minutes",
+          "lessons": [
+            {
+              "title": "Pulmonary Function Tests",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "COPD",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Asthma & Bronchiectasis",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Restrictive Lung Disease",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Treatment of COPD and Asthma",
+              "duration": "24 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Other Pulmonary Topics",
+          "duration": "3 hours 44 minutes",
+          "lessons": [
+            {
+              "title": "Pneumonia I",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Pneumonia II",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Pleural Disease",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Lung Cancer",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Sleep Apnea",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Cystic Fibrosis",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Tuberculosis",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Sarcoidosis",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Deep Vein Thrombosis & Pulmonary Embolism",
+              "duration": "32 minutes"
+            },
+            {
+              "title": "Chest X-rays",
+              "duration": "10 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Renal",
+      "total_videos": 28,
+      "duration": "8 hours 33 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Embryology, Anatomy and Physiology",
+          "duration": "2 hours 11 minutes",
+          "lessons": [
+            {
+              "title": "Renal Embryology",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Renal Anatomy",
+              "duration": "5 minutes"
+            },
+            {
+              "title": "Renal Physiology I",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Renal Physiology II",
+              "duration": "31 minutes"
+            },
+            {
+              "title": "Nephron Physiology",
+              "duration": "38 minutes"
+            },
+            {
+              "title": "Renal Endocrine Function",
+              "duration": "17 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Acid-Base",
+          "duration": "2 hours 16 minutes",
+          "lessons": [
+            {
+              "title": "Acid Excretion",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Acid-Base Principles",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "Respiratory Disorders",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Metabolic Alkalosis",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Renal Tubular Acidosis",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Metabolic Acidosis",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Acid Base Problems",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Electrolytes",
+          "duration": "1 hour 21 minutes",
+          "lessons": [
+            {
+              "title": "Electrolyte Disorders",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Sodium and Water Balance",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Sodium Disorders",
+              "duration": "35 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Diseases of the Nephron",
+          "duration": "1 hour 37 minutes",
+          "lessons": [
+            {
+              "title": "Glomerulonephritis Principles",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Nephritic Syndrome",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Nephrotic Syndrome",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "MPGN",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Tubulointerstitial Disease",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Renal Failure",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Renal Topics",
+          "duration": "1 hour 8 minutes",
+          "lessons": [
+            {
+              "title": "Urinary Tract Infections",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Cystic Kidney Disease",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Diuretics",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Kidney Stones",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Renal and Bladder Tumors",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Rhabdomyolysis",
+              "duration": "7 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 1 - Preclinical",
+      "subject": "Reproductive",
+      "total_videos": 37,
+      "duration": "7 hours 17 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Embryology",
+          "duration": "1 hour 40 minutes",
+          "lessons": [
+            {
+              "title": "Embryonic Genes",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Embryogenesis",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Germ Layers",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Errors in Morphogenesis",
+              "duration": "5 minutes"
+            },
+            {
+              "title": "Teratogens I",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Teratogens II",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Pharyngeal Arches",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Cleft Lip and Palate",
+              "duration": "3 minutes"
+            },
+            {
+              "title": "Pharyngeal Pouches and Clefts",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "Genital Embryology",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Pregnancy",
+          "duration": "1 hour 53 minutes",
+          "lessons": [
+            {
+              "title": "Spermatogenesis and Oogenesis",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Placenta",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Twins",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "Pregnancy",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Maternal-Fetal Disorders",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Hypertension in Pregnancy",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Placental Complications",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Gestational Tumors",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "TORCH Infections",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Vagina, Cervix, Uterus",
+          "duration": "46 minutes",
+          "lessons": [
+            {
+              "title": "Vaginal Cancer",
+              "duration": "5 minutes"
+            },
+            {
+              "title": "Cervical Cancer",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Endometrial Disorders",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Endometriosis",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Endometrial Cancer",
+              "duration": "10 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Ovary",
+          "duration": "35 minutes",
+          "lessons": [
+            {
+              "title": "Ovarian Cysts",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "Ovarian Epithelial Tumors",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Ovarian Stromal Tumors",
+              "duration": "6 minutes"
+            },
+            {
+              "title": "Ovarian Germ Cell Tumors",
+              "duration": "11 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Breast",
+          "duration": "45 minutes",
+          "lessons": [
+            {
+              "title": "Breast Tissue",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Breast Disorders",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Breast Carcinoma",
+              "duration": "17 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Male Disorders",
+          "duration": "1 hour 3 minutes",
+          "lessons": [
+            {
+              "title": "Penile Disorders",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Scrotal Disorders",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Testicular Cancer",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Prostate",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VII.",
+          "title": "Other Topics",
+          "duration": "36 minutes",
+          "lessons": [
+            {
+              "title": "Disorders of Sexual Development",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Hypogonadism",
+              "duration": "12 minutes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Step 2 - Clinical": [
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Behavioral Science",
+      "total_videos": 8,
+      "duration": "2 hours 9 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "2 hours 9 minutes",
+          "lessons": [
+            {
+              "title": "Ethics Principles",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Informed Consent",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Confidentiality",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Decision-Making Capacity",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Public Health",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Quality",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Safety",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Delivering Bad News",
+              "duration": "9 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Cardiology",
+      "total_videos": 19,
+      "duration": "6 hours 42 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Arrhythmias",
+          "duration": "1 hours 31 minutes",
+          "lessons": [
+            {
+              "title": "EKG Interpretation",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "ACLS and Tachycardias",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Atrial Fibrillation and Flutter",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Bradycardia",
+              "duration": "21 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Ischemic Heart Disease",
+          "duration": "48 minutes",
+          "lessons": [
+            {
+              "title": "Coronary Artery Disease",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "STEMI",
+              "duration": "22 Minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Heart Failure",
+          "duration": "1 hour 4 minutes",
+          "lessons": [
+            {
+              "title": "Heart Failure I",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Heart Failure II",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Cardiomyopathy",
+              "duration": "29 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Cardiac Auscultation",
+          "duration": "30 minutes",
+          "lessons": [
+            {
+              "title": "Heart Murmurs",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Heart Sounds",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Pharmacology",
+          "duration": "50 minutes",
+          "lessons": [
+            {
+              "title": "Cardiovascular Pharmacology I",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Cardiovascular Pharmacology II",
+              "duration": "25 minutes"
+            }
+          ]
+        },
+        {
+          "number": "VI.",
+          "title": "Other Topics",
+          "duration": "2 hours 2 minutes",
+          "lessons": [
+            {
+              "title": "Pericardial Disease",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Valvular Heart Disease",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Hyperlipidemia",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Hypertension",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Peripheral Vascular Disease",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Aortic Disease",
+              "duration": "14 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Emergency Medicine",
+      "total_videos": 10,
+      "duration": "2 hours 21 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Emergencies",
+          "duration": "1 hour 3 minutes",
+          "lessons": [
+            {
+              "title": "Burns",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Toxicology",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Common Emergencies",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Chest Pain and Dyspnea",
+              "duration": "10 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Trauma",
+          "duration": "1 hour 19 minutes",
+          "lessons": [
+            {
+              "title": "Trauma Basics",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Neck and Spinal Trauma",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Chest Trauma",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Abdominal Trauma",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Pelvic Trauma",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Fractures",
+              "duration": "12 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Endocrinology",
+      "total_videos": 16,
+      "duration": "5 hours 1 minute",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Thyroid Gland",
+          "duration": "1 hours 26 minutes",
+          "lessons": [
+            {
+              "title": "Thyroid Hormone",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Hypothyroidism",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Hyperthyroidism",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Thyroid Nodules",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Adrenal Glands",
+          "duration": "56 minutes",
+          "lessons": [
+            {
+              "title": "Hyperaldosteronism",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Cushing Syndrome",
+              "duration": "23 Minutes"
+            },
+            {
+              "title": "Adrenal Insufficiency",
+              "duration": "23 Minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Diabetes",
+          "duration": "1 hour 15 minutes",
+          "lessons": [
+            {
+              "title": "Diabetes Mellitus",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Diabetes Complications",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Diabetic Ketoacidosis",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Insulin",
+              "duration": "10 Minutes"
+            },
+            {
+              "title": "Diabetes Treatment",
+              "duration": "20 Minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Other Topics",
+          "duration": "1 hour 25 minutes",
+          "lessons": [
+            {
+              "title": "Pituitary Gland",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Hyperparathyroidism",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Hypoparathyroidism and Vitamin D",
+              "duration": "19 Minutes"
+            },
+            {
+              "title": "Osteoporosis",
+              "duration": "19 Minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Epidemiology",
+      "total_videos": 12,
+      "duration": "3 hours 31 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "3 hour 31 minutes",
+          "lessons": [
+            {
+              "title": "Statistics",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Hypothesis Testing",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Tests of Significance",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Correlations",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Study Designs",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Risk Quantification",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Sensitivity and Specificity",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Predictive Values",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Diagnostic Tests",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Bias",
+              "duration": "23 Minutes"
+            },
+            {
+              "title": "Clinical Trials",
+              "duration": "32 minutes"
+            },
+            {
+              "title": "Evidenced Based Medicine",
+              "duration": "10 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Gastroenterology",
+      "total_videos": 24,
+      "duration": "7 hours 34 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Esophagus and Stomach",
+          "duration": "1 hour 24 minutes",
+          "lessons": [
+            {
+              "title": "Esophageal Disorders",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "GERD and Esophageal Cancer",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Gastric Disorders",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Gastric Cancer",
+              "duration": "13 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Liver",
+          "duration": "2 hours 6 minutes",
+          "lessons": [
+            {
+              "title": "Liver Disease",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Liver Masses",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Cirrhosis",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Viral Hepatitis",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Hyperbilirubinemia",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Wilson’s Disease",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Hemochromatosis",
+              "duration": "11 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Biliary Tree and Pancreas",
+          "duration": "1 hour 11 minutes",
+          "lessons": [
+            {
+              "title": "Biliary Disease",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Gallstone Disease",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Pancreatic Cancer",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Pancreatitis",
+              "duration": "23 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Intestines",
+          "duration": "1 hour 25 minutes",
+          "lessons": [
+            {
+              "title": "Colon Cancer",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Colorectal Disease",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Small Bowel Disease",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Inflammatory Bowel Disease",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Topics",
+          "duration": "1 hour 29 minutes",
+          "lessons": [
+            {
+              "title": "Diarrhea",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Gastrointestinal Bleeding",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Hernias",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Malabsorption",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Gastrointestinal Pharmacology",
+              "duration": "14 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Hematology and Oncology",
+      "total_videos": 20,
+      "duration": "6 hours 30 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Red Cells",
+          "duration": "2 hours 53 minutes",
+          "lessons": [
+            {
+              "title": "Normocytic Anemias",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Microcytic Anemias",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Thalassemias",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Macrocytic Anemia",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Extrinsic Hemolysis",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Intrinsic Hemolysis",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Sickle Cell Disease",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Blood Products",
+              "duration": "27 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Coagulation",
+          "duration": "1 hour 39 minutes",
+          "lessons": [
+            {
+              "title": "Thrombocytopenia",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Coagulopathy",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Hypercoagulable States",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Antiplatelet Drugs",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Anticoagulants",
+              "duration": "25 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "White Cells",
+          "duration": "1 hour 59 minutes",
+          "lessons": [
+            {
+              "title": "Plasma Cell Disorders",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Myeloproliferative Disorders",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Acute Leukemias",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Chronic Leukemias",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Hodgkin Lymphoma",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Non- Hodgkin Lymphoma",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Amyloidosis",
+              "duration": "19 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Infectious Disease",
+      "total_videos": 16,
+      "duration": "5 hours 6 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Antibiotics",
+          "duration": "1 hour 17 minutes",
+          "lessons": [
+            {
+              "title": "Penicillins",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Beta Lactams",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Protein Synthesis Inhibitors",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Other Antibiotics",
+              "duration": "23 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Fungi and Parasites",
+          "duration": "1 hour 10 minutes",
+          "lessons": [
+            {
+              "title": "Fungal Infections",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Antifungal Drugs",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Protozoal Infections",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Malaria",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "HIV",
+          "duration": "1 hour 1 minute",
+          "lessons": [
+            {
+              "title": "HIV Infection",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "HIV Drugs",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "HIV Complications",
+              "duration": "22 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Other Topics",
+          "duration": "1 hour 39 minutes",
+          "lessons": [
+            {
+              "title": "Tick-borne Illnesses",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Sexually-transmitted Infections",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Meningitis",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Tuberculosis",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Adult Vaccinations",
+              "duration": "20 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Musculoskeletal",
+      "total_videos": 9,
+      "duration": "2 hours 46 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "General Topics",
+          "duration": "2 hours 46 minutes",
+          "lessons": [
+            {
+              "title": "Arthritis I",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Arthritis II",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Gout",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Systemic Lupus Erythematosus",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Scleroderma and Sjogren's",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Vasculitis",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Spondyloarthritis",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Muscle Disorders",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Low Back Pain",
+              "duration": "32 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Neurology",
+      "total_videos": 22,
+      "duration": "6 hours 32 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Stroke and Hemorrhage",
+          "duration": "56 minutes",
+          "lessons": [
+            {
+              "title": "Stroke I",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Stroke II",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Intracranial Bleeding",
+              "duration": "16 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Seizures",
+          "duration": "37 minutes",
+          "lessons": [
+            {
+              "title": "Seizures",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Seizure Treatment",
+              "duration": "17 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Movement Disorders",
+          "duration": "36 minutes",
+          "lessons": [
+            {
+              "title": "Parkinson’s Disease",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Movement Disorders",
+              "duration": "18 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Demyelinating Disorders",
+          "duration": "31 minutes",
+          "lessons": [
+            {
+              "title": "Multiple Sclerosis",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Demyelinating Disorders",
+              "duration": "13 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Topics Cerebellar Disorders",
+          "duration": "13 minutes",
+          "lessons": [
+            {
+              "title": "Spinal Cord Disorders",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Neuromuscular Disease",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Intracranial Hypertension",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Ventricular Pathology",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Dementia",
+              "duration": "29 minutes"
+            },
+            {
+              "title": "Altered Mental Status",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Traumatic Brain Injury",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Headache",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Syncope",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Vertigo",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "CNS Malignancy",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Congenital Neurology",
+              "duration": "14 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Obstetrics and Gynecology",
+      "total_videos": 34,
+      "duration": "9 hours 26 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Obstetrics",
+          "duration": "5 hour 20 minutes",
+          "lessons": [
+            {
+              "title": "Normal Pregnancy",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Prenatal Care",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Aneuploidy Screening",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Antepartum Fetal Surveillance",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Teratogens",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "TORCH Infections",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Perinatal Infections",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Abortion",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Ectopic Pregnancy",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Gestational Trophoblastic Disease",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Placental Pathology",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Multiple Gestation",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Labor and Delivery I",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Labor and Delivery II",
+              "duration": "24 Minutes"
+            },
+            {
+              "title": "Intrapartum Fetal Monitoring",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Preterm Labor",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Labor and Delivery Complications",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Maternal Pregnancy Complications",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Hypertension in Pregnancy",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Postpartum",
+              "duration": "22 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Gynecology",
+          "duration": "12 videos; 3 hours, 23 minutes",
+          "lessons": [
+            {
+              "title": "Menstrual Cycle",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Contraception",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Primary Amenorrhea",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Secondary Amenorrhea",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Dysmenorrhea",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Abnormal Uterine Bleeding",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Vaginitis",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Pelvic Inflammatory Disease",
+              "duration": "8 minutes"
+            },
+            {
+              "title": "Cervical Cancer",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Uterine Cancer",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Adnexal Masses",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Ovarian Neoplasia",
+              "duration": "15 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Breast",
+          "duration": "2 videos; 53 minutes",
+          "lessons": [
+            {
+              "title": "Breast Masses",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Breast Cancer",
+              "duration": "29 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Pediatrics",
+      "total_videos": 16,
+      "duration": "4 hours 30 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Newborns",
+          "duration": "1 hour 5 minutes",
+          "lessons": [
+            {
+              "title": "Delivery Room Care",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Newborn Nursery",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Preterm and Postterm Infants",
+              "duration": "24 minutes"
+            },
+            {
+              "title": "Newborn Hyperbilirubinemia",
+              "duration": "13 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "General Pediatrics",
+          "duration": "2 hours 2 minutes",
+          "lessons": [
+            {
+              "title": "Developmental Milestones",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Pediatric Screening",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "General Pediatrics",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Adolescent Medicine",
+              "duration": "11 minutes"
+            },
+            {
+              "title": "Ear Infections and Fevers",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Pediatric Rashes",
+              "duration": "21 minutes"
+            },
+            {
+              "title": "Vaccination",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Other Topics",
+              "duration": "1 hour, 23 minutes"
+            },
+            {
+              "title": "Child Abuse",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Pediatric Orthopedics",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Child Psychiatry",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Congenital Gastroenterology I",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Congenital Gastroenterology II",
+              "duration": "23 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Psychiatry",
+      "total_videos": 14,
+      "duration": "3 hours 19 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Abnormal Psychology",
+          "duration": "23 minutes",
+          "lessons": [
+            {
+              "title": "Defense Mechanisms",
+              "duration": "10 minutes"
+            },
+            {
+              "title": "Personality Disorders",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Psychiatric Disorders",
+          "duration": "1 hour 32 minutes",
+          "lessons": [
+            {
+              "title": "Depression",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Mania",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Anxiety Disorders",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Psychotic Disorders",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Eating Disorders",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Somatic Disorders",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Dissociative Disorders",
+              "duration": "7 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Substance Abuse",
+          "duration": "45 minutes",
+          "lessons": [
+            {
+              "title": "Alcohol Use Disorder",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "Substance Abuse I",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Substance Abuse II",
+              "duration": "13 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Psychopharmacology",
+          "duration": "41 minutes",
+          "lessons": [
+            {
+              "title": "Antidepressants",
+              "duration": "20 minutes"
+            },
+            {
+              "title": "Antipsychotics",
+              "duration": "21 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Pulmonary Critical Care",
+      "total_videos": 15,
+      "duration": "4 hours 28 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Pulmonary Disease",
+          "duration": "2 hours 11 minutes",
+          "lessons": [
+            {
+              "title": "Pulmonary Function Tests",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Asthma",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "COPD Diagnosis",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "COPD Treatment",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Restrictive Lung Disease",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Pneumonia",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Lung Cancer",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Bronchiectasis",
+              "duration": "10 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Critical Care",
+          "duration": "1 hour 8 minutes",
+          "lessons": [
+            {
+              "title": "Shock",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Respiratory Failure",
+              "duration": "30 minutes"
+            },
+            {
+              "title": "Sepsis ARDS",
+              "duration": "14 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Other Topics",
+          "duration": "1 hour 10 minutes",
+          "lessons": [
+            {
+              "title": "Pulmonary Hypertension",
+              "duration": "16 minutes"
+            },
+            {
+              "title": "DVT and Pulmonary Embolism",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Pleural Disease",
+              "duration": "23 minutes"
+            },
+            {
+              "title": "Cystic Fibrosis",
+              "duration": "10 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Renal and Genitourinary",
+      "total_videos": 24,
+      "duration": "6 hours 31 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Renal Failure",
+          "duration": "45 minutes",
+          "lessons": [
+            {
+              "title": "Acute Renal Failure",
+              "duration": "27 minutes"
+            },
+            {
+              "title": "Chronic Kidney Disease",
+              "duration": "19 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Fluids and Electrolytes",
+          "duration": "1 hour 23 minutes",
+          "lessons": [
+            {
+              "title": "Fluids",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Hyponatremia",
+              "duration": "25 minutes"
+            },
+            {
+              "title": "Hypernatremia",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Potassium Disorders",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Calcium, Magnesium, and Phosphate Disorders",
+              "duration": "22 minutes"
+            }
+          ]
+        },
+        {
+          "number": "III.",
+          "title": "Acid Base",
+          "duration": "1 hour 39 minutes",
+          "lessons": [
+            {
+              "title": "Acid Base Principles",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Metabolic Acidosis",
+              "duration": "26 minutes"
+            },
+            {
+              "title": "Metabolic Alkalosis",
+              "duration": "17 minutes"
+            },
+            {
+              "title": "Respiratory Acid Base Disorders",
+              "duration": "12 minutes"
+            },
+            {
+              "title": "Renal Tubular Acidosis",
+              "duration": "24 minutes"
+            }
+          ]
+        },
+        {
+          "number": "IV.",
+          "title": "Glomerular Disease",
+          "duration": "55 minutes",
+          "lessons": [
+            {
+              "title": "Nephrotic Syndrome",
+              "duration": "28 minutes"
+            },
+            {
+              "title": "Nephritic Syndrome",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "RPGN",
+              "duration": "10 minutes"
+            }
+          ]
+        },
+        {
+          "number": "V.",
+          "title": "Other Topics",
+          "duration": "1 hour 50 minutes",
+          "lessons": [
+            {
+              "title": "Nephrolithiasis",
+              "duration": "19 minutes"
+            },
+            {
+              "title": "Hematuria",
+              "duration": "9 minutes"
+            },
+            {
+              "title": "Urinary Infections",
+              "duration": "13 minutes"
+            },
+            {
+              "title": "Urinary Incontinence",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Tubulointerstitial Disorders",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Cystic Kidney Disease",
+              "duration": "7 minutes"
+            },
+            {
+              "title": "Urinary Tract Malignancy",
+              "duration": "14 minutes"
+            },
+            {
+              "title": "Diuretics",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Rhabdomyolysis",
+              "duration": "8 minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step": "Step 2 - Clinical",
+      "subject": "Surgery and Anesthesia",
+      "total_videos": 6,
+      "duration": "1 hours 46 minutes",
+      "subsections": [
+        {
+          "number": "I.",
+          "title": "Surgery",
+          "duration": "42 minutes",
+          "lessons": [
+            {
+              "title": "Pre-operative Evaluation",
+              "duration": "22 minutes"
+            },
+            {
+              "title": "Post-operative Complications",
+              "duration": "20 minutes"
+            }
+          ]
+        },
+        {
+          "number": "II.",
+          "title": "Anesthesia General Anesthesia",
+          "duration": "19 minutes",
+          "lessons": [
+            {
+              "title": "Intravenous Anesthetics",
+              "duration": "15 minutes"
+            },
+            {
+              "title": "Neuromuscular Blockers",
+              "duration": "18 minutes"
+            },
+            {
+              "title": "Regional and Local Anesthesia",
+              "duration": "13 minutes"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

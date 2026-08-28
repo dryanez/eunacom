@@ -1,0 +1,6434 @@
+{
+ "module": "Módulo 1 · Medicina Interna",
+ "generated": "2026-08-28",
+ "specialties": [
+  {
+   "specKey": "1.01",
+   "name": "Cardiología",
+   "bookKey": "cardiologia",
+   "accent": "#ea580c",
+   "officialCodes": {
+    "clinical": 33,
+    "exams": 13,
+    "procedures": 8,
+    "generals": 7
+   },
+   "proposedClasses": 24,
+   "coverage": "33/33",
+   "questionBankTotal": 455,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Taquicardia Paroxística Supraventricular",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.1.024",
+       "name": "Taquicardia paroxística supraventricular (TPSV)",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 2,
+     "title": "Angina crónica estable",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.1.001",
+       "name": "Angina crónica estable",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.01.2.001",
+       "name": "Angina inestable",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Bloqueos aurículo-ventriculares",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.002",
+       "name": "Bloqueos aurículo-ventriculares",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 4,
+     "title": "Cardiopatía congénita en adulto",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.003",
+       "name": "Cardiopatía congénita en adulto",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 5,
+     "title": "Corazón pulmonar crónico",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.01.1.004",
+       "name": "Corazón pulmonar crónico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.01.1.006",
+       "name": "Embolia pulmonar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 6,
+     "title": "Dislipidemias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.005",
+       "name": "Dislipidemias",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 31,
+     "questionTopic": "Dislipidemias",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Endocarditis infecciosa y no infecciosa",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.007",
+       "name": "Endocarditis infecciosa y no infecciosa",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 9,
+     "questionTopic": "Endocarditis",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Enfermedad reumática activa",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.008",
+       "name": "Enfermedad reumática activa",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Estenosis aórtica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.1.009",
+       "name": "Estenosis aórtica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.01.1.010",
+       "name": "Estenosis mitral",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.01.1.017",
+       "name": "Insuficiencia aórtica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 10,
+     "title": "Extrasistolía ventricular benigna",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.011",
+       "name": "Extrasistolía ventricular benigna",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 11,
+     "title": "Fibrilación auricular crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.1.012",
+       "name": "Fibrilación auricular crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.01.1.013",
+       "name": "Fibrilación auricular paroxística",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.01.1.014",
+       "name": "Flutter auricular",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 40,
+     "questionTopic": "Fibrilación auricular",
+     "hasContent": true
+    },
+    {
+     "n": 12,
+     "title": "Hipertensión arterial esencial",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.01.1.015",
+       "name": "Hipertensión arterial esencial",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.01.1.016",
+       "name": "Hipertensión arterial secundaria",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 195,
+     "questionTopic": "Hipertensión arterial",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Insuficiencia cardíaca",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.1.018",
+       "name": "Insuficiencia cardíaca",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.01.1.019",
+       "name": "Insuficiencia mitral",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.01.2.005",
+       "name": "Insuficiencia cardíaca aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 27,
+     "questionTopic": "Insuficiencia cardíaca",
+     "hasContent": true
+    },
+    {
+     "n": 14,
+     "title": "Miocardiopatías",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.020",
+       "name": "Miocardiopatías",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 15,
+     "title": "Paciente con soplo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.021",
+       "name": "Paciente con soplo",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 16,
+     "title": "Pericarditis aguda",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.022",
+       "name": "Pericarditis aguda",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Síndrome metabólico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.01.1.023",
+       "name": "Síndrome metabólico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Disección aórtica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.002",
+       "name": "Disección aórtica",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 19,
+     "title": "Embolia cardiogénica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.003",
+       "name": "Embolia cardiogénica",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Infarto agudo al miocardio",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.004",
+       "name": "Infarto agudo al miocardio",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 69,
+     "questionTopic": "Infarto / SCA",
+     "hasContent": true
+    },
+    {
+     "n": 21,
+     "title": "Paro cardiorespiratorio",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.006",
+       "name": "Paro cardiorespiratorio",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 16,
+     "questionTopic": "Paro / RCP",
+     "hasContent": true
+    },
+    {
+     "n": 22,
+     "title": "Shock",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.007",
+       "name": "Shock",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 5,
+     "questionTopic": "Shock",
+     "hasContent": true
+    },
+    {
+     "n": 23,
+     "title": "Taponamiento pericárdico",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.008",
+       "name": "Taponamiento pericárdico",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 24,
+     "title": "Taqui y bradiarritmia con compromiso hemodinámico",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.01.2.009",
+       "name": "Taqui y bradiarritmia con compromiso hemodinámico",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.02",
+   "name": "Diabetes y nutrición",
+   "bookKey": "diabetes",
+   "accent": "#0891b2",
+   "officialCodes": {
+    "clinical": 26,
+    "exams": 25,
+    "procedures": 3,
+    "generals": 14
+   },
+   "proposedClasses": 20,
+   "coverage": "26/26",
+   "questionBankTotal": 181,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Desnutrición",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.001",
+       "name": "Desnutrición",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Diabetes gestacional",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.02.1.002",
+       "name": "Diabetes gestacional",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.02.1.006",
+       "name": "Diabetes por corticoides",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 108,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Diabetes mellitus pregestacional",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.1.003",
+       "name": "Diabetes mellitus pregestacional",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.02.1.004",
+       "name": "Diabetes Mellitus tipo 1",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.02.1.005",
+       "name": "Diabetes mellitus tipo 2",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 108,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": true
+    },
+    {
+     "n": 4,
+     "title": "Dislipidemias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.007",
+       "name": "Dislipidemias",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 5,
+     "title": "Hipertensión arterial en diabetes tipo 2",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.008",
+       "name": "Hipertensión arterial en diabetes tipo 2",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 108,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": true
+    },
+    {
+     "n": 6,
+     "title": "Insuficiencia renal y diabetes",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.009",
+       "name": "Insuficiencia renal y diabetes",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 108,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": true
+    },
+    {
+     "n": 7,
+     "title": "Nefropatía incipiente",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.010",
+       "name": "Nefropatía incipiente",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 8,
+     "title": "Neuropatía diabética",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.02.1.011",
+       "name": "Neuropatía diabética",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.02.1.015",
+       "name": "Retinopatía diabética",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Obesidad",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.02.1.012",
+       "name": "Obesidad",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.02.1.013",
+       "name": "Obesidad mórbida",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 45,
+     "questionTopic": "Obesidad / Nutrición",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Pié diabético y otras infecciones en diabetes",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.014",
+       "name": "Pié diabético y otras infecciones en diabetes",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 108,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Síndrome metabólico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.016",
+       "name": "Síndrome metabólico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 12,
+     "title": "Síndromes carenciales de vitaminas y minerales",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.017",
+       "name": "Síndromes carenciales de vitaminas y minerales",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Trastornos de conducta alimentaria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.018",
+       "name": "Trastornos de conducta alimentaria",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Vasculopatía periférica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.02.1.019",
+       "name": "Vasculopatía periférica",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Acidosis láctica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.001",
+       "name": "Acidosis láctica",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Cetoacidosis",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.002",
+       "name": "Cetoacidosis",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 25,
+     "questionTopic": "Cetoacidosis / Hipoglicemia",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Coma hiperosmolar",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.003",
+       "name": "Coma hiperosmolar",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "No requiere"
+      },
+      {
+       "code": "1.02.2.007",
+       "name": "Síndrome hiperosmolar no cetósico",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 18,
+     "title": "Déficit agudo de tiamina",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.004",
+       "name": "Déficit agudo de tiamina",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Hipertrigliceridemia grave",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.005",
+       "name": "Hipertrigliceridemia grave",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Hipoglicemias",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.02.2.006",
+       "name": "Hipoglicemias",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.03",
+   "name": "Endocrinología",
+   "bookKey": "endocrinologia",
+   "accent": "#7c3aed",
+   "officialCodes": {
+    "clinical": 28,
+    "exams": 11,
+    "procedures": 0,
+    "generals": 3
+   },
+   "proposedClasses": 25,
+   "coverage": "28/28",
+   "questionBankTotal": 240,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Bocio",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.001",
+       "name": "Bocio",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 7,
+     "questionTopic": "Hipertiroidismo / Bocio",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Hipotiroidismo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.002",
+       "name": "Hipotiroidismo",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 47,
+     "questionTopic": "Hipotiroidismo",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Hipertiroidismo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.003",
+       "name": "Hipertiroidismo",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 7,
+     "questionTopic": "Hipertiroidismo / Bocio",
+     "hasContent": true
+    },
+    {
+     "n": 4,
+     "title": "Cáncer del tiroides",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.004",
+       "name": "Cáncer del tiroides",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 5,
+     "title": "Tiroiditis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.005",
+       "name": "Tiroiditis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 6,
+     "title": "Síndrome de Cushing",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.006",
+       "name": "Síndrome de Cushing",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 7,
+     "title": "Insuficiencia suprarrenal crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.1.007",
+       "name": "Insuficiencia suprarrenal crónica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.03.1.022",
+       "name": "Incidentaloma suprarrenal",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.03.2.003",
+       "name": "Insuficiencia suprarrenal aguda",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 11,
+     "questionTopic": "Insuficiencia suprarrenal",
+     "hasContent": true
+    },
+    {
+     "n": 8,
+     "title": "Hirsutismo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.008",
+       "name": "Hirsutismo",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 9,
+     "title": "Hipertensión arterial de origen endocrino",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.009",
+       "name": "Hipertensión arterial de origen endocrino",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Amenorrea",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.010",
+       "name": "Amenorrea",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 11,
+     "title": "Síndrome climatérico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.011",
+       "name": "Síndrome climatérico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Hipogonadismo masculino",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.012",
+       "name": "Hipogonadismo masculino",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Tumores hipofisiarios",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.013",
+       "name": "Tumores hipofisiarios",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Hipopituitarismo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.014",
+       "name": "Hipopituitarismo",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 15,
+     "title": "Diabetes insípida",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.015",
+       "name": "Diabetes insípida",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 93,
+     "questionTopic": "Diabetes mellitus tipo 2",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Hiperprolactinemia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.016",
+       "name": "Hiperprolactinemia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 33,
+     "questionTopic": "Hiperprolactinemia",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Síndrome de secreción inapropiada de ADH",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.017",
+       "name": "Síndrome de secreción inapropiada de ADH",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Osteoporosis",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.03.1.018",
+       "name": "Osteoporosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.03.1.019",
+       "name": "Osteoporosis secundaria",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 20,
+     "questionTopic": "Osteoporosis",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Hipercalcemias e hipocalcemias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.020",
+       "name": "Hipercalcemias e hipocalcemias",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Nódulo tiroídeo",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.03.1.021",
+       "name": "Nódulo tiroídeo",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 21,
+     "title": "Ginecomastia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.1.023",
+       "name": "Ginecomastia",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Tormenta tiroidea",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.2.001",
+       "name": "Tormenta tiroidea",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 23,
+     "title": "Mixedema",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.2.002",
+       "name": "Mixedema",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 24,
+     "title": "Hipercalcemia aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.2.004",
+       "name": "Hipercalcemia aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 18,
+     "questionTopic": "Hipercalcemia / PTH",
+     "hasContent": false
+    },
+    {
+     "n": 25,
+     "title": "Tetania",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.03.2.005",
+       "name": "Tetania",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.04",
+   "name": "Enfermedades infecciosas",
+   "bookKey": "infectologia",
+   "accent": "#4d7c0f",
+   "officialCodes": {
+    "clinical": 39,
+    "exams": 16,
+    "procedures": 4,
+    "generals": 13
+   },
+   "proposedClasses": 37,
+   "coverage": "39/39",
+   "questionBankTotal": 313,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Adenitis, adenoflegmón",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.001",
+       "name": "Adenitis, adenoflegmón",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Ántrax",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.003",
+       "name": "Ántrax",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Brucelosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.004",
+       "name": "Brucelosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Candidiasis oral y esofágica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.005",
+       "name": "Candidiasis oral y esofágica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Celulitis bacteriana",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.006",
+       "name": "Celulitis bacteriana",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 15,
+     "questionTopic": "Celulitis / Impétigo",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Cólera",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.007",
+       "name": "Cólera",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Dengue",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.008",
+       "name": "Dengue",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Diarrea asociada a antibióticos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.009",
+       "name": "Diarrea asociada a antibióticos",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 9,
+     "title": "Enfermedades de transmisión sexual",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.010",
+       "name": "Enfermedades de transmisión sexual",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 10,
+     "title": "Enfermedades eruptivas no complicadas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.011",
+       "name": "Enfermedades eruptivas no complicadas",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Enfermedad leve moderada por SARS Cov 2 COVID 19",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.1.029",
+       "name": "Enfermedad leve moderada por SARS Cov 2 COVID 19",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": null
+      },
+      {
+       "code": "1.04.2.011",
+       "name": "Enfermedad grave por SARS Cov 2 COVID 19",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Fiebre tifoídea y paratifoídea",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.012",
+       "name": "Fiebre tifoídea y paratifoídea",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 13,
+     "title": "Hidatidosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.013",
+       "name": "Hidatidosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Infección por virus de inmunodeficiencia humana",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.014",
+       "name": "Infección por virus de inmunodeficiencia humana",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Infecciones asociadas a catéteres vasculares",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.015",
+       "name": "Infecciones asociadas a catéteres vasculares",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Influenza",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.016",
+       "name": "Influenza",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 44,
+     "questionTopic": "Influenza",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Leptospirosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.017",
+       "name": "Leptospirosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Malaria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.018",
+       "name": "Malaria",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Micosis invasora",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.019",
+       "name": "Micosis invasora",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Neutropenia febril",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.04.1.020",
+       "name": "Neutropenia febril",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.04.1.024",
+       "name": "Síndrome febril prolongado",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Osteomielitis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.021",
+       "name": "Osteomielitis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Parasitosis intestinales",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.022",
+       "name": "Parasitosis intestinales",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 11,
+     "questionTopic": "Parasitosis",
+     "hasContent": true
+    },
+    {
+     "n": 23,
+     "title": "Sífilis secundaria, terciaria y congénita",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.023",
+       "name": "Sífilis secundaria, terciaria y congénita",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 24,
+     "title": "Síndrome mononucleósico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.025",
+       "name": "Síndrome mononucleósico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 25,
+     "title": "Toxicoinfección alimentaria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.026",
+       "name": "Toxicoinfección alimentaria",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 26,
+     "title": "Triquinosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.027",
+       "name": "Triquinosis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 27,
+     "title": "Tuberculosis extrapulmonar",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.04.1.028",
+       "name": "Tuberculosis extrapulmonar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 59,
+     "questionTopic": "Tuberculosis",
+     "hasContent": true
+    },
+    {
+     "n": 28,
+     "title": "Absceso cerebral",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.001",
+       "name": "Absceso cerebral",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 29,
+     "title": "Encefalitis aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.002",
+       "name": "Encefalitis aguda",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Meningitis / Encefalitis",
+     "hasContent": false
+    },
+    {
+     "n": 30,
+     "title": "Endocarditis bateriana",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.003",
+       "name": "Endocarditis bateriana",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 31,
+     "title": "Flegmón submaxilar, submandibular",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.004",
+       "name": "Flegmón submaxilar, submandibular",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 32,
+     "title": "Infección invasiva de partes blandas:",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.005",
+       "name": "Infección invasiva de partes blandas:",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 33,
+     "title": "Meningitis aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.006",
+       "name": "Meningitis aguda",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Meningitis / Encefalitis",
+     "hasContent": true
+    },
+    {
+     "n": 34,
+     "title": "Sepsis y shock séptico",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.007",
+       "name": "Sepsis y shock séptico",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 8,
+     "questionTopic": "Sepsis",
+     "hasContent": true
+    },
+    {
+     "n": 35,
+     "title": "Síndrome pulmonar por Hanta Virus",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.008",
+       "name": "Síndrome pulmonar por Hanta Virus",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 36,
+     "title": "Tétanos",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.009",
+       "name": "Tétanos",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 37,
+     "title": "Varicela complicada: neumonitis, cerebelitis, encefalitis",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.04.2.010",
+       "name": "Varicela complicada: neumonitis, cerebelitis, encefalitis",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.05",
+   "name": "Enfermedades respiratorias",
+   "bookKey": "neumologia",
+   "accent": "#0f766e",
+   "officialCodes": {
+    "clinical": 52,
+    "exams": 14,
+    "procedures": 12,
+    "generals": 5
+   },
+   "proposedClasses": 34,
+   "coverage": "52/52",
+   "questionBankTotal": 358,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Absceso pulmonar",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.001",
+       "name": "Absceso pulmonar",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.008",
+       "name": "Corazón pulmonar crónico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.015",
+       "name": "Embolia pulmonar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 2,
+     "title": "Asma bronquial grave",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.002",
+       "name": "Asma bronquial grave",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.003",
+       "name": "Asma bronquial leve y moderada",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.05.2.004",
+       "name": "Crisis de asma bronquial",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 78,
+     "questionTopic": "Asma",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Bronquiectasias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.004",
+       "name": "Bronquiectasias",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Bronquitis aguda",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.05.1.005",
+       "name": "Bronquitis aguda",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.05.1.006",
+       "name": "Bronquitis crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Cáncer bronquial primario",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.007",
+       "name": "Cáncer bronquial primario",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 3,
+     "questionTopic": "Cáncer pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 6,
+     "title": "Daño pulmonar secundario a drogas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.009",
+       "name": "Daño pulmonar secundario a drogas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Derrame pleural neoplásico",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.010",
+       "name": "Derrame pleural neoplásico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.011",
+       "name": "Derrame pleural paraneumónico complicado",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.012",
+       "name": "Derrame pleural paraneumónico simple",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 33,
+     "questionTopic": "Derrame pleural",
+     "hasContent": true
+    },
+    {
+     "n": 8,
+     "title": "Derrame pleural por tuberculosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.013",
+       "name": "Derrame pleural por tuberculosis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Edema pulmonar no cardiogénico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.014",
+       "name": "Edema pulmonar no cardiogénico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 10,
+     "title": "Enfermedad pulmonar obstructiva crónica avanzada",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.05.1.016",
+       "name": "Enfermedad pulmonar obstructiva crónica avanzada",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.017",
+       "name": "Enfermedad pulmonar obstructiva crónica leve y moderada",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 11,
+     "title": "Enfermedades del intersticio pulmonar",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.018",
+       "name": "Enfermedades del intersticio pulmonar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 12,
+     "title": "Hemoptisis leve y mediana",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.019",
+       "name": "Hemoptisis leve y mediana",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Hidatidosis pulmonar",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.020",
+       "name": "Hidatidosis pulmonar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.021",
+       "name": "Hipertensión pulmonar",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.036",
+       "name": "Tuberculosis pulmonar",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 14,
+     "title": "Infecciones de las vías aéreas superiores",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.022",
+       "name": "Infecciones de las vías aéreas superiores",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Insuficiencia respiratoria crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.023",
+       "name": "Insuficiencia respiratoria crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.2.008",
+       "name": "Insuficiencia respiratoria aguda o crónica reagudizada",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": null,
+       "seg": "Completo"
+      },
+      {
+       "code": "1.05.2.009",
+       "name": "Insuficiencia respiratoria aguda o crónica reagudizada,",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 16,
+     "title": "Intoxicación leve por CO y otros gases",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.024",
+       "name": "Intoxicación leve por CO y otros gases",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Metástasis pulmonares",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.05.1.025",
+       "name": "Metástasis pulmonares",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.038",
+       "name": "Nódulos pulmonares",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Neumoconiosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.026",
+       "name": "Neumoconiosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Neumonías adquiridas en la comunidad",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.05.1.027",
+       "name": "Neumonías adquiridas en la comunidad",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      },
+      {
+       "code": "1.05.1.028",
+       "name": "Neumonías adquiridas en la comunidad",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 20,
+     "title": "Neumonías en inmunosuprimidos",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.05.1.029",
+       "name": "Neumonías en inmunosuprimidos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.1.030",
+       "name": "Neumonías nosocomiales",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 21,
+     "title": "Neumotórax moderado y grande",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.031",
+       "name": "Neumotórax moderado y grande",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 26,
+     "questionTopic": "Neumotórax",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Neumotórax pequeño",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.1.032",
+       "name": "Neumotórax pequeño",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.05.2.011",
+       "name": "Neumotórax hipertensivo",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 26,
+     "questionTopic": "Neumotórax",
+     "hasContent": false
+    },
+    {
+     "n": 23,
+     "title": "Síndrome de apnea del sueño",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.033",
+       "name": "Síndrome de apnea del sueño",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 24,
+     "title": "Síndromes mediastínicos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.034",
+       "name": "Síndromes mediastínicos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 25,
+     "title": "Tos crónica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.035",
+       "name": "Tos crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 26,
+     "title": "Tuberculosis pulmonar (fracaso de tratamiento)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.05.1.037",
+       "name": "Tuberculosis pulmonar (fracaso de tratamiento)",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": false
+    },
+    {
+     "n": 27,
+     "title": "Asfixia por inmersión",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.001",
+       "name": "Asfixia por inmersión",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 28,
+     "title": "Aspiración de cuerpo extraño con asfixia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.002",
+       "name": "Aspiración de cuerpo extraño con asfixia",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.05.2.003",
+       "name": "Aspiración de cuerpo extraño sin asfixia",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 29,
+     "title": "Embolia pulmonar masiva",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.005",
+       "name": "Embolia pulmonar masiva",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 55,
+     "questionTopic": "Tuberculosis pulmonar",
+     "hasContent": true
+    },
+    {
+     "n": 30,
+     "title": "Enfermedad bronquial obstructiva crónica descompensada",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.006",
+       "name": "Enfermedad bronquial obstructiva crónica descompensada",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 31,
+     "title": "Hemoptisis moderada,severa y masiva",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.007",
+       "name": "Hemoptisis moderada,severa y masiva",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 32,
+     "title": "Intoxicación por monóxido de carbono",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.010",
+       "name": "Intoxicación por monóxido de carbono",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 33,
+     "title": "Paro cardiorespiratorio",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.012",
+       "name": "Paro cardiorespiratorio",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 34,
+     "title": "Traumatismo torácico grave",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.05.2.013",
+       "name": "Traumatismo torácico grave",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.05.2.014",
+       "name": "Traumatismo torácico simple",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.06",
+   "name": "Gastroenterología",
+   "bookKey": "gastroenterologia",
+   "accent": "#15803d",
+   "officialCodes": {
+    "clinical": 42,
+    "exams": 15,
+    "procedures": 1,
+    "generals": 6
+   },
+   "proposedClasses": 32,
+   "coverage": "42/42",
+   "questionBankTotal": 245,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Ascitis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.001",
+       "name": "Ascitis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Cáncer de páncreas",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.06.1.002",
+       "name": "Cáncer de páncreas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.1.004",
+       "name": "Cáncer gástrico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 21,
+     "questionTopic": "Cáncer digestivo",
+     "hasContent": false
+    },
+    {
+     "n": 3,
+     "title": "Cáncer de vesícula y vías biliares",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.003",
+       "name": "Cáncer de vesícula y vías biliares",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 21,
+     "questionTopic": "Cáncer digestivo",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Cirrosis hepática",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.1.005",
+       "name": "Cirrosis hepática",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.1.022",
+       "name": "Insuficiencia hepática crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.1.024",
+       "name": "Masa hepática",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 22,
+     "questionTopic": "Cirrosis / Hepatitis crónica",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Colelitiasis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.006",
+       "name": "Colelitiasis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 35,
+     "questionTopic": "Colelitiasis / Colecistitis",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Colestasia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.007",
+       "name": "Colestasia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Trastornos digestivos funcionales",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.008",
+       "name": "Trastornos digestivos funcionales",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 8,
+     "title": "Constipación",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.009",
+       "name": "Constipación",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Diarrea asociada a antibióticos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.010",
+       "name": "Diarrea asociada a antibióticos",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 8,
+     "questionTopic": "Diarrea aguda",
+     "hasContent": true
+    },
+    {
+     "n": 10,
+     "title": "Diarrea crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.1.011",
+       "name": "Diarrea crónica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.1.012",
+       "name": "Diarrea en inmunosuprimidos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.2.005",
+       "name": "Diarrea aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 8,
+     "questionTopic": "Diarrea aguda",
+     "hasContent": true
+    },
+    {
+     "n": 11,
+     "title": "Disfagia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.013",
+       "name": "Disfagia",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 12,
+     "title": "Dispepsia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.014",
+       "name": "Dispepsia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Enfermedad celiaca",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.015",
+       "name": "Enfermedad celiaca",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Enfermedad diverticular complicada",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.1.016",
+       "name": "Enfermedad diverticular complicada",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.1.017",
+       "name": "Enfermedad diverticular no complicada",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.06.1.019",
+       "name": "Hepatitis aguda A no complicada",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Enfermedad inflamatoria intestinal",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.018",
+       "name": "Enfermedad inflamatoria intestinal",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 16,
+     "title": "Hepatitis agudas B, C, por otros virus, por drogas y tóxicas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.020",
+       "name": "Hepatitis agudas B, C, por otros virus, por drogas y tóxicas",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Hepatitis crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.1.021",
+       "name": "Hepatitis crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.2.008",
+       "name": "Hepatitis aguda A complicada",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 36,
+     "questionTopic": "Hepatitis aguda",
+     "hasContent": true
+    },
+    {
+     "n": 18,
+     "title": "Intolerancia a la lactosa",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.023",
+       "name": "Intolerancia a la lactosa",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 19,
+     "title": "Pancreatitis crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.1.025",
+       "name": "Pancreatitis crónica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.2.010",
+       "name": "Pancreatitis aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 21,
+     "questionTopic": "Pancreatitis",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Parasitosis intestinales",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.026",
+       "name": "Parasitosis intestinales",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Reflujo gastroesofágico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.027",
+       "name": "Reflujo gastroesofágico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 31,
+     "questionTopic": "Reflujo / ERGE",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Síndrome de malabsorción",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.028",
+       "name": "Síndrome de malabsorción",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 23,
+     "title": "Tumores de colon",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.029",
+       "name": "Tumores de colon",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 24,
+     "title": "Úlcera péptica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.06.1.030",
+       "name": "Úlcera péptica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 27,
+     "questionTopic": "Úlcera / Hemorragia digestiva",
+     "hasContent": false
+    },
+    {
+     "n": 25,
+     "title": "Abdomen agudo",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.001",
+       "name": "Abdomen agudo",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 17,
+     "questionTopic": "Abdomen agudo",
+     "hasContent": true
+    },
+    {
+     "n": 26,
+     "title": "Afagia aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.002",
+       "name": "Afagia aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 27,
+     "title": "Colangitis",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.003",
+       "name": "Colangitis",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 28,
+     "title": "Colecistitis aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.004",
+       "name": "Colecistitis aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 35,
+     "questionTopic": "Colelitiasis / Colecistitis",
+     "hasContent": false
+    },
+    {
+     "n": 29,
+     "title": "Encefalopatía hepática",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.006",
+       "name": "Encefalopatía hepática",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.06.2.009",
+       "name": "Insuficiencia hepática aguda",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 30,
+     "title": "Hemorragia digestiva alta y baja",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.007",
+       "name": "Hemorragia digestiva alta y baja",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 27,
+     "questionTopic": "Úlcera / Hemorragia digestiva",
+     "hasContent": false
+    },
+    {
+     "n": 31,
+     "title": "Peritonitis bacteriana espontánea del cirrótico",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.011",
+       "name": "Peritonitis bacteriana espontánea del cirrótico",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 32,
+     "title": "Síndrome hepatorrenal",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.06.2.012",
+       "name": "Síndrome hepatorrenal",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.07",
+   "name": "Geriatría",
+   "bookKey": "geriatria",
+   "accent": "#a16207",
+   "officialCodes": {
+    "clinical": 22,
+    "exams": 0,
+    "procedures": 4,
+    "generals": 12
+   },
+   "proposedClasses": 21,
+   "coverage": "22/22",
+   "questionBankTotal": 192,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Caídas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.001",
+       "name": "Caídas",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Constipación y fecalomas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.002",
+       "name": "Constipación y fecalomas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 3,
+     "title": "Demencia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.003",
+       "name": "Demencia",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 63,
+     "questionTopic": "Demencia / Parkinson",
+     "hasContent": true
+    },
+    {
+     "n": 4,
+     "title": "Depresión",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.004",
+       "name": "Depresión",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Diabetes mellitus tipo 2",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.005",
+       "name": "Diabetes mellitus tipo 2",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Enfermedad cerebro-vascular",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.006",
+       "name": "Enfermedad cerebro-vascular",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 7,
+     "title": "Escaras o úlceras por presión",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.007",
+       "name": "Escaras o úlceras por presión",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Fragilidad",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.008",
+       "name": "Fragilidad",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 9,
+     "title": "Hipertensión arterial",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.009",
+       "name": "Hipertensión arterial",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Hipotensión postural",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.010",
+       "name": "Hipotensión postural",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Hipotermia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.011",
+       "name": "Hipotermia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Incontinencia urinaria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.012",
+       "name": "Incontinencia urinaria",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Inmovilidad",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.013",
+       "name": "Inmovilidad",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Malnutrición",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.014",
+       "name": "Malnutrición",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Osteoporosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.015",
+       "name": "Osteoporosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Temblor",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.016",
+       "name": "Temblor",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Trastornos de la marcha",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.07.1.017",
+       "name": "Trastornos de la marcha",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 18,
+     "title": "Abdomen agudo en adulto mayor",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.07.2.001",
+       "name": "Abdomen agudo en adulto mayor",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.07.2.002",
+       "name": "Evento coronario en adulto mayor",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Fractura de cadera",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.07.2.003",
+       "name": "Fractura de cadera",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Agitación y agresividad",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.07.2.004",
+       "name": "Agitación y agresividad",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Síndrome confusional agudo / delirium",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.07.2.005",
+       "name": "Síndrome confusional agudo / delirium",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.08",
+   "name": "Hémato-oncología",
+   "bookKey": "hematologia",
+   "accent": "#be123c",
+   "officialCodes": {
+    "clinical": 28,
+    "exams": 10,
+    "procedures": 8,
+    "generals": 12
+   },
+   "proposedClasses": 23,
+   "coverage": "28/28",
+   "questionBankTotal": 148,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Anemia de las enfermedades crónicas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.001",
+       "name": "Anemia de las enfermedades crónicas",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Anemia",
+     "hasContent": true
+    },
+    {
+     "n": 2,
+     "title": "Anemia ferropénica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.1.002",
+       "name": "Anemia ferropénica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.08.1.003",
+       "name": "Anemia hemolítica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.08.1.004",
+       "name": "Anemia megaloblástica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Anemia",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Coagulopatías adquiridas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.005",
+       "name": "Coagulopatías adquiridas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 34,
+     "questionTopic": "Coagulopatías / Trombosis",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Coagulopatías congénitas (hemofilias, von Willebrand)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.006",
+       "name": "Coagulopatías congénitas (hemofilias, von Willebrand)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 34,
+     "questionTopic": "Coagulopatías / Trombosis",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Disproteinemias (gammapatías M)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.007",
+       "name": "Disproteinemias (gammapatías M)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Hipofunción medular",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.1.008",
+       "name": "Hipofunción medular",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.08.2.007",
+       "name": "Síndrome de compresión medular",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Leucemias agudas",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.08.1.009",
+       "name": "Leucemias agudas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.08.1.010",
+       "name": "Leucemias crónicas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Linfomas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.011",
+       "name": "Linfomas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 9,
+     "title": "Púrpuras trombopénicos",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.08.1.012",
+       "name": "Púrpuras trombopénicos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.08.1.013",
+       "name": "Púrpuras vasculares",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Reacción leucemoide",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.014",
+       "name": "Reacción leucemoide",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Síndrome leucoeritroblástico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.015",
+       "name": "Síndrome leucoeritroblástico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Síndrome paraneoplásico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.016",
+       "name": "Síndrome paraneoplásico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Síndromes mielodisplásicos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.017",
+       "name": "Síndromes mielodisplásicos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Síndromes mieloproliferativos crónicos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.018",
+       "name": "Síndromes mieloproliferativos crónicos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Trombofilias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.08.1.019",
+       "name": "Trombofilias",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Coagulación intravascular diseminada",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.001",
+       "name": "Coagulación intravascular diseminada",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 17,
+     "title": "Coagulopatía adquirida",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.002",
+       "name": "Coagulopatía adquirida",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Coagulopatía congénita sangrante",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.003",
+       "name": "Coagulopatía congénita sangrante",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Hipercalcemia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.004",
+       "name": "Hipercalcemia",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Lisis tumoral aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.005",
+       "name": "Lisis tumoral aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Neutropenia febril",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.006",
+       "name": "Neutropenia febril",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 1,
+     "questionTopic": "Neutropenia febril",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Síndrome vena cava superior",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.008",
+       "name": "Síndrome vena cava superior",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 23,
+     "title": "Trombopenia severa",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.08.2.009",
+       "name": "Trombopenia severa",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.09",
+   "name": "Nefrología",
+   "bookKey": "nefrologia",
+   "accent": "#a16207",
+   "officialCodes": {
+    "clinical": 38,
+    "exams": 16,
+    "procedures": 7,
+    "generals": 11
+   },
+   "proposedClasses": 29,
+   "coverage": "38/38",
+   "questionBankTotal": 224,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Acidosis e hiperkalemia en Insuficiencia renal crónica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.1.001",
+       "name": "Acidosis e hiperkalemia en Insuficiencia renal crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.09.1.012",
+       "name": "Insuficiencia renal crónica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.1.015",
+       "name": "Osteodistrofia en insuficiencia renal crónica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 9,
+     "questionTopic": "Insuficiencia renal aguda",
+     "hasContent": true
+    },
+    {
+     "n": 2,
+     "title": "Acidosis metabólica",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.09.1.002",
+       "name": "Acidosis metabólica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.09.1.003",
+       "name": "Alcalosis metabólica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 3,
+     "title": "Anemia en nefrópata",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.004",
+       "name": "Anemia en nefrópata",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Bacteriuria asintomática",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.09.1.005",
+       "name": "Bacteriuria asintomática",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.1.010",
+       "name": "Hiponatremia crónica asintomática",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Glomerulopatía lúpica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.006",
+       "name": "Glomerulopatía lúpica",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Hipernatremia, poliuria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.007",
+       "name": "Hipernatremia, poliuria",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Hipertensión arterial esencial",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.09.1.008",
+       "name": "Hipertensión arterial esencial",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.1.009",
+       "name": "Hipertensión arterial secundaria",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 113,
+     "questionTopic": "Hipertensión arterial",
+     "hasContent": true
+    },
+    {
+     "n": 8,
+     "title": "Infección urinaria baja (cistitis)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.011",
+       "name": "Infección urinaria baja (cistitis)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 42,
+     "questionTopic": "Infección urinaria",
+     "hasContent": false
+    },
+    {
+     "n": 9,
+     "title": "Nefritis intersticial no infecciosa (aguda o crónica)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.013",
+       "name": "Nefritis intersticial no infecciosa (aguda o crónica)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 10,
+     "title": "Nefropatía diabética",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.014",
+       "name": "Nefropatía diabética",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Pielonefritis aguda no complicada",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.1.016",
+       "name": "Pielonefritis aguda no complicada",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.2.011",
+       "name": "Pielonefritis aguda complicada",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Progresión de la IRC",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.017",
+       "name": "Progresión de la IRC",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Proteinuria",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.018",
+       "name": "Proteinuria",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Riñón poliquístico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.019",
+       "name": "Riñón poliquístico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Edema generalizado (anasarca)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.1.020",
+       "name": "Edema generalizado (anasarca)",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.09.2.003",
+       "name": "Edema generalizado grave (anasarca)",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Síndrome nefrítico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.021",
+       "name": "Síndrome nefrítico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 9,
+     "questionTopic": "Síndrome nefrótico / nefrítico",
+     "hasContent": true
+    },
+    {
+     "n": 17,
+     "title": "Síndrome nefrótico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.022",
+       "name": "Síndrome nefrótico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 9,
+     "questionTopic": "Síndrome nefrótico / nefrítico",
+     "hasContent": true
+    },
+    {
+     "n": 18,
+     "title": "Síndrome urémico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.023",
+       "name": "Síndrome urémico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 19,
+     "title": "Urolitiasis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.024",
+       "name": "Urolitiasis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 12,
+     "questionTopic": "Urolitiasis",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Uropatía obstructiva",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.09.1.025",
+       "name": "Uropatía obstructiva",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Cólico nefrítico, urolitiasis y complicaciones:",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.001",
+       "name": "Cólico nefrítico, urolitiasis y complicaciones:",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 12,
+     "questionTopic": "Urolitiasis",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Crisis hipertensivas, emergencias hipertensivas",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.002",
+       "name": "Crisis hipertensivas, emergencias hipertensivas",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 23,
+     "title": "Enfermedad tubular aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.004",
+       "name": "Enfermedad tubular aguda",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 24,
+     "title": "Hiperkalemia grave",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.005",
+       "name": "Hiperkalemia grave",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.2.007",
+       "name": "Hiponatremia aguda grave",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 25,
+     "title": "Hipokalemia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.006",
+       "name": "Hipokalemia",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 26,
+     "title": "Hipovolemia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.008",
+       "name": "Hipovolemia",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 27,
+     "title": "Insuficiencia renal aguda obstructiva",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.009",
+       "name": "Insuficiencia renal aguda obstructiva",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.09.2.010",
+       "name": "Insuficiencia renal aguda prerrenal",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 9,
+     "questionTopic": "Insuficiencia renal aguda",
+     "hasContent": true
+    },
+    {
+     "n": 28,
+     "title": "Pre eclampsia",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.012",
+       "name": "Pre eclampsia",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 29,
+     "title": "Vasculitis o glomerulonefritis rápidamente progresiva",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.09.2.013",
+       "name": "Vasculitis o glomerulonefritis rápidamente progresiva",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 19,
+     "questionTopic": "Glomerulonefritis",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.10",
+   "name": "Neurología",
+   "bookKey": "neurologia",
+   "accent": "#6d28d9",
+   "officialCodes": {
+    "clinical": 50,
+    "exams": 7,
+    "procedures": 3,
+    "generals": 2
+   },
+   "proposedClasses": 45,
+   "coverage": "50/50",
+   "questionBankTotal": 192,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Cefalea tensional",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.1.001",
+       "name": "Cefalea tensional",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      },
+      {
+       "code": "1.10.2.001",
+       "name": "Cefalea aguda en urgencia",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 15,
+     "questionTopic": "Cefalea / Migraña",
+     "hasContent": false
+    },
+    {
+     "n": 2,
+     "title": "Compromiso de conciencia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.002",
+       "name": "Compromiso de conciencia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Cuadros de deterioro orgánico cerebral potencialmente",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.003",
+       "name": "Cuadros de deterioro orgánico cerebral potencialmente",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Cuadros deficitarios de funciones cerebrales superiores",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.004",
+       "name": "Cuadros deficitarios de funciones cerebrales superiores",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Demencia (Enfermedad de Alzheimer,",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.005",
+       "name": "Demencia (Enfermedad de Alzheimer,",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 63,
+     "questionTopic": "Demencia / Parkinson",
+     "hasContent": true
+    },
+    {
+     "n": 6,
+     "title": "Enfermedad de Parkinson y parkinsonismos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.006",
+       "name": "Enfermedad de Parkinson y parkinsonismos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 63,
+     "questionTopic": "Demencia / Parkinson",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Epilepsia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.007",
+       "name": "Epilepsia",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": null
+      }
+     ],
+     "questionsInBank": 42,
+     "questionTopic": "Epilepsia / Convulsiones",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Esclerosis múltiple",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.008",
+       "name": "Esclerosis múltiple",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Herpes zoster",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.009",
+       "name": "Herpes zoster",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Lumbago mecánico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.010",
+       "name": "Lumbago mecánico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 16,
+     "questionTopic": "Lumbago / Radiculopatía",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Lumbociáticas y cervicobraquialgias.",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.011",
+       "name": "Lumbociáticas y cervicobraquialgias.",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 12,
+     "title": "Migraña",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.012",
+       "name": "Migraña",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 15,
+     "questionTopic": "Cefalea / Migraña",
+     "hasContent": false
+    },
+    {
+     "n": 13,
+     "title": "Neuralgia esencial del trigémino",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.013",
+       "name": "Neuralgia esencial del trigémino",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 14,
+     "title": "Neuropatías por atrapamiento",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.014",
+       "name": "Neuropatías por atrapamiento",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 17,
+     "questionTopic": "Neuropatías",
+     "hasContent": true
+    },
+    {
+     "n": 15,
+     "title": "Parálisis (tetraparesia, hemiparesia, etc)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.015",
+       "name": "Parálisis (tetraparesia, hemiparesia, etc)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 16,
+     "title": "Parálisis facial periférica",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.016",
+       "name": "Parálisis facial periférica",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Polineuropatías, radiculopatías, mononeuropatías, etc…",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.017",
+       "name": "Polineuropatías, radiculopatías, mononeuropatías, etc…",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Síndrome atáxico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.018",
+       "name": "Síndrome atáxico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 19,
+     "title": "Síndrome de hipertensión endocraneana",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.1.019",
+       "name": "Síndrome de hipertensión endocraneana",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      },
+      {
+       "code": "1.10.2.009",
+       "name": "Hipertensión endocraneana",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Síndrome miasténico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.020",
+       "name": "Síndrome miasténico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 21,
+     "title": "Síndrome miopático (distrofias musculares, polimiositis)",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.021",
+       "name": "Síndrome miopático (distrofias musculares, polimiositis)",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Síndromes convulsivos sintomáticos",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.1.022",
+       "name": "Síndromes convulsivos sintomáticos",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": "No requiere"
+      },
+      {
+       "code": "1.10.2.015",
+       "name": "Síndromes convulsivos sintomáticos (traumático,",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 23,
+     "title": "Síndromes sensitivos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.023",
+       "name": "Síndromes sensitivos",
+       "sec": "situacion",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 24,
+     "title": "Síndromes vertiginosos centrales",
+     "tier": 2,
+     "codes": [
+      {
+       "code": "1.10.1.024",
+       "name": "Síndromes vertiginosos centrales",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": null
+      },
+      {
+       "code": "1.10.1.025",
+       "name": "Síndromes vertiginosos periféricos",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 25,
+     "title": "Temblor esencial",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.026",
+       "name": "Temblor esencial",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 26,
+     "title": "Trastornos del sueño",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.027",
+       "name": "Trastornos del sueño",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 27,
+     "title": "Tumores de región sellar",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.028",
+       "name": "Tumores de región sellar",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 28,
+     "title": "Tumores primarios y metastásicos SNC",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.10.1.029",
+       "name": "Tumores primarios y metastásicos SNC",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": null
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 29,
+     "title": "Complicaciones neurológicas de abuso de sustancias",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.002",
+       "name": "Complicaciones neurológicas de abuso de sustancias",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 30,
+     "title": "Crisis convulsiva",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.003",
+       "name": "Crisis convulsiva",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 31,
+     "title": "Estado confusional agudo (alcohólico, tóxico metabólico)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.004",
+       "name": "Estado confusional agudo (alcohólico, tóxico metabólico)",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 32,
+     "title": "Distonía aguda por fármacos (ejemplo antieméticos)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.005",
+       "name": "Distonía aguda por fármacos (ejemplo antieméticos)",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 33,
+     "title": "Encefalopatías tóxico metabólicas (urémica, hepática, etc)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.006",
+       "name": "Encefalopatías tóxico metabólicas (urémica, hepática, etc)",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 34,
+     "title": "Enfermedad cerebrovascular",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.007",
+       "name": "Enfermedad cerebrovascular",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": null,
+       "seg": null
+      }
+     ],
+     "questionsInBank": 15,
+     "questionTopic": "ACV / Enfermedad cerebrovascular",
+     "hasContent": false
+    },
+    {
+     "n": 35,
+     "title": "Hemorragia subaracnoídea",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.008",
+       "name": "Hemorragia subaracnoídea",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 36,
+     "title": "Movimientos anormales inducidos por fármacos",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.010",
+       "name": "Movimientos anormales inducidos por fármacos",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 37,
+     "title": "Paraplejia aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.011",
+       "name": "Paraplejia aguda",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 38,
+     "title": "Síndrome cuadraplégico agudo",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.012",
+       "name": "Síndrome cuadraplégico agudo",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 39,
+     "title": "Síndrome cuadriparético fláccido",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.013",
+       "name": "Síndrome cuadriparético fláccido",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": null,
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 40,
+     "title": "Síndrome encefalítico (Herpes Simplex)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.014",
+       "name": "Síndrome encefalítico (Herpes Simplex)",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 41,
+     "title": "urémico, etc)",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.016",
+       "name": "urémico, etc)",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 42,
+     "title": "con meningitis purulenta o bacteriana",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.017",
+       "name": "con meningitis purulenta o bacteriana",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Meningitis / Encefalitis",
+     "hasContent": false
+    },
+    {
+     "n": 43,
+     "title": "Status convulsivo",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.018",
+       "name": "Status convulsivo",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.10.2.019",
+       "name": "Status migrañoso",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 44,
+     "title": "Traumatismo encéfalo craneano leve",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.020",
+       "name": "Traumatismo encéfalo craneano leve",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": null,
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 45,
+     "title": "Traumatismo encefalocraneano grave",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.10.2.021",
+       "name": "Traumatismo encefalocraneano grave",
+       "sec": "urgencia",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "No requiere"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    }
+   ],
+   "unmappedCodes": []
+  },
+  {
+   "specKey": "1.11",
+   "name": "Reumatología",
+   "bookKey": "reumatologia",
+   "accent": "#9f1239",
+   "officialCodes": {
+    "clinical": 27,
+    "exams": 4,
+    "procedures": 1,
+    "generals": 3
+   },
+   "proposedClasses": 25,
+   "coverage": "27/27",
+   "questionBankTotal": 161,
+   "classes": [
+    {
+     "n": 1,
+     "title": "Artritis psoriática",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.11.1.001",
+       "name": "Artritis psoriática",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.11.1.002",
+       "name": "Artritis reactivas",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      },
+      {
+       "code": "1.11.1.003",
+       "name": "Artritis reumatoídea",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 65,
+     "questionTopic": "Artritis reumatoide",
+     "hasContent": true
+    },
+    {
+     "n": 2,
+     "title": "Artrosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.004",
+       "name": "Artrosis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 24,
+     "questionTopic": "Artrosis",
+     "hasContent": true
+    },
+    {
+     "n": 3,
+     "title": "Cervicalgia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.005",
+       "name": "Cervicalgia",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 4,
+     "title": "Columna dolorosa",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.006",
+       "name": "Columna dolorosa",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 5,
+     "title": "Condrocalcinosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.007",
+       "name": "Condrocalcinosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 6,
+     "title": "Epicondilalgia, epitroclealgias",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.008",
+       "name": "Epicondilalgia, epitroclealgias",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 7,
+     "title": "Esclerosis sistémica progresiva",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.009",
+       "name": "Esclerosis sistémica progresiva",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 8,
+     "title": "Fibromialgia",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.010",
+       "name": "Fibromialgia",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 1,
+     "questionTopic": "Fibromialgia",
+     "hasContent": true
+    },
+    {
+     "n": 9,
+     "title": "Hombro doloroso",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.011",
+       "name": "Hombro doloroso",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 10,
+     "title": "Lumbago infeccioso y tumoral",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.012",
+       "name": "Lumbago infeccioso y tumoral",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 11,
+     "title": "Lumbago mecánico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.013",
+       "name": "Lumbago mecánico",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 12,
+     "title": "Lupus eritematoso sistémico",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.014",
+       "name": "Lupus eritematoso sistémico",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 37,
+     "questionTopic": "Lupus",
+     "hasContent": true
+    },
+    {
+     "n": 13,
+     "title": "Monoartritis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.015",
+       "name": "Monoartritis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 14,
+     "title": "Oligoartritis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.016",
+       "name": "Oligoartritis",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 15,
+     "title": "Osteoporosis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.017",
+       "name": "Osteoporosis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Completo",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 16,
+     "title": "Pelviespondilopatías seronegativas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.018",
+       "name": "Pelviespondilopatías seronegativas",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 17,
+     "title": "Poliartritis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.019",
+       "name": "Poliartritis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 18,
+     "title": "Polimiositis, dermatomiositis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.020",
+       "name": "Polimiositis, dermatomiositis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 19,
+     "title": "Síndrome antifosfolípidos",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.021",
+       "name": "Síndrome antifosfolípidos",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 20,
+     "title": "Síndrome de Sjögren",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.022",
+       "name": "Síndrome de Sjögren",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": true
+    },
+    {
+     "n": 21,
+     "title": "Síndrome de túnel carpiano",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.023",
+       "name": "Síndrome de túnel carpiano",
+       "sec": "situacion",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 22,
+     "title": "Tendonitis y bursitis",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.024",
+       "name": "Tendonitis y bursitis",
+       "sec": "situacion",
+       "dx": "Sospecha",
+       "tx": "Inicial",
+       "seg": "Completo"
+      }
+     ],
+     "questionsInBank": 0,
+     "questionTopic": "",
+     "hasContent": false
+    },
+    {
+     "n": 23,
+     "title": "Vasculitis sistémicas",
+     "tier": 1,
+     "codes": [
+      {
+       "code": "1.11.1.025",
+       "name": "Vasculitis sistémicas",
+       "sec": "situacion",
+       "dx": null,
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 14,
+     "questionTopic": "Vasculitis",
+     "hasContent": true
+    },
+    {
+     "n": 24,
+     "title": "Artritis séptica",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.11.2.001",
+       "name": "Artritis séptica",
+       "sec": "urgencia",
+       "dx": "Específico",
+       "tx": "Inicial",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 65,
+     "questionTopic": "Artritis reumatoide",
+     "hasContent": true
+    },
+    {
+     "n": 25,
+     "title": "Gota aguda",
+     "tier": 3,
+     "codes": [
+      {
+       "code": "1.11.2.002",
+       "name": "Gota aguda",
+       "sec": "urgencia",
+       "dx": null,
+       "tx": "Completo",
+       "seg": "Derivar"
+      }
+     ],
+     "questionsInBank": 12,
+     "questionTopic": "Gota",
+     "hasContent": false
+    }
+   ],
+   "unmappedCodes": []
+  }
+ ]
+}

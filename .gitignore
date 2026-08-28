@@ -22,6 +22,30 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Media & Large Binaries
 public/videos
+*.mp4
+*.wav
+*.mp3
+*.exe
 *.pdf
 eunacom-app-v2/book/*.pdf
+
+# Telegram Sessions & Private Keys
+*.session
+*.session-journal
+telegram_session_string.txt
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Temp test files
+scripts/amino_acids_debug/
+scripts/cropped_figures_test/
+scripts/perfect_figures/
+scripts/sample_quiz_slides/
+test_write.txt
+scribus-1.6.6-windows-x64.exe

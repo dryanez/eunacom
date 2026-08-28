@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCACEST - Estilo 5: Tactile Medical Atlas (14 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100vw; height: 100vh; overflow: hidden; background: #181a1f; color: #1c1917; font-family: 'DM Sans', sans-serif; }
+    
+    #viewport { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #111317; }
+    #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; flex-shrink: 0; overflow: hidden; background: #23272e; display: flex; padding: 36px; }
+    
+    .atlas-book {
+      background: #fbf9f4; flex: 1; border-radius: 12px 0 0 12px; padding: 60px 80px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.4); position: relative;
+    }
+
+    .atlas-tabs {
+      width: 90px; background: #1a1d24; border-radius: 0 12px 12px 0;
+      display: flex; flex-direction: column; gap: 8px; padding: 24px 0;
+    }
+    .atlas-tab {
+      background: #334155; color: #94a3b8; padding: 12px 6px; writing-mode: vertical-rl;
+      text-orientation: mixed; font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.1em; border-radius: 0 8px 8px 0; cursor: pointer; transition: all 0.2s ease;
+    }
+    .atlas-tab.active { background: #b91c1c; color: #ffffff; width: 105px; }
+
+    .slide {
+      position: absolute; inset: 60px 80px 80px 80px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    .atlas-head {
+      border-bottom: 2px solid #e7e5e4; padding-bottom: 20px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .atlas-chapter {
+      font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: #b91c1c; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .atlas-title {
+      font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 800; color: #1c1917; line-height: 1.05;
+    }
+    .atlas-stamp {
+      border: 2px solid #b91c1c; color: #b91c1c; padding: 6px 14px; font-size: 12px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.1em; transform: rotate(-2deg); border-radius: 4px;
+    }
+
+    .atlas-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; flex: 1; }
+    .atlas-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 24px; flex: 1; }
+    .atlas-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 24px; flex: 1; }
+
+    .atlas-box {
+      border: 1px dashed #d6d3d1; padding: 26px; border-radius: 8px; background: rgba(255, 255, 255, 0.7);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .atlas-box h4 {
+      font-family: 'Bodoni Moda', serif; font-size: 20px; font-weight: 700; color: #1c1917; margin-bottom: 10px;
+    }
+    .atlas-box p { font-size: 15px; color: #57534e; line-height: 1.6; }
+
+    .atlas-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .atlas-table th {
+      border-bottom: 2px solid #1c1917; font-family: 'Bodoni Moda', serif; font-size: 18px; font-weight: 700;
+      color: #1c1917; padding: 12px 14px; text-align: left;
+    }
+    .atlas-table td {
+      padding: 14px; border-bottom: 1px solid #e7e5e4; font-size: 15px; color: #44403c;
+    }
+
+    /* Atlas Question Box */
+    .atlas-qbox {
+      border: 2px solid #1c1917; padding: 30px; border-radius: 8px; background: #ffffff;
+      display: flex; flex-direction: column; justify-content: space-between; flex: 1; margin-top: 20px;
+    }
+    .atlas-opt-btn {
+      background: #fafaf9; border: 1px solid #d6d3d1; padding: 14px 18px; border-radius: 6px;
+      font-family: inherit; font-size: 15px; font-weight: 600; color: #1c1917; cursor: pointer;
+      margin-bottom: 8px; width: 100%; text-align: left; transition: all 0.2s ease;
+    }
+    .atlas-opt-btn:hover { background: #f5f5f4; border-color: #1c1917; }
+    .atlas-opt-btn.correct { background: #ecfdf5 !important; border-color: #059669 !important; color: #047857 !important; }
+    .atlas-opt-btn.wrong { background: #fef2f2 !important; border-color: #dc2626 !important; color: #b91c1c !important; }
+    .atlas-fb {
+      display: none; border-left: 3px solid #059669; background: #f5f5f4; padding: 14px 18px; font-size: 14px; color: #44403c; margin-top: 10px;
+    }
+
+    #atlas-hud {
+      position: absolute; bottom: 20px; left: 80px; right: 80px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid #e7e5e4; padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewport">
+  <div id="stage">
+    
+    <div class="atlas-book">
+
+      <!-- S1: COVER -->
+      <div class="slide active" id="s1" style="justify-content: center; align-items: center; text-align: center;">
+        <div class="atlas-chapter">EUNACOM 2026 · SECCIÓN 1.01 · CARDIOLOGÍA</div>
+        <h1 style="font-family: 'Bodoni Moda'; font-size: 64px; font-weight: 800; color: #1c1917; margin: 16px 0 20px; max-width: 1200px; line-height: 1.05;">
+          Infarto Agudo al Miocardio con Supradesnivel ST & Protocolo GES
+        </h1>
+        <p style="font-size: 20px; color: #78716c; max-width: 900px; line-height: 1.5; margin-bottom: 30px;">
+          Guía Completa de Diagnóstico Electrocardiográfico, Farmacoterapia de Urgencia y Tiempos de Reperfusión según Perfil V3.
+        </p>
+        <div style="display: flex; gap: 14px;">
+          <span class="atlas-stamp">CÓD V3: 1.01.2.002</span>
+          <span class="atlas-stamp" style="border-color: #047857; color: #047857;">CÓD V3: 1.01.3.005</span>
+        </div>
+      </div>
+
+      <!-- S2: MATRIZ V3 -->
+      <div class="slide" id="s2">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Auditoría Perfil V3 Oficial</div>
+            <h2 class="atlas-title">Matriz Legal del Médico General</h2>
+          </div>
+          <div class="atlas-stamp">NIVEL URGENCIA</div>
+        </div>
+        <div>
+          <table class="atlas-table">
+            <thead>
+              <tr>
+                <th>Dimensión</th>
+                <th>Nivel ASOFAMECh</th>
+                <th>Acción Clínica Mandatoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Diagnóstico</strong></td>
+                <td style="color: #b91c1c; font-weight: 700;">Específico (&le; 10 min)</td>
+                <td>Electrocardiograma de 12 derivaciones inmediato. Reconocer SDST o nuevo BCRI sin esperar enzimas.</td>
+              </tr>
+              <tr>
+                <td><strong>Tratamiento</strong></td>
+                <td style="color: #b91c1c; font-weight: 700;">Urgencia Total</td>
+                <td>Doble antiagregación DAPT (AAS + Ticagrelor/Clopidogrel), anticoagulación con Enoxaparina y reperfusión &lt; 120 min.</td>
+              </tr>
+              <tr>
+                <td><strong>Seguimiento</strong></td>
+                <td style="color: #047857; font-weight: 700;">Derivación / APS</td>
+                <td>Traslado asistido SAMU a centro con hemodinamia. Control crónico en APS con los 4 pilares de prevención secundaria.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- S3: FISIOPATOLOGÍA -->
+      <div class="slide" id="s3">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Bases Clínicas</div>
+            <h2 class="atlas-title">Fisiopatología & Criterios del Segmento ST</h2>
+          </div>
+          <div class="atlas-stamp">ISQUEMIA AGUDA</div>
+        </div>
+        <div class="atlas-grid-2">
+          <div class="atlas-box">
+            <h4>Trombosis Coronaria Oclusiva</h4>
+            <p>
+              1. Ruptura de la capa fibrosa de la placa aterosclerótica.<br>
+              2. Agregación plaquetaria mediada por GP IIb/IIIa.<br>
+              3. Trombo rojo transmural que ocluye el 100% del lumen arterial.<br>
+              4. Necrosis progresiva en menos de 6 horas.
+            </p>
+          </div>
+          <div class="atlas-box">
+            <h4>Criterios Electrocardiográficos</h4>
+            <p>
+              • <strong>V2-V3:</strong> &ge; 2.0 mm (varón &ge;40a), &ge; 2.5 mm (&lt;40a), &ge; 1.5 mm (mujer).<br>
+              • <strong>Otras derivaciones:</strong> &ge; 1.0 mm en &ge; 2 contiguas.<br>
+              • <strong>BCRI nuevo:</strong> Equivalente a SCACEST.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S4: ABCDE -->
+      <div class="slide" id="s4">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Primeros 10 Minutos</div>
+            <h2 class="atlas-title">Resucitación & Abordaje ABCDE</h2>
+          </div>
+          <div class="atlas-stamp">URGENCIAS</div>
+        </div>
+        <div class="atlas-grid-4">
+          <div class="atlas-box">
+            <h4>A - B: Oxígeno</h4>
+            <p>Solo si SatO2 &lt; 90%. Evitar la hiperoxia indiscriminada por vasoconstricción coronaria.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>C: Accesos</h4>
+            <p>2 vías venosas periféricas gruesas (#18G) y monitor desfibrilador listo ante FV primaria.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>D: Dolor</h4>
+            <p>Morfina 2-4mg EV solo si el dolor es severo y refractario; vigilar absorción de antiagregantes.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>E: ECG</h4>
+            <p>12 derivaciones en &le; 10 min. Si es cara inferior: tomar de inmediato V3R-V4R.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S5: FARMACOTERAPIA -->
+      <div class="slide" id="s5">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Farmacología de Urgencia</div>
+            <h2 class="atlas-title">Doble Antiagregación DAPT & Heparinas</h2>
+          </div>
+          <div class="atlas-stamp">GES CHILE</div>
+        </div>
+        <div>
+          <table class="atlas-table">
+            <thead>
+              <tr>
+                <th>Fármaco</th>
+                <th>Dosis de Carga</th>
+                <th>Estrategia Asociada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AAS</strong></td>
+                <td>250 - 500 mg VO masticable</td>
+                <td>Inmediata en todo paciente.</td>
+              </tr>
+              <tr>
+                <td><strong>Ticagrelor</strong></td>
+                <td>180 mg VO</td>
+                <td>Angioplastía Primaria (PCI).</td>
+              </tr>
+              <tr>
+                <td><strong>Clopidogrel</strong></td>
+                <td>300 mg VO (75 mg si &gt;75a)</td>
+                <td>Trombólisis con Tenecteplase.</td>
+              </tr>
+              <tr>
+                <td><strong>Enoxaparina</strong></td>
+                <td>30 mg EV bolo + 1 mg/kg SC</td>
+                <td>Anticoagulación estándar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- S6: KILLIP -->
+      <div class="slide" id="s6">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Estratificación Hemodinámica</div>
+            <h2 class="atlas-title">Clasificación de Killip-Kimball</h2>
+          </div>
+          <div class="atlas-stamp">PRONÓSTICO</div>
+        </div>
+        <div class="atlas-grid-4">
+          <div class="atlas-box">
+            <h4 style="color: #047857;">Killip I (6%)</h4>
+            <p>Sin congestión ni estertores pulmonares.</p>
+          </div>
+          <div class="atlas-box">
+            <h4 style="color: #0284c7;">Killip II (17%)</h4>
+            <p>Crepitaciones en &lt; 50% de campos y 3er ruido (R3).</p>
+          </div>
+          <div class="atlas-box">
+            <h4 style="color: #d97706;">Killip III (38%)</h4>
+            <p>Edema Agudo de Pulmón extenso y distrés.</p>
+          </div>
+          <div class="atlas-box" style="border-color: #b91c1c;">
+            <h4 style="color: #b91c1c;">Killip IV (81%)</h4>
+            <p>Shock Cardiogénico: PAS &lt; 90 mmHg. PCI urgente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S7: REPERFUSIÓN -->
+      <div class="slide" id="s7">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Estrategia Temporal</div>
+            <h2 class="atlas-title">Regla de los 120 Minutos para Reperfusión</h2>
+          </div>
+          <div class="atlas-stamp">TIEMPO = MIOCARDIO</div>
+        </div>
+        <div class="atlas-grid-2">
+          <div class="atlas-box">
+            <h4>Angioplastía Primaria (PCI)</h4>
+            <p>Meta Puerta-Balón &lt; 90 min. Tratamiento de elección si el traslado es &le; 120 min desde el diagnóstico. Acceso radial preferente.</p>
+          </div>
+          <div class="atlas-box" style="border-color: #b91c1c;">
+            <h4 style="color: #b91c1c;">Trombólisis Tenecteplase</h4>
+            <p>Meta Puerta-Aguja &lt; 30 min. Indicada si el traslado supera los 120 min. Bolo único peso-dependiente de TNK.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S8: LOCALIZACIÓN -->
+      <div class="slide" id="s8">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Mapeo Topográfico</div>
+            <h2 class="atlas-title">Localización ECG & Arteria Culpable</h2>
+          </div>
+          <div class="atlas-stamp">ANATOMÍA</div>
+        </div>
+        <div class="atlas-grid-3">
+          <div class="atlas-box">
+            <h4>Anterior (V1-V4)</h4>
+            <p><strong>Descendente Anterior (LAD)</strong><br>Alto riesgo de falla de bomba y shock.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>Inferior (DII, DIII, aVF)</h4>
+            <p><strong>Coronaria Derecha (RCA)</strong><br>Asociado a BAV y compromiso de VD.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>Lateral (DI, aVL, V5-V6)</h4>
+            <p><strong>Circunfleja (LCx)</strong><br>Tomar V7-V9 si infarto posterior.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S9: CONTRAINDICACIONES -->
+      <div class="slide" id="s9">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Seguridad Clínica</div>
+            <h2 class="atlas-title">Contraindicaciones Absolutas de Fibrinolisis</h2>
+          </div>
+          <div class="atlas-stamp">ALERTA ROJA</div>
+        </div>
+        <div class="atlas-grid-2">
+          <div class="atlas-box" style="border-color: #b91c1c;">
+            <h4 style="color: #b91c1c;">Prohibiciones Absolutas</h4>
+            <p>
+              • Hemorragia intracraneal previa.<br>
+              • ACV isquémico en últimos 6 meses.<br>
+              • Neoplasia / malformación vascular cerebral.<br>
+              • Sangrado gastrointestinal activo (&lt;1 mes).<br>
+              • Sospecha de Disección Aórtica.
+            </p>
+          </div>
+          <div class="atlas-box">
+            <h4>Conducta Obligatoria</h4>
+            <p>
+              La presencia de cualquiera de estas condiciones <strong>prohíbe la trombólisis</strong> y obliga al traslado prioritario para <strong>Angioplastía Primaria</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S10: 4 TRAMPAS -->
+      <div class="slide" id="s10">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Perlas de Examen</div>
+            <h2 class="atlas-title">Las 4 Trampas Clásicas del EUNACOM</h2>
+          </div>
+          <div class="atlas-stamp">HIGH-YIELD</div>
+        </div>
+        <div class="atlas-grid-2">
+          <div class="atlas-box">
+            <h4>1. IAM Ventrículo Derecho</h4>
+            <p>Hipotensión con nitratos. Prohibidos nitratos y diuréticos; expandir con Suero Fisiológico 0.9%.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>2. Fracaso Fibrinolítico</h4>
+            <p>Descenso ST &lt;50% a los 90 min post-trombólisis exige Angioplastía de Rescate urgente.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>3. Bloqueo Rama Izquierda</h4>
+            <p>BCRI nuevo con dolor isquémico se trata como SCACEST activo.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>4. Ventana &gt; 12 Horas</h4>
+            <p>Paciente estable y sin dolor: no trombolizar de urgencia, programar estudio electivo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- S11: CASO 1 -->
+      <div class="slide" id="s11">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Caso Clínico 1 de 3</div>
+            <h2 class="atlas-title">Diagnóstico & Conducta Inmediata</h2>
+          </div>
+          <div class="atlas-stamp">EUNACOM</div>
+        </div>
+        <div class="atlas-qbox">
+          <div style="font-size: 17px; font-weight: 600; color: #1c1917; line-height: 1.5; margin-bottom: 16px;">
+            Hombre de 58 años con dolor torácico opresivo de 45 minutos. ECG muestra SDST de 3 mm en V1-V4. PA 150/90, SatO2 96%. ¿Conducta prioritaria?
+          </div>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa1', 'Incorrecto. Con SatO2 96% no requiere O2 y no se esperan troponinas para reperfundir.')">A) O2 por mascarilla, solicitar troponinas y esperar confirmación bioquímica.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, true, 'fa1', '¡Correcto! En SCACEST se indica DAPT de carga (AAS + Ticagrelor) y activación inmediata de Angioplastía Primaria.')">B) AAS 250 mg masticable + Ticagrelor 180 mg y activar inmediatamente Angioplastía Primaria.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa1', 'Incorrecto. La trombólisis no es de 1ra línea si hay disponibilidad de PCI.')">C) Administrar bolo de Tenecteplase y solicitar ecocardiograma previo.</button>
+          <div class="atlas-fb" id="fa1"></div>
+        </div>
+      </div>
+
+      <!-- S12: CASO 2 -->
+      <div class="slide" id="s12">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Caso Clínico 2 de 3</div>
+            <h2 class="atlas-title">Estrategia en Hospital Periférico</h2>
+          </div>
+          <div class="atlas-stamp">EUNACOM</div>
+        </div>
+        <div class="atlas-qbox">
+          <div style="font-size: 17px; font-weight: 600; color: #1c1917; line-height: 1.5; margin-bottom: 16px;">
+            Mujer de 64 años con SCACEST anterior en hospital comunitario. Centro con hemodinamia está a 3.5 horas (&gt;120 min). ¿Manejo indicado?
+          </div>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa2', 'Incorrecto. 3.5 horas de traslado provocan necrosis transmural irreversible.')">A) Trasladar en ambulancia de inmediato para Angioplastía sin trombolizar.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, true, 'fa2', '¡Correcto! Por exceder 120 minutos de traslado, la indicación GES es trombolizar inmediatamente con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado.')">B) Trombolizar de inmediato con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado posterior.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa2', 'Incorrecto. La trombólisis no suspende la necesidad de coronariografía posterior.')">C) Trombolizar y mantener en hospital comunitario sin derivar.</button>
+          <div class="atlas-fb" id="fa2"></div>
+        </div>
+      </div>
+
+      <!-- S13: CASO 3 -->
+      <div class="slide" id="s13">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Caso Clínico 3 de 3</div>
+            <h2 class="atlas-title">Infarto de Ventrículo Derecho</h2>
+          </div>
+          <div class="atlas-stamp">EUNACOM</div>
+        </div>
+        <div class="atlas-qbox">
+          <div style="font-size: 17px; font-weight: 600; color: #1c1917; line-height: 1.5; margin-bottom: 16px;">
+            Paciente con IAM inferior recibe Nitroglicerina y se hipotensa a 70/40 con yugulares ingurgitadas y campos limpios. ¿Paso siguiente?
+          </div>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa3', 'Incorrecto. La causa es la depleción de precarga en ventrículo derecho.')">A) Iniciar infusión de noradrenalina a dosis alta.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, true, 'fa3', '¡Correcto! Suspender nitratos y administrar bolo de Suero Fisiológico 0.9% para restablecer la precarga del VD.')">B) Suspender nitroglicerina y administrar un bolo rápido de Suero Fisiológico 0.9% EV.</button>
+          <button class="atlas-opt-btn" onclick="checkAtlas(this, false, 'fa3', 'Incorrecto. La furosemida colapsaría aún más el retorno venoso.')">C) Furosemida 40 mg EV para descomprimir las yugulares.</button>
+          <div class="atlas-fb" id="fa3"></div>
+        </div>
+      </div>
+
+      <!-- S14: RESUMEN CHECKLIST -->
+      <div class="slide" id="s14">
+        <div class="atlas-head">
+          <div>
+            <div class="atlas-chapter">Resumen Final</div>
+            <h2 class="atlas-title">Checklist de Alta Fidelidad SCACEST</h2>
+          </div>
+          <div class="atlas-stamp">RESUMEN</div>
+        </div>
+        <div class="atlas-grid-3">
+          <div class="atlas-box">
+            <h4>1. Diagnóstico & ECG</h4>
+            <p>✓ ECG &le; 10 min.<br>✓ SDST en &ge; 2 contiguas.<br>✓ Carga AAS 250-500mg.<br>✓ O2 solo si Sat &lt; 90%.</p>
+          </div>
+          <div class="atlas-box">
+            <h4>2. Reperfusión</h4>
+            <p>✓ PCI si traslado &le; 120m.<br>✓ TNK si traslado &gt; 120m.<br>✓ Ticagrelor (PCI) / Clopidogrel (TNK).<br>✓ Enoxaparina EV + SC.</p>
+          </div>
+          <div class="atlas-box" style="border-color: #b91c1c;">
+            <h4>3. Seguridad</h4>
+            <p>✓ No nitratos en IAM VD.<br>✓ ST &lt;50% a 90m ➔ Rescate.<br>✓ Prevención secundaria APS.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HUD -->
+      <div id="atlas-hud">
+        <div style="font-family: 'Space Mono'; font-size: 14px; font-weight: 700;" id="a-counter">SLIDE 01 / 14</div>
+        <div>
+          <button style="background: #e7e5e4; border: none; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-weight: 700; cursor: pointer;" onclick="prevA()">◀ Anterior</button>
+          <button style="background: #b91c1c; border: none; color: #fff; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-weight: 700; cursor: pointer; margin-left: 8px;" onclick="nextA()">Siguiente ▶</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Side Tabs -->
+    <div class="atlas-tabs">
+      <div class="atlas-tab active" onclick="showA(1)">01 · PORTADA</div>
+      <div class="atlas-tab" onclick="showA(2)">02 · MATRIZ</div>
+      <div class="atlas-tab" onclick="showA(3)">03 · FISIO</div>
+      <div class="atlas-tab" onclick="showA(5)">05 · FARMA</div>
+      <div class="atlas-tab" onclick="showA(7)">07 · REPERF</div>
+      <div class="atlas-tab" onclick="showA(11)">11 · CASOS</div>
+      <div class="atlas-tab" onclick="showA(14)">14 · CHECK</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let curA = 1;
+  const totA = 14;
+
+  function fitStage() {
+    const st = document.getElementById('stage');
+    const vp = document.getElementById('viewport');
+    const sc = Math.min(vp.clientWidth / 1920, vp.clientHeight / 1080);
+    st.style.transform = `scale(${sc})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  function showA(n) {
+    if (n < 1) n = 1;
+    if (n > totA) n = totA;
+    curA = n;
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i + 1 === curA));
+    document.getElementById('a-counter').innerText = `SLIDE ${String(curA).padStart(2, '0')} / ${String(totA).padStart(2, '0')}`;
+  }
+  function nextA() { showA(curA + 1); }
+  function prevA() { showA(curA - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextA();
+    if (e.key === 'ArrowLeft') prevA();
+  });
+
+  function checkAtlas(btn, ok, id, exp) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.atlas-opt-btn').forEach(b => { b.disabled = true; });
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById(id);
+    fb.style.display = 'block';
+    fb.innerHTML = `<strong>${ok ? 'RESPUESTA CORRECTA: ' : 'RESPUESTA INCORRECTA: '}</strong>${exp}`;
+  }
+</script>
+</body>
+</html>

@@ -177,6 +177,35 @@ else (SÍ - Con Pulso)
   endif
 endif
 @enduml`
+  },
+  {
+    filename: 'algo_scacest_120min.svg',
+    puml: `@startuml
+skinparam backgroundColor #ffffff
+skinparam Monochrome false
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+
+start
+:🚨 <b>Paciente con Dolor Isquémico Típico</b> (Ingreso Urgencias / SAMU);
+:🛡️ <b>ECG de 12 derivaciones</b> en <= 10 minutos (Medición en Punto J);
+:💊 <b>Confirmación de SCACEST</b>: Carga DAPT (AAS 250-500mg masticable) + Heparina;
+if (¿Tiempo de Traslado a Hemodinamia <= 120 min?) then (SÍ - <= 120 min)
+  :🟢 <b>ANGIOPLASTÍA PRIMARIA (PCI)</b>\n• Traslado urgente en SAMU medicalizado\n• Meta Puerta-Balón < 90 min\n• DAPT: Ticagrelor 180 mg VO;<<#e0f2fe>>
+  :Ingreso directo a Sala de Hemodinamia;
+  detach
+else (NO - > 120 min)
+  :🔴 <b>FIBRINOLISIS CON TENECTEPLASE (TNK)</b>\n• Administrar en Hospital Comunitario / SAMU\n• Meta Puerta-Aguja < 30 min (Bolo EV por peso)\n• DAPT: Clopidogrel 300 mg (75mg si >75a);<<#ffe4e6>>
+  if (¿Criterios de Reperfusión a los 60-90 min?\n(Descenso ST > 50% + Cese del Dolor)) then (SÍ - Éxito)
+    :Coronariografía Sistemática diferida (Ventana 2 a 24 horas);<<#e0f2fe>>
+    detach
+  else (NO - Fracaso)
+    :🚨 <b>ANGIOPLASTÍA DE RESCATE INMEDIATA</b>\nActivación prioritaria de traslado de emergencia;<<#ffe4e6>>
+    detach
+  endif
+endif
+@enduml`
   }
 ];
 

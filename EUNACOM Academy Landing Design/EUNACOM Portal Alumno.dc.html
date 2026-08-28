@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#e8e7e3;font-family:'Public Sans',system-ui,sans-serif;color:#14171a}
+a{color:#14171a;text-decoration:none}
+a:hover{color:oklch(0.48 0.11 90)}
+button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:grid;grid-template-columns:236px 1fr;background:#f4f4f2">
+
+<aside style="background:#14171a;color:#f2f2ef;padding:24px 0;display:flex;flex-direction:column;gap:30px;position:sticky;top:0;height:100vh">
+<div style="padding:0 22px;display:flex;align-items:baseline;gap:8px">
+<span style="font-family:'Newsreader',serif;font-size:19px">EUNACOM</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.78 0.09 90)">Academy</span>
+</div>
+
+<div style="padding:0 14px;display:flex;flex-direction:column;gap:2px">
+<button onClick="{{ goPanel }}" style="{{ navStyle0 }}">Mi panel</button>
+<button onClick="{{ goClase }}" style="{{ navStyle1 }}">Masterclasses</button>
+<button onClick="{{ goBanco }}" style="{{ navStyle2 }}">Banco de preguntas</button>
+<button onClick="{{ goManuales }}" style="{{ navStyle3 }}">Manuales</button>
+<button onClick="{{ goTutoria }}" style="{{ navStyle4 }}">Tutoría 1-a-1</button>
+</div>
+
+<div style="flex:1"></div>
+
+<div style="margin:0 14px;border:1px solid rgba(242,242,239,.2);padding:18px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,239,.5);margin-bottom:10px">Tu examen</div>
+<div style="font-family:'Newsreader',serif;font-size:30px;line-height:1">214 días</div>
+<div style="font-size:12px;color:rgba(242,242,239,.6);margin-top:6px">Julio 2026 · semana 3 de 8</div>
+</div>
+
+<div style="padding:0 22px;display:flex;align-items:center;gap:11px;border-top:1px solid rgba(242,242,239,.14);padding-top:18px">
+<div style="width:32px;height:32px;border-radius:50%;background:oklch(0.72 0.11 90);color:#14171a;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600">CR</div>
+<div style="font-size:12.5px;line-height:1.3">Camila Rojas<div style="color:rgba(242,242,239,.5);font-size:11px">Master Academy</div></div>
+</div>
+</aside>
+
+<main style="padding:34px 40px 60px;max-width:1080px">
+
+<sc-if value="{{ viewPanel }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:12px">Miércoles 28 de agosto</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:40px;line-height:1.1;letter-spacing:-.02em;margin:0">Hola Camila. Vamos bien.</h1>
+</div>
+<button onClick="{{ goClase }}" style="font-size:14.5px;font-weight:600;color:#f7f7f5;background:#14171a;border:none;padding:14px 22px;border-radius:3px;cursor:pointer;white-space:nowrap" style-hover="background:oklch(0.42 0.10 90)">Seguir donde quedé →</button>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(20,23,26,.12);border:1px solid rgba(20,23,26,.12);margin-bottom:32px">
+<div style="background:#f4f4f2;padding:22px 20px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:12px">Puntaje proyectado</div>
+<div style="font-family:'Newsreader',serif;font-size:38px;line-height:1">61,4</div>
+<div style="font-size:12px;color:oklch(0.50 0.11 150);margin-top:7px">+4,2 esta semana</div>
+</div>
+<div style="background:#f4f4f2;padding:22px 20px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:12px">Plan completado</div>
+<div style="font-family:'Newsreader',serif;font-size:38px;line-height:1">34%</div>
+<div style="font-size:12px;color:#5c6166;margin-top:7px">Semana 3 de 8</div>
+</div>
+<div style="background:#f4f4f2;padding:22px 20px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:12px">Preguntas hechas</div>
+<div style="font-family:'Newsreader',serif;font-size:38px;line-height:1">1.284</div>
+<div style="font-size:12px;color:#5c6166;margin-top:7px">72% correctas</div>
+</div>
+<div style="background:#f4f4f2;padding:22px 20px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:12px">Horas esta semana</div>
+<div style="font-family:'Newsreader',serif;font-size:38px;line-height:1">9,5</div>
+<div style="font-size:12px;color:oklch(0.55 0.13 60);margin-top:7px">Meta 13 h</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.35fr .65fr;gap:26px">
+<div>
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff;margin-bottom:26px">
+<div style="padding:24px 26px;border-bottom:1px solid rgba(20,23,26,.1);display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+<div style="font-family:'Newsreader',serif;font-size:22px">Tu semana 3 · Cardiología y urgencia</div>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8e92">3 de 5 hechos</span>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ tareas }}" as="t" hint-placeholder-count="5">
+<div style="{{ t.rowStyle }}">
+<div style="{{ t.dotStyle }}">{{ t.dot }}</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:14.5px;font-weight:500;line-height:1.35">{{ t.titulo }}</div>
+<div style="font-size:12.5px;color:#7a7f84;margin-top:4px">{{ t.meta }}</div>
+</div>
+<button onClick="{{ t.action }}" style="{{ t.btnStyle }}">{{ t.cta }}</button>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff;padding:26px">
+<div style="font-family:'Newsreader',serif;font-size:22px;margin-bottom:6px">Dónde estás por eje</div>
+<p style="font-size:13px;color:#5c6166;margin:0 0 22px">Barra clara: dominio actual. Línea: mínimo que necesitas para aprobar.</p>
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ ejes }}" as="e" hint-placeholder-count="6">
+<div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px">
+<span style="font-size:13.5px">{{ e.nombre }}</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7a7f84">{{ e.pct }}</span>
+</div>
+<div style="height:8px;background:rgba(20,23,26,.08);position:relative">
+<div style="{{ e.barStyle }}"></div>
+<div style="position:absolute;top:-3px;bottom:-3px;left:65%;width:1px;background:rgba(20,23,26,.45)"></div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:26px">
+<div style="border:1px solid rgba(20,23,26,.14);background:#14171a;color:#f2f2ef;padding:24px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.78 0.09 90);margin-bottom:14px">Próxima tutoría</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.2;margin-bottom:8px">Jueves 29, 20:30</div>
+<p style="font-size:13px;line-height:1.55;color:rgba(242,242,239,.7);margin:0 0 20px">Traes tus dudas de arritmias y revisamos el simulacro 2.</p>
+<button onClick="{{ goTutoria }}" style="width:100%;font-size:14px;font-weight:600;background:oklch(0.72 0.11 90);color:#14171a;border:none;padding:13px;border-radius:3px;cursor:pointer">Entrar a la sala</button>
+</div>
+
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff;padding:24px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:14px">Nota del tutor</div>
+<p style="font-family:'Newsreader',serif;font-size:17px;line-height:1.5;color:#3a4045;margin:0 0 14px">Camila: bajaste el ritmo en salud pública y ahí se pierde puntaje fácil. Dedícale los dos bloques del sábado antes de seguir con cirugía.</p>
+<div style="font-size:12.5px;color:#7a7f84">Hace 2 días</div>
+</div>
+
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff;padding:24px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:14px">Descargas recientes</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:13.5px">
+<a href="#" style="display:flex;justify-content:space-between;gap:12px">Tomo II · Cardiología <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8e92">PDF</span></a>
+<a href="#" style="display:flex;justify-content:space-between;gap:12px">Algoritmos de urgencia <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8e92">PDF</span></a>
+<a href="#" style="display:flex;justify-content:space-between;gap:12px">Simulacro 2 · corregido <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8e92">PDF</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ viewClase }}" hint-placeholder-val="{{ false }}">
+<div>
+<button onClick="{{ goPanel }}" style="font-size:13px;color:#7a7f84;background:none;border:none;padding:0;cursor:pointer;margin-bottom:20px">← Mi panel</button>
+<div style="display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:start">
+<div>
+<div style="border:1px solid rgba(20,23,26,.14);background:#0e1114">
+<div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#191d21 0 12px,#22262a 12px 24px);position:relative;display:flex;align-items:center;justify-content:center">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,239,.45);text-align:center;line-height:1.7">placeholder<br>diapositiva {{ slideActual }} de 14 · 1080p</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 20px;display:flex;align-items:center;gap:16px;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)">
+<button onClick="{{ togglePlay }}" style="width:38px;height:38px;border-radius:50%;background:#f2f2ef;color:#14171a;border:none;cursor:pointer;font-size:13px">{{ playIcon }}</button>
+<div style="flex:1;height:3px;background:rgba(242,242,239,.3)"><div style="{{ playedStyle }}"></div></div>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(242,242,239,.8)">{{ tiempo }}</span>
+</div>
+</div>
+</div>
+<div style="border:1px solid rgba(20,23,26,.14);border-top:none;background:#fff;padding:26px 28px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.48 0.11 90);margin-bottom:12px">Cardiología · clase 7 de 18</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:32px;line-height:1.15;letter-spacing:-.02em;margin:0 0 14px">Síndrome coronario agudo: decidir en los primeros 10 minutos</h1>
+<p style="font-size:15px;line-height:1.6;color:#4a5055;margin:0 0 24px;max-width:62ch">Qué mirar primero, cuándo el ECG manda sobre la clínica y los tres errores que el examen castiga siempre en esta pregunta.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<a href="#" style="font-size:13.5px;font-weight:600;padding:11px 18px;border:1px solid rgba(20,23,26,.28);border-radius:3px">Descargar diapositivas</a>
+<a href="#" style="font-size:13.5px;font-weight:600;padding:11px 18px;border:1px solid rgba(20,23,26,.28);border-radius:3px">Manual del tema</a>
+<button onClick="{{ goBanco }}" style="font-size:13.5px;font-weight:600;padding:11px 18px;border:none;border-radius:3px;background:#14171a;color:#f7f7f5;cursor:pointer">Practicar 20 preguntas</button>
+</div>
+</div>
+</div>
+
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff">
+<div style="padding:20px 22px;border-bottom:1px solid rgba(20,23,26,.1);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92">Diapositivas</div>
+<div style="display:flex;flex-direction:column;max-height:520px;overflow:auto">
+<sc-for list="{{ slides }}" as="s" hint-placeholder-count="8">
+<button onClick="{{ s.pick }}" style="{{ s.style }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;opacity:.55;flex:none">{{ s.num }}</span>
+<span style="flex:1;text-align:left;line-height:1.35">{{ s.titulo }}</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.5;flex:none">{{ s.min }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ viewOtro }}" hint-placeholder-val="{{ false }}">
+<div>
+<button onClick="{{ goPanel }}" style="font-size:13px;color:#7a7f84;background:none;border:none;padding:0;cursor:pointer;margin-bottom:20px">← Mi panel</button>
+<div style="border:1px solid rgba(20,23,26,.14);background:#fff;padding:64px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92">Pantalla pendiente de diseño</div>
+<div style="font-family:'Newsreader',serif;font-size:34px;line-height:1.15">{{ otroTitulo }}</div>
+<p style="font-size:15px;line-height:1.6;color:#4a5055;margin:0;max-width:52ch">{{ otroTexto }}</p>
+<div style="width:100%;height:220px;margin-top:14px;background:repeating-linear-gradient(135deg,#e9e9e5 0 10px,#f1f1ee 10px 20px);border:1px solid rgba(20,23,26,.1)"></div>
+</div>
+</div>
+</sc-if>
+
+</main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:900}}">
+const TAREAS = [
+  {t:"Clase 6 · Insuficiencia cardíaca descompensada", m:"38 min · vista completa", done:true},
+  {t:"Manual Tomo II, capítulo 4", m:"42 páginas · leído", done:true},
+  {t:"Banco: arritmias, 40 preguntas", m:"hecho · 27 correctas", done:true},
+  {t:"Clase 7 · Síndrome coronario agudo", m:"41 min · quedaste en 12:30", done:false, cta:"Seguir", go:"clase"},
+  {t:"Simulacro 3 · bloque cardiovascular", m:"90 min cronometrados", done:false, cta:"Empezar", go:"banco"}
+];
+
+const EJES = [
+  {n:"Cardiología", p:78}, {n:"Pediatría", p:71}, {n:"Ginecología y Obstetricia", p:64},
+  {n:"Cirugía", p:58}, {n:"Salud pública", p:41}, {n:"Medicina legal", p:69}
+];
+
+const SLIDES = [
+  "Caso de entrada: dolor torácico en urgencia",
+  "Qué preguntar en los primeros 60 segundos",
+  "ECG: los cinco patrones que deciden",
+  "Troponinas, tiempos y trampas",
+  "SCACEST vs SCASEST: el árbol de decisión",
+  "Reperfusión: criterios y ventanas",
+  "Manejo farmacológico inicial",
+  "Cuándo derivar y cuándo no",
+  "Errores que el examen castiga",
+  "Pregunta oficial 2024 comentada",
+  "Pregunta oficial 2025 comentada",
+  "Diferencial: disección y pericarditis",
+  "Resumen de una página",
+  "Qué practicar hoy en el banco"
+];
+
+const OTROS = {
+  banco: {t:"Banco de preguntas", x:"Aquí va la sesión de práctica: pregunta, alternativas, explicación razonada de cada una y el contador de racha. Dime si la quieres tipo examen (sin feedback hasta el final) o tipo estudio (feedback inmediato)."},
+  manuales: {t:"Manuales", x:"Biblioteca de los 6 tomos con lector en línea, descarga en PDF y marcadores. Falta definir si el lector es propio o solo descarga."},
+  tutoria: {t:"Tutoría 1-a-1", x:"Agenda de sesiones, sala de video, historial de dudas resueltas y subida de simulacros para corrección."}
+};
+
+class Component extends DCLogic {
+  state = {view:"panel", slide:7, playing:false};
+
+  navStyle(v) {
+    const on = this.state.view === v || (v === "clase" && this.state.view === "clase");
+    return {textAlign:"left",fontSize:14,padding:"11px 14px",border:"none",borderRadius:3,cursor:"pointer",
+      background:on?"rgba(242,242,239,.12)":"transparent",
+      color:on?"#f2f2ef":"rgba(242,242,239,.6)",transition:"all .14s ease"};
+  }
+
+  renderVals() {
+    const v = this.state.view;
+    const otro = OTROS[v];
+    const go = (view) => () => this.setState({view});
+    return {
+      navStyle0:this.navStyle("panel"), navStyle1:this.navStyle("clase"), navStyle2:this.navStyle("banco"),
+      navStyle3:this.navStyle("manuales"), navStyle4:this.navStyle("tutoria"),
+      goPanel:go("panel"), goClase:go("clase"), goBanco:go("banco"), goManuales:go("manuales"), goTutoria:go("tutoria"),
+      viewPanel:v==="panel", viewClase:v==="clase", viewOtro:!!otro,
+      otroTitulo:otro?otro.t:"", otroTexto:otro?otro.x:"",
+
+      tareas:TAREAS.map(t=>({
+        titulo:t.t, meta:t.m,
+        dot:t.done?"✓":"",
+        rowStyle:{display:"flex",alignItems:"center",gap:14,padding:"17px 26px",borderBottom:"1px solid rgba(20,23,26,.08)",opacity:t.done?.6:1},
+        dotStyle:{flex:"none",width:20,height:20,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,
+          background:t.done?"oklch(0.53 0.10 90)":"transparent",color:"#fff",
+          border:t.done?"none":"1.5px solid rgba(20,23,26,.25)"},
+        cta:t.done?"Repasar":(t.cta||"Empezar"),
+        btnStyle:{flex:"none",fontSize:13,fontWeight:600,padding:"9px 15px",borderRadius:3,cursor:"pointer",
+          border:t.done?"1px solid rgba(20,23,26,.2)":"none",
+          background:t.done?"transparent":"#14171a", color:t.done?"#5c6166":"#f7f7f5"},
+        action:go(t.go||"clase")
+      })),
+
+      ejes:EJES.map(e=>({
+        nombre:e.n, pct:e.p+"%",
+        barStyle:{position:"absolute",top:0,bottom:0,left:0,width:e.p+"%",
+          background:e.p>=65?"oklch(0.53 0.10 90)":"oklch(0.62 0.13 55)"}
+      })),
+
+      slideActual:this.state.slide,
+      slides:SLIDES.map((s,i)=>{
+        const on = this.state.slide === i+1;
+        return {num:String(i+1).padStart(2,"0"), titulo:s, min:(2+i)+":0"+(i%6),
+          style:{display:"flex",alignItems:"center",gap:12,padding:"14px 20px",fontSize:13,cursor:"pointer",
+            border:"none",borderBottom:"1px solid rgba(20,23,26,.07)",borderLeft:on?"2px solid oklch(0.53 0.10 90)":"2px solid transparent",
+            background:on?"oklch(0.96 0.02 90)":"transparent",color:"#14171a",fontWeight:on?600:400},
+          pick:()=>this.setState({slide:i+1})};
+      }),
+      playIcon:this.state.playing?"❙❙":"▶",
+      togglePlay:()=>this.setState(s=>({playing:!s.playing})),
+      playedStyle:{height:"100%",width:(this.state.slide/14*100).toFixed(1)+"%",background:"oklch(0.72 0.11 90)"},
+      tiempo:"12:30 / 41:08"
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f4f2;color:#14171a;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#14171a;text-decoration:none}
+a:hover{color:oklch(0.48 0.11 90)}
+input,select,button{font-family:inherit}
+::selection{background:oklch(0.90 0.05 90)}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(244,244,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(20,23,26,0.1)">
+<div style="max-width:1180px;margin:0 auto;padding:0 32px;min-height:68px;display:flex;align-items:center;gap:clamp(16px,2.5vw,36px)">
+<div style="display:flex;align-items:baseline;gap:9px">
+<span style="font-family:'Newsreader',serif;font-size:23px;font-weight:400;letter-spacing:-0.01em">EUNACOM</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:oklch(0.48 0.11 90);padding-bottom:2px">Academy</span>
+</div>
+<nav style="display:flex;gap:26px;font-size:13.5px;color:#5c6166;margin-left:8px;flex:none;white-space:nowrap">
+<a href="#metodo" style="color:inherit">Método</a>
+<a href="#perfilv3" style="color:inherit">Perfil V3</a>
+<a href="#especialidades" style="color:inherit">Especialidades</a>
+<a href="#planes" style="color:inherit">Planes</a>
+<a href="#faq" style="color:inherit">Preguntas</a>
+</nav>
+<div style="flex:1"></div>
+<a href="#lead" style="font-size:13.5px;color:#5c6166;flex:none;white-space:nowrap">Ingresar</a>
+<a href="#lead" style="font-size:13.5px;font-weight:600;color:#f7f7f5;background:#14171a;padding:10px 18px;border-radius:3px;flex:none;white-space:nowrap" style-hover="background:oklch(0.42 0.10 90)">Guía gratuita</a>
+</div>
+</header>
+
+<section style="max-width:1180px;margin:0 auto;padding:88px 32px 0">
+<div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:32px">
+<span style="width:22px;height:1px;background:oklch(0.60 0.10 90)"></span>
+Convocatorias julio y diciembre 2026
+</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(46px,6.4vw,84px);line-height:1.0;letter-spacing:-0.03em;margin:0 0 34px;max-width:19ch;text-wrap:balance">Preparemos tu EUNACOM juntos, y que sea la única vez.</h1>
+<div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:end;padding-bottom:8px">
+<p style="font-size:19px;line-height:1.55;color:#3a4045;margin:0;text-wrap:pretty">No te dejo solo frente a un banco de preguntas. Te doy un plan semana por semana, clases que van al punto y alguien que te responde cuando te trabas. Todo alineado al nuevo Perfil V3.</p>
+<div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+<a href="#lead" style="font-size:15px;font-weight:600;color:#f7f7f5;background:#14171a;padding:16px 26px;border-radius:3px;display:inline-flex;align-items:center;gap:10px;white-space:nowrap" style-hover="background:oklch(0.42 0.10 90)">Quiero mi plan de 8 semanas <span style="opacity:0.55">→</span></a>
+<a href="#lead" style="font-size:15px;font-weight:600;padding:16px 26px;border-radius:3px;border:1px solid rgba(20,23,26,0.28);white-space:nowrap" style-hover="border-color:#14171a;background:rgba(20,23,26,0.04)">Ver dónde estoy hoy · 30 preguntas</a>
+</div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a7f84;margin:0">Gratis · Sin tarjeta · Resultado inmediato por especialidad</p>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(20,23,26,0.12);border:1px solid rgba(20,23,26,0.12);margin-top:64px">
+<div style="background:#f4f4f2;padding:24px 22px">
+<div style="font-family:'Newsreader',serif;font-size:34px;line-height:1;letter-spacing:-0.02em">8 semanas</div>
+<div style="font-size:12.5px;color:#5c6166;margin-top:9px;line-height:1.4">Plan cerrado, compatible con turnos</div>
+</div>
+<div style="background:#f4f4f2;padding:24px 22px">
+<div style="font-family:'Newsreader',serif;font-size:34px;line-height:1;letter-spacing:-0.02em">Perfil V3</div>
+<div style="font-size:12.5px;color:#5c6166;margin-top:9px;line-height:1.4">Todo el material reescrito para el examen actual</div>
+</div>
+<div style="background:#f4f4f2;padding:24px 22px">
+<div style="font-family:'Newsreader',serif;font-size:34px;line-height:1;letter-spacing:-0.02em">12 cupos</div>
+<div style="font-size:12.5px;color:#5c6166;margin-top:9px;line-height:1.4">Tutoría 1-a-1 por convocatoria</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:82px auto 0;padding:0 32px">
+<div style="border-top:1px solid rgba(20,23,26,0.12);border-bottom:1px solid rgba(20,23,26,0.12);padding:20px 0;display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#7a7f84">Médicos titulados en</span>
+<div style="display:flex;gap:14px;flex-wrap:wrap;flex:1">
+<div style="height:26px;flex:1;min-width:96px;background:repeating-linear-gradient(135deg,#e9e9e5 0 8px,#f1f1ee 8px 16px)"></div>
+<div style="height:26px;flex:1;min-width:96px;background:repeating-linear-gradient(135deg,#e9e9e5 0 8px,#f1f1ee 8px 16px)"></div>
+<div style="height:26px;flex:1;min-width:96px;background:repeating-linear-gradient(135deg,#e9e9e5 0 8px,#f1f1ee 8px 16px)"></div>
+<div style="height:26px;flex:1;min-width:96px;background:repeating-linear-gradient(135deg,#e9e9e5 0 8px,#f1f1ee 8px 16px)"></div>
+<div style="height:26px;flex:1;min-width:96px;background:repeating-linear-gradient(135deg,#e9e9e5 0 8px,#f1f1ee 8px 16px)"></div>
+</div>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a0a4a8">logos universidad</span>
+</div>
+</section>
+
+<section id="perfilv3" style="max-width:1180px;margin:0 auto;padding:84px 32px 0">
+<div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">01 · El nuevo examen</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 18px">Los cursos antiguos preparan para un examen que ya no existe.</h2>
+<p style="font-size:16px;line-height:1.6;color:#4a5055;margin:0">El Perfil V3 reordenó pesos, formato de casos y criterios de decisión clínica. Preparar con material previo a 2025 significa estudiar contenido correcto con las prioridades equivocadas.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(20,23,26,0.12);border:1px solid rgba(20,23,26,0.12)">
+<div style="background:#f4f4f2;padding:28px 26px">
+<div style="font-family:'Newsreader',serif;font-size:19px;margin-bottom:10px">Casos clínicos largos</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0">El razonamiento vale más que el dato memorizado. Entrenamos decisión bajo tiempo, no recuerdo aislado.</p>
+</div>
+<div style="background:#f4f4f2;padding:28px 26px">
+<div style="font-family:'Newsreader',serif;font-size:19px;margin-bottom:10px">Salud pública con peso real</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0">GES, notificación obligatoria y normativa chilena vigente, el bloque donde más puntaje se pierde por omisión.</p>
+</div>
+<div style="background:#f4f4f2;padding:28px 26px">
+<div style="font-family:'Newsreader',serif;font-size:19px;margin-bottom:10px">Titulados en el extranjero</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0">Módulo específico de contexto sanitario chileno: red asistencial, derivación y medicina legal.</p>
+</div>
+<div style="background:#f4f4f2;padding:28px 26px">
+<div style="font-family:'Newsreader',serif;font-size:19px;margin-bottom:10px">Métrica por eje</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0">Sabes tu puntaje proyectado por especialidad antes de rendir, no después.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="metodo" style="background:#14171a;color:#f2f2ef;margin-top:96px;padding:88px 0">
+<div style="max-width:1180px;margin:0 auto;padding:0 32px">
+<div style="display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.72 0.09 90)">02 · Método</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.08;letter-spacing:-0.02em;margin:0;max-width:22ch">Así te acompaño, semana a semana.</h2>
+</div>
+<div style="display:grid;grid-template-columns:0.7fr 1.3fr;gap:56px;align-items:start">
+<div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,242,239,0.16)">
+<button onClick="{{ selectPillar0 }}" style="{{ pillarStyle0 }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:0.5">01</span>
+<span style="font-family:'Newsreader',serif;font-size:22px;font-weight:400">Masterclasses 1080p</span>
+</button>
+<button onClick="{{ selectPillar1 }}" style="{{ pillarStyle1 }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:0.5">02</span>
+<span style="font-family:'Newsreader',serif;font-size:22px;font-weight:400">Manuales maquetados</span>
+</button>
+<button onClick="{{ selectPillar2 }}" style="{{ pillarStyle2 }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:0.5">03</span>
+<span style="font-family:'Newsreader',serif;font-size:22px;font-weight:400">Banco con IA</span>
+</button>
+<button onClick="{{ selectPillar3 }}" style="{{ pillarStyle3 }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:0.5">04</span>
+<span style="font-family:'Newsreader',serif;font-size:22px;font-weight:400">Simulacros cronometrados</span>
+</button>
+</div>
+<div style="border:1px solid rgba(242,242,239,0.18);padding:38px 40px;min-height:330px;display:flex;flex-direction:column;gap:22px">
+<div style="font-family:'Newsreader',serif;font-size:30px;line-height:1.15;letter-spacing:-0.01em">{{ pillarTitle }}</div>
+<p style="font-size:16px;line-height:1.65;color:rgba(242,242,239,0.72);margin:0;max-width:58ch">{{ pillarBody }}</p>
+<div style="flex:1"></div>
+<div style="display:flex;gap:1px;background:rgba(242,242,239,0.18)">
+<div style="flex:1;background:#14171a;padding:16px 18px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,242,239,0.45);margin-bottom:7px">Formato</div>
+<div style="font-size:14px">{{ pillarFormat }}</div>
+</div>
+<div style="flex:1;background:#14171a;padding:16px 18px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,242,239,0.45);margin-bottom:7px">Volumen</div>
+<div style="font-size:14px">{{ pillarVolume }}</div>
+</div>
+<div style="flex:1;background:#14171a;padding:16px 18px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,242,239,0.45);margin-bottom:7px">Incluido en</div>
+<div style="font-size:14px">{{ pillarPlans }}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="especialidades" style="max-width:1180px;margin:0 auto;padding:88px 32px 0">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:36px">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">03 · Práctica abierta</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin:0;max-width:26ch">Parte gratis por el ramo que más te cuesta.</h2>
+</div>
+<a href="#lead" style="font-size:14px;font-weight:600;border-bottom:1px solid rgba(20,23,26,0.3);padding-bottom:3px">Ver los 6 módulos abiertos →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(20,23,26,0.12);border:1px solid rgba(20,23,26,0.12)">
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">01</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Cardiología</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">SCA, arritmias, insuficiencia cardíaca y manejo inicial en urgencia.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">412 preguntas · 9 casos</div>
+</a>
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">02</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Pediatría</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">Crecimiento, infectología pediátrica, deshidratación y vacunas PNI.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">388 preguntas · 8 casos</div>
+</a>
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">03</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Ginecología y Obstetricia</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">Control prenatal, urgencias obstétricas y planificación familiar.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">356 preguntas · 8 casos</div>
+</a>
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">04</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Cirugía</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">Abdomen agudo, trauma, criterios de derivación y preoperatorio.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">301 preguntas · 7 casos</div>
+</a>
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">05</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Salud pública</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">GES, epidemiología aplicada, notificación y red asistencial chilena.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">274 preguntas · 6 casos</div>
+</a>
+<a href="#lead" style="background:#f4f4f2;padding:30px 28px;display:block" style-hover="background:oklch(0.95 0.025 90)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8e92;margin-bottom:16px">06</div>
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:12px">Medicina legal</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 18px">Certificación de defunción, consentimiento y responsabilidad médica.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">168 preguntas · 5 casos</div>
+</a>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:88px 32px 0">
+<div style="border:1px solid rgba(20,23,26,0.14);background:#fff">
+<div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:0">
+<div style="padding:48px 44px;border-right:1px solid rgba(20,23,26,0.12)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">04 · La plataforma</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:36px;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px">Todo tu estudio en un solo lugar, y yo viendo tu avance.</h2>
+<p style="font-size:15.5px;line-height:1.6;color:#4a5055;margin:0 0 28px">Al comprar accedes al portal de alumno: masterclasses, manuales descargables, banco adaptativo y tu proyección de puntaje actualizada cada semana.</p>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:#3a4045"><span style="color:oklch(0.55 0.10 90)">—</span> Reanuda cada clase donde la dejaste</div>
+<div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:#3a4045"><span style="color:oklch(0.55 0.10 90)">—</span> Manuales en PDF maquetado, listos para imprimir</div>
+<div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:#3a4045"><span style="color:oklch(0.55 0.10 90)">—</span> Repaso automático de tus errores por eje</div>
+<div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:#3a4045"><span style="color:oklch(0.55 0.10 90)">—</span> Acceso web y móvil, sin app que instalar</div>
+</div>
+</div>
+<div style="padding:36px;background:#f4f4f2;display:flex;flex-direction:column;gap:14px">
+<div style="flex:1;background:repeating-linear-gradient(135deg,#e9e9e5 0 10px,#f1f1ee 10px 20px);border:1px solid rgba(20,23,26,0.1);min-height:230px;display:flex;align-items:center;justify-content:center">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075;text-align:center;line-height:1.7">placeholder<br>captura del dashboard<br>1440 × 900</div>
+</div>
+<div style="display:flex;gap:14px">
+<div style="flex:1;height:110px;background:repeating-linear-gradient(135deg,#e9e9e5 0 10px,#f1f1ee 10px 20px);border:1px solid rgba(20,23,26,0.1);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6b7075;text-align:center;padding:8px">masterclass<br>player</div>
+<div style="flex:1;height:110px;background:repeating-linear-gradient(135deg,#e9e9e5 0 10px,#f1f1ee 10px 20px);border:1px solid rgba(20,23,26,0.1);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6b7075;text-align:center;padding:8px">manual<br>pdf</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="planes" style="max-width:1180px;margin:0 auto;padding:92px 32px 0">
+<div style="text-align:center;max-width:600px;margin:0 auto 40px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">05 · Planes 2026</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:44px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 16px">¿Cuánto acompañamiento necesitas?</h2>
+<p style="font-size:16px;line-height:1.6;color:#4a5055;margin:0">Acceso hasta el día de tu examen. Si vas con el plan VIP y no apruebas, repetimos el programa completo sin que pagues de nuevo.</p>
+</div>
+<div style="display:flex;justify-content:center;margin-bottom:40px">
+<div style="display:inline-flex;border:1px solid rgba(20,23,26,0.2);padding:3px;border-radius:3px">
+<button onClick="{{ setPagoUnico }}" style="{{ payTabStyle0 }}">Pago único</button>
+<button onClick="{{ setCuotas }}" style="{{ payTabStyle1 }}">3 cuotas sin interés</button>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(20,23,26,0.14);border:1px solid rgba(20,23,26,0.14)">
+
+<div style="background:#f4f4f2;padding:38px 32px;display:flex;flex-direction:column">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:14px">Plan de entrada</div>
+<div style="font-family:'Newsreader',serif;font-size:29px;line-height:1.1;margin-bottom:8px">Standard</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 26px;min-height:44px">Banco y simulaciones para quien ya tiene su contenido resuelto.</p>
+<div style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-0.02em">{{ priceStandard }}</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a7f84;margin-top:9px;margin-bottom:28px">{{ priceNoteStandard }}</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:#3a4045;line-height:1.45;margin-bottom:32px">
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Banco de 4.000+ preguntas Perfil V3</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> 6 simulacros cronometrados</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Métricas de rendimiento por eje</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Acceso hasta tu convocatoria</div>
+</div>
+<div style="flex:1"></div>
+<a href="#lead" style="text-align:center;font-size:14.5px;font-weight:600;padding:14px;border:1px solid rgba(20,23,26,0.28);border-radius:3px" style-hover="border-color:#14171a;background:rgba(20,23,26,0.04)">Elegir Standard</a>
+</div>
+
+<div style="background:#14171a;color:#f2f2ef;padding:38px 32px;display:flex;flex-direction:column;position:relative">
+<div style="position:absolute;top:0;left:0;right:0;height:3px;background:oklch(0.72 0.11 90)"></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.78 0.09 90)">El estándar de oro</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;background:oklch(0.72 0.11 90);color:#14171a;padding:4px 8px;border-radius:2px">Best seller</div>
+</div>
+<div style="font-family:'Newsreader',serif;font-size:29px;line-height:1.1;margin-bottom:8px">Master Academy</div>
+<p style="font-size:13.5px;line-height:1.55;color:rgba(242,242,239,0.7);margin:0 0 26px;min-height:44px">La academia completa: clases, manuales y banco en un mismo sistema.</p>
+<div style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-0.02em">{{ priceMaster }}</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(242,242,239,0.55);margin-top:9px;margin-bottom:28px">{{ priceNoteMaster }}</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:rgba(242,242,239,0.88);line-height:1.45;margin-bottom:32px">
+<div style="display:flex;gap:10px"><span style="color:oklch(0.78 0.09 90)">—</span> Todo lo del plan Standard</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.78 0.09 90)">—</span> Masterclasses 1080p, 14 diapositivas por tema</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.78 0.09 90)">—</span> Manuales descargables estilo CTO / First Aid</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.78 0.09 90)">—</span> Casos clínicos comentados en video</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.78 0.09 90)">—</span> Plan de estudio de 8 semanas personalizado</div>
+</div>
+<div style="flex:1"></div>
+<a href="#lead" style="text-align:center;font-size:14.5px;font-weight:600;padding:14px;border-radius:3px;background:oklch(0.72 0.11 90);color:#14171a" style-hover="background:oklch(0.80 0.10 90)">Inscribirme en Master Academy</a>
+</div>
+
+<div style="background:#f4f4f2;padding:38px 32px;display:flex;flex-direction:column">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:14px">Cupos limitados · 12 por convocatoria</div>
+<div style="font-family:'Newsreader',serif;font-size:29px;line-height:1.1;margin-bottom:8px">VIP Mentorship</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 26px;min-height:44px">Preparación integral 360° con tutoría directa y garantía de aprobación.</p>
+<div style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-0.02em">{{ priceVip }}</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a7f84;margin-top:9px;margin-bottom:28px">{{ priceNoteVip }}</div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:#3a4045;line-height:1.45;margin-bottom:32px">
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Todo lo del plan Master Academy</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Sesiones 1-a-1 de resolución de dudas</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Taller de examen práctico (SP)</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Corrección personalizada de simulacros</div>
+<div style="display:flex;gap:10px"><span style="color:oklch(0.55 0.10 90)">—</span> Garantía de aprobación por escrito</div>
+</div>
+<div style="flex:1"></div>
+<a href="#lead" style="text-align:center;font-size:14.5px;font-weight:600;padding:14px;border:1px solid #14171a;border-radius:3px" style-hover="background:#14171a;color:#f7f7f5">Postular a cupo VIP</a>
+</div>
+</div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a7f84;text-align:center;margin:22px 0 0">Pago seguro vía Stripe · Boleta electrónica · Precios de referencia en USD</p>
+</section>
+
+<section id="lead" style="margin-top:96px;border-top:1px solid rgba(20,23,26,0.12);border-bottom:1px solid rgba(20,23,26,0.12);background:#efefec">
+<div style="max-width:1180px;margin:0 auto;padding:76px 32px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">06 · Empieza gratis</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:42px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 18px">Dime cuándo rindes y te armo el plan.</h2>
+<p style="font-size:16px;line-height:1.6;color:#4a5055;margin:0 0 30px;max-width:46ch">Te mando el blueprint del Perfil V3 ajustado a tu fecha, más 30 preguntas para que veas de inmediato en qué estás parado.</p>
+<div style="display:flex;flex-direction:column;gap:1px;background:rgba(20,23,26,0.12);border:1px solid rgba(20,23,26,0.12)">
+<div style="background:#efefec;padding:18px 20px;display:flex;gap:16px;align-items:baseline">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">01</span>
+<div><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Blueprint Perfil V3</div><div style="font-size:13px;color:#5c6166;line-height:1.5">Pesos reales por eje y orden de estudio recomendado.</div></div>
+</div>
+<div style="background:#efefec;padding:18px 20px;display:flex;gap:16px;align-items:baseline">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">02</span>
+<div><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Diagnóstico de 30 preguntas</div><div style="font-size:13px;color:#5c6166;line-height:1.5">Score inmediato y brechas priorizadas.</div></div>
+</div>
+<div style="background:#efefec;padding:18px 20px;display:flex;gap:16px;align-items:baseline">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.45 0.10 90)">03</span>
+<div><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Guía rápida de salud pública y fármacos</div><div style="font-size:13px;color:#5c6166;line-height:1.5">El resumen que más puntaje recupera en dos semanas.</div></div>
+</div>
+</div>
+</div>
+
+<div style="background:#fff;border:1px solid rgba(20,23,26,0.16);padding:36px 34px">
+<sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px;padding:28px 0">
+<div style="width:44px;height:44px;border-radius:50%;background:oklch(0.53 0.10 90);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px">✓</div>
+<div style="font-family:'Newsreader',serif;font-size:28px;line-height:1.15">Listo. Revisa tu correo.</div>
+<p style="font-size:15px;line-height:1.6;color:#4a5055;margin:0">Te mandé el blueprint y el enlace a tu diagnóstico a <strong style="font-weight:600">{{ sentEmail }}</strong>. Si no llega en 5 minutos, revisa spam o promociones.</p>
+<button onClick="{{ resetForm }}" style="align-self:flex-start;margin-top:6px;font-size:13.5px;background:none;border:none;border-bottom:1px solid rgba(20,23,26,0.3);padding:0 0 3px;cursor:pointer;color:#14171a">Registrar otro correo</button>
+</div>
+</sc-if>
+<sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.2;margin-bottom:6px">Cuéntame de ti</div>
+<p style="font-size:13px;color:#5c6166;margin:0 0 26px">Con esto ajusto el material a tu fecha y a dónde te titulaste.</p>
+<div style="display:flex;flex-direction:column;gap:18px">
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075">Nombre completo</span>
+<input value="{{ nombre }}" onChange="{{ onNombre }}" placeholder="Dra. Camila Rojas" style="font-size:15px;padding:12px 14px;border:1px solid rgba(20,23,26,0.22);border-radius:2px;background:#fdfdfc;outline:none" style-focus="border-color:oklch(0.53 0.10 90)">
+</label>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075">Email</span>
+<input value="{{ email }}" onChange="{{ onEmail }}" placeholder="tu@correo.com" style="font-size:15px;padding:12px 14px;border:1px solid rgba(20,23,26,0.22);border-radius:2px;background:#fdfdfc;outline:none" style-focus="border-color:oklch(0.53 0.10 90)">
+</label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end">
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075;white-space:nowrap">Fecha de examen</span>
+<select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:12px 12px;border:1px solid rgba(20,23,26,0.22);border-radius:2px;background:#fdfdfc;outline:none">
+<option value="">Selecciona</option>
+<option value="julio-2026">Julio 2026</option>
+<option value="diciembre-2026">Diciembre 2026</option>
+<option value="2027">2027 o aún sin definir</option>
+</select>
+</label>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075;white-space:nowrap">País titulación</span>
+<select value="{{ pais }}" onChange="{{ onPais }}" style="font-size:14.5px;padding:12px 12px;border:1px solid rgba(20,23,26,0.22);border-radius:2px;background:#fdfdfc;outline:none">
+<option value="">Selecciona</option>
+<option value="chile">Chile</option>
+<option value="extranjero">Extranjero</option>
+</select>
+</label>
+</div>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7075">Especialidad que más te preocupa</span>
+<select value="{{ especialidad }}" onChange="{{ onEspecialidad }}" style="font-size:14.5px;padding:12px 12px;border:1px solid rgba(20,23,26,0.22);border-radius:2px;background:#fdfdfc;outline:none">
+<option value="">Selecciona</option>
+<option value="cardiologia">Cardiología</option>
+<option value="pediatria">Pediatría</option>
+<option value="gineco">Ginecología y Obstetricia</option>
+<option value="cirugia">Cirugía</option>
+<option value="salud-publica">Salud pública</option>
+<option value="medicina-legal">Medicina legal</option>
+</select>
+</label>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+<div style="font-size:13px;color:oklch(0.50 0.16 25);background:oklch(0.96 0.03 25);border:1px solid oklch(0.85 0.06 25);padding:11px 13px;border-radius:2px">{{ error }}</div>
+</sc-if>
+<button onClick="{{ submitForm }}" style="font-size:15px;font-weight:600;color:#f7f7f5;background:#14171a;border:none;padding:16px;border-radius:3px;cursor:pointer" style-hover="background:oklch(0.42 0.10 90)">Mándame el material</button>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.6;color:#8a8e92;margin:0">Sin spam. Puedes darte de baja en un clic. Tus datos solo se usan para personalizar el material.</p>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<section id="faq" style="max-width:1180px;margin:0 auto;padding:88px 32px 0">
+<div style="display:grid;grid-template-columns:0.6fr 1.4fr;gap:64px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:20px">07 · Preguntas</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:38px;line-height:1.1;letter-spacing:-0.02em;margin:0">Lo que más me preguntan.</h2>
+</div>
+<div style="border-top:1px solid rgba(20,23,26,0.14)">
+<div style="border-bottom:1px solid rgba(20,23,26,0.14)">
+<button onClick="{{ toggleFaq0 }}" style="width:100%;background:none;border:none;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:22px;color:#14171a">¿Sirve si me titulé fuera de Chile? <span style="font-family:'Public Sans';font-size:20px;color:#8a8e92">{{ faqIcon0 }}</span></button>
+<sc-if value="{{ faq0 }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.65;color:#4a5055;margin:0;padding:0 0 26px;max-width:70ch">Sí, y es donde más diferencia hace. Incluyo un módulo de contexto sanitario chileno (red asistencial, GES, notificación obligatoria y medicina legal), los temas que no aparecen en la formación de otros países y que pesan fuerte en el examen.</p></sc-if>
+</div>
+<div style="border-bottom:1px solid rgba(20,23,26,0.14)">
+<button onClick="{{ toggleFaq1 }}" style="width:100%;background:none;border:none;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:22px;color:#14171a">¿Cuánto tiempo semanal necesito? <span style="font-family:'Public Sans';font-size:20px;color:#8a8e92">{{ faqIcon1 }}</span></button>
+<sc-if value="{{ faq1 }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.65;color:#4a5055;margin:0;padding:0 0 26px;max-width:70ch">El plan de 8 semanas está calculado para 12 a 15 horas semanales, compatible con turnos. Si tienes más tiempo, la plataforma comprime el mismo contenido en 5 semanas.</p></sc-if>
+</div>
+<div style="border-bottom:1px solid rgba(20,23,26,0.14)">
+<button onClick="{{ toggleFaq2 }}" style="width:100%;background:none;border:none;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:22px;color:#14171a">¿Cómo funciona la garantía de aprobación? <span style="font-family:'Public Sans';font-size:20px;color:#8a8e92">{{ faqIcon2 }}</span></button>
+<sc-if value="{{ faq2 }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.65;color:#4a5055;margin:0;padding:0 0 26px;max-width:70ch">Aplica al plan VIP Mentorship. Si completaste el programa y los simulacros exigidos y no apruebas, repites el programa completo en la siguiente convocatoria sin costo. Las condiciones quedan por escrito al momento de la inscripción.</p></sc-if>
+</div>
+<div style="border-bottom:1px solid rgba(20,23,26,0.14)">
+<button onClick="{{ toggleFaq3 }}" style="width:100%;background:none;border:none;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:22px;color:#14171a">¿Por qué cuesta más que otros cursos? <span style="font-family:'Public Sans';font-size:20px;color:#8a8e92">{{ faqIcon3 }}</span></button>
+<sc-if value="{{ faq3 }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.65;color:#4a5055;margin:0;padding:0 0 26px;max-width:70ch">Porque no te vendo un banco de preguntas. Grabo las clases en estudio, maqueto los manuales, mantengo el simulador y limito los cupos de tutoría para poder responderte yo. Rendir de nuevo cuesta tiempo, arancel y un año de ejercicio profesional.</p></sc-if>
+</div>
+<div>
+<button onClick="{{ toggleFaq4 }}" style="width:100%;background:none;border:none;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:22px;color:#14171a">¿Hasta cuándo tengo acceso? <span style="font-family:'Public Sans';font-size:20px;color:#8a8e92">{{ faqIcon4 }}</span></button>
+<sc-if value="{{ faq4 }}" hint-placeholder-val="{{ false }}"><p style="font-size:15px;line-height:1.65;color:#4a5055;margin:0;padding:0 0 26px;max-width:70ch">Hasta el día de tu examen, con todas las actualizaciones que publique en ese período incluidas.</p></sc-if>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:92px 32px 0">
+<div style="background:#14171a;color:#f2f2ef;padding:64px 56px;display:grid;grid-template-columns:1.3fr 0.7fr;gap:56px;align-items:center">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.06;letter-spacing:-0.02em;margin:0 0 16px;max-width:24ch">Quedan 12 cupos de tutoría para la convocatoria de julio.</h2>
+<p style="font-size:16px;line-height:1.6;color:rgba(242,242,239,0.7);margin:0;max-width:52ch">Parte por el material gratuito. Si te calza cómo trabajo, después conversamos el plan.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<a href="#lead" style="text-align:center;font-size:15px;font-weight:600;background:oklch(0.72 0.11 90);color:#14171a;padding:16px;border-radius:3px" style-hover="background:oklch(0.80 0.10 90)">Descargar material gratuito</a>
+<a href="#planes" style="text-align:center;font-size:15px;font-weight:600;border:1px solid rgba(242,242,239,0.35);color:#f2f2ef;padding:16px;border-radius:3px" style-hover="background:rgba(242,242,239,0.1)">Comparar los planes</a>
+</div>
+</div>
+</section>
+
+<footer style="max-width:1180px;margin:0 auto;padding:64px 32px 56px">
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;border-top:1px solid rgba(20,23,26,0.12);padding-top:40px">
+<div>
+<div style="display:flex;align-items:baseline;gap:9px;margin-bottom:14px">
+<span style="font-family:'Newsreader',serif;font-size:20px">EUNACOM</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:oklch(0.48 0.11 90)">Academy</span>
+</div>
+<p style="font-size:13px;line-height:1.6;color:#6b7075;margin:0;max-width:34ch">Preparación clínica personalizada para el Examen Único Nacional de Conocimientos de Medicina. Programa independiente, no afiliado a ASOFAMECH.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#5c6166">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9ea2;margin-bottom:4px">Programa</div>
+<a href="#metodo" style="color:inherit">Método clínico</a>
+<a href="#planes" style="color:inherit">Planes y precios</a>
+<a href="#especialidades" style="color:inherit">Especialidades</a>
+<a href="#lead" style="color:inherit">Examen diagnóstico</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#5c6166">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9ea2;margin-bottom:4px">Recursos</div>
+<a href="#especialidades" style="color:inherit">Casos clínicos</a>
+<a href="#perfilv3" style="color:inherit">Guía Perfil V3</a>
+<a href="#faq" style="color:inherit">Preguntas frecuentes</a>
+<a href="#lead" style="color:inherit">Blog</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#5c6166">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9ea2;margin-bottom:4px">Contacto</div>
+<a href="#lead" style="color:inherit">Hablar con un asesor</a>
+<a href="#lead" style="color:inherit">Soporte alumnos</a>
+<a href="#lead" style="color:inherit">Términos y privacidad</a>
+</div>
+</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#9a9ea2;margin-top:40px">© 2026 EUNACOM Academy · Santiago, Chile</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const PILLARS = [
+  {t:"Masterclasses en 1080p, grabadas en estudio",b:"Cada tema se resuelve en una clase de 14 diapositivas con audio HD y ritmo de examen: qué se pregunta, cómo se pregunta y cuál es el criterio de decisión que buscan los evaluadores. Sin relleno académico.",f:"Video 1080p + audio HD",v:"86 clases · 42 h",p:"Master · VIP"},
+  {t:"Manuales maquetados, no apuntes",b:"Material impreso digitalmente al nivel de CTO o First Aid: jerarquía visual clara, tablas de decisión, algoritmos y márgenes para anotar. Descargables y listos para imprimir.",f:"PDF maquetado A4",v:"6 tomos · 940 pág.",p:"Master · VIP"},
+  {t:"Banco adaptativo con IA",b:"Más de 4.000 preguntas alineadas al Perfil V3. El sistema detecta tus ejes débiles y reordena la práctica, con explicación razonada en cada alternativa, correcta o incorrecta.",f:"Banco adaptativo",v:"4.000+ preguntas",p:"Todos los planes"},
+  {t:"Simulacros en condiciones reales",b:"Seis simulacros cronometrados con la estructura y presión de tiempo del examen oficial. Al terminar recibes tu puntaje proyectado y las brechas priorizadas por especialidad.",f:"Cronometrado · 2 bloques",v:"6 simulacros",p:"Todos los planes"}
+];
+
+const PRICES = {
+  unico: {s:"US$ 290", sn:"pago único · acceso hasta tu examen", m:"US$ 690", mn:"pago único · ahorras US$ 120", v:"US$ 1.890", vn:"pago único · incluye garantía"},
+  cuotas:{s:"US$ 99", sn:"× 3 cuotas sin interés (US$ 297)", m:"US$ 240", mn:"× 3 cuotas sin interés (US$ 720)", v:"US$ 650", vn:"× 3 cuotas sin interés (US$ 1.950)"}
+};
+
+class Component extends DCLogic {
+  state = {pillar:0, pay:"unico", faq:0, nombre:"", email:"", fecha:"", pais:"", especialidad:"", error:"", sent:false, sentEmail:""};
+
+  pillarStyle(i) {
+    const on = this.state.pillar === i;
+    return {display:"flex",alignItems:"baseline",gap:14,padding:"20px 4px",background:"none",border:"none",borderBottom:"1px solid rgba(242,242,239,0.16)",borderLeft:on?"2px solid oklch(0.72 0.11 90)":"2px solid transparent",paddingLeft:on?18:6,cursor:"pointer",textAlign:"left",color:on?"#f2f2ef":"rgba(242,242,239,0.55)",transition:"all .18s ease"};
+  }
+  payTabStyle(which) {
+    const on = this.state.pay === which;
+    return {fontSize:13.5,fontWeight:600,padding:"10px 20px",border:"none",borderRadius:2,cursor:"pointer",background:on?"#14171a":"transparent",color:on?"#f7f7f5":"#5c6166",transition:"all .15s ease"};
+  }
+  submit = () => {
+    const {nombre,email,fecha,pais,especialidad} = this.state;
+    if (!nombre.trim()) return this.setState({error:"Escribe tu nombre para personalizar el material."});
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) return this.setState({error:"Revisa el email: parece incompleto."});
+    if (!fecha) return this.setState({error:"Selecciona tu fecha de examen."});
+    if (!pais) return this.setState({error:"Indica tu país de titulación."});
+    if (!especialidad) return this.setState({error:"Elige la especialidad que más te preocupa."});
+    this.setState({error:"", sent:true, sentEmail:email.trim()});
+  };
+
+  renderVals() {
+    const p = PILLARS[this.state.pillar];
+    const pr = PRICES[this.state.pay];
+    const f = this.state.faq;
+    return {
+      pillarStyle0:this.pillarStyle(0), pillarStyle1:this.pillarStyle(1), pillarStyle2:this.pillarStyle(2), pillarStyle3:this.pillarStyle(3),
+      selectPillar0:()=>this.setState({pillar:0}), selectPillar1:()=>this.setState({pillar:1}),
+      selectPillar2:()=>this.setState({pillar:2}), selectPillar3:()=>this.setState({pillar:3}),
+      pillarTitle:p.t, pillarBody:p.b, pillarFormat:p.f, pillarVolume:p.v, pillarPlans:p.p,
+      payTabStyle0:this.payTabStyle("unico"), payTabStyle1:this.payTabStyle("cuotas"),
+      setPagoUnico:()=>this.setState({pay:"unico"}), setCuotas:()=>this.setState({pay:"cuotas"}),
+      priceStandard:pr.s, priceNoteStandard:pr.sn, priceMaster:pr.m, priceNoteMaster:pr.mn, priceVip:pr.v, priceNoteVip:pr.vn,
+      faq0:f===0, faq1:f===1, faq2:f===2, faq3:f===3, faq4:f===4,
+      faqIcon0:f===0?"–":"+", faqIcon1:f===1?"–":"+", faqIcon2:f===2?"–":"+", faqIcon3:f===3?"–":"+", faqIcon4:f===4?"–":"+",
+      toggleFaq0:()=>this.setState(s=>({faq:s.faq===0?-1:0})), toggleFaq1:()=>this.setState(s=>({faq:s.faq===1?-1:1})),
+      toggleFaq2:()=>this.setState(s=>({faq:s.faq===2?-1:2})), toggleFaq3:()=>this.setState(s=>({faq:s.faq===3?-1:3})),
+      toggleFaq4:()=>this.setState(s=>({faq:s.faq===4?-1:4})),
+      nombre:this.state.nombre, email:this.state.email, fecha:this.state.fecha, pais:this.state.pais, especialidad:this.state.especialidad,
+      onNombre:e=>this.setState({nombre:e.target.value}), onEmail:e=>this.setState({email:e.target.value}),
+      onFecha:e=>this.setState({fecha:e.target.value}), onPais:e=>this.setState({pais:e.target.value}),
+      onEspecialidad:e=>this.setState({especialidad:e.target.value}),
+      error:this.state.error, submitForm:this.submit,
+      formSent:this.state.sent, formOpen:!this.state.sent, sentEmail:this.state.sentEmail,
+      resetForm:()=>this.setState({sent:false,nombre:"",email:"",fecha:"",pais:"",especialidad:"",error:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

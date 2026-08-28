@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7f5f1;color:#1c1a16;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1c1a16;text-decoration:none}
+a:hover{color:oklch(0.48 0.10 95)}
+button,input,select{font-family:inherit}
+</style>
+</helmet>
+
+<div style="max-width:1080px;margin:0 auto;padding:0 40px 80px;background:#f7f5f1">
+
+<header style="display:flex;align-items:baseline;gap:28px;padding:30px 0 26px;border-bottom:2px solid #1c1a16">
+<span style="font-family:'Spectral',serif;font-size:22px;font-weight:400;letter-spacing:-.01em">Cuaderno EUNACOM</span>
+<nav style="display:flex;gap:22px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6b6459;flex:1;white-space:nowrap">
+<a href="#plan" style="color:inherit">Plan</a><a href="#como" style="color:inherit">Cómo trabajo</a><a href="#precio" style="color:inherit">Precio</a><a href="#empezar" style="color:inherit">Empezar</a>
+</nav>
+<a href="#empezar" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #1c1a16;white-space:nowrap">Material gratis →</a>
+</header>
+
+<section style="padding:64px 0 0;display:grid;grid-template-columns:1fr 250px;gap:56px;align-items:start">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175;margin-bottom:24px">Convocatoria julio 2026 · quedan 214 días</div>
+<h1 style="font-family:'Spectral',serif;font-weight:300;font-size:66px;line-height:1.02;letter-spacing:-.03em;margin:0 0 26px;max-width:20ch;text-wrap:balance">Un cuaderno de ocho semanas, escrito para tu examen.</h1>
+<p style="font-family:'Spectral',serif;font-size:20px;line-height:1.55;color:#463f34;margin:0 0 32px;max-width:50ch">No es una plataforma con mil horas de video. Es un plan cerrado, en orden, con lo que hay que leer, lo que hay que ver y lo que hay que practicar cada semana. Yo lo escribo y yo te respondo.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+<a href="#empezar" style="font-size:14.5px;font-weight:600;background:#1c1a16;color:#f7f5f1;padding:15px 24px">Pedir el cuaderno de muestra</a>
+<a href="#plan" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #1c1a16;padding-bottom:2px">Ver las 8 semanas</a>
+</div>
+</div>
+<div style="border-left:1px solid rgba(28,26,22,.2);padding-left:24px;display:flex;flex-direction:column;gap:22px">
+<div><div style="font-family:'Spectral',serif;font-size:30px;line-height:1">940</div><div style="font-size:12.5px;color:#6b6459;margin-top:5px;line-height:1.4">páginas maquetadas en 6 tomos</div></div>
+<div><div style="font-family:'Spectral',serif;font-size:30px;line-height:1">12–15 h</div><div style="font-size:12.5px;color:#6b6459;margin-top:5px;line-height:1.4">por semana, pensado para turnos</div></div>
+<div><div style="font-family:'Spectral',serif;font-size:30px;line-height:1">12</div><div style="font-size:12.5px;color:#6b6459;margin-top:5px;line-height:1.4">cupos de tutoría por convocatoria</div></div>
+</div>
+</section>
+
+<section id="plan" style="padding:80px 0 0">
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid rgba(28,26,22,.25);padding-bottom:14px;margin-bottom:0">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Índice</span>
+<h2 style="font-family:'Spectral',serif;font-weight:300;font-size:34px;margin:0;flex:1">Las ocho semanas, en orden de puntaje</h2>
+</div>
+<sc-for list="{{ semanas }}" as="w" hint-placeholder-count="8">
+<div style="display:grid;grid-template-columns:52px 1fr 200px;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(28,26,22,.12)">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.48 0.10 95)">{{ w.num }}</span>
+<div>
+<div style="font-family:'Spectral',serif;font-size:23px;line-height:1.2;margin-bottom:6px">{{ w.titulo }}</div>
+<div style="font-size:13.5px;color:#6b6459;line-height:1.5">{{ w.desc }}</div>
+</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8175;line-height:1.7">{{ w.carga }}</div>
+</div>
+</sc-for>
+</section>
+
+<section id="como" style="padding:80px 0 0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:56px">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175;margin-bottom:20px">Cómo trabajo</div>
+<h2 style="font-family:'Spectral',serif;font-weight:300;font-size:40px;line-height:1.08;margin:0 0 22px;max-width:20ch">Cuatro cosas, hechas bien, y nada más.</h2>
+<p style="font-family:'Spectral',serif;font-size:18px;line-height:1.6;color:#463f34;margin:0">Si algo no mueve tu puntaje, no está en el cuaderno. Lo que sí está, está terminado: clases grabadas en estudio, manuales maquetados de verdad y un banco donde cada alternativa está explicada.</p>
+</div>
+<div style="display:flex;flex-direction:column">
+<div style="border-top:1px solid rgba(28,26,22,.25);padding:20px 0"><div style="font-family:'Spectral',serif;font-size:21px;margin-bottom:7px">Clases al punto</div><p style="font-size:14px;line-height:1.6;color:#5c5549;margin:0">14 diapositivas por tema. Qué se pregunta, cómo se pregunta, qué criterio buscan.</p></div>
+<div style="border-top:1px solid rgba(28,26,22,.12);padding:20px 0"><div style="font-family:'Spectral',serif;font-size:21px;margin-bottom:7px">Manuales para escribir encima</div><p style="font-size:14px;line-height:1.6;color:#5c5549;margin:0">Tablas de decisión, algoritmos y márgenes anchos. Impríme y anota.</p></div>
+<div style="border-top:1px solid rgba(28,26,22,.12);padding:20px 0"><div style="font-family:'Spectral',serif;font-size:21px;margin-bottom:7px">Banco explicado</div><p style="font-size:14px;line-height:1.6;color:#5c5549;margin:0">Más de 4.000 preguntas del Perfil V3, con el por qué de cada alternativa.</p></div>
+<div style="border-top:1px solid rgba(28,26,22,.12);border-bottom:1px solid rgba(28,26,22,.25);padding:20px 0"><div style="font-family:'Spectral',serif;font-size:21px;margin-bottom:7px">Yo, respondiendo</div><p style="font-size:14px;line-height:1.6;color:#5c5549;margin:0">Sin equipo rotativo. Por eso los cupos de tutoría son doce y no doscientos.</p></div>
+</div>
+</div>
+</section>
+
+<section id="precio" style="padding:80px 0 0">
+<div style="border-top:2px solid #1c1a16;padding-top:26px;margin-bottom:34px">
+<h2 style="font-family:'Spectral',serif;font-weight:300;font-size:40px;margin:0 0 10px">Precio</h2>
+<p style="font-size:15px;color:#5c5549;margin:0;max-width:56ch">Acceso hasta el día de tu examen. Con el plan Tutoría, si no apruebas repetimos completo sin que pagues de nuevo.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Banco</div>
+<div style="font-family:'Spectral',serif;font-size:40px;line-height:1">US$ 290</div>
+<p style="font-size:13.5px;line-height:1.6;color:#5c5549;margin:0">Banco de 4.000+ preguntas y 6 simulacros cronometrados. Sin clases ni manuales.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #1c1a16;padding-bottom:3px;align-self:flex-start">Elegir →</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#efece5;padding:26px;margin:-26px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:oklch(0.45 0.10 95)">Cuaderno completo · el habitual</div>
+<div style="font-family:'Spectral',serif;font-size:40px;line-height:1">US$ 690</div>
+<p style="font-size:13.5px;line-height:1.6;color:#5c5549;margin:0">Todo lo del banco, más las 86 clases, los 6 tomos y el plan de 8 semanas armado a tu fecha.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="font-size:14px;font-weight:600;background:#1c1a16;color:#f7f5f1;padding:13px;text-align:center">Elegir el cuaderno completo</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Tutoría · 12 cupos</div>
+<div style="font-family:'Spectral',serif;font-size:40px;line-height:1">US$ 1.890</div>
+<p style="font-size:13.5px;line-height:1.6;color:#5c5549;margin:0">Todo lo anterior, sesiones 1-a-1 conmigo, corrección de simulacros y garantía por escrito.</p>
+<div style="flex:1"></div>
+<a href="#empezar" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #1c1a16;padding-bottom:3px;align-self:flex-start">Postular a cupo →</a>
+</div>
+</div>
+</section>
+
+<section id="empezar" style="padding:80px 0 0">
+<div style="border-top:2px solid #1c1a16;padding-top:40px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start">
+<div>
+<h2 style="font-family:'Spectral',serif;font-weight:300;font-size:44px;line-height:1.05;margin:0 0 20px;max-width:18ch">Dime cuándo rindes y te mando el cuaderno de muestra.</h2>
+<p style="font-family:'Spectral',serif;font-size:18px;line-height:1.6;color:#463f34;margin:0 0 26px;max-width:46ch">Va con la semana 1 completa, el blueprint del Perfil V3 ajustado a tu fecha y 30 preguntas para que veas dónde estás parado hoy.</p>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8a8175;line-height:2">Gratis · sin tarjeta · sin llamada de ventas</div>
+</div>
+<div style="border:1px solid rgba(28,26,22,.25);background:#fdfcf9;padding:28px">
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px;padding:16px 0">
+<div style="font-family:'Spectral',serif;font-size:26px;line-height:1.2">Listo, va en camino.</div>
+<p style="font-size:14.5px;line-height:1.6;color:#5c5549;margin:0">Te lo mandé a <strong style="font-weight:600">{{ correoEnviado }}</strong>. Si en cinco minutos no llega, mira en promociones.</p>
+<button onClick="{{ reset }}" style="align-self:flex-start;font-size:13px;background:none;border:none;border-bottom:1px solid rgba(28,26,22,.35);padding:0 0 3px;cursor:pointer">Usar otro correo</button>
+</div>
+</sc-if>
+<sc-if value="{{ abierto }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Nombre</span><input value="{{ nombre }}" onChange="{{ onNombre }}" placeholder="Dra. Camila Rojas" style="font-size:15px;padding:11px 12px;border:1px solid rgba(28,26,22,.3);background:#fff;outline:none" style-focus="border-color:#1c1a16"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Correo</span><input value="{{ correo }}" onChange="{{ onCorreo }}" placeholder="tu@correo.com" style="font-size:15px;padding:11px 12px;border:1px solid rgba(28,26,22,.3);background:#fff;outline:none" style-focus="border-color:#1c1a16"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8175">Cuándo rindes</span><select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:11px 12px;border:1px solid rgba(28,26,22,.3);background:#fff;outline:none"><option value="">Selecciona</option><option value="Julio 2026">Julio 2026</option><option value="Diciembre 2026">Diciembre 2026</option><option value="Aún no lo decido">Aún no lo decido</option></select></label>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:oklch(0.48 0.15 30)">{{ error }}</div></sc-if>
+<button onClick="{{ enviar }}" style="font-size:15px;font-weight:600;background:#1c1a16;color:#f7f5f1;border:none;padding:15px;cursor:pointer">Mándame el cuaderno</button>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<footer style="padding:70px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#8a8175;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(28,26,22,.2);margin-top:80px">
+<span>© 2026 Cuaderno EUNACOM · Santiago de Chile</span>
+<span>Programa independiente, no afiliado a ASOFAMECH</span>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const SEMANAS = [
+  {n:"01",t:"Diagnóstico y salud pública",d:"Medimos dónde estás y partimos por donde más puntaje se recupera.",c:"2 clases · 40 preg.\n1 simulacro corto"},
+  {n:"02",t:"Cardiología y urgencia",d:"Decisión en los primeros diez minutos. ECG, reperfusión, ventanas.",c:"6 clases · 120 preg."},
+  {n:"03",t:"Respiratorio e infectología",d:"Neumonías, TBC y los antibióticos que el examen sí pregunta.",c:"5 clases · 100 preg."},
+  {n:"04",t:"Pediatría",d:"Crecimiento, PNI, deshidratación e infectología pediátrica.",c:"7 clases · 140 preg."},
+  {n:"05",t:"Ginecología y Obstetricia",d:"Control prenatal, urgencias obstétricas, planificación familiar.",c:"6 clases · 120 preg."},
+  {n:"06",t:"Cirugía y trauma",d:"Abdomen agudo, preoperatorio y criterios de derivación.",c:"5 clases · 110 preg."},
+  {n:"07",t:"Medicina legal y simulacro completo",d:"Certificados, consentimiento, responsabilidad. Examen entero cronometrado.",c:"3 clases · simulacro\n90 min"},
+  {n:"08",t:"Solo tus errores",d:"Repaso dirigido de lo que fallaste. Nada de contenido nuevo.",c:"Banco dirigido\n2 simulacros"}
+];
+
+class Component extends DCLogic {
+  state = {nombre:"", correo:"", fecha:"", error:"", enviado:false, correoEnviado:""};
+  renderVals() {
+    return {
+      semanas:SEMANAS.map(w=>({num:w.n, titulo:w.t, desc:w.d, carga:w.c})),
+      nombre:this.state.nombre, correo:this.state.correo, fecha:this.state.fecha, error:this.state.error,
+      onNombre:e=>this.setState({nombre:e.target.value, error:""}),
+      onCorreo:e=>this.setState({correo:e.target.value, error:""}),
+      onFecha:e=>this.setState({fecha:e.target.value, error:""}),
+      enviado:this.state.enviado, abierto:!this.state.enviado, correoEnviado:this.state.correoEnviado,
+      enviar:()=>{
+        const {nombre, correo, fecha} = this.state;
+        if (!nombre.trim()) return this.setState({error:"Escribe tu nombre."});
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.trim())) return this.setState({error:"Revisa el correo, parece incompleto."});
+        if (!fecha) return this.setState({error:"Dime cuándo rindes."});
+        this.setState({enviado:true, correoEnviado:correo.trim(), error:""});
+      },
+      reset:()=>this.setState({enviado:false, nombre:"", correo:"", fecha:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

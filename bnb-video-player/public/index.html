@@ -3,164 +3,241 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boards & Beyond - Video Studio</title>
+  <title>Boards & Beyond - Step 1 & Step 2 Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    
+    .rotate-chevron {
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .open > .chevron-icon {
+      transform: rotate(90deg);
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 flex flex-col h-screen overflow-hidden antialiased selection:bg-indigo-500 selection:text-white">
 
-  <!-- Top Header -->
-  <header class="h-16 bg-slate-900/90 backdrop-blur border-b border-slate-800 flex items-center justify-between px-6 z-20 shrink-0">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-        <i data-lucide="play-circle" class="w-6 h-6 text-white"></i>
+  <!-- Top Navigation Header -->
+  <header class="h-16 bg-slate-900/90 backdrop-blur border-b border-slate-800/80 flex items-center justify-between px-6 z-30 shrink-0">
+    <div class="flex items-center gap-3.5">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-violet-700 flex items-center justify-center shadow-lg shadow-indigo-500/20 ring-1 ring-white/10">
+        <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
       </div>
       <div>
-        <h1 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
-          Boards & Beyond <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">Studio Player</span>
+        <h1 class="text-sm font-bold text-white tracking-tight flex items-center gap-2">
+          Boards & Beyond <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">Studio Player</span>
         </h1>
-        <p class="text-xs text-slate-400">Offline Study & Medical Library</p>
+        <p class="text-[11px] text-slate-400 font-medium">Step 1 (Preclinical) & Step 2 (Clinical) Master Library</p>
       </div>
     </div>
 
-    <!-- Live Sync & Stats -->
-    <div class="flex items-center gap-4">
-      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs">
+    <!-- Live Stats & Global Actions -->
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs shadow-inner">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span class="text-slate-300 font-medium" id="stats-total">0 Videos</span>
-        <span class="text-slate-500">•</span>
-        <span class="text-slate-400" id="stats-size">0.0 GB</span>
+        <span class="text-slate-200 font-bold" id="stats-total">744 Videos</span>
+        <span class="text-slate-600">•</span>
+        <span class="text-slate-400 font-mono text-[11px]" id="stats-size">45.6 GB</span>
       </div>
 
-      <button onclick="fetchVideos(true)" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-medium border border-slate-700/60">
+      <button onclick="fetchVideos(true)" class="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold border border-slate-700/60 shadow-sm active:scale-95">
         <i data-lucide="refresh-cw" class="w-3.5 h-3.5" id="refresh-icon"></i>
         <span>Sync</span>
       </button>
     </div>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Application Body -->
   <div class="flex-1 flex overflow-hidden">
     
-    <!-- Sidebar: Topics & Playlists -->
-    <aside class="w-80 md:w-96 bg-slate-900/60 border-r border-slate-800 flex flex-col shrink-0">
+    <!-- Sidebar: Step Tabs, Search & Collapsible Accordion -->
+    <aside class="w-88 md:w-[410px] bg-slate-900/50 border-r border-slate-800/80 flex flex-col shrink-0">
       
-      <!-- Search Box -->
-      <div class="p-4 border-b border-slate-800/80">
-        <div class="relative">
-          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-          <input 
-            type="text" 
-            id="search-input"
-            oninput="handleSearch(this.value)"
-            placeholder="Search lessons or topics..." 
-            class="w-full pl-10 pr-4 py-2 bg-slate-950/80 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+      <!-- Top Filters -->
+      <div class="p-3.5 border-b border-slate-800/80 bg-slate-950/60 space-y-2.5">
+        
+        <!-- Step 1 / Step 2 / All Switcher -->
+        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+          <button onclick="setTab('Step 1 - Preclinical')" id="tab-step1" class="py-1.5 rounded-lg transition bg-indigo-600 text-white shadow font-bold flex items-center justify-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-300"></span>
+            <span>Step 1</span>
+          </button>
+          <button onclick="setTab('Step 2 - Clinical')" id="tab-step2" class="py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Step 2</span>
+          </button>
+          <button onclick="setTab('all')" id="tab-all" class="py-1.5 rounded-lg transition text-slate-400 hover:text-white">
+            <span>All</span>
+          </button>
+        </div>
+
+        <!-- Search Bar & Toggle All Controls -->
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="search-input"
+              oninput="handleSearch(this.value)"
+              placeholder="Search lessons (e.g. Heart Failure, Shock, DNA)..." 
+              class="w-full pl-9 pr-3 py-1.5 bg-slate-900/90 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+            >
+          </div>
+
+          <!-- Expand / Collapse All -->
+          <button 
+            onclick="toggleAllAccordions()" 
+            id="btn-toggle-all"
+            class="px-2.5 py-1.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700/60 text-xs font-semibold transition shrink-0 flex items-center gap-1 active:scale-95"
+            title="Expand/Collapse All Subjects"
           >
+            <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5"></i>
+            <span id="btn-toggle-all-text">Expand</span>
+          </button>
         </div>
       </div>
 
-      <!-- Topics Accordion List -->
-      <div class="flex-1 overflow-y-auto p-3 space-y-2" id="topics-list">
-        <div class="p-8 text-center text-slate-500 text-xs flex flex-col items-center gap-2">
-          <i data-lucide="loader-2" class="w-5 h-5 animate-spin text-indigo-400"></i>
-          <span>Loading downloaded library...</span>
+      <!-- Scrollable Curriculum Directory List -->
+      <div id="curriculum-tree" class="flex-1 overflow-y-auto p-3 space-y-2">
+        <div class="p-8 text-center text-slate-500 text-xs">
+          <div class="animate-spin w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full mx-auto mb-2"></div>
+          Loading curriculum...
         </div>
       </div>
     </aside>
 
-    <!-- Main Content: Video Stage -->
+    <!-- Main Content: Video Player Studio & Study Companion Hub -->
     <main class="flex-1 flex flex-col bg-slate-950 overflow-y-auto">
       
-      <!-- Active Video Stage -->
-      <div id="player-container" class="flex-1 flex flex-col p-6 max-w-6xl w-full mx-auto">
+      <!-- Video Player Viewport -->
+      <div class="p-6 max-w-5xl mx-auto w-full flex-1 flex flex-col">
         
-        <!-- Video Screen Container -->
-        <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex items-center justify-center group">
+        <div class="relative bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800/80 aspect-video group">
           <video 
             id="main-video" 
             controls 
             preload="metadata"
             class="w-full h-full object-contain"
-            onplay="saveProgress()"
-            onpause="saveProgress()"
-            ontimeupdate="trackTime()"
-            onended="handleVideoEnded()"
+            tabindex="0"
           ></video>
 
-          <!-- Empty State Screen -->
-          <div id="empty-screen" class="absolute inset-0 bg-slate-900/95 flex flex-col items-center justify-center text-center p-6">
+          <!-- Empty Screen Placeholder -->
+          <div id="empty-screen" class="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center text-center p-6 z-10">
             <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 shadow-xl">
-              <i data-lucide="clapperboard" class="w-8 h-8"></i>
+              <i data-lucide="play" class="w-7 h-7 fill-indigo-400/20 text-indigo-400"></i>
             </div>
-            <h3 class="text-base font-bold text-white mb-1">Select a Video Lesson</h3>
-            <p class="text-xs text-slate-400 max-w-sm">Choose any video from the left sidebar to start watching. Real-time seeking and speed controls are enabled.</p>
+            <h3 class="text-base font-bold text-white mb-1.5">Select a Video Lesson</h3>
+            <p class="text-xs text-slate-400 max-w-sm">Choose any topic from Step 1 or Step 2 on the left. High-speed seeking, 2x playback, notes, and interactive quizzes are enabled.</p>
           </div>
         </div>
 
-        <!-- Video Info & Controls Bar -->
-        <div class="mt-5 bg-slate-900/70 border border-slate-800/80 rounded-2xl p-5 backdrop-blur">
+        <!-- Video Metadata & Action Bar -->
+        <div class="mt-5 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur shadow-lg">
           
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
             <div>
-              <div class="flex items-center gap-2 mb-1.5">
-                <span id="current-topic-badge" class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Topic</span>
-                <span id="current-size-badge" class="text-xs text-slate-400">0 MB</span>
+              <div class="flex items-center gap-2 mb-2 flex-wrap" id="breadcrumb-badges">
+                <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20" id="badge-step">Step 1</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700/80" id="badge-subject">Subject</span>
+                <span class="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-900 text-slate-400 border border-slate-800" id="badge-subsection">Section</span>
+                <span class="text-xs text-slate-500 ml-1 font-mono" id="current-size-badge">0 MB</span>
               </div>
-              <h2 id="current-title" class="text-lg font-bold text-white">No video selected</h2>
+              <h2 id="current-title" class="text-lg font-bold text-white tracking-tight">No video selected</h2>
             </div>
 
-            <!-- Custom Action Buttons -->
+            <!-- Playback Control Tools & PDF Companion -->
             <div class="flex items-center gap-2 flex-wrap">
-              <!-- Speed Selector -->
-              <div class="flex items-center bg-slate-950 border border-slate-800 rounded-xl p-1 text-xs">
+              
+              <!-- Speed Selector Pill -->
+              <div class="flex items-center bg-slate-950 border border-slate-800 rounded-xl p-1 text-xs shadow-inner">
                 <button onclick="setSpeed(1.0)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1">1x</button>
                 <button onclick="setSpeed(1.25)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1.25">1.25x</button>
-                <button onclick="setSpeed(1.5)" class="speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold" data-speed="1.5">1.5x</button>
+                <button onclick="setSpeed(1.5)" class="speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold shadow-md shadow-indigo-600/30" data-speed="1.5">1.5x</button>
                 <button onclick="setSpeed(1.75)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="1.75">1.75x</button>
                 <button onclick="setSpeed(2.0)" class="speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium" data-speed="2">2x</button>
               </div>
 
-              <!-- Jump Buttons -->
-              <button onclick="seekVideo(-5)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Rewind 5s">
+              <!-- Jump Controls -->
+              <button onclick="seekVideo(-5)" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition active:scale-95" title="Rewind 5s">
                 <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
               </button>
-              <button onclick="seekVideo(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Forward 10s">
+              <button onclick="seekVideo(10)" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition active:scale-95" title="Forward 10s">
                 <i data-lucide="rotate-cw" class="w-4 h-4"></i>
               </button>
 
-              <!-- Next / Prev Video -->
-              <button onclick="playPrev()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition" title="Previous Lesson">
+              <!-- PDF Companion Download Button -->
+              <button onclick="downloadCompanionPdf()" id="btn-download-pdf" class="px-3 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition flex items-center gap-1.5 active:scale-95 shadow-sm">
+                <i data-lucide="file-down" class="w-4 h-4 text-indigo-400"></i>
+                <span>Download Slides PDF</span>
+              </button>
+
+              <!-- Playlist Navigation -->
+              <button onclick="playPrev()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/60 text-xs transition active:scale-95" title="Previous Lesson">
                 <i data-lucide="skip-back" class="w-4 h-4"></i>
               </button>
-              <button onclick="playNext()" class="p-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs transition flex items-center gap-1 shadow-lg shadow-indigo-600/30" title="Next Lesson">
+              <button onclick="playNext()" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition flex items-center gap-1.5 shadow-lg shadow-indigo-600/25 active:scale-95" title="Next Lesson">
                 <span>Next</span>
-                <i data-lucide="skip-forward" class="w-4 h-4"></i>
+                <i data-lucide="skip-forward" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STUDY COMPANION HUB: TABS (AI Transcript / Interactive Quiz) -->
+        <div class="mt-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur shadow-lg">
+          
+          <!-- Tab Navigation -->
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800/80 mb-4 flex-wrap gap-3">
+            <div class="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800">
+              <button onclick="setStudyTab('transcript')" id="study-tab-transcript" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white flex items-center gap-1.5 shadow">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>AI Transcript & Criteria</span>
+              </button>
+              <button onclick="setStudyTab('quiz')" id="study-tab-quiz" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex items-center gap-1.5">
+                <i data-lucide="help-circle" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Chapter Quiz</span>
+                <span id="quiz-count-badge" class="px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-300 text-[10px] hidden">0</span>
+              </button>
+            </div>
+
+            <!-- Transcript Search / Copy Bar -->
+            <div id="transcript-controls" class="flex items-center gap-2">
+              <input 
+                type="text" 
+                id="transcript-search" 
+                oninput="filterTranscript(this.value)" 
+                placeholder="Search diagnostic criteria..." 
+                class="px-2.5 py-1 bg-slate-950 border border-slate-800 rounded-lg text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 w-48 transition"
+              >
+              <button onclick="copyTranscript()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg border border-slate-700/60 transition flex items-center gap-1 active:scale-95">
+                <i data-lucide="copy" class="w-3 h-3"></i>
+                <span>Copy</span>
               </button>
             </div>
           </div>
 
-          <!-- Shortcuts & Keyboard Tips -->
-          <div class="mt-3 flex items-center justify-between text-[11px] text-slate-400">
-            <div class="flex items-center gap-4">
-              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">Space</kbd> Play/Pause</span>
-              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">← / →</kbd> Jump 5s</span>
-              <span><kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300 font-mono">F</kbd> Fullscreen</span>
-            </div>
-            <div id="storage-info" class="text-slate-400 font-mono">
-              Folder: D:\Telegram_BnB_Videos
+          <!-- TAB 1: AI Transcript Content Area -->
+          <div id="panel-transcript" class="max-h-80 overflow-y-auto space-y-1.5 pr-2 text-xs text-slate-300 leading-relaxed font-normal">
+            <p class="text-slate-500 italic p-2">Select a video lesson above to load synchronized transcripts and diagnostic criteria...</p>
+          </div>
+
+          <!-- TAB 2: Interactive Quiz Content Area -->
+          <div id="panel-quiz" class="hidden max-h-96 overflow-y-auto pr-2 space-y-4">
+            <div id="quiz-container" class="space-y-4">
+              <p class="text-slate-500 italic p-2 text-xs">Select a video lesson above to load its chapter quiz questions...</p>
             </div>
           </div>
+
         </div>
 
       </div>
@@ -169,10 +246,15 @@
   </div>
 
   <script>
-    let libraryData = { topics: {}, totalVideos: 0, totalSize: '0.0 GB' };
+    let serverData = { tree: [], totalVideos: 0, totalSize: '0.0 GB' };
     let flatPlaylist = [];
     let currentIndex = -1;
     let currentSpeed = 1.5;
+    let activeTab = 'Step 1 - Preclinical';
+    let studyTab = 'transcript';
+    let isAllExpanded = false;
+    let openAccordions = new Set();
+    let currentQuizData = null;
 
     const videoEl = document.getElementById('main-video');
     const emptyScreen = document.getElementById('empty-screen');
@@ -183,76 +265,114 @@
 
       try {
         const res = await fetch('/api/videos');
-        const data = await res.json();
-        libraryData = data;
-        renderLibrary();
+        serverData = await res.json();
+        renderCurriculum(document.getElementById('search-input').value);
       } catch (err) {
-        console.error('Failed to load videos:', err);
+        console.error('Failed to fetch videos:', err);
       } finally {
-        if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+        if (isManual && refreshIcon) {
+          setTimeout(() => refreshIcon.classList.remove('animate-spin'), 600);
+        }
       }
     }
 
-    function renderLibrary(filterText = '') {
-      document.getElementById('stats-total').textContent = `${libraryData.totalVideos} Videos`;
-      document.getElementById('stats-size').textContent = libraryData.totalSize;
+    function setTab(tab) {
+      activeTab = tab;
+      document.getElementById('tab-step1').className = tab.includes('1')
+        ? 'py-1.5 rounded-lg transition bg-indigo-600 text-white shadow font-bold flex items-center justify-center gap-1.5'
+        : 'py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
 
-      const container = document.getElementById('topics-list');
-      const topics = Object.keys(libraryData.topics);
+      document.getElementById('tab-step2').className = tab.includes('2')
+        ? 'py-1.5 rounded-lg transition bg-amber-600 text-white shadow font-bold flex items-center justify-center gap-1.5'
+        : 'py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
 
-      if (topics.length === 0) {
-        container.innerHTML = `
-          <div class="p-8 text-center text-slate-500 text-xs">
-            <i data-lucide="download-cloud" class="w-8 h-8 text-slate-600 mx-auto mb-2"></i>
-            <p class="font-medium text-slate-400">Downloading in progress...</p>
-            <p class="text-[11px] text-slate-500 mt-1">Downloaded videos will appear here automatically.</p>
-          </div>
-        `;
-        lucide.createIcons();
-        return;
+      document.getElementById('tab-all').className = tab === 'all'
+        ? 'py-1.5 rounded-lg transition bg-slate-800 text-white font-bold shadow'
+        : 'py-1.5 rounded-lg transition text-slate-400 hover:text-white';
+
+      renderCurriculum(document.getElementById('search-input').value);
+    }
+
+    function setStudyTab(tab) {
+      studyTab = tab;
+      const btnTrans = document.getElementById('study-tab-transcript');
+      const btnQuiz = document.getElementById('study-tab-quiz');
+      const panelTrans = document.getElementById('panel-transcript');
+      const panelQuiz = document.getElementById('panel-quiz');
+      const transControls = document.getElementById('transcript-controls');
+
+      if (tab === 'transcript') {
+        btnTrans.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-indigo-600 text-white flex items-center gap-1.5 shadow';
+        btnQuiz.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex items-center gap-1.5';
+        panelTrans.classList.remove('hidden');
+        panelQuiz.classList.add('hidden');
+        transControls.classList.remove('hidden');
+      } else {
+        btnQuiz.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-amber-600 text-white flex items-center gap-1.5 shadow';
+        btnTrans.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white flex items-center gap-1.5';
+        panelQuiz.classList.remove('hidden');
+        panelTrans.classList.add('hidden');
+        transControls.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    function toggleAllAccordions() {
+      isAllExpanded = !isAllExpanded;
+      document.getElementById('btn-toggle-all-text').textContent = isAllExpanded ? 'Collapse' : 'Expand';
+      renderCurriculum(document.getElementById('search-input').value);
+    }
+
+    function toggleAccordion(id) {
+      const body = document.getElementById(id);
+      const chevron = document.getElementById(`chev-${id}`);
+      if (!body) return;
+
+      const isClosed = body.classList.contains('hidden');
+      if (isClosed) {
+        body.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-90');
+        openAccordions.add(id);
+      } else {
+        body.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-90');
+        openAccordions.delete(id);
+      }
+    }
+
+    function renderCurriculum(filterText = '') {
+      document.getElementById('stats-total').textContent = `${serverData.totalVideos} Videos`;
+      document.getElementById('stats-size').textContent = serverData.totalSize;
+
+      const container = document.getElementById('curriculum-tree');
+      let stepsToRender = serverData.tree;
+
+      if (activeTab !== 'all') {
+        stepsToRender = stepsToRender.filter(s => s.name.toLowerCase().includes(activeTab.toLowerCase().includes('1') ? 'step 1' : 'step 2'));
       }
 
       flatPlaylist = [];
       let html = '';
 
-      topics.forEach((topic, tIdx) => {
-        let videos = libraryData.topics[topic];
-        if (filterText) {
-          videos = videos.filter(v => v.filename.toLowerCase().includes(filterText.toLowerCase()) || topic.toLowerCase().includes(filterText.toLowerCase()));
-        }
+      stepsToRender.forEach((stepNode, stepIdx) => {
+        const isStep1 = stepNode.name.includes('1');
+        const stepBadgeBg = isStep1 ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400';
 
-        if (videos.length === 0) return;
+        let stepCount = 0;
+        function countNode(n) {
+          stepCount += n.videos.length;
+          n.children.forEach(countNode);
+        }
+        countNode(stepNode);
 
         html += `
-          <div class="rounded-xl bg-slate-950/60 border border-slate-800/80 overflow-hidden">
-            <button onclick="toggleTopic('topic-${tIdx}')" class="w-full px-3.5 py-2.5 flex items-center justify-between text-left hover:bg-slate-800/40 transition">
-              <div class="flex items-center gap-2 truncate">
-                <i data-lucide="folder" class="w-4 h-4 text-indigo-400 shrink-0"></i>
-                <span class="text-xs font-bold text-slate-200 truncate">${topic}</span>
-              </div>
-              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 shrink-0">${videos.length}</span>
-            </button>
-
-            <div id="topic-${tIdx}" class="border-t border-slate-800/60 divide-y divide-slate-800/40">
-              ${videos.map((vid) => {
-                const globalIndex = flatPlaylist.length;
-                flatPlaylist.push(vid);
-                const isPlaying = currentIndex === globalIndex;
-                const cleanName = vid.filename.replace(/^\d+_/, '').replace(/\.mp4$/i, '');
-
-                return `
-                  <button 
-                    onclick="playVideo(${globalIndex})" 
-                    class="w-full px-3.5 py-2 flex items-start gap-2.5 text-left text-xs transition ${isPlaying ? 'bg-indigo-600/20 text-indigo-300 font-bold border-l-2 border-indigo-500' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200'}"
-                  >
-                    <i data-lucide="${isPlaying ? 'play' : 'file-video'}" class="w-3.5 h-3.5 ${isPlaying ? 'text-indigo-400' : 'text-slate-500'} shrink-0 mt-0.5"></i>
-                    <div class="flex-1 truncate">
-                      <div class="truncate text-[11px] leading-tight">${cleanName}</div>
-                      <div class="text-[10px] text-slate-500 mt-0.5">${vid.sizeFormatted}</div>
-                    </div>
-                  </button>
-                `;
-              }).join('')}
+          <div class="mb-4">
+            <div class="px-2 py-1 flex items-center justify-between mb-2">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-md ${stepBadgeBg} border">${stepNode.name}</span>
+              <span class="text-[10px] font-mono text-slate-500">${stepCount} lessons</span>
+            </div>
+            <div class="space-y-1.5">
+              ${stepNode.children.map((subjNode, subjIdx) => renderSubject(subjNode, stepNode.name, filterText, `${stepIdx}-${subjIdx}`)).join('')}
             </div>
           </div>
         `;
@@ -262,9 +382,109 @@
       lucide.createIcons();
     }
 
-    function toggleTopic(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('hidden');
+    function renderSubject(subjNode, stepName, filterText, idPrefix) {
+      const allSubjVideos = [];
+      function collect(node) {
+        allSubjVideos.push(...node.videos);
+        node.children.forEach(collect);
+      }
+      collect(subjNode);
+
+      let filteredVideos = allSubjVideos;
+      if (filterText) {
+        filteredVideos = allSubjVideos.filter(v => 
+          v.title.toLowerCase().includes(filterText.toLowerCase()) || 
+          subjNode.name.toLowerCase().includes(filterText.toLowerCase())
+        );
+      }
+
+      if (filteredVideos.length === 0) return '';
+
+      const cleanSubjName = subjNode.name.replace(/^\d+_/, '');
+      const bodyId = `subj-body-${idPrefix}`;
+      const isOpen = isAllExpanded || filterText || openAccordions.has(bodyId);
+
+      return `
+        <div class="rounded-xl bg-slate-900/60 border border-slate-800/80 overflow-hidden hover:border-slate-700/80 transition shadow-sm">
+          <button onclick="toggleAccordion('${bodyId}')" class="w-full px-3 py-2.5 flex items-center justify-between text-left hover:bg-slate-800/40 transition group">
+            <div class="flex items-center gap-2.5 truncate">
+              <i data-lucide="chevron-right" id="chev-${bodyId}" class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300 chevron-icon rotate-chevron shrink-0 ${isOpen ? 'rotate-90' : ''}"></i>
+              <i data-lucide="folder" class="w-4 h-4 text-indigo-400 shrink-0"></i>
+              <span class="text-xs font-bold text-slate-200 truncate group-hover:text-white">${cleanSubjName}</span>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 shrink-0">${filteredVideos.length}</span>
+          </button>
+
+          <div id="${bodyId}" class="accordion-body border-t border-slate-800/60 divide-y divide-slate-800/30 bg-slate-950/40 ${isOpen ? '' : 'hidden'}">
+            ${renderSubsectionsOrVideos(subjNode, stepName, filterText, idPrefix)}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubsectionsOrVideos(node, stepName, filterText, idPrefix) {
+      let html = '';
+
+      node.videos.forEach(vid => {
+        if (filterText && !vid.title.toLowerCase().includes(filterText.toLowerCase())) return;
+        const globalIndex = flatPlaylist.length;
+        flatPlaylist.push({ ...vid, step: stepName, subject: node.name, subsection: 'General Topics' });
+        const isPlaying = currentIndex === globalIndex;
+
+        html += `
+          <button 
+            onclick="playVideo(${globalIndex})" 
+            class="w-full pl-7 pr-3.5 py-2 flex items-start gap-2.5 text-left text-xs transition ${isPlaying ? 'bg-indigo-600/20 text-indigo-300 font-bold border-l-2 border-indigo-500' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200'}"
+          >
+            <i data-lucide="${isPlaying ? 'play-circle' : 'file-video'}" class="w-3.5 h-3.5 ${isPlaying ? 'text-indigo-400' : 'text-slate-500'} shrink-0 mt-0.5"></i>
+            <div class="flex-1 truncate">
+              <div class="truncate text-[11px] leading-tight font-medium">${vid.title}</div>
+              <div class="text-[10px] text-slate-500 mt-0.5 font-mono">${vid.sizeFormatted}</div>
+            </div>
+          </button>
+        `;
+      });
+
+      node.children.forEach((sub, subIdx) => {
+        const subBodyId = `subsec-body-${idPrefix}-${subIdx}`;
+        const isSubOpen = isAllExpanded || filterText || openAccordions.has(subBodyId);
+
+        html += `
+          <div>
+            <button onclick="toggleAccordion('${subBodyId}')" class="w-full px-4 py-1.5 bg-slate-900/80 text-[10px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between hover:bg-slate-800/60 transition group border-b border-slate-800/40">
+              <div class="flex items-center gap-1.5 truncate">
+                <i data-lucide="chevron-right" id="chev-${subBodyId}" class="w-3 h-3 text-slate-500 group-hover:text-slate-300 chevron-icon rotate-chevron shrink-0 ${isSubOpen ? 'rotate-90' : ''}"></i>
+                <span class="truncate">${sub.name}</span>
+              </div>
+              <span class="text-[9px] text-slate-500 font-mono">${sub.videos.length}</span>
+            </button>
+
+            <div id="${subBodyId}" class="divide-y divide-slate-800/30 ${isSubOpen ? '' : 'hidden'}">
+              ${sub.videos.map(vid => {
+                if (filterText && !vid.title.toLowerCase().includes(filterText.toLowerCase())) return '';
+                const globalIndex = flatPlaylist.length;
+                flatPlaylist.push({ ...vid, step: stepName, subject: node.name, subsection: sub.name });
+                const isPlaying = currentIndex === globalIndex;
+
+                return `
+                  <button 
+                    onclick="playVideo(${globalIndex})" 
+                    class="w-full pl-9 pr-3.5 py-2 flex items-start gap-2.5 text-left text-xs transition ${isPlaying ? 'bg-indigo-600/20 text-indigo-300 font-bold border-l-2 border-indigo-500' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200'}"
+                  >
+                    <i data-lucide="${isPlaying ? 'play-circle' : 'file-video'}" class="w-3.5 h-3.5 ${isPlaying ? 'text-indigo-400' : 'text-slate-500'} shrink-0 mt-0.5"></i>
+                    <div class="flex-1 truncate">
+                      <div class="truncate text-[11px] leading-tight font-medium">${vid.title}</div>
+                      <div class="text-[10px] text-slate-500 mt-0.5 font-mono">${vid.sizeFormatted}</div>
+                    </div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      return html;
     }
 
     function playVideo(index) {
@@ -277,48 +497,234 @@
       videoEl.playbackRate = currentSpeed;
       videoEl.play();
 
-      document.getElementById('current-title').textContent = vid.filename.replace(/^\d+_/, '').replace(/\.mp4$/i, '');
-      document.getElementById('current-topic-badge').textContent = vid.topic;
+      document.getElementById('current-title').textContent = vid.title;
+      document.getElementById('badge-step').textContent = vid.step;
+      document.getElementById('badge-subject').textContent = vid.subject.replace(/^\d+_/, '');
+      document.getElementById('badge-subsection').textContent = vid.subsection;
       document.getElementById('current-size-badge').textContent = vid.sizeFormatted;
 
-      renderLibrary(document.getElementById('search-input').value);
+      loadTranscript(vid.relativePath);
+      loadQuiz(vid.relativePath);
+      renderCurriculum(document.getElementById('search-input').value);
+    }
+
+    function downloadCompanionPdf() {
+      if (currentIndex < 0) return;
+      const vid = flatPlaylist[currentIndex];
+      window.open(`/api/pdf?path=${encodeURIComponent(vid.relativePath)}`, '_blank');
+    }
+
+    async function loadQuiz(relPath) {
+      const quizContainer = document.getElementById('quiz-container');
+      const countBadge = document.getElementById('quiz-count-badge');
+      quizContainer.innerHTML = '<div class="text-xs text-slate-500 p-4">Loading chapter quiz...</div>';
+
+      try {
+        const res = await fetch(`/api/quiz?path=${encodeURIComponent(relPath)}`);
+        const data = await res.json();
+
+        if (!data.available || !data.questions || data.questions.length === 0) {
+          countBadge.classList.add('hidden');
+          quizContainer.innerHTML = `
+            <div class="p-6 text-center text-slate-500 text-xs">
+              <i data-lucide="info" class="w-6 h-6 mx-auto mb-2 text-slate-600"></i>
+              <p class="font-medium text-slate-400">No official quiz file for this specific topic.</p>
+              <p class="text-[11px] text-slate-500 mt-1">Check the Slides & Notes PDF download above for subject review.</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        currentQuizData = data;
+        countBadge.textContent = `${data.questions.length} Qs`;
+        countBadge.classList.remove('hidden');
+
+        let html = `
+          <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
+            <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+              <i data-lucide="help-circle" class="w-4 h-4"></i>
+              <span>${data.title || 'Chapter Quiz'} (${data.total_questions} Questions)</span>
+            </span>
+          </div>
+        `;
+
+        data.questions.forEach((q, qIdx) => {
+          html += `
+            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3.5 shadow-md">
+              <div class="text-xs font-semibold text-slate-200 leading-relaxed">
+                <span class="px-2 py-0.5 rounded bg-indigo-600/30 text-indigo-300 font-mono text-[10px] mr-1.5 font-bold">Q${q.question_number}</span>
+                ${q.question}
+              </div>
+
+              <!-- ISOLATED CLINICAL FIGURE (Shown ONLY if the question has a diagram/chart/formula) -->
+              ${q.figure_image ? `
+                <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center">
+                  <div class="w-full flex items-center justify-between mb-1.5 px-1">
+                    <span class="text-[10px] font-bold text-indigo-400 flex items-center gap-1">
+                      <i data-lucide="image" class="w-3 h-3"></i>
+                      <span>Figure / Diagram</span>
+                    </span>
+                    <a href="${q.figure_image}" target="_blank" class="text-[10px] text-slate-400 hover:text-indigo-400 flex items-center gap-0.5">
+                      <span>Full View</span>
+                      <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                    </a>
+                  </div>
+                  <img 
+                    src="${q.figure_image}" 
+                    alt="Clinical Figure" 
+                    class="rounded-lg max-h-56 bg-white p-2.5 object-contain shadow-md cursor-pointer hover:scale-[1.01] transition"
+                    onclick="window.open('${q.figure_image}', '_blank')"
+                  >
+                </div>
+              ` : ''}
+
+              <!-- Clean Option Cards -->
+              <div class="space-y-1.5">
+                ${Object.entries(q.options || {}).map(([key, val]) => `
+                  <button 
+                    onclick="checkAnswer(${qIdx}, '${key}', '${q.correct_answer}')" 
+                    id="q-${qIdx}-opt-${key}"
+                    class="quiz-opt-${qIdx} w-full text-left p-3 rounded-xl bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 flex items-center gap-3 transition active:scale-[0.99] group"
+                  >
+                    <span class="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 font-mono font-bold flex items-center justify-center shrink-0 text-xs group-hover:bg-indigo-600 group-hover:text-white transition">${key}</span>
+                    <span class="flex-1 font-medium leading-snug">${val || 'Option ' + key}</span>
+                  </button>
+                `).join('')}
+              </div>
+
+              <!-- Explanation Box (Revealed on click) -->
+              <div id="q-${qIdx}-explanation" class="hidden mt-3 p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-slate-300 leading-relaxed space-y-2">
+                <div class="font-bold text-emerald-400 flex items-center gap-1.5 text-xs">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                  <span>Correct Answer: (${q.correct_answer})</span>
+                </div>
+                <p class="text-slate-300 text-xs leading-relaxed">${q.explanation}</p>
+                ${q.explanation_image ? `
+                  <div class="mt-2 pt-2 border-t border-indigo-500/20 flex items-center justify-between">
+                    <a href="${q.explanation_image}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-indigo-400 hover:underline font-semibold">
+                      <i data-lucide="file-image" class="w-3.5 h-3.5"></i> 
+                      <span>View Official Board Explanation Slide</span>
+                    </a>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        });
+
+        quizContainer.innerHTML = html;
+        lucide.createIcons();
+      } catch (err) {
+        quizContainer.innerHTML = '<div class="text-xs text-red-400 p-4">Failed to load quiz.</div>';
+      }
+    }
+
+    function checkAnswer(qIdx, selectedKey, correctKey) {
+      const expBox = document.getElementById(`q-${qIdx}-explanation`);
+      const buttons = document.querySelectorAll(`.quiz-opt-${qIdx}`);
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      const selectedBtn = document.getElementById(`q-${qIdx}-opt-${selectedKey}`);
+      const correctBtn = document.getElementById(`q-${qIdx}-opt-${correctKey}`);
+
+      if (selectedKey === correctKey) {
+        if (selectedBtn) selectedBtn.className = 'w-full text-left p-2.5 rounded-lg bg-emerald-950/60 border border-emerald-500/60 text-xs text-emerald-200 flex items-start gap-2.5';
+      } else {
+        if (selectedBtn) selectedBtn.className = 'w-full text-left p-2.5 rounded-lg bg-rose-950/60 border border-rose-500/60 text-xs text-rose-200 flex items-start gap-2.5';
+        if (correctBtn) correctBtn.className = 'w-full text-left p-2.5 rounded-lg bg-emerald-950/60 border border-emerald-500/60 text-xs text-emerald-200 flex items-start gap-2.5';
+      }
+
+      if (expBox) expBox.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    async function loadTranscript(relPath) {
+      const transcriptBody = document.getElementById('panel-transcript');
+      transcriptBody.innerHTML = '<p class="text-slate-500 italic p-2">Loading transcript...</p>';
+
+      try {
+        const res = await fetch(`/api/transcript?path=${encodeURIComponent(relPath)}`);
+        const data = await res.json();
+
+        if (data.available && data.segments && data.segments.length > 0) {
+          transcriptBody.innerHTML = data.segments.map(s => `
+            <div class="flex items-start gap-3 p-1.5 rounded-lg hover:bg-slate-800/40 transition cursor-pointer group" onclick="seekTo(${s.start})">
+              <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded shrink-0 group-hover:bg-indigo-500 group-hover:text-white transition">
+                ${formatTime(s.start)}
+              </span>
+              <p class="text-slate-300 group-hover:text-white transition text-xs">${s.text}</p>
+            </div>
+          `).join('');
+        } else if (data.available && data.full_text) {
+          transcriptBody.innerHTML = `<div class="p-2 text-xs text-slate-300 whitespace-pre-wrap">${data.full_text}</div>`;
+        } else {
+          transcriptBody.innerHTML = `<p class="text-slate-500 italic p-2 text-xs">${data.message || 'Transcript is generating in the background.'}</p>`;
+        }
+      } catch (e) {
+        transcriptBody.innerHTML = '<p class="text-red-400 p-2 text-xs">Error loading transcript.</p>';
+      }
+    }
+
+    function formatTime(secs) {
+      const m = Math.floor(secs / 60);
+      const s = Math.floor(secs % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function seekTo(seconds) {
+      videoEl.currentTime = seconds;
+      videoEl.play();
+    }
+
+    function seekVideo(delta) {
+      videoEl.currentTime = Math.max(0, videoEl.currentTime + delta);
     }
 
     function setSpeed(speed) {
       currentSpeed = speed;
       videoEl.playbackRate = speed;
       document.querySelectorAll('.speed-btn').forEach(btn => {
-        if (parseFloat(btn.dataset.speed) === speed) {
-          btn.className = 'speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold';
+        const s = parseFloat(btn.dataset.speed);
+        if (s === speed) {
+          btn.className = 'speed-btn px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition font-bold shadow-md shadow-indigo-600/30';
         } else {
           btn.className = 'speed-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition font-medium';
         }
       });
     }
 
-    function seekVideo(seconds) {
-      videoEl.currentTime = Math.max(0, Math.min(videoEl.duration || 0, videoEl.currentTime + seconds));
+    function playPrev() {
+      if (currentIndex > 0) playVideo(currentIndex - 1);
     }
 
     function playNext() {
-      if (currentIndex + 1 < flatPlaylist.length) playVideo(currentIndex + 1);
-    }
-
-    function playPrev() {
-      if (currentIndex - 1 >= 0) playVideo(currentIndex - 1);
-    }
-
-    function handleVideoEnded() {
-      playNext();
+      if (currentIndex < flatPlaylist.length - 1) playVideo(currentIndex + 1);
     }
 
     function handleSearch(val) {
-      renderLibrary(val.trim());
+      renderCurriculum(val);
+    }
+
+    function filterTranscript(term) {
+      const items = document.querySelectorAll('#panel-transcript > div');
+      const cleanTerm = term.toLowerCase().trim();
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = !cleanTerm || text.includes(cleanTerm) ? 'flex' : 'none';
+      });
+    }
+
+    function copyTranscript() {
+      const text = document.getElementById('panel-transcript').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Transcript copied to clipboard!');
     }
 
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT') return;
+      if (['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
       if (e.code === 'Space') {
         e.preventDefault();
         videoEl.paused ? videoEl.play() : videoEl.pause();
@@ -332,9 +738,9 @@
       }
     });
 
-    // Auto-refresh library every 5 seconds as downloader downloads videos
+    // Initialize
     fetchVideos();
-    setInterval(() => fetchVideos(false), 5000);
+    lucide.createIcons();
   </script>
 </body>
 </html>

@@ -2,12 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer');
 
-const outputPdfPath = path.join(__dirname, 'manual-eunacom-cardiologia-completo-v33.pdf');
+const outputPdfPath = path.join(__dirname, '..', 'libro_eunacom_v3', 'Modulo_1_Medicina_Interna', 'Capitulo_01_Cardiologia_Completo_v33.pdf');
+const publicPdfPath = path.join(__dirname, '..', '..', 'public', 'cardio_showcase', 'Cardiologia_Completo.pdf');
 
 // Read the downloaded live classes
-const onlineClasses = JSON.parse(fs.readFileSync(path.join(__dirname, 'cardio_online_classes.json'), 'utf8'));
+const onlineClasses = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'cardio_online_classes.json'), 'utf8'));
 // Read question bank
-const bankRaw = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'public', 'data', 'pruebas', 'modulo-1-cardiologia.json'), 'utf8'));
+const bankPath = path.join(__dirname, '..', '..', 'public', 'data', 'pruebas', 'modulo-1-cardiologia.json');
+const bankRaw = fs.existsSync(bankPath) ? JSON.parse(fs.readFileSync(bankPath, 'utf8')) : [];
 const questionBank = Array.isArray(bankRaw) ? bankRaw : (bankRaw.pruebas || []);
 
 // Helper to strip any unexpected emojis for formal medical textbook standard
@@ -18,7 +20,7 @@ function stripEmojis(str) {
 
 function getSvg(svgFilename) {
   if (!svgFilename) return '';
-  const p = path.join(__dirname, 'generate-book', 'svg_diagrams', svgFilename);
+  const p = path.join(__dirname, '..', 'generate-book', 'svg_diagrams', svgFilename);
   if (fs.existsSync(p)) {
     let svg = fs.readFileSync(p, 'utf8');
     svg = svg.replace(/<ellipse[^>]+fill=["']#222222["'][^>]*\/>/gi, '');
@@ -1020,24 +1022,27 @@ function generateHtml() {
 
     .diagram-box {
       width: 100%;
-      border: 1px solid #1e3a8a;
-      border-radius: 2px;
-      padding: 5px;
-      margin-top: 6px;
-      margin-bottom: 6px;
+      border: 1.5px solid #1e3a8a;
+      border-radius: 3px;
+      padding: 6px 10px;
+      margin-top: 8px;
+      margin-bottom: 8px;
       background: #ffffff;
       text-align: center;
       break-inside: avoid;
+      column-span: all;
+      -webkit-column-span: all;
     }
     .diagram-box .d-title {
-      font-weight: 700;
-      font-size: 7.5pt;
+      font-weight: 800;
+      font-size: 8pt;
       text-transform: uppercase;
       color: #1e3a8a;
       text-align: center;
-      margin-bottom: 3px;
-      border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 1px;
+      margin-bottom: 4px;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 2px;
+      letter-spacing: 0.5px;
     }
     .svg-centered {
       display: flex;
@@ -1047,8 +1052,9 @@ function generateHtml() {
       text-align: center;
     }
     .svg-centered svg {
-      max-width: 100%;
-      height: auto;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
       margin: 0 auto;
       display: block;
     }
@@ -1192,11 +1198,14 @@ async function main() {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
-  const page = await browser.newPage();
-  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+  fs.mkdirSync(path.dirname(outputPdfPath), { recursive: true });
+  fs.mkdirSync(path.dirname(publicPdfPath), { recursive: true });
 
-  await page.pdf({
-    path: outputPdfPath,
+  const page = await browser.newPage();
+  await page.setContent(htmlContent, { waitUntil: 'load', timeout: 60000 });
+  await page.evaluateHandle('document.fonts.ready');
+
+  const pdfBuffer = await page.pdf({
     format: 'Letter',
     printBackground: true,
     displayHeaderFooter: true,
@@ -1215,8 +1224,13 @@ async function main() {
     }
   });
 
+  fs.writeFileSync(outputPdfPath, pdfBuffer);
+  fs.writeFileSync(publicPdfPath, pdfBuffer);
+
   await browser.close();
-  console.log("¡ÉXITO! Manual EUNACOM V33 generado en:", outputPdfPath);
+  console.log("¡ÉXITO! Manual EUNACOM V33 generado en:");
+  console.log("  1)", outputPdfPath);
+  console.log("  2)", publicPdfPath);
 }
 
 main().catch(console.error);
