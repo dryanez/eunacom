@@ -1,14 +1,14 @@
 {
     "redirects": [
         {
-            "source": "/:path*",
+            "source": "/((?!api/).*)",
             "has": [
                 {
                     "type": "host",
                     "value": "eunacom.vercel.app"
                 }
             ],
-            "destination": "https://www.eunacomapp.cl/:path*",
+            "destination": "https://www.eunacomapp.cl/$1",
             "permanent": true
         }
     ],
