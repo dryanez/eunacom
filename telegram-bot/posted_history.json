@@ -16,7 +16,10 @@
     "6f81c99f-58bd-43e8-916f-128c0bc855aa",
     "31268f98-8aca-4584-8e8d-2319fc79aa7a",
     "4e959aee-3aae-44e3-94ac-700cf08f2cd8",
-    "439d902e-5a5d-4a51-b318-b1e007a3a99b"
+    "439d902e-5a5d-4a51-b318-b1e007a3a99b",
+    "b022a1c2-bb52-415f-b36a-ae2f59337031",
+    "29c2c1b7-45a9-406f-b743-3d3ec33fece3",
+    "26f2eaba-e301-464b-9746-dae4e41f37ba"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -25,7 +28,8 @@
       "ea7ac807-762a-475b-990c-1818d35cd1de",
       "cbe7794f-84da-4052-a48f-cac7c0a36a38",
       "csv_Endocrinología_70_1776130033337",
-      "4e959aee-3aae-44e3-94ac-700cf08f2cd8"
+      "4e959aee-3aae-44e3-94ac-700cf08f2cd8",
+      "29c2c1b7-45a9-406f-b743-3d3ec33fece3"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -34,13 +38,15 @@
       "816e80b8-2a74-4c4b-9968-c16767891540",
       "csv_Cardiología_20_1776129957533",
       "6f81c99f-58bd-43e8-916f-128c0bc855aa",
-      "439d902e-5a5d-4a51-b318-b1e007a3a99b"
+      "439d902e-5a5d-4a51-b318-b1e007a3a99b",
+      "26f2eaba-e301-464b-9746-dae4e41f37ba"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
       "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
       "30a7faf2-1e0e-4379-a73f-8bfe3ff2d491",
-      "31268f98-8aca-4584-8e8d-2319fc79aa7a"
+      "31268f98-8aca-4584-8e8d-2319fc79aa7a",
+      "b022a1c2-bb52-415f-b36a-ae2f59337031"
     ]
   },
   "history": [
@@ -287,6 +293,38 @@
           "vignetteMessageId": 25,
           "pollMessageId": 26,
           "explanationMessageId": 27
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-30T16:52:45.869Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "b022a1c2-bb52-415f-b36a-ae2f59337031",
+          "topic": "Psiquiatría",
+          "success": true,
+          "vignetteMessageId": 18,
+          "pollMessageId": 19,
+          "explanationMessageId": 20
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "29c2c1b7-45a9-406f-b743-3d3ec33fece3",
+          "topic": "Gastroenterología",
+          "success": true,
+          "vignetteMessageId": 27,
+          "pollMessageId": 28,
+          "explanationMessageId": 29
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "26f2eaba-e301-464b-9746-dae4e41f37ba",
+          "topic": "Endocrinología",
+          "success": true,
+          "vignetteMessageId": 28,
+          "pollMessageId": 29,
+          "explanationMessageId": 30
         }
       ]
     }
