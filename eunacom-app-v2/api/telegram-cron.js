@@ -113,7 +113,7 @@ export default async function handler(req, res) {
         chat_id: channelId,
         text: explanationMsg,
         parse_mode: 'Markdown',
-        disable_web_page_preview: false,
+        disable_web_page_preview: true,
         reply_to_message_id: pollRes.message_id,
       }, botToken);
 

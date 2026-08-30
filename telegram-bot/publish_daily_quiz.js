@@ -278,7 +278,7 @@ export async function publishDailyQuestion(options = {}) {
         chat_id: channelId,
         text: explanationMsg,
         parse_mode: 'Markdown',
-        disable_web_page_preview: false,
+        disable_web_page_preview: true,
         reply_to_message_id: pollRes.message_id,
       }, botToken);
       console.log(`   ✓ Explanation & CTA sent (msg_id: ${explRes.message_id})`);

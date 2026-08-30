@@ -204,7 +204,7 @@ export function formatExplanationMessage(q, { siteUrl = 'https://www.eunacomapp.
   if (displayExplanation.length > 2500) {
     displayExplanation = displayExplanation.slice(0, 2450) + '\n\n_(Explicación completa disponible en la plataforma)_';
   }
-  msg += `${displayExplanation}\n\n`;
+  msg += `||${displayExplanation}||\n\n`;
 
   // High converting CTA
   msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
