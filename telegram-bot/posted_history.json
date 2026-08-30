@@ -10,25 +10,31 @@
     "816e80b8-2a74-4c4b-9968-c16767891540",
     "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
     "cbe7794f-84da-4052-a48f-cac7c0a36a38",
-    "csv_Cardiología_20_1776129957533"
+    "csv_Cardiología_20_1776129957533",
+    "30a7faf2-1e0e-4379-a73f-8bfe3ff2d491",
+    "csv_Endocrinología_70_1776130033337",
+    "6f81c99f-58bd-43e8-916f-128c0bc855aa"
   ],
   "channelHistory": {
     "@exameneunacom": [
       "49c187c8-48e0-47e6-b832-45c541bac901",
       "84b125a7-a009-4635-b23b-8ae44c394fdd",
       "ea7ac807-762a-475b-990c-1818d35cd1de",
-      "cbe7794f-84da-4052-a48f-cac7c0a36a38"
+      "cbe7794f-84da-4052-a48f-cac7c0a36a38",
+      "csv_Endocrinología_70_1776130033337"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
       "9bf4d0e5-5659-4012-9776-cc3964ab529f",
       "csv_Reumatología_328_1776130338245",
       "816e80b8-2a74-4c4b-9968-c16767891540",
-      "csv_Cardiología_20_1776129957533"
+      "csv_Cardiología_20_1776129957533",
+      "6f81c99f-58bd-43e8-916f-128c0bc855aa"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
-      "2a342247-a3d1-4555-a31f-59f3db8c2c2d"
+      "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
+      "30a7faf2-1e0e-4379-a73f-8bfe3ff2d491"
     ]
   },
   "history": [
@@ -211,6 +217,38 @@
           "vignetteMessageId": 16,
           "pollMessageId": 17,
           "explanationMessageId": 18
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-30T16:30:03.560Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "30a7faf2-1e0e-4379-a73f-8bfe3ff2d491",
+          "topic": "Cardiología",
+          "success": true,
+          "vignetteMessageId": 12,
+          "pollMessageId": 13,
+          "explanationMessageId": 14
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "csv_Endocrinología_70_1776130033337",
+          "topic": "Endocrinología",
+          "success": true,
+          "vignetteMessageId": 21,
+          "pollMessageId": 22,
+          "explanationMessageId": 23
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "6f81c99f-58bd-43e8-916f-128c0bc855aa",
+          "topic": "Respiratorio",
+          "success": true,
+          "vignetteMessageId": 22,
+          "pollMessageId": 23,
+          "explanationMessageId": 24
         }
       ]
     }
