@@ -193,24 +193,30 @@ export function prepareQuizPayload(q) {
  */
 export function formatExplanationMessage(q, { siteUrl = 'https://www.eunacomapp.cl' } = {}) {
   const correctLetter = (q.correctAnswer || 'A').toUpperCase();
-  const sanitizedExpl = sanitizeMarkdown(q.explanation || 'Consulta la guía clínica oficial en la plataforma.');
   
-  let msg = `📖 *RESOLUCIÓN Y FUNDAMENTO OFICIAL*\n`;
+  // Escape HTML special characters
+  const cleanExpl = cleanText(q.explanation || 'Consulta la guía clínica oficial en la plataforma.')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Convert standard markdown bold *text* to <b>text</b>
+  let displayExplanation = cleanExpl.replace(/\*([^*]+)\*/g, '<b>$1</b>');
+  
+  let msg = `📖 <b>RESOLUCIÓN Y FUNDAMENTO OFICIAL</b>\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
-  msg += `✅ *Respuesta Correcta: Alternativa ${correctLetter}*\n\n`;
+  msg += `✅ <b>Respuesta Correcta: Alternativa ${correctLetter}</b>\n\n`;
   
-  // Truncate explanation if excessively long for a single Telegram message (limit ~3500 chars)
-  let displayExplanation = sanitizedExpl;
   if (displayExplanation.length > 2500) {
-    displayExplanation = displayExplanation.slice(0, 2450) + '\n\n_(Explicación completa disponible en la plataforma)_';
+    displayExplanation = displayExplanation.slice(0, 2450) + '\n\n<i>(Explicación completa disponible en la plataforma)</i>';
   }
-  msg += `||${displayExplanation}||\n\n`;
+  msg += `<tg-spoiler>${displayExplanation}</tg-spoiler>\n\n`;
 
   // High converting CTA
   msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
-  msg += `🎯 *¿Preparando el EUNACOM 2026?*\n`;
+  msg += `🎯 <b>¿Preparando el EUNACOM 2026?</b>\n`;
   msg += `Practica gratis más de 6.000 preguntas oficiales comentadas, filtra por especialidad y rinde ensayos cronometrados con ranking nacional en:\n`;
-  msg += `👉 🌐 [www.eunacomapp.cl](${siteUrl}?utm_source=telegram&utm_medium=daily_quiz&utm_campaign=pregunta_del_dia)\n`;
+  msg += `👉 🌐 <a href="${siteUrl}?utm_source=telegram&utm_medium=daily_quiz&utm_campaign=pregunta_del_dia">www.eunacomapp.cl</a>\n`;
 
   return msg;
 }

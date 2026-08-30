@@ -277,7 +277,7 @@ export async function publishDailyQuestion(options = {}) {
       const explRes = await callTelegramApi('sendMessage', {
         chat_id: channelId,
         text: explanationMsg,
-        parse_mode: 'Markdown',
+        parse_mode: 'HTML',
         disable_web_page_preview: true,
         reply_to_message_id: pollRes.message_id,
       }, botToken);
