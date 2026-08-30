@@ -9,7 +9,11 @@
     "build": "vite build && node scripts/prerender-seo.js",
     "build:ios": "vite build --config vite.config.ios.js && mv dist-ios/index-ios.html dist-ios/index.html",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "telegram:preview": "node ../telegram-bot/test_quiz_preview.js",
+    "telegram:dry": "node ../telegram-bot/publish_daily_quiz.js --dry-run",
+    "telegram:post": "node ../telegram-bot/publish_daily_quiz.js",
+    "telegram:start": "node ../telegram-bot/scheduler.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1075.0",

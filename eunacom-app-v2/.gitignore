@@ -31,3 +31,4 @@ src/data/pruebas.json
 # Cache and local scratch
 __pycache__/
 scratch/
+.env*.local

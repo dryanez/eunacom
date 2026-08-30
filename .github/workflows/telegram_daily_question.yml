@@ -6,6 +6,9 @@ on:
     - cron: '0 12 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
+permissions:
+  contents: write
+
 jobs:
   broadcast-daily-quiz:
     runs-on: ubuntu-latest
