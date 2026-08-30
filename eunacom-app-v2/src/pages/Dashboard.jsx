@@ -15,6 +15,8 @@ import { TopicQuickModal } from '../components/TopicQuickModal'
 import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
 import { getDoctorAvatar, DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
 import LevelUpModal from '../components/LevelUpModal'
+import StreakRiskBanner from '../components/StreakRiskBanner'
+import StreakSaverModal from '../components/StreakSaverModal'
 import '../styles/dashboardProMax.css'
 
 const TOPIC_PRESETS = [
@@ -69,8 +71,29 @@ const Dashboard = () => {
   const [todayCorrect, setTodayCorrect] = useState(0)
   const [lbLoading, setLbLoading] = useState(true)
   const [levelUpModalData, setLevelUpModalData] = useState(null)
+  const [showStreakSaverModal, setShowStreakSaverModal] = useState(false)
   const [demoStep, setDemoStep] = useState(1)
   const DAILY_GOAL = 50
+
+  // Check URL parameters for streak rescue deep-link (e.g. from email marketing)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('action') === 'save_streak' || params.get('streak_rescue') === 'true' || params.get('rescue') === 'true') {
+        setShowStreakSaverModal(true)
+      }
+    }
+  }, [])
+
+  const handleStreakSaved = ({ streak, savedToday, answersCount }) => {
+    setTodayAnswers(prev => prev + (answersCount || 3))
+    setStats(prev => ({
+      ...prev,
+      streak: streak || (prev.streak + 1),
+      xp: (prev.xp || 0) + 50,
+      totalXP: (prev.totalXP || prev.xp || 0) + 50
+    }))
+  }
 
   const triggerDemoLevelUp = () => {
     const current = demoStep
@@ -659,20 +682,43 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Quick Streak Widget Linking Directly to MedLingo */}
-          <a href="/medlingo" className="dash-streak-quick-widget" title="Toca para entrenar tu racha en MedLingo">
+          {/* Quick Streak Widget Linking to MedLingo / Streak Saver */}
+          <div 
+            onClick={() => {
+              if (todayAnswers === 0 && (stats.streak > 0)) {
+                setShowStreakSaverModal(true)
+              } else {
+                navigate('/medlingo')
+              }
+            }}
+            className={`dash-streak-quick-widget ${todayAnswers === 0 && stats.streak > 0 ? 'streak-widget-risk' : ''}`}
+            title={todayAnswers === 0 && stats.streak > 0 ? "⚠️ Racha en riesgo hoy — Toca para responder 3 preguntas y salvarla" : "Toca para entrenar tu racha en MedLingo"}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="dash-streak-flame-box">
-              <Flame size={24} className="dash-flame-anim" />
+              <Flame size={24} className={todayAnswers === 0 && stats.streak > 0 ? "dash-flame-anim flame-pulse-fast" : "dash-flame-anim"} />
             </div>
             <div className="dash-streak-data">
-              <span className="dash-streak-lbl">Racha Activa</span>
+              <span className="dash-streak-lbl">
+                {todayAnswers === 0 && stats.streak > 0 ? '⚠️ En Riesgo' : 'Racha Activa'}
+              </span>
               <span className="dash-streak-val">
                 {stats.streak || 1} <span>{stats.streak === 1 ? 'día' : 'días'}</span>
               </span>
             </div>
             <ChevronRight size={18} color="#f97316" />
-          </a>
+          </div>
         </div>
+      )}
+
+      {/* ─── STREAK FREEZE WARNING BANNER (Trigger de Racha en Riesgo) ─── */}
+      {stats.streak > 0 && todayAnswers === 0 && (
+        <StreakRiskBanner
+          streak={stats.streak}
+          userFirstName={userProfile?.firstName || user?.email?.split('@')[0] || ''}
+          hoursRemaining={3}
+          onOpenStreakSaver={() => setShowStreakSaverModal(true)}
+        />
       )}
 
       {/* ─── UI/UX PRO MAX BENTO GRID (1st: MIS CLASES, 2nd: MEDLINGO) ─── */}
@@ -1576,6 +1622,16 @@ const Dashboard = () => {
           onEquipDoctor={handleEquipDoctor}
         />
       )}
+
+      {/* ─── QUICK 3-QUESTION STREAK SAVER MODAL ─── */}
+      <StreakSaverModal
+        isOpen={showStreakSaverModal}
+        onClose={() => setShowStreakSaverModal(false)}
+        userId={user?.id}
+        userFirstName={userProfile?.firstName || user?.email?.split('@')[0] || 'Colega'}
+        currentStreak={stats.streak || 3}
+        onStreakSaved={handleStreakSaved}
+      />
 
     </div>
   </div>

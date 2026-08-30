@@ -379,12 +379,12 @@ export default async function handler(req, res) {
       let streak = 0
       if (userId) {
         const days = await db.execute({
-          sql: `SELECT DISTINCT date(completed_at) as d 
-                FROM tests 
-                WHERE user_id = ? AND status = 'completed'
-                ORDER BY d DESC 
-                LIMIT 60`,
-          args: [userId]
+          sql: `SELECT DISTINCT d FROM (
+                  SELECT date(answered_at) as d FROM user_progress WHERE user_id = ? AND answered_at IS NOT NULL
+                  UNION
+                  SELECT date(completed_at) as d FROM tests WHERE user_id = ? AND status = 'completed' AND completed_at IS NOT NULL
+                ) ORDER BY d DESC LIMIT 60`,
+          args: [userId, userId]
         })
         // Count consecutive days from today/yesterday
         const today = new Date()
@@ -418,23 +418,27 @@ export default async function handler(req, res) {
           }
         }
 
-        // Also get today's stats for the user
+        // Also get today's stats for the user from both tests and user_progress
         const todayStats = await db.execute({
           sql: `SELECT 
-                  SUM(t.total_questions) as today_answers,
-                  SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) as today_correct
-                FROM tests t
-                WHERE t.user_id = ? AND t.status = 'completed' AND date(t.completed_at) = date('now')`,
-          args: [userId]
+                  COALESCE((SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND date(answered_at) = date('now')), 0) as progress_ans,
+                  COALESCE((SELECT COUNT(*) FROM user_progress WHERE user_id = ? AND date(answered_at) = date('now') AND is_correct = 1), 0) as progress_cor,
+                  COALESCE((SELECT SUM(t.total_questions) FROM tests t WHERE t.user_id = ? AND t.status = 'completed' AND date(t.completed_at) = date('now')), 0) as test_ans,
+                  COALESCE((SELECT SUM(ROUND((t.score * 1.0 / 100) * t.total_questions)) FROM tests t WHERE t.user_id = ? AND t.status = 'completed' AND date(t.completed_at) = date('now')), 0) as test_cor`,
+          args: [userId, userId, userId, userId]
         })
+
+        const row = todayStats.rows[0] || {}
+        const todayAnswers = Math.max(Number(row.progress_ans || 0), Number(row.test_ans || 0))
+        const todayCorrect = Math.max(Number(row.progress_cor || 0), Number(row.test_cor || 0))
 
         return res.json({
           leaderboard: lb.rows,
           sedeLeaderboard: sedeLb.rows,
           countryLeaderboard: countryLb.rows,
           streak,
-          todayAnswers: todayStats.rows[0]?.today_answers || 0,
-          todayCorrect: todayStats.rows[0]?.today_correct || 0,
+          todayAnswers,
+          todayCorrect,
         })
       }
 

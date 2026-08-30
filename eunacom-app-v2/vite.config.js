@@ -401,49 +401,52 @@ function clasesApiPlugin() {
         }
       })
 
+      // Helper to adapt Vercel serverless handlers in Vite dev server
+      const adaptVercelHandler = (handler) => async (req, res) => {
+        const url = new URL(req.url, 'http://localhost')
+        req.query = Object.fromEntries(url.searchParams.entries())
+        if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT') {
+          req.body = await new Promise(r => {
+            let d = ''
+            req.on('data', c => d += c)
+            req.on('end', () => {
+              try { r(JSON.parse(d)) } catch { r({}) }
+            })
+          })
+        }
+        res.status = (code) => { res.statusCode = code; return res }
+        res.json = (data) => {
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify(data))
+          return res
+        }
+        await handler(req, res)
+      }
+
       // ── Admin Users API (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/admin-users')) return next()
-        res.setHeader('Content-Type', 'application/json')
         try {
-          if (req.method === 'GET') {
-            const url = new URL(req.url, 'http://localhost')
-            const action = url.searchParams.get('action')
-            if (action === 'settings') {
-              return res.end(JSON.stringify({ settings: { freemium_mode: 'strict' } }))
-            }
-            return res.end(JSON.stringify({ users: [], total: 0 }))
-          }
-          if (req.method === 'POST') {
-            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
-            
-            if (!process.env.RESEND_API_KEY) {
-              return res.end(JSON.stringify({ error: 'RESEND_API_KEY is missing in local .env' }))
-            }
-            
-            const { Resend } = await import('resend')
-            const resend = new Resend(process.env.RESEND_API_KEY)
-            const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacom.app'
-            const targets = body.targetEmails || []
-            
-            if (targets.length === 0) {
-              return res.end(JSON.stringify({ error: 'No target emails provided' }))
-            }
-
-            console.log(`Sending campaign via Resend to ${targets.length} users...`)
-            
-            const chunkArray = (arr, size) => arr.length > size ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)] : [arr]
-            const batches = chunkArray(targets, 100)
-            let totalSent = 0
-            
-            console.log('Campaign successfully sent!')
-            return res.end(JSON.stringify({ success: true, message: `Campaign sent to ${totalSent} users` }))
-          }
-          res.statusCode = 405
-          return res.end(JSON.stringify({ error: 'Method not allowed' }))
+          const { default: handler } = await import('./api/admin-users.js')
+          await adaptVercelHandler(handler)(req, res)
         } catch (err) {
-          console.error('campaign-api error:', err)
+          console.error('admin-users dev error:', err)
           res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // ── Email Marketing Cron API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/email-marketing-cron')) return next()
+        try {
+          const { default: handler } = await import('./api/email-marketing-cron.js')
+          await adaptVercelHandler(handler)(req, res)
+        } catch (err) {
+          console.error('email-marketing-cron dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
           return res.end(JSON.stringify({ error: err.message }))
         }
       })

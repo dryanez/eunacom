@@ -169,7 +169,7 @@ export default async function handler(req, res) {
 
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
-      const { userId, planId } = req.body
+      const { userId, planId, discount } = req.body
       if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
 
       const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
@@ -177,13 +177,20 @@ export default async function handler(req, res) {
       if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
 
       const plan = PLANS[planId]
+      const discountPct = Number(discount) > 0 && Number(discount) <= 50 ? Number(discount) : 0
+      const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
       const externalReference = `${userId}|${planId}|${Date.now()}`
 
       const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: [{ title: plan.title, quantity: 1, unit_price: plan.price, currency_id: 'CLP' }],
+          items: [{
+            title: discountPct > 0 ? `${plan.title} (${discountPct}% DCTO)` : plan.title,
+            quantity: 1,
+            unit_price: finalPrice,
+            currency_id: 'CLP'
+          }],
           payer: { email: payerEmail },
           external_reference: externalReference,
           back_urls: {
@@ -313,6 +320,43 @@ export default async function handler(req, res) {
           study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0
         ]
       })
+
+      // Trigger Welcome Email in background if not already sent
+      try {
+        if (process.env.RESEND_API_KEY && email && email.includes('@')) {
+          const logCheck = await db.execute({
+            sql: `SELECT id FROM email_campaign_logs WHERE user_id = ? AND campaign_type = 'welcome'`,
+            args: [id]
+          }).catch(() => ({ rows: [] }))
+
+          if (!logCheck.rows || logCheck.rows.length === 0) {
+            const { Resend } = await import('resend')
+            const { getWelcomeEmailHtml } = await import('./_email-templates.js')
+            const resend = new Resend(process.env.RESEND_API_KEY)
+            const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl'
+            const welcomeHtml = getWelcomeEmailHtml({ firstName: first_name || '' })
+            
+            resend.emails.send({
+              from: `EUNACOM App <${sender}>`,
+              to: email,
+              subject: `🩺 ¡Bienvenido/a Dr(a). ${first_name || 'Colega'}! Tu plan para aprobar el EUNACOM`,
+              html: welcomeHtml
+            }).then(async (sendRes) => {
+              if (sendRes?.data?.id) {
+                const logId = `log_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`
+                await db.execute({
+                  sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject)
+                        VALUES (?, ?, ?, 'welcome', ?)`,
+                  args: [logId, id, email, `¡Bienvenido/a Dr(a). ${first_name || 'Colega'}!`]
+                }).catch(() => {})
+              }
+            }).catch(err => console.error('[Welcome Email Error]:', err?.message))
+          }
+        }
+      } catch (welcomeErr) {
+        console.error('[Welcome Email Trigger Error]:', welcomeErr?.message)
+      }
+
       return res.json({ ok: true })
     }
     // --- DELETE PROFILE ---

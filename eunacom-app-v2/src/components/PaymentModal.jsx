@@ -12,7 +12,33 @@ const PLANS = [
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
-  const [selectedPlan, setSelectedPlan] = useState(PLANS[2]); // Default 6 months
+  
+  // Read discount from URL or localStorage (30, 40, 50)
+  const [discountPercent, setDiscountPercent] = useState(() => {
+    try {
+      const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+      const qDiscount = urlParams?.get('discount');
+      if (qDiscount && [30, 40, 50].includes(Number(qDiscount))) return Number(qDiscount);
+      const stored = localStorage.getItem('eunacom_pending_discount');
+      if (stored && [30, 40, 50].includes(Number(stored))) return Number(stored);
+    } catch {}
+    return 0;
+  });
+
+  const plansToDisplay = React.useMemo(() => {
+    if (!discountPercent) return PLANS;
+    return PLANS.map(p => {
+      const num = parseInt(p.price.replace(/\D/g, ''), 10);
+      const discounted = Math.round(num * (1 - discountPercent / 100));
+      return {
+        ...p,
+        oldPrice: p.price,
+        price: `$${discounted.toLocaleString('es-CL')}`
+      };
+    });
+  }, [discountPercent]);
+
+  const [selectedPlan, setSelectedPlan] = useState(() => plansToDisplay[2]); // Default 6 months
   const [step, setStep] = useState(1);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
@@ -20,7 +46,6 @@ const PaymentModal = ({ onClose }) => {
   
   // Bolivia QR State
   const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
-
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -36,7 +61,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
-      const res = await createCheckoutSession(user.id, selectedPlan.id);
+      const res = await createCheckoutSession(user.id, selectedPlan.id, discountPercent);
       if (res.init_point) {
         window.location.href = res.init_point;
       } else {
@@ -118,8 +143,28 @@ const PaymentModal = ({ onClose }) => {
                   <strong>Todos los planes</strong> incluyen acceso total e ilimitado al <strong>Curso de +650 Videos</strong>, +10.000 preguntas, reconstrucciones y simulacros.
                 </p>
                 
+                {discountPercent > 0 && (
+                  <div style={{
+                    background: 'linear-gradient(135deg, rgba(37,99,235,0.2) 0%, rgba(29,78,216,0.3) 100%)',
+                    border: '1px solid #3b82f6',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    marginBottom: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
+                      🏷️ Cupón Exclusivo: {discountPercent}% DCTO Aplicado
+                    </span>
+                    <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
+                      VÁLIDO
+                    </span>
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.35rem' : '0.75rem' }}>
-                  {PLANS.map(plan => (
+                  {plansToDisplay.map(plan => (
                     <div
                       key={plan.id}
                       onClick={() => {
@@ -145,8 +190,15 @@ const PaymentModal = ({ onClose }) => {
                         <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>{plan.name}</h4>
                         <p style={{ margin: '0.05rem 0 0 0', fontSize: isMobile ? '0.7rem' : '0.78rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
                       </div>
-                      <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
-                        {plan.price}
+                      <div style={{ textAlign: 'right' }}>
+                        {plan.oldPrice && (
+                          <div style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>
+                            {plan.oldPrice}
+                          </div>
+                        )}
+                        <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
+                          {plan.price}
+                        </div>
                       </div>
                     </div>
                   ))}

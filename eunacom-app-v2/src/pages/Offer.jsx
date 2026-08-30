@@ -7,10 +7,19 @@ const Offer = () => {
   const { setShowPaymentModal } = useSubscription();
 
   useEffect(() => {
+    // Extract discount parameter if present (30, 40, 50)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const discount = params.get('discount');
+      if (discount) {
+        localStorage.setItem('eunacom_pending_discount', discount);
+      }
+    } catch {}
+
     // Enable global payment modal
     setShowPaymentModal(true);
-    // Redirect to dashboard (or wherever the user was)
-    navigate('/dashboard', { replace: true });
+    // Redirect to dashboard with discount query preserved
+    navigate(`/dashboard${window.location.search}`, { replace: true });
   }, [navigate, setShowPaymentModal]);
 
   return (

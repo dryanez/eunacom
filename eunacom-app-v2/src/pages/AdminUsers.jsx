@@ -15,6 +15,7 @@ import {
   Layers, ArrowRight
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
+import AdminEmailMarketing from '../components/AdminEmailMarketing'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
@@ -540,6 +541,17 @@ const AdminUsers = () => {
           }}
         >
           <CreditCard size={16} /> PayPal ({paypalTxns.length})
+        </button>
+        <button
+          onClick={() => setActiveTab('marketing')}
+          style={{
+            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: activeTab === 'marketing' ? 'linear-gradient(135deg, #2563eb, #1d4ed8)' : 'transparent',
+            color: activeTab === 'marketing' ? '#fff' : 'var(--surface-400)'
+          }}
+        >
+          <Mail size={16} /> Email Marketing
         </button>
       </div>
 
@@ -1379,6 +1391,11 @@ const AdminUsers = () => {
             </div>
           )}
         </>
+      )}
+
+      {/* ═══ EMAIL MARKETING TAB ═══ */}
+      {activeTab === 'marketing' && (
+        <AdminEmailMarketing adminEmail={user?.email || 'dr.felipeyanez@gmail.com'} />
       )}
     </div>
   )

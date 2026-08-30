@@ -260,10 +260,10 @@ export async function grantPremiumAccess(adminEmail, targetUserId, months) {
 
 // ── PAYMENTS (Mercado Pago) ───────────────────────────────────────────────────
 
-export async function createCheckoutSession(userId, planId) {
+export async function createCheckoutSession(userId, planId, discount = null) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify({ action: 'checkout', userId, planId })
+    body: JSON.stringify({ action: 'checkout', userId, planId, discount })
   })
 }
 
@@ -295,7 +295,19 @@ export function downloadFinancesCsv(adminEmail) {
   window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
 }
 
-// ── MAILING CAMPAIGNS ─────────────────────────────────────────────────────────
+// ── MAILING CAMPAIGNS & MARKETING ────────────────────────────────────────────
+
+export async function fetchEmailMarketingStats(adminEmail) {
+  return apiFetch(`/api/admin-users?action=email_marketing&adminEmail=${encodeURIComponent(adminEmail)}`)
+}
+
+export async function triggerMarketingDrip(adminEmail, dryRun = true) {
+  return apiFetch(`/api/email-marketing-cron?adminEmail=${encodeURIComponent(adminEmail)}&dryRun=${dryRun}`)
+}
+
+export async function sendTestMarketingEmail(adminEmail, testEmail, campaignType) {
+  return apiFetch(`/api/email-marketing-cron?action=send_test&adminEmail=${encodeURIComponent(adminEmail)}&testEmail=${encodeURIComponent(testEmail)}&campaignType=${encodeURIComponent(campaignType)}`)
+}
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {
   return apiFetch('/api/admin-users', {

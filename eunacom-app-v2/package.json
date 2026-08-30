@@ -13,7 +13,11 @@
     "telegram:preview": "node ../telegram-bot/test_quiz_preview.js",
     "telegram:dry": "node ../telegram-bot/publish_daily_quiz.js --dry-run",
     "telegram:post": "node ../telegram-bot/publish_daily_quiz.js",
-    "telegram:start": "node ../telegram-bot/scheduler.js"
+    "telegram:start": "node ../telegram-bot/scheduler.js",
+    "marketing:preview": "node ../scripts/email_pearl_agent.js --preview",
+    "marketing:dry": "node api/email-marketing-cron.js --dry-run",
+    "marketing:now": "node ../scripts/marketing_scheduler.js --now",
+    "marketing:start": "node ../scripts/marketing_scheduler.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1075.0",
