@@ -19,7 +19,10 @@
     "439d902e-5a5d-4a51-b318-b1e007a3a99b",
     "b022a1c2-bb52-415f-b36a-ae2f59337031",
     "29c2c1b7-45a9-406f-b743-3d3ec33fece3",
-    "26f2eaba-e301-464b-9746-dae4e41f37ba"
+    "26f2eaba-e301-464b-9746-dae4e41f37ba",
+    "1253178d-3f00-432e-b95f-d46c0cf5024e",
+    "feef7aa7-4a55-43dd-a144-5344fd4110e0",
+    "5058de1b-984c-486b-b16b-7a7f9bf747d3"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -29,7 +32,8 @@
       "cbe7794f-84da-4052-a48f-cac7c0a36a38",
       "csv_Endocrinología_70_1776130033337",
       "4e959aee-3aae-44e3-94ac-700cf08f2cd8",
-      "29c2c1b7-45a9-406f-b743-3d3ec33fece3"
+      "29c2c1b7-45a9-406f-b743-3d3ec33fece3",
+      "feef7aa7-4a55-43dd-a144-5344fd4110e0"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -39,14 +43,16 @@
       "csv_Cardiología_20_1776129957533",
       "6f81c99f-58bd-43e8-916f-128c0bc855aa",
       "439d902e-5a5d-4a51-b318-b1e007a3a99b",
-      "26f2eaba-e301-464b-9746-dae4e41f37ba"
+      "26f2eaba-e301-464b-9746-dae4e41f37ba",
+      "5058de1b-984c-486b-b16b-7a7f9bf747d3"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
       "2a342247-a3d1-4555-a31f-59f3db8c2c2d",
       "30a7faf2-1e0e-4379-a73f-8bfe3ff2d491",
       "31268f98-8aca-4584-8e8d-2319fc79aa7a",
-      "b022a1c2-bb52-415f-b36a-ae2f59337031"
+      "b022a1c2-bb52-415f-b36a-ae2f59337031",
+      "1253178d-3f00-432e-b95f-d46c0cf5024e"
     ]
   },
   "history": [
@@ -325,6 +331,38 @@
           "vignetteMessageId": 28,
           "pollMessageId": 29,
           "explanationMessageId": 30
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-08-31T18:23:35.255Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "1253178d-3f00-432e-b95f-d46c0cf5024e",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 21,
+          "pollMessageId": 22,
+          "explanationMessageId": 23
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "feef7aa7-4a55-43dd-a144-5344fd4110e0",
+          "topic": "Reumatología",
+          "success": true,
+          "vignetteMessageId": 30,
+          "pollMessageId": 31,
+          "explanationMessageId": 32
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "5058de1b-984c-486b-b16b-7a7f9bf747d3",
+          "topic": "Otorrinolaringología",
+          "success": true,
+          "vignetteMessageId": 31,
+          "pollMessageId": 32,
+          "explanationMessageId": 33
         }
       ]
     }
