@@ -3,10 +3,10 @@ type: daily-seo-intelligence
 date: 2026-08-31
 property: sc-domain:eunacomapp.cl
 real_health_score: 80/100
-total_clicks_30d: 8
-total_impressions_30d: 114
-avg_position: 22.5
-avg_ctr: 7.0%
+total_clicks_30d: 0
+total_impressions_30d: 0
+avg_position: 0.0
+avg_ctr: 0.0%
 agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-content, seo-performance, seo-geo)
 ---
 
@@ -19,7 +19,7 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 
 | Specialist Agent | Real Audit Tool Executed | Result / Score | Finding |
 |---|---|---|---|
-| 🔍 **seo-google** | `gsc_query.py` | **8 clicks** / **114 imp** | 🟢 Healthy CTR (7.0%) |
+| 🔍 **seo-google** | `gsc_query.py` | **0 clicks** / **0 imp** | 🟢 Healthy CTR (0.0%) |
 | ✍️ **seo-content** | `content_quality.py` | **92/100** | 🟢 0% filler words · 80% density |
 | 🏷️ **seo-schema** | `parse_html.py` | **0 JSON-LD Blocks** | 🟢  |
 | ⚙️ **seo-technical** | `preload_check.py` | **50/100** | 🟡 Add `<script type="speculationrules">` |
@@ -32,32 +32,13 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 
 | Search Query | Impressions | Clicks | CTR | Avg Position | Intent |
 |---|---|---|---|---|---|
-| `eunacom` | 3 | 1 | 33.3% | #26.3 | 🎯 Striking |
-| `eunacom sp` | 2 | 1 | 50.0% | #10.5 | 🎯 Striking |
-| `eunacom` | 1 | 0 | 0.0% | #66.0 | 🎯 Striking |
-| `eunacom` | 1 | 0 | 0.0% | #81.0 | 🎯 Striking |
-| `eunacom` | 1 | 0 | 0.0% | #74.0 | 🎯 Striking |
-| `eunacom 2025` | 1 | 0 | 0.0% | #60.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #72.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #61.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #35.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #47.0 | 🎯 Striking |
-| `eunacom 2026` | 2 | 0 | 0.0% | #39.5 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #67.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #27.0 | 🎯 Striking |
-| `eunacom 2026` | 1 | 0 | 0.0% | #58.0 | 🎯 Striking |
-| `eunacom chile` | 1 | 0 | 0.0% | #74.0 | 🎯 Striking |
+
 
 ---
 
 ## 3. 🎯 High-Yield Striking Distance Pages (Pos 4.0 – 20.0)
 
-- **https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp** (Rank: `#10.5` · 2 impressions · 1 clicks)
-- **https://www.eunacomapp.cl/blog/fechas-eunacom-2026** (Rank: `#11.0` · 1 impressions · 0 clicks)
-- **https://www.eunacomapp.cl/blog/fechas-eunacom-2026** (Rank: `#10.0` · 2 impressions · 0 clicks)
-- **https://www.eunacomapp.cl/blog/fechas-eunacom-2026** (Rank: `#11.0` · 3 impressions · 0 clicks)
-- **https://www.eunacomapp.cl/blog/fechas-eunacom-2026** (Rank: `#10.5` · 2 impressions · 0 clicks)
-- **https://www.eunacomapp.cl/** (Rank: `#11.0` · 1 impressions · 0 clicks)
+
 
 ---
 
@@ -73,7 +54,7 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 - **Diagnostic Output:** Add <script type="speculationrules"> for prefetch+prerender on top user-paths. Saves entire next-navigation paint cost.
 
 ### [seo-google] Google Search Console Sync (`Live 🟢`)
-- **Diagnostic Output:** 30d: 8 clicks, 114 imp, 7.02% CTR
+- **Diagnostic Output:** 30d: 0 clicks, 0 imp, 0% CTR
 
 ---
 
