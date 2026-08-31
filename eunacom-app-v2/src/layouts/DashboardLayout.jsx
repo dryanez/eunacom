@@ -24,6 +24,11 @@ const DashboardLayout = () => {
     // Check if user has completed onboarding — only once per session
     useEffect(() => {
         if (!user) return
+        if (user.id === 'local_admin_felipe') {
+            setProfileChecked(true)
+            setShowOnboarding(false)
+            return
+        }
         // If already checked this session, don't re-fetch
         const sessionKey = `onboarding_checked_${user.id}`
         if (sessionStorage.getItem(sessionKey)) {

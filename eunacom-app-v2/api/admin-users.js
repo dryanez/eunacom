@@ -1,59 +1,75 @@
 import { getTurso } from './_turso.js'
 import { Resend } from 'resend'
 import financesHandler from './_admin-finances.js'
+import seoHandler from './_admin-seo.js'
+import {
+  getWelcomeEmailHtml,
+  getDiscountEmailHtml,
+  getDailyJoyaEmailHtml,
+  getStreakFreezeWarningEmailHtml,
+  getWeaknessSniperEmailHtml,
+  getCartAbandonmentEmailHtml,
+  getExamCountdownEmailHtml,
+  getWeeklyPerformanceDigestHtml
+} from './_email-templates.js'
+
+let colsEnsured = false
 
 // Admin-only endpoint — lists all user profiles + stats
 export default async function handler(req, res) {
   const db = getTurso()
 
   try {
-    // Ensure table exists and has all columns
-    await db.execute({
-      sql: `CREATE TABLE IF NOT EXISTS user_profiles (
-        id TEXT PRIMARY KEY,
-        email TEXT NOT NULL,
-        first_name TEXT,
-        last_name TEXT,
-        avatar_character TEXT,
-        exam_month TEXT,
-        exam_year TEXT,
-        prep_months TEXT,
-        nationality TEXT,
-        country TEXT,
-        country_code TEXT,
-        whatsapp TEXT,
-        inscrito_eunacom TEXT,
-        ayuda_inscripcion TEXT,
-        profile_type TEXT,
-        graduation_year TEXT,
-        university TEXT,
-        sede TEXT,
-        goal TEXT,
-        study_hours TEXT,
-        weak_area TEXT,
-        xp INTEGER DEFAULT 50,
-        onboarding_done INTEGER DEFAULT 0,
-        is_premium INTEGER DEFAULT 0,
-        premium_until TEXT,
-        plan_months INTEGER,
-        created_at TEXT DEFAULT (datetime('now')),
-        updated_at TEXT DEFAULT (datetime('now'))
-      )`,
-      args: []
-    }).catch(() => {})
+    if (!colsEnsured) {
+      // Ensure table exists and has all columns
+      await db.execute({
+        sql: `CREATE TABLE IF NOT EXISTS user_profiles (
+          id TEXT PRIMARY KEY,
+          email TEXT NOT NULL,
+          first_name TEXT,
+          last_name TEXT,
+          avatar_character TEXT,
+          exam_month TEXT,
+          exam_year TEXT,
+          prep_months TEXT,
+          nationality TEXT,
+          country TEXT,
+          country_code TEXT,
+          whatsapp TEXT,
+          inscrito_eunacom TEXT,
+          ayuda_inscripcion TEXT,
+          profile_type TEXT,
+          graduation_year TEXT,
+          university TEXT,
+          sede TEXT,
+          goal TEXT,
+          study_hours TEXT,
+          weak_area TEXT,
+          xp INTEGER DEFAULT 50,
+          onboarding_done INTEGER DEFAULT 0,
+          is_premium INTEGER DEFAULT 0,
+          premium_until TEXT,
+          plan_months INTEGER,
+          created_at TEXT DEFAULT (datetime('now')),
+          updated_at TEXT DEFAULT (datetime('now'))
+        )`,
+        args: []
+      }).catch(() => {})
 
-    const ensureCols = [
-      'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
-      'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
-      'nationality TEXT', 'country TEXT', 'country_code TEXT',
-      'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
-      'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
-      'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
-      'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
-      'premium_until TEXT', 'plan_months INTEGER'
-    ]
-    for (const col of ensureCols) {
-      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      const ensureCols = [
+        'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
+        'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+        'nationality TEXT', 'country TEXT', 'country_code TEXT',
+        'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+        'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+        'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+        'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+        'premium_until TEXT', 'plan_months INTEGER'
+      ]
+      for (const col of ensureCols) {
+        await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      }
+      colsEnsured = true
     }
 
     if (req.method === 'GET') {
@@ -73,13 +89,44 @@ export default async function handler(req, res) {
         return res.json({ settings })
       }
 
-      if (adminEmail !== 'dr.felipeyanez@gmail.com') {
+      const isDev = process.env.NODE_ENV !== 'production'
+      if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
       // Finances route
       if (action === 'finances') {
         return financesHandler(req, res)
+      }
+
+      // SEO & Search Console route
+      if (action === 'seo') {
+        return seoHandler(req, res)
+      }
+
+      // Template HTML live preview
+      if (action === 'preview_template') {
+        const { type } = req.query
+        let html = ''
+        if (type === 'welcome') html = getWelcomeEmailHtml({ firstName: 'Felipe' })
+        else if (type === 'discount_30') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 30, questionsAnswered: 42 })
+        else if (type === 'discount_40') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 40, questionsAnswered: 42 })
+        else if (type === 'discount_50') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 50, questionsAnswered: 42 })
+        else if (type === 'streak_warning') html = getStreakFreezeWarningEmailHtml({ firstName: 'Felipe', streakDays: 3, hoursRemaining: 3 })
+        else if (type === 'weakness_sniper') html = getWeaknessSniperEmailHtml({ name: 'Felipe' })
+        else if (type === 'cart_abandonment') html = getCartAbandonmentEmailHtml({ name: 'Felipe' })
+        else if (type === 'exam_countdown') html = getExamCountdownEmailHtml({ name: 'Felipe', daysRemaining: 30 })
+        else if (type === 'weekly_digest') html = getWeeklyPerformanceDigestHtml({ firstName: 'Felipe', totalWeeklyQuestions: 45, accuracyRate: 68, rankPosition: 42, strongestSpecialty: 'Cardiología', focusSpecialty: 'Pediatría' })
+        else if (type === 'joya') html = getDailyJoyaEmailHtml({
+          topic: 'Infarto Agudo al Miocardio con Supradesnivel del ST',
+          specialty: 'Cardiología',
+          clinicalVignette: 'Paciente de 62 años con dolor torácico opresivo de 45 minutos y supradesnivel de ST en V1-V4.',
+          pearlRule: 'En IAMCEST, la angioplastia primaria (PCI) es de elección si el tiempo puerta-balón es < 90 min en centro con hemodinamia, o < 120 min si requiere traslado.',
+          questionText: '¿Cuál es la conducta inicial prioritaria además de oxígeno si Sat < 90% y monitorización?',
+          questionOptions: ['Aspirina 300 mg + Clopidogrel 300-600 mg VO de inmediato', 'Fibrinolisis con Alteplasa sin esperar traslado', 'Ecocardiograma transtorácico de urgencia', 'Betabloqueadores endovenosos'],
+          correctOptionIndex: 0
+        })
+        return res.json({ html })
       }
 
       // Email Marketing route

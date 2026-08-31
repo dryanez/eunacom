@@ -13,3 +13,8 @@ Standard triage label vocabulary (`needs-triage`, `needs-info`, `ready-for-agent
 ### Domain docs
 
 Single-context repository layout (`CONTEXT.md` and `docs/adr/`). See `docs/agents/domain.md`.
+
+### SEO Engine (claude-seo)
+
+Comprehensive SEO toolkit powered by `AgriciDaniel/claude-seo` (25 skills + Google Search Console / CrUX / PageSpeed integration). See `.agents/skills/seo/SKILL.md`.
+

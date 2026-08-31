@@ -1,0 +1,49 @@
+name: Daily EUNACOM SEO Intelligence & Optimization Cron
+
+on:
+  schedule:
+    # 12:00 UTC corresponds to 08:00 AM America/Santiago (Chile Standard Time)
+    - cron: '0 12 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions
+
+permissions:
+  contents: write
+
+jobs:
+  seo-daily-intelligence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Google API Dependencies
+        run: |
+          pip install google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib requests
+
+      - name: Execute Autonomous Daily SEO Pipeline
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsc_service_account.json
+          GSC_SA_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -n "$GSC_SA_JSON" ]; then
+            echo "$GSC_SA_JSON" > /tmp/gsc_service_account.json
+            export GSC_SERVICE_ACCOUNT_PATH=/tmp/gsc_service_account.json
+          fi
+          node scripts/daily_seo_cron.js
+
+      - name: Commit and Push Daily Briefing and Cached SEO
+        run: |
+          git config --global user.name "EUNACOM SEO Agent"
+          git config --global user.email "seo-bot@eunacomapp.cl"
+          git add os/daily-briefs/*.md os/cached_seo.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(seo): daily 08:00 AM SEO intelligence briefing & metrics [skip ci]" && git push)

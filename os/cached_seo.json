@@ -1,0 +1,353 @@
+{
+  "synced_at": "2026-08-31T03:46:33.224Z",
+  "date": "2026-08-31",
+  "health_score": 80,
+  "totals": {
+    "clicks": 8,
+    "impressions": 114,
+    "ctr": 7.02,
+    "position": 22.5
+  },
+  "agents": {
+    "google": {
+      "clicks": 8,
+      "impressions": 114,
+      "ctr": 7.02,
+      "position": 22.5
+    },
+    "content": {
+      "filler_score": 0,
+      "ai_pattern_score": 0,
+      "information_density": 0.799,
+      "repetition_score": 20,
+      "overall_quality": 92,
+      "flags": [],
+      "matches": {
+        "filler": [],
+        "ai_patterns": []
+      },
+      "tokens": 1777,
+      "unique_tokens": 525
+    },
+    "schema": {
+      "json_ld_count": 0,
+      "types": []
+    },
+    "technical": {
+      "url": "https://www.eunacomapp.cl/",
+      "speculation_rules": {
+        "inline_blocks": 0,
+        "header_present": false,
+        "actions": []
+      },
+      "preload_hints": 0,
+      "prerender_links": 0,
+      "bfcache_signals": {
+        "cache_control_no_store": false,
+        "unload_listener": false,
+        "beforeunload_listener": false
+      },
+      "lcp_resource_hints": {
+        "preload_lcp_candidate": false,
+        "fetchpriority_high": 0
+      },
+      "score": 50,
+      "recommendations": [
+        "Add <script type=\"speculationrules\"> for prefetch+prerender on top user-paths. Saves entire next-navigation paint cost.",
+        "Mark the LCP hero image with fetchpriority=\"high\" so the browser preloads it ahead of other resources."
+      ]
+    },
+    "performance": {
+      "lcp_status": "Fast (< 1.8s)",
+      "fid_inp": "85ms (Good 🟢)",
+      "score": 95
+    },
+    "geo": {
+      "chatgpt_citation_ready": true,
+      "perplexity_ready": true,
+      "citability_score": "90/100"
+    }
+  },
+  "top_queries": [
+    {
+      "keys": [
+        "eunacom",
+        "https://www.eunacomapp.cl/"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 33.33,
+      "position": 26.3,
+      "query": "eunacom",
+      "page": "https://www.eunacomapp.cl/"
+    },
+    {
+      "keys": [
+        "eunacom sp",
+        "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 50,
+      "position": 10.5,
+      "query": "eunacom sp",
+      "page": "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+    },
+    {
+      "keys": [
+        "eunacom",
+        "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 66,
+      "query": "eunacom",
+      "page": "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+    },
+    {
+      "keys": [
+        "eunacom",
+        "https://www.eunacomapp.cl/dashboard"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 81,
+      "query": "eunacom",
+      "page": "https://www.eunacomapp.cl/dashboard"
+    },
+    {
+      "keys": [
+        "eunacom",
+        "https://www.eunacomapp.cl/login"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 74,
+      "query": "eunacom",
+      "page": "https://www.eunacomapp.cl/login"
+    },
+    {
+      "keys": [
+        "eunacom 2025",
+        "https://www.eunacomapp.cl/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 60,
+      "query": "eunacom 2025",
+      "page": "https://www.eunacomapp.cl/"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://eunacomapp.cl/convenios"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 72,
+      "query": "eunacom 2026",
+      "page": "https://eunacomapp.cl/convenios"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 61,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/blog"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 35,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/blog"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 47,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 39.5,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/faq"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 67,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/faq"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/guia-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 27,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/guia-eunacom-2026"
+    },
+    {
+      "keys": [
+        "eunacom 2026",
+        "https://www.eunacomapp.cl/login"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58,
+      "query": "eunacom 2026",
+      "page": "https://www.eunacomapp.cl/login"
+    },
+    {
+      "keys": [
+        "eunacom chile",
+        "https://eunacomapp.cl/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 74,
+      "query": "eunacom chile",
+      "page": "https://eunacomapp.cl/"
+    }
+  ],
+  "striking_pages": [
+    {
+      "keys": [
+        "eunacom sp",
+        "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 50,
+      "position": 10.5,
+      "query": "eunacom sp",
+      "page": "https://www.eunacomapp.cl/blog/eunacom-st-vs-eunacom-sp"
+    },
+    {
+      "keys": [
+        "fecha de eunacom 2026",
+        "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "query": "fecha de eunacom 2026",
+      "page": "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+    },
+    {
+      "keys": [
+        "fecha eunacom 2026 diciembre",
+        "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10,
+      "query": "fecha eunacom 2026 diciembre",
+      "page": "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+    },
+    {
+      "keys": [
+        "fecha eunacom diciembre 2026",
+        "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 11,
+      "query": "fecha eunacom diciembre 2026",
+      "page": "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+    },
+    {
+      "keys": [
+        "inscripcion eunacom diciembre 2026",
+        "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10.5,
+      "query": "inscripcion eunacom diciembre 2026",
+      "page": "https://www.eunacomapp.cl/blog/fechas-eunacom-2026"
+    },
+    {
+      "keys": [
+        "mieunacom app",
+        "https://www.eunacomapp.cl/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "query": "mieunacom app",
+      "page": "https://www.eunacomapp.cl/"
+    }
+  ],
+  "actions_taken": [
+    {
+      "agent": "seo-schema",
+      "action": "Schema.org Validation",
+      "status": "Warning 🟡",
+      "impact": "Detected 0 structured data blocks (None)"
+    },
+    {
+      "agent": "seo-content",
+      "action": "Content Density & Readability",
+      "status": "Passed 🟢",
+      "impact": "Information density: 80%, 0% filler penalty"
+    },
+    {
+      "agent": "seo-technical",
+      "action": "Speculation Rules & Preload",
+      "status": "Optimization Needed 🟡",
+      "impact": "Add <script type=\"speculationrules\"> for prefetch+prerender on top user-paths. Saves entire next-navigation paint cost."
+    },
+    {
+      "agent": "seo-google",
+      "action": "Google Search Console Sync",
+      "status": "Live 🟢",
+      "impact": "30d: 8 clicks, 114 imp, 7.02% CTR"
+    }
+  ]
+}

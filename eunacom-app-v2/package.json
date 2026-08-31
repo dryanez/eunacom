@@ -17,7 +17,8 @@
     "marketing:preview": "node ../scripts/email_pearl_agent.js --preview",
     "marketing:dry": "node api/email-marketing-cron.js --dry-run",
     "marketing:now": "node ../scripts/marketing_scheduler.js --now",
-    "marketing:start": "node ../scripts/marketing_scheduler.js"
+    "marketing:start": "node ../scripts/marketing_scheduler.js",
+    "seo:sync": "python3 ../scripts/gsc_seo_analyzer.py"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1075.0",

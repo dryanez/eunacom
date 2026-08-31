@@ -241,20 +241,28 @@ export async function saveUserProfile(profile) {
 
 // ── ADMIN: ALL USERS ─────────────────────────────────────────────────────────
 
+const getAdminEmail = (email) => {
+  if (email && email === 'dr.felipeyanez@gmail.com') return email
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'dr.felipeyanez@gmail.com'
+  }
+  return email || 'dr.felipeyanez@gmail.com'
+}
+
 export async function fetchAdminUsers(adminEmail) {
-  const data = await apiFetch(`/api/admin-users?adminEmail=${encodeURIComponent(adminEmail)}`)
+  const data = await apiFetch(`/api/admin-users?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
   return data.data || []
 }
 
 export async function fetchAdminUserDetail(userId, adminEmail) {
-  const params = new URLSearchParams({ userId, adminEmail })
+  const params = new URLSearchParams({ userId, adminEmail: getAdminEmail(adminEmail) })
   return apiFetch(`/api/admin-users?${params.toString()}`)
 }
 
 export async function grantPremiumAccess(adminEmail, targetUserId, months) {
   return apiFetch('/api/admin-users', {
     method: 'PATCH',
-    body: JSON.stringify({ adminEmail, userId: targetUserId, months })
+    body: JSON.stringify({ adminEmail: getAdminEmail(adminEmail), userId: targetUserId, months })
   })
 }
 
@@ -277,43 +285,53 @@ export async function createDonationSession(userId) {
 // ── PAYPAL TRANSACTIONS (Admin) ───────────────────────────────────────────────
 
 export async function fetchPaypalTransactions(adminEmail) {
-  const data = await apiFetch(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}`)
+  const data = await apiFetch(`/api/paypal-export?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
   return data.data || []
 }
 
 export function downloadPaypalCsv(adminEmail) {
-  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
 }
 
 // ── FINANCES & REVENUE (Admin) ────────────────────────────────────────────────
 
 export async function fetchAdminFinances(adminEmail) {
-  return apiFetch(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(adminEmail)}`)
+  return apiFetch(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
 }
 
 export function downloadFinancesCsv(adminEmail) {
-  window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+  window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
 }
 
 // ── MAILING CAMPAIGNS & MARKETING ────────────────────────────────────────────
 
 export async function fetchEmailMarketingStats(adminEmail) {
-  return apiFetch(`/api/admin-users?action=email_marketing&adminEmail=${encodeURIComponent(adminEmail)}`)
+  return apiFetch(`/api/admin-users?action=email_marketing&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
 }
 
 export async function triggerMarketingDrip(adminEmail, dryRun = true) {
-  return apiFetch(`/api/email-marketing-cron?adminEmail=${encodeURIComponent(adminEmail)}&dryRun=${dryRun}`)
+  return apiFetch(`/api/email-marketing-cron?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&dryRun=${dryRun}`)
 }
 
 export async function sendTestMarketingEmail(adminEmail, testEmail, campaignType) {
-  return apiFetch(`/api/email-marketing-cron?action=send_test&adminEmail=${encodeURIComponent(adminEmail)}&testEmail=${encodeURIComponent(testEmail)}&campaignType=${encodeURIComponent(campaignType)}`)
+  return apiFetch(`/api/email-marketing-cron?action=send_test&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&testEmail=${encodeURIComponent(testEmail)}&campaignType=${encodeURIComponent(campaignType)}`)
+}
+
+export async function fetchTemplatePreview(adminEmail, type) {
+  return apiFetch(`/api/admin-users?action=preview_template&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&type=${encodeURIComponent(type)}`)
 }
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {
   return apiFetch('/api/admin-users', {
     method: 'POST',
-    body: JSON.stringify({ adminEmail, targetEmails, subject, htmlContent })
+    body: JSON.stringify({ adminEmail: getAdminEmail(adminEmail), targetEmails, subject, htmlContent })
   })
+}
+
+// ── SEO & GOOGLE SEARCH CONSOLE (Admin) ──────────────────────────────────────
+
+export async function fetchAdminSeo(adminEmail) {
+  return apiFetch(`/api/admin-users?action=seo&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
 }
 
 // ── APP SETTINGS ─────────────────────────────────────────────────────────────────

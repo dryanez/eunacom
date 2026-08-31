@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import CampaignModal from '../components/CampaignModal'
 import AdminEmailMarketing from '../components/AdminEmailMarketing'
+import AdminSeo from '../components/AdminSeo'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
@@ -323,7 +324,7 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [filterPremium, setFilterPremium] = useState('premium')
+  const [filterPremium, setFilterPremium] = useState('all')
   const [sortKey, setSortKey] = useState('created_at')
   const [sortDir, setSortDir] = useState('desc')
   const [selectedUser, setSelectedUser] = useState(null)
@@ -552,6 +553,17 @@ const AdminUsers = () => {
           }}
         >
           <Mail size={16} /> Email Marketing
+        </button>
+        <button
+          onClick={() => setActiveTab('seo')}
+          style={{
+            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
+            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            background: activeTab === 'seo' ? 'linear-gradient(135deg, #7c3aed, #6d28d9)' : 'transparent',
+            color: activeTab === 'seo' ? '#fff' : 'var(--surface-400)'
+          }}
+        >
+          <Globe size={16} /> SEO & Search Console
         </button>
       </div>
 
@@ -1396,6 +1408,11 @@ const AdminUsers = () => {
       {/* ═══ EMAIL MARKETING TAB ═══ */}
       {activeTab === 'marketing' && (
         <AdminEmailMarketing adminEmail={user?.email || 'dr.felipeyanez@gmail.com'} />
+      )}
+
+      {/* ═══ SEO & SEARCH CONSOLE TAB ═══ */}
+      {activeTab === 'seo' && (
+        <AdminSeo adminEmail={user?.email || 'dr.felipeyanez@gmail.com'} />
       )}
     </div>
   )

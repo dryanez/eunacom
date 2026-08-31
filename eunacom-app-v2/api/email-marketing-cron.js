@@ -4,7 +4,11 @@ import {
   getDiscountEmailHtml, 
   getWelcomeEmailHtml, 
   getDailyJoyaEmailHtml, 
-  getStreakFreezeWarningEmailHtml 
+  getStreakFreezeWarningEmailHtml,
+  getWeaknessSniperEmailHtml,
+  getCartAbandonmentEmailHtml,
+  getExamCountdownEmailHtml,
+  getWeeklyPerformanceDigestHtml
 } from './_email-templates.js';
 
 export default async function handler(req, res) {
@@ -68,6 +72,18 @@ export default async function handler(req, res) {
       } else if (type === 'streak_warning') {
         subject = '🔥 Dr(a). Felipe, tu racha de 3 días se congelará en 3 horas';
         html = getStreakFreezeWarningEmailHtml({ firstName: 'Felipe', streakDays: 3, hoursRemaining: 3 });
+      } else if (type === 'weakness_sniper') {
+        subject = '🩺 Notamos una duda en Cardiología: Aquí tienes el algoritmo en 1 minuto';
+        html = getWeaknessSniperEmailHtml({ name: 'Felipe' });
+      } else if (type === 'cart_abandonment') {
+        subject = 'Dr(a). Felipe, ¿tuviste algún problema con tu activación en EUNACOM App?';
+        html = getCartAbandonmentEmailHtml({ name: 'Felipe' });
+      } else if (type === 'exam_countdown') {
+        subject = '⏳ Faltan 30 días para el EUNACOM: Plan de Reconstrucciones Reales';
+        html = getExamCountdownEmailHtml({ name: 'Felipe', daysRemaining: 30 });
+      } else if (type === 'weekly_digest') {
+        subject = '📊 Tu Resumen Semanal de Rendimiento EUNACOM';
+        html = getWeeklyPerformanceDigestHtml({ firstName: 'Felipe', totalWeeklyQuestions: 45, accuracyRate: 68, rankPosition: 42, strongestSpecialty: 'Cardiología', focusSpecialty: 'Pediatría' });
       } else if (type === 'joya') {
         subject = '💎 Joya EUNACOM: IAM y Angioplastia Primaria';
         html = getDailyJoyaEmailHtml({

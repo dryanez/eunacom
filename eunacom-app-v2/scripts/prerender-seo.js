@@ -124,7 +124,7 @@ for (const item of STATIC_ROUTES) {
       headline: item.articleData.title,
       description: item.articleData.metaDescription,
       datePublished: item.articleData.date,
-      dateModified: "2026-08-23",
+      dateModified: "2026-08-31",
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": item.canonical
@@ -143,8 +143,52 @@ for (const item of STATIC_ROUTES) {
         }
       }
     }
-
     const scriptTag = "<script type=\"application/ld+json\">" + JSON.stringify(articleJsonLd) + "</script></head>"
+    html = html.replace("</head>", scriptTag)
+  } else if (item.route === "/curso-eunacom-2026") {
+    const courseJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "Curso de Preparación EUNACOM 2026",
+      description: "Curso integral con +650 clases en video según Perfil ASOFAMECH, banco con +10.000 preguntas y simulacros cronometrados.",
+      provider: {
+        "@type": "Organization",
+        name: "Eunacom App",
+        sameAs: "https://www.eunacomapp.cl"
+      },
+      offers: {
+        "@type": "Offer",
+        category: "Paid",
+        price: "14990",
+        priceCurrency: "CLP"
+      }
+    }
+    const scriptTag = "<script type=\"application/ld+json\">" + JSON.stringify(courseJsonLd) + "</script></head>"
+    html = html.replace("</head>", scriptTag)
+  } else if (item.route === "/simulacros-eunacom") {
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          "name": "¿Cuántas preguntas tiene un simulacro EUNACOM en Eunacom App?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cada simulacro completo incluye 180 preguntas clínicas divididas en 2 bloques de 90 preguntas con límite de tiempo idéntico al examen oficial de ASOFAMECH."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Las justificaciones están actualizadas al Perfil ASOFAMECH 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, cada alternativa incluye retroalimentación basada en Guías Clínicas GES y protocolos del MINSAL vigentes."
+          }
+        }
+      ]
+    }
+    const scriptTag = "<script type=\"application/ld+json\">" + JSON.stringify(faqJsonLd) + "</script></head>"
     html = html.replace("</head>", scriptTag)
   }
 

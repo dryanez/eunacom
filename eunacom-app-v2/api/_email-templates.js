@@ -534,3 +534,234 @@ export function getStreakFreezeWarningEmailHtml({
   `.trim();
 }
 
+/**
+ * 6. MOTOR DE PUNTO CIEGO (Weakness Sniper / The Knowledge Gap)
+ * Trigger: Cuando un usuario falla 3 preguntas seguidas de una misma subárea.
+ * Asunto: 🩺 Notamos una duda en {specialty}: Aquí tienes el algoritmo en 1 minuto
+ */
+export function getWeaknessSniperEmailHtml({
+  name = 'Doctor(a)',
+  specialty = 'Cardiología',
+  subtopic = 'Fibrilación Auricular y Antiarrítmicos',
+  failCount = 3,
+  algorithmTip = 'FA con inestabilidad hemodinámica (hipotensión, angor, shock) → Cardioversión Eléctrica sincronizada inmediata (100-200 J). FA estable → Control de frecuencia inicial (Metoprolol o Diltiazem) + Estratificación tromboembólica con CHA₂DS₂-VASc (anticoagular con DOACs si Score ≥ 2 en hombres o ≥ 3 en mujeres).',
+  practiceUrl = 'https://www.eunacomapp.cl/test-creator?specialty=Cardiologia',
+  appUrl = 'https://www.eunacomapp.cl'
+}) {
+  return `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🩺 Notamos una duda en ${specialty}: Tu algoritmo de 1 minuto</title>
+  <style>${BASE_STYLES}</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header" style="background: linear-gradient(135deg, #065f46 0%, #047857 50%, #0f766e 100%);">
+        <a href="${appUrl}" class="header-logo">🩺 EUNACOM App</a>
+        <div><span class="header-badge" style="background: rgba(255,255,255,0.2); color: #a7f3d0;">🎯 Francotirador de Puntos Ciegos</span></div>
+      </div>
+      <div class="content">
+        <div class="salutation">
+          Dr(a). ${name}, notamos un patrón de duda en ${specialty} 🔍
+        </div>
+        
+        <p>
+          Analizando tus últimas sesiones en la app, detectamos que fallaste <strong>${failCount} preguntas recientes de ${subtopic}</strong>.
+        </p>
+
+        <p>
+          En el EUNACOM oficial, este es un <strong>tema de alta rentabilidad</strong> (aparece en el 95% de las versiones del examen ASOFAMECH). No necesitas leer un capítulo entero de 40 páginas; necesitas tener grabado el <strong>algoritmo de decisión rápida</strong>:
+        </p>
+
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #10b981; border-radius: 8px; padding: 18px 20px; margin: 20px 0;">
+          <div style="font-weight: 800; color: #065f46; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <span>⚡ Regla de Oro EUNACOM en 60 Segundos:</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; color: #166534; line-height: 1.6; font-family: 'Segoe UI', Roboto, sans-serif;">
+            ${algorithmTip}
+          </p>
+        </div>
+
+        <p style="margin-top: 18px;">
+          Para fijar este concepto en tu memoria a largo plazo antes de tu próximo turno, te preparamos un bloque corto de <strong>5 preguntas seleccionadas</strong> exactamente sobre este punto:
+        </p>
+
+        <div style="text-align: center; margin: 28px 0 16px;">
+          <a href="${practiceUrl}" class="btn-primary" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); box-shadow: 0 4px 14px rgba(5,150,105,0.3); font-size: 15px; padding: 15px 32px;">
+            🎯 Practicar 5 Preguntas de ${subtopic} →
+          </a>
+        </div>
+
+        <div style="background: #f8fafc; border-radius: 8px; padding: 12px 16px; margin: 20px 0; font-size: 13px; color: #64748b; text-align: center;">
+          🧠 <em>Estrategia de estudio activo: Corregir un punto ciego inmediatamente después del error aumenta la retención en un <strong>300%</strong> según la curva de Ebbinghaus.</em>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Enviado por el Sistema de Diagnóstico Clínico Continuo de <a href="${appUrl}">eunacomapp.cl</a>.<br>
+        <a href="${appUrl}">Preferencias de alertas académicas</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+/**
+ * 7. MOTOR DE RECUPERACIÓN DE CHECKOUT ABANDONADO
+ * Trigger: 45 minutos después de hacer clic en pagar y no completar.
+ * Asunto: Dr(a). {name}, ¿tuviste algún problema con tu pago en EUNACOM App?
+ */
+export function getCartAbandonmentEmailHtml({
+  name = 'Doctor(a)',
+  planName = 'Plan Pro Anual (12 Meses)',
+  planPrice = '$89.990 CLP',
+  checkoutUrl = 'https://www.eunacomapp.cl/oferta?discount=30',
+  whatsappUrl = 'https://wa.me/56912345678?text=Hola%20Dr.%20Felipe%20tuve%20un%20problema%20con%20el%20pago%20en%20la%20app',
+  appUrl = 'https://www.eunacomapp.cl'
+}) {
+  return `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr(a). ${name}, ¿tuviste algún problema con tu pago?</title>
+  <style>${BASE_STYLES}</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header" style="background: #0f172a;">
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
+        <div><span class="header-badge" style="background: rgba(255,255,255,0.15); color: #cbd5e1;">Soporte Directo</span></div>
+      </div>
+      <div class="content">
+        <div class="salutation">
+          Hola Dr(a). ${name},
+        </div>
+        
+        <p>
+          Te escribe el <strong>Dr. Felipe Yáñez</strong>, director médico de EUNACOM App.
+        </p>
+
+        <p>
+          Vi que hace unos momentos intentaste activar tu suscripción al <strong>${planName}</strong> (${planPrice}), pero la transacción no llegó a completarse con la pasarela de pago.
+        </p>
+
+        <div style="background: #fefce8; border: 1px solid #fef08a; border-left: 4px solid #eab308; border-radius: 8px; padding: 16px 20px; margin: 20px 0;">
+          <p style="margin: 0; font-size: 14px; color: #854d0e; line-height: 1.6;">
+            A veces los bancos chilenos o extranjeros bloquean temporalmente los cargos en línea con Webpay o MercadoPago por seguridad o límites de tarjeta. Si este fue tu caso, no te preocupes: <strong>tu cupón y tu precio especial siguen reservados por 24 horas</strong>.
+          </p>
+        </div>
+
+        <p>
+          ¿Prefieres pagar mediante <strong>Transferencia Bancaria directa</strong> (cuenta corriente en Chile), o necesitas que te asistamos personalmente?
+        </p>
+
+        <div style="text-align: center; margin: 28px 0 16px; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+          <a href="${checkoutUrl}" class="btn-primary" style="background: #2563eb; font-size: 15px; padding: 14px 28px; width: 80%; text-align: center; box-sizing: border-box;">
+            💳 Reintentar Pago con Tarjeta en la App →
+          </a>
+          <a href="${whatsappUrl}" style="display: inline-block; background: #22c55e; color: #ffffff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 14px; padding: 12px 24px; width: 80%; text-align: center; box-sizing: border-box;">
+            💬 Hablar por WhatsApp con el Dr. Felipe →
+          </a>
+        </div>
+
+        <p style="font-size: 13px; color: #64748b; margin-top: 24px; line-height: 1.5;">
+          También puedes simplemente responder directamente a este correo contándome qué error te dio el sistema y te ayudo a solucionarlo en minutos.
+        </p>
+
+        <div style="margin-top: 28px; border-top: 1px solid #e2e8f0; padding-top: 16px; font-size: 14px; color: #475569;">
+          <strong>Dr. Felipe Yáñez</strong><br>
+          <span style="font-size: 12px; color: #94a3b8;">Médico Cirujano · Equipo Docente EUNACOM App</span>
+        </div>
+      </div>
+      <div class="footer">
+        <p>EUNACOM App · Santiago de Chile.<br>
+        Si ya completaste tu pago, por favor desestima este mensaje.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+/**
+ * 8. MOTOR DE CUENTA REGRESIVA EUNACOM (Countdown & Urgencia Real)
+ * Trigger: A 30, 14 o 7 días del examen oficial ASOFAMECH.
+ * Asunto: ⏳ Faltan {daysRemaining} días para el EUNACOM: Plan de Reconstrucciones Reales
+ */
+export function getExamCountdownEmailHtml({
+  name = 'Doctor(a)',
+  daysRemaining = 30,
+  examMonth = 'Julio 2026',
+  reconstructionsCount = 28,
+  reconstructionsUrl = 'https://www.eunacomapp.cl/reconstrucciones',
+  appUrl = 'https://www.eunacomapp.cl'
+}) {
+  return `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⏳ Faltan ${daysRemaining} días para el EUNACOM ${examMonth}</title>
+  <style>${BASE_STYLES}</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);">
+        <a href="${appUrl}" class="header-logo">⏳ EUNACOM App</a>
+        <div><span class="header-badge" style="background: rgba(255,255,255,0.2); color: #c7d2fe;">📅 Cuenta Regresiva Oficial</span></div>
+      </div>
+      <div class="content">
+        <div class="salutation" style="color: #312e81;">
+          Dr(a). ${name}, quedan exactamente ${daysRemaining} días para el examen 🎯
+        </div>
+        
+        <p>
+          El calendario oficial no se detiene: el <strong>EUNACOM de ${examMonth}</strong> está a la vuelta de la esquina. A partir de este momento, leer tratados extensos o memorizar fisiopatología profunda tiene un rendimiento decreciente.
+        </p>
+
+        <div style="background: #eef2ff; border: 1px solid #c7d2fe; border-left: 4px solid #6366f1; border-radius: 8px; padding: 18px 20px; margin: 20px 0;">
+          <div style="font-weight: 800; color: #3730a3; font-size: 15px; margin-bottom: 6px;">
+            ⚡ La Regla del Último Mes según los Mejores Puntajes:
+          </div>
+          <p style="margin: 0; font-size: 14px; color: #4338ca; line-height: 1.6;">
+            "El 70% de tu puntaje en el último mes se define entrenando con <strong>Reconstrucciones Reales de exámenes anteriores</strong>. Las preguntas no se repiten idénticas, pero los patrones diagnósticos y las trampas de ASOFAMECH sí."
+          </p>
+        </div>
+
+        <p>
+          En EUNACOM App tienes acceso a <strong>${reconstructionsCount} Reconstrucciones completas</strong> con explicaciones oficiales paso a paso, cronómetro de examen y cálculo de percentil nacional estimado.
+        </p>
+
+        <div style="text-align: center; margin: 28px 0 16px;">
+          <a href="${reconstructionsUrl}" class="btn-primary" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); box-shadow: 0 4px 14px rgba(79,70,229,0.3); font-size: 16px; padding: 15px 34px;">
+            🏛️ Entrenar con Reconstrucciones Reales →
+          </a>
+        </div>
+
+        <div style="background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin: 20px 0; border: 1px dashed #cbd5e1; text-align: center; font-size: 13px; color: #64748b;">
+          📊 <em>Dato estadístico: Rendir al menos 3 reconstrucciones completas cronometradas reduce la ansiedad de examen en un <strong>45%</strong> y evita quedarse sin tiempo en el cuadernillo B.</em>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Planificador de examen oficial de <a href="${appUrl}">eunacomapp.cl</a>.<br>
+        <a href="${appUrl}">Ver calendario de simulacros</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+

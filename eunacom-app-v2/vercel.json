@@ -5,6 +5,17 @@
             "has": [
                 {
                     "type": "host",
+                    "value": "eunacomapp.cl"
+                }
+            ],
+            "destination": "https://www.eunacomapp.cl/$1",
+            "permanent": true
+        },
+        {
+            "source": "/((?!api/).*)",
+            "has": [
+                {
+                    "type": "host",
                     "value": "eunacom.vercel.app"
                 }
             ],

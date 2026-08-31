@@ -451,6 +451,20 @@ function clasesApiPlugin() {
         }
       })
 
+      // ── PayPal Export API (Local Dev) ──
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/paypal-export')) return next()
+        try {
+          const { default: handler } = await import('./api/paypal-export.js')
+          await adaptVercelHandler(handler)(req, res)
+        } catch (err) {
+          console.error('paypal-export dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
       // ── Leaderboard API (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/leaderboard')) return next()

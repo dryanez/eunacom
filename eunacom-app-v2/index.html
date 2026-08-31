@@ -14,6 +14,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
 
     <!-- ═══════════════════════════════════════
+         SPECULATION RULES & INSTANT NAVIGATION (Chrome 121+)
+    ═══════════════════════════════════════ -->
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "source": "list",
+          "urls": [
+            "/curso-eunacom-2026",
+            "/simulacros-eunacom",
+            "/guia-eunacom-2026",
+            "/reconstrucciones-eunacom",
+            "/login"
+          ],
+          "eagerness": "moderate"
+        }
+      ],
+      "prefetch": [
+        {
+          "source": "list",
+          "urls": ["/blog", "/faq", "/convenios"],
+          "eagerness": "conservative"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════
          PRIMARY SEO & GENERATIVE AI (GEO) META TAGS
     ═══════════════════════════════════════ -->
     <title>EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +10.000 Preguntas)</title>

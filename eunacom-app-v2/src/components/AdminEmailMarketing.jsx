@@ -95,7 +95,7 @@ export default function AdminEmailMarketing({ adminEmail }) {
             </h2>
           </div>
           <p style={{ fontSize: '0.85rem', color: 'var(--surface-400)', margin: 0 }}>
-            Embudo de Bienvenida, Descuentos Escalonados (30% → 40% → 50%) y La Joya EUNACOM del Día (20:00 CLT).
+            Los 7 Motores de Email Marketing Médico para EUNACOM App (Onboarding, Retención, Joya Diaria y Urgencia).
           </p>
         </div>
 
@@ -104,9 +104,10 @@ export default function AdminEmailMarketing({ adminEmail }) {
             onClick={() => handleRunDrip(true)}
             disabled={runningDrip}
             style={{
-              padding: '0.55rem 1rem', background: 'rgba(59,130,246,0.15)', border: '1px solid #3b82f6',
-              color: '#93c5fd', borderRadius: '8px', fontWeight: 700, fontSize: '0.85rem',
-              cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem'
+              padding: '0.55rem 1rem', background: 'var(--surface-600)',
+              border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px',
+              fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: '0.5rem'
             }}
           >
             <Eye size={16} /> Simular Embudo (Dry Run)
@@ -189,6 +190,79 @@ export default function AdminEmailMarketing({ adminEmail }) {
         </div>
       </div>
 
+      {/* Directory of the 7 Elite Engines */}
+      <div style={{
+        background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.5rem',
+        border: '1px solid rgba(255,255,255,0.06)'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+          <div>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Sparkles size={18} style={{ color: '#f59e0b' }} /> Los 7 Motores de Email Marketing & Retención
+            </h3>
+            <p style={{ fontSize: '0.8rem', color: 'var(--surface-400)', margin: '0.25rem 0 0' }}>
+              Arquitectura de campañas inspirada en UWorld, Amboss y Duolingo para maximizar DAU y conversión.
+            </p>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+          {ELITE_ENGINES.map((engine) => (
+            <div
+              key={engine.id}
+              style={{
+                background: 'var(--surface-800)', borderRadius: '10px', padding: '1rem',
+                border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column',
+                justifyContent: 'space-between', gap: '0.75rem', position: 'relative'
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '1.3rem' }}>{engine.icon}</span>
+                  <span style={{
+                    fontSize: '0.68rem', fontWeight: 800, padding: '2px 8px', borderRadius: '10px',
+                    background: `${engine.badgeColor}22`, color: engine.badgeColor, border: `1px solid ${engine.badgeColor}44`,
+                    textTransform: 'uppercase'
+                  }}>
+                    {engine.badge}
+                  </span>
+                </div>
+                <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '0.92rem' }}>
+                  {engine.title}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#93c5fd', marginTop: '2px' }}>
+                  {engine.subtitle}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--surface-400)', marginTop: '6px', lineHeight: 1.4 }}>
+                  <strong>Trigger:</strong> {engine.trigger}
+                </div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--surface-500)', marginTop: '4px', fontStyle: 'italic', lineHeight: 1.3 }}>
+                  💡 {engine.psychology}
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.6rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <span style={{ fontSize: '0.72rem', color: '#86efac', fontWeight: 600 }}>
+                  📈 {engine.benchmark}
+                </span>
+                <button
+                  onClick={() => handleSendSpecificTest(engine.type)}
+                  disabled={testSending}
+                  style={{
+                    padding: '0.35rem 0.65rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.12)',
+                    color: '#fff', borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '0.3rem'
+                  }}
+                  title="Enviar correo de prueba a tu buzón"
+                >
+                  <Send size={12} /> Probar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Test Email Dispatcher Card */}
       <div style={{
         background: 'var(--surface-700)', borderRadius: 'var(--radius)', padding: '1.25rem',
@@ -197,14 +271,14 @@ export default function AdminEmailMarketing({ adminEmail }) {
       }}>
         <div>
           <div style={{ fontWeight: 700, color: 'var(--surface-100)', fontSize: '0.95rem' }}>
-            🧪 Probar Plantillas en tu Buzón
+            🧪 Probador Universal de Plantillas en tu Buzón
           </div>
           <div style={{ fontSize: '0.8rem', color: 'var(--surface-400)', marginTop: '2px' }}>
-            Envía una copia de prueba a <strong>{adminEmail}</strong> para revisar el diseño en tu teléfono o PC.
+            Envía una copia de prueba a <strong>{adminEmail}</strong> para auditar la experiencia en tu teléfono o PC.
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
           <select
             value={selectedTestType}
             onChange={e => setSelectedTestType(e.target.value)}
@@ -213,12 +287,16 @@ export default function AdminEmailMarketing({ adminEmail }) {
               color: '#fff', borderRadius: '6px', fontSize: '0.85rem'
             }}
           >
-            <option value="welcome">Correo de Bienvenida</option>
-            <option value="discount_30">Oferta 30% OFF (Día 7)</option>
-            <option value="discount_40">Oferta 40% OFF (Día 14)</option>
-            <option value="discount_50">Oferta 50% OFF (Día 21)</option>
-            <option value="streak_warning">🔥 Alerta Racha en Riesgo (3 días)</option>
-            <option value="joya">Joya EUNACOM del Día</option>
+            <option value="welcome">1. Onboarding · Bienvenida + Diagnóstico (10 preg)</option>
+            <option value="streak_warning">2. Racha en Riesgo · Loss Aversion (3 Días)</option>
+            <option value="weakness_sniper">3. Francotirador · Duda Clínica en Cardiología</option>
+            <option value="joya">4. Joya del Día · Micro-Newsletter Click-to-Reveal</option>
+            <option value="weekly_digest">5. Domingo de Rendimiento · Semáforo & Ranking</option>
+            <option value="cart_abandonment">6. Carrito Abandonado · Asistencia WhatsApp</option>
+            <option value="discount_30">7a. Retención 30% OFF · Beca Bienvenida (Día 7)</option>
+            <option value="discount_40">7b. Retención 40% OFF · Plan Flex Turnos (Día 14)</option>
+            <option value="discount_50">7c. Retención 50% OFF · Subsidio Emergencia (Día 21+)</option>
+            <option value="exam_countdown">8. Cuenta Regresiva · T-30 Días EUNACOM</option>
           </select>
 
           <button

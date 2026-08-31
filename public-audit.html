@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KeyLeak Vulnerability Report</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --text: #e0e0e8;
+    --text2: #8888a0;
+    --red: #ff4d6a;
+    --red-bg: rgba(255,77,106,.08);
+    --orange: #ff9f43;
+    --orange-bg: rgba(255,159,67,.08);
+    --yellow: #ffd43b;
+    --yellow-bg: rgba(255,212,59,.08);
+    --green: #51cf66;
+    --blue: #4dabf7;
+    --blue-bg: rgba(77,171,247,.06);
+    --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.5; padding: 40px 20px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  /* Header */
+  .header { margin-bottom: 40px; }
+  .header h1 { font-size: 15px; font-weight: 500; color: var(--text2); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px; }
+  .target { font-size: 22px; font-weight: 600; color: var(--text); font-family: var(--mono); margin-bottom: 16px; }
+  .meta { display: flex; gap: 24px; font-size: 13px; color: var(--text2); flex-wrap: wrap; }
+  .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* Verdict banner */
+  .verdict { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 10px; margin-bottom: 32px; border: 1px solid; }
+  .verdict.block { background: var(--red-bg); border-color: rgba(255,77,106,.2); }
+  .verdict.review { background: var(--yellow-bg); border-color: rgba(255,212,59,.2); }
+  .verdict.safe { background: rgba(81,207,102,.08); border-color: rgba(81,207,102,.2); }
+  .verdict-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .verdict.block .verdict-badge { background: var(--red); color: #0a0a0f; }
+  .verdict.review .verdict-badge { background: var(--yellow); color: #0a0a0f; }
+  .verdict.safe .verdict-badge { background: var(--green); color: #0a0a0f; }
+  .verdict-text { font-size: 14px; color: var(--text); }
+
+  /* Stats row */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 700; font-family: var(--mono); }
+  .stat-num.crit { color: var(--red); }
+  .stat-num.high { color: var(--orange); }
+  .stat-num.med { color: var(--yellow); }
+  .stat-num.low { color: var(--blue); }
+  .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+
+  /* Section */
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+  /* Finding card */
+  .finding { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; border-left: 3px solid transparent; }
+  .finding.critical { border-left-color: var(--red); }
+  .finding.high { border-left-color: var(--orange); }
+  .finding.medium { border-left-color: var(--yellow); }
+  .finding.low { border-left-color: var(--blue); }
+  .finding-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .sev { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; }
+  .sev.critical { background: var(--red); color: #0a0a0f; }
+  .sev.high { background: var(--orange); color: #0a0a0f; }
+  .sev.medium { background: var(--yellow); color: #0a0a0f; }
+  .sev.low { background: var(--blue); color: #0a0a0f; }
+  .badge-confirmed { font-size: 10px; color: var(--green); border: 1px solid rgba(81,207,102,.3); padding: 1px 6px; border-radius: 3px; }
+  .badge-validated { font-size: 10px; color: var(--blue); border: 1px solid rgba(77,171,247,.35); padding: 1px 6px; border-radius: 3px; }
+  .badge-lead { font-size: 10px; color: var(--yellow); border: 1px solid rgba(255,212,59,.35); padding: 1px 6px; border-radius: 3px; }
+  .finding-type { font-size: 14px; font-weight: 600; color: var(--text); }
+  .finding-detail { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+  .finding-evidence { font-family: var(--mono); font-size: 12px; background: var(--surface2); padding: 8px 12px; border-radius: 6px; color: var(--text); margin: 8px 0; overflow-x: auto; white-space: nowrap; }
+  .finding-fix { font-size: 12px; color: var(--text2); margin-top: 8px; }
+  .finding-fix code { font-family: var(--mono); font-size: 11px; background: var(--surface2); padding: 2px 6px; border-radius: 3px; color: var(--yellow); }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <h1>KeyLeak Vulnerability Report</h1>
+    <div class="target">https://famedtestprep.com</div>
+    <div class="meta">
+      <span>Scan: browser</span>
+      <span>Packs: leak, appsec, access-control, baas</span>
+      <span>2026-08-30T19:35:05.298128+00:00</span>
+    </div>
+  </div>
+
+  <div class="verdict review">
+    <span class="verdict-badge">Review</span>
+    <span class="verdict-text">Potential exposures or hardening issues need human review.</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num crit">0</div><div class="stat-label">Critical</div></div>
+    <div class="stat"><div class="stat-num high">0</div><div class="stat-label">High</div></div>
+    <div class="stat"><div class="stat-num med">7</div><div class="stat-label">Medium</div></div>
+    <div class="stat"><div class="stat-num low">0</div><div class="stat-label">Low</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Findings</div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Browser-side scan detected baas.supabase_url</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Rotate the exposed credential and remove it from the bundle / storage.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding medium">
+      <div class="finding-head">
+        <span class="sev medium">MEDIUM</span>
+        <span class="finding-type">supabase_url</span>
+        
+      </div>
+      <div class="finding-detail">Supabase project URL exposed in client bundle.</div>
+      <div class="finding-evidence">[redacted:595965ee]</div>
+      <div class="finding-fix">Fix: <code>Verify RLS policies are enforced on all tables. Run `keyleak browser-scan` with BaaS validation to confirm.</code></div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-head">
+        <span class="sev info">INFO</span>
+        <span class="finding-type">service_worker_registration</span>
+        
+      </div>
+      <div class="finding-detail">Browser-side scan detected browser.service_worker_registration</div>
+      <div class="finding-evidence">[redacted:2d6e1dc9]</div>
+      <div class="finding-fix">Fix: <code>Rotate the exposed credential and remove it from the bundle / storage.</code></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Generated by KeyLeak Detector</span>
+    <span>keyleak browser-scan https://famedtestprep.com</span>
+  </div>
+
+</div>
+</body>
+</html>
