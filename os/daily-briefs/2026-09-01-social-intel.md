@@ -28,7 +28,7 @@ outliers_detected: 78
 
 ### #1 · [Colegio Médico de Chile · EUNACOM · 📸 Instagram · 12.3x Outlier](https://www.instagram.com/p/DclYytGSjm3/)
 - **Archetype:** `🩺 Caso Clínico & Diagnóstico` · **Color:** `CYAN`
-- **Engagement:** ❤️ 1,694 likes · 💬 33 comments · 👁️ 0 views
+- **Engagement:** ❤️ 1,695 likes · 💬 33 comments · 👁️ 0 views
 - **Best Deploy Slot:** `Lunes 20:30 (Peak Retención Estudio / Turno)`
 - **Hook:** > *"La atención médica no comienza ni termina en los minutos de consulta."*
 - **Why it Converted:** Formato directo de 🩺 Caso Clínico & Diagnóstico. Alta tasa de retención y debate clínico.
@@ -156,9 +156,9 @@ outliers_detected: 78
 - **🔗 Verified Link:** [https://www.tiktok.com/@dermaedo](https://www.tiktok.com/@dermaedo)
 
 ---
-### #14 · [Médicos del Mundo en Chile / Convalidación · EUNACOM · 📸 Instagram · 5.5x Outlier](https://www.instagram.com/p/DcoYzT9jRU4/)
+### #14 · [Médicos del Mundo en Chile / Convalidación · EUNACOM · 📸 Instagram · 5.6x Outlier](https://www.instagram.com/p/DcoYzT9jRU4/)
 - **Archetype:** `🇨🇱 Modismos & Jerga Médica` · **Color:** `BLUE`
-- **Engagement:** ❤️ 766 likes · 💬 35 comments · 👁️ 0 views
+- **Engagement:** ❤️ 775 likes · 💬 35 comments · 👁️ 0 views
 - **Best Deploy Slot:** `Viernes 14:00 (Relajación / Fin de Turno)`
 - **Hook:** > *"Entender medicina era solo una parte del desafío… faltaba entender el chileno. 🇨🇱😂"*
 - **Why it Converted:** Formato directo de 🇨🇱 Modismos & Jerga Médica. Alta tasa de retención y debate clínico.
@@ -166,13 +166,13 @@ outliers_detected: 78
 - **🔗 Verified Link:** [https://www.instagram.com/p/DcoYzT9jRU4/](https://www.instagram.com/p/DcoYzT9jRU4/)
 
 ---
-### #15 · [Dr. Gabriel Aedo (Dermatología & Retención) · EUNACOM · 📸 Instagram · 4.9x Outlier](https://www.instagram.com/p/Da_pHbRI1XS/)
-- **Archetype:** `🩺 Caso Clínico & Diagnóstico` · **Color:** `CYAN`
-- **Engagement:** ❤️ 79,084 likes · 💬 250 comments · 👁️ 548,432 views
-- **Best Deploy Slot:** `Lunes 20:30 (Peak Retención Estudio / Turno)`
-- **Hook:** > *"Pelos encarnados y piel lisa de piernas 😍🙌🏻"*
-- **Why it Converted:** Formato directo de 🩺 Caso Clínico & Diagnóstico. Alta tasa de retención y debate clínico.
-- **🎯 Counter-Strategy:** Publicar contenido contra-estrategia optimizado en REEL / TIKTOK (9:16 / 30-45s) para @eunacomapp_cl.
-- **🔗 Verified Link:** [https://www.instagram.com/p/Da_pHbRI1XS/](https://www.instagram.com/p/Da_pHbRI1XS/)
+### #15 · [ASOFAMECH (Entidad Oficial EUNACOM) · EUNACOM · 📸 Instagram · 4.6x Outlier](https://www.instagram.com/p/Dcd4xRxFofE/)
+- **Archetype:** `🚨 Fechas & Trámites Oficiales` · **Color:** `ROSE`
+- **Engagement:** ❤️ 320 likes · 💬 15 comments · 👁️ 0 views
+- **Best Deploy Slot:** `Miércoles 08:30 (Inicio de Jornada)`
+- **Hook:** > *"👏 Decana de la Facultad de Medicina, Dra. Ana María Moraga, asumió como presidenta de Asofamech por "*
+- **Why it Converted:** Formato directo de 🚨 Fechas & Trámites Oficiales. Alta tasa de retención y debate clínico.
+- **🎯 Counter-Strategy:** Publicar contenido contra-estrategia optimizado en REEL / POST ESTÁTICO para @eunacomapp_cl.
+- **🔗 Verified Link:** [https://www.instagram.com/p/Dcd4xRxFofE/](https://www.instagram.com/p/Dcd4xRxFofE/)
 
 ---

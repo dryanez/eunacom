@@ -14,20 +14,20 @@ famed_outliers: 14
 
 | Creator / Competitor | Platform | Tier | Followers | Med. Likes | Med. Views | Niche |
 |---|---|---|---|---|---|---|
-| **Medisim FSP Vorbereitung** (@medisim_fsp) | `INSTAGRAM` | `🎓 FSP Simulation` | 2,250 | 45 | 1,200 | Fachsprachprüfung Vorbereitung, Patientensimulation & Arzt-Arzt-Gespräch |
-| **Deutsch für Ärzte & Mediziner** (@deutsch_fuer_aerzte) | `INSTAGRAM` | `🇩🇪 Medizinisches Deutsch` | 4,335 | 85 | 2,400 | Fachbegriffe vs. Umgangssprache, typische Grammatikfehler im Arztbrief |
-| **ApprobationsCoach Deutschland** (@approbationscoach) | `INSTAGRAM` | `🏛️ Approbation Coach` | 6,080 | 95 | 2,800 | Ablauf der Approbation in Bundesländern, Defizitbescheid & FSP-Tipps |
+| **Medisim FSP Vorbereitung** (@medisim_fsp) | `INSTAGRAM` | `🎓 FSP Simulation` | 4,005 | 45 | 1,200 | Fachsprachprüfung Vorbereitung, Patientensimulation & Arzt-Arzt-Gespräch |
+| **Deutsch für Ärzte & Mediziner** (@deutsch_fuer_aerzte) | `INSTAGRAM` | `🇩🇪 Medizinisches Deutsch` | 8,330 | 85 | 2,400 | Fachbegriffe vs. Umgangssprache, typische Grammatikfehler im Arztbrief |
+| **ApprobationsCoach Deutschland** (@approbationscoach) | `INSTAGRAM` | `🏛️ Approbation Coach` | 10,070 | 95 | 2,800 | Ablauf der Approbation in Bundesländern, Defizitbescheid & FSP-Tipps |
 | **FSP Prüfungsprotokolle & Fälle** (@fsp_vorbereitung) | `INSTAGRAM` | `📑 Protokolle & Fälle` | 0 | 0.0 | 1,000 | Echte Prüfungsprotokolle der Landesärztekammern, Arztbrief-Muster |
-| **Ärzte in Deutschland Community** (@aerzte_in_deutschland) | `INSTAGRAM` | `🌍 Ausländische Ärzte` | 11,340 | 140 | 4,500 | Erfahrungsberichte von ausländischen Ärzten, Assistenzarztalltag & Klinikjobs |
-| **Lingua Medica Deutschkurse** (@lingua_medica_de) | `INSTAGRAM` | `🇩🇪 C1 Medizin Sprachkurs` | 2,080 | 40 | 1,100 | C1 Fachsprachenprüfung, Fachvokabular Innere Medizin & Chirurgie |
-| **Medinaut Approbation & KP Prep** (@medinaut_de) | `INSTAGRAM` | `🩺 FSP & KP Trainer` | 6,150 | 75 | 2,200 | Vorbereitung auf Kenntnisprüfung und Fachsprachprüfung für internationale Ärzte |
-| **Dr. Med. International in Deutschland** (@dr.med.international) | `INSTAGRAM` | `🔥 Ausländischer Arzt` | 9,480 | 120 | 3,600 | Tipps zum Bestehen der FSP beim 1. Versuch und Klinikwechsel |
-| **FSP Fachsprachprüfung (#fspmedizin)** (@tag_fspmedizin) | `TIKTOK` | `🎵 TikTok FSP Feed` | 39,140 | 380 | 14,500 | Schnelle Anamnese-Fragen auf Deutsch und 20-Minuten Prüfungssimulation |
-| **Approbation Deutschland (#approbation)** (@tag_approbation) | `TIKTOK` | `🎵 TikTok Approbation Feed` | 34,840 | 520 | 21,000 | Anerkennung für ausländische Ärzte in Deutschland, Termine und Vorbereitung |
-| **Assistenzarzt Alltag (#assistenzarzt)** (@tag_assistenzarzt) | `TIKTOK` | `🎵 TikTok Gehälter & Klinik` | 40,300 | 650 | 28,000 | Echter Alltag im Krankenhaus, Nachtdienste und Gehaltstabellen nach TV-Ärzte |
-| **Deutsch für Ärzte (TikTok Topic)** (@deutsch_fuer_aerzte_tt) | `TIKTOK` | `🎵 TikTok Fachbegriffe` | 30,660 | 420 | 18,000 | Klinikjargon vs. Lehrbuchdeutsch, Fachbegriffe für das Arzt-Patient-Gespräch |
-| **Médicos en Alemania Topic** (@medicos_en_alemania_tt) | `TIKTOK` | `🎵 TikTok Médicos Hispanos` | 53,900 | 490 | 22,000 | Guía en español para médicos latinos convalidando en Alemania y aprobando la FSP |
-| **Arzt in Deutschland (@doc_in_germany)** (@doc_in_germany) | `TIKTOK` | `🎵 TikTok Assistenzarzt` | 38,380 | 380 | 16,000 | Erfahrungsberichte, FSP-Simulationen und Tipps für ausländische Assistenzärzte |
+| **Ärzte in Deutschland Community** (@aerzte_in_deutschland) | `INSTAGRAM` | `🌍 Ausländische Ärzte` | 12,180 | 140 | 4,500 | Erfahrungsberichte von ausländischen Ärzten, Assistenzarztalltag & Klinikjobs |
+| **Lingua Medica Deutschkurse** (@lingua_medica_de) | `INSTAGRAM` | `🇩🇪 C1 Medizin Sprachkurs` | 3,920 | 40 | 1,100 | C1 Fachsprachenprüfung, Fachvokabular Innere Medizin & Chirurgie |
+| **Medinaut Approbation & KP Prep** (@medinaut_de) | `INSTAGRAM` | `🩺 FSP & KP Trainer` | 8,625 | 75 | 2,200 | Vorbereitung auf Kenntnisprüfung und Fachsprachprüfung für internationale Ärzte |
+| **Dr. Med. International in Deutschland** (@dr.med.international) | `INSTAGRAM` | `🔥 Ausländischer Arzt` | 9,360 | 120 | 3,600 | Tipps zum Bestehen der FSP beim 1. Versuch und Klinikwechsel |
+| **FSP Fachsprachprüfung (#fspmedizin)** (@tag_fspmedizin) | `TIKTOK` | `🎵 TikTok FSP Feed` | 20,900 | 380 | 14,500 | Schnelle Anamnese-Fragen auf Deutsch und 20-Minuten Prüfungssimulation |
+| **Approbation Deutschland (#approbation)** (@tag_approbation) | `TIKTOK` | `🎵 TikTok Approbation Feed` | 34,320 | 520 | 21,000 | Anerkennung für ausländische Ärzte in Deutschland, Termine und Vorbereitung |
+| **Assistenzarzt Alltag (#assistenzarzt)** (@tag_assistenzarzt) | `TIKTOK` | `🎵 TikTok Gehälter & Klinik` | 57,850 | 650 | 28,000 | Echter Alltag im Krankenhaus, Nachtdienste und Gehaltstabellen nach TV-Ärzte |
+| **Deutsch für Ärzte (TikTok Topic)** (@deutsch_fuer_aerzte_tt) | `TIKTOK` | `🎵 TikTok Fachbegriffe` | 37,800 | 420 | 18,000 | Klinikjargon vs. Lehrbuchdeutsch, Fachbegriffe für das Arzt-Patient-Gespräch |
+| **Médicos en Alemania Topic** (@medicos_en_alemania_tt) | `TIKTOK` | `🎵 TikTok Médicos Hispanos` | 58,800 | 490 | 22,000 | Guía en español para médicos latinos convalidando en Alemania y aprobando la FSP |
+| **Arzt in Deutschland (@doc_in_germany)** (@doc_in_germany) | `TIKTOK` | `🎵 TikTok Assistenzarzt` | 33,060 | 380 | 16,000 | Erfahrungsberichte, FSP-Simulationen und Tipps für ausländische Assistenzärzte |
 
 ---
 
