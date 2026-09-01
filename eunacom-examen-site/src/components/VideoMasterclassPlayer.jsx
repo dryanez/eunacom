@@ -43,7 +43,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Masterclass EUNACOM Cardiología de Alto Rendimiento 2026-2027",
-    "description": "Clase clínica completa dictada por el Dr. Felipe Yáñez sobre el temario oficial ASOFAMECH: SCA, Insuficiencia Cardíaca, Fibrilación Auricular y Crisis Hipertensivas.",
+    "description": "Clase clínica completa dictada por el equipo académico de Academia Examen EUNACOM sobre el temario oficial ASOFAMECH: SCA, Insuficiencia Cardíaca, Fibrilación Auricular y Crisis Hipertensivas.",
     "thumbnailUrl": "https://eunacom-examen.cl/og-image.jpg",
     "uploadDate": "2026-08-15T08:00:00-04:00",
     "duration": "PT57M",
@@ -51,9 +51,9 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
     "embedUrl": "https://eunacom-examen.cl/#masterclass",
     "author": {
       "@type": "Physician",
-      "name": "Dr. Felipe Yáñez",
+      "name": "Academia Examen EUNACOM",
       "medicalSpecialty": "General Surgery & Medical Education",
-      "identifier": "RNPI-642819"
+      "areaServed": "Chile"
     }
   };
 
@@ -75,7 +75,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
             backgroundColor: 'rgba(255, 255, 255, 0.12)',
             color: '#a9d3f5',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -88,7 +88,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#ffffff',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -112,7 +112,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
           gap: '32px',
           backgroundColor: 'rgba(255, 255, 255, 0.05)',
           border: '1.5px solid rgba(169, 211, 245, 0.25)',
-          borderRadius: '24px',
+          borderRadius: '5px',
           padding: '28px',
           backdropFilter: 'blur(10px)'
         }} className="player-grid">
@@ -121,14 +121,14 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
           <div>
             <div style={{
               position: 'relative',
-              borderRadius: '16px',
+              borderRadius: '4px',
               overflow: 'hidden',
-              backgroundColor: '#02182d',
+              backgroundColor: '#08365f',
               aspectRatio: '16/9',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+              boxShadow: '0 18px 44px rgba(8,54,95,.22)',
               border: '1px solid rgba(255, 255, 255, 0.1)'
             }}>
 
@@ -138,7 +138,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                background: 'linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)',
+                background: '#08365f 0%, rgba(0,0,0,0) 100%)',
                 zIndex: 2
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -157,7 +157,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                     FY
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#ffffff' }}>Dr. Felipe Yáñez</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#ffffff' }}>Academia Examen EUNACOM</div>
                     <div style={{ fontSize: '0.7rem', color: '#a9d3f5' }}>Cardiología & Urgencias Médicas</div>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                   fontSize: '0.7rem',
                   fontWeight: '800',
                   padding: '3px 10px',
-                  borderRadius: '6px',
+                  borderRadius: '3px',
                   letterSpacing: '0.04em'
                 }}>
                   CLASE 100% OFICIAL
@@ -199,7 +199,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
-                      boxShadow: '0 8px 30px rgba(11, 94, 168, 0.6)',
+                      boxShadow: '0 6px 20px rgba(8,54,95,.10)',
                       transition: 'transform 0.2s',
                       marginBottom: '16px'
                     }}
@@ -210,7 +210,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                   <div style={{
                     backgroundColor: 'rgba(8, 54, 95, 0.9)',
                     border: '1.5px solid #a9d3f5',
-                    borderRadius: '16px',
+                    borderRadius: '4px',
                     padding: '24px',
                     maxWidth: '480px',
                     textAlign: 'left'
@@ -234,7 +234,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
               {/* Video Bottom Player Controls */}
               <div style={{
                 padding: '12px 20px',
-                background: 'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%)',
+                background: '#08365f 0%, rgba(0,0,0,0) 100%)',
                 zIndex: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -272,7 +272,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                         border: 'none',
                         color: '#ffffff',
                         padding: '3px 8px',
-                        borderRadius: '6px',
+                        borderRadius: '3px',
                         fontSize: '0.75rem',
                         fontWeight: '700',
                         cursor: 'pointer'
@@ -290,7 +290,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
             <div style={{
               marginTop: '24px',
               backgroundColor: 'rgba(255, 255, 255, 0.08)',
-              borderRadius: '16px',
+              borderRadius: '4px',
               padding: '20px',
               border: '1px solid rgba(169, 211, 245, 0.2)'
             }}>
@@ -353,7 +353,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
                       onClick={() => handleSelectChapter(chapter)}
                       style={{
                         padding: '12px 16px',
-                        borderRadius: '12px',
+                        borderRadius: '4px',
                         backgroundColor: isSelected ? '#0b5ea8' : 'rgba(255, 255, 255, 0.08)',
                         border: isSelected ? '1.5px solid #a9d3f5' : '1px solid rgba(255, 255, 255, 0.1)',
                         color: '#ffffff',
@@ -384,7 +384,7 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
             {/* CTA Box */}
             <div style={{
               backgroundColor: 'rgba(255, 255, 255, 0.12)',
-              borderRadius: '16px',
+              borderRadius: '4px',
               padding: '20px',
               border: '1px solid rgba(169, 211, 245, 0.3)'
             }}>

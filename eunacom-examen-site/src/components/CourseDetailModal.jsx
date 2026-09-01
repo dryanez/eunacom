@@ -23,13 +23,13 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
     }}>
       <div style={{
         backgroundColor: '#ffffff',
-        borderRadius: '24px',
+        borderRadius: '5px',
         width: '100%',
         maxWidth: '750px',
         maxHeight: '90vh',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 18px 44px rgba(8,54,95,.22)',
         overflow: 'hidden'
       }}>
         {/* Modal Header */}
@@ -49,7 +49,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
               fontSize: '0.75rem',
               fontWeight: '700',
               padding: '3px 10px',
-              borderRadius: '6px',
+              borderRadius: '3px',
               display: 'inline-block',
               marginBottom: '6px'
             }}>
@@ -85,7 +85,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
             gap: '20px',
             backgroundColor: '#eef5fb',
             padding: '16px 20px',
-            borderRadius: '12px',
+            borderRadius: '4px',
             marginBottom: '24px',
             fontSize: '0.88rem',
             color: '#08365f'
@@ -100,7 +100,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
           </h4>
 
           {course.temarioNota && (
-            <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: '1.5', margin: '0 0 16px' }}>
+            <p style={{ fontSize: '0.88rem', color: '#5f6b76', lineHeight: '1.5', margin: '0 0 16px' }}>
               {course.temarioNota}
             </p>
           )}
@@ -110,8 +110,8 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
               <div
                 key={idx}
                 style={{
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '14px',
+                  border: '1px solid #dae8f4',
+                  borderRadius: '4px',
                   padding: '18px 20px',
                   backgroundColor: '#ffffff'
                 }}
@@ -147,7 +147,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
                     fontWeight: '700',
                     backgroundColor: '#eef5fb',
                     padding: '3px 10px',
-                    borderRadius: '6px'
+                    borderRadius: '3px'
                   }}>
                     {module.s}
                   </span>
@@ -157,7 +157,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
                   paddingLeft: '36px',
                   margin: 0,
                   fontSize: '0.85rem',
-                  color: '#475569',
+                  color: '#41556b',
                   lineHeight: '1.5'
                 }}>
                   {module.d}
@@ -170,8 +170,8 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
         {/* Modal Footer */}
         <div style={{
           padding: '18px 30px',
-          borderTop: '1px solid #e2e8f0',
-          backgroundColor: '#f8fafc',
+          borderTop: '1px solid #dae8f4',
+          backgroundColor: '#f6fafd',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'

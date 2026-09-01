@@ -26,16 +26,16 @@ export default function App() {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "EUNACOM Examen Chile",
-    "alternateName": ["EUNACOM Academia", "Preparación EUNACOM Dr. Felipe Yáñez"],
+    "alternateName": ["Academia Examen EUNACOM", "AEE"],
     "url": "https://eunacom-examen.cl",
     "logo": "https://eunacom-examen.cl/logo.png",
     "description": "Academia de alto rendimiento médico y preparación para el Examen Único Nacional de Conocimientos de Medicina (EUNACOM Teórico ST y ECOE Práctico SP) en Chile.",
     "founder": {
       "@type": "Physician",
-      "name": "Dr. Felipe Yáñez",
-      "jobTitle": "Director Académico EUNACOM",
-      "alumniOf": "Universidad de Santiago de Chile (USACH)",
-      "identifier": "RNPI-642819"
+      "name": "Academia Examen EUNACOM",
+      "jobTitle": "Equipo académico",
+      "areaServed": "Chile",
+      "areaServed": "Chile"
     },
     "address": {
       "@type": "PostalAddress",

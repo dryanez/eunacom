@@ -26,7 +26,7 @@ export default function EnrollmentModal({ course, onClose }) {
   };
 
   const handleWhatsAppConfirm = () => {
-    const text = `¡Hola Dr. Felipe Yáñez! Acabo de registrarme para el curso:%0A%0A` +
+    const text = `¡Hola! Acabo de registrarme para el curso:%0A%0A` +
       `*Curso:* ${course.nombre}%0A` +
       `*Valor:* ${course.precioClp} (${course.precioUsd})%0A` +
       `*Nombre:* ${formData.name}%0A` +
@@ -56,13 +56,13 @@ export default function EnrollmentModal({ course, onClose }) {
     }}>
       <div style={{
         backgroundColor: '#ffffff',
-        borderRadius: '24px',
+        borderRadius: '5px',
         width: '100%',
         maxWidth: '680px',
         maxHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 18px 44px rgba(8,54,95,.22)',
         overflow: 'hidden'
       }}>
         {/* Header */}
@@ -82,7 +82,7 @@ export default function EnrollmentModal({ course, onClose }) {
               fontSize: '0.75rem',
               fontWeight: '700',
               padding: '3px 10px',
-              borderRadius: '6px',
+              borderRadius: '3px',
               display: 'inline-block',
               marginBottom: '4px'
             }}>
@@ -118,24 +118,24 @@ export default function EnrollmentModal({ course, onClose }) {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
               {/* Pricing summary */}
               <div style={{
-                backgroundColor: '#f1f5f9',
+                backgroundColor: '#eef5fb',
                 padding: '16px 20px',
-                borderRadius: '14px',
+                borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between'
               }}>
                 <div>
-                  <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: '600' }}>Inversión Oficial</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#08365f' }}>
-                    {course.precioClp} <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '600' }}>/ {course.precioUsd}</span>
+                  <div style={{ fontSize: '0.85rem', color: '#5f6b76', fontWeight: '600' }}>Inversión Oficial</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#08365f' }}>
+                    {course.precioClp} <span style={{ fontSize: '0.9rem', color: '#5f6b76', fontWeight: '600' }}>/ {course.precioUsd}</span>
                   </div>
                 </div>
                 <div style={{
                   backgroundColor: '#eef5fb',
                   color: '#0b5ea8',
                   padding: '6px 12px',
-                  borderRadius: '8px',
+                  borderRadius: '3px',
                   fontSize: '0.8rem',
                   fontWeight: '700'
                 }}>
@@ -159,8 +159,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -181,8 +181,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -205,8 +205,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -227,8 +227,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -248,8 +248,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     alignItems: 'center',
                     gap: '12px',
                     padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: formData.paymentMethod === 'webpay' ? '2px solid #0b5ea8' : '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: formData.paymentMethod === 'webpay' ? '2px solid #0b5ea8' : '1px solid #cfdeeb',
                     backgroundColor: formData.paymentMethod === 'webpay' ? '#eef5fb' : '#ffffff',
                     cursor: 'pointer'
                   }}>
@@ -265,7 +265,7 @@ export default function EnrollmentModal({ course, onClose }) {
                       <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#08365f' }}>
                         Webpay Plus (Tarjetas de Crédito / Débito en Cuotas)
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                      <div style={{ fontSize: '0.78rem', color: '#5f6b76' }}>
                         Hasta 12 cuotas sin interés con bancos nacionales chilenos.
                       </div>
                     </div>
@@ -276,8 +276,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     alignItems: 'center',
                     gap: '12px',
                     padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: formData.paymentMethod === 'transfer' ? '2px solid #0b5ea8' : '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: formData.paymentMethod === 'transfer' ? '2px solid #0b5ea8' : '1px solid #cfdeeb',
                     backgroundColor: formData.paymentMethod === 'transfer' ? '#eef5fb' : '#ffffff',
                     cursor: 'pointer'
                   }}>
@@ -293,7 +293,7 @@ export default function EnrollmentModal({ course, onClose }) {
                       <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#08365f' }}>
                         Transferencia Electrónica Directa (Pesos Chilenos - CLP)
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                      <div style={{ fontSize: '0.78rem', color: '#5f6b76' }}>
                         Cuenta Corriente Banco de Chile / Santander con activación inmediata.
                       </div>
                     </div>
@@ -304,8 +304,8 @@ export default function EnrollmentModal({ course, onClose }) {
                     alignItems: 'center',
                     gap: '12px',
                     padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: formData.paymentMethod === 'international' ? '2px solid #0b5ea8' : '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: formData.paymentMethod === 'international' ? '2px solid #0b5ea8' : '1px solid #cfdeeb',
                     backgroundColor: formData.paymentMethod === 'international' ? '#eef5fb' : '#ffffff',
                     cursor: 'pointer'
                   }}>
@@ -321,7 +321,7 @@ export default function EnrollmentModal({ course, onClose }) {
                       <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#08365f' }}>
                         Pago Internacional (PayPal / Tarjeta Extranjera - USD)
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                      <div style={{ fontSize: '0.78rem', color: '#5f6b76' }}>
                         Procesamiento seguro para médicos desde fuera de Chile.
                       </div>
                     </div>
@@ -330,8 +330,8 @@ export default function EnrollmentModal({ course, onClose }) {
               </div>
 
               {/* Security info */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#64748b' }}>
-                <Lock size={14} color="#15803d" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#5f6b76' }}>
+                <Lock size={14} color="#41556b" />
                 <span>Transacción encriptada con certificado SSL de 256 bits.</span>
               </div>
 
@@ -356,8 +356,8 @@ export default function EnrollmentModal({ course, onClose }) {
                 width: '64px',
                 height: '64px',
                 borderRadius: '50%',
-                backgroundColor: '#dcfce7',
-                color: '#15803d',
+                backgroundColor: '#eef5fb',
+                color: '#41556b',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -370,8 +370,8 @@ export default function EnrollmentModal({ course, onClose }) {
                 ¡Pre-Inscripción Registrada Exitosamente!
               </h4>
 
-              <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.5', maxWidth: '480px', margin: '0 auto 20px' }}>
-                Hemos guardado tu cupo para <strong>{course.nombre}</strong>. Para coordinar los datos de transferencia o link de Webpay en cuotas, puedes confirmar directamente con el Dr. Felipe Yáñez por WhatsApp:
+              <p style={{ fontSize: '0.92rem', color: '#41556b', lineHeight: '1.5', maxWidth: '480px', margin: '0 auto 20px' }}>
+                Hemos guardado tu cupo para <strong>{course.nombre}</strong>. Para coordinar los datos de transferencia o link de Webpay en cuotas, puedes confirmar directamente con Academia Examen EUNACOM por WhatsApp:
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '380px', margin: '0 auto' }}>

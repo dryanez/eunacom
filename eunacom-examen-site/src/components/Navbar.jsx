@@ -1,210 +1,177 @@
 import React, { useState } from 'react';
-import { ShieldCheck, PhoneCall, Menu, X, ArrowRight, BookOpen, GraduationCap, Stethoscope } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { BRAND, CONTACTO } from '../site.config';
 
-export default function Navbar({ onOpenMentorship, onSelectCourse }) {
+const NAV_LINKS = [
+  { href: '#cursos', label: 'Cursos y precios' },
+  { href: '#diagnostico', label: 'Pruebas gratis' },
+  { href: '#revalidacion', label: 'Para médicos extranjeros' },
+  { href: '#clase-magistral', label: 'Clase magistral' },
+  { href: '#blog', label: 'Blog' },
+  { href: '#faq', label: 'Preguntas' },
+];
+
+const linkStyle = {
+  background: 'none',
+  border: 'none',
+  padding: '6px 0',
+  cursor: 'pointer',
+  color: '#41556b',
+  fontSize: '13px',
+  fontWeight: '600',
+  whiteSpace: 'nowrap',
+  textDecoration: 'none',
+};
+
+export default function Navbar({ onOpenMentorship }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header style={{
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000,
-      backgroundColor: '#08365f',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-      boxShadow: '0 4px 20px rgba(8, 54, 95, 0.2)'
-    }}>
-      {/* Top Banner */}
-      <div style={{
-        backgroundColor: '#05223c',
-        color: '#a9d3f5',
-        fontSize: '0.78rem',
-        padding: '6px 0',
-        textAlign: 'center',
-        fontWeight: '600',
-        letterSpacing: '0.02em',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-      }}>
-        <span>📢 Convocatorias Oficiales EUNACOM: Diciembre 2026 y Julio 2027 · Inscripciones y Becas Abiertas</span>
+    <>
+      {/* Utility bar */}
+      <div style={{ background: '#08365f', color: '#b9d3ea' }}>
+        <div className="container" style={{
+          padding: '8px 36px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '18px',
+          flexWrap: 'wrap',
+          fontSize: '13px',
+        }}>
+          <span style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <span>{CONTACTO.telefono}</span>
+            <span>{CONTACTO.correo}</span>
+          </span>
+          <span style={{ display: 'flex', gap: '14px' }}>
+            <span>Instagram</span>
+            <span>Facebook</span>
+          </span>
+        </div>
       </div>
 
-      <div className="container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingTop: '12px',
-        paddingBottom: '12px'
+      <header style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        background: '#ffffff',
+        borderBottom: '1px solid #e3ebf3',
+        boxShadow: '0 2px 10px rgba(8,54,95,.06)',
       }}>
-        {/* Brand Logo */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '10px',
-            backgroundColor: '#0b5ea8',
+        <div className="container" style={{
+          padding: '14px 36px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'clamp(10px,1.5vw,24px)',
+        }}>
+          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '11px', flex: 'none', textDecoration: 'none' }}>
+            <span style={{
+              width: '44px',
+              height: '44px',
+              background: '#eef5fb',
+              border: '1px solid #a9c7e4',
+              borderRadius: '3px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'var(--font-heading)',
+              fontSize: '13px',
+              fontWeight: '800',
+              letterSpacing: '.04em',
+              color: '#0b5ea8',
+              flex: 'none',
+            }}>
+              {BRAND.sigla}
+            </span>
+            <span style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontWeight: '800',
+                fontSize: '17px',
+                color: '#08365f',
+                letterSpacing: '-.01em',
+              }}>
+                {BRAND.nombre}
+              </span>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '9.5px',
+                fontWeight: '600',
+                letterSpacing: '.11em',
+                textTransform: 'uppercase',
+                color: '#8ba4bd',
+              }}>
+                Prueba para el ejercicio<br />de la Medicina en Chile
+              </span>
+            </span>
+          </a>
+
+          <nav className="site-nav" style={{
             display: 'flex',
+            gap: 'clamp(6px,1vw,18px)',
+            flex: '1',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff',
-            fontWeight: '900',
-            fontSize: '1.25rem',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)'
+            fontFamily: 'var(--font-heading)',
           }}>
-            E
-          </div>
-          <div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '900', color: '#ffffff', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
-              EUNACOM <span style={{ color: '#a9d3f5' }}>EXAMEN</span>
-            </div>
-            <div style={{ fontSize: '0.68rem', color: '#a9d3f5', fontWeight: '700', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-              Dr. Felipe Yáñez · RNPI 642819
-            </div>
-          </div>
-        </a>
+            {NAV_LINKS.map((link) => (
+              <a key={link.href} href={link.href} style={linkStyle} className="nav-link">
+                {link.label}
+              </a>
+            ))}
+            <button onClick={onOpenMentorship} style={linkStyle} className="nav-link">
+              Contacto
+            </button>
+          </nav>
 
-        {/* Desktop Nav Links */}
-        <nav style={{ display: 'none', alignItems: 'center', gap: '22px' }} className="desktop-nav">
-          <a href="#cursos" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            Cursos 2026-2027
-          </a>
-          <a href="#diagnostico" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            Diagnóstico Gratis
-          </a>
-          <a href="#revalidacion" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            Revalidación
-          </a>
-          <a href="#clase-magistral" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            Masterclass Video
-          </a>
-          <a href="#blog" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            Guías Clínicas
-          </a>
-          <a href="#faq" style={{ color: '#e2e8f0', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '700', transition: 'color 0.2s' }}>
-            FAQ
-          </a>
-        </nav>
-
-        {/* Action Buttons */}
-        <div style={{ display: 'none', alignItems: 'center', gap: '10px' }} className="desktop-actions">
           <button
-            onClick={onOpenMentorship}
-            className="btn btn-whatsapp"
+            className="site-nav-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menú"
             style={{
-              padding: '8px 14px',
-              fontSize: '0.82rem',
-              fontWeight: '700'
+              display: 'none',
+              background: 'none',
+              border: '1px solid #cfdeeb',
+              borderRadius: '3px',
+              padding: '8px',
+              cursor: 'pointer',
+              color: '#08365f',
             }}
           >
-            <PhoneCall size={15} />
-            <span>Tutoría WhatsApp</span>
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-
-          <a
-            href="#cursos"
-            className="btn btn-primary"
-            style={{
-              padding: '8px 16px',
-              fontSize: '0.82rem',
-              fontWeight: '700'
-            }}
-          >
-            <span>Ver Cursos</span>
-            <ArrowRight size={15} />
-          </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          style={{
-            display: 'block',
-            background: 'none',
-            border: 'none',
-            color: '#ffffff',
-            cursor: 'pointer',
-            padding: '6px'
-          }}
-          className="mobile-toggle"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div style={{
-          backgroundColor: '#05223c',
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px'
-        }}>
-          <a
-            href="#cursos"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Cursos y Precios 2026 - 2027
-          </a>
-          <a
-            href="#diagnostico"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Simulacro Diagnóstico Gratuito (5 Preguntas)
-          </a>
-          <a
-            href="#revalidacion"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Matriz de Revalidación & Apostilla
-          </a>
-          <a
-            href="#clase-magistral"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Clase Magistral de Cardiología EUNACOM
-          </a>
-          <a
-            href="#blog"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Centro de Inteligencia & Blog
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#ffffff', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', padding: '6px 0' }}
-          >
-            Preguntas Frecuentes
-          </a>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
+        {mobileMenuOpen && (
+          <div className="site-nav-mobile" style={{
+            borderTop: '1px solid #e3ebf3',
+            background: '#ffffff',
+            padding: '14px 36px 20px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
+            fontFamily: 'var(--font-heading)',
+          }}>
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ ...linkStyle, fontSize: '14px' }}
+              >
+                {link.label}
+              </a>
+            ))}
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenMentorship();
-              }}
-              className="btn btn-whatsapp"
-              style={{ width: '100%', justifyContent: 'center' }}
+              onClick={() => { setMobileMenuOpen(false); onOpenMentorship(); }}
+              className="btn btn-secondary"
+              style={{ width: '100%' }}
             >
-              <PhoneCall size={16} />
-              <span>Consultar por WhatsApp Directo</span>
+              Contacto
             </button>
           </div>
-        </div>
-      )}
-
-      <style>{`
-        @media (min-width: 900px) {
-          .desktop-nav { display: flex !important; }
-          .desktop-actions { display: flex !important; }
-          .mobile-toggle { display: none !important; }
-        }
-      `}</style>
-    </header>
+        )}
+      </header>
+    </>
   );
 }

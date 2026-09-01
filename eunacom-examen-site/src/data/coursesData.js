@@ -25,7 +25,7 @@ export const COURSES = [
       "Banco de 4.000+ preguntas comentadas con justificación de distractores",
       "Doce simulacros cronometrados de 180 preguntas con informe por especialidad",
       "Calendario anual personalizado ajustado a tu diagnóstico inicial",
-      "Revisión semanal de avance con devolución personalizada del Director Académico",
+      "Revisión semanal de avance con devolución personalizada del equipo académico",
       "Módulo especializado de Sistema de Salud Chileno, GES, Notificación y Medicina Legal",
       "Reordenamiento estratégico del plan después de la convocatoria de julio",
       "Preparación introductoria al EUNACOM práctico (ECOE)",

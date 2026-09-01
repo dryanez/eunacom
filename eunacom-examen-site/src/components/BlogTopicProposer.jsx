@@ -42,7 +42,7 @@ export default function BlogTopicProposer({ onClose, onProposeTopic }) {
         `Manejo de tiempos y criterios de derivación según guías GES.`,
         `Entrenamiento de distractores para maximizar puntaje teórico.`
       ],
-      recommendedCTA: "Simulacro Diagnóstico Gratuito y Evaluación con Director Académico"
+      recommendedCTA: "Simulacro Diagnóstico Gratuito y Evaluación de perfil"
     };
 
     setGeneratedOutline(outline);
@@ -56,7 +56,7 @@ slug: "${generatedOutline.slug}"
 target_keyword: "${generatedOutline.targetKeyword}"
 intent: "${generatedOutline.searchIntent}"
 category: "${generatedOutline.category}"
-author: "Dr. Felipe Yáñez"
+author: "Equipo académico AEE"
 date: "2026-08-31"
 ---
 
@@ -65,7 +65,7 @@ date: "2026-08-31"
 ## Puntos Clave
 ${generatedOutline.keyTakeaways.map(t => `- ${t}`).join('\n')}
 
-${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisado por Dr. Felipe Yáñez]\n`).join('\n')}
+${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico revisado por el equipo académico de Academia Examen EUNACOM]\n`).join('\n')}
 
 ## Preguntas Frecuentes (FAQ Schema)
 - **Q:** ¿Cuál es el impacto de este tema en el puntaje de corte?
@@ -94,13 +94,13 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
     }}>
       <div style={{
         backgroundColor: '#ffffff',
-        borderRadius: '24px',
+        borderRadius: '5px',
         width: '100%',
         maxWidth: '840px',
         maxHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 18px 44px rgba(8,54,95,.22)',
         overflow: 'hidden'
       }}>
         {/* Header */}
@@ -167,8 +167,8 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
                   }}
                   style={{
                     backgroundColor: selectedKw.keyword === kw.keyword ? '#eef5fb' : '#ffffff',
-                    border: selectedKw.keyword === kw.keyword ? '2px solid #0b5ea8' : '1px solid #cbd5e1',
-                    borderRadius: '12px',
+                    border: selectedKw.keyword === kw.keyword ? '2px solid #0b5ea8' : '1px solid #cfdeeb',
+                    borderRadius: '4px',
                     padding: '14px',
                     cursor: 'pointer',
                     transition: 'all 0.2s'
@@ -177,7 +177,7 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
                   <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#08365f', marginBottom: '6px' }}>
                     "{kw.keyword}"
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#64748b' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: '#5f6b76' }}>
                     <span>Pos: #{kw.position}</span>
                     <span>Impr: {kw.impressions}</span>
                     <span style={{ color: '#0b5ea8', fontWeight: '700' }}>{kw.opportunity}</span>
@@ -190,9 +190,9 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
           {/* Generated Proposal Box */}
           {generatedOutline && (
             <div style={{
-              backgroundColor: '#f8fafc',
+              backgroundColor: '#f6fafd',
               border: '1.5px solid #0b5ea8',
-              borderRadius: '16px',
+              borderRadius: '4px',
               padding: '24px',
               marginBottom: '24px'
             }}>
@@ -203,11 +203,11 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
                   fontSize: '0.75rem',
                   fontWeight: '700',
                   padding: '3px 10px',
-                  borderRadius: '6px'
+                  borderRadius: '3px'
                 }}>
                   Estructura de Contenido Generada
                 </span>
-                <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600' }}>
+                <span style={{ fontSize: '0.8rem', color: '#5f6b76', fontWeight: '600' }}>
                   Intención: {generatedOutline.searchIntent}
                 </span>
               </div>
@@ -220,7 +220,7 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
                 <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#08365f', marginBottom: '6px' }}>
                   Estructura de Secciones (H2 / H3):
                 </div>
-                <ul style={{ paddingLeft: '20px', margin: 0, fontSize: '0.88rem', color: '#334155' }}>
+                <ul style={{ paddingLeft: '20px', margin: 0, fontSize: '0.88rem', color: '#41556b' }}>
                   {generatedOutline.h2Sections.map((h, i) => (
                     <li key={i} style={{ marginBottom: '4px' }}>{h}</li>
                   ))}
@@ -234,7 +234,7 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
                 <div style={{ display: 'flex', gap: '8px' }}>
                   {generatedOutline.schemaTypes.map((st, i) => (
                     <span key={i} style={{
-                      backgroundColor: '#e2e8f0',
+                      backgroundColor: '#dae8f4',
                       color: '#08365f',
                       fontSize: '0.75rem',
                       fontWeight: '700',
@@ -254,8 +254,8 @@ ${generatedOutline.h2Sections.map(h => `## ${h}\n\n[Contenido clínico supervisa
         {/* Footer */}
         <div style={{
           padding: '18px 30px',
-          borderTop: '1px solid #e2e8f0',
-          backgroundColor: '#f8fafc',
+          borderTop: '1px solid #dae8f4',
+          backgroundColor: '#f6fafd',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'

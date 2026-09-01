@@ -33,7 +33,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
             backgroundColor: '#eef5fb',
             color: '#08365f',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -46,7 +46,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -59,7 +59,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
             color: '#41556b',
             lineHeight: '1.6'
           }}>
-            Artículos y manuales actualizados para el examen teórico (180 preguntas) y práctico (ECOE). Redactados y supervisados por el Dr. Felipe Yáñez.
+            Artículos y manuales actualizados para el examen teórico (180 preguntas) y práctico (ECOE). Redactados y revisados por el equipo académico de Academia Examen EUNACOM.
           </p>
         </div>
 
@@ -69,10 +69,10 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
           flexDirection: 'column',
           gap: '18px',
           marginBottom: '40px',
-          backgroundColor: '#f8fafc',
+          backgroundColor: '#f6fafd',
           padding: '20px 24px',
-          borderRadius: '20px',
-          border: '1px solid #e2e8f0'
+          borderRadius: '5px',
+          border: '1px solid #dae8f4'
         }}>
           {/* Search Box & Topic Proposer Button */}
           <div style={{
@@ -87,7 +87,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
               flex: '1 1 320px',
               maxWidth: '480px'
             }}>
-              <Search size={18} color="#64748b" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+              <Search size={18} color="#5f6b76" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input
                 type="text"
                 placeholder="Buscar por tema (GES, fechas, sueldos, práctico, cardiología)..."
@@ -96,8 +96,8 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                 style={{
                   width: '100%',
                   padding: '11px 16px 11px 40px',
-                  borderRadius: '12px',
-                  border: '1px solid #cbd5e1',
+                  borderRadius: '4px',
+                  border: '1px solid #cfdeeb',
                   fontSize: '0.9rem',
                   outline: 'none',
                   backgroundColor: '#ffffff'
@@ -140,15 +140,15 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                   style={{
                     border: 'none',
                     padding: '6px 14px',
-                    borderRadius: '8px',
+                    borderRadius: '3px',
                     fontSize: '0.82rem',
                     fontWeight: '600',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                     backgroundColor: isSelected ? '#08365f' : '#ffffff',
-                    color: isSelected ? '#ffffff' : '#475569',
-                    boxShadow: isSelected ? '0 4px 10px rgba(8, 54, 95, 0.15)' : 'none',
-                    border: isSelected ? 'none' : '1px solid #e2e8f0'
+                    color: isSelected ? '#ffffff' : '#41556b',
+                    boxShadow: isSelected ? 'none' : 'none',
+                    border: isSelected ? 'none' : '1px solid #dae8f4'
                   }}
                 >
                   {cat.label}
@@ -174,8 +174,8 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 padding: '28px',
-                borderRadius: '20px',
-                border: '1px solid #e2e8f0',
+                borderRadius: '5px',
+                border: '1px solid #dae8f4',
                 backgroundColor: '#ffffff',
                 cursor: 'pointer',
                 transition: 'transform 0.2s, box-shadow 0.2s'
@@ -196,13 +196,13 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                     fontSize: '0.75rem',
                     fontWeight: '700',
                     padding: '4px 10px',
-                    borderRadius: '6px'
+                    borderRadius: '3px'
                   }}>
                     {article.cat}
                   </span>
                   <span style={{
                     fontSize: '0.78rem',
-                    color: '#64748b',
+                    color: '#5f6b76',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px'
@@ -227,7 +227,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.88rem',
-                  color: '#475569',
+                  color: '#41556b',
                   lineHeight: '1.55',
                   marginBottom: '20px'
                 }}>
@@ -237,7 +237,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
 
               {/* Card Footer */}
               <div style={{
-                borderTop: '1px solid #f1f5f9',
+                borderTop: '1px solid #eef5fb',
                 paddingTop: '14px',
                 display: 'flex',
                 alignItems: 'center',
@@ -258,8 +258,8 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                   }}>
                     FY
                   </div>
-                  <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '600' }}>
-                    Dr. Felipe Yáñez
+                  <span style={{ fontSize: '0.78rem', color: '#5f6b76', fontWeight: '600' }}>
+                    Academia Examen EUNACOM
                   </span>
                 </div>
 
@@ -280,7 +280,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
         </div>
 
         {filteredArticles.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '60px 0', color: '#64748b' }}>
+          <div style={{ textAlign: 'center', padding: '60px 0', color: '#5f6b76' }}>
             <p style={{ fontSize: '1.1rem', marginBottom: '8px' }}>No se encontraron artículos para tu búsqueda.</p>
             <button
               onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}

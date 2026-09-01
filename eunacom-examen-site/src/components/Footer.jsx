@@ -1,170 +1,123 @@
 import React from 'react';
-import { ShieldCheck, PhoneCall, Mail, MapPin, Award, BookOpen, ExternalLink, Heart } from 'lucide-react';
+import { BRAND, CONTACTO } from '../site.config';
+
+const COLUMNS = [
+  {
+    title: 'Sitio',
+    links: [
+      { href: '#cursos', label: 'Cursos y precios' },
+      { href: '#diagnostico', label: 'Material y pruebas gratis' },
+      { href: '#clase-magistral', label: 'Clase magistral' },
+    ],
+  },
+  {
+    title: 'Recursos',
+    links: [
+      { href: '#revalidacion', label: 'Para médicos extranjeros' },
+      { href: '#blog', label: 'Blog' },
+      { href: '#faq', label: 'Preguntas frecuentes' },
+    ],
+  },
+];
+
+const headingStyle = {
+  fontFamily: 'var(--font-heading)',
+  fontSize: '12px',
+  fontWeight: '700',
+  letterSpacing: '.1em',
+  textTransform: 'uppercase',
+  color: '#ffffff',
+  marginBottom: '16px',
+};
+
+const linkStyle = { color: '#a9c6de', fontSize: '14px', textDecoration: 'none', display: 'block', padding: '3px 0' };
 
 export default function Footer({ onOpenMentorship, onOpenSEOStudio }) {
   return (
-    <footer style={{ backgroundColor: '#05223c', color: '#ffffff', paddingTop: '60px', paddingBottom: '36px' }}>
-      <div className="container">
-        {/* Main Footer Grid */}
+    <footer style={{ marginTop: '80px', background: '#08365f', color: '#a9c6de' }}>
+      <div className="container" style={{ padding: '54px 36px 36px' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '40px',
-          marginBottom: '50px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '36px',
         }}>
-          {/* Col 1: Brand & Authority */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '10px',
-                backgroundColor: '#0b5ea8',
+            <div style={{ display: 'flex', alignItems: 'center', gap: '11px', marginBottom: '16px' }}>
+              <span style={{
+                width: '44px',
+                height: '44px',
+                background: 'rgba(255,255,255,.1)',
+                border: '1px solid rgba(169,198,222,.4)',
+                borderRadius: '3px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                fontFamily: 'var(--font-heading)',
+                fontSize: '13px',
+                fontWeight: '800',
+                letterSpacing: '.04em',
                 color: '#ffffff',
-                fontWeight: '900',
-                fontSize: '1.1rem'
+                flex: 'none',
               }}>
-                E
-              </div>
-              <span style={{ fontSize: '1.2rem', fontWeight: '900', letterSpacing: '-0.02em', color: '#ffffff' }}>
-                EUNACOM <span style={{ color: '#a9d3f5' }}>EXAMEN</span>
+                {BRAND.sigla}
+              </span>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontWeight: '800',
+                fontSize: '17px',
+                color: '#ffffff',
+              }}>
+                {BRAND.nombre}
               </span>
             </div>
-
-            <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: '1.6', marginBottom: '18px' }}>
-              Plataforma de alta exigencia académica y entrenamiento clínico para médicos nacionales y extranjeros que rinden el EUNACOM Teórico y ECOE Práctico en Chile.
+            <p style={{ fontSize: '14px', lineHeight: '1.9', margin: 0 }}>
+              Prueba para el ejercicio de la Medicina en Chile. Preparación para el EUNACOM teórico y práctico.
             </p>
+          </div>
 
-            <div style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.06)',
-              borderRadius: '12px',
-              padding: '12px 16px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px'
-            }}>
-              <ShieldCheck size={24} color="#a9d3f5" />
-              <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: '700', color: '#ffffff' }}>
-                  Dirección Médica y Docente
-                </div>
-                <div style={{ fontSize: '0.75rem', color: '#a9d3f5' }}>
-                  Dr. Felipe Yáñez · RNPI Nº 642819
-                </div>
-              </div>
+          {COLUMNS.map((col) => (
+            <div key={col.title}>
+              <div style={headingStyle}>{col.title}</div>
+              {col.links.map((link) => (
+                <a key={link.href} href={link.href} style={linkStyle}>▸ {link.label}</a>
+              ))}
+              {col.title === 'Recursos' && (
+                <button
+                  onClick={onOpenSEOStudio}
+                  style={{ ...linkStyle, background: 'none', border: 'none', padding: '3px 0', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  ▸ Laboratorio de temas
+                </button>
+              )}
             </div>
-          </div>
+          ))}
 
-          {/* Col 2: Programas & Cursos */}
           <div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff', marginBottom: '18px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Cursos y Preparación
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem' }}>
-              <li><a href="#cursos" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Curso Anual EUNACOM 2027</a></li>
-              <li><a href="#cursos" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Semestral Intensivo Julio 2027</a></li>
-              <li><a href="#cursos" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Intensivo Diciembre 2026</a></li>
-              <li><a href="#cursos" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Simulador QBank 4.000+ Preguntas</a></li>
-              <li><a href="#cursos" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Curso ECOE Examen Práctico (4 Áreas)</a></li>
-              <li><a href="#diagnostico" style={{ color: '#a9d3f5', fontWeight: '700', textDecoration: 'none' }}>→ Diagnóstico Gratuito 5 Preguntas</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Guías Clínicas & Normativa */}
-          <div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff', marginBottom: '18px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Guías & Revalidación
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem' }}>
-              <li><a href="#revalidacion" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Matriz de Revalidación de Título</a></li>
-              <li><a href="#blog" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Fechas Oficiales EUNACOM 2026-2027</a></li>
-              <li><a href="#blog" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Guía EUNACOM Práctico (ECOE)</a></li>
-              <li><a href="#blog" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Requisitos de Apostilla y Legalización</a></li>
-              <li><a href="#blog" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Sueldos Médicos y Sistema de Salud</a></li>
-              <li><a href="#faq" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Preguntas Frecuentes (FAQ)</a></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Contacto Directo & Triage */}
-          <div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#ffffff', marginBottom: '18px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Atención Médica Directa
-            </h4>
-            <p style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: '1.5', marginBottom: '16px' }}>
-              ¿Dudas con tu país de egreso o convalidación de título? Consulta directamente con el Dr. Felipe Yáñez.
-            </p>
-
-            <button
-              onClick={onOpenMentorship}
-              className="btn btn-whatsapp"
-              style={{
-                width: '100%',
-                padding: '10px 16px',
-                fontSize: '0.88rem',
-                marginBottom: '12px'
-              }}
-            >
-              <PhoneCall size={16} />
-              <span>WhatsApp: +56 9 7669 4606</span>
+            <div style={headingStyle}>Contacto</div>
+            <div style={{ fontSize: '14px', lineHeight: '1.9', marginBottom: '18px' }}>
+              Correo · {CONTACTO.correo}<br />
+              Teléfonos · {CONTACTO.telefono}
+            </div>
+            <button onClick={onOpenMentorship} className="btn" style={{ background: '#ffffff', color: '#08365f' }}>
+              Asegura tu matrícula
             </button>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#94a3b8' }}>
-              <Mail size={14} color="#a9d3f5" />
-              <span>contacto@eunacom-examen.cl</span>
-            </div>
           </div>
         </div>
+      </div>
 
-        {/* Legal Disclaimer */}
+      <div className="container" style={{ padding: '0 36px 36px' }}>
         <div style={{
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-          paddingTop: '24px',
-          marginBottom: '24px',
-          fontSize: '0.76rem',
-          color: '#64748b',
-          lineHeight: '1.5',
-          textAlign: 'justify'
-        }}>
-          <strong>Aviso de Independencia y Responsabilidad Académica:</strong> EUNACOM Examen Chile (eunacom-examen.cl) es una academia médica independiente de formación y entrenamiento clínico. No forma parte orgánica ni representa a la Asociación de Facultades de Medicina de Chile (ASOFAMECH), al Ministerio de Salud (MINSAL) ni al Ministerio de Relaciones Exteriores (MINREL). Las referencias a marcas, normativas y nombres de exámenes se efectúan con propósitos educativos, informativos y de orientación técnica según la Ley 19.039 de Propiedad Industrial de Chile.
-        </div>
-
-        {/* Bottom Bar */}
-        <div style={{
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          borderTop: '1px solid rgba(169,198,222,.2)',
           paddingTop: '20px',
           display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '12px',
-          fontSize: '0.78rem',
-          color: '#94a3b8'
+          gap: '20px',
+          flexWrap: 'wrap',
+          fontSize: '12.5px',
+          color: '#6f93b5',
         }}>
-          <div>
-            © {new Date().getFullYear()} EUNACOM Examen Chile (eunacom-examen.cl). Todos los derechos reservados.
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button
-              onClick={onOpenSEOStudio}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#64748b',
-                fontSize: '0.76rem',
-                cursor: 'pointer',
-                textDecoration: 'underline'
-              }}
-            >
-              SEO Studio & Lab
-            </button>
-            <span>Santiago de Chile</span>
-            <span>Certificado SSL 256-Bit</span>
-          </div>
+          <span>{BRAND.nombre} © 2026. Todos los derechos reservados.</span>
+          <span>Programa independiente, no afiliado a ASOFAMECH.</span>
         </div>
       </div>
     </footer>

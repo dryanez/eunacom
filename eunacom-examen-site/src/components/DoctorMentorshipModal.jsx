@@ -22,7 +22,7 @@ export default function DoctorMentorshipModal({ onClose }) {
 
   const handleWhatsAppDirect = (e) => {
     e.preventDefault();
-    const text = `¡Hola Dr. Felipe Yáñez! Quisiera una asesoría de perfil EUNACOM:%0A%0A` +
+    const text = `¡Hola! Quisiera una asesoría de perfil EUNACOM:%0A%0A` +
       `*Nombre:* ${formData.name || 'Médico Postulante'}%0A` +
       `*País de Grado:* ${formData.country}%0A` +
       `*Convocatoria Objetivo:* ${formData.targetExam}%0A` +
@@ -51,13 +51,13 @@ export default function DoctorMentorshipModal({ onClose }) {
     }}>
       <div style={{
         backgroundColor: '#ffffff',
-        borderRadius: '24px',
+        borderRadius: '5px',
         width: '100%',
         maxWidth: '680px',
         maxHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 18px 44px rgba(8,54,95,.22)',
         overflow: 'hidden'
       }}>
         {/* Header */}
@@ -80,7 +80,7 @@ export default function DoctorMentorshipModal({ onClose }) {
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
-              fontWeight: '900',
+              fontWeight: '800',
               fontSize: '1.1rem',
               border: '2px solid #a9d3f5'
             }}>
@@ -88,10 +88,10 @@ export default function DoctorMentorshipModal({ onClose }) {
             </div>
             <div>
               <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, color: '#ffffff' }}>
-                Evaluación con Director Académico
+                Evaluación de perfil
               </h3>
               <div style={{ fontSize: '0.8rem', color: '#a9d3f5' }}>
-                Dr. Felipe Yáñez · Médico Cirujano USACH · RNPI Nº 642819
+                Academia Examen EUNACOM
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function DoctorMentorshipModal({ onClose }) {
               <div style={{
                 backgroundColor: '#eef5fb',
                 padding: '12px 16px',
-                borderRadius: '12px',
+                borderRadius: '4px',
                 fontSize: '0.88rem',
                 color: '#08365f',
                 lineHeight: '1.4'
@@ -146,8 +146,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -168,8 +168,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       outline: 'none'
                     }}
@@ -190,8 +190,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                   style={{
                     width: '100%',
                     padding: '10px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: '1px solid #cfdeeb',
                     fontSize: '0.9rem',
                     outline: 'none'
                   }}
@@ -211,8 +211,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       backgroundColor: '#ffffff'
                     }}
@@ -241,8 +241,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                     style={{
                       width: '100%',
                       padding: '10px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
+                      borderRadius: '3px',
+                      border: '1px solid #cfdeeb',
                       fontSize: '0.9rem',
                       backgroundColor: '#ffffff'
                     }}
@@ -266,8 +266,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                   style={{
                     width: '100%',
                     padding: '10px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: '1px solid #cfdeeb',
                     fontSize: '0.9rem',
                     backgroundColor: '#ffffff'
                   }}
@@ -291,8 +291,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                   style={{
                     width: '100%',
                     padding: '10px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: '1px solid #cfdeeb',
                     fontSize: '0.9rem',
                     resize: 'none'
                   }}
@@ -320,8 +320,8 @@ export default function DoctorMentorshipModal({ onClose }) {
                 width: '64px',
                 height: '64px',
                 borderRadius: '50%',
-                backgroundColor: '#dcfce7',
-                color: '#15803d',
+                backgroundColor: '#eef5fb',
+                color: '#41556b',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -332,8 +332,8 @@ export default function DoctorMentorshipModal({ onClose }) {
               <h4 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#08365f', marginBottom: '8px' }}>
                 ¡Solicitud de Asesoría Iniciada!
               </h4>
-              <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.5', maxWidth: '480px', margin: '0 auto 24px' }}>
-                Se ha abierto la ventana de WhatsApp para comunicarte directamente con el Dr. Felipe Yáñez. Si no se abrió automáticamente, puedes escribirle al +56 9 7669 4606.
+              <p style={{ fontSize: '0.92rem', color: '#41556b', lineHeight: '1.5', maxWidth: '480px', margin: '0 auto 24px' }}>
+                Se ha abierto la ventana de WhatsApp para comunicarte directamente con Academia Examen EUNACOM. Si no se abrió automáticamente, puedes escribirle al +56 9 7669 4606.
               </p>
               <button
                 onClick={onClose}

@@ -15,7 +15,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
   });
 
   return (
-    <section id="cursos" style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+    <section id="cursos" style={{ padding: '80px 0', backgroundColor: '#f6fafd' }}>
       <div className="container">
 
         {/* Section Header */}
@@ -27,7 +27,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
             backgroundColor: '#eef5fb',
             color: '#08365f',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -40,7 +40,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -60,9 +60,9 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
           <div style={{
             display: 'inline-flex',
             gap: '8px',
-            backgroundColor: '#e2e8f0',
+            backgroundColor: '#dae8f4',
             padding: '4px',
-            borderRadius: '12px',
+            borderRadius: '4px',
             marginTop: '24px'
           }}>
             <button
@@ -70,7 +70,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
               style={{
                 border: 'none',
                 padding: '8px 18px',
-                borderRadius: '8px',
+                borderRadius: '3px',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 cursor: 'pointer',
@@ -86,7 +86,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
               style={{
                 border: 'none',
                 padding: '8px 18px',
-                borderRadius: '8px',
+                borderRadius: '3px',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 cursor: 'pointer',
@@ -102,7 +102,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
               style={{
                 border: 'none',
                 padding: '8px 18px',
-                borderRadius: '8px',
+                borderRadius: '3px',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 cursor: 'pointer',
@@ -135,35 +135,33 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   position: 'relative',
-                  border: isFeatured ? '2.5px solid #0b5ea8' : '1px solid #e2e8f0',
-                  boxShadow: isFeatured ? '0 16px 36px rgba(11, 94, 168, 0.15)' : '0 4px 14px rgba(0,0,0,0.04)',
-                  borderRadius: '20px',
+                  border: isFeatured ? '2.5px solid #0b5ea8' : '1px solid #dae8f4',
+                  boxShadow: isFeatured ? '0 3px 14px rgba(8,54,95,.10)' : '0 3px 14px rgba(8,54,95,.06)',
+                  borderRadius: '5px',
                   backgroundColor: '#ffffff',
                   padding: '32px'
                 }}
               >
-                {/* Popular Ribbon */}
+                {/* Featured marker — a flat strip, as the design uses no floating ribbons */}
                 {isFeatured && (
                   <div style={{
-                    position: 'absolute',
-                    top: '-14px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
                     backgroundColor: '#0b5ea8',
                     color: '#ffffff',
-                    fontSize: '0.75rem',
-                    fontWeight: '800',
-                    letterSpacing: '0.05em',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '11px',
+                    fontWeight: '700',
+                    letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    padding: '4px 16px',
-                    borderRadius: '9999px',
-                    boxShadow: '0 4px 10px rgba(11, 94, 168, 0.3)',
-                    display: 'flex',
+                    padding: '6px 12px',
+                    borderRadius: '3px',
+                    display: 'inline-flex',
+                    alignSelf: 'flex-start',
                     alignItems: 'center',
-                    gap: '6px'
+                    gap: '7px',
+                    marginBottom: '16px',
                   }}>
-                    <Star size={13} fill="#ffffff" />
-                    <span>MÁS ELEGIDO POR MÉDICOS</span>
+                    <Star size={12} fill="#ffffff" />
+                    <span>El más elegido</span>
                   </div>
                 )}
 
@@ -182,13 +180,13 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                       fontSize: '0.75rem',
                       fontWeight: '700',
                       padding: '4px 10px',
-                      borderRadius: '6px'
+                      borderRadius: '3px'
                     }}>
                       {course.badge}
                     </span>
                     <span style={{
                       fontSize: '0.8rem',
-                      color: '#64748b',
+                      color: '#5f6b76',
                       fontWeight: '600',
                       display: 'flex',
                       alignItems: 'center',
@@ -213,7 +211,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
 
                   <p style={{
                     fontSize: '0.9rem',
-                    color: '#64748b',
+                    color: '#5f6b76',
                     lineHeight: '1.5',
                     marginBottom: '20px'
                   }}>
@@ -222,20 +220,20 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
 
                   {/* Pricing Box */}
                   <div style={{
-                    backgroundColor: '#f1f5f9',
+                    backgroundColor: '#eef5fb',
                     padding: '16px 20px',
-                    borderRadius: '14px',
+                    borderRadius: '4px',
                     marginBottom: '24px'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                       <span style={{
                         fontSize: '1.8rem',
-                        fontWeight: '900',
+                        fontWeight: '800',
                         color: '#08365f'
                       }}>
                         {course.precioClp}
                       </span>
-                      <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '600' }}>
+                      <span style={{ fontSize: '0.9rem', color: '#5f6b76', fontWeight: '600' }}>
                         / {course.precioUsd}
                       </span>
                     </div>
@@ -269,7 +267,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                           alignItems: 'flex-start',
                           gap: '10px',
                           fontSize: '0.88rem',
-                          color: '#1e293b',
+                          color: '#2f3e4d',
                           lineHeight: '1.4'
                         }}>
                           <Check size={16} color="#0b5ea8" style={{ flexShrink: 0, marginTop: '2px' }} />
@@ -290,10 +288,10 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                       padding: '12px 20px',
                       fontSize: '0.95rem',
                       fontWeight: '700',
-                      boxShadow: isFeatured ? '0 6px 18px rgba(11, 94, 168, 0.25)' : 'none'
+                      boxShadow: isFeatured ? 'none' : 'none'
                     }}
                   >
-                    <span>Inscribirme en este Curso</span>
+                    <span>Inscribirme</span>
                     <ArrowRight size={16} />
                   </button>
 
@@ -307,7 +305,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                     }}
                   >
                     <BookOpen size={15} />
-                    <span>Ver Temario y Módulos ({(course.temario || []).length})</span>
+                    <span>Ver temario ({(course.temario || []).length})</span>
                   </button>
                 </div>
 
@@ -321,7 +319,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
           marginTop: '56px',
           backgroundColor: '#08365f',
           color: '#ffffff',
-          borderRadius: '20px',
+          borderRadius: '5px',
           padding: '32px 40px',
           display: 'grid',
           gridTemplateColumns: '1fr',
@@ -332,7 +330,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
             <div style={{
               width: '60px',
               height: '60px',
-              borderRadius: '16px',
+              borderRadius: '4px',
               backgroundColor: 'rgba(169, 211, 245, 0.2)',
               display: 'flex',
               alignItems: 'center',

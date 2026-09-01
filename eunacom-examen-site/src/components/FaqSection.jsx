@@ -23,7 +23,7 @@ export default function FaqSection({ onOpenMentorship }) {
   };
 
   return (
-    <section id="faq" style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+    <section id="faq" style={{ padding: '80px 0', backgroundColor: '#f6fafd' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -40,7 +40,7 @@ export default function FaqSection({ onOpenMentorship }) {
             backgroundColor: '#eef5fb',
             color: '#08365f',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -53,7 +53,7 @@ export default function FaqSection({ onOpenMentorship }) {
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -86,8 +86,8 @@ export default function FaqSection({ onOpenMentorship }) {
                 key={idx}
                 style={{
                   backgroundColor: '#ffffff',
-                  borderRadius: '16px',
-                  border: isOpen ? '1.5px solid #0b5ea8' : '1px solid #e2e8f0',
+                  borderRadius: '4px',
+                  border: isOpen ? '1.5px solid #0b5ea8' : '1px solid #dae8f4',
                   overflow: 'hidden',
                   transition: 'all 0.2s',
                   boxShadow: isOpen ? '0 8px 24px rgba(8, 54, 95, 0.08)' : '0 2px 6px rgba(0,0,0,0.02)'
@@ -112,16 +112,16 @@ export default function FaqSection({ onOpenMentorship }) {
                   }}
                 >
                   <span style={{ paddingRight: '16px' }}>{faq.q}</span>
-                  {isOpen ? <ChevronUp size={22} color="#0b5ea8" style={{ flexShrink: 0 }} /> : <ChevronDown size={22} color="#94a3b8" style={{ flexShrink: 0 }} />}
+                  {isOpen ? <ChevronUp size={22} color="#0b5ea8" style={{ flexShrink: 0 }} /> : <ChevronDown size={22} color="#8195a7" style={{ flexShrink: 0 }} />}
                 </button>
 
                 {isOpen && (
                   <div style={{
                     padding: '0 24px 22px',
-                    color: '#475569',
+                    color: '#41556b',
                     fontSize: '0.95rem',
                     lineHeight: '1.65',
-                    borderTop: '1px solid #f1f5f9',
+                    borderTop: '1px solid #eef5fb',
                     paddingTop: '16px'
                   }}>
                     {faq.a}
@@ -137,7 +137,7 @@ export default function FaqSection({ onOpenMentorship }) {
           maxWidth: '820px',
           margin: '40px auto 0',
           backgroundColor: '#eef5fb',
-          borderRadius: '18px',
+          borderRadius: '4px',
           padding: '24px 32px',
           display: 'flex',
           flexWrap: 'wrap',
@@ -149,8 +149,8 @@ export default function FaqSection({ onOpenMentorship }) {
             <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#08365f', marginBottom: '4px' }}>
               ¿Tienes una duda no listada aquí?
             </h4>
-            <p style={{ fontSize: '0.88rem', color: '#475569', margin: 0 }}>
-              Habla directamente con nuestro Director Académico para una respuesta personalizada.
+            <p style={{ fontSize: '0.88rem', color: '#41556b', margin: 0 }}>
+              Habla directamente con nuestro equipo académico para una respuesta personalizada.
             </p>
           </div>
 

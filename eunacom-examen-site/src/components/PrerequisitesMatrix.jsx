@@ -19,7 +19,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
   const completedMandatory = DOCUMENT_CHECKLIST.filter(d => d.mandatory && checkedDocs[d.id]).length;
 
   return (
-    <section id="revalidacion" style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+    <section id="revalidacion" style={{ padding: '80px 0', backgroundColor: '#f6fafd' }}>
       <div className="container">
 
         {/* Section Header */}
@@ -31,7 +31,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
             backgroundColor: '#eef5fb',
             color: '#08365f',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -44,7 +44,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -76,8 +76,8 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                 onClick={() => setActivePathwayId(pathway.id)}
                 style={{
                   padding: '16px 20px',
-                  borderRadius: '16px',
-                  border: isActive ? '2px solid #0b5ea8' : '1px solid #e2e8f0',
+                  borderRadius: '4px',
+                  border: isActive ? '2px solid #0b5ea8' : '1px solid #dae8f4',
                   backgroundColor: isActive ? '#08365f' : '#ffffff',
                   color: isActive ? '#ffffff' : '#08365f',
                   textAlign: 'left',
@@ -110,10 +110,10 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
         {/* Selected Pathway Detail Card */}
         <div style={{
           backgroundColor: '#ffffff',
-          borderRadius: '24px',
-          border: '1.5px solid #e2e8f0',
+          borderRadius: '5px',
+          border: '1.5px solid #dae8f4',
           padding: '36px',
-          boxShadow: '0 12px 30px rgba(8, 54, 95, 0.05)',
+          boxShadow: '0 3px 14px rgba(8,54,95,.06)',
           marginBottom: '48px'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
@@ -121,22 +121,22 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
               backgroundColor: '#0b5ea8',
               color: '#ffffff',
               padding: '4px 12px',
-              borderRadius: '8px',
+              borderRadius: '3px',
               fontSize: '0.8rem',
               fontWeight: '700'
             }}>
               Vía #{activePathway.number} Oficial
             </span>
-            <span style={{ fontSize: '0.95rem', color: '#64748b', fontWeight: '600' }}>
+            <span style={{ fontSize: '0.95rem', color: '#5f6b76', fontWeight: '600' }}>
               {activePathway.subtitle}
             </span>
           </div>
 
-          <h3 style={{ fontSize: '1.6rem', fontWeight: '900', color: '#08365f', marginBottom: '14px' }}>
+          <h3 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#08365f', marginBottom: '14px' }}>
             {activePathway.title}
           </h3>
 
-          <p style={{ fontSize: '1rem', color: '#334155', lineHeight: '1.6', marginBottom: '24px' }}>
+          <p style={{ fontSize: '1rem', color: '#41556b', lineHeight: '1.6', marginBottom: '24px' }}>
             {activePathway.description}
           </p>
 
@@ -149,11 +149,11 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
           }}>
             {activePathway.pros && (
               <div style={{
-                backgroundColor: '#f0fdf4',
-                border: '1px solid #86efac',
-                borderRadius: '14px',
+                backgroundColor: '#f6fafd',
+                border: '1px solid #cfdeeb',
+                borderRadius: '4px',
                 padding: '16px 20px',
-                color: '#166534',
+                color: '#41556b',
                 fontSize: '0.9rem',
                 lineHeight: '1.5'
               }}>
@@ -163,11 +163,11 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
 
             {activePathway.cons && (
               <div style={{
-                backgroundColor: '#fffbeb',
-                border: '1px solid #fde68a',
-                borderRadius: '14px',
+                backgroundColor: '#eef5fb',
+                border: '1px solid #cfdeeb',
+                borderRadius: '4px',
                 padding: '16px 20px',
-                color: '#92400e',
+                color: '#41556b',
                 fontSize: '0.9rem',
                 lineHeight: '1.5'
               }}>
@@ -180,7 +180,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
           {activePathway.countries && (
             <div style={{
               backgroundColor: '#eef5fb',
-              borderRadius: '16px',
+              borderRadius: '4px',
               padding: '20px',
               marginBottom: '28px'
             }}>
@@ -205,12 +205,12 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                   <div key={cIdx} style={{
                     backgroundColor: '#ffffff',
                     padding: '10px 14px',
-                    borderRadius: '10px',
-                    border: '1px solid #cbd5e1',
+                    borderRadius: '3px',
+                    border: '1px solid #cfdeeb',
                     fontSize: '0.85rem'
                   }}>
                     <div style={{ fontWeight: '700', color: '#08365f' }}>{country.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{country.treaty}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#5f6b76' }}>{country.treaty}</div>
                   </div>
                 ))}
               </div>
@@ -229,7 +229,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                   alignItems: 'flex-start',
                   gap: '12px',
                   fontSize: '0.92rem',
-                  color: '#1e293b',
+                  color: '#2f3e4d',
                   lineHeight: '1.5'
                 }}>
                   <span style={{
@@ -258,9 +258,9 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
           {activePathway.exemptions && (
             <div style={{
               fontSize: '0.85rem',
-              color: '#64748b',
+              color: '#5f6b76',
               fontStyle: 'italic',
-              borderTop: '1px solid #e2e8f0',
+              borderTop: '1px solid #dae8f4',
               paddingTop: '14px'
             }}>
               <strong>Nota:</strong> {activePathway.exemptions}
@@ -271,10 +271,10 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
         {/* Document Checklist Sub-Section */}
         <div style={{
           backgroundColor: '#ffffff',
-          borderRadius: '24px',
-          border: '1.5px solid #e2e8f0',
+          borderRadius: '5px',
+          border: '1.5px solid #dae8f4',
           padding: '36px',
-          boxShadow: '0 12px 30px rgba(8, 54, 95, 0.05)'
+          boxShadow: '0 3px 14px rgba(8,54,95,.06)'
         }}>
           <div style={{
             display: 'flex',
@@ -285,19 +285,19 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
             gap: '16px'
           }}>
             <div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: '900', color: '#08365f', marginBottom: '4px' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#08365f', marginBottom: '4px' }}>
                 Checklist de Documentos de Postulación (Apostilla / Legalización)
               </h3>
-              <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0 }}>
+              <p style={{ fontSize: '0.9rem', color: '#5f6b76', margin: 0 }}>
                 Marca los documentos que ya tienes listos para verificar tu estado de postulación:
               </p>
             </div>
 
             <div style={{
-              backgroundColor: completedMandatory === totalMandatory ? '#dcfce7' : '#eef5fb',
-              color: completedMandatory === totalMandatory ? '#15803d' : '#08365f',
+              backgroundColor: completedMandatory === totalMandatory ? '#eef5fb' : '#eef5fb',
+              color: completedMandatory === totalMandatory ? '#41556b' : '#08365f',
               padding: '8px 18px',
-              borderRadius: '9999px',
+              borderRadius: '3px',
               fontWeight: '700',
               fontSize: '0.88rem'
             }}>
@@ -317,9 +317,9 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                     alignItems: 'flex-start',
                     gap: '14px',
                     padding: '14px 18px',
-                    borderRadius: '12px',
-                    backgroundColor: isChecked ? '#f0fdf4' : '#f8fafc',
-                    border: isChecked ? '1.5px solid #22c55e' : '1px solid #cbd5e1',
+                    borderRadius: '4px',
+                    backgroundColor: isChecked ? '#f6fafd' : '#f6fafd',
+                    border: isChecked ? '1.5px solid #0b5ea8' : '1px solid #cfdeeb',
                     cursor: 'pointer',
                     transition: 'all 0.2s'
                   }}
@@ -327,9 +327,9 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                   <div style={{
                     width: '22px',
                     height: '22px',
-                    borderRadius: '6px',
-                    border: isChecked ? '2px solid #22c55e' : '2px solid #94a3b8',
-                    backgroundColor: isChecked ? '#22c55e' : '#ffffff',
+                    borderRadius: '3px',
+                    border: isChecked ? '2px solid #0b5ea8' : '2px solid #8195a7',
+                    backgroundColor: isChecked ? '#0b5ea8' : '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -345,14 +345,14 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                       <span style={{
                         fontSize: '0.95rem',
                         fontWeight: '700',
-                        color: isChecked ? '#166534' : '#08365f'
+                        color: isChecked ? '#41556b' : '#08365f'
                       }}>
                         {doc.title}
                       </span>
                       {doc.mandatory ? (
                         <span style={{
-                          backgroundColor: '#fee2e2',
-                          color: '#b91c1c',
+                          backgroundColor: '#eef5fb',
+                          color: '#41556b',
                           fontSize: '0.7rem',
                           fontWeight: '700',
                           padding: '2px 6px',
@@ -362,8 +362,8 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                         </span>
                       ) : (
                         <span style={{
-                          backgroundColor: '#f1f5f9',
-                          color: '#64748b',
+                          backgroundColor: '#eef5fb',
+                          color: '#5f6b76',
                           fontSize: '0.7rem',
                           fontWeight: '600',
                           padding: '2px 6px',
@@ -373,7 +373,7 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
                         </span>
                       )}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: '#475569', lineHeight: '1.4' }}>
+                    <div style={{ fontSize: '0.85rem', color: '#41556b', lineHeight: '1.4' }}>
                       {doc.description}
                     </div>
                   </div>
@@ -389,14 +389,14 @@ export default function PrerequisitesMatrix({ onOpenMentorship }) {
             justifyContent: 'space-between',
             backgroundColor: '#eef5fb',
             padding: '18px 24px',
-            borderRadius: '16px',
+            borderRadius: '4px',
             gap: '16px'
           }}>
             <div>
               <div style={{ fontWeight: '800', color: '#08365f', fontSize: '0.95rem' }}>
                 ¿Dudas sobre cómo apostillar o legalizar tus documentos?
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#475569' }}>
+              <div style={{ fontSize: '0.85rem', color: '#41556b' }}>
                 Revisamos tus antecedentes académicos y te guiamos en la inscripción ASOFAMECH.
               </div>
             </div>

@@ -62,7 +62,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
             backgroundColor: '#eef5fb',
             color: '#08365f',
             padding: '6px 16px',
-            borderRadius: '9999px',
+            borderRadius: '3px',
             fontSize: '0.85rem',
             fontWeight: '700',
             marginBottom: '14px',
@@ -75,7 +75,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
           <h2 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.2',
             marginBottom: '16px'
@@ -96,9 +96,9 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
         <div style={{
           maxWidth: '820px',
           margin: '0 auto',
-          backgroundColor: '#f8fafc',
-          border: '1.5px solid #e2e8f0',
-          borderRadius: '24px',
+          backgroundColor: '#f6fafd',
+          border: '1.5px solid #dae8f4',
+          borderRadius: '5px',
           padding: '36px',
           boxShadow: '0 12px 30px rgba(8, 54, 95, 0.06)'
         }}>
@@ -111,7 +111,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 marginBottom: '20px',
-                borderBottom: '1px solid #e2e8f0',
+                borderBottom: '1px solid #dae8f4',
                 paddingBottom: '16px'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -121,7 +121,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                     fontSize: '0.8rem',
                     fontWeight: '700',
                     padding: '4px 12px',
-                    borderRadius: '8px'
+                    borderRadius: '3px'
                   }}>
                     Pregunta {currentIdx + 1} de {DIAGNOSTIC_QUESTIONS.length}
                   </span>
@@ -131,13 +131,13 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                     fontSize: '0.8rem',
                     fontWeight: '700',
                     padding: '4px 12px',
-                    borderRadius: '8px'
+                    borderRadius: '3px'
                   }}>
                     Área: {currentQ.area}
                   </span>
                 </div>
 
-                <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: '600' }}>
+                <div style={{ fontSize: '0.85rem', color: '#5f6b76', fontWeight: '600' }}>
                   Aciertos: {correctCount} / {Object.keys(selectedAnswers).length}
                 </div>
               </div>
@@ -160,18 +160,18 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                   const isCorrect = currentQ.correctIndex === optIdx;
 
                   let optBg = '#ffffff';
-                  let optBorder = '1px solid #cbd5e1';
-                  let optColor = '#1e293b';
+                  let optBorder = '1px solid #cfdeeb';
+                  let optColor = '#2f3e4d';
 
                   if (showExplanation) {
                     if (isCorrect) {
-                      optBg = '#f0fdf4';
-                      optBorder = '2px solid #22c55e';
-                      optColor = '#15803d';
+                      optBg = '#f1f8f4';
+                      optBorder = '2px solid #1f7a4d';
+                      optColor = '#1f7a4d';
                     } else if (isSelected && !isCorrect) {
-                      optBg = '#fef2f2';
-                      optBorder = '2px solid #ef4444';
-                      optColor = '#b91c1c';
+                      optBg = '#fbf4f3';
+                      optBorder = '2px solid #b3352c';
+                      optColor = '#8f2a23';
                     }
                   } else if (isSelected) {
                     optBg = '#eef5fb';
@@ -189,7 +189,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         padding: '14px 18px',
-                        borderRadius: '12px',
+                        borderRadius: '4px',
                         backgroundColor: optBg,
                         border: optBorder,
                         color: optColor,
@@ -205,8 +205,8 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                           width: '26px',
                           height: '26px',
                           borderRadius: '50%',
-                          backgroundColor: isSelected || (showExplanation && isCorrect) ? (isCorrect ? '#22c55e' : (isSelected ? '#ef4444' : '#08365f')) : '#e2e8f0',
-                          color: isSelected || (showExplanation && isCorrect) ? '#ffffff' : '#475569',
+                          backgroundColor: isSelected || (showExplanation && isCorrect) ? (isCorrect ? '#1f7a4d' : (isSelected ? '#b3352c' : '#08365f')) : '#dae8f4',
+                          color: isSelected || (showExplanation && isCorrect) ? '#ffffff' : '#41556b',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -221,8 +221,8 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
 
                       {showExplanation && (
                         <div>
-                          {isCorrect && <CheckCircle2 size={20} color="#22c55e" />}
-                          {isSelected && !isCorrect && <XCircle size={20} color="#ef4444" />}
+                          {isCorrect && <CheckCircle2 size={20} color="#1f7a4d" />}
+                          {isSelected && !isCorrect && <XCircle size={20} color="#b3352c" />}
                         </div>
                       )}
                     </button>
@@ -235,7 +235,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                 <div style={{
                   backgroundColor: '#ffffff',
                   border: '1.5px solid #0b5ea8',
-                  borderRadius: '16px',
+                  borderRadius: '4px',
                   padding: '20px',
                   marginBottom: '28px',
                   animation: 'fadeIn 0.3s ease'
@@ -246,7 +246,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                     gap: '8px',
                     fontWeight: '800',
                     fontSize: '1rem',
-                    color: selectedAnswers[currentIdx] === currentQ.correctIndex ? '#15803d' : '#b91c1c',
+                    color: selectedAnswers[currentIdx] === currentQ.correctIndex ? '#1f7a4d' : '#8f2a23',
                     marginBottom: '10px'
                   }}>
                     {selectedAnswers[currentIdx] === currentQ.correctIndex ? (
@@ -262,7 +262,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                     )}
                   </div>
 
-                  <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: '1.6', marginBottom: '12px' }}>
+                  <p style={{ fontSize: '0.92rem', color: '#41556b', lineHeight: '1.6', marginBottom: '12px' }}>
                     <strong>Justificación Clínica:</strong> {currentQ.explanation}
                   </p>
 
@@ -305,7 +305,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                     <ArrowRight size={16} />
                   </button>
                 ) : (
-                  <span style={{ fontSize: '0.85rem', color: '#64748b', fontStyle: 'italic' }}>
+                  <span style={{ fontSize: '0.85rem', color: '#5f6b76', fontStyle: 'italic' }}>
                     Selecciona una alternativa para ver la justificación clínica.
                   </span>
                 )}
@@ -318,26 +318,26 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                 width: '76px',
                 height: '76px',
                 borderRadius: '50%',
-                backgroundColor: scorePercent >= 60 ? '#dcfce7' : '#fee2e2',
-                color: scorePercent >= 60 ? '#15803d' : '#b91c1c',
+                backgroundColor: scorePercent >= 60 ? '#e6f2ea' : '#f6e7e5',
+                color: scorePercent >= 60 ? '#1f7a4d' : '#8f2a23',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 20px',
                 fontSize: '2rem',
-                fontWeight: '900'
+                fontWeight: '800'
               }}>
                 <Award size={40} />
               </div>
 
-              <h3 style={{ fontSize: '1.7rem', fontWeight: '900', color: '#08365f', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '1.7rem', fontWeight: '800', color: '#08365f', marginBottom: '8px' }}>
                 Diagnóstico de Rendimiento EUNACOM
               </h3>
 
               <div style={{
                 fontSize: '2.5rem',
-                fontWeight: '900',
-                color: scorePercent >= 60 ? '#15803d' : '#0b5ea8',
+                fontWeight: '800',
+                color: scorePercent >= 60 ? '#1f7a4d' : '#0b5ea8',
                 marginBottom: '8px'
               }}>
                 {correctCount} / {DIAGNOSTIC_QUESTIONS.length} ({scorePercent}%)
@@ -345,7 +345,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
 
               <p style={{
                 fontSize: '1rem',
-                color: '#475569',
+                color: '#41556b',
                 maxWidth: '560px',
                 margin: '0 auto 24px',
                 lineHeight: '1.6'
@@ -367,7 +367,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                   style={{ padding: '12px 24px', fontSize: '0.95rem' }}
                 >
                   <PhoneCall size={18} />
-                  <span>Revisar mi Resultado con el Dr. Felipe Yáñez</span>
+                  <span>Revisar mi Resultado con el Academia Examen EUNACOM</span>
                 </button>
 
                 <a

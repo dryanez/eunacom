@@ -22,9 +22,9 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
     "dateModified": "2026-08-31T12:00:00-04:00",
     "author": {
       "@type": "Physician",
-      "name": article.author || "Dr. Felipe Yáñez",
-      "identifier": "RNPI-642819",
-      "jobTitle": "Director Académico EUNACOM"
+      "name": article.author || "Equipo académico AEE",
+      "areaServed": "Chile",
+      "jobTitle": "Equipo académico"
     },
     "publisher": {
       "@type": "EducationalOrganization",
@@ -75,13 +75,13 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
 
       <div style={{
         backgroundColor: '#ffffff',
-        borderRadius: '24px',
+        borderRadius: '5px',
         width: '100%',
         maxWidth: '880px',
         maxHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 18px 44px rgba(8,54,95,.22)',
         overflow: 'hidden'
       }}>
 
@@ -102,7 +102,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
               fontSize: '0.75rem',
               fontWeight: '700',
               padding: '3px 10px',
-              borderRadius: '6px'
+              borderRadius: '3px'
             }}>
               {article.cat}
             </span>
@@ -137,7 +137,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
           <h1 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.7rem, 2.5vw, 2.2rem)',
-            fontWeight: '900',
+            fontWeight: '800',
             color: '#08365f',
             lineHeight: '1.25',
             marginBottom: '16px'
@@ -150,11 +150,11 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
             flexWrap: 'wrap',
             alignItems: 'center',
             gap: '18px',
-            color: '#64748b',
+            color: '#5f6b76',
             fontSize: '0.85rem',
             marginBottom: '24px',
             paddingBottom: '16px',
-            borderBottom: '1px solid #e2e8f0'
+            borderBottom: '1px solid #dae8f4'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <User size={15} color="#0b5ea8" />
@@ -173,7 +173,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
           {/* Intro Description */}
           <p style={{
             fontSize: '1.1rem',
-            color: '#334155',
+            color: '#41556b',
             lineHeight: '1.65',
             marginBottom: '28px',
             fontWeight: '500'
@@ -186,7 +186,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
             <div style={{
               backgroundColor: '#eef5fb',
               border: '1.5px solid rgba(11, 94, 168, 0.3)',
-              borderRadius: '16px',
+              borderRadius: '4px',
               padding: '24px',
               marginBottom: '32px'
             }}>
@@ -204,7 +204,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {article.keyTakeaways.map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: '#1e293b', lineHeight: '1.5' }}>
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.92rem', color: '#2f3e4d', lineHeight: '1.5' }}>
                     <span style={{ color: '#0b5ea8', fontWeight: '800' }}>✓</span>
                     <span>{item}</span>
                   </li>
@@ -232,7 +232,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
                     key={pIdx}
                     style={{
                       fontSize: '0.96rem',
-                      color: '#334155',
+                      color: '#41556b',
                       lineHeight: '1.65',
                       marginBottom: '12px'
                     }}
@@ -249,7 +249,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
             <div style={{
               marginTop: '40px',
               paddingTop: '28px',
-              borderTop: '1px solid #e2e8f0'
+              borderTop: '1px solid #dae8f4'
             }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#08365f', marginBottom: '18px' }}>
                 Preguntas Frecuentes sobre este Tema:
@@ -260,8 +260,8 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
                   <div
                     key={fIdx}
                     style={{
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '12px',
+                      border: '1px solid #dae8f4',
+                      borderRadius: '4px',
                       overflow: 'hidden',
                       backgroundColor: '#ffffff'
                     }}
@@ -284,16 +284,16 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
                       }}
                     >
                       <span>{faq.q}</span>
-                      {activeFaq === fIdx ? <ChevronUp size={18} color="#0b5ea8" /> : <ChevronDown size={18} color="#64748b" />}
+                      {activeFaq === fIdx ? <ChevronUp size={18} color="#0b5ea8" /> : <ChevronDown size={18} color="#5f6b76" />}
                     </button>
 
                     {activeFaq === fIdx && (
                       <div style={{
                         padding: '14px 18px',
-                        borderTop: '1px solid #f1f5f9',
-                        backgroundColor: '#f8fafc',
+                        borderTop: '1px solid #eef5fb',
+                        backgroundColor: '#f6fafd',
                         fontSize: '0.9rem',
-                        color: '#475569',
+                        color: '#41556b',
                         lineHeight: '1.6'
                       }}>
                         {faq.a}
@@ -308,9 +308,9 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
           {/* Author Bio Box */}
           <div style={{
             marginTop: '40px',
-            backgroundColor: '#f8fafc',
-            border: '1px solid #cbd5e1',
-            borderRadius: '18px',
+            backgroundColor: '#f6fafd',
+            border: '1px solid #cfdeeb',
+            borderRadius: '4px',
             padding: '24px',
             display: 'flex',
             alignItems: 'center',
@@ -325,7 +325,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontWeight: '900',
+              fontWeight: '800',
               fontSize: '1.3rem',
               flexShrink: 0,
               border: '2px solid #0b5ea8'
@@ -339,8 +339,8 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
               <div style={{ fontSize: '0.8rem', color: '#0b5ea8', fontWeight: '700' }}>
                 {article.authorRole}
               </div>
-              <div style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '4px', lineHeight: '1.4' }}>
-                Médico Cirujano USACH. Especialista en preparación para la habilitación médica de médicos nacionales y extranjeros en Chile.
+              <div style={{ fontSize: '0.82rem', color: '#5f6b76', marginTop: '4px', lineHeight: '1.4' }}>
+                Preparación para la habilitación médica de médicos nacionales y extranjeros en Chile.
               </div>
             </div>
           </div>
@@ -350,8 +350,8 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
         {/* Modal Footer CTAs */}
         <div style={{
           padding: '18px 30px',
-          borderTop: '1px solid #e2e8f0',
-          backgroundColor: '#f8fafc',
+          borderTop: '1px solid #dae8f4',
+          backgroundColor: '#f6fafd',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',

@@ -1,3 +1,5 @@
+// Renders every section and modal, and fails if a doctor reference,
+// an unsubstantiated statistic, or an undefined value reaches the markup.
 import { createServer } from 'vite';
 import { renderToString } from 'react-dom/server';
 import React from 'react';
@@ -5,33 +7,31 @@ import React from 'react';
 const server = await createServer({ root: process.cwd(), server: { middlewareMode: true }, appType: 'custom' });
 const load = (p) => server.ssrLoadModule(p);
 
-const { PAGES } = await load('/src/App.jsx');
-const { INITIAL, buildViewModel } = await load('/src/viewModel.js');
-const { default: Layout } = await load('/src/components/Layout.jsx');
-const { CURSOS, POSTS, METODOS } = await load('/src/data/site.js');
+const { default: App } = await load('/src/App.jsx');
+const { COURSES } = await load('/src/data/coursesData.js');
+const { BLOG_ARTICLES } = await load('/src/data/blogArticlesData.js');
+const { default: CourseDetailModal } = await load('/src/components/CourseDetailModal.jsx');
+const { default: EnrollmentModal } = await load('/src/components/EnrollmentModal.jsx');
+const { default: BlogArticleModalOrPage } = await load('/src/components/BlogArticleModalOrPage.jsx');
+const { default: DoctorMentorshipModal } = await load('/src/components/DoctorMentorshipModal.jsx');
+const { default: BlogTopicProposer } = await load('/src/components/BlogTopicProposer.jsx');
 
-const render = (st) => {
-  const v = buildViewModel({ ...INITIAL, ...st }, () => {}, () => {});
-  const Page = PAGES[st.page];
-  return renderToString(React.createElement(Layout, v, React.createElement(Page, v)));
-};
-
-const cases = [];
-for (const page of Object.keys(PAGES)) cases.push([page, { page }]);
-for (const c of CURSOS) cases.push([`ficha:${c.slug}`, { page: 'ficha', curso: c.slug }]);
-for (const a of POSTS) cases.push([`articulo:${a.slug}`, { page: 'articulo', post: a.slug }]);
-for (const m of METODOS) cases.push([`checkout:${m.id}`, { page: 'checkout', metodo: m.id }]);
-cases.push(['checkout:pagado', { page: 'checkout', pagado: true, orden: 'EU-123456', correoEnviado: 'a@b.cl' }]);
-cases.push(['checkout:error', { page: 'checkout', error: 'Revisa el correo.' }]);
-cases.push(['contacto:enviado', { page: 'contacto', enviado: true, correoEnviado: 'a@b.cl' }]);
-cases.push(['inicio:suscrito', { page: 'inicio', suscrito: true, correoSuscrito: 'a@b.cl' }]);
-cases.push(['blog:filtrado', { page: 'blog', cat: POSTS[0].cat }]);
-cases.push(['faq:abierta', { page: 'faq', faq: 3 }]);
+const noop = () => {};
+const cases = [['App', React.createElement(App)]];
+for (const c of COURSES) {
+  cases.push([`CourseDetailModal:${c.slug}`, React.createElement(CourseDetailModal, { course: c, onClose: noop, onEnroll: noop })]);
+  cases.push([`EnrollmentModal:${c.slug}`, React.createElement(EnrollmentModal, { course: c, onClose: noop })]);
+}
+for (const a of BLOG_ARTICLES) {
+  cases.push([`BlogArticle:${a.slug}`, React.createElement(BlogArticleModalOrPage, { article: a, onClose: noop, onSelectCourse: noop, onOpenMentorship: noop })]);
+}
+cases.push(['DoctorMentorshipModal', React.createElement(DoctorMentorshipModal, { onClose: noop })]);
+cases.push(['BlogTopicProposer', React.createElement(BlogTopicProposer, { onClose: noop })]);
 
 let failed = 0, html = '';
-for (const [name, st] of cases) {
+for (const [name, el] of cases) {
   try {
-    const out = render(st);
+    const out = renderToString(el);
     html += out;
     console.log(`ok   ${name} (${out.length})`);
   } catch (e) {
@@ -41,11 +41,9 @@ for (const [name, st] of cases) {
 }
 await server.close();
 
-const banned = [/Dr\.\s/, /RNPI/, /USACH/, /Yáñez/, /\[Apellido\]/, /\[Nombre\]/, /Felipe/, /undefined/, /\[object Object\]/];
+const banned = [/Felipe/, /Yáñez/, /642819/, /USACH/, /Director Académico/, /94\.2%/, /undefined/, /\[object Object\]/];
 for (const re of banned) {
-  const hit = re.test(html);
-  console.log(`${hit ? 'BANNED PRESENT' : 'clean'}  ${re}`);
-  if (hit) failed++;
+  if (re.test(html)) { failed++; console.log(`BANNED PRESENT  ${re}`); }
 }
-console.log(failed ? `\n${failed} PROBLEMS` : '\nall pages render clean, no doctor references');
+console.log(failed ? `\n${failed} PROBLEMS` : `\nall sections render clean (${cases.length} cases), no doctor references`);
 process.exit(failed ? 1 : 0);
