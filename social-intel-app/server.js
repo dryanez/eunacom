@@ -1379,17 +1379,23 @@ app.post("/api/planner/generate-daily-stories", (req, res) => {
   });
 });
 
-// Bind to loopback only. This tool reads and writes the local vault and shells
+// Bind to loopback only. Locally this tool reads/writes the vault and shells
 // out to the Python scraper, so it must never be reachable from the network.
 const HOST = process.env.HOST || "127.0.0.1";
 
-app.listen(PORT, HOST, () => {
-  console.log(`\n======================================================`);
-  console.log(`🚀 Social Media Outlier Engine & Intelligence Studio`);
-  console.log(`🌐 Web App running at: http://${HOST}:${PORT}`);
-  console.log(VAULT_ENABLED
-    ? `📁 Connected Obsidian Vault: ${VAULT_PATH}`
-    : `☁️  Vault OFF — hosted mode (studio + exports only, no vault writes)`);
-  console.log(`🔒 Bound to ${HOST} — local access only`);
-  console.log(`======================================================\n`);
-});
+// Only listen when run directly. A serverless host provides the listener and
+// just needs the handler, so in that case we export the app instead.
+if (require.main === module) {
+  app.listen(PORT, HOST, () => {
+    console.log(`\n======================================================`);
+    console.log(`🚀 Social Media Outlier Engine & Intelligence Studio`);
+    console.log(`🌐 Web App running at: http://${HOST}:${PORT}`);
+    console.log(VAULT_ENABLED
+      ? `📁 Connected Obsidian Vault: ${VAULT_PATH}`
+      : `☁️  Vault OFF — hosted mode (studio + exports only, no vault writes)`);
+    console.log(`🔒 Bound to ${HOST} — local access only`);
+    console.log(`======================================================\n`);
+  });
+}
+
+module.exports = app;
