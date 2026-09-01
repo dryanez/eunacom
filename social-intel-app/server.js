@@ -793,6 +793,7 @@ function buildCarouselBlueprint(post, ctaKeyword) {
 //     for each, assigns archetype day+time slots, writes vault markdown.
 // ─────────────────────────────────────────────────────────────────────────────
 app.post("/api/planner/generate-week-content", (req, res) => {
+  if (!requireVault(res)) return;
   const data = getCachedData();
   const outliers = data.outliers || [];
 
@@ -922,6 +923,7 @@ app.post("/api/ai/generate-script", (req, res) => {
 
 // 7. Save Generated Script to Obsidian Vault as an Active Project Task
 app.post("/api/obsidian/save-task", (req, res) => {
+  if (!requireVault(res)) return;
   const { script } = req.body;
   if (!script) {
     return res.status(400).json({ error: "Missing script payload" });
@@ -1042,6 +1044,7 @@ app.get("/api/vault/note", (req, res) => {
 
 // ── 5b. Daily Stories Generator (21 Stories 9:16 across 7 Days of the Loop) ──
 app.post("/api/planner/generate-daily-stories", (req, res) => {
+  if (!requireVault(res)) return;
   const data = getCachedData();
   const eunacomOutliers = (data.outliers || []).filter(o => 
     (o.company || "").toUpperCase() === "EUNACOM" || (o.category || "").toLowerCase() === "eunacom"
