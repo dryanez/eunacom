@@ -27,8 +27,8 @@ export default function EnrollmentModal({ course, onClose }) {
 
   const handleWhatsAppConfirm = () => {
     const text = `¡Hola Dr. Felipe Yáñez! Acabo de registrarme para el curso:%0A%0A` +
-      `*Curso:* ${course.name}%0A` +
-      `*Valor:* ${course.priceCLP} (${course.priceUSD})%0A` +
+      `*Curso:* ${course.nombre}%0A` +
+      `*Valor:* ${course.precioClp} (${course.precioUsd})%0A` +
       `*Nombre:* ${formData.name}%0A` +
       `*RUT/Doc:* ${formData.documentId}%0A` +
       `*Email:* ${formData.email}%0A` +
@@ -89,7 +89,7 @@ export default function EnrollmentModal({ course, onClose }) {
               {course.badge}
             </span>
             <h3 style={{ fontSize: '1.25rem', fontWeight: '800', margin: 0, color: '#ffffff' }}>
-              Inscripción: {course.name}
+              Inscripción: {course.nombre}
             </h3>
           </div>
 
@@ -128,7 +128,7 @@ export default function EnrollmentModal({ course, onClose }) {
                 <div>
                   <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: '600' }}>Inversión Oficial</div>
                   <div style={{ fontSize: '1.4rem', fontWeight: '900', color: '#08365f' }}>
-                    {course.priceCLP} <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '600' }}>/ {course.priceUSD}</span>
+                    {course.precioClp} <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '600' }}>/ {course.precioUsd}</span>
                   </div>
                 </div>
                 <div style={{
@@ -139,7 +139,7 @@ export default function EnrollmentModal({ course, onClose }) {
                   fontSize: '0.8rem',
                   fontWeight: '700'
                 }}>
-                  {course.installments}
+                  {course.precioNota}
                 </div>
               </div>
 
@@ -371,7 +371,7 @@ export default function EnrollmentModal({ course, onClose }) {
               </h4>
 
               <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.5', maxWidth: '480px', margin: '0 auto 20px' }}>
-                Hemos guardado tu cupo para <strong>{course.name}</strong>. Para coordinar los datos de transferencia o link de Webpay en cuotas, puedes confirmar directamente con el Dr. Felipe Yáñez por WhatsApp:
+                Hemos guardado tu cupo para <strong>{course.nombre}</strong>. Para coordinar los datos de transferencia o link de Webpay en cuotas, puedes confirmar directamente con el Dr. Felipe Yáñez por WhatsApp:
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '380px', margin: '0 auto' }}>

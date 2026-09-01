@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { COURSES } from '../data/coursesData';
 import { Check, Star, BookOpen, Calendar, Clock, ArrowRight, Shield, Sparkles, HelpCircle } from 'lucide-react';
 
-export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenMentorship }) {
+const THEORETICAL_SLUGS = ['anual', 'seis-julio', 'seis-diciembre'];
+const PRACTICAL_SLUGS = ['practico', 'banco'];
+
+export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMentorship }) {
   const [filter, setFilter] = useState('all');
 
   const filteredCourses = COURSES.filter(course => {
-    if (filter === 'all') return true;
-    if (filter === 'theoretical') return course.id.includes('anual') || course.id.includes('6meses');
-    if (filter === 'practical') return course.id.includes('ecoe') || course.id.includes('banco');
+    if (filter === 'theoretical') return THEORETICAL_SLUGS.includes(course.slug);
+    if (filter === 'practical') return PRACTICAL_SLUGS.includes(course.slug);
     return true;
   });
 
@@ -122,11 +124,11 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
           alignItems: 'stretch'
         }}>
           {filteredCourses.map((course) => {
-            const isFeatured = course.popular;
+            const isFeatured = course.destacado;
 
             return (
               <div
-                key={course.id}
+                key={course.slug}
                 className="card"
                 style={{
                   display: 'flex',
@@ -175,7 +177,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                     gap: '8px'
                   }}>
                     <span style={{
-                      backgroundColor: course.badgeColor || '#08365f',
+                      backgroundColor: isFeatured ? '#0b5ea8' : '#08365f',
                       color: '#ffffff',
                       fontSize: '0.75rem',
                       fontWeight: '700',
@@ -193,7 +195,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                       gap: '4px'
                     }}>
                       <Calendar size={14} />
-                      {course.targetExam}
+                      {course.examen}
                     </span>
                   </div>
 
@@ -206,7 +208,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                     marginBottom: '10px',
                     lineHeight: '1.25'
                   }}>
-                    {course.name}
+                    {course.nombre}
                   </h3>
 
                   <p style={{
@@ -215,7 +217,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                     lineHeight: '1.5',
                     marginBottom: '20px'
                   }}>
-                    {course.description}
+                    {course.resumen}
                   </p>
 
                   {/* Pricing Box */}
@@ -231,10 +233,10 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                         fontWeight: '900',
                         color: '#08365f'
                       }}>
-                        {course.priceCLP}
+                        {course.precioClp}
                       </span>
                       <span style={{ fontSize: '0.9rem', color: '#64748b', fontWeight: '600' }}>
-                        / {course.priceUSD}
+                        / {course.precioUsd}
                       </span>
                     </div>
                     <div style={{
@@ -243,7 +245,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                       fontWeight: '600',
                       marginTop: '4px'
                     }}>
-                      Hasta {course.installments}
+                      {course.precioNota}
                     </div>
                   </div>
 
@@ -261,7 +263,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                     </div>
 
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      {course.features.map((feature, idx) => (
+                      {(course.incluye || []).map((feature, idx) => (
                         <li key={idx} style={{
                           display: 'flex',
                           alignItems: 'flex-start',
@@ -296,7 +298,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                   </button>
 
                   <button
-                    onClick={() => onViewSyllabus(course)}
+                    onClick={() => onViewDetails(course)}
                     className="btn btn-secondary"
                     style={{
                       width: '100%',
@@ -305,7 +307,7 @@ export default function CoursesSection({ onSelectCourse, onViewSyllabus, onOpenM
                     }}
                   >
                     <BookOpen size={15} />
-                    <span>Ver Temario y Módulos ({course.syllabus.length})</span>
+                    <span>Ver Temario y Módulos ({(course.temario || []).length})</span>
                   </button>
                 </div>
 

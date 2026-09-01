@@ -8,18 +8,15 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
 
   const categories = [
     { id: 'all', label: 'Todas las Guías' },
-    { id: 'Fechas y Convocatorias', label: 'Fechas & Convocatorias' },
-    { id: 'Estrategia y Metodología', label: 'Estrategia de Estudio' },
-    { id: 'Normativa y Revalidación', label: 'Revalidación & Legal' },
-    { id: 'Especialidades Médicas', label: 'Especialidades & GES' },
-    { id: 'Examen Práctico', label: 'ECOE Práctico' }
+    ...[...new Set(BLOG_ARTICLES.map(article => article.cat))].map(cat => ({ id: cat, label: cat }))
   ];
 
   const filteredArticles = BLOG_ARTICLES.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || article.cat === selectedCategory;
+    const term = searchTerm.toLowerCase();
+    const matchesSearch = article.title.toLowerCase().includes(term) ||
+      article.excerpt.toLowerCase().includes(term) ||
+      article.cat.toLowerCase().includes(term);
     return matchesCategory && matchesSearch;
   });
 
@@ -169,7 +166,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
         }}>
           {filteredArticles.map((article) => (
             <div
-              key={article.id}
+              key={article.slug}
               className="card"
               onClick={() => onSelectArticle(article)}
               style={{
@@ -201,7 +198,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                     padding: '4px 10px',
                     borderRadius: '6px'
                   }}>
-                    {article.category}
+                    {article.cat}
                   </span>
                   <span style={{
                     fontSize: '0.78rem',
@@ -211,7 +208,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                     gap: '4px'
                   }}>
                     <Clock size={13} />
-                    {article.readingTime}
+                    {article.readTime}
                   </span>
                 </div>
 
@@ -234,7 +231,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
                   lineHeight: '1.55',
                   marginBottom: '20px'
                 }}>
-                  {article.description}
+                  {article.excerpt}
                 </p>
               </div>
 

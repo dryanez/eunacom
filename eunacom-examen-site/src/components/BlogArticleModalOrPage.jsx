@@ -16,14 +16,14 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
     "headline": article.title,
-    "description": article.description,
+    "description": article.excerpt,
     "image": `https://eunacom-examen.cl/og-image.jpg`,
-    "datePublished": article.publishDate || "2026-08-15T09:00:00-04:00",
+    "datePublished": "2026-08-15T09:00:00-04:00",
     "dateModified": "2026-08-31T12:00:00-04:00",
     "author": {
       "@type": "Physician",
-      "name": article.author?.name || "Dr. Felipe Yáñez",
-      "identifier": article.author?.rnpi || "RNPI-642819",
+      "name": article.author || "Dr. Felipe Yáñez",
+      "identifier": "RNPI-642819",
       "jobTitle": "Director Académico EUNACOM"
     },
     "publisher": {
@@ -104,7 +104,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
               padding: '3px 10px',
               borderRadius: '6px'
             }}>
-              {article.category}
+              {article.cat}
             </span>
             <span style={{ fontSize: '0.85rem', color: '#a9d3f5', fontWeight: '500' }}>
               Guía Oficial EUNACOM 2026 - 2027
@@ -158,15 +158,15 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <User size={15} color="#0b5ea8" />
-              <span><strong>{article.author?.name}</strong> ({article.author?.title})</span>
+              <span><strong>{article.author}</strong> ({article.authorRole})</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Clock size={15} />
-              <span>Lectura: {article.readingTime}</span>
+              <span>Lectura: {article.readTime}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Calendar size={15} />
-              <span>Actualizado: 2026 - 2027</span>
+              <span>Publicado: {article.date}</span>
             </div>
           </div>
 
@@ -178,7 +178,7 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
             marginBottom: '28px',
             fontWeight: '500'
           }}>
-            {article.description}
+            {article.excerpt}
           </p>
 
           {/* Key Takeaways Box */}
@@ -225,26 +225,21 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
                   borderLeft: '4px solid #0b5ea8',
                   paddingLeft: '12px'
                 }}>
-                  {sec.h2}
+                  {sec.h}
                 </h2>
-                <p style={{
-                  fontSize: '0.96rem',
-                  color: '#334155',
-                  lineHeight: '1.65',
-                  marginBottom: sec.bullets ? '14px' : '0'
-                }}>
-                  {sec.content}
-                </p>
-
-                {sec.bullets && (
-                  <ul style={{ paddingLeft: '24px', display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' }}>
-                    {sec.bullets.map((b, bIdx) => (
-                      <li key={bIdx} style={{ fontSize: '0.92rem', color: '#1e293b', lineHeight: '1.5' }}>
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                {(sec.p || []).map((paragraph, pIdx) => (
+                  <p
+                    key={pIdx}
+                    style={{
+                      fontSize: '0.96rem',
+                      color: '#334155',
+                      lineHeight: '1.65',
+                      marginBottom: '12px'
+                    }}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             ))}
           </div>
@@ -339,10 +334,10 @@ export default function BlogArticleModalOrPage({ article, onClose, onSelectCours
             </div>
             <div>
               <div style={{ fontSize: '1.05rem', fontWeight: '800', color: '#08365f' }}>
-                {article.author?.name}
+                {article.author}
               </div>
               <div style={{ fontSize: '0.8rem', color: '#0b5ea8', fontWeight: '700' }}>
-                {article.author?.title} · RNPI Nº 642819
+                {article.authorRole}
               </div>
               <div style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '4px', lineHeight: '1.4' }}>
                 Médico Cirujano USACH. Especialista en preparación para la habilitación médica de médicos nacionales y extranjeros en Chile.

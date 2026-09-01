@@ -85,6 +85,7 @@ export default function App() {
         <CoursesSection
           onSelectCourse={(c) => setSelectedCourseForEnrollment(c)}
           onViewDetails={(c) => setSelectedCourseForDetail(c)}
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
         />
 
         {/* 3. Free Diagnostic 5-Question Mock Exam */}

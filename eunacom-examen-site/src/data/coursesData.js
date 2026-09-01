@@ -56,6 +56,7 @@ export const COURSES = [
     kicker: "Curso teórico · seis meses",
     estado: "Inscripciones abiertas",
     badge: "Más popular",
+    destacado: true,
     nombre: "Curso teórico online 6 meses · EUNACOM julio 2027",
     resumen: "Seis meses dirigidos a la convocatoria de julio. Mismo material y mismo seguimiento que el curso anual, concentrado en un semestre de estudio con carga de diez a quince horas semanales.",
     duracion: "6 meses",

@@ -1,8 +1,10 @@
 import React from 'react';
 import { X, CheckCircle2, BookOpen, Clock, Calendar, ArrowRight } from 'lucide-react';
 
-export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
+export default function CourseDetailModal({ course, onClose, onEnroll }) {
   if (!course) return null;
+
+  const modules = course.temario || [];
 
   return (
     <div style={{
@@ -54,7 +56,7 @@ export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
               {course.badge}
             </span>
             <h3 style={{ fontSize: '1.35rem', fontWeight: '800', margin: 0, color: '#ffffff' }}>
-              Temario Oficial: {course.name}
+              Temario Oficial: {course.nombre}
             </h3>
           </div>
           <button
@@ -88,17 +90,23 @@ export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
             fontSize: '0.88rem',
             color: '#08365f'
           }}>
-            <div><strong>Duración:</strong> {course.duration}</div>
-            <div><strong>Meta:</strong> {course.targetExam}</div>
-            <div><strong>Inversión:</strong> {course.priceCLP}</div>
+            <div><strong>Duración:</strong> {course.duracion}</div>
+            <div><strong>Meta:</strong> {course.examen}</div>
+            <div><strong>Inversión:</strong> {course.precioClp}</div>
           </div>
 
-          <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#08365f', marginBottom: '16px' }}>
-            Desglose de Módulos y Clases Grabadas ({course.syllabus.length} Módulos)
+          <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#08365f', marginBottom: '8px' }}>
+            Desglose de Módulos y Clases Grabadas ({modules.length} Módulos)
           </h4>
 
+          {course.temarioNota && (
+            <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: '1.5', margin: '0 0 16px' }}>
+              {course.temarioNota}
+            </p>
+          )}
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {course.syllabus.map((module, idx) => (
+            {modules.map((module, idx) => (
               <div
                 key={idx}
                 style={{
@@ -130,7 +138,7 @@ export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
                       {idx + 1}
                     </div>
                     <span style={{ fontWeight: '700', fontSize: '1rem', color: '#08365f' }}>
-                      {module.module}
+                      {module.t}
                     </span>
                   </div>
                   <span style={{
@@ -141,32 +149,19 @@ export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
                     padding: '3px 10px',
                     borderRadius: '6px'
                   }}>
-                    {module.classes}
+                    {module.s}
                   </span>
                 </div>
 
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '6px',
-                  paddingLeft: '36px'
+                <p style={{
+                  paddingLeft: '36px',
+                  margin: 0,
+                  fontSize: '0.85rem',
+                  color: '#475569',
+                  lineHeight: '1.5'
                 }}>
-                  {module.topics.map((topic, tIdx) => (
-                    <span
-                      key={tIdx}
-                      style={{
-                        backgroundColor: '#f1f5f9',
-                        color: '#475569',
-                        fontSize: '0.8rem',
-                        padding: '3px 10px',
-                        borderRadius: '6px',
-                        fontWeight: '500'
-                      }}
-                    >
-                      • {topic}
-                    </span>
-                  ))}
-                </div>
+                  {module.d}
+                </p>
               </div>
             ))}
           </div>
@@ -191,12 +186,12 @@ export default function CourseDetailModal({ course, onClose, onSelectCourse }) {
           <button
             onClick={() => {
               onClose();
-              onSelectCourse(course);
+              onEnroll(course);
             }}
             className="btn btn-primary"
             style={{ padding: '10px 24px', fontSize: '0.9rem' }}
           >
-            <span>Inscribirme en {course.name}</span>
+            <span>Inscribirme en {course.nombre}</span>
             <ArrowRight size={16} />
           </button>
         </div>
