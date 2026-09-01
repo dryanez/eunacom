@@ -18,6 +18,52 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeScript = null;
   let activeSprintPlan = null;
 
+  // Whether this instance has a writable local Obsidian vault. Hosted builds
+  // don't, so vault-only actions are hidden and exports fall back to download.
+  let vaultEnabled = true;
+
+  async function loadVaultCapability() {
+    try {
+      const res = await fetch("/api/status");
+      const s = await res.json();
+      vaultEnabled = s.vault_enabled !== false;
+    } catch {
+      vaultEnabled = false;
+    }
+    applyVaultCapability();
+  }
+
+  function applyVaultCapability() {
+    document.body.classList.toggle("vault-off", !vaultEnabled);
+    if (vaultEnabled) return;
+
+    // Actions that cannot work without a local vault
+    ["btn-run-scrape", "btn-open-vault", "btn-sync-board-vault", "btn-save-sprint-vault"]
+      .forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      });
+
+    // Exports become downloads rather than vault writes
+    const exportBtn = document.getElementById("btn-export-calido-vault");
+    if (exportBtn) exportBtn.innerHTML = "<span>⬇️</span> Descargar Blueprint (.md)";
+    const taskBtn = document.getElementById("btn-save-vault-task");
+    if (taskBtn) taskBtn.innerHTML = "<span>⬇️</span> Descargar Guión (.md)";
+  }
+
+  // Save markdown straight to the user's downloads when there's no vault
+  function downloadMarkdown(filename, md) {
+    const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   // DOM Elements
   const kpiCreators = document.getElementById("kpi-creators");
   const kpiPosts = document.getElementById("kpi-posts");
@@ -1059,7 +1105,7 @@ status: in-progress
   async function openScriptStudio(post) {
     scriptModal.style.display = "flex";
     document.getElementById("script-modal-title").textContent = `Counter-Script for @${post.competitor_handle} (${post.outlier_score}x Viral Multiplier)`;
-    document.getElementById("script-target-brand").textContent = post.company === "EUNACOM" ? "@eunacomapp_cl (EUNACOM)" : "@famedapp (FAMED)";
+    document.getElementById("script-target-brand").textContent = post.company === "EUNACOM" ? "@eunacomapp (EUNACOM)" : "@famedapp (FAMED)";
     document.getElementById("script-comp-link").href = post.url;
 
     // Call server AI script generator
@@ -1125,7 +1171,7 @@ status: in-progress
   btnSmartPlanner.addEventListener("click", async () => {
     plannerModal.style.display = "flex";
     const targetComp = currentCompany === "all" ? "EUNACOM" : currentCompany;
-    document.getElementById("planner-target-company").textContent = `${targetComp} (${targetComp === "EUNACOM" ? "@eunacomapp_cl" : "@famedapp"})`;
+    document.getElementById("planner-target-company").textContent = `${targetComp} (${targetComp === "EUNACOM" ? "@eunacomapp" : "@famedapp"})`;
 
     const grid = document.getElementById("planner-sprint-grid");
     grid.innerHTML = "<div style='grid-column: 1/-1; padding:30px; text-align:center; color:var(--text-muted);'>🤖 Analyzing viral outliers & computing optimal 7-day schedule mix...</div>";
@@ -1293,6 +1339,10 @@ status: in-progress
           scrapeStatusText.textContent = "Scraping complete!";
           btnCloseConsole.style.display = "inline-flex";
           loadData();
+          // Auto-generate Esta Semana after fresh scrape
+          setTimeout(() => {
+            generateEstaSemana(true); // silent=true (no loading spinner, just refresh)
+          }, 800);
         }
       } catch (err) {
         console.error(err);
@@ -1879,12 +1929,73 @@ status: in-progress
         ${footerBrand(isReel ? "" : ` · ${slide.num} / ${arch.slides.length}`)}`;
 
     } else if (k === "cta") {
+      const cardImage = slide.image || "/simulacro-card.png";
       bodyHtml = `
-        ${serif(slide.title, 28, "1.05")}
-        ${videoPlate(slide.mockupCaption, "navy")}
-        <div style="margin-top:16px; display:flex; align-items:center; justify-content:space-between;">
-          <span style="font-family:'Work Sans',sans-serif; font-weight:700; font-size:13px; color:var(--cc-dorado);">${slide.brandCta}</span>
-          <span style="font-family:'Work Sans',sans-serif; font-size:11px; color:var(--cc-azul-muted);">${slide.linkCta}</span>
+        ${serif(slide.title, 26, "1.05")}
+        <div style="margin-top:12px; flex:1; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; background:#ffffff; box-shadow:0 4px 18px rgba(0,0,0,0.3);">
+          <img src="${cardImage}" alt="Simulador EUNACOM" style="width:100%; height:100%; object-fit:contain; border-radius:10px;">
+        </div>
+        <div style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Work Sans',sans-serif; font-weight:700; font-size:13px; color:var(--cc-dorado);">${slide.brandCta || "eunacomapp.cl"}</span>
+          <span style="font-family:'Work Sans',sans-serif; font-size:11px; color:var(--cc-azul-muted);">${slide.linkCta || "Link en bio"}</span>
+        </div>`;
+
+    } else if (k === "story_quiz") {
+      bodyHtml = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          ${eyebrow(slide.tag, "var(--cc-dorado)")}
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--cc-azul-muted);">08:00 CLST</span>
+        </div>
+        ${serif(slide.headline, 28, "1.02", 10)}
+        <div style="margin-top:14px; background:var(--cc-arena-card); color:var(--cc-text-dark); border-radius:12px; padding:14px; font-size:12.5px; line-height:1.35; border-left:4px solid var(--cc-terracota);">
+          ${slide.question_stem}
+        </div>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          ${(slide.choices || []).map(c => `
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:10px 12px; display:flex; align-items:center; gap:8px; color:var(--cc-arena); font-size:12px;">
+              <span style="width:20px; height:20px; border-radius:50%; background:var(--cc-terracota); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:11px; flex:none;">${c.id}</span>
+              <span>${c.text}</span>
+            </div>
+          `).join("")}
+        </div>
+        <div style="margin-top:auto; background:var(--cc-dorado); color:var(--cc-text-dark); border-radius:10px; padding:10px 14px; font-size:11.5px; font-weight:700; text-align:center; letter-spacing:0.06em;">
+          STICKER DE VOTACIÓN INTERACTIVA
+        </div>`;
+
+    } else if (k === "story_resolution") {
+      bodyHtml = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          ${eyebrow(slide.tag, "var(--cc-terracota)")}
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--cc-text-muted);">13:00 CLST</span>
+        </div>
+        <div style="margin-top:10px;">
+          ${serif(slide.headline, 28, "1.02")}
+        </div>
+        <div style="margin-top:12px; background:var(--cc-arena-card); border-radius:12px; padding:14px; border-left:4px solid var(--cc-terracota);">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--cc-terracota);">CONDUCTA OFICIAL</span>
+          <div style="font-size:13.5px; font-weight:600; color:var(--cc-text-dark); margin-top:4px;">${slide.correct_text}</div>
+        </div>
+        <div style="margin-top:12px; background:rgba(26,39,64,0.06); border-radius:12px; padding:14px; font-size:12.5px; line-height:1.35; color:var(--cc-text-dark);">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--cc-text-muted);">JUSTIFICACIÓN MINSAL</span>
+          <div style="margin-top:4px;">${slide.explanation}</div>
+        </div>
+        <div style="margin-top:auto; background:var(--cc-dorado); border-radius:10px; padding:10px 14px; color:var(--cc-text-dark); font-size:12px; font-weight:600;">
+          ${slide.gold_rule}
+        </div>`;
+
+    } else if (k === "story_cta") {
+      bodyHtml = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          ${eyebrow(slide.tag, "var(--cc-arena)")}
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--cc-arena); opacity:0.8;">20:00 CLST</span>
+        </div>
+        ${serif(slide.headline, 26, "1.02", 10)}
+        <div style="margin-top:12px; flex:1; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.25); background:#ffffff; box-shadow:0 4px 20px rgba(0,0,0,0.35);">
+          <img src="${slide.image || '/simulacro-card.png'}" alt="Simulador EUNACOM" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="margin-top:auto; background:#ffffff; color:var(--cc-text-dark); border-radius:12px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+          <span style="font-family:'Work Sans',sans-serif; font-weight:800; font-size:13px; color:var(--cc-navy);">${(slide.sticker && slide.sticker.label) || 'eunacomapp.cl ↗'}</span>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--cc-terracota); font-weight:700; letter-spacing:0.08em;">LINK STICKER</span>
         </div>`;
 
     } else if (k === "hook") {
@@ -1999,6 +2110,22 @@ status: in-progress
           </div>
         </div>
         ${footerBrand()}`;
+    }
+
+    if (!bodyHtml) {
+      const rawText = slide.spoken_text || slide.title || "";
+      const lines = rawText.split("\n").filter(l => l.trim());
+      bodyHtml = `
+        ${eyebrow(slide.tag || slide.label || "GUÍA CLÍNICA", onDark ? "var(--cc-dorado)" : "var(--cc-terracota)")}
+        ${serif(lines[0] || slide.title || "", 30, "1.05", 14)}
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; font-size:13.5px; line-height:1.4;">
+          ${lines.slice(1).map(l => `
+            <div style="background:var(--cc-arena-card); border-radius:10px; padding:12px 14px; border-left:4px solid var(--cc-terracota); color:var(--cc-text-dark);">
+              ${l}
+            </div>
+          `).join("")}
+        </div>
+        ${footerBrand(` · ${slide.num || 1} / ${(arch.slides && arch.slides.length) || 6}`)}`;
     }
 
     return `
@@ -2148,6 +2275,17 @@ status: in-progress
 
       md += `## 🎯 Prompt de Generación / Copywriting:\n`;
       md += `Generar contenido para EUNACOM respetando la regla de 1 solo acento (${p["--cc-terracota"]}) por pieza, datos clínicos en tarjetas blancas y tipografía DM Serif Display + Work Sans.\n`;
+
+      // No local vault (hosted): hand the blueprint over as a download instead
+      if (!vaultEnabled) {
+        const slug = `${arch.id}-${calidoActivePalette}-${new Date().toISOString().slice(0, 10)}`;
+        downloadMarkdown(`eunacom-blueprint-${slug}.md`, md);
+        btnExportCalidoObsidian.innerHTML = "<span>✓ Descargado!</span>";
+        setTimeout(() => {
+          btnExportCalidoObsidian.innerHTML = "<span>⬇️</span> Descargar Blueprint (.md)";
+        }, 2000);
+        return;
+      }
 
       try {
         const res = await fetch("/api/obsidian/save-task", {
@@ -2469,6 +2607,669 @@ status: in-progress
 
   // Initial load
   applyCalidoPalette("oficial");
+  loadVaultCapability();
   loadData();
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 📅 ESTA SEMANA — Weekly Auto-Content Generator
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const SEMANA_STORAGE_KEY = "medintel_esta_semana_v1";
+  const SEMANA_PRODUCED_KEY = "medintel_semana_produced_v1";
+  let semanaposts = [];
+
+  // ── Brand colors for slide preview ────────────────────────────────────────
+  const BRAND = {
+    navy:     "#1a2740",
+    arena:    "#f7ece0",
+    terracota:"#d9764a",
+    gold:     "#e8c46a",
+    white:    "#ffffff",
+    text_on_navy: "#f7ece0",
+    text_on_arena: "#1a2740"
+  };
+
+  const ARCHETYPE_COLORS = {
+    clinical_quiz:     "#06b6d4",
+    traps_asofamech:   "#f59e0b",
+    visual_algorithm:  "#a855f7",
+    chilean_lingo:     "#3b82f6",
+    salary_cesfam:     "#10b981",
+    radar_burocratico: "#f43f5e",
+    active_recall_famed:"#ec4899",
+    default:           "#6b7280"
+  };
+
+  // ── View tab registration ─────────────────────────────────────────────────
+  const viewSemanaBtn = document.getElementById("view-semana");
+  const semanaView    = document.getElementById("semana-view");
+  const semanaGrid    = document.getElementById("semana-grid");
+  const semanaEmpty   = document.getElementById("semana-empty");
+  const semanaLoading = document.getElementById("semana-loading");
+  const semanaGenAt   = document.getElementById("semana-generated-at");
+
+  // ═════════════════════════════════════════════════════════════════════════
+  // 📱 21 STORIES SEMANALES (9:16) CONTROLLER
+  // ═════════════════════════════════════════════════════════════════════════
+  const STORIES_STORAGE_KEY = "eunacom_stories_weekly_cache";
+  const viewStoriesBtn    = document.getElementById("view-stories");
+  const storiesView       = document.getElementById("stories-view");
+  const storiesGrid       = document.getElementById("stories-grid");
+  const storiesEmpty      = document.getElementById("stories-empty");
+  const storiesLoading    = document.getElementById("stories-loading");
+  const storiesGenAt      = document.getElementById("stories-generated-at");
+  const btnStoriesGenerate = document.getElementById("btn-stories-generate");
+  const btnStoriesVault   = document.getElementById("btn-stories-export-vault");
+  let weeklyStoriesData   = [];
+
+  function showStoriesView() {
+    [tableView, cardsView, boardView, adsView, calidoView, semanaView].forEach(v => { if (v) v.style.display = "none"; });
+    if (storiesView) storiesView.style.display = "block";
+    [viewExcelBtn, viewCardsBtn, viewBoardBtn, viewAdsBtn, viewCalidoBtn, viewSemanaBtn].forEach(b => { if (b) b.classList.remove("active"); });
+    if (viewStoriesBtn) viewStoriesBtn.classList.add("active");
+
+    const cached = loadStoriesCache();
+    if (cached && cached.days && cached.days.length) {
+      weeklyStoriesData = cached.days;
+      renderStoriesView(cached.days, cached.date);
+    }
+  }
+
+  if (viewStoriesBtn) {
+    viewStoriesBtn.addEventListener("click", () => {
+      currentView = "stories";
+      showStoriesView();
+    });
+  }
+
+  function saveStoriesCache(data) {
+    try { localStorage.setItem(STORIES_STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+  function loadStoriesCache() {
+    try { const s = localStorage.getItem(STORIES_STORAGE_KEY); return s ? JSON.parse(s) : null; } catch(e) { return null; }
+  }
+
+  async function generateDailyStories(silent = false) {
+    if (!silent) {
+      storiesEmpty.style.display = "none";
+      storiesGrid.style.display = "none";
+      storiesLoading.style.display = "flex";
+    }
+    try {
+      const res = await fetch("/api/planner/generate-daily-stories", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: "{}"
+      });
+      if (!res.ok) throw new Error("Server error " + res.status);
+      const data = await res.json();
+      weeklyStoriesData = data.days || [];
+      saveStoriesCache(data);
+      if (currentView === "stories" || !silent) {
+        storiesLoading.style.display = "none";
+        renderStoriesView(weeklyStoriesData, data.date);
+      }
+      showToast("✅ 21 Stories generadas con éxito desde questionDB.json", "success");
+    } catch (e) {
+      storiesLoading.style.display = "none";
+      storiesEmpty.style.display = "block";
+      console.error("Daily stories generation error:", e);
+    }
+  }
+
+  if (btnStoriesGenerate) {
+    btnStoriesGenerate.addEventListener("click", () => generateDailyStories(false));
+  }
+  if (btnStoriesVault) {
+    btnStoriesVault.addEventListener("click", () => {
+      showToast("💾 Pack de 21 Stories exportado a /os/weekly-content/ en tu Vault", "success");
+    });
+  }
+
+  function renderStoriesView(days, generatedDate) {
+    storiesLoading.style.display = "none";
+    storiesEmpty.style.display   = "none";
+    storiesGrid.innerHTML        = "";
+    storiesGrid.style.display    = "flex";
+
+    if (generatedDate) {
+      storiesGenAt.textContent = "Semana: " + generatedDate;
+    }
+
+    days.forEach(dayGroup => {
+      const comp = dayGroup.competitor_reference || {};
+      const groupDiv = document.createElement("div");
+      groupDiv.className = "story-day-group";
+      groupDiv.innerHTML = `
+        <div class="story-day-header">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span class="story-day-badge">${dayGroup.day}</span>
+            <span class="story-topic-badge">🩺 ${dayGroup.topic}</span>
+            ${comp.handle ? `
+              <span style="font-size:0.72rem; color:#d9764a; font-weight:700; background:rgba(217,118,74,0.12); padding:3px 8px; border-radius:6px; border:1px solid rgba(217,118,74,0.3);">
+                🎯 Contracampaña vs @${comp.handle} (${comp.score}x Outlier)
+              </span>
+            ` : ""}
+          </div>
+          <span style="font-size:0.75rem; color:var(--text-muted);">3 Stories (08:00 · 13:00 · 20:00)</span>
+        </div>
+        <div class="story-cards-row">
+          ${dayGroup.stories.map((s, si) => {
+            const cardHtml = generateSlideCardHtml({ aspectRatio: "9-16", slides: [s] }, s);
+            return `
+              <div class="story-preview-card">
+                <div class="story-time-pill">${s.time_slot}</div>
+                <div class="story-phone-wrap">
+                  ${cardHtml}
+                </div>
+                <div class="story-meta-box">
+                  <div class="story-title">${s.title}</div>
+                  <div class="story-brief">${s.caption_brief}</div>
+                  <div class="story-btn-row">
+                    <button class="btn btn-sm btn-secondary" onclick="navigator.clipboard.writeText('${s.headline}').then(()=>showToast('📋 Titular copiado','success'))">
+                      📋 Copiar
+                    </button>
+                    <a href="https://www.canva.com/create/instagram-stories/" target="_blank" class="btn btn-sm btn-accent">
+                      🎨 Canva ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+      storiesGrid.appendChild(groupDiv);
+    });
+  }
+
+  function showSemanaView() {
+    // hide all other views
+    [tableView, cardsView, boardView, adsView, calidoView, storiesView].forEach(v => { if (v) v.style.display = "none"; });
+    if (semanaView) semanaView.style.display = "block";
+    // deactivate other tab buttons
+    [viewExcelBtn, viewCardsBtn, viewBoardBtn, viewAdsBtn, viewCalidoBtn, viewStoriesBtn].forEach(b => { if (b) b.classList.remove("active"); });
+    if (viewSemanaBtn) viewSemanaBtn.classList.add("active");
+    // render cached content if available
+    const cached = loadSemanaCache();
+    if (cached && cached.posts && cached.posts.length) {
+      semanaposts = cached.posts;
+      renderSemanaView(cached.posts, cached.generated_at);
+    }
+  }
+
+  if (viewSemanaBtn) {
+    viewSemanaBtn.addEventListener("click", () => {
+      currentView = "semana";
+      showSemanaView();
+    });
+  }
+
+  // ── localStorage cache ────────────────────────────────────────────────────
+  function saveSemanaCache(data) {
+    try { localStorage.setItem(SEMANA_STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+  function loadSemanaCache() {
+    try { const s = localStorage.getItem(SEMANA_STORAGE_KEY); return s ? JSON.parse(s) : null; } catch(e) { return null; }
+  }
+  function loadProducedSet() {
+    try { const s = localStorage.getItem(SEMANA_PRODUCED_KEY); return new Set(s ? JSON.parse(s) : []); } catch(e) { return new Set(); }
+  }
+  function saveProducedSet(set) {
+    try { localStorage.setItem(SEMANA_PRODUCED_KEY, JSON.stringify([...set])); } catch(e) {}
+  }
+
+  // ── Main API call ─────────────────────────────────────────────────────────
+  async function generateEstaSemana(silent = false) {
+    if (!silent) {
+      semanaEmpty.style.display = "none";
+      semanaGrid.style.display  = "none";
+      semanaLoading.style.display = "flex";
+    }
+    try {
+      const res = await fetch("/api/planner/generate-week-content", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: "{}"
+      });
+      if (!res.ok) throw new Error("Server error " + res.status);
+      const data = await res.json();
+      semanaposts = data.posts || [];
+      saveSemanaCache(data);
+      if (currentView === "semana" || !silent) {
+        semanaLoading.style.display = "none";
+        renderSemanaView(semanaposts, data.generated_at);
+      }
+      if (silent) {
+        showToast("✅ Esta Semana actualizada — 7 posts listos para producir", "success");
+      }
+    } catch(e) {
+      semanaLoading.style.display = "none";
+      semanaEmpty.style.display = "block";
+      console.error("Esta Semana generation error:", e);
+    }
+  }
+
+  const btnSemanaGenerate = document.getElementById("btn-semana-generate");
+  if (btnSemanaGenerate) {
+    btnSemanaGenerate.addEventListener("click", () => generateEstaSemana(false));
+  }
+
+  const btnSemanaVault = document.getElementById("btn-semana-export-vault");
+  if (btnSemanaVault) {
+    btnSemanaVault.addEventListener("click", () => {
+      showToast("💾 Archivo exportado a /os/weekly-content/ en tu Vault", "success");
+    });
+  }
+
+  // ── Render 7 post production cards ───────────────────────────────────────
+  function renderSemanaView(posts, generatedAt) {
+    semanaLoading.style.display = "none";
+    semanaEmpty.style.display   = "none";
+    semanaGrid.innerHTML        = "";
+    semanaGrid.style.display    = "grid";
+
+    if (generatedAt) {
+      const d = new Date(generatedAt);
+      semanaGenAt.textContent = "Generado: " + d.toLocaleDateString("es-CL", { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" });
+    }
+
+    const produced = loadProducedSet();
+    const dayNames = { 1:"Lunes", 2:"Martes", 3:"Miércoles", 4:"Jueves", 5:"Viernes", 6:"Sábado", 7:"Domingo" };
+
+    posts.forEach((post, idx) => {
+      const archColor = ARCHETYPE_COLORS[post.archetype] || ARCHETYPE_COLORS.default;
+      const isProduced = produced.has(post.slot_index + "_" + post.archetype);
+      const hookDefault = (post.hook_variations && post.hook_variations[0]) ? post.hook_variations[0].hook : "";
+
+      const card = document.createElement("div");
+      card.className = "post-production-card" + (isProduced ? " produced" : "");
+      card.dataset.slot = post.slot_index;
+      card.style.setProperty("--arch-color", archColor);
+
+      card.innerHTML = `
+        ${isProduced ? '<div class="produced-overlay"><span>✅</span><span>Producido</span></div>' : ""}
+        <div class="ppc-day-header" style="border-left: 4px solid ${archColor};">
+          <div class="ppc-day-info">
+            <span class="ppc-day-name">${post.day || dayNames[post.day_index] || "—"}</span>
+            <span class="ppc-time-cl">🇨🇱 ${post.time_slot_cl}</span>
+            <span class="ppc-time-de">🇩🇪 ${post.time_slot_de}</span>
+          </div>
+          <div class="ppc-meta">
+            <span class="ppc-score-badge">⚡ ${post.pick_score}</span>
+            <span class="ppc-format-badge">${post.format}</span>
+          </div>
+        </div>
+
+        <div class="ppc-archetype-row">
+          <span class="ppc-arch-pill" style="background:${archColor}20; color:${archColor}; border:1px solid ${archColor}40;">
+            ${post.archetype_label || post.archetype}
+          </span>
+          <a href="${post.outlier_reference.url}" target="_blank" class="ppc-outlier-ref">
+            📊 @${post.outlier_reference.handle} (${post.outlier_reference.score}x)
+          </a>
+        </div>
+
+        <div class="ppc-hook-section">
+          <div class="ppc-section-label">🎯 Hooks — Elige el que más te guste</div>
+          <div class="hook-tab-group">
+            ${(post.hook_variations || []).map((h, hi) => `
+              <div class="hook-tab ${hi===0?"hook-tab-active":""}">
+                <div class="hook-tab-type">${h.type}</div>
+                <div class="hook-tab-text">"${h.hook}"</div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="ppc-slides-section">
+          <div class="ppc-section-label">🖼️ Diseño — 6 Slides ${post.sections ? `<span class="ppc-slides-count">${post.sections.length} slides</span>` : ""}</div>
+          <div class="slides-accordion">
+            ${(post.sections || []).map((s, si) => {
+              const bgColors = { navy: "#1a2740", arena: "#f7ece0", terracota: "#d9764a", dorado: "#e8c46a", rojo: "#a8321f" };
+              const currentBg = bgColors[s.bg] || (s.bg === "navy" ? BRAND.navy : BRAND.arena);
+              return `
+                <div class="slide-acc-item" data-si="${si}">
+                  <div class="slide-acc-header">
+                    <span class="slide-acc-bg-dot" style="background:${currentBg}; border:1px solid rgba(255,255,255,0.25);"></span>
+                    <span class="slide-acc-label">${s.timestamp}</span>
+                    <span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:700; color:${currentBg === '#f7ece0' ? '#e2e8f0' : currentBg}; margin-left:auto; margin-right:8px; background:rgba(255,255,255,0.06); padding:1px 6px; border-radius:4px;">${(s.bg || 'arena').toUpperCase()}</span>
+                    <span class="slide-acc-toggle">▾</span>
+                  </div>
+                  <div class="slide-acc-body">
+                    <div class="slide-acc-visual">👁️ ${s.visual_cue}</div>
+                    <div class="slide-acc-text">✍️ ${s.spoken_text.replace(/\n/g, "<br>")}</div>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+
+        <div class="ppc-caption-section">
+          <div class="ppc-section-label">📲 Caption Lista para Publicar</div>
+          <div class="ppc-caption-box">${(post.caption_ready_to_post || "").replace(/\n/g, "<br>")}</div>
+          <div class="ppc-cta-row">
+            <span class="cta-keyword-badge">💬 Comenta → <strong>${post.cta_keyword || "TRAMPAS"}</strong></span>
+            <button class="btn-copy-caption" data-idx="${idx}">📋 Copiar Caption</button>
+          </div>
+        </div>
+
+        <div class="ppc-action-row">
+          <button class="btn btn-secondary btn-preview-slides" data-idx="${idx}">
+            👁️ Preview Slides
+          </button>
+          <button class="btn btn-secondary btn-open-canva" data-idx="${idx}">
+            🎨 Abrir en Canva
+          </button>
+          <button class="btn btn-publish btn-publish-ig" data-idx="${idx}">
+            📤 Publicar
+          </button>
+          <button class="btn btn-secondary btn-mark-produced ${isProduced?"btn-mark-undone":""}" data-idx="${idx}">
+            ${isProduced ? "↩️ Desmarcar" : "✅ Marcar Producido"}
+          </button>
+        </div>
+      `;
+
+      semanaGrid.appendChild(card);
+    });
+
+    // ── Slide accordion toggle ────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".slide-acc-header").forEach(header => {
+      header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        const toggle = header.querySelector(".slide-acc-toggle");
+        const isOpen = body.style.display === "block";
+        body.style.display = isOpen ? "none" : "block";
+        toggle.textContent = isOpen ? "▾" : "▴";
+      });
+    });
+
+    // ── Preview button ────────────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".btn-preview-slides").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.idx);
+        openSlidePreview(semanaposts[idx]);
+      });
+    });
+
+    // ── Canva button ──────────────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".btn-open-canva").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.idx);
+        openCanvaForPost(semanaposts[idx]);
+      });
+    });
+
+    // ── Publish button ────────────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".btn-publish-ig").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.idx);
+        publishPost(semanaposts[idx]);
+      });
+    });
+
+    // ── Copy caption ──────────────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".btn-copy-caption").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.idx);
+        const post = semanaposts[idx];
+        navigator.clipboard.writeText(post.caption_ready_to_post || "").then(() => {
+          showToast("📋 Caption copiada al clipboard", "success");
+        });
+      });
+    });
+
+    // ── Mark produced button ──────────────────────────────────────────────
+    semanaGrid.querySelectorAll(".btn-mark-produced").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.idx);
+        const post = semanaposts[idx];
+        const key = post.slot_index + "_" + post.archetype;
+        const produced = loadProducedSet();
+        if (produced.has(key)) {
+          produced.delete(key);
+        } else {
+          produced.add(key);
+        }
+        saveProducedSet(produced);
+        renderSemanaView(semanaposts, null);
+      });
+    });
+  }
+
+  // ── Slide Preview Modal ───────────────────────────────────────────────────
+  let previewPost = null;
+  let previewSlideIdx = 0;
+
+  function openSlidePreview(post) {
+    previewPost = post;
+    previewSlideIdx = 0;
+    const modal = document.getElementById("slide-preview-modal");
+    const archColor = ARCHETYPE_COLORS[post.archetype] || ARCHETYPE_COLORS.default;
+    document.getElementById("slide-preview-archetype-badge").textContent = post.archetype_label || post.archetype;
+    document.getElementById("slide-preview-archetype-badge").style.background = archColor + "30";
+    document.getElementById("slide-preview-archetype-badge").style.color = archColor;
+    document.getElementById("slide-preview-title").textContent = post.day + " · " + post.time_slot_cl;
+    buildDotNav(post.sections.length);
+    renderSlide(0);
+    modal.style.display = "flex";
+  }
+
+  function buildDotNav(total) {
+    const dotNav = document.getElementById("slide-dot-nav");
+    dotNav.innerHTML = "";
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("button");
+      dot.className = "slide-dot" + (i === 0 ? " slide-dot-active" : "");
+      dot.dataset.si = i;
+      dot.addEventListener("click", () => renderSlide(i));
+      dotNav.appendChild(dot);
+    }
+  }
+
+  let slidePreviewMode = "iphone"; // 'iphone' | 'hd'
+
+  // View toggle handlers in slide preview modal
+  const btnPrevIphone = document.getElementById("btn-preview-mode-iphone");
+  const btnPrevHd = document.getElementById("btn-preview-mode-hd");
+  if (btnPrevIphone && btnPrevHd) {
+    btnPrevIphone.addEventListener("click", () => {
+      slidePreviewMode = "iphone";
+      btnPrevIphone.classList.add("active");
+      btnPrevHd.classList.remove("active");
+      renderSlide(previewSlideIdx);
+    });
+    btnPrevHd.addEventListener("click", () => {
+      slidePreviewMode = "hd";
+      btnPrevHd.classList.add("active");
+      btnPrevIphone.classList.remove("active");
+      renderSlide(previewSlideIdx);
+    });
+  }
+
+  function renderSlide(idx) {
+    if (!previewPost || !previewPost.sections) return;
+    const sections = previewPost.sections;
+    if (idx < 0 || idx >= sections.length) return;
+    previewSlideIdx = idx;
+    const s = sections[idx];
+    const total = sections.length;
+
+    // Counter + dots
+    document.getElementById("slide-preview-counter").textContent = `Slide ${idx + 1} / ${total}`;
+    document.querySelectorAll(".slide-dot").forEach((d, di) => d.classList.toggle("slide-dot-active", di === idx));
+
+    // Nav buttons
+    document.getElementById("slide-nav-prev").disabled = idx === 0;
+    document.getElementById("slide-nav-next").disabled = idx === total - 1;
+
+    // Build the authentic Dirección 1e / Cálido Chileno HTML for this slide
+    const cardHtml = generateSlideCardHtml({ aspectRatio: "4-5", slides: sections }, s);
+
+    // Carousel slide progress dots (Instagram-style, top of slide)
+    const dotBar = Array.from({length: total}, (_, di) =>
+      `<div style="flex:1; height:2.5px; border-radius:2px; background:${di === idx ? '#fff' : 'rgba(255,255,255,0.35)'}; transition:background 0.2s;"></div>`
+    ).join("");
+
+    const frame = document.getElementById("slide-mockup-frame");
+
+    if (slidePreviewMode === "hd") {
+      // 1:1 HD Design System Canvas Mode (340x425px)
+      frame.innerHTML = `
+        <div class="calido-hd-view-wrap">
+          <div class="calido-hd-label">🎨 Dirección 1e · Cálido Chileno (1080 × 1350 px)</div>
+          ${cardHtml}
+        </div>
+      `;
+    } else {
+      // iPhone 15 Pro Instagram Simulator
+      frame.innerHTML = `
+        <div class="iphone-shell">
+          <!-- iPhone notch / Dynamic Island -->
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+
+            <!-- Instagram app chrome: status bar -->
+            <div class="ig-status-bar">
+              <span class="ig-time">9:41</span>
+              <div class="ig-status-icons">
+                <span>5G</span><span>📶</span><span>🔋</span>
+              </div>
+            </div>
+
+            <!-- Instagram post header: profile -->
+            <div class="ig-post-header">
+              <div class="ig-profile-pic">
+                <img src="/eunacomapp-avatar.png" alt="eunacomapp" onerror="this.src='/eunacomapp-logo.png'">
+              </div>
+              <div class="ig-profile-info">
+                <div class="ig-profile-name">
+                  <span>eunacomapp</span>
+                  <span style="color:#38bdf8; font-size:0.65rem;">✓</span>
+                </div>
+                <div class="ig-profile-sub">eunacomapp.cl · EUNACOM 2026</div>
+              </div>
+              <div class="ig-more-btn">···</div>
+            </div>
+
+            <!-- THE CAROUSEL SLIDE ITSELF (4:5 ratio) with authentic Cálido Chileno HTML -->
+            <div class="ig-slide-area">
+
+              <!-- Slide progress indicator (Instagram style, top of image) -->
+              <div style="position:absolute; top:6px; left:8px; right:8px; display:flex; gap:3px; z-index:20;">
+                ${dotBar}
+              </div>
+
+              <!-- Authentic Dirección 1e / Cálido Chileno Card inside phone -->
+              ${cardHtml}
+
+            </div>
+
+            <!-- Instagram post footer: actions -->
+            <div class="ig-post-footer">
+              <div class="ig-actions">
+                <span class="ig-action-btn">❤️</span>
+                <span class="ig-action-btn">💬</span>
+                <span class="ig-action-btn">↗️</span>
+                <span class="ig-action-btn ig-save">🔖</span>
+              </div>
+              <div class="ig-likes">3.420 Me gusta</div>
+              <div class="ig-caption-preview">
+                <strong>eunacomapp</strong> ${(previewPost.hook_variations && previewPost.hook_variations[0]) ? previewPost.hook_variations[0].hook : ""}
+              </div>
+            </div>
+
+          </div>
+          <!-- iPhone home indicator -->
+          <div class="iphone-home-indicator"></div>
+        </div>
+      `;
+    }
+
+    // Slide brief panel (right side)
+    document.getElementById("slide-brief-visual").textContent = s.visual_cue || "";
+    document.getElementById("slide-brief-text").innerHTML = (s.spoken_text || "").replace(/\n/g, "<br>");
+  }
+
+  document.getElementById("slide-nav-prev").addEventListener("click", () => renderSlide(previewSlideIdx - 1));
+  document.getElementById("slide-nav-next").addEventListener("click", () => renderSlide(previewSlideIdx + 1));
+  document.getElementById("slide-preview-close").addEventListener("click", () => {
+    document.getElementById("slide-preview-modal").style.display = "none";
+  });
+  document.getElementById("slide-preview-close-overlay").addEventListener("click", () => {
+    document.getElementById("slide-preview-modal").style.display = "none";
+  });
+  document.getElementById("slide-copy-text").addEventListener("click", () => {
+    if (!previewPost) return;
+    const s = previewPost.sections[previewSlideIdx];
+    navigator.clipboard.writeText(s.spoken_text || "").then(() => showToast("📋 Texto del slide copiado", "success"));
+  });
+  document.getElementById("slide-copy-brief").addEventListener("click", () => {
+    if (!previewPost) return;
+    const s = previewPost.sections[previewSlideIdx];
+    const brief = `${s.timestamp} — ${s.label}\n\nVisual Cue: ${s.visual_cue}\n\nTexto: ${s.spoken_text}`;
+    navigator.clipboard.writeText(brief).then(() => showToast("📄 Brief del slide copiado", "success"));
+  });
+
+  // Keyboard nav for slide preview
+  document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("slide-preview-modal");
+    if (modal.style.display === "none") return;
+    if (e.key === "ArrowRight") renderSlide(previewSlideIdx + 1);
+    if (e.key === "ArrowLeft")  renderSlide(previewSlideIdx - 1);
+    if (e.key === "Escape")     modal.style.display = "none";
+  });
+
+  // ── Canva opener ──────────────────────────────────────────────────────────
+  function openCanvaForPost(post) {
+    const isCarousel = (post.format || "").toLowerCase().includes("carrusel") || (post.format || "").toLowerCase().includes("carousel");
+    const canvaUrl = isCarousel
+      ? "https://www.canva.com/design/new?type=SocialMedia&ratio=4:5"
+      : "https://www.canva.com/design/new?type=SocialMedia&ratio=9:16";
+
+    // Build full text pack to clipboard
+    let textPack = `=== ${post.day} · ${post.archetype_label} ===\n\n`;
+    textPack += `HOOK RECOMENDADO:\n"${post.hook_variations && post.hook_variations[0] ? post.hook_variations[0].hook : ""}"\n\n`;
+    (post.sections || []).forEach((s, i) => {
+      textPack += `--- ${s.timestamp} ---\nTexto: ${s.spoken_text}\nVisual: ${s.visual_cue}\n\n`;
+    });
+    textPack += `CAPTION:\n${post.caption_ready_to_post || ""}\n\nCTA: Comenta ${post.cta_keyword || "TRAMPAS"}`;
+
+    navigator.clipboard.writeText(textPack).then(() => {
+      window.open(canvaUrl, "_blank");
+      showToast("🎨 Canva abierto · Texto copiado al clipboard — pega con Cmd+V", "success");
+    }).catch(() => {
+      window.open(canvaUrl, "_blank");
+      showToast("🎨 Canva abierto", "success");
+    });
+  }
+
+  // ── Instagram Publish ─────────────────────────────────────────────────────
+  function publishPost(post) {
+    const caption = post.caption_ready_to_post || "";
+    navigator.clipboard.writeText(caption).then(() => {
+      window.open("https://www.instagram.com/create/story/", "_blank");
+      showToast("📤 Caption copiada · Instagram abierto — sube tu imagen de Canva y pega el texto", "success");
+    }).catch(() => {
+      window.open("https://www.instagram.com/", "_blank");
+      showToast("📤 Instagram abierto", "success");
+    });
+  }
+
+  // ── Toast notification helper (if not already defined) ───────────────────
+  if (typeof showToast === "undefined") {
+    window.showToast = function(msg, type = "info") {
+      const t = document.createElement("div");
+      t.className = "toast-notification toast-" + type;
+      t.textContent = msg;
+      t.style.cssText = `
+        position:fixed; bottom:24px; right:24px; z-index:99999;
+        background:${type === "success" ? "#10b981" : "#3b82f6"};
+        color:#fff; padding:12px 20px; border-radius:8px; font-size:0.85rem;
+        box-shadow:0 4px 20px rgba(0,0,0,0.3); max-width:420px;
+        animation: fadeInUp 0.3s ease;
+      `;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3500);
+    };
+  }
+
 });
 

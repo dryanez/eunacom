@@ -2413,3 +2413,847 @@ body {
   color: var(--cc-dorado);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   📅 ESTA SEMANA — Weekly Auto-Content Generator
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#semana-view { padding: 24px 0; animation: fadeInAnim 0.25s ease; }
+
+.semana-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.semana-title-group h2 { font-size: 1.4rem; font-weight: 700; color: var(--text-primary, #f1f5f9); margin: 6px 0 4px; }
+.semana-subtitle { font-size: 0.78rem; color: var(--text-muted, #94a3b8); margin: 0; }
+.semana-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.semana-timestamp { font-size: 0.72rem; color: var(--text-muted, #64748b); }
+
+.view-btn-semana { background: linear-gradient(135deg, #1a2740, #d9764a) !important; color: #fff !important; font-weight: 600; }
+.view-btn-semana.active { box-shadow: 0 0 0 2px #d9764a; }
+
+.semana-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; gap: 16px; color: var(--text-muted, #94a3b8); font-size: 0.9rem; }
+.semana-spinner { font-size: 2.5rem; animation: spinPulse 1.2s ease-in-out infinite; }
+@keyframes spinPulse { 0%,100%{ transform:scale(1); opacity:1; } 50%{ transform:scale(1.25); opacity:0.7; } }
+
+.semana-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; text-align: center; gap: 14px; }
+.semana-empty-icon { font-size: 3.5rem; }
+.semana-empty h3 { font-size: 1.2rem; color: var(--text-primary, #f1f5f9); margin: 0; }
+.semana-empty p  { font-size: 0.85rem; color: var(--text-muted, #94a3b8); max-width: 360px; margin: 0; }
+
+/* ── Grid ── */
+.semana-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; align-items: start; }
+
+/* ── Card ── */
+.post-production-card {
+  background: var(--card-bg, #1e293b); border: 1px solid var(--border, #334155);
+  border-radius: 12px; overflow: hidden; position: relative; transition: box-shadow 0.2s;
+}
+.post-production-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
+.post-production-card.produced { opacity: 0.6; filter: grayscale(40%); }
+
+.produced-overlay { position: absolute; top: 12px; right: 12px; z-index: 10; display: flex; align-items: center; gap: 4px; background: #10b981; color: #fff; font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+
+.ppc-day-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px 10px; background: var(--card-header-bg, #0f172a); }
+.ppc-day-info { display: flex; flex-direction: column; gap: 3px; }
+.ppc-day-name { font-size: 1rem; font-weight: 700; color: var(--text-primary, #f1f5f9); text-transform: uppercase; letter-spacing: 0.04em; }
+.ppc-time-cl, .ppc-time-de { font-size: 0.7rem; color: var(--text-muted, #94a3b8); font-family: monospace; }
+.ppc-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.ppc-score-badge { background: #d9764a20; color: #d9764a; border: 1px solid #d9764a40; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; }
+.ppc-format-badge { font-size: 0.62rem; color: var(--text-muted, #64748b); text-align: right; max-width: 110px; }
+
+.ppc-archetype-row { display: flex; align-items: center; gap: 10px; padding: 8px 16px; flex-wrap: wrap; border-bottom: 1px solid var(--border, #1e293b); }
+.ppc-arch-pill { font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.ppc-outlier-ref { font-size: 0.7rem; color: var(--text-muted, #64748b); text-decoration: none; transition: color 0.15s; }
+.ppc-outlier-ref:hover { color: #d9764a; text-decoration: underline; }
+
+.ppc-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted, #64748b); margin-bottom: 8px; }
+.ppc-slides-count { font-weight: 400; text-transform: none; letter-spacing: 0; color: #d9764a; margin-left: 4px; }
+
+.ppc-hook-section { padding: 12px 16px 10px; border-bottom: 1px solid var(--border, #1e293b); }
+.hook-tab-group { display: flex; flex-direction: column; gap: 6px; }
+.hook-tab { background: var(--bg-secondary, #0f172a); border: 1px solid var(--border, #334155); border-radius: 8px; padding: 8px 10px; cursor: pointer; transition: border-color 0.15s; }
+.hook-tab-active { border-color: #d9764a; background: #d9764a10; }
+.hook-tab-type { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted, #64748b); margin-bottom: 3px; }
+.hook-tab-text { font-size: 0.78rem; color: var(--text-primary, #e2e8f0); line-height: 1.4; font-style: italic; }
+
+.ppc-slides-section { padding: 12px 16px 10px; border-bottom: 1px solid var(--border, #1e293b); }
+.slides-accordion { display: flex; flex-direction: column; gap: 4px; }
+.slide-acc-item { border: 1px solid var(--border, #334155); border-radius: 6px; overflow: hidden; }
+.slide-acc-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; cursor: pointer; user-select: none; background: var(--bg-secondary, #0f172a); transition: background 0.15s; }
+.slide-acc-header:hover { background: #1a2740; }
+.slide-acc-bg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.2); }
+.slide-acc-label { font-size: 0.72rem; color: var(--text-primary, #e2e8f0); flex: 1; }
+.slide-acc-toggle { font-size: 0.7rem; color: var(--text-muted, #64748b); }
+.slide-acc-body { display: none; padding: 10px; border-top: 1px solid var(--border, #334155); background: var(--card-bg, #1e293b); }
+.slide-acc-visual { font-size: 0.72rem; color: var(--text-muted, #94a3b8); font-style: italic; margin-bottom: 6px; line-height: 1.4; }
+.slide-acc-text { font-size: 0.75rem; color: var(--text-primary, #e2e8f0); line-height: 1.5; }
+
+.ppc-caption-section { padding: 12px 16px 10px; border-bottom: 1px solid var(--border, #1e293b); }
+.ppc-caption-box { background: var(--bg-secondary, #0f172a); border: 1px solid var(--border, #334155); border-radius: 8px; padding: 10px 12px; font-size: 0.74rem; color: var(--text-primary, #e2e8f0); line-height: 1.6; max-height: 100px; overflow-y: auto; margin-bottom: 8px; }
+.ppc-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.cta-keyword-badge { background: #1a274020; color: #e8c46a; border: 1px solid #e8c46a30; font-size: 0.72rem; padding: 4px 12px; border-radius: 20px; }
+.btn-copy-caption { background: none; border: 1px solid var(--border, #334155); color: var(--text-muted, #94a3b8); font-size: 0.7rem; padding: 4px 10px; border-radius: 6px; cursor: pointer; transition: all 0.15s; }
+.btn-copy-caption:hover { border-color: #d9764a; color: #d9764a; }
+
+.ppc-action-row { display: flex; gap: 6px; padding: 12px 16px; flex-wrap: wrap; }
+.ppc-action-row .btn { font-size: 0.72rem; padding: 6px 12px; flex: 1; min-width: 80px; text-align: center; }
+.btn-publish { background: linear-gradient(135deg, #d9764a, #e8c46a) !important; color: #1a2740 !important; font-weight: 700 !important; border: none !important; }
+.btn-publish:hover { background: linear-gradient(135deg, #c96a3e, #d9b45a) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(217,118,74,0.4); }
+.btn-mark-undone { border-color: #10b981 !important; color: #10b981 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   👁️ SLIDE PREVIEW MODAL & IPHONE INSTAGRAM SIMULATOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.slide-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.slide-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 7, 14, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.slide-preview-container {
+  position: relative;
+  z-index: 9001;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 20px;
+  width: min(1060px, 96vw);
+  max-height: 94vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+}
+
+.slide-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: #090e1a;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+
+.slide-preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slide-preview-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.slide-preview-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.slide-preview-counter {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-family: monospace;
+  font-weight: 600;
+  background: #1e293b;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.slide-preview-body {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Left: iPhone Simulator Viewport ── */
+.slide-mockup-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 12px;
+  background: radial-gradient(circle at center, #111a2e 0%, #060a12 100%);
+  border-right: 1px solid #1e293b;
+  position: relative;
+}
+
+.slide-mockup-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Realistic iPhone Shell ── */
+.iphone-shell {
+  width: 310px;
+  background: #181c26;
+  border: 4px solid #334155;
+  box-shadow: 0 0 0 2px #0a0f1d, 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 4px rgba(255, 255, 255, 0.15);
+  border-radius: 46px;
+  padding: 8px 6px 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.iphone-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86px;
+  height: 20px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 50;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 7px;
+}
+
+.iphone-notch::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  background: radial-gradient(circle, #1e293b 20%, #050b14 80%);
+  border-radius: 50%;
+  border: 1px solid #1f293d;
+}
+
+.iphone-screen {
+  background: #000;
+  border-radius: 38px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #1f2937;
+  position: relative;
+}
+
+/* ── iOS Chrome: Status Bar ── */
+.ig-status-bar {
+  height: 32px;
+  padding: 6px 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #fff;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  z-index: 40;
+}
+
+.ig-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.55rem;
+}
+
+/* ── Instagram Post Header ── */
+.ig-post-header {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  color: #fff;
+  border-bottom: 1px solid #18181b;
+}
+
+.ig-profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 1.5px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ig-profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.ig-profile-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.ig-profile-name {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ig-profile-sub {
+  font-size: 0.56rem;
+  color: #a1a1aa;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ig-more-btn {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* ── 4:5 Carousel Slide Canvas ── */
+.ig-slide-area {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ig-slide-area .calido-rendered-card {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 22px 18px !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.calido-hd-view-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.calido-hd-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--cc-terracota);
+  background: rgba(217, 118, 74, 0.15);
+  border: 1px solid rgba(217, 118, 74, 0.3);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* ── Slide Typographic Layouts ── */
+.igsl-cover {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.igsl-badge-pill {
+  align-self: flex-start;
+  font-size: 0.52rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.igsl-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 10px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.igsl-sub {
+  font-size: 0.68rem;
+  line-height: 1.4;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.igsl-swipe {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  align-self: flex-end;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.igsl-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 8px;
+}
+
+.igsl-content-label {
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.igsl-content-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.igsl-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.igsl-bullet {
+  font-size: 0.66rem;
+  line-height: 1.45;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 7px 10px;
+  border-radius: 8px;
+  border-left: 3px solid #d9764a;
+  backdrop-filter: blur(4px);
+}
+
+.igsl-cta {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.igsl-cta-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 4px 12px rgba(217, 118, 74, 0.4));
+}
+
+.igsl-cta-line {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  font-weight: 500;
+  max-width: 90%;
+}
+
+.igsl-cta-keyword {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-top: 6px;
+  box-shadow: 0 4px 16px rgba(217, 118, 74, 0.4);
+}
+
+/* ── Instagram Post Footer ── */
+.ig-post-footer {
+  padding: 8px 12px 8px;
+  background: #000;
+  color: #fff;
+}
+
+.ig-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.ig-save {
+  margin-left: auto;
+}
+
+.ig-likes {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #f4f4f5;
+  margin-bottom: 2px;
+}
+
+.ig-caption-preview {
+  font-size: 0.6rem;
+  color: #e4e4e7;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.iphone-home-indicator {
+  width: 90px;
+  height: 4px;
+  background: #fff;
+  opacity: 0.6;
+  border-radius: 4px;
+  margin: 6px auto 2px;
+}
+
+/* ── Nav buttons ── */
+.slide-nav-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 1.6rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.slide-nav-btn:hover:not(:disabled) {
+  background: #d9764a;
+  color: #fff;
+  border-color: #d9764a;
+  transform: scale(1.08);
+}
+
+.slide-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ── Right: Slide Brief & Production Panel ── */
+.slide-brief-area {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+  overflow-y: auto;
+  background: #0f172a;
+}
+
+.slide-brief-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slide-brief-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+}
+
+.slide-brief-content {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.slide-brief-text {
+  font-style: normal;
+  white-space: pre-wrap;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.slide-preview-footer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+
+.slide-preview-footer-actions .btn {
+  font-size: 0.75rem;
+  padding: 8px 16px;
+}
+
+/* ── Dot Navigation at Bottom ── */
+.slide-dot-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background: #090e1a;
+  border-top: 1px solid #1e293b;
+}
+
+.slide-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #334155;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.slide-dot-active {
+  background: #d9764a;
+  transform: scale(1.35);
+  box-shadow: 0 0 8px rgba(217, 118, 74, 0.6);
+}
+
+/* ── iPhone / HD View Toggle ── */
+.stage-view-toggle {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.btn-toggle-mini {
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-toggle-mini:hover {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.btn-toggle-mini.active {
+  background: var(--cc-terracota, #d9764a);
+  color: #fff;
+  border-color: var(--cc-terracota, #d9764a);
+}
+
+/* ── HD 1:1 Cálido Chileno Canvas ── */
+.calido-hd-view-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.calido-hd-view-wrap .calido-rendered-card {
+  width: 340px !important;
+  height: 425px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45) !important;
+  overflow: hidden !important;
+}
+
+.calido-hd-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--cc-terracota, #d9764a);
+  background: rgba(217, 118, 74, 0.12);
+  border: 1px solid rgba(217, 118, 74, 0.25);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   📱 21 STORIES SEMANALES (9:16) STYLING
+   ══════════════════════════════════════════════════════════════════════════ */
+.view-btn-stories {
+  background: linear-gradient(135deg, rgba(217, 118, 74, 0.15), rgba(168, 85, 247, 0.15)) !important;
+  border-color: rgba(217, 118, 74, 0.3) !important;
+  color: #f97316 !important;
+}
+
+.view-btn-stories.active {
+  background: linear-gradient(135deg, #d9764a, #9333ea) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 16px rgba(217, 118, 74, 0.4) !important;
+}
+
+.stories-days-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px 0 60px;
+}
+
+.story-day-group {
+  background: #0d1424;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.story-day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 12px;
+}
+
+.story-day-badge {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.story-topic-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-cyan, #06b6d4);
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.story-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .story-cards-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.story-preview-card {
+  background: #090e1a;
+  border: 1px solid #1f293d;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.story-preview-card:hover {
+  transform: translateY(-3px);
+  border-color: #38bdf8;
+}
+
+.story-time-pill {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  color: #fbbf24;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.story-phone-wrap {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.story-phone-wrap .calido-rendered-card {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  padding: 24px 16px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.story-meta-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.story-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.story-brief {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.story-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+

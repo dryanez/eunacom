@@ -1,47 +1,170 @@
-import React, { useState } from 'react';
-import { INITIAL, buildViewModel } from './viewModel';
-import Layout from './components/Layout';
-import Inicio from './pages/Inicio';
-import Nosotros from './pages/Nosotros';
-import Cursos from './pages/Cursos';
-import Ficha from './pages/Ficha';
-import Checkout from './pages/Checkout';
-import Material from './pages/Material';
-import Extranjeros from './pages/Extranjeros';
-import Blog from './pages/Blog';
-import Articulo from './pages/Articulo';
-import Faq from './pages/Faq';
-import Contacto from './pages/Contacto';
-
-export const PAGES = {
-  inicio: Inicio,
-  nosotros: Nosotros,
-  cursos: Cursos,
-  ficha: Ficha,
-  checkout: Checkout,
-  material: Material,
-  extranjeros: Extranjeros,
-  blog: Blog,
-  articulo: Articulo,
-  faq: Faq,
-  contacto: Contacto,
-};
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import CoursesSection from './components/CoursesSection';
+import CourseDetailModal from './components/CourseDetailModal';
+import EnrollmentModal from './components/EnrollmentModal';
+import FreeMockExamsSection from './components/FreeMockExamsSection';
+import PrerequisitesMatrix from './components/PrerequisitesMatrix';
+import VideoMasterclassPlayer from './components/VideoMasterclassPlayer';
+import BlogSection from './components/BlogSection';
+import BlogArticleModalOrPage from './components/BlogArticleModalOrPage';
+import BlogTopicProposer from './components/BlogTopicProposer';
+import FaqSection from './components/FaqSection';
+import DoctorMentorshipModal from './components/DoctorMentorshipModal';
+import Footer from './components/Footer';
 
 export default function App() {
-  const [st, setSt] = useState(INITIAL);
-  const patch = (next) => setSt((s) => ({ ...s, ...(typeof next === 'function' ? next(s) : next) }));
+  const [selectedCourseForDetail, setSelectedCourseForDetail] = useState(null);
+  const [selectedCourseForEnrollment, setSelectedCourseForEnrollment] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [isMentorshipOpen, setIsMentorshipOpen] = useState(false);
+  const [isSEOStudioOpen, setIsSEOStudioOpen] = useState(false);
 
-  const go = (page, extra) => {
-    patch({ page, error: '', ...(extra || {}) });
-    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  // Global EducationalOrganization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "EUNACOM Examen Chile",
+    "alternateName": ["EUNACOM Academia", "Preparación EUNACOM Dr. Felipe Yáñez"],
+    "url": "https://eunacom-examen.cl",
+    "logo": "https://eunacom-examen.cl/logo.png",
+    "description": "Academia de alto rendimiento médico y preparación para el Examen Único Nacional de Conocimientos de Medicina (EUNACOM Teórico ST y ECOE Práctico SP) en Chile.",
+    "founder": {
+      "@type": "Physician",
+      "name": "Dr. Felipe Yáñez",
+      "jobTitle": "Director Académico EUNACOM",
+      "alumniOf": "Universidad de Santiago de Chile (USACH)",
+      "identifier": "RNPI-642819"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago",
+      "addressCountry": "CL"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+56976694606",
+      "contactType": "Academic Advising & Enrollment",
+      "availableLanguage": ["Spanish"]
+    },
+    "sameAs": [
+      "https://wa.me/56976694606"
+    ]
   };
 
-  const v = buildViewModel(st, patch, go);
-  const Page = PAGES[st.page] || Inicio;
+  const handleStartDiagnostic = () => {
+    const el = document.getElementById('diagnostico');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <Layout {...v}>
-      <Page {...v} />
-    </Layout>
+    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
+      {/* Navbar */}
+      <Navbar
+        onOpenMentorship={() => setIsMentorshipOpen(true)}
+        onSelectCourse={(course) => setSelectedCourseForEnrollment(course)}
+      />
+
+      {/* Main Content */}
+      <main style={{ flex: 1 }}>
+        {/* 1. Hero Section */}
+        <Hero
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+          onStartDiagnostic={handleStartDiagnostic}
+        />
+
+        {/* 2. Courses & Pricing Section */}
+        <CoursesSection
+          onSelectCourse={(c) => setSelectedCourseForEnrollment(c)}
+          onViewDetails={(c) => setSelectedCourseForDetail(c)}
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+        />
+
+        {/* 3. Free Diagnostic 5-Question Mock Exam */}
+        <FreeMockExamsSection
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+          onSelectCourse={(c) => setSelectedCourseForEnrollment(c)}
+        />
+
+        {/* 4. Interactive Prerequisites & Convalidation Matrix */}
+        <PrerequisitesMatrix
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+        />
+
+        {/* 5. Video Masterclass Player */}
+        <VideoMasterclassPlayer
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+          onSelectCourse={(c) => setSelectedCourseForEnrollment(c)}
+        />
+
+        {/* 6. Blog & Guides Section */}
+        <BlogSection
+          onSelectArticle={(art) => setSelectedArticle(art)}
+          onOpenTopicProposer={() => setIsSEOStudioOpen(true)}
+        />
+
+        {/* 7. FAQs Accordion */}
+        <FaqSection
+          onOpenMentorship={() => setIsMentorshipOpen(true)}
+        />
+      </main>
+
+      {/* Footer */}
+      <Footer
+        onOpenMentorship={() => setIsMentorshipOpen(true)}
+        onOpenSEOStudio={() => setIsSEOStudioOpen(true)}
+      />
+
+      {/* Modals */}
+      {selectedCourseForDetail && (
+        <CourseDetailModal
+          course={selectedCourseForDetail}
+          onClose={() => setSelectedCourseForDetail(null)}
+          onEnroll={(c) => {
+            setSelectedCourseForDetail(null);
+            setSelectedCourseForEnrollment(c);
+          }}
+        />
+      )}
+
+      {selectedCourseForEnrollment && (
+        <EnrollmentModal
+          course={selectedCourseForEnrollment}
+          onClose={() => setSelectedCourseForEnrollment(null)}
+        />
+      )}
+
+      {selectedArticle && (
+        <BlogArticleModalOrPage
+          article={selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+          onSelectCourse={(c) => setSelectedCourseForEnrollment(c)}
+          onOpenMentorship={() => {
+            setSelectedArticle(null);
+            setIsMentorshipOpen(true);
+          }}
+        />
+      )}
+
+      {isMentorshipOpen && (
+        <DoctorMentorshipModal
+          onClose={() => setIsMentorshipOpen(false)}
+        />
+      )}
+
+      {isSEOStudioOpen && (
+        <BlogTopicProposer
+          onClose={() => setIsSEOStudioOpen(false)}
+        />
+      )}
+    </div>
   );
 }

@@ -170,6 +170,12 @@
             <button class="view-btn" id="view-calido" title="Cálido Chileno EUNACOM Design System">
               <span>🎨</span> Cálido Chileno (EUNACOM)
             </button>
+            <button class="view-btn view-btn-semana" id="view-semana" title="Auto-genera 7 posts listos para publicar esta semana">
+              <span>📅</span> Esta Semana
+            </button>
+            <button class="view-btn view-btn-stories" id="view-stories" title="Auto-genera 21 Stories semanales (9:16) con stickers interactivos">
+              <span>📱</span> 21 Stories (9:16)
+            </button>
           </div>
         </div>
       </section>
@@ -590,7 +596,7 @@
           <div class="script-meta-bar">
             <div class="meta-item">
               <span class="meta-label">Target App:</span>
-              <span class="meta-val" id="script-target-brand">@eunacomapp_cl</span>
+              <span class="meta-val" id="script-target-brand">@eunacomapp</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Est. Duration:</span>
@@ -653,7 +659,7 @@
         <div class="modal-body">
           <div class="sprint-summary-bar">
             <div class="sprint-meta">
-              <div><strong style="color:#fff;">Target Engine:</strong> <span id="planner-target-company">EUNACOM (@eunacomapp_cl)</span></div>
+              <div><strong style="color:#fff;">Target Engine:</strong> <span id="planner-target-company">EUNACOM (@eunacomapp)</span></div>
               <div><strong style="color:#fff;">Strategy:</strong> High-Conversion Archetype Mix</div>
               <div><strong style="color:#fff;">Timezone:</strong> Chile / LatAm (CLT)</div>
             </div>
@@ -741,7 +747,7 @@
           <div class="form-group">
             <label>Target App / Business:</label>
             <select id="task-company-input">
-              <option value="EUNACOM">🇨🇱 EUNACOM (@eunacomapp_cl)</option>
+              <option value="EUNACOM">🇨🇱 EUNACOM (@eunacomapp)</option>
               <option value="FAMED">🧠 FaMED Test Prep (@famedapp)</option>
             </select>
           </div>
@@ -794,6 +800,137 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       📅 ESTA SEMANA — Weekly Auto-Content Generator View
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div id="semana-view" style="display:none;">
+    <div class="semana-header">
+      <div class="semana-title-group">
+        <span class="modal-badge">📅 ESTA SEMANA · AUTO-GENERADO</span>
+        <h2>7 Posts Listos para Publicar · EUNACOM</h2>
+        <p class="semana-subtitle">Auto-seleccionados con PICK_SCORE algorithm · Dirección 1e / Cálido Chileno · Design Brief + Caption + CTA</p>
+      </div>
+      <div class="semana-actions">
+        <span id="semana-generated-at" class="semana-timestamp"></span>
+        <button class="btn btn-secondary" id="btn-semana-export-vault">
+          <span>💾</span> Exportar a Vault
+        </button>
+        <button class="btn btn-primary highlight" id="btn-semana-generate">
+          <span>⚡</span> Generar Esta Semana
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="semana-loading" style="display:none;" class="semana-loading">
+      <div class="semana-spinner">⚡</div>
+      <p>Auto-seleccionando los mejores 7 posts con PICK_SCORE...</p>
+    </div>
+
+    <!-- Empty state -->
+    <div id="semana-empty" class="semana-empty">
+      <div class="semana-empty-icon">📅</div>
+      <h3>Esta Semana está vacía</h3>
+      <p>Haz clic en <strong>⚡ Generar Esta Semana</strong> para auto-seleccionar los 7 mejores posts y generar el pack completo de producción.</p>
+      <button class="btn btn-primary highlight" onclick="document.getElementById('btn-semana-generate').click()">
+        <span>⚡</span> Generar Ahora
+      </button>
+    </div>
+
+    <!-- 7 Post Production Cards Grid -->
+    <div id="semana-grid" class="semana-grid" style="display:none;"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       📱 21 STORIES SEMANALES (9:16) — Daily Stories Pack View
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div id="stories-view" style="display:none;">
+    <div class="semana-header">
+      <div class="semana-title-group">
+        <span class="modal-badge">📱 21 STORIES SEMANALES · 9:16 VERTICAL</span>
+        <h2>3 Stories Diarias (08:00 · 13:00 · 20:00) · EUNACOM</h2>
+        <p class="semana-subtitle">Casos reales de questionDB.json · Quiz interactivo con encuesta · Resolución GES · Simulador & Link Sticker</p>
+      </div>
+      <div class="semana-actions">
+        <span id="stories-generated-at" class="semana-timestamp"></span>
+        <button class="btn btn-secondary" id="btn-stories-export-vault">
+          <span>💾</span> Exportar a Vault
+        </button>
+        <button class="btn btn-primary highlight" id="btn-stories-generate">
+          <span>⚡</span> Generar 21 Stories
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="stories-loading" style="display:none;" class="semana-loading">
+      <div class="semana-spinner">⚡</div>
+      <p>Extrayendo casos oficiales de questionDB.json y generando 21 Stories...</p>
+    </div>
+
+    <!-- Empty state -->
+    <div id="stories-empty" class="semana-empty">
+      <div class="semana-empty-icon">📱</div>
+      <h3>Stories Semanales no generadas</h3>
+      <p>Haz clic en <strong>⚡ Generar 21 Stories</strong> para producir los 7 días (3 stories por día: Quiz, Resolución y CTA).</p>
+      <button class="btn btn-primary highlight" onclick="document.getElementById('btn-stories-generate').click()">
+        <span>⚡</span> Generar Ahora
+      </button>
+    </div>
+
+    <!-- 21 Stories by Day Grid -->
+    <div id="stories-grid" class="stories-days-container" style="display:none;"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       👁️ SLIDE PREVIEW MODAL
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div id="slide-preview-modal" class="slide-preview-modal" style="display:none;">
+    <div class="slide-preview-overlay" id="slide-preview-close-overlay"></div>
+    <div class="slide-preview-container">
+      <div class="slide-preview-header">
+        <div class="slide-preview-meta">
+          <span id="slide-preview-archetype-badge" class="modal-badge"></span>
+          <span id="slide-preview-title" class="slide-preview-title"></span>
+        </div>
+        <div class="slide-preview-controls">
+          <div class="stage-view-toggle" style="margin-right:8px;">
+            <button class="btn-toggle-mini active" id="btn-preview-mode-iphone">📱 iPhone</button>
+            <button class="btn-toggle-mini" id="btn-preview-mode-hd">🎨 HD 1:1</button>
+          </div>
+          <span id="slide-preview-counter" class="slide-preview-counter">Slide 1 / 6</span>
+          <button class="btn btn-secondary" id="slide-preview-close">✕ Cerrar</button>
+        </div>
+      </div>
+      <div class="slide-preview-body">
+        <!-- Left: Visual slide mockup -->
+        <div class="slide-mockup-area">
+          <button class="slide-nav-btn slide-nav-prev" id="slide-nav-prev">‹</button>
+          <div class="slide-mockup-frame" id="slide-mockup-frame">
+            <!-- Rendered per slide by JS -->
+          </div>
+          <button class="slide-nav-btn slide-nav-next" id="slide-nav-next">›</button>
+        </div>
+        <!-- Right: Slide brief -->
+        <div class="slide-brief-area">
+          <div class="slide-brief-section">
+            <div class="slide-brief-label">👁️ Visual Cue (para diseñador / Canva)</div>
+            <div id="slide-brief-visual" class="slide-brief-content"></div>
+          </div>
+          <div class="slide-brief-section">
+            <div class="slide-brief-label">✍️ Texto del Slide</div>
+            <div id="slide-brief-text" class="slide-brief-content slide-brief-text"></div>
+          </div>
+          <div class="slide-preview-footer-actions">
+            <button class="btn btn-secondary" id="slide-copy-text">📋 Copiar Texto</button>
+            <button class="btn btn-secondary" id="slide-copy-brief">📄 Copiar Brief</button>
+          </div>
+        </div>
+      </div>
+      <div class="slide-dot-nav" id="slide-dot-nav"></div>
+    </div>
   </div>
 
   <script src="app.js"></script>
