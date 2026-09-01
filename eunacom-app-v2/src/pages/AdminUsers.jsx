@@ -232,8 +232,27 @@ const UserPanel = ({ user, detail, onClose, onGrantPremium }) => {
               }
             </div>
             {user.whatsapp && (
-              <div style={{ marginTop: '0.4rem' }}>
+              <div style={{ marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Tag icon={<Phone size={12} />} label={`${user.country_code || ''} ${user.whatsapp}`} color="var(--surface-400)" />
+                <a
+                  href={`https://wa.me/${(user.country_code || '').replace(/[^0-9]/g, '')}${user.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hola Dr(a) ${user.first_name || ''}, te escribe el Dr. Felipe de EUNACOM App. ¿Cómo va tu preparación?`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    padding: '3px 8px',
+                    background: '#25D366',
+                    color: '#fff',
+                    borderRadius: '6px',
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    textDecoration: 'none'
+                  }}
+                >
+                  <Phone size={11} fill="#fff" /> Chat WhatsApp
+                </a>
               </div>
             )}
           </div>
@@ -499,71 +518,197 @@ const AdminUsers = () => {
   }
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-        <Users size={28} color="var(--primary-400)" />
-        <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>Administración</h1>
-          <p style={{ color: 'var(--surface-400)', fontSize: '0.85rem', margin: 0 }}>{users.length} usuarios registrados</p>
+    <div style={{ width: '100%', maxWidth: '1600px', margin: '0 auto' }}>
+      {/* ── Top Executive Command Center Bar ── */}
+      <div style={{
+        background: 'linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e293b 100%)',
+        borderRadius: '16px',
+        padding: '1.5rem 2rem',
+        marginBottom: '1.75rem',
+        border: '1px solid rgba(255,255,255,0.08)',
+        boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '1.25rem'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
+            padding: '0.75rem',
+            borderRadius: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 14px rgba(37,99,235,0.35)'
+          }}>
+            <Users size={26} color="#fff" />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <h1 style={{ fontSize: '1.45rem', fontWeight: 900, color: '#fff', margin: 0, letterSpacing: '-0.02em' }}>
+                Panel de Administración EUNACOM
+              </h1>
+              <span style={{
+                background: 'rgba(16,185,129,0.15)',
+                color: '#10b981',
+                border: '1px solid rgba(16,185,129,0.3)',
+                padding: '2px 8px',
+                borderRadius: '12px',
+                fontSize: '0.7rem',
+                fontWeight: 800
+              }}>
+                PROD · 2026
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginTop: '3px' }}>
+              <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 8px #10b981' }} />
+              <p style={{ color: '#94a3b8', fontSize: '0.82rem', margin: 0, fontWeight: 600 }}>
+                {users.length} Médicos Registrados · Turso LibSQL Edge DB · Resend Daemon Activo
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+          <button
+            onClick={loadData}
+            style={{
+              padding: '0.55rem 0.95rem',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              color: '#cbd5e1',
+              borderRadius: '8px',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              transition: 'all 0.2s'
+            }}
+          >
+            <RefreshCw size={14} /> Actualizar Datos
+          </button>
         </div>
       </div>
 
-      {/* Tab Selector */}
-      <div style={{ display: 'flex', gap: '0.25rem', background: 'var(--surface-800)', padding: '0.25rem', borderRadius: 'var(--radius)', marginBottom: '1.5rem', width: 'fit-content', flexWrap: 'wrap' }}>
+      {/* ── Modern Navigation Tabs ── */}
+      <div style={{
+        display: 'flex',
+        gap: '0.35rem',
+        background: '#090d16',
+        padding: '0.35rem',
+        borderRadius: '12px',
+        marginBottom: '1.75rem',
+        width: 'fit-content',
+        border: '1px solid rgba(255,255,255,0.08)',
+        flexWrap: 'wrap'
+      }}>
         <button
           onClick={() => setActiveTab('users')}
           style={{
-            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            background: activeTab === 'users' ? 'var(--primary-600)' : 'transparent',
-            color: activeTab === 'users' ? '#fff' : 'var(--surface-400)'
+            padding: '0.6rem 1.25rem',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: activeTab === 'users' ? 'linear-gradient(135deg, #2563eb, #1d4ed8)' : 'transparent',
+            color: activeTab === 'users' ? '#fff' : '#94a3b8',
+            boxShadow: activeTab === 'users' ? '0 4px 12px rgba(37,99,235,0.3)' : 'none'
           }}
         >
-          <Users size={16} /> Usuarios ({users.length})
+          <Users size={16} /> Médicos ({users.length})
         </button>
+
         <button
           onClick={() => setActiveTab('finances')}
           style={{
-            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.6rem 1.25rem',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
             background: activeTab === 'finances' ? 'linear-gradient(135deg, #059669, #10b981)' : 'transparent',
-            color: activeTab === 'finances' ? '#fff' : 'var(--surface-400)'
+            color: activeTab === 'finances' ? '#fff' : '#94a3b8',
+            boxShadow: activeTab === 'finances' ? '0 4px 12px rgba(16,185,129,0.3)' : 'none'
           }}
         >
           <DollarSign size={16} /> Finanzas & Ingresos {financesData?.kpis?.totalRevenueCLP ? `(${fmtCLP(financesData.kpis.totalRevenueCLP).replace(' CLP', '')})` : ''}
         </button>
+
         <button
           onClick={() => setActiveTab('paypal')}
           style={{
-            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            background: activeTab === 'paypal' ? '#003087' : 'transparent',
-            color: activeTab === 'paypal' ? '#fff' : 'var(--surface-400)'
+            padding: '0.6rem 1.25rem',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: activeTab === 'paypal' ? 'linear-gradient(135deg, #003087, #0079C1)' : 'transparent',
+            color: activeTab === 'paypal' ? '#fff' : '#94a3b8',
+            boxShadow: activeTab === 'paypal' ? '0 4px 12px rgba(0,121,193,0.3)' : 'none'
           }}
         >
           <CreditCard size={16} /> PayPal ({paypalTxns.length})
         </button>
+
         <button
           onClick={() => setActiveTab('marketing')}
           style={{
-            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            background: activeTab === 'marketing' ? 'linear-gradient(135deg, #2563eb, #1d4ed8)' : 'transparent',
-            color: activeTab === 'marketing' ? '#fff' : 'var(--surface-400)'
+            padding: '0.6rem 1.25rem',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: activeTab === 'marketing' ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)' : 'transparent',
+            color: activeTab === 'marketing' ? '#fff' : '#94a3b8',
+            boxShadow: activeTab === 'marketing' ? '0 4px 12px rgba(139,92,246,0.3)' : 'none'
           }}
         >
-          <Mail size={16} /> Email Marketing
+          <Mail size={16} /> Email Marketing & Retención
         </button>
+
         <button
           onClick={() => setActiveTab('seo')}
           style={{
-            padding: '0.6rem 1.25rem', border: 'none', borderRadius: 6, fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            background: activeTab === 'seo' ? 'linear-gradient(135deg, #7c3aed, #6d28d9)' : 'transparent',
-            color: activeTab === 'seo' ? '#fff' : 'var(--surface-400)'
+            padding: '0.6rem 1.25rem',
+            border: 'none',
+            borderRadius: 8,
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: activeTab === 'seo' ? 'linear-gradient(135deg, #ec4899, #db2777)' : 'transparent',
+            color: activeTab === 'seo' ? '#fff' : '#94a3b8',
+            boxShadow: activeTab === 'seo' ? '0 4px 12px rgba(236,72,153,0.3)' : 'none'
           }}
         >
-          <Globe size={16} /> SEO & Search Console
+          <Globe size={16} /> SEO & Google Search Console
         </button>
       </div>
 

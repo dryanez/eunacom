@@ -32,3 +32,10 @@ eunacom-app-v2/book/*.pdf
 .env.*
 os/.obsidian/
 
+# Cache and build artifacts
+__pycache__/
+*.pyc
+.vercel/
+.vercel
+
+

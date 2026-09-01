@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"node_spy","type":"text","text":"### 🔍 STEP 1: COMPETITOR AD SPY\n\n• **Approbatio**: Sells €80/hr 1-on-1 coaching\n• **FIA Academy**: Sells €1,500 rigid group courses\n• **Lingoda**: Sells €300/mo live tutors\n\n**FaMED Moat**: Unlimited 24/7 AI simulation from **€9.99/week** or **€25.99/month**.","x":-600,"y":0,"width":360,"height":240,"color":"5"},
+		{"id":"node_r1","type":"text","text":"### 🔴 RING 1: PROBLEM & HOOK (Stop Scrolling)\n\n• **Job**: Cold prospecting, highlight exam anxiety\n• **Hook**: *„Warum fallen über 60% der Ärzte beim ersten FaMED-Test durch?“*\n• **Format**: Doctor UGC + 20-min timer stress demo\n• **CTA**: Learn More","x":-180,"y":-250,"width":380,"height":220,"color":"1"},
+		{"id":"node_r2","type":"text","text":"### 🟠 RING 2: MECHANISM & DEMO (How It Works)\n\n• **Job**: Solution education\n• **Demo**: Talking to AI Patient 'Herr Meier' with live grammar scoring\n• **Flow**: Anamnese ➔ Übergabe ➔ Arztbrief auto-correction\n• **Price Anchor**: From €0.86 / day","x":260,"y":-250,"width":380,"height":220,"color":"2"},
+		{"id":"node_r3","type":"text","text":"### 🟡 RING 3: SOCIAL PROOF & TRUST\n\n• **Job**: Believability & Transformation\n• **Proof**: Real doctor holding passed FaMED certificate\n• **Stats**: 4.9★ from 250+ doctors across Germany (97% pass rate)\n• **Social**: WhatsApp celebration montage","x":700,"y":-250,"width":380,"height":220,"color":"3"},
+		{"id":"node_r4","type":"text","text":"### 🟢 RING 4: OBJECTION CRUSHER\n\n• **Job**: Eliminate doubt (Price, State rules, Time)\n• **Comparison**: 1 Hour Tutor (€80) vs 1 Month Unlimited FaMED (€25.99)\n• **Short Term**: 7-Day Sprint Pass for **€9.99**\n• **Schedule**: Practice 15 mins during hospital shifts","x":260,"y":80,"width":380,"height":220,"color":"4"},
+		{"id":"node_r5","type":"text","text":"### 🔵 RING 5: DIRECT OFFER & URGENCY\n\n• **Job**: Convert doctors with upcoming exam date\n• **Urgency**: Exam in 30 days countdown\n• **Bundle**: 3-Month Complete Prep for **€69.99**\n• **CTA**: Start Free Simulation or Get 1-Month Pass (€25.99)","x":700,"y":80,"width":380,"height":220,"color":"6"},
+		{"id":"node_scale","type":"text","text":"### 🚀 ANDROMEDA HARVEST & SCALE LOOP\n\n1. Run each ring as **3:2:2 Flexible DCT** ad set.\n2. When an ad hits CPA < €15, **Harvest Post ID**.\n3. Move into **Control Scaling CBO Campaign**.\n4. Answer the golden question: *„Can I spend more money tomorrow?“*","x":480,"y":360,"width":420,"height":200,"color":"2"}
+	],
+	"edges":[
+		{"id":"edge_spy_r1","fromNode":"node_spy","fromSide":"top","toNode":"node_r1","toSide":"left"},
+		{"id":"edge_r1_r2","fromNode":"node_r1","fromSide":"right","toNode":"node_r2","toSide":"left"},
+		{"id":"edge_r2_r3","fromNode":"node_r2","fromSide":"right","toNode":"node_r3","toSide":"left"},
+		{"id":"edge_r3_r4","fromNode":"node_r3","fromSide":"bottom","toNode":"node_r4","toSide":"top"},
+		{"id":"edge_r4_r5","fromNode":"node_r4","fromSide":"right","toNode":"node_r5","toSide":"left"},
+		{"id":"edge_r5_scale","fromNode":"node_r5","fromSide":"bottom","toNode":"node_scale","toSide":"top"}
+	]
+}

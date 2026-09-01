@@ -197,13 +197,17 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
-    try:
-        resp = safe_requests_get(args.url, timeout=20, allow_redirects=True)
-    except URLSafetyError as exc:
-        print(f"Error: url_safety: {exc}", file=sys.stderr)
-        return 2
-
-    result = {"url": resp.url, **analyse(resp.text, dict(resp.headers))}
+    if os.path.exists(args.url):
+        with open(args.url, "r", encoding="utf-8", errors="ignore") as f:
+            html = f.read()
+        result = {"url": args.url, **analyse(html, {})}
+    else:
+        try:
+            resp = safe_requests_get(args.url, timeout=20, allow_redirects=True)
+        except URLSafetyError as exc:
+            print(f"Error: url_safety: {exc}", file=sys.stderr)
+            return 2
+        result = {"url": resp.url, **analyse(resp.text, dict(resp.headers))}
 
     if args.json:
         json.dump(result, sys.stdout, indent=2)

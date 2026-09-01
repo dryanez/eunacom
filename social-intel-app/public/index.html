@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedIntel Studio · Dual-Engine Social Intelligence for EUNACOM & FAMED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app-layout">
+
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="brand-badge">
+          <span class="brand-icon">⚡</span>
+          <div class="brand-text">
+            <span class="brand-title">MED-INTEL STUDIO</span>
+            <span class="brand-subtitle">Viral Outlier & Competitor Intelligence Engine</span>
+          </div>
+        </div>
+
+        <!-- Company Switcher Tabs -->
+        <nav class="company-tabs">
+          <button class="company-tab active" data-company="all" id="tab-all">
+            <span class="tab-icon">🌐</span> All Intelligence
+          </button>
+          <button class="company-tab" data-company="EUNACOM" id="tab-eunacom">
+            <span class="tab-icon">🇨🇱</span> EUNACOM Engine
+          </button>
+          <button class="company-tab" data-company="FAMED" id="tab-famed">
+            <span class="tab-icon">🧠</span> FAMED Engine
+          </button>
+        </nav>
+      </div>
+
+      <div class="header-right">
+        <div class="vault-indicator" id="vault-status" title="Synced with Obsidian Vault">
+          <span class="pulse-dot"></span>
+          <span class="vault-label">Obsidian Vault Connected</span>
+        </div>
+
+        <button class="btn btn-accent" id="btn-smart-planner">
+          <span>🤖</span> Smart Weekly Planner
+        </button>
+
+        <button class="btn btn-secondary" id="btn-open-vault">
+          <span>📂</span> Vault Notes
+        </button>
+
+        <button class="btn btn-primary" id="btn-run-scrape">
+          <span class="btn-spinner" id="scrape-spinner" style="display:none;">↻</span>
+          <span class="btn-icon">⚡</span>
+          <span>Run Live Scraper</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+
+      <!-- Metrics Bar -->
+      <section class="metrics-row" id="metrics-bar">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Tracked Creators</span>
+            <span class="metric-badge">Verified</span>
+          </div>
+          <div class="metric-value" id="kpi-creators">--</div>
+          <div class="metric-sub" id="kpi-creators-sub">Instagram & TikTok</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Posts Analyzed</span>
+            <span class="metric-badge">Timeline</span>
+          </div>
+          <div class="metric-value" id="kpi-posts">--</div>
+          <div class="metric-sub">Full engagement baselines</div>
+        </div>
+
+        <div class="metric-card highlight">
+          <div class="metric-header">
+            <span class="metric-title">Viral Outliers</span>
+            <span class="metric-badge viral">🔥 Breakout</span>
+          </div>
+          <div class="metric-value" id="kpi-outliers">--</div>
+          <div class="metric-sub">&gt;1.3x baseline multiplier</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Max Virality Score</span>
+            <span class="metric-badge">Top Multiplier</span>
+          </div>
+          <div class="metric-value" id="kpi-max-mult">--</div>
+          <div class="metric-sub" id="kpi-max-creator">Highest engagement post</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Top Converting Pillar</span>
+            <span class="metric-badge">Retention</span>
+          </div>
+          <div class="metric-value small" id="kpi-top-pillar">--</div>
+          <div class="metric-sub">Highest comment density</div>
+        </div>
+      </section>
+
+      <!-- Filter Controls & View Switcher Toolbar -->
+      <section class="toolbar">
+        <div class="toolbar-left">
+          <!-- Search Box -->
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Search hooks, clinical topics, captions, handles..." autocomplete="off">
+            <button class="clear-search" id="clear-search" style="display:none;">✕</button>
+          </div>
+
+          <!-- Platform Filter -->
+          <div class="filter-group">
+            <button class="filter-pill active" data-platform="all">All Platforms</button>
+            <button class="filter-pill" data-platform="instagram">📸 Instagram</button>
+            <button class="filter-pill" data-platform="tiktok">🎵 TikTok</button>
+          </div>
+
+          <!-- Archetype & Pillar Dropdown Filter -->
+          <div class="dropdown-filter">
+            <select id="pillar-select">
+              <option value="all">🎯 All Post Archetypes</option>
+              <option value="clinical_quiz">🩺 Caso Clínico & Quiz (Cyan)</option>
+              <option value="traps_asofamech">⚠️ Trampa ASOFAMECH (Amber)</option>
+              <option value="radar_burocratico">🚨 Radar Burocrático (Rose)</option>
+              <option value="visual_algorithm">🧠 Algoritmo 1-Pág (Purple)</option>
+              <option value="salary_cesfam">💵 Sueldos & CESFAM (Emerald)</option>
+              <option value="chilean_lingo">🇨🇱 Modismos Médicos (Blue)</option>
+              <option value="active_recall_famed">⚡ Active Recall & Anki (Pink)</option>
+            </select>
+          </div>
+
+          <!-- Virality Threshold -->
+          <div class="dropdown-filter">
+            <select id="multiplier-select">
+              <option value="0">⚡ All Outliers (&gt;1.0x)</option>
+              <option value="2.0">🔥 Viral (&gt;2.0x)</option>
+              <option value="5.0">🚀 Super Viral (&gt;5.0x)</option>
+              <option value="10.0">💎 Mega Outliers (&gt;10.0x)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <!-- View Switcher -->
+          <div class="view-switcher">
+            <button class="view-btn active" id="view-excel" title="Excel Spreadsheet Matrix">
+              <span>📊</span> Matrix Table
+            </button>
+            <button class="view-btn" id="view-cards" title="Visual Cards Gallery">
+              <span>🎴</span> Visual Cards
+            </button>
+            <button class="view-btn" id="view-board" title="Local Steps & Production Board">
+              <span>📋</span> Obsidian Board &amp; Steps
+            </button>
+            <button class="view-btn" id="view-ads" title="5 Olympic Rings Meta Ads Machine">
+              <span>⭕</span> 5 Rings Meta Ads
+            </button>
+            <button class="view-btn" id="view-calido" title="Cálido Chileno EUNACOM Design System">
+              <span>🎨</span> Cálido Chileno (EUNACOM)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Data Container -->
+      <section class="data-viewport" id="data-viewport">
+        <!-- Excel Matrix Table View -->
+        <div class="table-container" id="table-view">
+          <table class="intel-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">Media</th>
+                <th style="width: 170px;">Creator / Company</th>
+                <th style="width: 80px;">Platform</th>
+                <th style="width: 85px; text-align: center;">Virality</th>
+                <th style="width: 125px; text-align: right;">Engagement</th>
+                <th>Hook &amp; Post Archetype Badge</th>
+                <th style="width: 210px;">Why it Converted</th>
+                <th style="width: 170px; text-align: center;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Visual Cards View -->
+        <div class="cards-grid" id="cards-view" style="display: none;">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Obsidian Production Board & Steps View -->
+        <div class="board-view-container" id="board-view" style="display: none;">
+          <!-- Header of Board -->
+          <div class="board-header">
+            <div class="board-title-group">
+              <span class="modal-badge">📋 LOCAL EXECUTION PIPELINE</span>
+              <h2>Obsidian Production Board &amp; Action Steps</h2>
+              <p class="board-desc">All local stages and production steps for EUNACOM &amp; FaMED. Track outliers from spy to recording, editing, and publishing.</p>
+            </div>
+            <div class="board-actions">
+              <button class="btn btn-secondary" id="btn-add-custom-task">
+                <span>➕</span> Add New Task
+              </button>
+              <button class="btn btn-primary highlight" id="btn-sync-board-vault">
+                <span>💾</span> Export Board to Vault
+              </button>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Quick Guide Cards -->
+          <div class="local-steps-guide">
+            <div class="step-guide-card">
+              <div class="step-num">01</div>
+              <div class="step-info">
+                <h4>Reconnaissance</h4>
+                <p>Identify &gt;4x viral outliers on TikTok/IG</p>
+              </div>
+            </div>
+            <div class="step-guide-card">
+              <div class="step-num">02</div>
+              <div class="step-info">
+                <h4>AI Script Studio</h4>
+                <p>Generate 3:1 script angles &amp; teleprompter</p>
+              </div>
+            </div>
+            <div class="step-guide-card">
+              <div class="step-num">03</div>
+              <div class="step-info">
+                <h4>Weekly Sprint</h4>
+                <p>Assign to optimal 7-day conversion slot</p>
+              </div>
+            </div>
+            <div class="step-guide-card">
+              <div class="step-num">04</div>
+              <div class="step-info">
+                <h4>5 Rings Ads</h4>
+                <p>Scale winning hooks into 3:2:2 ad sets</p>
+              </div>
+            </div>
+            <div class="step-guide-card">
+              <div class="step-num">05</div>
+              <div class="step-info">
+                <h4>Vault Sync</h4>
+                <p>1-Click export to Obsidian /projects</p>
+              </div>
+            </div>
+            <div class="step-guide-card">
+              <div class="step-num">06</div>
+              <div class="step-info">
+                <h4>Local Scrape</h4>
+                <p>Refresh 24 creator baselines via SSE</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Kanban Board -->
+          <div class="kanban-columns-grid">
+            <!-- Column 1: Backlog / Outlier Pool -->
+            <div class="kanban-column" id="col-backlog" data-status="backlog">
+              <div class="kanban-col-header">
+                <div class="col-title-badge">
+                  <span class="col-dot backlog"></span>
+                  <span>📥 Backlog / Outliers</span>
+                </div>
+                <span class="col-count" id="count-backlog">0</span>
+              </div>
+              <div class="kanban-cards-list" id="list-backlog"></div>
+            </div>
+
+            <!-- Column 2: In Scripting -->
+            <div class="kanban-column" id="col-scripting" data-status="scripting">
+              <div class="kanban-col-header">
+                <div class="col-title-badge">
+                  <span class="col-dot scripting"></span>
+                  <span>✍️ In Scripting</span>
+                </div>
+                <span class="col-count" id="count-scripting">0</span>
+              </div>
+              <div class="kanban-cards-list" id="list-scripting"></div>
+            </div>
+
+            <!-- Column 3: Ready to Record -->
+            <div class="kanban-column" id="col-recording" data-status="recording">
+              <div class="kanban-col-header">
+                <div class="col-title-badge">
+                  <span class="col-dot recording"></span>
+                  <span>🎥 Ready to Record</span>
+                </div>
+                <span class="col-count" id="count-recording">0</span>
+              </div>
+              <div class="kanban-cards-list" id="list-recording"></div>
+            </div>
+
+            <!-- Column 4: In Editing / Graphic -->
+            <div class="kanban-column" id="col-editing" data-status="editing">
+              <div class="kanban-col-header">
+                <div class="col-title-badge">
+                  <span class="col-dot editing"></span>
+                  <span>✂️ In Editing</span>
+                </div>
+                <span class="col-count" id="count-editing">0</span>
+              </div>
+              <div class="kanban-cards-list" id="list-editing"></div>
+            </div>
+
+            <!-- Column 5: Scheduled & Published -->
+            <div class="kanban-column" id="col-published" data-status="published">
+              <div class="kanban-col-header">
+                <div class="col-title-badge">
+                  <span class="col-dot published"></span>
+                  <span>🚀 Published / Live</span>
+                </div>
+                <span class="col-count" id="count-published">0</span>
+              </div>
+              <div class="kanban-cards-list" id="list-published"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Olympic Rings Meta Ads View -->
+        <div class="ads-view-container" id="ads-view" style="display: none;">
+          <div class="ads-header">
+            <div class="ads-title-group">
+              <span class="modal-badge highlight">🔴 5 OLYMPIC RINGS META ADS MACHINE</span>
+              <h2>FaMED &amp; EUNACOM 3:2:2 Dynamic Creative Engine</h2>
+              <p class="ads-desc">Charley Tichenor IV Methodology: 3 Creatives + 2 Primary Copies + 2 Headlines per Ring. High-converting creative assets and pricing anchors ready for local launch.</p>
+            </div>
+            <div class="ads-pricing-bar">
+              <span class="pricing-pill">⚡ 1-Week Sprint: <strong>€9.99</strong></span>
+              <span class="pricing-pill highlight">🔥 1-Month Intensiv: <strong>€25.99</strong> (€0.86/day)</span>
+              <span class="pricing-pill">💎 3-Months Pass: <strong>€69.99</strong></span>
+            </div>
+          </div>
+
+          <!-- 5 Rings Navigation Tabs -->
+          <div class="rings-nav-bar" id="rings-nav">
+            <button class="ring-tab active" data-ring="1">🔴 Ring 1: Problem / Stop-Scroll</button>
+            <button class="ring-tab" data-ring="2">🟠 Ring 2: Product &amp; AI Mechanism</button>
+            <button class="ring-tab" data-ring="3">🟡 Ring 3: Social Proof &amp; Transformation</button>
+            <button class="ring-tab" data-ring="4">🟢 Ring 4: Price &amp; Objection Crusher</button>
+            <button class="ring-tab" data-ring="5">🟣 Ring 5: Direct Offer &amp; Urgency</button>
+          </div>
+
+          <!-- Dynamic Ring Content Container -->
+          <div class="ring-content-deck" id="ring-content-deck">
+            <!-- Dynamic Ring View -->
+          </div>
+        </div>
+
+        <!-- Cálido Chileno EUNACOM Design System & Visual Studio View -->
+        <div class="calido-view-container" id="calido-view" style="display: none;">
+          <!-- Top Hero & System Header -->
+          <div class="calido-header-hero">
+            <div class="calido-hero-left">
+              <div class="calido-system-tag" id="calido-system-tag">SISTEMA VISUAL · EUNACOMAPP.CL</div>
+              <h2 class="calido-system-title" id="calido-system-title">Estudio Visual EUNACOM</h2>
+              <p class="calido-system-desc" id="calido-system-desc">
+                Generador de contenido visual de alta conversión para Instagram y TikTok de <strong>eunacomapp.cl</strong>. Personaliza y visualiza en tiempo real con tu <strong>Paleta Oficial de la App</strong> (#0284C7 / #0F172A) o explora las direcciones de diseño editorial (Cálido Chileno, Papel Clínico). Mockups a escala <strong>4:5 (Carruseles)</strong>, <strong>9:16 (Reels)</strong> y <strong>1:1 (Posts)</strong>.
+              </p>
+            </div>
+            <div class="calido-hero-right">
+              <!-- Proposed Brand Lockup -->
+              <div class="calido-lockup-badge" id="calido-lockup-badge">
+                <div class="lockup-symbol" id="lockup-symbol">
+                  <div class="symbol-inner"></div>
+                </div>
+                <div class="lockup-text">
+                  <span class="lockup-domain">eunacom<span class="highlight" id="lockup-highlight">app</span><span class="suffix">.cl</span></span>
+                  <span class="lockup-tag">+10.000 PREGUNTAS · PERFIL ASOFAMECH</span>
+                </div>
+              </div>
+              <div class="calido-quick-actions">
+                <button class="btn btn-primary highlight" id="btn-export-calido-vault">
+                  <span>💾</span> Exportar a Obsidian Vault
+                </button>
+                <button class="btn btn-secondary" id="btn-copy-calido-html">
+                  <span>📋</span> Copiar HTML del Slide
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Palette Direction Switcher -->
+          <div class="palette-preset-container" style="background: rgba(17, 24, 39, 0.85); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 16px;">🎨</span>
+              <div style="display: flex; flex-direction: column;">
+                <strong style="font-size: 13px; color: #fff;">Paleta Visual Activa:</strong>
+                <span style="font-size: 11px; color: var(--text-secondary);">Cambia los colores de toda la suite de carruseles y reels en 1 clic</span>
+              </div>
+            </div>
+            <div class="palette-preset-buttons" style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="palette-preset-btn active" data-preset="oficial" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid rgba(2, 132, 199, 0.5); background: rgba(2, 132, 199, 0.2); color: #38bdf8;">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#0284c7; margin-right:5px;"></span> EUNACOM Oficial (App Real)
+              </button>
+              <button class="palette-preset-btn" data-preset="calido" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-secondary);">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#d9764a; margin-right:5px;"></span> Dirección 1e (Cálido Chileno)
+              </button>
+              <button class="palette-preset-btn" data-preset="papel" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-secondary);">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#c4372a; margin-right:5px;"></span> Dirección 1b (Papel Clínico)
+              </button>
+              <button class="palette-preset-btn" data-preset="lab" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-secondary);">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#ffc531; margin-right:5px;"></span> Dirección 1a (Ficha de Lab)
+              </button>
+            </div>
+          </div>
+
+          <!-- Color Tokens Quick Bar -->
+          <div class="calido-tokens-bar" id="calido-tokens-bar">
+            <!-- Dynamic Token Pills rendered by app.js -->
+          </div>
+
+          <!-- Archetype Navigation Tabs -->
+          <div class="calido-archetypes-nav" id="calido-archetype-tabs">
+            <button class="calido-nav-tab active" data-type="2">
+              <span class="tab-badge" style="background:#1a2740; color:#f7ece0;">TIPO 2</span>
+              <span class="tab-label">Trampas Mortales ASOFAMECH</span>
+              <span class="tab-format">Carrusel 4:5</span>
+            </button>
+            <button class="calido-nav-tab" data-type="4">
+              <span class="tab-badge" style="background:#1a2740; color:#f7ece0;">TIPO 4</span>
+              <span class="tab-label">Algoritmo Visual de 1 Página</span>
+              <span class="tab-format">Carrusel 4:5</span>
+            </button>
+            <button class="calido-nav-tab" data-type="1">
+              <span class="tab-badge" style="background:#1a2740; color:#f7ece0;">TIPO 1</span>
+              <span class="tab-label">Quiz Clínico Interactivo</span>
+              <span class="tab-format">Reel 9:16</span>
+            </button>
+            <button class="calido-nav-tab" data-type="3">
+              <span class="tab-badge" style="background:#a8321f; color:#f7ece0;">TIPO 3</span>
+              <span class="tab-label">Radar Burocrático</span>
+              <span class="tab-format">Post 1:1</span>
+            </button>
+            <button class="calido-nav-tab" data-type="5">
+              <span class="tab-badge" style="background:#1a2740; color:#f7ece0;">TIPO 5</span>
+              <span class="tab-label">Sueldos, CESFAM y Trabajo</span>
+              <span class="tab-format">Reel 9:16</span>
+            </button>
+            <button class="calido-nav-tab" data-type="6">
+              <span class="tab-badge" style="background:#d9764a; color:#f7ece0;">TIPO 6</span>
+              <span class="tab-label">Diccionario Médico Chileno</span>
+              <span class="tab-format">Reel / Meme</span>
+            </button>
+            <button class="calido-nav-tab" data-type="loop">
+              <span class="tab-badge" style="background:#d9764a; color:#fff;">LOOP</span>
+              <span class="tab-label">Loop Semanal (7 Días)</span>
+              <span class="tab-format">Estrategia</span>
+            </button>
+          </div>
+
+          <!-- Main Interactive Studio Playground -->
+          <div class="calido-studio-workspace" id="calido-studio-workspace">
+
+            <!-- Left Panel: Content Customizer & Outlier Ingestion -->
+            <div class="calido-control-panel">
+              <div class="panel-section-title">
+                <span class="icon">⚙️</span>
+                <span>Personalizador de Contenido en Vivo</span>
+              </div>
+
+              <!-- Outlier Ingestion Dropdown -->
+              <div class="form-group">
+                <label>Vincular Outlier Viral Detectado:</label>
+                <select id="calido-outlier-picker">
+                  <option value="">-- Usar plantilla de diseño predeterminada --</option>
+                  <!-- Dynamically populated with real EUNACOM outliers -->
+                </select>
+              </div>
+
+              <!-- Dynamic Slide / Phase Stepper -->
+              <div class="calido-slide-stepper" id="calido-slide-stepper">
+                <!-- Buttons for Slide 1, 2, 3, 4, 5, 6 or Reel steps -->
+              </div>
+
+              <!-- Live Form Inputs depending on active archetype and slide -->
+              <div class="calido-form-fields" id="calido-form-fields">
+                <!-- Populated dynamically based on active slide -->
+              </div>
+
+              <div class="calido-panel-footer">
+                <button class="btn btn-secondary full-width" id="btn-reset-calido-defaults">
+                  <span>↺</span> Restaurar Valores Predeterminados
+                </button>
+                <button class="btn btn-primary highlight full-width" id="btn-push-to-kanban">
+                  <span>➕</span> Enviar Carrusel a Kanban de Producción
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Panel: Visual Render Stage -->
+            <div class="calido-render-stage">
+              <div class="stage-toolbar">
+                <div class="stage-meta-info">
+                  <span class="stage-badge" id="calido-stage-badge">CARRUSEL 4:5 · SLIDE 1 DE 6</span>
+                  <span class="stage-dim-label" id="calido-dim-label">1080 × 1350 px (Escala 1:3)</span>
+                </div>
+                <div class="stage-view-toggle">
+                  <button class="btn-toggle-mini active" id="btn-single-slide-view">Vista Individual</button>
+                  <button class="btn-toggle-mini" id="btn-deck-gallery-view">Ver Carrusel Completo (Deck)</button>
+                </div>
+              </div>
+
+              <!-- Single Slide Render Container -->
+              <div class="calido-canvas-wrapper" id="calido-canvas-wrapper">
+                <div id="calido-live-card">
+                  <!-- Live Rendered HTML with DM Serif Display & Work Sans -->
+                </div>
+              </div>
+
+              <!-- Full Multi-Slide Deck Gallery (Hidden by default) -->
+              <div class="calido-deck-grid" id="calido-deck-grid" style="display: none;">
+                <!-- Renders all slides side-by-side -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Design System Foundations Section -->
+          <div class="calido-foundations-section" id="calido-foundations-section">
+            <div class="foundations-header">
+              <h3>📐 Reglas de Composición &amp; Guía de Estilo</h3>
+              <span class="subtitle">Directrices estrictas del sistema visual para garantizar máxima conversión</span>
+            </div>
+            <div class="foundations-grid">
+              <div class="foundation-card">
+                <div class="foundation-title">🛡️ Zona Segura 9:16</div>
+                <p>En Reels/TikTok deja <strong>320 px libres arriba</strong> y <strong>480 px abajo</strong> para la interfaz de la plataforma. El titular y el gancho nunca entran en esos márgenes.</p>
+              </div>
+              <div class="foundation-card">
+                <div class="foundation-title">🎨 Un Acento por Pieza</div>
+                <p>Terracota (<code>#D9764A</code>) o Dorado (<code>#E8C46A</code>), nunca ambos como protagonistas. El dorado marca exclusivamente la respuesta correcta o la regla de oro.</p>
+              </div>
+              <div class="foundation-card">
+                <div class="foundation-title">🔄 Alternancia de Fondo</div>
+                <p>En Carrusel 4:5: <strong>Portada Navy</strong> (Slide 1), <strong>Contenido Arena</strong> (Slides 2-5), <strong>Cierre Navy</strong> (Slide 6). Otorga ritmo al deslizar y define el cierre.</p>
+              </div>
+              <div class="foundation-card">
+                <div class="foundation-title">📋 Datos en Tarjeta Blanca</div>
+                <p>Valores de laboratorio (TSH, T4L), dosis farmacológicas, sueldos y plazos siempre dentro de una <strong>tarjeta blanca con radio de 36px</strong> (12px en escala). Es el ancla visual.</p>
+              </div>
+              <div class="foundation-card">
+                <div class="foundation-title">🚫 Sin Emojis en la Gráfica</div>
+                <p>Los emojis pertenecen al caption, no a la imagen gráfica. Dentro de la pieza el énfasis es 100% tipográfico (<code>DM Serif Display</code>) y de color.</p>
+              </div>
+              <div class="foundation-card">
+                <div class="foundation-title">⚡ Subtítulo Quemado en Video</div>
+                <p>En reels: <code>Work Sans 600</code> en caja Navy con radio 24px, máximo dos líneas, ubicada al borde inferior de la zona segura.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+          <span class="empty-icon">🔍</span>
+          <h3>No matching posts found</h3>
+          <p>Try adjusting your search terms or filter settings.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modal 1: AI Script Studio & Teleprompter -->
+    <div class="modal-overlay" id="script-modal" style="display:none;">
+      <div class="modal-card script-studio">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge">🎬 1-CLICK VIRAL SCRIPT STUDIO</span>
+            <h2 id="script-modal-title">Counter-Script for @competitor</h2>
+          </div>
+          <button class="modal-close" id="close-script-modal">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="script-meta-bar">
+            <div class="meta-item">
+              <span class="meta-label">Target App:</span>
+              <span class="meta-val" id="script-target-brand">@eunacomapp_cl</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Est. Duration:</span>
+              <span class="meta-val" id="script-duration">45s (135 words)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Competitor Post:</span>
+              <a href="#" target="_blank" class="meta-link" id="script-comp-link">Open Original ↗</a>
+            </div>
+          </div>
+
+          <!-- Hook Variations Selector -->
+          <div class="script-section">
+            <h3 class="section-title">🎯 3 High-Performing Hook Options (Choose 1):</h3>
+            <div class="hook-options-grid" id="script-hooks-list">
+              <!-- Dynamic hook buttons -->
+            </div>
+          </div>
+
+          <!-- Step-by-Step Script Teleprompter -->
+          <div class="script-section">
+            <h3 class="section-title">📝 Step-by-Step Recording Script &amp; Visual Cues:</h3>
+            <div class="teleprompter-box" id="script-timeline">
+              <!-- Dynamic script segments -->
+            </div>
+          </div>
+
+          <!-- Ready-to-Post Social Caption -->
+          <div class="script-section">
+            <h3 class="section-title">📲 Ready-to-Post Social Caption &amp; Hashtags:</h3>
+            <div class="caption-preview-box">
+              <pre id="script-caption-text"></pre>
+              <button class="btn-copy-mini" id="btn-copy-caption">📋 Copy Caption</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn-copy-full-script">
+            <span>📋</span> Copy Full Markdown Script
+          </button>
+          <button class="btn btn-primary highlight" id="btn-save-vault-task">
+            <span>💾</span> Save to Obsidian Vault as Active Task
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: 7-Day Smart Weekly Content Planner -->
+    <div class="modal-overlay" id="planner-modal" style="display:none;">
+      <div class="modal-card planner-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge planner">🤖 SMART WEEKLY CONTENT PLANNER</span>
+            <h2 id="planner-modal-title">Optimal 7-Day High-Converting Production Sprint</h2>
+          </div>
+          <button class="modal-close" id="close-planner-modal">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="sprint-summary-bar">
+            <div class="sprint-meta">
+              <div><strong style="color:#fff;">Target Engine:</strong> <span id="planner-target-company">EUNACOM (@eunacomapp_cl)</span></div>
+              <div><strong style="color:#fff;">Strategy:</strong> High-Conversion Archetype Mix</div>
+              <div><strong style="color:#fff;">Timezone:</strong> Chile / LatAm (CLT)</div>
+            </div>
+            <button class="btn btn-primary highlight" id="btn-save-sprint-vault">
+              <span>💾</span> Export Sprint to Obsidian Vault
+            </button>
+          </div>
+
+          <!-- 7-Day Interactive Sprint Grid -->
+          <div class="sprint-grid" id="planner-sprint-grid">
+            <!-- Dynamic 7 Day Cards -->
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <span style="font-size:12px; color:var(--text-muted);">
+            💡 Each day combines the optimal posting time, post archetype, and the #1 viral competitor outlier.
+          </span>
+          <button class="btn btn-secondary" id="btn-close-planner">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: Live Scraper Console Stream -->
+    <div class="modal-overlay" id="scrape-modal" style="display:none;">
+      <div class="modal-card console-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge live">🔴 LIVE TERMINAL EXECUTION</span>
+            <h2>Multi-Platform Competitor Intelligence Scraper</h2>
+          </div>
+          <button class="modal-close" id="close-scrape-modal">✕</button>
+        </div>
+
+        <div class="console-body" id="scrape-console-logs">
+          <div class="console-line info">&gt; Initializing live scraper connection...</div>
+        </div>
+
+        <div class="modal-footer">
+          <span class="console-status-text" id="console-status-text">Scraping live creator timelines...</span>
+          <button class="btn btn-primary" id="btn-close-console" style="display:none;">
+            <span>Done &amp; Refresh Data</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4: Obsidian Vault Explorer -->
+    <div class="modal-overlay" id="vault-modal" style="display:none;">
+      <div class="modal-card vault-explorer-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge">📂 OBSIDIAN VAULT</span>
+            <h2>Connected Vault Content &amp; Briefings</h2>
+          </div>
+          <button class="modal-close" id="close-vault-modal">✕</button>
+        </div>
+
+        <div class="vault-explorer-body">
+          <div class="vault-file-sidebar" id="vault-files-list">
+            <!-- Dynamic file list -->
+          </div>
+          <div class="vault-file-preview">
+            <div class="preview-header">
+              <span id="vault-current-file-name">Select a note to preview</span>
+            </div>
+            <pre class="note-viewer" id="vault-note-viewer">Click any file on the left to inspect content...</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 5: Custom Task Creator -->
+    <div class="modal-overlay" id="custom-task-modal" style="display:none;">
+      <div class="modal-card custom-task-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge">➕ CREATE PRODUCTION TASK</span>
+            <h2>New Video / Carousel Production Task</h2>
+          </div>
+          <button class="modal-close" id="close-custom-task-modal">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Target App / Business:</label>
+            <select id="task-company-input">
+              <option value="EUNACOM">🇨🇱 EUNACOM (@eunacomapp_cl)</option>
+              <option value="FAMED">🧠 FaMED Test Prep (@famedapp)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Post Archetype &amp; Pillar:</label>
+            <select id="task-archetype-input">
+              <option value="clinical_quiz">🩺 Caso Clínico &amp; Quiz (Cyan)</option>
+              <option value="traps_asofamech">⚠️ Trampas de Examen (Amber)</option>
+              <option value="radar_burocratico">🚨 Radar Burocrático &amp; Approbation (Rose)</option>
+              <option value="visual_algorithm">🧠 Algoritmo 1-Pág &amp; Arztbrief (Purple)</option>
+              <option value="salary_cesfam">💵 Sueldos &amp; ROI Convalidación (Emerald)</option>
+              <option value="chilean_lingo">🇨🇱 Modismos &amp; Jerga Médica (Blue)</option>
+              <option value="active_recall_famed">⚡ Active Recall &amp; Simulator (Pink)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Video Hook or Post Concept:</label>
+            <input type="text" id="task-hook-input" placeholder="e.g. 💶 Was verdient ein Assistenzarzt im 1. Jahr in Deutschland wirklich?">
+          </div>
+
+          <div class="form-group">
+            <label>Format &amp; Media Type:</label>
+            <select id="task-format-input">
+              <option value="reel">🎥 Reel / TikTok (9:16 Vertical Video)</option>
+              <option value="carousel">📑 Carousel (4:5 / 5-7 Slides)</option>
+              <option value="faceless_demo">📱 Faceless Screen Recording / App Demo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Initial Kanban Stage:</label>
+            <select id="task-stage-input">
+              <option value="backlog">📥 Backlog / Outliers</option>
+              <option value="scripting">✍️ In Scripting</option>
+              <option value="recording">🎥 Ready to Record</option>
+              <option value="editing">✂️ In Editing</option>
+              <option value="published">🚀 Published / Live</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn-cancel-custom-task">Cancel</button>
+          <button class="btn btn-primary highlight" id="btn-save-custom-task">
+            <span>💾</span> Add Task to Board
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

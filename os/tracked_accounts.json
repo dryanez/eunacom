@@ -1,0 +1,236 @@
+[
+  {
+    "handle": "eunacomapp",
+    "name": "EUNACOM App (Official)",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "official_app",
+    "tier_label": "⭐ Official App",
+    "description": "Simulador oficial interactivo de preguntas y casos clínicos para el examen EUNACOM en Chile."
+  },
+  {
+    "handle": "grupoctochile",
+    "name": "Grupo CTO Chile (EUNACOM / MIR)",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "direct_course",
+    "tier_label": "🎓 Academia EUNACOM",
+    "description": "Academia oficial de preparación para examen EUNACOM y MIR con cursos y manuales."
+  },
+  {
+    "handle": "medicosenchile",
+    "name": "Médicos del Mundo en Chile / Convalidación",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "community_hub",
+    "tier_label": "🌍 Comunidad Convalidación",
+    "description": "Comunidad principal de médicos extranjeros convalidando título y rindiendo EUNACOM en Chile."
+  },
+  {
+    "handle": "asofamech",
+    "name": "ASOFAMECH",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "official_entity",
+    "tier_label": "🏛️ Entidad Oficial",
+    "description": "Asociación de Facultades de Medicina de Chile - Entidad oficial que administra el EUNACOM."
+  },
+  {
+    "handle": "colmed_chile",
+    "name": "Colegio Médico de Chile",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "official_entity",
+    "tier_label": "🏛️ Entidad Médica",
+    "description": "Colegio profesional de médicos en Chile - Normativas, derechos y atención primaria."
+  },
+  {
+    "handle": "dermaedo",
+    "name": "Dr. Gabriel Aedo (1.5M)",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "creator_influencer",
+    "tier_label": "🔥 Creador Viral",
+    "description": "Médico dermatólogo chileno con más de 1.5M de seguidores. Maestro del hook clínico y retención."
+  },
+  {
+    "handle": "mediprocirugia",
+    "name": "Medipro Cursos Médicos",
+    "app": "eunacom",
+    "platform": "instagram",
+    "tier": "direct_course",
+    "tier_label": "🎓 Academia Médica",
+    "description": "Cursos médicos y quirúrgicos orientados a práctica clínica y preparación de exámenes."
+  },
+  {
+    "handle": "medicosenchile_tiktok",
+    "name": "Médicos en Chile (TikTok)",
+    "app": "eunacom",
+    "platform": "tiktok",
+    "tier": "community_hub",
+    "tier_label": "🎵 TikTok Convalidación",
+    "description": "Comunidad de médicos convalidantes en TikTok compartiendo experiencias y requisitos en Chile."
+  },
+  {
+    "handle": "dra.eunacom",
+    "name": "Dra. EUNACOM Tips (TikTok)",
+    "app": "eunacom",
+    "platform": "tiktok",
+    "tier": "creator_influencer",
+    "tier_label": "🎵 TikTok Tips & Quiz",
+    "description": "Preguntas clave y tips de estudio flash para el EUNACOM ST/SP en formato corto."
+  },
+  {
+    "handle": "dr.extranjeroenchile",
+    "name": "Dr. Extranjero en Chile (TikTok)",
+    "app": "eunacom",
+    "platform": "tiktok",
+    "tier": "creator_influencer",
+    "tier_label": "🎵 TikTok Sueldos & APS",
+    "description": "Guía práctica de turnos, salarios en CESFAM y estilo de vida médico en Chile."
+  },
+  {
+    "handle": "ctomedicina_cl",
+    "name": "CTO Medicina Chile (TikTok)",
+    "app": "eunacom",
+    "platform": "tiktok",
+    "tier": "direct_course",
+    "tier_label": "🎵 TikTok Academia",
+    "description": "Contenido audiovisual de medicina y resolución de casos de CTO Chile en TikTok."
+  },
+  {
+    "handle": "famedprep",
+    "name": "FaMED Prep (Official)",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "official_app",
+    "tier_label": "⭐ Official App",
+    "description": "Tu guía interactiva para aprobar el examen médico FaMED / FSP en Alemania con IA y simulación de casos."
+  },
+  {
+    "handle": "medisim_fsp",
+    "name": "Medisim FSP Vorbereitung",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "direct_fsp_prep",
+    "tier_label": "🎓 FSP Simulation",
+    "description": "Academia de preparación para la Fachsprachprüfung y simulación de conversación clínica en Alemania."
+  },
+  {
+    "handle": "deutsch_fuer_aerzte",
+    "name": "Deutsch für Ärzte & Mediziner",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "medical_german",
+    "tier_label": "🇩🇪 Medizinisches Deutsch",
+    "description": "Trampas de terminología médica en alemán, diferencias entre lenguaje coloquial y técnico (Laiensprache vs. Fachsprache)."
+  },
+  {
+    "handle": "approbationscoach",
+    "name": "ApprobationsCoach Deutschland",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "convalidation_coach",
+    "tier_label": "🏛️ Approbation Coach",
+    "description": "Asesoría para médicos extranjeros en el proceso de Approbation, Defizitbescheid y preparación FSP/KP."
+  },
+  {
+    "handle": "fsp_vorbereitung",
+    "name": "FSP Prüfungsprotokolle & Fälle",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "direct_fsp_prep",
+    "tier_label": "📑 Protokolle & Fälle",
+    "description": "Protocolos reales de examen de las Landesärztekammern (Nordrhein, Bayern, Hessen) y plantillas de Arztbrief."
+  },
+  {
+    "handle": "aerzte_in_deutschland",
+    "name": "Ärzte in Deutschland Community",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "community_hub",
+    "tier_label": "🌍 Ausländische Ärzte",
+    "description": "Comunidad de médicos internacionales convalidando en Alemania, turnos de hospital y vida de Assistenzarzt."
+  },
+  {
+    "handle": "lingua_medica_de",
+    "name": "Lingua Medica Deutschkurse",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "medical_german",
+    "tier_label": "🇩🇪 C1 Medizin Sprachkurs",
+    "description": "Cursos de alemán médico C1 y preparación lingüística para exámenes médicos."
+  },
+  {
+    "handle": "medinaut_de",
+    "name": "Medinaut Approbation & KP Prep",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "direct_fsp_prep",
+    "tier_label": "🩺 FSP & KP Trainer",
+    "description": "Entrenador para Kenntnisprüfung (KP) y Fachsprachprüfung (FSP) con casos clínicos interactivos."
+  },
+  {
+    "handle": "dr.med.international",
+    "name": "Dr. Med. International in Deutschland",
+    "app": "famed",
+    "platform": "instagram",
+    "tier": "creator_influencer",
+    "tier_label": "🔥 Ausländischer Arzt",
+    "description": "Médicos extranjeros compartiendo su experiencia de convalidación y trabajo en clínicas alemanas."
+  },
+  {
+    "handle": "doc_in_germany",
+    "name": "Doc in Germany (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "creator_influencer",
+    "tier_label": "🎵 TikTok Assistenzarzt",
+    "description": "Día a día de un médico extranjero en hospital alemán, errores comunes en la FSP y jerga médica."
+  },
+  {
+    "handle": "fsp_vorbereitung_tt",
+    "name": "FSP Vorbereitung (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "direct_fsp_prep",
+    "tier_label": "🎵 TikTok Anamnese Drill",
+    "description": "Simulaciones rápidas de anamnesis en 20 minutos y preguntas trampa de la FSP en TikTok."
+  },
+  {
+    "handle": "deutsch_fuer_aerzte_tt",
+    "name": "Deutsch für Ärzte (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "medical_german",
+    "tier_label": "🎵 TikTok Fachbegriffe",
+    "description": "'No digas X, di Y en el examen' - Traducción inmediata de términos clínicos populares a términos técnicos en alemán."
+  },
+  {
+    "handle": "aerzte_deutschland_tt",
+    "name": "Ärzte in Deutschland (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "community_hub",
+    "tier_label": "🎵 TikTok Gehälter & Approbation",
+    "description": "Salarios de médicos en Alemania (TV-Ärzte), visas de trabajo y tiempos de convalidación por estado."
+  },
+  {
+    "handle": "approbationscoach_tt",
+    "name": "ApprobationsCoach (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "convalidation_coach",
+    "tier_label": "🎵 TikTok FSP Fallen",
+    "description": "Las 3 razones por las que el 60% reprueba la FSP en el primer intento y cómo superarlas."
+  },
+  {
+    "handle": "dr_internacional_de",
+    "name": "Médicos en Alemania FSP (TikTok)",
+    "app": "famed",
+    "platform": "tiktok",
+    "tier": "creator_influencer",
+    "tier_label": "🎵 TikTok Convalidación Alemania",
+    "description": "Guía en español para médicos latinoamericanos en proceso de convalidación y preparación de la FSP en Alemania."
+  }
+]

@@ -192,7 +192,7 @@ for (const item of STATIC_ROUTES) {
     html = html.replace("</head>", scriptTag)
   }
 
-  const semanticShell = "<div id=\"root\"><main style=\"padding:20px;max-width:900px;margin:0 auto;font-family:sans-serif;\"><h1>" + item.h1 + "</h1><p>" + item.description + "</p></main></div>"
+  const semanticShell = "<div id=\"root\"><main style=\"padding:20px;max-width:900px;margin:0 auto;font-family:sans-serif;\"><img src=\"/logo.png\" alt=\"Eunacom App\" width=\"48\" height=\"48\" fetchpriority=\"high\" style=\"margin-bottom:16px;\" /><h1>" + item.h1 + "</h1><p>" + item.description + "</p></main></div>"
   html = html.replace("<div id=\"root\"></div>", semanticShell)
 
   if (item.route === "/") {
