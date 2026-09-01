@@ -3,7 +3,7 @@ import { COURSES } from '../data/coursesData';
 import { Check, Star, BookOpen, Calendar, Clock, ArrowRight, Shield, Sparkles, HelpCircle } from 'lucide-react';
 
 const THEORETICAL_SLUGS = ['anual', 'seis-julio', 'seis-diciembre'];
-const PRACTICAL_SLUGS = ['practico', 'banco'];
+const PRACTICAL_SLUGS = ['banco'];
 
 export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMentorship }) {
   const [filter, setFilter] = useState('all');
@@ -111,7 +111,7 @@ export default function CoursesSection({ onSelectCourse, onViewDetails, onOpenMe
                 color: filter === 'practical' ? '#ffffff' : '#41556b'
               }}
             >
-              ECOE Práctico & Banco
+              Banco de preguntas
             </button>
           </div>
         </div>

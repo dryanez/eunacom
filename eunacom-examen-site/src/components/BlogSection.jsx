@@ -59,7 +59,7 @@ export default function BlogSection({ onSelectArticle, onOpenTopicProposer }) {
             color: '#41556b',
             lineHeight: '1.6'
           }}>
-            Artículos y manuales actualizados para el examen teórico (180 preguntas) y práctico (ECOE). Redactados y revisados por el equipo académico de Academia Examen EUNACOM.
+            Artículos y guías sobre el EUNACOM teórico (180 preguntas) y sobre cómo funciona el examen práctico. Redactados y revisados por el equipo académico de Academia Examen EUNACOM.
           </p>
         </div>
 

@@ -250,7 +250,7 @@ export default function DoctorMentorshipModal({ onClose }) {
                     <option value="Julio 2027">Julio 2027 (Curso Anual / 6 Meses)</option>
                     <option value="Diciembre 2026">Diciembre 2026 (6 Meses Intensivo)</option>
                     <option value="Diciembre 2027">Diciembre 2027</option>
-                    <option value="ECOE Práctico Inmediato">ECOE Práctico (Sección Práctica)</option>
+                    <option value="Banco de preguntas">Solo banco de preguntas</option>
                   </select>
                 </div>
               </div>
@@ -274,7 +274,7 @@ export default function DoctorMentorshipModal({ onClose }) {
                 >
                   <option value="Primera vez">Primera vez (Postulante Inicial)</option>
                   <option value="Repitiendo Teórico">Repitiendo Sección Teórica</option>
-                  <option value="Rindiendo Práctico">Aprobé Teórico, necesito Práctico ECOE</option>
+                  <option value="Solo material">Solo me interesa el material de estudio</option>
                 </select>
               </div>
 

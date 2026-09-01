@@ -1,0 +1,51 @@
+/* Base styles for the design port. The design sets nearly everything inline;
+   this file carries only what inline styles cannot express. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  color: #41556b;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font-family: inherit; color: inherit; }
+
+/* Hover and focus states, generated from the design's style-hover /
+   style-focus attributes by scripts/convert-design.py. */
+.hv-0:hover{color:#0b5ea8;}
+.hv-1:hover{color:#0b5ea8;}
+.hv-2:hover{color:#0b5ea8;}
+.hv-3:hover{color:#0b5ea8;}
+.hv-4:hover{color:#0b5ea8;}
+.hv-5:hover{color:#0b5ea8;}
+.hv-6:hover{color:#0b5ea8;}
+.hv-7:hover{color:#0b5ea8;}
+.hv-8:hover{background:#eef5fb;}
+.hv-9:hover{border-color:#fff;}
+.hv-10:hover{background:#08365f;}
+.hv-11:hover{background:#08365f;}
+.hv-12:hover{background:#08365f;}
+.hv-13:hover{background:#08365f;}
+.hv-14:hover{background:#08365f;}
+.hv-15:hover{border-color:#0b5ea8;}
+.hv-16:hover{background:#0b5ea8;color:#fff;}
+.fc-17:focus{border-color:#0b5ea8;}
+.hv-18:hover{background:#08365f;}
+.hv-19:hover{background:#08365f;}
+.hv-20:hover{background:#08365f;}
+.fc-21:focus{border-color:#0b5ea8;}
+.fc-22:focus{border-color:#0b5ea8;}
+.fc-23:focus{border-color:#0b5ea8;}
+.fc-24:focus{border-color:#0b5ea8;}
+.fc-25:focus{border-color:#0b5ea8;}
+.fc-26:focus{border-color:#0b5ea8;}
+.fc-27:focus{border-color:#0b5ea8;}
+.hv-28:hover{background:#08365f;}
+.hv-29:hover{border-color:#0b5ea8;}
+.hv-30:hover{color:#0b5ea8;}
+.fc-31:focus{border-color:#0b5ea8;}
+.fc-32:focus{border-color:#0b5ea8;}
+.fc-33:focus{border-color:#0b5ea8;}
+.hv-34:hover{background:#08365f;}

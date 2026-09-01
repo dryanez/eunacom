@@ -71,7 +71,7 @@ export default function Footer({ onOpenMentorship, onOpenSEOStudio }) {
               </span>
             </div>
             <p style={{ fontSize: '14px', lineHeight: '1.9', margin: 0 }}>
-              Prueba para el ejercicio de la Medicina en Chile. Preparación para el EUNACOM teórico y práctico.
+              Prueba para el ejercicio de la Medicina en Chile. Preparación para el EUNACOM teórico.
             </p>
           </div>
 

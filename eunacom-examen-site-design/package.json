@@ -1,0 +1,22 @@
+{
+  "name": "eunacom-examen-site-design",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "build": "vite build",
+    "preview": "vite preview --port 4174",
+    "smoke": "node scripts/smoke.mjs",
+    "design": "python3 scripts/convert-design.py ../unpacked-eunacom-sitio.html /tmp/design-out && python3 scripts/generate-pages.py /tmp/design-out/design.jsx.txt"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.1"
+  },
+  "description": "Alternative look: the design bundle ported page-for-page. Kept alongside the main site for comparison."
+}

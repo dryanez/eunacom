@@ -28,7 +28,6 @@ export const COURSES = [
       "Revisión semanal de avance con devolución personalizada del equipo académico",
       "Módulo especializado de Sistema de Salud Chileno, GES, Notificación y Medicina Legal",
       "Reordenamiento estratégico del plan después de la convocatoria de julio",
-      "Preparación introductoria al EUNACOM práctico (ECOE)",
       "Acceso continuo a la plataforma durante los doce meses"
     ],
     comoFunciona: [
@@ -182,48 +181,6 @@ export const COURSES = [
       { s: "Gineco-Obstetricia", t: "600+ Preguntas", d: "Control prenatal, parto, hemorragias del embarazo, oncología ginecológica." },
       { s: "Salud Pública & GES", t: "350+ Preguntas", d: "Programas de salud, epidemiología, bioética, medicina legal y garantías GES." },
       { s: "Especialidades Menores", t: "300+ Preguntas", d: "Psiquiatría, neurología, dermatología, oftalmología y otorrinolaringología." }
-    ]
-  },
-  {
-    slug: "practico",
-    kicker: "Entrenamiento clínico · ECOE",
-    estado: "Inscripciones abiertas",
-    badge: "Examen Práctico",
-    nombre: "Curso de preparación EUNACOM Práctico (ECOE)",
-    resumen: "Entrenamiento estructurado para las estaciones de evaluación clínica objetiva y estructurada (ECOE) en Medicina, Cirugía, Pediatría y Obstetricia-Ginecología.",
-    duracion: "3 meses",
-    inicio: "Convocatorias mensuales",
-    termino: "Sujeto a fecha de examen práctico",
-    examen: "EUNACOM-SP (Práctico)",
-    modalidad: "Online interactivo con simulación de estaciones",
-    cupos: "Cupos reducidos (máximo 15 por grupo)",
-    precioClp: "$490.000",
-    precioUsd: "≈ US$ 510",
-    precioNota: "Hasta 6 cuotas con Webpay o 2 pagos de $245.000.",
-    intro: [
-      "El examen práctico evalúa desempeño clínico observado mediante estaciones ECOE cronometradas de 10 a 15 minutos frente a docentes evaluadores.",
-      "No basta con saber la teoría: debes saber estructurar la anamnesis, realizar el examen físico dirigido, plantear hipótesis diagnósticas y comunicar el plan terapéutico al paciente simulado."
-    ],
-    incluye: [
-      "32 estaciones clínicas ECOE detalladas paso a paso con pautas de cotejo oficiales",
-      "Videos demostrativos de estaciones con actores y pacientes estandarizados",
-      "Talleres en vivo de simulación de entrevistas y comunicación clínica",
-      "Manual de habilidades clínicas y pautas de cotejo ASOFAMECH",
-      "Feedback individualizado sobre lenguaje no verbal, técnica y tiempos"
-    ],
-    comoFunciona: [
-      "Revisión de las pautas de evaluación y rúbricas de las 4 especialidades troncales.",
-      "Práctica intensiva con casos clínicos estandarizados y simulación de estaciones cronometradas.",
-      "Devolución personalizada de errores frecuentes y cómo maximizar el puntaje en la rúbrica."
-    ],
-    paraQuien: "Médicos titulados en el extranjero que han aprobado el teórico (EUNACOM-ST) y deben rendir el práctico (EUNACOM-SP) para obtener la habilitación definitiva.",
-    temarioNota: "Cubre las 4 áreas troncales del examen práctico.",
-    temario: [
-      { s: "Módulo 1", t: "Metodología ECOE & Comunicación Clínica", d: "Estructura de la estación, manejo del tiempo, relación médico-paciente y consentimiento." },
-      { s: "Módulo 2", t: "Estaciones de Medicina Interna", d: "Manejo de patologías crónicas, urgencias médicas, dolor torácico, disnea e indicación farmacológica." },
-      { s: "Módulo 3", t: "Estaciones de Pediatría", d: "Control de niño sano, deshidratación, dificultad respiratoria, vacunas y consejería a padres." },
-      { s: "Módulo 4", t: "Estaciones de Cirugía & Traumatología", d: "Evaluación de abdomen agudo, suturas, trauma menor, curaciones y consentimiento quirúrgico." },
-      { s: "Módulo 5", t: "Estaciones de Obstetricia & Ginecología", d: "Control prenatal, urgencias obstétricas, metrorragia, anticoncepción y pesquisa de cáncer cervicouterino." }
     ]
   }
 ];

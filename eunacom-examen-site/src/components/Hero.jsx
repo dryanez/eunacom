@@ -4,7 +4,6 @@ import { CheckCircle2, ArrowRight, Play } from 'lucide-react';
 const CHECKLIST = [
   '86 clases del temario oficial',
   '4.000+ preguntas con justificación',
-  'Entrenamiento ECOE práctico',
   'Seguimiento semanal con devolución escrita',
 ];
 
@@ -52,8 +51,8 @@ export default function Hero({ onOpenMentorship, onStartDiagnostic }) {
               maxWidth: '620px',
             }}>
               Preparación para médicos nacionales y extranjeros: clases grabadas por cada tema del temario
-              oficial, manuales clínicos en PDF, banco de preguntas comentadas, simulacros cronometrados y
-              entrenamiento para el examen práctico.
+              oficial, manuales clínicos en PDF, banco de preguntas comentadas, reconstrucciones de pruebas
+              oficiales y simulacros cronometrados.
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }}>
