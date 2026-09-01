@@ -1137,34 +1137,55 @@ status: in-progress
       card.addEventListener("click", () => {
         document.querySelectorAll(".hook-option-card").forEach(c => c.classList.remove("selected"));
         card.classList.add("selected");
-        // Update first step spoken text
         if (script.sections && script.sections[0]) {
           script.sections[0].spoken_text = h.hook;
-          const firstStepSpoken = document.querySelector("#script-timeline .step-spoken");
-          if (firstStepSpoken) firstStepSpoken.textContent = `"${h.hook}"`;
+          renderScriptModalVisualDeck(script);
         }
       });
       hooksContainer.appendChild(card);
     });
 
-    // 2. Render Timeline Steps / Carousel Slides
+    // 2. Render Visual Slide Deck with Live Dirección 1e Cards
+    renderScriptModalVisualDeck(script);
+
+    // 3. Render Caption
+    document.getElementById("script-caption-text").textContent = script.caption_ready_to_post;
+  }
+
+  function renderScriptModalVisualDeck(script) {
     const timelineContainer = document.getElementById("script-timeline");
     timelineContainer.innerHTML = "";
     const isCarousel = script.format_type === "carousel";
 
-    script.sections.forEach(step => {
+    const deckWrap = document.createElement("div");
+    deckWrap.style.cssText = "display:flex; flex-direction:column; gap:16px; width:100%;";
+
+    (script.sections || []).forEach((step, idx) => {
+      const cardHtml = generateSlideCardHtml({ aspectRatio: "4-5", slides: script.sections }, step);
       const div = document.createElement("div");
       div.className = "script-timeline-step";
+      div.style.cssText = "display:flex; flex-direction:column; gap:10px; background:rgba(255,255,255,0.02); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.06);";
       div.innerHTML = `
-        <span class="step-time-badge" style="${isCarousel ? 'background:rgba(168,85,247,0.15); color:var(--accent-purple); border-color:rgba(168,85,247,0.3);' : ''}">${step.timestamp} · ${step.label}</span>
-        <div class="step-visual">👁️ Visual Layout: <em>${step.visual_cue}</em></div>
-        <div class="step-spoken" style="${isCarousel ? 'color:var(--text-primary); font-family:inherit; white-space:pre-line;' : ''}">${isCarousel ? step.spoken_text : `"${step.spoken_text}"`}</div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="step-time-badge" style="background:rgba(217,118,74,0.15); color:var(--cc-terracota); border:1px solid rgba(217,118,74,0.3); font-weight:700;">
+            ${step.timestamp} · ${step.label}
+          </span>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-muted);">${(step.bg || 'arena').toUpperCase()}</span>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="flex:none; width:220px; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.4);">
+            ${cardHtml}
+          </div>
+          <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:8px;">
+            <div class="step-visual" style="font-size:12px; color:var(--text-secondary);"><strong>Visual:</strong> ${step.visual_cue}</div>
+            <div class="step-spoken" style="font-size:13px; color:var(--text-primary); white-space:pre-line; line-height:1.4;"><strong>Guion / Texto:</strong><br>${step.spoken_text}</div>
+          </div>
+        </div>
       `;
-      timelineContainer.appendChild(div);
+      deckWrap.appendChild(div);
     });
 
-    // 3. Render Caption
-    document.getElementById("script-caption-text").textContent = script.caption_ready_to_post;
+    timelineContainer.appendChild(deckWrap);
   }
 
   // 6. 7-Day Smart Weekly Content Planner
@@ -2614,8 +2635,8 @@ status: in-progress
   // 📅 ESTA SEMANA — Weekly Auto-Content Generator
   // ═══════════════════════════════════════════════════════════════════════════
 
-  const SEMANA_STORAGE_KEY = "medintel_esta_semana_v1";
-  const SEMANA_PRODUCED_KEY = "medintel_semana_produced_v1";
+  const SEMANA_STORAGE_KEY = "medintel_esta_semana_v6_calido";
+  const SEMANA_PRODUCED_KEY = "medintel_semana_produced_v6_calido";
   let semanaposts = [];
 
   // ── Brand colors for slide preview ────────────────────────────────────────
@@ -2651,7 +2672,7 @@ status: in-progress
   // ═════════════════════════════════════════════════════════════════════════
   // 📱 21 STORIES SEMANALES (9:16) CONTROLLER
   // ═════════════════════════════════════════════════════════════════════════
-  const STORIES_STORAGE_KEY = "eunacom_stories_weekly_cache";
+  const STORIES_STORAGE_KEY = "eunacom_stories_weekly_v6_calido";
   const viewStoriesBtn    = document.getElementById("view-stories");
   const storiesView       = document.getElementById("stories-view");
   const storiesGrid       = document.getElementById("stories-grid");
@@ -2672,6 +2693,8 @@ status: in-progress
     if (cached && cached.days && cached.days.length) {
       weeklyStoriesData = cached.days;
       renderStoriesView(cached.days, cached.date);
+    } else {
+      generateDailyStories(false);
     }
   }
 
@@ -2703,11 +2726,9 @@ status: in-progress
       const data = await res.json();
       weeklyStoriesData = data.days || [];
       saveStoriesCache(data);
-      if (currentView === "stories" || !silent) {
-        storiesLoading.style.display = "none";
-        renderStoriesView(weeklyStoriesData, data.date);
-      }
-      showToast("✅ 21 Stories generadas con éxito desde questionDB.json", "success");
+      storiesLoading.style.display = "none";
+      renderStoriesView(weeklyStoriesData, data.date);
+      showToast("✅ 21 Stories generadas según Sistema Cálido Chileno", "success");
     } catch (e) {
       storiesLoading.style.display = "none";
       storiesEmpty.style.display = "block";
@@ -2742,10 +2763,10 @@ status: in-progress
         <div class="story-day-header">
           <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
             <span class="story-day-badge">${dayGroup.day}</span>
-            <span class="story-topic-badge">🩺 ${dayGroup.topic}</span>
+            <span class="story-topic-badge">🩺 ${dayGroup.topic} (${dayGroup.specialty || ''})</span>
             ${comp.handle ? `
               <span style="font-size:0.72rem; color:#d9764a; font-weight:700; background:rgba(217,118,74,0.12); padding:3px 8px; border-radius:6px; border:1px solid rgba(217,118,74,0.3);">
-                🎯 Contracampaña vs @${comp.handle} (${comp.score}x Outlier)
+                🎯 Benchmark vs @${comp.handle} (${comp.score}x Outlier)
               </span>
             ` : ""}
           </div>
@@ -2793,6 +2814,8 @@ status: in-progress
     if (cached && cached.posts && cached.posts.length) {
       semanaposts = cached.posts;
       renderSemanaView(cached.posts, cached.generated_at);
+    } else {
+      generateEstaSemana(false);
     }
   }
 
@@ -2832,68 +2855,58 @@ status: in-progress
       const data = await res.json();
       semanaposts = data.posts || [];
       saveSemanaCache(data);
-      if (currentView === "semana" || !silent) {
-        semanaLoading.style.display = "none";
-        renderSemanaView(semanaposts, data.generated_at);
-      }
-      if (silent) {
-        showToast("✅ Esta Semana actualizada — 7 posts listos para producir", "success");
-      }
+      semanaLoading.style.display = "none";
+      renderSemanaView(semanaposts, data.week_start);
+      showToast("✅ Semana generada según Sistema Cálido Chileno", "success");
     } catch(e) {
       semanaLoading.style.display = "none";
       semanaEmpty.style.display = "block";
-      console.error("Esta Semana generation error:", e);
+      console.error("Weekly generation error:", e);
     }
   }
 
-  const btnSemanaGenerate = document.getElementById("btn-semana-generate");
-  if (btnSemanaGenerate) {
-    btnSemanaGenerate.addEventListener("click", () => generateEstaSemana(false));
+  const btnGenerateSemana = document.getElementById("btn-generate-semana");
+  if (btnGenerateSemana) {
+    btnGenerateSemana.addEventListener("click", () => generateEstaSemana(false));
   }
 
-  const btnSemanaVault = document.getElementById("btn-semana-export-vault");
-  if (btnSemanaVault) {
-    btnSemanaVault.addEventListener("click", () => {
-      showToast("💾 Archivo exportado a /os/weekly-content/ en tu Vault", "success");
+  const btnExportVault = document.getElementById("btn-export-semana-vault");
+  if (btnExportVault) {
+    btnExportVault.addEventListener("click", () => {
+      showToast("💾 Content pack exportado a /os/weekly-content/ en tu Vault", "success");
     });
   }
 
-  // ── Render 7 post production cards ───────────────────────────────────────
-  function renderSemanaView(posts, generatedAt) {
+  // ── Render Semana Grid ────────────────────────────────────────────────────
+  function renderSemanaView(posts, weekStart) {
     semanaLoading.style.display = "none";
     semanaEmpty.style.display   = "none";
     semanaGrid.innerHTML        = "";
-    semanaGrid.style.display    = "grid";
+    semanaGrid.style.display    = "flex";
 
-    if (generatedAt) {
-      const d = new Date(generatedAt);
-      semanaGenAt.textContent = "Generado: " + d.toLocaleDateString("es-CL", { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" });
+    if (weekStart) {
+      semanaGenAt.textContent = "Semana del " + weekStart;
     }
 
-    const produced = loadProducedSet();
-    const dayNames = { 1:"Lunes", 2:"Martes", 3:"Miércoles", 4:"Jueves", 5:"Viernes", 6:"Sábado", 7:"Domingo" };
+    const producedSet = loadProducedSet();
 
     posts.forEach((post, idx) => {
-      const archColor = ARCHETYPE_COLORS[post.archetype] || ARCHETYPE_COLORS.default;
-      const isProduced = produced.has(post.slot_index + "_" + post.archetype);
-      const hookDefault = (post.hook_variations && post.hook_variations[0]) ? post.hook_variations[0].hook : "";
+      const isProduced = producedSet.has(post.slot_index + "_" + post.archetype);
+      const archColor  = ARCHETYPE_COLORS[post.archetype] || ARCHETYPE_COLORS.default;
 
       const card = document.createElement("div");
-      card.className = "post-production-card" + (isProduced ? " produced" : "");
-      card.dataset.slot = post.slot_index;
-      card.style.setProperty("--arch-color", archColor);
+      card.className = "planner-post-card" + (isProduced ? " card-produced" : "");
+      card.dataset.idx = idx;
 
       card.innerHTML = `
-        ${isProduced ? '<div class="produced-overlay"><span>✅</span><span>Producido</span></div>' : ""}
-        <div class="ppc-day-header" style="border-left: 4px solid ${archColor};">
-          <div class="ppc-day-info">
-            <span class="ppc-day-name">${post.day || dayNames[post.day_index] || "—"}</span>
-            <span class="ppc-time-cl">🇨🇱 ${post.time_slot_cl}</span>
-            <span class="ppc-time-de">🇩🇪 ${post.time_slot_de}</span>
+        <div class="ppc-header">
+          <div class="ppc-day-time">
+            <span class="ppc-day-name">${post.day}</span>
+            <span class="ppc-time-cl">${post.time_slot_cl}</span>
+            <span class="ppc-time-de">${post.time_slot_de}</span>
           </div>
-          <div class="ppc-meta">
-            <span class="ppc-score-badge">⚡ ${post.pick_score}</span>
-            <span class="ppc-format-badge">${post.format}</span>
+          <div class="ppc-status-badge ${isProduced ? 'status-produced' : 'status-ready'}">
+            ${isProduced ? "✓ Producido" : "○ Listo para Grabar"}
           </div>
         </div>
 
@@ -2924,6 +2937,7 @@ status: in-progress
             ${(post.sections || []).map((s, si) => {
               const bgColors = { navy: "#1a2740", arena: "#f7ece0", terracota: "#d9764a", dorado: "#e8c46a", rojo: "#a8321f" };
               const currentBg = bgColors[s.bg] || (s.bg === "navy" ? BRAND.navy : BRAND.arena);
+              const miniCard = generateSlideCardHtml({ aspectRatio: "4-5", slides: post.sections }, s);
               return `
                 <div class="slide-acc-item" data-si="${si}">
                   <div class="slide-acc-header">
@@ -2933,8 +2947,13 @@ status: in-progress
                     <span class="slide-acc-toggle">▾</span>
                   </div>
                   <div class="slide-acc-body">
-                    <div class="slide-acc-visual">👁️ ${s.visual_cue}</div>
-                    <div class="slide-acc-text">✍️ ${s.spoken_text.replace(/\n/g, "<br>")}</div>
+                    <div style="margin-bottom:12px; display:flex; justify-content:center;">
+                      <div style="width:230px; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.35);">
+                        ${miniCard}
+                      </div>
+                    </div>
+                    <div class="slide-acc-visual">👁️ <strong>Visual:</strong> ${s.visual_cue}</div>
+                    <div class="slide-acc-text">✍️ <strong>Texto:</strong><br>${s.spoken_text.replace(/\n/g, "<br>")}</div>
                   </div>
                 </div>
               `;
@@ -3037,6 +3056,7 @@ status: in-progress
   // ── Slide Preview Modal ───────────────────────────────────────────────────
   let previewPost = null;
   let previewSlideIdx = 0;
+  let slidePreviewMode = "hd"; // Default to HD Canvas for optimal layout review
 
   function openSlidePreview(post) {
     previewPost = post;
@@ -3047,6 +3067,15 @@ status: in-progress
     document.getElementById("slide-preview-archetype-badge").style.background = archColor + "30";
     document.getElementById("slide-preview-archetype-badge").style.color = archColor;
     document.getElementById("slide-preview-title").textContent = post.day + " · " + post.time_slot_cl;
+    
+    // Set active mode buttons
+    const btnPrevIphone = document.getElementById("btn-preview-mode-iphone");
+    const btnPrevHd = document.getElementById("btn-preview-mode-hd");
+    if (btnPrevIphone && btnPrevHd) {
+      btnPrevHd.classList.toggle("active", slidePreviewMode === "hd");
+      btnPrevIphone.classList.toggle("active", slidePreviewMode === "iphone");
+    }
+
     buildDotNav(post.sections.length);
     renderSlide(0);
     modal.style.display = "flex";
@@ -3063,8 +3092,6 @@ status: in-progress
       dotNav.appendChild(dot);
     }
   }
-
-  let slidePreviewMode = "iphone"; // 'iphone' | 'hd'
 
   // View toggle handlers in slide preview modal
   const btnPrevIphone = document.getElementById("btn-preview-mode-iphone");

@@ -474,7 +474,6 @@ status: in-production
     // Also save as active task
     const activePath = path.join(VAULT_PATH, "projects", "active-weekly-sprint.md");
     fs.writeFileSync(activePath, md, "utf-8");
-
     res.json({ success: true, file_path: sprintPath });
   } catch (err) {
     console.error("Error saving weekly sprint to Obsidian:", err);
@@ -484,13 +483,13 @@ status: in-production
 
 // ── Cadence: 7 archetype slots, ordered Mon→Sun ────────────────────────────
 const WEEKLY_SLOTS = [
-  { day: "Lunes",     day_index: 1, archetype: "clinical_quiz",     time_cl: "20:30 CLST", time_de: "00:30 CET+1", weight: 2.0, cta: "TRAMPAS"     },
-  { day: "Martes",    day_index: 2, archetype: "traps_asofamech",   time_cl: "13:30 CLST", time_de: "17:30 CET",   weight: 3.5, cta: "TRAMPAS"     },
-  { day: "Miercoles", day_index: 3, archetype: "visual_algorithm",  time_cl: "13:00 CLST", time_de: "17:00 CET",   weight: 3.0, cta: "MODISMOS"    },
-  { day: "Jueves",    day_index: 4, archetype: "clinical_quiz",     time_cl: "21:00 CLST", time_de: "01:00 CET+1", weight: 2.0, cta: "TRAMPAS"     },
-  { day: "Viernes",   day_index: 5, archetype: "chilean_lingo",     time_cl: "14:00 CLST", time_de: "18:00 CET",   weight: 2.5, cta: "DICCIONARIO" },
-  { day: "Sabado",    day_index: 6, archetype: "salary_cesfam",     time_cl: "11:30 CLST", time_de: "15:30 CET",   weight: 2.0, cta: "SUELDOS"     },
-  { day: "Domingo",   day_index: 7, archetype: "radar_burocratico", time_cl: "18:00 CLST", time_de: "22:00 CET",   weight: 1.5, cta: "FECHAS"      }
+  { day: "Lunes",     day_index: 1, archetype: "clinical_quiz",     specialty: "Cardiología",        time_cl: "20:30 CLST", time_de: "00:30 CET+1", weight: 2.0, cta: "TRAMPAS",     portadaBg: "navy"      },
+  { day: "Martes",    day_index: 2, archetype: "traps_asofamech",   specialty: "Cirugía",            time_cl: "13:30 CLST", time_de: "17:30 CET",   weight: 3.5, cta: "TRAMPAS",     portadaBg: "terracota" },
+  { day: "Miercoles", day_index: 3, archetype: "visual_algorithm",  specialty: "Endocrinología",     time_cl: "13:00 CLST", time_de: "17:00 CET",   weight: 3.0, cta: "ALGORITMO",   portadaBg: "dorado"    },
+  { day: "Jueves",    day_index: 4, archetype: "clinical_quiz_ped", specialty: "Pediatría",          time_cl: "21:00 CLST", time_de: "01:00 CET+1", weight: 2.0, cta: "QUIZ",        portadaBg: "arena"     },
+  { day: "Viernes",   day_index: 5, archetype: "salary_cesfam",     specialty: "Salud Pública APS",  time_cl: "14:00 CLST", time_de: "18:00 CET",   weight: 2.5, cta: "SUELDOS",     portadaBg: "navy"      },
+  { day: "Sabado",    day_index: 6, archetype: "chilean_lingo",     specialty: "Semiología de Box",  time_cl: "11:30 CLST", time_de: "15:30 CET",   weight: 2.0, cta: "DICCIONARIO", portadaBg: "terracota" },
+  { day: "Domingo",   day_index: 7, archetype: "radar_burocratico", specialty: "ASOFAMECH Oficial",  time_cl: "18:00 CLST", time_de: "22:00 CET",   weight: 1.5, cta: "FECHAS",      portadaBg: "rojo"      }
 ];
 
 // ── PICK_SCORE formula ─────────────────────────────────────────────────────
@@ -504,40 +503,46 @@ function calcPickScore(post, slotWeight) {
 }
 
 // ── Inline carousel blueprint generator ───────────────────────────────────
-function buildCarouselBlueprint(post, ctaKeyword) {
-    const arch = post.archetype || post.pillar || "clinical_quiz";
-    const cleanArchLabel = (post.archetype_label || "").replace(/\s*\/.*$/, "").replace(/^[^\w\s]+/, "").trim() || "Caso Clínico";
-    const hookTopic = post.hook_text ? post.hook_text.replace(/^[^\w\s]+/, "").slice(0, 50).trim() : cleanArchLabel;
+function buildCarouselBlueprint(post, ctaKeyword, slotBg) {
+  const arch = post.archetype || post.pillar || "clinical_quiz";
+  const specialty = post.specialty || "Medicina Interna";
 
-    // Pull real clinical question from questionDB if available
-    const realQ = getRandomQuestionByTopic(hookTopic) || getRandomQuestionByTopic("Medicina Interna") || (questionDB[0] || null);
+  // Derived display helpers used in captions
+  const cleanArchLabel = specialty || arch.replace(/_/g, " ");
+  const hookTopic = post.hook_text || specialty || cleanArchLabel;
 
     const hookOptions = [
       { type: "Loss Aversion",
         hook: arch === "chilean_lingo" ? `🇨🇱 3 Modismos Chilenos que NUNCA debes malinterpretar en el Box o EUNACOM (Desliza ➡️)` :
               arch === "salary_cesfam" ? `💵 ¿Cuánto gana realmente un médico en APS en Chile? Desglose 2026 (Desliza ➡️)` :
-              arch === "radar_burocratico" ? `🚨 Calendario y Documentos Oficiales EUNACOM 2026 que debes tener listos (Guarda 🔖)` :
-              arch === "visual_algorithm" ? `🧠 Algoritmo de 1-Página: Conducta GES inmediata ante ${hookTopic} (Guarda 🔖)` :
-              `⚠️ 3 Trampas del EUNACOM en ${cleanArchLabel} que reprueban al 70% (Desliza ➡️)` },
+              arch === "radar_burocratico" ? `🚨 Fechas Oficiales EUNACOM 2026 y Checklist de Documentos Obligatorios (Guarda 🔖)` :
+              arch === "visual_algorithm" ? `🧠 Algoritmo de 1-Página: Manejo Clínico y Dosis de Rescate en Cetoacidosis Diabética (Guarda 🔖)` :
+              arch === "clinical_quiz_ped" ? `🩺 Quiz Clínico Pediatría: ¿A qué edad el lactante logra estos hitos del desarrollo? (Desliza ➡️)` :
+              arch === "traps_asofamech" ? `⚠️ Las 3 Trampas Mortales de Cirugía que ASOFAMECH repite todos los años (Desliza ➡️)` :
+              `⚠️ El 85% de los médicos falla esta pregunta de Cardiología en EUNACOM (Desliza ➡️)` },
       { type: "Cheat Sheet",
         hook: arch === "chilean_lingo" ? `🧠 Diccionario Médico Chileno: De expresión popular a Semiología Oficial ASOFAMECH (Guarda 🔖)` :
               arch === "salary_cesfam" ? `📊 Calculadora de Sueldo Médico APS 2026: Base + Zona + Turnos SAPU (Guarda 🔖)` :
-              arch === "visual_algorithm" ? `📋 Cheat Sheet de 1-Página: Conducta GES en ${hookTopic} lista para imprimir (Guarda 🔖)` :
-              `🧠 Algoritmo de 1-Página: Conducta GES inmediata ante ${hookTopic} (Guarda 🔖)` },
+              arch === "radar_burocratico" ? `📋 Calendario Oficial ASOFAMECH 2026: Convocatorias Julio y Diciembre (Guarda 🔖)` :
+              arch === "visual_algorithm" ? `📋 Cheat Sheet de 1-Página: Algoritmo GES en Endocrinología listo para imprimir (Guarda 🔖)` :
+              arch === "clinical_quiz_ped" ? `📋 Guía Rápida Pediatría: Banderas Rojas y Criterios GES en Lactantes (Guarda 🔖)` :
+              `🧠 Guía de Bolsillo EUNACOM: Trampas de Conducta vs Diagnóstico en Cirugía (Guarda 🔖)` },
       { type: "Direct Challenge",
-        hook: arch === "chilean_lingo" ? `🩺 El paciente te dice: "Doctor, tengo la guata aceda"... ¿Qué anotas en la ficha? (Slide 2)` :
-              arch === "visual_algorithm" ? `❓ ¿En qué paso del algoritmo fallan el 80% de los postulantes? (Slide 2)` :
-              `🩺 Caso Clínico ASOFAMECH: ¿Cuál es la conducta inicial prioritaria? (Solución en Slide 4)` }
+        hook: arch === "chilean_lingo" ? `🩺 El paciente te dice: "Doctor, me dio un aire en la espalda"... ¿Qué anotas en la ficha? (Slide 2)` :
+              arch === "visual_algorithm" ? `❓ ¿En qué paso del algoritmo de Cetoacidosis fallan el 80% de los médicos? (Slide 2)` :
+              arch === "clinical_quiz_ped" ? `❓ Lactante de 6 meses no sostiene la cabeza: ¿Cuál es la conducta MINSAL obligatoria? (Solución Slide 4)` :
+              arch === "traps_asofamech" ? `❓ Sospecha de apendicitis aguda: ¿Solicitas TAC o indicas pabellón de urgencia? (Solución Slide 3)` :
+              `🩺 Caso Clínico Cardiología: Soplo diastólico en foco aórtico... ¿Cuál es la conducta inicial? (Solución Slide 4)` }
     ];
 
     let sections;
     if (arch === "chilean_lingo") {
       sections = [
-        { num: 1, timestamp: "Slide 1 (PORTADA)", label: "Slide 1 · Portada", bg: "navy", kind: "portada",
+        { num: 1, timestamp: "Slide 1 (PORTADA · TERRACOTA)", label: "Slide 1 · Portada", bg: "terracota", kind: "portada",
           tag: "DICCIONARIO MÉDICO CHILENO",
-          title: "3 Modismos que debes dominar en el Box o EUNACOM",
+          title: "Cuando el paciente te dice que “le dio un aire”",
           swipeCta: "DESLIZA →",
-          visual_cue: "Fondo Navy (#1a2740) + Lockup eunacomapp.cl + DM Serif Display + Eyebrow Dorado + Badge Terracota 'DESLIZA →'.",
+          visual_cue: "Fondo Terracota (#d9764a) + Lockup eunacomapp.cl + DM Serif Display + Eyebrow Dorado + Badge Blanco 'DESLIZA →'.",
           spoken_text: hookOptions[0].hook },
         { num: 2, timestamp: "Slide 2 (MODISMO 1)", label: "Slide 2 · Modismo 1", bg: "arena", kind: "traduccion",
           tag: "TRADUCCIÓN BOX #1",
@@ -575,7 +580,7 @@ function buildCarouselBlueprint(post, ctaKeyword) {
       ];
     } else if (arch === "salary_cesfam") {
       sections = [
-        { num: 1, timestamp: "Slide 1 (PORTADA)", label: "Slide 1 · Portada", bg: "navy", kind: "portada",
+        { num: 1, timestamp: "Slide 1 (PORTADA · NAVY)", label: "Slide 1 · Portada", bg: "navy", kind: "portada",
           tag: "SUELDOS Y CONTRATOS 2026",
           title: "¿Cuánto Gana Realmente un Médico en APS en Chile?",
           swipeCta: "DESLIZA →",
@@ -620,90 +625,31 @@ function buildCarouselBlueprint(post, ctaKeyword) {
           visual_cue: `Fondo Navy + Mockup app real + 'Comenta ${ctaKeyword} para la tabla completa en PDF'.`,
           spoken_text: `Guarda este desglose salarial.\n\nPrepara tu EUNACOM 2026 con simulacros reales en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
       ];
-    } else if (arch === "radar_burocratico") {
-      sections = [
-        { num: 1, timestamp: "Slide 1 (PORTADA · ROJO)", label: "Slide 1 · Portada", bg: "rojo", kind: "radar",
-          tag: "RADAR BUROCRÁTICO", date: "OFICIAL 2026",
-          title: "Fechas Oficiales EUNACOM 2026 y Plazos ASOFAMECH",
-          leadHtml: "ASOFAMECH confirmó las fechas oficiales para las convocatorias de Julio y Diciembre 2026. Revisa los plazos y documentos obligatorios.",
-          ctaBox: "Desliza para ver el calendario oficial y el checklist de inscripción →",
-          visual_cue: "Fondo Rojo Plazo (#a8321f) + Fecha Mono + DM Serif Display + Caja Arena inferior.",
-          spoken_text: hookOptions[0].hook },
-        { num: 2, timestamp: "Slide 2 (CALENDARIO OFICIAL)", label: "Slide 2 · Calendario Oficial", bg: "arena", kind: "desglose",
-          tag: "CALENDARIO OFICIAL ASOFAMECH 2026",
-          rows: [
-            { name: "Inscripción Examen Julio", value: "Marzo a Mayo 2026" },
-            { name: "Rendición Sección Teórica (ST)", value: "Julio 2026", accent: true },
-            { name: "Inscripción Examen Diciembre", value: "Agosto a Octubre 2026" },
-            { name: "Rendición Sección Teórica (ST)", value: "Diciembre 2026", accent: true },
-            { name: "Entrega de Resultados Oficiales", value: "Máximo 30 días hábiles" }
-          ],
-          highlight: "Los cupos en sedes se asignan por orden de inscripción validada por ASOFAMECH.",
-          visual_cue: "Fondo Arena + Tabla fechas con acentos terracota + Highlight dorado.",
-          spoken_text: `Calendario Oficial EUNACOM 2026:\n- Examen Julio: Inscripción Marzo-Mayo.\n- Examen Diciembre: Inscripción Agosto-Octubre.\n- Resultados: Máximo 30 días hábiles.` },
-        { num: 3, timestamp: "Slide 3 (CHECKLIST DOCUMENTOS)", label: "Slide 3 · Checklist Documentos", bg: "arena", kind: "checklist",
-          tag: "CHECKLIST DE INSCRIPCIÓN OBLIGATORIA",
-          items: [
-            "Título de Médico Cirujano con Apostilla de La Haya (original y copia legalizada)",
-            "Certificado de concentración de notas y plan de estudios apostillado",
-            "Cédula de identidad chilena o pasaporte vigente",
-            "Certificado de habilitación profesional o buena conducta médica del país de origen"
-          ],
-          saveNote: "Guarda este checklist",
-          visual_cue: "Fondo Arena + 4 tarjetas numeradas con checklist rojo + Nota de guardado.",
-          spoken_text: `4 Documentos obligatorios ASOFAMECH:\n1. Título apostillado.\n2. Concentración de notas legalizada.\n3. Documento de identidad vigente.\n4. Certificado de habilitación profesional.` },
-        { num: 4, timestamp: "Slide 4 (ERRORES FRECUENTES)", label: "Slide 4 · Errores Frecuentes", bg: "arena", kind: "checklist",
-          tag: "3 ERRORES QUE RECHAZAN INSCRIPCIONES",
-          items: [
-            "Apostilla digital no verificable o código QR borroso",
-            "Discrepancia en el nombre entre título y pasaporte",
-            "Falta de timbre oficial o certificación de autenticidad institucional"
-          ],
-          saveNote: "Evita estos 3 rechazos",
-          visual_cue: "Fondo Arena + 3 tarjetas de errores comunes + Nota en rojo plazo.",
-          spoken_text: `3 Errores frecuentes en inscripción:\n1. Apostilla ilegible o QR caído.\n2. Discrepancias de nombres.\n3. Falta de timbres oficiales.` },
-        { num: 5, timestamp: "Slide 5 (PLAN 90 DÍAS)", label: "Slide 5 · Plan de Estudio", bg: "arena", kind: "regla",
-          tag: "CRONOGRAMA DE ESTUDIO", title: "Plan de 90 Días para Aprobar",
-          rules: [
-            "Mes 1: Diagnóstico inicial y refuerzo de las 4 áreas troncales",
-            "Mes 2: 50 preguntas diarias de questionDB con pauta MINSAL",
-            "Mes 3: 3 simulacros completos cronometrados de 180 preguntas"
-          ],
-          visual_cue: "Fondo Arena + 3 tarjetas doradas con el plan mes a mes.",
-          spoken_text: `Plan 90 Días:\n- Mes 1: Diagnóstico y áreas troncales.\n- Mes 2: 50 preguntas diarias con pauta.\n- Mes 3: 3 simulacros con timer.` },
-        { num: 6, timestamp: "Slide 6 (CTA)", label: "Slide 6 · Cierre & Lead Magnet", bg: "navy", kind: "cta",
-          title: "Mide tu puntaje con un simulacro diagnóstico gratis",
-          image: "/simulacro-card.png",
-          mockupCaption: "captura · simulacro oficial en eunacomapp.cl",
-          brandCta: "eunacomapp.cl", linkCta: `Comenta "${ctaKeyword}" para el cronograma en PDF`,
-          visual_cue: `Fondo Navy + Mockup app real + 'Comenta ${ctaKeyword} para el cronograma en PDF'.`,
-          spoken_text: `Guarda este cronograma para no perder los plazos.\n\nMide tu nivel con simulacro diagnóstico gratis en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
-      ];
     } else if (arch === "visual_algorithm") {
       sections = [
         { num: 1, timestamp: "Slide 1 (PORTADA · DORADO)", label: "Slide 1 · Portada", bg: "dorado", kind: "portada",
           tag: "ALGORITMO MINSAL",
-          title: `Manejo Clínico de ${hookTopic}`,
+          title: "Manejo de Cetoacidosis Diabética en Urgencia",
           swipeCta: "DESLIZA →",
           visual_cue: "Fondo Dorado (#e8c46a) + Badge Navy + DM Serif Display + Botón Terracota 'DESLIZA →'.",
           spoken_text: hookOptions[0].hook },
         { num: 2, timestamp: "Slide 2 (FLUJO COMPLETO)", label: "Slide 2 · Flujo Completo", bg: "arena", kind: "flujo",
-          tag: "FLUJO COMPLETO",
+          tag: "FLUJO COMPLETO · CAD",
           steps: [
-            { step: "1 · Triage y Signos Vitales", dose: "Descartar shock / Red flags" },
-            { step: "2 · Manejo Inicial de Rescate", dose: "Fármaco 1ª elección GES" },
-            { step: "3 · Confirmación Diagnóstica", dose: "Examen complementario en APS" },
-            { step: "4 · Criterio de Derivación", dose: "Secundario si no responde" }
+            { step: "1 · Hidratación SF 0.9%", dose: "1000 ml/h primeras 2 horas" },
+            { step: "2 · Chequeo de Potasio Sérico", dose: "Si K < 3.3 mEq/L NO dar insulina" },
+            { step: "3 · Insulina Cristalina EV", dose: "Bolo 0.1 U/kg + Infusión 0.1 U/kg/h" },
+            { step: "4 · Adición de Glucosa 5%", dose: "Cuando glicemia baje a 200 mg/dL" }
           ],
-          note: "Criterio de resolución: Estabilización hemodinámica y cumplimiento de metas terapéuticas MINSAL.",
+          note: "Meta terapéutica: Cierre de Anion Gap y bicarbonato > 18 mEq/L antes de pasar a insulina SC.",
           visual_cue: "Fondo Arena + Píldoras Navy conectadas con dosis Dorada + Tarjeta blanca de nota clínica.",
-          spoken_text: `Flujo completo de manejo:\n1. Triage y signos vitales.\n2. Manejo de rescate con fármaco GES.\n3. Confirmación en APS.\n4. Criterio de derivación oportuna.` },
+          spoken_text: `Algoritmo CAD Urgencia:\n1. Hidratación agresiva con SF 0.9%.\n2. Medir potasio antes de infundir insulina.\n3. Insulina cristalina 0.1 U/kg/h.\n4. Agregar Glucosa al llegar a 200 mg/dL.` },
         { num: 3, timestamp: "Slide 3 (ZOOM DOSIS)", label: "Slide 3 · Zoom Dosis y Cortes", bg: "arena", kind: "desglose",
           tag: "ZOOM · LO QUE PREGUNTA EL EXAMEN",
           rows: [
-            { name: "Fármaco de 1ª Elección", value: "Dosis estándar pauta GES", accent: true },
-            { name: "Punto de Corte / Umbral", value: "Meta terapéutica MINSAL" },
-            { name: "Contraindicación Absoluta", value: "Criterio de descarte frecuente" }
+            { name: "Insulina Cristalina EV", value: "0.1 UI/kg/hora en infusión continua", accent: true },
+            { name: "Punto de Corte de Glicemia", value: "200 mg/dL para agregar Dextrosa 5%" },
+            { name: "Potasio Límite para Insulina", value: "3.3 mEq/L (Riesgo arritmia letal)" }
           ],
           highlight: "En EUNACOM se evalúa la conducta terapéutica exacta exigida en APS.",
           visual_cue: "Fondo Arena + Tarjeta blanca con filas de dosis y valores de corte.",
@@ -725,14 +671,54 @@ function buildCarouselBlueprint(post, ctaKeyword) {
           visual_cue: `Fondo Navy + Mockup app real + 'Comenta ${ctaKeyword} para la ficha PDF'.`,
           spoken_text: `Guarda este algoritmo para repasar antes del examen.\n\nPractica más de 6.000 preguntas oficiales en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
       ];
-    } else {
-      // Default: clinical_quiz / traps_asofamech (Tipo 2)
+    } else if (arch === "clinical_quiz_ped") {
       sections = [
-        { num: 1, timestamp: "Slide 1 (PORTADA · NAVY)", label: "Slide 1 · Portada", bg: "navy", kind: "portada",
-          tag: `TRAMPAS ASOFAMECH · ${cleanArchLabel.toUpperCase()}`,
+        { num: 1, timestamp: "Slide 1 (PORTADA · ARENA)", label: "Slide 1 · Portada", bg: "arena", kind: "portada",
+          tag: "QUIZ CLÍNICO · PEDIATRÍA",
+          title: "¿A qué edad el lactante logra estos hitos del desarrollo?",
+          swipeCta: "DESLIZA →",
+          visual_cue: "Fondo Arena Cálido (#f7ece0) + DM Serif Display + Eyebrow Terracota + Badge Terracota 'DESLIZA →'.",
+          spoken_text: hookOptions[0].hook },
+        { num: 2, timestamp: "Slide 2 (CASO CLÍNICO)", label: "Slide 2 · Enunciado Pediatría", bg: "arena", kind: "trampa", numeral: "1",
+          tag: "ENUNCIADO OFICIAL ASOFAMECH",
+          errorLabel: "EL CASO CLÍNICO", errorText: "Lactante de 6 meses en control sano: no sostiene la cabeza y no fija la mirada ante estímulos visuales.",
+          officialLabel: "CONDUCTA INMEDIATA", officialText: "Derivación urgente a Neurología Infantil y evaluación de bandera roja psicomotora",
+          visual_cue: "Fondo Arena + Numeral Terracota '1' + Tarjeta Enunciado + Tarjeta Conducta.",
+          spoken_text: `Caso Pediatría:\nLactante de 6 meses sin sostén cefálico.\nConducta oficial: Derivación urgente ante retraso severo del DSM.` },
+        { num: 3, timestamp: "Slide 3 (HITOS DEL DESARROLLO)", label: "Slide 3 · Tabla de Hitos", bg: "arena", kind: "desglose",
+          tag: "HITOS DEL DESARROLLO MOTOR (ASOFAMECH)",
+          rows: [
+            { name: "Sostén Cefálico Firme", value: "3 meses (Límite: 4 meses)" },
+            { name: "Sedestación sin Apoyo", value: "6 meses (Límite: 8 meses)", accent: true },
+            { name: "Marcha Independiente", value: "12 meses (Límite: 18 meses)" }
+          ],
+          highlight: "Cualquier hito no alcanzado en la edad límite exige derivación a especialista.",
+          visual_cue: "Fondo Arena + Tabla de hitos con edades límites.",
+          spoken_text: `Hitos clave:\n- Sostén cefálico: 3 meses.\n- Sedestación: 6 meses.\n- Marcha: 12 meses.` },
+        { num: 4, timestamp: "Slide 4 (REGLA DE ORO)", label: "Slide 4 · Regla de Oro", bg: "arena", kind: "regla",
+          tag: "REGLA DE ORO", title: "Reglas de Oro en Pediatría EUNACOM",
+          rules: [
+            "En Pediatría, retraso psicomotor evidente es derivación sin esperar",
+            "La canasta GES cubre la estimulación temprana en APS",
+            "Siempre calcular edad corregida en prematuros menores a 2 años"
+          ],
+          visual_cue: "Fondo Arena + 3 tarjetas doradas con las reglas de oro.",
+          spoken_text: `3 Reglas de Oro en Pediatría:\n1. Derivación oportuna.\n2. Canasta GES en APS.\n3. Edad corregida en prematuros.` },
+        { num: 5, timestamp: "Slide 5 (CTA)", label: "Slide 5 · Cierre & Lead Magnet", bg: "navy", kind: "cta",
+          title: "Domina todos los casos de Pediatría en el simulador",
+          image: "/simulacro-card.png",
+          mockupCaption: "captura · banco de pediatría eunacomapp.cl",
+          brandCta: "eunacomapp.cl", linkCta: `Comenta "${ctaKeyword}" para el banco pediátrico`,
+          visual_cue: `Fondo Navy + Mockup app real + 'Comenta ${ctaKeyword} para el banco en PDF'.`,
+          spoken_text: `Practica más de 1.200 preguntas de Pediatría en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
+      ];
+    } else if (arch === "traps_asofamech") {
+      sections = [
+        { num: 1, timestamp: "Slide 1 (PORTADA · TERRACOTA)", label: "Slide 1 · Portada", bg: "terracota", kind: "portada",
+          tag: "TRAMPAS ASOFAMECH · CIRUGÍA",
           title: "Las 3 trampas mortales que repiten todos los años",
           swipeCta: "DESLIZA →",
-          visual_cue: "Fondo Navy (#1a2740) + Lockup eunacomapp.cl + DM Serif Display + Badge Dorado + 'DESLIZA →'.",
+          visual_cue: "Fondo Terracota (#d9764a) + Lockup eunacomapp.cl + DM Serif Display + Eyebrow Dorado + Badge Blanco 'DESLIZA →'.",
           spoken_text: hookOptions[0].hook },
         { num: 2, timestamp: "Slide 2 (TRAMPA 1)", label: "Slide 2 · Trampa 1", bg: "arena", kind: "trampa", numeral: "1",
           tag: "LA DISTRACTORA CÓMODA",
@@ -760,14 +746,89 @@ function buildCarouselBlueprint(post, ctaKeyword) {
             "Sigue la guía MINSAL, no el hospital"
           ],
           visual_cue: "Fondo Arena + 3 tarjetas doradas con las reglas de oro.",
-          spoken_text: `El perfil EUNACOM en tres líneas:\n1. Pregunta por conducta, no por diagnóstico.\n2. Prioriza lo resoluble en APS.\n3. Sigue la guía MINSAL, no el hospital.` },
-        { num: 6, timestamp: "Slide 6 (CTA)", label: "Slide 6 · Cierre & Lead Magnet", bg: "navy", kind: "cta",
-          title: "Pon a prueba lo que acabas de leer",
-          image: "/simulacro-card.png",
-          mockupCaption: "captura · simulacro oficial en eunacomapp.cl",
           brandCta: "eunacomapp.cl", linkCta: "Link en bio",
           visual_cue: "Fondo Navy + Mockup app real + 'eunacomapp.cl · Link en bio'.",
-          spoken_text: `Pon a prueba lo que acabas de leer.\n\nPractica con más de 6.000 preguntas oficiales en eunacomapp.cl (Link en bio).` }
+          spoken_text: `Pon a prueba lo que acabas de leer.\n\nPractica con más de 6.000 preguntas oficiales en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
+      ];
+    } else if (arch === "radar_burocratico") {
+      sections = [
+        { num: 1, timestamp: "Slide 1 (PORTADA · ROJO)", label: "Slide 1 · Portada", bg: "rojo", kind: "portada",
+          tag: "RADAR BUROCRÁTICO · ASOFAMECH",
+          title: "Fechas Oficiales EUNACOM 2026: No pierdas la convocatoria",
+          swipeCta: "DESLIZA →",
+          visual_cue: "Fondo Rojo Plazo (#a8321f) + DM Serif Display + Eyebrow Dorado + Badge Blanco 'DESLIZA →'.",
+          spoken_text: hookOptions[0].hook },
+        { num: 2, timestamp: "Slide 2 (CONVOCATORIA JULIO)", label: "Slide 2 · Convocatoria Julio", bg: "arena", kind: "radar",
+          tag: "CONVOCATORIA JULIO 2026",
+          items: [
+            { deadline: "Inscripción Sección Teórica", date: "Marzo – Mayo 2026", type: "open" },
+            { deadline: "Rendición Sección Teórica", date: "Julio 2026", type: "warning" },
+            { deadline: "Entrega de Resultados", date: "Máx. 30 días hábiles post-examen", type: "closed" }
+          ],
+          visual_cue: "Fondo Arena + Tarjetas de fecha con iconos de semáforo. Rojo para plazos cerrados.",
+          spoken_text: `Convocatoria Julio 2026:\n- Inscripción ST: Marzo a Mayo.\n- Rendición ST: Julio.\n- Resultados: máx. 30 días hábiles post-examen.` },
+        { num: 3, timestamp: "Slide 3 (CONVOCATORIA DICIEMBRE)", label: "Slide 3 · Convocatoria Diciembre", bg: "arena", kind: "radar",
+          tag: "CONVOCATORIA DICIEMBRE 2026",
+          items: [
+            { deadline: "Inscripción Sección Teórica", date: "Agosto – Octubre 2026", type: "open" },
+            { deadline: "Rendición Sección Teórica", date: "Diciembre 2026", type: "warning" },
+            { deadline: "Entrega de Resultados", date: "Máx. 30 días hábiles post-examen", type: "closed" }
+          ],
+          visual_cue: "Fondo Arena + Tarjetas de plazos para Diciembre. Colores semáforo.",
+          spoken_text: `Convocatoria Diciembre 2026:\n- Inscripción ST: Agosto a Octubre.\n- Rendición ST: Diciembre.\n- Resultados: máx. 30 días hábiles post-examen.` },
+        { num: 4, timestamp: "Slide 4 (CHECKLIST DOCUMENTOS)", label: "Slide 4 · Checklist Documentos", bg: "arena", kind: "checklist",
+          tag: "CHECKLIST DOCUMENTOS OBLIGATORIOS",
+          items: ["Título médico apostillado + traducción oficial", "Certificado de estudios apostillado", "Pasaporte y cédula de identidad vigentes", "Comprobante de inscripción ASOFAMECH"],
+          saveNote: "Guarda este checklist",
+          visual_cue: "Fondo Arena + Lista de cotejo numerada con íconos de check en rojo.",
+          spoken_text: `Documentos clave:\n1. Título apostillado y traducido.\n2. Certificado de estudios apostillado.\n3. Pasaporte vigente.\n4. Comprobante de inscripción ASOFAMECH.` },
+        { num: 5, timestamp: "Slide 5 (CTA)", label: "Slide 5 · Cierre & Lead Magnet", bg: "navy", kind: "cta",
+          title: "Prepárate a tiempo: 6.000+ preguntas oficiales te esperan",
+          image: "/simulacro-card.png",
+          mockupCaption: "captura · simulador oficial eunacomapp.cl",
+          brandCta: "eunacomapp.cl", linkCta: `Comenta "${ctaKeyword}" para el calendario PDF`,
+          visual_cue: `Fondo Navy + Mockup app + 'eunacomapp.cl · Link en bio'.`,
+          spoken_text: `No pierdas las fechas.\n\nPractica con el simulacro oficial en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
+      ];
+    } else {
+      // clinical_quiz (default — Cardiología, Navy bg)
+      sections = [
+        { num: 1, timestamp: "Slide 1 (PORTADA · NAVY)", label: "Slide 1 · Portada", bg: "navy", kind: "portada",
+          tag: `QUIZ CLÍNICO · ${specialty.toUpperCase()}`,
+          title: "El 85% de los médicos falla esta pregunta de Cardiología en EUNACOM",
+          swipeCta: "DESLIZA →",
+          visual_cue: "Fondo Navy + DM Serif Display + Eyebrow Terracota + Badge 'DESLIZA →'.",
+          spoken_text: hookOptions[0].hook },
+        { num: 2, timestamp: "Slide 2 (ENUNCIADO)", label: "Slide 2 · Caso Clínico", bg: "arena", kind: "trampa", numeral: "1",
+          tag: "ENUNCIADO OFICIAL ASOFAMECH",
+          errorLabel: "EL CASO CLÍNICO",
+          errorText: "Paciente con soplo diastólico en foco aórtico + disnea de esfuerzo + pulso saltón.",
+          officialLabel: "DIAGNÓSTICO MÁS PROBABLE",
+          officialText: "Insuficiencia Aórtica severa. Conducta: Ecocardiografía de urgencia y derivación a Cardiología.",
+          visual_cue: "Fondo Arena + Numeral Terracota '1' + Tarjeta Enunciado + Tarjeta Conducta.",
+          spoken_text: `Caso Clínico Cardiología:\nSoplo diastólico aórtico + disnea + pulso saltón.\nDiagnóstico: Insuficiencia Aórtica.\nConducta: Eco y derivación.` },
+        { num: 3, timestamp: "Slide 3 (TRAMPA CLÁSICA)", label: "Slide 3 · Trampa Clásica", bg: "arena", kind: "trampa", numeral: "2",
+          tag: "LA TRAMPA DEL EXAMEN",
+          errorLabel: "LO QUE ELIGE EL 70%", errorText: "Su intensidad es III/VI",
+          officialLabel: "LA CONDUCTA OFICIAL GES", officialText: "Es diastólico: la intensidad no clasifica la severidad. La FRACCIÓN DE REGURGITACIÓN en eco sí la define.",
+          visual_cue: "Fondo Arena + Tarjeta Error Gris + Tarjeta Correcta Terracota.",
+          spoken_text: `Trampa clásica EUNACOM:\n70% elige clasificar por intensidad del soplo.\nLa conducta correcta es Eco para cuantificar regurgitación.` },
+        { num: 4, timestamp: "Slide 4 (REGLA DE ORO)", label: "Slide 4 · Regla de Oro", bg: "arena", kind: "regla",
+          tag: "REGLA DE ORO", title: "3 Claves del Soplo en EUNACOM",
+          rules: [
+            "Diastólico en foco aórtico = Insuficiencia Aórtica hasta demostrar lo contrario",
+            "El pulso saltón (colapsante) confirma el diagnóstico clínico",
+            "Solicita Eco: es el estándar para severidad y conducta GES"
+          ],
+          visual_cue: "Fondo Arena + 3 tarjetas doradas con reglas de soplo.",
+          spoken_text: `3 Reglas de Oro:\n1. Diastólico aórtico = IA.\n2. Pulso saltón confirma.\n3. Eco define conducta.` },
+        { num: 5, timestamp: "Slide 5 (CTA)", label: "Slide 5 · Cierre & Lead Magnet", bg: "navy", kind: "cta",
+          title: "Practica 500+ casos de Cardiología en el simulador",
+          image: "/simulacro-card.png",
+          mockupCaption: "captura · banco de cardiología eunacomapp.cl",
+          brandCta: "eunacomapp.cl", linkCta: `Comenta "${ctaKeyword}" para el banco de Cardiología`,
+          visual_cue: `Fondo Navy + Mockup app real + 'Comenta ${ctaKeyword} para el PDF'.`,
+          spoken_text: `Guarda este caso para repasar.\n\nPractica con más de 6.000 preguntas oficiales en eunacomapp.cl (Comenta ${ctaKeyword} abajo).` }
       ];
     }
 
@@ -779,13 +840,19 @@ function buildCarouselBlueprint(post, ctaKeyword) {
       default: `[TRAMPAS ASOFAMECH] Las 3 trampas que reprueban medicos en ${cleanArchLabel}.\n\nDesliza para ver la distractora comoda vs la conducta oficial exigida en el examen.\n\nGuarda este carrusel para repasar.\n\nPractica mas de 6.000 preguntas en eunacomapp.cl (Comenta ${ctaKeyword} abajo).\n\n#EUNACOM #ASOFAMECH #MedicinaChile #CESFAM #MedicosExtranjeros`
     };
 
-    return {
-      hook_variations: hookOptions,
-      sections,
-      caption_ready_to_post: captionMap[arch] || captionMap.default,
-      cta_keyword: ctaKeyword
-    };
+  // Fallback: if no archetype matched, produce a minimal portada slide
+  if (!sections) {
+    sections = [{ num: 1, timestamp: "Slide 1 (PORTADA)", label: "Slide 1 · Portada", bg: slotBg || "navy", kind: "portada",
+      tag: "EUNACOM", title: hookTopic, swipeCta: "DESLIZA →", visual_cue: "Fondo Navy.", spoken_text: "" }];
   }
+
+  return {
+    hook_variations: hookOptions,
+    sections,
+    caption_ready_to_post: captionMap[arch] || captionMap.default,
+    cta_keyword: ctaKeyword
+  };
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 6a. Weekly Auto-Generator: POST /api/planner/generate-week-content
@@ -828,8 +895,8 @@ app.post("/api/planner/generate-week-content", (req, res) => {
     usedCodes.add(best.code || best.id || `slot_${idx}`);
 
     // IMPORTANT: Always enforce slot archetype so blueprint picks the right slide kind sequence
-    const bestWithSlotArch = { ...best, archetype: slot.archetype, archetype_label: best.archetype_label || slot.archetype };
-    const cta = CTA_MAP[slot.archetype] || "TRAMPAS";
+    const bestWithSlotArch = { ...best, archetype: slot.archetype, archetype_label: best.archetype_label || slot.archetype, specialty: slot.specialty };
+    const cta = slot.cta || CTA_MAP[slot.archetype] || "TRAMPAS";
     const blueprint = buildCarouselBlueprint(bestWithSlotArch, cta);
 
     return {
