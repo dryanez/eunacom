@@ -367,7 +367,7 @@ export default function FreeMockExamsSection({ onOpenMentorship, onSelectCourse 
                   style={{ padding: '12px 24px', fontSize: '0.95rem' }}
                 >
                   <PhoneCall size={18} />
-                  <span>Revisar mi Resultado con el Academia Examen EUNACOM</span>
+                  <span>Revisar mi Resultado con la Academia Examen EUNACOM</span>
                 </button>
 
                 <a
