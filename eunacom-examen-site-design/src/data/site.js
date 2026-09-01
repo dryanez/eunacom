@@ -27,7 +27,8 @@ export const CURSOS = [
       "Revisión semanal de avance con devolución escrita",
       "Módulo de sistema de salud chileno, GES y medicina legal",
       "Reordenamiento del plan después de la convocatoria de julio",
-      "Acceso a la plataforma durante los doce meses"
+      "Acceso a la plataforma durante los doce meses",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona:[
       "El curso parte con un diagnóstico: un simulacro corto y treinta preguntas por eje. Sobre ese resultado se arma tu calendario, no sobre un temario genérico.",
@@ -72,7 +73,8 @@ export const CURSOS = [
       "Calendario de seis meses ajustado a tu diagnóstico",
       "Revisión semanal de avance con devolución escrita",
       "Módulo de sistema de salud chileno, GES y medicina legal",
-      "Acceso a la plataforma hasta el día de tu examen"
+      "Acceso a la plataforma hasta el día de tu examen",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona:[
       "Estudias cuando puedes. El calendario reparte diez a quince horas semanales en bloques de noventa minutos, pensado para quien está con turnos o trabajando.",
@@ -113,7 +115,8 @@ export const CURSOS = [
       "Calendario comprimido ajustado a las semanas que quedan",
       "Revisión semanal de avance con devolución escrita",
       "Módulo de sistema de salud chileno, GES y medicina legal",
-      "Acceso a la plataforma hasta el día del examen"
+      "Acceso a la plataforma hasta el día del examen",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona:[
       "El calendario prioriza los ejes de mayor peso y deja los menores para las últimas semanas, que es el orden inverso al que la mayoría usa por su cuenta.",

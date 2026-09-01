@@ -4,6 +4,7 @@ import { CheckCircle2, ArrowRight, Play } from 'lucide-react';
 const CHECKLIST = [
   '86 clases del temario oficial',
   '4.000+ preguntas con justificación',
+  'Reconstrucciones de las pruebas desde 2013',
   'Seguimiento semanal con devolución escrita',
 ];
 
@@ -52,7 +53,7 @@ export default function Hero({ onOpenMentorship, onStartDiagnostic }) {
             }}>
               Preparación para médicos nacionales y extranjeros: clases grabadas por cada tema del temario
               oficial, manuales clínicos en PDF, banco de preguntas comentadas, reconstrucciones de pruebas
-              oficiales y simulacros cronometrados.
+              anteriores y simulacros cronometrados.
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }}>

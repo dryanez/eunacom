@@ -28,7 +28,8 @@ export const COURSES = [
       "Revisión semanal de avance con devolución personalizada del equipo académico",
       "Módulo especializado de Sistema de Salud Chileno, GES, Notificación y Medicina Legal",
       "Reordenamiento estratégico del plan después de la convocatoria de julio",
-      "Acceso continuo a la plataforma durante los doce meses"
+      "Acceso continuo a la plataforma durante los doce meses",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona: [
       "El curso parte con un diagnóstico: un simulacro corto y treinta preguntas por eje. Sobre ese resultado se arma tu calendario, no sobre un temario genérico.",
@@ -79,7 +80,8 @@ export const COURSES = [
       "Calendario de seis meses ajustado a tu diagnóstico",
       "Revisión semanal de avance con devolución escrita",
       "Módulo de Sistema de Salud Chileno, GES y Medicina Legal",
-      "Acceso a la plataforma hasta el día de tu examen"
+      "Acceso a la plataforma hasta el día de tu examen",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona: [
       "Estudias cuando puedes. El calendario reparte diez a quince horas semanales en bloques de noventa minutos, pensado para quien está con turnos o trabajando.",
@@ -123,7 +125,8 @@ export const COURSES = [
       "Banco de 4.000+ preguntas con justificación",
       "Ocho simulacros cronometrados de 180 preguntas",
       "Seguimiento y tutoría académica semanal",
-      "Módulo completo de Salud Pública chilena y GES"
+      "Módulo completo de Salud Pública chilena y GES",
+      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
     ],
     comoFunciona: [
       "Simulacro diagnóstico inicial para ponderar fortalezas y debilidades.",
