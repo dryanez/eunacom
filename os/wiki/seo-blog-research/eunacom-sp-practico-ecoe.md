@@ -7,7 +7,7 @@ estimated_volume: "Medio-Alto (+850 busq/mes)"
 target_url: "/blog/practico-ecoe"
 status: draft-ready
 author: "Dr. Felipe Yáñez"
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 ---
 
 # 📝 Editorial SEO Research Note: EUNACOM Práctico (SP): Rúbricas ECOE, Estaciones Clínicas y Sedes Hospitalarias

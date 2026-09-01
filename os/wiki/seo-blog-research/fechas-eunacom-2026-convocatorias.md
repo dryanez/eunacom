@@ -7,7 +7,7 @@ estimated_volume: "Muy Alto (+2.500 busq/mes)"
 target_url: "/blog/fechas-eunacom-2026-2027"
 status: draft-ready
 author: "Dr. Felipe Yáñez"
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 ---
 
 # 📝 Editorial SEO Research Note: Fechas Oficiales EUNACOM 2026: Inscripción de Invierno y Verano en ASOFAMECH

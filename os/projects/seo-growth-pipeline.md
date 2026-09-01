@@ -1,6 +1,6 @@
 ---
 type: seo-growth-pipeline
-last_audit: 2026-08-31
+last_audit: 2026-09-01
 health_score: 98/100
 striking_queries_count: 4
 domain: eunacomapp.cl / eunacom-examen.cl
@@ -8,15 +8,15 @@ domain: eunacomapp.cl / eunacom-examen.cl
 
 # 🚀 SEO Growth Pipeline & Editorial Striking Distance Map
 
-*Generated automatically by Multi-Agent Daily SEO Cron on **2026-08-31***
+*Generated automatically by Multi-Agent Daily SEO Cron on **2026-09-01***
 
 ---
 
 ## 📊 Live Metrics Snapshot
 - **Real Multi-Agent Health Score:** `98/100`
-- **Google Search Console 30d Clicks:** `8`
-- **Google Search Console 30d Impressions:** `114`
-- **Average Ranking Position:** `#22.5`
+- **Google Search Console 30d Clicks:** `0`
+- **Google Search Console 30d Impressions:** `0`
+- **Average Ranking Position:** `#0.0`
 
 ---
 

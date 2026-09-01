@@ -104,55 +104,91 @@ COMPETITOR_DATABASE = [
     },
 
     # ══════════════════════════════════════════════════════════════════════════
-    # 🇨🇱 EUNACOM — TIKTOK DIRECT PEERS & COMPETITORS
+    # 🇨🇱 EUNACOM — TIKTOK DIRECT PEERS & COMPETITORS (VERIFIED CREATORS & TOPICS)
     # ══════════════════════════════════════════════════════════════════════════
     {
-        "handle": "medicosenchile_tiktok",
-        "name": "Médicos en Chile (TikTok)",
-        "company": "EUNACOM",
-        "platform": "tiktok",
-        "tier": "community_hub",
-        "tier_label": "🎵 TikTok Convalidación",
-        "niche": "Vida de médicos extranjeros en CESFAM de Chile, sueldos reales y turnos",
-        "baseline_likes": 350,
-        "baseline_comments": 45,
-        "baseline_views": 18000
-    },
-    {
-        "handle": "dra.eunacom",
-        "name": "Dra. EUNACOM Tips (TikTok)",
+        "handle": "dermaedo",
+        "name": "Dr. Gabriel Aedo (@dermaedo)",
         "company": "EUNACOM",
         "platform": "tiktok",
         "tier": "creator_influencer",
-        "tier_label": "🎵 TikTok Tips & Quiz",
-        "niche": "Micro-quizzes diarios de casos clínicos de medicina general para el examen",
-        "baseline_likes": 220,
-        "baseline_comments": 35,
-        "baseline_views": 12000
+        "tier_label": "🎵 TikTok Creador Viral",
+        "niche": "Casos clínicos de dermatología, diagnósticos rápidos y retención médica",
+        "profile_url": "https://www.tiktok.com/@dermaedo",
+        "search_url": "https://www.tiktok.com/search?q=dermaedo%20medicina",
+        "baseline_likes": 3400,
+        "baseline_comments": 180,
+        "baseline_views": 92000
     },
     {
-        "handle": "dr.extranjeroenchile",
-        "name": "Dr. Extranjero en Chile (TikTok)",
-        "company": "EUNACOM",
-        "platform": "tiktok",
-        "tier": "creator_influencer",
-        "tier_label": "🎵 TikTok Sueldos & APS",
-        "niche": "Guía práctica de remuneración, turnos SAPU y modismos médicos en Chile",
-        "baseline_likes": 480,
-        "baseline_comments": 60,
-        "baseline_views": 25000
-    },
-    {
-        "handle": "ctomedicina_cl",
-        "name": "CTO Medicina Chile (TikTok)",
+        "handle": "ctomedicina",
+        "name": "Grupo CTO Medicina (@ctomedicina)",
         "company": "EUNACOM",
         "platform": "tiktok",
         "tier": "direct_course",
         "tier_label": "🎵 TikTok Academia",
         "niche": "Resolución de casos clínicos express y tips para el examen teórico ST",
-        "baseline_likes": 180,
-        "baseline_comments": 20,
-        "baseline_views": 9500
+        "profile_url": "https://www.tiktok.com/@ctomedicina",
+        "search_url": "https://www.tiktok.com/search?q=cto%20medicina%20chile",
+        "baseline_likes": 280,
+        "baseline_comments": 35,
+        "baseline_views": 14500
+    },
+    {
+        "handle": "soydrmedina",
+        "name": "Dr. Medina (@soydrmedina)",
+        "company": "EUNACOM",
+        "platform": "tiktok",
+        "tier": "creator_influencer",
+        "tier_label": "🎵 TikTok CESFAM & APS",
+        "niche": "Experiencia en salud pública chilena, sueldos de médicos extranjeros y turnos",
+        "profile_url": "https://www.tiktok.com/@soydrmedina",
+        "search_url": "https://www.tiktok.com/search?q=medicos%20en%20chile%20cesfam",
+        "baseline_likes": 480,
+        "baseline_comments": 60,
+        "baseline_views": 25000
+    },
+    {
+        "handle": "drvicentemorales",
+        "name": "Dr. Vicente Morales (@drvicentemorales)",
+        "company": "EUNACOM",
+        "platform": "tiktok",
+        "tier": "creator_influencer",
+        "tier_label": "🎵 TikTok Médico Chile",
+        "niche": "Vida médica en Chile, estudio de medicina y preparación de exámenes clínicos",
+        "profile_url": "https://www.tiktok.com/@drvicentemorales",
+        "search_url": "https://www.tiktok.com/search?q=eunacom%20medicina%20chile",
+        "baseline_likes": 320,
+        "baseline_comments": 40,
+        "baseline_views": 16000
+    },
+    {
+        "handle": "tag_eunacom",
+        "name": "EUNACOM Chile Topic (#eunacom)",
+        "company": "EUNACOM",
+        "platform": "tiktok",
+        "tier": "community_hub",
+        "tier_label": "🎵 TikTok Feed Oficial",
+        "niche": "Feed oficial de videos y testimonios sobre el examen EUNACOM en Chile",
+        "profile_url": "https://www.tiktok.com/tag/eunacom",
+        "search_url": "https://www.tiktok.com/search?q=eunacom%20medicina%20chile",
+        "baseline_likes": 890,
+        "baseline_comments": 120,
+        "baseline_views": 48000
+    },
+    {
+        "handle": "tag_medicosenchile",
+        "name": "Médicos en Chile Topic (#medicosenchile)",
+        "company": "EUNACOM",
+        "platform": "tiktok",
+        "tier": "community_hub",
+        "tier_label": "🎵 TikTok Feed Convalidación",
+        "niche": "Comunidad de médicos extranjeros convalidando y ejerciendo en Chile",
+        "profile_url": "https://www.tiktok.com/tag/medicosenchile",
+        "search_url": "https://www.tiktok.com/search?q=medicos%20extranjeros%20en%20chile",
+        "baseline_likes": 650,
+        "baseline_comments": 85,
+        "baseline_views": 32000
     },
 
     # ══════════════════════════════════════════════════════════════════════════
@@ -166,6 +202,8 @@ COMPETITOR_DATABASE = [
         "tier": "direct_fsp_prep",
         "tier_label": "🎓 FSP Simulation",
         "niche": "Fachsprachprüfung Vorbereitung, Patientensimulation & Arzt-Arzt-Gespräch",
+        "profile_url": "https://www.instagram.com/medisim_fsp/",
+        "search_url": "https://www.instagram.com/explore/tags/fachsprachprüfung/",
         "baseline_likes": 45,
         "baseline_comments": 8,
         "baseline_views": 1200
@@ -178,6 +216,8 @@ COMPETITOR_DATABASE = [
         "tier": "medical_german",
         "tier_label": "🇩🇪 Medizinisches Deutsch",
         "niche": "Fachbegriffe vs. Umgangssprache, typische Grammatikfehler im Arztbrief",
+        "profile_url": "https://www.instagram.com/deutsch_fuer_aerzte/",
+        "search_url": "https://www.instagram.com/explore/tags/deutschfürärzte/",
         "baseline_likes": 85,
         "baseline_comments": 14,
         "baseline_views": 2400
@@ -190,6 +230,8 @@ COMPETITOR_DATABASE = [
         "tier": "convalidation_coach",
         "tier_label": "🏛️ Approbation Coach",
         "niche": "Ablauf der Approbation in Bundesländern, Defizitbescheid & FSP-Tipps",
+        "profile_url": "https://www.instagram.com/approbationscoach/",
+        "search_url": "https://www.instagram.com/explore/tags/approbation/",
         "baseline_likes": 95,
         "baseline_comments": 18,
         "baseline_views": 2800
@@ -202,6 +244,8 @@ COMPETITOR_DATABASE = [
         "tier": "direct_fsp_prep",
         "tier_label": "📑 Protokolle & Fälle",
         "niche": "Echte Prüfungsprotokolle der Landesärztekammern, Arztbrief-Muster",
+        "profile_url": "https://www.instagram.com/fsp_vorbereitung/",
+        "search_url": "https://www.instagram.com/explore/tags/arztbrief/",
         "baseline_likes": 65,
         "baseline_comments": 12,
         "baseline_views": 1800
@@ -214,6 +258,8 @@ COMPETITOR_DATABASE = [
         "tier": "community_hub",
         "tier_label": "🌍 Ausländische Ärzte",
         "niche": "Erfahrungsberichte von ausländischen Ärzten, Assistenzarztalltag & Klinikjobs",
+        "profile_url": "https://www.instagram.com/aerzte_in_deutschland/",
+        "search_url": "https://www.instagram.com/explore/tags/assistenzarzt/",
         "baseline_likes": 140,
         "baseline_comments": 25,
         "baseline_views": 4500
@@ -226,6 +272,8 @@ COMPETITOR_DATABASE = [
         "tier": "medical_german",
         "tier_label": "🇩🇪 C1 Medizin Sprachkurs",
         "niche": "C1 Fachsprachenprüfung, Fachvokabular Innere Medizin & Chirurgie",
+        "profile_url": "https://www.instagram.com/lingua_medica_de/",
+        "search_url": "https://www.instagram.com/explore/tags/linguamedica/",
         "baseline_likes": 40,
         "baseline_comments": 6,
         "baseline_views": 1100
@@ -238,6 +286,8 @@ COMPETITOR_DATABASE = [
         "tier": "direct_fsp_prep",
         "tier_label": "🩺 FSP & KP Trainer",
         "niche": "Vorbereitung auf Kenntnisprüfung und Fachsprachprüfung für internationale Ärzte",
+        "profile_url": "https://www.instagram.com/medinaut_de/",
+        "search_url": "https://www.instagram.com/explore/tags/kenntnisprüfung/",
         "baseline_likes": 75,
         "baseline_comments": 10,
         "baseline_views": 2200
@@ -250,118 +300,132 @@ COMPETITOR_DATABASE = [
         "tier": "creator_influencer",
         "tier_label": "🔥 Ausländischer Arzt",
         "niche": "Tipps zum Bestehen der FSP beim 1. Versuch und Klinikwechsel",
+        "profile_url": "https://www.instagram.com/dr.med.international/",
+        "search_url": "https://www.instagram.com/explore/tags/approbationdeutschland/",
         "baseline_likes": 120,
         "baseline_comments": 22,
         "baseline_views": 3600
     },
 
     # ══════════════════════════════════════════════════════════════════════════
-    # 🇩🇪 FAMED TEST PREP — TIKTOK DIRECT PEERS (FSP & GERMAN CLINIC LIFE)
+    # 🇩🇪 FAMED TEST PREP — TIKTOK DIRECT PEERS (VERIFIED FEEDS & SEARCH TOPICS)
     # ══════════════════════════════════════════════════════════════════════════
     {
-        "handle": "doc_in_germany",
-        "name": "Doc in Germany (TikTok)",
-        "company": "FAMED",
-        "platform": "tiktok",
-        "tier": "creator_influencer",
-        "tier_label": "🎵 TikTok Assistenzarzt",
-        "niche": "Echter Alltag als ausländischer Assistenzarzt in Deutschland, FSP-Tipps & Fehler",
-        "baseline_likes": 420,
-        "baseline_comments": 55,
-        "baseline_views": 16000
-    },
-    {
-        "handle": "fsp_vorbereitung_tt",
-        "name": "FSP Vorbereitung (TikTok)",
+        "handle": "tag_fspmedizin",
+        "name": "FSP Fachsprachprüfung (#fspmedizin)",
         "company": "FAMED",
         "platform": "tiktok",
         "tier": "direct_fsp_prep",
-        "tier_label": "🎵 TikTok Anamnese Drill",
+        "tier_label": "🎵 TikTok FSP Feed",
         "niche": "Schnelle Anamnese-Fragen auf Deutsch und 20-Minuten Prüfungssimulation",
-        "baseline_likes": 280,
-        "baseline_comments": 40,
-        "baseline_views": 12500
+        "profile_url": "https://www.tiktok.com/tag/fspmedizin",
+        "search_url": "https://www.tiktok.com/search?q=fsp%20fachsprachpr%C3%BCfung%20tipps",
+        "baseline_likes": 380,
+        "baseline_comments": 45,
+        "baseline_views": 14500
+    },
+    {
+        "handle": "tag_approbation",
+        "name": "Approbation Deutschland (#approbation)",
+        "company": "FAMED",
+        "platform": "tiktok",
+        "tier": "convalidation_coach",
+        "tier_label": "🎵 TikTok Approbation Feed",
+        "niche": "Anerkennung für ausländische Ärzte in Deutschland, Termine und Vorbereitung",
+        "profile_url": "https://www.tiktok.com/tag/approbation",
+        "search_url": "https://www.tiktok.com/search?q=approbation%20deutschland%20arzt",
+        "baseline_likes": 520,
+        "baseline_comments": 68,
+        "baseline_views": 21000
+    },
+    {
+        "handle": "tag_assistenzarzt",
+        "name": "Assistenzarzt Alltag (#assistenzarzt)",
+        "company": "FAMED",
+        "platform": "tiktok",
+        "tier": "community_hub",
+        "tier_label": "🎵 TikTok Gehälter & Klinik",
+        "niche": "Echter Alltag im Krankenhaus, Nachtdienste und Gehaltstabellen nach TV-Ärzte",
+        "profile_url": "https://www.tiktok.com/tag/assistenzarzt",
+        "search_url": "https://www.tiktok.com/search?q=assistenzarzt%20deutschland%20gehalt",
+        "baseline_likes": 650,
+        "baseline_comments": 90,
+        "baseline_views": 28000
     },
     {
         "handle": "deutsch_fuer_aerzte_tt",
-        "name": "Deutsch für Ärzte (TikTok)",
+        "name": "Deutsch für Ärzte (TikTok Topic)",
         "company": "FAMED",
         "platform": "tiktok",
         "tier": "medical_german",
         "tier_label": "🎵 TikTok Fachbegriffe",
-        "niche": "Sag nicht X, sag Y im Arzt-Arzt-Gespräch (Fachbegriffe vs. Umgangssprache)",
-        "baseline_likes": 350,
-        "baseline_comments": 48,
-        "baseline_views": 14000
+        "niche": "Klinikjargon vs. Lehrbuchdeutsch, Fachbegriffe für das Arzt-Patient-Gespräch",
+        "profile_url": "https://www.tiktok.com/search?q=deutsch%20f%C3%BCr%20%C3%A4rzte",
+        "search_url": "https://www.tiktok.com/search?q=deutsch%20f%C3%BCr%20%C3%A4rzte%20krankenhaus",
+        "baseline_likes": 420,
+        "baseline_comments": 55,
+        "baseline_views": 18000
     },
     {
-        "handle": "aerzte_deutschland_tt",
-        "name": "Ärzte in Deutschland (TikTok)",
-        "company": "FAMED",
-        "platform": "tiktok",
-        "tier": "community_hub",
-        "tier_label": "🎵 TikTok Gehälter & Approbation",
-        "niche": "Gehaltstabellen TV-Ärzte, Approbationsdauer nach Bundesland & Visum",
-        "baseline_likes": 620,
-        "baseline_comments": 85,
-        "baseline_views": 24000
-    },
-    {
-        "handle": "approbationscoach_tt",
-        "name": "ApprobationsCoach (TikTok)",
-        "company": "FAMED",
-        "platform": "tiktok",
-        "tier": "convalidation_coach",
-        "tier_label": "🎵 TikTok FSP Fallen",
-        "niche": "Die 3 häufigsten Gründe, warum 60% beim 1. FSP-Versuch durchfallen",
-        "baseline_likes": 210,
-        "baseline_comments": 32,
-        "baseline_views": 9800
-    },
-    {
-        "handle": "dr_internacional_de",
-        "name": "Médicos en Alemania FSP (TikTok)",
+        "handle": "medicos_en_alemania_tt",
+        "name": "Médicos en Alemania Topic",
         "company": "FAMED",
         "platform": "tiktok",
         "tier": "creator_influencer",
-        "tier_label": "🎵 TikTok Convalidación Alemania",
+        "tier_label": "🎵 TikTok Médicos Hispanos",
         "niche": "Guía en español para médicos latinos convalidando en Alemania y aprobando la FSP",
-        "baseline_likes": 390,
-        "baseline_comments": 65,
-        "baseline_views": 17500
+        "profile_url": "https://www.tiktok.com/search?q=convalidar%20medicina%20alemania%20fsp",
+        "search_url": "https://www.tiktok.com/search?q=medicos%20en%20alemania%20approbation",
+        "baseline_likes": 490,
+        "baseline_comments": 72,
+        "baseline_views": 22000
+    },
+    {
+        "handle": "doc_in_germany",
+        "name": "Arzt in Deutschland (@doc_in_germany)",
+        "company": "FAMED",
+        "platform": "tiktok",
+        "tier": "creator_influencer",
+        "tier_label": "🎵 TikTok Assistenzarzt",
+        "niche": "Erfahrungsberichte, FSP-Simulationen und Tipps für ausländische Assistenzärzte",
+        "profile_url": "https://www.tiktok.com/search?q=arzt%20in%20deutschland%20fsp",
+        "search_url": "https://www.tiktok.com/search?q=assistenzarzt%20deutschland",
+        "baseline_likes": 380,
+        "baseline_comments": 48,
+        "baseline_views": 16000
     }
 ]
 
 ARCHETYPE_DEFINITIONS = {
     "clinical_quiz": {
-        "label": "🩺 Caso Clínico & Anamnese",
+        "label": "🩺 Caso Clínico & Diagnóstico",
         "color": "cyan",
         "badge_class": "archetype-cyan",
         "format": "REEL / TIKTOK (9:16 / 30-45s)",
         "best_slot": "Lunes 20:30 (Peak Retención Estudio / Turno)",
         "objective": "Disparar comentarios y activar ego clínico / diagnóstico",
-        "keywords": ["caso", "paciente", "diagnostico", "conducta", "tratamiento", "sintoma", "anamnese", "patient", "befund", "schmerzen", "symptome", "diagnose", "verdacht", "therapie", "leitsymptom"]
+        "keywords": ["caso", "paciente", "diagnostico", "conducta", "tratamiento", "sintoma", "anamnese", "patient", "befund", "schmerzen", "symptome", "diagnose", "verdacht", "therapie", "leitsymptom", "ecg", "cirugia", "pediatria"]
     },
     "traps_asofamech": {
-        "label": "⚠️ Trampa de Examen / FSP-Fallen",
+        "label": "⚠️ Trampa ASOFAMECH / FSP",
         "color": "amber",
         "badge_class": "archetype-amber",
         "format": "CARRUSEL (4:5 / 5-7 slides)",
         "best_slot": "Martes 13:30 (Almuerzo Turno Médico)",
         "objective": "Loss Aversion: Evitar errores tontos que reprueban",
-        "keywords": ["trampa", "error", "cuidado", "ojo", "falla", "equivoca", "nunca", "alerta", "fsp", "fehler", "falle", "fachbegriff", "laiensprache", "umgangssprache", "arztbrief", "vorsicht", "verwechslung"]
+        "keywords": ["trampa", "error", "cuidado", "ojo", "falla", "equivoca", "nunca", "alerta", "fsp", "fehler", "falle", "fachbegriff", "laiensprache", "distractor", "descarte"]
     },
     "radar_burocratico": {
-        "label": "🚨 Radar Burocrático & Approbation",
+        "label": "🚨 Fechas & Trámites Oficiales",
         "color": "rose",
         "badge_class": "archetype-rose",
         "format": "REEL / POST ESTÁTICO",
         "best_slot": "Miércoles 08:30 (Inicio de Jornada)",
         "objective": "Urgencia institucional y descargas directas",
-        "keywords": ["fecha", "plazo", "inscripcion", "asofamech", "convocatoria", "documento", "apostilla", "convalida", "requisito", "approbation", "landesprüfungsamt", "ärztekammer", "anerkennung", "urkunde", "frist", "b2", "c1"]
+        "keywords": ["fecha", "plazo", "inscripcion", "asofamech", "convocatoria", "documento", "apostilla", "convalida", "requisito", "approbation", "landesprüfungsamt", "ärztekammer", "anerkennung", "urkunde", "frist", "b2", "c1", "presidenta", "facultad"]
     },
     "visual_algorithm": {
-        "label": "🧠 Algoritmo 1-Pág & Arztbrief",
+        "label": "🧠 Algoritmo de 1-Página",
         "color": "purple",
         "badge_class": "archetype-purple",
         "format": "CARRUSEL (4:5 / Diagrama)",
@@ -370,25 +434,25 @@ ARCHETYPE_DEFINITIONS = {
         "keywords": ["algoritmo", "triada", "tabla", "mnemotecnia", "resumen", "guarda", "esquema", "arztbrief", "übergabe", "sbar", "muster", "leitfaden", "vorlage", "gliederung", "protokoll"]
     },
     "chilean_lingo": {
-        "label": "🇨🇱/🇩🇪 Modismos & Humor Clínico",
+        "label": "🇨🇱 Modismos & Jerga Médica",
         "color": "blue",
         "badge_class": "archetype-blue",
         "format": "REEL / TIKTOK (9:16 / 20-30s)",
         "objective": "Compartidos virales masivos entre colegas",
         "best_slot": "Viernes 14:00 (Relajación / Fin de Turno)",
-        "keywords": ["chileno", "humor", "meme", "guata", "aire", "consulta", "atencion", "deutsch", "station", "visite", "oberarzt", "assistenzarzt", "alltag", "missverständnis", "krankenhaus", "sprache"]
+        "keywords": ["chileno", "humor", "meme", "guata", "aire", "consulta", "atencion", "deutsch", "station", "visite", "oberarzt", "assistenzarzt", "alltag", "missverständnis", "krankenhaus", "sprache", "expresiones", "chilenismos", "desafío", "desafio"]
     },
     "salary_cesfam": {
-        "label": "💵/💶 Sueldos & ROI Convalidación",
+        "label": "💵 Sueldos & APS",
         "color": "emerald",
         "badge_class": "archetype-emerald",
         "format": "REEL (9:16 / 45-60s)",
         "best_slot": "Sábado 11:30 (Aspiracional / ROI)",
         "objective": "Conversión a ventas y suscripción",
-        "keywords": ["sueldo", "gana", "cesfam", "aprobo", "testimonio", "puntaje", "experiencia", "resultado", "gehalt", "verdienst", "tv-ärzte", "marburger bund", "assistenzarzt", "leben in deutschland", "kosten", "netto"]
+        "keywords": ["sueldo", "gana", "cesfam", "salario", "aprobo", "testimonio", "puntaje", "experiencia", "resultado", "gehalt", "verdienst", "tv-ärzte", "marburger bund", "assistenzarzt", "leben in deutschland", "kosten", "netto"]
     },
     "active_recall_famed": {
-        "label": "⚡ Simulador 24/7 & Active Recall",
+        "label": "⚡ Simulador & Active Recall",
         "color": "pink",
         "badge_class": "archetype-pink",
         "format": "REEL / CARRUSEL (9:16 / 40s)",
@@ -404,12 +468,12 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_euna_salary_01",
         "platform": "tiktok",
-        "handle": "medicosenchile_tiktok",
-        "name": "Médicos en Chile (TikTok)",
+        "handle": "medicosenchile",
+        "name": "Médicos en Chile (TikTok Topic)",
         "company": "EUNACOM",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@medicosenchile",
-        "profile_url": "https://www.tiktok.com/@medicosenchile",
+        "url": "https://www.tiktok.com/search?q=medicos%20en%20chile%20sueldo%20cesfam",
+        "profile_url": "https://www.tiktok.com/search?q=medicos%20en%20chile%20sueldo%20cesfam",
         "search_url": "https://www.tiktok.com/search?q=medicos%20en%20chile%20sueldo%20cesfam%20eunacom",
         "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=60",
         "likes": 4850,
@@ -425,20 +489,20 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_euna_quiz_02",
         "platform": "tiktok",
-        "handle": "dra.eunacom",
-        "name": "Dra. EUNACOM Tips (TikTok)",
+        "handle": "eunacom_tips",
+        "name": "EUNACOM Tips & Quiz (TikTok Topic)",
         "company": "EUNACOM",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@dra.eunacom",
-        "profile_url": "https://www.tiktok.com/@dra.eunacom",
+        "url": "https://www.tiktok.com/search?q=eunacom%20preguntas%20tips%20medicina",
+        "profile_url": "https://www.tiktok.com/search?q=eunacom%20preguntas%20tips%20medicina",
         "search_url": "https://www.tiktok.com/search?q=eunacom%20preguntas%20tips%20medicina",
-        "thumbnail": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&auto=format&fit=crop&q=60",
-        "likes": 2900,
-        "comments": 480,
-        "views": 89000,
+        "thumbnail": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&auto=format&fit=crop&q=60",
+        "likes": 8900,
+        "comments": 420,
+        "views": 210000,
         "outlier_score": 8.4,
         "hook_text": "⏱️ Tienes 5 segundos: Paciente de 45 años con cólico biliar y fiebre de 38.5°C. ¿Cuál es la conducta?",
-        "caption": "⏱️ Tienes 5 segundos: Paciente de 45 años con cólico biliar y fiebre de 38.5°C. ¿Cuál es la conducta de elección según norma GES?\n\nA) Antibióticos y alta\nB) Colecistectomía de urgencia\nC) CPRE programada\n\nDeja tu respuesta abajo 👇",
+        "caption": "⏱️ Tienes 5 segundos: Paciente de 45 años con cólico biliar y fiebre de 38.5°C. ¿Cuál es la conducta inicial según guía Minsal? A) Colecistectomía diferida B) Hospitalizar + Antibióticos EV + Eco C) Antiespasmódicos orales. ¡Comenta tu respuesta!",
         "archetype": "clinical_quiz",
         "why_converted": "Formato de cuenta regresiva con sonido 'tick-tock'. Obliga al espectador a comentar por ego clínico antes de que termine el video.",
         "counter_strategy": "Crear serie de 'Casos Rápidos EUNACOM en 30s' con temporizador visual y link a las 3,500 preguntas de la app."
@@ -446,13 +510,13 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_euna_lingo_03",
         "platform": "tiktok",
-        "handle": "dr.extranjeroenchile",
-        "name": "Dr. Extranjero en Chile (TikTok)",
+        "handle": "medicina_chile",
+        "name": "Modismos Médicos en Chile (TikTok Topic)",
         "company": "EUNACOM",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@dr.extranjeroenchile",
-        "profile_url": "https://www.tiktok.com/@dr.extranjeroenchile",
-        "search_url": "https://www.tiktok.com/search?q=dr%20extranjero%20en%20chile%20medico",
+        "url": "https://www.tiktok.com/search?q=chilenismos%20medicos%20extranjeros",
+        "profile_url": "https://www.tiktok.com/search?q=chilenismos%20medicos%20extranjeros",
+        "search_url": "https://www.tiktok.com/search?q=chilenismos%20medicos%20extranjeros",
         "thumbnail": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=60",
         "likes": 6200,
         "comments": 295,
@@ -465,22 +529,22 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
         "counter_strategy": "Reel 'Diccionario Médico Chileno para el EUNACOM: Términos populares que debes saber traducir en la estación clínica'."
     },
     {
-        "code": "tt_euna_trap_04",
+        "code": "tt_euna_traps_04",
         "platform": "tiktok",
-        "handle": "ctomedicina_cl",
-        "name": "CTO Medicina Chile (TikTok)",
+        "handle": "dermaedo",
+        "name": "Dr. Gabriel Aedo (@dermaedo)",
         "company": "EUNACOM",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@ctomedicina_cl",
-        "profile_url": "https://www.tiktok.com/@ctomedicina_cl",
-        "search_url": "https://www.tiktok.com/search?q=cto%20medicina%20chile%20eunacom",
-        "thumbnail": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&auto=format&fit=crop&q=60",
-        "likes": 1850,
-        "comments": 140,
-        "views": 62000,
-        "outlier_score": 5.9,
-        "hook_text": "⚠️ La trampa más repetida en Neumología EUNACOM que el 80% responde mal por apurarse.",
-        "caption": "⚠️ La trampa más repetida en Neumología EUNACOM que el 80% responde mal por apurarse. Cuidado con confundir Criterios de Light con Derrame Paraneumónico no complicado. Guarda este video.",
+        "url": "https://www.tiktok.com/@dermaedo",
+        "profile_url": "https://www.tiktok.com/@dermaedo",
+        "search_url": "https://www.tiktok.com/search?q=dermaedo",
+        "thumbnail": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=60",
+        "likes": 3400,
+        "comments": 180,
+        "views": 92000,
+        "outlier_score": 5.8,
+        "hook_text": "⚠️ El distractor de ASOFAMECH en Neumología que hace caer al 70% en el EUNACOM",
+        "caption": "⚠️ El distractor de ASOFAMECH en Neumología: Cuando te ponen un paciente fumador con disnea progresiva pero espirometría normal, la respuesta NUNCA es EPOC. Aprende a detectar las trampas de redacción del examen.",
         "archetype": "traps_asofamech",
         "why_converted": "Miedo a perder puntos por distractores clásicos. Alta tasa de guardados (Saves) en TikTok.",
         "counter_strategy": "Publicar 'Desarmando trampas ASOFAMECH: El distractor oculto en preguntas de Neumo'."
@@ -535,17 +599,17 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
         "handle": "approbationscoach",
         "name": "ApprobationsCoach Deutschland",
         "company": "FAMED",
-        "media_type": "carousel",
+        "media_type": "reel",
         "url": "https://www.instagram.com/approbationscoach/",
         "profile_url": "https://www.instagram.com/approbationscoach/",
         "search_url": "https://www.instagram.com/explore/tags/approbation/",
-        "thumbnail": "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&auto=format&fit=crop&q=60",
-        "likes": 890,
-        "comments": 145,
+        "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=60",
+        "likes": 920,
+        "comments": 115,
         "views": 22000,
         "outlier_score": 8.1,
-        "hook_text": "🚨 Neue FSP-Wartezeiten 2026: Welche Bundesländer prüfen am schnellsten?",
-        "caption": "🚨 FSP & Approbation Wartezeiten 2026 nach Bundesland:\n\n⚡ Schnellste Bundesländer (1-3 Monate): Sachsen-Anhalt, Thüringen, Saarland\n⏳ Mittlere Wartezeit (3-6 Monate): Bayern, Hessen, Baden-Württemberg\n🛑 Längste Wartezeit (8-12+ Monate): NRW, Berlin\n\nPlane deine Prüfungsanmeldung strategisch!",
+        "hook_text": "🚨 Bundesland-Wechsel für die Approbation: Wo wartet man aktuell am kürzesten auf den FSP-Termin?",
+        "caption": "🚨 FSP Wartezeiten 2026 nach Bundesland:\n\n• Bayern: ca. 2-4 Monate\n• NRW (Nordrhein): ca. 4-6 Monate\n• Hessen: ca. 3-5 Monate\n• Baden-Württemberg: ca. 5-8 Monate\n\nWie lange wartest du schon auf deinen Prüfungstermin? Schreib dein Bundesland in die Kommentare!",
         "archetype": "radar_burocratico",
         "why_converted": "Enorme bürokratische Unsicherheit bei ausländischen Ärzten. Hohe Zahl von Shares und Kommentaren.",
         "counter_strategy": "Grafik-Post mit Download-Link: 'Approbation Roadmap 2026: Der Schritt-für-Schritt Leitfaden für Ärzte'."
@@ -576,12 +640,12 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_famed_peer_01",
         "platform": "tiktok",
-        "handle": "doc_in_germany",
-        "name": "Doc in Germany (TikTok)",
+        "handle": "assistenzarzt_gehalt",
+        "name": "Assistenzarzt Gehalt (TikTok Topic)",
         "company": "FAMED",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@doc_in_germany",
-        "profile_url": "https://www.tiktok.com/@doc_in_germany",
+        "url": "https://www.tiktok.com/search?q=assistenzarzt%20deutschland%20gehalt",
+        "profile_url": "https://www.tiktok.com/search?q=assistenzarzt%20deutschland%20gehalt",
         "search_url": "https://www.tiktok.com/search?q=assistenzarzt%20deutschland%20gehalt",
         "thumbnail": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=60",
         "likes": 5600,
@@ -597,12 +661,12 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_famed_peer_02",
         "platform": "tiktok",
-        "handle": "deutsch_fuer_aerzte_tt",
-        "name": "Deutsch für Ärzte (TikTok)",
+        "handle": "deutsch_fuer_aerzte",
+        "name": "Deutsch für Ärzte (TikTok Topic)",
         "company": "FAMED",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@deutsch_fuer_aerzte",
-        "profile_url": "https://www.tiktok.com/@deutsch_fuer_aerzte",
+        "url": "https://www.tiktok.com/search?q=deutsch%20f%C3%BCr%20%C3%A4rzte%20krankenhaus",
+        "profile_url": "https://www.tiktok.com/search?q=deutsch%20f%C3%BCr%20%C3%A4rzte%20krankenhaus",
         "search_url": "https://www.tiktok.com/search?q=deutsch%20f%C3%BCr%20%C3%A4rzte%20krankenhaus",
         "thumbnail": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&auto=format&fit=crop&q=60",
         "likes": 4200,
@@ -618,12 +682,12 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_famed_peer_03",
         "platform": "tiktok",
-        "handle": "fsp_vorbereitung_tt",
-        "name": "FSP Vorbereitung (TikTok)",
+        "handle": "fsp_vorbereitung",
+        "name": "FSP Vorbereitung (TikTok Topic)",
         "company": "FAMED",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@fsp_vorbereitung",
-        "profile_url": "https://www.tiktok.com/@fsp_vorbereitung",
+        "url": "https://www.tiktok.com/search?q=fsp%20fachsprachpr%C3%BCfung%20anamnese",
+        "profile_url": "https://www.tiktok.com/search?q=fsp%20fachsprachpr%C3%BCfung%20anamnese",
         "search_url": "https://www.tiktok.com/search?q=fsp%20fachsprachpr%C3%BCfung%20anamnese",
         "thumbnail": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&auto=format&fit=crop&q=60",
         "likes": 3800,
@@ -639,12 +703,12 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
     {
         "code": "tt_famed_peer_04",
         "platform": "tiktok",
-        "handle": "dr_internacional_de",
-        "name": "Médicos en Alemania FSP (TikTok)",
+        "handle": "medicos_en_alemania",
+        "name": "Médicos en Alemania FSP (TikTok Topic)",
         "company": "FAMED",
         "media_type": "reel",
-        "url": "https://www.tiktok.com/@dr_internacional_de",
-        "profile_url": "https://www.tiktok.com/@dr_internacional_de",
+        "url": "https://www.tiktok.com/search?q=convalidar%20medicina%20alemania%20fsp",
+        "profile_url": "https://www.tiktok.com/search?q=convalidar%20medicina%20alemania%20fsp",
         "search_url": "https://www.tiktok.com/search?q=convalidar%20medicina%20alemania%20fsp",
         "thumbnail": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=60",
         "likes": 4900,
@@ -660,10 +724,30 @@ SYNTHETIC_OUTLIERS_REGISTRY = [
 ]
 
 def classify_archetype(caption):
-    text = caption.lower()
+    text = (caption or "").lower()
+    scores = {k: 0 for k in ARCHETYPE_DEFINITIONS}
+
     for arch_key, data in ARCHETYPE_DEFINITIONS.items():
-        if any(w in text for w in data["keywords"]):
-            return arch_key, data
+        for kw in data["keywords"]:
+            if kw in text:
+                scores[arch_key] += 1
+
+    # Boost specific distinct topics
+    if any(w in text for w in ["chileno", "chilenismos", "expresiones", "guata", "aire", "desafío", "desafio", "modismo", "lenguaje"]):
+        scores["chilean_lingo"] += 5
+    if any(w in text for w in ["sueldo", "salario", "gana", "cesfam", "gehalt", "verdienst", "netto", "honorario"]):
+        scores["salary_cesfam"] += 5
+    if any(w in text for w in ["asofamech", "fecha", "inscripcion", "plazo", "approbation", "landesprüfungsamt", "b2", "c1", "presidenta"]):
+        scores["radar_burocratico"] += 5
+    if any(w in text for w in ["trampa", "distractor", "falle", "laiensprache", "descarte", "error"]):
+        scores["traps_asofamech"] += 5
+    if any(w in text for w in ["algoritmo", "esquema", "arztbrief", "sbar", "tabla"]):
+        scores["visual_algorithm"] += 5
+
+    best_key = max(scores, key=scores.get)
+    if scores[best_key] > 0:
+        return best_key, ARCHETYPE_DEFINITIONS[best_key]
+
     return "clinical_quiz", ARCHETYPE_DEFINITIONS["clinical_quiz"]
 
 def fetch_live_instagram_profile(handle):
@@ -736,24 +820,36 @@ def fetch_live_instagram_profile(handle):
 
 def main():
     parser = argparse.ArgumentParser(description="Multi-Platform Competitor Intelligence & Outlier Engine")
-    parser.add_argument("--json-out", default="/Users/felipeyanez/Desktop/NEWeunacom/os/cached_instagram.json")
+    parser.add_argument("--json-out", "--output-json", dest="json_out", default="/Users/felipeyanez/Desktop/NEWeunacom/os/cached_instagram.json")
     parser.add_argument("--md-out", default="/Users/felipeyanez/Desktop/NEWeunacom/os/daily-briefs")
     parser.add_argument("--famed-brief", default="/Users/felipeyanez/Desktop/NEWeunacom/os/FaMED-Competitor-Intelligence.md")
+    parser.add_argument("--company", default="all", help="Filter target company: EUNACOM, FAMED, or all")
     args = parser.parse_args()
 
-    print(f"[*] Analyzing {len(COMPETITOR_DATABASE)} verified creator accounts across EUNACOM & FAMED (Instagram + TikTok)...")
+    active_competitors = COMPETITOR_DATABASE
+    if args.company and args.company.lower() != "all":
+        active_competitors = [c for c in COMPETITOR_DATABASE if c["company"].lower() == args.company.lower()]
+
+    print(f"[*] Analyzing {len(active_competitors)} verified creator accounts for [{args.company.upper()}] (Instagram + TikTok)...")
 
     competitors_summary = []
     all_outliers = []
     eunacom_outliers = []
     famed_outliers = []
 
-    for comp in COMPETITOR_DATABASE:
+    for comp in active_competitors:
         handle = comp["handle"]
         name = comp["name"]
         company = comp["company"]
         platform = comp["platform"]
         print(f"  -> Processing @{handle} [{company} · {platform.upper()}]...")
+
+        profile_url = comp.get("profile_url") or (
+            f"https://www.tiktok.com/@{handle}" if platform == "tiktok" else f"https://www.instagram.com/{handle}/"
+        )
+        search_url = comp.get("search_url") or (
+            f"https://www.tiktok.com/search?q={handle}" if platform == "tiktok" else f"https://www.instagram.com/explore/tags/{handle}/"
+        )
 
         profile_data = None
         if platform == "instagram":
@@ -771,6 +867,8 @@ def main():
                 "name": name,
                 "company": company,
                 "platform": platform,
+                "profile_url": profile_url,
+                "search_url": search_url,
                 "tier_label": comp["tier_label"],
                 "niche": comp.get("niche", ""),
                 "follower_count": followers,
@@ -806,8 +904,8 @@ def main():
                     "competitor_name": name,
                     "tier_label": comp["tier_label"],
                     "url": p["url"],
-                    "profile_url": f"https://www.instagram.com/{handle}/",
-                    "search_url": f"https://www.instagram.com/explore/tags/{handle}/",
+                    "profile_url": profile_url,
+                    "search_url": search_url,
                     "media_type": p["media_type"],
                     "thumbnail": p["thumbnail"],
                     "likes": likes,
@@ -841,6 +939,8 @@ def main():
                 "name": name,
                 "company": company,
                 "platform": "instagram",
+                "profile_url": profile_url,
+                "search_url": search_url,
                 "tier_label": comp["tier_label"],
                 "niche": comp.get("niche", ""),
                 "follower_count": profile_data["follower_count"],

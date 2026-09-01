@@ -2,7 +2,7 @@
 type: daily-seo-intelligence
 date: 2026-09-01
 property: sc-domain:eunacomapp.cl
-real_health_score: 92/100
+real_health_score: 98/100
 total_clicks_30d: 0
 total_impressions_30d: 0
 avg_position: 0.0
@@ -11,7 +11,7 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 ---
 
 # 📈 Daily Executive SEO Intelligence · 2026-09-01
-*Real Multi-Agent Audit via `claude-seo` Suite — Overall Score: **92/100***
+*Real Multi-Agent Audit via `claude-seo` Suite — Overall Score: **98/100***
 
 ---
 
@@ -20,8 +20,8 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 | Specialist Agent | Real Audit Tool Executed | Result / Score | Finding |
 |---|---|---|---|
 | 🔍 **seo-google** | `gsc_query.py` | **0 clicks** / **0 imp** | 🟢 Healthy CTR (0.0%) |
-| ✍️ **seo-content** | `content_quality.py` | **92/100** | 🟢 0% filler words · 81% density |
-| 🏷️ **seo-schema** | `parse_html.py` | **0 JSON-LD Blocks** | 🟢  |
+| ✍️ **seo-content** | `content_quality.py` | **92/100** | 🟢 0% filler words · 80% density |
+| 🏷️ **seo-schema** | `parse_html.py` | **5 JSON-LD Blocks** | 🟢 SoftwareApplication, Organization, WebSite, ItemList, FAQPage |
 | ⚙️ **seo-technical** | `preload_check.py` | **100/100** | 🟢 Speculation Rules & LCP preloads active |
 | ⚡ **seo-performance** | `agent_ux_check.py` | **100/100** | 🟢 15 buttons · 11 landmarks · Fast (< 1.8s) |
 | 🤖 **seo-geo** | `content_verify.py` | **100/100** | 🟢 ChatGPT & Perplexity indexable |
@@ -44,11 +44,11 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 
 ## 4. 🛠️ Real Audit Findings & What Was Checked
 
-### [seo-schema] Schema.org Validation (`Warning 🟡`)
-- **Diagnostic Output:** Detected 0 structured data blocks (None)
+### [seo-schema] Schema.org Validation (`Passed 🟢`)
+- **Diagnostic Output:** Detected 5 structured data blocks (SoftwareApplication, Organization, WebSite, ItemList, FAQPage)
 
 ### [seo-content] Content Density & Readability (`Passed 🟢`)
-- **Diagnostic Output:** Information density: 81%, 0% filler penalty (1834 tokens)
+- **Diagnostic Output:** Information density: 80%, 0% filler penalty (1777 tokens)
 
 ### [seo-technical] Speculation Rules & Preload (`Passed 🟢`)
 - **Diagnostic Output:** Speculation Rules (prefetch + prerender) and high-priority LCP preloading verified (100/100)

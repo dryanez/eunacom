@@ -7,7 +7,7 @@ estimated_volume: "Alto (+1.800 busq/mes)"
 target_url: "/blog/trabajar-como-medico-en-chile"
 status: draft-ready
 author: "Dr. Felipe Yáñez"
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 ---
 
 # 📝 Editorial SEO Research Note: Sueldo de un Médico General en CESFAM y APS en Chile (Tabla Actualizada 2026)

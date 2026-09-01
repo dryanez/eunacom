@@ -14,6 +14,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Resolve a caller-supplied path and refuse anything outside the vault.
+// Without this, ?path=../.env walked straight out and returned repo secrets.
+const VAULT_ROOT = path.resolve(VAULT_PATH);
+function resolveInsideVault(relPath) {
+  if (typeof relPath !== "string" || !relPath) return null;
+  if (relPath.includes("\0")) return null;
+  const full = path.resolve(VAULT_ROOT, relPath);
+  if (full !== VAULT_ROOT && !full.startsWith(VAULT_ROOT + path.sep)) return null;
+  return full;
+}
+
 // Helper to read cached data
 function getCachedData() {
   if (fs.existsSync(JSON_CACHE)) {
@@ -115,7 +126,11 @@ app.get("/api/scrape/stream", (req, res) => {
     args.push("--company", company);
   }
 
-  const py = spawn("python3", args);
+  const pyBin = fs.existsSync("/Users/felipeyanez/Documents/Archive/08_Business_Projects/Automation_and_Dev_Tools/command-center-plugin/.venv/bin/python")
+    ? "/Users/felipeyanez/Documents/Archive/08_Business_Projects/Automation_and_Dev_Tools/command-center-plugin/.venv/bin/python"
+    : "python3";
+
+  const py = spawn(pyBin, args);
 
   py.stdout.on("data", (chunk) => {
     const lines = chunk.toString().split("\n").filter(l => l.trim().length > 0);
@@ -412,45 +427,62 @@ app.post("/api/ai/generate-script", (req, res) => {
   const targetBrand = isEunacom ? "@eunacomapp_cl" : "@famedapp";
   const targetSite = isEunacom ? "eunacomapp.cl" : "famedtestprep.com";
 
-  const isCarousel = (post.media_type === "carousel" || post.media_type === "image" ||
-    ["traps_asofamech", "visual_algorithm", "arztbrief_traps", "fachbegriffe_vs_laien"].includes(post.archetype || post.pillar));
+  const arch = post.archetype || post.pillar || "clinical_quiz";
+  const cleanArchLabel = (post.archetype_label || "").replace(/\s*\/.*$/, "").replace(/^[^\w\s]+/, "").trim() || "Caso Clínico";
+  const hookTopic = post.hook_text ? post.hook_text.replace(/^[^\w\s]+/, "").slice(0, 50).trim() : cleanArchLabel;
 
   const hookOptions = isCarousel ? [
     {
       type: "🖼️ Slide 1 Hook (Loss Aversion)",
       hook: isEunacom
-        ? `⚠️ 5 Trampas del EUNACOM en ${post.archetype_label || "este tema"} que reprueban al 70% (Desliza ➡️)`
+        ? (arch === "chilean_lingo"
+            ? `🇨🇱 5 Modismos Chilenos que NUNCA debes malinterpretar en el Box o EUNACOM Práctico (Desliza ➡️)`
+            : (arch === "salary_cesfam"
+                ? `💵 ¿Cuánto gana realmente un médico en CESFAM en Chile? Desglose 2026 (Desliza ➡️)`
+                : (arch === "radar_burocratico"
+                    ? `🚨 Calendario y Documentos Oficiales EUNACOM 2026 que debes tener listos (Guarda 🔖)`
+                    : `⚠️ 5 Trampas del EUNACOM en ${cleanArchLabel} que reprueban al 70% (Desliza ➡️)`)))
         : `⚠️ 5 Häufige Arztbrief-Fallen in der FSP (Die dich Punkte kosten) ➡️`
     },
     {
-      type: "📊 Slide 1 Hook (Cheat Sheet)",
+      type: "📊 Slide 1 Hook (Cheat Sheet & Algoritmo)",
       hook: isEunacom
-        ? `🧠 Algoritmo de 1-Página: Conducta GES inmediata ante ${post.hook_text ? post.hook_text.slice(0, 45) : "urgencias"} (Guarda 🔖)`
+        ? (arch === "chilean_lingo"
+            ? `🧠 Diccionario Médico Chileno: De expresión popular a Semiología Oficial ASOFAMECH (Guarda 🔖)`
+            : (arch === "salary_cesfam"
+                ? `📊 Calculadora de Sueldo Médico APS 2026: Base + Zona + Turnos SAPU (Guarda 🔖)`
+                : `🧠 Algoritmo de 1-Página: Conducta GES inmediata ante ${hookTopic} (Guarda 🔖)`))
         : `📋 FSP Fachbegriff vs. Laiensprache: Die ultimative Vokabel-Tabelle ➡️`
     },
     {
-      type: "🎯 Slide 1 Hook (Direct Diagnostic Challenge)",
+      type: "🎯 Slide 1 Hook (Direct Challenge)",
       hook: isEunacom
-        ? `🩺 Caso Clínico ASOFAMECH: ¿Cuál es el diagnóstico diferencial clave? (Solución en Slide 4)`
+        ? (arch === "chilean_lingo"
+            ? `🩺 El paciente te dice: "Doctor, tengo la guata aceda"... ¿Qué anotas en la ficha? (Solución en Slide 3)`
+            : `🩺 Caso Clínico ASOFAMECH: ¿Cuál es el diagnóstico diferencial clave? (Solución en Slide 4)`)
         : `🩺 FSP Anamnese: Die 3 Fragen, die jeder Prüfer hören will (Slide 1-5)`
     }
   ] : [
     {
       type: "🚨 High Stakes & Fear of Failure (Video)",
       hook: isEunacom
-        ? `⚠️ El 85% de los médicos que reprueban el EUNACOM cometen este error exacto en ${post.archetype_label || post.pillar_label || "esta pregunta"}. ¿Lo conocías?`
+        ? (arch === "chilean_lingo"
+            ? `🇨🇱 Si eres médico extranjero en Chile y traduces literal lo que te dice el paciente en el box, vas a tener problemas. Mira estos 3 modismos clave.`
+            : `⚠️ El 85% de los médicos cometen este error en ${cleanArchLabel}. ¿Lo conocías?`)
         : `⚠️ Wenn du in der FSP Fachsprachprüfung diese Frage so beantwortest, fällst du durch.`
     },
     {
       type: "💡 Contrarian & Pattern Interrupt (Video)",
       hook: isEunacom
-        ? `No memorices más guías Minsal de memoria: esta regla de 3 segundos te da el punto exacto en ${post.archetype_label || post.pillar_label || "el examen"}.`
+        ? (arch === "salary_cesfam"
+            ? `No te vayas a trabajar a honorarios sin saber esto: el desglose real del sueldo médico en Chile con EUNACOM aprobado.`
+            : `No memorices más guías de memoria: esta regla de 3 segundos te da el punto exacto en ${cleanArchLabel}.`)
         : `Der größte Fehler beim Arzt-Arzt-Gespräch in der FSP — und wie du ihn in 30 Sekunden vermeidest.`
     },
     {
       type: "🎯 Direct Question & Clinical Challenge (Video)",
       hook: isEunacom
-        ? `Pregunta oficial EUNACOM: Paciente ingresa a urgencias con este cuadro. ¿Cuál es tu primera indicación? Deja tu respuesta abajo.`
+        ? `Pregunta oficial EUNACOM: Paciente ingresa con ${hookTopic}. ¿Cuál es tu primera indicación? Deja tu respuesta abajo.`
         : `FSP Schnelltest: Ein Patient klagt über retrosternale Schmerzen. Wie leitest du die Notfallanamnese ein?`
     }
   ];
@@ -458,63 +490,175 @@ app.post("/api/ai/generate-script", (req, res) => {
   let fullScript;
 
   if (isCarousel) {
-    // 6-Slide Carousel Blueprint (NO VOICE / NO CAMERA NEEDED)
-    fullScript = {
-      title: `🖼️ 6-Slide Carousel Blueprint: Outdo @${post.competitor_handle} (${post.outlier_score}x Saves)`,
-      company: isEunacom ? "EUNACOM" : "FAMED",
-      format_type: "carousel",
-      target_platform: "CARRUSEL (4:5 / No Voice)",
-      duration_est: "6 Slides (Diseño Gráfico / Sin Voz)",
-      competitor_reference: {
-        handle: post.competitor_handle,
-        name: post.competitor_name,
-        url: post.url,
-        original_hook: post.hook_text,
-        outlier_score: post.outlier_score
-      },
-      hook_variations: hookOptions,
-      sections: isEunacom ? [
-        {
-          timestamp: "Slide 1 (PORTADA · NAVY)",
-          label: "High-Contrast Cover (Cálido Chileno Dirección 1e)",
-          visual_cue: "Fondo Navy Clínico (#1a2740) + Lockup eunacomapp.cl + Tipografía DM Serif Display (blanco arena) + Badge Terracota (#d9764a) 'TRAMPA FRECUENTE #14' + Subtítulo Work Sans + Indicador 'DESLIZA ➡️'.",
-          spoken_text: hookOptions[0].hook
-        },
-        {
-          timestamp: "Slide 2 (EL ERROR TÍPICO · ARENA)",
-          label: "The Common Clinical Pitfall (Lo que elige el 70%)",
-          visual_cue: "Fondo Arena (#f7ece0) + Tarjeta blanca con borde izquierdo Terracota (#d9764a) 'El 72% responde: Tratamiento reflejo/sintomático' + Explicación fisiopatológica de por qué ASOFAMECH lo penaliza.",
-          spoken_text: `❌ Lo que elige el 72%: Indicar tratamiento sintomático inmediato sin estratificación de riesgo.\n⚠️ El error: En la pauta oficial ASOFAMECH, prima el tratamiento fisiopatológico de base que reduce mortalidad.`
-        },
-        {
-          timestamp: "Slide 3 (LA PAUTA OFICIAL · NAVY)",
-          label: "Norma Técnica ASOFAMECH (Conducta Oficial)",
-          visual_cue: "Fondo Navy Clínico (#1a2740) + Tarjeta blanca con borde izquierdo Dorado (#e8c46a) 'La respuesta correcta es iSGLT2 / Fármaco de 1ª Línea' + Badge Dorado '✓ PAUTA OFICIAL ASOFAMECH'.",
-          spoken_text: `📌 Conducta Oficial ASOFAMECH:\n1. Fármaco de elección con evidencia grado I-A.\n2. Criterio de inclusión independiente de comorbilidad.\n3. Meta terapéutica y seguimiento ambulatorio.`
-        },
-        {
-          timestamp: "Slide 4 (TABLA DIFERENCIAL · ARENA)",
-          label: "High-Yield Comparison Chart (Decisión Rápida)",
-          visual_cue: "Fondo Arena (#f7ece0) + Tabla comparativa limpia de 3 filas en tarjetas blancas con acentos Terracota en metadatos y DM Serif Display en títulos.",
-          spoken_text: `📊 Tabla de Decisión Rápida:\n• Criterio A + Factor de riesgo ➔ Diagnóstico 1 (Conducta A)\n• Criterio B + Hallazgo ECG/Laboratorio ➔ Diagnóstico 2 (Conducta B)\n• Distractor frecuente de ASOFAMECH ➔ Descarte por temporalidad.`
-        },
-        {
-          timestamp: "Slide 5 (LA REGLA DE ORO · ARENA)",
-          label: "Golden Rules (Regla de Oro en 3 Líneas)",
-          visual_cue: "Fondo Arena (#f7ece0) + 3 tarjetas blancas con numeración Terracota grande (01, 02, 03) y texto nítido Work Sans 400. 'Guarda esta lámina para tu turno médico 🔖'.",
-          spoken_text: `🧠 3 Reglas de Oro para el Examen:\n01. No confundir síntoma de esfuerzo con descompensación aguda.\n02. Indicar fármacos de 1ª línea según pauta GES.\n03. Los betabloqueadores se titulan solo con indicación específica.`
-        },
-        {
-          timestamp: "Slide 6 (GUARDADO & CTA · NAVY)",
-          label: "Save Magnet & App Conversion (Simulador)",
-          visual_cue: "Fondo Navy Clínico (#1a2740) + Mockup iPhone simulador eunacomapp.cl + Botón Terracota (#d9764a) 'Comenta TRAMPAS para recibir el banco en PDF'.",
-          spoken_text: `📲 Guarda este carrusel para repasar antes del examen.\n\n🎯 Practica más de 1.850 preguntas oficiales explicadas por especialistas en eunacomapp.cl (Comenta TRAMPAS abajo).`
-        }
-      ] : [
+    // Contextual slide sections based on archetype
+    let sections;
+
+    if (isEunacom) {
+      if (arch === "chilean_lingo") {
+        sections = [
+          {
+            timestamp: "Slide 1 (PORTADA · NAVY)",
+            label: "High-Contrast Cover (Stop Scroll)",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Lockup eunacomapp.cl + Tipografía DM Serif Display + Badge Terracota 'MODISMOS MÉDICOS #01' + 'DESLIZA ➡️'.",
+            spoken_text: hookOptions[0].hook
+          },
+          {
+            timestamp: "Slide 2 (LA CONFUSIÓN EN BOX · ARENA)",
+            label: "The Patient Expression",
+            visual_cue: "Fondo Arena (#f7ece0) + Tarjeta blanca con frase destacada entre comillas: 'Doctor, me dio un aire en la espalda y tengo la guata aceda...'.",
+            spoken_text: `❌ El error frecuente: Traducir literalmente o dudar en la anamnesis.\n⚠️ En el EUNACOM Práctico (ECOE) y en la urgencia chilena, el paciente usa expresiones populares que debes traducir mentalmente a semiología formal sin perder tiempo.`
+          },
+          {
+            timestamp: "Slide 3 (TRADUCCIÓN SEMIOLÓGICA · NAVY)",
+            label: "Official Semiology Mapping",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + 3 tarjetas con borde dorado con el modismo vs término médico.",
+            spoken_text: `📌 Diccionario Semiológico Oficial:\n1. 'Guata aceda' ➔ Pirosis / Síntomas dispépticos (Reflujo GE).\n2. 'Me dio un aire' ➔ Dorsalgia mecánica / Contractura paravertebral.\n3. 'Me dio un patatús' ➔ Presíncope / Lipotimia / Crisis de pánico.`
+          },
+          {
+            timestamp: "Slide 4 (TABLA EN BOX · ARENA)",
+            label: "High-Yield Translation Table",
+            visual_cue: "Fondo Arena (#f7ece0) + Tabla comparativa de 4 filas: Modismo Chileno | Semiología | Pregunta Clave de Aclaración.",
+            spoken_text: `📊 Tabla de Traducción Inmediata:\n• 'Churredera' ➔ Síndrome diarreico agudo (Preguntar: consistencia y frecuencia).\n• 'Ahogo' ➔ Disnea (Estratificar: de esfuerzo vs reposo).\n• 'Puntada' ➔ Dolor tipo punzada (Descartar dolor pleurítico).`
+          },
+          {
+            timestamp: "Slide 5 (REGLA EN ESTACIÓN CLÍNICA · ARENA)",
+            label: "ECOE Golden Rules",
+            visual_cue: "Fondo Arena (#f7ece0) + 3 tarjetas blancas con numeración Terracota grande (01, 02, 03).",
+            spoken_text: `🧠 3 Reglas para el EUNACOM Práctico:\n01. Nunca corrijas al paciente con soberbia: aclara el síntoma amablemente.\n02. En la ficha clínica escribe siempre terminología médica formal.\n03. Pregunta abierta primero ('¿A qué se refiere con...?') antes de catalogar.`
+          },
+          {
+            timestamp: "Slide 6 (GUARDADO & CTA · NAVY)",
+            label: "Save & Lead Conversion",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Mockup simulador eunacomapp.cl + Botón 'Comenta DICCIONARIO para recibir el PDF'.",
+            spoken_text: `📲 Guarda este carrusel para tu próximo turno médico.\n\n🎯 Practica más de 1.850 preguntas oficiales y estaciones clínicas en eunacomapp.cl (Comenta DICCIONARIO abajo).`
+          }
+        ];
+      } else if (arch === "salary_cesfam") {
+        sections = [
+          {
+            timestamp: "Slide 1 (PORTADA · NAVY)",
+            label: "Salary ROI Cover",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Tipografía DM Serif Display + Badge Verde Esmeralda 'SUELDOS MÉDICOS CHILE 2026' + 'DESLIZA ➡️'.",
+            spoken_text: hookOptions[0].hook
+          },
+          {
+            timestamp: "Slide 2 (SUELDO BASE APS · ARENA)",
+            label: "Base Salary Breakdown",
+            visual_cue: "Fondo Arena (#f7ece0) + Tarjeta con desglose de contrato 44 horas semanales en CESFAM según Ley Médica 19.378.",
+            spoken_text: `💵 Contrato 44 hrs Atención Primaria (APS):\n• Sueldo Base Inicial: $2.400.000 - $2.900.000 CLP líquidos.\n• Con EUNACOM aprobado accedes a contrato indefinido y carrera funcionaria en salud pública.`
+          },
+          {
+            timestamp: "Slide 3 (ASIGNACIONES & TURNOS · NAVY)",
+            label: "Additional Income",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Tarjeta dorada mostrando turnos SAPU y asignación de zona.",
+            spoken_text: `➕ Ingresos Complementarios:\n1. Asignación de Zona (Comunas extremas): +20% a +80% sobre sueldo base.\n2. Turnos SAPU / SAR (Fin de semana): $35.000 - $55.000 CLP / hora.\n3. Total mensual promedio: $3.800.000 - $5.500.000 CLP líquidos.`
+          },
+          {
+            timestamp: "Slide 4 (COMPARATIVA EUNACOM · ARENA)",
+            label: "With vs Without EUNACOM",
+            visual_cue: "Fondo Arena (#f7ece0) + Tabla comparativa: Sin EUNACOM (Honorarios precarios) vs Con EUNACOM (Contrato APS + Beca de Especialidad).",
+            spoken_text: `📊 El Valor Real de Aprobar el Examen:\n• Sin EUNACOM: Contratos temporales a honorarios, sin estabilidad ni acceso a especialidad.\n• Con EUNACOM: Contrato indefinido en APS, puntaje para concurso CONISS/CONE de becas médicas.`
+          },
+          {
+            timestamp: "Slide 5 (PLAN DE ACCIÓN · ARENA)",
+            label: "Homologation Roadmap",
+            visual_cue: "Fondo Arena (#f7ece0) + 3 pasos clave de homologación y preparación.",
+            spoken_text: `🧠 Tu Plan de 3 Pasos:\n01. Inscripción y validación de título en ASOFAMECH.\n02. Estudio enfocado en las 4 áreas troncales (Medicina Interna, Cirugía, Pediatría, Gine-Obstetricia).\n03. Rendición y postulación inmediata a concursos de plazas médicas.`
+          },
+          {
+            timestamp: "Slide 6 (GUARDADO & CTA · NAVY)",
+            label: "Save & App Conversion",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Mockup app eunacomapp.cl + Botón 'Comenta SUELDOS para el simulacro diagnóstico'.",
+            spoken_text: `📲 Guarda esta información para planificar tu homologación en Chile.\n\n🎯 Empieza a practicar hoy gratis en eunacomapp.cl (Comenta SUELDOS abajo).`
+          }
+        ];
+      } else if (arch === "radar_burocratico") {
+        sections = [
+          {
+            timestamp: "Slide 1 (PORTADA · NAVY)",
+            label: "Official Dates Cover",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Tipografía DM Serif Display + Badge Rojo 'CALENDARIO OFICIAL EUNACOM' + 'DESLIZA ➡️'.",
+            spoken_text: hookOptions[0].hook
+          },
+          {
+            timestamp: "Slide 2 (PLAZOS DE INSCRIPCIÓN · ARENA)",
+            label: "Deadlines Breakdown",
+            visual_cue: "Fondo Arena (#f7ece0) + Tarjeta con cronograma oficial de fechas de entrega de antecedentes.",
+            spoken_text: `📅 Fechas Límite de Inscripción:\n• Cierre de entrega de antecedentes: 60 días antes del examen.\n• Validación de títulos extranjeros y apostillas por el Ministerio de Relaciones Exteriores.\n⚠️ No dejes la legalización de documentos para última hora.`
+          },
+          {
+            timestamp: "Slide 3 (CHECKLIST DE REQUISITOS · NAVY)",
+            label: "Requirements Checklist",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Checklist de 4 puntos obligatorios ASOFAMECH.",
+            spoken_text: `📌 Documentos Obligatorios ASOFAMECH:\n1. Título de Médico Cirujano legalizado / apostillado.\n2. Certificado de concentración de notas de la carrera.\n3. Cédula de identidad chilena o pasaporte vigente.\n4. Formulario de inscripción oficial completado.`
+          },
+          {
+            timestamp: "Slide 4 (ESTRUCTURA DEL EXAMEN · ARENA)",
+            label: "Exam Structure Chart",
+            visual_cue: "Fondo Arena (#f7ece0) + Tabla con desglose de las 180 preguntas teóricas y las 20 estaciones prácticas.",
+            spoken_text: `📊 Estructura de Rendición:\n• Sección Teórica (ST): 180 preguntas de selección múltiple (M. Interna 33%, Pediatría 20%, Gine 17%, Cirugía 15%, Salud Pública 15%).\n• Sección Práctica (SP): 4 estaciones ECOE (Medicina, Cirugía, Pediatría, Obstetricia).`
+          },
+          {
+            timestamp: "Slide 5 (PLAN DE 90 DÍAS · ARENA)",
+            label: "90-Day Study Plan",
+            visual_cue: "Fondo Arena (#f7ece0) + 3 fases de preparación: Diagnóstico, Repetición Espaciada y Simulacros Cronometrados.",
+            spoken_text: `🧠 Estrategia de Preparación en 90 Días:\n01. Mes 1: Diagnóstico inicial y refuerzo de áreas débiles.\n02. Mes 2: Resolución de 50 preguntas diarias con justificación oficial.\n03. Mes 3: 3 simulacros completos de 180 preguntas con temporizador.`
+          },
+          {
+            timestamp: "Slide 6 (GUARDADO & CTA · NAVY)",
+            label: "Save & Lead Conversion",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Mockup eunacomapp.cl + Botón 'Comenta FECHAS para recibir el checklist en PDF'.",
+            spoken_text: `📲 Guarda este cronograma para no perder los plazos.\n\n🎯 Mide tu nivel hoy con el simulacro diagnóstico gratis en eunacomapp.cl (Comenta FECHAS abajo).`
+          }
+        ];
+      } else {
+        // Default clinical case / traps breakdown
+        sections = [
+          {
+            timestamp: "Slide 1 (PORTADA · NAVY)",
+            label: "High-Contrast Cover",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Lockup eunacomapp.cl + Tipografía DM Serif Display + Badge Terracota 'PAUTA OFICIAL EUNACOM' + 'DESLIZA ➡️'.",
+            spoken_text: hookOptions[0].hook
+          },
+          {
+            timestamp: "Slide 2 (EL ERROR TÍPICO · ARENA)",
+            label: "The Common Clinical Pitfall",
+            visual_cue: `Fondo Arena (#f7ece0) + Tarjeta blanca con error típico en ${hookTopic}.`,
+            spoken_text: `❌ Lo que elige el 72%: Indicar tratamiento sintomático inmediato sin estratificación de riesgo.\n⚠️ El error: En la pauta oficial ASOFAMECH, prima el tratamiento fisiopatológico de base que reduce mortalidad.`
+          },
+          {
+            timestamp: "Slide 3 (LA PAUTA OFICIAL · NAVY)",
+            label: "Norma Técnica ASOFAMECH",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Tarjeta blanca con borde dorado 'Conducta Oficial según Guía Minsal'.",
+            spoken_text: `📌 Conducta Oficial ASOFAMECH:\n1. Fármaco de 1ª elección con evidencia grado I-A.\n2. Criterio de inclusión independiente de comorbilidades.\n3. Meta terapéutica y seguimiento en atención primaria.`
+          },
+          {
+            timestamp: "Slide 4 (TABLA DIFERENCIAL · ARENA)",
+            label: "High-Yield Comparison Chart",
+            visual_cue: "Fondo Arena (#f7ece0) + Tabla comparativa limpia de 3 filas en tarjetas blancas con acentos Terracota.",
+            spoken_text: `📊 Tabla de Decisión Rápida:\n• Criterio A + Factor de riesgo ➔ Diagnóstico 1 (Conducta A)\n• Criterio B + Hallazgo ECG/Laboratorio ➔ Diagnóstico 2 (Conducta B)\n• Distractor frecuente de ASOFAMECH ➔ Descarte por temporalidad.`
+          },
+          {
+            timestamp: "Slide 5 (LA REGLA DE ORO · ARENA)",
+            label: "Golden Rules",
+            visual_cue: "Fondo Arena (#f7ece0) + 3 tarjetas blancas con numeración Terracota grande (01, 02, 03).",
+            spoken_text: `🧠 3 Reglas de Oro para el Examen:\n01. No confundir síntoma de esfuerzo con descompensación aguda.\n02. Indicar fármacos de 1ª línea según pauta GES.\n03. Reevaluar signos de alarma antes del alta médica.`
+          },
+          {
+            timestamp: "Slide 6 (GUARDADO & CTA · NAVY)",
+            label: "Save Magnet & App Conversion",
+            visual_cue: "Fondo Navy Clínico (#1a2740) + Mockup iPhone simulador eunacomapp.cl + Botón 'Comenta TRAMPAS para recibir el banco en PDF'.",
+            spoken_text: `📲 Guarda este carrusel para repasar antes del examen.\n\n🎯 Practica más de 1.850 preguntas oficiales explicadas por especialistas en eunacomapp.cl (Comenta TRAMPAS abajo).`
+          }
+        ];
+      }
+    } else {
+      // FaMED German Sections
+      sections = [
         {
           timestamp: "Slide 1 (TITELBLATT)",
-          label: "High-Contrast Cover (Stop Scroll)",
-          visual_cue: "Dunkler Hintergrund mit gelber/weißer Schrift + Badge 'FSP Approbation' + Icon ⚠️ + 'Wische nach rechts ➡️'.",
+          label: "High-Contrast Cover",
+          visual_cue: "Dunkler Hintergrund mit gelber/weißer Schrift + Badge 'FSP Approbation' + 'Wische nach rechts ➡️'.",
           spoken_text: hookOptions[0].hook
         },
         {
@@ -537,8 +681,8 @@ app.post("/api/ai/generate-script", (req, res) => {
         },
         {
           timestamp: "Slide 5 (SPICKZETTEL)",
-          label: "1-Page Cheat Sheet (Save Magnet)",
-          visual_cue: "Grafische Zusammenfassung mit Lesezeichen-Symbol: 'Speichere diesen Beitrag für deine FSP-Vorbereitung 🔖'.",
+          label: "1-Page Cheat Sheet",
+          visual_cue: "Grafische Zusammenfassung: 'Speichere diesen Beitrag für deine FSP-Vorbereitung 🔖'.",
           spoken_text: `🧠 3 goldene Regeln für die FSP:\n1. Keine Laienbegriffe im Arzt-Arzt-Gespräch.\n2. Zeitlimit von 20 Min für den Arztbrief strikt einhalten.\n3. Immer aktiv nach Allergien und Dauermedikation fragen.`
         },
         {
@@ -547,13 +691,30 @@ app.post("/api/ai/generate-script", (req, res) => {
           visual_cue: "iPhone-Mockup mit FaMED KI-Patienten Simulator + Text 'Jetzt kostenlos testen'.",
           spoken_text: `🔖 Speichere diesen Beitrag für deine FSP-Lernphase!\n\n🎙️ Trainiere deine medizinische Fachsprache mit KI-Patienten auf ${targetSite} (Link in der Bio).`
         }
-      ],
+      ];
+    }
+
+    fullScript = {
+      title: `🖼️ 6-Slide Carousel Blueprint: Outdo @${post.competitor_handle} (${post.outlier_score}x Saves)`,
+      company: isEunacom ? "EUNACOM" : "FAMED",
+      format_type: "carousel",
+      target_platform: "CARRUSEL (4:5 / No Voice)",
+      duration_est: "6 Slides (Diseño Gráfico / Sin Voz)",
+      competitor_reference: {
+        handle: post.competitor_handle,
+        name: post.competitor_name,
+        url: post.url,
+        original_hook: post.hook_text,
+        outlier_score: post.outlier_score
+      },
+      hook_variations: hookOptions,
+      sections: sections,
       caption_ready_to_post: isEunacom
-        ? `📚 [GUÍA VISUAL] ¿Conocías este algoritmo clave para el EUNACOM?\n\nDesliza las imágenes para ver el desglose paso a paso y la conducta oficial ASOFAMECH/Minsal.\n\n🔖 Guarda este carrusel para repasarlo antes de tu turno o simulacro.\n\n🎯 Practica más de 3,500 preguntas reales en ${targetSite} (Link en la Bio).\n\n#EUNACOM #EUNACOM2026 #MedicinaChile #CarruselMedico #MedicosExtranjeros #ASOFAMECH #CESFAM`
+        ? `📚 [GUÍA VISUAL] ${hookTopic}\n\nDesliza las imágenes para ver el desglose paso a paso y la conducta oficial ASOFAMECH/Minsal.\n\n🔖 Guarda este carrusel para repasarlo antes de tu turno o simulacro.\n\n🎯 Practica más de 3,500 preguntas reales en ${targetSite} (Link en la Bio).\n\n#EUNACOM #EUNACOM2026 #MedicinaChile #CarruselMedico #MedicosExtranjeros #ASOFAMECH #CESFAM`
         : `📚 [FSP SPICKZETTEL] Häufige Fachbegriffe & Arztbrief-Struktur für die Fachsprachprüfung!\n\nWische nach rechts für die vollständige Übersicht.\n\n🔖 Speichere diesen Beitrag für deine tägliche Lernroutine.\n\n🎯 Trainiere Anamnese und Arzt-Arzt-Übergabe mit unserem KI-Simulator auf ${targetSite} (Link in Bio).\n\n#FSP #Fachsprachprüfung #Approbation #MedizinInDeutschland #Assistenzarzt #Aerzteblatt #FaMED`
     };
   } else {
-    // Standard Short-Form Video / Reel Script (Talking Head / Screen / Voice)
+    // Short-Form Video / Reel Script
     fullScript = {
       title: `🎬 Video Script: Outdoing @${post.competitor_handle} (${post.outlier_score}x Viral Multiplier)`,
       company: isEunacom ? "EUNACOM" : "FAMED",
@@ -577,18 +738,24 @@ app.post("/api/ai/generate-script", (req, res) => {
         },
         {
           timestamp: "0:03 - 0:15 (TENSION)",
-          label: "Clinical / Cognitive Breakdown",
+          label: "Clinical / Context Breakdown",
           visual_cue: "Corte rápido mostrando el caso clínico en pantalla o temporizador de 5 segundos.",
           spoken_text: isEunacom
-            ? `Muchos marcan la conducta de libro sin revisar el Perfil EUNACOM 2026. En el caso de ${post.hook_text ? post.hook_text.slice(0, 60) : "este síntoma"}..., el error más común es no evaluar primero la pauta oficial ASOFAMECH.`
-            : `In der FSP musst du sofort zwischen Notfallindikation und elektiver Abklärung unterscheiden. Bei ${post.hook_text ? post.hook_text.slice(0, 50) : "akuten Symptomen"} scheitern 60% an der korrekten Priorisierung.`
+            ? (arch === "chilean_lingo"
+                ? `Cuando un paciente en el box te dice "me dio un aire" o "tengo la guata aceda", no puedes dudar. En el EUNACOM Práctico y en el turno de urgencia chileno, debes saber exactamente a qué síntoma semiológico corresponde.`
+                : (arch === "salary_cesfam"
+                    ? `Muchos médicos extranjeros llegan a Chile sin saber la diferencia entre un contrato 44 horas APS y turnos a honorarios. El EUNACOM aprobado es lo que te garantiza el sueldo completo y asignaciones.`
+                    : `Muchos marcan la conducta de libro sin revisar el Perfil EUNACOM 2026. En el caso de ${hookTopic}, el error más común es no evaluar primero la pauta oficial ASOFAMECH.`))
+            : `In der FSP musst du sofort zwischen Notfallindikation und elektiver Abklärung unterscheiden. Bei ${hookTopic} scheitern 60% an der korrekten Priorisierung.`
         },
         {
           timestamp: "0:15 - 0:30 (THE SOLUTION)",
           label: "High-Yield Medical Framework",
           visual_cue: "Demostración de la regla de 3 pasos o pantalla compartida del simulador.",
           spoken_text: isEunacom
-            ? `La regla de oro oficial: 1. Triaje GES de urgencia. 2. Examen confirmatorio de 1ª línea. 3. Descartar los 2 distractores clásicos de la pauta.`
+            ? (arch === "chilean_lingo"
+                ? `Aprende la equivalencia: 1. Guata aceda = Pirosis / Dispepsia. 2. Aire en la espalda = Dorsalgia mecánica. 3. Patatús = Presíncope o crisis de pánico. Anota siempre el término médico en la ficha.`
+                : `La regla de oro oficial: 1. Triaje GES de urgencia. 2. Examen confirmatorio de 1ª línea. 3. Descartar los 2 distractores clásicos de la pauta.`)
             : `Die 3-Schritte-Regel: 1. Symptom lokalisieren und zeitlich einordnen. 2. Red Flags ausschließen. 3. Strukturierte Verdachtsdiagnose formulieren.`
         },
         {
@@ -601,7 +768,7 @@ app.post("/api/ai/generate-script", (req, res) => {
         }
       ],
       caption_ready_to_post: isEunacom
-        ? `🚨 ¿Sabías responder esta pregunta clásica del EUNACOM?\n\nMuchos postulantes pierden puntos por confusiones en la conducta inicial según la norma Minsal.\n\n👇 Deja tu respuesta en los comentarios: ¿A, B o C?\n\n📲 Prepárate con el banco de preguntas más actualizado en ${targetSite} (Link en la Bio).\n\n#EUNACOM #EUNACOM2026 #MedicinaChile #MedicosEnChile #ASOFAMECH #CESFAM`
+        ? `🚨 ${hookTopic}\n\nMuchos postulantes pierden puntos por confusiones en la conducta inicial según la norma Minsal.\n\n👇 Deja tu respuesta en los comentarios!\n\n📲 Prepárate con el banco de preguntas más actualizado en ${targetSite} (Link en la Bio).\n\n#EUNACOM #EUNACOM2026 #MedicinaChile #MedicosEnChile #ASOFAMECH #CESFAM`
         : `🔥 FSP-Simulation für ausländische Ärzte in Deutschland!\n\n👇 Wie würdest du dieses Leitsymptom im Arztbrief dokumentieren? Kommentiere unten!\n\n🚀 Trainiere interaktive Fälle auf ${targetSite} (Link in der Bio)\n\n#FSP #Fachsprachprüfung #Approbation #MedizinInDeutschland #Assistenzarzt #FaMED`
     };
   }
@@ -705,7 +872,8 @@ app.get("/api/vault/files", (req, res) => {
 app.get("/api/vault/note", (req, res) => {
   const notePath = req.query.path;
   if (!notePath) return res.status(400).json({ error: "Missing path" });
-  const fullPath = path.join(VAULT_PATH, notePath);
+  const fullPath = resolveInsideVault(notePath);
+  if (!fullPath) return res.status(403).json({ error: "Path outside vault" });
   try {
     if (fs.existsSync(fullPath)) {
       const content = fs.readFileSync(fullPath, "utf-8");
@@ -718,10 +886,15 @@ app.get("/api/vault/note", (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+// Bind to loopback only. This tool reads and writes the local vault and shells
+// out to the Python scraper, so it must never be reachable from the network.
+const HOST = process.env.HOST || "127.0.0.1";
+
+app.listen(PORT, HOST, () => {
   console.log(`\n======================================================`);
   console.log(`🚀 Social Media Outlier Engine & Intelligence Studio`);
-  console.log(`🌐 Web App running at: http://localhost:${PORT}`);
+  console.log(`🌐 Web App running at: http://${HOST}:${PORT}`);
   console.log(`📁 Connected Obsidian Vault: ${VAULT_PATH}`);
+  console.log(`🔒 Bound to ${HOST} — local access only`);
   console.log(`======================================================\n`);
 });

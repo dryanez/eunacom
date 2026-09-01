@@ -7,7 +7,7 @@ estimated_volume: "Alto (+1.200 busq/mes)"
 target_url: "/blog/reconstrucciones-eunacom-preguntas-reales"
 status: draft-ready
 author: "Dr. Felipe Yáñez"
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 ---
 
 # 📝 Editorial SEO Research Note: Reconstrucciones EUNACOM: Qué Son y Cómo Resolver Preguntas Reales de Exámenes Anteriores
