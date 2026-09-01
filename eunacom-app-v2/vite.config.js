@@ -455,7 +455,7 @@ function clasesApiPlugin() {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/paypal-export')) return next()
         try {
-          const { default: handler } = await import('./api/paypal-export.js')
+          const { default: handler } = await import('./api/_paypal-export.js')
           await adaptVercelHandler(handler)(req, res)
         } catch (err) {
           console.error('paypal-export dev error:', err)

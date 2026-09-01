@@ -2,6 +2,7 @@ import { getTurso } from './_turso.js'
 import { Resend } from 'resend'
 import financesHandler from './_admin-finances.js'
 import seoHandler from './_admin-seo.js'
+import paypalHandler from './_paypal-export.js'
 import {
   getWelcomeEmailHtml,
   getDiscountEmailHtml,
@@ -20,6 +21,16 @@ export default async function handler(req, res) {
   const db = getTurso()
 
   try {
+    // PayPal integration & export delegate
+    if (
+      req.query?.action === 'paypal' ||
+      req.query?.action === 'paypal_export' ||
+      req.body?.action === 'paypal' ||
+      req.headers?.['paypal-transmission-id'] ||
+      (req.method === 'GET' && req.query?.format === 'csv' && (req.query?.action === 'paypal' || req.url?.includes('paypal')))
+    ) {
+      return paypalHandler(req, res)
+    }
     if (!colsEnsured) {
       // Ensure table exists and has all columns
       await db.execute({
