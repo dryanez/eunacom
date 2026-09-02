@@ -39,3 +39,11 @@ __pycache__/
 .vercel
 
 
+
+# Sensitive files — NEVER commit
+*.session
+telegram-bot/.env
+.ig_credentials.json
+.ig_session.json
+.ig_token.json
+eunacom-app-v2/.env
