@@ -1,7 +1,7 @@
 {
-  "synced_at": "2026-09-01T16:06:08.084Z",
-  "date": "2026-09-01",
-  "health_score": 98,
+  "synced_at": "2026-09-02T16:02:37.543Z",
+  "date": "2026-09-02",
+  "health_score": 92,
   "totals": {
     "clicks": 0,
     "impressions": 0,
@@ -18,29 +18,23 @@
     "content": {
       "filler_score": 0,
       "ai_pattern_score": 0,
-      "information_density": 0.799,
-      "repetition_score": 20,
+      "information_density": 0.807,
+      "repetition_score": 19,
       "overall_quality": 92,
       "flags": [],
       "matches": {
         "filler": [],
         "ai_patterns": []
       },
-      "tokens": 1777,
-      "unique_tokens": 525
+      "tokens": 1834,
+      "unique_tokens": 547
     },
     "schema": {
-      "json_ld_count": 5,
-      "types": [
-        "SoftwareApplication",
-        "Organization",
-        "WebSite",
-        "ItemList",
-        "FAQPage"
-      ]
+      "json_ld_count": 0,
+      "types": []
     },
     "technical": {
-      "url": "/Users/felipeyanez/Desktop/NEWeunacom/eunacom-app-v2/dist/index.html",
+      "url": "/tmp/eunacom_home.html",
       "speculation_rules": {
         "inline_blocks": 1,
         "header_present": false,
@@ -172,14 +166,14 @@
     {
       "agent": "seo-schema",
       "action": "Schema.org Validation",
-      "status": "Passed 🟢",
-      "impact": "Detected 5 structured data blocks (SoftwareApplication, Organization, WebSite, ItemList, FAQPage)"
+      "status": "Warning 🟡",
+      "impact": "Detected 0 structured data blocks (None)"
     },
     {
       "agent": "seo-content",
       "action": "Content Density & Readability",
       "status": "Passed 🟢",
-      "impact": "Information density: 80%, 0% filler penalty (1777 tokens)"
+      "impact": "Information density: 81%, 0% filler penalty (1834 tokens)"
     },
     {
       "agent": "seo-technical",
