@@ -34,7 +34,10 @@
     "5fd52b4b-a4ec-4c25-a2be-10176364d3a3",
     "459954f1-30bf-448a-9aa6-e376d8076e20",
     "da9a178c-73c3-457d-9dd4-74a5d63731ed",
-    "2af728b6-0305-4147-905c-7883d1b3b9cb"
+    "2af728b6-0305-4147-905c-7883d1b3b9cb",
+    "1a225831-e954-45dd-bf3f-253e85020f39",
+    "47c153b1-7484-4bc7-8402-b1e9d8b0cfc4",
+    "36119f3d-579c-499c-a81d-563a9eab46c7"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -49,7 +52,8 @@
       "0f44bc43-1243-42f4-bf60-0c18bf23135f",
       "bad7df41-5a02-429e-b0ae-35b652a408fe",
       "9080a007-e678-48da-8dc6-055ad4efa119",
-      "da9a178c-73c3-457d-9dd4-74a5d63731ed"
+      "da9a178c-73c3-457d-9dd4-74a5d63731ed",
+      "47c153b1-7484-4bc7-8402-b1e9d8b0cfc4"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -64,7 +68,8 @@
       "22f1ddf5-a0e1-464c-908b-ba904bd0b5e6",
       "3f95ce78-d731-4969-8061-ec981656a728",
       "5fd52b4b-a4ec-4c25-a2be-10176364d3a3",
-      "2af728b6-0305-4147-905c-7883d1b3b9cb"
+      "2af728b6-0305-4147-905c-7883d1b3b9cb",
+      "36119f3d-579c-499c-a81d-563a9eab46c7"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -76,7 +81,8 @@
       "dcceec00-62fc-48b5-85bc-31d8c813e1a4",
       "b6b21338-8bd0-4887-8d8c-352593d2fbee",
       "10d21e55-7bb5-4208-9378-cbb6be04a516",
-      "459954f1-30bf-448a-9aa6-e376d8076e20"
+      "459954f1-30bf-448a-9aa6-e376d8076e20",
+      "1a225831-e954-45dd-bf3f-253e85020f39"
     ]
   },
   "history": [
@@ -515,6 +521,38 @@
           "vignetteMessageId": 43,
           "pollMessageId": 44,
           "explanationMessageId": 45
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-05T14:10:21.810Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "1a225831-e954-45dd-bf3f-253e85020f39",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 36,
+          "pollMessageId": 37,
+          "explanationMessageId": 38
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "47c153b1-7484-4bc7-8402-b1e9d8b0cfc4",
+          "topic": "Otorrinolaringología",
+          "success": true,
+          "vignetteMessageId": 45,
+          "pollMessageId": 46,
+          "explanationMessageId": 47
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "36119f3d-579c-499c-a81d-563a9eab46c7",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 46,
+          "pollMessageId": 47,
+          "explanationMessageId": 48
         }
       ]
     }
