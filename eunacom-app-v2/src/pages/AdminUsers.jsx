@@ -362,20 +362,12 @@ const AdminUsers = () => {
   const [financesMonth, setFinancesMonth] = useState('all')
   const [financesPlan, setFinancesPlan] = useState('all')
 
-  useEffect(() => {
-    if (user && isAdmin()) {
-      loadUsers()
-      loadSettings()
-      loadPaypalTxns()
-      loadFinances()
-    }
-  }, [user])
-
   const loadFinances = async () => {
+    if (!user?.email) return
     setFinancesLoading(true)
     try {
       const data = await fetchAdminFinances(user.email)
-      setFinancesData(data)
+      setFinancesData(data || { kpis: null, monthly: [], globalPlans: {}, transactions: [] })
     } catch (e) {
       console.error('Error loading finances:', e)
     } finally {
@@ -384,12 +376,14 @@ const AdminUsers = () => {
   }
 
   const loadUsers = async () => {
+    if (!user?.email) return
     setLoading(true)
     try {
       const data = await fetchAdminUsers(user.email)
-      setUsers(data)
+      setUsers(Array.isArray(data) ? data : (data?.data || []))
     } catch (e) {
       console.error('Error loading users:', e)
+      setUsers([])
     } finally {
       setLoading(false)
     }
@@ -398,7 +392,7 @@ const AdminUsers = () => {
   const loadSettings = async () => {
     try {
       const settings = await fetchAppSettings()
-      if (settings.freemium_mode) {
+      if (settings?.freemium_mode) {
         setFreemiumMode(settings.freemium_mode)
       }
     } catch (e) {
@@ -407,16 +401,31 @@ const AdminUsers = () => {
   }
 
   const loadPaypalTxns = async () => {
+    if (!user?.email) return
     setPaypalLoading(true)
     try {
       const data = await fetchPaypalTransactions(user.email)
-      setPaypalTxns(data)
+      setPaypalTxns(Array.isArray(data) ? data : (data?.data || []))
     } catch (e) {
       console.error('Error loading PayPal transactions:', e)
+      setPaypalTxns([])
     } finally {
       setPaypalLoading(false)
     }
   }
+
+  const loadData = useCallback(() => {
+    if (user && isAdmin()) {
+      loadUsers()
+      loadSettings()
+      loadPaypalTxns()
+      loadFinances()
+    }
+  }, [user])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData])
 
   const handleModeChange = async (mode) => {
     setUpdatingMode(true)
