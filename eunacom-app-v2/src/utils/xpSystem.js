@@ -1,3 +1,5 @@
+import { fetchTests, fetchClaseProgress } from '../lib/api'
+
 // XP, Doctor Avatar Evolution & Leveling System for EUNACOM Platform
 // Maps 10 progressive doctor personas to student XP milestones with level-up events
 
@@ -244,7 +246,6 @@ export const formatXP = (xp = 0) => {
 export const calculateUserOverallStats = async (userId) => {
   if (!userId) return { totalXP: 0, level: 1, totalAnswered: 0, correctAnswers: 0, totalExams: 0, remainingXP: 0 }
   try {
-    const { fetchTests, fetchClaseProgress } = await import('../lib/api')
     const [userTests, userClasesProgress] = await Promise.all([
       fetchTests(userId).catch(() => []),
       fetchClaseProgress(userId).catch(() => [])

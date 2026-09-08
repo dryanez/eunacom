@@ -8,7 +8,7 @@ import {
   Video, ArrowRight, PlayCircle, ShieldCheck, Heart, Star
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchProgress, fetchLeaderboard, fetchUserProfile, saveUserProfile } from '../lib/api'
+import { fetchProgress, fetchLeaderboard, fetchUserProfile, saveUserProfile, fetchClases, fetchClaseProgress, fetchTests } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP, getDoctorForLevel } from '../utils/xpSystem'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
@@ -204,7 +204,6 @@ const Dashboard = () => {
   const fetchTopicStats = async () => {
     setTopicsLoading(true)
     try {
-      const { fetchClases, fetchClaseProgress } = await import('../lib/api');
       const [allClases, userClasesProgress, pruebasIdx] = await Promise.all([
         fetchClases().catch(() => []),
         user ? fetchClaseProgress(user.id).catch(() => []) : Promise.resolve([]),
@@ -301,8 +300,6 @@ const Dashboard = () => {
 
   const fetchStats = async () => {
     try {
-      // Import fetchTests if it hasn't been imported
-      const { fetchTests, fetchClaseProgress } = await import('../lib/api');
       const [userTests, userClasesProgress] = await Promise.all([
         fetchTests(user.id),
         fetchClaseProgress(user.id).catch(() => [])
