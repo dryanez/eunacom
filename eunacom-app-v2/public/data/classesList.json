@@ -1,0 +1,5472 @@
+[
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_01-Manejo-De-Urgencias-En-Arritmias",
+    "saved_at": "2026-04-13 20:45:47",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 1,
+    "topic": "Manejo de Urgencias en Arritmias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_02-Paro-Cardiorespiratorio",
+    "saved_at": "2026-04-13 20:45:47",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 2,
+    "topic": "Paro Cardiorespiratorio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_03-Rcp",
+    "saved_at": "2026-04-13 20:45:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 3,
+    "topic": "RCP - Reanimación Cardiopulmonar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_04-Bradiarritmias-Y-Bloqueos-Cardiacos",
+    "saved_at": "2026-04-13 20:45:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 4,
+    "topic": "Bradiarritmias y Bloqueos Cardíacos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_05-Fibrilacion-Auricular",
+    "saved_at": "2026-04-13 20:45:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 5,
+    "topic": "Fibrilación Auricular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_06-Fibrilacion-Auricular-Antiarritmicos",
+    "saved_at": "2026-04-13 20:45:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 6,
+    "topic": "Fibrilación Auricular: Antiarrítmicos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_07-Farmacos-Anticoagulantes",
+    "saved_at": "2026-04-13 20:45:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 7,
+    "topic": "Fármacos Anticoagulantes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_08-Fibrilacion-Auricular-Manejo",
+    "saved_at": "2026-04-13 20:45:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 8,
+    "topic": "Fibrilación Auricular: Manejo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_09-Fibrilacion-Auricular-Cronica",
+    "saved_at": "2026-04-13 20:45:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 9,
+    "topic": "Fibrilación Auricular Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_10-Fibrilacion-Auricular-De-Reciente-Comienzo",
+    "saved_at": "2026-04-13 20:45:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 10,
+    "topic": "Fibrilación Auricular de Reciente Comienzo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_11-Flutter-Auricular",
+    "saved_at": "2026-04-13 20:45:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 11,
+    "topic": "Flutter Auricular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_12-Taquicardia-Paroxistica-Supraventricular",
+    "saved_at": "2026-04-13 20:45:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 12,
+    "topic": "Taquicardia Paroxística Supraventricular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_13-Taquicardia-Ventricular-Y-Canalopatias",
+    "saved_at": "2026-04-13 20:45:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 13,
+    "topic": "Taquicardia Ventricular y Canalopatías",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_14-Extrasistoles",
+    "saved_at": "2026-04-13 20:45:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 14,
+    "topic": "Extrasístoles",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_15-Angina-Cronica",
+    "saved_at": "2026-04-13 20:45:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 15,
+    "topic": "Angina Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_16-Dolor-Toracico",
+    "saved_at": "2026-04-13 20:45:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 16,
+    "topic": "Dolor Torácico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_17-Electrocardiograma-En-Sindrome-Coronario-Agudo",
+    "saved_at": "2026-04-13 20:45:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 17,
+    "topic": "Electrocardiograma en Síndrome Coronario Agudo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_18-Marcadores-De-Isquemia-Miocardica",
+    "saved_at": "2026-04-13 20:45:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 18,
+    "topic": "Marcadores de Isquemia Miocárdica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_19-Sindrome-Coronario-Agudo",
+    "saved_at": "2026-04-13 20:45:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 19,
+    "topic": "Síndrome Coronario Agudo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_20-Complicaciones-Mecanicas-Del-Infarto-Miocardico",
+    "saved_at": "2026-04-13 20:45:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 20,
+    "topic": "Complicaciones Mecánicas del Infarto Miocárdico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_21-Arritmias-En-El-Infarto",
+    "saved_at": "2026-04-13 20:45:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 21,
+    "topic": "Arritmias en el Infarto",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_22-Infarto-Del-Ventriculo-Derecho",
+    "saved_at": "2026-04-13 20:45:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 22,
+    "topic": "Infarto del Ventrículo Derecho",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_23-Insuficiencia-Cardiaca-Generalidades",
+    "saved_at": "2026-04-13 20:45:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 23,
+    "topic": "Insuficiencia Cardíaca: Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_24-Insuficiencia-Cardiaca-Tratamiento",
+    "saved_at": "2026-04-13 20:45:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 24,
+    "topic": "Insuficiencia Cardíaca: Tratamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_25-Cardiopatia-Coronaria",
+    "saved_at": "2026-04-13 20:45:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 25,
+    "topic": "Cardiopatía Coronaria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_26-Cor-Pulmonale",
+    "saved_at": "2026-04-13 20:45:53",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 26,
+    "topic": "Cor Pulmonale",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_27-Valvulopatias-Generalidades",
+    "saved_at": "2026-04-13 20:45:53",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 27,
+    "topic": "Valvulopatías Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_28-Valvulopatias-Izquierdas",
+    "saved_at": "2026-04-13 20:45:53",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 28,
+    "topic": "Valvulopatías Izquierdas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_29-Valvulopatias-Derechas",
+    "saved_at": "2026-04-13 20:45:53",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 29,
+    "topic": "Valvulopatías Derechas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_30-Miocardiopatias",
+    "saved_at": "2026-04-13 20:45:53",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 30,
+    "topic": "Miocardiopatías",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_31-Foramen-Oval-Permeable",
+    "saved_at": "2026-04-13 20:45:54",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 31,
+    "topic": "Foramen Oval Permeable",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_32-Soplo-Funcional",
+    "saved_at": "2026-04-13 20:45:54",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 32,
+    "topic": "Soplo Funcional",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_33-Enfermedades-Del-Pericardio",
+    "saved_at": "2026-04-13 20:45:54",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 33,
+    "topic": "Enfermedades del Pericardio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_34-Miocarditis-Aguda",
+    "saved_at": "2026-04-13 20:45:54",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 34,
+    "topic": "Miocarditis Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_35-Fiebre-Reumatica",
+    "saved_at": "2026-04-13 20:45:54",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 35,
+    "topic": "Fiebre Reumática",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_36-Clasificacion-De-Shock",
+    "saved_at": "2026-04-13 20:45:55",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 36,
+    "topic": "Clasificación de Shock",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_37-Cardiopatias-Congenitas",
+    "saved_at": "2026-04-13 20:45:55",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 37,
+    "topic": "Cardiopatías Congénitas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_38-Cardiopatias-Congenitas-Semiologia",
+    "saved_at": "2026-04-13 20:45:55",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 38,
+    "topic": "Cardiopatías Congénitas Semiología",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_39-Diseccion-Aortica",
+    "saved_at": "2026-04-13 20:45:55",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 39,
+    "topic": "Disección Aórtica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_40-Aneurisma-De-Aorta-Abdominal",
+    "saved_at": "2026-04-13 20:45:55",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 40,
+    "topic": "Aneurisma de Aorta Abdominal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_41-Isquemia-Aguda-De-Extremidades-Inferiores",
+    "saved_at": "2026-04-13 20:45:56",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 41,
+    "topic": "Isquemia Aguda de Extremidades Inferiores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_42-Isquemia-Cronica-De-Extremidades-Inferiores",
+    "saved_at": "2026-04-13 20:45:56",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 42,
+    "topic": "Isquemia Crónica de Extremidades Inferiores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_43-Estenosis-Carotidea",
+    "saved_at": "2026-04-13 20:45:56",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 43,
+    "topic": "Estenosis Carotídea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_44-Trombosis-Venosa-Profunda-Tvp",
+    "saved_at": "2026-04-13 20:45:56",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 44,
+    "topic": "Trombosis Venosa Profunda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_45-Trombosis-Pulmonar-Tep",
+    "saved_at": "2026-04-13 20:45:56",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 45,
+    "topic": "Tromboembolismo Pulmonar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_46-Tromboembolismo-Pulmonar-Masivo",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 46,
+    "topic": "Tromboembolismo Pulmonar Masivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Cardiología_47-Insuficiencia-Venosa-Extremidades-Inferiores",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Cardiología",
+    "lesson_number": 47,
+    "topic": "Insuficiencia Venosa de Extremidades Inferiores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_01-Tipos-De-Diabetes",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 1,
+    "topic": "Tipos de Diabetes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_02-Diagnostico-De-Diabetes",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 2,
+    "topic": "Diagnostico de Diabetes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_03-Diabetes-En-El-Embarazo",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 3,
+    "topic": "Diabetes en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_04-Insulinoterapia",
+    "saved_at": "2026-04-13 20:45:57",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 4,
+    "topic": "Insulinoterapia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_05-Ajustes-De-Insulina",
+    "saved_at": "2026-04-13 20:45:58",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 5,
+    "topic": "Ajustes de Insulina",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_06-Objetivos-",
+    "saved_at": "2026-04-13 20:45:58",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 6,
+    "topic": "Objetivos del Control Metabolico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_07-Hipoglucemiantes-Orales",
+    "saved_at": "2026-04-13 20:45:58",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 7,
+    "topic": "Hipoglucemiantes Orales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_08-Tratamiento-Dm2",
+    "saved_at": "2026-04-13 20:45:58",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 8,
+    "topic": "Tratamiento de la Diabetes Mellitus Tipo 2",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_09-Tratamiento-En-Embarazadas",
+    "saved_at": "2026-04-13 20:45:59",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 9,
+    "topic": "Tratamiento de la Diabetes en Embarazadas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_10-Control-En-El-Embarazo",
+    "saved_at": "2026-04-13 20:45:59",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 10,
+    "topic": "Control de la Diabetes en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_11-Indicaciones-De-Insulina",
+    "saved_at": "2026-04-13 20:45:59",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 11,
+    "topic": "Indicaciones de Insulina",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_12-Diabetes-En-Hipertension",
+    "saved_at": "2026-04-13 20:45:59",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 12,
+    "topic": "Diabetes e Hipertensión Arterial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_13-nefropatia-diabetica",
+    "saved_at": "2026-04-13 20:45:59",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 13,
+    "topic": "Nefropatía Diabética",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_14-Ejercicios",
+    "saved_at": "2026-04-13 20:46:00",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 14,
+    "topic": "Ejercicio y Diabetes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_15-Retinopatia-Diabetica",
+    "saved_at": "2026-04-13 20:46:00",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 15,
+    "topic": "Retinopatía Diabética",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_16-Pie-Diabetico",
+    "saved_at": "2026-04-13 20:46:00",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 16,
+    "topic": "Pie Diabético",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_17-Neuropatia-Diabetica",
+    "saved_at": "2026-04-13 20:46:00",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 17,
+    "topic": "Neuropatía Diabética",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_18-Cad-Vs-Hgho",
+    "saved_at": "2026-04-13 20:46:01",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 18,
+    "topic": "Cetoacidosis Diabética vs Estado Hiperosmolar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_19-Tto-De-Cad-Y-Hgho",
+    "saved_at": "2026-04-13 20:46:01",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 19,
+    "topic": "Tratamiento de la CAD y el Estado Hiperosmolar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_20-Hipoglicemias-Generalidades",
+    "saved_at": "2026-04-13 20:46:01",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 20,
+    "topic": "Hipoglicemias - Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_21-Causas-De-Hipoglicemias",
+    "saved_at": "2026-04-13 20:46:01",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 21,
+    "topic": "Causas de Hipoglicemias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_22-Tto-De-Las-Dislipidemias",
+    "saved_at": "2026-04-13 20:46:01",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 22,
+    "topic": "Tratamiento de las Dislipidemias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_23-Miopatias-Por-Estatinas",
+    "saved_at": "2026-04-13 20:46:02",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 23,
+    "topic": "Miopatías por Estatinas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Diabetes_24-Dislipidemias-Geneticas",
+    "saved_at": "2026-04-13 20:46:02",
+    "specialty": "Módulo 1",
+    "subsystem": "Diabetes",
+    "lesson_number": 24,
+    "topic": "Dislipidemias Genéticas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_01-Eje-Hipotalamico-Hipofisiario",
+    "saved_at": "2026-04-13 20:46:02",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 1,
+    "topic": "Eje Hipotalámico-Hipofisiario",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_02-Hipopituitarismo",
+    "saved_at": "2026-04-13 20:46:02",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 2,
+    "topic": "Hipopituitarismo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_03-Generalidades-de-Fisiologia-Tiroidea",
+    "saved_at": "2026-04-13 20:46:02",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 3,
+    "topic": "Generalidades de Fisiología Tiroidea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_04-Hipotiroidismo",
+    "saved_at": "2026-04-13 20:46:03",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 4,
+    "topic": "Hipotiroidismo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_05-Hipotiroidismo-Subclinico",
+    "saved_at": "2026-04-13 20:46:03",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 5,
+    "topic": "Hipotiroidismo Subclínico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_06-Coma-Mixedematoso",
+    "saved_at": "2026-04-13 20:46:03",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 6,
+    "topic": "Coma Mixedematoso",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_07-Hipotiroidismo-Congenito",
+    "saved_at": "2026-04-13 20:46:04",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 7,
+    "topic": "Hipotiroidismo Congénito",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_08-Hipotiroidismo-en-el-Embarazo",
+    "saved_at": "2026-04-13 20:46:04",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 8,
+    "topic": "Hipotiroidismo en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_09-Hipertiroidismo",
+    "saved_at": "2026-04-13 20:46:04",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 9,
+    "topic": "Hipertiroidismo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_10-Enfermedad-de-Basedow-Graves-Neonatal",
+    "saved_at": "2026-04-13 20:46:04",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 10,
+    "topic": "Enfermedad de Basedow-Graves Neonatal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_11-Nodulo-Tiroideo",
+    "saved_at": "2026-04-13 20:46:05",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 11,
+    "topic": "Nódulo Tiroideo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_12-Amenorrea",
+    "saved_at": "2026-04-13 20:46:05",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 12,
+    "topic": "Amenorrea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_13-Manejo-del-Cancer-de-Tiroides",
+    "saved_at": "2026-04-13 20:46:06",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 13,
+    "topic": "Manejo del Cáncer de Tiroides",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_14-Tiroiditis",
+    "saved_at": "2026-04-13 20:46:06",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 14,
+    "topic": "Tiroiditis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_15-Sindrome-de-Cushing",
+    "saved_at": "2026-04-13 20:46:06",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 15,
+    "topic": "Síndrome de Cushing",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Endocrinología_16-Insuficiencia-Suprarrenal",
+    "saved_at": "2026-04-13 20:46:06",
+    "specialty": "Módulo 1",
+    "subsystem": "Endocrinología",
+    "lesson_number": 16,
+    "topic": "Insuficiencia Suprarrenal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_01-Trastornos-Digestivos-Funcionales",
+    "saved_at": "2026-04-13 20:46:06",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 1,
+    "topic": "Trastornos Digestivos Funcionales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_02-Diarrea-Aguda-Cronica-y-Constipacion",
+    "saved_at": "2026-04-13 20:46:07",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 2,
+    "topic": "Diarrea Aguda, Crónica y Constipación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_03-Malabsorcion-Intestinal-Enfermedad-Celiaca-e-Intolerancia-a-la-Lactosa",
+    "saved_at": "2026-04-13 20:46:07",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 3,
+    "topic": "Malabsorción Intestinal, Enfermedad Celíaca e Intolerancia a la Lactosa",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_04-Enfermedad-Inflamatoria-Intestinal",
+    "saved_at": "2026-04-13 20:46:07",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 4,
+    "topic": "Enfermedad Inflamatoria Intestinal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_05-Hemorragias-Digestivas",
+    "saved_at": "2026-04-13 20:46:07",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 5,
+    "topic": "Hemorragias Digestivas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_06-Disfagia",
+    "saved_at": "2026-04-13 20:46:08",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 6,
+    "topic": "Disfagia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_07-RGE-Ulcera-Gastroduodenal-Dispepsia-Funcional-y-H-pylori",
+    "saved_at": "2026-04-13 20:46:08",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 7,
+    "topic": "RGE, Úlcera Gastroduodenal, Dispepsia Funcional y H. pylori",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_08-Ulcera-Perforada-Perforacion-Esofagica-e-Ingesta-de-Soda-Caustica",
+    "saved_at": "2026-04-13 20:46:08",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 8,
+    "topic": "Úlcera Perforada, Perforación Esofágica e Ingesta de Soda Cáustica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_09-Cancer-de-Esofago-Gastrico-Colon-y-Recto",
+    "saved_at": "2026-04-13 20:46:08",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 9,
+    "topic": "Cáncer de Esófago, Gástrico, Colon y Recto",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_10-Ictericia",
+    "saved_at": "2026-04-13 20:46:09",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 10,
+    "topic": "Ictericia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_11-Hepatitis-Aguda-y-Cronica",
+    "saved_at": "2026-04-13 20:46:09",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 11,
+    "topic": "Hepatitis Aguda y Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_12-Dano-Hepatico-Cronico",
+    "saved_at": "2026-04-13 20:46:09",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 12,
+    "topic": "Daño Hepático Crónico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_14-Lesiones-Hepaticas",
+    "saved_at": "2026-04-13 20:46:09",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 14,
+    "topic": "Lesiones Hepáticas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_15-Abdomen-Agudo",
+    "saved_at": "2026-04-13 20:46:09",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 15,
+    "topic": "Abdomen Agudo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_16-Patologia-Biliar",
+    "saved_at": "2026-04-13 20:46:10",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 16,
+    "topic": "Patología Biliar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_17-Abdomen-Agudo-de-Origen-Vascular",
+    "saved_at": "2026-04-13 20:46:10",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 17,
+    "topic": "Abdomen Agudo de Origen Vascular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_18-Hernia-Hiatal-Hernia-Diafragmatica-y-Tumores-del-Mediastino",
+    "saved_at": "2026-04-13 20:46:10",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 18,
+    "topic": "Hernia Hiatal, Hernia Diafragmática y Tumores del Mediastino",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_19-Patologia-Perianal",
+    "saved_at": "2026-04-13 20:46:11",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 19,
+    "topic": "Patología Perianal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_20-Trauma-Abdominal-y-Toracico",
+    "saved_at": "2026-04-13 20:46:11",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 20,
+    "topic": "Trauma Abdominal y Torácico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_21-Cuerpo-Extrano-Digestivo",
+    "saved_at": "2026-04-13 20:46:11",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 21,
+    "topic": "Cuerpo Extraño Digestivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_22-Diarrea-en-Ninos",
+    "saved_at": "2026-04-13 20:46:11",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 22,
+    "topic": "Diarrea en Niños",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_23-Reflujo-del-Lactante-Dolor-Abdominal-Cronico-en-Ninos-Constipacion-y-Fecaloma",
+    "saved_at": "2026-04-13 20:46:12",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 23,
+    "topic": "Reflujo del Lactante, Dolor Abdominal Crónico en Niños, Constipación y Fecaloma",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Gastroenterología_24-Cirugia-Pediatrica",
+    "saved_at": "2026-04-13 20:46:12",
+    "specialty": "Módulo 1",
+    "subsystem": "Gastroenterología",
+    "lesson_number": 24,
+    "topic": "Cirugía Pediátrica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_01-Anemia-Generalidades",
+    "saved_at": "2026-04-13 20:46:12",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 1,
+    "topic": "Anemia: Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_02-Perfil-de-Hierro",
+    "saved_at": "2026-04-13 20:46:13",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 2,
+    "topic": "Perfil de Hierro",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_03-Anemia-Ferropenica",
+    "saved_at": "2026-04-13 20:46:13",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 3,
+    "topic": "Anemia Ferropénica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_04-Anemia-por-Enfermedades-Cronicas",
+    "saved_at": "2026-04-13 20:46:13",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 4,
+    "topic": "Anemia por Enfermedades Crónicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_05-Anemia-Hemolitica",
+    "saved_at": "2026-04-13 20:46:13",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 5,
+    "topic": "Anemia Hemolítica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_06-Anemia-por-Deficit-de-Vitamina-B12-y-Folatos",
+    "saved_at": "2026-04-13 20:46:13",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 6,
+    "topic": "Anemia por Déficit de Vitamina B12 y Folatos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_07-Hemoglobinopatias",
+    "saved_at": "2026-04-13 20:46:14",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 7,
+    "topic": "Hemoglobinopatías",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_08-Anemia-en-Insuficiencia-Renal-Cronica",
+    "saved_at": "2026-04-13 20:46:14",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 8,
+    "topic": "Anemia en Insuficiencia Renal Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_09-Transfusion-en-Anemias",
+    "saved_at": "2026-04-13 20:46:14",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 9,
+    "topic": "Transfusión en Anemias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_10-Anemia-en-Ninos",
+    "saved_at": "2026-04-13 20:46:15",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 10,
+    "topic": "Anemia en Niños",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_11-Alteraciones-de-la-Hemostasia",
+    "saved_at": "2026-04-13 20:46:15",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 11,
+    "topic": "Alteraciones de la Hemostasia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_12-Purpura",
+    "saved_at": "2026-04-13 20:46:15",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 12,
+    "topic": "Púrpura",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_13-Purpura-Trombocitopenica-Inmune-PTI",
+    "saved_at": "2026-04-13 20:46:15",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 13,
+    "topic": "Púrpura Trombocitopénica Inmune (PTI)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_14-Purpura-Trombocitopenica-Trombotica-PTT",
+    "saved_at": "2026-04-13 20:46:16",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 14,
+    "topic": "Púrpura Trombocitopénica Trombótica (PTT)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_15-Purpura-de-Schonlein-Henoch",
+    "saved_at": "2026-04-13 20:46:16",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 15,
+    "topic": "Púrpura de Schonlein-Henoch",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_16-Patologias-Geneticas-de-la-Hemostasia-Primaria",
+    "saved_at": "2026-04-13 20:46:16",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 16,
+    "topic": "Patologías Genéticas de la Hemostasia Primaria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_17-Hemofilia",
+    "saved_at": "2026-04-13 20:46:16",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 17,
+    "topic": "Hemofilia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Hematología_18-Coagulacion-Intravascular-Diseminada-CID",
+    "saved_at": "2026-04-13 20:46:17",
+    "specialty": "Módulo 1",
+    "subsystem": "Hematología",
+    "lesson_number": 18,
+    "topic": "Coagulación Intravascular Diseminada (CID)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_01-Sepsis",
+    "saved_at": "2026-04-13 20:46:17",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 1,
+    "topic": "Sepsis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_02-Manejo-de-Contactos",
+    "saved_at": "2026-04-13 20:46:17",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 2,
+    "topic": "Manejo de Contactos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_03-Sindrome-Mononucleosico-Sindrome-Retroviral-Agudo-y-TORCH",
+    "saved_at": "2026-04-13 20:46:17",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 3,
+    "topic": "Síndrome Mononucleósico, Síndrome Retroviral Agudo y TORCH",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_04-Meningitis",
+    "saved_at": "2026-04-13 20:46:17",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 4,
+    "topic": "Meningitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_05-Infecciones-Intrahospitalarias-y-Aislamientos",
+    "saved_at": "2026-04-13 20:46:18",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 5,
+    "topic": "Infecciones Intrahospitalarias y Aislamientos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_06-Rabia-y-Tetanos",
+    "saved_at": "2026-04-13 20:46:18",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 6,
+    "topic": "Rabia y Tétanos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_07-Fiebre-sin-Foco-y-Fiebre-de-Origen-Desconocido",
+    "saved_at": "2026-04-13 20:46:18",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 7,
+    "topic": "Fiebre sin Foco y Fiebre de Origen Desconocido",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_08-Adenitis-Infecciosa-Adenitis-Submandibular-y-Flemon-del-Piso-de-la-Boca",
+    "saved_at": "2026-04-13 20:46:18",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 8,
+    "topic": "Adenitis Infecciosa, Adenitis Submandibular y Flemón del Piso de la Boca",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_09-Antrax-o-Carbunco",
+    "saved_at": "2026-04-13 20:46:18",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 9,
+    "topic": "Ántrax o Carbunco",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_10-Amigdalitis-Difteria-y-Anginas-Infecciosas",
+    "saved_at": "2026-04-13 20:46:19",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 10,
+    "topic": "Amigdalitis, Difteria y Anginas Infecciosas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_11-Chagas-Malaria-Dengue-Zika-Chikungunya-Fiebre-Amarilla-y-Hanta",
+    "saved_at": "2026-04-13 20:46:19",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 11,
+    "topic": "Chagas, Malaria, Dengue, Zika, Chikungunya, Fiebre Amarilla y Hanta",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_12-Enfermedades-de-Transmision-Sexual-Primera-Parte",
+    "saved_at": "2026-04-13 20:46:19",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 12,
+    "topic": "Enfermedades de Transmisión Sexual - Primera Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_13-Enfermedades-de-Transmision-Sexual-Segunda-Parte",
+    "saved_at": "2026-04-13 20:46:19",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 13,
+    "topic": "Enfermedades de Transmisión Sexual - Segunda Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_14-Exantemas-Primera-Parte",
+    "saved_at": "2026-04-13 20:46:19",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 14,
+    "topic": "Exantemas - Primera Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_15-Exantemas-Segunda-Parte",
+    "saved_at": "2026-04-13 20:46:20",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 15,
+    "topic": "Exantemas - Segunda Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_16-Brucelosis-Leptospirosis-Bartonelosis-Fiebre-Tifoidea-y-Fiebre-Paratifoidea",
+    "saved_at": "2026-04-13 20:46:20",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 16,
+    "topic": "Brucelosis, Leptospirosis, Bartonelosis, Fiebre Tifoidea y Fiebre Paratifoidea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_17-Intoxicacion-Alimentaria-Diarrea-y-Microorganismos-Colera",
+    "saved_at": "2026-04-13 20:46:20",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 17,
+    "topic": "Intoxicación Alimentaria, Diarrea y Microorganismos, Cólera",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_18-Varicela-y-Herpes-Zoster",
+    "saved_at": "2026-04-13 20:46:20",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 18,
+    "topic": "Varicela y Herpes Zóster",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_19-VIH",
+    "saved_at": "2026-04-13 20:46:20",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 19,
+    "topic": "VIH",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_20-Infecciones-Oportunistas",
+    "saved_at": "2026-04-13 20:46:21",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 20,
+    "topic": "Infecciones Oportunistas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_21-Parasitosis-Primera-Parte",
+    "saved_at": "2026-04-13 20:46:21",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 21,
+    "topic": "Parasitosis - Primera Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_22-Parasitosis-Segunda-Parte",
+    "saved_at": "2026-04-13 20:46:21",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 22,
+    "topic": "Parasitosis - Segunda Parte",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_23-Tuberculosis",
+    "saved_at": "2026-04-13 20:46:21",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 23,
+    "topic": "Tuberculosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Infectología_24-Infeccion-de-Piel-y-Partes-Blandas",
+    "saved_at": "2026-04-13 20:46:22",
+    "specialty": "Módulo 1",
+    "subsystem": "Infectología",
+    "lesson_number": 24,
+    "topic": "Infección de Piel y Partes Blandas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Cirugía General_Cirugia General_01-Complicaciones Postquirurgicas",
+    "saved_at": "2026-04-13 20:45:47",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General",
+    "lesson_number": 1,
+    "topic": "Complicaciones Postquirúrgicas",
+    "slides_file": "Módulo 1/Cirugía General/Cirugia General/01-Complicaciones Postquirurgicas/slides.html",
+    "video_dir": "Módulo 1/Cirugía General/Cirugia General/01-Complicaciones Postquirurgicas/video"
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_01-Fiebre-Postquirurgica",
+    "saved_at": "2026-04-13 20:46:52",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 1,
+    "topic": "Fiebre Postquirurgica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_02-Clasificacion-De-La-Herida-Operatoria",
+    "saved_at": "2026-04-13 20:46:53",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 2,
+    "topic": "Clasificación De La Herida Operatoria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_03-Herida-Escaras-Cicatrices-Patologicas",
+    "saved_at": "2026-04-13 20:46:53",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 3,
+    "topic": "Herida, Escaras, Cicatrices Patológicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_04-Furunculos-Abscesos-Flegmones-Pasadizos-Onicocriptosis",
+    "saved_at": "2026-04-13 20:46:54",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 4,
+    "topic": "Furúnculos, Abscesos, Flegmones, Panadizos, Onicocriptosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_05-Hernias",
+    "saved_at": "2026-04-13 20:46:54",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 5,
+    "topic": "Hernias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_06-Mordeduras-Y-Quemaduras",
+    "saved_at": "2026-04-13 20:46:55",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 6,
+    "topic": "Mordeduras y Quemaduras",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_07-Patologia-Pilonidal",
+    "saved_at": "2026-04-13 20:46:55",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 7,
+    "topic": "Patología Pilonidal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_08-Tumores-De-Partes-Blandas",
+    "saved_at": "2026-04-13 20:46:55",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 8,
+    "topic": "Tumores de Partes Blandas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_09-Trauma-Cervical-Y-Raquimedular",
+    "saved_at": "2026-04-13 20:46:56",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 9,
+    "topic": "Trauma Cervical y Raquimedular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_10-Estenosis-Carotidea-Diseccion-Carotidea-Diseccion-Vertebral",
+    "saved_at": "2026-04-13 20:46:56",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 10,
+    "topic": "Estenosis Carotídea, Disección Carotídea y Vertebral",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_11-Cancer-De-Mama",
+    "saved_at": "2026-04-13 20:46:56",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 11,
+    "topic": "Cáncer de Mama",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_12-Patologia-Benigna-De-Mama",
+    "saved_at": "2026-04-13 20:46:56",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 12,
+    "topic": "Patología Benigna de Mama",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Cirugía General y Anestesia_13-Anestesia-I",
+    "saved_at": "2026-04-13 20:46:57",
+    "specialty": "Módulo 2",
+    "subsystem": "Cirugía General y Anestesia",
+    "lesson_number": 13,
+    "topic": "Anestesia I",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_01-Generalidades-Dermatologia",
+    "saved_at": "2026-04-13 20:47:03",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 1,
+    "topic": "Generalidades de Dermatología",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_02-psoriasis-vulgar",
+    "saved_at": "2026-04-13 20:47:03",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 2,
+    "topic": "Psoriasis Vulgar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_03-exantemas-eritematodescamativos",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 3,
+    "topic": "Exantemas Eritematodescamativos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_04-liquen",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 4,
+    "topic": "Liquen Simple Crónico, Liquen Plano y Liquen Escleroso",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_05-acne",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 5,
+    "topic": "Acné",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_06-rosacea",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 6,
+    "topic": "Rosácea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_07-alopecia",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 7,
+    "topic": "Alopecias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_08-Vitiligo",
+    "saved_at": "2026-04-13 20:47:04",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 8,
+    "topic": "Vitíligo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_09-Test-Diagnosticos",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 9,
+    "topic": "Tests Diagnósticos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_10-dermatitis-atopica",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 10,
+    "topic": "Dermatitis Atópica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_11-dermatitis-seborreica",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 11,
+    "topic": "Dermatitis Seborreica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_12-dermatitis-de-contacto",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 12,
+    "topic": "Dermatitis de Contacto",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_13-eccema-deshidrotico",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 13,
+    "topic": "Eccema Dishidrótico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_14-eritema-perneo",
+    "saved_at": "2026-04-13 20:47:05",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 14,
+    "topic": "Eritema Pernio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_15-Urticaria",
+    "saved_at": "2026-04-13 20:47:06",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 15,
+    "topic": "Urticaria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_17-prurigo",
+    "saved_at": "2026-04-13 20:47:06",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 17,
+    "topic": "Prurigo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_18-dermatosis-asociadas-a-la-luz-solar",
+    "saved_at": "2026-04-13 20:47:06",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 18,
+    "topic": "Dermatosis Asociadas a la Luz Solar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_19-Enfermedades-ampollares",
+    "saved_at": "2026-04-13 20:47:06",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 19,
+    "topic": "Enfermedades Ampollares",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_20-enfermedades-autoinmunes-imagenes",
+    "saved_at": "2026-04-13 20:47:07",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 20,
+    "topic": "Enfermedades Autoinmunes con Imágenes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_21-enfermedades-autoinmunes",
+    "saved_at": "2026-04-13 20:47:07",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 21,
+    "topic": "Enfermedades Autoinmunes Cutáneas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_23-tumores-cutaneos-vasculares-benignos",
+    "saved_at": "2026-04-13 20:47:07",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 23,
+    "topic": "Tumores Cutáneos Vasculares Benignos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_24-lesiones-cutaneas-premalignas",
+    "saved_at": "2026-04-13 20:47:07",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 24,
+    "topic": "Lesiones Cutáneas Premalignas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_25-carcionamas-cutaneos",
+    "saved_at": "2026-04-13 20:47:07",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 25,
+    "topic": "Carcinomas Cutáneos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Dermatología_26-Melanoma-maligno",
+    "saved_at": "2026-04-13 20:47:08",
+    "specialty": "Módulo 2",
+    "subsystem": "Dermatología",
+    "lesson_number": 26,
+    "topic": "Melanoma Maligno",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_01-ojo-rojo",
+    "saved_at": "2026-04-13 20:47:08",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 1,
+    "topic": "ojo rojo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_02-ojo-rojo-superficial",
+    "saved_at": "2026-04-13 20:47:08",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 2,
+    "topic": "ojo rojo superficial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_03-conjuntivitis-especiales",
+    "saved_at": "2026-04-13 20:47:08",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 3,
+    "topic": "conjuntivitis especiales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_04-patologia-inflamatoria-de-parpados",
+    "saved_at": "2026-04-13 20:47:09",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 4,
+    "topic": "patología inflamatoria de párpados",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_04-patologia-inflamatoria-de-parpados-converted-1",
+    "saved_at": "2026-04-13 20:47:09",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 4,
+    "topic": "patología inflamatoria de párpados",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_05-ojo-rojo-profundo",
+    "saved_at": "2026-04-13 20:47:09",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 5,
+    "topic": "ojo rojo profundo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_06-ojo-rojo-profundo-2",
+    "saved_at": "2026-04-13 20:47:10",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 6,
+    "topic": "ojo rojo profundo 2",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_07-celulitis-preorbitaria",
+    "saved_at": "2026-04-13 20:47:10",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 7,
+    "topic": "celulitis preorbitaria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_08-perdida-lenta-de-vision",
+    "saved_at": "2026-04-13 20:47:10",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 8,
+    "topic": "pérdida lenta de visión",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_09-perdida-subita-de-vision",
+    "saved_at": "2026-04-13 20:47:10",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 9,
+    "topic": "pérdida súbita de visión",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_10-perdida-subita-de-vision",
+    "saved_at": "2026-04-13 20:47:10",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 10,
+    "topic": "pérdida súbita de visión - resumen",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_11-vicios-de-refraccion",
+    "saved_at": "2026-04-13 20:47:11",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 11,
+    "topic": "vicios de refracción",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_12-traumatismo-ocular",
+    "saved_at": "2026-04-13 20:47:11",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 12,
+    "topic": "traumatismo ocular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_13-cuerpo-extranho-ocular",
+    "saved_at": "2026-04-13 20:47:11",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 13,
+    "topic": "cuerpo extraño ocular",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_14-sindrome-de-ojo-seco",
+    "saved_at": "2026-04-13 20:47:11",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 14,
+    "topic": "síndrome de ojo seco",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_15-miscelaneos",
+    "saved_at": "2026-04-13 20:47:11",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 15,
+    "topic": "misceláneos 1",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_16-miscelaneos-2",
+    "saved_at": "2026-04-13 20:47:12",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 16,
+    "topic": "misceláneos 2",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_17-retinopatia-hipertensiva",
+    "saved_at": "2026-04-13 20:47:12",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 17,
+    "topic": "retinopatía hipertensiva",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_18-neuroftalmologia-1",
+    "saved_at": "2026-04-13 20:47:12",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 18,
+    "topic": "neuroftalmología 1",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_19-neuroftalmologia-2",
+    "saved_at": "2026-04-13 20:47:12",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 19,
+    "topic": "neuroftalmología 2",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_20-neuroftalmologia-3",
+    "saved_at": "2026-04-13 20:47:13",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 20,
+    "topic": "neuroftalmología 3",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_21-oftalmologia-pediatrica",
+    "saved_at": "2026-04-13 20:47:13",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 21,
+    "topic": "oftalmología pediátrica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_22-oftalmologia-pediatrica-2",
+    "saved_at": "2026-04-13 20:47:13",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 22,
+    "topic": "oftalmología pediátrica 2",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Oftalmología_23-oftalmologia-pediatrica-3",
+    "saved_at": "2026-04-13 20:47:13",
+    "specialty": "Módulo 2",
+    "subsystem": "Oftalmología",
+    "lesson_number": 23,
+    "topic": "Retinopatía del Prematuro",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_01-Amigdalitis-Aguda",
+    "saved_at": "2026-04-13 20:47:13",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 1,
+    "topic": "Amigdalitis Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_02-Casos-De-Amigdalitis",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 2,
+    "topic": "Casos De Amigdalitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_03-Complicaciones-De-Amigdalitis-Pultacea",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 3,
+    "topic": "Complicaciones De Amigdalitis Pultacea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_04-Amigdalectomia",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 4,
+    "topic": "Amigdalectomia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_05-Hipertrofia-De-Adenoides",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 5,
+    "topic": "Hipertrofia De Adenoides",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_06-Respirador-Bucal",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 6,
+    "topic": "Respirador Bucal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_07-Cancer-De-Cabeza-Y-Cuello",
+    "saved_at": "2026-04-13 20:47:14",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 7,
+    "topic": "Cáncer De Cabeza Y Cuello",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_08-Cancer-Nasosinusal-Y-Boca",
+    "saved_at": "2026-04-13 20:47:15",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 8,
+    "topic": "Cáncer Nasosinusal Y Boca",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_09-Cancer-De-Faringe-Y-Laringe",
+    "saved_at": "2026-04-13 20:47:15",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 9,
+    "topic": "Cáncer De Faringe Y Laringe",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_10-Patologias-De-Glandulas-Salivales",
+    "saved_at": "2026-04-13 20:47:15",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 10,
+    "topic": "Patologías De Glándulas Salivales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_11-Tumores-Salivales",
+    "saved_at": "2026-04-13 20:47:15",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 11,
+    "topic": "Tumores Salivales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_12-Generalidades-De-Cuerpo-Extrano",
+    "saved_at": "2026-04-13 20:47:16",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 12,
+    "topic": "Generalidades De Cuerpo Extraño",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_13-Cuerpo-Extrano-Nasal-Y-Auditivo",
+    "saved_at": "2026-04-13 20:47:16",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 13,
+    "topic": "Cuerpo Extraño Nasal Y Auditivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_14-Cuerpo-Extrano-Laringeo-Y-Bronquial",
+    "saved_at": "2026-04-13 20:47:16",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 14,
+    "topic": "Cuerpo Extraño Laríngeo Y Bronquial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_16-Cuerpo-Extrano-Heridas",
+    "saved_at": "2026-04-13 20:47:16",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 16,
+    "topic": "Cuerpo Extraño En Heridas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_17-Traumatismo-Orl",
+    "saved_at": "2026-04-13 20:47:16",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 17,
+    "topic": "Traumatismo ORL",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_18-Traumatismo-Timpanico",
+    "saved_at": "2026-04-13 20:47:17",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 18,
+    "topic": "Traumatismo Timpánico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_19-Disfonias-Cronicas",
+    "saved_at": "2026-04-13 20:47:17",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 19,
+    "topic": "Disfonías Crónicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_20-Estridor-Congenito",
+    "saved_at": "2026-04-13 20:47:17",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 20,
+    "topic": "Estridor Congénito",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_21-Laringitis-Aguda",
+    "saved_at": "2026-04-13 20:47:17",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 21,
+    "topic": "Laringitis Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_22-Otras-Causas-De-Disfonias-Aguda",
+    "saved_at": "2026-04-13 20:47:17",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 22,
+    "topic": "Otras Causas De Disfonías Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_23-Heridas-De-Cara-Y-Cuero-Cabelludo",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 23,
+    "topic": "Heridas De Cara Y Cuero Cabelludo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_24-Generalidades-Hipoacusia",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 24,
+    "topic": "Generalidades Hipoacusia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_25-Audiometria-Y-Test-De-Diapasones",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 25,
+    "topic": "Audiometría Y Test De Diapasones",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_26-Hipoacusia-De-Conduccion",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 26,
+    "topic": "Hipoacusia De Conducción",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_27-Impadenciometria",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 27,
+    "topic": "Impedanciometría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_28-Hipoacusias-Sensorioneurales",
+    "saved_at": "2026-04-13 20:47:18",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 28,
+    "topic": "Hipoacusias Sensorioneurales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_29-Hipoacusia-Congenita",
+    "saved_at": "2026-04-13 20:47:19",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 29,
+    "topic": "Hipoacusia Congénita",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_30-Trastorno-De-La-Deglucion",
+    "saved_at": "2026-04-13 20:47:19",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 30,
+    "topic": "Trastorno De La Deglución",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_31-Trastorno-Del-Habla",
+    "saved_at": "2026-04-13 20:47:19",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 31,
+    "topic": "Trastorno Del Habla",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_32-Vertigo",
+    "saved_at": "2026-04-13 20:47:19",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 32,
+    "topic": "Vertigo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_33-Causas-Especificas-De-Vertigo",
+    "saved_at": "2026-04-13 20:47:19",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 33,
+    "topic": "Causas Específicas De Vertigo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_34-Paralisis-Facial",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 34,
+    "topic": "Parálisis Facial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_35-Causas-De-Paralisis-Facial",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 35,
+    "topic": "Causas De Parálisis Facial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_36-Sinusitis",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 36,
+    "topic": "Sinusitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_37-Rinitis",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 37,
+    "topic": "Rinitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_38-Manejo-De-La-Rinitis-Alergica",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 38,
+    "topic": "Manejo De La Rinitis Alérgica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_39-Rinitis-No-Alergicas",
+    "saved_at": "2026-04-13 20:47:20",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 39,
+    "topic": "Rinitis No Alérgicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_40-Prick-Test",
+    "saved_at": "2026-04-13 20:47:21",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 40,
+    "topic": "Prick Test",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_41-Terapia-Biologica-En-Alergias-Graves",
+    "saved_at": "2026-04-13 20:47:21",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 41,
+    "topic": "Terapia Biológica En Alergias Graves",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_42-Poliposis-Nasal",
+    "saved_at": "2026-04-13 20:47:21",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 42,
+    "topic": "Poliposis Nasal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_43-Epistaxis",
+    "saved_at": "2026-04-13 20:47:22",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 43,
+    "topic": "Epistaxis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_44-Casos-Rinologia",
+    "saved_at": "2026-04-13 20:47:22",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 44,
+    "topic": "Casos Rinologia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_45-Alergia-Y-Resistencia-a-La-Penicilina",
+    "saved_at": "2026-04-13 20:47:22",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 45,
+    "topic": "Alergia Y Resistencia a La Penicilina",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_46-Otitis-Media-Aguda",
+    "saved_at": "2026-04-13 20:47:23",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 46,
+    "topic": "Otitis Media Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_47-Complicaciones-De-La-Otitis-Media",
+    "saved_at": "2026-04-13 20:47:23",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 47,
+    "topic": "Complicaciones De La Otitis Media",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Especialidades_Otorrinolaringología_48-Otitis-Media-Cronica",
+    "saved_at": "2026-04-13 20:47:23",
+    "specialty": "Módulo 2",
+    "subsystem": "Otorrinolaringología",
+    "lesson_number": 48,
+    "topic": "Otitis Media Cronica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_01-psiquiatria-infantil",
+    "saved_at": "2026-04-13 20:47:24",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 1,
+    "topic": "Psiquiatría Infantil: Trastorno del Espectro Autista",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_02-psiquiatra-infantil",
+    "saved_at": "2026-04-13 20:47:24",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 2,
+    "topic": "Psiquiatría Infantil: TDA e Discapacidad Intelectual",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_03-psiquiatria-infantil",
+    "saved_at": "2026-04-13 20:47:24",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 3,
+    "topic": "Psiquiatría Infantil: Conducta y Trastornos del Comportamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_04-maltrato-infantil",
+    "saved_at": "2026-04-13 20:47:25",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 4,
+    "topic": "Maltrato Infantil y Violencia Intrafamiliar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_05-psiquiatria-adultosgeneralidades",
+    "saved_at": "2026-04-13 20:47:25",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 5,
+    "topic": "Psiquiatría Adultos: Generalidades y Clasificación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_06-Trastornos-animicos-I",
+    "saved_at": "2026-04-13 20:47:25",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 6,
+    "topic": "Trastornos del Ánimo: Depresión Mayor",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_07-trastornos-animicos-antidepresivos",
+    "saved_at": "2026-04-13 20:47:25",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 7,
+    "topic": "Trastornos del Ánimo: Antidepresivos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_08-Trastornos-Animicos-T-adaptativo-y-distimia",
+    "saved_at": "2026-04-13 20:47:26",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 8,
+    "topic": "Trastornos del Ánimo: Trastorno Adaptativo y Distimia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_09-Trastornos-Animicos-T-bipolar",
+    "saved_at": "2026-04-13 20:47:26",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 9,
+    "topic": "Trastornos del Ánimo: Trastorno Bipolar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_10-trastornos-animicos-intento-suicida",
+    "saved_at": "2026-04-13 20:47:26",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 10,
+    "topic": "Trastornos del Ánimo: Intento Suicida y Suicidio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_11-Intoxicaciones",
+    "saved_at": "2026-04-13 20:47:27",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 11,
+    "topic": "Intoxicaciones: Síndromes Clínicos y Manejo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_12-trastornos-ansiosos-I",
+    "saved_at": "2026-04-13 20:47:27",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 12,
+    "topic": "Trastornos Ansiosos I: Generalidades y Crisis de Pánico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_13-Trastornos-Ansiosos-T-de-angustia",
+    "saved_at": "2026-04-13 20:47:28",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 13,
+    "topic": "Trastornos Ansiosos: TAG, Agorafobia y Fobia Social",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_14-trastornos-ansiosos-TOC",
+    "saved_at": "2026-04-13 20:47:28",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 14,
+    "topic": "Trastornos Ansiosos: TOC, TEPT y Fobia Específica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_15-Psiquiatria-Infantil-T-del-animo",
+    "saved_at": "2026-04-13 20:47:28",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 15,
+    "topic": "Psiquiatría Infantil: Trastornos del Ánimo y Trastornos Ansiosos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_16-trastornos-psicoticos",
+    "saved_at": "2026-04-13 20:47:29",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 16,
+    "topic": "Trastornos Psicóticos: Esquizofrenia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_17-trastornos-psicoticos",
+    "saved_at": "2026-04-13 20:47:29",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 17,
+    "topic": "Trastornos Psicóticos: Trastorno Delirante, Esquizoafectivo y Psicosis Breve",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_18-Consumo-de-sustancias",
+    "saved_at": "2026-04-13 20:47:29",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 18,
+    "topic": "Consumo de Sustancias: Dependencia, Abuso y Entrevista Motivacional",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_19-consumo-de-alcohol",
+    "saved_at": "2026-04-13 20:47:29",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 19,
+    "topic": "Consumo de Alcohol: Alcoholismo y Síndromes de Abstinencia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_20-Trastornos-conversivos",
+    "saved_at": "2026-04-13 20:47:30",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 20,
+    "topic": "Trastornos Conversivos y Disociativos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_21-trastornos-de-la-personalidad-1ra-parte",
+    "saved_at": "2026-04-13 20:47:30",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 21,
+    "topic": "Trastornos de Personalidad: Clúster A y B",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_22-trastornos-de-personalidad-2da-parte",
+    "saved_at": "2026-04-13 20:47:30",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 22,
+    "topic": "Trastornos de Personalidad: Clúster C y Casos Clínicos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_23-trastornos-somatomorfos",
+    "saved_at": "2026-04-13 20:47:31",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 23,
+    "topic": "Trastornos Somatomorfos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Psiquiatría_Psiquiatría General_24-trastornos-de-alimentacion",
+    "saved_at": "2026-04-13 20:47:31",
+    "specialty": "Módulo 2",
+    "subsystem": "Psiquiatría General",
+    "lesson_number": 24,
+    "topic": "Trastornos de la Alimentación: Anorexia y Bulimia Nervosa",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_01-Fracturas-Generalidades",
+    "saved_at": "2026-04-13 20:46:57",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 1,
+    "topic": "Fracturas: Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_02-Fracturas-Expuestas",
+    "saved_at": "2026-04-13 20:46:57",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 2,
+    "topic": "Fracturas Expuestas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_03-Complicacion-De-Las-Fracturas-I",
+    "saved_at": "2026-04-13 20:46:57",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 3,
+    "topic": "Complicaciones de las Fracturas I",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_04-Complicaciones-De-Las-Fracturas-Ii",
+    "saved_at": "2026-04-13 20:46:57",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 4,
+    "topic": "Complicaciones de las Fracturas II",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_05-Complicaciones-De-Las-Fracturas-Iii",
+    "saved_at": "2026-04-13 20:46:58",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 5,
+    "topic": "Complicaciones de las Fracturas III",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_06-Politraumatismos-Y-Fractura-De-Pelvis-2",
+    "saved_at": "2026-04-13 20:46:58",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 6,
+    "topic": "Politraumatismos y Fractura de Pelvis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_08-lesiones-de-extremidades-sup",
+    "saved_at": "2026-04-13 20:46:58",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 8,
+    "topic": "Lesiones de Extremidades Superiores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_09-Lesiones-De-Extremidades-Inf",
+    "saved_at": "2026-04-13 20:46:58",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 9,
+    "topic": "Lesiones de Extremidades Inferiores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_10-Lesiones-De-Rodilla",
+    "saved_at": "2026-04-13 20:46:58",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 10,
+    "topic": "Lesiones de Rodilla",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_11-Fractura-De-Cadera",
+    "saved_at": "2026-04-13 20:46:59",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 11,
+    "topic": "Fractura de Cadera",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_12-Lesiones-De-Partes-Blandas",
+    "saved_at": "2026-04-13 20:46:59",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 12,
+    "topic": "Lesiones de Partes Blandas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_13-Tumores-Oseos",
+    "saved_at": "2026-04-13 20:46:59",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 13,
+    "topic": "Tumores Óseos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_14-Traumatologia-Infantil",
+    "saved_at": "2026-04-13 20:46:59",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 14,
+    "topic": "Traumatologia Infantil",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_15-Artrosis-Y-Monoartritis",
+    "saved_at": "2026-04-13 20:46:59",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 15,
+    "topic": "Artrosis Y Monoartritis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Traumatología_16-Lumbago-Cervicalgia-Hombro-Doloroso-Codo-Doloroso-Tendinitis-Bursitis-Fibromialgia",
+    "saved_at": "2026-04-13 20:47:00",
+    "specialty": "Módulo 2",
+    "subsystem": "Traumatología",
+    "lesson_number": 16,
+    "topic": "Lumbago, Cervicalgia, Hombro Doloroso, Codo Doloroso, Tendinitis, Bursitis, Fibromialgia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_01-litiasis-urologica",
+    "saved_at": "2026-04-13 20:47:00",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 1,
+    "topic": "Litiasis Urológica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_02-uropatia-obstructiva-baja",
+    "saved_at": "2026-04-13 20:47:00",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 2,
+    "topic": "Uropatía Obstructiva Baja",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_03-vejiga-neurogenica",
+    "saved_at": "2026-04-13 20:47:00",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 3,
+    "topic": "Vejiga Neurogénica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_04-retencion-urinaria-aguda",
+    "saved_at": "2026-04-13 20:47:01",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 4,
+    "topic": "Retención Urinaria Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_05-cancer-de-prostata",
+    "saved_at": "2026-04-13 20:47:01",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 5,
+    "topic": "Cáncer de Próstata: Screening, Clínica y Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_06-cancer-de-prostata-tratamiento",
+    "saved_at": "2026-04-13 20:47:01",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 6,
+    "topic": "Cáncer de Próstata: Tratamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_07-prostatitis-aguda",
+    "saved_at": "2026-04-13 20:47:01",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 7,
+    "topic": "Prostatitis Aguda y Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_08-incontinencia-urinaria-clinica",
+    "saved_at": "2026-04-13 20:47:01",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 8,
+    "topic": "Incontinencia Urinaria: Clínica y Causas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_09-incontinencia-urinaria-tratamiento",
+    "saved_at": "2026-04-13 20:47:02",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 9,
+    "topic": "Incontinencia Urinaria: Tratamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_10-testiculo-agudo",
+    "saved_at": "2026-04-13 20:47:02",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 10,
+    "topic": "Testículo Agudo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_11-orquiepididimitis",
+    "saved_at": "2026-04-13 20:47:02",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 11,
+    "topic": "Orquiepididimitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_12-patologia-escrotal-cronica",
+    "saved_at": "2026-04-13 20:47:02",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 12,
+    "topic": "Patología Escrotal Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_14-tumor-renal",
+    "saved_at": "2026-04-13 20:47:02",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 14,
+    "topic": "Tumor Renal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_15-quiste-renal-simple",
+    "saved_at": "2026-04-13 20:47:03",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 15,
+    "topic": "Quiste Renal Simple y Riñón Poliquístico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Cirugía_Urología_16-estudio-hematuria",
+    "saved_at": "2026-04-13 20:47:03",
+    "specialty": "Módulo 2",
+    "subsystem": "Urología",
+    "lesson_number": 16,
+    "topic": "Estudio de la Hematuria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 2_Obstetricia y Ginecología_Ginecología_01-Amenorrea",
+    "saved_at": "2026-04-13 20:47:24",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 1,
+    "topic": "Amenorrea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_01-Amenorrea",
+    "saved_at": "2026-04-13 20:47:31",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 1,
+    "topic": "Amenorrea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_02-Oligomenorrea-y-Síndrome-de-Ovario-Poliquístico-SOP",
+    "saved_at": "2026-04-13 20:47:31",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 2,
+    "topic": "Oligomenorrea y Síndrome de Ovario Poliquístico (SOP)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_03-Sangrado-Uterino-Anormal-SUA",
+    "saved_at": "2026-04-13 20:47:31",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 3,
+    "topic": "Sangrado Uterino Anormal (SUA)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_04-Patología-Benigna-del-Útero",
+    "saved_at": "2026-04-13 20:47:32",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 4,
+    "topic": "Patología Benigna del Útero",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_05-Patología-Maligna-del-Útero-Endometrio",
+    "saved_at": "2026-04-13 20:47:32",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 5,
+    "topic": "Patología Maligna del Útero (Endometrio)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_06-Leucorrea",
+    "saved_at": "2026-04-13 20:47:32",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 6,
+    "topic": "Leucorrea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_07-Quiste-y-Absceso-de-Glándula-de-Bartolino",
+    "saved_at": "2026-04-13 20:47:32",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 7,
+    "topic": "Quiste y Absceso de Glándula de Bartolino",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_08-Prevención-del-Cáncer-de-Cuello-Uterino",
+    "saved_at": "2026-04-13 20:47:32",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 8,
+    "topic": "Prevención del Cáncer de Cuello Uterino",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_09-Patología-Maligna-del-Cuello-Uterino-NIC-y-CCU",
+    "saved_at": "2026-04-13 20:47:33",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 9,
+    "topic": "Patología Maligna del Cuello Uterino (NIC y CCU)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_10-Tumor-Ovárico-Tumor-Anexial",
+    "saved_at": "2026-04-13 20:47:33",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 10,
+    "topic": "Tumor Ovárico (Tumor Anexial)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_11-Algias-Pélvicas-Agudas-APA",
+    "saved_at": "2026-04-13 20:47:33",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 11,
+    "topic": "Algias Pélvicas Agudas (APA)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_12-Proceso-Inflamatorio-Pélvico-PIP--EIP",
+    "saved_at": "2026-04-13 20:47:33",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 12,
+    "topic": "Proceso Inflamatorio Pélvico (PIP / EIP)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_13-Algias-Pélvicas-Crónicas-APC-y-Dismenorrea",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 13,
+    "topic": "Algias Pélvicas Crónicas (APC) y Dismenorrea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_14-Endometriosis",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 14,
+    "topic": "Endometriosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_15-Infertilidad",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 15,
+    "topic": "Infertilidad",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_16-Métodos-Anticonceptivos",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 16,
+    "topic": "Métodos Anticonceptivos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_18-Climaterio-y-Menopausia",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 18,
+    "topic": "Climaterio y Menopausia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_19-Prolapso-Genital",
+    "saved_at": "2026-04-13 20:47:34",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 19,
+    "topic": "Prolapso Genital",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Ginecología_Ginecología_20-Ginecología-Infantil",
+    "saved_at": "2026-04-13 20:47:35",
+    "specialty": "Módulo 3",
+    "subsystem": "Ginecología",
+    "lesson_number": 20,
+    "topic": "Ginecología Infantil",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_01-Control-Antenatal-y-Embarazo-Fisiológico",
+    "saved_at": "2026-04-13 20:47:35",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 1,
+    "topic": "Control Antenatal y Embarazo Fisiológico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_02-Determinación-de-la-Edad-Gestacional-EG",
+    "saved_at": "2026-04-13 20:47:35",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 2,
+    "topic": "Determinación de la Edad Gestacional (EG)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_03-Anemia-en-el-Embarazo",
+    "saved_at": "2026-04-13 20:47:35",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 3,
+    "topic": "Anemia en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_04-Hiperemesis-Gravídica",
+    "saved_at": "2026-04-13 20:47:35",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 4,
+    "topic": "Hiperemesis Gravídica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_05-Diabetes-en-el-Embarazo--Diagnóstico-y-Clasificación",
+    "saved_at": "2026-04-13 20:47:36",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 5,
+    "topic": "Diabetes en el Embarazo — Diagnóstico y Clasificación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_06-Tratamiento-de-la-Diabetes-en-el-Embarazo",
+    "saved_at": "2026-04-13 20:47:36",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 6,
+    "topic": "Tratamiento de la Diabetes en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_07-Control-Obstétrico-de-la-Diabetes-en-el-Embarazo",
+    "saved_at": "2026-04-13 20:47:36",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 7,
+    "topic": "Control Obstétrico de la Diabetes en el Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_08-Metrorragia-de-la-Primera-Mitad-del-Embarazo--20-semana",
+    "saved_at": "2026-04-13 20:47:36",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 8,
+    "topic": "Metrorragia de la Primera Mitad del Embarazo (< 20 semanas)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_09-Aborto-Espontáneo",
+    "saved_at": "2026-04-13 20:47:36",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 9,
+    "topic": "Aborto Espontáneo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_10-Aborto-Retenido",
+    "saved_at": "2026-04-13 20:47:37",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 10,
+    "topic": "Aborto Retenido",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_11-Óbito-Fetal",
+    "saved_at": "2026-04-13 20:47:37",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 11,
+    "topic": "Óbito Fetal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_12-Aborto-Completo-vs-Embarazo-Ectópico-Roto",
+    "saved_at": "2026-04-13 20:47:37",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 12,
+    "topic": "Aborto Completo vs. Embarazo Ectópico Roto",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_13-Aborto-Séptico",
+    "saved_at": "2026-04-13 20:47:37",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 13,
+    "topic": "Aborto Séptico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_14-Causales-de-Aborto-en-Chile-Ley-21030",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 14,
+    "topic": "Causales de Aborto en Chile (Ley 21.030)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_15-Embarazo-Ectópico--Definición-y-Diagnóstico",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 15,
+    "topic": "Embarazo Ectópico — Definición y Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_16-Embarazo-Ectópico--Tratamiento",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 16,
+    "topic": "Embarazo Ectópico — Tratamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_17-Embarazo-Ectópico--Casos-Clínicos",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 17,
+    "topic": "Embarazo Ectópico — Casos Clínicos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_18-Enfermedad-Trofoblástica-Gestacional-ETG",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 18,
+    "topic": "Enfermedad Trofoblástica Gestacional (ETG)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_19-Metrorragia-de-la-Segunda-Mitad-del-Embarazo",
+    "saved_at": "2026-04-13 20:47:38",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 19,
+    "topic": "Metrorragia de la Segunda Mitad del Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_20-Placenta-Previa-Asintomática",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 20,
+    "topic": "Placenta Previa Asintomática",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_21-Espectro-de-la-Placenta-Acreta",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 21,
+    "topic": "Espectro de la Placenta Acreta",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_22-Síndrome-Hipertensivo-del-Embarazo--Diagnóstico-y-Clasi",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 22,
+    "topic": "Síndrome Hipertensivo del Embarazo — Diagnóstico y Clasificación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_23-Atención-Inmediata-del-Recién-Nacido-y-Asfixia-Neonatal",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 23,
+    "topic": "Atención Inmediata del Recién Nacido y Asfixia Neonatal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_24-Tratamiento-del-Síndrome-Hipertensivo-del-Embarazo",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 24,
+    "topic": "Tratamiento del Síndrome Hipertensivo del Embarazo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_25-Eclampsia",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 25,
+    "topic": "Eclampsia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_26-Prevención-de-la-Preeclampsia",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 26,
+    "topic": "Prevención de la Preeclampsia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_27-Colestasis-Intrahepática-del-Embarazo-CIE",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 27,
+    "topic": "Colestasis Intrahepática del Embarazo (CIE)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_28-Hígado-Graso-Agudo-del-Embarazo-HGAE",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 28,
+    "topic": "Hígado Graso Agudo del Embarazo (HGAE)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_29-Síndrome-de-HELLP",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 29,
+    "topic": "Síndrome de HELLP",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_30-Hepatopatías-del-Embarazo--Resumen-Comparativo",
+    "saved_at": "2026-04-13 20:47:40",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 30,
+    "topic": "Hepatopatías del Embarazo — Resumen Comparativo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_31-Embarazo-Gemelar--Clasificación-y-Diagnóstico",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 31,
+    "topic": "Embarazo Gemelar — Clasificación y Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_32-Embarazo-Gemelar--Manejo-y-Complicaciones-Generales",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 32,
+    "topic": "Embarazo Gemelar — Manejo y Complicaciones Generales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_33-Manejo-de-la-Muerte-de-un-Gemelo",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 33,
+    "topic": "Manejo de la Muerte de un Gemelo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_34-Complicaciones-del-Embarazo-Gemelar-Monocorial",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 34,
+    "topic": "Complicaciones del Embarazo Gemelar Monocorial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_35-RCIU--Definición-y-Clasificación",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 35,
+    "topic": "RCIU — Definición y Clasificación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_36-Doppler-Fetal--Interpretación",
+    "saved_at": "2026-04-13 20:47:41",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 36,
+    "topic": "Doppler Fetal — Interpretación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_37-RCIU--Momentos-y-Vía-de-Interrupción",
+    "saved_at": "2026-04-13 20:47:42",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 37,
+    "topic": "RCIU — Momentos y Vía de Interrupción",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_38-Parto-Prematuro-vs-RPM--Paralelo",
+    "saved_at": "2026-04-13 20:47:42",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 38,
+    "topic": "Parto Prematuro vs. RPM — Paralelo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_39-Trabajo-de-Parto-Prematuro--Manejo",
+    "saved_at": "2026-04-13 20:47:42",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 39,
+    "topic": "Trabajo de Parto Prematuro — Manejo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_40-Rotura-Prematura-de-Membranas-RPM",
+    "saved_at": "2026-04-13 20:47:42",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 40,
+    "topic": "Rotura Prematura de Membranas (RPM)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_41-Corioamnionitis--Infección-Intraamniótica",
+    "saved_at": "2026-04-13 20:47:43",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 41,
+    "topic": "Corioamnionitis / Infección Intraamniótica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_42-Profilaxis-de-Streptococcus-agalactiae-SGB--Grupo-B",
+    "saved_at": "2026-04-13 20:47:43",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 42,
+    "topic": "Profilaxis de Streptococcus agalactiae (SGB / Grupo B)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_43-Parto-Vaginal",
+    "saved_at": "2026-04-13 20:47:43",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 43,
+    "topic": "Parto Vaginal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_44-Distocias-de-Presentación",
+    "saved_at": "2026-04-13 20:47:43",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 44,
+    "topic": "Distocias de Presentación",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_45-Metrorragias-del-Parto-Intraparto",
+    "saved_at": "2026-04-13 20:47:43",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 45,
+    "topic": "Metrorragias del Parto (Intraparto)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_46-Detección-de-Hipoxia-Fetal-Intraparto--MEFI",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 46,
+    "topic": "Detección de Hipoxia Fetal Intraparto — MEFI",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_47-Detección-de-Hipoxia-Fetal-Anteparto",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 47,
+    "topic": "Detección de Hipoxia Fetal Anteparto",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_23-SHE--Casos-Clínicos-Tipo-EUNACOM",
+    "saved_at": "2026-04-13 20:47:39",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 48,
+    "topic": "SHE — Casos Clínicos Tipo EUNACOM",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_49-Puerperio-Normal",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 49,
+    "topic": "Puerperio Normal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_50-Puerperio-Patológico--Endometritis-y-Trombosis",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 50,
+    "topic": "Puerperio Patológico — Endometritis y Trombosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_51-Metrorragias-Puerperales-Hemorragia-Postparto",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 51,
+    "topic": "Metrorragias Puerperales (Hemorragia Postparto)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_52-Patología-Mamaria-en-el-Puerperio",
+    "saved_at": "2026-04-13 20:47:44",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 52,
+    "topic": "Patología Mamaria en el Puerperio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_53-Lactancia-Materna",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 53,
+    "topic": "Lactancia Materna",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Obstetricia_Obstetricia_54-Psiquiatría-Obstétrica",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Obstetricia",
+    "lesson_number": 54,
+    "topic": "Psiquiatría Obstétrica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_01-Ictericia-Neonatal",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 1,
+    "topic": "Ictericia Neonatal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_02-Síndrome-de-Distress-Respiratorio-del-Recién-Nacido-SDR",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 2,
+    "topic": "Síndrome de Distress Respiratorio del Recién Nacido (SDR)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_03-Tipos-de-Recién-Nacido",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 3,
+    "topic": "Tipos de Recién Nacido",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_04-Patología-Neonatal-General",
+    "saved_at": "2026-04-13 20:47:45",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 4,
+    "topic": "Patología Neonatal General",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_05-Microcefalia-Macrocefalia-y-Cefalea-en-Niños",
+    "saved_at": "2026-04-13 20:47:46",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 5,
+    "topic": "Microcefalia, Macrocefalia y Cefalea en Niños",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_06-Temas-de-Neurología-Pediátrica",
+    "saved_at": "2026-04-13 20:47:46",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 6,
+    "topic": "Temas de Neurología Pediátrica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_07-Síndrome-de-Down-Trisomía-21",
+    "saved_at": "2026-04-13 20:47:46",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 7,
+    "topic": "Síndrome de Down (Trisomía 21)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_08-Inmunodeficiencias-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:47",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 8,
+    "topic": "Inmunodeficiencias en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_09-Fiebre-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:47",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 9,
+    "topic": "Fiebre en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_10-Muerte-Súbita-del-Lactante-y-ALTE",
+    "saved_at": "2026-04-13 20:47:47",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 10,
+    "topic": "Muerte Súbita del Lactante y ALTE",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_11-Diarrea-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:47",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 11,
+    "topic": "Diarrea en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_12-Reflujo-Dolor-Abdominal-y-Constipación-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:48",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 12,
+    "topic": "Reflujo, Dolor Abdominal y Constipación en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_13-Púrpura-y-Anemia-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:48",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 13,
+    "topic": "Púrpura y Anemia en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_14-Diagnóstico-Nutricional-y-Talla-Baja-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:48",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 14,
+    "topic": "Diagnóstico Nutricional y Talla Baja en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_15-Nefrología-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:48",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 15,
+    "topic": "Nefrología en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_16-Infecciones-Respiratorias-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:49",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 16,
+    "topic": "Infecciones Respiratorias en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_17-Síndrome-Bronquial-Obstructivo-SBO-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:49",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 17,
+    "topic": "Síndrome Bronquial Obstructivo (SBO) en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 3_Pediatría_Pediatría_18-Vacunas-y-Alimentación-en-Pediatría",
+    "saved_at": "2026-04-13 20:47:49",
+    "specialty": "Módulo 3",
+    "subsystem": "Pediatría",
+    "lesson_number": 18,
+    "topic": "Vacunas y Alimentación en Pediatría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_01-Conceptos-de-Nefrologia",
+    "saved_at": "2026-04-13 20:46:22",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 1,
+    "topic": "Conceptos de Nefrología",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_02-Insuficiencia-Renal-Aguda-o-Cronica",
+    "saved_at": "2026-04-13 20:46:22",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 2,
+    "topic": "Insuficiencia Renal Aguda o Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_03-Insuficiencia-Renal-Aguda",
+    "saved_at": "2026-04-13 20:46:22",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 3,
+    "topic": "Insuficiencia Renal Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_04-Necrosis-Tubular-Aguda",
+    "saved_at": "2026-04-13 20:46:23",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 4,
+    "topic": "Necrosis Tubular Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_05-Cilindros-en-Sedimento-Urinario",
+    "saved_at": "2026-04-13 20:46:23",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 5,
+    "topic": "Cilindros en Sedimento Urinario",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_06-Sindrome-Hemolitico-Uremico-SHU",
+    "saved_at": "2026-04-13 20:46:23",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 6,
+    "topic": "Síndrome Hemolítico Urémico (SHU)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_07-Insuficiencia-Renal-Cronica",
+    "saved_at": "2026-04-13 20:46:23",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 7,
+    "topic": "Insuficiencia Renal Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_08-Hipertension-e-Hipervolemia-en-la-Insuficiencia-Renal-Cronica",
+    "saved_at": "2026-04-13 20:46:24",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 8,
+    "topic": "Hipertensión e Hipervolemia en la Insuficiencia Renal Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_09-Hiperparatiroidismo-Secundario-a-la-Insuficiencia-Renal-Cronica",
+    "saved_at": "2026-04-13 20:46:24",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 9,
+    "topic": "Hiperparatiroidismo Secundario a la Insuficiencia Renal Crónica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_10-Glomerulonefritis-y-Sindrome-Nefritico",
+    "saved_at": "2026-04-13 20:46:24",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 10,
+    "topic": "Glomerulonefritis y Síndrome Nefrítico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_11-Tipos-de-Glomerulonefritis",
+    "saved_at": "2026-04-13 20:46:25",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 11,
+    "topic": "Tipos de Glomerulonefritis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_12-Casos-de-Glomerulonefritis",
+    "saved_at": "2026-04-13 20:46:25",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 12,
+    "topic": "Casos de Glomerulonefritis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_13-Nefritis-Intersticial",
+    "saved_at": "2026-04-13 20:46:25",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 13,
+    "topic": "Nefritis Intersticial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_14-Sindrome-Nefrotico",
+    "saved_at": "2026-04-13 20:46:25",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 14,
+    "topic": "Síndrome Nefrótico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_15-Sindrome-Nefrotico-Patologias-Especificas",
+    "saved_at": "2026-04-13 20:46:25",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 15,
+    "topic": "Síndrome Nefrótico - Patologías Específicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_16-Sindrome-Polidipsico-Poliurico",
+    "saved_at": "2026-04-13 20:46:26",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 16,
+    "topic": "Síndrome Polidípsico Poliúrico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_17-SIADH-Sindrome-de-Secrecion-Inadecuada-de-ADH",
+    "saved_at": "2026-04-13 20:46:26",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 17,
+    "topic": "SIADH (Síndrome de Secreción Inadecuada de ADH)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_18-Trastornos-Hidroelectroliticos",
+    "saved_at": "2026-04-13 20:46:26",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 18,
+    "topic": "Trastornos Hidroelectrolíticos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_19-Alteraciones-del-Sodio-Manejo",
+    "saved_at": "2026-04-13 20:46:26",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 19,
+    "topic": "Alteraciones del Sodio - Manejo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_20-Alteraciones-del-Potasio-Manejo",
+    "saved_at": "2026-04-13 20:46:26",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 20,
+    "topic": "Alteraciones del Potasio - Manejo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_21-Alteraciones-del-Calcio",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 21,
+    "topic": "Alteraciones del Calcio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_22-Manejo-de-las-Alteraciones-del-Calcio",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 22,
+    "topic": "Manejo de las Alteraciones del Calcio",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_23-Diureticos",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 23,
+    "topic": "Diuréticos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_24-Sueroterapia",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 24,
+    "topic": "Sueroterapia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_25-Hipertension-Arterial",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 25,
+    "topic": "Hipertensión Arterial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Nefrología_26-Antihipertensivos",
+    "saved_at": "2026-04-13 20:46:27",
+    "specialty": "Módulo 1",
+    "subsystem": "Nefrología",
+    "lesson_number": 26,
+    "topic": "Antihipertensivos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_01-Demencia-y-Delirium",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 1,
+    "topic": "Demencia y Delirium",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_02-Traumatismo-Encefalo-Craneano-TEC",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 2,
+    "topic": "Traumatismo Encéfalo Craneano (TEC)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_03-Trastornos-del-Sueno",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 3,
+    "topic": "Trastornos del Sueño",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_05-Compromiso-de-Conciencia-Apraxias-Agnosias-y-Afasias",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 5,
+    "topic": "Compromiso de Conciencia, Apraxias, Agnosias y Afasias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_06-Accidente-Vascular-Encefalico-AVE",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 6,
+    "topic": "Accidente Vascular Encefálico (AVE)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_07-Cefalea-Tumor-Cerebral-y-Hemorragia-Subaracnoidea",
+    "saved_at": "2026-04-13 20:46:28",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 7,
+    "topic": "Cefalea, Tumor Cerebral y Hemorragia Subaracnoidea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_08-Cefaleas-Cronicas",
+    "saved_at": "2026-04-13 20:46:29",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 8,
+    "topic": "Cefaleas Crónicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_09-ELA-y-Esclerosis-Multiple",
+    "saved_at": "2026-04-13 20:46:29",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 9,
+    "topic": "ELA y Esclerosis Múltiple",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_10-Convulsiones-Epilepsia-y-Estatus-Convulsivo",
+    "saved_at": "2026-04-13 20:46:29",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 10,
+    "topic": "Convulsiones, Epilepsia y Estatus Convulsivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_11-Polineuropatias-Neuralgias-y-Neuropatias-por-Atrapamiento",
+    "saved_at": "2026-04-13 20:46:29",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 11,
+    "topic": "Polineuropatías, Neuralgias y Neuropatías por Atrapamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Neurología y Geriatría_12-Sindromes-Motores",
+    "saved_at": "2026-04-13 20:46:29",
+    "specialty": "Módulo 1",
+    "subsystem": "Neurología y Geriatría",
+    "lesson_number": 12,
+    "topic": "Síndromes Motores",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_01-Infecciones Respiratorias Altas",
+    "saved_at": "2026-04-13 20:46:30",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 1,
+    "topic": "Infecciones Respiratorias Altas",
+    "slides_file": "Módulo 1/Medicina Interna/Respiratorio/01-Infecciones Respiratorias Altas/slides.html",
+    "video_dir": "Módulo 1/Medicina Interna/Respiratorio/01-Infecciones Respiratorias Altas/video"
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_02-Influenza",
+    "saved_at": "2026-04-13 20:46:30",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 2,
+    "topic": "Influenza",
+    "slides_file": "Módulo 1/Medicina Interna/Respiratorio/02-Influenza/slides.html",
+    "video_dir": "Módulo 1/Medicina Interna/Respiratorio/02-Influenza/video"
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_03-COVID-19",
+    "saved_at": "2026-04-13 20:46:30",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 3,
+    "topic": "COVID-19",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_04-otras-Infecciones-respiratorias",
+    "saved_at": "2026-04-13 20:46:30",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 4,
+    "topic": "Otras infecciones respiratorias virales",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_05-SBO",
+    "saved_at": "2026-04-13 20:46:31",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 5,
+    "topic": "Síndrome bronquial obstructivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_06-manejo-del-SBO",
+    "saved_at": "2026-04-13 20:46:31",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 6,
+    "topic": "Manejo del síndrome bronquial obstructivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_07-score-de-Tal",
+    "saved_at": "2026-04-13 20:46:31",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 7,
+    "topic": "Score de Tal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_08-SBO-recurrente",
+    "saved_at": "2026-04-13 20:46:31",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 8,
+    "topic": "Síndrome bronquial obstructivo recurrente",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_09-SBOR-secundario",
+    "saved_at": "2026-04-13 20:46:31",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 9,
+    "topic": "SBOR secundario",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_10-coqueluche",
+    "saved_at": "2026-04-13 20:46:32",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 10,
+    "topic": "Coqueluche",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_11-manejo-de-contactos-de-coqueluche",
+    "saved_at": "2026-04-13 20:46:32",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 11,
+    "topic": "Manejo de contactos de coqueluche",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_12-neumonia-adquirida-en-la-comunidad",
+    "saved_at": "2026-04-13 20:46:32",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 12,
+    "topic": "Neumonía adquirida en la comunidad",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_13-tto-en-las-neumonias",
+    "saved_at": "2026-04-13 20:46:32",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 13,
+    "topic": "Tratamiento en las neumonías",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_14-absceso-pulmonar",
+    "saved_at": "2026-04-13 20:46:32",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 14,
+    "topic": "Absceso pulmonar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_15-neumonia-atipica",
+    "saved_at": "2026-04-13 20:46:33",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 15,
+    "topic": "Neumonía atípica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_16-neumonia-por-pneumocystis-jirovecii",
+    "saved_at": "2026-04-13 20:46:33",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 16,
+    "topic": "Neumonía por Pneumocystis jirovecii",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_17-neumonia-viral",
+    "saved_at": "2026-04-13 20:46:33",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 17,
+    "topic": "Neumonía viral",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_18-radiografias-de-torax",
+    "saved_at": "2026-04-13 20:46:33",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 18,
+    "topic": "Radiografías de tórax en infecciones respiratorias",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_19-SAHO",
+    "saved_at": "2026-04-13 20:46:33",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 19,
+    "topic": "Síndrome de Apnea Hipopnea Obstructiva del Sueño (SAHOS)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_20-intoxicacion-por-monoxido-de-carbono",
+    "saved_at": "2026-04-13 20:46:34",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 20,
+    "topic": "Intoxicación por Monóxido de Carbono",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_21-asfixia-por-inmersion",
+    "saved_at": "2026-04-13 20:46:34",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 21,
+    "topic": "Asfixia por Inmersión",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_22-asma-clinica-y-dx",
+    "saved_at": "2026-04-13 20:46:34",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 22,
+    "topic": "Asma: Clínica y Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_23-tto-para-el-asma",
+    "saved_at": "2026-04-13 20:46:34",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 23,
+    "topic": "Tratamiento Farmacológico del Asma",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_24-manejo-cronico-del-asma",
+    "saved_at": "2026-04-13 20:46:34",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 24,
+    "topic": "Manejo Crónico del Asma",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_25-manejo-de-crisis-asmatica",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 25,
+    "topic": "Manejo de la Crisis Asmática",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_26-EPOC",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 26,
+    "topic": "Enfermedad Pulmonar Obstructiva Crónica (EPOC)",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_27-Monejo-del-EPOC",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 27,
+    "topic": "Manejo del EPOC",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_28-manejo-del-EPOC-descompensado",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 28,
+    "topic": "Manejo del EPOC Descompensado",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_29-diferencias-entre-EPOC-y-asma",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 29,
+    "topic": "Diferencias entre EPOC y Asma",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_30-espirometria",
+    "saved_at": "2026-04-13 20:46:35",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 30,
+    "topic": "Espirometría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_31-ejercicios-de-espirometria",
+    "saved_at": "2026-04-13 20:46:36",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 31,
+    "topic": "Ejercicios de Espirometría",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_32-gasometria-arterial-parte-1",
+    "saved_at": "2026-04-13 20:46:36",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 32,
+    "topic": "Gasometría Arterial - Parte 1: Función Respiratoria",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_33-gasometria-arterial-parte-2",
+    "saved_at": "2026-04-13 20:46:36",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 33,
+    "topic": "Gasometría Arterial - Parte 2: Equilibrio Ácido-Base",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_34-ejercicios-acido-base",
+    "saved_at": "2026-04-13 20:46:36",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 34,
+    "topic": "Ejercicios de Ácido-Base",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_35-trombosis-venosa-profunda",
+    "saved_at": "2026-04-13 20:46:37",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 35,
+    "topic": "Trombosis Venosa Profunda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_36-trombosis-pulmonar",
+    "saved_at": "2026-04-13 20:46:37",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 36,
+    "topic": "Tromboembolismo Pulmonar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_37-tromboembolismo-pulmonar-masivo",
+    "saved_at": "2026-04-13 20:46:37",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 37,
+    "topic": "Tromboembolismo Pulmonar Masivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_38-detalles-de-tromboemboia-pulmonar",
+    "saved_at": "2026-04-13 20:46:37",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 38,
+    "topic": "Detalles de Tromboembolia Pulmonar",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_39-insuficiencia-venosa-varices",
+    "saved_at": "2026-04-13 20:46:37",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 39,
+    "topic": "Insuficiencia Venosa y Várices",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_40-derrame-pleural",
+    "saved_at": "2026-04-13 20:46:38",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 40,
+    "topic": "Derrame Pleural",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_42-nodulo-pulmonar-cancer-pulmonar-bronquitis-cronica-bronquiectasias-hemoptisis",
+    "saved_at": "2026-04-13 20:46:38",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 42,
+    "topic": "Nódulo Pulmonar, Cáncer Pulmonar, Bronquitis Crónica, Bronquiectasias y Hemoptisis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_43-neumotorax-trauma-de-torax-hemotorax-mediastinitis",
+    "saved_at": "2026-04-13 20:46:38",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 43,
+    "topic": "Neumotórax, Trauma de Tórax, Hemotórax y Mediastinitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_44-enfermedades-intersticiales",
+    "saved_at": "2026-04-13 20:46:38",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 44,
+    "topic": "Enfermedades Intersticiales, Neumoconiosis, Hipertensión Pulmonar y Cor Pulmonale",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_45-tuberculosis",
+    "saved_at": "2026-04-13 20:46:38",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 45,
+    "topic": "Tuberculosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_46-tabaquismo",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 46,
+    "topic": "Tabaquismo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_47-amigdalitis-aguda",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 47,
+    "topic": "Amigdalitis Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_48-casos-de-amigdalitis",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 48,
+    "topic": "Casos de Amigdalitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_49-complicaciones-de-la-amigdalitis-pultacea",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 49,
+    "topic": "Complicaciones de la Amigdalitis Pultácea",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_50-amigdalectomia",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 50,
+    "topic": "Amigdalectomía",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_51-hipertrofia-de-adenoides",
+    "saved_at": "2026-04-13 20:46:39",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 51,
+    "topic": "Hipertrofia de Adenoides",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_52-respirador-bucal",
+    "saved_at": "2026-04-13 20:46:40",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 52,
+    "topic": "Respirador Bucal",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_53-cancer-de-cabeza-y-cuello",
+    "saved_at": "2026-04-13 20:46:40",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 53,
+    "topic": "Cáncer de Cabeza y Cuello",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_54-cancer-de-faringe-y-laringe",
+    "saved_at": "2026-04-13 20:46:40",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 54,
+    "topic": "Cáncer de Faringe y Laringe",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_55-cancer-nasosinusal-y-de-boca",
+    "saved_at": "2026-04-13 20:46:40",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 55,
+    "topic": "Cáncer Nasosinusal y de Boca",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_56-generalidades-de-cuerpo-extrano",
+    "saved_at": "2026-04-13 20:46:40",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 56,
+    "topic": "Generalidades de Cuerpo Extrano",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_57-cuerpo-extrano-laringeo-y-bronquial",
+    "saved_at": "2026-04-13 20:46:41",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 57,
+    "topic": "Cuerpo Extrano Laringeo y Bronquial",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_58-estridor-congenito",
+    "saved_at": "2026-04-13 20:46:41",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 58,
+    "topic": "Estridor Congenito",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_59-disfonias-cronicas",
+    "saved_at": "2026-04-13 20:46:41",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 59,
+    "topic": "Disfonias Cronicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_60-laringitis-aguda",
+    "saved_at": "2026-04-13 20:46:41",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 60,
+    "topic": "Laringitis Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_61-otras-causas-de-disfonia-aguda",
+    "saved_at": "2026-04-13 20:46:41",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 61,
+    "topic": "Otras Causas de Disfonia Aguda",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_62-sinusitis",
+    "saved_at": "2026-04-13 20:46:42",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 62,
+    "topic": "Sinusitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_63-rinitis",
+    "saved_at": "2026-04-13 20:46:42",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 63,
+    "topic": "Rinitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_64-manejo-de-la-rinitis-alergica",
+    "saved_at": "2026-04-13 20:46:42",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 64,
+    "topic": "Manejo de la Rinitis Alergica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_65-rinitis-no-alergicas",
+    "saved_at": "2026-04-13 20:46:42",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 65,
+    "topic": "Rinitis No Alergicas",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_66-prick-test",
+    "saved_at": "2026-04-13 20:46:42",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 66,
+    "topic": "Prick Test",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_67-terapia-biologica-en-alergias-graves",
+    "saved_at": "2026-04-13 20:46:43",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 67,
+    "topic": "Terapia Biologica en Alergias Graves",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Respiratorio_68-alergia-y-resistencia-a-la-penicilina",
+    "saved_at": "2026-04-13 20:46:43",
+    "specialty": "Módulo 1",
+    "subsystem": "Respiratorio",
+    "lesson_number": 68,
+    "topic": "Alergia y Resistencia a la Penicilina",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_01-Esquema-General-de-Reumatologia",
+    "saved_at": "2026-04-13 20:46:43",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 1,
+    "topic": "Esquema General de Reumatología",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_02-Resumen-de-Marcadores-de-Reumatologia",
+    "saved_at": "2026-04-13 20:46:43",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 2,
+    "topic": "Resumen de Marcadores de Reumatología",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_03-Marcadores-en-Reumatologia-Casos-Clinicos",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 3,
+    "topic": "Marcadores en Reumatología: Casos Clínicos",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_04-Monoartritis-Aguda-Enfrentamiento-Diagnostico",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 4,
+    "topic": "Monoartritis Aguda: Enfrentamiento Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_05-Artritis-por-Cristales-Gota-y-Condrocalcinosis",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 5,
+    "topic": "Artritis por Cristales: Gota y Condrocalcinosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_06-Artritis-Septica",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 6,
+    "topic": "Artritis Séptica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_07-Artrosis",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 7,
+    "topic": "Artrosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_08-Artritis-Reumatoide-Clinica-y-Diagnostico",
+    "saved_at": "2026-04-13 20:46:44",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 8,
+    "topic": "Artritis Reumatoide: Clínica y Diagnóstico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_09-Artritis-Reumatoide-Tratamiento",
+    "saved_at": "2026-04-13 20:46:45",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 9,
+    "topic": "Artritis Reumatoide: Tratamiento",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_10-Artritis-Reumatoide-vs-Artrosis",
+    "saved_at": "2026-04-13 20:46:45",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 10,
+    "topic": "Artritis Reumatoide vs Artrosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_11-Artritis-Juvenil-Idiopatica",
+    "saved_at": "2026-04-13 20:46:45",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 11,
+    "topic": "Artritis Juvenil Idiopática",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_12-Lupus-Eritematoso-Sistemico",
+    "saved_at": "2026-04-13 20:46:46",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 12,
+    "topic": "Lupus Eritematoso Sistémico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_13-Lupus-Cutaneo-Subagudo-y-Cronico",
+    "saved_at": "2026-04-13 20:46:46",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 13,
+    "topic": "Lupus Cutáneo Subagudo y Crónico",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_14-Sindrome-Antifosfolipido",
+    "saved_at": "2026-04-13 20:46:46",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 14,
+    "topic": "Síndrome Antifosfolípido",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_15-Polimiositis-y-Dermatomiositis",
+    "saved_at": "2026-04-13 20:46:46",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 15,
+    "topic": "Polimiositis y Dermatomiositis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_16-Otras-Miopatias",
+    "saved_at": "2026-04-13 20:46:46",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 16,
+    "topic": "Otras Miopatías",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_17-Esclerodermia",
+    "saved_at": "2026-04-13 20:46:47",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 17,
+    "topic": "Esclerodermia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_18-Fenomeno-de-Raynaud",
+    "saved_at": "2026-04-13 20:46:47",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 18,
+    "topic": "Fenómeno de Raynaud",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_19-Sindrome-de-Sjogren",
+    "saved_at": "2026-04-13 20:46:47",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 19,
+    "topic": "Síndrome de Sjögren",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_20-Enfermedad-Mixta-del-Tejido-Conectivo",
+    "saved_at": "2026-04-13 20:46:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 20,
+    "topic": "Enfermedad Mixta del Tejido Conectivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_21-Fibromialgia",
+    "saved_at": "2026-04-13 20:46:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 21,
+    "topic": "Fibromialgia",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_22-Enfermedades-Reumatologicas-en-Ninos",
+    "saved_at": "2026-04-13 20:46:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 22,
+    "topic": "Enfermedades Reumatológicas en Niños",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_23-Esquema-General-de-Vasculitis",
+    "saved_at": "2026-04-13 20:46:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 23,
+    "topic": "Esquema General de Vasculitis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_24-Arteritis-de-Celulas-Gigantes",
+    "saved_at": "2026-04-13 20:46:48",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 24,
+    "topic": "Arteritis de Células Gigantes",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_25-Arteritis-de-Takayasu",
+    "saved_at": "2026-04-13 20:46:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 25,
+    "topic": "Arteritis de Takayasu",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_26-Enfermedad-de-Kawasaki",
+    "saved_at": "2026-04-13 20:46:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 26,
+    "topic": "Enfermedad de Kawasaki",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_27-Poliarteritis-Nodosa",
+    "saved_at": "2026-04-13 20:46:49",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 27,
+    "topic": "Poliarteritis Nodosa",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_28-Vasculitis-de-Vaso-Pequeno-ANCA-Positivo",
+    "saved_at": "2026-04-13 20:46:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 28,
+    "topic": "Vasculitis de Vaso Pequeño ANCA Positivo",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_29-Pelvispondiloartropatias-Generalidades",
+    "saved_at": "2026-04-13 20:46:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 29,
+    "topic": "Pelvispondiloartropatías - Generalidades",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_30-Espondiloartritis-Anquilosante",
+    "saved_at": "2026-04-13 20:46:50",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 30,
+    "topic": "Espondiloartritis Anquilosante",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_31-Artritis-Psoriasica-y-Artritis-Asociada-a-EII",
+    "saved_at": "2026-04-13 20:46:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 31,
+    "topic": "Artritis Psoriásica y Artritis Asociada a EII",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_32-Artritis-Reactiva",
+    "saved_at": "2026-04-13 20:46:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 32,
+    "topic": "Artritis Reactiva",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_33-Enfermedad-de-Behcet",
+    "saved_at": "2026-04-13 20:46:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 33,
+    "topic": "Enfermedad de Behçet",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_34-Osteoporosis",
+    "saved_at": "2026-04-13 20:46:51",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 34,
+    "topic": "Osteoporosis",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_35-Lumbago-Mecanico-y-Cervicalgia-Mecanica",
+    "saved_at": "2026-04-13 20:46:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 35,
+    "topic": "Lumbago Mecánico y Cervicalgia Mecánica",
+    "slides_file": null,
+    "video_dir": null
+  },
+  {
+    "id": "Módulo 1_Medicina Interna_Reumatología_36-Raices-Nerviosas-en-Cervicobraquialgia-y-Lumbociatica",
+    "saved_at": "2026-04-13 20:46:52",
+    "specialty": "Módulo 1",
+    "subsystem": "Reumatología",
+    "lesson_number": 36,
+    "topic": "Raíces Nerviosas en Cervicobraquialgia y Lumbociática",
+    "slides_file": null,
+    "video_dir": null
+  }
+]

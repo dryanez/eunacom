@@ -212,13 +212,15 @@ export const AuthProvider = ({ children }) => {
 
     const isRealAdmin = () => {
         if (isLocalHost) return true
-        return Boolean(user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t')
+        const normalized = (user?.email || '').trim().toLowerCase()
+        return Boolean(normalized && (normalized === 'dr.felipeyanez@gmail.com' || btoa(normalized) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'))
     }
 
     const isAdmin = () => {
         if (adminPreviewMode) return false
         if (isLocalHost) return true
-        return Boolean(user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t')
+        const normalized = (user?.email || '').trim().toLowerCase()
+        return Boolean(normalized && (normalized === 'dr.felipeyanez@gmail.com' || btoa(normalized) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'))
     }
 
     const value = {

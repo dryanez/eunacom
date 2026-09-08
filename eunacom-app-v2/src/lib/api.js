@@ -1,3 +1,5 @@
+import bundledClassesList from '../data/classesList.json'
+
 // Frontend HTTP client — calls our Vercel API routes (or local vite-node proxy in dev)
 // Never exposes Turso credentials to the browser.
 
@@ -89,7 +91,7 @@ async function getLocalClassesCatalog() {
       return _cachedCatalog
     }
   } catch {}
-  return []
+  return bundledClassesList || []
 }
 
 async function clasesFetch(path, options = {}) {
@@ -105,8 +107,11 @@ export async function fetchClases() {
   } catch (err) {
     console.warn('API /api/clases error, using bundled catalog:', err)
   }
-  // Fallback to bundled catalog
-  const catalog = await getLocalClassesCatalog()
+  // Fallback to bundled catalog (guaranteed 547 classes, never empty)
+  const catalog = (Array.isArray(bundledClassesList) && bundledClassesList.length > 0) 
+    ? bundledClassesList 
+    : await getLocalClassesCatalog()
+
   return catalog.map(r => ({
     id: r.id,
     saved_at: r.saved_at,
@@ -121,18 +126,22 @@ export async function fetchClases() {
 
 export async function fetchClase(id) {
   try {
-    const data = await clasesFetch(`/api/clases?id=${id}`)
+    const data = await clasesFetch(`/api/clases?id=${encodeURIComponent(id)}`)
     if (data && data.data) {
       return data.data
     }
   } catch (err) {
     console.warn('API /api/clases?id error, checking bundled catalog:', err)
   }
-  // Fallback to bundled catalog
+  // Fallback to full bundled catalog
   const catalog = await getLocalClassesCatalog()
   const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   const found = catalog.find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
-  return found || null
+  if (found) return found
+
+  // Final fallback to lightweight catalog basic info
+  const light = (bundledClassesList || []).find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
+  return light || null
 }
 
 export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {

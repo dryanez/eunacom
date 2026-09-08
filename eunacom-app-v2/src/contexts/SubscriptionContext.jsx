@@ -65,80 +65,100 @@ export function SubscriptionProvider({ children }) {
       if (!isUserAdmin) {
         setLoadingPremium(true);
       }
-      
-      // Fetch profile and usage stats in parallel
-      Promise.all([
-        fetchUserProfile(user.id),
-        fetchTests(user.id).catch(() => []),
-        fetchClaseProgress(user.id).catch(() => [])
-      ])
-        .then(([profile, tests, claseProgress]) => {
-          if (mounted && profile) {
-            // Check if user is premium and hasn't expired
-            let valid = false;
+
+      // Detect payment redirect from Mercado Pago / PayPal
+      const searchParams = new URLSearchParams(window.location.search)
+      const hasPaymentSuccessParam = 
+        searchParams.get('payment') === 'success' ||
+        searchParams.get('collection_status') === 'approved' ||
+        searchParams.get('status') === 'approved' ||
+        searchParams.has('payment_id')
+
+      if (hasPaymentSuccessParam) {
+        try {
+          localStorage.removeItem(`eunacom_cached_is_premium_${user.id}`)
+        } catch (e) {}
+      }
+
+      const loadUserData = async (pollAttempt = 0) => {
+        try {
+          const [profile, tests, claseProgress] = await Promise.all([
+            fetchUserProfile(user.id),
+            fetchTests(user.id).catch(() => []),
+            fetchClaseProgress(user.id).catch(() => [])
+          ])
+
+          if (!mounted) return
+
+          if (profile) {
+            let valid = false
             if (isUserAdmin) {
-              valid = true;
+              valid = true
             } else if (profile.is_premium === 1) {
               if (profile.premium_until) {
-                const expiresAt = new Date(profile.premium_until);
-                if (expiresAt > new Date()) {
-                  valid = true;
-                }
+                const expiresAt = new Date(profile.premium_until)
+                if (expiresAt > new Date()) valid = true
               } else {
-                // Legacy or manually activated users with no expiration date
-                valid = true;
+                valid = true
               }
             }
-            setIsPremium(valid);
-            setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200));
+
+            // If user just paid but webhook has not finished writing to Turso yet, poll up to 3 times
+            if (!valid && hasPaymentSuccessParam && pollAttempt < 3) {
+              setTimeout(() => {
+                if (mounted) loadUserData(pollAttempt + 1)
+              }, 2000)
+              return
+            }
+
+            setIsPremium(valid)
+            setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200))
             try {
-              localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid));
+              localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid))
             } catch (e) {}
+
+            // Clean up payment query params once processed
+            if (hasPaymentSuccessParam && valid) {
+              window.history.replaceState(null, '', window.location.pathname)
+            }
           }
-          
-          if (mounted && tests && claseProgress) {
-            const clasesOpened = claseProgress.length;
-            
-            // Reconstructions: ALL created tests with '_q' in questions or mode 'reconstruction'
+
+          if (tests && claseProgress) {
+            const clasesOpened = claseProgress.length
             const reconstructionsCompleted = tests.filter(t => {
-              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
-              return t.mode !== 'simulation' && (t.mode === 'reconstruction' || qStr.includes('_q'));
-            }).length;
-            
-            // Simulations: ALL created tests with mode 'simulation'
-            const simulationsCompleted = tests.filter(t => 
-              t.mode === 'simulation'
-            ).length;
-            
-            // Custom Questions: count ALL questions in created custom tests
-            let customQuestionsAnswered = 0;
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || [])
+              return t.mode !== 'simulation' && (t.mode === 'reconstruction' || qStr.includes('_q'))
+            }).length
+            const simulationsCompleted = tests.filter(t => t.mode === 'simulation').length
+            let customQuestionsAnswered = 0
             const customTests = tests.filter(t => {
-              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
-              return t.mode !== 'simulation' && !qStr.includes('_q');
-            });
-            
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || [])
+              return t.mode !== 'simulation' && !qStr.includes('_q')
+            })
             customTests.forEach(t => {
               try {
-                const qList = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || []);
-                const count = t.total_questions || t.totalQuestions || (Array.isArray(qList) ? qList.length : 0);
-                customQuestionsAnswered += count;
+                const qList = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || [])
+                const count = t.total_questions || t.totalQuestions || (Array.isArray(qList) ? qList.length : 0)
+                customQuestionsAnswered += count
               } catch (e) {
-                if (t.total_questions) customQuestionsAnswered += t.total_questions;
+                if (t.total_questions) customQuestionsAnswered += t.total_questions
               }
-            });
-            
+            })
             setUsageStats({
               clasesOpened,
               reconstructionsCompleted,
               simulationsCompleted,
               customQuestionsAnswered
-            });
+            })
           }
-        })
-        .catch(err => console.error("Error fetching premium status & usage:", err))
-        .finally(() => {
-          if (mounted) setLoadingPremium(false);
-        });
+        } catch (err) {
+          console.error("Error fetching premium status & usage:", err)
+        } finally {
+          if (mounted) setLoadingPremium(false)
+        }
+      }
+
+      loadUserData(0)
     } else {
       setIsPremium(false);
       setIsFounder(false);
