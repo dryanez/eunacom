@@ -7,6 +7,23 @@
         if (h.endsWith('vercel.app')) {
           window.location.replace('https://www.eunacomapp.cl' + window.location.pathname + window.location.search + window.location.hash);
         }
+        // Force-bust stale Service Workers & cache storage across app version upgrades
+        var APP_BUILD_VER = '2026.09.08.v3';
+        try {
+          if (localStorage.getItem('eunacom_app_build') !== APP_BUILD_VER) {
+            localStorage.setItem('eunacom_app_build', APP_BUILD_VER);
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(regs) {
+                for (var i = 0; i < regs.length; i++) regs[i].unregister();
+              });
+            }
+            if ('caches' in window) {
+              caches.keys().then(function(names) {
+                for (var i = 0; i < names.length; i++) caches.delete(names[i]);
+              });
+            }
+          }
+        } catch (e) {}
       })();
     </script>
     <meta charset="UTF-8" />
