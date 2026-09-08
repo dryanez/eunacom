@@ -246,7 +246,32 @@ export default async function handler(req, res) {
         sql: 'SELECT * FROM user_profiles WHERE id = ?',
         args: [userId]
       })
-      return res.json({ data: result.rows[0] || null })
+      let profile = result.rows[0] || null
+
+      // If user profile is not active premium, check if this email has an active subscription under another user_id (e.g. Google OAuth vs email/password duplicate ID)
+      if (profile && profile.email) {
+        const isCurrentActive = profile.is_premium === 1 && (!profile.premium_until || new Date(profile.premium_until) > new Date())
+        if (!isCurrentActive) {
+          const emailCheck = await db.execute({
+            sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE LOWER(email) = LOWER(?) AND is_premium = 1 AND (premium_until IS NULL OR datetime(premium_until) > datetime('now')) ORDER BY premium_until DESC LIMIT 1`,
+            args: [profile.email]
+          }).catch(() => ({ rows: [] }))
+
+          if (emailCheck.rows && emailCheck.rows.length > 0) {
+            const active = emailCheck.rows[0]
+            profile.is_premium = active.is_premium
+            profile.premium_until = active.premium_until
+            profile.plan_months = active.plan_months
+            // Sync to this profile row in background
+            await db.execute({
+              sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
+              args: [active.premium_until, active.plan_months, userId]
+            }).catch(() => {})
+          }
+        }
+      }
+
+      return res.json({ data: profile })
     }
 
     // --- CREATE / UPDATE PROFILE ---
@@ -279,14 +304,30 @@ export default async function handler(req, res) {
         await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
       }
 
+      // Check if this email already has active premium under another user_id
+      let isPremiumInit = 0
+      let premiumUntilInit = null
+      let planMonthsInit = null
+      try {
+        const emailCheck = await db.execute({
+          sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE LOWER(email) = LOWER(?) AND is_premium = 1 AND (premium_until IS NULL OR datetime(premium_until) > datetime('now')) ORDER BY premium_until DESC LIMIT 1`,
+          args: [email]
+        })
+        if (emailCheck.rows && emailCheck.rows.length > 0) {
+          isPremiumInit = 1
+          premiumUntilInit = emailCheck.rows[0].premium_until
+          planMonthsInit = emailCheck.rows[0].plan_months
+        }
+      } catch (e) {}
+
       await db.execute({
         sql: `INSERT INTO user_profiles (
                 id, email, first_name, last_name, avatar_character, exam_month, exam_year, prep_months,
                 nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion,
                 profile_type, graduation_year, university, sede, goal, study_hours, weak_area, xp,
-                onboarding_done, is_premium, updated_at
+                onboarding_done, is_premium, premium_until, plan_months, updated_at
               )
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
               ON CONFLICT(id) DO UPDATE SET
                 email = excluded.email,
                 first_name = COALESCE(excluded.first_name, user_profiles.first_name),
@@ -310,6 +351,9 @@ export default async function handler(req, res) {
                 weak_area = COALESCE(excluded.weak_area, user_profiles.weak_area),
                 xp = COALESCE(excluded.xp, user_profiles.xp, 50),
                 onboarding_done = MAX(excluded.onboarding_done, user_profiles.onboarding_done),
+                is_premium = CASE WHEN user_profiles.is_premium = 1 THEN 1 ELSE excluded.is_premium END,
+                premium_until = COALESCE(user_profiles.premium_until, excluded.premium_until),
+                plan_months = COALESCE(user_profiles.plan_months, excluded.plan_months),
                 updated_at = datetime('now')`,
         args: [
           id, email, first_name || '', last_name || '', req.body.avatar_character || 'dr_strange',
@@ -317,7 +361,8 @@ export default async function handler(req, res) {
           nationality || '', country || '', country_code || '', whatsapp || '',
           inscrito_eunacom || '', ayuda_inscripcion || '',
           profile_type || '', graduation_year || '', university || '', sede || '', goal || '',
-          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0
+          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0,
+          isPremiumInit, premiumUntilInit, planMonthsInit
         ]
       })
 
