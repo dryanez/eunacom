@@ -52,7 +52,10 @@
     "65c5f22a-8c50-4509-977e-4ed8e8d48141",
     "bed3b2ae-df18-456e-a421-7db9a4a7c252",
     "c203a8d3-08d8-471a-955b-48e071d87a56",
-    "csv_Infectología_178_1776130148470"
+    "csv_Infectología_178_1776130148470",
+    "acfaeb9b-754a-4a1e-804a-9c402e82f9b5",
+    "2c29fab3-b1d2-4b95-9a3f-ca3b9fddc0f6",
+    "a95983a4-2d22-4f0b-94d4-8024a4f3963f"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -73,7 +76,8 @@
       "f18c5ecb-0b8f-435f-bb34-eb9c80410898",
       "570bf642-251d-442d-ad9d-c33908548ddb",
       "9efc784a-9a2f-46ed-ab7e-0ffc2b91c994",
-      "c203a8d3-08d8-471a-955b-48e071d87a56"
+      "c203a8d3-08d8-471a-955b-48e071d87a56",
+      "2c29fab3-b1d2-4b95-9a3f-ca3b9fddc0f6"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -94,7 +98,8 @@
       "2bb149d6-042d-4579-a1d3-28e303e6a303",
       "5924680e-462c-4407-8d2b-9cd0e89bec15",
       "65c5f22a-8c50-4509-977e-4ed8e8d48141",
-      "csv_Infectología_178_1776130148470"
+      "csv_Infectología_178_1776130148470",
+      "a95983a4-2d22-4f0b-94d4-8024a4f3963f"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -112,7 +117,8 @@
       "bf47194f-c6cf-4bcd-8287-63bf6f712b38",
       "a09ba8c9-1224-4bed-97f4-cac3021fa92e",
       "450d655b-d726-481e-ad48-f227ffacd8a7",
-      "bed3b2ae-df18-456e-a421-7db9a4a7c252"
+      "bed3b2ae-df18-456e-a421-7db9a4a7c252",
+      "acfaeb9b-754a-4a1e-804a-9c402e82f9b5"
     ]
   },
   "history": [
@@ -743,6 +749,38 @@
           "vignetteMessageId": 61,
           "pollMessageId": 62,
           "explanationMessageId": 63
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-11T15:28:25.723Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "acfaeb9b-754a-4a1e-804a-9c402e82f9b5",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 54,
+          "pollMessageId": 55,
+          "explanationMessageId": 56
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "2c29fab3-b1d2-4b95-9a3f-ca3b9fddc0f6",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 63,
+          "pollMessageId": 64,
+          "explanationMessageId": 65
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "a95983a4-2d22-4f0b-94d4-8024a4f3963f",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 64,
+          "pollMessageId": 65,
+          "explanationMessageId": 66
         }
       ]
     }
