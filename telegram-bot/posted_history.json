@@ -61,7 +61,9 @@
     "a2f6aae6-8b4b-4491-a923-61378fa8a64e",
     "85351059-7ec6-4417-941f-cc6348850d0c",
     "36006c4e-5289-499c-a5f5-13b7c1fab78b",
-    "831f0983-ddd3-4a60-a4bd-9c8db365bdc7"
+    "831f0983-ddd3-4a60-a4bd-9c8db365bdc7",
+    "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
+    "edb33614-7e3c-4626-927c-4ff76dbf1cbd"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -85,7 +87,8 @@
       "c203a8d3-08d8-471a-955b-48e071d87a56",
       "2c29fab3-b1d2-4b95-9a3f-ca3b9fddc0f6",
       "2c5e06d6-4cad-41df-b2c7-7aa6938f09b1",
-      "36006c4e-5289-499c-a5f5-13b7c1fab78b"
+      "36006c4e-5289-499c-a5f5-13b7c1fab78b",
+      "edb33614-7e3c-4626-927c-4ff76dbf1cbd"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -130,7 +133,8 @@
       "bed3b2ae-df18-456e-a421-7db9a4a7c252",
       "acfaeb9b-754a-4a1e-804a-9c402e82f9b5",
       "6e22cc2a-d28c-471f-aa87-5d080ce839bb",
-      "85351059-7ec6-4417-941f-cc6348850d0c"
+      "85351059-7ec6-4417-941f-cc6348850d0c",
+      "f11d40fe-3867-48b6-84dc-ef08a9a347b9"
     ]
   },
   "history": [
@@ -857,6 +861,35 @@
           "vignetteMessageId": 70,
           "pollMessageId": 71,
           "explanationMessageId": 72
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-14T17:12:31.254Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
+          "topic": "Ginecología",
+          "success": true,
+          "vignetteMessageId": 63,
+          "pollMessageId": 64,
+          "explanationMessageId": 65
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "edb33614-7e3c-4626-927c-4ff76dbf1cbd",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 72,
+          "pollMessageId": 73,
+          "explanationMessageId": 74
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "428f0e3e-d37b-47e9-bf3c-f7c33bfd45bc",
+          "success": false,
+          "error": "Telegram API [sendMessage] error: Bad Request: can't parse entities: Unmatched end tag at byte offset 2725, expected \"</b>\", found \"</tg-spoiler>\" (Code: 400)"
         }
       ]
     }
