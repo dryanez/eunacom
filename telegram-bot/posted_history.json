@@ -63,7 +63,9 @@
     "36006c4e-5289-499c-a5f5-13b7c1fab78b",
     "831f0983-ddd3-4a60-a4bd-9c8db365bdc7",
     "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
-    "edb33614-7e3c-4626-927c-4ff76dbf1cbd"
+    "edb33614-7e3c-4626-927c-4ff76dbf1cbd",
+    "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9",
+    "d672a163-825d-488a-974d-4c9dbd0c95d2"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -88,7 +90,8 @@
       "2c29fab3-b1d2-4b95-9a3f-ca3b9fddc0f6",
       "2c5e06d6-4cad-41df-b2c7-7aa6938f09b1",
       "36006c4e-5289-499c-a5f5-13b7c1fab78b",
-      "edb33614-7e3c-4626-927c-4ff76dbf1cbd"
+      "edb33614-7e3c-4626-927c-4ff76dbf1cbd",
+      "44d38eaf-09ad-4ba0-bcba-8653f5a658e1"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -112,7 +115,8 @@
       "csv_Infectología_178_1776130148470",
       "a95983a4-2d22-4f0b-94d4-8024a4f3963f",
       "a2f6aae6-8b4b-4491-a923-61378fa8a64e",
-      "831f0983-ddd3-4a60-a4bd-9c8db365bdc7"
+      "831f0983-ddd3-4a60-a4bd-9c8db365bdc7",
+      "d672a163-825d-488a-974d-4c9dbd0c95d2"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -134,7 +138,8 @@
       "acfaeb9b-754a-4a1e-804a-9c402e82f9b5",
       "6e22cc2a-d28c-471f-aa87-5d080ce839bb",
       "85351059-7ec6-4417-941f-cc6348850d0c",
-      "f11d40fe-3867-48b6-84dc-ef08a9a347b9"
+      "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
+      "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9"
     ]
   },
   "history": [
@@ -890,6 +895,38 @@
           "questionId": "428f0e3e-d37b-47e9-bf3c-f7c33bfd45bc",
           "success": false,
           "error": "Telegram API [sendMessage] error: Bad Request: can't parse entities: Unmatched end tag at byte offset 2725, expected \"</b>\", found \"</tg-spoiler>\" (Code: 400)"
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-15T15:52:39.406Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9",
+          "topic": "Psiquiatría",
+          "success": true,
+          "vignetteMessageId": 66,
+          "pollMessageId": 67,
+          "explanationMessageId": 68
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 75,
+          "pollMessageId": 76,
+          "explanationMessageId": 77
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "d672a163-825d-488a-974d-4c9dbd0c95d2",
+          "topic": "Dermatología",
+          "success": true,
+          "vignetteMessageId": 75,
+          "pollMessageId": 76,
+          "explanationMessageId": 77
         }
       ]
     }
