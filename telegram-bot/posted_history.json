@@ -65,7 +65,10 @@
     "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
     "edb33614-7e3c-4626-927c-4ff76dbf1cbd",
     "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9",
-    "d672a163-825d-488a-974d-4c9dbd0c95d2"
+    "d672a163-825d-488a-974d-4c9dbd0c95d2",
+    "7f5a5a2d-964a-4d1b-9b36-6749cf78ddf6",
+    "d3a588ab-5189-4eca-8bcb-256d593950da",
+    "6b7a50b1-348a-4827-b75f-ab5ec64faf4b"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -91,7 +94,8 @@
       "2c5e06d6-4cad-41df-b2c7-7aa6938f09b1",
       "36006c4e-5289-499c-a5f5-13b7c1fab78b",
       "edb33614-7e3c-4626-927c-4ff76dbf1cbd",
-      "44d38eaf-09ad-4ba0-bcba-8653f5a658e1"
+      "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
+      "d3a588ab-5189-4eca-8bcb-256d593950da"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -116,7 +120,8 @@
       "a95983a4-2d22-4f0b-94d4-8024a4f3963f",
       "a2f6aae6-8b4b-4491-a923-61378fa8a64e",
       "831f0983-ddd3-4a60-a4bd-9c8db365bdc7",
-      "d672a163-825d-488a-974d-4c9dbd0c95d2"
+      "d672a163-825d-488a-974d-4c9dbd0c95d2",
+      "6b7a50b1-348a-4827-b75f-ab5ec64faf4b"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -139,7 +144,8 @@
       "6e22cc2a-d28c-471f-aa87-5d080ce839bb",
       "85351059-7ec6-4417-941f-cc6348850d0c",
       "f11d40fe-3867-48b6-84dc-ef08a9a347b9",
-      "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9"
+      "d1c5ced2-3b4d-4fa8-9607-78e1ce1e86d9",
+      "7f5a5a2d-964a-4d1b-9b36-6749cf78ddf6"
     ]
   },
   "history": [
@@ -927,6 +933,38 @@
           "vignetteMessageId": 75,
           "pollMessageId": 76,
           "explanationMessageId": 77
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-16T15:46:35.481Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "7f5a5a2d-964a-4d1b-9b36-6749cf78ddf6",
+          "topic": "Neonatología",
+          "success": true,
+          "vignetteMessageId": 69,
+          "pollMessageId": 70,
+          "explanationMessageId": 71
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "d3a588ab-5189-4eca-8bcb-256d593950da",
+          "topic": "Neurología",
+          "success": true,
+          "vignetteMessageId": 78,
+          "pollMessageId": 79,
+          "explanationMessageId": 80
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "6b7a50b1-348a-4827-b75f-ab5ec64faf4b",
+          "topic": "Endocrinología",
+          "success": true,
+          "vignetteMessageId": 78,
+          "pollMessageId": 79,
+          "explanationMessageId": 80
         }
       ]
     }
