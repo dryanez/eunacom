@@ -77,7 +77,10 @@
     "38626bed-9df8-44e5-bc44-242c45818abc",
     "a693ba95-c538-4fea-9539-b7ba45aa3f98",
     "4295e387-138e-492b-a276-d2951769c146",
-    "fe0055fc-7a96-4310-bd66-cadab582a916"
+    "fe0055fc-7a96-4310-bd66-cadab582a916",
+    "35dc40f0-d0e9-4a8c-9227-1cba326a466c",
+    "542f9295-b60c-40e1-a936-9f9606e950c6",
+    "csv_Hematología_148_1776130119082"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -107,7 +110,8 @@
       "d3a588ab-5189-4eca-8bcb-256d593950da",
       "f1d96618-1be5-49bc-8e21-9202a0b6cdff",
       "46749acc-de12-4a8f-aae3-2b610b1f7c41",
-      "4295e387-138e-492b-a276-d2951769c146"
+      "4295e387-138e-492b-a276-d2951769c146",
+      "542f9295-b60c-40e1-a936-9f9606e950c6"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -136,7 +140,8 @@
       "6b7a50b1-348a-4827-b75f-ab5ec64faf4b",
       "df575940-a632-4575-af25-95dcc6914227",
       "38626bed-9df8-44e5-bc44-242c45818abc",
-      "fe0055fc-7a96-4310-bd66-cadab582a916"
+      "fe0055fc-7a96-4310-bd66-cadab582a916",
+      "csv_Hematología_148_1776130119082"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -163,7 +168,8 @@
       "7f5a5a2d-964a-4d1b-9b36-6749cf78ddf6",
       "511437da-88cb-460d-a22b-88ce859ff4ce",
       "0a5f34cd-2ee7-49f0-b084-4a20f2c1a667",
-      "a693ba95-c538-4fea-9539-b7ba45aa3f98"
+      "a693ba95-c538-4fea-9539-b7ba45aa3f98",
+      "35dc40f0-d0e9-4a8c-9227-1cba326a466c"
     ]
   },
   "history": [
@@ -1079,6 +1085,38 @@
           "vignetteMessageId": 87,
           "pollMessageId": 88,
           "explanationMessageId": 89
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-20T15:03:21.272Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "35dc40f0-d0e9-4a8c-9227-1cba326a466c",
+          "topic": "Psiquiatría",
+          "success": true,
+          "vignetteMessageId": 81,
+          "pollMessageId": 82,
+          "explanationMessageId": 83
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "542f9295-b60c-40e1-a936-9f9606e950c6",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 90,
+          "pollMessageId": 91,
+          "explanationMessageId": 92
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "csv_Hematología_148_1776130119082",
+          "topic": "Hematología",
+          "success": true,
+          "vignetteMessageId": 90,
+          "pollMessageId": 91,
+          "explanationMessageId": 92
         }
       ]
     }
