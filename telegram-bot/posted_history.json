@@ -88,7 +88,10 @@
     "8e62ed61-16fc-47ef-ac05-f42adae73eef",
     "8d0559ac-a95e-403d-b1db-ba159e998266",
     "47515943-31e4-430c-8ac7-2d6cd4e6eaa1",
-    "234bccfb-4843-40a2-a1ee-92897bb0a8b0"
+    "234bccfb-4843-40a2-a1ee-92897bb0a8b0",
+    "6cbe8c30-8f3c-48c4-8334-c0affe6678bc",
+    "fb102db8-c060-4ea3-9107-d6e2dcf76599",
+    "d982c7eb-e87c-477b-bb8c-aa5ffc9b4e16"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -122,7 +125,8 @@
       "542f9295-b60c-40e1-a936-9f9606e950c6",
       "csv_Cardiología_23_1776129960561",
       "8e62ed61-16fc-47ef-ac05-f42adae73eef",
-      "47515943-31e4-430c-8ac7-2d6cd4e6eaa1"
+      "47515943-31e4-430c-8ac7-2d6cd4e6eaa1",
+      "fb102db8-c060-4ea3-9107-d6e2dcf76599"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -155,7 +159,8 @@
       "csv_Hematología_148_1776130119082",
       "32f6538f-b1d1-4b21-951d-49c793a46421",
       "8d0559ac-a95e-403d-b1db-ba159e998266",
-      "234bccfb-4843-40a2-a1ee-92897bb0a8b0"
+      "234bccfb-4843-40a2-a1ee-92897bb0a8b0",
+      "d982c7eb-e87c-477b-bb8c-aa5ffc9b4e16"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -186,7 +191,8 @@
       "35dc40f0-d0e9-4a8c-9227-1cba326a466c",
       "9a8713b0-0d8b-4c3d-808a-e5096b6ce95e",
       "0406e6fd-ecea-4e11-aafb-471aafeaa47f",
-      "49c187c8-48e0-47e6-b832-45c541bac901"
+      "49c187c8-48e0-47e6-b832-45c541bac901",
+      "6cbe8c30-8f3c-48c4-8334-c0affe6678bc"
     ]
   },
   "history": [
@@ -1230,6 +1236,38 @@
           "vignetteMessageId": 99,
           "pollMessageId": 100,
           "explanationMessageId": 101
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-24T16:05:35.903Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "6cbe8c30-8f3c-48c4-8334-c0affe6678bc",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 93,
+          "pollMessageId": 94,
+          "explanationMessageId": 95
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "fb102db8-c060-4ea3-9107-d6e2dcf76599",
+          "topic": "Neurología",
+          "success": true,
+          "vignetteMessageId": 102,
+          "pollMessageId": 103,
+          "explanationMessageId": 104
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "d982c7eb-e87c-477b-bb8c-aa5ffc9b4e16",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 102,
+          "pollMessageId": 103,
+          "explanationMessageId": 104
         }
       ]
     }
