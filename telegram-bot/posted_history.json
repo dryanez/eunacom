@@ -94,7 +94,10 @@
     "d982c7eb-e87c-477b-bb8c-aa5ffc9b4e16",
     "c7be9398-7866-4bf9-9ede-be7bda49f7b9",
     "51e7ae8f-075b-4a8b-b357-a6bd99a457f8",
-    "4b1f0dbd-a00a-4f58-b5c1-c3bd88653011"
+    "4b1f0dbd-a00a-4f58-b5c1-c3bd88653011",
+    "7d9063f9-c4a2-4192-86ee-59766767fc2b",
+    "b3c3f840-6205-409b-b207-cca870498949",
+    "1381fb72-0640-4279-b920-319cf563d9d2"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -130,7 +133,8 @@
       "8e62ed61-16fc-47ef-ac05-f42adae73eef",
       "47515943-31e4-430c-8ac7-2d6cd4e6eaa1",
       "fb102db8-c060-4ea3-9107-d6e2dcf76599",
-      "51e7ae8f-075b-4a8b-b357-a6bd99a457f8"
+      "51e7ae8f-075b-4a8b-b357-a6bd99a457f8",
+      "b3c3f840-6205-409b-b207-cca870498949"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -165,7 +169,8 @@
       "8d0559ac-a95e-403d-b1db-ba159e998266",
       "234bccfb-4843-40a2-a1ee-92897bb0a8b0",
       "d982c7eb-e87c-477b-bb8c-aa5ffc9b4e16",
-      "4b1f0dbd-a00a-4f58-b5c1-c3bd88653011"
+      "4b1f0dbd-a00a-4f58-b5c1-c3bd88653011",
+      "1381fb72-0640-4279-b920-319cf563d9d2"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -198,7 +203,8 @@
       "0406e6fd-ecea-4e11-aafb-471aafeaa47f",
       "49c187c8-48e0-47e6-b832-45c541bac901",
       "6cbe8c30-8f3c-48c4-8334-c0affe6678bc",
-      "c7be9398-7866-4bf9-9ede-be7bda49f7b9"
+      "c7be9398-7866-4bf9-9ede-be7bda49f7b9",
+      "7d9063f9-c4a2-4192-86ee-59766767fc2b"
     ]
   },
   "history": [
@@ -1306,6 +1312,38 @@
           "vignetteMessageId": 105,
           "pollMessageId": 106,
           "explanationMessageId": 107
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-26T15:19:22.293Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "7d9063f9-c4a2-4192-86ee-59766767fc2b",
+          "topic": "Dermatología",
+          "success": true,
+          "vignetteMessageId": 99,
+          "pollMessageId": 100,
+          "explanationMessageId": 101
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "b3c3f840-6205-409b-b207-cca870498949",
+          "topic": "Neurología",
+          "success": true,
+          "vignetteMessageId": 108,
+          "pollMessageId": 109,
+          "explanationMessageId": 110
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "1381fb72-0640-4279-b920-319cf563d9d2",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 108,
+          "pollMessageId": 109,
+          "explanationMessageId": 110
         }
       ]
     }
