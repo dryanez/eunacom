@@ -103,7 +103,10 @@
     "a5059433-b443-47c9-9618-8951286a9a87",
     "bee96418-08a6-480a-9e13-94809f93be7c",
     "85911300-40e7-45e1-908f-1ad132171694",
-    "200f0751-2db8-436a-a025-373906cfc19f"
+    "200f0751-2db8-436a-a025-373906cfc19f",
+    "7d7de05f-95a4-4045-8719-f07ac9452a11",
+    "csv_Nefrología_212_1776130183335",
+    "ae80eea1-ae3b-4de5-9609-59ef94c5f311"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -142,7 +145,8 @@
       "51e7ae8f-075b-4a8b-b357-a6bd99a457f8",
       "b3c3f840-6205-409b-b207-cca870498949",
       "6cba9ffe-939d-41d3-98ca-2f8bce7dd164",
-      "85911300-40e7-45e1-908f-1ad132171694"
+      "85911300-40e7-45e1-908f-1ad132171694",
+      "csv_Nefrología_212_1776130183335"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -180,7 +184,8 @@
       "4b1f0dbd-a00a-4f58-b5c1-c3bd88653011",
       "1381fb72-0640-4279-b920-319cf563d9d2",
       "a5059433-b443-47c9-9618-8951286a9a87",
-      "200f0751-2db8-436a-a025-373906cfc19f"
+      "200f0751-2db8-436a-a025-373906cfc19f",
+      "ae80eea1-ae3b-4de5-9609-59ef94c5f311"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -216,7 +221,8 @@
       "c7be9398-7866-4bf9-9ede-be7bda49f7b9",
       "7d9063f9-c4a2-4192-86ee-59766767fc2b",
       "29dbc445-fd47-42d1-9d23-775fdfaddc82",
-      "bee96418-08a6-480a-9e13-94809f93be7c"
+      "bee96418-08a6-480a-9e13-94809f93be7c",
+      "7d7de05f-95a4-4045-8719-f07ac9452a11"
     ]
   },
   "history": [
@@ -1420,6 +1426,38 @@
           "vignetteMessageId": 114,
           "pollMessageId": 115,
           "explanationMessageId": 116
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-29T17:13:19.481Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "7d7de05f-95a4-4045-8719-f07ac9452a11",
+          "topic": "Neonatología",
+          "success": true,
+          "vignetteMessageId": 108,
+          "pollMessageId": 109,
+          "explanationMessageId": 110
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "csv_Nefrología_212_1776130183335",
+          "topic": "Nefrología",
+          "success": true,
+          "vignetteMessageId": 117,
+          "pollMessageId": 118,
+          "explanationMessageId": 119
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "ae80eea1-ae3b-4de5-9609-59ef94c5f311",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 117,
+          "pollMessageId": 118,
+          "explanationMessageId": 119
         }
       ]
     }
