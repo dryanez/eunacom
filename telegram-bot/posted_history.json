@@ -106,7 +106,10 @@
     "200f0751-2db8-436a-a025-373906cfc19f",
     "7d7de05f-95a4-4045-8719-f07ac9452a11",
     "csv_Nefrología_212_1776130183335",
-    "ae80eea1-ae3b-4de5-9609-59ef94c5f311"
+    "ae80eea1-ae3b-4de5-9609-59ef94c5f311",
+    "c3c98117-8420-4956-b818-2016b924f168",
+    "d6a3211f-fba3-41a7-bc02-aeb8f4c1ccfd",
+    "1425277f-7bcc-43aa-a533-223f8cc457cb"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -146,7 +149,8 @@
       "b3c3f840-6205-409b-b207-cca870498949",
       "6cba9ffe-939d-41d3-98ca-2f8bce7dd164",
       "85911300-40e7-45e1-908f-1ad132171694",
-      "csv_Nefrología_212_1776130183335"
+      "csv_Nefrología_212_1776130183335",
+      "d6a3211f-fba3-41a7-bc02-aeb8f4c1ccfd"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -185,7 +189,8 @@
       "1381fb72-0640-4279-b920-319cf563d9d2",
       "a5059433-b443-47c9-9618-8951286a9a87",
       "200f0751-2db8-436a-a025-373906cfc19f",
-      "ae80eea1-ae3b-4de5-9609-59ef94c5f311"
+      "ae80eea1-ae3b-4de5-9609-59ef94c5f311",
+      "1425277f-7bcc-43aa-a533-223f8cc457cb"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -222,7 +227,8 @@
       "7d9063f9-c4a2-4192-86ee-59766767fc2b",
       "29dbc445-fd47-42d1-9d23-775fdfaddc82",
       "bee96418-08a6-480a-9e13-94809f93be7c",
-      "7d7de05f-95a4-4045-8719-f07ac9452a11"
+      "7d7de05f-95a4-4045-8719-f07ac9452a11",
+      "c3c98117-8420-4956-b818-2016b924f168"
     ]
   },
   "history": [
@@ -1458,6 +1464,38 @@
           "vignetteMessageId": 117,
           "pollMessageId": 118,
           "explanationMessageId": 119
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-09-30T17:11:14.406Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "c3c98117-8420-4956-b818-2016b924f168",
+          "topic": "Reumatología",
+          "success": true,
+          "vignetteMessageId": 111,
+          "pollMessageId": 112,
+          "explanationMessageId": 113
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "d6a3211f-fba3-41a7-bc02-aeb8f4c1ccfd",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 120,
+          "pollMessageId": 121,
+          "explanationMessageId": 122
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "1425277f-7bcc-43aa-a533-223f8cc457cb",
+          "topic": "Salud Pública",
+          "success": true,
+          "vignetteMessageId": 120,
+          "pollMessageId": 121,
+          "explanationMessageId": 122
         }
       ]
     }
