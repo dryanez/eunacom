@@ -112,7 +112,10 @@
     "1425277f-7bcc-43aa-a533-223f8cc457cb",
     "bf8c390f-7988-461f-9e87-fe4ad505e5d4",
     "2b6a84e1-6bea-4fc4-889b-a64faac5c7f8",
-    "c063e42d-4b80-4ed4-9299-3db9e38852ed"
+    "c063e42d-4b80-4ed4-9299-3db9e38852ed",
+    "63820eed-d8ee-4403-966b-7ecec24f54f7",
+    "a2a8c245-2f9a-4d72-a44b-0534a11dbbaf",
+    "0bb095bb-a491-4046-978a-07d4b5c35972"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -154,7 +157,8 @@
       "85911300-40e7-45e1-908f-1ad132171694",
       "csv_Nefrología_212_1776130183335",
       "d6a3211f-fba3-41a7-bc02-aeb8f4c1ccfd",
-      "2b6a84e1-6bea-4fc4-889b-a64faac5c7f8"
+      "2b6a84e1-6bea-4fc4-889b-a64faac5c7f8",
+      "a2a8c245-2f9a-4d72-a44b-0534a11dbbaf"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -195,7 +199,8 @@
       "200f0751-2db8-436a-a025-373906cfc19f",
       "ae80eea1-ae3b-4de5-9609-59ef94c5f311",
       "1425277f-7bcc-43aa-a533-223f8cc457cb",
-      "c063e42d-4b80-4ed4-9299-3db9e38852ed"
+      "c063e42d-4b80-4ed4-9299-3db9e38852ed",
+      "0bb095bb-a491-4046-978a-07d4b5c35972"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -234,7 +239,8 @@
       "bee96418-08a6-480a-9e13-94809f93be7c",
       "7d7de05f-95a4-4045-8719-f07ac9452a11",
       "c3c98117-8420-4956-b818-2016b924f168",
-      "bf8c390f-7988-461f-9e87-fe4ad505e5d4"
+      "bf8c390f-7988-461f-9e87-fe4ad505e5d4",
+      "63820eed-d8ee-4403-966b-7ecec24f54f7"
     ]
   },
   "history": [
@@ -1534,6 +1540,38 @@
           "vignetteMessageId": 123,
           "pollMessageId": 124,
           "explanationMessageId": 125
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-02T16:59:50.331Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "63820eed-d8ee-4403-966b-7ecec24f54f7",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 117,
+          "pollMessageId": 118,
+          "explanationMessageId": 119
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "a2a8c245-2f9a-4d72-a44b-0534a11dbbaf",
+          "topic": "Respiratorio",
+          "success": true,
+          "vignetteMessageId": 126,
+          "pollMessageId": 127,
+          "explanationMessageId": 128
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "0bb095bb-a491-4046-978a-07d4b5c35972",
+          "topic": "Traumatología",
+          "success": true,
+          "vignetteMessageId": 126,
+          "pollMessageId": 127,
+          "explanationMessageId": 128
         }
       ]
     }
