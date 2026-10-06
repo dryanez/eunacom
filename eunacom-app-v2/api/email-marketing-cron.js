@@ -10,6 +10,8 @@ import {
   getExamCountdownEmailHtml,
   getWeeklyPerformanceDigestHtml
 } from './_email-templates.js';
+import { randomUUID } from 'node:crypto';
+import { CYBER_WEEK_HTML, CYBER_WEEK_SUBJECT } from './_cyber-week-email.js';
 
 export default async function handler(req, res) {
   const db = getTurso();
@@ -49,6 +51,82 @@ export default async function handler(req, res) {
 
     const { action, dryRun: queryDryRun, testEmail, campaignType } = req.query;
     const isDryRun = queryDryRun === 'true' || req.body?.dryRun === true;
+
+    // --- CYBER WEEK CAMPAIGN (users who signed up and never paid) ---
+    //   ?action=cyber_week&mode=preview            → recipient count + list, sends nothing
+    //   ?action=cyber_week&mode=test&testEmail=x   → one email to x
+    //   ?action=cyber_week&mode=send&confirm=N     → sends to the N pending recipients (N must match)
+    //   ?action=cyber_week&mode=status&id=RESEND_ID → delivery status of one email
+    if (action === 'cyber_week') {
+      const CAMPAIGN = 'cyber_week_2026';
+      const mode = req.query.mode || 'preview';
+      const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl';
+      const replyTo = 'eunacomapp@gmail.com';
+      const unsub = `mailto:${replyTo}?subject=${encodeURIComponent('Baja correos EUNACOM App')}`;
+      const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const render = firstName => {
+        const name = String(firstName || '').trim().split(/\s+/)[0];
+        return CYBER_WEEK_HTML
+          .replace('Hola Dr(a). {{nombre}},', name ? `Hola Dr(a). ${esc(name)},` : 'Hola,')
+          .replace('{{unsubscribe_url}}', unsub);
+      };
+      const message = (to, firstName) => ({
+        from: `EUNACOM App <${sender}>`, to, reply_to: replyTo, subject: CYBER_WEEK_SUBJECT,
+        html: render(firstName), headers: { 'List-Unsubscribe': `<${unsub}>` }
+      });
+      if (!process.env.RESEND_API_KEY) return res.status(500).json({ error: 'RESEND_API_KEY is not configured.' });
+      const resend = new Resend(process.env.RESEND_API_KEY);
+
+      if (mode === 'status') {
+        const { data, error } = await resend.emails.get(String(req.query.id || ''));
+        return res.json({ id: req.query.id, last_event: data?.last_event, to: data?.to, error });
+      }
+      if (mode === 'test') {
+        const to = testEmail || 'dr.felipeyanez@gmail.com';
+        const { data, error } = await resend.emails.send(message(to, 'Felipe'));
+        return res.json({ success: !error, to, id: data?.id, error });
+      }
+
+      // Signed up, never paid (no premium now, no past plan), valid email, not yet sent this campaign
+      const { rows } = await db.execute({
+        sql: `SELECT up.id, lower(trim(up.email)) AS email, up.first_name, up.country, up.created_at
+              FROM user_profiles up
+              WHERE up.email LIKE '%_@_%._%'
+                AND COALESCE(up.is_premium, 0) <> 1
+                AND up.premium_until IS NULL
+                AND up.id NOT IN ('screenshot-mock', 'dev_test')
+                AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com')
+                AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
+              ORDER BY up.created_at DESC`,
+        args: [CAMPAIGN]
+      });
+      const seen = new Set();
+      const pending = rows.filter(r => !seen.has(r.email) && seen.add(r.email));
+
+      if (mode === 'preview') {
+        return res.json({ pending: pending.length, recipients: pending.map(r => ({ email: r.email, first_name: r.first_name, country: r.country, created_at: r.created_at })) });
+      }
+      if (mode !== 'send') return res.status(400).json({ error: 'mode must be preview, test, send or status' });
+      if (Number(req.query.confirm) !== pending.length) {
+        return res.status(409).json({ error: 'confirm must equal the pending recipient count', pending: pending.length });
+      }
+
+      let sent = 0;
+      const failed = [];
+      for (let i = 0; i < pending.length; i += 100) {
+        const batch = pending.slice(i, i + 100);
+        const { data, error } = await resend.batch.send(batch.map(r => message(r.email, r.first_name)));
+        if (error) { failed.push({ from: i, error: error.message || String(error) }); continue; }
+        const ids = data?.data || [];
+        // One round-trip per 100 logs keeps the whole send well inside the function time limit
+        await db.batch(batch.map((r, j) => ({
+          sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, 50, ?)`,
+          args: [randomUUID(), r.id, r.email, CAMPAIGN, CYBER_WEEK_SUBJECT, JSON.stringify({ resend_id: ids[j]?.id || null })]
+        })), 'write').catch(e => console.error('Log insert error:', e));
+        sent += batch.length;
+      }
+      return res.json({ success: failed.length === 0, sent, failed, remaining: pending.length - sent });
+    }
 
     // --- TEST SEND ROUTE ---
     if (action === 'send_test') {

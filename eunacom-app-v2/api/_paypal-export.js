@@ -80,7 +80,9 @@ async function verifyWebhookSignature(req, body) {
   const webhookId = process.env.PAYPAL_WEBHOOK_ID
   const clientId = process.env.PAYPAL_CLIENT_ID
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET
-  if (!webhookId || !clientId || !clientSecret) return true
+  // Without PayPal credentials the event can't be verified: treat it as unverified so a forged
+  // POST can never activate premium (the transaction is still stored for manual review).
+  if (!webhookId || !clientId || !clientSecret) return false
   try {
     const tokenRes = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {
       method: 'POST',
@@ -125,8 +127,9 @@ export default async function handler(req, res) {
       if (!paymentEvents.includes(eventType)) {
         return res.status(200).json({ received: true, msg: `Ignored event: ${eventType}` })
       }
+      const configured = !!(process.env.PAYPAL_WEBHOOK_ID && process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET)
       const isValid = await verifyWebhookSignature(req, event)
-      if (!isValid) return res.status(401).json({ error: 'Invalid webhook signature' })
+      if (configured && !isValid) return res.status(401).json({ error: 'Invalid webhook signature' })
 
       const resource = event.resource || {}
       let transactionId, payerName, payerEmail, itemName, amount, currency, status, payerCountry, paymentDate
@@ -189,7 +192,12 @@ export default async function handler(req, res) {
         args: [transactionId, payerName||null, payerEmail||null, itemName||null, amount||null, currency||null, status||null, plan?.id||null, plan?.months||null, matchedUserId||null, userMatch?'auto':(matchedUserId?'custom':null), payerCountry||null, paymentDate||null, JSON.stringify(event)]
       })
 
-      if (matchedUserId && plan) {
+      // Only a verified, completed payment activates premium. Unverified events (PayPal keys not set
+      // in Vercel) are kept in paypal_transactions for the admin to activate by hand.
+      const completed = eventType !== 'CHECKOUT.ORDER.APPROVED'
+      if (!isValid || !completed) {
+        console.warn(`PayPal event ${eventType} ${transactionId} stored without activation (verified=${isValid})`)
+      } else if (matchedUserId && plan) {
         const premiumUntil = await activatePremium(db, matchedUserId, plan.months)
         console.log(`PayPal auto-activated premium for user ${matchedUserId}: ${plan.id} until ${premiumUntil}`)
       }

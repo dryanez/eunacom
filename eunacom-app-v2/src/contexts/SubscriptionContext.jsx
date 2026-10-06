@@ -46,6 +46,17 @@ export function SubscriptionProvider({ children }) {
     setIsPremium(prev => !prev);
   };
 
+  // Came from an offer link (/oferta) before logging in → open checkout once the user is logged in
+  useEffect(() => {
+    if (!user?.id) return;
+    try {
+      if (sessionStorage.getItem('eunacom_open_checkout')) {
+        sessionStorage.removeItem('eunacom_open_checkout');
+        setShowPaymentModal(true);
+      }
+    } catch {}
+  }, [user?.id]);
+
   // Buyer returns from an in-app PayPal order (?paypal=return&token=ORDER_ID): capture it, then
   // hand over to the normal ?payment=success flow, which reloads the premium status.
   useEffect(() => {
@@ -223,7 +234,8 @@ export function SubscriptionProvider({ children }) {
       setPromoSetting
     }}>
       {children}
-      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+      {/* Checkout needs a logged-in user; a pending open waits until login */}
+      {showPaymentModal && user && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
     </SubscriptionContext.Provider>
   );
 }

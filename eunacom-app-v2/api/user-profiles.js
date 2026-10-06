@@ -197,7 +197,15 @@ export default async function handler(req, res) {
       if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
 
       const plan = PLANS[planId]
-      const requestedPct = Number(discount) > 0 && Number(discount) <= 50 ? Number(discount) : 0
+      // A URL coupon (?discount=30|40|50) only counts if we actually emailed that coupon to this user
+      let requestedPct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
+      if (requestedPct) {
+        const sent = await db.execute({
+          sql: `SELECT 1 FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ? LIMIT 1`,
+          args: [userId, `discount_${requestedPct}`]
+        }).catch(() => ({ rows: [] }))
+        if (!sent.rows?.length) requestedPct = 0
+      }
       const promo = await getActivePromo(db)
       const discountPct = Math.max(requestedPct, promo?.percent || 0)
       const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price

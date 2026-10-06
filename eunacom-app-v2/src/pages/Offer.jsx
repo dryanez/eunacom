@@ -16,7 +16,9 @@ const Offer = () => {
       }
     } catch {}
 
-    // Enable global payment modal
+    // Open checkout now, and remember it in case the visitor first has to log in
+    // (SubscriptionContext opens it once a user is present).
+    try { sessionStorage.setItem('eunacom_open_checkout', '1') } catch {}
     setShowPaymentModal(true);
     // Redirect to dashboard with discount query preserved
     navigate(`/dashboard${window.location.search}`, { replace: true });
