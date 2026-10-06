@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
 import { promoPrice } from '../config/promo';
 
 const PRICES = [
@@ -13,34 +12,20 @@ const PRICES = [
 ];
 
 // Landing for campaign email links (/oferta?discount=50). Shows the offer itself, then opens
-// checkout (logged in) or login (logged out). Login is decided from the real Supabase session,
-// not the cached user: most email recipients have an old cached user whose session expired,
-// which used to flash checkout and drop them on an empty dashboard.
+// checkout (logged in) or login (logged out). Stays on this page so an expired cached session
+// ends in the login box here instead of an empty dashboard.
 const Offer = () => {
   const navigate = useNavigate();
   const { setShowPaymentModal, promo, isPremium } = useSubscription();
   const { user, loading, openAuthModal } = useAuth();
-  const [hasSession, setHasSession] = useState(null); // null = still checking
-
   useEffect(() => {
     try {
       const discount = new URLSearchParams(window.location.search).get('discount');
       if (discount) localStorage.setItem('eunacom_pending_discount', discount);
     } catch {}
-    supabase.auth.getSession()
-      .then(({ data }) => setHasSession(!!data?.session))
-      .catch(() => setHasSession(false));
   }, []);
 
-  // A login from the modal makes the session real
-  useEffect(() => {
-    if (user && hasSession === false) {
-      supabase.auth.getSession().then(({ data }) => { if (data?.session) setHasSession(true) }).catch(() => {});
-    }
-  }, [user, hasSession]);
-
-  const isLocalUser = user?.id === 'local_admin_felipe' || user?.id?.startsWith?.('dev_');
-  const loggedIn = !!user && !loading && (hasSession || isLocalUser);
+  const loggedIn = !!user && !loading;
 
   const askLogin = () => {
     // SubscriptionContext opens checkout as soon as the user logs in
@@ -48,17 +33,17 @@ const Offer = () => {
     openAuthModal('login', 'Inicia sesión para activar tu descuento');
   };
 
-  // Open checkout or login automatically once we know which one applies.
-  // (Stale cached user: wait until AuthContext clears it, then ask to log in.)
+  // Open checkout right away for a logged-in user. If the cached user's session turns out to be
+  // expired, AuthContext clears the user, checkout closes and we ask to log in on this same page.
   useEffect(() => {
-    if (hasSession === null || loading) return;
-    if (loggedIn) {
+    if (loading) return;
+    if (user) {
       if (!isPremium) setShowPaymentModal(true);
-    } else if (!user) {
+    } else {
       askLogin();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasSession, loading, loggedIn, !!user]);
+  }, [loading, !!user]);
 
   const claim = () => (loggedIn ? setShowPaymentModal(true) : askLogin());
   const percent = promo?.percent || 0;
@@ -105,16 +90,16 @@ const Offer = () => {
           {isPremium && loggedIn ? (
             <div style={{ textAlign: 'center', color: '#166534', fontWeight: 700, padding: '10px 0' }}>✅ Ya tienes Premium activo.</div>
           ) : (
-            <button onClick={claim} disabled={hasSession === null} style={{
+            <button onClick={claim} style={{
               width: '100%', background: '#2563eb', color: '#ffffff', border: 'none', borderRadius: 12,
-              padding: '14px 0', fontSize: 16, fontWeight: 800, cursor: 'pointer', opacity: hasSession === null ? 0.7 : 1,
+              padding: '14px 0', fontSize: 16, fontWeight: 800, cursor: 'pointer',
             }}>
               {loggedIn
                 ? (percent ? `Activar mi ${percent}% DCTO →` : 'Ver planes →')
                 : (percent ? `Inicia sesión y activa tu ${percent}% DCTO →` : 'Iniciar sesión →')}
             </button>
           )}
-          {!loggedIn && hasSession === false && (
+          {!loggedIn && (
             <button onClick={() => openAuthModal('register')} style={{
               width: '100%', background: 'none', border: 'none', color: '#2563eb', fontSize: 13.5, fontWeight: 700, marginTop: 8, cursor: 'pointer', padding: 6,
             }}>
