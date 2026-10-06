@@ -12,6 +12,7 @@ import {
 } from './_email-templates.js';
 import { randomUUID } from 'node:crypto';
 import { CYBER_WEEK_HTML, CYBER_WEEK_SUBJECT } from './_cyber-week-email.js';
+import { getActivePromo } from './_promo.js';
 
 export default async function handler(req, res) {
   const db = getTurso();
@@ -95,7 +96,7 @@ export default async function handler(req, res) {
                 AND COALESCE(up.is_premium, 0) <> 1
                 AND up.premium_until IS NULL
                 AND up.id NOT IN ('screenshot-mock', 'dev_test')
-                AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com')
+                AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
                 AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
               ORDER BY up.created_at DESC`,
         args: [CAMPAIGN]
@@ -257,6 +258,10 @@ export default async function handler(req, res) {
     yesterday.setDate(yesterday.getDate() - 1);
     const yesterdayStr = yesterday.toISOString().split('T')[0];
 
+    // Pause the 30/40/50% discount drip while a site-wide promo (Cyber Week) is running,
+    // so nobody gets a smaller coupon than the live promo or a second 50% email.
+    const activePromo = await getActivePromo(db);
+
     const eligible30 = [];
     const eligible40 = [];
     const eligible50 = [];
@@ -264,7 +269,7 @@ export default async function handler(req, res) {
 
     for (const u of usersResult.rows) {
       // 1. Retention Discount Funnel (Non-Premium only)
-      if (u.is_premium === 0 && u.created_at) {
+      if (!activePromo && u.is_premium === 0 && u.created_at) {
         const createdDate = new Date(u.created_at);
         const diffMs = now - createdDate;
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
