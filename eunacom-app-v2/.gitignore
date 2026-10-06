@@ -32,3 +32,4 @@ src/data/pruebas.json
 __pycache__/
 scratch/
 .env*.local
+scripts/campaigns/*_recipients.csv

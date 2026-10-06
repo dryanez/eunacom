@@ -1,4 +1,5 @@
 import { getTurso } from './_turso.js'
+import { activePromoPercent } from './_promo.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
@@ -177,7 +178,8 @@ export default async function handler(req, res) {
       if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
 
       const plan = PLANS[planId]
-      const discountPct = Number(discount) > 0 && Number(discount) <= 50 ? Number(discount) : 0
+      const requestedPct = Number(discount) > 0 && Number(discount) <= 50 ? Number(discount) : 0
+      const discountPct = Math.max(requestedPct, activePromoPercent())
       const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
       const externalReference = `${userId}|${planId}|${Date.now()}`
 

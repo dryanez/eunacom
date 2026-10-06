@@ -18,7 +18,10 @@
     "marketing:dry": "node api/email-marketing-cron.js --dry-run",
     "marketing:now": "node ../scripts/marketing_scheduler.js --now",
     "marketing:start": "node ../scripts/marketing_scheduler.js",
-    "seo:sync": "python3 ../scripts/gsc_seo_analyzer.py"
+    "seo:sync": "python3 ../scripts/gsc_seo_analyzer.py",
+    "campaign:cyber:preview": "node scripts/campaigns/cyber-week-2026.mjs --preview",
+    "campaign:cyber:test": "node scripts/campaigns/cyber-week-2026.mjs --test",
+    "campaign:cyber:send": "node scripts/campaigns/cyber-week-2026.mjs --send"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1075.0",
@@ -50,6 +53,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "nodemailer": "^10.0.15",
     "puppeteer": "^25.8.0",
     "vite": "^8.0.1",
     "vite-plugin-pwa": "^1.3.0"

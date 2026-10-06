@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 
 import { usePageSeo } from '../lib/seo'
+import { PROMO, isPromoActive, promoPrice } from '../config/promo'
 
 // ─── SAMPLE INTERACTIVE QUESTION DEMO ──────────────────────────────────────────
 const DEMO_QUESTION = {
@@ -133,6 +134,7 @@ const FAQ_ITEMS = [
 export default function LandingPage() {
   const navigate = useNavigate()
   const { user, openAuthModal } = useAuth()
+  const promoOn = isPromoActive()
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [showExplanation, setShowExplanation] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
@@ -775,8 +777,10 @@ export default function LandingPage() {
               <p style={{ color: '#64748b', fontSize: '0.82rem', lineHeight: 1.5, minHeight: 38, marginBottom: 14 }}>{plan.desc}</p>
 
               <div style={{ marginBottom: 20 }}>
-                <div style={{ fontSize: '2.1rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.03em' }}>{plan.price}</div>
-                <div style={{ color: '#64748b', fontSize: '0.78rem', fontWeight: 500 }}>{plan.unit}</div>
+                {promoOn && <div style={{ color: '#94a3b8', fontSize: '1rem', fontWeight: 600, textDecoration: 'line-through' }}>{plan.price}</div>}
+                <div style={{ fontSize: '2.1rem', fontWeight: 800, color: promoOn ? '#2563eb' : '#0f172a', letterSpacing: '-0.03em' }}>{promoOn ? promoPrice(plan.price) : plan.price}</div>
+                {promoOn && <div style={{ display: 'inline-block', background: '#22d3ee', color: '#0f2a5c', fontSize: '0.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 9999, margin: '4px 0' }}>{PROMO.name.toUpperCase()} −{PROMO.percent}%</div>}
+                <div style={{ color: '#64748b', fontSize: '0.78rem', fontWeight: 500 }}>{promoOn ? 'pago único' : plan.unit}</div>
               </div>
 
               <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: 16, marginBottom: 24, flex: 1 }}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession } from '../lib/api';
+import { PROMO, isPromoActive } from '../config/promo';
 
 const PLANS = [
   { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
@@ -15,6 +16,7 @@ const PaymentModal = ({ onClose }) => {
   
   // Read discount from URL or localStorage (30, 40, 50)
   const [discountPercent, setDiscountPercent] = useState(() => {
+    if (isPromoActive()) return PROMO.percent;
     try {
       const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
       const qDiscount = urlParams?.get('discount');
@@ -155,7 +157,7 @@ const PaymentModal = ({ onClose }) => {
                     justifyContent: 'space-between'
                   }}>
                     <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
-                      🏷️ Cupón Exclusivo: {discountPercent}% DCTO Aplicado
+                      {isPromoActive() && discountPercent === PROMO.percent ? `🔥 ${PROMO.name}: ${discountPercent}% DCTO hasta el ${PROMO.endLabel}` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
                     </span>
                     <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
                       VÁLIDO
@@ -317,6 +319,12 @@ const PaymentModal = ({ onClose }) => {
                       }}>
                       Pagar Internacional con PayPal
                     </button>
+
+                    {discountPercent > 0 && (
+                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.3rem', textAlign: 'center' }}>
+                        El descuento aplica con Webpay y transferencia. PayPal cobra el precio normal.
+                      </div>
+                    )}
                     
                     {errorMp && (
                       <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
@@ -366,6 +374,12 @@ const PaymentModal = ({ onClose }) => {
                       }}>
                       Pagar con PayPal (USD)
                     </button>
+
+                    {discountPercent > 0 && (
+                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.3rem', textAlign: 'center' }}>
+                        El descuento aplica con Webpay y transferencia. PayPal cobra el precio normal.
+                      </div>
+                    )}
                   </div>
                 </>
               )}

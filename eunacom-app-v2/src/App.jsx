@@ -39,6 +39,7 @@ import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
 import { useAuth } from './contexts/AuthContext'
 import AuthModal from './components/AuthModal'
+import CyberWeekPopup from './components/CyberWeekPopup'
 import './index.css'
 
 const AdminRoute = ({ children }) => {
@@ -60,6 +61,7 @@ function App() {
         <AuthProvider>
           <SubscriptionProvider>
             <AuthModal />
+            <CyberWeekPopup />
             <Routes>
               {/* ── SEO Public Pages (no layout wrapper, standalone) ── */}
               <Route path="/" element={<LandingPage />} />
