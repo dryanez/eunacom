@@ -5,15 +5,20 @@ import { getTurso } from './_turso.js'
 // POST /api/paypal-export                         → PayPal webhook receiver (merged from paypal-webhook.js)
 
 const PAYPAL_MODE = process.env.PAYPAL_MODE || 'live'
-const PAYPAL_API = PAYPAL_MODE === 'sandbox'
+export const PAYPAL_API = PAYPAL_MODE === 'sandbox'
   ? 'https://api-m.sandbox.paypal.com'
   : 'https://api-m.paypal.com'
 
-const PLAN_MAP = {
+export const PLAN_MAP = {
   'KMT3QCWH9M96A': { id: '1m', months: 1 },
   'FJSVXQV45GHWC': { id: '3m', months: 3 },
   'UE9AAX3JRPS7Y': { id: '6m', months: 6 },
   'XWTMQC3CJ4V9L': { id: '1y', months: 12 },
+  // In-app orders (custom_id "userId|planId")
+  '1m': { id: '1m', months: 1 },
+  '3m': { id: '3m', months: 3 },
+  '6m': { id: '6m', months: 6 },
+  '1y': { id: '1y', months: 12 },
 }
 
 function matchPlanByAmount(amount) {
@@ -56,7 +61,7 @@ async function matchUserByEmail(db, payerEmail) {
   return result.rows?.[0] || null
 }
 
-async function activatePremium(db, userId, months) {
+export async function activatePremium(db, userId, months) {
   const now = new Date()
   if (months === 12) now.setFullYear(now.getFullYear() + 1)
   else now.setMonth(now.getMonth() + months)

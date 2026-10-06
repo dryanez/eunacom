@@ -284,6 +284,20 @@ export async function createCheckoutSession(userId, planId, discount = null) {
   })
 }
 
+export async function createPaypalOrder(userId, planId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'paypal_order', userId, planId })
+  })
+}
+
+export async function capturePaypalOrder(userId, orderId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'paypal_capture', userId, orderId })
+  })
+}
+
 export async function createDonationSession(userId) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',

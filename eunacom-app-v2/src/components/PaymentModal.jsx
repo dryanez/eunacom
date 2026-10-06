@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { createCheckoutSession } from '../lib/api';
-import { PROMO, isPromoActive } from '../config/promo';
+import { createCheckoutSession, createPaypalOrder } from '../lib/api';
+import { useSubscription } from '../contexts/SubscriptionContext';
 
 const PLANS = [
   { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
@@ -13,10 +13,10 @@ const PLANS = [
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
+  const { promo } = useSubscription();
   
   // Read discount from URL or localStorage (30, 40, 50)
-  const [discountPercent, setDiscountPercent] = useState(() => {
-    if (isPromoActive()) return PROMO.percent;
+  const [couponPercent] = useState(() => {
     try {
       const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
       const qDiscount = urlParams?.get('discount');
@@ -26,6 +26,8 @@ const PaymentModal = ({ onClose }) => {
     } catch {}
     return 0;
   });
+  const discountPercent = Math.max(couponPercent, promo?.percent || 0);
+  const isPromoDiscount = !!promo && discountPercent === promo.percent;
 
   const plansToDisplay = React.useMemo(() => {
     if (!discountPercent) return PLANS;
@@ -40,7 +42,8 @@ const PaymentModal = ({ onClose }) => {
     });
   }, [discountPercent]);
 
-  const [selectedPlan, setSelectedPlan] = useState(() => plansToDisplay[2]); // Default 6 months
+  const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
+  const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const [step, setStep] = useState(1);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
@@ -54,6 +57,25 @@ const PaymentModal = ({ onClose }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // In-app PayPal order (charges the promo price). Falls back to the fixed-price PayPal link
+  // if the PayPal API isn't configured on the server.
+  const handlePaypal = async () => {
+    if (!user) {
+      setErrorMp("Debes iniciar sesión para suscribirte.");
+      return;
+    }
+    setLoadingMp(true);
+    setErrorMp(null);
+    try {
+      const res = await createPaypalOrder(user.id, selectedPlan.id);
+      if (!res.approve_url) throw new Error('No approve_url');
+      window.location.href = res.approve_url;
+    } catch (err) {
+      console.error(err);
+      window.location.href = selectedPlan.paypal;
+    }
+  };
 
   const handleMercadoPago = async () => {
     if (!user) {
@@ -157,7 +179,7 @@ const PaymentModal = ({ onClose }) => {
                     justifyContent: 'space-between'
                   }}>
                     <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
-                      {isPromoActive() && discountPercent === PROMO.percent ? `🔥 ${PROMO.name}: ${discountPercent}% DCTO hasta el ${PROMO.endLabel}` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
+                      {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
                     </span>
                     <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
                       VÁLIDO
@@ -170,7 +192,7 @@ const PaymentModal = ({ onClose }) => {
                     <div
                       key={plan.id}
                       onClick={() => {
-                        setSelectedPlan(plan);
+                        setSelectedPlanId(plan.id);
                         if (isMobile) setStep(2);
                       }}
                       style={{
@@ -305,13 +327,8 @@ const PaymentModal = ({ onClose }) => {
                     </button>
 
                     <button 
-                      onClick={() => {
-                        if (!user) {
-                          setErrorMp("Debes iniciar sesión para suscribirte.");
-                          return;
-                        }
-                        window.location.href = selectedPlan.paypal;
-                      }}
+                      onClick={handlePaypal}
+                      disabled={loadingMp}
                       style={{
                         width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
                         fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.2rem', marginBottom: '0.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
@@ -319,12 +336,6 @@ const PaymentModal = ({ onClose }) => {
                       }}>
                       Pagar Internacional con PayPal
                     </button>
-
-                    {discountPercent > 0 && (
-                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.3rem', textAlign: 'center' }}>
-                        El descuento aplica con Webpay y transferencia. PayPal cobra el precio normal.
-                      </div>
-                    )}
                     
                     {errorMp && (
                       <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
@@ -360,13 +371,8 @@ const PaymentModal = ({ onClose }) => {
                       Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
                     </p>
                     <button 
-                      onClick={() => {
-                        if (!user) {
-                          alert("Debes iniciar sesión para suscribirte.");
-                          return;
-                        }
-                        window.location.href = selectedPlan.paypal;
-                      }}
+                      onClick={handlePaypal}
+                      disabled={loadingMp}
                       style={{
                         width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
                         fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
@@ -374,12 +380,6 @@ const PaymentModal = ({ onClose }) => {
                       }}>
                       Pagar con PayPal (USD)
                     </button>
-
-                    {discountPercent > 0 && (
-                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.3rem', textAlign: 'center' }}>
-                        El descuento aplica con Webpay y transferencia. PayPal cobra el precio normal.
-                      </div>
-                    )}
                   </div>
                 </>
               )}

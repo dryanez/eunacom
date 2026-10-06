@@ -18,6 +18,7 @@ import CampaignModal from '../components/CampaignModal'
 import AdminEmailMarketing from '../components/AdminEmailMarketing'
 import AdminSeo from '../components/AdminSeo'
 import { UserInstitutionBadge } from '../utils/universityAndCountry'
+import AdminPromoToggle from '../components/AdminPromoToggle'
 
 const NUM_KEYS = ['total_answers', 'correct_answers', 'total_tests', 'total_pruebas', 'total_classes']
 
@@ -777,6 +778,8 @@ const AdminUsers = () => {
           </button>
         </div>
       </div>
+
+      <AdminPromoToggle adminEmail={user?.email} />
 
       {/* Summary cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>

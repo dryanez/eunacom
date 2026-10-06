@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings } from '../lib/api';
+import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
+import { resolvePromo } from '../config/promo';
 
 const SubscriptionContext = createContext();
 
@@ -28,6 +29,9 @@ export function SubscriptionProvider({ children }) {
   const [isFounder, setIsFounder] = useState(() => isUserAdmin);
   const [loadingPremium, setLoadingPremium] = useState(() => !isUserAdmin && !!user);
   const [freemiumMode, setFreemiumMode] = useState('strict'); // strict or usage
+  const [promoSetting, setPromoSetting] = useState(null); // admin app_settings.promo (JSON)
+  const [promoLoaded, setPromoLoaded] = useState(false);
+  const promo = promoLoaded ? resolvePromo(promoSetting) : null;
   
   // Freemium usage tracking
   const [usageStats, setUsageStats] = useState({
@@ -41,6 +45,21 @@ export function SubscriptionProvider({ children }) {
   const togglePremium = () => {
     setIsPremium(prev => !prev);
   };
+
+  // Buyer returns from an in-app PayPal order (?paypal=return&token=ORDER_ID): capture it, then
+  // hand over to the normal ?payment=success flow, which reloads the premium status.
+  useEffect(() => {
+    if (!user?.id) return;
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('token');
+    if (params.get('paypal') !== 'return' || !orderId) return;
+    capturePaypalOrder(user.id, orderId)
+      .then(() => window.location.replace('/dashboard?payment=success'))
+      .catch(err => {
+        console.error('PayPal capture failed:', err);
+        window.location.replace('/dashboard?payment=failure');
+      });
+  }, [user?.id]);
 
   useEffect(() => {
     let mounted = true;
@@ -58,8 +77,15 @@ export function SubscriptionProvider({ children }) {
         if (mounted && settings.freemium_mode) {
           setFreemiumMode(settings.freemium_mode);
         }
+        if (mounted) {
+          setPromoSetting(settings.promo || null);
+          setPromoLoaded(true);
+        }
       })
-      .catch(err => console.error("Error fetching app settings:", err));
+      .catch(err => {
+        console.error("Error fetching app settings:", err);
+        if (mounted) setPromoLoaded(true); // fall back to the default yearly schedule
+      });
 
     if (user) {
       if (!isUserAdmin) {
@@ -191,7 +217,10 @@ export function SubscriptionProvider({ children }) {
       hasExceededSimulations,
       hasExceededQuestions,
       showPaymentModal,
-      setShowPaymentModal
+      setShowPaymentModal,
+      promo,
+      promoSetting,
+      setPromoSetting
     }}>
       {children}
       {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}

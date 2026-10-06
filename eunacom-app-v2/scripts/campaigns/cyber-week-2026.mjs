@@ -17,7 +17,7 @@ import { createClient } from '@libsql/client'
 import nodemailer from 'nodemailer'
 
 const CAMPAIGN = 'cyber_week_2026'
-const SUBJECT = '🔥 Cyber Week: 50% DCTO en EUNACOM App (+1.400 preguntas nuevas)'
+const SUBJECT = '🔥 Cyber Week: 50% DCTO en EUNACOM App (+10.600 preguntas y 16 reconstrucciones)'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const TEMPLATE = readFileSync(join(HERE, 'cyber_week_2026.html'), 'utf8')
 const GMAIL_DAILY_SAFE_LIMIT = 450 // personal Gmail allows ~500 recipients/day

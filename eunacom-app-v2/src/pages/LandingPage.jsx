@@ -8,7 +8,8 @@ import {
 } from 'lucide-react'
 
 import { usePageSeo } from '../lib/seo'
-import { PROMO, isPromoActive, promoPrice } from '../config/promo'
+import { promoPrice } from '../config/promo'
+import { useSubscription } from '../contexts/SubscriptionContext'
 
 // ─── SAMPLE INTERACTIVE QUESTION DEMO ──────────────────────────────────────────
 const DEMO_QUESTION = {
@@ -134,7 +135,8 @@ const FAQ_ITEMS = [
 export default function LandingPage() {
   const navigate = useNavigate()
   const { user, openAuthModal } = useAuth()
-  const promoOn = isPromoActive()
+  const { promo } = useSubscription()
+  const promoOn = !!promo
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [showExplanation, setShowExplanation] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
@@ -778,8 +780,8 @@ export default function LandingPage() {
 
               <div style={{ marginBottom: 20 }}>
                 {promoOn && <div style={{ color: '#94a3b8', fontSize: '1rem', fontWeight: 600, textDecoration: 'line-through' }}>{plan.price}</div>}
-                <div style={{ fontSize: '2.1rem', fontWeight: 800, color: promoOn ? '#2563eb' : '#0f172a', letterSpacing: '-0.03em' }}>{promoOn ? promoPrice(plan.price) : plan.price}</div>
-                {promoOn && <div style={{ display: 'inline-block', background: '#22d3ee', color: '#0f2a5c', fontSize: '0.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 9999, margin: '4px 0' }}>{PROMO.name.toUpperCase()} −{PROMO.percent}%</div>}
+                <div style={{ fontSize: '2.1rem', fontWeight: 800, color: promoOn ? '#2563eb' : '#0f172a', letterSpacing: '-0.03em' }}>{promoOn ? promoPrice(plan.price, promo.percent) : plan.price}</div>
+                {promoOn && <div style={{ display: 'inline-block', background: '#22d3ee', color: '#0f2a5c', fontSize: '0.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 9999, margin: '4px 0' }}>{promo.name.toUpperCase()} −{promo.percent}%</div>}
                 <div style={{ color: '#64748b', fontSize: '0.78rem', fontWeight: 500 }}>{promoOn ? 'pago único' : plan.unit}</div>
               </div>
 

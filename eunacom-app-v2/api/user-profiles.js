@@ -1,7 +1,26 @@
 import { getTurso } from './_turso.js'
-import { activePromoPercent } from './_promo.js'
+import { getActivePromo } from './_promo.js'
+import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
+
+// PayPal can't charge CLP, so in-app PayPal orders use these regular USD prices (promo discount applied on top).
+const PAYPAL_USD = { '1m': 16, '3m': 37, '6m': 58, '1y': 95 }
+
+async function paypalToken() {
+  const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) return null
+  const r = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64')}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'grant_type=client_credentials'
+  })
+  if (!r.ok) return null
+  return (await r.json()).access_token
+}
 
 const PLANS = {
   '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
@@ -179,7 +198,8 @@ export default async function handler(req, res) {
 
       const plan = PLANS[planId]
       const requestedPct = Number(discount) > 0 && Number(discount) <= 50 ? Number(discount) : 0
-      const discountPct = Math.max(requestedPct, activePromoPercent())
+      const promo = await getActivePromo(db)
+      const discountPct = Math.max(requestedPct, promo?.percent || 0)
       const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
       const externalReference = `${userId}|${planId}|${Date.now()}`
 
@@ -208,6 +228,71 @@ export default async function handler(req, res) {
       if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia Mercado Pago' })
       const data = await mpRes.json()
       return res.json({ init_point: data.init_point })
+    }
+
+    // --- PAYPAL ORDER (in-app, discount-aware) ---
+    if (req.method === 'POST' && req.body?.action === 'paypal_order') {
+      const { userId, planId } = req.body
+      if (!userId || !PAYPAL_USD[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+      const token = await paypalToken()
+      if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
+
+      const promo = await getActivePromo(db)
+      const pct = promo?.percent || 0
+      const value = (PAYPAL_USD[planId] * (1 - pct / 100)).toFixed(2)
+      const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          intent: 'CAPTURE',
+          purchase_units: [{
+            custom_id: `${userId}|${planId}`,
+            description: pct > 0 ? `${PLANS[planId].title} (${pct}% DCTO)` : PLANS[planId].title,
+            amount: { currency_code: 'USD', value }
+          }],
+          application_context: {
+            brand_name: 'EUNACOM App',
+            user_action: 'PAY_NOW',
+            shipping_preference: 'NO_SHIPPING',
+            return_url: 'https://www.eunacomapp.cl/dashboard?paypal=return',
+            cancel_url: 'https://www.eunacomapp.cl/dashboard?paypal=cancel'
+          }
+        })
+      })
+      if (!r.ok) return res.status(502).json({ error: 'Error creando orden PayPal' })
+      const order = await r.json()
+      const approve = order.links?.find(l => l.rel === 'approve' || l.rel === 'payer-action')?.href
+      return res.json({ approve_url: approve, order_id: order.id })
+    }
+
+    // --- PAYPAL CAPTURE (buyer returns from PayPal with ?token=ORDER_ID) ---
+    if (req.method === 'POST' && req.body?.action === 'paypal_capture') {
+      const { userId, orderId } = req.body
+      if (!userId || !orderId) return res.status(400).json({ error: 'Missing parameters' })
+      const token = await paypalToken()
+      if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
+
+      const r = await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(orderId)}/capture`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+      })
+      const data = await r.json()
+      // Already captured (e.g. page reloaded) → read the order instead
+      const order = r.ok ? data : await (await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(orderId)}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })).json()
+      const unit = order.purchase_units?.[0]
+      const capture = unit?.payments?.captures?.[0]
+      const [orderUser, planId] = String(capture?.custom_id || unit?.custom_id || '').split('|')
+      if (order.status !== 'COMPLETED' || orderUser !== userId || !PLAN_MAP[planId]) {
+        return res.status(400).json({ error: 'Pago PayPal no completado', status: order.status })
+      }
+      // Each order activates once — replaying an old order id must not extend the plan again
+      await db.execute({ sql: `CREATE TABLE IF NOT EXISTS paypal_inapp_orders (order_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, captured_at TEXT DEFAULT (datetime('now')))`, args: [] })
+      const ins = await db.execute({ sql: `INSERT OR IGNORE INTO paypal_inapp_orders (order_id, user_id, plan_id) VALUES (?, ?, ?)`, args: [order.id, userId, planId] })
+      if (!ins.rowsAffected) return res.json({ success: true, already_processed: true })
+      const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
+      return res.json({ success: true, premium_until: premiumUntil })
     }
 
     // --- DONATE CREATION ---
