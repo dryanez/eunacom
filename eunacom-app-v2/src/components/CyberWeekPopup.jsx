@@ -28,7 +28,8 @@ export default function CyberWeekPopup() {
     if (new URLSearchParams(search).get('export') === 'true') return
     if (HIDDEN_ON.some(p => pathname.startsWith(p))) return
     try {
-      if (sessionStorage.getItem(seenKey)) return
+      // Already heading to checkout (came from the email link) → no pop-up on top of login/checkout
+      if (sessionStorage.getItem(seenKey) || sessionStorage.getItem('eunacom_open_checkout')) return
     } catch {}
     const t = setTimeout(() => setOpen(true), 1500)
     return () => clearTimeout(t)

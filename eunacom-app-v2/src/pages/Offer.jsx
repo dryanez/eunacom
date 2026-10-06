@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const Offer = () => {
   const navigate = useNavigate();
   const { setShowPaymentModal } = useSubscription();
+  const { user, loading, openAuthModal } = useAuth();
 
   useEffect(() => {
+    if (loading) return;
+    // Logged out (e.g. from the campaign email): ask to log in first; checkout opens right after
+    if (!user) openAuthModal('login', 'Inicia sesión para activar tu descuento');
     // Extract discount parameter if present (30, 40, 50)
     try {
       const params = new URLSearchParams(window.location.search);
@@ -22,7 +27,7 @@ const Offer = () => {
     setShowPaymentModal(true);
     // Redirect to dashboard with discount query preserved
     navigate(`/dashboard${window.location.search}`, { replace: true });
-  }, [navigate, setShowPaymentModal]);
+  }, [navigate, setShowPaymentModal, user, loading, openAuthModal]);
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--surface-900)' }} />
