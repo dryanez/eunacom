@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { promoPrice } from '../config/promo'
 
-const HIDDEN_ON = ['/admin', '/test-runner', '/simulation', '/studio', '/deck', '/script-progress']
+const HIDDEN_ON = ['/oferta', '/admin', '/test-runner', '/simulation', '/studio', '/deck', '/script-progress']
 const PRICES = [
   { name: '1 Mes', price: '$14.990' },
   { name: '3 Meses', price: '$34.990' },
