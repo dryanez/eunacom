@@ -5,7 +5,7 @@ import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
 // PayPal can't charge CLP, so in-app PayPal orders use these regular USD prices (promo discount applied on top).
-const PAYPAL_USD = { '1m': 16, '3m': 37, '6m': 58, '1y': 95 }
+const PAYPAL_USD = { '1m': 16, '3m': 39.99, '6m': 59.99, '1y': 99.99 } // same as the PayPal payment links
 
 async function paypalToken() {
   const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
