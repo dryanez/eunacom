@@ -6,7 +6,10 @@
 //   node scripts/campaigns/cyber-week-2026.mjs --send [--limit 450] # sends to everyone not yet sent
 //
 // Env: TURSO_DATABASE_URL, TURSO_AUTH_TOKEN (from `vercel env pull`),
-//      GMAIL_USER (e.g. eunacomapp@gmail.com), GMAIL_APP_PASSWORD (Google account → App passwords).
+//      and either Amazon SES SMTP: SES_SMTP_USER, SES_SMTP_PASS (SES console → SMTP settings),
+//      optional SES_SMTP_HOST (default email-smtp.sa-east-1.amazonaws.com), sends from equipo@eunacomapp.cl;
+//      or Gmail: GMAIL_USER (e.g. eunacomapp@gmail.com), GMAIL_APP_PASSWORD (Google account → App passwords).
+// Addresses in email_suppressions (SES bounces/complaints, unsubscribes) are never emailed.
 // Every send is logged in email_campaign_logs, so re-running --send never emails anyone twice.
 
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -21,11 +24,14 @@ const SUBJECT = '🔥 Cyber Week: 50% DCTO en EUNACOM App (+10.600 preguntas y 1
 const HERE = dirname(fileURLToPath(import.meta.url))
 const TEMPLATE = readFileSync(join(HERE, 'cyber_week_2026.html'), 'utf8')
 const GMAIL_DAILY_SAFE_LIMIT = 450 // personal Gmail allows ~500 recipients/day
+const USE_SES = !!process.env.SES_SMTP_USER
+const FROM = USE_SES ? 'equipo@eunacomapp.cl' : process.env.GMAIL_USER
+const REPLY_TO = 'eunacomapp@gmail.com'
 
 const args = process.argv.slice(2)
 const mode = args.includes('--send') ? 'send' : args.includes('--test') ? 'test' : 'preview'
 const limitArg = args.indexOf('--limit')
-const limit = limitArg >= 0 ? Number(args[limitArg + 1]) : GMAIL_DAILY_SAFE_LIMIT
+const limit = limitArg >= 0 ? Number(args[limitArg + 1]) : USE_SES ? Infinity : GMAIL_DAILY_SAFE_LIMIT
 
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
@@ -36,11 +42,18 @@ function render(firstName, unsubscribeUrl) {
 }
 
 function unsubscribeMailto() {
-  const user = process.env.GMAIL_USER
-  return `mailto:${user}?subject=${encodeURIComponent('Baja correos EUNACOM App')}`
+  return `mailto:${REPLY_TO}?subject=${encodeURIComponent('Baja correos EUNACOM App')}`
 }
 
 function mailer() {
+  if (USE_SES) {
+    const { SES_SMTP_USER, SES_SMTP_PASS, SES_SMTP_HOST } = process.env
+    if (!SES_SMTP_PASS) { console.error('Missing SES_SMTP_PASS.'); process.exit(1) }
+    return nodemailer.createTransport({
+      host: SES_SMTP_HOST || 'email-smtp.sa-east-1.amazonaws.com', port: 587, secure: false,
+      auth: { user: SES_SMTP_USER, pass: SES_SMTP_PASS },
+    })
+  }
   const { GMAIL_USER, GMAIL_APP_PASSWORD } = process.env
   if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
     console.error('Missing GMAIL_USER / GMAIL_APP_PASSWORD.')
@@ -52,8 +65,9 @@ function mailer() {
 async function sendOne(transport, to, firstName) {
   const unsub = unsubscribeMailto()
   return transport.sendMail({
-    from: `EUNACOM App <${process.env.GMAIL_USER}>`,
+    from: `EUNACOM App <${FROM}>`,
     to,
+    replyTo: REPLY_TO,
     subject: SUBJECT,
     html: render(firstName, unsub),
     headers: { 'List-Unsubscribe': `<${unsub}>` },
@@ -64,6 +78,8 @@ async function recipients(db) {
   await db.execute(`CREATE TABLE IF NOT EXISTS email_campaign_logs (
     id TEXT PRIMARY KEY, user_id TEXT NOT NULL, email TEXT NOT NULL, campaign_type TEXT NOT NULL,
     subject TEXT NOT NULL, discount_percent INTEGER, sent_at TEXT DEFAULT (datetime('now')), metadata TEXT)`)
+  await db.execute(`CREATE TABLE IF NOT EXISTS email_suppressions (
+    email TEXT PRIMARY KEY, reason TEXT, detail TEXT, created_at TEXT DEFAULT (datetime('now')))`)
   // Signed up but never paid: not premium now and no premium_until ever set (expired payers are excluded).
   const { rows } = await db.execute({
     sql: `SELECT up.id, lower(trim(up.email)) AS email, up.first_name, up.last_name, up.created_at
@@ -75,6 +91,7 @@ async function recipients(db) {
             AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
             AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
             AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type = ?)
+            AND lower(trim(up.email)) NOT IN (SELECT email FROM email_suppressions)
           ORDER BY up.created_at DESC`,
     args: [CAMPAIGN, CAMPAIGN],
   })
@@ -113,16 +130,16 @@ async function main() {
     try {
       await sendOne(transport, r.email, r.first_name)
       await db.execute({
-        sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent) VALUES (?, ?, ?, ?, ?, 50)`,
-        args: [randomUUID(), r.id, r.email, CAMPAIGN, SUBJECT],
+        sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, 50, ?)`,
+        args: [randomUUID(), r.id, r.email, CAMPAIGN, SUBJECT, JSON.stringify({ provider: USE_SES ? 'ses' : 'gmail' })],
       })
       ok++
       console.log(`  ✓ ${r.email}`)
     } catch (err) {
       console.error(`  ✗ ${r.email}: ${err.message}`)
-      if (/daily|limit|quota/i.test(err.message)) break // Gmail cap hit — resume tomorrow
+      if (/daily|limit|quota|throttl|sandbox|not verified/i.test(err.message)) break // cap/sandbox hit — fix and rerun
     }
-    await new Promise(res => setTimeout(res, 1500))
+    await new Promise(res => setTimeout(res, USE_SES ? 150 : 1500))
   }
   console.log(`Done: ${ok} sent, ${list.length - ok} still pending.`)
 }

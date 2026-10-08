@@ -33,6 +33,13 @@ export default async function handler(req, res) {
       args: []
     }).catch(() => {});
 
+    // Bounced / complained / unsubscribed addresses (filled by api/_ses-events.js); never emailed
+    await db.execute({
+      sql: `CREATE TABLE IF NOT EXISTS email_suppressions (
+        email TEXT PRIMARY KEY, reason TEXT, detail TEXT, created_at TEXT DEFAULT (datetime('now')))`,
+      args: []
+    }).catch(() => {});
+
     await db.execute({
       sql: `CREATE INDEX IF NOT EXISTS idx_ecl_user_campaign ON email_campaign_logs(user_id, campaign_type)`,
       args: []
@@ -99,6 +106,7 @@ export default async function handler(req, res) {
                 AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
                 AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
                 AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type = ?)
+                AND lower(trim(up.email)) NOT IN (SELECT email FROM email_suppressions)
               ORDER BY up.created_at DESC`,
         args: [CAMPAIGN, CAMPAIGN]
       });
@@ -214,6 +222,7 @@ export default async function handler(req, res) {
               WHERE up.email IS NOT NULL
                 AND up.email LIKE '%@%'
                 AND up.id NOT IN ('screenshot-mock', 'dev_test')
+                AND lower(trim(up.email)) NOT IN (SELECT email FROM email_suppressions)
               ORDER BY up.created_at DESC`,
         args: []
       }),

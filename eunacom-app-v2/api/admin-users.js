@@ -3,6 +3,7 @@ import { Resend } from 'resend'
 import financesHandler from './_admin-finances.js'
 import seoHandler from './_admin-seo.js'
 import paypalHandler from './_paypal-export.js'
+import sesEventsHandler from './_ses-events.js'
 import {
   getWelcomeEmailHtml,
   getDiscountEmailHtml,
@@ -30,6 +31,10 @@ export default async function handler(req, res) {
       (req.method === 'GET' && req.query?.format === 'csv' && (req.query?.action === 'paypal' || req.url?.includes('paypal')))
     ) {
       return paypalHandler(req, res)
+    }
+    // Amazon SES bounce/complaint notifications (SNS)
+    if (req.query?.action === 'ses_events' || req.headers?.['x-amz-sns-message-type']) {
+      return sesEventsHandler(req, res)
     }
     if (!colsEnsured) {
       // Ensure table exists and has all columns
