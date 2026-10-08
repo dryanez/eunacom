@@ -74,8 +74,9 @@ async function recipients(db) {
             AND up.id NOT IN ('screenshot-mock', 'dev_test')
             AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
             AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
+            AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type = ?)
           ORDER BY up.created_at DESC`,
-    args: [CAMPAIGN],
+    args: [CAMPAIGN, CAMPAIGN],
   })
   const seen = new Set()
   return rows.filter(r => !seen.has(r.email) && seen.add(r.email))
