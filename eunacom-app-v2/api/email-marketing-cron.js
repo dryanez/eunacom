@@ -112,12 +112,15 @@ export default async function handler(req, res) {
         return res.status(409).json({ error: 'confirm must equal the pending recipient count', pending: pending.length });
       }
 
+      // &limit=N sends only the first N (Resend free plan: 100 emails/day); rerun the next day for the rest
+      const toSend = pending.slice(0, Math.max(1, Number(req.query.limit) || pending.length));
       let sent = 0;
       const failed = [];
-      for (let i = 0; i < pending.length; i += 100) {
-        const batch = pending.slice(i, i + 100);
+      for (let i = 0; i < toSend.length; i += 100) {
+        const batch = toSend.slice(i, i + 100);
         const { data, error } = await resend.batch.send(batch.map(r => message(r.email, r.first_name)));
-        if (error) { failed.push({ from: i, error: error.message || String(error) }); continue; }
+        // Stop on error (e.g. daily quota): nothing in this batch is logged, so a rerun retries it
+        if (error) { failed.push({ from: i, error: error.message || String(error) }); break; }
         const ids = data?.data || [];
         // One round-trip per 100 logs keeps the whole send well inside the function time limit
         await db.batch(batch.map((r, j) => ({
