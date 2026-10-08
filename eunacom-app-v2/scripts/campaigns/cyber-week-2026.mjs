@@ -72,7 +72,7 @@ async function recipients(db) {
             AND COALESCE(up.is_premium, 0) <> 1
             AND up.premium_until IS NULL
             AND up.id NOT IN ('screenshot-mock', 'dev_test')
-            AND lower(up.email) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com')
+            AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
             AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
           ORDER BY up.created_at DESC`,
     args: [CAMPAIGN],
