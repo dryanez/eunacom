@@ -133,7 +133,10 @@
     "30b246b5-501d-4327-a81c-a31e5f691a4a",
     "0162b76e-b7e3-42ab-80c2-f9aa1fc597a3",
     "csv_Endocrinología_71_1776130034157",
-    "fcdd8868-47b1-4ab8-b5c7-da5b336ff393"
+    "fcdd8868-47b1-4ab8-b5c7-da5b336ff393",
+    "c0105b7a-6631-44bf-a510-cdbd74de342d",
+    "9baac6b9-095a-4a14-9884-82b70322559c",
+    "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -182,7 +185,8 @@
       "3761e75b-e0e0-4647-9f9b-51e6b3327175",
       "88009c12-e4b2-4dbc-892f-80b5586a5056",
       "39b24c12-3fd0-4deb-9e30-4ab066b4f8d8",
-      "csv_Endocrinología_71_1776130034157"
+      "csv_Endocrinología_71_1776130034157",
+      "9baac6b9-095a-4a14-9884-82b70322559c"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -230,7 +234,8 @@
       "f9bfb7fd-644e-4ad3-bbbe-1c4ec17aa330",
       "csv_Gastroenterología_130_1776130099899",
       "30b246b5-501d-4327-a81c-a31e5f691a4a",
-      "fcdd8868-47b1-4ab8-b5c7-da5b336ff393"
+      "fcdd8868-47b1-4ab8-b5c7-da5b336ff393",
+      "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -276,7 +281,8 @@
       "02d15d03-9620-41e6-b550-2423c05e645b",
       "776e2af6-a59d-5c68-9ca5-ff810aaa57a8",
       "a1721179-54f5-43b9-bcf3-316c2eafaa48",
-      "0162b76e-b7e3-42ab-80c2-f9aa1fc597a3"
+      "0162b76e-b7e3-42ab-80c2-f9aa1fc597a3",
+      "c0105b7a-6631-44bf-a510-cdbd74de342d"
     ]
   },
   "history": [
@@ -1800,6 +1806,38 @@
           "vignetteMessageId": 144,
           "pollMessageId": 145,
           "explanationMessageId": 146
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-10T16:33:04.879Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "c0105b7a-6631-44bf-a510-cdbd74de342d",
+          "topic": "Cirugía y Anestesia",
+          "success": true,
+          "vignetteMessageId": 138,
+          "pollMessageId": 139,
+          "explanationMessageId": 140
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "9baac6b9-095a-4a14-9884-82b70322559c",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 147,
+          "pollMessageId": 148,
+          "explanationMessageId": 149
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 147,
+          "pollMessageId": 148,
+          "explanationMessageId": 149
         }
       ]
     }
