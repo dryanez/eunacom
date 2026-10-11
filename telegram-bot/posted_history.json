@@ -136,7 +136,10 @@
     "fcdd8868-47b1-4ab8-b5c7-da5b336ff393",
     "c0105b7a-6631-44bf-a510-cdbd74de342d",
     "9baac6b9-095a-4a14-9884-82b70322559c",
-    "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9"
+    "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9",
+    "80be87b7-5807-4cba-9a59-f0e0632f5aab",
+    "d161e454-6d30-48c3-be54-2179e3cb1b50",
+    "848d66bd-5d96-4eac-9e94-cf816ae5439d"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -186,7 +189,8 @@
       "88009c12-e4b2-4dbc-892f-80b5586a5056",
       "39b24c12-3fd0-4deb-9e30-4ab066b4f8d8",
       "csv_Endocrinología_71_1776130034157",
-      "9baac6b9-095a-4a14-9884-82b70322559c"
+      "9baac6b9-095a-4a14-9884-82b70322559c",
+      "d161e454-6d30-48c3-be54-2179e3cb1b50"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -235,7 +239,8 @@
       "csv_Gastroenterología_130_1776130099899",
       "30b246b5-501d-4327-a81c-a31e5f691a4a",
       "fcdd8868-47b1-4ab8-b5c7-da5b336ff393",
-      "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9"
+      "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9",
+      "848d66bd-5d96-4eac-9e94-cf816ae5439d"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -282,7 +287,8 @@
       "776e2af6-a59d-5c68-9ca5-ff810aaa57a8",
       "a1721179-54f5-43b9-bcf3-316c2eafaa48",
       "0162b76e-b7e3-42ab-80c2-f9aa1fc597a3",
-      "c0105b7a-6631-44bf-a510-cdbd74de342d"
+      "c0105b7a-6631-44bf-a510-cdbd74de342d",
+      "80be87b7-5807-4cba-9a59-f0e0632f5aab"
     ]
   },
   "history": [
@@ -1838,6 +1844,38 @@
           "vignetteMessageId": 147,
           "pollMessageId": 148,
           "explanationMessageId": 149
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-11T16:57:59.009Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "80be87b7-5807-4cba-9a59-f0e0632f5aab",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 141,
+          "pollMessageId": 142,
+          "explanationMessageId": 143
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "d161e454-6d30-48c3-be54-2179e3cb1b50",
+          "topic": "Dermatología",
+          "success": true,
+          "vignetteMessageId": 150,
+          "pollMessageId": 151,
+          "explanationMessageId": 152
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "848d66bd-5d96-4eac-9e94-cf816ae5439d",
+          "topic": "Endocrinología",
+          "success": true,
+          "vignetteMessageId": 150,
+          "pollMessageId": 151,
+          "explanationMessageId": 152
         }
       ]
     }
