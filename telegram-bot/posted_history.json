@@ -139,7 +139,10 @@
     "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9",
     "80be87b7-5807-4cba-9a59-f0e0632f5aab",
     "d161e454-6d30-48c3-be54-2179e3cb1b50",
-    "848d66bd-5d96-4eac-9e94-cf816ae5439d"
+    "848d66bd-5d96-4eac-9e94-cf816ae5439d",
+    "8df72a8a-4744-4cd3-aeee-29d714123678",
+    "1c9cbab1-fb39-47a9-ac4c-84e55237a1cc",
+    "f91cd7af-4f03-40af-a927-624477d6a390"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -190,7 +193,8 @@
       "39b24c12-3fd0-4deb-9e30-4ab066b4f8d8",
       "csv_Endocrinología_71_1776130034157",
       "9baac6b9-095a-4a14-9884-82b70322559c",
-      "d161e454-6d30-48c3-be54-2179e3cb1b50"
+      "d161e454-6d30-48c3-be54-2179e3cb1b50",
+      "1c9cbab1-fb39-47a9-ac4c-84e55237a1cc"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -240,7 +244,8 @@
       "30b246b5-501d-4327-a81c-a31e5f691a4a",
       "fcdd8868-47b1-4ab8-b5c7-da5b336ff393",
       "1dcd28fe-e7ac-4128-89c4-ac02e7f1c4d9",
-      "848d66bd-5d96-4eac-9e94-cf816ae5439d"
+      "848d66bd-5d96-4eac-9e94-cf816ae5439d",
+      "f91cd7af-4f03-40af-a927-624477d6a390"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -288,7 +293,8 @@
       "a1721179-54f5-43b9-bcf3-316c2eafaa48",
       "0162b76e-b7e3-42ab-80c2-f9aa1fc597a3",
       "c0105b7a-6631-44bf-a510-cdbd74de342d",
-      "80be87b7-5807-4cba-9a59-f0e0632f5aab"
+      "80be87b7-5807-4cba-9a59-f0e0632f5aab",
+      "8df72a8a-4744-4cd3-aeee-29d714123678"
     ]
   },
   "history": [
@@ -1876,6 +1882,38 @@
           "vignetteMessageId": 150,
           "pollMessageId": 151,
           "explanationMessageId": 152
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-12T20:33:49.043Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "8df72a8a-4744-4cd3-aeee-29d714123678",
+          "topic": "Endocrinología",
+          "success": true,
+          "vignetteMessageId": 144,
+          "pollMessageId": 145,
+          "explanationMessageId": 146
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "1c9cbab1-fb39-47a9-ac4c-84e55237a1cc",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 153,
+          "pollMessageId": 154,
+          "explanationMessageId": 155
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "f91cd7af-4f03-40af-a927-624477d6a390",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 153,
+          "pollMessageId": 154,
+          "explanationMessageId": 155
         }
       ]
     }
