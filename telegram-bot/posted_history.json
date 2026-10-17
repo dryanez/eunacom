@@ -154,7 +154,10 @@
     "0fc3d283-b826-46dd-8fc4-3b8981014309",
     "b8ccc004-87cb-4e7d-b030-733ddc4be76c",
     "8fd02b08-91a4-4f8b-a2e1-53f6e33ec3a7",
-    "0bb0984e-1a0c-41fa-8827-b0a406d0c553"
+    "0bb0984e-1a0c-41fa-8827-b0a406d0c553",
+    "6111dee7-8c6e-45d9-8693-0029dcda278d",
+    "420b51cc-d43d-4e15-8bdf-ca9819abdb3e",
+    "c40155d8-30c1-44b0-b645-5e8465abdc94"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -210,7 +213,8 @@
       "f9d06fc0-ff8d-4f1e-af43-7296e4062fa9",
       "39f299bd-0b9e-486d-b92c-0b6d648bca9c",
       "f02215b2-f7b5-428d-9a4e-eef3d11bcad3",
-      "8fd02b08-91a4-4f8b-a2e1-53f6e33ec3a7"
+      "8fd02b08-91a4-4f8b-a2e1-53f6e33ec3a7",
+      "420b51cc-d43d-4e15-8bdf-ca9819abdb3e"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -265,7 +269,8 @@
       "a0fc4372-f187-46e4-8566-dc778a5727ae",
       "4027b42c-fa8e-4e03-8db8-e0f0ebee39e2",
       "0fc3d283-b826-46dd-8fc4-3b8981014309",
-      "0bb0984e-1a0c-41fa-8827-b0a406d0c553"
+      "0bb0984e-1a0c-41fa-8827-b0a406d0c553",
+      "c40155d8-30c1-44b0-b645-5e8465abdc94"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -318,7 +323,8 @@
       "ff291177-3240-42e5-8206-64cc41fefca1",
       "1ae09640-bbaa-43de-8669-0f2f0e4f2626",
       "29cc8930-588b-4366-8821-517abb93c783",
-      "b8ccc004-87cb-4e7d-b030-733ddc4be76c"
+      "b8ccc004-87cb-4e7d-b030-733ddc4be76c",
+      "6111dee7-8c6e-45d9-8693-0029dcda278d"
     ]
   },
   "history": [
@@ -2066,6 +2072,38 @@
           "vignetteMessageId": 165,
           "pollMessageId": 166,
           "explanationMessageId": 167
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-17T14:36:33.843Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "6111dee7-8c6e-45d9-8693-0029dcda278d",
+          "topic": "Pediatría",
+          "success": true,
+          "vignetteMessageId": 159,
+          "pollMessageId": 160,
+          "explanationMessageId": 161
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "420b51cc-d43d-4e15-8bdf-ca9819abdb3e",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 168,
+          "pollMessageId": 169,
+          "explanationMessageId": 170
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "c40155d8-30c1-44b0-b645-5e8465abdc94",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 168,
+          "pollMessageId": 169,
+          "explanationMessageId": 170
         }
       ]
     }
