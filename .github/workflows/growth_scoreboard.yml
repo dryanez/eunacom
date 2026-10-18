@@ -1,0 +1,36 @@
+name: Daily Growth Scoreboard
+
+on:
+  schedule:
+    # 10:30 UTC = 07:30 America/Santiago (summer time, UTC-3)
+    - cron: '30 10 * * *'
+  workflow_dispatch:
+
+# The repo is public: the script sends numbers only to the owner's Telegram DM, never to logs or commits
+permissions:
+  contents: read
+
+jobs:
+  scoreboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: scripts/growth
+        run: npm install --no-audit --no-fund
+
+      - name: Build scoreboard from real data
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          MP_ACCESS_TOKEN: ${{ secrets.MP_ACCESS_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_OWNER_CHAT_ID: ${{ secrets.TELEGRAM_OWNER_CHAT_ID }}
+        run: node scripts/growth/scoreboard.mjs

@@ -34,6 +34,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import CursoComparativa from './pages/CursoComparativa'
 import SimulacrosLanding from './pages/SimulacrosLanding'
+import EnsayoGratis from './pages/EnsayoGratis'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
@@ -75,6 +76,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/curso-eunacom-2026" element={<CursoComparativa />} />
               <Route path="/simulacros-eunacom" element={<SimulacrosLanding />} />
+              <Route path="/ensayo-gratis" element={<EnsayoGratis />} />
               <Route path="/guia-eunacom-2026" element={<GuiaCompletaLanding />} />
               <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
               <Route path="/convenios" element={<ConveniosLanding />} />

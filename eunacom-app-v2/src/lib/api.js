@@ -1,4 +1,5 @@
 import bundledClassesList from '../data/classesList.json'
+import { getAttribution } from './attribution'
 
 // Frontend HTTP client — calls our Vercel API routes (or local vite-node proxy in dev)
 // Never exposes Turso credentials to the browser.
@@ -242,9 +243,10 @@ export async function fetchUserProfile(userId) {
 }
 
 export async function saveUserProfile(profile) {
+  // The server only stores attribution when this save creates the profile
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify(profile)
+    body: JSON.stringify({ ...profile, attribution: getAttribution() })
   })
 }
 

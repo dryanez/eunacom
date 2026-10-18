@@ -1,4 +1,5 @@
 import { getTurso } from './_turso.js'
+import { EXAM_PLAN, examPlanUntil } from './_exam-plan.js'
 
 // GET  /api/paypal-export?adminEmail=xxx         → export transactions as JSON
 // GET  /api/paypal-export?adminEmail=xxx&format=csv → export as CSV
@@ -19,6 +20,7 @@ export const PLAN_MAP = {
   '3m': { id: '3m', months: 3 },
   '6m': { id: '6m', months: 6 },
   '1y': { id: '1y', months: 12 },
+  [EXAM_PLAN.id]: { id: EXAM_PLAN.id, months: 0, until: EXAM_PLAN.until },
 }
 
 function matchPlanByAmount(amount) {
@@ -61,11 +63,16 @@ async function matchUserByEmail(db, payerEmail) {
   return result.rows?.[0] || null
 }
 
-export async function activatePremium(db, userId, months) {
+export async function activatePremium(db, userId, months, until = null) {
   const now = new Date()
   if (months === 12) now.setFullYear(now.getFullYear() + 1)
   else now.setMonth(now.getMonth() + months)
-  const premiumUntil = now.toISOString()
+  let premiumUntil = now.toISOString()
+  if (until) {
+    // Fixed-end plan (exam plan): never shorten access the user already has
+    const cur = await db.execute({ sql: `SELECT premium_until FROM user_profiles WHERE id = ?`, args: [userId] }).catch(() => ({ rows: [] }))
+    premiumUntil = examPlanUntil(cur.rows?.[0]?.premium_until)
+  }
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
@@ -170,6 +177,7 @@ export default async function handler(req, res) {
       }
       if (!plan) {
         for (const [ref, p] of Object.entries(PLAN_MAP)) {
+          if (p.until) continue // fixed-end plans only match by custom_id
           if (itemName?.includes(ref) || customField?.includes(ref)) { plan = p; break }
         }
       }
@@ -198,7 +206,7 @@ export default async function handler(req, res) {
       if (!isValid || !completed) {
         console.warn(`PayPal event ${eventType} ${transactionId} stored without activation (verified=${isValid})`)
       } else if (matchedUserId && plan) {
-        const premiumUntil = await activatePremium(db, matchedUserId, plan.months)
+        const premiumUntil = await activatePremium(db, matchedUserId, plan.months, plan.until)
         console.log(`PayPal auto-activated premium for user ${matchedUserId}: ${plan.id} until ${premiumUntil}`)
       }
 

@@ -3,6 +3,7 @@ import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { EXAM_PLAN, examPlanOpen } from '../config/examPlan';
 
 const PLANS = [
   { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
@@ -30,8 +31,10 @@ const PaymentModal = ({ onClose }) => {
   const isPromoDiscount = !!promo && discountPercent === promo.percent;
 
   const plansToDisplay = React.useMemo(() => {
-    if (!discountPercent) return PLANS;
-    return PLANS.map(p => {
+    // One-time exam plan sits on top while it's on sale; it never takes coupons or promos
+    const examPlan = examPlanOpen() ? [{ ...EXAM_PLAN, badge: '🎯 EUNACOM 16 DIC' }] : [];
+    if (!discountPercent) return [...examPlan, ...PLANS];
+    return [...examPlan, ...PLANS.map(p => {
       const num = parseInt(p.price.replace(/\D/g, ''), 10);
       const discounted = Math.round(num * (1 - discountPercent / 100));
       return {
@@ -39,11 +42,11 @@ const PaymentModal = ({ onClose }) => {
         oldPrice: p.price,
         price: `$${discounted.toLocaleString('es-CL')}`
       };
-    });
+    })];
   }, [discountPercent]);
 
   const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
-  const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
+  const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay.find(p => p.id === '6m');
   const [step, setStep] = useState(1);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
@@ -73,7 +76,12 @@ const PaymentModal = ({ onClose }) => {
       window.location.href = res.approve_url;
     } catch (err) {
       console.error(err);
-      window.location.href = selectedPlan.paypal;
+      if (selectedPlan.paypal) {
+        window.location.href = selectedPlan.paypal;
+      } else {
+        setErrorMp("PayPal no está disponible para este plan. Paga con Webpay o elige otro plan.");
+        setLoadingMp(false);
+      }
     }
   };
 
@@ -205,9 +213,9 @@ const PaymentModal = ({ onClose }) => {
                         touchAction: 'manipulation'
                       }}
                     >
-                      {plan.popular && (
-                        <span style={{ position: 'absolute', top: -8, right: 10, background: '#ef4444', color: 'white', fontSize: '0.58rem', padding: '1px 5px', borderRadius: '6px', fontWeight: 800 }}>
-                          MÁS POPULAR
+                      {(plan.popular || plan.badge) && (
+                        <span style={{ position: 'absolute', top: -8, right: 10, background: plan.badge ? '#16a34a' : '#ef4444', color: 'white', fontSize: '0.58rem', padding: '1px 5px', borderRadius: '6px', fontWeight: 800 }}>
+                          {plan.badge || 'MÁS POPULAR'}
                         </span>
                       )}
                       <div>

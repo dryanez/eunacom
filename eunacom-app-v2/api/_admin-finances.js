@@ -22,9 +22,11 @@ function normalizePlanId(planId, desc, amount) {
     if (planId === '6m') return { id: '6m', name: '6 Meses ($54.990)' }
     if (planId === '1y') return { id: '1y', name: '1 Año ($89.990)' }
     if (planId === 'offer') return { id: 'offer', name: 'Oferta 1 Mes ($5.000)' }
+    if (planId === 'exam') return { id: 'exam', name: 'Hasta el examen ($49.990)' }
     if (planId === 'donate') return { id: 'donation', name: 'Donación ($9.000)' }
   }
   const d = (desc || '').toLowerCase()
+  if (d.includes('hasta el 16 de diciembre')) return { id: 'exam', name: 'Hasta el examen ($49.990)' }
   if (d.includes('donación') || d.includes('donacion')) return { id: 'donation', name: 'Donación ($9.000)' }
   if (d.includes('oferta')) return { id: 'offer', name: 'Oferta 1 Mes ($5.000)' }
   if (d.includes('1 mes') || d.includes('1m')) return { id: '1m', name: '1 Mes ($14.990)' }

@@ -35,14 +35,10 @@ spawnSync('python3', [
 // 2. AGENT 1: GOOGLE & SEARCH CONSOLE AGENT
 // ==========================================
 console.log(`[SEO CRON] 👥 [Agent 1/6: seo-google] Querying Google Search Console API...`);
-let gscData = { totals: { clicks: 8, impressions: 114, ctr: 7.02, position: 22.5 }, rows: [] };
-if (fs.existsSync(cachedJsonPath)) {
-  try {
-    const cached = JSON.parse(fs.readFileSync(cachedJsonPath, 'utf8'));
-    if (cached.totals) gscData.totals = cached.totals;
-    if (cached.top_queries) gscData.rows = cached.top_queries;
-  } catch {}
-}
+// Never report search numbers we didn't fetch today: no live GSC data means NO DATA, not a cached or default guess
+let gscData = { totals: { clicks: 0, impressions: 0, ctr: 0, position: 0 }, rows: [] };
+let gscLive = false;
+let gscProblem = 'Search Console query did not run';
 try {
   const resGsc = spawnSync('python3', [
     path.join(scriptDir, 'gsc_query.py'),
@@ -58,11 +54,15 @@ try {
     const parsed = JSON.parse(resGsc.stdout);
     if (!parsed.error && parsed.rows && parsed.rows.length > 0) {
       gscData = parsed;
+      gscLive = true;
       console.log(`[SEO CRON] ✅ seo-google: Retrieved ${gscData.rows.length} live query rows.`);
     } else {
-      console.log(`[SEO CRON] ℹ️ seo-google: Using latest synced search console snapshot (${gscData.rows?.length || 0} queries).`);
+      gscProblem = parsed.error ? `Search Console error: ${parsed.error}` : 'Search Console returned 0 rows (service account not added to the property, or no traffic)';
     }
+  } else {
+    gscProblem = `gsc_query.py failed (exit ${resGsc.status}): ${(resGsc.stderr || '').trim().split('\n').pop() || 'no output'}`;
   }
+  if (!gscLive) console.log(`::warning title=SEO cron has NO Search Console data::${gscProblem}`);
 } catch (e) {
   console.warn(`[SEO CRON] seo-google warning:`, e.message);
 }
@@ -442,6 +442,7 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 
 # 📈 Daily Executive SEO Intelligence · ${today}
 *Real Multi-Agent Audit via \`claude-seo\` Suite — Overall Score: **${realHealthScore}/100***
+${gscLive ? '' : `\n> ⛔ **NO DATA — Google Search Console.** ${gscProblem}. Every click, impression and ranking figure below is empty, not zero traffic. Fix: add the service account as a user on \`sc-domain:eunacomapp.cl\` and set the \`GSC_SERVICE_ACCOUNT_JSON\` repo secret.\n`}
 
 ---
 
@@ -449,7 +450,7 @@ agents_executed: 6 specialists (seo-google, seo-technical, seo-schema, seo-conte
 
 | Specialist Agent | Real Audit Tool Executed | Result / Score | Finding |
 |---|---|---|---|
-| 🔍 **seo-google** | \`gsc_query.py\` | **${gscData.totals.clicks} clicks** / **${gscData.totals.impressions} imp** | 🟢 Healthy CTR (${gscData.totals.ctr.toFixed(1)}%) |
+| 🔍 **seo-google** | \`gsc_query.py\` | **${gscData.totals.clicks} clicks** / **${gscData.totals.impressions} imp** | ${gscLive ? `🟢 CTR ${gscData.totals.ctr.toFixed(1)}%` : "⛔ NO DATA"} |
 | ✍️ **seo-content** | \`content_quality.py\` | **${contentRes.overall_quality}/100** | 🟢 0% filler words · ${(contentRes.information_density * 100).toFixed(0)}% density |
 | 🏷️ **seo-schema** | \`parse_html.py\` | **${schemaRes.json_ld_count} JSON-LD Blocks** | 🟢 ${schemaRes.types.join(', ')} |
 | ⚙️ **seo-technical** | \`preload_check.py\` | **${preloadRes.score}/100** | ${preloadRes.score >= 100 ? '🟢 Speculation Rules & LCP preloads active' : (preloadRes.score >= 70 ? '🟢 Speculation Rules active' : '🟡 Add `<script type="speculationrules">`')} |

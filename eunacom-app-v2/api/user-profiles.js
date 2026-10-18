@@ -1,11 +1,12 @@
 import { getTurso } from './_turso.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
+import { EXAM_PLAN, examPlanOpen, examPlanUntil } from './_exam-plan.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
 // PayPal can't charge CLP, so in-app PayPal orders use these regular USD prices (promo discount applied on top).
-const PAYPAL_USD = { '1m': 16, '3m': 39.99, '6m': 59.99, '1y': 99.99 } // same as the PayPal payment links
+const PAYPAL_USD = { '1m': 16, '3m': 39.99, '6m': 59.99, '1y': 99.99, [EXAM_PLAN.id]: EXAM_PLAN.usd } // same as the PayPal payment links
 
 async function paypalToken() {
   const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
@@ -27,7 +28,8 @@ const PLANS = {
   '3m': { title: 'EUNACOM Examen - 3 Meses Premium', price: 34990 },
   '6m': { title: 'EUNACOM Examen - 6 Meses Premium', price: 54990 },
   '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 },
-  'offer': { title: 'Oferta Última Semana - 1 Mes', price: 5000 }
+  'offer': { title: 'Oferta Última Semana - 1 Mes', price: 5000 },
+  [EXAM_PLAN.id]: { title: EXAM_PLAN.title, price: EXAM_PLAN.price }
 }
 
 export default async function handler(req, res) {
@@ -139,7 +141,15 @@ export default async function handler(req, res) {
           const externalReference = paymentData.external_reference
           if (externalReference) {
             const [userId, planId] = externalReference.split('|')
-            if (userId) {
+            // MP re-sends notifications: each payment may activate premium only once
+            await db.execute({ sql: `CREATE TABLE IF NOT EXISTS mp_processed_payments (payment_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, amount REAL, processed_at TEXT DEFAULT (datetime('now')))`, args: [] })
+            const firstTime = userId ? await db.execute({
+              sql: `INSERT OR IGNORE INTO mp_processed_payments (payment_id, user_id, plan_id, amount) VALUES (?, ?, ?, ?)`,
+              args: [String(paymentData.id || paymentId), userId, planId || null, paymentData.transaction_amount ?? null]
+            }) : null
+            if (userId && !firstTime.rowsAffected) {
+              console.log(`[MP Webhook] Payment ${paymentId} already processed, skipping`)
+            } else if (userId) {
               // Calculate expiration date - accumulate if existing subscription is active
               const existing = await db.execute({
                 sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE id = ?`,
@@ -165,7 +175,7 @@ export default async function handler(req, res) {
               } else {
                 baseDate.setMonth(baseDate.getMonth() + monthsToAdd)
               }
-              const premiumUntil = baseDate.toISOString()
+              const premiumUntil = planId === EXAM_PLAN.id ? examPlanUntil(existing.rows?.[0]?.premium_until) : baseDate.toISOString()
 
               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
@@ -191,6 +201,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST' && req.body?.action === 'checkout') {
       const { userId, planId, discount } = req.body
       if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+      if (planId === EXAM_PLAN.id && !examPlanOpen()) return res.status(400).json({ error: 'Plan no disponible' })
 
       const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
       let payerEmail = 'test@test.com'
@@ -207,7 +218,8 @@ export default async function handler(req, res) {
         if (!sent.rows?.length) requestedPct = 0
       }
       const promo = await getActivePromo(db)
-      const discountPct = Math.max(requestedPct, promo?.percent || 0)
+      // The exam plan is already a fixed special price: no coupons or promos on top
+      const discountPct = planId === EXAM_PLAN.id ? 0 : Math.max(requestedPct, promo?.percent || 0)
       const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
       const externalReference = `${userId}|${planId}|${Date.now()}`
 
@@ -242,11 +254,12 @@ export default async function handler(req, res) {
     if (req.method === 'POST' && req.body?.action === 'paypal_order') {
       const { userId, planId } = req.body
       if (!userId || !PAYPAL_USD[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+      if (planId === EXAM_PLAN.id && !examPlanOpen()) return res.status(400).json({ error: 'Plan no disponible' })
       const token = await paypalToken()
       if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
 
       const promo = await getActivePromo(db)
-      const pct = promo?.percent || 0
+      const pct = planId === EXAM_PLAN.id ? 0 : (promo?.percent || 0)
       const value = (PAYPAL_USD[planId] * (1 - pct / 100)).toFixed(2)
       const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
         method: 'POST',
@@ -299,7 +312,7 @@ export default async function handler(req, res) {
       await db.execute({ sql: `CREATE TABLE IF NOT EXISTS paypal_inapp_orders (order_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, captured_at TEXT DEFAULT (datetime('now')))`, args: [] })
       const ins = await db.execute({ sql: `INSERT OR IGNORE INTO paypal_inapp_orders (order_id, user_id, plan_id) VALUES (?, ?, ?)`, args: [order.id, userId, planId] })
       if (!ins.rowsAffected) return res.json({ success: true, already_processed: true })
-      const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
+      const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months, PLAN_MAP[planId].until)
       return res.json({ success: true, premium_until: premiumUntil })
     }
 
@@ -399,6 +412,9 @@ export default async function handler(req, res) {
         await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
       }
 
+      const existed = await db.execute({ sql: 'SELECT 1 FROM user_profiles WHERE id = ?', args: [id] }).catch(() => ({ rows: [1] }))
+      const isNewProfile = !existed.rows?.length
+
       // Check if this email already has active premium under another user_id
       let isPremiumInit = 0
       let premiumUntilInit = null
@@ -460,6 +476,19 @@ export default async function handler(req, res) {
           isPremiumInit, premiumUntilInit, planMonthsInit
         ]
       })
+
+      // First-touch marketing attribution, stored once when the profile is created
+      const attr = req.body.attribution
+      if (isNewProfile && attr && typeof attr === 'object') {
+        const clip = v => String(v || '').slice(0, 200)
+        for (const col of ['signup_source', 'signup_medium', 'signup_campaign', 'signup_ref', 'signup_referrer', 'signup_landing']) {
+          await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col} TEXT`, args: [] }).catch(() => {})
+        }
+        await db.execute({
+          sql: `UPDATE user_profiles SET signup_source = ?, signup_medium = ?, signup_campaign = ?, signup_ref = ?, signup_referrer = ?, signup_landing = ? WHERE id = ?`,
+          args: [clip(attr.source), clip(attr.medium), clip(attr.campaign), clip(attr.ref), clip(attr.referrer), clip(attr.landing), id]
+        }).catch(e => console.error('attribution save failed', e.message))
+      }
 
       // Trigger Welcome Email in background if not already sent
       try {

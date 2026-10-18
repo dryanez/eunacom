@@ -179,8 +179,10 @@ Sources: eunacom.cl; ciperchile.cl (2025-08-05); infomigra.org; emol.com (2025-0
 ### Architecture
 - **Runner:** GitHub Actions cron (already used) calling Claude via the Anthropic API, or Claude Code
   Routines (cloud scheduled sessions) for agents that need to edit the repo and open PRs.
-- **Memory:** `os/` (Obsidian vault): briefs, wiki, content queue. The **scoreboard** is a Turso table
-  `growth_metrics_daily` plus `os/scoreboard.md`.
+- **Memory:** `os/` (Obsidian vault) holds briefs, the wiki and the content queue.
+- **⚠️ `dryanez/eunacom` is a PUBLIC repo.** Anything committed, and every Action log, is world-readable.
+  Business numbers (revenue, sales, user counts) **never go into commits or logs**. They go only to the owner's
+  Telegram DM. The scoreboard follows this rule (`scripts/growth/scoreboard.mjs`).
 - **Guardrails (non-negotiable):**
   - Agents **never invent metrics**. If a data source is missing, the report says `NO DATA — <reason>`
     and opens an issue labeled `needs-human`.
@@ -195,7 +197,7 @@ Sources: eunacom.cl; ciperchile.cl (2025-08-05); infomigra.org; emol.com (2025-0
 
 | Agent | Cadence (CLT) | Input | Output | KPI | Human gate |
 |---|---|---|---|---|---|
-| **1. scoreboard-agent** | Daily 07:30 | Turso (signups, diagnostics, payments by `signup_source`), GSC, Resend/SES stats, Telegram members | `os/scoreboard.md` + Telegram DM to owner: yesterday, 7d, MTD vs target | Accuracy | none |
+| **1. scoreboard-agent** ✅ built | Daily 07:30 | Turso (signups, `signup_source`, PayPal) + Mercado Pago API | Telegram DM to owner: yesterday, 7d, MTD vs target, exam countdown, NO DATA problems | Accuracy | none |
 | **2. seo-agent** (fix the existing one) | Daily 08:00 | GSC queries/pages, sitemap | Striking-distance list (pos 4–20); title/meta rewrites as a **PR** | Organic clicks | merge PR |
 | **3. content-agent** | Mon/Wed/Fri | seo-agent gaps, question bank, Perfils | 1 long-form guide/week + 2 updates of existing pages (FAQ schema, internal links) as a PR | Indexed pages, clicks | merge PR |
 | **4. lifecycle-agent** | Daily 20:00 | User state (exam date, diagnostic score, weak area, trial status) | Triggered emails (already templated) + WhatsApp template messages | Paid conversions from email | approve new templates once |
@@ -213,14 +215,30 @@ data."
 
 ## 7. Week-0 checklist (do before anything else)
 
+### Built on branch `claude/amazing-ritchie-hc5dz4` (2026-10-18)
+- [x] `/ensayo-gratis`: free 30-question diagnostic, no login. Shows score by area vs the 51% pass mark, then CTA to register.
+- [x] First-touch attribution: `utm_*`, `ref`, referrer and landing page are captured on first visit and saved as
+      `user_profiles.signup_*` when the profile is created.
+- [x] "Hasta el 16 de diciembre" one-time plan: CLP 49,990 / USD 54. Webpay/MP and PayPal; no coupons; sale ends on exam day.
+- [x] Mercado Pago webhook is idempotent. Before this, the `payment` and `merchant_order` notifications for the same
+      payment could each add months.
+- [x] SEO cron reports **NO DATA** instead of cached or default numbers when Search Console isn't connected.
+- [x] Daily scoreboard (`.github/workflows/growth_scoreboard.yml`). Needs repo secrets `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`,
+      `MP_ACCESS_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_OWNER_CHAT_ID`.
+
+### Owner to do
+- [ ] **Security: rotate the Mercado Pago access token.** A live token is hard-coded as a fallback in `api/user-profiles.js`,
+      `api/_admin-finances.js` and `eunacom-mobile/api/user-profiles.js`, inside a public repo. Set the new token as
+      `MP_ACCESS_TOKEN` in Vercel, then delete the fallbacks.
+- [ ] Decide whether the repo should be private. The growth plan, handoff docs and user counts are public now.
+
 - [ ] **Email deliverability:** verify `eunacomapp.cl` in Resend (or confirm SES is live), set SPF/DKIM/DMARC, send a
       test to Gmail and Outlook, check spam placement.
 - [ ] **GSC:** add the service account email as a user on `sc-domain:eunacomapp.cl`; set the
       `GSC_SERVICE_ACCOUNT_JSON` repo secret. Make the SEO cron **fail loudly** when GSC returns nothing.
 - [ ] **Delete or mark the fabricated numbers** in `os/projects/seo-growth-pipeline.md`.
-- [ ] **Attribution:** store `utm_source/medium/campaign`, `document.referrer` and landing path on first
-      visit (localStorage), save them on `user_profiles` at signup, and show them in the AdminUsers page.
-- [ ] **Free diagnostic flow:** a public `/ensayo-gratis` page (30 questions, no card) → score page → signup.
+- [ ] Show `signup_source` in the AdminUsers page.
+- [ ] Carry the diagnostic result (`localStorage.eunacom_diagnostic_result`) into onboarding and the first email.
 - [ ] **Referral:** a `ref` code per user; 1 free month to both when the friend pays.
 - [ ] **Exam calendar:** one source of truth (`src/config/examDates.json`) used by emails, landing banners and
       agents.
