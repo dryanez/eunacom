@@ -1,4 +1,7 @@
 {
+    "crons": [
+        { "path": "/api/email-marketing-cron", "schedule": "0 13 * * *" }
+    ],
     "redirects": [
         {
             "source": "/((?!api/).*)",
