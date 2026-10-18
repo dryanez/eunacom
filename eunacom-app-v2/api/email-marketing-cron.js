@@ -12,6 +12,50 @@ import {
 } from './_email-templates.js';
 import { randomUUID } from 'node:crypto';
 import { CYBER_WEEK_HTML, CYBER_WEEK_SUBJECT } from './_cyber-week-email.js';
+import { CYBER_WEEK_EXT_HTML, CYBER_WEEK_EXT_SUBJECT } from './_cyber-week-ext-email.js';
+import nodemailer from 'nodemailer';
+
+// One-off promo campaigns to users who signed up and never paid.
+// `skip` = campaigns whose recipients must not get this one (nobody gets two promo emails for the same offer).
+const PROMO_CAMPAIGNS = {
+  cyber_week: { key: 'cyber_week_2026', subject: CYBER_WEEK_SUBJECT, html: CYBER_WEEK_HTML, skip: ['cyber_week_2026'] },
+  cyber_week_ext: { key: 'cyber_week_ext_2026', subject: CYBER_WEEK_EXT_SUBJECT, html: CYBER_WEEK_EXT_HTML, skip: ['cyber_week_2026', 'cyber_week_ext_2026'] },
+};
+
+// Amazon SES SMTP when SES_SMTP_USER/SES_SMTP_PASS are set (no daily cap like Resend's free plan), else Resend.
+function promoSender() {
+  const { SES_SMTP_USER, SES_SMTP_PASS, SES_SMTP_HOST } = process.env;
+  if (SES_SMTP_USER && SES_SMTP_PASS) {
+    const transport = nodemailer.createTransport({
+      host: SES_SMTP_HOST || 'email-smtp.sa-east-1.amazonaws.com', port: 587, secure: false,
+      auth: { user: SES_SMTP_USER, pass: SES_SMTP_PASS },
+      pool: true, maxConnections: 5, rateLimit: 10, // stay under the default SES send rate (14/s)
+    });
+    return {
+      name: 'ses',
+      // SES SMTP has no batch call: one message per recipient over pooled connections.
+      // Returns one result per message ({ id } or { error }), so the caller logs exactly who got it.
+      async sendMany(messages) {
+        return Promise.all(messages.map(m =>
+          transport.sendMail({ from: m.from, to: m.to, replyTo: m.reply_to, subject: m.subject, html: m.html, headers: m.headers })
+            .then(info => ({ id: info.messageId }), e => ({ error: e.message }))
+        ));
+      },
+    };
+  }
+  if (!process.env.RESEND_API_KEY) return null;
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  return {
+    name: 'resend',
+    resend,
+    async sendMany(messages) {
+      // Resend's batch is all-or-nothing
+      const { data, error } = await resend.batch.send(messages);
+      if (error) return messages.map(() => ({ error: error.message || String(error) }));
+      return messages.map((_, i) => ({ id: data?.data?.[i]?.id || null }));
+    },
+  };
+}
 import { getActivePromo } from './_promo.js';
 
 export default async function handler(req, res) {
@@ -60,13 +104,14 @@ export default async function handler(req, res) {
     const { action, dryRun: queryDryRun, testEmail, campaignType } = req.query;
     const isDryRun = queryDryRun === 'true' || req.body?.dryRun === true;
 
-    // --- CYBER WEEK CAMPAIGN (users who signed up and never paid) ---
-    //   ?action=cyber_week&mode=preview            → recipient count + list, sends nothing
-    //   ?action=cyber_week&mode=test&testEmail=x   → one email to x
-    //   ?action=cyber_week&mode=send&confirm=N     → sends to the N pending recipients (N must match)
-    //   ?action=cyber_week&mode=status&id=RESEND_ID → delivery status of one email
-    if (action === 'cyber_week') {
-      const CAMPAIGN = 'cyber_week_2026';
+    // --- PROMO CAMPAIGNS (users who signed up and never paid): action=cyber_week | cyber_week_ext ---
+    //   &mode=preview            → recipient count + list + which sender would be used, sends nothing
+    //   &mode=html               → the email as it will look (sample name), sends nothing
+    //   &mode=test&testEmail=x   → one email to x
+    //   &mode=send&confirm=N     → sends to the N pending recipients (N must match)
+    //   &mode=status&id=RESEND_ID → delivery status of one email (Resend only)
+    if (PROMO_CAMPAIGNS[action]) {
+      const { key: CAMPAIGN, subject: SUBJECT, html: HTML, skip } = PROMO_CAMPAIGNS[action];
       const mode = req.query.mode || 'preview';
       const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl';
       const replyTo = 'eunacomapp@gmail.com';
@@ -74,25 +119,34 @@ export default async function handler(req, res) {
       const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
       const render = firstName => {
         const name = String(firstName || '').trim().split(/\s+/)[0];
-        return CYBER_WEEK_HTML
+        return HTML
           .replace('Hola Dr(a). {{nombre}},', name ? `Hola Dr(a). ${esc(name)},` : 'Hola,')
           .replace('{{unsubscribe_url}}', unsub);
       };
       const message = (to, firstName) => ({
-        from: `EUNACOM App <${sender}>`, to, reply_to: replyTo, subject: CYBER_WEEK_SUBJECT,
+        from: `EUNACOM App <${sender}>`, to, reply_to: replyTo, subject: SUBJECT,
         html: render(firstName), headers: { 'List-Unsubscribe': `<${unsub}>` }
       });
-      if (!process.env.RESEND_API_KEY) return res.status(500).json({ error: 'RESEND_API_KEY is not configured.' });
-      const resend = new Resend(process.env.RESEND_API_KEY);
+      if (mode === 'html') {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.status(200).send(render('Felipe'));
+      }
+      const mailer = promoSender();
+      if (!mailer) return res.status(500).json({ error: 'No email sender configured (SES_SMTP_USER/SES_SMTP_PASS or RESEND_API_KEY).' });
 
       if (mode === 'status') {
-        const { data, error } = await resend.emails.get(String(req.query.id || ''));
+        if (!mailer.resend) return res.status(400).json({ error: 'status is only available for Resend sends' });
+        const { data, error } = await mailer.resend.emails.get(String(req.query.id || ''));
         return res.json({ id: req.query.id, last_event: data?.last_event, to: data?.to, error });
       }
       if (mode === 'test') {
         const to = testEmail || 'dr.felipeyanez@gmail.com';
-        const { data, error } = await resend.emails.send(message(to, 'Felipe'));
-        return res.json({ success: !error, to, id: data?.id, error });
+        try {
+          const [sent] = await mailer.sendMany([message(to, 'Felipe')]);
+          return res.json({ success: !sent.error, sender: mailer.name, to, id: sent.id, error: sent.error });
+        } catch (e) {
+          return res.json({ success: false, sender: mailer.name, to, error: e.message });
+        }
       }
 
       // Signed up, never paid (no premium now, no past plan), valid email, not yet sent this campaign
@@ -104,19 +158,19 @@ export default async function handler(req, res) {
                 AND up.premium_until IS NULL
                 AND up.id NOT IN ('screenshot-mock', 'dev_test')
                 AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
-                AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
-                AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type = ?)
+                AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type IN (${skip.map(() => '?').join(',')}))
+                AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type IN (${skip.map(() => '?').join(',')}))
                 AND lower(trim(up.email)) NOT IN (SELECT email FROM email_suppressions)
               ORDER BY up.created_at DESC`,
-        args: [CAMPAIGN, CAMPAIGN]
+        args: [...skip, ...skip]
       });
       const seen = new Set();
       const pending = rows.filter(r => !seen.has(r.email) && seen.add(r.email));
 
       if (mode === 'preview') {
-        return res.json({ pending: pending.length, recipients: pending.map(r => ({ email: r.email, first_name: r.first_name, country: r.country, created_at: r.created_at })) });
+        return res.json({ campaign: CAMPAIGN, sender: mailer.name, pending: pending.length, recipients: pending.map(r => ({ email: r.email, first_name: r.first_name, country: r.country, created_at: r.created_at })) });
       }
-      if (mode !== 'send') return res.status(400).json({ error: 'mode must be preview, test, send or status' });
+      if (mode !== 'send') return res.status(400).json({ error: 'mode must be preview, html, test, send or status' });
       if (Number(req.query.confirm) !== pending.length) {
         return res.status(409).json({ error: 'confirm must equal the pending recipient count', pending: pending.length });
       }
@@ -127,18 +181,21 @@ export default async function handler(req, res) {
       const failed = [];
       for (let i = 0; i < toSend.length; i += 100) {
         const batch = toSend.slice(i, i + 100);
-        const { data, error } = await resend.batch.send(batch.map(r => message(r.email, r.first_name)));
-        // Stop on error (e.g. daily quota): nothing in this batch is logged, so a rerun retries it
-        if (error) { failed.push({ from: i, error: error.message || String(error) }); break; }
-        const ids = data?.data || [];
+        const results = await mailer.sendMany(batch.map(r => message(r.email, r.first_name)));
+        const ok = batch.map((r, j) => ({ r, id: results[j].id })).filter((_, j) => !results[j].error);
         // One round-trip per 100 logs keeps the whole send well inside the function time limit
-        await db.batch(batch.map((r, j) => ({
-          sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, 50, ?)`,
-          args: [randomUUID(), r.id, r.email, CAMPAIGN, CYBER_WEEK_SUBJECT, JSON.stringify({ resend_id: ids[j]?.id || null })]
-        })), 'write').catch(e => console.error('Log insert error:', e));
-        sent += batch.length;
+        if (ok.length) {
+          await db.batch(ok.map(({ r, id }) => ({
+            sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, 50, ?)`,
+            args: [randomUUID(), r.id, r.email, CAMPAIGN, SUBJECT, JSON.stringify({ sender: mailer.name, message_id: id || null })]
+          })), 'write').catch(e => console.error('Log insert error:', e));
+        }
+        sent += ok.length;
+        // Stop on error (e.g. daily quota): failed recipients aren't logged, so a rerun retries only them
+        const errors = results.filter(x => x.error);
+        if (errors.length) { failed.push({ from: i, count: errors.length, error: errors[0].error }); break; }
       }
-      return res.json({ success: failed.length === 0, sent, failed, remaining: pending.length - sent });
+      return res.json({ success: failed.length === 0, sender: mailer.name, sent, failed, remaining: pending.length - sent });
     }
 
     // --- TEST SEND ROUTE ---
