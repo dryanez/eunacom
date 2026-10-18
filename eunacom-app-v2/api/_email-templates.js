@@ -34,6 +34,21 @@ const BASE_STYLES = `
     padding: 28px 32px;
     text-align: center;
   }
+  .header-mark {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 10px;
+    background: #ffffff;
+    border-radius: 16px;
+  }
+  .header-mark img {
+    display: block;
+    width: 52px;
+    height: 39px;
+    padding: 12px 6px 13px;
+    border: 0;
+  }
   .header-logo {
     display: inline-block;
     font-size: 22px;
@@ -152,7 +167,8 @@ export function getWelcomeEmailHtml({ firstName = 'Colega', appUrl = 'https://ww
   <div class="wrapper">
     <div class="container">
       <div class="header">
-        <a href="${appUrl}" class="header-logo">🩺 EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge">Preparación Médica Oficial</span></div>
       </div>
       <div class="content">
@@ -200,7 +216,7 @@ export function getDiscountEmailHtml({
   firstName = 'Colega',
   discountPercent = 30,
   priceOriginal = '$14.990 CLP',
-  priceDiscounted = '$10.490 CLP',
+  priceDiscounted,
   planTitle = '1 Mes de Acceso Total Premium',
   checkoutUrl = 'https://www.eunacomapp.cl/pricing',
   appUrl = 'https://www.eunacomapp.cl',
@@ -208,6 +224,8 @@ export function getDiscountEmailHtml({
 }) {
   const name = firstName ? `Dr(a). ${firstName}` : 'Colega';
   const isUrgent = discountPercent >= 50;
+  // 1-month plan is $14.990 CLP
+  priceDiscounted ??= `$${Math.round(14990 * (1 - discountPercent / 100)).toLocaleString('es-CL')} CLP`;
 
   let headerTitle = '';
   let mainAngle = '';
@@ -226,7 +244,7 @@ export function getDiscountEmailHtml({
     headerTitle = '¿Poco tiempo para estudiar? La estrategia de alto rendimiento';
     mainAngle = `
       <p>Sabemos lo exigente que es compatibilizar turnos, trabajo clínico o trámites con el estudio para el EUNACOM.</p>
-      <p>Por eso, la app está diseñada para optimizar cada minuto libre: modo simulacro cronometrado, banco con más de 6.000 preguntas reales y algoritmos diagnósticos directos al grano.</p>
+      <p>Por eso, la app está diseñada para optimizar cada minuto libre: modo simulacro cronometrado, banco con más de 10.600 preguntas reales y algoritmos diagnósticos directos al grano.</p>
       <p>Queremos que tengas todas las herramientas de tu lado. Solo por esta semana, tienes un <strong>40% de descuento directo</strong>:</p>
     `;
   } else {
@@ -236,7 +254,7 @@ export function getDiscountEmailHtml({
     mainAngle = `
       <p>Este es el descuento más alto que ofrecemos para postulantes al EUNACOM de este año.</p>
       <p>Tu preparación no puede quedar al azar. Asegura el acceso completo a todas las reconstrucciones de exámenes anteriores, clases interactivas y al banco de preguntas con un <strong>50% de descuento definitivo</strong>.</p>
-      <p>Este enlace es personal y expira en las próximas 48 horas:</p>
+      <p>Este es tu enlace personal con el descuento aplicado:</p>
     `;
   }
 
@@ -253,7 +271,8 @@ export function getDiscountEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header">
-        <a href="${appUrl}" class="header-logo">🩺 EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge">${badgeText}</span></div>
       </div>
       <div class="content">
@@ -270,7 +289,7 @@ export function getDiscountEmailHtml({
             <span class="price-tag" style="color: ${isUrgent ? '#dc2626' : '#1d4ed8'};">${priceDiscounted}</span>
           </div>
           <ul style="text-align: left; margin: 12px 0 0; padding-left: 20px; font-size: 14px; color: #475569;">
-            <li>✅ <strong>+6.000 preguntas reales</strong> con justificación clínica.</li>
+            <li>✅ <strong>+10.600 preguntas reales</strong> con justificación clínica.</li>
             <li>✅ <strong>Reconstrucciones completas</strong> de los últimos exámenes.</li>
             <li>✅ <strong>Simulacros oficiales</strong> con cronómetro idéntico a ASOFAMECH.</li>
             <li>✅ Tutor IA para resolver dudas diagnósticas 24/7.</li>
@@ -295,7 +314,7 @@ export function getDiscountEmailHtml({
         </p>
       </div>
       <div class="footer">
-        <p>¿Preguntas sobre el plan? Escríbenos a <a href="mailto:equipo@eunacom.app">equipo@eunacom.app</a> o responde este correo.<br>
+        <p>¿Preguntas sobre el plan? Escríbenos a <a href="mailto:eunacomapp@gmail.com">eunacomapp@gmail.com</a> o responde este correo.<br>
         <a href="${appUrl}">Gestionar notificaciones</a></p>
       </div>
     </div>
@@ -346,6 +365,7 @@ export function getDailyJoyaEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header">
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
         <a href="${appUrl}" class="header-logo">💎 Joya EUNACOM del Día</a>
         <div><span class="header-badge">${specialty} · Concepto de Alto Rendimiento</span></div>
       </div>
@@ -414,7 +434,8 @@ export function getWeeklyPerformanceDigestHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header">
-        <a href="${appUrl}" class="header-logo">🩺 EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge">Domingo de Rendimiento</span></div>
       </div>
       <div class="content">
@@ -485,7 +506,8 @@ export function getStreakFreezeWarningEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header" style="background: linear-gradient(135deg, #7c2d12 0%, #ea580c 50%, #b45309 100%);">
-        <a href="${appUrl}" class="header-logo">🔥 EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge" style="background: rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.4); color: #fef08a;">⚠️ Racha en Riesgo</span></div>
       </div>
       <div class="content">
@@ -561,7 +583,8 @@ export function getWeaknessSniperEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header" style="background: linear-gradient(135deg, #065f46 0%, #047857 50%, #0f766e 100%);">
-        <a href="${appUrl}" class="header-logo">🩺 EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge" style="background: rgba(255,255,255,0.2); color: #a7f3d0;">🎯 Francotirador de Puntos Ciegos</span></div>
       </div>
       <div class="content">
@@ -637,6 +660,7 @@ export function getCartAbandonmentEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header" style="background: #0f172a;">
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
         <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge" style="background: rgba(255,255,255,0.15); color: #cbd5e1;">Soporte Directo</span></div>
       </div>
@@ -718,7 +742,8 @@ export function getExamCountdownEmailHtml({
   <div class="wrapper">
     <div class="container">
       <div class="header" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);">
-        <a href="${appUrl}" class="header-logo">⏳ EUNACOM App</a>
+        <a href="${appUrl}" class="header-mark"><img src="https://www.eunacomapp.cl/logo.png" width="52" height="39" alt="EUNACOM App"></a>
+        <a href="${appUrl}" class="header-logo">EUNACOM App</a>
         <div><span class="header-badge" style="background: rgba(255,255,255,0.2); color: #c7d2fe;">📅 Cuenta Regresiva Oficial</span></div>
       </div>
       <div class="content">
