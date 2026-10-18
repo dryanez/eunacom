@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useAuth } from '../contexts/AuthContext';
 import { promoPrice } from '../config/promo';
+import { EXAM_PLAN, examPlanOpen } from '../config/examPlan';
 
 const PRICES = [
+  ...(examPlanOpen() ? [{ name: EXAM_PLAN.name, price: EXAM_PLAN.price, fixed: true }] : []),
   { name: '1 Mes', price: '$14.990' },
   { name: '3 Meses', price: '$34.990' },
   { name: '6 Meses', price: '$54.990', popular: true },
@@ -22,6 +24,9 @@ const Offer = () => {
     try {
       const discount = new URLSearchParams(window.location.search).get('discount');
       if (discount) localStorage.setItem('eunacom_pending_discount', discount);
+      // ?plan=exam preselects that plan in checkout, also after the login round-trip
+      const plan = new URLSearchParams(window.location.search).get('plan');
+      if (plan) sessionStorage.setItem('eunacom_preselect_plan', plan);
     } catch {}
   }, []);
 
@@ -78,8 +83,8 @@ const Offer = () => {
             }}>
               <span style={{ fontWeight: 700, color: '#1f2937', fontSize: 14 }}>{p.name}</span>
               <span>
-                {percent > 0 && <span style={{ color: '#8a94a6', textDecoration: 'line-through', fontSize: 13, marginRight: 10 }}>{p.price}</span>}
-                <span style={{ color: '#2563eb', fontWeight: 800, fontSize: 17 }}>{percent ? promoPrice(p.price, percent) : p.price}</span>
+                {percent > 0 && !p.fixed && <span style={{ color: '#8a94a6', textDecoration: 'line-through', fontSize: 13, marginRight: 10 }}>{p.price}</span>}
+                <span style={{ color: '#2563eb', fontWeight: 800, fontSize: 17 }}>{percent && !p.fixed ? promoPrice(p.price, percent) : p.price}</span>
               </span>
             </div>
           ))}

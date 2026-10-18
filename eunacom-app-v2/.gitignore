@@ -33,3 +33,4 @@ __pycache__/
 scratch/
 .env*.local
 scripts/campaigns/*_recipients.csv
+scripts/campaigns/*_preview.html

@@ -45,7 +45,14 @@ const PaymentModal = ({ onClose }) => {
     })];
   }, [discountPercent]);
 
-  const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
+  // Default 6 months, unless a campaign link asked for a plan (/oferta?plan=exam)
+  const [selectedPlanId, setSelectedPlanId] = useState(() => {
+    try {
+      return new URLSearchParams(window.location.search).get('plan') || sessionStorage.getItem('eunacom_preselect_plan') || '6m';
+    } catch {
+      return '6m';
+    }
+  });
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay.find(p => p.id === '6m');
   const [step, setStep] = useState(1);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);

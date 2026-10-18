@@ -1,0 +1,159 @@
+#!/usr/bin/env node
+// "¿Ya te inscribiste?" campaign: EUNACOM 16 Dec 2026 registration closes Fri 30 Oct 16:00.
+// Goes to users who signed up but never paid: registration reminder, free diagnostic, exam plan.
+//
+//   node scripts/campaigns/inscripcion-dic-2026.mjs --preview            # writes recipients CSV + email HTML, sends nothing
+//   node scripts/campaigns/inscripcion-dic-2026.mjs --test you@mail.com  # sends one test email
+//   node scripts/campaigns/inscripcion-dic-2026.mjs --send [--limit 200] # sends to everyone not yet sent
+//
+// Env: TURSO_DATABASE_URL, TURSO_AUTH_TOKEN (from `vercel env pull`),
+//      and one sender: Resend: RESEND_API_KEY (sent via smtp.resend.com, default 200/run);
+//      or Amazon SES SMTP: SES_SMTP_USER, SES_SMTP_PASS (SES console → SMTP settings),
+//      optional SES_SMTP_HOST (default email-smtp.sa-east-1.amazonaws.com), sends from equipo@eunacomapp.cl;
+//      or Gmail: GMAIL_USER (e.g. eunacomapp@gmail.com), GMAIL_APP_PASSWORD (Google account → App passwords).
+// Addresses in email_suppressions (SES bounces/complaints, unsubscribes) are never emailed.
+// Every send is logged in email_campaign_logs, so re-running --send never emails anyone twice.
+
+import { readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { randomUUID } from 'node:crypto'
+import { createClient } from '@libsql/client'
+import nodemailer from 'nodemailer'
+
+const CAMPAIGN = 'inscripcion_dic_2026'
+const SUBJECT = '⏰ ¿Ya te inscribiste? El EUNACOM de diciembre cierra el viernes 30'
+const HERE = dirname(fileURLToPath(import.meta.url))
+const TEMPLATE = readFileSync(join(HERE, 'inscripcion_dic_2026.html'), 'utf8')
+const GMAIL_DAILY_SAFE_LIMIT = 450 // personal Gmail allows ~500 recipients/day
+const RESEND_DAILY_SAFE_LIMIT = 200
+const USE_RESEND = !!process.env.RESEND_API_KEY
+const USE_SES = !USE_RESEND && !!process.env.SES_SMTP_USER
+const PROVIDER = USE_RESEND ? 'resend' : USE_SES ? 'ses' : 'gmail'
+const FROM = USE_RESEND || USE_SES ? 'equipo@eunacomapp.cl' : process.env.GMAIL_USER
+const REPLY_TO = 'eunacomapp@gmail.com'
+
+const args = process.argv.slice(2)
+const mode = args.includes('--send') ? 'send' : args.includes('--test') ? 'test' : 'preview'
+const limitArg = args.indexOf('--limit')
+const limit = limitArg >= 0 ? Number(args[limitArg + 1]) : USE_RESEND ? RESEND_DAILY_SAFE_LIMIT : USE_SES ? Infinity : GMAIL_DAILY_SAFE_LIMIT
+
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+
+function render(firstName, unsubscribeUrl) {
+  const name = (firstName || '').trim().split(/\s+/)[0]
+  const greeting = name ? `Hola Dr(a). ${escapeHtml(name)},` : 'Hola,'
+  return TEMPLATE.replace('Hola Dr(a). {{nombre}},', greeting).replace('{{unsubscribe_url}}', unsubscribeUrl)
+}
+
+function unsubscribeMailto() {
+  return `mailto:${REPLY_TO}?subject=${encodeURIComponent('Baja correos EUNACOM App')}`
+}
+
+function mailer() {
+  if (USE_RESEND) {
+    return nodemailer.createTransport({
+      host: 'smtp.resend.com', port: 587, secure: false,
+      auth: { user: 'resend', pass: process.env.RESEND_API_KEY },
+    })
+  }
+  if (USE_SES) {
+    const { SES_SMTP_USER, SES_SMTP_PASS, SES_SMTP_HOST } = process.env
+    if (!SES_SMTP_PASS) { console.error('Missing SES_SMTP_PASS.'); process.exit(1) }
+    return nodemailer.createTransport({
+      host: SES_SMTP_HOST || 'email-smtp.sa-east-1.amazonaws.com', port: 587, secure: false,
+      auth: { user: SES_SMTP_USER, pass: SES_SMTP_PASS },
+    })
+  }
+  const { GMAIL_USER, GMAIL_APP_PASSWORD } = process.env
+  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+    console.error('Missing GMAIL_USER / GMAIL_APP_PASSWORD.')
+    process.exit(1)
+  }
+  return nodemailer.createTransport({ service: 'gmail', auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD } })
+}
+
+async function sendOne(transport, to, firstName) {
+  const unsub = unsubscribeMailto()
+  return transport.sendMail({
+    from: `EUNACOM App <${FROM}>`,
+    to,
+    replyTo: REPLY_TO,
+    subject: SUBJECT,
+    html: render(firstName, unsub),
+    headers: { 'List-Unsubscribe': `<${unsub}>` },
+  })
+}
+
+async function recipients(db) {
+  await db.execute(`CREATE TABLE IF NOT EXISTS email_campaign_logs (
+    id TEXT PRIMARY KEY, user_id TEXT NOT NULL, email TEXT NOT NULL, campaign_type TEXT NOT NULL,
+    subject TEXT NOT NULL, discount_percent INTEGER, sent_at TEXT DEFAULT (datetime('now')), metadata TEXT)`)
+  await db.execute(`CREATE TABLE IF NOT EXISTS email_suppressions (
+    email TEXT PRIMARY KEY, reason TEXT, detail TEXT, created_at TEXT DEFAULT (datetime('now')))`)
+  // Signed up but never paid: not premium now and no premium_until ever set (expired payers are excluded).
+  const { rows } = await db.execute({
+    sql: `SELECT up.id, lower(trim(up.email)) AS email, up.first_name, up.last_name, up.created_at
+          FROM user_profiles up
+          WHERE up.email LIKE '%_@_%._%'
+            AND COALESCE(up.is_premium, 0) <> 1
+            AND up.premium_until IS NULL
+            AND up.id NOT IN ('screenshot-mock', 'dev_test')
+            AND lower(trim(up.email)) NOT IN ('dr.felipeyanez@gmail.com', 'eunacomapp@gmail.com', 'creativetestp@gmail.com')
+            AND up.id NOT IN (SELECT user_id FROM email_campaign_logs WHERE campaign_type = ?)
+            AND lower(trim(up.email)) NOT IN (SELECT lower(trim(email)) FROM email_campaign_logs WHERE campaign_type = ?)
+            AND lower(trim(up.email)) NOT IN (SELECT email FROM email_suppressions)
+          ORDER BY up.created_at DESC`,
+    args: [CAMPAIGN, CAMPAIGN],
+  })
+  const seen = new Set()
+  return rows.filter(r => !seen.has(r.email) && seen.add(r.email))
+}
+
+async function main() {
+  if (mode === 'test') {
+    const to = args[args.indexOf('--test') + 1]
+    if (!to || to.startsWith('--')) throw new Error('Usage: --test you@mail.com')
+    const info = await sendOne(mailer(), to, 'Felipe')
+    console.log(`Test sent to ${to} via ${PROVIDER} (${info.messageId})`)
+    return
+  }
+
+  const db = createClient({ url: process.env.TURSO_DATABASE_URL, authToken: process.env.TURSO_AUTH_TOKEN })
+  const list = await recipients(db)
+
+  if (mode === 'preview') {
+    const csv = ['email,first_name,last_name,created_at',
+      ...list.map(r => [r.email, r.first_name, r.last_name, r.created_at].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','))]
+    const out = join(HERE, 'inscripcion_dic_2026_recipients.csv')
+    writeFileSync(out, csv.join('\n'))
+    writeFileSync(join(HERE, 'inscripcion_dic_2026_preview.html'), render('Felipe', unsubscribeMailto()))
+    console.log(`${list.length} recipients (nothing sent). List: ${out}`)
+    list.slice(0, 20).forEach(r => console.log(`  ${r.email}  ${r.first_name ?? ''}`))
+    if (list.length > 20) console.log(`  … and ${list.length - 20} more`)
+    return
+  }
+
+  const transport = mailer()
+  const batch = list.slice(0, limit)
+  console.log(`Sending to ${batch.length} of ${list.length} pending recipients…`)
+  let ok = 0
+  for (const r of batch) {
+    try {
+      await sendOne(transport, r.email, r.first_name)
+      await db.execute({
+        sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, NULL, ?)`,
+        args: [randomUUID(), r.id, r.email, CAMPAIGN, SUBJECT, JSON.stringify({ provider: PROVIDER })],
+      })
+      ok++
+      console.log(`  ✓ ${r.email}`)
+    } catch (err) {
+      console.error(`  ✗ ${r.email}: ${err.message}`)
+      if (/daily|limit|quota|throttl|sandbox|not verified/i.test(err.message)) break // cap/sandbox hit — fix and rerun
+    }
+    await new Promise(res => setTimeout(res, USE_RESEND || USE_SES ? 600 : 1500))
+  }
+  console.log(`Done: ${ok} sent, ${list.length - ok} still pending.`)
+}
+
+main().catch(err => { console.error(err); process.exit(1) })
