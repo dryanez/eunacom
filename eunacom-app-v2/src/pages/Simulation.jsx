@@ -12,6 +12,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
 import { createTest, genId } from '../lib/api'
 import { getQuestionDB } from '../lib/questionDB'
+import { SIMULATION_BLUEPRINT, getSimulationArea } from '../lib/simulationBlueprint'
 import '../styles/proMaxPages.css'
 
 const Simulation = () => {
@@ -24,13 +25,7 @@ const Simulation = () => {
 
     if (isStarting) return <LoadingScreen context="test" message="Generando Simulacro EUNACOM (180 preguntas)..." />
 
-    const blueprint = [
-        { name: 'Medicina Interna', qty: 54, percent: 30, color: '#38bdf8', category: 'Medicina Interna' },
-        { name: 'Cirugía y Anestesia', qty: 27, percent: 15, color: '#34d399', category: 'Cirugía' },
-        { name: 'Pediatría', qty: 27, percent: 15, color: '#fbbf24', category: 'Pediatría' },
-        { name: 'Ginecología y Obstetricia', qty: 27, percent: 15, color: '#c084fc', category: 'Ginecología' },
-        { name: 'Salud Pública y Psiquiatría', qty: 36, percent: 20, color: '#f87171', category: 'Salud Pública' },
-    ]
+    const blueprint = SIMULATION_BLUEPRINT
 
     const handleStartSimulation = async () => {
         if (!user) {
@@ -50,10 +45,8 @@ const Simulation = () => {
             // Build 180-question exam from blueprint proportions
             const picked = []
             for (const area of blueprint) {
-                const categoryQuestions = questionDB.filter(q =>
-                    q.category && q.category.toLowerCase().includes(area.category.toLowerCase())
-                )
-                const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5)
+                const areaQuestions = questionDB.filter(q => getSimulationArea(q) === area.name)
+                const shuffled = [...areaQuestions].sort(() => Math.random() - 0.5)
                 picked.push(...shuffled.slice(0, area.qty))
             }
 
