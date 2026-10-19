@@ -348,6 +348,7 @@ const TestRunner = () => {
                                             {q.imageUrl && (
                                                 <div style={{ marginBottom: '1.25rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(q.imageUrl)}>
                                                     <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '280px', borderRadius: '10px', border: isDark ? '1px solid #334155' : '1px solid #cbd5e1' }} />
+{q.imageNote && <div style={{ fontSize: '0.72rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: 4 }}>{q.imageNote}{q.imageCredit ? ` · ${q.imageCredit}` : ''}</div>}
                                                 </div>
                                             )}
 
@@ -534,6 +535,7 @@ const TestRunner = () => {
                     {currentQuestion.imageUrl && (
                         <div style={{ marginBottom: '1.25rem', cursor: 'zoom-in' }} onClick={() => setFullscreenImage(currentQuestion.imageUrl)}>
                             <img src={currentQuestion.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '350px', borderRadius: '10px', border: isDark ? '1px solid #334155' : '1px solid #cbd5e1' }} />
+{currentQuestion.imageNote && <div style={{ fontSize: '0.72rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: 4 }}>{currentQuestion.imageNote}{currentQuestion.imageCredit ? ` · ${currentQuestion.imageCredit}` : ''}</div>}
                         </div>
                     )}
 

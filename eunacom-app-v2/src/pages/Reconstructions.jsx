@@ -25,7 +25,7 @@ function toTestRunnerFormat(q, examId) {
     if (typeof rc === 'string' && /^[A-Ea-e]$/.test(rc)) correctAnswer = rc.toUpperCase()
     else if (typeof rc === 'number' && rc < choices.length) correctAnswer = LETTERS[rc]
   }
-  return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '', imageUrl: q.imageUrl }
+  return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '', imageUrl: q.imageUrl || q.image?.src, imageNote: q.image?.nota, imageCredit: q.image?.credit }
 }
 
 /* ── Inline Quiz (Hero Shot Style) ── */
@@ -120,9 +120,10 @@ function InlineQuiz({ questions, title, onClose }) {
           {q.question}
         </p>
 
-        {q.imageUrl && (
+        {(q.imageUrl || q.image?.src) && (
           <div style={{ marginBottom: '1.25rem' }}>
-            <img src={q.imageUrl} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '8px', border: isDark ? '1px solid #334155' : '1px solid #cbd5e1' }} />
+            <img src={q.imageUrl || q.image.src} alt="Pregunta" style={{ maxWidth: '100%', maxHeight: '250px', borderRadius: '8px', border: isDark ? '1px solid #334155' : '1px solid #cbd5e1' }} />
+            {q.image?.nota && <div style={{ fontSize: '0.72rem', color: isDark ? '#94a3b8' : '#64748b', marginTop: 4 }}>{q.image.nota}{q.image.credit ? ` · ${q.image.credit}` : ''}</div>}
           </div>
         )}
 
@@ -394,7 +395,7 @@ const Reconstructions = () => {
     try {
       const res = await fetch(`/data/reconstrucciones/${exam.file}`)
       const data = await res.json()
-      const valid = data.questions.filter(q => (q.opciones || q.options || []).length >= 2)
+      const valid = data.questions.filter(q => !q.excluir && (q.opciones || q.options || []).length >= 2)
       if (!valid.length) { alert('Sin preguntas disponibles.'); return }
       const questions = valid.map(q => toTestRunnerFormat(q, exam.id))
       if (activeTest) {
@@ -452,7 +453,7 @@ const Reconstructions = () => {
   }
 
   const handlePractice = useCallback((questions, title) => {
-    setActiveQuiz({ questions, title })
+    setActiveQuiz({ questions: questions.filter(q => !q.excluir), title })
   }, [])
 
   if (loading) return <LoadingScreen context="test"/>
