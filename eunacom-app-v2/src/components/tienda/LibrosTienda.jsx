@@ -3,9 +3,11 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import {
   PACKS, TOMOS, RECONS, EXTRAS, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
-  expandSkus, looseValue, cartTotal, fmtClp,
+  expandSkus, looseValue, cartTotal, fmtClp, itemFiles,
 } from '../../config/tienda'
+import { captureBookPaypal } from '../../lib/api'
 import BookCheckoutModal from './BookCheckoutModal'
+import LectorLibro from './LectorLibro'
 import '../../styles/tienda.css'
 
 const CART_KEY = 'eunacom_book_cart'
@@ -27,9 +29,21 @@ export default function LibrosTienda() {
   const [module, setModule] = useState('all')
   const [checkout, setCheckout] = useState(false)
   const [paidBanner, setPaidBanner] = useState(() => new URLSearchParams(window.location.search).get('books'))
-  const [deliveryInfo, setDeliveryInfo] = useState(false)
+  const [reading, setReading] = useState(null) // { item, title }
 
   useEffect(() => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)) } catch {} }, [cart])
+
+  // Vuelta desde PayPal (?paypal_books=return&token=ORDER): capturar y desbloquear
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const token = params.get('token')
+    if (params.get('paypal_books') !== 'return' || !token || !user?.id) return
+    window.history.replaceState(null, '', window.location.pathname)
+    captureBookPaypal(user.id, token)
+      .then(() => { refreshBooks(); setPaidBanner('success') })
+      .catch(err => { console.error('PayPal books capture failed:', err); setPaidBanner('failure') })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id])
 
   // Vuelta desde Webpay: el webhook puede tardar unos segundos en registrar la compra
   useEffect(() => {
@@ -123,17 +137,13 @@ export default function LibrosTienda() {
                   ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
                   : <Cover src={b.cover} alt={b.label} />}
                 <b>{b.label}</b>
-                <button className="mini-btn" onClick={() => setDeliveryInfo(true)}>Descargar PDF</button>
+                {itemFiles(b.key).length
+                  ? <button className="mini-btn" onClick={() => setReading({ item: b.key, title: b.label })}>📖 Leer</button>
+                  : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
               </div>
             ))}
           </div>
-          {deliveryInfo && (
-            <div className="tienda-banner info" style={{ marginTop: '1rem' }}>
-              {/* TODO(entrega): reemplazar por descarga directa (link firmado de R2) cuando estén subidos los PDF */}
-              <span>Te enviamos los PDF a tu correo al confirmar la compra. ¿No te llegaron? Escríbenos por WhatsApp al {TRANSFER.whatsapp}.</span>
-              <button className="mini-btn" onClick={() => setDeliveryInfo(false)}>OK</button>
-            </div>
-          )}
+          <p className="sub" style={{ marginTop: '0.75rem' }}>Los libros se leen en línea dentro de la app, con tu cuenta.</p>
         </section>
       )}
 
@@ -149,8 +159,8 @@ export default function LibrosTienda() {
           <div className="tienda-hero">
             <div>
               <span className="tienda-kick">Biblioteca AEE · Perfil EUNACOM V3</span>
-              <h1>Los libros para aprobar el EUNACOM, <span>en PDF</span></h1>
-              <p>Los 21 tomos de Academia Examen EUNACOM y las reconstrucciones de cada EUNACOM desde 2013. Pago único y son tuyos para siempre.</p>
+              <h1>Los libros para aprobar el EUNACOM, <span>en la app</span></h1>
+              <p>Los 21 tomos de Academia Examen EUNACOM y las reconstrucciones de cada EUNACOM desde 2013. Pago único: los lees en línea, en el computador o el celular, sin vencimiento.</p>
               <div className="tienda-stats">
                 <div><b>21</b><span>tomos, todas las especialidades</span></div>
                 <div><b>16</b><span>EUNACOM reconstruidos</span></div>
@@ -286,9 +296,9 @@ export default function LibrosTienda() {
 
           <section className="tienda-section tienda-faq">
             <h2>Preguntas frecuentes</h2>
-            <details open><summary>¿En qué formato llegan?</summary><p>En PDF. Quedan guardados en tu cuenta («Mis libros») y te los enviamos al correo. Los puedes leer en el computador, la tablet o el celular, e imprimirlos.</p></details>
-            <details><summary>¿Los libros vencen?</summary><p>No. Es un pago único y los PDF son tuyos para siempre. La app, en cambio, se contrata por meses.</p></details>
-            <details><summary>¿Cómo pago?</summary><p>Con Webpay (débito o crédito), PayPal o transferencia.</p></details>
+            <details open><summary>¿Cómo leo los libros?</summary><p>En línea, dentro de la app: quedan en «Mis libros» de tu cuenta y los abres en el computador, la tablet o el celular. No se descargan.</p></details>
+            <details><summary>¿Los libros vencen?</summary><p>No. Es un pago único y el acceso a lo que compras no vence. La app, en cambio, se contrata por meses.</p></details>
+            <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago (Webpay, débito o crédito), Apple Pay, Google Pay o PayPal (en dólares), o por transferencia.</p></details>
             <details><summary>¿Sirve el código SHORTS20 en los libros?</summary><p>SHORTS20 es para los planes de la app (20 % en cualquier plan). Los packs de libros ya vienen con el descuento aplicado.</p></details>
           </section>
         </>
@@ -305,6 +315,8 @@ export default function LibrosTienda() {
           </div>
         </div>
       )}
+
+      {reading && <LectorLibro item={reading.item} title={reading.title} onClose={() => setReading(null)} />}
 
       {checkout && (
         <BookCheckoutModal

@@ -1,7 +1,7 @@
 // Compras de libros (tienda en /biblioteca). Se monta dentro de /api/user-profiles (Vercel ya
 // está en el límite de funciones). Tablas: book_orders (carro pagado con Webpay) y
 // book_purchases (una fila por producto comprado; de aquí sale el acceso y el crédito de upgrade).
-import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, UPGRADE_CREDIT_DAYS, cartTotal } from './_tienda.js'
+import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, LIBRARY_ITEMS, UPGRADE_CREDIT_DAYS, cartTotal, expandSkus, itemFiles, usdPrice } from './_tienda.js'
 
 const ADMIN_EMAIL = 'dr.felipeyanez@gmail.com'
 
@@ -106,8 +106,38 @@ export async function fulfillBookOrder(db, orderId, paymentRef) {
 
 const isAdmin = email => String(email || '').trim().toLowerCase() === ADMIN_EMAIL
 
-// Devuelve true si atendió la request. opts.createPreference(db, { userId, title, amount, externalReference, backPath })
-// crea el pago en Mercado Pago y devuelve init_point.
+// Crea la orden del carro (sin lo que el usuario ya tiene). null si no queda nada que cobrar.
+async function createBookOrder(db, userId, rawSkus) {
+  const skus = [...new Set((rawSkus || []).filter(s => PRODUCTS[s]))]
+  if (!userId || !skus.length) return { error: 'Carro vacío o inválido' }
+  await ensureBookTables(db)
+  const owned = new Set(await ownedSkus(db, userId))
+  const toBuy = skus.filter(s => !owned.has(s))
+  if (!toBuy.length) return { error: 'Ya tienes estos libros' }
+  const amount = cartTotal(toBuy)
+  const orderId = `bk_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`
+  await db.execute({
+    sql: `INSERT INTO book_orders (id, user_id, skus, amount) VALUES (?, ?, ?, ?)`,
+    args: [orderId, userId, JSON.stringify(toBuy), amount]
+  })
+  const title = toBuy.length === 1 ? `Libros EUNACOM - ${PRODUCTS[toBuy[0]].name}` : `Libros EUNACOM - ${toBuy.length} productos`
+  const usd = toBuy.reduce((a, s) => a + usdPrice(PRODUCTS[s].price), 0).toFixed(2)
+  return { orderId, toBuy, amount, usd, title }
+}
+
+// Lo que este usuario puede leer (comprado o incluido en su plan; admin todo)
+async function readableItems(db, userId, extraAdminIds = []) {
+  const { skus, planLibrary } = await getUserBooks(db, userId)
+  const email = (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [userId] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
+  if (planLibrary || isAdmin(email) || extraAdminIds.includes(userId)) return new Set(LIBRARY_ITEMS)
+  return expandSkus(skus)
+}
+
+// Devuelve true si atendió la request. Opciones (las inyecta user-profiles.js o el dev server):
+//   createPreference(db, { userId, title, amount, externalReference }) → init_point de Mercado Pago
+//   paypalOrder({ userId, orderId, title, usd }) → approve_url de PayPal (USD; ahí también Apple Pay / Google Pay)
+//   paypalCapture(paypalOrderId) → { status, customId, id }
+//   signFile(path) → URL temporal del PDF (lector en línea)
 export async function handleBooks(db, req, res, opts = {}) {
   const q = req.query || {}
   const b = req.body || {}
@@ -132,23 +162,49 @@ export async function handleBooks(db, req, res, opts = {}) {
     return true
   }
 
+  // Lector en línea: URL temporal del PDF solo si el usuario tiene el ítem
+  if (req.method === 'GET' && q.action === 'book_read') {
+    const files = itemFiles(q.item)
+    const f = files[Number(q.file || 0)]
+    if (!q.userId || !f) { res.status(400).json({ error: 'Libro no disponible' }); return true }
+    const items = await readableItems(db, q.userId, opts.extraAdminIds)
+    if (!items.has(q.item)) { res.status(403).json({ error: 'No tienes este libro' }); return true }
+    if (!opts.signFile) { res.status(503).json({ error: 'Lector no configurado' }); return true }
+    const url = await opts.signFile(f.file)
+    if (!url) { res.status(500).json({ error: 'No se pudo abrir el libro' }); return true }
+    res.json({ url, files: files.map(x => x.label) })
+    return true
+  }
+
   if (req.method !== 'POST') return false
+
+  if (b.action === 'book_paypal_order') {
+    const o = await createBookOrder(db, b.userId, b.skus)
+    if (o.error) { res.status(400).json({ error: o.error }); return true }
+    if (!opts.paypalOrder) { res.status(503).json({ error: 'PayPal no disponible' }); return true }
+    const approve_url = await opts.paypalOrder({ userId: b.userId, orderId: o.orderId, title: o.title, usd: o.usd, db })
+    if (!approve_url) { res.status(502).json({ error: 'Error creando la orden PayPal' }); return true }
+    res.json({ approve_url, order_id: o.orderId, usd: o.usd })
+    return true
+  }
+
+  if (b.action === 'book_paypal_capture') {
+    if (!b.userId || !b.paypalOrderId || !opts.paypalCapture) { res.status(400).json({ error: 'Missing parameters' }); return true }
+    const r = await opts.paypalCapture(b.paypalOrderId)
+    const [orderUser, kind, orderId] = String(r?.customId || '').split('|')
+    if (r?.status !== 'COMPLETED' || orderUser !== b.userId || kind !== 'books') {
+      res.status(400).json({ error: 'Pago PayPal no completado', status: r?.status }); return true
+    }
+    await fulfillBookOrder(db, orderId, `paypal:${r.id}`)
+    res.json({ success: true })
+    return true
+  }
 
   if (b.action === 'book_checkout') {
     const { userId } = b
-    const skus = [...new Set((b.skus || []).filter(s => PRODUCTS[s]))]
-    if (!userId || !skus.length) { res.status(400).json({ error: 'Carro vacío o inválido' }); return true }
-    await ensureBookTables(db)
-    const owned = new Set(await ownedSkus(db, userId))
-    const toBuy = skus.filter(s => !owned.has(s))
-    if (!toBuy.length) { res.status(400).json({ error: 'Ya tienes estos libros' }); return true }
-    const amount = cartTotal(toBuy)
-    const orderId = `bk_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`
-    await db.execute({
-      sql: `INSERT INTO book_orders (id, user_id, skus, amount) VALUES (?, ?, ?, ?)`,
-      args: [orderId, userId, JSON.stringify(toBuy), amount]
-    })
-    const title = toBuy.length === 1 ? `Libros EUNACOM - ${PRODUCTS[toBuy[0]].name}` : `Libros EUNACOM - ${toBuy.length} productos`
+    const o = await createBookOrder(db, userId, b.skus)
+    if (o.error) { res.status(400).json({ error: o.error }); return true }
+    const { orderId, amount, title } = o
     if (!opts.createPreference) { res.status(503).json({ error: 'Webpay no disponible' }); return true }
     const init_point = await opts.createPreference(db, { userId, title, amount, externalReference: `${userId}|books|${orderId}`, orderId })
     if (!init_point) { res.status(500).json({ error: 'Error creando el pago' }); return true }

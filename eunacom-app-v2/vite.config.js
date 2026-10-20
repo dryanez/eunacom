@@ -481,11 +481,21 @@ function clasesApiPlugin() {
       // ── Libros (Local Dev) ── compras en una SQLite local para no tocar Turso de producción.
       // El "pago" Webpay se aprueba al tiro para poder probar el desbloqueo.
       let booksDb
+      // PDFs locales para el lector (en producción salen de R2). BOOKS_DIST_DIR = carpeta books/dist
+      const booksDir = process.env.BOOKS_DIST_DIR || '/Users/felipeyanez/Documents/Archive/Apps/eunacom-fotos/books/dist'
+      server.middlewares.use((req, res, next) => {
+        if (!req.url.startsWith('/__libros_dev/')) return next()
+        const rel = decodeURIComponent(req.url.slice('/__libros_dev/'.length).split('?')[0])
+        const file = path.resolve(booksDir, rel)
+        if (!file.startsWith(path.resolve(booksDir)) || !fs.existsSync(file)) { res.statusCode = 404; return res.end('not found') }
+        res.setHeader('Content-Type', 'application/pdf')
+        fs.createReadStream(file).pipe(res)
+      })
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/user-profiles')) return next()
         const url = new URL(req.url, 'http://localhost')
         const getAction = url.searchParams.get('action')
-        if (req.method === 'GET' && !['books', 'book_purchases'].includes(getAction)) return next()
+        if (req.method === 'GET' && !['books', 'book_purchases', 'book_read'].includes(getAction)) return next()
         try {
           const run = adaptVercelHandler(async (rq, rs) => {
             if (rq.method === 'POST' && !String(rq.body?.action || '').startsWith('book_')) return next()
@@ -499,7 +509,13 @@ function clasesApiPlugin() {
               createPreference: async (db, { orderId }) => {
                 await fulfillBookOrder(db, orderId, 'dev')
                 return '/biblioteca?books=success'
-              }
+              },
+              paypalOrder: async ({ db, orderId }) => {
+                await fulfillBookOrder(db, orderId, 'dev-paypal')
+                return '/biblioteca?books=success'
+              },
+              signFile: async file => `/__libros_dev/${encodeURI(file)}`,
+              extraAdminIds: ['local_admin_felipe'],
             })
             if (!handled) return next()
           })

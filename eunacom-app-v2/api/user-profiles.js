@@ -1,7 +1,9 @@
 import { getTurso } from './_turso.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
-import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP } from './_tienda.js'
+import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies } from './_tienda.js'
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -46,9 +48,55 @@ async function planPricing(db, { userId, planId, discount, coupon }) {
   const couponPct = planId === 'offer' ? 0 : (resolveCoupon(coupon)?.percent || 0)
   const discountPct = Math.max(requestedPct, promo?.percent || 0, couponPct)
   const discounted = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
-  const credit = planId === 'offer' ? 0 : (await getUpgradeCredit(db, userId).catch(() => ({ amount: 0 }))).amount
+  const credit = creditApplies(planId) ? (await getUpgradeCredit(db, userId).catch(() => ({ amount: 0 }))).amount : 0
   const finalPrice = credit ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted
   return { plan, discountPct, discounted, credit: discounted - finalPrice, finalPrice }
+}
+
+// PayPal (USD) para un carro de libros. Apple Pay / Google Pay los ofrece PayPal en su página.
+async function bookPaypalOrder({ userId, orderId, title, usd }) {
+  const token = await paypalToken()
+  if (!token) return null
+  const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      intent: 'CAPTURE',
+      purchase_units: [{ custom_id: `${userId}|books|${orderId}`, description: title.slice(0, 120), amount: { currency_code: 'USD', value: usd } }],
+      application_context: {
+        brand_name: 'EUNACOM App', user_action: 'PAY_NOW', shipping_preference: 'NO_SHIPPING',
+        return_url: 'https://www.eunacomapp.cl/biblioteca?paypal_books=return',
+        cancel_url: 'https://www.eunacomapp.cl/biblioteca?books=failure'
+      }
+    })
+  })
+  if (!r.ok) return null
+  const order = await r.json()
+  return order.links?.find(l => l.rel === 'approve' || l.rel === 'payer-action')?.href || null
+}
+
+async function bookPaypalCapture(paypalOrderId) {
+  const token = await paypalToken()
+  if (!token) return null
+  const r = await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(paypalOrderId)}/capture`, {
+    method: 'POST', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+  })
+  const order = r.ok ? await r.json() : await (await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(paypalOrderId)}`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })).json()
+  const unit = order.purchase_units?.[0]
+  return { status: order.status, id: order.id, customId: unit?.payments?.captures?.[0]?.custom_id || unit?.custom_id }
+}
+
+// Lector en línea: link de 10 minutos al PDF en R2 (bucket R2_BOOKS_BUCKET, clave libros/<ruta en books/dist>)
+async function signBookFile(path) {
+  const accountId = process.env.VITE_R2_ACCOUNT_ID || process.env.R2_ACCOUNT_ID
+  const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID || process.env.R2_ACCESS_KEY_ID
+  const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY || process.env.R2_SECRET_ACCESS_KEY
+  if (!accountId || !accessKeyId || !secretAccessKey) return null
+  const s3 = new S3Client({ region: 'auto', endpoint: `https://${accountId}.r2.cloudflarestorage.com`, credentials: { accessKeyId, secretAccessKey }, forcePathStyle: true })
+  const Bucket = process.env.R2_BOOKS_BUCKET || process.env.VITE_R2_BUCKET || process.env.R2_BUCKET || 'eunacomvideos'
+  return getSignedUrl(s3, new GetObjectCommand({ Bucket, Key: `libros/${path}` }), { expiresIn: 600 })
 }
 
 // Preferencia de Mercado Pago (Webpay) para un carro de libros
@@ -236,7 +284,9 @@ export default async function handler(req, res) {
     }
 
     // --- LIBROS (tienda /biblioteca) ---
-    if (await handleBooks(db, req, res, { createPreference: bookPreference })) return
+    if (await handleBooks(db, req, res, {
+      createPreference: bookPreference, paypalOrder: bookPaypalOrder, paypalCapture: bookPaypalCapture, signFile: signBookFile
+    })) return
 
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {

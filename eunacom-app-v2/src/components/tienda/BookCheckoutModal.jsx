@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
-import { X, Loader2, CheckCircle2 } from 'lucide-react'
+import { X, CheckCircle2 } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
-import { createBookCheckout } from '../../lib/api'
-import { PRODUCTS, TRANSFER, cartTotal, fmtClp } from '../../config/tienda'
+import { createBookCheckout, createBookPaypalOrder } from '../../lib/api'
+import { PRODUCTS, TRANSFER, cartTotal, fmtClp, usdPrice } from '../../config/tienda'
+import PayButtons from '../PayButtons'
 
-// Pago del carro de libros: Webpay (Mercado Pago, se desbloquea solo), PayPal (link fijo por
-// producto, ver api/_tienda.js) o transferencia (el admin lo registra en Admin → Libros).
+// Pago del carro de libros: Mercado Pago (CLP) o PayPal en USD (con Apple Pay / Google Pay);
+// ambos desbloquean solos. Transferencia: el admin lo registra en Admin → Libros.
 export default function BookCheckoutModal({ skus, onClose, onPaid }) {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const total = cartTotal(skus)
-  const paypalLink = skus.length === 1 ? PRODUCTS[skus[0]]?.paypal : null
+  const usd = skus.reduce((a, s) => a + usdPrice(PRODUCTS[s].price), 0)
 
-  const payWebpay = async () => {
+  const go = async (create, key) => {
     setLoading(true)
     setError(null)
     try {
-      const res = await createBookCheckout(user.id, skus)
-      if (!res.init_point) throw new Error('sin init_point')
-      if (res.init_point.startsWith('/')) { onPaid?.(); return } // dev: pago simulado
-      window.location.href = res.init_point
+      const res = await create(user.id, skus)
+      const url = res[key]
+      if (!url) throw new Error('sin url de pago')
+      if (url.startsWith('/')) { onPaid?.(); return } // dev: pago simulado
+      window.location.href = url
     } catch (err) {
       console.error(err)
       setError('No pudimos abrir el pago. Inténtalo de nuevo o usa transferencia.')
@@ -34,7 +36,7 @@ export default function BookCheckoutModal({ skus, onClose, onPaid }) {
         <div style={{ padding: '1rem 1.25rem', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0 }}>Comprar libros</h2>
-            <div style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, marginTop: 2 }}>PDF · pago único · son tuyos para siempre</div>
+            <div style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, marginTop: 2 }}>Lectura en línea · pago único · acceso para siempre</div>
           </div>
           <button onClick={onClose} aria-label="Cerrar" style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer' }}><X size={18} /></button>
         </div>
@@ -54,22 +56,15 @@ export default function BookCheckoutModal({ skus, onClose, onPaid }) {
 
           <div style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', padding: '0.55rem 0.75rem', borderRadius: 8, marginBottom: '0.75rem', fontSize: '0.76rem', color: '#34d399', textAlign: 'center' }}>
             <CheckCircle2 size={14} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: 4 }} />
-            Con Webpay quedan <strong>desbloqueados al tiro</strong> en tu Biblioteca.
+            Al pagar quedan <strong>desbloqueados al tiro</strong> para leer en tu Biblioteca.
           </div>
 
-          <button onClick={payWebpay} disabled={loading} style={{ width: '100%', padding: '0.75rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: 8, fontSize: '0.95rem', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', opacity: loading ? 0.8 : 1 }}>
-            {loading ? <><Loader2 size={16} className="spin" /> Procesando...</> : 'Pagar Seguro con Webpay'}
-          </button>
-
-          {paypalLink ? (
-            <a href={paypalLink} style={{ display: 'flex', justifyContent: 'center', marginTop: '0.4rem', width: '100%', padding: '0.75rem', background: '#003087', color: 'white', borderRadius: 8, fontSize: '0.95rem', fontWeight: 700, textDecoration: 'none', boxSizing: 'border-box' }}>
-              Pagar Internacional con PayPal
-            </a>
-          ) : (
-            <div style={{ marginTop: '0.4rem', fontSize: '0.74rem', color: 'var(--surface-400)', textAlign: 'center' }}>
-              ¿Pagas desde fuera de Chile con PayPal? Escríbenos por WhatsApp al {TRANSFER.whatsapp} y te mandamos el link.
-            </div>
-          )}
+          <PayButtons
+            loading={loading}
+            onMercadoPago={() => go(createBookCheckout, 'init_point')}
+            onPaypal={() => go(createBookPaypalOrder, 'approve_url')}
+            usdLabel={`US$${usd.toFixed(2)}`}
+          />
           {error && <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.4rem' }}>{error}</div>}
 
           <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '0.9rem 0' }} />

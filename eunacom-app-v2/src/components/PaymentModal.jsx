@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { X, CheckCircle2, Loader2, ArrowLeft, BookOpen, Tag } from 'lucide-react';
+import { X, CheckCircle2, ArrowLeft, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
-import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, fmtClp } from '../config/tienda';
+import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, fmtClp, creditApplies } from '../config/tienda';
+import PayButtons from './PayButtons';
 
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
 const PLANS = APP_PLANS.map(p => ({
@@ -48,7 +49,7 @@ const PaymentModal = ({ onClose }) => {
     return PLANS.map(p => {
       const num = APP_PLANS.find(x => x.id === p.id).price;
       const discounted = discountPercent ? Math.round(num * (1 - discountPercent / 100)) : num;
-      const final = credit ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
+      const final = credit && creditApplies(p.id) ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
       if (final === num) return p;
       return { ...p, oldPrice: p.price, price: fmtClp(final), creditApplied: discounted - final };
     });
@@ -210,7 +211,7 @@ const PaymentModal = ({ onClose }) => {
                     background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.35)', borderRadius: '8px',
                     padding: '8px 12px', marginBottom: '12px', fontSize: '0.78rem', color: '#6ee7b7', fontWeight: 600, lineHeight: 1.4
                   }}>
-                    📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> del plan
+                    📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> de los planes de 6 meses y 1 año
                     {upgradeCredit?.until ? ` (válido hasta el ${new Date(upgradeCredit.until).toLocaleDateString('es-CL')})` : ''}.
                   </div>
                 )}
@@ -305,7 +306,7 @@ const PaymentModal = ({ onClose }) => {
                     <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
                     <span style={{ fontSize: '0.78rem', lineHeight: 1.35 }}>
                       ¿Solo quieres los libros? <strong style={{ color: 'var(--surface-50)' }}>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
-                      <span style={{ display: 'block', color: 'var(--surface-400)', fontSize: '0.7rem' }}>21 tomos + reconstrucciones + Libros Gordos, en PDF →</span>
+                      <span style={{ display: 'block', color: 'var(--surface-400)', fontSize: '0.7rem' }}>21 tomos + reconstrucciones + Libros Gordos, para leer en la app →</span>
                     </span>
                   </button>
                 )}
@@ -395,35 +396,13 @@ const PaymentModal = ({ onClose }) => {
 
               {country === 'CL' ? (
                 <>
-                  {/* Mercado Libre */}
                   <div style={{ textAlign: 'center' }}>
-                    <button 
-                      onClick={handleMercadoPago}
-                      disabled={loadingMp}
-                      style={{
-                        width: '100%', padding: '0.75rem', background: '#009ee3', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '0.95rem', fontWeight: 700, cursor: loadingMp ? 'not-allowed' : 'pointer', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                        opacity: loadingMp ? 0.8 : 1, transition: 'all 0.2s'
-                      }}>
-                      {loadingMp ? <><Loader2 size={16} className="spin" /> Procesando...</> : "Pagar Seguro con Webpay"}
-                    </button>
-
-                    <button 
-                      onClick={handlePaypal}
-                      disabled={loadingMp}
-                      style={{
-                        width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.2rem', marginBottom: '0.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                        transition: 'all 0.2s'
-                      }}>
-                      Pagar Internacional con PayPal
-                    </button>
+                    <PayButtons loading={loadingMp} onMercadoPago={handleMercadoPago} onPaypal={handlePaypal} />
                     {selectedPlan.oldPrice && (
                       <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.25rem' }}>
-                        Si PayPal te muestra el precio sin descuento, paga con Webpay o transferencia, o escríbenos por WhatsApp.
+                        Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
                       </div>
                     )}
-                    
                     {errorMp && (
                       <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
                     )}
@@ -457,16 +436,7 @@ const PaymentModal = ({ onClose }) => {
                     <p style={{ color: 'var(--surface-300)', fontSize: '0.85rem', marginBottom: '1rem', lineHeight: 1.45 }}>
                       Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
                     </p>
-                    <button 
-                      onClick={handlePaypal}
-                      disabled={loadingMp}
-                      style={{
-                        width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
-                        fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                        transition: 'all 0.2s'
-                      }}>
-                      Pagar con PayPal (USD)
-                    </button>
+                    <PayButtons showMercadoPago={false} loading={loadingMp} onPaypal={handlePaypal} />
                   </div>
                 </>
               )}

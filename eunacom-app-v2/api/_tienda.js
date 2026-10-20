@@ -23,12 +23,15 @@ export function resolveCoupon(code) {
 
 // ── Upgrade libros → plan ─────────────────────────────────────────────────────
 export const UPGRADE_CREDIT_DAYS = 7 // lo pagado en libros se descuenta del plan si se pasa dentro de este plazo
+// Solo los planes que traen la biblioteca (6 meses y 1 año) reciben el crédito
+export const creditApplies = planId => !!APP_PLANS.find(p => p.id === planId)?.includesLibrary
 export const MIN_CHARGE_CLP = 1000   // piso del cobro en Webpay tras descontar el crédito
 
 // ── Pago de libros ────────────────────────────────────────────────────────────
-// TODO(dueño): crear los links de PayPal de cada producto y pegarlos aquí. Mientras sea null,
-// el botón de PayPal no aparece para ese producto (sí Webpay y transferencia).
-const PAYPAL_PENDIENTE = null
+// Mercado Pago cobra en CLP. PayPal (y Apple Pay / Google Pay dentro de PayPal) cobra en USD:
+// precio CLP / CLP_PER_USD, redondeado hacia arriba a .99
+export const CLP_PER_USD = 920
+export const usdPrice = clp => Math.max(0.99, Math.ceil(clp / CLP_PER_USD) - 0.01)
 
 export const TRANSFER = {
   bank: 'BancoEstado', account: 'Cuenta RUT', number: '18.842-443-0', name: 'Felipe Yanez',
@@ -74,7 +77,7 @@ export const TOMOS = TOMO_LIST.map(([name, file], i) => {
   return {
     sku: `tomo-${n}`, n, name, price: 6990, file: `01_Tomos/${file}`,
     module: MODULES.find(m => n >= m.from && n <= m.to).id,
-    cover: `${COVER}cov_${String(n).padStart(2, '0')}.jpg`, paypal: PAYPAL_PENDIENTE,
+    cover: `${COVER}cov_${String(n).padStart(2, '0')}.jpg`,
   }
 })
 
@@ -84,13 +87,23 @@ const REC_LIST = [
 ]
 export const RECONS = REC_LIST.map(([month, year]) => ({
   sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${month ? month[0] + month.slice(1).toLowerCase() + ' ' : ''}${year}`,
-  price: 4990, questions: 180, paypal: PAYPAL_PENDIENTE,
+  price: 4990, questions: 180,
+  file: null, // TODO(entrega): PDF de cada examen por separado (hoy solo existe el Gran Libro completo)
 }))
 
 // Libros que solo vienen dentro de los packs
 export const EXTRAS = [
   { sku: 'gran-recons', name: 'Gran Libro de Reconstrucciones 2013–2025', cover: `${COVER}q_recons.jpg`, file: '03_Reconstrucciones/El_Gran_Libro_EUNACOM_Reconstrucciones_2013_2025.pdf' },
-  { sku: 'gordos', name: 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', cover: `${COVER}q_gordo.jpg`, file: '02_Libros_Gordos_90Q/' },
+  {
+    sku: 'gordos', name: 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', cover: `${COVER}q_gordo.jpg`,
+    files: [
+      ['Gran Libro Gordo (1.890 preguntas)', 'El_Gran_Libro_Gordo_EUNACOM_1890Q_Actualizado.pdf'],
+      ['Módulo 1 ponderado', 'Libro_Gordo_EUNACOM_Modulo_1_Ponderado_90Q.pdf'],
+      ...['Cardiologia', 'Cirugia', 'Dermatologia', 'Diabetes', 'Endocrinologia', 'Gastroenterologia', 'Ginecologia', 'Hematologia',
+        'Infectologia', 'Nefrologia', 'Neurologia', 'Obstetricia', 'Oftalmologia', 'Otorrinolaringologia', 'Pediatria', 'Psiquiatria',
+        'Respiratorio', 'Reumatologia', 'SaludPublica', 'Traumatologia', 'Urologia'].map(e => [e.replace('SaludPublica', 'Salud Pública'), `Libro_Gordo_${e}_90Q.pdf`]),
+    ].map(([label, f]) => ({ label, file: `02_Libros_Gordos_90Q/${f}` })),
+  },
   { sku: 'perfil-v3', name: 'Guía Perfil V3 código por código', cover: `${COVER}q_perfil.jpg`, file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Completo_2026.pdf' },
 ]
 
@@ -101,20 +114,20 @@ export const PACKS = [
   {
     sku: 'pack-tomos', name: 'Pack 21 Tomos AEE', price: 29990, desc: 'Toda la teoría del Perfil V3, especialidad por especialidad.',
     covers: [1, 5, 8, 11, 18].map(n => TOMOS[n - 1].cover),
-    features: ['Los 21 tomos en PDF (4 módulos)', 'Algoritmos, tablas y perlas EUNACOM', 'Actualizados 2026'],
-    includes: ALL_TOMOS, paypal: PAYPAL_PENDIENTE,
+    features: ['Los 21 tomos (4 módulos), para leer en la app', 'Algoritmos, tablas y perlas EUNACOM', 'Actualizados 2026'],
+    includes: ALL_TOMOS,
   },
   {
     sku: 'biblioteca', name: 'Biblioteca completa', price: 39990, star: true, desc: 'Teoría + todas las preguntas: lo que necesitas para estudiar sin la app.',
     covers: [TOMOS[0].cover, TOMOS[17].cover, EXTRAS[0].cover, EXTRAS[1].cover, TOMOS[18].cover],
     features: ['Los 21 tomos AEE', 'Gran Libro de Reconstrucciones 2013–2025', 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', 'Guía Perfil V3 código por código'],
-    includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3'], paypal: PAYPAL_PENDIENTE,
+    includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3'],
   },
   {
     sku: 'pack-recons', name: 'Gran Libro de Reconstrucciones', price: 19990, desc: 'Los 16 EUNACOM desde 2013, pregunta por pregunta y con explicación.',
     covers: [EXTRAS[0].cover],
     features: ['2.739 preguntas reales 2013–2025', 'Ordenado por examen y por tema', 'Respuesta y explicación de cada una'],
-    includes: [...ALL_RECS, 'gran-recons'], paypal: PAYPAL_PENDIENTE,
+    includes: [...ALL_RECS, 'gran-recons'],
   },
 ]
 
@@ -140,3 +153,11 @@ export function cartTotal(skus = []) {
 }
 
 export const fmtClp = n => `$${Math.round(n).toLocaleString('es-CL')}`
+
+// Archivos legibles de un ítem desbloqueado (ruta dentro de books/dist; en producción, clave `libros/<ruta>` en R2)
+export function itemFiles(item) {
+  const x = TOMOS.find(t => t.sku === item) || EXTRAS.find(t => t.sku === item) || RECONS.find(t => t.sku === item)
+  if (!x) return []
+  if (x.files) return x.files
+  return x.file ? [{ label: x.name, file: x.file }] : []
+}

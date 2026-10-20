@@ -795,7 +795,7 @@ const Dashboard = () => {
                 <span className="dash-card-badge">{libraryIncluded ? '✅ Incluida en tu plan' : `📚 Desde ${fmtClp(TOMOS[0].price)}`}</span>
               </div>
               <div className="dash-card-body">
-                <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM en PDF'}</h3>
+                <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM'}</h3>
                 <p className="dash-card-desc">
                   {libraryIncluded
                     ? '21 tomos, Gran Libro de Reconstrucciones 2013–2025, Libros Gordos y guía Perfil V3.'

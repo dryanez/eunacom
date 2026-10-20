@@ -303,6 +303,24 @@ export async function createBookCheckout(userId, skus) {
   })
 }
 
+export async function createBookPaypalOrder(userId, skus) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'book_paypal_order', userId, skus })
+  })
+}
+
+export async function captureBookPaypal(userId, paypalOrderId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'book_paypal_capture', userId, paypalOrderId })
+  })
+}
+
+export async function fetchBookRead(userId, item, file = 0) {
+  return apiFetch(`/api/user-profiles?action=book_read&userId=${encodeURIComponent(userId)}&item=${encodeURIComponent(item)}&file=${file}`)
+}
+
 export async function fetchBookPurchases(adminEmail) {
   return apiFetch(`/api/user-profiles?action=book_purchases&adminEmail=${encodeURIComponent(adminEmail)}`)
 }
