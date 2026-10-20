@@ -11,12 +11,14 @@ import '../styles/tienda.css';
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
 const PLANS = APP_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
-const LIB_COVERS = [TOMOS[0].cover, TOMOS[7].cover, TOMOS[17].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover];
+const LIB_COVERS = [TOMOS[0].cover, TOMOS[17].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover];
 const LIB_ITEMS = [
   { n: '21', t: 'Tomos AEE', d: 'Toda la teoría del Perfil V3, especialidad por especialidad, con algoritmos y tablas.' },
   { n: '16', t: 'EUNACOM reconstruidos', d: 'Gran Libro de Reconstrucciones 2013–2025: 2.739 preguntas reales con explicación.' },
   { n: '23', t: 'Libros Gordos', d: 'El Gran Libro Gordo + 22 libros de 90 preguntas por tema.' },
-  { n: '1', t: 'Guía Perfil V3', d: 'Código por código: qué te pueden preguntar de cada tema.' },
+  { n: '21', t: 'Repaso Final', d: 'Un libro de repaso por especialidad: lo que más se pregunta, para la última semana.' },
+  { n: '1.569', t: 'Códigos explicados', d: 'Perfil V3 código por código: qué te pueden preguntar de cada uno.' },
+  { n: '86', t: 'Imágenes de dermatología', d: 'Atlas comentado: lo que hay que reconocer en cada foto.' },
 ];
 
 const PaymentModal = ({ onClose }) => {
@@ -200,7 +202,7 @@ const PaymentModal = ({ onClose }) => {
                 {plan.includesLibrary && (
                   <button className="plan-libstrip" onClick={e => { e.stopPropagation(); libRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
                     <span className="covers">{LIB_COVERS.slice(0, 4).map(c => <img key={c} src={c} alt="" className="book-cover" />)}</span>
-                    <span>21 tomos, reconstrucciones y Libros Gordos <u>¿Qué trae? →</u></span>
+                    <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y más <u>¿Qué trae? →</u></span>
                   </button>
                 )}
                 <button
@@ -269,7 +271,7 @@ const PaymentModal = ({ onClose }) => {
               <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
               <span>
                 ¿Solo quieres los libros? <strong>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
-                <span className="plan-books__sub">21 tomos + reconstrucciones + Libros Gordos, para leer en la app →</span>
+                <span className="plan-books__sub">Tomos, reconstrucciones, Libros Gordos, Repaso Final y Atlas, en la app →</span>
               </span>
             </button>
           )}

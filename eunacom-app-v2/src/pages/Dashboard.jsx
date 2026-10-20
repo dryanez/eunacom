@@ -798,8 +798,8 @@ const Dashboard = () => {
                 <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM'}</h3>
                 <p className="dash-card-desc">
                   {libraryIncluded
-                    ? '21 tomos, Gran Libro de Reconstrucciones 2013–2025, Libros Gordos y guía Perfil V3.'
-                    : `21 tomos + reconstrucciones 2013–2025 + Libros Gordos. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
+                    ? '21 tomos, reconstrucciones 2013–2025, Libros Gordos, Repaso Final, 1.569 códigos explicados y Atlas.'
+                    : `21 tomos, reconstrucciones, Libros Gordos, Repaso Final y Atlas. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
                 </p>
               </div>
               <div className="dash-card-footer">
@@ -811,7 +811,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="libros-bento-covers" aria-hidden="true">
-              {[TOMOS[0].cover, TOMOS[7].cover, EXTRAS[0].cover, TOMOS[17].cover, EXTRAS[1].cover].map((c, i) => (
+              {[TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, TOMOS[17].cover, EXTRAS[4].cover].map((c, i) => (
                 <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2) * 4}deg)`, zIndex: 5 - Math.abs(i - 2) }} />
               ))}
             </div>

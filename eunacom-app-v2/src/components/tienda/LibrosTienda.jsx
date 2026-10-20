@@ -160,12 +160,12 @@ export default function LibrosTienda() {
             <div>
               <span className="tienda-kick">Biblioteca AEE · Perfil EUNACOM V3</span>
               <h1>Los libros para aprobar el EUNACOM, <span>en la app</span></h1>
-              <p>Los 21 tomos de Academia Examen EUNACOM y las reconstrucciones de cada EUNACOM desde 2013. Pago único: los lees en línea, en el computador o el celular, sin vencimiento.</p>
+              <p>Los 21 tomos de Academia Examen EUNACOM, las reconstrucciones de cada EUNACOM desde 2013, los Libros Gordos, el Repaso Final de cada especialidad, los 1.569 códigos del Perfil V3 explicados y el Atlas de dermatología. Pago único: los lees en línea, sin vencimiento.</p>
               <div className="tienda-stats">
                 <div><b>21</b><span>tomos, todas las especialidades</span></div>
                 <div><b>16</b><span>EUNACOM reconstruidos</span></div>
                 <div><b>2.739</b><span>preguntas reales con explicación</span></div>
-                <div><b>23</b><span>Libros Gordos de 90 preguntas</span></div>
+                <div><b>1.569</b><span>códigos del Perfil V3 explicados</span></div>
               </div>
             </div>
             <div className="tienda-fan" aria-hidden="true">
@@ -246,7 +246,8 @@ export default function LibrosTienda() {
                 <h3>{BIBLIOTECA.name}</h3>
                 <div className="pack-price">{fmtClp(BIBLIOTECA.price)}</div>
                 <ul className="pack-feat">
-                  <li><i>✓</i>21 tomos + Libros Gordos + Perfil V3</li>
+                  <li><i>✓</i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
+                  <li><i>✓</i>1.569 códigos explicados + Atlas de dermatología</li>
                   <li><i>✓</i>Reconstrucciones 2013–2025</li>
                   <li className="no"><i>✕</i>+650 clases en video</li>
                   <li className="no"><i>✕</i>+10.000 preguntas en la app y simulacros</li>
@@ -286,7 +287,7 @@ export default function LibrosTienda() {
 
           <section className="tienda-section">
             <h2>Gratis en nuestras redes</h2>
-            <p className="sub">Comenta la palabra en el video de Instagram o TikTok y te mandamos el libro por mensaje.</p>
+            <p className="sub">Comenta la palabra en el video de Instagram o TikTok y te mandamos un libro por mensaje. La colección completa viene en la Biblioteca.</p>
             <div className="tienda-free">
               <div><b>Libro Gordo de la especialidad</b>90 preguntas reales con explicación<br /><code>Comenta POTASIO, CRISIS, PTT…</code></div>
               <div><b>Repaso Final</b>Lo que más se pregunta, en una guía<br /><code>Comenta SUERO, OJO, EPLEY…</code></div>

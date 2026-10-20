@@ -69,7 +69,7 @@ export default function Links() {
         id="tienda" icon="📚"
         href={withUtm('/biblioteca')}
         title="Tienda de libros"
-        sub={`21 tomos, reconstrucciones y Libros Gordos · biblioteca ${fmtClp(PRODUCTS.biblioteca.price)}`}
+        sub={`Tomos, reconstrucciones, Libros Gordos, Repaso Final · todo ${fmtClp(PRODUCTS.biblioteca.price)}`}
       />
 
       <div className="bio-card">
