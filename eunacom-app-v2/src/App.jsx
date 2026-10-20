@@ -18,6 +18,7 @@ import Register from './pages/Register'
 import Offer from './pages/Offer'
 import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
+import Links from './pages/Links'
 import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
@@ -94,6 +95,7 @@ function App() {
                 </AdminRoute>
               } />
 
+              <Route path="/links" element={<Links />} />
               {/* ── Auth Routes ── */}
               <Route element={<AuthLayout />}>
                 <Route path="/login" element={<Login />} />
@@ -110,6 +112,7 @@ function App() {
                 <Route path="/test" element={<TestCreator />} />
                 <Route path="/simulation" element={<Simulation />} />
                 <Route path="/oferta" element={<Offer />} />
+                <Route path="/planes" element={<Offer />} />
                 <Route path="/biblioteca" element={<Biblioteca />} />
                 <Route path="/libros" element={<Biblioteca />} />
               </Route>

@@ -209,3 +209,32 @@
 @media (max-width: 1000px) { .plan-lib { grid-template-columns: 1fr; } .plan-lib__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .plan-lib { padding: 1rem; } .plan-lib__covers { height: 120px; } .plan-lib__covers img { height: 105px; margin-left: -40px; } }
 .plan-anchor-note { font-size: 0.7rem; color: var(--surface-400); margin-top: 0.15rem; }
+
+/* /links — link en la bio de Instagram */
+.bio-page { min-height: 100vh; background: #0b1120; }
+.bio { min-height: 100vh; max-width: 480px; margin: 0 auto; padding: 1.5rem 1rem 2rem; display: flex; flex-direction: column; gap: 0.7rem; background: radial-gradient(120% 60% at 50% 0%, rgba(37,99,235,0.25) 0%, rgba(11,17,32,0) 70%); box-sizing: border-box; font-family: var(--font, system-ui, sans-serif); }
+.bio-head { text-align: center; margin-bottom: 0.4rem; }
+.bio-logo { width: 150px; height: auto; display: block; margin: 0 auto 0.4rem; }
+.bio-head h1 { font-size: 1.3rem; font-weight: 800; color: #f8fafc; margin: 0; letter-spacing: -0.01em; }
+.bio-head p { color: #94a3b8; font-size: 0.88rem; margin: 0.25rem 0 0; }
+.bio-offer { display: flex; align-items: center; gap: 0.8rem; padding: 0.85rem 1rem; border-radius: 16px; text-decoration: none; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; box-shadow: 0 14px 30px -14px rgba(236,72,153,0.8); }
+.bio-offer__pct { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.03em; flex-shrink: 0; }
+.bio-offer strong { display: block; font-size: 1rem; }
+.bio-offer span span, .bio-offer > span:last-child > span { font-size: 0.78rem; opacity: 0.92; }
+.bio-offer code { background: rgba(255,255,255,0.22); padding: 0.05rem 0.35rem; border-radius: 5px; font-weight: 800; }
+.bio-btn { display: flex; align-items: center; gap: 0.75rem; width: 100%; min-height: 64px; padding: 0.75rem 0.95rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: #1e293b; color: #f8fafc; text-decoration: none; text-align: left; cursor: pointer; font-family: inherit; box-sizing: border-box; }
+.bio-btn.primary { background: linear-gradient(90deg, #2563eb, #3b82f6); border-color: transparent; box-shadow: 0 12px 26px -12px rgba(37,99,235,0.85); }
+.bio-btn.disabled { opacity: 0.6; cursor: default; }
+.bio-btn__icon { font-size: 1.5rem; width: 2rem; text-align: center; flex-shrink: 0; }
+.bio-btn__text { flex: 1; min-width: 0; }
+.bio-btn__text strong { display: block; font-size: 0.98rem; }
+.bio-btn__text span { display: block; font-size: 0.76rem; color: #cbd5e1; margin-top: 0.1rem; line-height: 1.35; }
+.bio-btn.primary .bio-btn__text span { color: #dbeafe; }
+.bio-btn__arrow { font-weight: 800; color: #93c5fd; }
+.bio-btn.primary .bio-btn__arrow { color: #fff; }
+.bio-card { background: #111a2e; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 0.85rem 1rem; color: #cbd5e1; font-size: 0.84rem; line-height: 1.45; }
+.bio-card p { margin: 0 0 0.5rem; }
+.bio-card__title { font-weight: 800; color: #f8fafc; font-size: 0.98rem; margin-bottom: 0.3rem; }
+.bio-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.bio-mini { display: inline-block; padding: 0.45rem 0.85rem; border-radius: 999px; border: 1.5px solid #3b82f6; color: #93c5fd; font-weight: 800; font-size: 0.8rem; text-decoration: none; }
+.bio-foot { text-align: center; color: #64748b; font-size: 0.75rem; margin-top: 0.6rem; }

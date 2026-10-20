@@ -18,6 +18,7 @@ import RegisterIOS from './pages/Register-ios'
 import Offer from './pages/Offer'
 import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
+import Links from './pages/Links'
 import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
@@ -57,12 +58,14 @@ function App() {
               </Route>
 
               {/* Public Routes — visible without login, content gated inside each page */}
+              <Route path="/links" element={<Links />} />
               <Route element={<PublicLayoutIOS />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/reconstructions" element={<Reconstructions />} />
                 <Route path="/mis-clases" element={<MisClases />} />
                 <Route path="/test" element={<TestCreator />} />
                 <Route path="/oferta" element={<Offer />} />
+                <Route path="/planes" element={<Offer />} />
                 <Route path="/biblioteca" element={<Biblioteca />} />
                 <Route path="/libros" element={<Biblioteca />} />
               </Route>
