@@ -4,13 +4,20 @@ import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
-import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, fmtClp, creditApplies } from '../config/tienda';
+import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
 import '../styles/tienda.css';
 
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
 const PLANS = APP_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
+const LIB_COVERS = [TOMOS[0].cover, TOMOS[7].cover, TOMOS[17].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover];
+const LIB_ITEMS = [
+  { n: '21', t: 'Tomos AEE', d: 'Toda la teoría del Perfil V3, especialidad por especialidad, con algoritmos y tablas.' },
+  { n: '16', t: 'EUNACOM reconstruidos', d: 'Gran Libro de Reconstrucciones 2013–2025: 2.739 preguntas reales con explicación.' },
+  { n: '23', t: 'Libros Gordos', d: 'El Gran Libro Gordo + 22 libros de 90 preguntas por tema.' },
+  { n: '1', t: 'Guía Perfil V3', d: 'Código por código: qué te pueden preguntar de cada tema.' },
+];
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
@@ -45,8 +52,11 @@ const PaymentModal = ({ onClose }) => {
       const num = APP_PLANS.find(x => x.id === p.id).price;
       const discounted = discountPercent ? Math.round(num * (1 - discountPercent / 100)) : num;
       const final = credit && creditApplies(p.id) ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
-      if (final === num) return p;
-      return { ...p, oldPrice: p.price, price: fmtClp(final), creditApplied: discounted - final };
+      // Precio tachado: sin promo, lo que costaría pagando mes a mes (el ahorro real del plan largo)
+      const monthly = APP_PLANS[0].price * p.months;
+      const anchor = final !== num ? num : (p.months > 1 ? monthly : null);
+      const save = anchor ? Math.round((1 - final / anchor) * 100) : 0;
+      return { ...p, oldPrice: anchor ? fmtClp(anchor) : null, anchorIsMonthly: final === num && !!anchor, price: fmtClp(final), save, creditApplied: discounted - final };
     });
   }, [discountPercent, credit]);
 
@@ -59,6 +69,7 @@ const PaymentModal = ({ onClose }) => {
   const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const payRef = React.useRef(null);
+  const libRef = React.useRef(null);
   const scrollToPay = () => payRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
@@ -173,15 +184,25 @@ const PaymentModal = ({ onClose }) => {
                   {plan.price}
                   {plan.oldPrice && <span className="was">{plan.oldPrice}</span>}
                 </div>
-                <div className="plan-permonth">{plan.months > 1 ? `≈ ${fmtClp(perMonth)} al mes` : ' '}</div>
+                <div className="plan-permonth">
+                  {plan.months > 1 ? `≈ ${fmtClp(perMonth)} al mes` : '\u00a0'}
+                  {plan.save > 0 && <span className="pack-save">Ahorras {plan.save} %</span>}
+                </div>
+                {plan.anchorIsMonthly && <div className="plan-anchor-note">vs. {plan.oldPrice} pagando mes a mes</div>}
                 <ul className="pack-feat">
                   <li><i>✓</i>+650 clases en video</li>
                   <li><i>✓</i>+10.000 preguntas y simulacros</li>
                   <li><i>✓</i>16 reconstrucciones resueltas</li>
                   {plan.includesLibrary
-                    ? <li><i>✓</i><b>Biblioteca completa de libros</b></li>
+                    ? <li><i>✓</i><span><b>Biblioteca completa de libros</b> <span className="plan-libval">(valor {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
                 </ul>
+                {plan.includesLibrary && (
+                  <button className="plan-libstrip" onClick={e => { e.stopPropagation(); libRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
+                    <span className="covers">{LIB_COVERS.slice(0, 4).map(c => <img key={c} src={c} alt="" className="book-cover" />)}</span>
+                    <span>21 tomos, reconstrucciones y Libros Gordos <u>¿Qué trae? →</u></span>
+                  </button>
+                )}
                 <button
                   className={`t-btn ${selected ? 'fill' : ''}`}
                   onClick={e => { e.stopPropagation(); setSelectedPlanId(plan.id); scrollToPay(); }}
@@ -191,6 +212,28 @@ const PaymentModal = ({ onClose }) => {
               </div>
             );
           })}
+        </div>
+
+        {/* Qué es la biblioteca (para que se entienda qué traen 6 meses y 1 año) */}
+        <div ref={libRef} className="plan-lib">
+          <div className="plan-lib__covers" aria-hidden="true">
+            {LIB_COVERS.map((c, i) => (
+              <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2.5) * 5}deg)`, zIndex: 6 - Math.abs(Math.round(i - 2.5)) }} />
+            ))}
+          </div>
+          <div className="plan-lib__text">
+            <span className="tienda-kick">📚 Incluida en 6 meses y 1 año</span>
+            <h3>¿Qué es la Biblioteca EUNACOM?</h3>
+            <p>Los libros de Academia Examen EUNACOM para estudiar el Perfil V3. Se leen dentro de la app, en el computador o el celular.</p>
+            <div className="plan-lib__grid">
+              {LIB_ITEMS.map(x => (
+                <div key={x.t}><b>{x.n}</b><strong>{x.t}</strong><span>{x.d}</span></div>
+              ))}
+            </div>
+            <div className="plan-lib__value">
+              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con el plan de 6 meses o 1 año <strong>viene incluida</strong>.
+            </div>
+          </div>
         </div>
 
         <div className="plan-extras">
@@ -251,7 +294,7 @@ const PaymentModal = ({ onClose }) => {
           {country === 'CL' ? (
             <>
               <PayButtons loading={loadingMp} onMercadoPago={handleMercadoPago} onPaypal={handlePaypal} />
-              {selectedPlan.oldPrice && (
+              {selectedPlan.oldPrice && !selectedPlan.anchorIsMonthly && (
                 <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: '0.3rem', textAlign: 'center' }}>
                   Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
                 </div>

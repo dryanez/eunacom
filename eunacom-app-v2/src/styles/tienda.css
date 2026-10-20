@@ -186,3 +186,26 @@
   .plan-checkout__sub { font-size: 0.7rem; }
   .plan-card.star { order: -1; } /* el recomendado primero en el celular */
 }
+
+/* Checkout de planes: explicación de la biblioteca */
+.plan-libval { color: var(--surface-400); font-weight: 600; font-size: 0.75rem; }
+.plan-libstrip { display: flex; align-items: center; gap: 0.55rem; width: 100%; margin: -0.35rem 0 0.9rem; padding: 0.45rem 0.55rem; border-radius: 10px; border: 1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.07); color: #fcd34d; font-size: 0.72rem; font-weight: 600; text-align: left; cursor: pointer; font-family: inherit; line-height: 1.3; }
+.plan-libstrip .covers { display: flex; flex-shrink: 0; }
+.plan-libstrip img { height: 34px; width: auto; margin-left: -12px; }
+.plan-libstrip img:first-child { margin-left: 0; }
+.plan-lib { display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem; align-items: center; margin-top: 1.5rem; padding: 1.4rem 1.5rem; border-radius: 18px; border: 1px solid rgba(251,191,36,0.25); background: linear-gradient(135deg, rgba(120,83,9,0.28) 0%, rgba(15,23,42,0) 65%), var(--surface-700); }
+.plan-lib__covers { position: relative; height: 170px; display: flex; justify-content: center; align-items: center; overflow: hidden; padding: 0 0.5rem; }
+.plan-lib__covers img { height: 132px; width: auto; margin-left: -64px; }
+.plan-lib__covers img:first-child { margin-left: 0; }
+.plan-lib__text h3 { font-size: 1.25rem; color: var(--surface-50); margin: 0.5rem 0 0.25rem; }
+.plan-lib__text > p { color: var(--surface-300); font-size: 0.86rem; margin: 0 0 0.8rem; line-height: 1.45; }
+.plan-lib__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+.plan-lib__grid > div { background: var(--surface-600); border-radius: 12px; padding: 0.6rem 0.7rem; }
+.plan-lib__grid b { display: block; font-size: 1.35rem; color: #fbbf24; line-height: 1.1; }
+.plan-lib__grid strong { display: block; font-size: 0.8rem; color: var(--surface-50); margin-top: 0.1rem; }
+.plan-lib__grid span { display: block; font-size: 0.7rem; color: var(--surface-400); line-height: 1.35; margin-top: 0.2rem; }
+.plan-lib__value { margin-top: 0.8rem; font-size: 0.82rem; color: var(--surface-300); }
+.plan-lib__value strong { color: var(--surface-50); }
+@media (max-width: 1000px) { .plan-lib { grid-template-columns: 1fr; } .plan-lib__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .plan-lib { padding: 1rem; } .plan-lib__covers { height: 120px; } .plan-lib__covers img { height: 105px; margin-left: -40px; } }
+.plan-anchor-note { font-size: 0.7rem; color: var(--surface-400); margin-top: 0.15rem; }
