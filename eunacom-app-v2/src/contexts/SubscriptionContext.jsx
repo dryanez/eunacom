@@ -1,8 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder } from '../lib/api';
+import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder, fetchUserBooks } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
 import { resolvePromo } from '../config/promo';
+import { expandSkus, resolveCoupon, LIBRARY_ITEMS, LIBRARY_MIN_PLAN_MONTHS } from '../config/tienda';
+
+const COUPON_KEY = 'eunacom_coupon';
 
 const SubscriptionContext = createContext();
 
@@ -32,6 +35,28 @@ export function SubscriptionProvider({ children }) {
   const [promoSetting, setPromoSetting] = useState(null); // admin app_settings.promo (JSON)
   const [promoLoaded, setPromoLoaded] = useState(false);
   const promo = promoLoaded ? resolvePromo(promoSetting) : null;
+
+  // Plan y libros comprados (tienda /biblioteca)
+  const [planMonths, setPlanMonths] = useState(0);
+  const [books, setBooks] = useState({ skus: [], planLibrary: false, credit: { amount: 0, until: null } });
+  const [booksVersion, setBooksVersion] = useState(0);
+  const refreshBooks = () => setBooksVersion(v => v + 1);
+
+  // Cupón de redes (SHORTS20): llega por ?code= / ?cupon= o se escribe en el checkout
+  const [coupon, setCouponState] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const fromUrl = resolveCoupon(params.get('code') || params.get('cupon') || params.get('coupon'));
+      if (fromUrl) { localStorage.setItem(COUPON_KEY, fromUrl.code); return fromUrl; }
+      return resolveCoupon(localStorage.getItem(COUPON_KEY));
+    } catch { return null; }
+  });
+  const setCoupon = (code) => {
+    const c = resolveCoupon(code);
+    setCouponState(c);
+    try { c ? localStorage.setItem(COUPON_KEY, c.code) : localStorage.removeItem(COUPON_KEY); } catch {}
+    return c;
+  };
   
   // Freemium usage tracking
   const [usageStats, setUsageStats] = useState({
@@ -149,6 +174,7 @@ export function SubscriptionProvider({ children }) {
             }
 
             setIsPremium(valid)
+            setPlanMonths(valid ? Number(profile.plan_months || 0) : 0)
             setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200))
             try {
               localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid))
@@ -206,8 +232,20 @@ export function SubscriptionProvider({ children }) {
     return () => { mounted = false; };
   }, [user, isUserAdmin]);
 
+  useEffect(() => {
+    if (!user?.id) { setBooks({ skus: [], planLibrary: false, credit: { amount: 0, until: null } }); return; }
+    let mounted = true;
+    fetchUserBooks(user.id)
+      .then(data => { if (mounted && data) setBooks({ skus: data.skus || [], planLibrary: !!data.planLibrary, credit: data.credit || { amount: 0, until: null } }); })
+      .catch(err => console.error('Error fetching books:', err));
+    return () => { mounted = false; };
+  }, [user?.id, booksVersion]);
+
   const effectiveIsPremium = isUserAdmin || isPremium;
   const effectiveIsFounder = isUserAdmin || isFounder;
+  // Planes de 6 meses o más (y admin) traen la biblioteca completa; si no, solo lo comprado
+  const libraryIncluded = isUserAdmin || books.planLibrary || (isPremium && planMonths >= LIBRARY_MIN_PLAN_MONTHS);
+  const ownedBooks = libraryIncluded ? new Set(LIBRARY_ITEMS) : expandSkus(books.skus);
 
   // Convenience flags for the UI
   const hasExceededClasses = !effectiveIsPremium && usageStats.clasesOpened >= 3;
@@ -231,7 +269,15 @@ export function SubscriptionProvider({ children }) {
       setShowPaymentModal,
       promo,
       promoSetting,
-      setPromoSetting
+      setPromoSetting,
+      planMonths: isUserAdmin ? 1200 : planMonths,
+      libraryIncluded,
+      ownedBooks,
+      purchasedBookSkus: books.skus,
+      upgradeCredit: books.credit,
+      refreshBooks,
+      coupon,
+      setCoupon
     }}>
       {children}
       {/* Checkout needs a logged-in user; a pending open waits until login */}

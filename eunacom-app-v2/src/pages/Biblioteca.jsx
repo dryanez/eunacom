@@ -9,6 +9,8 @@ import {
 } from 'lucide-react'
 import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
+import LibrosTienda from '../components/tienda/LibrosTienda'
+import '../styles/tienda.css'
 
 /* ════════════════════════════════════════════════════════════════
    LEVEL BADGES
@@ -157,9 +159,9 @@ function StatsBar({ items }) {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   MAIN PAGE
+   PERFIL EUNACOM (buscador de ítems)
    ════════════════════════════════════════════════════════════════ */
-const Biblioteca = () => {
+const PerfilBrowser = () => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -223,15 +225,9 @@ const Biblioteca = () => {
   return (
     <div style={{ paddingBottom: '2rem' }}>
       {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
-      <div style={{ marginBottom: '1.5rem' }}>
-        <h1 className="page__title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Shield size={24} style={{ color: 'var(--primary-500)' }} />
-          Biblioteca EUNACOM
-        </h1>
-        <p className="page__subtitle">
-          1542 ítems del Perfil de Conocimientos — lo que necesitas saber para el examen.
-        </p>
-      </div>
+      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
+        1542 ítems del Perfil de Conocimientos — lo que necesitas saber para el examen.
+      </p>
 
       {/* Search */}
       <div style={{ position: 'relative', marginBottom: '1rem' }}>
@@ -351,6 +347,34 @@ const Biblioteca = () => {
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MAIN PAGE: Libros (tienda / mis libros) + Perfil EUNACOM
+   ════════════════════════════════════════════════════════════════ */
+const Biblioteca = () => {
+  const [tab, setTab] = useState(() => (new URLSearchParams(window.location.search).get('tab') === 'perfil' ? 'perfil' : 'libros'))
+  const { libraryIncluded } = useSubscription()
+
+  return (
+    <div style={{ paddingBottom: '2rem' }}>
+      <div style={{ marginBottom: '1rem' }}>
+        <h1 className="page__title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <BookOpen size={24} style={{ color: 'var(--primary-500)' }} />
+          Biblioteca EUNACOM
+        </h1>
+      </div>
+      <div className="tienda-tabs" role="tablist">
+        <button role="tab" aria-selected={tab === 'libros'} className={tab === 'libros' ? 'on' : ''} onClick={() => setTab('libros')}>
+          📚 {libraryIncluded ? 'Mis libros' : 'Libros'}
+        </button>
+        <button role="tab" aria-selected={tab === 'perfil'} className={tab === 'perfil' ? 'on' : ''} onClick={() => setTab('perfil')}>
+          🩺 Perfil EUNACOM (1542 ítems)
+        </button>
+      </div>
+      {tab === 'libros' ? <LibrosTienda /> : <PerfilBrowser />}
     </div>
   )
 }

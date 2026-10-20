@@ -1,11 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Home, Video, Target, Shield, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame, Settings } from 'lucide-react'
-import { useAuth } from '../contexts/AuthContext'
+import { Home, Video, Target, BookOpen, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame, Settings } from 'lucide-react'
 
 const BottomNavigation = ({ onMenuToggle }) => {
-    const { isAdmin } = useAuth()
-
     return (
         <nav className="bottom-nav">
             <NavLink to="/dashboard" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
@@ -15,6 +12,10 @@ const BottomNavigation = ({ onMenuToggle }) => {
             <NavLink to="/mis-clases" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#818cf8' }}>
                 <Video size={22} />
                 <span>Clases</span>
+            </NavLink>
+            <NavLink to="/biblioteca" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#fbbf24' }}>
+                <BookOpen size={22} />
+                <span>Libros</span>
             </NavLink>
             <NavLink to="/medlingo" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#f97316' }}>
                 <Flame size={22} />
@@ -44,12 +45,6 @@ const BottomNavigation = ({ onMenuToggle }) => {
                 <Settings size={22} />
                 <span>Ajustes</span>
             </NavLink>
-            {isAdmin() && (
-                <NavLink to="/biblioteca" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                    <Shield size={22} />
-                    <span>Admin</span>
-                </NavLink>
-            )}
             <button className="bottom-nav__link bottom-nav__menu-btn" onClick={onMenuToggle}>
                 <Menu size={22} />
                 <span>Menú</span>

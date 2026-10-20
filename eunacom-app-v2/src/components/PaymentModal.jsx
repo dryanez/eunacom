@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { X, CheckCircle2, Loader2, ArrowLeft, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, fmtClp } from '../config/tienda';
 
-const PLANS = [
-  { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
-  { id: '3m', name: '3 Meses', price: '$34.990', desc: 'Curso +650 videos + 10k preguntas (90 días)', paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
-  { id: '6m', name: '6 Meses', price: '$54.990', desc: 'Curso +650 videos + 10k preguntas (180 días)', popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
-  { id: '1y', name: '1 Año', price: '$89.990', desc: 'Curso +650 videos + 10k preguntas (365 días)', paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' }
-];
+const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
+const PLANS = APP_PLANS.map(p => ({
+  ...p,
+  price: fmtClp(p.price),
+  desc: p.includesLibrary
+    ? `Curso +650 videos + 10k preguntas + biblioteca completa de libros (${DAYS[p.months]} días)`
+    : `Curso +650 videos + 10k preguntas (${DAYS[p.months]} días)`
+}));
+const BIBLIOTECA = PRODUCTS.biblioteca;
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
-  const { promo } = useSubscription();
+  const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onBooksPage = location.pathname.startsWith('/biblioteca') || location.pathname.startsWith('/libros');
+  const [couponInput, setCouponInput] = useState(coupon?.code || '');
+  const [couponError, setCouponError] = useState('');
+  const [showCouponBox, setShowCouponBox] = useState(!!coupon);
+  const credit = upgradeCredit?.amount || 0;
   
   // Read discount from URL or localStorage (30, 40, 50)
   const [couponPercent] = useState(() => {
@@ -26,21 +38,27 @@ const PaymentModal = ({ onClose }) => {
     } catch {}
     return 0;
   });
-  const discountPercent = Math.max(couponPercent, promo?.percent || 0);
+  const socialPercent = coupon?.percent || 0;
+  const discountPercent = Math.max(couponPercent, promo?.percent || 0, socialPercent);
   const isPromoDiscount = !!promo && discountPercent === promo.percent;
+  const isSocialCoupon = !!coupon && discountPercent === socialPercent && !isPromoDiscount;
 
+  // Mismo cálculo que el servidor (planPricing): descuento mayor y luego el crédito por libros
   const plansToDisplay = React.useMemo(() => {
-    if (!discountPercent) return PLANS;
     return PLANS.map(p => {
-      const num = parseInt(p.price.replace(/\D/g, ''), 10);
-      const discounted = Math.round(num * (1 - discountPercent / 100));
-      return {
-        ...p,
-        oldPrice: p.price,
-        price: `$${discounted.toLocaleString('es-CL')}`
-      };
+      const num = APP_PLANS.find(x => x.id === p.id).price;
+      const discounted = discountPercent ? Math.round(num * (1 - discountPercent / 100)) : num;
+      const final = credit ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
+      if (final === num) return p;
+      return { ...p, oldPrice: p.price, price: fmtClp(final), creditApplied: discounted - final };
     });
-  }, [discountPercent]);
+  }, [discountPercent, credit]);
+
+  const applyCoupon = () => {
+    if (!couponInput.trim()) { setCoupon(null); setCouponError(''); return; }
+    const c = setCoupon(couponInput);
+    setCouponError(c ? '' : 'Código no válido');
+  };
 
   const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
@@ -68,7 +86,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
-      const res = await createPaypalOrder(user.id, selectedPlan.id);
+      const res = await createPaypalOrder(user.id, selectedPlan.id, coupon?.code);
       if (!res.approve_url) throw new Error('No approve_url');
       window.location.href = res.approve_url;
     } catch (err) {
@@ -85,7 +103,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
-      const res = await createCheckoutSession(user.id, selectedPlan.id, discountPercent);
+      const res = await createCheckoutSession(user.id, selectedPlan.id, couponPercent, coupon?.code);
       if (res.init_point) {
         window.location.href = res.init_point;
       } else {
@@ -179,11 +197,21 @@ const PaymentModal = ({ onClose }) => {
                     justifyContent: 'space-between'
                   }}>
                     <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
-                      {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
+                      {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : isSocialCoupon ? `🏷️ Código ${coupon.code}: ${discountPercent}% DCTO aplicado` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
                     </span>
                     <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
                       VÁLIDO
                     </span>
+                  </div>
+                )}
+
+                {credit > 0 && (
+                  <div style={{
+                    background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.35)', borderRadius: '8px',
+                    padding: '8px 12px', marginBottom: '12px', fontSize: '0.78rem', color: '#6ee7b7', fontWeight: 600, lineHeight: 1.4
+                  }}>
+                    📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> del plan
+                    {upgradeCredit?.until ? ` (válido hasta el ${new Date(upgradeCredit.until).toLocaleDateString('es-CL')})` : ''}.
                   </div>
                 )}
 
@@ -211,7 +239,14 @@ const PaymentModal = ({ onClose }) => {
                         </span>
                       )}
                       <div>
-                        <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>{plan.name}</h4>
+                        <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>
+                          {plan.name}
+                          {plan.includesLibrary && (
+                            <span style={{ marginLeft: 6, fontSize: '0.6rem', fontWeight: 800, color: '#fbbf24', background: 'rgba(251,191,36,0.12)', border: '1px solid rgba(251,191,36,0.35)', padding: '1px 6px', borderRadius: 6, verticalAlign: 'middle' }}>
+                              📚 + LIBROS
+                            </span>
+                          )}
+                        </h4>
                         <p style={{ margin: '0.05rem 0 0 0', fontSize: isMobile ? '0.7rem' : '0.78rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
                       </div>
                       <div style={{ textAlign: 'right' }}>
@@ -227,6 +262,53 @@ const PaymentModal = ({ onClose }) => {
                     </div>
                   ))}
                 </div>
+
+                {/* Código de descuento (SHORTS20) */}
+                <div style={{ marginTop: isMobile ? '0.5rem' : '0.9rem' }}>
+                  {!showCouponBox ? (
+                    <button onClick={() => setShowCouponBox(true)} style={{ background: 'none', border: 'none', color: '#93c5fd', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <Tag size={13} /> ¿Tienes un código de descuento?
+                    </button>
+                  ) : (
+                    <div>
+                      <div style={{ display: 'flex', gap: '0.4rem' }}>
+                        <input
+                          value={couponInput}
+                          onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
+                          onKeyDown={e => e.key === 'Enter' && applyCoupon()}
+                          placeholder="Ej: SHORTS20"
+                          aria-label="Código de descuento"
+                          style={{ flex: 1, minWidth: 0, padding: '0.45rem 0.65rem', borderRadius: 8, border: '1px solid rgba(255,255,255,0.15)', background: 'var(--surface-600)', color: 'var(--surface-50)', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em' }}
+                        />
+                        <button onClick={applyCoupon} style={{ padding: '0.45rem 0.8rem', borderRadius: 8, border: 'none', background: 'var(--surface-500)', color: 'white', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+                          Aplicar
+                        </button>
+                      </div>
+                      {couponError && <div style={{ color: '#f87171', fontSize: '0.72rem', marginTop: 4 }}>{couponError}</div>}
+                      {coupon && !couponError && discountPercent > socialPercent && (
+                        <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: 4 }}>Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Libros como opción secundaria (en /biblioteca el orden es al revés) */}
+                {!onBooksPage && !libraryIncluded && (
+                  <button
+                    onClick={() => { onClose(); navigate('/biblioteca'); }}
+                    style={{
+                      marginTop: isMobile ? '0.6rem' : '1rem', width: '100%', display: 'flex', alignItems: 'center', gap: '0.6rem',
+                      padding: '0.6rem 0.75rem', borderRadius: 10, border: '1px dashed rgba(255,255,255,0.18)', background: 'transparent',
+                      color: 'var(--surface-300)', cursor: 'pointer', textAlign: 'left'
+                    }}
+                  >
+                    <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.78rem', lineHeight: 1.35 }}>
+                      ¿Solo quieres los libros? <strong style={{ color: 'var(--surface-50)' }}>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
+                      <span style={{ display: 'block', color: 'var(--surface-400)', fontSize: '0.7rem' }}>21 tomos + reconstrucciones + Libros Gordos, en PDF →</span>
+                    </span>
+                  </button>
+                )}
               </div>
 
               {/* Fixed bottom footer for Continuar al Pago button on mobile */}
@@ -336,6 +418,11 @@ const PaymentModal = ({ onClose }) => {
                       }}>
                       Pagar Internacional con PayPal
                     </button>
+                    {selectedPlan.oldPrice && (
+                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.25rem' }}>
+                        Si PayPal te muestra el precio sin descuento, paga con Webpay o transferencia, o escríbenos por WhatsApp.
+                      </div>
+                    )}
                     
                     {errorMp && (
                       <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
@@ -352,13 +439,13 @@ const PaymentModal = ({ onClose }) => {
                         Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
                       </p>
                       <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.78rem', color: 'var(--surface-100)', lineHeight: 1.45 }}>
-                        <li><strong>Banco:</strong> BancoEstado</li>
-                        <li><strong>Cuenta RUT:</strong> 18.842-443-0</li>
-                        <li><strong>Nombre:</strong> Felipe Yanez</li>
+                        <li><strong>Banco:</strong> {TRANSFER.bank}</li>
+                        <li><strong>{TRANSFER.account}:</strong> {TRANSFER.number}</li>
+                        <li><strong>Nombre:</strong> {TRANSFER.name}</li>
                         <li><strong>Monto:</strong> {selectedPlan.price}</li>
                       </ul>
                       <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.72rem', color: '#10b981', fontWeight: 600 }}>
-                        IMPORTANTE: Envía tu comprobante por WhatsApp al +1 (929) 360-3799.
+                        IMPORTANTE: Envía tu comprobante por WhatsApp al {TRANSFER.whatsapp}.
                       </p>
                     </div>
                   </div>

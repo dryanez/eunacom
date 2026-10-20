@@ -3,20 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useAuth } from '../contexts/AuthContext';
 import { promoPrice } from '../config/promo';
+import { APP_PLANS, PRODUCTS, fmtClp } from '../config/tienda';
 
-const PRICES = [
-  { name: '1 Mes', price: '$14.990' },
-  { name: '3 Meses', price: '$34.990' },
-  { name: '6 Meses', price: '$54.990', popular: true },
-  { name: '1 Año', price: '$89.990' },
-];
+const PRICES = APP_PLANS.map(p => ({ name: p.name, price: fmtClp(p.price), popular: p.popular, includesLibrary: p.includesLibrary }));
 
 // Landing for campaign email links (/oferta?discount=50). Shows the offer itself, then opens
 // checkout (logged in) or login (logged out). Stays on this page so an expired cached session
 // ends in the login box here instead of an empty dashboard.
 const Offer = () => {
   const navigate = useNavigate();
-  const { setShowPaymentModal, promo, isPremium } = useSubscription();
+  const { setShowPaymentModal, promo, isPremium, coupon } = useSubscription();
   const { user, loading, openAuthModal } = useAuth();
   useEffect(() => {
     try {
@@ -46,7 +42,9 @@ const Offer = () => {
   }, [loading, !!user]);
 
   const claim = () => (loggedIn ? setShowPaymentModal(true) : askLogin());
-  const percent = promo?.percent || 0;
+  // Promo admin o cupón de redes (?code=SHORTS20): gana el mayor, igual que en el checkout
+  const usingCoupon = !!coupon && coupon.percent > (promo?.percent || 0);
+  const percent = Math.max(promo?.percent || 0, coupon?.percent || 0);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px' }}>
@@ -59,11 +57,11 @@ const Offer = () => {
           {percent ? (
             <>
               <div style={{ display: 'inline-block', background: '#22d3ee', color: '#0f2a5c', fontSize: 12, fontWeight: 800, letterSpacing: 1.5, padding: '5px 12px', borderRadius: 999 }}>
-                {promo.name.toUpperCase()}
+                {usingCoupon ? `CÓDIGO ${coupon.code}` : promo.name.toUpperCase()}
               </div>
               <div style={{ fontSize: 48, lineHeight: 1, fontWeight: 800, color: '#ffffff', marginTop: 12 }}>{percent}% DCTO</div>
               <div style={{ fontSize: 15, color: '#c7d6f5', marginTop: 8 }}>en todos los planes</div>
-              {promo.endLabel && <div style={{ fontSize: 13, color: '#ffffff', marginTop: 10 }}>⏳ Hasta el <strong>{promo.endLabel}</strong></div>}
+              {!usingCoupon && promo.endLabel && <div style={{ fontSize: 13, color: '#ffffff', marginTop: 10 }}>⏳ Hasta el <strong>{promo.endLabel}</strong></div>}
             </>
           ) : (
             <div style={{ fontSize: 26, fontWeight: 800, color: '#ffffff' }}>Planes EUNACOM App</div>
@@ -76,7 +74,10 @@ const Offer = () => {
               display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px', marginBottom: 6,
               borderRadius: 10, background: p.popular ? '#e6efff' : '#f5f8fe', border: p.popular ? '2px solid #2563eb' : '2px solid transparent',
             }}>
-              <span style={{ fontWeight: 700, color: '#1f2937', fontSize: 14 }}>{p.name}</span>
+              <span style={{ fontWeight: 700, color: '#1f2937', fontSize: 14 }}>
+                {p.name}
+                {p.includesLibrary && <span style={{ marginLeft: 6, fontSize: 10, fontWeight: 800, color: '#92400e', background: '#fef3c7', padding: '2px 6px', borderRadius: 6 }}>+ LIBROS</span>}
+              </span>
               <span>
                 {percent > 0 && <span style={{ color: '#8a94a6', textDecoration: 'line-through', fontSize: 13, marginRight: 10 }}>{p.price}</span>}
                 <span style={{ color: '#2563eb', fontWeight: 800, fontSize: 17 }}>{percent ? promoPrice(p.price, percent) : p.price}</span>
@@ -106,6 +107,11 @@ const Offer = () => {
               ¿No tienes cuenta? Créala gratis
             </button>
           )}
+          <button onClick={() => navigate('/biblioteca')} style={{
+            width: '100%', background: 'none', border: '1px dashed #cbd5e1', borderRadius: 10, color: '#475569', fontSize: 13, marginTop: 8, cursor: 'pointer', padding: 8,
+          }}>
+            ¿Solo quieres los libros? <strong>{PRODUCTS.biblioteca.name} {fmtClp(PRODUCTS.biblioteca.price)}</strong> →
+          </button>
           <button onClick={() => navigate('/dashboard')} style={{
             width: '100%', background: 'none', border: 'none', color: '#6b7280', fontSize: 13, marginTop: 4, cursor: 'pointer', padding: 6,
           }}>

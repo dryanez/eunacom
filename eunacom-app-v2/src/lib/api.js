@@ -277,17 +277,47 @@ export async function grantPremiumAccess(adminEmail, targetUserId, months) {
 
 // ── PAYMENTS (Mercado Pago) ───────────────────────────────────────────────────
 
-export async function createCheckoutSession(userId, planId, discount = null) {
+export async function createCheckoutSession(userId, planId, discount = null, coupon = null) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify({ action: 'checkout', userId, planId, discount })
+    body: JSON.stringify({ action: 'checkout', userId, planId, discount, coupon })
   })
 }
 
-export async function createPaypalOrder(userId, planId) {
+export async function createPaypalOrder(userId, planId, coupon = null) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify({ action: 'paypal_order', userId, planId })
+    body: JSON.stringify({ action: 'paypal_order', userId, planId, coupon })
+  })
+}
+
+// ── Libros ──
+export async function fetchUserBooks(userId) {
+  return apiFetch(`/api/user-profiles?action=books&userId=${encodeURIComponent(userId)}`)
+}
+
+export async function createBookCheckout(userId, skus) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'book_checkout', userId, skus })
+  })
+}
+
+export async function fetchBookPurchases(adminEmail) {
+  return apiFetch(`/api/user-profiles?action=book_purchases&adminEmail=${encodeURIComponent(adminEmail)}`)
+}
+
+export async function grantBooks(adminEmail, data) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'book_grant', adminEmail, ...data })
+  })
+}
+
+export async function markBookCreditUsed(adminEmail, userId, ref) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'book_credit_used', adminEmail, userId, ref })
   })
 }
 

@@ -63,6 +63,8 @@ function App() {
                 <Route path="/mis-clases" element={<MisClases />} />
                 <Route path="/test" element={<TestCreator />} />
                 <Route path="/oferta" element={<Offer />} />
+                <Route path="/biblioteca" element={<Biblioteca />} />
+                <Route path="/libros" element={<Biblioteca />} />
               </Route>
 
               {/* Protected Routes — require login */}
@@ -73,7 +75,6 @@ function App() {
                 <Route path="/history" element={<History />} />
                 <Route path="/stats" element={<Stats />} />
                 <Route path="/review" element={<ReviewErrors />} />
-                <Route path="/biblioteca" element={<Biblioteca />} />
                 <Route path="/script-progress" element={<ScriptProgress />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
                 <Route path="/study-guides" element={<StudyGuides />} />

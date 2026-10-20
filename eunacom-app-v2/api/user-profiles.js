@@ -1,6 +1,8 @@
 import { getTurso } from './_turso.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
+import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP } from './_tienda.js'
+import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
@@ -22,12 +24,54 @@ async function paypalToken() {
   return (await r.json()).access_token
 }
 
+// Precios de planes: api/_tienda.js
 const PLANS = {
-  '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
-  '3m': { title: 'EUNACOM Examen - 3 Meses Premium', price: 34990 },
-  '6m': { title: 'EUNACOM Examen - 6 Meses Premium', price: 54990 },
-  '1y': { title: 'EUNACOM Examen - 1 Año Premium', price: 89990 },
+  ...Object.fromEntries(APP_PLANS.map(p => [p.id, { title: `EUNACOM Examen - ${p.name} Premium`, price: p.price }])),
   'offer': { title: 'Oferta Última Semana - 1 Mes', price: 5000 }
+}
+
+// Precio final de un plan: el mayor entre cupón de email (?discount, verificado), promo admin y
+// cupón de redes (SHORTS20); después se descuenta lo pagado en libros los últimos 7 días.
+async function planPricing(db, { userId, planId, discount, coupon }) {
+  const plan = PLANS[planId]
+  let requestedPct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
+  if (requestedPct) {
+    const sent = await db.execute({
+      sql: `SELECT 1 FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ? LIMIT 1`,
+      args: [userId, `discount_${requestedPct}`]
+    }).catch(() => ({ rows: [] }))
+    if (!sent.rows?.length) requestedPct = 0
+  }
+  const promo = await getActivePromo(db)
+  const couponPct = planId === 'offer' ? 0 : (resolveCoupon(coupon)?.percent || 0)
+  const discountPct = Math.max(requestedPct, promo?.percent || 0, couponPct)
+  const discounted = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
+  const credit = planId === 'offer' ? 0 : (await getUpgradeCredit(db, userId).catch(() => ({ amount: 0 }))).amount
+  const finalPrice = credit ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted
+  return { plan, discountPct, discounted, credit: discounted - finalPrice, finalPrice }
+}
+
+// Preferencia de Mercado Pago (Webpay) para un carro de libros
+async function bookPreference(db, { userId, title, amount, externalReference }) {
+  const r = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] }).catch(() => ({ rows: [] }))
+  const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      items: [{ title, quantity: 1, unit_price: amount, currency_id: 'CLP' }],
+      payer: { email: r.rows?.[0]?.email || 'test@test.com' },
+      external_reference: externalReference,
+      back_urls: {
+        success: 'https://www.eunacomapp.cl/biblioteca?books=success',
+        failure: 'https://www.eunacomapp.cl/biblioteca?books=failure',
+        pending: 'https://www.eunacomapp.cl/biblioteca?books=pending'
+      },
+      auto_return: 'approved',
+      notification_url: 'https://www.eunacomapp.cl/api/user-profiles'
+    })
+  })
+  if (!mpRes.ok) return null
+  return (await mpRes.json()).init_point
 }
 
 export default async function handler(req, res) {
@@ -138,8 +182,11 @@ export default async function handler(req, res) {
         if (paymentData.status === 'approved') {
           const externalReference = paymentData.external_reference
           if (externalReference) {
-            const [userId, planId] = externalReference.split('|')
-            if (userId) {
+            const [userId, planId, refPart, flag] = externalReference.split('|')
+            if (userId && planId === 'books') {
+              await fulfillBookOrder(db, refPart, `mp:${paymentId}`)
+              console.log(`[MP Webhook] Books order ${refPart} paid for ${userId}`)
+            } else if (userId) {
               // Calculate expiration date - accumulate if existing subscription is active
               const existing = await db.execute({
                 sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE id = ?`,
@@ -176,6 +223,7 @@ export default async function handler(req, res) {
                 args: [premiumUntil, monthsToAdd, userId]
               })
 
+              if (flag === 'credit') await markCreditUsed(db, userId, `mp:${paymentId}`).catch(() => {})
               console.log(`[MP Webhook] Premium activated for ${userId} until ${premiumUntil}`)
             }
           }
@@ -187,36 +235,28 @@ export default async function handler(req, res) {
       }
     }
 
+    // --- LIBROS (tienda /biblioteca) ---
+    if (await handleBooks(db, req, res, { createPreference: bookPreference })) return
+
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
-      const { userId, planId, discount } = req.body
+      const { userId, planId, discount, coupon } = req.body
       if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
 
       const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
       let payerEmail = 'test@test.com'
       if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
 
-      const plan = PLANS[planId]
       // A URL coupon (?discount=30|40|50) only counts if we actually emailed that coupon to this user
-      let requestedPct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
-      if (requestedPct) {
-        const sent = await db.execute({
-          sql: `SELECT 1 FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ? LIMIT 1`,
-          args: [userId, `discount_${requestedPct}`]
-        }).catch(() => ({ rows: [] }))
-        if (!sent.rows?.length) requestedPct = 0
-      }
-      const promo = await getActivePromo(db)
-      const discountPct = Math.max(requestedPct, promo?.percent || 0)
-      const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
-      const externalReference = `${userId}|${planId}|${Date.now()}`
+      const { plan, discountPct, credit, finalPrice } = await planPricing(db, { userId, planId, discount, coupon })
+      const externalReference = `${userId}|${planId}|${Date.now()}${credit ? '|credit' : ''}`
 
       const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           items: [{
-            title: discountPct > 0 ? `${plan.title} (${discountPct}% DCTO)` : plan.title,
+            title: `${plan.title}${discountPct > 0 ? ` (${discountPct}% DCTO)` : ''}${credit ? ' (- libros)' : ''}`,
             quantity: 1,
             unit_price: finalPrice,
             currency_id: 'CLP'
@@ -240,21 +280,21 @@ export default async function handler(req, res) {
 
     // --- PAYPAL ORDER (in-app, discount-aware) ---
     if (req.method === 'POST' && req.body?.action === 'paypal_order') {
-      const { userId, planId } = req.body
+      const { userId, planId, coupon } = req.body
       if (!userId || !PAYPAL_USD[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
       const token = await paypalToken()
       if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
 
-      const promo = await getActivePromo(db)
-      const pct = promo?.percent || 0
-      const value = (PAYPAL_USD[planId] * (1 - pct / 100)).toFixed(2)
+      // Same CLP pricing as Webpay, converted proportionally to the plan's USD price
+      const { discountPct: pct, credit, finalPrice } = await planPricing(db, { userId, planId, coupon })
+      const value = (PAYPAL_USD[planId] * (finalPrice / PLANS[planId].price)).toFixed(2)
       const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           intent: 'CAPTURE',
           purchase_units: [{
-            custom_id: `${userId}|${planId}`,
+            custom_id: `${userId}|${planId}${credit ? '|credit' : ''}`,
             description: pct > 0 ? `${PLANS[planId].title} (${pct}% DCTO)` : PLANS[planId].title,
             amount: { currency_code: 'USD', value }
           }],
@@ -291,7 +331,7 @@ export default async function handler(req, res) {
       })).json()
       const unit = order.purchase_units?.[0]
       const capture = unit?.payments?.captures?.[0]
-      const [orderUser, planId] = String(capture?.custom_id || unit?.custom_id || '').split('|')
+      const [orderUser, planId, flag] = String(capture?.custom_id || unit?.custom_id || '').split('|')
       if (order.status !== 'COMPLETED' || orderUser !== userId || !PLAN_MAP[planId]) {
         return res.status(400).json({ error: 'Pago PayPal no completado', status: order.status })
       }
@@ -300,6 +340,7 @@ export default async function handler(req, res) {
       const ins = await db.execute({ sql: `INSERT OR IGNORE INTO paypal_inapp_orders (order_id, user_id, plan_id) VALUES (?, ?, ?)`, args: [order.id, userId, planId] })
       if (!ins.rowsAffected) return res.json({ success: true, already_processed: true })
       const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
+      if (flag === 'credit') await markCreditUsed(db, userId, `paypal:${order.id}`).catch(() => {})
       return res.json({ success: true, premium_until: premiumUntil })
     }
 

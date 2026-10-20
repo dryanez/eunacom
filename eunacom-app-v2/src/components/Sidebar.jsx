@@ -7,7 +7,7 @@ import { calculateUserOverallStats, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen
 } from 'lucide-react'
 import { EunacomLogo } from './EunacomLogo'
 import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
@@ -165,6 +165,17 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     <Flame size={18} style={{ color: '#f97316' }} /> {!collapsed && <span>MedLingo 🔥</span>}
                 </NavLink>
 
+                <NavLink 
+                    to="/biblioteca" 
+                    data-tour="libros" 
+                    title="Libros EUNACOM" 
+                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
+                    onClick={onToggle}
+                    style={{ color: '#fbbf24', fontWeight: 700 }}
+                >
+                    <BookOpen size={18} style={{ color: '#fbbf24' }} /> {!collapsed && <span>Libros 📚</span>}
+                </NavLink>
+
                 {isAdmin() && (
                     <NavLink 
                         to="/studio" 
@@ -177,16 +188,6 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                     </NavLink>
                 )}
 
-                {isAdmin() && (
-                    <NavLink 
-                        to="/biblioteca" 
-                        title="Biblioteca EUNACOM" 
-                        className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                        onClick={onToggle}
-                    >
-                        <Shield size={18} /> {!collapsed && <span>Biblioteca EUNACOM</span>}
-                    </NavLink>
-                )}
 
                 {isAdmin() && (
                     <NavLink 

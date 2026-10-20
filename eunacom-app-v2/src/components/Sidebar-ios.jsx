@@ -7,7 +7,7 @@ import { calculateUserOverallStats, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Video, Shield, Users, Flame, Eye, EyeOff
+    LogOut, LogIn, ChevronDown, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen
 } from 'lucide-react'
 import { getDoctorAvatar } from '../utils/doctorAvatars'
 
@@ -95,14 +95,12 @@ const SidebarIOS = ({ mobileOpen, onToggle }) => {
                 <NavLink to="/medlingo" data-tour="medlingo" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#f97316', fontWeight: 700 }}>
                     <Flame size={18} style={{ color: '#f97316' }} /> MedLingo 🔥
                 </NavLink>
+                <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#fbbf24', fontWeight: 700 }}>
+                    <BookOpen size={18} style={{ color: '#fbbf24' }} /> Libros 📚
+                </NavLink>
                 {isAdmin() && (
                     <NavLink to="/studio" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle} style={{ color: '#38bdf8', fontWeight: 700 }}>
                         <Flame size={18} /> Studio Creator V3
-                    </NavLink>
-                )}
-                {isAdmin() && (
-                    <NavLink to="/biblioteca" className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} onClick={onToggle}>
-                        <Shield size={18} /> Biblioteca EUNACOM
                     </NavLink>
                 )}
                 {isAdmin() && (

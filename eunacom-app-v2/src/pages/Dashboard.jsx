@@ -18,6 +18,9 @@ import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
 import '../styles/dashboardProMax.css'
+import '../styles/tienda.css'
+import { useSubscription } from '../contexts/SubscriptionContext'
+import { PRODUCTS, TOMOS, EXTRAS, fmtClp } from '../config/tienda'
 
 const TOPIC_PRESETS = [
   // Módulo 1 · Medicina Interna
@@ -55,6 +58,7 @@ const PERIODS = [
 
 const Dashboard = () => {
   const { user, openAuthModal } = useAuth()
+  const { libraryIncluded, ownedBooks } = useSubscription()
   const navigate = useNavigate()
   const [stats, setStats] = useState({ totalAnswered: 0, correctAnswers: 0, xp: 0, totalXP: 0, level: 1, streak: 0 })
   const [subStats, setSubStats] = useState({ reconstructions: { answered: 0, correct: 0, exams: 0 }, custom: { answered: 0, correct: 0, exams: 0 }, clases: { answered: 0, correct: 0, exams: 0 } })
@@ -777,6 +781,39 @@ const Dashboard = () => {
                 <span>Entrenar Racha</span>
                 <ArrowRight size={16} />
               </span>
+            </div>
+          </a>
+
+          {/* BENTO: BIBLIOTECA DE LIBROS (acceso rápido a la tienda / mis libros) */}
+          <a href="/biblioteca" className="dash-bento-card bento-card-libros">
+            <div className="dash-card-ambient-tint" />
+            <div className="libros-bento-text">
+              <div className="dash-card-header">
+                <div className="dash-card-icon-box">
+                  <BookOpen size={22} />
+                </div>
+                <span className="dash-card-badge">{libraryIncluded ? '✅ Incluida en tu plan' : `📚 Desde ${fmtClp(TOMOS[0].price)}`}</span>
+              </div>
+              <div className="dash-card-body">
+                <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM en PDF'}</h3>
+                <p className="dash-card-desc">
+                  {libraryIncluded
+                    ? '21 tomos, Gran Libro de Reconstrucciones 2013–2025, Libros Gordos y guía Perfil V3.'
+                    : `21 tomos + reconstrucciones 2013–2025 + Libros Gordos. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
+                </p>
+              </div>
+              <div className="dash-card-footer">
+                <span className="dash-card-tag">{ownedBooks.size && !libraryIncluded ? `📖 ${ownedBooks.size} en tu cuenta` : '📖 Tomos · Reconstrucciones · Libros Gordos'}</span>
+                <span className="dash-card-action-link">
+                  <span>{libraryIncluded ? 'Abrir biblioteca' : 'Ver libros'}</span>
+                  <ArrowRight size={16} />
+                </span>
+              </div>
+            </div>
+            <div className="libros-bento-covers" aria-hidden="true">
+              {[TOMOS[0].cover, TOMOS[7].cover, EXTRAS[0].cover, TOMOS[17].cover, EXTRAS[1].cover].map((c, i) => (
+                <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2) * 4}deg)`, zIndex: 5 - Math.abs(i - 2) }} />
+              ))}
             </div>
           </a>
 

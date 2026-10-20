@@ -478,6 +478,40 @@ function clasesApiPlugin() {
         }))
       })
 
+      // ── Libros (Local Dev) ── compras en una SQLite local para no tocar Turso de producción.
+      // El "pago" Webpay se aprueba al tiro para poder probar el desbloqueo.
+      let booksDb
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/user-profiles')) return next()
+        const url = new URL(req.url, 'http://localhost')
+        const getAction = url.searchParams.get('action')
+        if (req.method === 'GET' && !['books', 'book_purchases'].includes(getAction)) return next()
+        try {
+          const run = adaptVercelHandler(async (rq, rs) => {
+            if (rq.method === 'POST' && !String(rq.body?.action || '').startsWith('book_')) return next()
+            if (!booksDb) {
+              const os = await import('os')
+              booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
+              await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
+            }
+            const { handleBooks, fulfillBookOrder } = await import('./api/_books.js')
+            const handled = await handleBooks(booksDb, rq, rs, {
+              createPreference: async (db, { orderId }) => {
+                await fulfillBookOrder(db, orderId, 'dev')
+                return '/biblioteca?books=success'
+              }
+            })
+            if (!handled) return next()
+          })
+          await run(req, res)
+        } catch (err) {
+          console.error('books dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
       // ── User Profiles API (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/user-profiles')) return next()
@@ -497,7 +531,7 @@ function clasesApiPlugin() {
           }
 
           if (req.method === 'POST') {
-            const body = await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
+            const body = req.body || await new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => r(JSON.parse(d))) })
             if (db && body.id && body.email) {
               try {
                 await db.execute({
@@ -598,6 +632,8 @@ export default defineConfig({
       '/api': {
         target: 'https://eunacom.vercel.app',
         changeOrigin: true,
+        // Shared modules imported by the client (src/config/promo.js → api/_promo.js) are source files, not API calls
+        bypass: (req) => (/^\/api\/_[\w-]+\.js(\?|$)/.test(req.url) ? req.url : undefined),
       }
     }
   }
