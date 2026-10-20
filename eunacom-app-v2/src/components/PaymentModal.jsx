@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { X, CheckCircle2, ArrowLeft, BookOpen, Tag } from 'lucide-react';
+import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, fmtClp, creditApplies } from '../config/tienda';
 import PayButtons from './PayButtons';
+import '../styles/tienda.css';
 
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
-const PLANS = APP_PLANS.map(p => ({
-  ...p,
-  price: fmtClp(p.price),
-  desc: p.includesLibrary
-    ? `Curso +650 videos + 10k preguntas + biblioteca completa de libros (${DAYS[p.months]} días)`
-    : `Curso +650 videos + 10k preguntas (${DAYS[p.months]} días)`
-}));
+const PLANS = APP_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
 
 const PaymentModal = ({ onClose }) => {
@@ -63,7 +58,8 @@ const PaymentModal = ({ onClose }) => {
 
   const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
-  const [step, setStep] = useState(1);
+  const payRef = React.useRef(null);
+  const scrollToPay = () => payRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
@@ -118,333 +114,180 @@ const PaymentModal = ({ onClose }) => {
   };
 
 
+  useEffect(() => {
+    const onKey = e => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
+
+  const planValue = id => {
+    const p = plansToDisplay.find(x => x.id === id);
+    return parseInt(String(p.price).replace(/\D/g, ''), 10);
+  };
+
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 10000,
-        background: 'rgba(11,17,32,0.85)', backdropFilter: 'blur(10px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: isMobile ? '0.35rem' : '1rem',
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          background: 'var(--surface-700)', borderRadius: 'var(--radius-xl)',
-          width: '100%', maxWidth: '800px',
-          border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
-          overflow: 'hidden', display: 'flex', flexDirection: 'column',
-          maxHeight: isMobile ? '82dvh' : '90vh',
-          height: isMobile ? '82dvh' : 'auto'
-        }}
-      >
-        {/* Header */}
-        <div style={{
-          padding: isMobile ? '0.65rem 0.85rem' : '1.25rem 1.75rem',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          flexShrink: 0
-        }}>
-          <div>
-            <h2 style={{ fontSize: isMobile ? '1.1rem' : '1.35rem', fontWeight: 800, color: 'var(--surface-50)', margin: 0, fontFamily: 'var(--font)' }}>
-              Curso Completo Todo-en-Uno ⭐
-            </h2>
-            <div style={{ fontSize: isMobile ? '0.72rem' : '0.8rem', color: '#38bdf8', fontWeight: 600, marginTop: '2px' }}>
-              +650 Clases en Video (Perfil EUNACOM) + Banco de +10.000 Preguntas
-            </div>
+    <div className="plan-checkout" role="dialog" aria-modal="true" aria-label="Planes EUNACOM App">
+      <div className="plan-checkout__bar">
+        <div>
+          <div className="plan-checkout__title">Curso Completo Todo-en-Uno ⭐</div>
+          <div className="plan-checkout__sub">+650 clases en video · +10.000 preguntas · simulacros · reconstrucciones</div>
+        </div>
+        <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
+      </div>
+
+      <div className="plan-checkout__body">
+        {discountPercent > 0 && (
+          <div className="plan-banner promo">
+            <span>
+              {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : isSocialCoupon ? `🏷️ Código ${coupon.code}: ${discountPercent}% DCTO aplicado` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
+            </span>
+            <span className="pill">VÁLIDO</span>
           </div>
-          <button
-            onClick={onClose}
-            style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: '0.25rem' }}
-          >
-            <X size={18} />
-          </button>
+        )}
+        {credit > 0 && (
+          <div className="plan-banner credit">
+            📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> de los planes de 6 meses y 1 año
+            {upgradeCredit?.until ? ` (válido hasta el ${new Date(upgradeCredit.until).toLocaleDateString('es-CL')})` : ''}.
+          </div>
+        )}
+
+        <h2 className="plan-checkout__h2">Elige tu plan</h2>
+        <p className="plan-checkout__lead">Todos los planes incluyen acceso total al curso. Los de 6 meses y 1 año traen además la biblioteca completa de libros.</p>
+
+        <div className="plan-grid">
+          {plansToDisplay.map(plan => {
+            const selected = selectedPlan.id === plan.id;
+            const perMonth = Math.round(planValue(plan.id) / plan.months);
+            return (
+              <div
+                key={plan.id}
+                className={`pack-card plan-card ${plan.popular ? 'star' : ''} ${selected ? 'selected' : ''}`}
+                onClick={() => setSelectedPlanId(plan.id)}
+              >
+                {plan.popular && <span className="pack-ribbon">⭐ Más popular</span>}
+                <h3>{plan.name}</h3>
+                <p className="desc">{plan.days} días de acceso</p>
+                <div className="pack-price">
+                  {plan.price}
+                  {plan.oldPrice && <span className="was">{plan.oldPrice}</span>}
+                </div>
+                <div className="plan-permonth">{plan.months > 1 ? `≈ ${fmtClp(perMonth)} al mes` : ' '}</div>
+                <ul className="pack-feat">
+                  <li><i>✓</i>+650 clases en video</li>
+                  <li><i>✓</i>+10.000 preguntas y simulacros</li>
+                  <li><i>✓</i>16 reconstrucciones resueltas</li>
+                  {plan.includesLibrary
+                    ? <li><i>✓</i><b>Biblioteca completa de libros</b></li>
+                    : <li className="no"><i>✕</i>Biblioteca de libros</li>}
+                </ul>
+                <button
+                  className={`t-btn ${selected ? 'fill' : ''}`}
+                  onClick={e => { e.stopPropagation(); setSelectedPlanId(plan.id); scrollToPay(); }}
+                >
+                  {selected ? '✓ Elegido · Pagar' : 'Elegir'}
+                </button>
+              </div>
+            );
+          })}
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', flex: 1, minHeight: 0, overflow: 'hidden' }}>
-          {/* Left Side: Plans */}
-          {(!isMobile || step === 1) && (
-            <div style={{
-              flex: '1 1 350px',
-              borderRight: isMobile ? 'none' : '1px solid rgba(255,255,255,0.08)',
-              background: 'rgba(0,0,0,0.2)',
-              display: 'flex', flexDirection: 'column',
-              height: '100%', minHeight: 0, overflow: 'hidden'
-            }}>
-              {/* Scrollable plans section */}
-              <div style={{
-                flex: 1, minHeight: 0, overflowY: 'auto',
-                padding: isMobile ? '0.6rem 0.85rem' : '1.5rem'
-              }}>
-                <p style={{
-                  color: 'var(--surface-300)',
-                  marginBottom: isMobile ? '0.45rem' : '1rem',
-                  fontSize: isMobile ? '0.78rem' : '0.88rem',
-                  lineHeight: 1.4
-                }}>
-                  <strong>Todos los planes</strong> incluyen acceso total e ilimitado al <strong>Curso de +650 Videos</strong>, +10.000 preguntas, reconstrucciones y simulacros.
-                </p>
-                
-                {discountPercent > 0 && (
-                  <div style={{
-                    background: 'linear-gradient(135deg, rgba(37,99,235,0.2) 0%, rgba(29,78,216,0.3) 100%)',
-                    border: '1px solid #3b82f6',
-                    borderRadius: '8px',
-                    padding: '8px 12px',
-                    marginBottom: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
-                      {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : isSocialCoupon ? `🏷️ Código ${coupon.code}: ${discountPercent}% DCTO aplicado` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
-                    </span>
-                    <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
-                      VÁLIDO
-                    </span>
-                  </div>
-                )}
-
-                {credit > 0 && (
-                  <div style={{
-                    background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.35)', borderRadius: '8px',
-                    padding: '8px 12px', marginBottom: '12px', fontSize: '0.78rem', color: '#6ee7b7', fontWeight: 600, lineHeight: 1.4
-                  }}>
-                    📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> de los planes de 6 meses y 1 año
-                    {upgradeCredit?.until ? ` (válido hasta el ${new Date(upgradeCredit.until).toLocaleDateString('es-CL')})` : ''}.
-                  </div>
-                )}
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.35rem' : '0.75rem' }}>
-                  {plansToDisplay.map(plan => (
-                    <div
-                      key={plan.id}
-                      onClick={() => {
-                        setSelectedPlanId(plan.id);
-                        if (isMobile) setStep(2);
-                      }}
-                      style={{
-                        padding: isMobile ? '0.5rem 0.75rem' : '0.85rem',
-                        borderRadius: '10px',
-                        border: `2px solid ${selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'rgba(255,255,255,0.1)'}`,
-                        background: selectedPlan.id === plan.id ? 'rgba(59,130,246,0.18)' : 'var(--surface-600)',
-                        cursor: 'pointer', position: 'relative', transition: 'all 0.2s',
-                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                        touchAction: 'manipulation'
-                      }}
-                    >
-                      {plan.popular && (
-                        <span style={{ position: 'absolute', top: -8, right: 10, background: '#ef4444', color: 'white', fontSize: '0.58rem', padding: '1px 5px', borderRadius: '6px', fontWeight: 800 }}>
-                          MÁS POPULAR
-                        </span>
-                      )}
-                      <div>
-                        <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>
-                          {plan.name}
-                          {plan.includesLibrary && (
-                            <span style={{ marginLeft: 6, fontSize: '0.6rem', fontWeight: 800, color: '#fbbf24', background: 'rgba(251,191,36,0.12)', border: '1px solid rgba(251,191,36,0.35)', padding: '1px 6px', borderRadius: 6, verticalAlign: 'middle' }}>
-                              📚 + LIBROS
-                            </span>
-                          )}
-                        </h4>
-                        <p style={{ margin: '0.05rem 0 0 0', fontSize: isMobile ? '0.7rem' : '0.78rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
-                      </div>
-                      <div style={{ textAlign: 'right' }}>
-                        {plan.oldPrice && (
-                          <div style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>
-                            {plan.oldPrice}
-                          </div>
-                        )}
-                        <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
-                          {plan.price}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+        <div className="plan-extras">
+          <div>
+            {!showCouponBox ? (
+              <button onClick={() => setShowCouponBox(true)} className="plan-link">
+                <Tag size={13} /> ¿Tienes un código de descuento?
+              </button>
+            ) : (
+              <div>
+                <div style={{ display: 'flex', gap: '0.4rem', maxWidth: 360 }}>
+                  <input
+                    value={couponInput}
+                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
+                    onKeyDown={e => e.key === 'Enter' && applyCoupon()}
+                    placeholder="Ej: SHORTS20"
+                    aria-label="Código de descuento"
+                    className="plan-input"
+                  />
+                  <button onClick={applyCoupon} className="plan-apply">Aplicar</button>
                 </div>
-
-                {/* Código de descuento (SHORTS20) */}
-                <div style={{ marginTop: isMobile ? '0.5rem' : '0.9rem' }}>
-                  {!showCouponBox ? (
-                    <button onClick={() => setShowCouponBox(true)} style={{ background: 'none', border: 'none', color: '#93c5fd', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <Tag size={13} /> ¿Tienes un código de descuento?
-                    </button>
-                  ) : (
-                    <div>
-                      <div style={{ display: 'flex', gap: '0.4rem' }}>
-                        <input
-                          value={couponInput}
-                          onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
-                          onKeyDown={e => e.key === 'Enter' && applyCoupon()}
-                          placeholder="Ej: SHORTS20"
-                          aria-label="Código de descuento"
-                          style={{ flex: 1, minWidth: 0, padding: '0.45rem 0.65rem', borderRadius: 8, border: '1px solid rgba(255,255,255,0.15)', background: 'var(--surface-600)', color: 'var(--surface-50)', fontSize: '0.82rem', fontWeight: 700, letterSpacing: '0.04em' }}
-                        />
-                        <button onClick={applyCoupon} style={{ padding: '0.45rem 0.8rem', borderRadius: 8, border: 'none', background: 'var(--surface-500)', color: 'white', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
-                          Aplicar
-                        </button>
-                      </div>
-                      {couponError && <div style={{ color: '#f87171', fontSize: '0.72rem', marginTop: 4 }}>{couponError}</div>}
-                      {coupon && !couponError && discountPercent > socialPercent && (
-                        <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: 4 }}>Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Libros como opción secundaria (en /biblioteca el orden es al revés) */}
-                {!onBooksPage && !libraryIncluded && (
-                  <button
-                    onClick={() => { onClose(); navigate('/biblioteca'); }}
-                    style={{
-                      marginTop: isMobile ? '0.6rem' : '1rem', width: '100%', display: 'flex', alignItems: 'center', gap: '0.6rem',
-                      padding: '0.6rem 0.75rem', borderRadius: 10, border: '1px dashed rgba(255,255,255,0.18)', background: 'transparent',
-                      color: 'var(--surface-300)', cursor: 'pointer', textAlign: 'left'
-                    }}
-                  >
-                    <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.78rem', lineHeight: 1.35 }}>
-                      ¿Solo quieres los libros? <strong style={{ color: 'var(--surface-50)' }}>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
-                      <span style={{ display: 'block', color: 'var(--surface-400)', fontSize: '0.7rem' }}>21 tomos + reconstrucciones + Libros Gordos, para leer en la app →</span>
-                    </span>
-                  </button>
+                {couponError && <div style={{ color: '#f87171', fontSize: '0.75rem', marginTop: 4 }}>{couponError}</div>}
+                {coupon && !couponError && discountPercent > socialPercent && (
+                  <div style={{ color: 'var(--surface-400)', fontSize: '0.75rem', marginTop: 4 }}>Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>
                 )}
               </div>
+            )}
+          </div>
 
-              {/* Fixed bottom footer for Continuar al Pago button on mobile */}
-              {isMobile && (
-                <div style={{
-                  padding: '0.5rem 0.85rem',
-                  background: 'var(--surface-800)',
-                  borderTop: '1px solid rgba(255,255,255,0.08)',
-                  flexShrink: 0
-                }}>
-                  <button
-                    onClick={() => setStep(2)}
-                    style={{
-                      width: '100%', padding: '0.7rem', background: 'var(--accent-blue)', color: 'white',
-                      border: 'none', borderRadius: '8px', fontSize: '0.92rem', fontWeight: 800,
-                      cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center',
-                      boxShadow: '0 4px 12px rgba(59,130,246,0.4)',
-                      touchAction: 'manipulation'
-                    }}
-                  >
-                    Continuar al Pago ({selectedPlan.name} · {selectedPlan.price}) →
-                  </button>
-                </div>
-              )}
-            </div>
+          {/* Libros como opción secundaria (en /biblioteca el orden es al revés) */}
+          {!onBooksPage && !libraryIncluded && (
+            <button onClick={() => { onClose(); navigate('/biblioteca'); }} className="plan-books">
+              <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
+              <span>
+                ¿Solo quieres los libros? <strong>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
+                <span className="plan-books__sub">21 tomos + reconstrucciones + Libros Gordos, para leer en la app →</span>
+              </span>
+            </button>
           )}
+        </div>
 
-          {/* Right Side: Payment Methods */}
-          {(!isMobile || step === 2) && (
-            <div style={{
-              flex: '1 1 350px',
-              padding: isMobile ? '0.75rem 0.85rem' : '1.5rem',
-              display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-              overflowY: 'auto', flex: 1, minHeight: 0
-            }}>
-              {isMobile && (
-                <button
-                  onClick={() => setStep(1)}
-                  style={{
-                    background: 'none', border: 'none', color: 'var(--surface-300)',
-                    textAlign: 'left', marginBottom: '0.65rem', fontSize: '0.85rem',
-                    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem',
-                    padding: 0
-                  }}
-                >
-                  <ArrowLeft size={15} /> Volver a los planes
-                </button>
+        {/* Pago */}
+        <div ref={payRef} className="plan-pay">
+          <h3 className="plan-pay__title">
+            Completar pago: <span>{selectedPlan.name} · {selectedPlan.price}</span>
+          </h3>
+
+          <div className="plan-country">
+            <button onClick={() => setCountry('CL')} className={country === 'CL' ? 'on' : ''}>🇨🇱 Chile</button>
+            <button onClick={() => setCountry('BO')} className={country === 'BO' ? 'on' : ''}>🇧🇴 Bolivia / Int.</button>
+          </div>
+
+          <div className="plan-banner credit" style={{ textAlign: 'center' }}>
+            <CheckCircle2 size={15} style={{ verticalAlign: 'text-bottom', marginRight: 4 }} />
+            <strong>Activación inmediata</strong>&nbsp;al terminar el pago.
+          </div>
+
+          {country === 'CL' ? (
+            <>
+              <PayButtons loading={loadingMp} onMercadoPago={handleMercadoPago} onPaypal={handlePaypal} />
+              {selectedPlan.oldPrice && (
+                <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: '0.3rem', textAlign: 'center' }}>
+                  Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
+                </div>
               )}
-              
-              <h3 style={{ fontSize: '0.98rem', color: 'var(--surface-50)', marginBottom: '0.6rem', marginTop: 0, textAlign: 'center' }}>
-                Completar pago: <span style={{ color: 'var(--accent-blue)' }}>{selectedPlan.name} ({selectedPlan.price})</span>
-              </h3>
+              {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
 
-              {/* Selector de País */}
-              <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.75rem', background: 'var(--surface-600)', padding: '0.15rem', borderRadius: '8px' }}>
-                <button
-                  onClick={() => setCountry('CL')}
-                  style={{
-                    flex: 1, padding: '0.4rem', border: 'none', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-                    background: country === 'CL' ? 'var(--surface-500)' : 'transparent',
-                    color: country === 'CL' ? 'white' : 'var(--surface-300)'
-                  }}
-                >
-                  🇨🇱 Chile
-                </button>
-                <button
-                  onClick={() => setCountry('BO')}
-                  style={{
-                    flex: 1, padding: '0.4rem', border: 'none', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s',
-                    background: country === 'BO' ? 'var(--surface-500)' : 'transparent',
-                    color: country === 'BO' ? 'white' : 'var(--surface-300)'
-                  }}
-                >
-                  🇧🇴 Bolivia / Int.
-                </button>
+              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '1rem 0' }} />
+              <h4 className="plan-pay__h4">Transferencia directa</h4>
+              <div className="plan-transfer">
+                <p>Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:</p>
+                <ul>
+                  <li><strong>Banco:</strong> {TRANSFER.bank}</li>
+                  <li><strong>{TRANSFER.account}:</strong> {TRANSFER.number}</li>
+                  <li><strong>Nombre:</strong> {TRANSFER.name}</li>
+                  <li><strong>Monto:</strong> {selectedPlan.price}</li>
+                </ul>
+                <p className="ok">IMPORTANTE: Envía tu comprobante por WhatsApp al {TRANSFER.whatsapp}.</p>
               </div>
-
-              <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '0.6rem 0.75rem', borderRadius: '8px', marginBottom: '0.75rem' }}>
-                <p style={{ margin: 0, fontSize: '0.78rem', color: '#34d399', lineHeight: 1.35, textAlign: 'center' }}>
-                  <CheckCircle2 size={15} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.3rem' }} />
-                  <strong>Activación Inmediata</strong> al finalizar el pago seguro {country === 'CL' ? 'con Webpay o Tarjetas' : 'con Pago Simple / PayPal'}.
-                </p>
-              </div>
-
-              {country === 'CL' ? (
-                <>
-                  <div style={{ textAlign: 'center' }}>
-                    <PayButtons loading={loadingMp} onMercadoPago={handleMercadoPago} onPaypal={handlePaypal} />
-                    {selectedPlan.oldPrice && (
-                      <div style={{ color: 'var(--surface-400)', fontSize: '0.7rem', marginTop: '0.25rem' }}>
-                        Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
-                      </div>
-                    )}
-                    {errorMp && (
-                      <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.35rem' }}>{errorMp}</div>
-                    )}
-                  </div>
-
-                  <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '0.75rem 0' }} />
-
-                  {/* Transferencia */}
-                  <div>
-                    <h4 style={{ margin: '0 0 0.35rem 0', color: 'var(--surface-200)', fontSize: '0.85rem' }}>Transferencia Directa</h4>
-                    <div style={{ background: 'var(--surface-600)', padding: '0.65rem 0.75rem', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.2)' }}>
-                      <p style={{ margin: '0 0 0.3rem 0', fontSize: '0.78rem', color: 'var(--surface-300)' }}>
-                        Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:
-                      </p>
-                      <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '0.78rem', color: 'var(--surface-100)', lineHeight: 1.45 }}>
-                        <li><strong>Banco:</strong> {TRANSFER.bank}</li>
-                        <li><strong>{TRANSFER.account}:</strong> {TRANSFER.number}</li>
-                        <li><strong>Nombre:</strong> {TRANSFER.name}</li>
-                        <li><strong>Monto:</strong> {selectedPlan.price}</li>
-                      </ul>
-                      <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.72rem', color: '#10b981', fontWeight: 600 }}>
-                        IMPORTANTE: Envía tu comprobante por WhatsApp al {TRANSFER.whatsapp}.
-                      </p>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Bolivia / Internacional */}
-                  <div style={{ textAlign: 'center' }}>
-                    <p style={{ color: 'var(--surface-300)', fontSize: '0.85rem', marginBottom: '1rem', lineHeight: 1.45 }}>
-                      Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
-                    </p>
-                    <PayButtons showMercadoPago={false} loading={loadingMp} onPaypal={handlePaypal} />
-                  </div>
-                </>
-              )}
-
-            </div>
+            </>
+          ) : (
+            <>
+              <p style={{ color: 'var(--surface-300)', fontSize: '0.85rem', margin: '0 0 0.8rem', lineHeight: 1.45, textAlign: 'center' }}>
+                Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Puedes pagar con Apple Pay, Google Pay o tarjeta.
+              </p>
+              <PayButtons showMercadoPago={false} loading={loadingMp} onPaypal={handlePaypal} />
+              {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
+            </>
           )}
         </div>
       </div>
+
+      {isMobile && (
+        <div className="plan-mobile-cta">
+          <button onClick={scrollToPay}>Pagar {selectedPlan.name} · {selectedPlan.price} →</button>
+        </div>
+      )}
     </div>
   );
 };

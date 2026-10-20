@@ -136,3 +136,53 @@
   .libros-bento-covers img { height: 84px; margin-left: -34px; }
 }
 @media (max-width: 480px) { .libros-bento-covers { display: none; } }
+
+/* Checkout de planes a pantalla completa (mismo estilo que la tienda) */
+.plan-checkout { position: fixed; inset: 0; z-index: 10000; background: var(--surface-900, #0b1120); display: flex; flex-direction: column; font-family: var(--font, inherit); }
+.plan-checkout__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); background: var(--surface-800, #0f172a); flex-shrink: 0; }
+.plan-checkout__title { font-size: 1.2rem; font-weight: 800; color: var(--surface-50); }
+.plan-checkout__sub { font-size: 0.78rem; color: #38bdf8; font-weight: 600; margin-top: 2px; }
+.plan-checkout__close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--surface-200); border-radius: 10px; padding: 0.4rem; cursor: pointer; display: flex; }
+.plan-checkout__body { flex: 1; overflow-y: auto; padding: 1.5rem 1.5rem 7rem; width: 100%; max-width: 1180px; margin: 0 auto; box-sizing: border-box; }
+.plan-checkout__h2 { font-size: 1.6rem; font-weight: 800; color: var(--surface-50); margin: 0.5rem 0 0.25rem; text-align: center; letter-spacing: -0.02em; }
+.plan-checkout__lead { text-align: center; color: var(--surface-400); font-size: 0.9rem; margin: 0 auto 1.6rem; max-width: 640px; }
+.plan-banner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; border-radius: 12px; padding: 0.65rem 0.9rem; margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 700; }
+.plan-banner.promo { background: linear-gradient(135deg, rgba(37,99,235,0.2) 0%, rgba(29,78,216,0.3) 100%); border: 1px solid #3b82f6; color: #93c5fd; }
+.plan-banner.promo .pill { font-size: 0.72rem; background: #2563eb; color: #fff; padding: 2px 9px; border-radius: 12px; font-weight: 800; flex-shrink: 0; }
+.plan-banner.credit { display: block; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; font-weight: 600; line-height: 1.45; }
+.plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; align-items: stretch; padding-top: 0.75rem; }
+.plan-card { cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+.plan-card:hover { transform: translateY(-2px); }
+.plan-card.selected { border: 2px solid var(--accent-blue, #3b82f6); background: linear-gradient(180deg, rgba(59,130,246,0.12), transparent 60%), var(--surface-700); }
+.plan-card.star:not(.selected) { border-color: rgba(59,130,246,0.55); }
+.plan-permonth { font-size: 0.78rem; color: #34d399; font-weight: 700; margin-top: 0.1rem; }
+.plan-extras { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin: 1.25rem 0 0; }
+.plan-link { background: none; border: none; color: #93c5fd; font-size: 0.85rem; font-weight: 700; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 5px; font-family: inherit; }
+.plan-input { flex: 1; min-width: 0; padding: 0.5rem 0.7rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: var(--surface-600); color: var(--surface-50); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; }
+.plan-apply { padding: 0.5rem 0.9rem; border-radius: 8px; border: none; background: var(--surface-500); color: #fff; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+.plan-books { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 0.85rem; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.2); background: transparent; color: var(--surface-300); cursor: pointer; text-align: left; font-size: 0.85rem; font-family: inherit; }
+.plan-books strong { color: var(--surface-50); }
+.plan-books__sub { display: block; color: var(--surface-400); font-size: 0.74rem; }
+.plan-pay { max-width: 520px; margin: 2rem auto 0; background: var(--surface-700); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 1.25rem; scroll-margin-top: 1rem; }
+.plan-pay__title { text-align: center; font-size: 1.05rem; color: var(--surface-50); margin: 0 0 0.8rem; }
+.plan-pay__title span { color: var(--accent-blue, #3b82f6); }
+.plan-pay__h4 { margin: 0 0 0.4rem; color: var(--surface-200); font-size: 0.88rem; }
+.plan-country { display: flex; gap: 0.4rem; margin-bottom: 0.75rem; background: var(--surface-600); padding: 0.2rem; border-radius: 10px; }
+.plan-country button { flex: 1; padding: 0.45rem; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; background: transparent; color: var(--surface-300); font-family: inherit; }
+.plan-country button.on { background: var(--surface-500); color: #fff; }
+.plan-transfer { background: var(--surface-600); padding: 0.7rem 0.85rem; border-radius: 10px; border: 1px dashed rgba(255,255,255,0.2); font-size: 0.8rem; color: var(--surface-300); }
+.plan-transfer p { margin: 0 0 0.3rem; }
+.plan-transfer ul { margin: 0; padding-left: 1rem; color: var(--surface-100); line-height: 1.5; }
+.plan-transfer .ok { margin: 0.45rem 0 0; color: #10b981; font-weight: 600; font-size: 0.75rem; }
+.plan-mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.85rem calc(0.6rem + env(safe-area-inset-bottom, 0px)); background: var(--surface-800, #0f172a); border-top: 1px solid rgba(255,255,255,0.1); }
+.plan-mobile-cta button { width: 100%; padding: 0.8rem; border: none; border-radius: 999px; background: var(--accent-blue, #3b82f6); color: #fff; font-weight: 800; font-size: 0.95rem; font-family: inherit; }
+@media (max-width: 1000px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .plan-grid { grid-template-columns: 1fr; }
+  .plan-checkout__body { padding: 1rem 0.85rem 6rem; }
+  .plan-checkout__bar { padding: 0.7rem 0.85rem; }
+  .plan-checkout__h2 { font-size: 1.3rem; }
+  .plan-checkout__title { font-size: 1rem; }
+  .plan-checkout__sub { font-size: 0.7rem; }
+  .plan-card.star { order: -1; } /* el recomendado primero en el celular */
+}
