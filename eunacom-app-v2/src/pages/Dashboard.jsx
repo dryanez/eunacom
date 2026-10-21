@@ -798,8 +798,8 @@ const Dashboard = () => {
                 <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM'}</h3>
                 <p className="dash-card-desc">
                   {libraryIncluded
-                    ? '21 tomos, reconstrucciones 2013–2025, Libros Gordos, Repaso Final, 1.569 códigos explicados y Atlas.'
-                    : `21 tomos, reconstrucciones, Libros Gordos, Repaso Final y Atlas. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
+                    ? '21 tomos, reconstrucciones 2013–2025, Libros Gordos, Repaso Final, 1.569 códigos explicados y 19 atlas de imágenes.'
+                    : `21 tomos, reconstrucciones, Libros Gordos, Repaso Final y 19 atlas de imágenes. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
                 </p>
               </div>
               <div className="dash-card-footer">

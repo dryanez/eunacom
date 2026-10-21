@@ -158,7 +158,30 @@ export const EXTRAS = [
       { label: 'Urología', file: '05_Repaso_Final/Repaso_Final_Urologia_2026.pdf' },
     ],
   },
-  { sku: 'atlas', name: 'Atlas de Imágenes de Dermatología (86 imágenes comentadas)', cover: `${COVER}q_atlas.jpg`, file: '06_Atlas/Atlas_Imagenes_Dermatologia_2026.pdf' },
+  {
+    sku: 'atlas', name: 'Atlas de Imágenes: 19 atlas, uno por especialidad (1.144 imágenes comentadas)', cover: `${COVER}q_atlas.jpg`,
+    files: [
+      { label: 'Cardiología', file: '06_Atlas/Atlas_Imagenes_Cardiologia_2026.pdf' },
+      { label: 'Cirugía', file: '06_Atlas/Atlas_Imagenes_Cirugia_2026.pdf' },
+      { label: 'Dermatología', file: '06_Atlas/Atlas_Imagenes_Dermatologia_2026.pdf' },
+      { label: 'Diabetes', file: '06_Atlas/Atlas_Imagenes_Diabetes_2026.pdf' },
+      { label: 'Endocrinología', file: '06_Atlas/Atlas_Imagenes_Endocrinologia_2026.pdf' },
+      { label: 'Gastroenterología', file: '06_Atlas/Atlas_Imagenes_Gastroenterologia_2026.pdf' },
+      { label: 'Ginecología', file: '06_Atlas/Atlas_Imagenes_Ginecologia_2026.pdf' },
+      { label: 'Hematología', file: '06_Atlas/Atlas_Imagenes_Hematologia_2026.pdf' },
+      { label: 'Infectología', file: '06_Atlas/Atlas_Imagenes_Infectologia_2026.pdf' },
+      { label: 'Nefrología', file: '06_Atlas/Atlas_Imagenes_Nefrologia_2026.pdf' },
+      { label: 'Neurología', file: '06_Atlas/Atlas_Imagenes_Neurologia_2026.pdf' },
+      { label: 'Obstetricia', file: '06_Atlas/Atlas_Imagenes_Obstetricia_2026.pdf' },
+      { label: 'Oftalmología', file: '06_Atlas/Atlas_Imagenes_Oftalmologia_2026.pdf' },
+      { label: 'Otorrinolaringología', file: '06_Atlas/Atlas_Imagenes_Otorrinolaringologia_2026.pdf' },
+      { label: 'Pediatría', file: '06_Atlas/Atlas_Imagenes_Pediatria_2026.pdf' },
+      { label: 'Respiratorio', file: '06_Atlas/Atlas_Imagenes_Respiratorio_2026.pdf' },
+      { label: 'Reumatología', file: '06_Atlas/Atlas_Imagenes_Reumatologia_2026.pdf' },
+      { label: 'Traumatología', file: '06_Atlas/Atlas_Imagenes_Traumatologia_2026.pdf' },
+      { label: 'Urología', file: '06_Atlas/Atlas_Imagenes_Urologia_2026.pdf' },
+    ],
+  },
 ]
 
 const ALL_TOMOS = TOMOS.map(t => t.sku)

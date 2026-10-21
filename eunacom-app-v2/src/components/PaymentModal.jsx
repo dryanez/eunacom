@@ -18,7 +18,7 @@ const LIB_ITEMS = [
   { n: '23', t: 'Libros Gordos', d: 'El Gran Libro Gordo + 22 libros de 90 preguntas por tema.' },
   { n: '21', t: 'Repaso Final', d: 'Un libro de repaso por especialidad: lo que más se pregunta, para la última semana.' },
   { n: '1.569', t: 'Códigos explicados', d: 'Perfil V3 código por código: qué te pueden preguntar de cada uno.' },
-  { n: '86', t: 'Imágenes de dermatología', d: 'Atlas comentado: lo que hay que reconocer en cada foto.' },
+  { n: '1.144', t: 'Imágenes en 19 atlas', d: 'Un atlas comentado por especialidad: lo que hay que reconocer en cada foto.' },
 ];
 
 const PaymentModal = ({ onClose }) => {
