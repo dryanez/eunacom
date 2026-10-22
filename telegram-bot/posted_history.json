@@ -168,7 +168,10 @@
     "a8968e9d-3721-4530-911f-8588e0c4976f",
     "bd6510df-0a4c-4823-84b2-9aa7e3928c15",
     "472b7642-d42c-471a-b6cf-c27acc17d191",
-    "6c9cfdba-e58e-5625-bf42-0331093c6a1a"
+    "6c9cfdba-e58e-5625-bf42-0331093c6a1a",
+    "e91ff3f7-2148-4086-8df1-ca629ea5ec93",
+    "e2a149d5-3438-448a-a239-8b1e3b82a6a4",
+    "e2eee949-7b78-4031-94e7-aabaeb9766d5"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -229,7 +232,8 @@
       "4027b42c-fa8e-4e03-8db8-e0f0ebee39e2",
       "5ad360ca-9179-49c6-b818-c9e06a4fa54a",
       "22499fd7-5b17-440c-b43b-3b0749c25abf",
-      "472b7642-d42c-471a-b6cf-c27acc17d191"
+      "472b7642-d42c-471a-b6cf-c27acc17d191",
+      "e2a149d5-3438-448a-a239-8b1e3b82a6a4"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -289,7 +293,8 @@
       "d2e3ec25-437c-4f30-84ae-dc0340d5a3d2",
       "46744f2f-94bc-4783-aae5-ae6f8e388bf4",
       "a8968e9d-3721-4530-911f-8588e0c4976f",
-      "6c9cfdba-e58e-5625-bf42-0331093c6a1a"
+      "6c9cfdba-e58e-5625-bf42-0331093c6a1a",
+      "e2eee949-7b78-4031-94e7-aabaeb9766d5"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -347,7 +352,8 @@
       "661a3697-77cb-4705-9cde-18de0592c327",
       "f3828d10-ab96-460e-bc0b-2473a69430e2",
       "7cafc435-a764-40b7-9645-946c88ac3e23",
-      "bd6510df-0a4c-4823-84b2-9aa7e3928c15"
+      "bd6510df-0a4c-4823-84b2-9aa7e3928c15",
+      "e91ff3f7-2148-4086-8df1-ca629ea5ec93"
     ]
   },
   "history": [
@@ -2255,6 +2261,38 @@
           "vignetteMessageId": 181,
           "pollMessageId": 182,
           "explanationMessageId": 183
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-22T16:14:52.448Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "e91ff3f7-2148-4086-8df1-ca629ea5ec93",
+          "topic": "Hematología",
+          "success": true,
+          "vignetteMessageId": 174,
+          "pollMessageId": 175,
+          "explanationMessageId": 176
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "e2a149d5-3438-448a-a239-8b1e3b82a6a4",
+          "topic": "Respiratorio",
+          "success": true,
+          "vignetteMessageId": 183,
+          "pollMessageId": 184,
+          "explanationMessageId": 185
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "e2eee949-7b78-4031-94e7-aabaeb9766d5",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 184,
+          "pollMessageId": 185,
+          "explanationMessageId": 186
         }
       ]
     }
