@@ -6,6 +6,7 @@ import {
   ArrowRight, ShieldCheck, X, Loader2
 } from 'lucide-react'
 import { EunacomLogo, EunacomLogoIcon } from './EunacomLogo'
+import { track } from '../lib/analytics'
 import { CHILEAN_UNIVERSITIES, getSedesForUniversity, UserInstitutionBadge, getUserInstitutionBadge, COUNTRIES } from '../utils/universityAndCountry'
 
 // ─── COUNTRY CODES & PHONE VALIDATION ────────────────────────────────────
@@ -176,6 +177,14 @@ const Onboarding = ({ user, onComplete }) => {
         study_hours: studyHours,
         xp: 50, // +50 XP bonus given
         onboarding_done: true,
+      })
+      track('sign_up_completed', {
+        signup_method: user.app_metadata?.provider || 'email',
+        study_location: studyLocation,
+        country: finalCountry,
+        goal,
+        exam_month: examMonth,
+        exam_year: examYear,
       })
     } catch (e) {
       console.error('Onboarding save error:', e)

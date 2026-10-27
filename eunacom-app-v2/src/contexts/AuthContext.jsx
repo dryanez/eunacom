@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { identifyUser, resetAnalytics } from '../lib/analytics'
 
 const AuthContext = createContext({})
 
@@ -115,6 +116,11 @@ export const AuthProvider = ({ children }) => {
         return () => subscription.unsubscribe()
     }, [localDevUser])
 
+    // Tie PostHog events to the Supabase user id (no email/name) so the funnel follows one person.
+    useEffect(() => {
+        if (user?.id && !isLocalHost) identifyUser(user)
+    }, [user?.id])
+
     const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '' })
 
     const openAuthModal = (mode = 'register', message = '') => {
@@ -201,6 +207,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.removeItem(`eunacom_cached_is_premium_${user.id}`)
         }
         setLocalDevUser(null)
+        resetAnalytics()
         const { error } = await supabase.auth.signOut().catch(() => ({ error: null }))
         setUser(null)
         return { error }

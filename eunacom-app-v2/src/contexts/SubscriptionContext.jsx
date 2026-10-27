@@ -3,6 +3,7 @@ import { useAuth } from './AuthContext';
 import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
 import { resolvePromo } from '../config/promo';
+import { track } from '../lib/analytics';
 
 const SubscriptionContext = createContext();
 
@@ -70,6 +71,19 @@ export function SubscriptionProvider({ children }) {
         console.error('PayPal capture failed:', err);
         window.location.replace('/dashboard?payment=failure');
       });
+  }, [user?.id]);
+
+  // Buyer came back from a failed or rejected checkout (Mercado Pago back_url or PayPal capture error).
+  useEffect(() => {
+    if (!user?.id) return;
+    const p = new URLSearchParams(window.location.search);
+    const status = p.get('payment') || p.get('collection_status') || p.get('status');
+    if (['failure', 'rejected', 'pending', 'in_process'].includes(status)) {
+      track(status === 'pending' || status === 'in_process' ? 'payment_pending' : 'payment_failed', {
+        gateway: p.has('collection_id') || p.has('payment_id') ? 'mercadopago' : 'paypal',
+        status,
+      });
+    }
   }, [user?.id]);
 
   useEffect(() => {
@@ -156,6 +170,13 @@ export function SubscriptionProvider({ children }) {
 
             // Clean up payment query params once processed
             if (hasPaymentSuccessParam && valid) {
+              // external_reference is "<userId>|<plan>|<ts>" for Mercado Pago; PayPal returns ?payment=success only
+              const ref = (searchParams.get('external_reference') || '').split('|')
+              track('payment_succeeded', {
+                gateway: searchParams.has('collection_id') || searchParams.has('payment_id') ? 'mercadopago' : 'paypal',
+                plan: ref[1] || (profile.plan_months ? `${profile.plan_months}m` : null),
+                payment_type: searchParams.get('payment_type') || null,
+              })
               window.history.replaceState(null, '', window.location.pathname)
             }
           }

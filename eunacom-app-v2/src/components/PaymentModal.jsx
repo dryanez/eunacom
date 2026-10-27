@@ -3,6 +3,7 @@ import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { track } from '../lib/analytics';
 
 const PLANS = [
   { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
@@ -53,6 +54,10 @@ const PaymentModal = ({ onClose }) => {
   const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
 
   useEffect(() => {
+    track('plans_viewed', { discount_percent: discountPercent || 0, logged_in: !!user });
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -68,6 +73,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
+      track('checkout_started', { gateway: 'paypal', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
       const res = await createPaypalOrder(user.id, selectedPlan.id);
       if (!res.approve_url) throw new Error('No approve_url');
       window.location.href = res.approve_url;
@@ -85,6 +91,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
+      track('checkout_started', { gateway: 'mercadopago', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
       const res = await createCheckoutSession(user.id, selectedPlan.id, discountPercent);
       if (res.init_point) {
         window.location.href = res.init_point;
