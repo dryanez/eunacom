@@ -192,7 +192,10 @@
     "b97413eb-b976-4cca-92f1-de62e4761d1c",
     "d9eacd59-fabb-40c2-8c23-332e7287cf83",
     "d2df86eb-f506-48e3-a1aa-fd931445c342",
-    "82a29575-342c-5b31-ad3b-67aee553b44b"
+    "82a29575-342c-5b31-ad3b-67aee553b44b",
+    "f2c5295f-a73a-4957-a566-3f3b630a8045",
+    "csv_Infectología_204_1776130175642",
+    "c2584295-ffb5-4005-a8c7-8c6eaf807d68"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -261,7 +264,8 @@
       "f6ada023-90b3-4778-b128-d36824dc0fc3",
       "501f24a0-eb09-4666-b1de-5c63f3044f48",
       "8244accc-5d36-491e-89bd-e5f924096889",
-      "d2df86eb-f506-48e3-a1aa-fd931445c342"
+      "d2df86eb-f506-48e3-a1aa-fd931445c342",
+      "csv_Infectología_204_1776130175642"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -329,7 +333,8 @@
       "fd91965c-6916-44b5-8049-3fabee517242",
       "d2beddfb-9d9b-4877-a805-6a6dfc9fb616",
       "b97413eb-b976-4cca-92f1-de62e4761d1c",
-      "82a29575-342c-5b31-ad3b-67aee553b44b"
+      "82a29575-342c-5b31-ad3b-67aee553b44b",
+      "c2584295-ffb5-4005-a8c7-8c6eaf807d68"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -395,7 +400,8 @@
       "f22acc6e-01da-4b83-8eff-7cf00f8480ba",
       "68532e77-786b-41f3-a922-11ed5b9557d6",
       "dbdc5567-caa4-4294-a97f-4ccc393e77a2",
-      "d9eacd59-fabb-40c2-8c23-332e7287cf83"
+      "d9eacd59-fabb-40c2-8c23-332e7287cf83",
+      "f2c5295f-a73a-4957-a566-3f3b630a8045"
     ]
   },
   "history": [
@@ -2559,6 +2565,38 @@
           "vignetteMessageId": 205,
           "pollMessageId": 206,
           "explanationMessageId": 207
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-10-30T17:25:18.342Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "f2c5295f-a73a-4957-a566-3f3b630a8045",
+          "topic": "Dermatología",
+          "success": true,
+          "vignetteMessageId": 198,
+          "pollMessageId": 199,
+          "explanationMessageId": 200
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "csv_Infectología_204_1776130175642",
+          "topic": "Infectología",
+          "success": true,
+          "vignetteMessageId": 207,
+          "pollMessageId": 208,
+          "explanationMessageId": 209
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "c2584295-ffb5-4005-a8c7-8c6eaf807d68",
+          "topic": "Especialidades",
+          "success": true,
+          "vignetteMessageId": 208,
+          "pollMessageId": 209,
+          "explanationMessageId": 210
         }
       ]
     }
