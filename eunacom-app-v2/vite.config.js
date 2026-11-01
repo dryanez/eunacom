@@ -595,7 +595,8 @@ export default defineConfig({
     // /api/progress and /api/tests are handled by Vite middleware (clasesApiPlugin)
     proxy: {
       '/api/tutor': 'http://localhost:5001',
-      '/api': {
+      // Skip .js module imports under /api (e.g. src/config/promo.js imports api/_promo.js)
+      '^/api/(?![^?]*\\.js(\\?|$))': {
         target: 'https://eunacom.vercel.app',
         changeOrigin: true,
       }
