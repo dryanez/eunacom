@@ -21,6 +21,9 @@ import MedLingoLessonModal from '../components/medlingo/MedLingoLessonModal'
 import MedLingoShopModal from '../components/medlingo/MedLingoShopModal'
 import MedLingoMentorPickerModal from '../components/medlingo/MedLingoMentorPickerModal'
 import MedLingoMissions from '../components/medlingo/MedLingoMissions'
+import StreakRiskBanner from '../components/StreakRiskBanner'
+import StreakSaverModal from '../components/StreakSaverModal'
+import { getTodayDateString } from '../utils/gamificationStore'
 import '../components/medlingo/medlingo.css'
 
 export default function MedLingoPage() {
@@ -35,6 +38,17 @@ export default function MedLingoPage() {
   const [activeLessonData, setActiveLessonData] = useState(null) // { node, unit, questions }
   const [showShopModal, setShowShopModal] = useState(false)
   const [showMentorPicker, setShowMentorPicker] = useState(false)
+  const [showStreakSaverModal, setShowStreakSaverModal] = useState(false)
+
+  // Check URL params for streak rescue
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('action') === 'save_streak' || params.get('streak_rescue') === 'true' || params.get('rescue') === 'true') {
+        setShowStreakSaverModal(true)
+      }
+    }
+  }, [])
 
   // Reload/save gamification state
   useEffect(() => {
@@ -138,6 +152,22 @@ export default function MedLingoPage() {
     })
   }
 
+  // Handle streak saved from 3-question rescue
+  const handleStreakSaved = ({ streak }) => {
+    const today = getTodayDateString()
+    updateAndSaveState(prev => ({
+      ...prev,
+      currentStreak: streak || (prev.currentStreak + 1),
+      longestStreak: Math.max(prev.longestStreak || 1, streak || (prev.currentStreak + 1)),
+      lastStudyDate: today,
+      streakFrozen: false,
+      xp: (prev.xp || 0) + 50,
+      gems: (prev.gems || 0) + 15
+    }))
+  }
+
+  const isStreakInRisk = gameState.lastStudyDate !== getTodayDateString() && (gameState.currentStreak >= 1)
+
   return (
     <div className="medlingo-page">
       {/* ── Top Sticky Header ── */}
@@ -155,6 +185,18 @@ export default function MedLingoPage() {
           <div className="medlingo-body-container animate-scale-up">
             {/* Left: The Snake Road / Path */}
             <div className="medlingo-path-column">
+              {/* Streak Freeze Warning Banner if study not completed today */}
+              {isStreakInRisk && (
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <StreakRiskBanner
+                    streak={gameState.currentStreak}
+                    userFirstName={user?.email?.split('@')[0] || ''}
+                    hoursRemaining={3}
+                    onOpenStreakSaver={() => setShowStreakSaverModal(true)}
+                  />
+                </div>
+              )}
+
               <MedLingoPath
                 moduleData={currentModule}
                 state={gameState}
@@ -243,6 +285,16 @@ export default function MedLingoPage() {
           onClose={() => setShowMentorPicker(false)}
         />
       )}
+
+      {/* ── Quick 3-Question Streak Saver Modal ── */}
+      <StreakSaverModal
+        isOpen={showStreakSaverModal}
+        onClose={() => setShowStreakSaverModal(false)}
+        userId={userId}
+        userFirstName={user?.email?.split('@')[0] || 'Colega'}
+        currentStreak={gameState.currentStreak || 3}
+        onStreakSaved={handleStreakSaved}
+      />
     </div>
   )
 }

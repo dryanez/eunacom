@@ -128,12 +128,12 @@ export default async function handler(req, res) {
           payer: { email: payerEmail },
           external_reference: externalReference,
           back_urls: {
-            success: 'https://eunacom.vercel.app/dashboard?payment=success',
-            failure: 'https://eunacom.vercel.app/dashboard?payment=failure',
-            pending: 'https://eunacom.vercel.app/dashboard?payment=pending'
+            success: 'https://www.eunacomapp.cl/dashboard?payment=success',
+            failure: 'https://www.eunacomapp.cl/dashboard?payment=failure',
+            pending: 'https://www.eunacomapp.cl/dashboard?payment=pending'
           },
           auto_return: 'approved',
-          notification_url: 'https://eunacom.vercel.app/api/user-profiles'
+          notification_url: 'https://www.eunacomapp.cl/api/user-profiles'
         })
       })
 
@@ -158,9 +158,9 @@ export default async function handler(req, res) {
           items: [{ title: "Donación App EUNACOM", description: "Aporte voluntario (USD $9 approx)", quantity: 1, unit_price: 9000, currency_id: "CLP" }],
           payer: { email: payerEmail },
           back_urls: {
-            success: "https://eunacom.vercel.app/dashboard?donation=success",
-            failure: "https://eunacom.vercel.app/dashboard?donation=failure",
-            pending: "https://eunacom.vercel.app/dashboard?donation=pending"
+            success: "https://www.eunacomapp.cl/dashboard?donation=success",
+            failure: "https://www.eunacomapp.cl/dashboard?donation=failure",
+            pending: "https://www.eunacomapp.cl/dashboard?donation=pending"
           },
           auto_return: "approved"
         })

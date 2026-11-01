@@ -1,0 +1,655 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   STREAK RISK BANNER & STREAK SAVER MODAL STYLES (EUNACOM APP PRO MAX)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── 1. Streak Risk Banner (Dashboard) ── */
+.streak-risk-banner-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(124, 45, 18, 0.35) 0%, rgba(30, 41, 59, 0.85) 50%, rgba(234, 88, 12, 0.15) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  box-shadow: 0 8px 32px -4px rgba(234, 88, 12, 0.25), 0 0 0 1px rgba(249, 115, 22, 0.15);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.streak-risk-banner-card:hover {
+  border-color: rgba(249, 115, 22, 0.6);
+  box-shadow: 0 12px 40px -4px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
+}
+
+.streak-risk-ambient-glow {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.3) 0%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.streak-risk-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.streak-risk-flame-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.streak-risk-flame-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ea580c 0%, #b45309 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.45);
+}
+
+.flame-pulse-fast {
+  animation: flameFlicker 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes flameFlicker {
+  0% { transform: scale(0.95) rotate(-2deg); filter: drop-shadow(0 0 4px #fdba74); }
+  50% { transform: scale(1.08) rotate(2deg); filter: drop-shadow(0 0 10px #fb923c); }
+  100% { transform: scale(1.02) rotate(-1deg); filter: drop-shadow(0 0 6px #ea580c); }
+}
+
+.streak-risk-time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fdba74;
+  background: rgba(234, 88, 12, 0.2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 100px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.streak-risk-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.streak-risk-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.streak-risk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.streak-risk-streak-count {
+  font-size: 0.8rem;
+  color: #fed7aa;
+}
+
+.streak-risk-title {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.streak-risk-quote {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #fed7aa;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.streak-risk-action {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.streak-risk-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(234, 88, 12, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.streak-risk-cta-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(234, 88, 12, 0.6);
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+/* Light theme banner adjustments */
+[data-theme="light"] .streak-risk-banner-card,
+body.light-theme .streak-risk-banner-card {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-color: #fdba74;
+}
+
+[data-theme="light"] .streak-risk-title,
+body.light-theme .streak-risk-title {
+  color: #7c2d12;
+}
+
+[data-theme="light"] .streak-risk-quote,
+body.light-theme .streak-risk-quote {
+  color: #9a3412;
+}
+
+[data-theme="light"] .streak-risk-streak-count,
+body.light-theme .streak-risk-streak-count {
+  color: #c2410c;
+}
+
+/* ── 2. Streak Saver Modal ── */
+.streak-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.streak-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  background: var(--surface-800, #1e293b);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.animate-streak-pop {
+  animation: streakPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes streakPopIn {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.streak-modal-ambient-glow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.3) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.streak-modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--surface-400, #94a3b8);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.15s;
+}
+
+.streak-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+/* Modal Header */
+.streak-modal-header {
+  padding: 1.5rem 1.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.streak-flame-badge-animated {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.14);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flame-flicker {
+  animation: flameFlicker 1.2s infinite alternate ease-in-out;
+}
+
+.streak-modal-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--surface-50, #f8fafc);
+  letter-spacing: -0.02em;
+}
+
+.streak-modal-subtitle {
+  margin: 0.35rem 0 0.85rem;
+  font-size: 0.88rem;
+  color: #fdba74;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.streak-step-indicator {
+  margin-top: 0.75rem;
+}
+
+.streak-step-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  color: var(--surface-400, #94a3b8);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.streak-step-xp {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.streak-step-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.streak-step-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316 0%, #fbbf24 100%);
+  border-radius: 100px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Body */
+.streak-modal-body {
+  padding: 1.25rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.streak-question-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #38bdf8;
+  letter-spacing: 0.04em;
+}
+
+.streak-question-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--surface-100, #f1f5f9);
+  font-weight: 500;
+  margin: 0;
+}
+
+.streak-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.streak-option-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--surface-700, #334155);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--surface-200, #e2e8f0);
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.streak-option-btn:hover:not(:disabled) {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.4);
+  transform: translateX(2px);
+}
+
+.streak-option-btn.selected {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: #f97316;
+  color: #ffffff;
+}
+
+.streak-option-btn.correct {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: #10b981;
+  color: #86efac;
+}
+
+.streak-option-btn.incorrect {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.streak-option-btn.dim {
+  opacity: 0.4;
+}
+
+.streak-opt-key {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.streak-opt-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.streak-opt-icon {
+  flex-shrink: 0;
+}
+
+/* Explanation Card */
+.streak-explanation-card {
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-left: 4px solid #f97316;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.streak-expl-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #fdba74;
+  margin-bottom: 0.35rem;
+}
+
+.streak-expl-text {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--surface-200, #e2e8f0);
+  margin: 0;
+}
+
+/* Modal Footer */
+.streak-modal-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface-800, #1e293b);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.streak-confirm-btn,
+.streak-next-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  border-radius: 100px;
+  border: none;
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.streak-confirm-btn {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.4);
+}
+
+.streak-confirm-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.streak-next-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+/* Victory Celebration Screen */
+.streak-victory-container {
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.streak-victory-flame-hero {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.victory-fire-emoji {
+  font-size: 4rem;
+  position: relative;
+  z-index: 2;
+  animation: flameFlicker 1s infinite alternate ease-in-out;
+}
+
+.victory-halo-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.45) 0%, transparent 70%);
+  filter: blur(15px);
+  border-radius: 50%;
+}
+
+.streak-victory-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.streak-victory-title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--surface-50, #ffffff);
+}
+
+.streak-victory-desc {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--surface-300, #cbd5e1);
+  line-height: 1.5;
+  max-width: 440px;
+}
+
+.streak-rewards-row {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.streak-reward-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.streak-reward-chip.gems {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.streak-reward-chip.flame {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.streak-victory-done-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(234, 88, 12, 0.45);
+  margin-top: 0.5rem;
+}
+
+.streak-modal-loading {
+  padding: 3rem;
+  text-align: center;
+  color: var(--surface-400, #94a3b8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .streak-risk-banner-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.15rem;
+    gap: 1rem;
+  }
+
+  .streak-risk-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .streak-modal-card {
+    border-radius: 16px;
+  }
+
+  .streak-modal-header,
+  .streak-modal-body,
+  .streak-modal-footer {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+}

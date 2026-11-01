@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings } from '../lib/api';
+import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
+import { resolvePromo } from '../config/promo';
+import { track } from '../lib/analytics';
 
 const SubscriptionContext = createContext();
 
@@ -28,6 +30,9 @@ export function SubscriptionProvider({ children }) {
   const [isFounder, setIsFounder] = useState(() => isUserAdmin);
   const [loadingPremium, setLoadingPremium] = useState(() => !isUserAdmin && !!user);
   const [freemiumMode, setFreemiumMode] = useState('strict'); // strict or usage
+  const [promoSetting, setPromoSetting] = useState(null); // admin app_settings.promo (JSON)
+  const [promoLoaded, setPromoLoaded] = useState(false);
+  const promo = promoLoaded ? resolvePromo(promoSetting) : null;
   
   // Freemium usage tracking
   const [usageStats, setUsageStats] = useState({
@@ -41,6 +46,45 @@ export function SubscriptionProvider({ children }) {
   const togglePremium = () => {
     setIsPremium(prev => !prev);
   };
+
+  // Came from an offer link (/oferta) before logging in → open checkout once the user is logged in
+  useEffect(() => {
+    if (!user?.id) return;
+    try {
+      if (sessionStorage.getItem('eunacom_open_checkout')) {
+        sessionStorage.removeItem('eunacom_open_checkout');
+        setShowPaymentModal(true);
+      }
+    } catch {}
+  }, [user?.id]);
+
+  // Buyer returns from an in-app PayPal order (?paypal=return&token=ORDER_ID): capture it, then
+  // hand over to the normal ?payment=success flow, which reloads the premium status.
+  useEffect(() => {
+    if (!user?.id) return;
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('token');
+    if (params.get('paypal') !== 'return' || !orderId) return;
+    capturePaypalOrder(user.id, orderId)
+      .then(() => window.location.replace('/dashboard?payment=success'))
+      .catch(err => {
+        console.error('PayPal capture failed:', err);
+        window.location.replace('/dashboard?payment=failure');
+      });
+  }, [user?.id]);
+
+  // Buyer came back from a failed or rejected checkout (Mercado Pago back_url or PayPal capture error).
+  useEffect(() => {
+    if (!user?.id) return;
+    const p = new URLSearchParams(window.location.search);
+    const status = p.get('payment') || p.get('collection_status') || p.get('status');
+    if (['failure', 'rejected', 'pending', 'in_process'].includes(status)) {
+      track(status === 'pending' || status === 'in_process' ? 'payment_pending' : 'payment_failed', {
+        gateway: p.has('collection_id') || p.has('payment_id') ? 'mercadopago' : 'paypal',
+        status,
+      });
+    }
+  }, [user?.id]);
 
   useEffect(() => {
     let mounted = true;
@@ -58,87 +102,121 @@ export function SubscriptionProvider({ children }) {
         if (mounted && settings.freemium_mode) {
           setFreemiumMode(settings.freemium_mode);
         }
+        if (mounted) {
+          setPromoSetting(settings.promo || null);
+          setPromoLoaded(true);
+        }
       })
-      .catch(err => console.error("Error fetching app settings:", err));
+      .catch(err => {
+        console.error("Error fetching app settings:", err);
+        if (mounted) setPromoLoaded(true); // fall back to the default yearly schedule
+      });
 
     if (user) {
       if (!isUserAdmin) {
         setLoadingPremium(true);
       }
-      
-      // Fetch profile and usage stats in parallel
-      Promise.all([
-        fetchUserProfile(user.id),
-        fetchTests(user.id).catch(() => []),
-        fetchClaseProgress(user.id).catch(() => [])
-      ])
-        .then(([profile, tests, claseProgress]) => {
-          if (mounted && profile) {
-            // Check if user is premium and hasn't expired
-            let valid = false;
+
+      // Detect payment redirect from Mercado Pago / PayPal
+      const searchParams = new URLSearchParams(window.location.search)
+      const hasPaymentSuccessParam = 
+        searchParams.get('payment') === 'success' ||
+        searchParams.get('collection_status') === 'approved' ||
+        searchParams.get('status') === 'approved' ||
+        searchParams.has('payment_id')
+
+      if (hasPaymentSuccessParam) {
+        try {
+          localStorage.removeItem(`eunacom_cached_is_premium_${user.id}`)
+        } catch (e) {}
+      }
+
+      const loadUserData = async (pollAttempt = 0) => {
+        try {
+          const [profile, tests, claseProgress] = await Promise.all([
+            fetchUserProfile(user.id),
+            fetchTests(user.id).catch(() => []),
+            fetchClaseProgress(user.id).catch(() => [])
+          ])
+
+          if (!mounted) return
+
+          if (profile) {
+            let valid = false
             if (isUserAdmin) {
-              valid = true;
+              valid = true
             } else if (profile.is_premium === 1) {
               if (profile.premium_until) {
-                const expiresAt = new Date(profile.premium_until);
-                if (expiresAt > new Date()) {
-                  valid = true;
-                }
+                const expiresAt = new Date(profile.premium_until)
+                if (expiresAt > new Date()) valid = true
               } else {
-                // Legacy or manually activated users with no expiration date
-                valid = true;
+                valid = true
               }
             }
-            setIsPremium(valid);
-            setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200));
+
+            // If user just paid but webhook has not finished writing to Turso yet, poll up to 3 times
+            if (!valid && hasPaymentSuccessParam && pollAttempt < 3) {
+              setTimeout(() => {
+                if (mounted) loadUserData(pollAttempt + 1)
+              }, 2000)
+              return
+            }
+
+            setIsPremium(valid)
+            setIsFounder(isUserAdmin || (valid && profile.plan_months === 1200))
             try {
-              localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid));
+              localStorage.setItem(`eunacom_cached_is_premium_${user.id}`, JSON.stringify(valid))
             } catch (e) {}
+
+            // Clean up payment query params once processed
+            if (hasPaymentSuccessParam && valid) {
+              // external_reference is "<userId>|<plan>|<ts>" for Mercado Pago; PayPal returns ?payment=success only
+              const ref = (searchParams.get('external_reference') || '').split('|')
+              track('payment_succeeded', {
+                gateway: searchParams.has('collection_id') || searchParams.has('payment_id') ? 'mercadopago' : 'paypal',
+                plan: ref[1] || (profile.plan_months ? `${profile.plan_months}m` : null),
+                payment_type: searchParams.get('payment_type') || null,
+              })
+              window.history.replaceState(null, '', window.location.pathname)
+            }
           }
-          
-          if (mounted && tests && claseProgress) {
-            const clasesOpened = claseProgress.length;
-            
-            // Reconstructions: ALL created tests with '_q' in questions or mode 'reconstruction'
+
+          if (tests && claseProgress) {
+            const clasesOpened = claseProgress.length
             const reconstructionsCompleted = tests.filter(t => {
-              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
-              return t.mode !== 'simulation' && (t.mode === 'reconstruction' || qStr.includes('_q'));
-            }).length;
-            
-            // Simulations: ALL created tests with mode 'simulation'
-            const simulationsCompleted = tests.filter(t => 
-              t.mode === 'simulation'
-            ).length;
-            
-            // Custom Questions: count ALL questions in created custom tests
-            let customQuestionsAnswered = 0;
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || [])
+              return t.mode !== 'simulation' && (t.mode === 'reconstruction' || qStr.includes('_q'))
+            }).length
+            const simulationsCompleted = tests.filter(t => t.mode === 'simulation').length
+            let customQuestionsAnswered = 0
             const customTests = tests.filter(t => {
-              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || []);
-              return t.mode !== 'simulation' && !qStr.includes('_q');
-            });
-            
+              const qStr = typeof t.questions === 'string' ? t.questions : JSON.stringify(t.questions || [])
+              return t.mode !== 'simulation' && !qStr.includes('_q')
+            })
             customTests.forEach(t => {
               try {
-                const qList = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || []);
-                const count = t.total_questions || t.totalQuestions || (Array.isArray(qList) ? qList.length : 0);
-                customQuestionsAnswered += count;
+                const qList = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || [])
+                const count = t.total_questions || t.totalQuestions || (Array.isArray(qList) ? qList.length : 0)
+                customQuestionsAnswered += count
               } catch (e) {
-                if (t.total_questions) customQuestionsAnswered += t.total_questions;
+                if (t.total_questions) customQuestionsAnswered += t.total_questions
               }
-            });
-            
+            })
             setUsageStats({
               clasesOpened,
               reconstructionsCompleted,
               simulationsCompleted,
               customQuestionsAnswered
-            });
+            })
           }
-        })
-        .catch(err => console.error("Error fetching premium status & usage:", err))
-        .finally(() => {
-          if (mounted) setLoadingPremium(false);
-        });
+        } catch (err) {
+          console.error("Error fetching premium status & usage:", err)
+        } finally {
+          if (mounted) setLoadingPremium(false)
+        }
+      }
+
+      loadUserData(0)
     } else {
       setIsPremium(false);
       setIsFounder(false);
@@ -171,10 +249,14 @@ export function SubscriptionProvider({ children }) {
       hasExceededSimulations,
       hasExceededQuestions,
       showPaymentModal,
-      setShowPaymentModal
+      setShowPaymentModal,
+      promo,
+      promoSetting,
+      setPromoSetting
     }}>
       {children}
-      {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
+      {/* Checkout needs a logged-in user; a pending open waits until login */}
+      {showPaymentModal && user && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
     </SubscriptionContext.Provider>
   );
 }

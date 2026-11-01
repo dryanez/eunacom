@@ -1,3 +1,5 @@
+import bundledClassesList from '../data/classesList.json'
+
 // Frontend HTTP client — calls our Vercel API routes (or local vite-node proxy in dev)
 // Never exposes Turso credentials to the browser.
 
@@ -89,7 +91,7 @@ async function getLocalClassesCatalog() {
       return _cachedCatalog
     }
   } catch {}
-  return []
+  return bundledClassesList || []
 }
 
 async function clasesFetch(path, options = {}) {
@@ -105,8 +107,11 @@ export async function fetchClases() {
   } catch (err) {
     console.warn('API /api/clases error, using bundled catalog:', err)
   }
-  // Fallback to bundled catalog
-  const catalog = await getLocalClassesCatalog()
+  // Fallback to bundled catalog (guaranteed 547 classes, never empty)
+  const catalog = (Array.isArray(bundledClassesList) && bundledClassesList.length > 0) 
+    ? bundledClassesList 
+    : await getLocalClassesCatalog()
+
   return catalog.map(r => ({
     id: r.id,
     saved_at: r.saved_at,
@@ -121,18 +126,22 @@ export async function fetchClases() {
 
 export async function fetchClase(id) {
   try {
-    const data = await clasesFetch(`/api/clases?id=${id}`)
+    const data = await clasesFetch(`/api/clases?id=${encodeURIComponent(id)}`)
     if (data && data.data) {
       return data.data
     }
   } catch (err) {
     console.warn('API /api/clases?id error, checking bundled catalog:', err)
   }
-  // Fallback to bundled catalog
+  // Fallback to full bundled catalog
   const catalog = await getLocalClassesCatalog()
   const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   const found = catalog.find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
-  return found || null
+  if (found) return found
+
+  // Final fallback to lightweight catalog basic info
+  const light = (bundledClassesList || []).find(c => c.id === id || norm(c.id) === norm(id) || norm(c.topic) === norm(id))
+  return light || null
 }
 
 export async function saveClase({ id, userId, topic, summary, keyPoints, quiz }) {
@@ -241,29 +250,51 @@ export async function saveUserProfile(profile) {
 
 // ── ADMIN: ALL USERS ─────────────────────────────────────────────────────────
 
+const getAdminEmail = (email) => {
+  if (email && email === 'dr.felipeyanez@gmail.com') return email
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'dr.felipeyanez@gmail.com'
+  }
+  return email || 'dr.felipeyanez@gmail.com'
+}
+
 export async function fetchAdminUsers(adminEmail) {
-  const data = await apiFetch(`/api/admin-users?adminEmail=${encodeURIComponent(adminEmail)}`)
+  const data = await apiFetch(`/api/admin-users?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
   return data.data || []
 }
 
 export async function fetchAdminUserDetail(userId, adminEmail) {
-  const params = new URLSearchParams({ userId, adminEmail })
+  const params = new URLSearchParams({ userId, adminEmail: getAdminEmail(adminEmail) })
   return apiFetch(`/api/admin-users?${params.toString()}`)
 }
 
 export async function grantPremiumAccess(adminEmail, targetUserId, months) {
   return apiFetch('/api/admin-users', {
     method: 'PATCH',
-    body: JSON.stringify({ adminEmail, userId: targetUserId, months })
+    body: JSON.stringify({ adminEmail: getAdminEmail(adminEmail), userId: targetUserId, months })
   })
 }
 
 // ── PAYMENTS (Mercado Pago) ───────────────────────────────────────────────────
 
-export async function createCheckoutSession(userId, planId) {
+export async function createCheckoutSession(userId, planId, discount = null) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify({ action: 'checkout', userId, planId })
+    body: JSON.stringify({ action: 'checkout', userId, planId, discount })
+  })
+}
+
+export async function createPaypalOrder(userId, planId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'paypal_order', userId, planId })
+  })
+}
+
+export async function capturePaypalOrder(userId, orderId) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'paypal_capture', userId, orderId })
   })
 }
 
@@ -277,31 +308,53 @@ export async function createDonationSession(userId) {
 // ── PAYPAL TRANSACTIONS (Admin) ───────────────────────────────────────────────
 
 export async function fetchPaypalTransactions(adminEmail) {
-  const data = await apiFetch(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}`)
+  const data = await apiFetch(`/api/paypal-export?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
   return data.data || []
 }
 
 export function downloadPaypalCsv(adminEmail) {
-  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
 }
 
 // ── FINANCES & REVENUE (Admin) ────────────────────────────────────────────────
 
 export async function fetchAdminFinances(adminEmail) {
-  return apiFetch(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(adminEmail)}`)
+  return apiFetch(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
 }
 
 export function downloadFinancesCsv(adminEmail) {
-  window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(adminEmail)}&format=csv`, '_blank')
+  window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
 }
 
-// ── MAILING CAMPAIGNS ─────────────────────────────────────────────────────────
+// ── MAILING CAMPAIGNS & MARKETING ────────────────────────────────────────────
+
+export async function fetchEmailMarketingStats(adminEmail) {
+  return apiFetch(`/api/admin-users?action=email_marketing&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
+}
+
+export async function triggerMarketingDrip(adminEmail, dryRun = true) {
+  return apiFetch(`/api/email-marketing-cron?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&dryRun=${dryRun}`)
+}
+
+export async function sendTestMarketingEmail(adminEmail, testEmail, campaignType) {
+  return apiFetch(`/api/email-marketing-cron?action=send_test&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&testEmail=${encodeURIComponent(testEmail)}&campaignType=${encodeURIComponent(campaignType)}`)
+}
+
+export async function fetchTemplatePreview(adminEmail, type) {
+  return apiFetch(`/api/admin-users?action=preview_template&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&type=${encodeURIComponent(type)}`)
+}
 
 export async function sendCampaign(adminEmail, targetEmails, subject, htmlContent) {
   return apiFetch('/api/admin-users', {
     method: 'POST',
-    body: JSON.stringify({ adminEmail, targetEmails, subject, htmlContent })
+    body: JSON.stringify({ adminEmail: getAdminEmail(adminEmail), targetEmails, subject, htmlContent })
   })
+}
+
+// ── SEO & GOOGLE SEARCH CONSOLE (Admin) ──────────────────────────────────────
+
+export async function fetchAdminSeo(adminEmail) {
+  return apiFetch(`/api/admin-users?action=seo&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}`)
 }
 
 // ── APP SETTINGS ─────────────────────────────────────────────────────────────────

@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
+import { supabase } from '../lib/supabase'
 import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar, isDoctorUnlocked } from '../utils/doctorAvatars'
 import { calculateUserOverallStats, getDoctorForLevel } from '../utils/xpSystem'
 import { CHILEAN_UNIVERSITIES, COUNTRIES, getSedesForUniversity, UserInstitutionBadge } from '../utils/universityAndCountry'
@@ -149,7 +150,6 @@ const UserSettings = () => {
     setError(null)
     setPasswordSuccess(false)
     try {
-      const { supabase } = await import('../lib/supabase')
       const { error: passErr } = await supabase.auth.updateUser({ password: newPassword })
       if (passErr) throw passErr
       setPasswordSuccess(true)

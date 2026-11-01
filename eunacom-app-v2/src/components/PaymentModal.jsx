@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Loader2, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { createCheckoutSession } from '../lib/api';
+import { createCheckoutSession, createPaypalOrder } from '../lib/api';
+import { useSubscription } from '../contexts/SubscriptionContext';
+import { track } from '../lib/analytics';
 
 const PLANS = [
   { id: '1m', name: '1 Mes', price: '$14.990', desc: 'Curso +650 videos + 10k preguntas (30 días)', paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
@@ -12,7 +14,37 @@ const PLANS = [
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
-  const [selectedPlan, setSelectedPlan] = useState(PLANS[2]); // Default 6 months
+  const { promo } = useSubscription();
+  
+  // Read discount from URL or localStorage (30, 40, 50)
+  const [couponPercent] = useState(() => {
+    try {
+      const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+      const qDiscount = urlParams?.get('discount');
+      if (qDiscount && [30, 40, 50].includes(Number(qDiscount))) return Number(qDiscount);
+      const stored = localStorage.getItem('eunacom_pending_discount');
+      if (stored && [30, 40, 50].includes(Number(stored))) return Number(stored);
+    } catch {}
+    return 0;
+  });
+  const discountPercent = Math.max(couponPercent, promo?.percent || 0);
+  const isPromoDiscount = !!promo && discountPercent === promo.percent;
+
+  const plansToDisplay = React.useMemo(() => {
+    if (!discountPercent) return PLANS;
+    return PLANS.map(p => {
+      const num = parseInt(p.price.replace(/\D/g, ''), 10);
+      const discounted = Math.round(num * (1 - discountPercent / 100));
+      return {
+        ...p,
+        oldPrice: p.price,
+        price: `$${discounted.toLocaleString('es-CL')}`
+      };
+    });
+  }, [discountPercent]);
+
+  const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
+  const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const [step, setStep] = useState(1);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
@@ -21,12 +53,35 @@ const PaymentModal = ({ onClose }) => {
   // Bolivia QR State
   const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
 
+  useEffect(() => {
+    track('plans_viewed', { discount_percent: discountPercent || 0, logged_in: !!user });
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // In-app PayPal order (charges the promo price). Falls back to the fixed-price PayPal link
+  // if the PayPal API isn't configured on the server.
+  const handlePaypal = async () => {
+    if (!user) {
+      setErrorMp("Debes iniciar sesión para suscribirte.");
+      return;
+    }
+    setLoadingMp(true);
+    setErrorMp(null);
+    try {
+      track('checkout_started', { gateway: 'paypal', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
+      const res = await createPaypalOrder(user.id, selectedPlan.id);
+      if (!res.approve_url) throw new Error('No approve_url');
+      window.location.href = res.approve_url;
+    } catch (err) {
+      console.error(err);
+      window.location.href = selectedPlan.paypal;
+    }
+  };
 
   const handleMercadoPago = async () => {
     if (!user) {
@@ -36,7 +91,8 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
-      const res = await createCheckoutSession(user.id, selectedPlan.id);
+      track('checkout_started', { gateway: 'mercadopago', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
+      const res = await createCheckoutSession(user.id, selectedPlan.id, discountPercent);
       if (res.init_point) {
         window.location.href = res.init_point;
       } else {
@@ -118,12 +174,32 @@ const PaymentModal = ({ onClose }) => {
                   <strong>Todos los planes</strong> incluyen acceso total e ilimitado al <strong>Curso de +650 Videos</strong>, +10.000 preguntas, reconstrucciones y simulacros.
                 </p>
                 
+                {discountPercent > 0 && (
+                  <div style={{
+                    background: 'linear-gradient(135deg, rgba(37,99,235,0.2) 0%, rgba(29,78,216,0.3) 100%)',
+                    border: '1px solid #3b82f6',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    marginBottom: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#93c5fd' }}>
+                      {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
+                    </span>
+                    <span style={{ fontSize: '0.72rem', background: '#2563eb', color: 'white', padding: '2px 8px', borderRadius: '12px', fontWeight: 800 }}>
+                      VÁLIDO
+                    </span>
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.35rem' : '0.75rem' }}>
-                  {PLANS.map(plan => (
+                  {plansToDisplay.map(plan => (
                     <div
                       key={plan.id}
                       onClick={() => {
-                        setSelectedPlan(plan);
+                        setSelectedPlanId(plan.id);
                         if (isMobile) setStep(2);
                       }}
                       style={{
@@ -145,8 +221,15 @@ const PaymentModal = ({ onClose }) => {
                         <h4 style={{ margin: 0, fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--surface-50)', fontWeight: 700 }}>{plan.name}</h4>
                         <p style={{ margin: '0.05rem 0 0 0', fontSize: isMobile ? '0.7rem' : '0.78rem', color: 'var(--surface-400)' }}>{plan.desc}</p>
                       </div>
-                      <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
-                        {plan.price}
+                      <div style={{ textAlign: 'right' }}>
+                        {plan.oldPrice && (
+                          <div style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>
+                            {plan.oldPrice}
+                          </div>
+                        )}
+                        <div style={{ fontSize: isMobile ? '0.98rem' : '1.15rem', fontWeight: 800, color: selectedPlan.id === plan.id ? 'var(--accent-blue)' : 'var(--surface-50)' }}>
+                          {plan.price}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -251,13 +334,8 @@ const PaymentModal = ({ onClose }) => {
                     </button>
 
                     <button 
-                      onClick={() => {
-                        if (!user) {
-                          setErrorMp("Debes iniciar sesión para suscribirte.");
-                          return;
-                        }
-                        window.location.href = selectedPlan.paypal;
-                      }}
+                      onClick={handlePaypal}
+                      disabled={loadingMp}
                       style={{
                         width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
                         fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', marginTop: '0.2rem', marginBottom: '0.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
@@ -300,13 +378,8 @@ const PaymentModal = ({ onClose }) => {
                       Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Solo necesitas una tarjeta habilitada para compras internacionales.
                     </p>
                     <button 
-                      onClick={() => {
-                        if (!user) {
-                          alert("Debes iniciar sesión para suscribirte.");
-                          return;
-                        }
-                        window.location.href = selectedPlan.paypal;
-                      }}
+                      onClick={handlePaypal}
+                      disabled={loadingMp}
                       style={{
                         width: '100%', padding: '0.75rem', background: '#003087', color: 'white', border: 'none', borderRadius: '8px',
                         fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',

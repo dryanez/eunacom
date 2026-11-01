@@ -3416,37 +3416,44 @@ const MisClases = () => {
             {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
               const isAlreadyDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
               const completedCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
-              const isLocked = !isPremium && completedCount >= 5 && !isAlreadyDone;
+              const isLocked = !isPremium && completedCount >= 3 && !isAlreadyDone;
               const style = getSpecialtyStyle(currentSpecialty)
               const pct = getProgress(clase.id)
               return (
                 <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
                   padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  borderLeft: `3px solid ${pct >= 100 ? '#10b981' : style.color}`,
+                  borderLeft: `3px solid ${isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color}`,
                   position: 'relative',
+                  opacity: isLocked ? 0.75 : 1
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
                     <div style={{
-                      width: 40, height: 40, borderRadius: 10, background: pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
+                      width: 40, height: 40, borderRadius: 10, background: isLocked ? 'rgba(245,158,11,0.15)' : pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '1rem', fontWeight: 800, color: pct >= 100 ? '#10b981' : style.color,
+                      fontSize: '1rem', fontWeight: 800, color: isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color,
                     }}>
-                      {pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
+                      {isLocked ? <Lock size={18} /> : pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                         {clase.topic}
                       </div>
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                        {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
-                        Clase {clase.lessonNumber}
+                        {isLocked ? (
+                          <span style={{ color: '#f59e0b', fontWeight: 600 }}>Disponible en Premium (3 clases gratis completadas)</span>
+                        ) : (
+                          <>
+                            {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
+                            Clase {clase.lessonNumber}
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: isLocked ? 0.5 : 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
-                    <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />
+                    {isLocked ? <Lock size={16} style={{ color: '#f59e0b' }} /> : <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />}
                   </div>
                 </div>
               )

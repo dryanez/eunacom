@@ -1,0 +1,23 @@
+{
+  "name": "eunacom-telegram-quiz-bot",
+  "version": "1.0.0",
+  "description": "Automated Daily EUNACOM Telegram Quiz Channel & Multi-channel Publisher",
+  "type": "module",
+  "main": "publish_daily_quiz.js",
+  "scripts": {
+    "start": "node scheduler.js",
+    "start:now": "node scheduler.js --now",
+    "post": "node publish_daily_quiz.js",
+    "post:dry": "node publish_daily_quiz.js --dry-run",
+    "preview": "node test_quiz_preview.js"
+  },
+  "keywords": [
+    "eunacom",
+    "telegram-bot",
+    "quiz-bot",
+    "medical-education",
+    "chile"
+  ],
+  "author": "EunacomApp",
+  "license": "MIT"
+}

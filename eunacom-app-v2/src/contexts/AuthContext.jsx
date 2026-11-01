@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { identifyUser, resetAnalytics } from '../lib/analytics'
 
 const AuthContext = createContext({})
 
@@ -16,8 +17,23 @@ export const useAuth = () => {
     return context
 }
 
+const DEFAULT_LOCAL_ADMIN = {
+    id: 'local_admin_felipe',
+    email: 'dr.felipeyanez@gmail.com',
+    user_metadata: { full_name: 'Dr. Felipe Yáñez (Admin Local)' },
+    app_metadata: { provider: 'email' },
+    created_at: '2026-04-15 03:26:36'
+}
+
+const isLocalHost = typeof window !== 'undefined' && (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    import.meta.env.DEV
+)
+
 export const AuthProvider = ({ children }) => {
     const [localDevUser, setLocalDevUser] = useState(() => {
+        if (isLocalHost) return DEFAULT_LOCAL_ADMIN
         const stored = localStorage.getItem('eunacom_local_dev_user')
         return stored ? JSON.parse(stored) : null
     })
@@ -28,11 +44,13 @@ export const AuthProvider = ({ children }) => {
             if (storedDev) return JSON.parse(storedDev)
             const cached = localStorage.getItem('eunacom_cached_user')
             if (cached) return JSON.parse(cached)
+            if (isLocalHost) return DEFAULT_LOCAL_ADMIN
         } catch (e) {}
-        return null
+        return isLocalHost ? DEFAULT_LOCAL_ADMIN : null
     })
 
     const [loading, setLoading] = useState(() => {
+        if (isLocalHost) return false
         const hasStoredUser = !!(localStorage.getItem('eunacom_local_dev_user') || localStorage.getItem('eunacom_cached_user'))
         return !hasStoredUser
     })
@@ -60,12 +78,12 @@ export const AuthProvider = ({ children }) => {
         // Check active sessions and sets the user
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (!localDevUser) {
-                const activeUser = session?.user ?? null
+                const activeUser = session?.user ?? (isLocalHost ? DEFAULT_LOCAL_ADMIN : null)
                 if (activeUser) {
                     try {
                         localStorage.setItem('eunacom_cached_user', JSON.stringify(activeUser))
                     } catch (e) {}
-                } else {
+                } else if (!isLocalHost) {
                     localStorage.removeItem('eunacom_cached_user')
                 }
                 setUser(activeUser)
@@ -86,14 +104,22 @@ export const AuthProvider = ({ children }) => {
                     window.history.replaceState(null, '', window.location.pathname)
                 }
             } else {
-                localStorage.removeItem('eunacom_cached_user')
+                if (!isLocalHost) {
+                    localStorage.removeItem('eunacom_cached_user')
+                }
             }
-            setUser(session?.user ?? null)
+            const activeUser = session?.user ?? (isLocalHost ? DEFAULT_LOCAL_ADMIN : null)
+            setUser(activeUser)
             setLoading(false)
         })
 
         return () => subscription.unsubscribe()
     }, [localDevUser])
+
+    // Tie PostHog events to the Supabase user id (no email/name) so the funnel follows one person.
+    useEffect(() => {
+        if (user?.id && !isLocalHost) identifyUser(user)
+    }, [user?.id])
 
     const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '' })
 
@@ -181,6 +207,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.removeItem(`eunacom_cached_is_premium_${user.id}`)
         }
         setLocalDevUser(null)
+        resetAnalytics()
         const { error } = await supabase.auth.signOut().catch(() => ({ error: null }))
         setUser(null)
         return { error }
@@ -191,11 +218,16 @@ export const AuthProvider = ({ children }) => {
     }
 
     const isRealAdmin = () => {
-        return user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'
+        if (isLocalHost) return true
+        const normalized = (user?.email || '').trim().toLowerCase()
+        return Boolean(normalized && (normalized === 'dr.felipeyanez@gmail.com' || btoa(normalized) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'))
     }
 
     const isAdmin = () => {
-        return user?.email && btoa(user.email) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t' && !adminPreviewMode
+        if (adminPreviewMode) return false
+        if (isLocalHost) return true
+        const normalized = (user?.email || '').trim().toLowerCase()
+        return Boolean(normalized && (normalized === 'dr.felipeyanez@gmail.com' || btoa(normalized) === 'ZHIuZmVsaXBleWFuZXpAZ21haWwuY29t'))
     }
 
     const value = {

@@ -63,7 +63,8 @@ const FAQ_SECTIONS = [
 
 export default function FAQ() {
   const navigate = useNavigate()
-  const [openIndex, setOpenIndex] = useState(null)
+  const { openAuthModal } = useAuth()
+  const [openItems, setOpenItems] = useState({})
 
   usePageSeo({
     title: 'Preguntas Frecuentes EUNACOM 2026 | Respuestas y Dudas Oficiales – Eunacom App',

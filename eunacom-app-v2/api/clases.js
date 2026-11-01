@@ -3,35 +3,42 @@
 // DELETE /api/clases?id=xxx       → delete a class
 import { getTurso } from './_turso.js';
 
+let tablesEnsured = false
+
+async function ensureTable(db) {
+  if (tablesEnsured) return
+  try {
+    await db.execute({
+      sql: `CREATE TABLE IF NOT EXISTS clases (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL,
+        topic TEXT NOT NULL,
+        summary TEXT,
+        key_points TEXT,
+        quiz TEXT,
+        specialty TEXT,
+        subsystem TEXT,
+        lesson_number INTEGER,
+        slides_file TEXT,
+        video_dir TEXT,
+        saved_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      args: []
+    })
+    try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN specialty TEXT', args: [] }) } catch (e) {}
+    try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN subsystem TEXT', args: [] }) } catch (e) {}
+    try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN lesson_number INTEGER', args: [] }) } catch (e) {}
+    try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN slides_file TEXT', args: [] }) } catch (e) {}
+    try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN video_dir TEXT', args: [] }) } catch (e) {}
+    tablesEnsured = true
+  } catch (err) {
+    console.error('Error ensuring clases table:', err)
+  }
+}
+
 export default async function handler(req, res) {
   try {
   const db = getTurso()
-
-  // Ensure table exists (idempotent)
-  await db.execute({
-    sql: `CREATE TABLE IF NOT EXISTS clases (
-      id TEXT PRIMARY KEY,
-      user_id TEXT NOT NULL,
-      topic TEXT NOT NULL,
-      summary TEXT,
-      key_points TEXT,
-      quiz TEXT,
-      specialty TEXT,
-      subsystem TEXT,
-      lesson_number INTEGER,
-      slides_file TEXT,
-      video_dir TEXT,
-      saved_at TEXT NOT NULL DEFAULT (datetime('now'))
-    )`,
-    args: []
-  })
-
-  // Add migration for old table
-  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN specialty TEXT', args: [] }) } catch (e) {}
-  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN subsystem TEXT', args: [] }) } catch (e) {}
-  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN lesson_number INTEGER', args: [] }) } catch (e) {}
-  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN slides_file TEXT', args: [] }) } catch (e) {}
-  try { await db.execute({ sql: 'ALTER TABLE clases ADD COLUMN video_dir TEXT', args: [] }) } catch (e) {}
 
   if (req.method === 'GET') {
     const { userId, id } = req.query
@@ -58,6 +65,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
+    await ensureTable(db)
     const { id, userId, topic, summary, keyPoints, quiz, specialty, subsystem, lessonNumber, slidesFile, videoDir } = req.body
     if (!userId || !topic) return res.status(400).json({ error: 'userId and topic required' })
     await db.execute({

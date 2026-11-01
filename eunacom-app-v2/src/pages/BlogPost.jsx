@@ -1,219 +1,519 @@
-import React, { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react'
+import React, { useEffect, useState, useMemo } from 'react'
+import { useNavigate, useParams, Link } from 'react-router-dom'
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ShieldCheck,
+  Stethoscope,
+  Share2,
+  Bookmark,
+  MessageCircle,
+  HelpCircle,
+  AlertTriangle,
+  ChevronRight,
+  List,
+  Sparkles,
+} from 'lucide-react'
 import { BLOG_POSTS } from '../data/blogPosts'
 import { usePageSeo } from '../lib/seo'
+import DoctorConsultationModal from '../components/DoctorConsultationModal'
+import DoctorProfileCard from '../components/DoctorProfileCard'
+import '../styles/eunacomSitioTheme.css'
+
+function parseHeadings(md) {
+  if (!md) return []
+  const matches = []
+  const regex = /^##\s+(.+)$/gm
+  let m
+  while ((m = regex.exec(md)) !== null) {
+    const title = m[1].trim()
+    const id = title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+    matches.push({ id, title })
+  }
+  return matches
+}
 
 function renderMarkdown(md) {
   if (!md) return ''
   let html = md
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/^---$/gm, '<hr />')
-    .replace(/\n\n/g, '</p><p>')
 
+  // Convert H2s with IDs for TOC linking
+  html = html.replace(/^##\s+(.+)$/gm, (match, title) => {
+    const cleanTitle = title.trim()
+    const id = cleanTitle
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+    return `<h2 id="${id}">${cleanTitle}</h2>`
+  })
+
+  // Convert H3s
+  html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>')
+
+  // Bold & Italic
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
+
+  // Links
+  html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+
+  // Numbered and Bullet lists
+  html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
+  html = html.replace(/^-\s+(.+)$/gm, '<li>$1</li>')
+
+  // Horizontal rules
+  html = html.replace(/^---$/gm, '<hr />')
+
+  // Paragraphs
+  html = html.replace(/\n\n/g, '</p><p>')
   html = html.replace(/(<li>.*<\/li>(\n|$))+/g, (match) => `<ul>${match}</ul>`)
+
   return `<p>${html}</p>`
 }
 
 export default function BlogPost() {
   const navigate = useNavigate()
   const { slug } = useParams()
-  const post = BLOG_POSTS.find(p => p.slug === slug)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false)
+  const [copiedLink, setCopiedLink] = useState(false)
+
+  const post = BLOG_POSTS.find((p) => p.slug === slug || p.aliases?.includes(slug))
 
   usePageSeo({
-    title: post?.metaTitle || 'Artículo EUNACOM | Blog Eunacom App',
-    description: post?.metaDescription || 'Guías y artículos de preparación para el EUNACOM.',
-    canonical: `https://www.eunacomapp.cl/blog/${slug}`,
-    ogType: 'article'
+    title: post?.metaTitle || `${post?.title} | Eunacom App`,
+    description: post?.metaDescription || post?.excerpt,
+    canonical: `https://www.eunacomapp.cl/blog/${post?.slug || slug}`,
+    ogType: 'article',
   })
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [slug])
 
+  // Track scroll progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollTop
+      const windowHeight =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight
+      if (windowHeight > 0) {
+        setScrollProgress((totalScroll / windowHeight) * 100)
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const headings = useMemo(() => {
+    return post ? parseHeadings(post.content) : []
+  }, [post])
+
   if (!post) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', color: '#0f172a', fontFamily: 'Lexend, sans-serif', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
-        <h2>Artículo no encontrado</h2>
-        <button onClick={() => navigate('/blog')} style={{ backgroundColor: '#0284c7', color: '#ffffff', border: 'none', padding: '10px 20px', borderRadius: 8, cursor: 'pointer' }}>
-          Volver al Blog
+      <div className="eunacom-sitio-page min-h-screen flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-2xl font-bold text-[var(--eunacom-navy)] mb-2">
+          Artículo no encontrado
+        </h2>
+        <p className="text-sm text-slate-500 mb-6">
+          El artículo que buscas ha sido reubicado o no existe en la base de datos oficial.
+        </p>
+        <button
+          onClick={() => navigate('/blog')}
+          className="px-5 py-2.5 rounded-xl bg-[var(--eunacom-blue)] text-white font-bold text-sm shadow-md hover:bg-[var(--eunacom-blue-hover)] transition"
+        >
+          Volver al Portal de Artículos
         </button>
       </div>
     )
   }
 
-  const related = BLOG_POSTS.filter(p => p.slug !== slug).slice(0, 3)
+  const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3)
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: post.title,
+        url: window.location.href,
+      })
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      setCopiedLink(true)
+      setTimeout(() => setCopiedLink(false), 2000)
+    }
+  }
+
+  // Schema.org structured data (BlogPosting, MedicalWebPage, FAQPage, Breadcrumbs)
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.metaDescription,
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.eunacomapp.cl/blog/${post.slug}`,
+    },
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+      jobTitle: post.author.role,
+      identifier: post.author.regNumber,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Eunacom App',
+      url: 'https://www.eunacomapp.cl',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.eunacomapp.cl/favicon.ico',
+      },
+    },
+  }
+
+  const faqSchema = post.faqs && post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  } : null
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: 'https://www.eunacomapp.cl',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog EUNACOM',
+        item: 'https://www.eunacomapp.cl/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://www.eunacomapp.cl/blog/${post.slug}`,
+      },
+    ],
+  }
 
   return (
-    <div style={{ backgroundColor: '#ffffff', color: '#0f172a', fontFamily: 'Lexend, -apple-system, sans-serif', minHeight: '100vh' }}>
-      {/* Nav */}
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 50,
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid #e2e8f0',
-        padding: '0 24px', height: '64px',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        maxWidth: '1200px', margin: '0 auto'
-      }}>
-        <button
-          onClick={() => navigate('/blog')}
-          style={{ background: 'none', border: 'none', color: '#475569', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
-        >
-          <ArrowLeft size={18} /> Volver al Blog
-        </button>
-        <button
-          onClick={() => navigate('/register')}
-          style={{ backgroundColor: '#0284c7', color: '#ffffff', border: 'none', padding: '6px 16px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
-        >
-          Crear Cuenta
-        </button>
+    <div className="eunacom-sitio-page min-h-screen">
+      {/* Dynamic Top Reading Progress Bar */}
+      <div
+        className="reading-progress-bar"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      {/* Header Bar */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/blog')}
+              className="text-slate-600 hover:text-[var(--eunacom-navy)] text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Volver al Blog</span>
+            </button>
+            <span className="hidden md:inline-block text-slate-300">/</span>
+            <span className="hidden md:inline-block text-xs font-semibold text-slate-500 truncate max-w-sm">
+              {post.title}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleShare}
+              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition text-xs font-semibold flex items-center gap-1.5"
+              title="Compartir artículo"
+            >
+              <Share2 className="w-4 h-4" />
+              <span className="hidden sm:inline">
+                {copiedLink ? '¡Enlace Copiado!' : 'Compartir'}
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsConsultationOpen(true)}
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold border border-emerald-200 transition flex items-center gap-1.5"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              Orientación 1 a 1
+            </button>
+          </div>
+        </div>
       </header>
 
-      {/* Article Content */}
-      <article style={{ maxWidth: '780px', margin: '0 auto', padding: '56px 24px 80px' }}>
-        <div style={{
-          display: 'inline-block',
-          backgroundColor: '#e0f2fe',
-          color: '#0369a1',
-          border: '1px solid #bae6fd',
-          fontSize: '0.78rem',
-          fontWeight: 700,
-          padding: '4px 12px',
-          borderRadius: 9999,
-          marginBottom: 20
-        }}>
-          {post.category}
-        </div>
+      {/* Article Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Main Article Content Column */}
+          <main className="lg:col-span-8">
+            {/* Category & Verified Badge */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-4">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--eunacom-sky-light)] text-[var(--eunacom-navy)] border border-[var(--eunacom-sky-border)]">
+                {post.category}
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                Revisado por Dirección Médica
+              </span>
+            </div>
 
-        <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', fontWeight: 800, color: '#0f172a', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: 20 }}>
-          {post.title}
-        </h1>
+            {/* Title */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--eunacom-navy)] leading-tight tracking-tight mb-4">
+              {post.title}
+            </h1>
 
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: '#64748b', fontSize: '0.85rem', marginBottom: 40, borderBottom: '1px solid #f1f5f9', paddingBottom: 20 }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Calendar size={14} /> {post.date}
-          </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Clock size={14} /> {post.readTime}
-          </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <BookOpen size={14} /> Redacción Médica
-          </span>
-        </div>
-
-        <div
-          className="blog-light-content"
-          style={{ color: '#334155', lineHeight: 1.85, fontSize: '1.02rem' }}
-          dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
-        />
-
-        {/* CTA Banner */}
-        <div style={{
-          backgroundColor: '#f0f9ff',
-          border: '1px solid #bae6fd',
-          borderRadius: 20,
-          padding: '36px',
-          textAlign: 'center',
-          marginTop: 64
-        }}>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a', marginBottom: 8 }}>Prepárate para el EUNACOM con +10.000 preguntas</h3>
-          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: 24, maxWidth: '520px', margin: '0 auto 24px' }}>
-            Accede a reconstrucciones oficiales, clases en video y simulacros cronometrados desde $14.990 CLP.
-          </p>
-          <button
-            onClick={() => navigate('/register')}
-            style={{
-              backgroundColor: '#0284c7', color: '#ffffff', border: 'none',
-              padding: '13px 32px', borderRadius: 10, fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer',
-              display: 'inline-flex', alignItems: 'center', gap: 8
-            }}
-          >
-            Comenzar a Practicar <ArrowRight size={16} />
-          </button>
-        </div>
-      </article>
-
-      {/* Related Posts */}
-      {related.length > 0 && (
-        <section style={{ maxWidth: '780px', margin: '0 auto', padding: '0 24px 80px' }}>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', marginBottom: 20 }}>Otros Artículos de Interés</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-            {related.map(rp => (
-              <div
-                key={rp.slug}
-                onClick={() => navigate(`/blog/${rp.slug}`)}
-                style={{
-                  backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 14,
-                  padding: '18px', cursor: 'pointer', transition: 'all 0.2s'
-                }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#0284c7'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.transform = 'none' }}
-              >
-                <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#0f172a', lineHeight: 1.4, marginBottom: 8 }}>{rp.title}</div>
-                <div style={{ fontSize: '0.78rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <Clock size={11} /> {rp.readTime}
+            {/* Author & Meta Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-4 py-4 mb-8 border-y border-slate-100 text-xs text-slate-500">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[var(--eunacom-navy)] text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                  FY
+                </div>
+                <div>
+                  <div className="font-bold text-[var(--eunacom-navy)]">
+                    {post.author.name}
+                  </div>
+                  <div className="text-[11px] text-slate-400">
+                    {post.author.role} · {post.author.regNumber}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      )}
+
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                  {post.date}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-[var(--eunacom-blue)]" />
+                  Lectura: {post.readTime}
+                </span>
+              </div>
+            </div>
+
+            {/* Key Takeaways Callout Box */}
+            {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+              <div className="clinical-pearl-box">
+                <div className="flex items-center gap-2 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
+                  <Sparkles className="w-4 h-4 text-emerald-600" />
+                  Puntos Clave & Perlas Clínicas del Artículo
+                </div>
+                <ul className="space-y-1.5 text-xs sm:text-sm text-emerald-950">
+                  {post.keyTakeaways.map((t, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Regulatory Note / Official Alert */}
+            {post.regulatoryNote && (
+              <div className="official-regulation-box">
+                <div className="flex items-center gap-2 text-[var(--eunacom-navy)] text-xs font-bold uppercase tracking-wider mb-1">
+                  <ShieldCheck className="w-4 h-4 text-[var(--eunacom-blue)]" />
+                  Normativa Legal Vigente
+                </div>
+                <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {post.regulatoryNote}
+                </div>
+              </div>
+            )}
+
+            {/* Markdown Body */}
+            <article
+              className="blog-light-content prose prose-slate max-w-none text-slate-700 text-base leading-relaxed my-8"
+              dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
+            />
+
+            {/* FAQ Block (Rich Snippet on-page) */}
+            {post.faqs && post.faqs.length > 0 && (
+              <div className="my-12 p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                <h3 className="text-lg font-bold text-[var(--eunacom-navy)] mb-4 flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-[var(--eunacom-blue)]" />
+                  Preguntas Frecuentes sobre {post.category}
+                </h3>
+                <div className="space-y-4">
+                  {post.faqs.map((faq, idx) => (
+                    <div key={idx} className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+                      <div className="font-bold text-sm text-[var(--eunacom-navy)] mb-1.5">
+                        {faq.q}
+                      </div>
+                      <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* In-Article Diagnostic Triage Banner */}
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[var(--eunacom-navy)] to-[var(--eunacom-blue)] text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 my-10">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-300">
+                  ¿Preparando tu postulación?
+                </span>
+                <h4 className="text-lg sm:text-xl font-bold text-white mt-1">
+                  Revisa tu puntaje y situación con el Dr. Felipe Yáñez
+                </h4>
+                <p className="text-xs sm:text-sm text-sky-100 mt-1">
+                  Evaluamos tus simulacros y te entregamos una ruta de 90 días hacia la aprobación.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsConsultationOpen(true)}
+                className="shrink-0 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Orientación Gratuita
+              </button>
+            </div>
+
+            {/* Author Card Footer */}
+            <div className="mt-12">
+              <DoctorProfileCard onOpenConsultation={() => setIsConsultationOpen(true)} />
+            </div>
+          </main>
+
+          {/* Sticky Sidebar Column */}
+          <aside className="lg:col-span-4 space-y-6">
+            {/* Table of Contents */}
+            {headings.length > 0 && (
+              <div className="toc-sidebar hidden lg:block">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                  <List className="w-4 h-4 text-[var(--eunacom-blue)]" />
+                  Tabla de Contenidos
+                </div>
+                <nav className="space-y-1">
+                  {headings.map((h, i) => (
+                    <a
+                      key={i}
+                      href={`#${h.id}`}
+                      className="toc-link"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' })
+                      }}
+                    >
+                      {h.title}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )}
+
+            {/* Mock Test Practice CTA */}
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+              <div className="w-10 h-10 rounded-xl bg-[var(--eunacom-navy)] text-white flex items-center justify-center font-bold mb-3">
+                <Stethoscope className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-sm text-[var(--eunacom-navy)] mb-1">
+                Simulador EUNACOM en Línea
+              </h4>
+              <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                Practica con reconstrucciones oficiales, explicaciones basadas en Guías GES y cronómetro real.
+              </p>
+              <button
+                type="button"
+                onClick={() => navigate('/register')}
+                className="w-full py-2.5 px-4 rounded-xl bg-[var(--eunacom-navy)] hover:bg-[var(--eunacom-navy-dark)] text-white text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm"
+              >
+                Comenzar Simulacro <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Related Articles in Sidebar */}
+            {related.length > 0 && (
+              <div className="p-6 rounded-2xl bg-white border border-slate-200">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
+                  Artículos Relacionados
+                </div>
+                <div className="space-y-4">
+                  {related.map((rp) => (
+                    <div
+                      key={rp.slug}
+                      onClick={() => navigate(`/blog/${rp.slug}`)}
+                      className="cursor-pointer group"
+                    >
+                      <span className="text-[10px] font-bold uppercase text-[var(--eunacom-blue)]">
+                        {rp.category}
+                      </span>
+                      <h5 className="text-xs font-bold text-slate-800 group-hover:text-[var(--eunacom-blue)] transition line-clamp-2 mt-0.5">
+                        {rp.title}
+                      </h5>
+                      <div className="text-[11px] text-slate-400 mt-1 flex items-center gap-2">
+                        <span>{rp.readTime}</span>
+                        <span>·</span>
+                        <span>{rp.date}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
+        </div>
+      </div>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', padding: '36px 24px', textAlign: 'center', color: '#64748b', fontSize: '0.85rem' }}>
-        <p style={{ margin: 0 }}>© {new Date().getFullYear()} Eunacom App · eunacomapp.cl · Todos los derechos reservados · Chile</p>
+      <footer className="bg-white border-t border-slate-200 py-10 px-4 sm:px-6 mt-16 text-center text-xs text-slate-500">
+        <p>© {new Date().getFullYear()} Eunacom App · eunacomapp.cl · Todos los derechos reservados</p>
       </footer>
 
-      {/* Styles for article markdown content */}
-      <style>{`
-        .blog-light-content h2 {
-          color: #0f172a;
-          font-size: 1.5rem;
-          font-weight: 800;
-          margin: 40px 0 16px;
-          letter-spacing: -0.02em;
-        }
-        .blog-light-content h3 {
-          color: #1e293b;
-          font-size: 1.2rem;
-          font-weight: 700;
-          margin: 28px 0 12px;
-        }
-        .blog-light-content p {
-          margin-bottom: 20px;
-        }
-        .blog-light-content strong {
-          color: #0f172a;
-          font-weight: 700;
-        }
-        .blog-light-content em {
-          color: #0284c7;
-          font-style: italic;
-        }
-        .blog-light-content ul, .blog-light-content ol {
-          padding-left: 24px;
-          margin-bottom: 24px;
-        }
-        .blog-light-content li {
-          margin-bottom: 8px;
-        }
-        .blog-light-content a {
-          color: #0284c7;
-          text-decoration: underline;
-        }
-        .blog-light-content hr {
-          border: none;
-          border-top: 1px solid #e2e8f0;
-          margin: 36px 0;
-        }
-      `}</style>
+      {/* 1-on-1 Doctor Consultation Modal */}
+      <DoctorConsultationModal
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+        defaultTopic={post.title}
+      />
     </div>
   )
 }

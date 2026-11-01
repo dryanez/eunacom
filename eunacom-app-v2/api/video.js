@@ -1,6 +1,9 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import videoIndex from '../src/lib/videoIndex.json' assert { type: 'json' };
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const videoIndex = require('../src/lib/videoIndex.json');
 
 export default async function handler(req, res) {
   const { subsystem, lessonNumber } = req.query;

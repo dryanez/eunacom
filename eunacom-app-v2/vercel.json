@@ -1,14 +1,28 @@
 {
+    "crons": [
+        { "path": "/api/email-marketing-cron", "schedule": "0 13 * * *" }
+    ],
     "redirects": [
         {
-            "source": "/:path*",
+            "source": "/((?!api/).*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "eunacomapp.cl"
+                }
+            ],
+            "destination": "https://www.eunacomapp.cl/$1",
+            "permanent": true
+        },
+        {
+            "source": "/((?!api/).*)",
             "has": [
                 {
                     "type": "host",
                     "value": "eunacom.vercel.app"
                 }
             ],
-            "destination": "https://www.eunacomapp.cl/:path*",
+            "destination": "https://www.eunacomapp.cl/$1",
             "permanent": true
         }
     ],
@@ -72,6 +86,8 @@
         }
     ],
     "rewrites": [
+        { "source": "/api/paypal-export", "destination": "/api/admin-users?action=paypal" },
+        { "source": "/api/ses-events", "destination": "/api/admin-users?action=ses_events" },
         { "source": "/api/(.*)", "destination": "/api/$1" },
         { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
         { "source": "/robots.txt", "destination": "/robots.txt" },

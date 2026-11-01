@@ -1,59 +1,91 @@
 import { getTurso } from './_turso.js'
 import { Resend } from 'resend'
-import financesHandler from './admin-finances.js'
+import financesHandler from './_admin-finances.js'
+import seoHandler from './_admin-seo.js'
+import paypalHandler from './_paypal-export.js'
+import sesEventsHandler from './_ses-events.js'
+import {
+  getWelcomeEmailHtml,
+  getDiscountEmailHtml,
+  getDailyJoyaEmailHtml,
+  getStreakFreezeWarningEmailHtml,
+  getWeaknessSniperEmailHtml,
+  getCartAbandonmentEmailHtml,
+  getExamCountdownEmailHtml,
+  getWeeklyPerformanceDigestHtml
+} from './_email-templates.js'
+
+let colsEnsured = false
 
 // Admin-only endpoint — lists all user profiles + stats
 export default async function handler(req, res) {
   const db = getTurso()
 
   try {
-    // Ensure table exists and has all columns
-    await db.execute({
-      sql: `CREATE TABLE IF NOT EXISTS user_profiles (
-        id TEXT PRIMARY KEY,
-        email TEXT NOT NULL,
-        first_name TEXT,
-        last_name TEXT,
-        avatar_character TEXT,
-        exam_month TEXT,
-        exam_year TEXT,
-        prep_months TEXT,
-        nationality TEXT,
-        country TEXT,
-        country_code TEXT,
-        whatsapp TEXT,
-        inscrito_eunacom TEXT,
-        ayuda_inscripcion TEXT,
-        profile_type TEXT,
-        graduation_year TEXT,
-        university TEXT,
-        sede TEXT,
-        goal TEXT,
-        study_hours TEXT,
-        weak_area TEXT,
-        xp INTEGER DEFAULT 50,
-        onboarding_done INTEGER DEFAULT 0,
-        is_premium INTEGER DEFAULT 0,
-        premium_until TEXT,
-        plan_months INTEGER,
-        created_at TEXT DEFAULT (datetime('now')),
-        updated_at TEXT DEFAULT (datetime('now'))
-      )`,
-      args: []
-    }).catch(() => {})
+    // PayPal integration & export delegate
+    if (
+      req.query?.action === 'paypal' ||
+      req.query?.action === 'paypal_export' ||
+      req.body?.action === 'paypal' ||
+      req.headers?.['paypal-transmission-id'] ||
+      (req.method === 'GET' && req.query?.format === 'csv' && (req.query?.action === 'paypal' || req.url?.includes('paypal')))
+    ) {
+      return paypalHandler(req, res)
+    }
+    // Amazon SES bounce/complaint notifications (SNS)
+    if (req.query?.action === 'ses_events' || req.headers?.['x-amz-sns-message-type']) {
+      return sesEventsHandler(req, res)
+    }
+    if (!colsEnsured) {
+      // Ensure table exists and has all columns
+      await db.execute({
+        sql: `CREATE TABLE IF NOT EXISTS user_profiles (
+          id TEXT PRIMARY KEY,
+          email TEXT NOT NULL,
+          first_name TEXT,
+          last_name TEXT,
+          avatar_character TEXT,
+          exam_month TEXT,
+          exam_year TEXT,
+          prep_months TEXT,
+          nationality TEXT,
+          country TEXT,
+          country_code TEXT,
+          whatsapp TEXT,
+          inscrito_eunacom TEXT,
+          ayuda_inscripcion TEXT,
+          profile_type TEXT,
+          graduation_year TEXT,
+          university TEXT,
+          sede TEXT,
+          goal TEXT,
+          study_hours TEXT,
+          weak_area TEXT,
+          xp INTEGER DEFAULT 50,
+          onboarding_done INTEGER DEFAULT 0,
+          is_premium INTEGER DEFAULT 0,
+          premium_until TEXT,
+          plan_months INTEGER,
+          created_at TEXT DEFAULT (datetime('now')),
+          updated_at TEXT DEFAULT (datetime('now'))
+        )`,
+        args: []
+      }).catch(() => {})
 
-    const ensureCols = [
-      'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
-      'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
-      'nationality TEXT', 'country TEXT', 'country_code TEXT',
-      'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
-      'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
-      'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
-      'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
-      'premium_until TEXT', 'plan_months INTEGER'
-    ]
-    for (const col of ensureCols) {
-      await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      const ensureCols = [
+        'first_name TEXT', 'last_name TEXT', 'avatar_character TEXT',
+        'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
+        'nationality TEXT', 'country TEXT', 'country_code TEXT',
+        'whatsapp TEXT', 'inscrito_eunacom TEXT', 'ayuda_inscripcion TEXT',
+        'profile_type TEXT', 'graduation_year TEXT', 'university TEXT', 'sede TEXT',
+        'goal TEXT', 'study_hours TEXT', 'weak_area TEXT', 'xp INTEGER DEFAULT 50',
+        'onboarding_done INTEGER DEFAULT 0', 'is_premium INTEGER DEFAULT 0',
+        'premium_until TEXT', 'plan_months INTEGER'
+      ]
+      for (const col of ensureCols) {
+        await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
+      }
+      colsEnsured = true
     }
 
     if (req.method === 'GET') {
@@ -73,13 +105,155 @@ export default async function handler(req, res) {
         return res.json({ settings })
       }
 
-      if (adminEmail !== 'dr.felipeyanez@gmail.com') {
+      const isDev = process.env.NODE_ENV !== 'production'
+      if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
       // Finances route
       if (action === 'finances') {
         return financesHandler(req, res)
+      }
+
+      // SEO & Search Console route
+      if (action === 'seo') {
+        return seoHandler(req, res)
+      }
+
+      // Template HTML live preview
+      if (action === 'preview_template') {
+        const { type } = req.query
+        let html = ''
+        if (type === 'welcome') html = getWelcomeEmailHtml({ firstName: 'Felipe' })
+        else if (type === 'discount_30') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 30, questionsAnswered: 42 })
+        else if (type === 'discount_40') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 40, questionsAnswered: 42 })
+        else if (type === 'discount_50') html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 50, questionsAnswered: 42 })
+        else if (type === 'streak_warning') html = getStreakFreezeWarningEmailHtml({ firstName: 'Felipe', streakDays: 3, hoursRemaining: 3 })
+        else if (type === 'weakness_sniper') html = getWeaknessSniperEmailHtml({ name: 'Felipe' })
+        else if (type === 'cart_abandonment') html = getCartAbandonmentEmailHtml({ name: 'Felipe' })
+        else if (type === 'exam_countdown') html = getExamCountdownEmailHtml({ name: 'Felipe', daysRemaining: 30 })
+        else if (type === 'weekly_digest') html = getWeeklyPerformanceDigestHtml({ firstName: 'Felipe', totalWeeklyQuestions: 45, accuracyRate: 68, rankPosition: 42, strongestSpecialty: 'Cardiología', focusSpecialty: 'Pediatría' })
+        else if (type === 'joya') html = getDailyJoyaEmailHtml({
+          topic: 'Infarto Agudo al Miocardio con Supradesnivel del ST',
+          specialty: 'Cardiología',
+          clinicalVignette: 'Paciente de 62 años con dolor torácico opresivo de 45 minutos y supradesnivel de ST en V1-V4.',
+          pearlRule: 'En IAMCEST, la angioplastia primaria (PCI) es de elección si el tiempo puerta-balón es < 90 min en centro con hemodinamia, o < 120 min si requiere traslado.',
+          questionText: '¿Cuál es la conducta inicial prioritaria además de oxígeno si Sat < 90% y monitorización?',
+          questionOptions: ['Aspirina 300 mg + Clopidogrel 300-600 mg VO de inmediato', 'Fibrinolisis con Alteplasa sin esperar traslado', 'Ecocardiograma transtorácico de urgencia', 'Betabloqueadores endovenosos'],
+          correctOptionIndex: 0
+        })
+        return res.json({ html })
+      }
+
+      // Email Marketing route
+      if (action === 'email_marketing') {
+        await db.execute({
+          sql: `CREATE TABLE IF NOT EXISTS email_campaign_logs (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            email TEXT NOT NULL,
+            campaign_type TEXT NOT NULL,
+            subject TEXT NOT NULL,
+            discount_percent INTEGER,
+            sent_at TEXT DEFAULT (datetime('now')),
+            metadata TEXT
+          )`,
+          args: []
+        }).catch(() => {})
+
+        const [countsRes, logsRes, usersRes, activityRes, streakLogsRes] = await Promise.all([
+          db.execute({
+            sql: `SELECT campaign_type, COUNT(*) as count FROM email_campaign_logs GROUP BY campaign_type`,
+            args: []
+          }),
+          db.execute({
+            sql: `SELECT * FROM email_campaign_logs ORDER BY sent_at DESC LIMIT 50`,
+            args: []
+          }),
+          db.execute({
+            sql: `SELECT id, email, first_name, created_at, is_premium FROM user_profiles`,
+            args: []
+          }),
+          db.execute({
+            sql: `SELECT user_id, date(answered_at) as act_date
+                  FROM (
+                    SELECT user_id, answered_at FROM user_progress WHERE answered_at IS NOT NULL
+                    UNION ALL
+                    SELECT user_id, completed_at as answered_at FROM tests WHERE completed_at IS NOT NULL AND status = 'completed'
+                  )
+                  WHERE user_id IS NOT NULL AND user_id NOT IN ('screenshot-mock', 'dev_test')
+                  GROUP BY user_id, act_date
+                  ORDER BY user_id, act_date DESC`,
+            args: []
+          }),
+          db.execute({
+            sql: `SELECT user_id FROM email_campaign_logs WHERE campaign_type = 'streak_warning' AND date(sent_at) = date('now')`,
+            args: []
+          })
+        ])
+
+        const now = new Date()
+        const todayStr = now.toISOString().split('T')[0]
+        const yesterday = new Date(now)
+        yesterday.setDate(yesterday.getDate() - 1)
+        const yesterdayStr = yesterday.toISOString().split('T')[0]
+
+        let eligible30 = 0, eligible40 = 0, eligible50 = 0, eligibleStreakWarning = 0
+        const sentTypesByUser = new Map()
+        for (const log of logsRes.rows) {
+          if (!sentTypesByUser.has(log.user_id)) sentTypesByUser.set(log.user_id, new Set())
+          sentTypesByUser.get(log.user_id).add(log.campaign_type)
+        }
+
+        const streakSentToday = new Set(streakLogsRes.rows.map(r => r.user_id))
+        const userActivityDatesMap = new Map()
+        for (const row of activityRes.rows) {
+          if (!userActivityDatesMap.has(row.user_id)) userActivityDatesMap.set(row.user_id, new Set())
+          userActivityDatesMap.get(row.user_id).add(row.act_date)
+        }
+
+        for (const u of usersRes.rows) {
+          // Free funnel
+          if (u.is_premium === 0 && u.created_at) {
+            const d = Math.floor((now - new Date(u.created_at)) / (1000 * 60 * 60 * 24))
+            const s = sentTypesByUser.get(u.id) || new Set()
+            if (d >= 7 && d < 14 && !s.has('discount_30')) eligible30++
+            else if (d >= 14 && d < 21 && !s.has('discount_40')) eligible40++
+            else if (d >= 21 && !s.has('discount_50')) eligible50++
+          }
+
+          // Streak Warning (>= 3 days streak, no activity today)
+          const userDates = userActivityDatesMap.get(u.id) || new Set()
+          if (!userDates.has(todayStr) && userDates.has(yesterdayStr) && !streakSentToday.has(u.id)) {
+            let streak = 1
+            let checkDate = new Date(yesterday)
+            checkDate.setDate(checkDate.getDate() - 1)
+            while (userDates.has(checkDate.toISOString().split('T')[0])) {
+              streak++
+              checkDate.setDate(checkDate.getDate() - 1)
+            }
+            if (streak >= 3) {
+              eligibleStreakWarning++
+            }
+          }
+        }
+
+        const counts = {}
+        for (const row of countsRes.rows) { counts[row.campaign_type] = row.count }
+
+        const totalFree = usersRes.rows.filter(u => u.is_premium === 0).length
+
+        return res.json({
+          counts,
+          eligible: {
+            week1_30: eligible30,
+            week2_40: eligible40,
+            week3_50: eligible50,
+            streakWarning: eligibleStreakWarning,
+            totalFree
+          },
+          logs: logsRes.rows
+        })
       }
 
       // Temporary cleanup route

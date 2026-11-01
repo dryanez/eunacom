@@ -32,17 +32,31 @@ public/videos
 *.pdf
 eunacom-app-v2/book/*.pdf
 
-# Telegram Sessions & Private Keys
-*.session
-*.session-journal
-telegram_session_string.txt
+# Environment Variables & Vault Secrets
+*.env
 .env
+.env.*
+os/.obsidian/
 
-# Python Cache
+# Cache and build artifacts
 __pycache__/
 *.pyc
+.vercel/
+.vercel
 
-# Temp test files
+
+
+# Sensitive files — NEVER commit
+*.session
+telegram-bot/.env
+.ig_credentials.json
+.ig_session.json
+.ig_token.json
+eunacom-app-v2/.env
+
+# (local) Telegram / temp files
+*.session-journal
+telegram_session_string.txt
 scripts/amino_acids_debug/
 scripts/cropped_figures_test/
 scripts/perfect_figures/

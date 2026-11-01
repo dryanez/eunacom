@@ -1,6 +1,26 @@
 import { getTurso } from './_turso.js'
+import { getActivePromo } from './_promo.js'
+import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
+
+// PayPal can't charge CLP, so in-app PayPal orders use these regular USD prices (promo discount applied on top).
+const PAYPAL_USD = { '1m': 16, '3m': 39.99, '6m': 59.99, '1y': 99.99 } // same as the PayPal payment links
+
+async function paypalToken() {
+  const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) return null
+  const r = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64')}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'grant_type=client_credentials'
+  })
+  if (!r.ok) return null
+  return (await r.json()).access_token
+}
 
 const PLANS = {
   '1m': { title: 'EUNACOM Examen - 1 Mes Premium', price: 14990 },
@@ -169,7 +189,7 @@ export default async function handler(req, res) {
 
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
-      const { userId, planId } = req.body
+      const { userId, planId, discount } = req.body
       if (!userId || !planId || !PLANS[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
 
       const result = await db.execute({ sql: 'SELECT email FROM user_profiles WHERE id = ?', args: [userId] })
@@ -177,28 +197,110 @@ export default async function handler(req, res) {
       if (result.rows && result.rows.length > 0) payerEmail = result.rows[0].email
 
       const plan = PLANS[planId]
+      // A URL coupon (?discount=30|40|50) only counts if we actually emailed that coupon to this user
+      let requestedPct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
+      if (requestedPct) {
+        const sent = await db.execute({
+          sql: `SELECT 1 FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ? LIMIT 1`,
+          args: [userId, `discount_${requestedPct}`]
+        }).catch(() => ({ rows: [] }))
+        if (!sent.rows?.length) requestedPct = 0
+      }
+      const promo = await getActivePromo(db)
+      const discountPct = Math.max(requestedPct, promo?.percent || 0)
+      const finalPrice = discountPct > 0 ? Math.round(plan.price * (1 - discountPct / 100)) : plan.price
       const externalReference = `${userId}|${planId}|${Date.now()}`
 
       const mpRes = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: [{ title: plan.title, quantity: 1, unit_price: plan.price, currency_id: 'CLP' }],
+          items: [{
+            title: discountPct > 0 ? `${plan.title} (${discountPct}% DCTO)` : plan.title,
+            quantity: 1,
+            unit_price: finalPrice,
+            currency_id: 'CLP'
+          }],
           payer: { email: payerEmail },
           external_reference: externalReference,
           back_urls: {
-            success: 'https://eunacom.vercel.app/dashboard?payment=success',
-            failure: 'https://eunacom.vercel.app/dashboard?payment=failure',
-            pending: 'https://eunacom.vercel.app/dashboard?payment=pending'
+            success: 'https://www.eunacomapp.cl/dashboard?payment=success',
+            failure: 'https://www.eunacomapp.cl/dashboard?payment=failure',
+            pending: 'https://www.eunacomapp.cl/dashboard?payment=pending'
           },
           auto_return: 'approved',
-          notification_url: 'https://eunacom.vercel.app/api/user-profiles'
+          notification_url: 'https://www.eunacomapp.cl/api/user-profiles'
         })
       })
 
       if (!mpRes.ok) return res.status(500).json({ error: 'Error creando preferencia Mercado Pago' })
       const data = await mpRes.json()
       return res.json({ init_point: data.init_point })
+    }
+
+    // --- PAYPAL ORDER (in-app, discount-aware) ---
+    if (req.method === 'POST' && req.body?.action === 'paypal_order') {
+      const { userId, planId } = req.body
+      if (!userId || !PAYPAL_USD[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
+      const token = await paypalToken()
+      if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
+
+      const promo = await getActivePromo(db)
+      const pct = promo?.percent || 0
+      const value = (PAYPAL_USD[planId] * (1 - pct / 100)).toFixed(2)
+      const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          intent: 'CAPTURE',
+          purchase_units: [{
+            custom_id: `${userId}|${planId}`,
+            description: pct > 0 ? `${PLANS[planId].title} (${pct}% DCTO)` : PLANS[planId].title,
+            amount: { currency_code: 'USD', value }
+          }],
+          application_context: {
+            brand_name: 'EUNACOM App',
+            user_action: 'PAY_NOW',
+            shipping_preference: 'NO_SHIPPING',
+            return_url: 'https://www.eunacomapp.cl/dashboard?paypal=return',
+            cancel_url: 'https://www.eunacomapp.cl/dashboard?paypal=cancel'
+          }
+        })
+      })
+      if (!r.ok) return res.status(502).json({ error: 'Error creando orden PayPal' })
+      const order = await r.json()
+      const approve = order.links?.find(l => l.rel === 'approve' || l.rel === 'payer-action')?.href
+      return res.json({ approve_url: approve, order_id: order.id })
+    }
+
+    // --- PAYPAL CAPTURE (buyer returns from PayPal with ?token=ORDER_ID) ---
+    if (req.method === 'POST' && req.body?.action === 'paypal_capture') {
+      const { userId, orderId } = req.body
+      if (!userId || !orderId) return res.status(400).json({ error: 'Missing parameters' })
+      const token = await paypalToken()
+      if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
+
+      const r = await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(orderId)}/capture`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+      })
+      const data = await r.json()
+      // Already captured (e.g. page reloaded) → read the order instead
+      const order = r.ok ? data : await (await fetch(`${PAYPAL_API}/v2/checkout/orders/${encodeURIComponent(orderId)}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })).json()
+      const unit = order.purchase_units?.[0]
+      const capture = unit?.payments?.captures?.[0]
+      const [orderUser, planId] = String(capture?.custom_id || unit?.custom_id || '').split('|')
+      if (order.status !== 'COMPLETED' || orderUser !== userId || !PLAN_MAP[planId]) {
+        return res.status(400).json({ error: 'Pago PayPal no completado', status: order.status })
+      }
+      // Each order activates once — replaying an old order id must not extend the plan again
+      await db.execute({ sql: `CREATE TABLE IF NOT EXISTS paypal_inapp_orders (order_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, captured_at TEXT DEFAULT (datetime('now')))`, args: [] })
+      const ins = await db.execute({ sql: `INSERT OR IGNORE INTO paypal_inapp_orders (order_id, user_id, plan_id) VALUES (?, ?, ?)`, args: [order.id, userId, planId] })
+      if (!ins.rowsAffected) return res.json({ success: true, already_processed: true })
+      const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
+      return res.json({ success: true, premium_until: premiumUntil })
     }
 
     // --- DONATE CREATION ---
@@ -217,9 +319,9 @@ export default async function handler(req, res) {
           items: [{ title: "Donación App EUNACOM", description: "Aporte voluntario (USD $9 approx)", quantity: 1, unit_price: 9000, currency_id: "CLP" }],
           payer: { email: payerEmail },
           back_urls: {
-            success: "https://eunacom.vercel.app/dashboard?donation=success",
-            failure: "https://eunacom.vercel.app/dashboard?donation=failure",
-            pending: "https://eunacom.vercel.app/dashboard?donation=pending"
+            success: "https://www.eunacomapp.cl/dashboard?donation=success",
+            failure: "https://www.eunacomapp.cl/dashboard?donation=failure",
+            pending: "https://www.eunacomapp.cl/dashboard?donation=pending"
           },
           auto_return: "approved"
         })
@@ -239,7 +341,32 @@ export default async function handler(req, res) {
         sql: 'SELECT * FROM user_profiles WHERE id = ?',
         args: [userId]
       })
-      return res.json({ data: result.rows[0] || null })
+      let profile = result.rows[0] || null
+
+      // If user profile is not active premium, check if this email has an active subscription under another user_id (e.g. Google OAuth vs email/password duplicate ID)
+      if (profile && profile.email) {
+        const isCurrentActive = profile.is_premium === 1 && (!profile.premium_until || new Date(profile.premium_until) > new Date())
+        if (!isCurrentActive) {
+          const emailCheck = await db.execute({
+            sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE LOWER(email) = LOWER(?) AND is_premium = 1 AND (premium_until IS NULL OR datetime(premium_until) > datetime('now')) ORDER BY premium_until DESC LIMIT 1`,
+            args: [profile.email]
+          }).catch(() => ({ rows: [] }))
+
+          if (emailCheck.rows && emailCheck.rows.length > 0) {
+            const active = emailCheck.rows[0]
+            profile.is_premium = active.is_premium
+            profile.premium_until = active.premium_until
+            profile.plan_months = active.plan_months
+            // Sync to this profile row in background
+            await db.execute({
+              sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
+              args: [active.premium_until, active.plan_months, userId]
+            }).catch(() => {})
+          }
+        }
+      }
+
+      return res.json({ data: profile })
     }
 
     // --- CREATE / UPDATE PROFILE ---
@@ -272,14 +399,30 @@ export default async function handler(req, res) {
         await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
       }
 
+      // Check if this email already has active premium under another user_id
+      let isPremiumInit = 0
+      let premiumUntilInit = null
+      let planMonthsInit = null
+      try {
+        const emailCheck = await db.execute({
+          sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE LOWER(email) = LOWER(?) AND is_premium = 1 AND (premium_until IS NULL OR datetime(premium_until) > datetime('now')) ORDER BY premium_until DESC LIMIT 1`,
+          args: [email]
+        })
+        if (emailCheck.rows && emailCheck.rows.length > 0) {
+          isPremiumInit = 1
+          premiumUntilInit = emailCheck.rows[0].premium_until
+          planMonthsInit = emailCheck.rows[0].plan_months
+        }
+      } catch (e) {}
+
       await db.execute({
         sql: `INSERT INTO user_profiles (
                 id, email, first_name, last_name, avatar_character, exam_month, exam_year, prep_months,
                 nationality, country, country_code, whatsapp, inscrito_eunacom, ayuda_inscripcion,
                 profile_type, graduation_year, university, sede, goal, study_hours, weak_area, xp,
-                onboarding_done, is_premium, updated_at
+                onboarding_done, is_premium, premium_until, plan_months, updated_at
               )
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
               ON CONFLICT(id) DO UPDATE SET
                 email = excluded.email,
                 first_name = COALESCE(excluded.first_name, user_profiles.first_name),
@@ -303,6 +446,9 @@ export default async function handler(req, res) {
                 weak_area = COALESCE(excluded.weak_area, user_profiles.weak_area),
                 xp = COALESCE(excluded.xp, user_profiles.xp, 50),
                 onboarding_done = MAX(excluded.onboarding_done, user_profiles.onboarding_done),
+                is_premium = CASE WHEN user_profiles.is_premium = 1 THEN 1 ELSE excluded.is_premium END,
+                premium_until = COALESCE(user_profiles.premium_until, excluded.premium_until),
+                plan_months = COALESCE(user_profiles.plan_months, excluded.plan_months),
                 updated_at = datetime('now')`,
         args: [
           id, email, first_name || '', last_name || '', req.body.avatar_character || 'dr_strange',
@@ -310,9 +456,47 @@ export default async function handler(req, res) {
           nationality || '', country || '', country_code || '', whatsapp || '',
           inscrito_eunacom || '', ayuda_inscripcion || '',
           profile_type || '', graduation_year || '', university || '', sede || '', goal || '',
-          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0
+          study_hours || '', weak_area || '', xp || 50, onboarding_done ? 1 : 0,
+          isPremiumInit, premiumUntilInit, planMonthsInit
         ]
       })
+
+      // Trigger Welcome Email in background if not already sent
+      try {
+        if (process.env.RESEND_API_KEY && email && email.includes('@')) {
+          const logCheck = await db.execute({
+            sql: `SELECT id FROM email_campaign_logs WHERE user_id = ? AND campaign_type = 'welcome'`,
+            args: [id]
+          }).catch(() => ({ rows: [] }))
+
+          if (!logCheck.rows || logCheck.rows.length === 0) {
+            const { Resend } = await import('resend')
+            const { getWelcomeEmailHtml } = await import('./_email-templates.js')
+            const resend = new Resend(process.env.RESEND_API_KEY)
+            const sender = process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl'
+            const welcomeHtml = getWelcomeEmailHtml({ firstName: first_name || '' })
+            
+            resend.emails.send({
+              from: `EUNACOM App <${sender}>`,
+              to: email,
+              subject: `🩺 ¡Bienvenido/a Dr(a). ${first_name || 'Colega'}! Tu plan para aprobar el EUNACOM`,
+              html: welcomeHtml
+            }).then(async (sendRes) => {
+              if (sendRes?.data?.id) {
+                const logId = `log_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`
+                await db.execute({
+                  sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject)
+                        VALUES (?, ?, ?, 'welcome', ?)`,
+                  args: [logId, id, email, `¡Bienvenido/a Dr(a). ${first_name || 'Colega'}!`]
+                }).catch(() => {})
+              }
+            }).catch(err => console.error('[Welcome Email Error]:', err?.message))
+          }
+        }
+      } catch (welcomeErr) {
+        console.error('[Welcome Email Trigger Error]:', welcomeErr?.message)
+      }
+
       return res.json({ ok: true })
     }
     // --- DELETE PROFILE ---

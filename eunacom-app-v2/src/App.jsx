@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { SubscriptionProvider } from './contexts/SubscriptionContext'
 import { ThemeProvider } from './contexts/ThemeContext'
@@ -39,6 +39,7 @@ import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
 import { useAuth } from './contexts/AuthContext'
 import AuthModal from './components/AuthModal'
+import CyberWeekPopup from './components/CyberWeekPopup'
 import './index.css'
 
 const AdminRoute = ({ children }) => {
@@ -53,6 +54,14 @@ const AdminRoute = ({ children }) => {
   return children
 }
 
+// Browsers with an older cached build open email offer links (/oferta?discount=…) with the old
+// Offer page, which jumped to /dashboard?discount=…; send those visits back to the offer page.
+function DashboardDiscountRoute() {
+  const { search } = useLocation()
+  if (new URLSearchParams(search).has('discount')) return <Navigate to={`/oferta${search}`} replace />
+  return <Dashboard />
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -60,6 +69,7 @@ function App() {
         <AuthProvider>
           <SubscriptionProvider>
             <AuthModal />
+            <CyberWeekPopup />
             <Routes>
               {/* ── SEO Public Pages (no layout wrapper, standalone) ── */}
               <Route path="/" element={<LandingPage />} />
@@ -92,7 +102,7 @@ function App() {
 
               {/* ── Public App Pages ── */}
               <Route element={<PublicLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<DashboardDiscountRoute />} />
                 <Route path="/medlingo" element={<MedLingoPage />} />
                 <Route path="/racha" element={<MedLingoPage />} />
                 <Route path="/reconstructions" element={<Reconstructions />} />

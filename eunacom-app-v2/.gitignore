@@ -31,3 +31,5 @@ src/data/pruebas.json
 # Cache and local scratch
 __pycache__/
 scratch/
+.env*.local
+scripts/campaigns/*_recipients.csv
