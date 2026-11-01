@@ -15,6 +15,14 @@ function clasesApiPlugin() {
       const env = loadEnv('development', process.cwd(), '')
       Object.assign(process.env, env)
 
+      // Without local Turso credentials these middlewares only return empty data
+      // (e.g. no profile → onboarding every time), so let /api fall through to the
+      // production proxy instead.
+      if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+        server.config.logger.info('[clases-api] TURSO_DATABASE_URL not set: proxying /api to www.eunacomapp.cl')
+        return
+      }
+
       // ── Cloudflare R2 Video Streaming Redirect (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/video')) return next()

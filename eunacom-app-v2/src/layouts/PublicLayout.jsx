@@ -22,6 +22,11 @@ const PublicLayout = () => {
   // If a user is logged in, check if they completed onboarding — only once per session
   useEffect(() => {
     if (!user) { setProfileChecked(true); return }
+    if (user.id === 'local_admin_felipe') {
+      setProfileChecked(true)
+      setShowOnboarding(false)
+      return
+    }
     const sessionKey = `onboarding_checked_${user.id}`
     if (sessionStorage.getItem(sessionKey)) {
       setProfileChecked(true)
