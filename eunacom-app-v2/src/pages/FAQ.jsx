@@ -54,6 +54,10 @@ const FAQ_SECTIONS = [
         a: 'No. No realizamos cobros automáticos ni guardamos tus datos de pago. Solo pagas una vez por el período que decides estudiar.',
       },
       {
+        q: '¿Puedo pedir un reembolso?',
+        a: 'El acceso Premium se activa de inmediato al pagar, por lo que no realizamos reembolsos una vez activado. Solo devolvemos el pago en caso de cobro duplicado o de una falla técnica nuestra que no podamos resolver en 5 días hábiles. Revisa la Política de Reembolsos completa en eunacomapp.cl/reembolsos.',
+      },
+      {
         q: '¿Puedo usar la plataforma desde mi celular?',
         a: 'Sí. Eunacom App es una Progressive Web App (PWA). Puedes instalarla directamente en la pantalla de inicio de tu iPhone, iPad o Android y estudiar cómodamente en cualquier lugar.',
       },

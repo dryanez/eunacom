@@ -318,6 +318,12 @@ const PaymentModal = ({ onClose }) => {
                 </p>
               </div>
 
+              <p style={{ margin: '0 0 0.75rem 0', fontSize: '0.72rem', color: 'var(--surface-300)', lineHeight: 1.4, textAlign: 'center' }}>
+                Al pagar aceptas nuestra{' '}
+                <a href="/reembolsos" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>Política de Reembolsos</a>:
+                {' '}como el acceso se activa de inmediato, no hay reembolsos una vez activado.
+              </p>
+
               {country === 'CL' ? (
                 <>
                   {/* Mercado Libre */}
