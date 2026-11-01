@@ -597,7 +597,7 @@ export default defineConfig({
       '/api/tutor': 'http://localhost:5001',
       // Skip .js module imports under /api (e.g. src/config/promo.js imports api/_promo.js)
       '^/api/(?![^?]*\\.js(\\?|$))': {
-        target: 'https://eunacom.vercel.app',
+        target: 'https://www.eunacomapp.cl',
         changeOrigin: true,
       }
     }
