@@ -19,6 +19,7 @@ import Offer from './pages/Offer'
 import MisClases from './pages/MisClases'
 import Biblioteca from './pages/Biblioteca'
 import Links from './pages/Links'
+import Regalo from './pages/Regalo'
 import ScriptProgress from './pages/ScriptProgress'
 import AdminUsers from './pages/AdminUsers'
 import Reconstructions from './pages/Reconstructions'
@@ -96,6 +97,7 @@ function App() {
               } />
 
               <Route path="/links" element={<Links />} />
+              <Route path="/regalo/:slug" element={<Regalo />} />
               {/* ── Auth Routes ── */}
               <Route element={<AuthLayout />}>
                 <Route path="/login" element={<Login />} />

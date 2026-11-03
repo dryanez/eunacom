@@ -4,7 +4,7 @@ import '../styles/tienda.css'
 
 // «Link en la bio» de Instagram (eunacomapp.cl/links): pública, sin login, pensada para celular.
 // TODO(dueño): completar los placeholders marcados abajo.
-const INSTAGRAM_USER = 'TODO_usuario_instagram' // TODO: usuario del nuevo Instagram de AEE (sin @)
+const INSTAGRAM_USER = 'academiaeunacom' // usuario de Instagram de AEE (sin @)
 const TELEGRAM_URL = null                        // TODO: link de invitación del grupo de Telegram (https://t.me/...)
 const WHATSAPP_URL = `https://wa.me/${TRANSFER.whatsapp.replace(/\D/g, '')}`
 const IG_DM_URL = `https://ig.me/m/${INSTAGRAM_USER}`

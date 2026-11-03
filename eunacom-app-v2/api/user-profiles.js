@@ -5,6 +5,8 @@ import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies } from './_tien
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
+import { handleRegalo } from './_regalos.js'
+import { Resend } from 'resend'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
@@ -89,14 +91,25 @@ async function bookPaypalCapture(paypalOrderId) {
 }
 
 // Lector en línea: link de 10 minutos al PDF en R2 (bucket R2_BOOKS_BUCKET, clave libros/<ruta en books/dist>)
-async function signBookFile(path) {
+async function signBookFile(path, { expiresIn = 600, filename, privateOnly = false } = {}) {
+  if (privateOnly && !process.env.R2_BOOKS_BUCKET) return null // nunca firmar desde el bucket público
   const accountId = process.env.VITE_R2_ACCOUNT_ID || process.env.R2_ACCOUNT_ID
   const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID || process.env.R2_ACCESS_KEY_ID
   const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY || process.env.R2_SECRET_ACCESS_KEY
   if (!accountId || !accessKeyId || !secretAccessKey) return null
   const s3 = new S3Client({ region: 'auto', endpoint: `https://${accountId}.r2.cloudflarestorage.com`, credentials: { accessKeyId, secretAccessKey }, forcePathStyle: true })
   const Bucket = process.env.R2_BOOKS_BUCKET || process.env.VITE_R2_BUCKET || process.env.R2_BUCKET || 'eunacomvideos'
-  return getSignedUrl(s3, new GetObjectCommand({ Bucket, Key: `libros/${path}` }), { expiresIn: 600 })
+  const disp = filename ? { ResponseContentDisposition: `inline; filename="${filename}"`, ResponseContentType: 'application/pdf' } : {}
+  return getSignedUrl(s3, new GetObjectCommand({ Bucket, Key: `libros/${path}`, ...disp }), { expiresIn })
+}
+
+// Libro gratis de /regalo/<slug>: solo desde el bucket privado (R2_BOOKS_BUCKET) y correo por Resend
+const signGiftFile = (path, o) => signBookFile(path, { ...o, privateOnly: true })
+async function sendGiftEmail({ to, subject, html }) {
+  if (!process.env.RESEND_API_KEY) throw new Error('RESEND_API_KEY missing')
+  const from = `Academia Examen EUNACOM <${process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl'}>`
+  const { error } = await new Resend(process.env.RESEND_API_KEY).emails.send({ from, to, subject, html })
+  if (error) throw new Error(error.message)
 }
 
 // Preferencia de Mercado Pago (Webpay) para un carro de libros
@@ -282,6 +295,9 @@ export default async function handler(req, res) {
         return res.status(200).json({ received: true, error: err.message })
       }
     }
+
+    // --- LIBRO GRATIS (/regalo/<slug>, reels «Comenta PALABRA») ---
+    if (await handleRegalo(db, req, res, { signFile: signGiftFile, sendEmail: sendGiftEmail, secret: process.env.REGALO_SECRET })) return
 
     // --- LIBROS (tienda /biblioteca) ---
     if (await handleBooks(db, req, res, {

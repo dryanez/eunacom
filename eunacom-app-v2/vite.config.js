@@ -491,6 +491,30 @@ function clasesApiPlugin() {
         res.setHeader('Content-Type', 'application/pdf')
         fs.createReadStream(file).pipe(res)
       })
+      // ── Libro gratis /regalo/<slug> (Local Dev) ── leads en la misma SQLite local, PDF desde books/dist, sin correo real
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/user-profiles')) return next()
+        const action = new URL(req.url, 'http://localhost').searchParams.get('action') || ''
+        if (!action.startsWith('regalo_')) return next()
+        try {
+          if (!booksDb) {
+            const os = await import('os')
+            booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
+            await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
+          }
+          const { handleRegalo } = await import('./api/_regalos.js')
+          await adaptVercelHandler((rq, rs) => handleRegalo(booksDb, rq, rs, {
+            signFile: async file => `/__libros_dev/${encodeURI(file)}`,
+            sendEmail: async m => console.log(`[regalo dev] correo a ${m.to}: ${m.subject}`),
+            secret: process.env.REGALO_SECRET || 'dev-regalo-secret',
+          }))(req, res)
+        } catch (err) {
+          console.error('regalo dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/user-profiles')) return next()
         const url = new URL(req.url, 'http://localhost')
