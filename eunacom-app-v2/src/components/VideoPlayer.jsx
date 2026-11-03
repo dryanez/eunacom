@@ -19,6 +19,11 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
   const [watched, setWatched] = useState(!!initialWatched)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
+  // Waiting for data after play or a jump (videos stream from R2): shows a spinner so people don't click again.
+  const [buffering, setBuffering] = useState(false)
+  const [scrubbing, setScrubbing] = useState(false)
+  const [barHover, setBarHover] = useState(false)
+  const playPendingRef = useRef(false)
   const watchedFiredRef = useRef(!!initialWatched)
   const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
@@ -59,16 +64,48 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
   const togglePlay = () => {
     const v = videoRef.current
     if (!v) return
-    if (v.paused) { v.play(); setPlaying(true) }
-    else { v.pause(); setPlaying(false) }
+    // A second click while play() is still starting used to pause the video right away (PostHog rage clicks on /mis-clases).
+    if (playPendingRef.current) return
+    if (v.paused) {
+      playPendingRef.current = true
+      setPlaying(true)
+      setBuffering(v.readyState < 3)
+      Promise.resolve(v.play())
+        .catch(() => setPlaying(false))
+        .finally(() => { playPendingRef.current = false })
+    } else { v.pause(); setPlaying(false) }
   }
 
-  const seek = (e) => {
+  // Seek to the pointer position on the bar; works for a click and while dragging.
+  const seekTo = (clientX, bar) => {
+    const v = videoRef.current
+    const total = duration || v?.duration
+    if (!v || !total || isNaN(total)) return
+    const rect = bar.getBoundingClientRect()
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
+    v.currentTime = pct * total
+    setProgress(pct * 100)
+    setCurrent(pct * total)
+  }
+  const onBarPointerDown = (e) => {
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+    setScrubbing(true)
+    seekTo(e.clientX, e.currentTarget)
+  }
+  const onBarPointerMove = (e) => { if (scrubbing) seekTo(e.clientX, e.currentTarget) }
+  const onBarPointerUp = (e) => {
+    if (!scrubbing) return
+    setScrubbing(false)
+    e.currentTarget.releasePointerCapture?.(e.pointerId)
+  }
+  // Arrow keys move 10 s when the bar has focus.
+  const onBarKeyDown = (e) => {
     const v = videoRef.current
     if (!v || !duration) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
-    v.currentTime = pct * duration
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault()
+      v.currentTime = Math.max(0, Math.min(duration, v.currentTime + (e.key === 'ArrowRight' ? 10 : -10)))
+    }
   }
 
   const toggleMute = () => {
@@ -172,7 +209,6 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
           webkit-playsinline="true"
           style={{ width: '100%', display: error ? 'none' : 'block', maxHeight: 480, background: '#000' }}
           onLoadedMetadata={(e) => { setDuration(e.target.duration); setLoading(false) }}
-          onCanPlay={() => setLoading(false)}
           onTimeUpdate={handleTimeUpdate}
           onEnded={handleEnded}
           onError={(e) => { 
@@ -191,9 +227,25 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
             setLoading(false) 
           }}
           onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
+          onPause={() => { setPlaying(false); setBuffering(false) }}
+          onWaiting={() => setBuffering(true)}
+          onSeeking={() => setBuffering(true)}
+          onSeeked={() => setBuffering(false)}
+          onPlaying={() => setBuffering(false)}
+          onCanPlay={() => { setLoading(false); setBuffering(false) }}
           preload="metadata"
         />
+
+        {/* Buffering spinner after play or a jump — desktop only (mobile shows the native one) */}
+        {!isMobile && buffering && !loading && !error && (
+          <div style={{
+            position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            pointerEvents: 'none', background: 'rgba(0,0,0,0.25)',
+          }}>
+            <div style={{ width: 44, height: 44, borderRadius: '50%', border: '3px solid rgba(255,255,255,0.85)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
+            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+          </div>
+        )}
 
         {/* Play/Pause overlay — only when paused and no error, desktop only */}
         {!isMobile && !playing && !error && !loading && (
@@ -222,20 +274,44 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
           background: 'var(--surface-800)',
           display: 'flex', flexDirection: 'column', gap: '0.5rem',
         }}>
-          {/* Progress bar */}
+          {/* Progress bar: 20px tall hit area around the visible track; click or drag to jump, arrows ±10 s */}
           <div
-            onClick={seek}
+            role="slider"
+            tabIndex={0}
+            aria-label="Posición del video"
+            aria-valuemin={0}
+            aria-valuemax={Math.round(duration) || 0}
+            aria-valuenow={Math.round(currentTime)}
+            aria-valuetext={`${fmt(currentTime)} de ${fmt(duration)}`}
+            onPointerDown={onBarPointerDown}
+            onPointerMove={onBarPointerMove}
+            onPointerUp={onBarPointerUp}
+            onPointerCancel={onBarPointerUp}
+            onPointerEnter={() => setBarHover(true)}
+            onPointerLeave={() => setBarHover(false)}
+            onKeyDown={onBarKeyDown}
             style={{
-              height: 6, borderRadius: 3, background: 'var(--surface-600)',
-              cursor: 'pointer', overflow: 'hidden', position: 'relative',
+              height: 20, display: 'flex', alignItems: 'center', cursor: 'pointer',
+              touchAction: 'none', userSelect: 'none', outlineOffset: 2,
             }}
           >
             <div style={{
-              height: '100%', borderRadius: 3,
-              width: `${progress}%`,
-              background: 'linear-gradient(90deg, var(--primary-500), #8b5cf6)',
-              transition: 'width 0.25s linear',
-            }} />
+              position: 'relative', width: '100%', height: barHover || scrubbing ? 10 : 6, borderRadius: 5,
+              background: 'var(--surface-600)', transition: 'height 0.15s',
+            }}>
+              <div style={{
+                height: '100%', borderRadius: 5,
+                width: `${progress}%`,
+                background: 'linear-gradient(90deg, var(--primary-500), #8b5cf6)',
+                transition: scrubbing ? 'none' : 'width 0.25s linear',
+              }} />
+              {/* Handle shows where you are and that the bar can be dragged */}
+              <div style={{
+                position: 'absolute', top: '50%', left: `${progress}%`, width: 14, height: 14, borderRadius: '50%',
+                transform: 'translate(-50%, -50%)', background: '#fff', boxShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                opacity: barHover || scrubbing ? 1 : 0, transition: 'opacity 0.15s',
+              }} />
+            </div>
           </div>
 
           {/* Buttons row */}
