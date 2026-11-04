@@ -7,6 +7,7 @@ import { useSubscription } from '../contexts/SubscriptionContext';
 import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
 import '../styles/tienda.css';
+import { track } from '../lib/analytics';
 
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
 const PLANS = APP_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
@@ -81,6 +82,10 @@ const PaymentModal = ({ onClose }) => {
   const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
 
   useEffect(() => {
+    track('plans_viewed', { discount_percent: discountPercent || 0, logged_in: !!user });
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -96,6 +101,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
+      track('checkout_started', { gateway: 'paypal', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
       const res = await createPaypalOrder(user.id, selectedPlan.id, coupon?.code);
       if (!res.approve_url) throw new Error('No approve_url');
       window.location.href = res.approve_url;
@@ -113,6 +119,7 @@ const PaymentModal = ({ onClose }) => {
     setLoadingMp(true);
     setErrorMp(null);
     try {
+      track('checkout_started', { gateway: 'mercadopago', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
       const res = await createCheckoutSession(user.id, selectedPlan.id, couponPercent, coupon?.code);
       if (res.init_point) {
         window.location.href = res.init_point;
@@ -292,6 +299,11 @@ const PaymentModal = ({ onClose }) => {
             <CheckCircle2 size={15} style={{ verticalAlign: 'text-bottom', marginRight: 4 }} />
             <strong>Activación inmediata</strong>&nbsp;al terminar el pago.
           </div>
+              <p style={{ margin: '0.75rem 0 0', fontSize: '0.72rem', color: 'var(--surface-300)', lineHeight: 1.4, textAlign: 'center' }}>
+                Al pagar aceptas nuestra{' '}
+                <a href="/reembolsos" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>Política de Reembolsos</a>:
+                {' '}como el acceso se activa de inmediato, no hay reembolsos una vez activado.
+              </p>
 
           {country === 'CL' ? (
             <>

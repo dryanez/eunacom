@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fbf9f6;color:#231e1a;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#231e1a;text-decoration:none}
+a:hover{color:oklch(0.52 0.13 40)}
+button,input,select{font-family:inherit}
+</style>
+</helmet>
+
+<div style="background:#fbf9f6">
+
+<header style="max-width:1120px;margin:0 auto;padding:34px 44px 0;display:flex;align-items:center;gap:clamp(14px,2vw,32px)">
+<span style="font-family:'Newsreader',serif;font-size:21px;letter-spacing:-.01em">Dr. [Nombre Apellido]</span>
+<nav style="display:flex;gap:24px;font-size:13.5px;color:#6f645c;flex:1;white-space:nowrap">
+<a href="#carta" style="color:inherit">Quién soy</a><a href="#trabajo" style="color:inherit">Cómo trabajo</a><a href="#planes" style="color:inherit">Planes</a><a href="#hablar" style="color:inherit">Hablemos</a>
+</nav>
+<a href="#hablar" style="font-size:13.5px;font-weight:600;color:oklch(0.50 0.13 40);border-bottom:1px solid oklch(0.70 0.10 40);padding-bottom:2px;white-space:nowrap">Escríbeme →</a>
+</header>
+
+<section id="carta" style="max-width:1120px;margin:0 auto;padding:76px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 280px;gap:72px;align-items:start">
+<div>
+<div style="font-size:13px;letter-spacing:.02em;color:#8a7d73;margin-bottom:30px">Carta abierta a quien rinde en 2026</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(44px,5.6vw,72px);line-height:1.04;letter-spacing:-.025em;margin:0 0 34px;max-width:23ch;text-wrap:balance">Si ya rendiste una vez, el problema no fue estudiar poco.</h1>
+<div style="font-family:'Newsreader',serif;font-size:21px;line-height:1.62;color:#3b332d;display:flex;flex-direction:column;gap:20px;max-width:56ch">
+<p style="margin:0">Fue estudiar sin saber qué pesaba. Llevo nueve años preparando médicos para este examen y la historia se repite: gente que se sabe la medicina, ordenada por un temario que no se parece al examen.</p>
+<p style="margin:0">El Perfil V3 movió los pesos otra vez. La mayoría sigue preparándose con el mapa viejo, y lo nota el día que ve las preguntas.</p>
+<p style="margin:0">Lo que hago es simple: armo tu plan de ocho semanas según tu fecha, tu país de titulación y los ejes donde estás flojo. Después te acompaño hasta el día del examen. Doce personas por convocatoria, porque las dudas las respondo yo.</p>
+</div>
+<div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:38px">
+<a href="#hablar" style="font-size:15px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;padding:16px 28px;border-radius:2px">Armemos mi plan</a>
+<a href="#hablar" style="font-size:14.5px;border-bottom:1px solid rgba(35,30,26,.3);padding-bottom:3px">Antes quiero medirme</a>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px;padding-top:8px">
+<div style="width:100%;aspect-ratio:3/4;background:repeating-linear-gradient(135deg,#eee9e2 0 10px,#f6f2ec 10px 20px);border:1px solid rgba(35,30,26,.1);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a8d82;text-align:center;line-height:1.8">placeholder<br>retrato<br>del docente</div>
+<div style="font-size:13.5px;line-height:1.6;color:#6f645c">Medicina Interna, Universidad de Chile. Nueve años preparando EUNACOM. Sin equipo rotativo: las sesiones y las respuestas son conmigo.</div>
+</div>
+</div>
+</section>
+
+<section id="trabajo" style="max-width:1120px;margin:0 auto;padding:92px 44px 0">
+<div style="max-width:44ch;margin-bottom:44px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin:0 0 16px">Así te acompaño, semana a semana.</h2>
+<p style="font-size:16.5px;line-height:1.6;color:#5c534b;margin:0">Cuatro cosas, en este orden. Si algo no mueve tu puntaje, no está en el plan.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:0">
+<sc-for list="{{ pasos }}" as="p" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:40px;align-items:start;padding:34px 0;border-top:1px solid rgba(35,30,26,.14)">
+<div style="font-family:'Newsreader',serif;font-size:36px;line-height:1;color:oklch(0.62 0.11 40)">{{ p.num }}</div>
+<div>
+<div style="font-family:'Newsreader',serif;font-size:26px;line-height:1.2;margin-bottom:8px">{{ p.titulo }}</div>
+<div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#9a8d82">{{ p.cuando }}</div>
+</div>
+<p style="font-size:15.5px;line-height:1.65;color:#5c534b;margin:0">{{ p.texto }}</p>
+</div>
+</sc-for>
+<div style="border-top:1px solid rgba(35,30,26,.14)"></div>
+</div>
+</section>
+
+<section style="max-width:1120px;margin:0 auto;padding:92px 44px 0">
+<div style="background:#f3ece4;padding:56px 52px;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start">
+<div>
+<div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Hablemos de lo que te frena</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:40px;line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;max-width:17ch">Sé por qué lo estás postergando.</h2>
+<p style="font-size:15.5px;line-height:1.6;color:#5c534b;margin:0">Elige la frase que más se parece a tu cabeza hoy. Te respondo derecho.</p>
+</div>
+<div style="border-top:1px solid rgba(35,30,26,.16)">
+<sc-for list="{{ objeciones }}" as="o" hint-placeholder-count="4">
+<div>
+<button onClick="{{ o.toggle }}" style="{{ o.rowStyle }}">
+<span style="flex:1">{{ o.q }}</span>
+<span style="font-family:'Manrope',sans-serif;font-size:19px;color:#9a8d82;flex:none">{{ o.icon }}</span>
+</button>
+<sc-if value="{{ o.open }}" hint-placeholder-val="{{ false }}">
+<p style="font-size:15px;line-height:1.65;color:#5c534b;margin:0;padding:14px 0 22px;max-width:54ch">{{ o.a }}</p>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="planes" style="max-width:1120px;margin:0 auto;padding:92px 44px 0">
+<div style="max-width:46ch;margin-bottom:42px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px">¿Cuánto acompañamiento necesitas?</h2>
+<p style="font-size:16px;line-height:1.6;color:#5c534b;margin:0">Acceso hasta el día de tu examen. Si vas con Tutoría y no apruebas, repetimos completo sin que pagues de nuevo.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<div style="border:1px solid rgba(35,30,26,.16);padding:32px 28px;display:flex;flex-direction:column;gap:14px;background:#fdfcfa">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82">Banco</div>
+<div style="font-family:'Newsreader',serif;font-size:42px;line-height:1">US$ 290</div>
+<p style="font-size:14px;line-height:1.6;color:#5c534b;margin:0">Banco de 4.000+ preguntas y seis simulacros. Para quien ya tiene el contenido resuelto.</p>
+<div style="flex:1"></div>
+<a href="#hablar" style="text-align:center;font-size:14px;font-weight:600;border:1px solid rgba(35,30,26,.28);padding:13px;border-radius:2px">Elegir</a>
+</div>
+<div style="border:1px solid oklch(0.50 0.13 40);padding:32px 28px;display:flex;flex-direction:column;gap:14px;background:#fdfcfa">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.50 0.13 40)">Programa completo · el habitual</div>
+<div style="font-family:'Newsreader',serif;font-size:42px;line-height:1">US$ 690</div>
+<p style="font-size:14px;line-height:1.6;color:#5c534b;margin:0">Todo lo del banco, más 86 clases, seis tomos maquetados y el plan de ocho semanas armado a tu fecha.</p>
+<div style="flex:1"></div>
+<a href="#hablar" style="text-align:center;font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;padding:13px;border-radius:2px">Elegir el programa completo</a>
+</div>
+<div style="border:1px solid rgba(35,30,26,.16);padding:32px 28px;display:flex;flex-direction:column;gap:14px;background:#fdfcfa">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82">Tutoría · 12 cupos</div>
+<div style="font-family:'Newsreader',serif;font-size:42px;line-height:1">US$ 1.890</div>
+<p style="font-size:14px;line-height:1.6;color:#5c534b;margin:0">Todo lo anterior, sesiones 1-a-1 conmigo, corrección de simulacros y garantía por escrito.</p>
+<div style="flex:1"></div>
+<a href="#hablar" style="text-align:center;font-size:14px;font-weight:600;border:1px solid rgba(35,30,26,.28);padding:13px;border-radius:2px">Postular a cupo</a>
+</div>
+</div>
+</section>
+
+<section id="hablar" style="max-width:1120px;margin:92px auto 0;padding:0 44px 96px">
+<div style="border-top:1px solid rgba(35,30,26,.16);padding-top:52px;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:start">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:46px;line-height:1.04;letter-spacing:-.02em;margin:0 0 20px;max-width:19ch">Dime cuándo rindes y te armo el plan.</h2>
+<p style="font-size:16.5px;line-height:1.6;color:#5c534b;margin:0 0 26px;max-width:46ch">Te llega el blueprint del Perfil V3 ajustado a tu fecha, la semana 1 completa y treinta preguntas para que veas dónde estás parado hoy.</p>
+<div style="font-size:13.5px;color:#8a7d73">Gratis · sin tarjeta · sin llamada de ventas</div>
+</div>
+<div style="background:#f3ece4;padding:32px 30px">
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'Newsreader',serif;font-size:27px;line-height:1.2">Listo, va en camino.</div>
+<p style="font-size:14.5px;line-height:1.6;color:#5c534b;margin:0">Te lo mandé a <strong style="font-weight:600">{{ correoEnviado }}</strong>. Si no llega en cinco minutos, mira en promociones.</p>
+<button onClick="{{ reset }}" style="align-self:flex-start;font-size:13px;background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer">Usar otro correo</button>
+</div>
+</sc-if>
+<sc-if value="{{ abierto }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:15px">
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cómo te llamas</span><input value="{{ nombre }}" onChange="{{ onNombre }}" placeholder="Camila Rojas" style="font-size:15px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px" style-focus="border-color:oklch(0.50 0.13 40)"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Correo</span><input value="{{ correo }}" onChange="{{ onCorreo }}" placeholder="tu@correo.com" style="font-size:15px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px" style-focus="border-color:oklch(0.50 0.13 40)"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cuándo rindes</span><select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px"><option value="">Selecciona</option><option value="Julio 2026">Julio 2026</option><option value="Diciembre 2026">Diciembre 2026</option><option value="Aún no lo decido">Aún no lo decido</option></select></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cuéntame algo de tu situación</span><textarea value="{{ nota }}" onChange="{{ onNota }}" rows="3" placeholder="Es mi segundo intento, me titulé en Colombia…" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px;resize:vertical;font-family:inherit" style-focus="border-color:oklch(0.50 0.13 40)"></textarea></label>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:oklch(0.50 0.16 28)">{{ error }}</div></sc-if>
+<button onClick="{{ enviar }}" style="font-size:15px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:15px;border-radius:2px;cursor:pointer">Escríbeme</button>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<footer style="max-width:1120px;margin:0 auto;padding:0 44px 44px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#9a8d82;border-top:1px solid rgba(35,30,26,.12);padding-top:26px">
+<span>© 2026 · Santiago de Chile</span><span>Programa independiente, no afiliado a ASOFAMECH</span>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const PASOS = [
+  {n:"01",t:"Nos medimos",c:"Semana 1",x:"Treinta preguntas y un simulacro corto. No para calificarte, para saber en qué ejes se te está yendo el puntaje. El plan se arma sobre ese resultado."},
+  {n:"02",t:"Te armo el plan",c:"Antes de empezar",x:"Ocho semanas ordenadas por peso real en el examen y por tus brechas. Doce a quince horas semanales, en bloques de noventa minutos, compatible con turnos."},
+  {n:"03",t:"Estudias con material terminado",c:"Semanas 2 a 7",x:"Clase, manual y banco del mismo tema en el mismo bloque. Ochenta y seis clases grabadas en estudio y seis tomos maquetados de verdad, no apuntes escaneados."},
+  {n:"04",t:"Corregimos juntos",c:"Cada semana",x:"Reviso tus simulacros, te digo qué está fallando y qué mover del plan. La semana 8 es solo repaso de tus errores: nada de contenido nuevo antes del examen."}
+];
+
+const OBJECIONES = [
+  {q:"Todavía no me siento listo para empezar.",a:"Nadie lo está. La semana 1 es diagnóstico: no tienes que llegar sabiendo, tienes que llegar a medirte. Lo que salga define el plan."},
+  {q:"Ya reprobé una vez y no sé si insistir.",a:"La mayoría de quienes trabajan conmigo viene de un intento fallido. No repetimos el método que no funcionó: revisamos qué se cayó y reordenamos el estudio por peso real de cada eje."},
+  {q:"Estoy con turnos, no tengo ocho semanas libres.",a:"El plan está calculado para doce a quince horas semanales en bloques de noventa minutos. Si una semana no puedes, se corre completa y no pierdes el hilo."},
+  {q:"Me titulé fuera de Chile y no conozco el sistema.",a:"Ese es el módulo que más diferencia hace: red asistencial, GES, notificación obligatoria y medicina legal chilena. Va al principio, no al final."}
+];
+
+class Component extends DCLogic {
+  state = {obj:0, nombre:"", correo:"", fecha:"", nota:"", error:"", enviado:false, correoEnviado:""};
+  renderVals() {
+    return {
+      pasos:PASOS.map(p=>({num:p.n, titulo:p.t, cuando:p.c, texto:p.x})),
+      objeciones:OBJECIONES.map((o,k)=>{
+        const on = this.state.obj === k;
+        return {q:o.q, a:o.a, open:on, icon:on?"–":"+",
+          rowStyle:{width:"100%",background:"none",border:"none",borderBottom:"1px solid rgba(35,30,26,.16)",padding:"19px 0",
+            display:"flex",alignItems:"baseline",justifyContent:"space-between",gap:16,cursor:"pointer",textAlign:"left",
+            fontFamily:"'Newsreader',serif",fontSize:20,color:on?"#231e1a":"#4a423b"},
+          toggle:()=>this.setState(s=>({obj:s.obj===k?-1:k}))};
+      }),
+      nombre:this.state.nombre, correo:this.state.correo, fecha:this.state.fecha, nota:this.state.nota, error:this.state.error,
+      onNombre:e=>this.setState({nombre:e.target.value, error:""}),
+      onCorreo:e=>this.setState({correo:e.target.value, error:""}),
+      onFecha:e=>this.setState({fecha:e.target.value, error:""}),
+      onNota:e=>this.setState({nota:e.target.value}),
+      enviado:this.state.enviado, abierto:!this.state.enviado, correoEnviado:this.state.correoEnviado,
+      enviar:()=>{
+        const {nombre, correo, fecha} = this.state;
+        if (!nombre.trim()) return this.setState({error:"Dime cómo te llamas."});
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.trim())) return this.setState({error:"Revisa el correo, parece incompleto."});
+        if (!fecha) return this.setState({error:"Dime cuándo rindes."});
+        this.setState({enviado:true, correoEnviado:correo.trim(), error:""});
+      },
+      reset:()=>this.setState({enviado:false, nombre:"", correo:"", fecha:"", nota:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

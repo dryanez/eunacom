@@ -15,6 +15,14 @@ function clasesApiPlugin() {
       const env = loadEnv('development', process.cwd(), '')
       Object.assign(process.env, env)
 
+      // Without local Turso credentials these middlewares only return empty data
+      // (e.g. no profile → onboarding every time), so let /api fall through to the
+      // production proxy instead.
+      if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
+        server.config.logger.info('[clases-api] TURSO_DATABASE_URL not set: proxying /api to www.eunacomapp.cl')
+        return
+      }
+
       // ── Cloudflare R2 Video Streaming Redirect (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/video')) return next()
@@ -669,8 +677,9 @@ export default defineConfig({
     // /api/progress and /api/tests are handled by Vite middleware (clasesApiPlugin)
     proxy: {
       '/api/tutor': 'http://localhost:5001',
-      '/api': {
-        target: 'https://eunacom.vercel.app',
+      // Skip .js module imports under /api (e.g. src/config/promo.js imports api/_promo.js)
+      '^/api/(?![^?]*\\.js(\\?|$))': {
+        target: 'https://www.eunacomapp.cl',
         changeOrigin: true,
         // Shared modules imported by the client (src/config/promo.js → api/_promo.js) are source files, not API calls
         bypass: (req) => (/^\/api\/_[\w-]+\.js(\?|$)/.test(req.url) ? req.url : undefined),

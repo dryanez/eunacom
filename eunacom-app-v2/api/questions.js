@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     
     // Fetch questionDB to map IDs to correct answers
     const protocol = req.headers['x-forwarded-proto'] || 'https'
-    const host = req.headers.host || 'eunacom.vercel.app'
+    const host = req.headers.host || 'www.eunacomapp.cl'
     let qdbMap = new Map()
     try {
       const qdb = await fetch(`${protocol}://${host}/data/questionDB.json`).then(r => r.json())

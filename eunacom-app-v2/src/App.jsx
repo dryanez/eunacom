@@ -32,6 +32,7 @@ import MedLingoPage from './pages/MedLingoPage'
 // SEO Public pages
 import LandingPage from './pages/LandingPage'
 import FAQ from './pages/FAQ'
+import Reembolsos from './pages/Reembolsos'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import CursoComparativa from './pages/CursoComparativa'
@@ -81,6 +82,7 @@ function App() {
               <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
               <Route path="/convenios" element={<ConveniosLanding />} />
               <Route path="/faq" element={<FAQ />} />
+              <Route path="/reembolsos" element={<Reembolsos />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
 

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fbf9f6;color:#231e1a;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#231e1a;text-decoration:none}
+a:hover{color:oklch(0.52 0.13 40)}
+button,input,select,textarea{font-family:inherit}
+</style>
+</helmet>
+
+<div style="background:#fbf9f6;min-height:100vh">
+
+<div style="background:#231e1a;color:#e8ded4">
+<div style="max-width:1180px;margin:0 auto;padding:9px 44px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;letter-spacing:.01em">
+<span>Inscripciones abiertas · EUNACOM diciembre 2026</span>
+<span style="color:#a89a8d">{{ telefono }} · {{ correoContacto }}</span>
+</div>
+</div>
+
+<header style="position:sticky;top:0;z-index:40;background:rgba(251,249,246,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(35,30,26,.12)">
+<div style="max-width:1180px;margin:0 auto;padding:20px 44px;display:flex;align-items:center;gap:clamp(12px,1.8vw,28px)">
+<button onClick="{{ irInicio }}" style="background:none;border:none;padding:0;cursor:pointer;text-align:left;font-family:'Newsreader',serif;font-size:21px;letter-spacing:-.01em;color:#231e1a;white-space:nowrap">Dr. [Nombre Apellido]</button>
+<nav style="display:flex;gap:clamp(10px,1.4vw,22px);flex:1;flex-wrap:wrap;font-size:13.5px">
+<button onClick="{{ irNosotros }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Nosotros</button>
+<button onClick="{{ irCursos }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Cursos y precios</button>
+<button onClick="{{ irMaterial }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Material gratis</button>
+<button onClick="{{ irExtranjeros }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Médicos extranjeros</button>
+<button onClick="{{ irBlog }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Blog</button>
+<button onClick="{{ irContacto }}" style="background:none;border:none;padding:0;cursor:pointer;color:#6f645c;font-size:13.5px;white-space:nowrap" style-hover="color:oklch(0.50 0.13 40)">Contacto</button>
+</nav>
+<button onClick="{{ irCursos }}" style="flex:none;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:11px 20px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:600;white-space:nowrap">Ver cursos</button>
+</div>
+</header>
+
+<sc-if value="{{ esInicio }}" hint-placeholder-val="{{ true }}">
+<div>
+
+<section style="max-width:1180px;margin:0 auto;padding:76px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 300px;gap:72px;align-items:start">
+<div>
+<div style="font-size:13px;letter-spacing:.02em;color:#8a7d73;margin-bottom:28px">Preparación para el EUNACOM · Santiago de Chile</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(44px,5.4vw,70px);line-height:1.04;letter-spacing:-.025em;margin:0 0 32px;max-width:23ch;text-wrap:balance">Si ya rendiste una vez, el problema no fue estudiar poco.</h1>
+<div style="font-family:'Newsreader',serif;font-size:21px;line-height:1.62;color:#3b332d;display:flex;flex-direction:column;gap:18px;max-width:56ch">
+<p style="margin:0">Fue estudiar sin saber qué pesaba. Llevo nueve años preparando médicos para este examen y la historia se repite: gente que se sabe la medicina, ordenada por un temario que no se parece al examen.</p>
+<p style="margin:0">El Perfil V3 movió los pesos otra vez. La mayoría sigue preparándose con el mapa viejo, y lo nota el día que ve las preguntas.</p>
+</div>
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:36px">
+<button onClick="{{ irCursos }}" style="font-size:15px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:16px 28px;border-radius:2px;cursor:pointer">Ver cursos y precios</button>
+<button onClick="{{ irMaterial }}" style="font-size:14.5px;background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer">Descargar pruebas gratis</button>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px;padding-top:6px">
+<div style="width:100%;aspect-ratio:3/4;background:repeating-linear-gradient(135deg,#eee9e2 0 10px,#f6f2ec 10px 20px);border:1px solid rgba(35,30,26,.1);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a8d82;text-align:center;line-height:1.8">placeholder<br>retrato<br>del docente</div>
+<div style="font-size:13.5px;line-height:1.6;color:#6f645c">Medicina Interna, Universidad de Chile. Nueve años preparando EUNACOM. Sin equipo rotativo: las sesiones y las respuestas son conmigo.</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+<div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;margin-bottom:8px">9</div><div style="font-size:13.5px;line-height:1.55;color:#6f645c">años preparando médicos para el examen</div></div>
+<div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;margin-bottom:8px">86</div><div style="font-size:13.5px;line-height:1.55;color:#6f645c">clases grabadas en estudio, tema por tema</div></div>
+<div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;margin-bottom:8px">4.000+</div><div style="font-size:13.5px;line-height:1.55;color:#6f645c">preguntas comentadas en el banco</div></div>
+<div><div style="font-family:'Newsreader',serif;font-size:40px;line-height:1;margin-bottom:8px">12</div><div style="font-size:13.5px;line-height:1.55;color:#6f645c">cupos de tutoría 1-a-1 por convocatoria</div></div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="max-width:44ch;margin-bottom:40px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin:0 0 14px">Así te acompaño, semana a semana.</h2>
+<p style="font-size:16.5px;line-height:1.6;color:#5c534b;margin:0">Cuatro cosas, en este orden. Si algo no mueve tu puntaje, no está en el plan.</p>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ pasos }}" as="p" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:110px 1fr 1fr;gap:40px;align-items:start;padding:32px 0;border-top:1px solid rgba(35,30,26,.14)">
+<div style="font-family:'Newsreader',serif;font-size:36px;line-height:1;color:oklch(0.62 0.11 40)">{{ p.num }}</div>
+<div>
+<div style="font-family:'Newsreader',serif;font-size:26px;line-height:1.2;margin-bottom:8px">{{ p.titulo }}</div>
+<div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#9a8d82">{{ p.cuando }}</div>
+</div>
+<p style="font-size:15.5px;line-height:1.65;color:#5c534b;margin:0">{{ p.texto }}</p>
+</div>
+</sc-for>
+<div style="border-top:1px solid rgba(35,30,26,.14)"></div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.06;letter-spacing:-.02em;margin:0">Cursos y precios</h2>
+<button onClick="{{ irCursos }}" style="background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer;font-size:14px">Ver todos los cursos →</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+<sc-for list="{{ cursosHome }}" as="c" hint-placeholder-count="3">
+<div style="border:1px solid rgba(35,30,26,.16);background:#fdfcfa;padding:30px 28px;display:flex;flex-direction:column;gap:12px">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82">{{ c.kicker }}</div>
+<div style="font-family:'Newsreader',serif;font-size:27px;line-height:1.18">{{ c.nombre }}</div>
+<div style="font-size:13.5px;color:#6f645c">{{ c.meta }}</div>
+<p style="font-size:14.5px;line-height:1.6;color:#5c534b;margin:0">{{ c.resumen }}</p>
+<div style="flex:1"></div>
+<div style="font-family:'Newsreader',serif;font-size:26px">{{ c.precio }}</div>
+<button onClick="{{ c.ver }}" style="text-align:center;font-size:14px;font-weight:600;border:1px solid rgba(35,30,26,.28);background:none;padding:13px;border-radius:2px;cursor:pointer">Ver detalles</button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="background:#f3ece4;padding:52px 48px;display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start">
+<div>
+<div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#9a8d82;margin-bottom:20px">Material y pruebas gratis</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:38px;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;max-width:18ch">Empieza sin pagar nada.</h2>
+<p style="font-size:15.5px;line-height:1.65;color:#5c534b;margin:0 0 22px">Pruebas por especialidad, ensayos completos y reconstrucciones de exámenes anteriores. Recomiendo partir por las más recientes de cada tema.</p>
+<button onClick="{{ irMaterial }}" style="font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:13px 22px;border-radius:2px;cursor:pointer">Todas las pruebas aquí</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(35,30,26,.14)">
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Medicina interna</div><div style="font-size:12.5px;color:#8a7d73">14 pruebas</div></div>
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Cirugía</div><div style="font-size:12.5px;color:#8a7d73">9 pruebas</div></div>
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Pediatría</div><div style="font-size:12.5px;color:#8a7d73">11 pruebas</div></div>
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Ginecología y obstetricia</div><div style="font-size:12.5px;color:#8a7d73">10 pruebas</div></div>
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Salud pública</div><div style="font-size:12.5px;color:#8a7d73">7 pruebas</div></div>
+<div style="background:#f3ece4;padding:18px 20px"><div style="font-size:14.5px;font-weight:600;margin-bottom:4px">Psiquiatría</div><div style="font-size:12.5px;color:#8a7d73">6 pruebas</div></div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;border-top:1px solid rgba(35,30,26,.14);padding-top:40px">
+<div>
+<div style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#9a8d82;margin-bottom:18px">Para médicos extranjeros</div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:38px;line-height:1.06;letter-spacing:-.02em;margin:0 0 16px;max-width:20ch">Ejercer en Chile: qué exige la ley y qué no.</h2>
+<p style="font-size:15.5px;line-height:1.65;color:#5c534b;margin:0 0 22px;max-width:48ch">Para ejercer se necesita título de médico cirujano chileno o extranjero debidamente revalidado. Para el sistema público y ciertos cargos se exige además aprobar el EUNACOM. Hay excepciones e interpretaciones legales que conviene conocer antes de tomar decisiones.</p>
+<button onClick="{{ irExtranjeros }}" style="background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer;font-size:14px">Ver información completa →</button>
+</div>
+<div style="border:1px solid rgba(35,30,26,.14);background:#fdfcfa;padding:30px 30px">
+<div style="font-family:'Newsreader',serif;font-size:22px;margin-bottom:16px">Cuatro vías de revalidación</div>
+<ol style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.85;color:#5c534b">
+<li>Examen de revalidación en la Universidad de Chile</li>
+<li>Convenio bilateral de reconocimiento de títulos</li>
+<li>Reconocimiento por estudios de posgrado en Chile</li>
+<li>Revalidación por convenio internacional vigente</li>
+</ol>
+<p style="font-size:13.5px;line-height:1.6;color:#8a7d73;margin:16px 0 0">Existe además una vía para ejercer sin haber revalidado, bajo condiciones específicas.</p>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:82px 44px 0">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:30px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:44px;line-height:1.06;letter-spacing:-.02em;margin:0">Del blog</h2>
+<button onClick="{{ irBlog }}" style="background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer;font-size:14px">Ver todos los artículos →</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+<sc-for list="{{ postsHome }}" as="a" hint-placeholder-count="3">
+<button onClick="{{ a.abrir }}" style="text-align:left;background:none;border:none;border-top:1px solid rgba(35,30,26,.16);padding:22px 0 0;cursor:pointer;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.55 0.12 40)">{{ a.categoria }}</span>
+<span style="font-family:'Newsreader',serif;font-size:23px;line-height:1.22;color:#231e1a">{{ a.titulo }}</span>
+<span style="font-size:14px;line-height:1.6;color:#5c534b">{{ a.bajada }}</span>
+<span style="font-size:12.5px;color:#9a8d82">{{ a.fecha }} · {{ a.lectura }}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:82px auto 0;padding:0 44px 0">
+<div style="background:#231e1a;color:#f3ece4;padding:52px 48px;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:center">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:40px;line-height:1.06;letter-spacing:-.02em;margin:0 0 14px;max-width:22ch">Dime cuándo rindes y te armo el plan.</h2>
+<p style="font-size:15.5px;line-height:1.65;color:#c9bcae;margin:0;max-width:48ch">Te llega el blueprint del Perfil V3 ajustado a tu fecha, la semana 1 completa y treinta preguntas para ver dónde estás parado hoy. Gratis, sin tarjeta y sin llamada de ventas.</p>
+</div>
+<button onClick="{{ irContacto }}" style="justify-self:start;font-size:15px;font-weight:600;background:oklch(0.62 0.13 45);color:#231e1a;border:none;padding:16px 28px;border-radius:2px;cursor:pointer">Ingresa y asegura tu matrícula</button>
+</div>
+</section>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ esNosotros }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Nosotros</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(38px,4.6vw,58px);line-height:1.05;letter-spacing:-.025em;margin:0 0 40px;max-width:26ch">Somos el curso de preparación para el EUNACOM con mayor porcentaje de aprobación.</h1>
+<div style="display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:start">
+<div style="font-family:'Newsreader',serif;font-size:19.5px;line-height:1.68;color:#3b332d;display:flex;flex-direction:column;gap:18px;max-width:60ch">
+<p style="margin:0">Nuestro sistema te prepara para las dos secciones del examen: el EUNACOM teórico y el EUNACOM práctico en modalidad ECOE. No son dos exámenes con la misma lógica, y no se estudian igual.</p>
+<p style="margin:0">Empecé a preparar médicos en 2017, después de haber corregido cientos de simulacros y de ver el mismo patrón: candidatos con conocimiento suficiente y con un orden de estudio equivocado. La diferencia entre aprobar y no aprobar casi nunca está en las horas; está en dónde se ponen.</p>
+<p style="margin:0">Por eso el programa parte con un diagnóstico y no con la primera clase. Sabemos qué ejes pesan más en el Perfil V3, medimos en cuáles estás flojo, y sobre eso se arma el calendario. El material está terminado —clases grabadas en estudio, seis tomos maquetados, banco comentado— para que tu tiempo se vaya en estudiar y no en buscar apuntes.</p>
+<p style="margin:0">La tutoría 1-a-1 tiene doce cupos por convocatoria. No es escasez de marketing: las sesiones y las respuestas del banco las hago yo.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="width:100%;aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#eee9e2 0 10px,#f6f2ec 10px 20px);border:1px solid rgba(35,30,26,.1);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a8d82;text-align:center;line-height:1.8">placeholder<br>retrato</div>
+<div style="border-top:1px solid rgba(35,30,26,.16);padding-top:16px;font-size:13.5px;line-height:1.7;color:#6f645c">Médico cirujano, Universidad de Chile.<br>Especialista en Medicina Interna.<br>Docente de pregrado 2014–2019.<br>Nueve años preparando EUNACOM.</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:72px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:36px;margin-bottom:26px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82">Universidades de origen de nuestros alumnos</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(35,30,26,.12)">
+<sc-for list="{{ universidades }}" as="u" hint-placeholder-count="6">
+<div style="background:#fbf9f6;height:76px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11.5px;letter-spacing:.04em;color:#9a8d82;padding:8px">{{ u.nombre }}</div>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:72px 44px 0">
+<div style="background:#f3ece4;padding:48px 46px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:36px;line-height:1.08;letter-spacing:-.02em;margin:0 0 30px;max-width:24ch">Lo que nos hace distintos</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px">
+<div><div style="font-family:'Newsreader',serif;font-size:22px;margin-bottom:10px">Plan sobre diagnóstico</div><p style="font-size:14.5px;line-height:1.65;color:#5c534b;margin:0">El calendario se arma con tu resultado del simulacro inicial, tu fecha de examen y tu país de titulación.</p></div>
+<div><div style="font-family:'Newsreader',serif;font-size:22px;margin-bottom:10px">Material terminado</div><p style="font-size:14.5px;line-height:1.65;color:#5c534b;margin:0">Clase, manual y banco del mismo tema en el mismo bloque de estudio. Nada de apuntes escaneados.</p></div>
+<div><div style="font-family:'Newsreader',serif;font-size:22px;margin-bottom:10px">Un solo docente</div><p style="font-size:14.5px;line-height:1.65;color:#5c534b;margin:0">Sin equipo rotativo. Las sesiones, las correcciones y las respuestas son conmigo.</p></div>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esCursos }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Cursos y precios</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(38px,4.6vw,58px);line-height:1.05;letter-spacing:-.025em;margin:0 0 20px;max-width:24ch">Prepárate para el EUNACOM de diciembre 2026.</h1>
+<p style="font-size:17px;line-height:1.65;color:#5c534b;margin:0;max-width:58ch">Inscripciones abiertas. Cada curso tiene su propia ficha con temario semana a semana, modalidad, fechas y formas de pago. Revísala antes de matricularte: si algo no te calza, escríbeme y lo vemos.</p>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:48px 44px 0">
+<div style="display:flex;flex-direction:column;gap:20px">
+<sc-for list="{{ cursos }}" as="c" hint-placeholder-count="4">
+<div style="border:1px solid rgba(35,30,26,.16);background:#fdfcfa;padding:34px 34px;display:grid;grid-template-columns:1.5fr 1fr 220px;gap:40px;align-items:start">
+<div>
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.55 0.12 40);margin-bottom:12px">{{ c.kicker }}</div>
+<div style="font-family:'Newsreader',serif;font-size:31px;line-height:1.15;margin-bottom:12px">{{ c.nombre }}</div>
+<p style="font-size:15px;line-height:1.65;color:#5c534b;margin:0">{{ c.resumen }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#5c534b;border-left:1px solid rgba(35,30,26,.14);padding-left:28px">
+<div><span style="color:#9a8d82">Duración · </span>{{ c.duracion }}</div>
+<div><span style="color:#9a8d82">Inicio · </span>{{ c.inicio }}</div>
+<div><span style="color:#9a8d82">Examen · </span>{{ c.examen }}</div>
+<div><span style="color:#9a8d82">Cupos · </span>{{ c.cupos }}</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-family:'Newsreader',serif;font-size:34px;line-height:1">{{ c.precio }}</div>
+<div style="font-size:12.5px;line-height:1.5;color:#8a7d73">{{ c.precioNota }}</div>
+<button onClick="{{ c.ver }}" style="font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:13px;border-radius:2px;cursor:pointer">Más información aquí</button>
+<button onClick="{{ irContacto }}" style="font-size:13.5px;background:none;border:1px solid rgba(35,30,26,.28);padding:12px;border-radius:2px;cursor:pointer">Contáctanos</button>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="background:#f3ece4;padding:44px 44px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div>
+<div style="font-family:'Newsreader',serif;font-size:26px;margin-bottom:14px">Formas de pago</div>
+<ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.85;color:#5c534b">
+<li>Transferencia bancaria en pesos al tipo de cambio del día</li>
+<li>Tarjeta de crédito, hasta 3 cuotas sin interés</li>
+<li>Dos pagos: 50% al matricularse, 50% a la cuarta semana</li>
+<li>Pago desde el exterior por transferencia internacional</li>
+</ul>
+</div>
+<div>
+<div style="font-family:'Newsreader',serif;font-size:26px;margin-bottom:14px">Antes de matricularte</div>
+<p style="font-size:14.5px;line-height:1.7;color:#5c534b;margin:0 0 16px">Si no estás seguro de qué curso te corresponde, escríbeme con tu fecha de examen y tu país de titulación. Te digo cuál te sirve, incluso si la respuesta es ninguno todavía.</p>
+<button onClick="{{ irContacto }}" style="font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:13px 22px;border-radius:2px;cursor:pointer">Escríbeme</button>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esFicha }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:34px 44px 0">
+<button onClick="{{ irCursos }}" style="background:none;border:none;padding:0;cursor:pointer;font-size:13.5px;color:#8a7d73">← Cursos y precios</button>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:26px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:start">
+<div>
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.55 0.12 40);margin-bottom:16px">{{ ficha.kicker }}</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(36px,4.2vw,52px);line-height:1.06;letter-spacing:-.025em;margin:0 0 26px;max-width:26ch">{{ ficha.nombre }}</h1>
+<div style="font-family:'Newsreader',serif;font-size:19.5px;line-height:1.68;color:#3b332d;display:flex;flex-direction:column;gap:16px;max-width:58ch">
+<sc-for list="{{ ficha.intro }}" as="p" hint-placeholder-count="2">
+<p style="margin:0">{{ p.t }}</p>
+</sc-for>
+</div>
+</div>
+<div style="border:1px solid rgba(35,30,26,.18);background:#fdfcfa;padding:30px 28px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:'Newsreader',serif;font-size:38px;line-height:1">{{ ficha.precio }}</div>
+<div style="font-size:13px;line-height:1.55;color:#8a7d73">{{ ficha.precioNota }}</div>
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:16px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#5c534b">
+<div><span style="color:#9a8d82">Duración · </span>{{ ficha.duracion }}</div>
+<div><span style="color:#9a8d82">Inicio · </span>{{ ficha.inicio }}</div>
+<div><span style="color:#9a8d82">Examen · </span>{{ ficha.examen }}</div>
+<div><span style="color:#9a8d82">Modalidad · </span>{{ ficha.modalidad }}</div>
+<div><span style="color:#9a8d82">Cupos · </span>{{ ficha.cupos }}</div>
+</div>
+<button onClick="{{ matricular }}" style="font-size:15px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:15px;border-radius:2px;cursor:pointer">Reservar mi cupo</button>
+<button onClick="{{ irContacto }}" style="font-size:13.5px;background:none;border:1px solid rgba(35,30,26,.28);padding:13px;border-radius:2px;cursor:pointer">Tengo dudas, escríbeme</button>
+<div style="font-size:12px;line-height:1.55;color:#9a8d82">Al reservar no se cobra nada. Te escribo para confirmar cupo y coordinar el pago.</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:0 0 20px">Qué incluye</h2>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ ficha.incluye }}" as="i" hint-placeholder-count="6">
+<div style="border-bottom:1px solid rgba(35,30,26,.12);padding:14px 0;display:flex;gap:14px;align-items:baseline">
+<span style="color:oklch(0.60 0.12 40);font-size:13px">◆</span>
+<span style="font-size:15px;line-height:1.6;color:#3b332d">{{ i.t }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:0 0 20px">Cómo funciona la modalidad</h2>
+<div style="font-size:15px;line-height:1.7;color:#5c534b;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ ficha.comoFunciona }}" as="p" hint-placeholder-count="3">
+<p style="margin:0">{{ p.t }}</p>
+</sc-for>
+</div>
+<div style="margin-top:24px;background:#f3ece4;padding:22px 24px">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:10px">A quién le sirve</div>
+<p style="font-size:14.5px;line-height:1.65;color:#3b332d;margin:0">{{ ficha.paraQuien }}</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:36px">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:0 0 8px">Temario</h2>
+<p style="font-size:14.5px;color:#8a7d73;margin:0 0 26px">{{ ficha.temarioNota }}</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 48px">
+<sc-for list="{{ ficha.temario }}" as="t" hint-placeholder-count="8">
+<div style="display:grid;grid-template-columns:90px 1fr;gap:18px;padding:15px 0;border-top:1px solid rgba(35,30,26,.12);align-items:baseline">
+<div style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#9a8d82">{{ t.semana }}</div>
+<div><div style="font-size:15.5px;line-height:1.4;color:#231e1a;margin-bottom:3px">{{ t.tema }}</div><div style="font-size:13px;line-height:1.55;color:#8a7d73">{{ t.detalle }}</div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="max-width:1180px;margin:64px auto 0;padding:0 44px 0">
+<div style="background:#231e1a;color:#f3ece4;padding:46px 46px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;max-width:24ch">{{ ficha.cierreTitulo }}</h2>
+<p style="font-size:15px;line-height:1.65;color:#c9bcae;margin:0;max-width:52ch">{{ ficha.cierreTexto }}</p>
+</div>
+<button onClick="{{ matricular }}" style="justify-self:start;font-size:15px;font-weight:600;background:oklch(0.62 0.13 45);color:#231e1a;border:none;padding:16px 26px;border-radius:2px;cursor:pointer">Reservar mi cupo</button>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esMaterial }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Material y pruebas gratis</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(38px,4.6vw,56px);line-height:1.05;letter-spacing:-.025em;margin:0 0 24px;max-width:24ch">Pruebas por especialidad, gratis y sin registro.</h1>
+<p style="font-size:16.5px;line-height:1.7;color:#5c534b;margin:0;max-width:62ch">Aquí encontrarás pruebas de las distintas especialidades que entran en el EUNACOM. Algunas incluyen preguntas de más de un tema, por lo que aparecen repetidas. Las pruebas más recientes de cada tema son las más actuales: recomiendo empezar por ellas. El capítulo final agrupa ensayos completos y reconstrucciones de exámenes.</p>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:44px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.16)">
+<sc-for list="{{ material }}" as="m" hint-placeholder-count="8">
+<div style="display:grid;grid-template-columns:1.4fr 90px 1fr 130px;gap:28px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(35,30,26,.12)">
+<div style="font-size:16px;color:#231e1a">{{ m.tema }}</div>
+<div style="font-size:13px;color:#8a7d73">{{ m.cantidad }}</div>
+<div style="font-size:13.5px;color:#6f645c">{{ m.nota }}</div>
+<a href="#" style="font-size:13.5px;font-weight:600;color:oklch(0.50 0.13 40);justify-self:end">Descargar PDF ↓</a>
+</div>
+</sc-for>
+</div>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:56px 44px 0">
+<div style="background:#f3ece4;padding:44px 44px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:32px;line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;max-width:22ch">Las respuestas comentadas están en el banco.</h2>
+<p style="font-size:15px;line-height:1.65;color:#5c534b;margin:0">Estas pruebas te sirven para medirte. Entender por qué cada distractor está mal es otra cosa: eso está en el banco de 4.000 preguntas comentadas.</p>
+</div>
+<button onClick="{{ irCursos }}" style="justify-self:start;font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:14px 24px;border-radius:2px;cursor:pointer">Ver cursos y precios</button>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esExtranjeros }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Para médicos extranjeros</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(38px,4.6vw,56px);line-height:1.05;letter-spacing:-.025em;margin:0 0 24px;max-width:26ch">Resumen de normas para el ejercicio de la medicina en Chile.</h1>
+<p style="font-size:16.5px;line-height:1.7;color:#5c534b;margin:0;max-width:64ch">Para el ejercicio de la medicina en Chile se necesita el título de médico cirujano, expedido por una universidad chilena o bien por una extranjera debidamente revalidada. Además, para trabajar en el sistema público y acceder a ciertos cargos, se exige la aprobación del EUNACOM. Sin embargo, existe una serie de excepciones e interpretaciones legales que vale la pena conocer.</p>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:52px 44px 0">
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.02em;margin:0 0 8px">Revalidación de título</h2>
+<p style="font-size:15px;color:#8a7d73;margin:0 0 28px;max-width:60ch">Existen cuatro formas de revalidar el título de médico cirujano. Además, existe una forma adicional de trabajar como médico sin haber revalidado.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+<sc-for list="{{ vias }}" as="v" hint-placeholder-count="5">
+<div style="border:1px solid rgba(35,30,26,.16);background:#fdfcfa;padding:28px 28px">
+<div style="font-family:'Newsreader',serif;font-size:30px;line-height:1;color:oklch(0.62 0.11 40);margin-bottom:14px">{{ v.num }}</div>
+<div style="font-family:'Newsreader',serif;font-size:23px;line-height:1.2;margin-bottom:10px">{{ v.titulo }}</div>
+<p style="font-size:14.5px;line-height:1.65;color:#5c534b;margin:0">{{ v.texto }}</p>
+</div>
+</sc-for>
+</div>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:56px 44px 0">
+<div style="border-top:1px solid rgba(35,30,26,.14);padding-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:56px">
+<div>
+<h2 style="font-family:'Newsreader',serif;font-weight:300;font-size:30px;line-height:1.1;letter-spacing:-.02em;margin:0 0 18px">Lo que más pesa si te titulaste fuera</h2>
+<p style="font-size:15px;line-height:1.7;color:#5c534b;margin:0 0 14px">El módulo que más diferencia hace no es clínico: es cómo funciona el sistema chileno. Red asistencial y niveles de atención, GES y sus garantías, notificación obligatoria de enfermedades, licencias médicas, medicina legal y certificación de defunción.</p>
+<p style="font-size:15px;line-height:1.7;color:#5c534b;margin:0">Son preguntas que un médico formado en Chile responde por costumbre y que un médico extranjero pierde por desconocimiento del contexto, no por falta de medicina. En el programa ese módulo va al principio, no al final.</p>
+</div>
+<div style="background:#f3ece4;padding:34px 32px">
+<div style="font-family:'Newsreader',serif;font-size:24px;margin-bottom:16px">Antes de tomar decisiones</div>
+<p style="font-size:14.5px;line-height:1.7;color:#5c534b;margin:0 0 20px">Esta página es un resumen orientativo, no asesoría legal. Si tu caso tiene particularidades —convenio bilateral, posgrado en curso, contrato ya firmado— escríbeme antes de pagar cualquier curso.</p>
+<button onClick="{{ irContacto }}" style="font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:13px 22px;border-radius:2px;cursor:pointer">Consultar mi caso</button>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esBlog }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Blog</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(38px,4.6vw,56px);line-height:1.05;letter-spacing:-.025em;margin:0 0 24px;max-width:24ch">Todo lo que hay que saber del EUNACOM, escrito de una vez.</h1>
+<p style="font-size:16.5px;line-height:1.7;color:#5c534b;margin:0;max-width:60ch">Fechas, inscripciones, puntajes, cómo se estudia cada sección y qué exige la ley para ejercer en Chile. Si algo que buscas no está, dímelo y lo escribo.</p>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:44px 44px 0">
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px">
+<sc-for list="{{ categorias }}" as="c" hint-placeholder-count="5">
+<button onClick="{{ c.filtrar }}" style="{{ c.estilo }}">{{ c.nombre }}</button>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ posts }}" as="a" hint-placeholder-count="6">
+<button onClick="{{ a.abrir }}" style="text-align:left;background:none;border:none;border-top:1px solid rgba(35,30,26,.14);padding:28px 0;cursor:pointer;display:grid;grid-template-columns:150px 1fr 200px;gap:36px;align-items:start">
+<span style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.55 0.12 40);padding-top:6px">{{ a.categoria }}</span>
+<span style="display:flex;flex-direction:column;gap:8px">
+<span style="font-family:'Newsreader',serif;font-size:27px;line-height:1.2;color:#231e1a">{{ a.titulo }}</span>
+<span style="font-size:14.5px;line-height:1.6;color:#5c534b;max-width:64ch">{{ a.bajada }}</span>
+</span>
+<span style="font-size:12.5px;color:#9a8d82;justify-self:end;text-align:right;padding-top:8px">{{ a.fecha }}<br>{{ a.lectura }}</span>
+</button>
+</sc-for>
+<div style="border-top:1px solid rgba(35,30,26,.14)"></div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esArticulo }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:34px 44px 0">
+<button onClick="{{ irBlog }}" style="background:none;border:none;padding:0;cursor:pointer;font-size:13.5px;color:#8a7d73">← Blog</button>
+</section>
+<section style="max-width:1180px;margin:0 auto;padding:26px 44px 0">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start">
+<article style="max-width:70ch">
+<div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.55 0.12 40);margin-bottom:16px">{{ post.categoria }}</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(34px,3.9vw,48px);line-height:1.08;letter-spacing:-.025em;margin:0 0 18px">{{ post.titulo }}</h1>
+<p style="font-family:'Newsreader',serif;font-size:21px;line-height:1.6;color:#5c534b;margin:0 0 20px">{{ post.bajada }}</p>
+<div style="font-size:13px;color:#9a8d82;border-bottom:1px solid rgba(35,30,26,.14);padding-bottom:22px;margin-bottom:32px">{{ post.fecha }} · {{ post.lectura }} · por Dr. [Nombre Apellido]</div>
+<div style="display:flex;flex-direction:column;gap:34px">
+<sc-for list="{{ post.secciones }}" as="s" hint-placeholder-count="3">
+<section>
+<h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:28px;line-height:1.2;letter-spacing:-.015em;margin:0 0 16px">{{ s.h }}</h2>
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ s.parrafos }}" as="p" hint-placeholder-count="3">
+<p style="font-size:17px;line-height:1.72;color:#3b332d;margin:0;text-wrap:pretty">{{ p.t }}</p>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+</article>
+<aside style="display:flex;flex-direction:column;gap:28px;position:sticky;top:100px">
+<div style="background:#f3ece4;padding:26px 24px">
+<div style="font-family:'Newsreader',serif;font-size:21px;line-height:1.25;margin-bottom:12px">¿Rindes en diciembre?</div>
+<p style="font-size:14px;line-height:1.6;color:#5c534b;margin:0 0 18px">Te mando el blueprint del Perfil V3 ajustado a tu fecha y la semana 1 completa. Gratis.</p>
+<button onClick="{{ irContacto }}" style="width:100%;font-size:14px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:13px;border-radius:2px;cursor:pointer">Quiero el plan</button>
+</div>
+<div>
+<div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:14px">Sigue leyendo</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ relacionados }}" as="r" hint-placeholder-count="3">
+<button onClick="{{ r.abrir }}" style="text-align:left;background:none;border:none;border-top:1px solid rgba(35,30,26,.14);padding:14px 0;cursor:pointer;font-family:'Newsreader',serif;font-size:17px;line-height:1.3;color:#231e1a">{{ r.titulo }}</button>
+</sc-for>
+</div>
+</div>
+</aside>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ esContacto }}" hint-placeholder-val="{{ false }}">
+<div>
+<section style="max-width:1180px;margin:0 auto;padding:64px 44px 0">
+<div style="display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:start">
+<div>
+<div style="font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:22px">Contacto</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(36px,4.4vw,54px);line-height:1.05;letter-spacing:-.025em;margin:0 0 22px;max-width:22ch">Dime cuándo rindes y te armo el plan.</h1>
+<p style="font-size:16.5px;line-height:1.7;color:#5c534b;margin:0 0 34px;max-width:52ch">Contesto yo, normalmente el mismo día. Si me cuentas tu fecha de examen y tu país de titulación, la respuesta viene con el plan de ocho semanas esbozado y no con un catálogo.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid rgba(35,30,26,.14);padding-top:28px">
+<div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:8px">Correo</div><div style="font-size:15.5px">{{ correoContacto }}</div></div>
+<div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:8px">Teléfono / WhatsApp</div><div style="font-size:15.5px">{{ telefono }}</div></div>
+<div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:8px">Horario</div><div style="font-size:15.5px;line-height:1.5">Lunes a viernes, 9 a 19 h<br>Sábado, 10 a 13 h</div></div>
+<div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9a8d82;margin-bottom:8px">Dónde</div><div style="font-size:15.5px;line-height:1.5">Santiago de Chile<br>Programa 100% online</div></div>
+</div>
+</div>
+<div style="background:#f3ece4;padding:34px 32px">
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'Newsreader',serif;font-size:28px;line-height:1.2">Listo, lo recibí.</div>
+<p style="font-size:14.5px;line-height:1.65;color:#5c534b;margin:0">Te respondo a <strong style="font-weight:600">{{ correoEnviado }}</strong>, normalmente el mismo día. Si no llega, mira en promociones.</p>
+<button onClick="{{ reset }}" style="align-self:flex-start;font-size:13px;background:none;border:none;border-bottom:1px solid rgba(35,30,26,.3);padding:0 0 3px;cursor:pointer">Enviar otra consulta</button>
+</div>
+</sc-if>
+<sc-if value="{{ abierto }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:15px">
+<div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.25;margin-bottom:2px">Escríbeme</div>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cómo te llamas</span><input value="{{ nombre }}" onChange="{{ onNombre }}" placeholder="Camila Rojas" style="font-size:15px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px" style-focus="border-color:oklch(0.50 0.13 40)"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Correo</span><input value="{{ correo }}" onChange="{{ onCorreo }}" placeholder="tu@correo.com" style="font-size:15px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px" style-focus="border-color:oklch(0.50 0.13 40)"></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Curso que te interesa</span><select value="{{ interes }}" onChange="{{ onInteres }}" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px"><option value="">Selecciona</option><option value="Teórico regular">Curso teórico online regular</option><option value="Teórico extendido">Curso teórico online extendido</option><option value="Banco y simulacros">Banco y simulacros</option><option value="Tutoría 1-a-1">Tutoría 1-a-1</option><option value="Curso práctico ECOE">Curso práctico ECOE</option><option value="Todavía no sé">Todavía no sé</option></select></label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cuándo rindes</span><select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px"><option value="">Selecciona</option><option value="Diciembre 2026">Diciembre 2026</option><option value="Julio 2027">Julio 2027</option><option value="Aún no lo decido">Aún no lo decido</option></select></label>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Dónde te titulaste</span><select value="{{ pais }}" onChange="{{ onPais }}" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px"><option value="">Selecciona</option><option value="Chile">Chile</option><option value="Otro país">Otro país</option></select></label>
+</div>
+<label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#8a7d73">Cuéntame algo de tu situación</span><textarea value="{{ nota }}" onChange="{{ onNota }}" rows="3" placeholder="Es mi segundo intento, me titulé en Colombia…" style="font-size:14.5px;padding:12px 13px;border:1px solid rgba(35,30,26,.22);background:#fdfcfa;outline:none;border-radius:2px;resize:vertical"></textarea></label>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:oklch(0.50 0.16 28)">{{ error }}</div></sc-if>
+<button onClick="{{ enviar }}" style="font-size:15px;font-weight:600;background:oklch(0.50 0.13 40);color:#fbf9f6;border:none;padding:15px;border-radius:2px;cursor:pointer">Enviar consulta</button>
+<div style="font-size:12px;line-height:1.55;color:#8a7d73">Sin cobros ni llamada de ventas. Respondo por correo.</div>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<footer style="margin-top:92px;background:#231e1a;color:#c9bcae">
+<div style="max-width:1180px;margin:0 auto;padding:52px 44px 26px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:44px">
+<div>
+<div style="font-family:'Newsreader',serif;font-size:22px;color:#f3ece4;margin-bottom:14px">Dr. [Nombre Apellido]</div>
+<p style="font-size:13.5px;line-height:1.65;margin:0 0 16px">Preparación para el EUNACOM teórico y práctico. Santiago de Chile, programa 100% online.</p>
+<div style="font-family:'Newsreader',serif;font-size:19px;color:#f3ece4">¡Les deseamos mucho éxito!</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+<div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a7d73;margin-bottom:4px">Sitio</div>
+<button onClick="{{ irInicio }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Inicio</button>
+<button onClick="{{ irNosotros }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Nosotros</button>
+<button onClick="{{ irCursos }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Cursos y precios</button>
+<button onClick="{{ irMaterial }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Material y pruebas gratis</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+<div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a7d73;margin-bottom:4px">Recursos</div>
+<button onClick="{{ irExtranjeros }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Médicos extranjeros</button>
+<button onClick="{{ irBlog }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Blog</button>
+<button onClick="{{ irContacto }}" style="text-align:left;background:none;border:none;padding:0;cursor:pointer;color:#c9bcae;font-size:13.5px">Contacto</button>
+</div>
+<div>
+<div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a7d73;margin-bottom:12px">Ingresa y asegura tu matrícula</div>
+<p style="font-size:13.5px;line-height:1.6;margin:0 0 14px">Correo · {{ correoContacto }}<br>Teléfono · {{ telefono }}</p>
+<button onClick="{{ irContacto }}" style="font-size:13.5px;font-weight:600;background:oklch(0.62 0.13 45);color:#231e1a;border:none;padding:12px 20px;border-radius:2px;cursor:pointer">Escríbeme</button>
+</div>
+</div>
+<div style="max-width:1180px;margin:0 auto;padding:0 44px 40px">
+<div style="border-top:1px solid rgba(243,236,228,.16);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:#8a7d73">
+<span>© 2026 · Todos los derechos reservados</span>
+<span>Programa independiente, no afiliado a ASOFAMECH</span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;telefono&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+56 9 6663 5218&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;correo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contacto@[dominio].cl&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+const PASOS = [
+  {n:"01",t:"Nos medimos",c:"Semana 1",x:"Treinta preguntas y un simulacro corto. No para calificarte, para saber en qué ejes se te está yendo el puntaje. El plan se arma sobre ese resultado."},
+  {n:"02",t:"Te armo el plan",c:"Antes de empezar",x:"Ocho semanas ordenadas por peso real en el examen y por tus brechas. Doce a quince horas semanales, en bloques de noventa minutos, compatible con turnos."},
+  {n:"03",t:"Estudias con material terminado",c:"Semanas 2 a 7",x:"Clase, manual y banco del mismo tema en el mismo bloque. Ochenta y seis clases grabadas en estudio y seis tomos maquetados de verdad, no apuntes escaneados."},
+  {n:"04",t:"Corregimos juntos",c:"Cada semana",x:"Reviso tus simulacros, te digo qué está fallando y qué mover del plan. La semana 8 es solo repaso de tus errores: nada de contenido nuevo antes del examen."}
+];
+
+const UNIVERSIDADES = ["Universidad de Chile","Pontificia U. Católica","U. de Concepción","U. de Santiago","U. Austral","U. de Valparaíso"];
+
+const CURSOS = [
+  {
+    slug:"teorico-regular",
+    kicker:"Curso teórico · online regular",
+    nombre:"Curso teórico online regular · EUNACOM diciembre 2026",
+    resumen:"El programa completo de ocho semanas, con clases grabadas, seis tomos maquetados, banco de preguntas y plan de estudio armado a tu fecha. Es el que toma la mayoría.",
+    duracion:"8 semanas", inicio:"5 de octubre de 2026", examen:"Diciembre 2026", cupos:"Sin límite",
+    modalidad:"Online asincrónico + revisión semanal",
+    precio:"US$ 690", precioNota:"Pago en pesos al tipo de cambio del día. Hasta 3 cuotas sin interés.",
+    intro:[
+      "Ocho semanas ordenadas por el peso real de cada eje en el Perfil V3, no por el orden en que se enseña la medicina en la universidad. Antes de la primera clase hacemos un diagnóstico y el calendario se arma sobre tu resultado.",
+      "Todo el material está terminado y disponible desde el día uno: no vas a esperar a que se suba la clase de la semana. Lo que se calendariza es tu tiempo, no la entrega del contenido."
+    ],
+    incluye:[
+      "86 clases grabadas en estudio, una por tema del temario oficial",
+      "Seis tomos maquetados en PDF, descargables",
+      "Banco de 4.000+ preguntas comentadas, con explicación de cada distractor",
+      "Seis simulacros cronometrados con informe de resultados por eje",
+      "Plan de estudio de 8 semanas ajustado a tu fecha y a tu diagnóstico",
+      "Revisión semanal de tus simulacros con devolución escrita",
+      "Módulo de sistema de salud chileno, GES y medicina legal",
+      "Acceso a la plataforma hasta el día de tu examen"
+    ],
+    comoFunciona:[
+      "Estudias cuando puedes. El plan reparte doce a quince horas semanales en bloques de noventa minutos, pensado para quien está con turnos o trabajando.",
+      "Cada bloque junta clase, capítulo del manual y preguntas del mismo tema. Terminas el bloque habiendo visto, leído y respondido sobre lo mismo.",
+      "Los domingos cierras con un simulacro corto. Yo lo reviso y el lunes tienes por escrito qué falló y qué se mueve del calendario."
+    ],
+    paraQuien:"Quien rinde en diciembre y necesita orden y material, con o sin intento previo. Si te titulaste fuera de Chile, este curso incluye el módulo de sistema chileno que suele ser la brecha más grande.",
+    temarioNota:"Ocho semanas. La última es solo repaso de tus errores.",
+    temario:[
+      {s:"Semana 1",t:"Diagnóstico y medicina interna I",d:"Cardiovascular, respiratorio. Simulacro inicial y armado del plan."},
+      {s:"Semana 2",t:"Medicina interna II",d:"Digestivo, nefrología, endocrinología, infectología."},
+      {s:"Semana 3",t:"Cirugía y traumatología",d:"Abdomen agudo, trauma, urgencias quirúrgicas, urología."},
+      {s:"Semana 4",t:"Pediatría",d:"Recién nacido, crecimiento y desarrollo, patología respiratoria e infecciosa."},
+      {s:"Semana 5",t:"Ginecología y obstetricia",d:"Control prenatal, urgencias obstétricas, patología cervicouterina y mamaria."},
+      {s:"Semana 6",t:"Salud pública y sistema chileno",d:"Red asistencial, GES, notificación obligatoria, epidemiología, medicina legal."},
+      {s:"Semana 7",t:"Psiquiatría, neurología y dermatología",d:"Trastornos del ánimo, urgencia psiquiátrica, ACV, cefaleas, dermatosis frecuentes."},
+      {s:"Semana 8",t:"Repaso dirigido",d:"Solo tus errores acumulados. Dos simulacros completos y cierre."}
+    ],
+    cierreTitulo:"Inscripciones abiertas hasta el 28 de septiembre.",
+    cierreTexto:"Reservar no cobra nada. Te escribo para confirmar tu cupo, revisar si este es el curso que te corresponde y coordinar el pago."
+  },
+  {
+    slug:"teorico-extendido",
+    kicker:"Curso teórico · online extendido",
+    nombre:"Curso teórico online extendido · EUNACOM diciembre 2026",
+    resumen:"El mismo contenido repartido en dieciséis semanas, con acompañamiento más largo. Para quien está con jornada completa o viene de un intento fallido y quiere rehacer las bases.",
+    duracion:"16 semanas", inicio:"3 de agosto de 2026", examen:"Diciembre 2026", cupos:"Sin límite",
+    modalidad:"Online asincrónico + revisión semanal",
+    precio:"US$ 890", precioNota:"Pago en pesos al tipo de cambio del día. Hasta 3 cuotas sin interés o dos pagos.",
+    intro:[
+      "Es el programa regular estirado al doble de tiempo. Mismo material, mismo diagnóstico inicial, mismas correcciones: la diferencia es que cada eje se ve en dos semanas en vez de una, con seis a ocho horas semanales.",
+      "Lo recomiendo en dos casos: jornada laboral completa sin margen para quince horas de estudio, o segundo intento donde hay que rehacer bases y no solo repasar."
+    ],
+    incluye:[
+      "Todo lo del curso regular, en calendario de 16 semanas",
+      "86 clases grabadas y seis tomos maquetados",
+      "Banco de 4.000+ preguntas comentadas",
+      "Diez simulacros cronometrados con informe por eje",
+      "Revisión semanal escrita durante las 16 semanas",
+      "Dos sesiones de ajuste de plan por videollamada",
+      "Módulo reforzado de sistema de salud chileno",
+      "Acceso a la plataforma hasta el día de tu examen"
+    ],
+    comoFunciona:[
+      "Seis a ocho horas semanales, en bloques de noventa minutos. El plan asume que hay semanas malas y deja holgura para recuperarlas sin perder el hilo.",
+      "Cada eje se abre en dos semanas: la primera es contenido, la segunda es preguntas y corrección de errores del mismo eje.",
+      "A la mitad del programa hay un simulacro completo cronometrado y una sesión de ajuste: lo que no está rindiendo se reordena antes de la recta final."
+    ],
+    paraQuien:"Médicos trabajando jornada completa, y quienes vienen de un intento no aprobado y necesitan rehacer bases con tiempo.",
+    temarioNota:"Dieciséis semanas. Cada eje en dos: contenido y luego preguntas.",
+    temario:[
+      {s:"Semanas 1–2",t:"Diagnóstico y medicina interna I",d:"Cardiovascular y respiratorio. Simulacro inicial, plan armado."},
+      {s:"Semanas 3–4",t:"Medicina interna II",d:"Digestivo, nefrología, endocrinología."},
+      {s:"Semanas 5–6",t:"Infectología y medicina interna III",d:"Infecciones frecuentes, hematología, reumatología."},
+      {s:"Semanas 7–8",t:"Cirugía y traumatología",d:"Abdomen agudo, trauma, urología. Simulacro de mitad de programa."},
+      {s:"Semanas 9–10",t:"Pediatría",d:"Recién nacido, desarrollo, patología respiratoria e infecciosa."},
+      {s:"Semanas 11–12",t:"Ginecología y obstetricia",d:"Control prenatal, urgencias obstétricas, oncología ginecológica."},
+      {s:"Semanas 13–14",t:"Salud pública y sistema chileno",d:"Red asistencial, GES, notificación, epidemiología, medicina legal."},
+      {s:"Semanas 15–16",t:"Psiquiatría, neurología y repaso",d:"Cierre de ejes menores y repaso dirigido a tus errores."}
+    ],
+    cierreTitulo:"Empieza el 3 de agosto. Cupos por confirmar.",
+    cierreTexto:"Reservar no cobra nada. Te escribo para confirmar cupo, ver si te conviene el extendido o el regular, y coordinar el pago."
+  },
+  {
+    slug:"banco",
+    kicker:"Banco y simulacros",
+    nombre:"Banco de preguntas y simulacros",
+    resumen:"Cuatro mil preguntas comentadas y seis simulacros cronometrados, sin clases ni acompañamiento. Para quien ya tiene el contenido resuelto y necesita volumen de práctica.",
+    duracion:"6 meses de acceso", inicio:"Inmediato", examen:"Cualquier convocatoria", cupos:"Sin límite",
+    modalidad:"Autoguiado",
+    precio:"US$ 290", precioNota:"Pago único. Se descuenta del valor si después subes al curso completo.",
+    intro:[
+      "Es la parte del programa que más mueve el puntaje en poco tiempo: preguntas comentadas, con explicación de por qué cada distractor está mal, filtrables por eje y por dificultad.",
+      "No incluye clases, manuales ni corrección de simulacros. Si vienes de cero, este no es tu producto: el curso teórico sí."
+    ],
+    incluye:[
+      "4.000+ preguntas comentadas, filtrables por eje y dificultad",
+      "Seis simulacros cronometrados en formato del examen real",
+      "Informe automático de resultados por eje después de cada simulacro",
+      "Modo error: repite solo las preguntas que fallaste",
+      "Actualización de preguntas durante los seis meses de acceso",
+      "Sin clases, sin manuales, sin corrección personalizada"
+    ],
+    comoFunciona:[
+      "Eliges eje y dificultad, respondes por tandas y revisas el comentario de cada pregunta al terminar la tanda.",
+      "Los simulacros son cronometrados y en el formato del examen real: la fatiga de tres horas es parte de lo que hay que entrenar.",
+      "El modo error rearma tandas solo con lo que fallaste, con las preguntas más antiguas primero."
+    ],
+    paraQuien:"Quien ya estudió el contenido y necesita volumen de práctica, o quien está rindiendo por segunda vez con las bases firmes.",
+    temarioNota:"Distribución de preguntas por eje, según peso en el Perfil V3.",
+    temario:[
+      {s:"Medicina interna",t:"1.180 preguntas",d:"Cardiovascular, respiratorio, digestivo, nefro, endocrino, infecto."},
+      {s:"Cirugía",t:"640 preguntas",d:"Abdomen agudo, trauma, urgencias quirúrgicas, urología."},
+      {s:"Pediatría",t:"720 preguntas",d:"Neonatología, desarrollo, respiratorio, infeccioso."},
+      {s:"Gineco-obstetricia",t:"610 preguntas",d:"Prenatal, urgencias obstétricas, oncología ginecológica."},
+      {s:"Salud pública",t:"430 preguntas",d:"Red asistencial, GES, epidemiología, notificación."},
+      {s:"Psiquiatría",t:"250 preguntas",d:"Ánimo, ansiedad, urgencia psiquiátrica, adicciones."},
+      {s:"Neurología",t:"110 preguntas",d:"ACV, cefaleas, convulsiones, demencias."},
+      {s:"Otros ejes",t:"90 preguntas",d:"Dermatología, oftalmología, otorrino, geriatría distribuida."}
+    ],
+    cierreTitulo:"Acceso inmediato al pagar.",
+    cierreTexto:"Reservar no cobra nada: te escribo con el link de pago y el acceso queda activo el mismo día."
+  },
+  {
+    slug:"tutoria",
+    kicker:"Tutoría 1-a-1 · 12 cupos",
+    nombre:"Tutoría personal hasta el día del examen",
+    resumen:"El programa completo más sesiones semanales conmigo, corrección comentada de cada simulacro y garantía por escrito. Doce cupos por convocatoria.",
+    duracion:"8 a 16 semanas, según tu fecha", inicio:"Según cupo disponible", examen:"Diciembre 2026", cupos:"12 por convocatoria",
+    modalidad:"Sesiones 1-a-1 por videollamada",
+    precio:"US$ 1.890", precioNota:"Hasta 3 cuotas sin interés o dos pagos. Garantía por escrito.",
+    intro:[
+      "Todo lo del curso teórico completo, más una sesión semanal de una hora conmigo. Ahí se revisa tu simulacro, se ajusta el plan y se resuelven las dudas que no se resuelven leyendo.",
+      "Son doce cupos porque las sesiones y las correcciones las hago yo, no un equipo. Si vas con tutoría y no apruebas, repetimos el programa completo sin que pagues de nuevo."
+    ],
+    incluye:[
+      "Todo el contenido del curso teórico completo",
+      "Una sesión semanal de 60 minutos 1-a-1 por videollamada",
+      "Corrección comentada de cada simulacro, uno por uno",
+      "Canal directo para dudas entre sesiones, respondidas por mí",
+      "Plan reajustado cada semana según cómo vas rindiendo",
+      "Preparación específica para el EUNACOM práctico si lo rindes",
+      "Garantía por escrito: si no apruebas, repetimos sin costo",
+      "Acceso a la plataforma hasta el día de tu examen"
+    ],
+    comoFunciona:[
+      "Empezamos con una sesión larga de diagnóstico: resultado del simulacro inicial, historia de intentos previos, horas reales disponibles y fecha de examen.",
+      "Cada semana hay una sesión fija. Llegas con el simulacro hecho y las dudas anotadas; salimos con el plan de la semana siguiente ajustado.",
+      "La última semana es solo repaso de tus errores acumulados y manejo del día del examen: tiempos, orden de respuesta y qué hacer cuando una pregunta se cae."
+    ],
+    paraQuien:"Segundo o tercer intento, o quien rinde con poco margen de tiempo y no puede permitirse otro año de espera.",
+    temarioNota:"El temario es el del curso teórico. Lo que se personaliza es el orden y el tiempo por eje.",
+    temario:[
+      {s:"Sesión 0",t:"Diagnóstico largo",d:"Simulacro inicial, historia de intentos, horas reales, fecha objetivo."},
+      {s:"Sesiones 1–3",t:"Ejes de mayor peso",d:"Se abren primero los ejes donde el diagnóstico mostró más pérdida de puntaje."},
+      {s:"Sesiones 4–6",t:"Ejes restantes",d:"Cirugía, pediatría, gineco-obstetricia según brechas detectadas."},
+      {s:"Sesión intermedia",t:"Simulacro completo",d:"Cronometrado, revisado pregunta por pregunta en sesión."},
+      {s:"Sesiones 7–9",t:"Sistema chileno y ejes menores",d:"GES, red asistencial, medicina legal, psiquiatría, neurología."},
+      {s:"Última sesión",t:"Estrategia de examen",d:"Manejo de tiempos, orden de respuesta y repaso de errores acumulados."}
+    ],
+    cierreTitulo:"Quedan cupos para diciembre 2026.",
+    cierreTexto:"Postular no cobra nada. Conversamos primero para ver si la tutoría es lo que necesitas: a veces la respuesta es el curso regular y te lo voy a decir."
+  },
+  {
+    slug:"practico",
+    kicker:"Curso práctico · ECOE",
+    nombre:"Curso práctico EUNACOM · simulaciones ECOE",
+    resumen:"Simulaciones del EUNACOM práctico en modalidad ECOE, con estaciones cronometradas, pauta de evaluación y devolución grabada. Inscripciones abiertas próximamente.",
+    duracion:"4 semanas", inicio:"Por confirmar", examen:"Práctico 2027", cupos:"8 por grupo",
+    modalidad:"Sesiones sincrónicas en grupo pequeño",
+    precio:"Por confirmar", precioNota:"Escríbeme y te aviso cuando abran las inscripciones.",
+    intro:[
+      "El práctico no se estudia como el teórico. Se evalúa desempeño en estaciones cronometradas con pauta: anamnesis, examen físico, comunicación de malas noticias, procedimientos y razonamiento clínico en voz alta.",
+      "El curso son simulaciones reales con paciente simulado y pauta ECOE, grabadas para que veas lo que el evaluador ve."
+    ],
+    incluye:[
+      "Doce estaciones ECOE simuladas y cronometradas",
+      "Paciente simulado entrenado en cada estación",
+      "Pauta de evaluación completa entregada después de cada estación",
+      "Grabación de tus estaciones con devolución comentada",
+      "Módulo de comunicación: consentimiento, malas noticias, paciente difícil",
+      "Guía de procedimientos evaluados con checklist"
+    ],
+    comoFunciona:[
+      "Grupos de ocho. Cada sesión son tres estaciones: una la haces tú, dos observas con la pauta en mano.",
+      "Al terminar cada estación recibes la pauta con tu puntaje y qué se descontó. Observar con pauta enseña casi tanto como ejecutar.",
+      "La grabación queda disponible para que revises tu propio desempeño antes de la siguiente sesión."
+    ],
+    paraQuien:"Quien ya aprobó el teórico o lo rinde en esta convocatoria y va al práctico después.",
+    temarioNota:"Doce estaciones distribuidas en cuatro sesiones.",
+    temario:[
+      {s:"Sesión 1",t:"Anamnesis y examen físico",d:"Dolor torácico, dolor abdominal, disnea."},
+      {s:"Sesión 2",t:"Urgencia y procedimientos",d:"Manejo inicial de shock, sutura, vía aérea básica."},
+      {s:"Sesión 3",t:"Comunicación",d:"Malas noticias, consentimiento informado, paciente que rechaza tratamiento."},
+      {s:"Sesión 4",t:"Estaciones mixtas",d:"Pediatría, obstetricia y salud pública en formato ECOE completo."}
+    ],
+    cierreTitulo:"Inscripciones abiertas próximamente.",
+    cierreTexto:"Déjame tu correo y te aviso en cuanto se abran los cupos, antes de que salga la convocatoria pública."
+  }
+];
+
+const POSTS = [
+  {
+    slug:"fechas-eunacom-2026",
+    cat:"Fechas e inscripciones",
+    titulo:"EUNACOM diciembre 2026: fechas, inscripciones y plazos que no conviene dejar pasar",
+    bajada:"Cuándo se rinde, cuándo cierran las inscripciones, qué documentos pide la plataforma y qué pasa si te quedas fuera del plazo.",
+    fecha:"12 agosto, 2026", lectura:"6 min de lectura",
+    secciones:[
+      {h:"Cuándo se rinde y hasta cuándo se inscribe",parrafos:[
+        "El EUNACOM teórico se rinde dos veces al año, habitualmente en julio y en diciembre. Las inscripciones para la convocatoria de diciembre se abren a fines de agosto y cierran alrededor de un mes y medio antes del examen. La fecha exacta la publica ASOFAMECH en su sitio y no siempre se anuncia con anticipación cómoda.",
+        "La recomendación práctica es simple: inscribirse el primer día que se abre el proceso. No hay ninguna ventaja en esperar y sí hay riesgo de quedar fuera, porque el cierre no se extiende y la plataforma suele saturarse los últimos días."
+      ]},
+      {h:"Qué necesitas para inscribirte",parrafos:[
+        "Cédula de identidad chilena o pasaporte vigente, certificado de título de médico cirujano —o certificado de egreso, según el caso—, y el comprobante de pago del arancel. Si te titulaste en el extranjero, el certificado debe venir apostillado o legalizado según el país de origen.",
+        "Los documentos se suben escaneados. Un escaneo ilegible es motivo de rechazo y el rechazo llega días después, cuando el plazo puede estar por cerrarse. Revisa que cada archivo se lea completo antes de enviarlo."
+      ]},
+      {h:"Qué pasa si te quedas fuera del plazo",parrafos:[
+        "No hay inscripción tardía. Si el plazo cerró, la siguiente convocatoria es la única opción, lo que en la práctica significa entre cinco y siete meses de espera.",
+        "Eso tiene consecuencias más allá del examen: contratos que dependen de la aprobación, postulaciones a cargos del sistema público y procesos de especialización que exigen el certificado. Vale la pena poner la fecha de apertura en el calendario con recordatorio."
+      ]},
+      {h:"Cuándo empezar a estudiar",parrafos:[
+        "Para la convocatoria de diciembre, ocho semanas de preparación intensiva alcanzan si vienes con las bases razonablemente firmes. Eso ubica el inicio a comienzos de octubre.",
+        "Si vienes de un intento no aprobado, o si estás trabajando jornada completa, dieciséis semanas es una apuesta más realista: empezar en agosto en lugar de octubre. La diferencia no es cuánto sabes hoy, es cuántas horas semanales puedes sostener sin quemarte."
+      ]}
+    ]
+  },
+  {
+    slug:"como-estudiar-teorico",
+    cat:"Cómo estudiar",
+    titulo:"Cómo prepararse para la sección teórica del EUNACOM",
+    bajada:"El orden importa más que las horas. Cómo repartir ocho semanas por peso real de cada eje, y por qué estudiar en orden de carrera es un error caro.",
+    fecha:"3 julio, 2026", lectura:"8 min de lectura",
+    secciones:[
+      {h:"El error más común: estudiar en orden de carrera",parrafos:[
+        "Casi todo el mundo empieza por medicina interna porque es lo primero que aparece en cualquier temario, avanza tres semanas, y llega al examen sin haber abierto salud pública. Es el patrón que más veo en quienes vienen de un intento fallido.",
+        "El examen no distribuye sus preguntas como la malla curricular distribuye sus horas. Hay ejes que aportan pocas preguntas y consumen semanas de estudio, y ejes que aportan muchas y se cubren en días. Estudiar en el orden en que te lo enseñaron es entregar puntaje gratis."
+      ]},
+      {h:"Empieza midiéndote, no leyendo",parrafos:[
+        "La primera semana no debería ser contenido. Debería ser un simulacro corto y treinta preguntas por eje, para saber dónde se te está yendo el puntaje. No es un examen de ingreso: es la información con la que se arma el calendario.",
+        "El resultado casi siempre sorprende. La gente suele estar peor de lo que cree en salud pública y sistema de salud chileno, y mejor de lo que cree en cirugía. Sin ese dato, el plan es una intuición."
+      ]},
+      {h:"Bloques de noventa minutos, tres piezas por bloque",parrafos:[
+        "Doce a quince horas semanales, repartidas en bloques de noventa minutos, funcionan mejor que dos maratones de fin de semana. Cada bloque debe cerrar sobre un mismo tema: clase, capítulo del manual y preguntas comentadas del mismo contenido.",
+        "Leer un tema el lunes y responder preguntas de ese tema el viernes rompe el ciclo. La corrección tiene que llegar mientras el contenido todavía está fresco, porque el aprendizaje real está en entender por qué el distractor que elegiste parecía correcto."
+      ]},
+      {h:"Simulacros cronometrados desde temprano",parrafos:[
+        "Un simulacro no sirve solo para medir conocimiento. Sirve para entrenar la fatiga de tres horas, el manejo del tiempo y la decisión de dejar una pregunta e ir a la siguiente.",
+        "Hazlo cronometrado, sin pausas y sin material. Un simulacro cómodo no informa nada. Y revísalo completo después: las preguntas que acertaste por descarte también son brechas."
+      ]},
+      {h:"La última semana no es para contenido nuevo",parrafos:[
+        "La semana previa al examen debería ser exclusivamente repaso de tus propios errores acumulados. Abrir un tema nuevo a esa altura genera más ansiedad que puntaje.",
+        "Duerme, come y llega al examen sin haber estudiado la noche anterior. Suena obvio y es donde se cae más gente de la que uno esperaría."
+      ]}
+    ]
+  },
+  {
+    slug:"perfil-v3",
+    cat:"Cómo estudiar",
+    titulo:"Perfil V3: qué cambió en los pesos del examen y cómo afecta tu plan de estudio",
+    bajada:"El perfil de conocimientos se actualizó y con él la distribución de preguntas por eje. Quien estudia con el mapa anterior lo nota el día del examen.",
+    fecha:"18 junio, 2026", lectura:"7 min de lectura",
+    secciones:[
+      {h:"Qué es el perfil de conocimientos",parrafos:[
+        "El perfil es el documento que define qué se evalúa y con qué peso relativo. No es un temario en el sentido escolar: es una declaración de cuánto del examen corresponde a cada área y a qué nivel de competencia se espera responder.",
+        "Cuando el perfil se actualiza, cambia la distribución de preguntas. La medicina no cambió, pero la proporción del examen dedicada a cada eje sí, y eso reordena por completo cuál es el uso eficiente de tus ocho semanas."
+      ]},
+      {h:"Dónde se movió el peso",parrafos:[
+        "El movimiento más relevante está en el bloque de salud pública, gestión y sistema de salud chileno: red asistencial, niveles de atención, garantías GES, notificación obligatoria y aspectos médico-legales. Es un bloque que se estudia rápido y que la mayoría deja para el final o no alcanza a abrir.",
+        "También aumentó el peso del razonamiento sobre manejo inicial frente al diagnóstico puro. Hay más preguntas de qué hacer con este paciente ahora y menos de cómo se llama esta enfermedad."
+      ]},
+      {h:"Qué significa para tu calendario",parrafos:[
+        "Si tu plan pone salud pública en la semana siete, tu plan está mal ordenado. Ese bloque debería ir temprano, cuando todavía queda energía para memorizar garantías y plazos de notificación.",
+        "Para médicos titulados fuera de Chile el efecto es mayor: es contenido que no se aprende por osmosis clínica, porque depende de cómo está organizado este sistema de salud en particular. Va al principio, no al final."
+      ]},
+      {h:"Lo que no cambió",parrafos:[
+        "Medicina interna sigue siendo el eje más grande del examen y ninguna reordenación lo desplaza. Cirugía, pediatría y gineco-obstetricia siguen aportando bloques significativos.",
+        "El cambio de perfil no es una razón para estudiar menos medicina interna. Es una razón para no dejar afuera lo que se puede cubrir en pocos días y vale más preguntas de lo que la mayoría cree."
+      ]}
+    ]
+  },
+  {
+    slug:"puntaje-aprobacion",
+    cat:"Puntajes y requisitos",
+    titulo:"Cuánto necesitas para aprobar el EUNACOM y por qué el puntaje no es lo único que importa",
+    bajada:"Puntaje de corte, qué significa el puntaje en el contexto de postulaciones, y en qué casos aprobar raspando alcanza y en cuáles no.",
+    fecha:"29 mayo, 2026", lectura:"5 min de lectura",
+    secciones:[
+      {h:"Aprobar y puntuar alto no son lo mismo",parrafos:[
+        "Para habilitarse en el sistema público basta con aprobar. Pero el puntaje se usa además como criterio de selección en concursos de cargos y en algunas postulaciones a programas de especialización, donde compites contra otros puntajes.",
+        "Es decir: si tu objetivo es solo habilitarte, el corte es tu meta. Si tu objetivo es competir por un cargo o un cupo, el corte es el piso y no la meta."
+      ]},
+      {h:"El puntaje se construye por ejes, no en general",parrafos:[
+        "Un informe de simulacro que dice sesenta por ciento no te dice nada útil. Lo que importa es cómo se reparte ese sesenta: perder de forma pareja en todo es un problema distinto a perder concentradamente en dos ejes.",
+        "La pérdida concentrada es la buena noticia, porque se puede corregir en semanas. La pérdida pareja indica un problema de método de estudio, no de contenido, y eso toma más tiempo."
+      ]},
+      {h:"Qué hacer con un resultado bajo",parrafos:[
+        "Un intento no aprobado no se corrige repitiendo el mismo estudio con más horas. Lo primero es identificar qué se cayó: contenido, manejo de tiempo, o resistencia a las tres horas.",
+        "Son tres problemas con soluciones distintas. Estudiar más solo resuelve el primero, y en mi experiencia el primero no es el más frecuente entre quienes reprueban por poco."
+      ]}
+    ]
+  },
+  {
+    slug:"revalidacion-titulo",
+    cat:"Médicos extranjeros",
+    titulo:"Revalidación de título médico en Chile: las cuatro vías y una alternativa",
+    bajada:"Qué exige la ley para ejercer, cómo funciona cada vía de revalidación, y en qué casos se puede trabajar como médico sin haber revalidado.",
+    fecha:"14 mayo, 2026", lectura:"9 min de lectura",
+    secciones:[
+      {h:"Qué exige la ley para ejercer",parrafos:[
+        "Para el ejercicio de la medicina en Chile se necesita el título de médico cirujano, expedido por una universidad chilena o bien por una extranjera debidamente revalidado. Además, para trabajar en el sistema público y acceder a ciertos cargos, se exige la aprobación del EUNACOM.",
+        "Son dos requisitos separados y se confunden con frecuencia. La revalidación habilita el título; el EUNACOM habilita el acceso al sistema público. Aprobar el EUNACOM no revalida un título extranjero."
+      ]},
+      {h:"Las cuatro vías de revalidación",parrafos:[
+        "La primera y más usada es el examen de revalidación de la Universidad de Chile, un proceso independiente del EUNACOM con su propio calendario y sus propias exigencias.",
+        "La segunda es el reconocimiento por convenio bilateral, disponible solo para títulos de países con los que Chile tiene convenio vigente. La tercera es el reconocimiento asociado a estudios de posgrado cursados en Chile. La cuarta corresponde a convenios internacionales específicos.",
+        "Cada vía tiene requisitos documentales distintos y plazos que no se parecen entre sí. Antes de iniciar cualquiera, conviene verificar cuál aplica a tu caso: empezar por la vía equivocada cuesta meses."
+      ]},
+      {h:"Trabajar sin haber revalidado",parrafos:[
+        "Existe una vía adicional que permite ejercer sin revalidación previa, bajo condiciones específicas y en contextos determinados. No es una excepción general y depende de interpretaciones legales que conviene revisar caso a caso.",
+        "Esta página es un resumen orientativo y no reemplaza asesoría legal. Si tu situación tiene particularidades —convenio bilateral, posgrado en curso, oferta laboral ya firmada— revísala con alguien que conozca tu expediente antes de pagar cursos o rendir exámenes."
+      ]},
+      {h:"El módulo que más diferencia hace en el examen",parrafos:[
+        "Para un médico formado fuera de Chile, la brecha más grande en el EUNACOM no es clínica: es el funcionamiento del sistema de salud chileno. Red asistencial y niveles de atención, garantías GES, notificación obligatoria, licencias médicas, certificación de defunción y medicina legal.",
+        "Son preguntas que un egresado chileno responde por costumbre. No se resuelven con más medicina, se resuelven estudiando específicamente cómo está organizado este sistema. En cualquier plan serio, ese módulo va temprano."
+      ]}
+    ]
+  },
+  {
+    slug:"eunacom-practico-ecoe",
+    cat:"EUNACOM práctico",
+    titulo:"EUNACOM práctico (ECOE): cómo es la evaluación y cómo se entrena",
+    bajada:"Estaciones cronometradas, pauta de evaluación y desempeño observado. Por qué el práctico no se estudia como el teórico.",
+    fecha:"22 abril, 2026", lectura:"6 min de lectura",
+    secciones:[
+      {h:"Qué se evalúa en una ECOE",parrafos:[
+        "La ECOE evalúa desempeño observado, no conocimiento declarado. Recorres estaciones cronometradas donde hay un paciente simulado y un evaluador con una pauta, y el puntaje sale de lo que efectivamente haces y dices en el tiempo disponible.",
+        "Eso incluye anamnesis dirigida, examen físico pertinente, comunicación con el paciente y su familia, procedimientos básicos y decisión de manejo inicial. Saber la respuesta y no llegar a decirla cuenta como no saberla."
+      ]},
+      {h:"Por qué leer no alcanza",parrafos:[
+        "El teórico se entrena leyendo y respondiendo preguntas. El práctico se entrena haciendo, cronometrado, con alguien mirando. Es una habilidad distinta y se degrada rápido si no se practica.",
+        "El error más común es subestimarlo: candidatos que aprueban el teórico con holgura y llegan al práctico sin haber ensayado una sola estación completa en voz alta."
+      ]},
+      {h:"Cómo entrenarlo",parrafos:[
+        "Con estaciones simuladas, cronometradas y con pauta en mano. Observar a otro con la pauta enseña casi tanto como ejecutar, porque ves dónde se pierden los puntos que tú también estás perdiendo.",
+        "Grabarse ayuda más de lo que la gente espera. Casi todos descubren que hablan menos de lo que creen, que no verbalizan el razonamiento y que omiten pasos de la pauta que sí conocen."
+      ]}
+    ]
+  }
+];
+
+const MATERIAL = [
+  {t:"Medicina interna", c:"14 pruebas", n:"Cardiovascular, respiratorio, digestivo, nefro, endocrino"},
+  {t:"Infectología", c:"6 pruebas", n:"Incluye preguntas compartidas con medicina interna"},
+  {t:"Cirugía y traumatología", c:"9 pruebas", n:"Abdomen agudo, trauma, urgencias quirúrgicas"},
+  {t:"Pediatría", c:"11 pruebas", n:"Neonatología, desarrollo, respiratorio, infeccioso"},
+  {t:"Ginecología y obstetricia", c:"10 pruebas", n:"Control prenatal, urgencias obstétricas, oncología"},
+  {t:"Salud pública", c:"7 pruebas", n:"Red asistencial, GES, epidemiología, notificación"},
+  {t:"Psiquiatría", c:"6 pruebas", n:"Ánimo, ansiedad, urgencia psiquiátrica"},
+  {t:"Neurología", c:"5 pruebas", n:"ACV, cefaleas, convulsiones, demencias"},
+  {t:"Dermatología y otros", c:"4 pruebas", n:"Geriatría está distribuida en las demás pruebas"},
+  {t:"Ensayos y reconstrucciones", c:"8 pruebas", n:"Pruebas largas que agrupan varios contenidos"}
+];
+
+const VIAS = [
+  {n:"01",t:"Examen de revalidación, Universidad de Chile",x:"La vía más usada. Proceso independiente del EUNACOM, con calendario, arancel y exigencias propias. Requiere título apostillado o legalizado según país de origen."},
+  {n:"02",t:"Convenio bilateral de reconocimiento",x:"Disponible solo para títulos de países con convenio vigente con Chile. Los requisitos documentales varían según el convenio específico."},
+  {n:"03",t:"Reconocimiento por posgrado en Chile",x:"Aplica cuando se han cursado estudios de posgrado en una universidad chilena, bajo las condiciones que fija cada institución."},
+  {n:"04",t:"Revalidación por convenio internacional",x:"Vía asociada a convenios internacionales específicos. Conviene verificar vigencia antes de iniciar el trámite, porque cambia con el tiempo."},
+  {n:"+",t:"Ejercer sin haber revalidado",x:"Existe una vía adicional que permite trabajar como médico sin revalidación previa, bajo condiciones específicas y sujeta a interpretación legal. No es una excepción general."}
+];
+
+const PAGINAS = ["inicio","nosotros","cursos","ficha","material","extranjeros","blog","articulo","contacto"];
+
+class Component extends DCLogic {
+  state = {page:"inicio", curso:"teorico-regular", post:"fechas-eunacom-2026", cat:"Todos",
+           nombre:"", correo:"", interes:"", fecha:"", pais:"", nota:"", error:"", enviado:false, correoEnviado:""};
+
+  go(page, extra) {
+    this.setState(Object.assign({page:page}, extra || {}));
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const p = st.page;
+    const ficha = CURSOS.find(c => c.slug === st.curso) || CURSOS[0];
+    const post = POSTS.find(a => a.slug === st.post) || POSTS[0];
+    const cats = ["Todos"].concat(POSTS.map(a => a.cat).filter((c,i,arr) => arr.indexOf(c) === i));
+    const listaPosts = st.cat === "Todos" ? POSTS : POSTS.filter(a => a.cat === st.cat);
+
+    const mapPost = a => ({
+      categoria:a.cat, titulo:a.titulo, bajada:a.bajada, fecha:a.fecha, lectura:a.lectura,
+      abrir:() => this.go("articulo", {post:a.slug})
+    });
+    const mapCurso = c => ({
+      kicker:c.kicker, nombre:c.nombre, resumen:c.resumen, precio:c.precio, precioNota:c.precioNota,
+      duracion:c.duracion, inicio:c.inicio, examen:c.examen, cupos:c.cupos,
+      meta:c.duracion + " · inicio " + c.inicio,
+      ver:() => this.go("ficha", {curso:c.slug})
+    });
+
+    return {
+      telefono:this.props.telefono ?? "+56 9 6663 5218",
+      correoContacto:this.props.correo ?? "contacto@[dominio].cl",
+
+      esInicio:p==="inicio", esNosotros:p==="nosotros", esCursos:p==="cursos", esFicha:p==="ficha",
+      esMaterial:p==="material", esExtranjeros:p==="extranjeros", esBlog:p==="blog",
+      esArticulo:p==="articulo", esContacto:p==="contacto",
+
+      irInicio:() => this.go("inicio"),
+      irNosotros:() => this.go("nosotros"),
+      irCursos:() => this.go("cursos"),
+      irMaterial:() => this.go("material"),
+      irExtranjeros:() => this.go("extranjeros"),
+      irBlog:() => this.go("blog"),
+      irContacto:() => this.go("contacto"),
+      matricular:() => this.go("contacto", {interes:ficha.kicker}),
+
+      pasos:PASOS.map(x => ({num:x.n, titulo:x.t, cuando:x.c, texto:x.x})),
+      universidades:UNIVERSIDADES.map(n => ({nombre:n})),
+      cursos:CURSOS.map(mapCurso),
+      cursosHome:CURSOS.slice(0,3).map(mapCurso),
+
+      ficha:{
+        kicker:ficha.kicker, nombre:ficha.nombre, precio:ficha.precio, precioNota:ficha.precioNota,
+        duracion:ficha.duracion, inicio:ficha.inicio, examen:ficha.examen, cupos:ficha.cupos,
+        modalidad:ficha.modalidad, paraQuien:ficha.paraQuien, temarioNota:ficha.temarioNota,
+        cierreTitulo:ficha.cierreTitulo, cierreTexto:ficha.cierreTexto,
+        intro:ficha.intro.map(t => ({t:t})),
+        incluye:ficha.incluye.map(t => ({t:t})),
+        comoFunciona:ficha.comoFunciona.map(t => ({t:t})),
+        temario:ficha.temario.map(x => ({semana:x.s, tema:x.t, detalle:x.d}))
+      },
+
+      material:MATERIAL.map(m => ({tema:m.t, cantidad:m.c, nota:m.n})),
+      vias:VIAS.map(v => ({num:v.n, titulo:v.t, texto:v.x})),
+
+      posts:listaPosts.map(mapPost),
+      postsHome:POSTS.slice(0,3).map(mapPost),
+      categorias:cats.map(c => ({
+        nombre:c,
+        filtrar:() => this.setState({cat:c}),
+        estilo:{background:st.cat===c?"#231e1a":"none", color:st.cat===c?"#f3ece4":"#5c534b",
+                border:"1px solid rgba(35,30,26,.22)", padding:"8px 15px", borderRadius:"2px",
+                cursor:"pointer", fontSize:"13px"}
+      })),
+      post:{
+        categoria:post.cat, titulo:post.titulo, bajada:post.bajada, fecha:post.fecha, lectura:post.lectura,
+        secciones:post.secciones.map(s => ({h:s.h, parrafos:s.parrafos.map(t => ({t:t}))}))
+      },
+      relacionados:POSTS.filter(a => a.slug !== post.slug).slice(0,3).map(a => ({
+        titulo:a.titulo, abrir:() => this.go("articulo", {post:a.slug})
+      })),
+
+      nombre:st.nombre, correo:st.correo, interes:st.interes, fecha:st.fecha, pais:st.pais, nota:st.nota,
+      error:st.error, enviado:st.enviado, abierto:!st.enviado, correoEnviado:st.correoEnviado,
+      onNombre:e => this.setState({nombre:e.target.value, error:""}),
+      onCorreo:e => this.setState({correo:e.target.value, error:""}),
+      onInteres:e => this.setState({interes:e.target.value, error:""}),
+      onFecha:e => this.setState({fecha:e.target.value, error:""}),
+      onPais:e => this.setState({pais:e.target.value}),
+      onNota:e => this.setState({nota:e.target.value}),
+      enviar:() => {
+        const s = this.state;
+        if (!s.nombre.trim()) return this.setState({error:"Dime cómo te llamas."});
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s.correo.trim())) return this.setState({error:"Revisa el correo, parece incompleto."});
+        if (!s.fecha) return this.setState({error:"Dime cuándo rindes."});
+        this.setState({enviado:true, correoEnviado:s.correo.trim(), error:""});
+      },
+      reset:() => this.setState({enviado:false, nombre:"", correo:"", interes:"", fecha:"", pais:"", nota:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

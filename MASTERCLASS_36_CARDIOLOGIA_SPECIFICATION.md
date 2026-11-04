@@ -68,35 +68,3 @@
 | **34** | `cardio-34` | **Enfermedad Arterial Periférica: Claudicación, ITB & Manejo** | Tier 2 (Standard) | 20 | `1.01.1.023` |
 | **35** | `cardio-35` | **Dislipidemias: Estratificación MINSAL, Metas c-LDL & Estatinas** | Tier 2 (Standard) | 20 | `1.01.1.005` |
 | **36** | `cardio-36` | **Síncope Cardiovascular vs Reflejo: Banderas Rojas & Algoritmo** | Tier 2 (Standard) | 20 | `1.01.1.021`, `1.01.4.001`, `1.01.4.002` |
-
----
-
-## 📐 4. GUÍA DE DISEÑO DE DIAPOSITIVAS (ESTÁNDAR BOARDS & BEYOND)
-
-Para asegurar que los estudiantes **no se aburran, puedan seguir la clase sin esfuerzo visual y el PDF sea ultra-limpio**, cada diapositiva debe construirse bajo estas 4 reglas estrictas:
-
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  Título del Concepto en Grande (40px)                             [LOGO] EUNACOM 2026 │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                            │                           │
-│  • Viñeta Principal: Concepto clínico clave en 1 línea     │     [ GRÁFICO VECTORIAL,  │
-│    – Sub-viñeta: Detalle de fisiopatología o dosis          │     [ ECG, ESQUEMA O      │
-│    – Sub-viñeta: Criterio diagnóstico específico           │     [ TABLA COMPARATIVA   │
-│                                                            │     [ DEDICADA ]          │
-│  • Viñeta de Tratamiento / Conducta Obligatoria:           │                           │
-│    – Fármaco de 1ra línea con dosis exacta                 │                           │
-│    – Meta terapéutica o alarma de seguridad                │                           │
-│                                                            │                           │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│  💡 Regla de Oro EUNACOM: Perla clínica de máxima rentabilidad para el examen.         │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-1. **Columna Izquierda (Texto)**:
-   - 3 a 5 viñetas concisas.
-   - Destacar palabras críticas en negrita de color (`#dc2626` para peligro/alarma, `#0284c7` para fármacos/metas).
-2. **Columna Derecha (Visual)**:
-   - Una imagen anatómica, tira de ECG con la alteración ampliada, curva de presión/volumen o tabla comparativa.
-3. **Pacing / Ritmo**:
-   - Cada diapositiva dura entre **25 a 45 segundos de audio**, permitiendo que la clase fluya rápido y mantenga el 100% de la atención.

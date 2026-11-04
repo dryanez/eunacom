@@ -13,7 +13,7 @@ const PLAN_6M = APP_PLANS.find(p => p.id === '6m')
 const STORE_COVERS = [TOMOS[0].cover, ...['gran-recons', 'repasos', 'atlas'].map(sku => EXTRAS.find(x => x.sku === sku).cover)]
 // Tienda del sitio AEE (repo eunacom-examen-site, precios en src/data/tienda.js de ese repo: copiarlos aquí si cambian).
 // El sitio abre la especialidad con #tienda/<clave>. VITE_AEE_URL permite probar con el sitio local.
-const AEE_URL = import.meta.env.VITE_AEE_URL || 'https://eunacom-examen.cl'
+const AEE_URL = import.meta.env.VITE_AEE_URL || 'https://eunacom-examen.vercel.app' // → https://eunacom-examen.cl cuando el dominio esté registrado
 const AEE_KEY = { respiratorio: 'neumologia', otorrinolaringologia: 'otorrino' } // el resto usa la misma clave
 const AEE_PACK_PRICE = { cardiologia: 129990 }
 const AEE = { especialidad: 99990, biblioteca: 199990, total: 299990, gordo: 14990 }

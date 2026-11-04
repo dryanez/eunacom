@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="100%" height="auto">
+  <defs>
+    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Outer Container -->
+  <rect width="680" height="540" fill="#ffffff" rx="6" stroke="#cbd5e1" stroke-width="1.5"/>
+  
+  <!-- Header Bar -->
+  <rect x="0" y="0" width="680" height="34" fill="url(#hdrGrad)" rx="6"/>
+  <rect x="0" y="26" width="680" height="8" fill="#1e3a8a"/>
+  <text x="340" y="22" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">
+    3. ALGORITMO MAESTRO DE DECISIÓN CLÍNICA: REGLA DE LOS 120 MINUTOS
+  </text>
+
+  <!-- Subtitle -->
+  <text x="340" y="52" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" fill="#1e3a8a" text-anchor="middle">
+    MINISTERIO DE SALUD DE CHILE (MINSAL GES PROBLEMA N° 14) &bull; ASOFAMECh 2026
+  </text>
+
+  <!-- Step 1: Paciente con dolor -->
+  <g filter="url(#shadow)">
+    <rect x="220" y="66" width="240" height="38" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+    <text x="340" y="82" font-family="Inter, sans-serif" font-size="8.5" font-weight="800" fill="#0f172a" text-anchor="middle">🚨 PACIENTE CON DOLOR ISQUÉMICO</text>
+    <text x="340" y="95" font-family="Inter, sans-serif" font-size="7.5" fill="#64748b" text-anchor="middle">(Ingreso a Urgencias / SAMU)</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="340" y1="104" x2="340" y2="120" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="340,124 336,118 344,118" fill="#64748b"/>
+
+  <!-- Step 2: ECG 10 min -->
+  <g filter="url(#shadow)">
+    <rect x="230" y="124" width="220" height="36" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="340" y="139" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" fill="#1e3a8a" text-anchor="middle">Toma de ECG 12 Derivaciones</text>
+    <text x="340" y="151" font-family="Inter, sans-serif" font-size="7.5" font-weight="800" fill="#2563eb" text-anchor="middle">🛡️ Meta: ≤ 10 minutos (Interpretado)</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="340" y1="160" x2="340" y2="176" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="340,180 336,174 344,174" fill="#64748b"/>
+
+  <!-- Step 3: SCACEST DAPT -->
+  <g filter="url(#shadow)">
+    <rect x="200" y="180" width="280" height="38" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="340" y="195" font-family="Inter, sans-serif" font-size="8.5" font-weight="800" fill="#1e3a8a" text-anchor="middle">Confirmación de SCACEST</text>
+    <text x="340" y="208" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#2563eb" text-anchor="middle">💊 Carga Inmediata DAPT (AAS + P2Y12) + Heparina</text>
+  </g>
+
+  <!-- Arrow 3 -> Diamond -->
+  <line x1="340" y1="218" x2="340" y2="236" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="340,240 336,234 344,234" fill="#64748b"/>
+
+  <!-- Decision Diamond: 120 Minutos -->
+  <g filter="url(#shadow)">
+    <polygon points="340,240 465,285 340,330 215,285" fill="#fffdf5" stroke="#d97706" stroke-width="2"/>
+    <text x="340" y="278" font-family="Inter, sans-serif" font-size="8.5" font-weight="800" fill="#92400e" text-anchor="middle">¿Tiempo Traslado a Hemodinamia?</text>
+    <text x="340" y="292" font-family="Inter, sans-serif" font-size="7.5" fill="#78350f" text-anchor="middle">(Diagnóstico hasta inflado de balón)</text>
+  </g>
+
+  <!-- Left Branch: <= 120 min -> PCI -->
+  <line x1="215" y1="285" x2="140" y2="285" stroke="#10b981" stroke-width="2"/>
+  <line x1="140" y1="285" x2="140" y2="350" stroke="#10b981" stroke-width="2"/>
+  <polygon points="140,355 136,348 144,348" fill="#10b981"/>
+  
+  <rect x="100" y="300" width="80" height="18" rx="3" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+  <text x="140" y="312" font-family="Inter, sans-serif" font-size="7.5" font-weight="800" fill="#065f46" text-anchor="middle">≤ 120 MINUTOS</text>
+
+  <!-- Left Card: PCI Primaria -->
+  <g filter="url(#shadow)">
+    <rect x="25" y="355" width="230" height="95" rx="5" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+    <text x="140" y="373" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#065f46" text-anchor="middle">🟢 ANGIOPLASTÍA PRIMARIA (PCI)</text>
+    <text x="140" y="391" font-family="Inter, sans-serif" font-size="7.5" fill="#166534" text-anchor="middle">• Traslado urgente SAMU medicalizado</text>
+    <text x="140" y="405" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#166534" text-anchor="middle">• Meta Puerta-Balón: &lt; 90 minutos</text>
+    <text x="140" y="419" font-family="Inter, sans-serif" font-size="7.5" fill="#166534" text-anchor="middle">• DAPT: Ticagrelor 180 mg VO</text>
+    <text x="140" y="433" font-family="Inter, sans-serif" font-size="7.5" fill="#166534" text-anchor="middle">• Anticoagulación: HNF / Enoxaparina EV</text>
+  </g>
+
+  <!-- Right Branch: > 120 min -> TNK -->
+  <line x1="465" y1="285" x2="540" y2="285" stroke="#ef4444" stroke-width="2"/>
+  <line x1="540" y1="285" x2="540" y2="350" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="540,355 536,348 544,348" fill="#ef4444"/>
+
+  <rect x="500" y="300" width="80" height="18" rx="3" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+  <text x="540" y="312" font-family="Inter, sans-serif" font-size="7.5" font-weight="800" fill="#991b1b" text-anchor="middle">&gt; 120 MINUTOS</text>
+
+  <!-- Right Card: Fibrinolisis TNK -->
+  <g filter="url(#shadow)">
+    <rect x="425" y="355" width="230" height="95" rx="5" fill="#fff5f5" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="540" y="373" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#991b1b" text-anchor="middle">🔴 FIBRINOLISIS CON TENECTEPLASE</text>
+    <text x="540" y="391" font-family="Inter, sans-serif" font-size="7.5" fill="#7f1d1d" text-anchor="middle">• Hospital Comunitario / Ambulancia SAMU</text>
+    <text x="540" y="405" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#7f1d1d" text-anchor="middle">• Meta Puerta-Aguja: &lt; 30 min (Bolo EV)</text>
+    <text x="540" y="419" font-family="Inter, sans-serif" font-size="7.5" fill="#7f1d1d" text-anchor="middle">• DAPT: Clopidogrel 300 mg (75mg si &gt;75a)</text>
+    <text x="540" y="433" font-family="Inter, sans-serif" font-size="7.5" fill="#7f1d1d" text-anchor="middle">• Anticoagulación: Enoxaparina EV + SC</text>
+  </g>
+
+  <!-- Bottom Evaluation from TNK -->
+  <line x1="540" y1="450" x2="540" y2="472" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="540,476 536,470 544,470" fill="#64748b"/>
+
+  <!-- Sub Evaluation Results Grid -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="476" width="355" height="48" rx="4" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+    <text x="477" y="491" font-family="Inter, sans-serif" font-size="7.5" font-weight="800" fill="#1e3a8a" text-anchor="middle">
+      EVALUACIÓN ECG A LOS 60 - 90 MINUTOS POST-TNK:
+    </text>
+    <text x="477" y="504" font-family="Inter, sans-serif" font-size="7" fill="#166534" text-anchor="middle">
+      <tspan font-weight="700">✓ ÉXITO (Descenso ST &gt; 50%):</tspan> Coronariografía en 2 a 24 horas
+    </text>
+    <text x="477" y="516" font-family="Inter, sans-serif" font-size="7" fill="#991b1b" text-anchor="middle">
+      <tspan font-weight="700">❌ FRACASO (ST no baja):</tspan> 🚨 Angioplastía de Rescate Inmediata
+    </text>
+  </g>
+</svg>

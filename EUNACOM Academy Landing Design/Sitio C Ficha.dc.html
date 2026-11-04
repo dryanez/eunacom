@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eceded;color:#12181c;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#12181c;text-decoration:none}
+a:hover{color:oklch(0.45 0.13 250)}
+button,input,select{font-family:inherit}
+</style>
+</helmet>
+
+<div style="background:#eceded">
+
+<header style="border-bottom:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:0 32px;min-height:56px;display:flex;align-items:center;gap:clamp(14px,2vw,28px)">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase">EUNACOM / Ficha 2026</span>
+<nav style="display:flex;gap:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5a6469;flex:1;white-space:nowrap">
+<a href="#datos" style="color:inherit">Datos</a><a href="#modulos" style="color:inherit">Módulos</a><a href="#planes" style="color:inherit">Planes</a><a href="#alta" style="color:inherit">Alta</a>
+</nav>
+<a href="#alta" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#12181c;color:#eceded;padding:8px 14px;white-space:nowrap">Acceso gratuito</a>
+</div>
+</header>
+
+<section style="border-bottom:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:0 32px">
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:0">
+<div style="grid-column:span 8;padding:52px 32px 44px 0;border-right:1px solid rgba(18,24,28,.2)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.45 0.13 250);margin-bottom:26px">Programa de preparación · Perfil V3 · Rev. 2026.1</div>
+<h1 style="font-weight:600;font-size:clamp(40px,5.4vw,68px);line-height:1.0;letter-spacing:-.035em;margin:0 0 24px;max-width:22ch;text-wrap:balance">Ocho semanas. Seis ejes. Un puntaje que puedes ver subir.</h1>
+<p style="font-size:17px;line-height:1.55;color:#3a444a;margin:0 0 30px;max-width:56ch">Preparación estructurada para el Examen Único Nacional. Plan cerrado, material propio y métrica semanal por eje. Sin sesiones grupales ni contenido de relleno.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<a href="#alta" style="font-size:14.5px;font-weight:600;background:#12181c;color:#eceded;padding:14px 22px">Solicitar acceso gratuito</a>
+<a href="#modulos" style="font-size:14.5px;font-weight:600;border:1px solid #12181c;padding:14px 22px">Ver ficha de módulos</a>
+</div>
+</div>
+<div style="grid-column:span 4;display:flex;flex-direction:column">
+<sc-for list="{{ datos }}" as="d" hint-placeholder-count="5">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0 16px 28px;border-bottom:1px solid rgba(18,24,28,.14)">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5a6469">{{ d.k }}</span>
+<span style="font-size:15px;font-weight:600;text-align:right">{{ d.v }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section id="datos" style="border-bottom:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:0 32px">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0">
+<div style="padding:34px 28px 34px 0;border-right:1px solid rgba(18,24,28,.2)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a6469;margin-bottom:14px">01 / Diagnóstico</div>
+<p style="font-size:14.5px;line-height:1.55;color:#3a444a;margin:0">Treinta preguntas y un simulacro corto fijan tu línea base por eje antes de estudiar nada.</p>
+</div>
+<div style="padding:34px 28px;border-right:1px solid rgba(18,24,28,.2)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a6469;margin-bottom:14px">02 / Plan</div>
+<p style="font-size:14.5px;line-height:1.55;color:#3a444a;margin:0">Ocho semanas ordenadas por peso real en el examen y por tus brechas, no por temario.</p>
+</div>
+<div style="padding:34px 28px;border-right:1px solid rgba(18,24,28,.2)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a6469;margin-bottom:14px">03 / Ejecución</div>
+<p style="font-size:14.5px;line-height:1.55;color:#3a444a;margin:0">Clase, manual y banco del mismo tema en el mismo bloque. Nada suelto.</p>
+</div>
+<div style="padding:34px 0 34px 28px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a6469;margin-bottom:14px">04 / Control</div>
+<p style="font-size:14.5px;line-height:1.55;color:#3a444a;margin:0">Puntaje proyectado y dominio por eje actualizados cada semana.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="modulos" style="border-bottom:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:44px 32px 52px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px">
+<h2 style="font-weight:600;font-size:32px;letter-spacing:-.025em;margin:0">Ficha de módulos</h2>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a6469">Clic en una fila para ver el detalle</span>
+</div>
+<div style="border:1px solid #12181c;background:#f4f5f5">
+<div style="display:grid;grid-template-columns:44px 1.6fr 1fr .8fr .8fr;gap:0;border-bottom:1px solid #12181c;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a6469">
+<div style="padding:12px 14px">#</div><div style="padding:12px 14px">Eje</div><div style="padding:12px 14px">Peso en el examen</div><div style="padding:12px 14px">Preguntas</div><div style="padding:12px 14px">Clases</div>
+</div>
+<sc-for list="{{ modulos }}" as="m" hint-placeholder-count="6">
+<div>
+<button onClick="{{ m.toggle }}" style="{{ m.rowStyle }}">
+<span style="padding:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a6469;text-align:left">{{ m.num }}</span>
+<span style="padding:14px;font-size:15px;font-weight:500;text-align:left">{{ m.nombre }}</span>
+<span style="padding:14px;text-align:left;display:flex;align-items:center;gap:10px">
+<span style="{{ m.barStyle }}"></span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;flex:none">{{ m.peso }}</span>
+</span>
+<span style="padding:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:left">{{ m.preg }}</span>
+<span style="padding:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:left">{{ m.clases }}</span>
+</button>
+<sc-if value="{{ m.open }}" hint-placeholder-val="{{ false }}">
+<div style="padding:6px 14px 22px 58px;border-bottom:1px solid rgba(18,24,28,.14);background:#eceded">
+<p style="font-size:14.5px;line-height:1.6;color:#3a444a;margin:0;max-width:72ch">{{ m.detalle }}</p>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="planes" style="border-bottom:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:44px 32px 52px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px">
+<h2 style="font-weight:600;font-size:32px;letter-spacing:-.025em;margin:0">Planes</h2>
+<p style="font-size:14px;color:#5a6469;margin:0;max-width:44ch">Acceso hasta el día de tu examen. El plan Tutoría incluye garantía de aprobación por escrito.</p>
+</div>
+<div style="border:1px solid #12181c;background:#f4f5f5;overflow-x:auto">
+<div style="display:grid;grid-template-columns:1.4fr repeat(3,1fr);min-width:720px">
+<div style="padding:16px;border-bottom:1px solid #12181c;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a6469">Incluye</div>
+<div style="padding:16px;border-bottom:1px solid #12181c;border-left:1px solid rgba(18,24,28,.14)"><div style="font-size:15px;font-weight:600">Banco</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5a6469;margin-top:4px">US$ 290</div></div>
+<div style="padding:16px;border-bottom:1px solid #12181c;border-left:1px solid rgba(18,24,28,.14);background:#12181c;color:#eceded"><div style="font-size:15px;font-weight:600">Completo</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:rgba(236,237,237,.7);margin-top:4px">US$ 690</div></div>
+<div style="padding:16px;border-bottom:1px solid #12181c;border-left:1px solid rgba(18,24,28,.14)"><div style="font-size:15px;font-weight:600">Tutoría</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5a6469;margin-top:4px">US$ 1.890</div></div>
+<sc-for list="{{ filas }}" as="f" hint-placeholder-count="7">
+<div style="padding:13px 16px;border-bottom:1px solid rgba(18,24,28,.12);font-size:14px">{{ f.nombre }}</div>
+<div style="padding:13px 16px;border-bottom:1px solid rgba(18,24,28,.12);border-left:1px solid rgba(18,24,28,.14);font-size:14px;color:#5a6469">{{ f.a }}</div>
+<div style="padding:13px 16px;border-bottom:1px solid rgba(18,24,28,.12);border-left:1px solid rgba(18,24,28,.14);font-size:14px;font-weight:600">{{ f.b }}</div>
+<div style="padding:13px 16px;border-bottom:1px solid rgba(18,24,28,.12);border-left:1px solid rgba(18,24,28,.14);font-size:14px;color:#5a6469">{{ f.c }}</div>
+</sc-for>
+<div style="padding:16px"></div>
+<div style="padding:16px;border-left:1px solid rgba(18,24,28,.14)"><a href="#alta" style="display:block;text-align:center;font-size:13.5px;font-weight:600;border:1px solid #12181c;padding:11px">Elegir</a></div>
+<div style="padding:16px;border-left:1px solid rgba(18,24,28,.14)"><a href="#alta" style="display:block;text-align:center;font-size:13.5px;font-weight:600;background:#12181c;color:#eceded;padding:11px">Elegir</a></div>
+<div style="padding:16px;border-left:1px solid rgba(18,24,28,.14)"><a href="#alta" style="display:block;text-align:center;font-size:13.5px;font-weight:600;border:1px solid #12181c;padding:11px">Postular</a></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="alta">
+<div style="max-width:1240px;margin:0 auto;padding:0 32px">
+<div style="display:grid;grid-template-columns:1.2fr .8fr;gap:0">
+<div style="padding:52px 40px 60px 0;border-right:1px solid rgba(18,24,28,.2)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.45 0.13 250);margin-bottom:22px">Alta gratuita</div>
+<h2 style="font-weight:600;font-size:42px;line-height:1.05;letter-spacing:-.03em;margin:0 0 20px;max-width:20ch">Blueprint del Perfil V3 y diagnóstico de 30 preguntas.</h2>
+<p style="font-size:16px;line-height:1.6;color:#3a444a;margin:0;max-width:50ch">Sin costo y sin tarjeta. El material se ajusta a tu fecha de examen y a tu país de titulación.</p>
+</div>
+<div style="padding:52px 0 60px 40px;display:flex;flex-direction:column;gap:14px">
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Solicitud registrada.</div>
+<p style="font-size:14.5px;line-height:1.6;color:#3a444a;margin:0">Enviado a <strong>{{ correoEnviado }}</strong>. Revisa promociones si no llega en cinco minutos.</p>
+<button onClick="{{ reset }}" style="align-self:flex-start;font-size:13px;background:none;border:none;border-bottom:1px solid rgba(18,24,28,.35);padding:0 0 3px;cursor:pointer">Registrar otro correo</button>
+</div>
+</sc-if>
+<sc-if value="{{ abierto }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:12px">
+<input value="{{ correo }}" onChange="{{ onCorreo }}" placeholder="Correo" style="font-size:15px;padding:13px;border:1px solid #12181c;background:#f4f5f5;outline:none" style-focus="border-color:oklch(0.45 0.13 250)">
+<select value="{{ fecha }}" onChange="{{ onFecha }}" style="font-size:14.5px;padding:13px;border:1px solid #12181c;background:#f4f5f5;outline:none"><option value="">Fecha de examen</option><option value="Julio 2026">Julio 2026</option><option value="Diciembre 2026">Diciembre 2026</option><option value="Sin definir">Sin definir</option></select>
+<select value="{{ pais }}" onChange="{{ onPais }}" style="font-size:14.5px;padding:13px;border:1px solid #12181c;background:#f4f5f5;outline:none"><option value="">País de titulación</option><option value="Chile">Chile</option><option value="Extranjero">Extranjero</option></select>
+<sc-if value="{{ error }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:oklch(0.48 0.16 28)">{{ error }}</div></sc-if>
+<button onClick="{{ enviar }}" style="font-size:15px;font-weight:600;background:#12181c;color:#eceded;border:none;padding:15px;cursor:pointer">Registrar solicitud</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="border-top:1px solid #12181c">
+<div style="max-width:1240px;margin:0 auto;padding:20px 32px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#5a6469">
+<span>© 2026 · Santiago de Chile</span><span>Programa independiente, no afiliado a ASOFAMECH</span>
+</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const DATOS = [
+  {k:"Duración", v:"8 semanas"},
+  {k:"Carga semanal", v:"12–15 h"},
+  {k:"Clases", v:"86 · 42 h"},
+  {k:"Banco", v:"4.000+ preguntas"},
+  {k:"Manuales", v:"6 tomos · 940 pág."},
+  {k:"Cupos de tutoría", v:"12 por convocatoria"}
+];
+
+const MODULOS = [
+  {n:"01",nombre:"Salud pública",peso:22,preg:"274",clases:"9",d:"GES, epidemiología aplicada, notificación obligatoria y red asistencial chilena. Es el eje donde más puntaje se pierde por omisión, y el que abre el plan por eso mismo."},
+  {n:"02",nombre:"Medicina interna",peso:20,preg:"512",clases:"22",d:"Cardiología, respiratorio, nefrología, endocrino y digestivo, tratados como casos de decisión y no como listados de criterios diagnósticos."},
+  {n:"03",nombre:"Pediatría",peso:17,preg:"388",clases:"16",d:"Crecimiento y desarrollo, PNI, deshidratación e infectología pediátrica, con los rangos de dosis que el examen efectivamente pregunta."},
+  {n:"04",nombre:"Ginecología y Obstetricia",peso:16,preg:"356",clases:"15",d:"Control prenatal, urgencias obstétricas y planificación familiar según norma chilena vigente."},
+  {n:"05",nombre:"Cirugía y trauma",peso:15,preg:"301",clases:"13",d:"Abdomen agudo, manejo inicial de trauma, evaluación preoperatoria y criterios de derivación."},
+  {n:"06",nombre:"Medicina legal",peso:10,preg:"168",clases:"11",d:"Certificación de defunción, consentimiento informado, responsabilidad profesional y documentos médico-legales."}
+];
+
+const FILAS = [
+  {n:"Banco de preguntas Perfil V3", a:"4.000+", b:"4.000+", c:"4.000+"},
+  {n:"Simulacros cronometrados", a:"6", b:"6", c:"6 + corregidos"},
+  {n:"Métrica por eje", a:"Sí", b:"Sí", c:"Sí"},
+  {n:"Masterclasses 1080p", a:"—", b:"86", c:"86"},
+  {n:"Manuales maquetados", a:"—", b:"6 tomos", c:"6 tomos"},
+  {n:"Plan de 8 semanas a tu fecha", a:"—", b:"Sí", c:"Sí"},
+  {n:"Sesiones 1-a-1", a:"—", b:"—", c:"Semanales"},
+  {n:"Garantía de aprobación", a:"—", b:"—", c:"Por escrito"}
+];
+
+class Component extends DCLogic {
+  state = {mod:-1, correo:"", fecha:"", pais:"", error:"", enviado:false, correoEnviado:""};
+  renderVals() {
+    return {
+      datos:DATOS.map(d=>({k:d.k, v:d.v})),
+      modulos:MODULOS.map((m,k)=>{
+        const on = this.state.mod === k;
+        return {num:m.n, nombre:m.nombre, peso:m.peso+"%", preg:m.preg, clases:m.clases, detalle:m.d, open:on,
+          rowStyle:{display:"grid",gridTemplateColumns:"44px 1.6fr 1fr .8fr .8fr",width:"100%",background:on?"#eceded":"transparent",
+            border:"none",borderBottom:"1px solid rgba(18,24,28,.12)",cursor:"pointer",color:"#12181c",alignItems:"center"},
+          barStyle:{display:"block",height:6,width:(m.peso*3.4)+"px",background:on?"oklch(0.45 0.13 250)":"#12181c",flex:"none"},
+          toggle:()=>this.setState(s=>({mod:s.mod===k?-1:k}))};
+      }),
+      filas:FILAS.map(f=>({nombre:f.n, a:f.a, b:f.b, c:f.c})),
+      correo:this.state.correo, fecha:this.state.fecha, pais:this.state.pais, error:this.state.error,
+      onCorreo:e=>this.setState({correo:e.target.value, error:""}),
+      onFecha:e=>this.setState({fecha:e.target.value, error:""}),
+      onPais:e=>this.setState({pais:e.target.value, error:""}),
+      enviado:this.state.enviado, abierto:!this.state.enviado, correoEnviado:this.state.correoEnviado,
+      enviar:()=>{
+        const {correo, fecha, pais} = this.state;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.trim())) return this.setState({error:"Correo incompleto."});
+        if (!fecha) return this.setState({error:"Indica tu fecha de examen."});
+        if (!pais) return this.setState({error:"Indica tu país de titulación."});
+        this.setState({enviado:true, correoEnviado:correo.trim(), error:""});
+      },
+      reset:()=>this.setState({enviado:false, correo:"", fecha:"", pais:""})
+    };
+  }
+}
+</script>
+</body>
+</html>

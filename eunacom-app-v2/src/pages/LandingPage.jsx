@@ -919,6 +919,7 @@ export default function LandingPage() {
           <Link to="/convenios" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Convenios</Link>
           <a href="#planes" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Planes</a>
           <Link to="/faq" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>FAQ</Link>
+          <Link to="/reembolsos" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Política de Reembolsos</Link>
           <Link to="/blog" style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Blog EUNACOM</Link>
           <a href="/login" onClick={(e) => { e.preventDefault(); openAuthModal('login') }} style={{ color: '#475569', textDecoration: 'none', fontWeight: 600 }}>Iniciar Sesión</a>
         </div>

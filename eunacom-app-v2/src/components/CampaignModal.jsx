@@ -30,7 +30,7 @@ export default function CampaignModal({ isOpen, onClose, targetUsers, adminEmail
       <p><strong>Todo por solo $5.000 CLP (o $5 USD).</strong></p>
       
       <div style="text-align: center; margin: 30px 0;">
-        <a href="https://eunacom.vercel.app/oferta" style="background-color: #2563eb; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; display: inline-block;">Activar mi Acceso por $5.000</a>
+        <a href="https://www.eunacomapp.cl/oferta" style="background-color: #2563eb; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; display: inline-block;">Activar mi Acceso por $5.000</a>
       </div>
       
       <p>No dejes que los nervios te jueguen en contra. Asegura tu preparación hoy mismo.</p>

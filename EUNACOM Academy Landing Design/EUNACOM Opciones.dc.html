@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#e8e7e3;font-family:'Public Sans',system-ui,sans-serif;color:#14171a}
+a{color:#14171a;text-decoration:none}
+a:hover{color:oklch(0.48 0.11 90)}
+input,select,button{font-family:inherit}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08)}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 22px}
+.dv-tid{font:600 10px 'IBM Plex Mono',monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 'Public Sans',sans-serif}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px 'IBM Plex Mono',monospace;padding:3px 7px;background:rgba(0,0,0,.08);border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11.5px/1.3 'Public Sans',sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#f4f4f2;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:oklch(0.53 0.10 90);color:#fff}
+.dv-next{margin:24px 0 0;font:12px/1.6 'Public Sans',sans-serif;color:rgba(0,0,0,.5)}
+.fld{display:flex;flex-direction:column;gap:7px}
+.lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b7075}
+.inp{font-size:15px;padding:12px 14px;border:1px solid rgba(20,23,26,.22);border-radius:2px;background:#fdfdfc;outline:none;width:100%}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Cuatro direcciones más · cada una apuesta por una cosa distinta</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Diagnóstico primero — el hero es una pregunta real, funcional</div>
+<div class="dv-card" style="width:920px;background:#fdfdfb">
+<div style="display:grid;grid-template-columns:.85fr 1.15fr">
+<div style="padding:48px 40px;border-right:1px solid rgba(20,23,26,.12)">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:26px">Pregunta oficial · Perfil V3</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin:0 0 20px;max-width:20ch">Antes de venderte nada, responde una.</h1>
+<p style="font-size:15.5px;line-height:1.6;color:#4a5055;margin:0 0 28px">Así se ve el examen hoy. Si dudaste, ya sabes por qué el plan parte con diagnóstico y no con contenido.</p>
+<div style="display:flex;flex-direction:column;gap:11px">
+<a href="#1e" style="text-align:center;font-size:14.5px;font-weight:600;color:#f7f7f5;background:#14171a;padding:15px;border-radius:3px">Hacer las 30 preguntas</a>
+<a href="#1e" style="text-align:center;font-size:14px;font-weight:600;padding:14px;border:1px solid rgba(20,23,26,.28);border-radius:3px">Ver el plan de 8 semanas</a>
+</div>
+</div>
+<div style="padding:38px 36px;background:#f4f4f2;display:flex;flex-direction:column;gap:18px">
+<p style="font-size:14.5px;line-height:1.6;color:#3a4045;margin:0;padding-bottom:16px;border-bottom:1px solid rgba(20,23,26,.14)">{{ qEnunciado }}</p>
+<div style="font-size:15px;font-weight:600">{{ qPregunta }}</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ qOpts }}" as="o" hint-placeholder-count="4">
+<button onClick="{{ o.pick }}" style="{{ o.style }}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.5;flex:none">{{ o.letra }}</span>
+<span style="flex:1">{{ o.label }}</span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{ qAnswered }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+<p style="{{ qFeedbackStyle }}">{{ qFeedback }}</p>
+<button onClick="{{ qReset }}" style="font-size:12.5px;color:#7a7f84;background:none;border:none;border-bottom:1px solid rgba(20,23,26,.25);padding:0 0 2px;cursor:pointer">Intentar de nuevo</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>El plan como hero — índice de las 8 semanas, transparencia total</div>
+<div class="dv-card" style="width:920px">
+<div style="padding:52px 46px 46px">
+<div style="display:grid;grid-template-columns:1fr .8fr;gap:48px;align-items:end;margin-bottom:40px">
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:56px;line-height:1.02;letter-spacing:-.03em;margin:0;max-width:18ch">Este es el plan completo. Nada oculto tras el pago.</h1>
+<div>
+<p style="font-size:15.5px;line-height:1.6;color:#4a5055;margin:0 0 20px">Ocho semanas en el orden que recupera más puntaje, no en el orden del temario. Empieza donde tú estés flojo.</p>
+<a href="#1e" style="display:inline-block;font-size:14.5px;font-weight:600;color:#f7f7f5;background:#14171a;padding:15px 24px;border-radius:3px">Quiero este plan a mi fecha →</a>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(20,23,26,.12);border:1px solid rgba(20,23,26,.12)">
+<sc-for list="{{ semanas }}" as="w" hint-placeholder-count="8">
+<div style="background:#f4f4f2;padding:22px 24px;display:flex;gap:16px;align-items:baseline">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.11 90);flex:none">{{ w.num }}</span>
+<div>
+<div style="font-family:'Newsreader',serif;font-size:19px;line-height:1.2;margin-bottom:5px">{{ w.titulo }}</div>
+<div style="font-size:12.5px;color:#5c6166;line-height:1.45">{{ w.desc }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Objeciones al frente — acordeón de lo que te frena, funcional</div>
+<div class="dv-card" style="width:920px;background:#fdfdfb">
+<div style="padding:54px 46px 46px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:28px">Hablemos de lo que te frena</div>
+<div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start">
+<div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:50px;line-height:1.03;letter-spacing:-.025em;margin:0 0 22px;max-width:16ch">Sé exactamente por qué lo estás postergando.</h1>
+<p style="font-size:15.5px;line-height:1.6;color:#4a5055;margin:0 0 26px">Elige la frase que más se parece a tu cabeza hoy. Te respondo derecho.</p>
+<a href="#1e" style="display:inline-block;font-size:14.5px;font-weight:600;color:#f7f7f5;background:#14171a;padding:15px 24px;border-radius:3px">Ninguna me frena, partamos</a>
+</div>
+<div style="border-top:1px solid rgba(20,23,26,.12)">
+<sc-for list="{{ objeciones }}" as="o" hint-placeholder-count="4">
+<div>
+<button onClick="{{ o.toggle }}" style="{{ o.rowStyle }}">
+<span style="flex:1">{{ o.q }}</span>
+<span style="font-family:'Public Sans',sans-serif;font-size:19px;color:#8a8e92;flex:none">{{ o.icon }}</span>
+</button>
+<sc-if value="{{ o.open }}" hint-placeholder-val="{{ false }}">
+<p style="font-size:14.5px;line-height:1.65;color:#4a5055;margin:0;padding:16px 0 22px;max-width:56ch">{{ o.a }}</p>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2d">
+<div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Mapa viejo / mapa nuevo — la comparación es el argumento</div>
+<div class="dv-card" style="width:920px;background:#14171a;border-color:#14171a">
+<div style="padding:50px 46px 44px;color:#f2f2ef">
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:60px;line-height:1;letter-spacing:-.035em;margin:0 0 18px;max-width:20ch">Estudiaste bien. Con el mapa equivocado.</h1>
+<p style="font-size:17px;line-height:1.6;color:rgba(242,242,239,.72);margin:0 0 40px;max-width:56ch">El Perfil V3 reordenó los pesos del examen. Todo el material anterior a 2025 te hace repartir el tiempo como si nada hubiera cambiado.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(242,242,239,.2);border:1px solid rgba(242,242,239,.2);margin-bottom:34px">
+<div style="background:#14171a;padding:28px 26px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,239,.45);margin-bottom:20px">Curso antiguo</div>
+<div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:rgba(242,242,239,.6);line-height:1.4">
+<div>Temario en orden de facultad</div>
+<div>Preguntas sueltas de memoria</div>
+<div>Salud pública al final, si alcanza</div>
+<div>Mismo plan para todos</div>
+<div>Nadie sabe cómo vas</div>
+</div>
+</div>
+<div style="background:#14171a;padding:28px 26px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.78 0.09 90);margin-bottom:20px">Cómo trabajo yo</div>
+<div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;line-height:1.4">
+<div>Orden por peso real en el examen</div>
+<div>Casos largos con razonamiento</div>
+<div>Salud pública en la semana 1</div>
+<div>Plan armado a tu fecha y tus brechas</div>
+<div>Puntaje proyectado cada semana</div>
+</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+<a href="#1e" style="font-size:15px;font-weight:600;background:oklch(0.72 0.11 90);color:#14171a;padding:16px 26px;border-radius:3px">Ver mi mapa correcto</a>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(242,242,239,.5)">Gratis · Sin tarjeta · 30 preguntas</span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Pide: "lleva <a class="dv-oid" href="#2b">2b</a> a la landing" · "<a class="dv-oid" href="#2a">2a</a> con la pregunta de salud pública" · "combina el titular de <a class="dv-oid" href="#2d">2d</a> con el layout de <a class="dv-oid" href="#1a">1a</a>"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Heroes y formulario de captura · tono mentor 1-a-1</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Hero editorial — el de la landing actual</div>
+<div class="dv-card" style="width:920px">
+<div style="padding:56px 48px 44px">
+<div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.45 0.10 90);margin-bottom:30px"><span style="width:22px;height:1px;background:oklch(0.60 0.10 90)"></span>Convocatorias julio y diciembre 2026</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:72px;line-height:1;letter-spacing:-.03em;margin:0 0 32px;max-width:19ch;text-wrap:balance">Preparemos tu EUNACOM juntos, y que sea la única vez.</h1>
+<div style="display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:end">
+<p style="font-size:18px;line-height:1.55;color:#3a4045;margin:0;text-wrap:pretty">No te dejo solo frente a un banco de preguntas. Te doy un plan semana por semana, clases que van al punto y alguien que te responde cuando te trabas.</p>
+<div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+<a href="#1d" style="font-size:14.5px;font-weight:600;color:#f7f7f5;background:#14171a;padding:15px 22px;border-radius:3px;white-space:nowrap">Quiero mi plan de 8 semanas →</a>
+<a href="#1d" style="font-size:14.5px;font-weight:600;padding:15px 22px;border-radius:3px;border:1px solid rgba(20,23,26,.28);white-space:nowrap">Ver dónde estoy hoy</a>
+</div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a7f84;margin:0">Gratis · Sin tarjeta</p>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(20,23,26,.12);border:1px solid rgba(20,23,26,.12);margin-top:52px">
+<div style="background:#f4f4f2;padding:22px"><div style="font-family:'Newsreader',serif;font-size:32px;line-height:1">8 semanas</div><div style="font-size:12.5px;color:#5c6166;margin-top:9px">Plan cerrado, compatible con turnos</div></div>
+<div style="background:#f4f4f2;padding:22px"><div style="font-family:'Newsreader',serif;font-size:32px;line-height:1">Perfil V3</div><div style="font-size:12.5px;color:#5c6166;margin-top:9px">Material reescrito para el examen actual</div></div>
+<div style="background:#f4f4f2;padding:22px"><div style="font-family:'Newsreader',serif;font-size:32px;line-height:1">12 cupos</div><div style="font-size:12.5px;color:#5c6166;margin-top:9px">Tutoría 1-a-1 por convocatoria</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Hero carta — habla el tutor, en primera persona</div>
+<div class="dv-card" style="width:920px;background:#fdfdfb">
+<div style="display:grid;grid-template-columns:1fr 300px">
+<div style="padding:52px 46px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8e92;margin-bottom:26px">Carta abierta a quien rinde en 2026</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:46px;line-height:1.1;letter-spacing:-.02em;margin:0 0 26px;max-width:26ch">Si ya rendiste una vez, sabes que el problema no fue estudiar poco.</h1>
+<div style="font-family:'Newsreader',serif;font-size:19px;line-height:1.6;color:#3a4045;display:flex;flex-direction:column;gap:16px;max-width:52ch">
+<p style="margin:0">Fue estudiar sin saber qué pesaba. El Perfil V3 movió los pesos otra vez, y la mayoría sigue preparándose con el mapa viejo.</p>
+<p style="margin:0">Yo armo tu plan de 8 semanas según tu fecha, tu país de titulación y los ramos donde estás débil. Después te acompaño hasta el día del examen.</p>
+</div>
+<div style="display:flex;align-items:center;gap:18px;margin-top:34px">
+<a href="#1d" style="font-size:15px;font-weight:600;color:#f7f7f5;background:#14171a;padding:16px 24px;border-radius:3px">Armemos mi plan</a>
+<a href="#1d" style="font-size:14px;border-bottom:1px solid rgba(20,23,26,.3);padding-bottom:3px">Antes quiero medirme →</a>
+</div>
+</div>
+<div style="border-left:1px solid rgba(20,23,26,.12);padding:52px 32px;background:#f4f4f2;display:flex;flex-direction:column;gap:26px">
+<div style="width:100%;aspect-ratio:1;background:repeating-linear-gradient(135deg,#e5e5e0 0 10px,#eeeeea 10px 20px);border:1px solid rgba(20,23,26,.1);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6b7075;text-align:center;line-height:1.7">placeholder<br>foto del docente</div>
+<div>
+<div style="font-family:'Newsreader',serif;font-size:20px;line-height:1.25">Dr. [Nombre Apellido]</div>
+<div style="font-size:12.5px;color:#5c6166;line-height:1.5;margin-top:8px">Medicina Interna · 9 años preparando EUNACOM</div>
+</div>
+<div style="border-top:1px solid rgba(20,23,26,.14);padding-top:20px;font-size:12.5px;color:#5c6166;line-height:1.55">Responde él las dudas del plan VIP. No hay equipo rotativo.</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Hero oscuro — cuenta regresiva y escala tipográfica</div>
+<div class="dv-card" style="width:920px;background:#14171a;border-color:#14171a">
+<div style="padding:48px 46px 44px;color:#f2f2ef">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:1px solid rgba(242,242,239,.2);padding-bottom:18px;margin-bottom:40px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:oklch(0.78 0.09 90)">Convocatoria julio 2026</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,239,.5)">{{ diasRestantes }} días para el examen</span>
+</div>
+<h1 style="font-family:'Newsreader',serif;font-weight:300;font-size:104px;line-height:.92;letter-spacing:-.045em;margin:0 0 12px">Una sola<br>vez.</h1>
+<p style="font-family:'Newsreader',serif;font-style:italic;font-weight:300;font-size:30px;line-height:1.25;color:oklch(0.82 0.07 90);margin:0 0 36px;max-width:24ch">Preparémoslo bien y no vuelvas a rendirlo.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:end;border-top:1px solid rgba(242,242,239,.2);padding-top:30px">
+<p style="font-size:16px;line-height:1.6;color:rgba(242,242,239,.72);margin:0">Plan de 8 semanas hecho a tu fecha, clases al punto y tutoría directa conmigo. Todo bajo el Perfil V3.</p>
+<div style="display:flex;flex-direction:column;gap:11px">
+<a href="#1d" style="text-align:center;font-size:15px;font-weight:600;background:oklch(0.72 0.11 90);color:#14171a;padding:16px;border-radius:3px">Quiero mi plan de 8 semanas</a>
+<a href="#1d" style="text-align:center;font-size:14.5px;font-weight:600;border:1px solid rgba(242,242,239,.35);color:#f2f2ef;padding:15px;border-radius:3px">Diagnóstico de 30 preguntas</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Formulario en una tarjeta — el de la landing actual</div>
+<div class="dv-card" style="width:440px;background:#fff">
+<div style="padding:34px 32px">
+<div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.2;margin-bottom:6px">Cuéntame de ti</div>
+<p style="font-size:13px;color:#5c6166;margin:0 0 24px">Con esto ajusto el material a tu fecha y a dónde te titulaste.</p>
+<div style="display:flex;flex-direction:column;gap:16px">
+<label class="fld"><span class="lbl">Nombre completo</span><input class="inp" placeholder="Dra. Camila Rojas"></label>
+<label class="fld"><span class="lbl">Email</span><input class="inp" placeholder="tu@correo.com"></label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end">
+<label class="fld"><span class="lbl" style="white-space:nowrap">Fecha de examen</span><select class="inp"><option>Julio 2026</option><option>Diciembre 2026</option></select></label>
+<label class="fld"><span class="lbl" style="white-space:nowrap">País titulación</span><select class="inp"><option>Chile</option><option>Extranjero</option></select></label>
+</div>
+<label class="fld"><span class="lbl">Especialidad que más te preocupa</span><select class="inp"><option>Cardiología</option><option>Pediatría</option><option>Salud pública</option></select></label>
+<button style="font-size:15px;font-weight:600;color:#f7f7f5;background:#14171a;border:none;padding:16px;border-radius:3px;cursor:pointer">Mándame el material</button>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.6;color:#8a8e92;margin:0">Sin spam. Te das de baja en un clic.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Formulario conversacional — una pregunta por paso, funcional</div>
+<div class="dv-card" style="width:440px;background:#fff">
+<div style="padding:0">
+<div style="height:3px;background:rgba(20,23,26,.1)"><div style="{{ progressStyle }}"></div></div>
+<div style="padding:30px 32px 34px;min-height:392px;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8e92;margin-bottom:26px">
+<span>{{ stepLabel }}</span>
+<span>{{ stepCounter }}</span>
+</div>
+<div style="font-family:'Newsreader',serif;font-size:27px;line-height:1.2;margin-bottom:10px;max-width:22ch">{{ stepQuestion }}</div>
+<p style="font-size:13.5px;line-height:1.55;color:#5c6166;margin:0 0 24px">{{ stepHelp }}</p>
+
+<sc-if value="{{ isChoice }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:9px">
+<sc-for list="{{ choices }}" as="opt" hint-placeholder-count="3">
+<button onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isText }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<input class="inp" value="{{ textValue }}" onChange="{{ onText }}" placeholder="{{ textPlaceholder }}">
+<sc-if value="{{ textError }}" hint-placeholder-val="{{ false }}">
+<div style="font-size:12.5px;color:oklch(0.50 0.16 25)">{{ textError }}</div>
+</sc-if>
+<button onClick="{{ next }}" style="font-size:15px;font-weight:600;color:#f7f7f5;background:#14171a;border:none;padding:15px;border-radius:3px;cursor:pointer">Continuar</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-size:14.5px;line-height:1.6;color:#3a4045">{{ doneSummary }}</div>
+<button onClick="{{ restart }}" style="align-self:flex-start;font-size:13px;background:none;border:none;border-bottom:1px solid rgba(20,23,26,.3);padding:0 0 3px;cursor:pointer">Empezar de nuevo</button>
+</div>
+</sc-if>
+
+<div style="flex:1"></div>
+<sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ back }}" style="align-self:flex-start;margin-top:22px;font-size:12.5px;color:#8a8e92;background:none;border:none;padding:0;cursor:pointer">← Volver</button>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Prueba a pedir: "usa <a class="dv-oid" href="#1c">1c</a> como hero de la landing" · "<a class="dv-oid" href="#1b">1b</a> pero sin foto, solo texto" · "cambia el formulario de la landing por <a class="dv-oid" href="#1e">1e</a>"</p>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const STEPS = [
+  {k:"fecha", label:"Tu examen", q:"¿Cuándo rindes?", help:"Con la fecha calculo cuántas semanas reales tenemos.", opts:["Julio 2026","Diciembre 2026","Todavía no lo decido"]},
+  {k:"pais", label:"Titulación", q:"¿Dónde te titulaste?", help:"Si es fuera de Chile, agrego el módulo de contexto sanitario chileno.", opts:["En Chile","En el extranjero"]},
+  {k:"intento", label:"Historial", q:"¿Es tu primer intento?", help:"No hay respuesta mala. Cambia por dónde partimos.", opts:["Sí, el primero","Ya rendí una vez","Ya rendí dos o más veces"]},
+  {k:"debil", label:"Brechas", q:"¿Qué ramo te tiene más nervioso?", help:"Ese lo ponemos primero en el plan.", opts:["Cardiología","Pediatría","Ginecología y Obstetricia","Cirugía","Salud pública","Medicina legal"]},
+  {k:"email", label:"Último paso", q:"¿A qué correo te lo mando?", help:"Te llega el plan y el enlace a tu diagnóstico de 30 preguntas.", text:true, placeholder:"tu@correo.com"}
+];
+
+const SEMANAS = [
+  {n:"01",t:"Diagnóstico y salud pública",d:"Partimos por donde más puntaje se recupera."},
+  {n:"02",t:"Cardiología y urgencia",d:"Decisión en los primeros 10 minutos."},
+  {n:"03",t:"Respiratorio e infectología",d:"Neumonías, TBC y antibióticos que sí pregunta."},
+  {n:"04",t:"Pediatría",d:"Crecimiento, PNI y deshidratación."},
+  {n:"05",t:"Ginecología y Obstetricia",d:"Control prenatal y urgencias obstétricas."},
+  {n:"06",t:"Cirugía y trauma",d:"Abdomen agudo y criterios de derivación."},
+  {n:"07",t:"Medicina legal y simulacro",d:"Certificados, consentimiento, examen completo."},
+  {n:"08",t:"Repaso de tus errores",d:"Solo lo que fallaste. Nada más."}
+];
+
+const OBJECIONES = [
+  {q:"Todavía no me siento listo para empezar.",a:"Nadie lo está. La semana 1 es diagnóstico: no tienes que llegar sabiendo, tienes que llegar a medirte. El plan se ajusta a lo que salga."},
+  {q:"Ya reprobé una vez y no sé si insistir.",a:"La mayoría de quienes trabajo conmigo viene de un intento fallido. No repetimos el método que no funcionó: revisamos qué se cayó y reordenamos el estudio por peso real de cada eje."},
+  {q:"Estoy con turnos, no tengo 8 semanas libres.",a:"El plan está calculado para 12 a 15 horas semanales, en bloques de 90 minutos. Si una semana no puedes, se corre completa: no pierdes el hilo."},
+  {q:"Me titulé fuera de Chile y no conozco el sistema.",a:"Ese es el módulo que más diferencia hace: red asistencial, GES, notificación obligatoria y medicina legal chilena. Lo pongo al principio, no al final."}
+];
+
+const PREGUNTA = {
+  enunciado:"Hombre de 58 años, diabético, llega con dolor torácico opresivo de 40 minutos, sudoroso. ECG: supradesnivel ST de 3 mm en II, III y aVF.",
+  pregunta:"¿Cuál es la conducta inicial más adecuada?",
+  opts:[
+    {t:"Solicitar troponinas y esperar resultado para decidir",ok:false,why:"El SCACEST se diagnostica con clínica y ECG. Esperar troponinas retrasa la reperfusión y cuesta miocardio."},
+    {t:"Activar reperfusión de inmediato y trasladar a centro con angioplastía",ok:true,why:"Correcto. Supradesnivel ST en cara inferior con clínica compatible: la ventana manda. Reperfusión primero, confirmación después."},
+    {t:"Iniciar antiagregación y control ambulatorio en 48 horas",ok:false,why:"Es un infarto con supradesnivel en curso. El manejo ambulatorio no es una opción."},
+    {t:"Realizar test de esfuerzo para confirmar isquemia",ok:false,why:"Contraindicado en un SCA agudo. El examen castiga fuerte esta alternativa."}
+  ]
+};
+
+class Component extends DCLogic {
+  state = {i:0, ans:{}, text:"", err:"", obj:0, qPick:-1};
+
+  choiceStyle(selected) {
+    return {textAlign:"left",fontSize:14.5,padding:"14px 16px",borderRadius:2,cursor:"pointer",
+      border:selected?"1px solid #14171a":"1px solid rgba(20,23,26,.2)",
+      background:selected?"oklch(0.95 0.025 90)":"#fdfdfc",color:"#14171a",transition:"all .14s ease"};
+  }
+
+  renderVals() {
+    const {i, ans} = this.state;
+    const done = i >= STEPS.length;
+    const s = done ? null : STEPS[i];
+    const dias = 214;
+    const qPick = this.state.qPick;
+    const extras = {
+      semanas: SEMANAS.map(w=>({num:w.n, titulo:w.t, desc:w.d})),
+      objeciones: OBJECIONES.map((o,k)=>{
+        const on = this.state.obj === k;
+        return {q:o.q, a:o.a, open:on, icon:on?"–":"+",
+          rowStyle:{width:"100%",background:"none",border:"none",padding:"20px 0",display:"flex",alignItems:"baseline",
+            justifyContent:"space-between",gap:16,cursor:"pointer",textAlign:"left",
+            fontFamily:"'Newsreader',serif",fontSize:20,color:on?"#14171a":"#3a4045",borderBottom:"1px solid rgba(20,23,26,.12)"},
+          toggle:()=>this.setState(st=>({obj:st.obj===k?-1:k}))};
+      }),
+      qEnunciado:PREGUNTA.enunciado, qPregunta:PREGUNTA.pregunta,
+      qAnswered:qPick >= 0,
+      qFeedback:qPick >= 0 ? PREGUNTA.opts[qPick].why : "",
+      qFeedbackStyle:{fontSize:14,lineHeight:1.6,margin:0,padding:"16px 18px",
+        background: qPick>=0 && PREGUNTA.opts[qPick].ok ? "oklch(0.96 0.04 150)" : "oklch(0.96 0.03 25)",
+        border:"1px solid "+(qPick>=0 && PREGUNTA.opts[qPick].ok ? "oklch(0.84 0.07 150)" : "oklch(0.85 0.06 25)"),
+        color: qPick>=0 && PREGUNTA.opts[qPick].ok ? "oklch(0.38 0.10 150)" : "oklch(0.44 0.13 25)"},
+      qOpts:PREGUNTA.opts.map((o,k)=>{
+        const picked = qPick === k;
+        const revealed = qPick >= 0;
+        return {label:o.t, letra:"ABCD"[k],
+          style:{display:"flex",alignItems:"baseline",gap:12,textAlign:"left",fontSize:14.5,lineHeight:1.4,
+            padding:"13px 15px",borderRadius:2,cursor:revealed?"default":"pointer",
+            border:"1px solid "+(revealed && o.ok ? "oklch(0.60 0.11 150)" : picked ? "oklch(0.62 0.15 25)" : "rgba(20,23,26,.18)"),
+            background:revealed && o.ok ? "oklch(0.97 0.03 150)" : picked ? "oklch(0.97 0.02 25)" : "#fdfdfc",
+            color:"#14171a",transition:"all .14s ease"},
+          pick:()=>{ if (this.state.qPick < 0) this.setState({qPick:k}); }
+      };}),
+      qReset:()=>this.setState({qPick:-1})
+    };
+    const base = {
+      diasRestantes: dias,
+      progressStyle: {height:"100%",width:(done?100:(i/STEPS.length)*100)+"%",background:"oklch(0.53 0.10 90)",transition:"width .3s ease"},
+      canBack: i > 0 && !done,
+      back: () => this.setState(st=>({i:Math.max(0,st.i-1), err:"", text:""})),
+      restart: () => this.setState({i:0, ans:{}, text:"", err:""}),
+      isChoice: !done && !!s && !s.text,
+      isText: !done && !!s && !!s.text,
+      isDone: done
+    };
+    Object.assign(base, extras);
+    if (done) {
+      return Object.assign(base, {
+        stepLabel:"Listo", stepCounter:"5 / 5",
+        stepQuestion:"Ya te lo mandé.",
+        stepHelp:"Revisa tu correo en los próximos minutos.",
+        doneSummary:"Plan ajustado a "+(ans.fecha||"tu fecha")+", titulación "+(ans.pais||"—").toLowerCase()+", partiendo por "+(ans.debil||"tu ramo más débil")+". Enviado a "+(ans.email||"tu correo")+".",
+        choices:[], textValue:"", textError:"", textPlaceholder:"", onText:()=>{}, next:()=>{}
+      });
+    }
+    return Object.assign(base, {
+      stepLabel:s.label, stepCounter:(i+1)+" / "+STEPS.length,
+      stepQuestion:s.q, stepHelp:s.help, doneSummary:"",
+      textValue:this.state.text, textError:this.state.err, textPlaceholder:s.placeholder||"",
+      onText:e=>this.setState({text:e.target.value, err:""}),
+      next:()=>{
+        const v = this.state.text.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return this.setState({err:"Revisa el correo, parece incompleto."});
+        this.setState(st=>({ans:Object.assign({}, st.ans, {[s.k]:v}), i:st.i+1, text:"", err:""}));
+      },
+      choices:(s.opts||[]).map(o=>({
+        label:o, style:this.choiceStyle(ans[s.k]===o),
+        pick:()=>this.setState(st=>({ans:Object.assign({}, st.ans, {[s.k]:o}), i:st.i+1, err:""}))
+      }))
+    });
+  }
+}
+</script>
+</body>
+</html>

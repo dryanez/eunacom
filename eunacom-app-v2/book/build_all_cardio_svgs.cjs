@@ -7,21 +7,21 @@ if (!fs.existsSync(svgDir)) {
 }
 
 function createBoxSvg(title, steps) {
-  // Generate a clean 600x320 SVG flowchart matching the navy/blue theme
   const width = 680;
-  const height = 280;
+  const height = 115;
 
   let boxesHtml = '';
   let linesHtml = '';
 
   const stepCount = steps.length;
-  const boxWidth = Math.min(180, Math.floor((width - 40 - (stepCount - 1) * 20) / stepCount));
+  const gap = 38;
+  const boxWidth = Math.min(185, Math.floor((width - 30 - (stepCount - 1) * gap) / stepCount));
   const boxHeight = 75;
-  const startX = Math.floor((width - (stepCount * boxWidth + (stepCount - 1) * 20)) / 2);
-  const y = 140;
+  const startX = Math.floor((width - (stepCount * boxWidth + (stepCount - 1) * gap)) / 2);
+  const y = 20;
 
   steps.forEach((step, idx) => {
-    const x = startX + idx * (boxWidth + 20);
+    const x = startX + idx * (boxWidth + gap);
     const isUrgent = step.urgent;
     const isDecision = step.decision;
 
@@ -31,36 +31,32 @@ function createBoxSvg(title, steps) {
 
     boxesHtml += `
       <g>
-        <rect x="${x}" y="${y}" width="${boxWidth}" height="${boxHeight}" rx="4" fill="${bg}" stroke="${border}" stroke-width="1.5"/>
-        <text x="${x + boxWidth / 2}" y="${y + 22}" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="${textColor}" text-anchor="middle">${step.header.toUpperCase()}</text>
+        <rect x="${x}" y="${y}" width="${boxWidth}" height="${boxHeight}" rx="5" fill="${bg}" stroke="${border}" stroke-width="1.5"/>
+        <text x="${x + boxWidth / 2}" y="${y + 22}" font-family="Inter, sans-serif" font-size="8.5" font-weight="700" fill="${textColor}" text-anchor="middle">${step.header.toUpperCase()}</text>
         <text x="${x + boxWidth / 2}" y="${y + 42}" font-family="Inter, sans-serif" font-size="8" fill="#1e293b" text-anchor="middle">${step.line1}</text>
-        ${step.line2 ? `<text x="${x + boxWidth / 2}" y="${y + 56}" font-family="Inter, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">${step.line2}</text>` : ''}
+        ${step.line2 ? `<text x="${x + boxWidth / 2}" y="${y + 57}" font-family="Inter, sans-serif" font-size="7.5" fill="#64748b" text-anchor="middle">${step.line2}</text>` : ''}
       </g>
     `;
 
     if (idx < stepCount - 1) {
-      const nextX = startX + (idx + 1) * (boxWidth + 20);
+      const nextX = startX + (idx + 1) * (boxWidth + gap);
       const lineY = y + boxHeight / 2;
+      const midX = (x + boxWidth + nextX) / 2;
       linesHtml += `
-        <line x1="${x + boxWidth}" y1="${lineY}" x2="${nextX - 6}" y2="${lineY}" stroke="#64748b" stroke-width="1.5" stroke-dasharray="${step.label ? 'none' : '3,3'}"/>
+        <line x1="${x + boxWidth}" y1="${lineY}" x2="${nextX - 5}" y2="${lineY}" stroke="#64748b" stroke-width="1.5"/>
         <polygon points="${nextX},${lineY} ${nextX - 6},${lineY - 4} ${nextX - 6},${lineY + 4}" fill="#64748b"/>
-        ${step.label ? `<text x="${x + boxWidth + 10}" y="${lineY - 6}" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#2563eb" text-anchor="middle">${step.label}</text>` : ''}
+        ${step.label ? `
+          <rect x="${midX - 22}" y="${lineY - 14}" width="44" height="12" rx="2" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+          <text x="${midX}" y="${lineY - 5}" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill="#2563eb" text-anchor="middle">${step.label}</text>
+        ` : ''}
       `;
     }
   });
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="100%" height="auto">
-    <rect width="${width}" height="${height}" fill="#ffffff" rx="4" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="0" y="0" width="${width}" height="32" fill="#1e3a8a" rx="4"/>
-    <rect x="0" y="24" width="${width}" height="8" fill="#1e3a8a"/>
-    <text x="${width / 2}" y="20" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">${title.toUpperCase()}</text>
-    
-    <!-- Subtitle / Context -->
-    <text x="${width / 2}" y="52" font-family="Inter, sans-serif" font-size="8.5" font-weight="600" fill="#1e3a8a" text-anchor="middle">ALGORITMO CLÍNICO PASO A PASO (FIRST AID STEP 2 CK &bull; MINSAL)</text>
-
+    <rect width="${width}" height="${height}" fill="#f8fafc" rx="4" stroke="#e2e8f0" stroke-width="1"/>
     <!-- Connectors -->
     ${linesHtml}
-
     <!-- Steps -->
     ${boxesHtml}
   </svg>`;

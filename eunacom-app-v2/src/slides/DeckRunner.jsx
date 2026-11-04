@@ -9,6 +9,7 @@ import { Contrast } from "../components/deck/Contrast";
 import { Bento } from "../components/deck/Bento";
 import { QuestionSlide } from "../components/deck/QuestionSlide";
 import Cardio01Deck from "./Cardio01Deck";
+import Cardio08Deck from "./Cardio08Deck";
 import Gastro01Deck from "./Gastro01Deck";
 import decksData from "../data/studio/cardio_decks_data.json";
 
@@ -17,6 +18,10 @@ export default function DeckRunner() {
 
   if (classId === "gastro-01") {
     return <Gastro01Deck />;
+  }
+
+  if (classId === "cardio-08") {
+    return <Cardio08Deck />;
   }
 
   if (classId === "cardio-01" || classId === "cardio-10") {
