@@ -33,3 +33,6 @@ __pycache__/
 scratch/
 .env*.local
 scripts/campaigns/*_recipients.csv
+
+# claves R2 del bucket de libros (scripts/upload-books-r2.mjs)
+.env.books

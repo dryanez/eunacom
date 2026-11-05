@@ -15,6 +15,135 @@ function clasesApiPlugin() {
       const env = loadEnv('development', process.cwd(), '')
       Object.assign(process.env, env)
 
+      const adaptVercelHandler = (handler) => async (req, res) => {
+        const url = new URL(req.url, 'http://localhost')
+        req.query = Object.fromEntries(url.searchParams.entries())
+        if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT') {
+          req.body = await new Promise(r => {
+            let d = ''
+            req.on('data', c => d += c)
+            req.on('end', () => {
+              try { r(JSON.parse(d)) } catch { r({}) }
+            })
+          })
+        }
+        res.status = (code) => { res.statusCode = code; return res }
+        res.json = (data) => {
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify(data))
+          return res
+        }
+        await handler(req, res)
+      }
+
+      // ── Libros Gordos online (/api/tests?lg=…) ── Turso si hay credenciales; si no, SQLite local
+      // sembrada con `node scripts/libro-gordo/import.mjs --local` (así el modo bloqueado no toca producción)
+      let lgDb
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/tests')) return next()
+        const lg = new URL(req.url, 'http://localhost').searchParams.get('lg')
+        if (!lg) return next()
+        try {
+          if (!lgDb) {
+            const tursoUrl = process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL
+            if (tursoUrl) {
+              lgDb = createClient({ url: tursoUrl, authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN })
+            } else {
+              const { LOCAL_DB_URL } = await import('./scripts/libro-gordo/local-db.mjs')
+              lgDb = createClient({ url: LOCAL_DB_URL })
+              await lgDb.execute(`CREATE TABLE IF NOT EXISTS tests (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, mode TEXT DEFAULT 'tutor',
+                status TEXT DEFAULT 'in_progress', questions TEXT DEFAULT '[]', answers TEXT DEFAULT '{}', current_question_index INTEGER DEFAULT 0,
+                total_questions INTEGER DEFAULT 0, score INTEGER, time_limit_seconds INTEGER, created_at TEXT DEFAULT (datetime('now')),
+                completed_at TEXT, time_left_seconds INTEGER DEFAULT NULL, tutor_state TEXT DEFAULT NULL)`)
+            }
+          }
+          const { handleTests } = await import('./api/tests.js')
+          const { handleLibroGordo } = await import('./api/_libro-gordo.js')
+          await adaptVercelHandler((rq, rs) => lg === 'test' ? handleTests(lgDb, rq, rs) : handleLibroGordo(lgDb, rq, rs))(req, res)
+        } catch (err) {
+          console.error('libro-gordo dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
+      // (Los libros van antes del corte sin Turso: usan su SQLite local, así el lector funciona sin credenciales)
+      // ── Libros (Local Dev) ── compras en una SQLite local para no tocar Turso de producción.
+      // El "pago" Webpay se aprueba al tiro para poder probar el desbloqueo.
+      let booksDb
+      // PDFs locales para el lector (en producción salen de R2). BOOKS_DIST_DIR = carpeta books/dist
+      const booksDir = process.env.BOOKS_DIST_DIR || '/Users/felipeyanez/Documents/Archive/Apps/eunacom-fotos/books/dist'
+      server.middlewares.use((req, res, next) => {
+        if (!req.url.startsWith('/__libros_dev/')) return next()
+        const rel = decodeURIComponent(req.url.slice('/__libros_dev/'.length).split('?')[0])
+        const file = path.resolve(booksDir, rel)
+        if (!file.startsWith(path.resolve(booksDir)) || !fs.existsSync(file)) { res.statusCode = 404; return res.end('not found') }
+        res.setHeader('Content-Type', file.endsWith('.json') ? 'application/json' : 'application/pdf')
+        if (req.url.includes('?dl=1')) res.setHeader('Content-Disposition', `attachment; filename="${path.basename(file)}"`) // como el link firmado del regalo
+        fs.createReadStream(file).pipe(res)
+      })
+      // ── Libro gratis /regalo/<slug> (Local Dev) ── leads en la misma SQLite local, PDF desde books/dist, sin correo real
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/user-profiles')) return next()
+        const action = new URL(req.url, 'http://localhost').searchParams.get('action') || ''
+        if (!action.startsWith('regalo_')) return next()
+        try {
+          if (!booksDb) {
+            const os = await import('os')
+            booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
+            await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
+          }
+          const { handleRegalo } = await import('./api/_regalos.js')
+          await adaptVercelHandler((rq, rs) => handleRegalo(booksDb, rq, rs, {
+            signFile: async (file, o = {}) => `/__libros_dev/${encodeURI(file)}${o.attachment ? '?dl=1' : ''}`,
+            sendEmail: async m => console.log(`[regalo dev] correo a ${m.to}: ${m.subject}`),
+            secret: process.env.REGALO_SECRET || 'dev-regalo-secret',
+          }))(req, res)
+        } catch (err) {
+          console.error('regalo dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/user-profiles')) return next()
+        const url = new URL(req.url, 'http://localhost')
+        const getAction = url.searchParams.get('action')
+        if (req.method === 'GET' && !['books', 'book_purchases', 'book_read'].includes(getAction)) return next()
+        try {
+          const run = adaptVercelHandler(async (rq, rs) => {
+            if (rq.method === 'POST' && !String(rq.body?.action || '').startsWith('book_')) return next()
+            if (!booksDb) {
+              const os = await import('os')
+              booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
+              await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
+            }
+            const { handleBooks, fulfillBookOrder } = await import('./api/_books.js')
+            const handled = await handleBooks(booksDb, rq, rs, {
+              createPreference: async (db, { orderId }) => {
+                await fulfillBookOrder(db, orderId, 'dev')
+                return '/biblioteca?books=success'
+              },
+              paypalOrder: async ({ db, orderId }) => {
+                await fulfillBookOrder(db, orderId, 'dev-paypal')
+                return '/biblioteca?books=success'
+              },
+              signFile: async file => `/__libros_dev/${encodeURI(file)}`,
+              extraAdminIds: ['local_admin_felipe'],
+            })
+            if (!handled) return next()
+          })
+          await run(req, res)
+        } catch (err) {
+          console.error('books dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
       // Without local Turso credentials these middlewares only return empty data
       // (e.g. no profile → onboarding every time), so let /api fall through to the
       // production proxy instead.
@@ -410,26 +539,6 @@ function clasesApiPlugin() {
       })
 
       // Helper to adapt Vercel serverless handlers in Vite dev server
-      const adaptVercelHandler = (handler) => async (req, res) => {
-        const url = new URL(req.url, 'http://localhost')
-        req.query = Object.fromEntries(url.searchParams.entries())
-        if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT') {
-          req.body = await new Promise(r => {
-            let d = ''
-            req.on('data', c => d += c)
-            req.on('end', () => {
-              try { r(JSON.parse(d)) } catch { r({}) }
-            })
-          })
-        }
-        res.status = (code) => { res.statusCode = code; return res }
-        res.json = (data) => {
-          res.setHeader('Content-Type', 'application/json')
-          res.end(JSON.stringify(data))
-          return res
-        }
-        await handler(req, res)
-      }
 
       // ── Admin Users API (Local Dev) ──
       server.middlewares.use(async (req, res, next) => {
@@ -484,80 +593,6 @@ function clasesApiPlugin() {
             { user_id: 'user_3', name: 'Dr. Sebastián Soto', points: 1180, rank: 3, streak: 9, is_current_user: false },
           ]
         }))
-      })
-
-      // ── Libros (Local Dev) ── compras en una SQLite local para no tocar Turso de producción.
-      // El "pago" Webpay se aprueba al tiro para poder probar el desbloqueo.
-      let booksDb
-      // PDFs locales para el lector (en producción salen de R2). BOOKS_DIST_DIR = carpeta books/dist
-      const booksDir = process.env.BOOKS_DIST_DIR || '/Users/felipeyanez/Documents/Archive/Apps/eunacom-fotos/books/dist'
-      server.middlewares.use((req, res, next) => {
-        if (!req.url.startsWith('/__libros_dev/')) return next()
-        const rel = decodeURIComponent(req.url.slice('/__libros_dev/'.length).split('?')[0])
-        const file = path.resolve(booksDir, rel)
-        if (!file.startsWith(path.resolve(booksDir)) || !fs.existsSync(file)) { res.statusCode = 404; return res.end('not found') }
-        res.setHeader('Content-Type', 'application/pdf')
-        fs.createReadStream(file).pipe(res)
-      })
-      // ── Libro gratis /regalo/<slug> (Local Dev) ── leads en la misma SQLite local, PDF desde books/dist, sin correo real
-      server.middlewares.use(async (req, res, next) => {
-        if (!req.url.startsWith('/api/user-profiles')) return next()
-        const action = new URL(req.url, 'http://localhost').searchParams.get('action') || ''
-        if (!action.startsWith('regalo_')) return next()
-        try {
-          if (!booksDb) {
-            const os = await import('os')
-            booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
-            await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
-          }
-          const { handleRegalo } = await import('./api/_regalos.js')
-          await adaptVercelHandler((rq, rs) => handleRegalo(booksDb, rq, rs, {
-            signFile: async file => `/__libros_dev/${encodeURI(file)}`,
-            sendEmail: async m => console.log(`[regalo dev] correo a ${m.to}: ${m.subject}`),
-            secret: process.env.REGALO_SECRET || 'dev-regalo-secret',
-          }))(req, res)
-        } catch (err) {
-          console.error('regalo dev error:', err)
-          res.statusCode = 500
-          res.setHeader('Content-Type', 'application/json')
-          return res.end(JSON.stringify({ error: err.message }))
-        }
-      })
-      server.middlewares.use(async (req, res, next) => {
-        if (!req.url.startsWith('/api/user-profiles')) return next()
-        const url = new URL(req.url, 'http://localhost')
-        const getAction = url.searchParams.get('action')
-        if (req.method === 'GET' && !['books', 'book_purchases', 'book_read'].includes(getAction)) return next()
-        try {
-          const run = adaptVercelHandler(async (rq, rs) => {
-            if (rq.method === 'POST' && !String(rq.body?.action || '').startsWith('book_')) return next()
-            if (!booksDb) {
-              const os = await import('os')
-              booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
-              await booksDb.execute(`CREATE TABLE IF NOT EXISTS user_profiles (id TEXT PRIMARY KEY, email TEXT, is_premium INTEGER DEFAULT 0, premium_until TEXT, plan_months INTEGER)`)
-            }
-            const { handleBooks, fulfillBookOrder } = await import('./api/_books.js')
-            const handled = await handleBooks(booksDb, rq, rs, {
-              createPreference: async (db, { orderId }) => {
-                await fulfillBookOrder(db, orderId, 'dev')
-                return '/biblioteca?books=success'
-              },
-              paypalOrder: async ({ db, orderId }) => {
-                await fulfillBookOrder(db, orderId, 'dev-paypal')
-                return '/biblioteca?books=success'
-              },
-              signFile: async file => `/__libros_dev/${encodeURI(file)}`,
-              extraAdminIds: ['local_admin_felipe'],
-            })
-            if (!handled) return next()
-          })
-          await run(req, res)
-        } catch (err) {
-          console.error('books dev error:', err)
-          res.statusCode = 500
-          res.setHeader('Content-Type', 'application/json')
-          return res.end(JSON.stringify({ error: err.message }))
-        }
       })
 
       // ── User Profiles API (Local Dev) ──

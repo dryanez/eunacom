@@ -91,15 +91,16 @@ async function bookPaypalCapture(paypalOrderId) {
 }
 
 // Lector en línea: link de 10 minutos al PDF en R2 (bucket R2_BOOKS_BUCKET, clave libros/<ruta en books/dist>)
-async function signBookFile(path, { expiresIn = 600, filename, privateOnly = false } = {}) {
+async function signBookFile(path, { expiresIn = 600, filename, privateOnly = false, attachment = false } = {}) {
   if (privateOnly && !process.env.R2_BOOKS_BUCKET) return null // nunca firmar desde el bucket público
-  const accountId = process.env.VITE_R2_ACCOUNT_ID || process.env.R2_ACCOUNT_ID
-  const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID || process.env.R2_ACCESS_KEY_ID
-  const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY || process.env.R2_SECRET_ACCESS_KEY
+  const accountId = process.env.R2_BOOKS_ACCOUNT_ID || process.env.VITE_R2_ACCOUNT_ID || process.env.R2_ACCOUNT_ID
+  // Claves propias del bucket de libros (R2_BOOKS_*) si existen; si no, las generales de R2
+  const accessKeyId = process.env.R2_BOOKS_ACCESS_KEY_ID || process.env.VITE_R2_ACCESS_KEY_ID || process.env.R2_ACCESS_KEY_ID
+  const secretAccessKey = process.env.R2_BOOKS_SECRET_ACCESS_KEY || process.env.VITE_R2_SECRET_ACCESS_KEY || process.env.R2_SECRET_ACCESS_KEY
   if (!accountId || !accessKeyId || !secretAccessKey) return null
   const s3 = new S3Client({ region: 'auto', endpoint: `https://${accountId}.r2.cloudflarestorage.com`, credentials: { accessKeyId, secretAccessKey }, forcePathStyle: true })
   const Bucket = process.env.R2_BOOKS_BUCKET || process.env.VITE_R2_BUCKET || process.env.R2_BUCKET || 'eunacomvideos'
-  const disp = filename ? { ResponseContentDisposition: `inline; filename="${filename}"`, ResponseContentType: 'application/pdf' } : {}
+  const disp = filename ? { ResponseContentDisposition: `${attachment ? 'attachment' : 'inline'}; filename="${filename}"`, ResponseContentType: 'application/pdf' } : {}
   return getSignedUrl(s3, new GetObjectCommand({ Bucket, Key: `libros/${path}`, ...disp }), { expiresIn })
 }
 

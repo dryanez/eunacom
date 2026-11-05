@@ -40,6 +40,7 @@ import SimulacrosLanding from './pages/SimulacrosLanding'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
+import LibroGordo, { LibroGordoRunner } from './pages/LibroGordo'
 import { useAuth } from './contexts/AuthContext'
 import AuthModal from './components/AuthModal'
 import CyberWeekPopup from './components/CyberWeekPopup'
@@ -100,6 +101,9 @@ function App() {
 
               <Route path="/links" element={<Links />} />
               <Route path="/regalo/:slug" element={<Regalo />} />
+              {/* Libros Gordos online: modo bloqueado, sin layout ni menú */}
+              <Route path="/libro-gordo/:token" element={<LibroGordo />} />
+              <Route path="/libro-gordo/:token/examen" element={<LibroGordoRunner />} />
               {/* ── Auth Routes ── */}
               <Route element={<AuthLayout />}>
                 <Route path="/login" element={<Login />} />

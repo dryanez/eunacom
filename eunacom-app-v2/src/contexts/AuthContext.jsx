@@ -188,10 +188,17 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signInWithGoogle = async () => {
+        // Páginas que piden login y deben volver a sí mismas (p. ej. /libro-gordo/<token>)
+        let returnPath = '/dashboard'
+        try {
+            const stored = sessionStorage.getItem('eunacom_auth_return')
+            if (stored && stored.startsWith('/')) returnPath = stored
+            sessionStorage.removeItem('eunacom_auth_return')
+        } catch (e) {}
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: `${window.location.origin}/dashboard`,
+                redirectTo: `${window.location.origin}${returnPath}`,
                 queryParams: {
                     prompt: 'select_account'
                 }

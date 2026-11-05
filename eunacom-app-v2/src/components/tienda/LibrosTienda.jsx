@@ -14,6 +14,33 @@ const CART_KEY = 'eunacom_book_cart'
 const PLAN_6M = APP_PLANS.find(p => p.id === '6m')
 const BIBLIOTECA = PRODUCTS.biblioteca
 
+// Portada por especialidad (public/tienda/<tipo>_<clave>.jpg, copiadas de la Academia) a partir de la etiqueta del archivo
+const SPECIALTY_KEYS = [
+  ['cardiolog', 'cardiologia'], ['cirug', 'cirugia'], ['dermatolog', 'dermatologia'], ['diabetes', 'diabetes'],
+  ['endocrinolog', 'endocrinologia'], ['gastroenterolog', 'gastroenterologia'], ['hemato', 'hematologia'],
+  ['infectolog', 'infectologia'], ['infecciosas', 'infectologia'], ['nefrolog', 'nefrologia'], ['neurolog', 'neurologia'],
+  ['obstetricia', 'obstetricia'], ['ginecolog', 'ginecologia'], ['oftalmolog', 'oftalmologia'], ['otorrino', 'otorrino'],
+  ['pediatr', 'pediatria'], ['psiquiatr', 'psiquiatria'], ['respirator', 'neumologia'], ['reumatolog', 'reumatologia'],
+  ['salud publica', 'saludpublica'], ['traumatolog', 'traumatologia'], ['urolog', 'urologia'],
+]
+const ACCENTED = { Cardiologia: 'Cardiología', Cirugia: 'Cirugía', Dermatologia: 'Dermatología', Endocrinologia: 'Endocrinología', Gastroenterologia: 'Gastroenterología', Ginecologia: 'Ginecología', Hematologia: 'Hematología', Infectologia: 'Infectología', Nefrologia: 'Nefrología', Neurologia: 'Neurología', Oftalmologia: 'Oftalmología', Otorrinolaringologia: 'Otorrinolaringología', Pediatria: 'Pediatría', Psiquiatria: 'Psiquiatría', Reumatologia: 'Reumatología', Traumatologia: 'Traumatología', Urologia: 'Urología' }
+const COVER_PREFIX = { gordos: 'gordo', repasos: 'repaso', atlas: 'atlas', 'perfil-v3': 'perfil' }
+function fileCover(sku, label, fallback) {
+  const norm = label.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  if (/completo|gran libro|ponderado|practica|geriatr/.test(norm)) return fallback
+  const key = SPECIALTY_KEYS.find(([k]) => norm.includes(k))?.[1]
+  return key && COVER_PREFIX[sku] ? `/tienda/${COVER_PREFIX[sku]}_${key}.jpg` : fallback
+}
+// Mis libros por tipo: cada archivo de los packs (Libros Gordos, Repaso, Atlas, Perfil) es su propia tarjeta
+const SHELF_SECTIONS = [
+  { id: 'tomos', title: 'Manuales' },
+  { id: 'gordos', title: 'Libros Gordos' },
+  { id: 'repasos', title: 'Repaso Final' },
+  { id: 'atlas', title: 'Atlas de Imágenes' },
+  { id: 'perfil-v3', title: 'Perfil V3 código por código' },
+  { id: 'recons', title: 'Reconstrucciones' },
+]
+
 function Cover({ src, alt, style }) {
   return <img className="book-cover" src={src} alt={alt} loading="lazy" style={style} />
 }
@@ -29,7 +56,7 @@ export default function LibrosTienda() {
   const [module, setModule] = useState('all')
   const [checkout, setCheckout] = useState(false)
   const [paidBanner, setPaidBanner] = useState(() => new URLSearchParams(window.location.search).get('books'))
-  const [reading, setReading] = useState(null) // { item, title }
+  const [reading, setReading] = useState(null) // { item, title, fileIdx }
 
   useEffect(() => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)) } catch {} }, [cart])
 
@@ -101,12 +128,18 @@ export default function LibrosTienda() {
   const btnState = sku => isOwned(sku) ? 'owned' : (cart.includes(sku) || coveredByCart(sku)) ? 'added' : ''
   const btnLabel = (sku, idle) => isOwned(sku) ? '✓ Tuyo' : cart.includes(sku) ? '✓ En el carro' : coveredByCart(sku) ? '✓ En tu pack' : idle
 
-  // Mis libros: biblioteca completa por plan, o lo comprado
-  const shelf = [
-    ...TOMOS.filter(t => ownedBooks.has(t.sku)).map(t => ({ key: t.sku, cover: t.cover, label: `Tomo ${t.n} · ${t.name}` })),
-    ...EXTRAS.filter(x => ownedBooks.has(x.sku)).map(x => ({ key: x.sku, cover: x.cover, label: x.name })),
-    ...(ownedBooks.has('gran-recons') ? [] : RECONS.filter(r => ownedBooks.has(r.sku)).map(r => ({ key: r.sku, rec: r, label: r.name }))),
-  ]
+  // Mis libros: biblioteca completa por plan, o lo comprado, separados por tipo
+  const shelfBySection = { tomos: TOMOS.filter(t => ownedBooks.has(t.sku)).map(t => ({ key: t.sku, item: t.sku, cover: t.cover, label: `Tomo ${t.n} · ${t.name}` })) }
+  for (const x of EXTRAS.filter(x => ownedBooks.has(x.sku))) {
+    const section = x.sku === 'gran-recons' ? 'recons' : x.sku
+    shelfBySection[section] = [...(shelfBySection[section] || []), ...(x.files
+      ? x.files.map((f, i) => ({ key: `${x.sku}-${i}`, item: x.sku, fileIdx: i, cover: fileCover(x.sku, f.label, x.cover), label: ACCENTED[f.label] || f.label }))
+      : [{ key: x.sku, item: x.sku, cover: x.cover, label: x.name }])]
+  }
+  if (!ownedBooks.has('gran-recons')) {
+    shelfBySection.recons = [...(shelfBySection.recons || []), ...RECONS.filter(r => ownedBooks.has(r.sku)).map(r => ({ key: r.sku, item: r.sku, rec: r, label: r.name }))]
+  }
+  const shelf = SHELF_SECTIONS.flatMap(s => shelfBySection[s.id] || [])
   const shortPlan = isPremium && !libraryIncluded && planMonths > 0
 
   return (
@@ -130,19 +163,24 @@ export default function LibrosTienda() {
           <p className="sub">
             {libraryIncluded ? 'Tu plan incluye la biblioteca completa.' : `Tienes ${purchasedBookSkus.length} compra${purchasedBookSkus.length === 1 ? '' : 's'} de libros en tu cuenta.`}
           </p>
-          <div className="shelf">
-            {shelf.map(b => (
-              <div key={b.key} className="shelf-item">
-                {b.rec
-                  ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
-                  : <Cover src={b.cover} alt={b.label} />}
-                <b>{b.label}</b>
-                {itemFiles(b.key).length
-                  ? <button className="mini-btn" onClick={() => setReading({ item: b.key, title: b.label })}>📖 Leer</button>
-                  : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
+          {SHELF_SECTIONS.filter(s => shelfBySection[s.id]?.length).map(s => (
+            <div key={s.id} className="shelf-section">
+              <h3 className="shelf-section__title">{s.title} <span>{shelfBySection[s.id].length}</span></h3>
+              <div className="shelf">
+                {shelfBySection[s.id].map(b => (
+                  <div key={b.key} className="shelf-item">
+                    {b.rec
+                      ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
+                      : <Cover src={b.cover} alt={b.label} />}
+                    <b>{b.label}</b>
+                    {itemFiles(b.item).length
+                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>📖 Leer</button>
+                      : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
           <p className="sub" style={{ marginTop: '0.75rem' }}>Los libros se leen en línea dentro de la app, con tu cuenta.</p>
         </section>
       )}
@@ -317,7 +355,7 @@ export default function LibrosTienda() {
         </div>
       )}
 
-      {reading && <LectorLibro item={reading.item} title={reading.title} onClose={() => setReading(null)} />}
+      {reading && <LectorLibro item={reading.item} title={reading.title} initialFileIdx={reading.fileIdx} onClose={() => setReading(null)} />}
 
       {checkout && (
         <BookCheckoutModal

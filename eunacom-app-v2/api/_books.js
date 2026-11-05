@@ -170,7 +170,10 @@ export async function handleBooks(db, req, res, opts = {}) {
     const items = await readableItems(db, q.userId, opts.extraAdminIds)
     if (!items.has(q.item)) { res.status(403).json({ error: 'No tienes este libro' }); return true }
     if (!opts.signFile) { res.status(503).json({ error: 'Lector no configurado' }); return true }
-    const url = await opts.signFile(f.file)
+    // Modo celular: el mismo libro en texto adaptable (JSON en libros/movil/…, solo manuales)
+    const movil = q.mode === 'movil'
+    if (movil && !/^01_Tomos\/.+\.pdf$/.test(f.file)) { res.status(404).json({ error: 'Este libro aún no tiene modo celular' }); return true }
+    const url = await opts.signFile(movil ? `movil/${f.file.replace(/\.pdf$/, '.json')}` : f.file)
     if (!url) { res.status(500).json({ error: 'No se pudo abrir el libro' }); return true }
     res.json({ url, files: files.map(x => x.label) })
     return true

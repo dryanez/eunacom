@@ -43,23 +43,26 @@ export async function fetchReviewQuestions(userId) {
   return data.data || []
 }
 
+// Intentos de Libros Gordos (id "lg-…"): ?lg=test para que en dev los atienda la base local
+const testsUrl = id => String(id || '').startsWith('lg-') ? '/api/tests?lg=test' : '/api/tests'
+
 export async function createTest(testObj) {
   // testObj: { id, userId, mode, timeLimitSeconds, totalQuestions, questions }
-  return apiFetch('/api/tests', {
+  return apiFetch(testsUrl(testObj.id), {
     method: 'POST',
     body: JSON.stringify(testObj)
   })
 }
 
 export async function saveTestProgress(id, answers, currentIndex, timeLeftSeconds, tutorState = null) {
-  return apiFetch('/api/tests', {
+  return apiFetch(testsUrl(id), {
     method: 'PATCH',
     body: JSON.stringify({ id, answers, currentIndex, timeLeftSeconds, tutorState })
   })
 }
 
 export async function completeTest(id, answers, currentIndex, score) {
-  return apiFetch('/api/tests', {
+  return apiFetch(testsUrl(id), {
     method: 'PATCH',
     body: JSON.stringify({ id, answers, currentIndex, status: 'completed', score })
   })
@@ -68,6 +71,18 @@ export async function completeTest(id, answers, currentIndex, score) {
 export async function deleteTest(id) {
   return apiFetch(`/api/tests?id=${id}`, { method: 'DELETE' })
 }
+
+// ── LIBROS GORDOS ONLINE ──────────────────────────────────────────────────────
+// Errores de acceso vuelven como { error: 'revoked' | 'not_found' | 'claimed_by_other' | 'no_access' | … }
+
+async function lgFetch(params) {
+  const res = await fetch('/api/tests?' + new URLSearchParams({ ...params }).toString())
+  const data = await res.json().catch(() => ({ error: 'network' }))
+  return res.ok ? data : { ...data, error: data.error || `http_${res.status}` }
+}
+
+export const fetchLibroGordoLink = (token, userId) => lgFetch({ lg: 'link', token, userId })
+export const fetchLibroGordoQuestions = (book, userId, token) => lgFetch({ lg: 'questions', book, userId, ...(token ? { token } : {}) })
 
 // ── AI TUTOR ──────────────────────────────────────────────────────────────────
 
@@ -317,8 +332,8 @@ export async function captureBookPaypal(userId, paypalOrderId) {
   })
 }
 
-export async function fetchBookRead(userId, item, file = 0) {
-  return apiFetch(`/api/user-profiles?action=book_read&userId=${encodeURIComponent(userId)}&item=${encodeURIComponent(item)}&file=${file}`)
+export async function fetchBookRead(userId, item, file = 0, mode = '') {
+  return apiFetch(`/api/user-profiles?action=book_read&userId=${encodeURIComponent(userId)}&item=${encodeURIComponent(item)}&file=${file}${mode ? `&mode=${mode}` : ''}`)
 }
 
 export async function fetchBookPurchases(adminEmail) {

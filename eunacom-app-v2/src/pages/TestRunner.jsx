@@ -9,6 +9,7 @@ import { useTheme } from '../contexts/ThemeContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT } from '../utils/xpSystem'
 import LoadingScreen from '../components/LoadingScreen'
+import LibroGordoUpsell from '../components/LibroGordoUpsell'
 
 const TestRunner = () => {
     const navigate = useNavigate()
@@ -21,6 +22,9 @@ const TestRunner = () => {
     const startFinished = !!location.state?.startFinished
     const mode = location.state?.mode || 'tutor'
     const isTutorMode = mode === 'tutor'
+    // Libros Gordos online: modo bloqueado, sin volver al dashboard; { token, book, bookName, returnTo }
+    const locked = location.state?.locked || null
+    const exitPath = locked ? locked.returnTo : '/dashboard'
 
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
     const initTutorState = location.state?.tutorState || { firstAttempts: {}, wrongAttempts: {} }
@@ -168,7 +172,8 @@ const TestRunner = () => {
             try {
                 if (user) {
                     await completeTest(location.state.testId, answers, currentIndex, pct)
-                    for (const q of questions) {
+                    // Libro Gordo: el puntaje queda en tests; no se mezcla con el progreso del banco principal
+                    if (!locked) for (const q of questions) {
                         const firstAns = isTutorMode ? firstAttempts[q.id] : answers[q.id]
                         const isCorrect = firstAns?.toLowerCase() === q.correctAnswer?.toLowerCase()
                         const isOmitted = !firstAns
@@ -205,7 +210,7 @@ const TestRunner = () => {
         }
         setIsSubmitting(false)
         setShowExitModal(false)
-        navigate('/dashboard')
+        navigate(exitPath)
     }
 
     const handleSubmitTest = async () => {
@@ -267,6 +272,8 @@ const TestRunner = () => {
                             </div>
                         </div>
                     </div>
+
+                    {locked && <LibroGordoUpsell bookName={locked.bookName} pct={pct} />}
 
                     {/* Question grid navigator */}
                     <div className="card" style={{ marginBottom: '1.5rem', borderRadius: 18, padding: '1.25rem' }}>
@@ -438,8 +445,8 @@ const TestRunner = () => {
                         </div>
                     )}
 
-                    <button className="btn-primary btn-primary--full" onClick={() => navigate('/dashboard')} style={{ padding: '1rem', borderRadius: 12, fontWeight: 700 }}>
-                        Volver al Dashboard
+                    <button className="btn-primary btn-primary--full" onClick={() => navigate(exitPath)} style={{ padding: '1rem', borderRadius: 12, fontWeight: 700 }}>
+                        {locked ? `Volver a mi Libro Gordo` : 'Volver al Dashboard'}
                     </button>
                 </div>
             </div>
@@ -452,7 +459,9 @@ const TestRunner = () => {
 
     const isRecon = location.state?.testId?.includes('recon') || (currentQuestion.id && String(currentQuestion.id).includes('_q'))
 
-    const highYieldBadge = isSimulation
+    const highYieldBadge = locked
+        ? { label: `Libro Gordo · ${locked.bookName}`, icon: <Award size={12} color="#f59e0b" /> }
+        : isSimulation
         ? { label: 'Simulacro Oficial 180Q', icon: <Flame size={12} color="#f59e0b" /> }
         : isRecon
             ? { label: 'Reconstrucción EUNACOM', icon: <Award size={12} color="#f59e0b" /> }
@@ -476,7 +485,7 @@ const TestRunner = () => {
                 <button onClick={() => setShowExitModal(true)} style={{ background: 'transparent', border: 'none', color: 'var(--surface-50)', display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', padding: '0.4rem 0.6rem', borderRadius: 8, fontSize: '0.9rem', fontWeight: 600 }}>
                     <ChevronLeft size={20} /> Volver
                 </button>
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--surface-100)' }}>Examen EUNACOM — {currentQuestion.topic || 'Práctica'}</div>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--surface-100)' }}>{locked ? `Libro Gordo — ${locked.bookName}` : `Examen EUNACOM — ${currentQuestion.topic || 'Práctica'}`}</div>
                 <button style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer' }}><MoreHorizontal size={22} /></button>
             </div>
 

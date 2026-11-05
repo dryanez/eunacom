@@ -2,11 +2,17 @@
 // POST /api/tests  body: { id, userId, mode, timeLimitSeconds, totalQuestions, questions }
 // PATCH /api/tests body: { id, answers, currentIndex, status, score }
 // DELETE /api/tests?id=xxx
+// GET  /api/tests?lg=…              → Libros Gordos online (api/_libro-gordo.js); lg=test es un intento normal
 import { getTurso } from './_turso.js';
+import { handleLibroGordo } from './_libro-gordo.js';
 
 export default async function handler(req, res) {
   const db = getTurso()
+  if (req.query.lg && req.query.lg !== 'test') return handleLibroGordo(db, req, res)
+  return handleTests(db, req, res)
+}
 
+export async function handleTests(db, req, res) {
   if (req.method === 'GET') {
     const { userId, id } = req.query
     if (id) {

@@ -8,14 +8,16 @@
 // Al agregar una palabra nueva en AUTOMATIZACIONES_DM.md: sumar el slug aquí y su portada en
 // public/regalo/<slug>.jpg (primera página del PDF: scripts/regalo-portadas.sh).
 
-const GORDO = 'gordo', REPASO = 'repaso', ATLAS = 'atlas'
+const GORDO = 'gordo', REPASO = 'repaso', ATLAS = 'atlas', GUIA = 'guia'
 const KINDS = {
   [GORDO]: { label: 'Libro Gordo', blurb: '90 preguntas de práctica tipo EUNACOM, cada una con su explicación.' },
   [REPASO]: { label: 'Repaso Final', blurb: 'Los temas clave de la especialidad, una página por tema, con plan de repaso de 7 días.' },
   [ATLAS]: { label: 'Atlas de Imágenes', blurb: 'Las imágenes que caen en el EUNACOM, cada una comentada.' },
+  [GUIA]: { label: 'Guía', blurb: 'Una guía corta con el mismo formato de nuestros libros.' },
 }
 
-// slug → [tipo, especialidad, ruta en books/dist, páginas]
+// slug → [tipo, especialidad, ruta en books/dist, páginas, { title, blurb } opcional]
+// Guías de los reels: books/scripts/build_atlas.cjs --regalo <slug> → books/dist/08_Regalos/
 const LIST = {
   endocrinologia: [GORDO, 'Endocrinología', '02_Libros_Gordos_90Q/Libro_Gordo_Endocrinologia_90Q.pdf', 46],
   hematologia: [GORDO, 'Hematología', '02_Libros_Gordos_90Q/Libro_Gordo_Hematologia_90Q.pdf', 45],
@@ -38,12 +40,15 @@ const LIST = {
   'repaso-otorrinolaringologia': [REPASO, 'Otorrinolaringología', '05_Repaso_Final/Repaso_Final_Otorrinolaringologia_2026.pdf', 28],
   'repaso-diabetes': [REPASO, 'Diabetes', '05_Repaso_Final/Repaso_Final_Diabetes_2026.pdf', 37],
   atlas_imagenes_dermatologia: [ATLAS, 'Dermatología', '06_Atlas/Atlas_Imagenes_Dermatologia_2026.pdf', 68],
+  ecg: [GUIA, 'Cardiología', '08_Regalos/Guia_Los_10_ECG_EUNACOM.pdf', 16, {
+    title: 'Los 10 ECG que más caen en el EUNACOM',
+    blurb: 'Cada trazado con lo que tienes que ver marcado, qué hacer después y su pregunta real del EUNACOM. Al final, autoevaluación.' }],
 }
 
-export const REGALOS = Object.fromEntries(Object.entries(LIST).map(([slug, [kind, specialty, file, pages]]) => [slug, {
+export const REGALOS = Object.fromEntries(Object.entries(LIST).map(([slug, [kind, specialty, file, pages, own = {}]]) => [slug, {
   slug, kind, specialty, file, pages,
-  title: `${KINDS[kind].label} de ${specialty}`,
-  blurb: KINDS[kind].blurb,
+  title: own.title || `${KINDS[kind].label} de ${specialty}`,
+  blurb: own.blurb || KINDS[kind].blurb,
   cover: `/regalo/${slug}.jpg`,
 }]))
 
@@ -68,6 +73,7 @@ export async function ensureRegaloTable(db) {
     )`, args: []
   })
   await db.execute({ sql: `ALTER TABLE regalo_leads ADD COLUMN ig_user TEXT`, args: [] }).catch(() => {})
+  await db.execute({ sql: `ALTER TABLE regalo_leads ADD COLUMN nombre TEXT`, args: [] }).catch(() => {})
 }
 
 // Token del link del DM: HMAC-SHA256(secret, slug[:igUser]) en base64url, 16 caracteres
@@ -90,16 +96,16 @@ const newToken = () => [...crypto.getRandomValues(new Uint8Array(18))].map(b => 
 
 async function download(db, lead, opts) {
   const r = REGALOS[lead.slug]
-  const url = opts.signFile ? await opts.signFile(r.file, { expiresIn: LINK_SECONDS, filename: pdfName(r) }) : null
+  const url = opts.signFile ? await opts.signFile(r.file, { expiresIn: LINK_SECONDS, filename: pdfName(r), attachment: true }) : null
   if (!url) return null
   await db.execute({ sql: `UPDATE regalo_leads SET downloads = downloads + 1, last_download_at = datetime('now') WHERE id = ?`, args: [lead.id] })
   return url
 }
 
-function giftEmail(r, link) {
+function giftEmail(r, link, nombre) {
   return `<div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#0f172a">
   <h2 style="margin:0 0 12px">Tu ${r.title} 📘</h2>
-  <p>¡Hola! Gracias por seguirnos en Instagram: aquí tienes el libro que pediste. ${r.blurb}</p>
+  <p>¡Hola${nombre ? ` ${nombre.split(' ')[0]}` : ''}! Gracias por seguirnos en Instagram: aquí tienes el libro que pediste. ${r.blurb}</p>
   <p><a href="${link}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Descargar el libro</a></p>
   <p style="font-size:14px">¿Quieres todas las clases y +11.000 preguntas reales? En eunacomapp.cl tienes 20 % en cualquier plan con el código <b>SHORTS20</b>.</p>
   <p style="font-size:12px;color:#64748b">Academia Examen EUNACOM · eunacomapp.cl</p>
@@ -152,6 +158,7 @@ export async function handleRegalo(db, req, res, opts = {}) {
     res.status(403).json({ error: 'Este libro es para quienes nos siguen: comenta la palabra en el reel y te llega el link por DM.' }); return true
   }
   const email = String(b.email || '').trim().toLowerCase().slice(0, 160)
+  const nombre = String(b.nombre || '').replace(/\s+/g, ' ').trim().slice(0, 80) || null
   const whatsapp = String(b.whatsapp || '').replace(/[^\d+]/g, '').slice(0, 20)
   if (email && !EMAIL_RE.test(email)) { res.status(400).json({ error: 'Revisa tu correo' }); return true }
   if (!email && whatsapp.replace(/\D/g, '').length < 8) { res.status(400).json({ error: 'Escribe tu correo o tu WhatsApp con código de país' }); return true }
@@ -166,8 +173,8 @@ export async function handleRegalo(db, req, res, opts = {}) {
     const cut = v => (v ? String(v).slice(0, 80) : null)
     const token = newToken()
     await db.execute({
-      sql: `INSERT INTO regalo_leads (slug, email, whatsapp, token, utm_source, utm_medium, utm_campaign, ig_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      args: [r.slug, email || null, email ? null : whatsapp, token, cut(utm.source), cut(utm.medium), cut(utm.campaign), b.u ? String(b.u).slice(0, 40) : null]
+      sql: `INSERT INTO regalo_leads (slug, nombre, email, whatsapp, token, utm_source, utm_medium, utm_campaign, ig_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [r.slug, nombre, email || null, email ? null : whatsapp, token, cut(utm.source), cut(utm.medium), cut(utm.campaign), b.u ? String(b.u).slice(0, 40) : null]
     })
     lead = (await db.execute({ sql: `SELECT * FROM regalo_leads WHERE token = ?`, args: [token] })).rows[0]
   }
@@ -178,7 +185,7 @@ export async function handleRegalo(db, req, res, opts = {}) {
   let emailed = false
   if (email && isNew && opts.sendEmail) {
     const link = `https://www.eunacomapp.cl/regalo/${r.slug}?k=${lead.token}&utm_source=email&utm_medium=regalo&utm_campaign=${r.slug}`
-    emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link) }).then(() => true, () => false)
+    emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link, nombre) }).then(() => true, () => false)
   }
   res.json({ url, token: lead.token, emailed })
   return true

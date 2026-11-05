@@ -15,6 +15,7 @@ export const LIBRARY_MIN_PLAN_MONTHS = 6 // plan_months >= 6 (incluye founders, 
 // Solo planes de la app (los packs de libros ya vienen con descuento). No se suman a la promo: gana el mayor.
 export const COUPONS = {
   SHORTS20: { percent: 20, label: 'Código de redes SHORTS20' },
+  LIBROGORDO20: { percent: 20, label: 'Descuento Libro Gordo online' }, // upsell al terminar un Libro Gordo (src/components/LibroGordoUpsell.jsx)
 }
 export function resolveCoupon(code) {
   const key = String(code || '').trim().toUpperCase()

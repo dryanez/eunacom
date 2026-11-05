@@ -4,6 +4,8 @@ import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { loadTestQuestions, getQuestionDB } from '../lib/questionDB'
+import { fetchLibroGordoQuestions } from '../lib/api'
+import { bookName as libroGordoName } from '../../api/_libro-gordo.js'
 
 const HistoryCard = ({ test }) => {
     // Logic for score colors
@@ -28,7 +30,7 @@ const HistoryCard = ({ test }) => {
     // Reconstrucciones vs regular markers
     const typeColor = test.isReconstruction ? 'rgba(139, 92, 246, 0.15)' : 'rgba(19, 91, 236, 0.15)'
     const typeTextColor = test.isReconstruction ? '#a78bfa' : 'var(--primary-300)'
-    const typeLabel = test.isReconstruction ? 'Reconstrucción' : 'Práctica'
+    const typeLabel = test.libroGordo ? 'Libro Gordo' : test.isReconstruction ? 'Reconstrucción' : 'Práctica'
 
     return (
         <div className="card" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', padding: '1.25rem', marginBottom: '1rem', gap: '1.5rem' }}>
@@ -138,8 +140,12 @@ const History = () => {
                 const questions = typeof t.questions === 'string' ? JSON.parse(t.questions) : (t.questions || [])
                 let isReconstruction = false
                 let testTitle = "Examen Aleatorio"
-                
-                if (questions.length > 0) {
+                // Libros Gordos online: id "lg-<libro>-<uuid>"
+                const libroGordo = String(t.id).startsWith('lg-') ? String(t.id).split('-')[1] : null
+
+                if (libroGordo) {
+                    testTitle = `Libro Gordo · ${libroGordoName(libroGordo)}`
+                } else if (questions.length > 0) {
                     const firstQ = questions[0]
                     if (typeof firstQ === 'string' && firstQ.includes('_q')) {
                         isReconstruction = true
@@ -173,6 +179,7 @@ const History = () => {
                     timeLeftSeconds: t.time_left_seconds !== null ? t.time_left_seconds : undefined,
                     tutorState: t.tutor_state ? JSON.parse(t.tutor_state) : null,
                     title: testTitle,
+                    libroGordo,
                     isReconstruction
                 }
             })
@@ -195,7 +202,15 @@ const History = () => {
     }
 
     const handleContinue = async (test) => {
-        const testQuestions = await loadTestQuestions(test.questions)
+        let testQuestions
+        if (test.libroGordo) {
+            // Preguntas fuera del banco: el servidor revisa que el enlace siga vigente (o plan premium)
+            const res = await fetchLibroGordoQuestions(test.libroGordo, user.id)
+            if (res.error) { navigate('/oferta'); return }
+            testQuestions = res.data
+        } else {
+            testQuestions = await loadTestQuestions(test.questions)
+        }
         const isCompleted = test.status === 'Completado'
 
         if (testQuestions.length === 0) {

@@ -86,6 +86,9 @@
 .tienda-banner.info { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.35); color: #fcd34d; }
 .tienda-banner.ok { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; }
 
+.shelf-section + .shelf-section { margin-top: 1.5rem; }
+.shelf-section__title { font-size: 1rem; font-weight: 800; color: var(--surface-50); margin: 0 0 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+.shelf-section__title span { font-size: 0.72rem; font-weight: 700; color: var(--surface-300); background: var(--surface-700); border-radius: 999px; padding: 1px 8px; }
 .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 1rem; }
 .shelf-item { display: flex; flex-direction: column; gap: 0.35rem; }
 .shelf-item img { width: 100%; aspect-ratio: 3 / 4.2; object-fit: cover; }
@@ -291,3 +294,34 @@
 .gift-pack__badge { position: absolute; top: -0.55rem; left: 0.8rem; padding: 0.12rem 0.5rem; border-radius: 999px; background: #fff; color: #b45309; font-size: 0.66rem; font-weight: 900; }
 .gift-store__cta { display: block; text-align: center; padding: 0.85rem; border-radius: 14px; background: #fff; color: #4c1d95; font-weight: 900; font-size: 1rem; text-decoration: none; }
 .gift-store__cta span { display: block; font-size: 0.7rem; font-weight: 600; color: #6b21a8; margin-top: 0.15rem; }
+
+/* Libros: al pasar el mouse el libro se levanta y se inclina un poco (como sacarlo del estante) */
+.shelf-item .book-cover, .shelf-item .rec-cover { transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s ease; transform-origin: left center; }
+@media (hover: hover) {
+  .shelf-item:hover .book-cover, .shelf-item:hover .rec-cover { transform: translateY(-6px) perspective(700px) rotateY(-9deg) scale(1.03); box-shadow: inset 5px 0 8px -4px rgba(0,0,0,0.45), 0 22px 30px -12px rgba(0,0,0,0.75); }
+  .shelf-item:hover b { color: #fff; }
+}
+.shelf-item:active .book-cover { transform: scale(0.97); }
+@media (prefers-reduced-motion: reduce) { .shelf-item .book-cover, .shelf-item .rec-cover { transition: none; } }
+
+/* /regalo: nombre + correo, segunda pantalla y portadas flotantes */
+.gift-cover { width: 58%; max-width: 250px; }
+.gift-cover--done { position: relative; width: 42%; max-width: 180px; margin-top: 0.6rem; }
+.gift-ok { position: absolute; right: -0.6rem; top: -0.6rem; font-size: 2rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+.gift-redl { margin-bottom: 1rem; }
+.gift-store h2 { font-size: 1.45rem; }
+.gift-store__covers { padding: 1rem 0 1.2rem; }
+.gift-float img, .gift-float > img { animation: gift-float 4.6s ease-in-out infinite; }
+.gift-float img:nth-child(2) { animation-delay: -1.2s; }
+.gift-float img:nth-child(3) { animation-delay: -2.3s; }
+.gift-float img:nth-child(4) { animation-delay: -3.4s; }
+@keyframes gift-float {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 0 -10px; rotate: 1.5deg; }
+}
+@media (prefers-reduced-motion: reduce) { .gift-float img { animation: none; } }
+.gift-pack--3 { background: linear-gradient(135deg, rgba(168,85,247,0.85), rgba(236,72,153,0.8)); }
+.gift-pack strong, .gift-pack__price b { color: #fff; line-height: 1.25; }
+.gift-fan { position: relative; width: 100%; max-width: 300px; margin: 0 auto; aspect-ratio: 4 / 4.2; }
+.gift-store__covers .gift-fan img { position: absolute; left: 21%; top: 0; width: 58%; height: auto; aspect-ratio: 210 / 297; object-fit: cover; margin: 0;
+  border-radius: 4px 8px 8px 4px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transition: transform .9s cubic-bezier(.65,0,.25,1), opacity .9s ease, filter .9s ease; }
