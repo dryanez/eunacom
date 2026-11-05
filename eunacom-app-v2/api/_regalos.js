@@ -198,8 +198,10 @@ export async function handleRegalo(db, req, res, opts = {}) {
   if (!url) { res.status(503).json({ error: 'Descarga no disponible por ahora. Te escribiremos con el libro.' }); return true }
 
   let emailed = false
-  if (email && isNew && opts.sendEmail) {
-    const link = `https://www.eunacomapp.cl/regalo/${r.slug}?k=${lead.token}&utm_source=email&utm_medium=regalo&utm_campaign=${r.slug}`
+  // El libro llega por correo (también si ya lo había pedido): así la persona se queda en la página con la oferta.
+  // El botón del correo abre eunacom-examen.cl (la página del regalo con ?k=), no el PDF suelto.
+  if (email && opts.sendEmail) {
+    const link = `https://eunacom-examen.cl/?regalo=${r.slug}&k=${lead.token}&utm_source=email&utm_medium=regalo&utm_campaign=${r.slug}`
     emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link, nombre, b.utm?.source) }).then(() => true, () => false)
   }
   res.json({ url, token: lead.token, emailed })
