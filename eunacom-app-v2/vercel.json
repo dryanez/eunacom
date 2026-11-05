@@ -7,7 +7,7 @@
     ],
     "redirects": [
         {
-            "source": "/regalo/:slug",
+            "source": "/regalo/:slug([a-z0-9_-]+)",
             "destination": "https://eunacom-examen.cl/?regalo=:slug",
             "permanent": false
         },
