@@ -89,6 +89,7 @@ async function validToken(secret, slug, t, u) {
   const expected = await giftToken(secret, slug, u ? String(u).slice(0, 40) : '')
   return expected.length === String(t).length && expected === String(t)
 }
+export const PUBLIC_SOURCES = ['youtube', 'tiktok']
 export const giftUrl = (slug, t, u, campaign) =>
   `https://www.eunacomapp.cl/regalo/${slug}?t=${t}${u ? `&u=${encodeURIComponent(u)}` : ''}&utm_source=instagram&utm_medium=dm&utm_campaign=${encodeURIComponent(campaign || slug)}`
 
@@ -103,10 +104,11 @@ async function download(db, lead, opts) {
   return url
 }
 
-function giftEmail(r, link, nombre) {
+function giftEmail(r, link, nombre, source) {
+  const red = { youtube: 'YouTube', tiktok: 'TikTok' }[String(source || '').toLowerCase()] || 'Instagram'
   return `<div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#0f172a">
   <h2 style="margin:0 0 12px">Tu ${r.title} 📘</h2>
-  <p>¡Hola${nombre ? ` ${nombre.split(' ')[0]}` : ''}! Gracias por seguirnos en Instagram: aquí tienes el libro que pediste. ${r.blurb}</p>
+  <p>¡Hola${nombre ? ` ${nombre.split(' ')[0]}` : ''}! Gracias por seguirnos en ${red}: aquí tienes el libro que pediste. ${r.blurb}</p>
   <p><a href="${link}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Descargar el libro</a></p>
   <p style="font-size:14px">¿Quieres todas las clases y +11.000 preguntas reales? En eunacomapp.cl tienes 20 % en cualquier plan con el código <b>SHORTS20</b>.</p>
   <p style="font-size:12px;color:#64748b">Academia Examen EUNACOM · eunacomapp.cl</p>
@@ -164,7 +166,10 @@ export async function handleRegalo(db, req, res, opts = {}) {
   const b = req.body || {}
   const r = REGALOS[b.slug]
   if (!r) { res.status(404).json({ error: 'Libro no encontrado' }); return true }
-  if (!(await validToken(opts.secret, r.slug, b.t, b.u))) {
+  // YouTube / TikTok no tienen comentario→DM: el link de la descripción va sin token (modo público).
+  // Instagram sigue exigiendo el token del DM de ManyChat.
+  const isPublic = PUBLIC_SOURCES.includes(String(b.utm?.source || '').toLowerCase())
+  if (!isPublic && !(await validToken(opts.secret, r.slug, b.t, b.u))) {
     res.status(403).json({ error: 'Este libro es para quienes nos siguen: comenta la palabra en el reel y te llega el link por DM.' }); return true
   }
   const email = String(b.email || '').trim().toLowerCase().slice(0, 160)
@@ -195,7 +200,7 @@ export async function handleRegalo(db, req, res, opts = {}) {
   let emailed = false
   if (email && isNew && opts.sendEmail) {
     const link = `https://www.eunacomapp.cl/regalo/${r.slug}?k=${lead.token}&utm_source=email&utm_medium=regalo&utm_campaign=${r.slug}`
-    emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link, nombre) }).then(() => true, () => false)
+    emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link, nombre, b.utm?.source) }).then(() => true, () => false)
   }
   res.json({ url, token: lead.token, emailed })
   return true
