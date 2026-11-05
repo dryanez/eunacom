@@ -25,6 +25,7 @@ const LIST = {
   diabetes: [GORDO, 'Diabetes', '02_Libros_Gordos_90Q/Libro_Gordo_Diabetes_90Q.pdf', 34],
   obstetricia: [GORDO, 'Obstetricia', '02_Libros_Gordos_90Q/Libro_Gordo_Obstetricia_90Q.pdf', 40],
   nefrologia: [GORDO, 'Nefrología', '02_Libros_Gordos_90Q/Libro_Gordo_Nefrologia_90Q.pdf', 38],
+  urologia: [GORDO, 'Urología', '02_Libros_Gordos_90Q/Libro_Gordo_Urologia_90Q.pdf', 35],
   cardiologia: [GORDO, 'Cardiología', '02_Libros_Gordos_90Q/Libro_Gordo_Cardiologia_90Q.pdf', 32],
   infectologia: [GORDO, 'Infectología', '02_Libros_Gordos_90Q/Libro_Gordo_Infectologia_90Q.pdf', 34],
   neurologia: [GORDO, 'Neurología', '02_Libros_Gordos_90Q/Libro_Gordo_Neurologia_90Q.pdf', 42],
