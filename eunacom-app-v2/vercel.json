@@ -1,8 +1,16 @@
 {
     "crons": [
-        { "path": "/api/email-marketing-cron", "schedule": "0 13 * * *" }
+        {
+            "path": "/api/email-marketing-cron",
+            "schedule": "0 13 * * *"
+        }
     ],
     "redirects": [
+        {
+            "source": "/regalo/:slug",
+            "destination": "https://eunacom-examen.cl/regalo/:slug",
+            "permanent": false
+        },
         {
             "source": "/((?!api/).*)",
             "has": [
@@ -30,10 +38,22 @@
         {
             "source": "/api/(.*)",
             "headers": [
-                { "key": "Access-Control-Allow-Credentials", "value": "true" },
-                { "key": "Access-Control-Allow-Origin", "value": "*" },
-                { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-                { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization" }
+                {
+                    "key": "Access-Control-Allow-Credentials",
+                    "value": "true"
+                },
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization"
+                }
             ]
         },
         {
@@ -86,11 +106,29 @@
         }
     ],
     "rewrites": [
-        { "source": "/api/paypal-export", "destination": "/api/admin-users?action=paypal" },
-        { "source": "/api/ses-events", "destination": "/api/admin-users?action=ses_events" },
-        { "source": "/api/(.*)", "destination": "/api/$1" },
-        { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-        { "source": "/robots.txt", "destination": "/robots.txt" },
-        { "source": "/((?!api/|assets/|data/|img/|favicon.ico|manifest.webmanifest|sw.js|workbox-.*|sitemap\\.xml|robots\\.txt|.*\\.png|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.json).*)", "destination": "/index.html" }
+        {
+            "source": "/api/paypal-export",
+            "destination": "/api/admin-users?action=paypal"
+        },
+        {
+            "source": "/api/ses-events",
+            "destination": "/api/admin-users?action=ses_events"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
+        },
+        {
+            "source": "/sitemap.xml",
+            "destination": "/sitemap.xml"
+        },
+        {
+            "source": "/robots.txt",
+            "destination": "/robots.txt"
+        },
+        {
+            "source": "/((?!api/|assets/|data/|img/|favicon.ico|manifest.webmanifest|sw.js|workbox-.*|sitemap\\.xml|robots\\.txt|.*\\.png|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.json).*)",
+            "destination": "/index.html"
+        }
     ]
 }
