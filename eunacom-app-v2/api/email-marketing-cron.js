@@ -57,6 +57,7 @@ function promoSender() {
   };
 }
 import { getActivePromo } from './_promo.js';
+import { runRegaloSequence, dueLeads, regaloEmail, REGALO_SEQ } from './_regalo-seq.js';
 
 export default async function handler(req, res) {
   const db = getTurso();
@@ -103,6 +104,32 @@ export default async function handler(req, res) {
 
     const { action, dryRun: queryDryRun, testEmail, campaignType } = req.query;
     const isDryRun = queryDryRun === 'true' || req.body?.dryRun === true;
+
+    // --- SECUENCIA DEL LIBRO GRATIS (regalo_leads, ver _regalo-seq.js): action=regalo_seq ---
+    //   &mode=preview (por defecto) → a quiénes les toca hoy · &mode=html&step=1..4&slug= → el correo · &mode=test&testEmail=x
+    //   &mode=send → envía lo de hoy. Sin action, el cron diario también la corre (abajo, antes del ciclo de vida).
+    if (action === 'regalo_seq') {
+      const mode = req.query.mode || 'preview';
+      const sample = { slug: req.query.slug || 'ecg', nombre: 'Felipe', token: 'muestra', email: req.query.testEmail || 'test@example.com' };
+      if (mode === 'html') { res.setHeader('Content-Type', 'text/html; charset=utf-8'); return res.end(regaloEmail(sample, Number(req.query.step) || 1).html); }
+      if (mode === 'test') {
+        if (!req.query.testEmail) return res.status(400).json({ error: 'testEmail requerido' });
+        const sender = promoSender();
+        const out = [];
+        for (const s of REGALO_SEQ) {
+          const m = regaloEmail(sample, s.step);
+          out.push(...await sender.sendMany([{ from: `Academia Examen EUNACOM <${process.env.RESEND_SENDER_EMAIL || 'equipo@eunacomapp.cl'}>`, to: sample.email, reply_to: 'eunacomapp@gmail.com', subject: `[Prueba ${s.step}/4] ${m.subject}`, html: m.html }]));
+        }
+        return res.json({ sender: sender?.name, results: out });
+      }
+      if (mode === 'send') return res.json(await runRegaloSequence(db, promoSender(), { dryRun: isDryRun }));
+      const due = await dueLeads(db);
+      return res.json({ due: due.length, preview: due.slice(0, 50).map(d => ({ email: d.lead.email, slug: d.lead.slug, step: d.step })) });
+    }
+    if (!action && isCronAuth) {
+      try { console.log('regalo_seq', JSON.stringify(await runRegaloSequence(db, promoSender(), { dryRun: isDryRun }))); }
+      catch (e) { console.error('regalo_seq error', e); }
+    }
 
     // --- PROMO CAMPAIGNS (users who signed up and never paid): action=cyber_week | cyber_week_ext ---
     //   &mode=preview            → recipient count + list + which sender would be used, sends nothing

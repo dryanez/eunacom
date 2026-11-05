@@ -120,7 +120,16 @@ function giftEmail(r, link, nombre) {
 export async function handleRegalo(db, req, res, opts = {}) {
   const q = req.query || {}
   const action = q.action || req.body?.action
-  if (!['regalo_lead', 'regalo_link', 'regalo_check', 'regalo_dm_link'].includes(action)) return false
+  if (!['regalo_lead', 'regalo_link', 'regalo_check', 'regalo_dm_link', 'regalo_baja'].includes(action)) return false
+
+  // Baja de la secuencia de correos (link del pie y List-Unsubscribe one-click): GET muestra la confirmación, POST es el one-click
+  if (action === 'regalo_baja') {
+    const { regaloBaja } = await import('./_regalo-seq.js')
+    const ok = await regaloBaja(db, q.k || req.body?.k)
+    res.setHeader?.('Content-Type', 'text/html; charset=utf-8')
+    res.status(ok ? 200 : 404).end?.(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font-family:Arial,sans-serif;max-width:420px;margin:60px auto;padding:0 20px;color:#08365f;text-align:center"><h2>${ok ? 'Listo, no te escribiremos más' : 'Link no válido'}</h2><p style="color:#475569">${ok ? 'Te sacamos de los correos de Academia Examen EUNACOM.' : 'Si quieres darte de baja, responde cualquier correo nuestro.'}</p><p><a href="https://eunacom-examen.cl" style="color:#0b5ea8">eunacom-examen.cl</a></p></body>`)
+    return true
+  }
 
   // ¿El link del DM es válido? (la página decide si muestra el formulario)
   if (req.method === 'GET' && action === 'regalo_check') {
