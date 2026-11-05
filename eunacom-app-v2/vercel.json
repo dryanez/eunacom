@@ -8,7 +8,7 @@
     "redirects": [
         {
             "source": "/regalo/:slug",
-            "destination": "https://eunacom-examen.cl/regalo/:slug",
+            "destination": "https://eunacom-examen.cl/?regalo=:slug",
             "permanent": false
         },
         {
