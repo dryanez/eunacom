@@ -104,15 +104,60 @@ async function download(db, lead, opts) {
   return url
 }
 
+// Manual de la especialidad que se ofrece en el correo (mismos datos que la tienda de eunacom-examen.cl)
+const AEE = 'https://eunacom-examen.cl'
+const MANUALES = {
+  cardiologia: ['Cardiología', 224], infectologia: ['Infectología', 118], neumologia: ['Respiratorio', 124], nefrologia: ['Nefrología', 100],
+  diabetes: ['Diabetes Mellitus', 118], endocrinologia: ['Endocrinología', 124], hematologia: ['Hematología', 141], neurologia: ['Neurología', 174],
+  cirugia: ['Cirugía General', 129], traumatologia: ['Traumatología', 97], urologia: ['Urología', 89], otorrino: ['Otorrinolaringología', 115],
+  oftalmologia: ['Oftalmología', 107], dermatologia: ['Dermatología', 102], psiquiatria: ['Psiquiatría', 98], pediatria: ['Pediatría', 158],
+  obstetricia: ['Obstetricia', 116],
+}
+const manualKey = specialty => {
+  const k = specialty.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  return { respiratorio: 'neumologia', otorrinolaringologia: 'otorrino' }[k] || k
+}
+
 function giftEmail(r, link, nombre, source) {
   const red = { youtube: 'YouTube', tiktok: 'TikTok' }[String(source || '').toLowerCase()] || 'Instagram'
-  return `<div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#0f172a">
-  <h2 style="margin:0 0 12px">Tu ${r.title} 📘</h2>
-  <p>¡Hola${nombre ? ` ${nombre.split(' ')[0]}` : ''}! Gracias por seguirnos en ${red}: aquí tienes el libro que pediste. ${r.blurb}</p>
-  <p><a href="${link}" style="display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Descargar el libro</a></p>
-  <p style="font-size:14px">¿Quieres todas las clases y +11.000 preguntas reales? En eunacomapp.cl tienes 20 % en cualquier plan con el código <b>SHORTS20</b>.</p>
-  <p style="font-size:12px;color:#64748b">Academia Examen EUNACOM · eunacomapp.cl</p>
-</div>`
+  const key = manualKey(r.specialty), m = MANUALES[key]
+  const btn = (href, text, bg, fg = '#fff') => `<a href="${href}" style="display:inline-block;background:${bg};color:${fg};padding:14px 26px;border-radius:12px;text-decoration:none;font-weight:800;font-size:16px">${text}</a>`
+  const li = t => `<tr><td style="padding:3px 8px 3px 0;color:#0b5ea8;font-weight:800;vertical-align:top">✓</td><td style="padding:3px 0;color:#1e293b;font-size:14px">${t}</td></tr>`
+  const offer = !m ? '' : `
+  <tr><td style="padding:8px 24px 28px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:2px solid #0a365f;border-radius:16px">
+      <tr><td style="padding:20px 20px 6px"><span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">¿Te sirvió? Sigue con esto</span>
+        <h2 style="margin:10px 0 0;color:#0a365f;font-size:21px">Manual de ${m[0]} completo</h2></td></tr>
+      <tr><td style="padding:12px 20px">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td width="120" style="vertical-align:top;padding-right:16px"><a href="${link}"><img src="${AEE}/covers/tomo_${key}.jpg" width="120" alt="Manual de ${m[0]}" style="display:block;width:120px;border-radius:6px;box-shadow:0 6px 16px rgba(10,54,95,.25)"></a></td>
+          <td style="vertical-align:top"><table role="presentation" cellpadding="0" cellspacing="0">
+            ${li(`${m[1]} páginas: toda la teoría de ${m[0]} del Perfil V3`)}${li('Algoritmos, tablas y perlas EUNACOM')}${li('Fotos clínicas en contexto')}${li('Preguntas reales de años anteriores (EUNACOM 2013–2025)')}${li('Lo descargas al tiro, en PDF')}
+          </table></td>
+        </tr></table></td></tr>
+      <tr><td style="padding:4px 20px 0"><span style="color:#94a3b8;text-decoration:line-through;font-size:15px">$19.990</span> <span style="color:#0a365f;font-size:28px;font-weight:900">$9.990</span> <span style="background:#fce7f3;color:#9d174d;font-size:12px;font-weight:800;padding:3px 8px;border-radius:6px">Precio de regalo</span></td></tr>
+      <tr><td style="padding:14px 20px 22px">${btn(link, 'Quiero el Manual a $9.990 →', '#0b5ea8')}<div style="color:#64748b;font-size:12px;margin-top:8px">Mercado Pago, Webpay, PayPal o transferencia.</div></td></tr>
+    </table></td></tr>`
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;background:#eef4fb">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb;font-family:Arial,Helvetica,sans-serif"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#fff;border-radius:18px;overflow:hidden">
+  <tr><td style="padding:20px 24px;border-bottom:1px solid #e2e8f0"><img src="${AEE}/email/header.png" width="190" alt="Academia Examen EUNACOM" style="display:block;width:190px"></td></tr>
+  <tr><td style="padding:26px 24px 8px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+      <td width="110" style="vertical-align:top;padding-right:16px"><a href="${link}"><img src="${AEE}${r.cover}" width="110" alt="${r.title}" style="display:block;width:110px;border-radius:6px;box-shadow:0 6px 16px rgba(10,54,95,.25)"></a></td>
+      <td style="vertical-align:top">
+        <div style="color:#0b5ea8;font-size:13px;font-weight:800">🎁 TU REGALO</div>
+        <h1 style="margin:6px 0 8px;color:#0a365f;font-size:22px;line-height:1.25">${r.title}</h1>
+        <p style="margin:0;color:#334155;font-size:14px;line-height:1.5">¡Hola${nombre ? ` ${nombre.split(' ')[0]}` : ''}! Gracias por seguirnos en ${red}. ${r.blurb} <b>PDF · ${r.pages} páginas.</b></p>
+      </td></tr></table>
+  </td></tr>
+  <tr><td style="padding:18px 24px 26px">${btn(link, '📘 Descargar mi libro gratis', '#0a365f')}</td></tr>
+  ${offer}
+  <tr><td style="padding:16px 24px 22px;background:#f8fafc;color:#64748b;font-size:12px;line-height:1.5">
+    Academia Examen EUNACOM · <a href="${AEE}" style="color:#0b5ea8">eunacom-examen.cl</a> · Instagram <a href="https://www.instagram.com/academiaeunacom/" style="color:#0b5ea8">@academiaeunacom</a><br>
+    Recibiste este correo porque pediste este libro gratis en nuestra página.
+  </td></tr>
+</table></td></tr></table></body></html>`
 }
 
 // Devuelve true si atendió la request. La acción va en la query (?action=regalo_…) para que el
