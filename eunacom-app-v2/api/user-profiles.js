@@ -6,6 +6,7 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 import { handleRegalo } from './_regalos.js'
+import { handleIgBot } from './_ig-bot.js'
 import { Resend } from 'resend'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -138,6 +139,14 @@ async function bookPreference(db, { userId, title, amount, externalReference }) 
 
 export default async function handler(req, res) {
   const db = getTurso()
+
+  // --- BOT DE INSTAGRAM «Comenta PALABRA» (webhook de Meta; antes que todo, responde rápido) ---
+  try {
+    if (await handleIgBot(db, req, res, { secret: process.env.REGALO_SECRET })) return
+  } catch (err) {
+    console.error('[ig-bot] fatal:', err)
+    if (req.body?.object === 'instagram') return res.status(200).json({ received: true })
+  }
 
   try {
     // Ensure table exists and has all columns
