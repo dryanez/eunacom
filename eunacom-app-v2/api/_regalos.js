@@ -247,7 +247,7 @@ export async function handleRegalo(db, req, res, opts = {}) {
   // El botón del correo abre eunacom-examen.cl (la página del regalo con ?k=), no el PDF suelto.
   if (email && opts.sendEmail) {
     const link = `https://eunacom-examen.cl/?regalo=${r.slug}&k=${lead.token}&utm_source=email&utm_medium=regalo&utm_campaign=${r.slug}`
-    emailed = await opts.sendEmail({ to: email, subject: `Tu ${r.title} gratis 📘`, html: giftEmail(r, link, nombre, b.utm?.source) }).then(() => true, () => false)
+    emailed = await opts.sendEmail({ to: email, subject: `Tu regalo: ${r.title} 📘`, html: giftEmail(r, link, nombre, b.utm?.source) }).then(() => true, () => false)
   }
   res.json({ url, token: lead.token, emailed })
   return true
