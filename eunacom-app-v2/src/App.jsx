@@ -33,6 +33,7 @@ import MedLingoPage from './pages/MedLingoPage'
 import LandingPage from './pages/LandingPage'
 import FAQ from './pages/FAQ'
 import Reembolsos from './pages/Reembolsos'
+import Privacidad from './pages/Privacidad'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import CursoComparativa from './pages/CursoComparativa'
@@ -84,6 +85,7 @@ function App() {
               <Route path="/convenios" element={<ConveniosLanding />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/reembolsos" element={<Reembolsos />} />
+              <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
 

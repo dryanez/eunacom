@@ -45,7 +45,11 @@ Webhook: `https://www.eunacomapp.cl/api/user-profiles?action=ig_webhook`
 Configuración → **Mensajes y llamadas** → **Herramientas conectadas** → **Permitir acceso a los mensajes**: activado.
 
 ## 6. Poner la app en Live
-Arriba en la app: **App mode → Live** (si ya dice Live, sáltate esto). Meta pide una URL de política de privacidad: **hoy ni eunacomapp.cl ni eunacom-examen.cl tienen esa página** (eunacomapp.cl/privacidad muestra la app, no una política). Hay que crearla antes (te la puedo hacer).
+Arriba en la app: **App mode → Live** (si ya dice Live, sáltate esto). En **App settings → Basic** pon:
+- **Privacy policy URL:** `https://www.eunacomapp.cl/privacidad`
+- **User data deletion** → «Data deletion instructions URL»: `https://www.eunacomapp.cl/privacidad#eliminar-datos`
+- Categoría: Educación.
+(La página `/privacidad` está en la misma rama que el bot: tiene que estar publicada antes de este paso.)
 
 ## 7. Prueba (la pregunta clave)
 Con el bot apagado, ManyChat sigue igual y el bot solo responde **PRUEBABOT** (ManyChat no la conoce, así que nunca chocan).
