@@ -60,3 +60,16 @@ Sin credenciales de Turso, el resto de `/api` sigue proxeado a producción **sol
 - Las 8.787 preguntas de las *pruebas* de Mis Clases (`public/data/pruebas/*.json`) no están en Turso ni tienen id estable; no entran en estos modos (5.442 traen `codigo_eunacom`, se podrían importar con el mismo script en una segunda etapa).
 - Revisar errores: `/review` y `reviewUserId` ya hacen `JOIN eunacom_questions`, así que las falladas rs2026 aparecen; la vista `ReviewErrors` carga `questionDB.json` y no las mostrará hasta que lea del API.
 - Límite Plan Gratuito (20 preguntas) se respeta: se recortan las preguntas al saldo disponible.
+
+## Estado en producción (2026-11-08)
+
+Import ya corrido contra Turso `eunacom-db` por la CLI (`turso db shell`):
+
+| fuente | total | con código | sin código |
+|---|---|---|---|
+| propio | 7.002 | 6.664 | 332 |
+| rs2026 | 40.269 | 40.269 | 0 |
+
+- `--verify`: 1.551 códigos, 0 con conteo distinto.
+- Las 332 propias sin código no tienen código en ningún lado (ni Turso ni `questionDB.json`); se ven en «Sin código del Perfil» dentro de su especialidad (125 «Pediatría y Ginecología», 72 «Especialidades», 29 Ginecología, 22 Cirugía…). Codificarlas es trabajo editorial, no de datos.
+- Las rutas antiguas `?eunacom_code=` / `?specialty=` filtran `fuente IS NULL` desde el PR dryanez/eunacom#1, así Mis Clases y el calendario no mezclan rs2026.
