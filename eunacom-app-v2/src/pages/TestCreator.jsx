@@ -11,12 +11,27 @@ import PaymentModal from '../components/PaymentModal'
 import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 import LoadingScreen from '../components/LoadingScreen'
+import BancoPerfil from '../components/banco/BancoPerfil'
+import { useSearchParams } from 'react-router-dom'
 
 const TestCreator = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
     const { isPremium, usageStats, hasExceededQuestions, freemiumMode } = useSubscription()
     const [mode, setMode] = useState('tutor')
+    // Modo de navegación del banco: 'examen' (crear examen, el de siempre) | 'arbol' (por área y tema) | 'codigo' (por código del Perfil)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [bancoMode, setBancoModeState] = useState(() => {
+        const fromUrl = searchParams.get('modo')
+        if (['examen', 'arbol', 'codigo'].includes(fromUrl)) return fromUrl
+        try { const saved = localStorage.getItem('eunacom_banco_mode'); if (['examen', 'arbol', 'codigo'].includes(saved)) return saved } catch { /* sin storage */ }
+        return 'examen'
+    })
+    const setBancoMode = (m) => {
+        setBancoModeState(m)
+        try { localStorage.setItem('eunacom_banco_mode', m) } catch { /* sin storage */ }
+        setSearchParams(m === 'examen' ? {} : { modo: m }, { replace: true })
+    }
     const [numQuestions, setNumQuestions] = useState('10')
     const [loading, setLoading] = useState(true)
     const [isCreating, setIsCreating] = useState(false)
@@ -265,8 +280,38 @@ const TestCreator = () => {
         { key: 'correct', label: 'Correctas', color: '#34d399', icon: CheckCircle2 }
     ]
 
-    if (loading) return <LoadingScreen context="test" message="Cargando base de preguntas..." />
+    if (loading && bancoMode === 'examen') return <LoadingScreen context="test" message="Cargando base de preguntas..." />
     if (isCreating) return <LoadingScreen context="test" message="Generando tu examen..." />
+
+    // ── Toggle de navegación del banco (Crear examen | Por área y tema | Por código) ──
+    const BANCO_MODES = [
+        { id: 'examen', label: 'Crear examen', hint: 'Elige temas, estado y cantidad' },
+        { id: 'arbol', label: 'Por área y tema', hint: 'Área › Especialidad › Tipo › Tema del Perfil 2026' },
+        { id: 'codigo', label: 'Por código', hint: 'Escribe un código del Perfil (p. ej. 1.01.2)' },
+    ]
+    const renderBancoToggle = () => (
+        <div role="tablist" aria-label="Modo del banco" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, padding: 4, borderRadius: 14, background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.25rem' }}>
+            {BANCO_MODES.map(m => {
+                const active = bancoMode === m.id
+                return (
+                    <button key={m.id} type="button" role="tab" aria-selected={active} title={m.hint} onClick={() => setBancoMode(m.id)} style={{
+                        padding: '0.6rem 0.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+                        background: active ? 'var(--primary-500)' : 'transparent', color: active ? '#fff' : 'var(--surface-300)',
+                        fontWeight: 700, fontSize: '0.85rem', transition: 'all 0.15s ease'
+                    }}>{m.label}</button>
+                )
+            })}
+        </div>
+    )
+
+    const renderBancoPerfil = () => (
+        <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
+            <h1 className="page__title">{bancoMode === 'arbol' ? 'Banco por área y tema' : 'Banco por código'}</h1>
+            <p className="page__subtitle">{bancoMode === 'arbol' ? 'Navega el Perfil de Conocimientos EUNACOM 2026 y practica un tema completo' : 'Busca un código del Perfil (o un prefijo) y practica todas sus preguntas'}</p>
+            {renderBancoToggle()}
+            <BancoPerfil modo={bancoMode} />
+        </div>
+    )
 
     // ── SUB-COMPONENT: Mode Section ──
     const renderModeSection = () => (
@@ -623,6 +668,7 @@ const TestCreator = () => {
                         Paso {mobileStep} de 4
                     </span>
                 </div>
+                {renderBancoToggle()}
 
                 {/* Interactive Step Pills */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem', marginBottom: '0.5rem' }}>
@@ -772,6 +818,7 @@ const TestCreator = () => {
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
             <h1 className="page__title">Crear Examen</h1>
             <p className="page__subtitle">Configura tu examen personalizado</p>
+            {renderBancoToggle()}
 
             {!isPremium && (
                 <div style={{
@@ -799,7 +846,7 @@ const TestCreator = () => {
     return (
         <>
             {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
-            {isMobile ? renderMobileWizard() : renderDesktopView()}
+            {bancoMode !== 'examen' ? renderBancoPerfil() : isMobile ? renderMobileWizard() : renderDesktopView()}
             {showLoginGate && (
                 <LoginGateModal
                     onClose={() => setShowLoginGate(false)}

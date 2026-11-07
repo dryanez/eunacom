@@ -169,7 +169,7 @@ const History = () => {
                 return {
                     id: t.id,
                     date: new Date(t.created_at).toLocaleDateString(),
-                    mode: t.mode === 'timed' ? 'Tiempo' : 'Tutor',
+                    mode: t.mode === 'timed' ? 'Tiempo' : t.mode === 'exam' ? 'Examen' : 'Tutor',
                     status: t.status === 'completed' ? 'Completado' : 'En Progreso',
                     score: t.score || 0,
                     questions,
@@ -229,7 +229,7 @@ const History = () => {
                 timeLeftSeconds: test.timeLeftSeconds,
                 tutorState: test.tutorState,
                 isReconstruction: test.isReconstruction,
-                mode: test.mode === 'Tiempo' ? 'exam' : 'tutor',
+                mode: test.mode === 'Tutor' ? 'tutor' : 'exam',
                 isSimulation: test.mode === 'Tiempo'
             }
         })

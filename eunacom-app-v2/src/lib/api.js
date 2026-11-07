@@ -5,7 +5,7 @@ import bundledClassesList from '../data/classesList.json'
 
 const BASE = import.meta.env.PROD ? '' : ''  // always relative — works locally + on Vercel
 
-async function apiFetch(path, options = {}) {
+export async function apiFetch(path, options = {}) {
   const res = await fetch(BASE + path, {
     headers: { 'Content-Type': 'application/json' },
     ...options

@@ -1,7 +1,14 @@
 // GET /api/questions?clase_id=xxx        → questions for a specific class
 // GET /api/questions?eunacom_code=x.xx   → questions for a code
 // GET /api/questions?specialty=xxx&limit=N → questions by specialty
+// ── Banco «Por área y tema» / «Por código» (Perfil EUNACOM 2026) ──
+// GET /api/questions?tree=1                                  → conteos por código y fuente (para el árbol)
+// GET /api/questions?code=1.01.1.018[&fuente=propio|rs2026]  → todas las preguntas de un tema (código exacto)
+// GET /api/questions?code_prefix=1.01.2[&fuente=…&limit=300] → preguntas de un prefijo de código (muestra al azar si hay más que limit)
+// GET /api/questions?sin_codigo=1&specialty=Cardiología      → preguntas propias sin código, por especialidad
+//   fuente: NULL = banco propio («propio»), 'rs2026' = banco importado de regionalsantiago (generado por IA)
 import { getTurso } from './_turso.js';
+import { handleBanco } from './_banco.js';
 
 export default async function handler(req, res) {
   const db = getTurso()
@@ -111,6 +118,10 @@ export default async function handler(req, res) {
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_code ON eunacom_questions(eunacom_code)', args: [] }) } catch {}
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)', args: [] }) } catch {}
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)', args: [] }) } catch {}
+
+  if (req.query.tree || req.query.code || req.query.code_prefix || req.query.sin_codigo) {
+    return handleBanco(db, req, res)
+  }
 
   const { clase_id, eunacom_code, specialty, limit = '50', offset = '0' } = req.query
   const lim = Math.min(parseInt(limit) || 50, 200)
