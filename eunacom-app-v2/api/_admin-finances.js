@@ -199,8 +199,9 @@ export default async function handler(req, res) {
         const amt = parseFloat(row.amount || 0)
         paypalTransactions.push({
           id: row.transaction_id,
-          gateway: 'paypal',
-          gateway_name: 'PayPal',
+          // CLP rows in paypal_transactions are manual bank transfers (TRANSFER-*)
+          gateway: row.currency === 'CLP' ? 'transferencia' : 'paypal',
+          gateway_name: row.currency === 'CLP' ? 'Transferencia' : 'PayPal',
           date: row.payment_date || row.created_at,
           date_approved: row.payment_date || row.created_at,
           amount: amt,
@@ -221,7 +222,7 @@ export default async function handler(req, res) {
           user_university: row.profile_university || null,
           user_whatsapp: row.profile_whatsapp || null,
           is_user_premium: row.is_premium === 1,
-          payment_method: 'paypal',
+          payment_method: row.currency === 'CLP' ? 'transfer' : 'paypal',
           external_reference: row.plan_id || null
         })
       }
@@ -274,7 +275,7 @@ export default async function handler(req, res) {
 
       if (isApproved) {
         m.successfulCount++
-        if (t.gateway === 'mercadopago') {
+        if (t.gateway === 'mercadopago' || t.gateway === 'transferencia') {
           m.mpTotalCLP += t.amount
           m.mpNetCLP += t.net_amount
           m.mpCount++
@@ -328,7 +329,7 @@ export default async function handler(req, res) {
       const isApproved = t.status === 'approved' || t.status === 'completed' || t.status === 'COMPLETED'
       if (isApproved) {
         totalApprovedCount++
-        if (t.gateway === 'mercadopago') {
+        if (t.gateway === 'mercadopago' || t.gateway === 'transferencia') {
           totalRevenueCLP += t.amount
           totalNetCLP += t.net_amount
           if (globalPlans[t.plan_id]) {
