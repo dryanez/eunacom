@@ -144,11 +144,46 @@ function clasesApiPlugin() {
         }
       })
 
+      // ── Banco «Por área y tema» / «Por código» (/api/questions?tree|code|code_prefix|sin_codigo) ──
+      // Turso si hay credenciales; si no, la SQLite local sembrada con
+      // `node scripts/perfil/import_rs2026.mjs --local --sync-questiondb` (así no se toca producción)
+      let bancoDb
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url.startsWith('/api/questions')) return next()
+        const sp = new URL(req.url, 'http://localhost').searchParams
+        if (!(sp.get('tree') || sp.get('code') || sp.get('code_prefix') || sp.get('sin_codigo'))) return next()
+        try {
+          if (!bancoDb) {
+            const tursoUrl = process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL
+            if (tursoUrl) {
+              bancoDb = createClient({ url: tursoUrl, authToken: process.env.VITE_TURSO_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN })
+            } else {
+              const { LOCAL_DB_URL } = await import('./scripts/perfil/local-db.mjs')
+              bancoDb = createClient({ url: LOCAL_DB_URL })
+            }
+          }
+          const { handleBanco } = await import('./api/_banco.js')
+          await adaptVercelHandler((rq, rs) => handleBanco(bancoDb, rq, rs))(req, res)
+        } catch (err) {
+          console.error('banco dev error:', err)
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ error: err.message }))
+        }
+      })
+
       // Without local Turso credentials these middlewares only return empty data
       // (e.g. no profile → onboarding every time), so let /api fall through to the
-      // production proxy instead.
+      // production proxy instead — but never let a local session WRITE to production:
+      // creating/saving tests and progress from `npm run dev` without credentials is a no-op.
       if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
-        server.config.logger.info('[clases-api] TURSO_DATABASE_URL not set: proxying /api to www.eunacomapp.cl')
+        server.config.logger.info('[clases-api] TURSO_DATABASE_URL not set: proxying /api (reads) to www.eunacomapp.cl; writes to /api/tests and /api/progress are ignored locally')
+        server.middlewares.use((req, res, next) => {
+          if (req.method === 'GET' || req.method === 'OPTIONS') return next()
+          if (!req.url.startsWith('/api/tests') && !req.url.startsWith('/api/progress')) return next()
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ ok: true, data: [], devNoop: true }))
+        })
         return
       }
 

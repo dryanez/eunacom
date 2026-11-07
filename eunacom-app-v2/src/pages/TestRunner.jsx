@@ -60,6 +60,7 @@ const TestRunner = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [showExitModal, setShowExitModal] = useState(false)
     const [showExplanation, setShowExplanation] = useState({}) // tutor mode: show explanation panel per question
+    const [reviewAll, setReviewAll] = useState(false) // revisión final: ver también las correctas (claves + explicaciones de todo el tema)
 
     useEffect(() => { /* nothing to reset per question now */ }, [currentIndex])
 
@@ -233,6 +234,7 @@ const TestRunner = () => {
         })
         const pct = Math.round((score / totalQuestions) * 100)
         const wrongResults = results.filter(r => !r.correct)
+        const reviewList = reviewAll ? results : wrongResults
         const incorrectCount = results.filter(r => !r.correct && !r.omitted).length
         const sessionXP = (score * XP_PER_CORRECT) + (incorrectCount * XP_PER_INCORRECT)
 
@@ -282,7 +284,7 @@ const TestRunner = () => {
                         </div>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
                             {results.map((r, i) => {
-                                const wrongIdx = wrongResults.findIndex(wr => wr.q.id === r.q.id)
+                                const wrongIdx = reviewList.findIndex(wr => wr.q.id === r.q.id)
                                 const isWrongOrOmitted = wrongIdx !== -1
                                 const color = r.correct ? '#10b981' : (r.omitted ? '#fbbf24' : '#ef4444')
                                 const bg = r.correct ? 'rgba(16,185,129,0.15)' : (r.omitted ? 'rgba(245,158,11,0.15)' : 'rgba(239,68,68,0.15)')
@@ -313,14 +315,17 @@ const TestRunner = () => {
                         </div>
                     </div>
 
-                    {wrongResults.length > 0 && (
+                    {(reviewList.length > 0 || results.length > 0) && (
                         <div style={{ marginBottom: '2rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '1rem', color: 'var(--surface-100)', fontWeight: 800, fontSize: '1.2rem' }}>
-                                <AlertCircle size={22} color="#ef4444" /> Preguntas para Repasar ({wrongResults.length})
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '1rem', color: 'var(--surface-100)', fontWeight: 800, fontSize: '1.2rem', flexWrap: 'wrap' }}>
+                                <AlertCircle size={22} color="#ef4444" /> {reviewAll ? `Claves y explicaciones (${results.length})` : `Preguntas para Repasar (${wrongResults.length})`}
+                                <button type="button" onClick={() => setReviewAll(v => !v)} style={{ marginLeft: 'auto', padding: '6px 12px', borderRadius: 8, border: '1px solid var(--surface-600)', background: 'transparent', color: 'var(--surface-200)', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+                                    {reviewAll ? 'Ver solo las falladas' : 'Ver todas con explicación'}
+                                </button>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                                {wrongResults.map(({ q, userChoice, correctChoice, omitted }, i) => {
-                                    const qArea = [q.category, q.topic || q.specialty].filter(Boolean).join(' · ') || q.topic || q.specialty || q.category || 'Medicina General'
+                                {reviewList.map(({ q, userChoice, correctChoice, omitted }, i) => {
+                                    const qArea = [q.eunacomCode, q.category, q.topic || q.specialty].filter(Boolean).join(' · ') || q.topic || q.specialty || q.category || 'Medicina General'
                                     return (
                                         <div key={q.id} id={`review-wrong-${i}`} style={{
                                             backgroundColor: isDark ? '#0f172a' : '#ffffff',
