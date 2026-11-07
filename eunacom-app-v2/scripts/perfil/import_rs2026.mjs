@@ -72,7 +72,11 @@ async function insertAll(d, rows, label) {
 }
 
 async function countByFuente(d) {
-  const r = await d.execute({ sql: `SELECT COALESCE(fuente,'propio') AS f, COUNT(*) AS c FROM eunacom_questions GROUP BY f`, cols: ['f', 'c'] })
+  // antes del primer import la columna fuente no existe: todo cuenta como propio
+  const cols = await d.execute({ sql: `SELECT name FROM pragma_table_info('eunacom_questions')`, cols: ['name'] })
+  const hasFuente = cols.rows.some(x => x.name === 'fuente')
+  const f = hasFuente ? `COALESCE(fuente,'propio')` : `'propio'`
+  const r = await d.execute({ sql: `SELECT ${f} AS f, COUNT(*) AS c FROM eunacom_questions GROUP BY f`, cols: ['f', 'c'] })
   return Object.fromEntries(r.rows.map(x => [x.f, Number(x.c)]))
 }
 

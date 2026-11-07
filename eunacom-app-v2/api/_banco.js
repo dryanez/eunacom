@@ -10,7 +10,7 @@ const MAX_LIMIT = 500
 const DEFAULT_LIMIT = 300
 
 let hasFuenteCache = null
-async function hasFuente(db) {
+export async function hasFuente(db) {
   if (hasFuenteCache !== null) return hasFuenteCache
   try {
     const r = await db.execute('PRAGMA table_info(eunacom_questions)')

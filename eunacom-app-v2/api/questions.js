@@ -8,7 +8,7 @@
 // GET /api/questions?sin_codigo=1&specialty=Cardiología      → preguntas propias sin código, por especialidad
 //   fuente: NULL = banco propio («propio»), 'rs2026' = banco importado de regionalsantiago (generado por IA)
 import { getTurso } from './_turso.js';
-import { handleBanco } from './_banco.js';
+import { handleBanco, hasFuente } from './_banco.js';
 
 export default async function handler(req, res) {
   const db = getTurso()
@@ -156,14 +156,17 @@ export default async function handler(req, res) {
       })
       rows = direct.rows
     } else if (eunacom_code) {
+      // Solo banco propio: las preguntas importadas (fuente='rs2026') se sirven por ?code= / ?code_prefix= con etiqueta
+      const soloPropio = (await hasFuente(db)) ? 'AND fuente IS NULL' : ''
       const result = await db.execute({
-        sql: `SELECT * FROM eunacom_questions WHERE eunacom_code = ? ORDER BY id LIMIT ? OFFSET ?`,
+        sql: `SELECT * FROM eunacom_questions WHERE eunacom_code = ? ${soloPropio} ORDER BY id LIMIT ? OFFSET ?`,
         args: [eunacom_code, lim, off]
       })
       rows = result.rows
     } else if (specialty) {
+      const soloPropio = (await hasFuente(db)) ? 'AND fuente IS NULL' : ''
       const result = await db.execute({
-        sql: `SELECT * FROM eunacom_questions WHERE specialty = ? ORDER BY id LIMIT ? OFFSET ?`,
+        sql: `SELECT * FROM eunacom_questions WHERE specialty = ? ${soloPropio} ORDER BY id LIMIT ? OFFSET ?`,
         args: [specialty, lim, off]
       })
       rows = result.rows
