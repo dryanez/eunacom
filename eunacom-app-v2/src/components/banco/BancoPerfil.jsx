@@ -14,13 +14,12 @@ const MAX_PER_TEST = 300
 const mono = { fontFamily: 'ui-monospace, Menlo, monospace', fontSize: '0.78rem', color: 'var(--primary-400)', fontWeight: 700 }
 const rowStyle = { width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '0.8rem 1rem', borderRadius: 12, border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(30,41,59,0.45)', color: 'var(--surface-100)', cursor: 'pointer', fontSize: '0.92rem' }
 
+// Total de preguntas del nodo según la fuente elegida (sin desglose: en móvil no cabe)
 function Counts({ n, fuente }) {
   const t = total(n, fuente)
   return (
-    <span style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
-      {fuente === 'all' && n?.propio > 0 && <span title="Banco EUNACOM App" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '2px 7px', borderRadius: 999, background: 'rgba(16,185,129,0.15)', color: '#34d399' }}>{n.propio} propias</span>}
-      {fuente === 'all' && n?.rs2026 > 0 && <span title="Nuevas 2026 (generadas por IA)" style={{ fontSize: '0.7rem', fontWeight: 700, padding: '2px 7px', borderRadius: 999, background: 'rgba(56,189,248,0.15)', color: '#38bdf8' }}>{n.rs2026} nuevas</span>}
-      <span style={{ fontSize: '0.8rem', fontWeight: 800, color: t ? 'var(--surface-100)' : 'var(--surface-500)', minWidth: 28, textAlign: 'right' }}>{t}</span>
+    <span style={{ marginLeft: 'auto', flexShrink: 0, fontSize: '0.8rem', fontWeight: 800, color: t ? 'var(--surface-100)' : 'var(--surface-500)', minWidth: 28, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+      {t.toLocaleString('es-CL')}
     </span>
   )
 }
@@ -112,7 +111,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
         <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.05em' }}>FUENTE</span>
         {FUENTES.map(f => (
           <button key={f.id} type="button" onClick={() => setFuente(f.id)} style={{ padding: '5px 12px', borderRadius: 999, border: '1px solid', borderColor: fuente === f.id ? 'var(--primary-500)' : 'var(--surface-600)', background: fuente === f.id ? 'rgba(56,189,248,0.15)' : 'transparent', color: fuente === f.id ? '#38bdf8' : 'var(--surface-300)', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
-            {f.label}{tree?.totals && f.id !== 'all' ? ` · ${tree.totals[f.id] || 0}` : ''}
+            {f.label}
           </button>
         ))}
         {tree && <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: 'var(--surface-400)' }}>{total(tree.totals, fuente).toLocaleString('es-CL')} preguntas</span>}
@@ -131,8 +130,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
         <div style={{ flex: 1, minWidth: 200 }}>
           <div style={{ fontWeight: 800, color: 'var(--surface-100)' }}>{target.name}</div>
           <div style={{ fontSize: '0.8rem', color: 'var(--surface-400)' }}>
-            {total(target.n, fuente)} preguntas
-            {fuente === 'all' && (target.n?.propio || target.n?.rs2026) ? ` (${target.n.propio || 0} propias + ${target.n.rs2026 || 0} nuevas)` : ''}
+            {total(target.n, fuente).toLocaleString('es-CL')} preguntas
             {total(target.n, fuente) > MAX_PER_TEST ? ` · se practican ${MAX_PER_TEST} al azar` : ''}
             {!isPremium && remainingFree < total(target.n, fuente) ? ` · Plan Gratuito: te quedan ${remainingFree}` : ''}
           </div>
@@ -172,7 +170,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
         </div>
         {search?.prefix && search.hits.length > 1 && (
           <button type="button" onClick={() => setTarget({ kind: 'prefix', value: search.prefix, name: `Todo el prefijo ${search.prefix} (${search.hits.length} temas)`, n: search.n })} style={{ ...rowStyle, marginBottom: 8, border: '1px solid rgba(56,189,248,0.35)' }}>
-            <Hash size={16} color="#38bdf8" /> <span><strong>Practicar todo <span style={mono}>{search.prefix}</span></strong> <span style={{ color: 'var(--surface-400)', fontSize: '0.8rem' }}>· {search.hits.length} temas</span></span>
+            <Hash size={16} color="#38bdf8" /> <span style={{ flex: 1, minWidth: 0 }}><strong>Practicar todo <span style={mono}>{search.prefix}</span></strong> <span style={{ color: 'var(--surface-400)', fontSize: '0.8rem' }}>· {search.hits.length} temas</span></span>
             <Counts n={search.n} fuente={fuente} />
           </button>
         )}
@@ -181,8 +179,8 @@ export default function BancoPerfil({ modo = 'arbol' }) {
             {search.hits.length === 0 && <div style={{ color: 'var(--surface-400)', padding: '1rem' }}>Ningún tema del Perfil coincide con «{query}».</div>}
             {search.hits.map(t => (
               <button key={t.code || t.sinCodigo} type="button" onClick={() => pick(t)} style={rowStyle}>
-                <span style={mono}>{t.code || '—'}</span>
                 <span style={{ flex: 1, minWidth: 0 }}>
+                  <div style={mono}>{t.code || '—'}</div>
                   <div>{t.name}</div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{t.area.name} › {t.spec.name} › {t.tipo.name}</div>
                 </span>
@@ -225,7 +223,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
           {tree.areas.map(a => (
             <button key={a.key} type="button" onClick={() => setPath([a.key])} style={{ ...rowStyle, padding: '1rem 1.1rem' }}>
               <span style={{ ...mono, fontSize: '0.9rem' }}>{a.key}</span>
-              <span style={{ flex: 1 }}><div style={{ fontWeight: 800 }}>{a.name}</div><div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{a.specs.length} especialidad{a.specs.length === 1 ? '' : 'es'}</div></span>
+              <span style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 800 }}>{a.name}</div><div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{a.specs.length} especialidad{a.specs.length === 1 ? '' : 'es'}</div></span>
               <Counts n={a.n} fuente={fuente} />
               <ChevronRight size={16} color="var(--surface-500)" />
             </button>
@@ -238,7 +236,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
           {area.specs.map(s => (
             <button key={s.key} type="button" onClick={() => setPath([area.key, s.key])} style={rowStyle}>
               <span style={mono}>{s.pseudo ? '' : s.key}</span>
-              <span style={{ flex: 1, fontWeight: 700, color: s.pseudo ? 'var(--surface-300)' : undefined }}>{s.name}</span>
+              <span style={{ flex: 1, minWidth: 0, fontWeight: 700, color: s.pseudo ? 'var(--surface-300)' : undefined }}>{s.name}</span>
               <Counts n={s.n} fuente={fuente} />
               <ChevronRight size={16} color="var(--surface-500)" />
             </button>
@@ -251,14 +249,14 @@ export default function BancoPerfil({ modo = 'arbol' }) {
           {spec.tipos.map(t => (
             <button key={t.key} type="button" onClick={() => setPath([area.key, spec.key, t.key])} style={rowStyle}>
               <span style={mono}>{t.pseudo ? '' : `${spec.key}.${t.key}`}</span>
-              <span style={{ flex: 1 }}><div style={{ fontWeight: 700 }}>{t.name}</div><div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{t.temas.length} tema{t.temas.length === 1 ? '' : 's'}</div></span>
+              <span style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 700 }}>{t.name}</div><div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{t.temas.length} tema{t.temas.length === 1 ? '' : 's'}</div></span>
               <Counts n={t.n} fuente={fuente} />
               <ChevronRight size={16} color="var(--surface-500)" />
             </button>
           ))}
           {!spec.pseudo && (
             <button type="button" onClick={() => setTarget({ kind: 'prefix', value: spec.key, name: `Toda ${spec.name} (${spec.key})`, n: spec.n })} style={{ ...rowStyle, border: '1px dashed var(--surface-600)', color: 'var(--surface-300)' }}>
-              <Sparkles size={16} color="#38bdf8" /> <span style={{ flex: 1 }}>Practicar toda la especialidad al azar</span><Counts n={spec.n} fuente={fuente} />
+              <Sparkles size={16} color="#38bdf8" /> <span style={{ flex: 1, minWidth: 0 }}>Practicar toda la especialidad al azar</span><Counts n={spec.n} fuente={fuente} />
             </button>
           )}
         </div>
@@ -271,15 +269,18 @@ export default function BancoPerfil({ modo = 'arbol' }) {
             const active = target && ((t.code && target.value === t.code) || (t.sinCodigo && target.value === t.sinCodigo))
             return (
               <button key={t.code || t.sinCodigo} type="button" onClick={() => pick(t)} disabled={!n} style={{ ...rowStyle, opacity: n ? 1 : 0.5, cursor: n ? 'pointer' : 'default', borderColor: active ? 'var(--primary-500)' : undefined, background: active ? 'rgba(56,189,248,0.12)' : rowStyle.background }}>
-                {t.code ? <span style={mono}>{t.code}</span> : <BookOpen size={16} color="var(--surface-400)" />}
-                <span style={{ flex: 1 }}>{t.name}{t.extra && <span title="Código presente en el banco nuevo pero no en el codemap oficial" style={{ marginLeft: 6, fontSize: '0.68rem', color: '#fbbf24' }}>no en Perfil</span>}</span>
+                {!t.code && <BookOpen size={16} color="var(--surface-400)" />}
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  {t.code && <div style={mono}>{t.code}</div>}
+                  <div>{t.name}{t.extra && <span title="Código presente en el banco nuevo pero no en el codemap oficial" style={{ marginLeft: 6, fontSize: '0.68rem', color: '#fbbf24' }}>no en Perfil</span>}</div>
+                </span>
                 <Counts n={t.n} fuente={fuente} />
               </button>
             )
           })}
           {!tipo.pseudo && tipo.temas.length > 1 && (
             <button type="button" onClick={() => setTarget({ kind: 'prefix', value: `${spec.key}.${tipo.key}`, name: `${tipo.name} de ${spec.name} (${spec.key}.${tipo.key})`, n: tipo.n })} style={{ ...rowStyle, border: '1px dashed var(--surface-600)', color: 'var(--surface-300)' }}>
-              <Sparkles size={16} color="#38bdf8" /> <span style={{ flex: 1 }}>Practicar todo este tipo al azar</span><Counts n={tipo.n} fuente={fuente} />
+              <Sparkles size={16} color="#38bdf8" /> <span style={{ flex: 1, minWidth: 0 }}>Practicar todo este tipo al azar</span><Counts n={tipo.n} fuente={fuente} />
             </button>
           )}
         </div>
