@@ -12,7 +12,7 @@ import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 import LoadingScreen from '../components/LoadingScreen'
 import BancoPerfil from '../components/banco/BancoPerfil'
-import { FUENTES, fetchRs2026Index, fetchBancoByIds, toRunnerQuestion } from '../lib/banco'
+import { fetchRs2026Index, fetchBancoByIds, toRunnerQuestion } from '../lib/banco'
 import { useSearchParams } from 'react-router-dom'
 
 const TestCreator = () => {
@@ -40,15 +40,8 @@ const TestCreator = () => {
     const [userProgress, setUserProgress] = useState({})
     const [propioDB, setPropioDB] = useState([])        // questionDB.json (banco propio)
     const [rsIndex, setRsIndex] = useState([])          // índice liviano de las preguntas nuevas (fuente rs2026)
-    // Fuente del banco para Crear examen: 'all' | 'propio' | 'rs2026' (se recuerda)
-    const [fuente, setFuenteState] = useState(() => {
-        try { const f = localStorage.getItem('eunacom_examen_fuente'); if (['all', 'propio', 'rs2026'].includes(f)) return f } catch { /* sin storage */ }
-        return 'all'
-    })
-    const setFuente = (f) => { setFuenteState(f); try { localStorage.setItem('eunacom_examen_fuente', f) } catch { /* sin storage */ } }
-    const questionDB = useMemo(() => (
-        fuente === 'propio' ? propioDB : fuente === 'rs2026' ? rsIndex : [...propioDB, ...rsIndex]
-    ), [propioDB, rsIndex, fuente])
+    // Banco completo, sin distinguir fuente
+    const questionDB = useMemo(() => [...propioDB, ...rsIndex], [propioDB, rsIndex])
     const [showLoginGate, setShowLoginGate] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
 
@@ -311,23 +304,7 @@ const TestCreator = () => {
         { id: 'arbol', label: 'Por área y tema', hint: 'Área › Especialidad › Tipo › Tema del Perfil 2026' },
         { id: 'codigo', label: 'Por código', hint: 'Escribe un código del Perfil (p. ej. 1.01.2)' },
     ]
-    const fuenteCounts = { all: propioDB.length + rsIndex.length, propio: propioDB.length, rs2026: rsIndex.length }
-    const renderFuenteSelector = () => (
-        <div role="radiogroup" aria-label="Fuente de las preguntas" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: -8, marginBottom: '1.25rem' }}>
-            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--surface-400)', marginRight: 4 }}>FUENTE</span>
-            {FUENTES.map(f => {
-                const active = fuente === f.id
-                return (
-                    <button key={f.id} type="button" role="radio" aria-checked={active} onClick={() => setFuente(f.id)} style={{
-                        padding: '0.35rem 0.7rem', borderRadius: 9999, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 700,
-                        border: active ? '1px solid var(--primary-400)' : '1px solid rgba(255,255,255,0.12)',
-                        background: active ? 'rgba(59,130,246,0.18)' : 'transparent', color: active ? 'var(--primary-200, #bfdbfe)' : 'var(--surface-300)'
-                    }}>{f.label} · {fuenteCounts[f.id].toLocaleString('es-CL')}</button>
-                )
-            })}
-        </div>
-    )
-    const renderBancoToggle = () => (<>
+    const renderBancoToggle = () => (
         <div role="tablist" aria-label="Modo del banco" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, padding: 4, borderRadius: 14, background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.25rem' }}>
             {BANCO_MODES.map(m => {
                 const active = bancoMode === m.id
@@ -340,8 +317,7 @@ const TestCreator = () => {
                 )
             })}
         </div>
-        {bancoMode === 'examen' && renderFuenteSelector()}
-    </>)
+    )
 
     const renderBancoPerfil = () => (
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>

@@ -4,7 +4,7 @@ import { ChevronRight, Search, Loader2, PlayCircle, Hash, FolderTree, AlertCircl
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import { createTest, genId } from '../../lib/api'
-import { fetchBancoTree, fetchBancoQuestions, buildTree, allTemas, total, isCodePrefix, norm, toRunnerQuestion, FUENTES, FUENTE_LABEL } from '../../lib/banco'
+import { fetchBancoTree, fetchBancoQuestions, buildTree, allTemas, total, isCodePrefix, norm, toRunnerQuestion } from '../../lib/banco'
 import LoginGateModal from '../LoginGateModal'
 import PaymentModal from '../PaymentModal'
 
@@ -36,7 +36,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
   const { isPremium, usageStats } = useSubscription()
   const [tree, setTree] = useState(null)
   const [loadError, setLoadError] = useState('')
-  const [fuente, setFuente] = useState('all')
+  const fuente = 'all' // sin filtro de fuente: el banco se muestra completo, sin distinguir preguntas
   const [path, setPath] = useState([]) // [areaKey, specKey, tipoKey]
   const [query, setQuery] = useState('')
   const [target, setTarget] = useState(null) // { kind: 'code'|'prefix'|'sinCodigo', value, name, n }
@@ -88,7 +88,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
       else params.sinCodigo = target.value
       const r = await fetchBancoQuestions(params)
       let qs = (r.data || []).map(toRunnerQuestion)
-      if (!qs.length) { setStartError('No hay preguntas para esa selección con el filtro de fuente actual.'); setStarting(false); return }
+      if (!qs.length) { setStartError('No hay preguntas para esa selección.'); setStarting(false); return }
       if (!isPremium && qs.length > remainingFree) qs = qs.slice(0, remainingFree)
       const testId = genId()
       await createTest({ id: testId, userId: user.id, mode: runnerMode, timeLimitSeconds: null, totalQuestions: qs.length, questions: qs.map(q => q.id) })
@@ -104,24 +104,12 @@ export default function BancoPerfil({ modo = 'arbol' }) {
     ? { kind: 'code', value: t.code, name: `${t.code} ${t.name}`, n: t.n }
     : { kind: 'sinCodigo', value: t.sinCodigo, name: t.name, n: t.n })
 
-  // ── Encabezado común: filtro de fuente + panel de inicio ──
-  const header = (
-    <div className="card" style={{ marginBottom: '1rem', padding: '1rem 1.25rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.05em' }}>FUENTE</span>
-        {FUENTES.map(f => (
-          <button key={f.id} type="button" onClick={() => setFuente(f.id)} style={{ padding: '5px 12px', borderRadius: 999, border: '1px solid', borderColor: fuente === f.id ? 'var(--primary-500)' : 'var(--surface-600)', background: fuente === f.id ? 'rgba(56,189,248,0.15)' : 'transparent', color: fuente === f.id ? '#38bdf8' : 'var(--surface-300)', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer' }}>
-            {f.label}
-          </button>
-        ))}
-        {tree && <span style={{ marginLeft: 'auto', fontSize: '0.78rem', color: 'var(--surface-400)' }}>{total(tree.totals, fuente).toLocaleString('es-CL')} preguntas</span>}
-      </div>
-      {tree && !tree.fuenteDisponible && (
-        <div style={{ marginTop: 8, fontSize: '0.78rem', color: '#fbbf24' }}>Las preguntas nuevas 2026 aún no están importadas en esta base; se muestra solo el banco propio.</div>
-      )}
-      {fuente === 'rs2026' && <div style={{ marginTop: 8, fontSize: '0.75rem', color: 'var(--surface-400)' }}>«Nuevas 2026»: banco de práctica generado por IA, organizado por código del Perfil. Revisa las explicaciones con criterio clínico.</div>}
+  // ── Aviso solo en desarrollo, cuando la base aún no tiene la columna fuente ──
+  const header = tree && !tree.fuenteDisponible ? (
+    <div className="card" style={{ marginBottom: '1rem', padding: '0.75rem 1.25rem', fontSize: '0.78rem', color: '#fbbf24' }}>
+      Las preguntas nuevas 2026 aún no están importadas en esta base; se muestra solo el banco propio.
     </div>
-  )
+  ) : null
 
   const startPanel = target && (
     <div ref={panelRef} className="card" style={{ marginBottom: '1rem', padding: '1rem 1.25rem', border: '1px solid rgba(56,189,248,0.35)', scrollMarginTop: 80 }}>
