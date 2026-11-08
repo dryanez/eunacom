@@ -76,7 +76,8 @@ Import ya corrido contra Turso `eunacom-db` por la CLI (`turso db shell`):
 
 ## «Crear examen» con las preguntas nuevas (2026-11-08)
 
-- Selector **FUENTE** bajo el toggle: Todas / Banco EUNACOM App / Nuevas 2026 (se recuerda en `eunacom_examen_fuente`).
-- Las nuevas entran al wizard por un índice liviano `public/data/rs2026_index.json` (ids por Módulo › tema, 237 KB) que genera `node scripts/perfil/build_rs2026_index.mjs` desde el dump. Regenerarlo si cambia el import.
+- Sin selector de fuente (Felipe, 2026-11-08): el banco se muestra siempre completo y sin distinguir el origen en la UI; internamente `fuente='all'`.
+- Las nuevas entran al wizard por un índice liviano `public/data/banco_index.json` (≈500 KB) que genera `node scripts/perfil/build_banco_index.mjs` (lee el dump y, de Turso, el código de cada pregunta propia). Regenerarlo si cambia el import o se codifican preguntas propias.
+- **Paso Temas › tipo de situación:** bajo cada especialidad marcada aparecen chips por tipo (Situaciones clínicas, Urgencias, Conocimientos generales, Exámenes e imagenología, Procedimientos, Sin clasificar) con su conteo; tocar un chip excluye ese tipo (`excludedTipos`). El tipo sale del dígito 3 del código del Perfil; las propias sin código quedan en «Sin clasificar» (345).
 - Al crear el examen, las rs2026 elegidas se bajan por `GET /api/questions?ids=rs2026-1,…` (máx. 300 por llamada) y entran al runner con la etiqueta «Nueva 2026». Reanudar desde Historial usa la misma ruta (`loadTestQuestions`).
 - Mapa área → Módulo: Medicina Interna → Módulo 1; Cirugía, Psiquiatría, Especialidades, Salud Pública → Módulo 2; Pediatría, Obstetricia y Ginecología → Módulo 3.

@@ -12,7 +12,7 @@ import { fetchProgress, createTest, genId } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 import LoadingScreen from '../components/LoadingScreen'
 import BancoPerfil from '../components/banco/BancoPerfil'
-import { FUENTES, fetchRs2026Index, fetchBancoByIds, toRunnerQuestion } from '../lib/banco'
+import { fetchBancoIndex, fetchBancoByIds, toRunnerQuestion, TIPO_NAMES_CORTOS, TIPO_ORDER } from '../lib/banco'
 import { useSearchParams } from 'react-router-dom'
 
 const TestCreator = () => {
@@ -39,16 +39,18 @@ const TestCreator = () => {
     const [createError, setCreateError] = useState('')
     const [userProgress, setUserProgress] = useState({})
     const [propioDB, setPropioDB] = useState([])        // questionDB.json (banco propio)
-    const [rsIndex, setRsIndex] = useState([])          // índice liviano de las preguntas nuevas (fuente rs2026)
-    // Fuente del banco para Crear examen: 'all' | 'propio' | 'rs2026' (se recuerda)
-    const [fuente, setFuenteState] = useState(() => {
-        try { const f = localStorage.getItem('eunacom_examen_fuente'); if (['all', 'propio', 'rs2026'].includes(f)) return f } catch { /* sin storage */ }
-        return 'all'
+    const [bancoIdx, setBancoIdx] = useState({ rows: [], propioTipo: {}, tipos: TIPO_NAMES_CORTOS }) // índice liviano (nuevas + tipo de las propias)
+    // Banco completo, sin distinguir fuente; cada pregunta lleva su tipo de situación ('1'..'5', '0' sin clasificar)
+    const questionDB = useMemo(() => [
+        ...propioDB.map(q => ({ ...q, tipo: bancoIdx.propioTipo[q.id] || '0' })),
+        ...bancoIdx.rows,
+    ], [propioDB, bancoIdx])
+    // Tipos de situación excluidos dentro de una especialidad marcada: { [cat]: { [topic]: { [tipo]: true } } }
+    const [excludedTipos, setExcludedTipos] = useState({})
+    const toggleTipo = (cat, topic, tipo) => setExcludedTipos(prev => {
+        const cur = prev[cat]?.[topic] || {}
+        return { ...prev, [cat]: { ...prev[cat], [topic]: { ...cur, [tipo]: !cur[tipo] } } }
     })
-    const setFuente = (f) => { setFuenteState(f); try { localStorage.setItem('eunacom_examen_fuente', f) } catch { /* sin storage */ } }
-    const questionDB = useMemo(() => (
-        fuente === 'propio' ? propioDB : fuente === 'rs2026' ? rsIndex : [...propioDB, ...rsIndex]
-    ), [propioDB, rsIndex, fuente])
     const [showLoginGate, setShowLoginGate] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false)
 
@@ -81,12 +83,12 @@ const TestCreator = () => {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const [db, rs] = await Promise.all([
+            const [db, idx] = await Promise.all([
                 fetch('/data/questionDB.json').then(r => r.json()),
-                fetchRs2026Index(),
+                fetchBancoIndex(),
             ])
             setPropioDB(db)
-            setRsIndex(rs)
+            setBancoIdx(idx)
 
             if (user) {
                 const progress = await fetchProgress(user.id)
@@ -121,7 +123,7 @@ const TestCreator = () => {
     }, [questionDB])
 
     // --- Status counts & filtered questions ---
-    const { counts, filteredByStatus, subjects } = useMemo(() => {
+    const { counts, filteredByStatus, subjects, topicCounts, tipoCounts } = useMemo(() => {
         const counts = { unused: 0, incorrect: 0, omitted: 0, marked: 0, correct: 0 }
         const filteredIds = new Set()
         const topicMap = {} // cat -> topic -> count
@@ -159,13 +161,16 @@ const TestCreator = () => {
 
         if (!anyFilterActive) filteredIds.clear()
 
-        // Build per-topic counts (questions that pass status filter)
+        // Build per-topic and per-tipo counts (questions that pass status filter)
+        const tipoMap = {} // cat -> topic -> tipo -> count
         questionDB.forEach(q => {
             if (!filteredIds.has(q.id)) return
             const cat = q.category || 'General'
             const topic = q.topic || 'Sin categoría'
             if (!topicMap[cat]) topicMap[cat] = {}
             topicMap[cat][topic] = (topicMap[cat][topic] || 0) + 1
+            const tm = (tipoMap[cat] ??= {})[topic] ??= {}
+            tm[q.tipo || '0'] = (tm[q.tipo || '0'] || 0) + 1
         })
 
         const subjects = Object.entries(topicMap).reduce((acc, [cat, topics]) => {
@@ -175,7 +180,7 @@ const TestCreator = () => {
             return acc
         }, [])
 
-        return { counts, filteredByStatus: filteredIds, subjects }
+        return { counts, filteredByStatus: filteredIds, subjects, topicCounts: topicMap, tipoCounts: tipoMap }
     }, [questionDB, userProgress, statusFilters])
 
     // --- Questions currently selected by tab + topic checkboxes ---
@@ -185,10 +190,12 @@ const TestCreator = () => {
             if (!filteredByStatus.has(q.id)) return
             const cat = q.category || 'General'
             const topic = q.topic || 'Sin categoría'
-            if (selectedTopics[cat]?.[topic]) result.push(q)
+            if (!selectedTopics[cat]?.[topic]) return
+            if (excludedTipos[cat]?.[topic]?.[q.tipo || '0']) return
+            result.push(q)
         })
         return result
-    }, [questionDB, filteredByStatus, selectedTopics])
+    }, [questionDB, filteredByStatus, selectedTopics, excludedTipos])
 
     const maxQuestions = selectedQuestions.length
 
@@ -311,23 +318,7 @@ const TestCreator = () => {
         { id: 'arbol', label: 'Por área y tema', hint: 'Área › Especialidad › Tipo › Tema del Perfil 2026' },
         { id: 'codigo', label: 'Por código', hint: 'Escribe un código del Perfil (p. ej. 1.01.2)' },
     ]
-    const fuenteCounts = { all: propioDB.length + rsIndex.length, propio: propioDB.length, rs2026: rsIndex.length }
-    const renderFuenteSelector = () => (
-        <div role="radiogroup" aria-label="Fuente de las preguntas" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: -8, marginBottom: '1.25rem' }}>
-            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--surface-400)', marginRight: 4 }}>FUENTE</span>
-            {FUENTES.map(f => {
-                const active = fuente === f.id
-                return (
-                    <button key={f.id} type="button" role="radio" aria-checked={active} onClick={() => setFuente(f.id)} style={{
-                        padding: '0.35rem 0.7rem', borderRadius: 9999, cursor: 'pointer', fontSize: '0.8rem', fontWeight: 700,
-                        border: active ? '1px solid var(--primary-400)' : '1px solid rgba(255,255,255,0.12)',
-                        background: active ? 'rgba(59,130,246,0.18)' : 'transparent', color: active ? 'var(--primary-200, #bfdbfe)' : 'var(--surface-300)'
-                    }}>{f.label} · {fuenteCounts[f.id].toLocaleString('es-CL')}</button>
-                )
-            })}
-        </div>
-    )
-    const renderBancoToggle = () => (<>
+    const renderBancoToggle = () => (
         <div role="tablist" aria-label="Modo del banco" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, padding: 4, borderRadius: 14, background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.25rem' }}>
             {BANCO_MODES.map(m => {
                 const active = bancoMode === m.id
@@ -340,8 +331,7 @@ const TestCreator = () => {
                 )
             })}
         </div>
-        {bancoMode === 'examen' && renderFuenteSelector()}
-    </>)
+    )
 
     const renderBancoPerfil = () => (
         <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
@@ -460,9 +450,7 @@ const TestCreator = () => {
                     const topics = categories[cat]
                     const topicList = Object.keys(topics).sort()
                     const isExpanded = !!expandedCategories[cat]
-                    const totalCatCount = topicList.reduce((acc, t) => {
-                        return acc + (questionDB.filter(q => q.category === cat && q.topic === t && filteredByStatus.has(q.id)).length)
-                    }, 0)
+                    const totalCatCount = topicList.reduce((acc, t) => acc + (topicCounts[cat]?.[t] || 0), 0)
                     const selectedCount = topicList.filter(t => selectedTopics[cat]?.[t]).length
                     const allCatSelected = topicList.length > 0 && selectedCount === topicList.length
 
@@ -497,11 +485,15 @@ const TestCreator = () => {
                             {isExpanded && (
                                 <div style={{ padding: '0.5rem 0.85rem 0.6rem 2.25rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                                     {topicList.map(topic => {
-                                        const topicCount = questionDB.filter(q => q.category === cat && q.topic === topic && filteredByStatus.has(q.id)).length
+                                        const topicCount = topicCounts[cat]?.[topic] || 0
                                         const isChecked = !!selectedTopics[cat]?.[topic]
+                                        const porTipo = tipoCounts[cat]?.[topic] || {}
+                                        const tiposDelTema = TIPO_ORDER.filter(t => porTipo[t] > 0)
+                                        const excl = excludedTipos[cat]?.[topic] || {}
+                                        const topicSel = tiposDelTema.reduce((acc, t) => acc + (excl[t] ? 0 : porTipo[t]), 0)
                                         return (
+                                            <div key={topic}>
                                             <label
-                                                key={topic}
                                                 style={{
                                                     display: 'flex', alignItems: 'center', gap: '0.75rem',
                                                     cursor: topicCount === 0 ? 'not-allowed' : 'pointer',
@@ -521,9 +513,27 @@ const TestCreator = () => {
                                                     disabled={topicCount === 0}
                                                     style={{ width: '17px', height: '17px', accentColor: 'var(--primary-400)', cursor: topicCount === 0 ? 'not-allowed' : 'pointer' }}
                                                 />
-                                                <span style={{ fontSize: '0.88rem', fontWeight: isChecked ? 600 : 400, flex: 1 }}>{topic}</span>
-                                                <span style={{ color: isChecked ? 'var(--primary-300)' : 'var(--surface-400)', fontSize: '0.78rem', fontWeight: 600 }}>({topicCount})</span>
+                                                <span style={{ fontSize: '0.88rem', fontWeight: isChecked ? 600 : 400, flex: 1, minWidth: 0 }}>{topic}</span>
+                                                <span style={{ color: isChecked ? 'var(--primary-300)' : 'var(--surface-400)', fontSize: '0.78rem', fontWeight: 600 }}>({isChecked && topicSel !== topicCount ? `${topicSel}/${topicCount}` : topicCount})</span>
                                             </label>
+                                            {isChecked && tiposDelTema.length > 1 && (
+                                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: '0.3rem 0.65rem 0.55rem 2.4rem' }}>
+                                                    {tiposDelTema.map(t => {
+                                                        const on = !excl[t]
+                                                        return (
+                                                            <button key={t} type="button" onClick={() => toggleTipo(cat, topic, t)} aria-pressed={on} style={{
+                                                                display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 9px', borderRadius: 999, cursor: 'pointer', fontSize: '0.74rem', fontWeight: 600,
+                                                                border: `1px solid ${on ? 'rgba(19,91,236,0.45)' : 'rgba(255,255,255,0.12)'}`,
+                                                                background: on ? 'rgba(19,91,236,0.18)' : 'transparent', color: on ? 'var(--primary-200, #bfdbfe)' : 'var(--surface-400)',
+                                                                textDecoration: on ? 'none' : 'line-through'
+                                                            }}>
+                                                                {on ? <CheckCircle2 size={12} /> : null}{TIPO_NAMES_CORTOS[t]} <span style={{ opacity: 0.75 }}>{porTipo[t]}</span>
+                                                            </button>
+                                                        )
+                                                    })}
+                                                </div>
+                                            )}
+                                            </div>
                                         )
                                     })}
                                 </div>
