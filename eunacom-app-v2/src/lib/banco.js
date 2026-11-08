@@ -37,6 +37,33 @@ export async function fetchBancoQuestions({ code, prefix, sinCodigo, fuente = 'a
   return apiFetch(`/api/questions?${p.toString()}`)
 }
 
+// Preguntas por lista de ids (p. ej. `rs2026-123`), en el mismo orden; lotes de 300 por URL
+export async function fetchBancoByIds(ids, { batch = 300 } = {}) {
+  const out = []
+  for (let i = 0; i < ids.length; i += batch) {
+    const r = await apiFetch(`/api/questions?ids=${encodeURIComponent(ids.slice(i, i + batch).join(','))}`)
+    out.push(...(r.data || []))
+  }
+  return out
+}
+
+// Índice liviano de las preguntas rs2026 (public/data/rs2026_index.json) → filas con la forma de questionDB.json
+// pero sin enunciado: { id, category, topic, fuente }. Lo usa Crear examen para contar/filtrar.
+let rsIndexPromise = null
+export function fetchRs2026Index() {
+  if (!rsIndexPromise) {
+    rsIndexPromise = fetch('/data/rs2026_index.json').then(r => (r.ok ? r.json() : null)).then(idx => {
+      if (!idx) return []
+      const rows = []
+      for (const [category, topics] of Object.entries(idx.modulos || {}))
+        for (const [topic, ids] of Object.entries(topics))
+          for (const n of ids) rows.push({ id: idx.prefix + n, category, topic, fuente: 'rs2026' })
+      return rows
+    }).catch(() => [])
+  }
+  return rsIndexPromise
+}
+
 // Une el árbol estático con los conteos de /api/questions?tree=1 → árbol con n = { propio, rs2026 } en cada nodo
 export function buildTree(serverCounts) {
   const counts = serverCounts?.counts || {}

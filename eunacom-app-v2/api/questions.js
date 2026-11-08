@@ -6,6 +6,7 @@
 // GET /api/questions?code=1.01.1.018[&fuente=propio|rs2026]  → todas las preguntas de un tema (código exacto)
 // GET /api/questions?code_prefix=1.01.2[&fuente=…&limit=300] → preguntas de un prefijo de código (muestra al azar si hay más que limit)
 // GET /api/questions?sin_codigo=1&specialty=Cardiología      → preguntas propias sin código, por especialidad
+// GET /api/questions?ids=rs2026-1,rs2026-2                    → preguntas por lista de ids (máx. 300), en ese orden
 //   fuente: NULL = banco propio («propio»), 'rs2026' = banco importado de regionalsantiago (generado por IA)
 import { getTurso } from './_turso.js';
 import { handleBanco, hasFuente } from './_banco.js';
@@ -119,7 +120,7 @@ export default async function handler(req, res) {
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)', args: [] }) } catch {}
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)', args: [] }) } catch {}
 
-  if (req.query.tree || req.query.code || req.query.code_prefix || req.query.sin_codigo) {
+  if (req.query.tree || req.query.code || req.query.code_prefix || req.query.sin_codigo || req.query.ids) {
     return handleBanco(db, req, res)
   }
 

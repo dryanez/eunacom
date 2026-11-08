@@ -325,7 +325,7 @@ const TestRunner = () => {
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                                 {reviewList.map(({ q, userChoice, correctChoice, omitted }, i) => {
-                                    const qArea = [q.eunacomCode, q.category, q.topic || q.specialty].filter(Boolean).join(' · ') || q.topic || q.specialty || q.category || 'Medicina General'
+                                    const qArea = [q.eunacomCode, q.category, q.topic || q.specialty, q.fuente === 'rs2026' ? 'Nueva 2026' : null].filter(Boolean).join(' · ') || q.topic || q.specialty || q.category || 'Medicina General'
                                     return (
                                         <div key={q.id} id={`review-wrong-${i}`} style={{
                                             backgroundColor: isDark ? '#0f172a' : '#ffffff',
@@ -458,7 +458,7 @@ const TestRunner = () => {
         )
     }
 
-    const areaBadge = [currentQuestion.category, currentQuestion.topic || currentQuestion.specialty]
+    const areaBadge = [currentQuestion.category, currentQuestion.topic || currentQuestion.specialty, currentQuestion.fuente === 'rs2026' ? 'Nueva 2026' : null]
         .filter(Boolean)
         .join(' · ') || currentQuestion.topic || currentQuestion.specialty || currentQuestion.category || 'Medicina General'
 
