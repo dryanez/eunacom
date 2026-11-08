@@ -47,22 +47,38 @@ export async function fetchBancoByIds(ids, { batch = 300 } = {}) {
   return out
 }
 
-// Índice liviano de las preguntas rs2026 (public/data/rs2026_index.json) → filas con la forma de questionDB.json
-// pero sin enunciado: { id, category, topic, fuente }. Lo usa Crear examen para contar/filtrar.
-let rsIndexPromise = null
-export function fetchRs2026Index() {
-  if (!rsIndexPromise) {
-    rsIndexPromise = fetch('/data/rs2026_index.json').then(r => (r.ok ? r.json() : null)).then(idx => {
-      if (!idx) return []
+// Índice liviano del banco (public/data/banco_index.json) para «Crear examen»:
+//   rows       → preguntas rs2026 con la forma de questionDB.json pero sin enunciado: { id, category, topic, tipo, fuente }
+//   propioTipo → id del banco propio → tipo de situación ('1'..'5', '0' = sin clasificar)
+//   tipos      → nombre de cada tipo
+let bancoIndexPromise = null
+export function fetchBancoIndex() {
+  if (!bancoIndexPromise) {
+    bancoIndexPromise = fetch('/data/banco_index.json').then(r => (r.ok ? r.json() : null)).then(idx => {
+      if (!idx) return { rows: [], propioTipo: {}, tipos: TIPO_NAMES_CORTOS }
       const rows = []
-      for (const [category, topics] of Object.entries(idx.modulos || {}))
-        for (const [topic, ids] of Object.entries(topics))
-          for (const n of ids) rows.push({ id: idx.prefix + n, category, topic, fuente: 'rs2026' })
-      return rows
-    }).catch(() => [])
+      for (const [category, topics] of Object.entries(idx.rs2026?.modulos || {}))
+        for (const [topic, porTipo] of Object.entries(topics))
+          for (const [tipo, ids] of Object.entries(porTipo))
+            for (const n of ids) rows.push({ id: idx.rs2026.prefix + n, category, topic, tipo, fuente: 'rs2026' })
+      const propioTipo = {}
+      for (const [tipo, ids] of Object.entries(idx.propio || {})) for (const id of ids) propioTipo[id] = tipo
+      return { rows, propioTipo, tipos: idx.tipos || TIPO_NAMES_CORTOS }
+    }).catch(() => ({ rows: [], propioTipo: {}, tipos: TIPO_NAMES_CORTOS }))
   }
-  return rsIndexPromise
+  return bancoIndexPromise
 }
+
+// Nombres cortos de los tipos de situación para chips en pantallas angostas
+export const TIPO_NAMES_CORTOS = {
+  1: 'Situaciones clínicas',
+  2: 'Urgencias',
+  3: 'Conocimientos generales',
+  4: 'Exámenes e imagenología',
+  5: 'Procedimientos',
+  0: 'Sin clasificar',
+}
+export const TIPO_ORDER = ['1', '2', '3', '4', '5', '0']
 
 // Une el árbol estático con los conteos de /api/questions?tree=1 → árbol con n = { propio, rs2026 } en cada nodo
 export function buildTree(serverCounts) {
