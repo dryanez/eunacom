@@ -64,9 +64,12 @@ export async function loadTestQuestions(questionIds) {
   const uuidIds = []
   const reconstructionGroups = {}   // examId → [{id, qNum}]
 
+  const rsIds = []                  // preguntas importadas (fuente rs2026): viven solo en Turso
   for (const id of questionIds) {
     const match = String(id).match(/^(.+)_q(\d+)$/)
-    if (match) {
+    if (String(id).startsWith('rs2026-')) {
+      rsIds.push(id)
+    } else if (match) {
       const examId = match[1]
       if (!reconstructionGroups[examId]) reconstructionGroups[examId] = []
       reconstructionGroups[examId].push({ id, qNum: parseInt(match[2], 10) })
@@ -83,6 +86,16 @@ export async function loadTestQuestions(questionIds) {
     const idSet = new Set(uuidIds)
     for (const q of db) {
       if (idSet.has(q.id)) resultMap[q.id] = q
+    }
+  }
+
+  // Load rs2026 questions from the API (by id)
+  if (rsIds.length > 0) {
+    try {
+      const { fetchBancoByIds, toRunnerQuestion } = await import('./banco')
+      for (const q of await fetchBancoByIds(rsIds)) resultMap[q.id] = toRunnerQuestion(q)
+    } catch (e) {
+      console.error('loadTestQuestions: failed to load rs2026 questions:', e)
     }
   }
 

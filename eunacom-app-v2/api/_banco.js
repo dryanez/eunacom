@@ -76,6 +76,16 @@ export async function handleBanco(db, req, res) {
       return res.json({ counts, sinCodigo, totals, fuenteDisponible: withFuente })
     }
 
+    // ── Por lista de ids (Crear examen con preguntas rs2026, reanudar desde Historial) ──
+    if (q.ids) {
+      const ids = [...new Set(String(q.ids).split(',').map(s => s.trim()).filter(Boolean))].slice(0, MAX_LIMIT)
+      if (!ids.length) return res.json({ data: [], total: 0 })
+      const rows = (await db.execute({ sql: `SELECT * FROM eunacom_questions WHERE id IN (${ids.map(() => '?').join(',')})`, args: ids })).rows
+      const byId = Object.fromEntries(rows.map(r => [r.id, normalizeRow(r)]))
+      const data = ids.map(id => byId[id]).filter(Boolean)
+      return res.json({ data, total: data.length })
+    }
+
     const lim = Math.min(Math.max(1, parseInt(q.limit) || DEFAULT_LIMIT), MAX_LIMIT)
     let where, args
     if (q.code) {

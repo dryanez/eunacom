@@ -151,7 +151,7 @@ function clasesApiPlugin() {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/questions')) return next()
         const sp = new URL(req.url, 'http://localhost').searchParams
-        if (!(sp.get('tree') || sp.get('code') || sp.get('code_prefix') || sp.get('sin_codigo'))) return next()
+        if (!(sp.get('tree') || sp.get('code') || sp.get('code_prefix') || sp.get('sin_codigo') || sp.get('ids'))) return next()
         try {
           if (!bancoDb) {
             const tursoUrl = process.env.VITE_TURSO_DATABASE_URL || process.env.TURSO_DATABASE_URL

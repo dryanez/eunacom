@@ -73,3 +73,10 @@ Import ya corrido contra Turso `eunacom-db` por la CLI (`turso db shell`):
 - `--verify`: 1.551 códigos, 0 con conteo distinto.
 - Las 332 propias sin código no tienen código en ningún lado (ni Turso ni `questionDB.json`); se ven en «Sin código del Perfil» dentro de su especialidad (125 «Pediatría y Ginecología», 72 «Especialidades», 29 Ginecología, 22 Cirugía…). Codificarlas es trabajo editorial, no de datos.
 - Las rutas antiguas `?eunacom_code=` / `?specialty=` filtran `fuente IS NULL` desde el PR dryanez/eunacom#1, así Mis Clases y el calendario no mezclan rs2026.
+
+## «Crear examen» con las preguntas nuevas (2026-11-08)
+
+- Selector **FUENTE** bajo el toggle: Todas / Banco EUNACOM App / Nuevas 2026 (se recuerda en `eunacom_examen_fuente`).
+- Las nuevas entran al wizard por un índice liviano `public/data/rs2026_index.json` (ids por Módulo › tema, 237 KB) que genera `node scripts/perfil/build_rs2026_index.mjs` desde el dump. Regenerarlo si cambia el import.
+- Al crear el examen, las rs2026 elegidas se bajan por `GET /api/questions?ids=rs2026-1,…` (máx. 300 por llamada) y entran al runner con la etiqueta «Nueva 2026». Reanudar desde Historial usa la misma ruta (`loadTestQuestions`).
+- Mapa área → Módulo: Medicina Interna → Módulo 1; Cirugía, Psiquiatría, Especialidades, Salud Pública → Módulo 2; Pediatría, Obstetricia y Ginecología → Módulo 3.
