@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { useTheme } from '../contexts/ThemeContext'
+import '../components/redesign/midnight.css'
 import { fetchUserProfile, saveUserProfile } from '../lib/api'
 import { supabase } from '../lib/supabase'
 import { DOCTOR_CHARACTERS, getRandomDoctorAvatar, getDoctorAvatar, isDoctorUnlocked } from '../utils/doctorAvatars'
@@ -13,7 +14,7 @@ import {
   CheckCircle2, AlertTriangle, ExternalLink, LogOut, ChevronRight,
   Calendar, Building2, GraduationCap, Clock, Award, Key, Save,
   Flame, Check, Loader2, Globe, MapPin, Shuffle, Sparkles, RefreshCw,
-  Sun, Moon, Palette
+  Sun, Moon, Palette, BarChart3, History
 } from 'lucide-react'
 
 const PRIVACY_URL = 'https://eunacom.app/privacy'
@@ -21,7 +22,7 @@ const TERMS_URL = 'https://eunacom.app/terms'
 
 const UserSettings = () => {
   const { user, signOut } = useAuth()
-  const { isPremium, isFounder, setShowPaymentModal } = useSubscription()
+  const { isPremium, isFounder, setShowPaymentModal, planMonths = 0 } = useSubscription()
   const { theme, isDark, toggleTheme, setTheme } = useTheme()
   const navigate = useNavigate()
 
@@ -219,41 +220,56 @@ const UserSettings = () => {
         }
       `}</style>
 
-      {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
-        <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <Settings size={24} color="#0284c7" /> Configuración
-          </h1>
-          <p style={{ fontSize: '0.85rem', color: 'var(--surface-400)', margin: 0, fontWeight: 500 }}>
-            Gestiona tu cuenta, tu avatar de médico(a), apariencia, plan y objetivos de estudio
-          </p>
+      {/* ─── Yo (Midnight Pro): perfil, plan y accesos ─── */}
+      <section className="mn-yo">
+        <div className="mn-row" style={{ gap: '.9rem' }}>
+          <div className="mn-yo-avatar">{(profile?.first_name || user?.email || 'D').trim()[0].toUpperCase()}</div>
+          <div style={{ minWidth: 0 }}>
+            <h1 className="mn-h1" style={{ margin: 0 }}>
+              {profile?.first_name ? `Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim() : (user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Mi cuenta')}
+            </h1>
+            <p className="mn-sub">{[profile?.university, `Nivel ${userLevel}`].filter(Boolean).join(' · ')}</p>
+          </div>
         </div>
 
-        {/* Quick Theme Toggle Pill in Header */}
-        <button
-          type="button"
-          onClick={toggleTheme}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.45rem 0.9rem',
-            borderRadius: '9999px',
-            background: isDark ? 'rgba(56, 189, 248, 0.12)' : '#e0f2fe',
-            border: `1px solid ${isDark ? 'rgba(56, 189, 248, 0.3)' : '#bae6fd'}`,
-            color: isDark ? '#38bdf8' : '#0369a1',
-            fontSize: '0.82rem',
-            fontWeight: 700,
-            cursor: 'pointer',
-            transition: 'all 0.15s ease'
-          }}
-          title={isDark ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Noche'}
-        >
-          {isDark ? <Moon size={15} /> : <Sun size={15} />}
-          <span>{isDark ? 'Modo Noche' : 'Modo Claro'}</span>
+        <div className="mn-card mn-yo-plan">
+          <div className="mn-sub">Tu plan</div>
+          {isPremium ? (
+            <>
+              <b>{isFounder ? 'Founder · acceso total' : planMonths >= 1200 ? 'Acceso total' : planMonths ? `${planMonths} ${planMonths === 1 ? 'mes' : 'meses'} · Premium` : 'Premium'}</b>
+              {profile?.premium_until && planMonths < 1200 && (
+                <div className="mn-sub" style={{ marginTop: 4 }}>Vence el {new Date(profile.premium_until).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+              )}
+            </>
+          ) : (
+            <>
+              <b>Plan gratuito</b>
+              <button className="mn-btn" style={{ marginTop: '.6rem' }} onClick={() => setShowPaymentModal(true)}>Ver planes</button>
+            </>
+          )}
+        </div>
+
+        <div className="mn-card mn-list">
+          {[
+            { label: 'Estadísticas', icon: BarChart3, go: () => navigate('/stats') },
+            { label: 'Historial', icon: History, go: () => navigate('/history') },
+            { label: 'Mi meta y fecha de examen', icon: Target, go: () => setActiveTab('goals') },
+            { label: 'Mi plan y pagos', icon: CreditCard, go: () => setActiveTab('plan') },
+          ].map(({ label, icon: Icon, go }) => (
+            <button key={label} className="mn-li" onClick={go}>
+              <span className="mn-ic"><Icon size={18} /></span>
+              <span className="mn-li-txt">{label}</span>
+              <ChevronRight size={16} className="mn-li-go" />
+            </button>
+          ))}
+        </div>
+
+        <button className="mn-logout" onClick={async () => { await signOut(); navigate('/login') }}>
+          <LogOut size={16} /> Cerrar sesión
         </button>
-      </div>
+
+        <h2 className="mn-yo-sec">Configuración</h2>
+      </section>
 
       {/* Main Grid: Tabs Sidebar + Content Panel */}
       <div className="settings-layout">

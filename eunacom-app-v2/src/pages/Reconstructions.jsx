@@ -649,7 +649,7 @@ const Reconstructions = () => {
                     </span>
                   </div>
                   <p>
-                    {index.total_exams} exámenes recopilados y verificados · {index.total_questions.toLocaleString()} preguntas reales
+                    {index.total_exams} exámenes recopilados y verificados · {index.total_questions.toLocaleString('es-CL')} preguntas reales
                   </p>
                 </div>
               </div>
@@ -684,7 +684,7 @@ const Reconstructions = () => {
                 <AlertCircle size={20} />
               </div>
               <div>
-                <div className="promax-stat-val">{index.total_questions.toLocaleString()}</div>
+                <div className="promax-stat-val">{index.total_questions.toLocaleString('es-CL')}</div>
                 <div className="promax-stat-lbl">Preguntas</div>
               </div>
             </div>

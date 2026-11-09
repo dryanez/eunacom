@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import './redesign/midnight.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchProgress, fetchUserProfile } from '../lib/api'
 import { calculateUserOverallStats, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen, Layers, Archive
 } from 'lucide-react'
 import { EunacomLogo } from './EunacomLogo'
 import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
@@ -31,6 +32,32 @@ const ProgressItem = ({ label, used, total }) => {
         </div>
     );
 };
+
+// Midnight Pro: menú agrupado (Estudiar · Practicar · Mi progreso). Sin emojis.
+const NAV_GROUPS = [
+    { title: 'Estudiar', items: [
+        { to: '/dashboard', label: 'Inicio', icon: Home, tour: 'dashboard' },
+        { to: '/study-plan', label: 'Plan de estudio', icon: CalendarDays, tour: 'study-plan', admin: true },
+        { to: '/mis-clases', label: 'Mis clases', icon: Video, tour: 'mis-clases' },
+        { to: '/biblioteca', label: 'Biblioteca', icon: BookOpen, tour: 'libros' },
+        { to: '/flashcards', label: 'Flashcards', icon: Layers },
+        { to: '/medlingo', label: 'MedLingo', icon: Flame, tour: 'medlingo' },
+    ] },
+    { title: 'Practicar', items: [
+        { to: '/test', label: 'Preguntas', icon: FileText, tour: 'test' },
+        { to: '/reconstructions', label: 'Reconstrucciones', icon: Archive },
+        { to: '/simulation', label: 'Simulación', icon: Target },
+        { to: '/review', label: 'Repasar errores', icon: RotateCcw },
+    ] },
+    { title: 'Mi progreso', items: [
+        { to: '/stats', label: 'Estadísticas', icon: BarChart3, tour: 'stats' },
+        { to: '/history', label: 'Historial', icon: Clock },
+    ] },
+    { title: 'Admin', items: [
+        { to: '/studio', label: 'Studio Creator V3', icon: Stethoscope, admin: true },
+        { to: '/study-guides', label: 'Study Guides', icon: FileText, admin: true },
+    ] },
+]
 
 const Sidebar = ({ mobileOpen, onToggle }) => {
     const { signOut, user, isAdmin, isRealAdmin, adminPreviewMode, toggleAdminPreview, openAuthModal, loading: authLoading } = useAuth()
@@ -117,160 +144,28 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             </div>
 
             <nav className="sidebar__nav">
-                <NavLink 
-                    to="/dashboard" 
-                    data-tour="dashboard" 
-                    title="Inicio" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <Home size={18} /> {!collapsed && <span>Inicio</span>}
-                </NavLink>
-
-                {isAdmin() && (
-                    <NavLink 
-                        to="/study-plan" 
-                        data-tour="study-plan" 
-                        title="Plan de Estudio" 
-                        className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                        onClick={onToggle}
-                    >
-                        <CalendarDays size={18} /> {!collapsed && <span>Plan de Estudio</span>}
-                    </NavLink>
-                )}
-
-                {/* Section: Aprendizaje */}
-                <div className="sidebar__section-title">Aprendizaje</div>
-                {collapsed && <div className="sidebar__section-divider" />}
-
-                <NavLink 
-                    to="/mis-clases" 
-                    data-tour="mis-clases" 
-                    title="Mis Clases" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                    style={{ color: '#818cf8', fontWeight: 700 }}
-                >
-                    <Video size={18} style={{ color: '#818cf8' }} /> {!collapsed && <span>Mis Clases 📺</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/medlingo" 
-                    data-tour="medlingo" 
-                    title="MedLingo" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                    style={{ color: '#f97316', fontWeight: 700 }}
-                >
-                    <Flame size={18} style={{ color: '#f97316' }} /> {!collapsed && <span>MedLingo 🔥</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/biblioteca" 
-                    data-tour="libros" 
-                    title="Libros EUNACOM" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                    style={{ color: '#fbbf24', fontWeight: 700 }}
-                >
-                    <BookOpen size={18} style={{ color: '#fbbf24' }} /> {!collapsed && <span>Libros 📚</span>}
-                </NavLink>
-
-                {isAdmin() && (
-                    <NavLink 
-                        to="/studio" 
-                        title="Studio Creator V3" 
-                        className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                        onClick={onToggle} 
-                        style={{ color: '#38bdf8', fontWeight: 700 }}
-                    >
-                        <Flame size={18} /> {!collapsed && <span>Studio Creator V3</span>}
-                    </NavLink>
-                )}
-
-
-                {isAdmin() && (
-                    <NavLink 
-                        to="/study-guides" 
-                        title="Study Guides High Yield!" 
-                        className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                        onClick={onToggle} 
-                        style={{ color: '#f97316' }}
-                    >
-                        <Flame size={18} /> {!collapsed && <span>Study Guides</span>}
-                    </NavLink>
-                )}
-
-                {/* Section: Exámenes */}
-                <div className="sidebar__section-title">Exámenes</div>
-                {collapsed && <div className="sidebar__section-divider" />}
-
-                <NavLink 
-                    to="/test" 
-                    data-tour="test" 
-                    title="Preguntas EUNACOM" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <FileText size={18} /> {!collapsed && <span>Preguntas</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/reconstructions" 
-                    title="Reconstrucciones" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <Stethoscope size={18} /> {!collapsed && <span>Reconstrucciones</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/simulation" 
-                    title="Simulación Oficial" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <Target size={18} /> {!collapsed && <span>Simulación</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/history" 
-                    title="Historial de Exámenes" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <Clock size={18} /> {!collapsed && <span>Historial</span>}
-                </NavLink>
-
-                <NavLink 
-                    to="/stats" 
-                    data-tour="stats" 
-                    title="Estadísticas & Rendimiento" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <BarChart3 size={18} /> {!collapsed && <span>Estadísticas</span>}
-                </NavLink>
-
-                {isAdmin() && (
-                    <NavLink 
-                        to="/flashcards" 
-                        title="Flashcards" 
-                        className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                        onClick={onToggle}
-                    >
-                        <CreditCard size={18} /> {!collapsed && <span>Flashcards</span>}
-                    </NavLink>
-                )}
-
-                <NavLink 
-                    to="/review" 
-                    title="Repasar Errores" 
-                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`} 
-                    onClick={onToggle}
-                >
-                    <RotateCcw size={18} /> {!collapsed && <span>Repasar Errores</span>}
-                </NavLink>
+                {NAV_GROUPS.map(group => {
+                    const items = group.items.filter(it => !it.admin || isAdmin())
+                    if (!items.length) return null
+                    return (
+                        <React.Fragment key={group.title}>
+                            <div className="sidebar__section-title">{group.title}</div>
+                            {collapsed && <div className="sidebar__section-divider" />}
+                            {items.map(({ to, label, icon: Icon, tour }) => (
+                                <NavLink
+                                    key={to}
+                                    to={to}
+                                    data-tour={tour}
+                                    title={label}
+                                    className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+                                    onClick={onToggle}
+                                >
+                                    <Icon size={18} /> {!collapsed && <span>{label}</span>}
+                                </NavLink>
+                            ))}
+                        </React.Fragment>
+                    )
+                })}
             </nav>
 
             {/* Sidebar Footer */}
