@@ -15,7 +15,7 @@ import {
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
-  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle
+  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle, Users, PlayCircle
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -2767,10 +2767,10 @@ function getSubsystemStyle(name) {
    MAIN PAGE — Folder Navigation
    ════════════════════════════════════════════════════════════════ */
 const MODULE_META = {
-  'Módulo 1': { name: 'Medicina Interna', tone: 'blue' },
-  'Módulo 2': { name: 'Cirugía y especialidades', tone: 'amber' },
-  'Módulo 3': { name: 'Materno-infantil', tone: 'pink' },
-  'Módulo 4': { name: 'Salud Pública', tone: 'green' },
+  'Módulo 1': { name: 'Medicina Interna', tone: 'blue', Icon: Stethoscope },
+  'Módulo 2': { name: 'Cirugía y especialidades', tone: 'amber', Icon: Scissors },
+  'Módulo 3': { name: 'Materno-infantil', tone: 'pink', Icon: Baby },
+  'Módulo 4': { name: 'Salud Pública', tone: 'green', Icon: Users },
 }
 
 const MisClases = () => {
@@ -2954,6 +2954,10 @@ const MisClases = () => {
       return
     }
     setSelectedId(id)
+    try {
+      const c = clases.find(x => x.id === id)
+      if (c) localStorage.setItem('mn_last_clase', JSON.stringify({ id, title: c.topic || c.title || 'Clase', sub: c.subsystem || '', mod: c.specialty || '' }))
+    } catch {}
     setLoadingDetail(true)
     try {
       const r = await fetchClase(id)
@@ -3227,25 +3231,14 @@ const MisClases = () => {
         />
       )}
       {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
-        <h1 className="page__title">Mis Clases</h1>
+      <div className="mn-row mn-between" style={{ marginBottom: '.2rem' }}>
+        <h1 className="mn-h1" style={{ fontSize: '1.6rem' }}>Mis clases</h1>
         {(() => {
-          const totalClases = clases.length
-          const completedClases = clases.filter(c => getProgress(c.id) >= 100).length
-          const pct = totalClases ? Math.round(clases.reduce((sum, c) => sum + getProgress(c.id), 0) / totalClases) : 0
-          return (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textAlign: 'right' }}>
-                <span style={{ fontWeight: 700, color: pct > 0 ? '#10b981' : 'var(--text-secondary)' }}>{completedClases}</span>/{totalClases} completadas
-              </div>
-              <ProgressRing percent={pct} size={40} stroke={3} />
-            </div>
-          )
+          const done = clases.filter(c => getProgress(c.id) >= 100).length
+          return <span className="mn-pill">{done}/{clases.length} vistas</span>
         })()}
       </div>
-      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
-        {clases.length} clases disponibles · Tu progreso se guarda automáticamente.
-      </p>
+      <p className="mn-sub" style={{ marginBottom: '.9rem' }}>{clases.length} clases en video, por módulo</p>
 
       {!isPremium && (
         <div style={{
@@ -3305,26 +3298,46 @@ const MisClases = () => {
         </div>
       ) : !currentSpecialty ? (
         /* ─── Level 1: Módulos (Midnight Pro) ─── */
-        <div className="mn-mods">
-          {specialties.map(spec => {
-            const meta = MODULE_META[spec] || { name: spec, tone: 'blue' }
-            const style = getSpecialtyStyle(spec)
-            const subsCount = Object.keys(tree[spec]).length
-            const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
-            const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
+        <>
+          {(() => {
+            let last = null
+            try { last = JSON.parse(localStorage.getItem('mn_last_clase') || 'null') } catch {}
+            const c = last && clases.find(x => x.id === last.id)
+            if (!c) return null
+            const pct = Math.round(getProgress(c.id))
             return (
-              <button key={spec} className={`mn-mod mn-tone-${meta.tone}`} onClick={() => setCurrentSpecialty(spec)}>
-                <span className="mn-mod-ic">{style.icon}</span>
+              <button className="mn-continue" onClick={() => openClase(c.id)}>
+                <span className="mn-continue-play"><PlayCircle size={22} /></span>
                 <span className="mn-mod-txt">
-                  <b>{spec} · {meta.name}</b>
-                  <small>{subsCount} especialidades · {lessonCount} clases</small>
-                  <span className="mn-bar"><b style={{ width: `${Math.max(2, specPct)}%` }} /></span>
+                  <small>Seguir viendo{last.sub ? ` · ${last.sub}` : ''}</small>
+                  <b>{last.title}</b>
+                  <span className="mn-bar"><b style={{ width: `${Math.max(3, pct)}%` }} /></span>
                 </span>
                 <ChevronRight size={18} className="mn-li-go" />
               </button>
             )
-          })}
-        </div>
+          })()}
+          <div className="mn-mods">
+            {specialties.map(spec => {
+              const meta = MODULE_META[spec] || { name: spec, tone: 'blue', Icon: Stethoscope }
+              const subsCount = Object.keys(tree[spec]).length
+              const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
+              const seen = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
+              const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
+              return (
+                <button key={spec} className={`mn-mod mn-tone-${meta.tone}`} onClick={() => setCurrentSpecialty(spec)}>
+                  <span className="mn-mod-ic"><meta.Icon size={22} /></span>
+                  <span className="mn-mod-txt">
+                    <b>{spec} · {meta.name}</b>
+                    <small>{subsCount} especialidades · {lessonCount} clases{seen ? ` · ${seen} vistas` : ''}</small>
+                    <span className="mn-bar"><b style={{ width: `${Math.max(2, specPct)}%` }} /></span>
+                  </span>
+                  <ChevronRight size={18} className="mn-li-go" />
+                </button>
+              )
+            })}
+          </div>
+        </>
       ) : !currentSubsystem ? (
         /* ─── Level 2: Especialidades del módulo (Midnight Pro) ─── */
         <div className="mn-card mn-list">

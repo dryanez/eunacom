@@ -26,16 +26,17 @@ body {
 .mn-header-logo img { width: 30px; height: 30px; object-fit: contain; }
 .mn-header-logo em { font-style: normal; color: var(--mn-sky); }
 
-/* Barra inferior: 5 pestañas fijas */
+/* Barra inferior (móvil): todas las páginas, se desliza; «Menú» fijo a la izquierda */
 .bottom-nav.mn-bottom {
-  justify-content: space-around !important;
-  overflow: visible !important;
   background: rgba(11, 17, 32, .96) !important;
   border-top: 1px solid #1e293b !important;
+  justify-content: flex-start !important;
+  overflow-x: auto !important;
 }
-.bottom-nav.mn-bottom .bottom-nav__link { flex: 1; min-width: 0; color: var(--mn-dim) !important; gap: 4px; font-size: .66rem; }
+.bottom-nav.mn-bottom .bottom-nav__link { color: var(--mn-dim) !important; gap: 4px; font-size: .64rem; min-width: 62px; }
 .bottom-nav.mn-bottom .bottom-nav__link--active { color: var(--mn-sky) !important; background: none !important; }
 .bottom-nav.mn-bottom .bottom-nav__link--active svg { filter: drop-shadow(0 0 6px rgba(56, 189, 248, .6)); }
+.bottom-nav.mn-bottom .mn-bottom-menu { position: sticky; left: -.5rem; z-index: 2; color: #e2e8f0 !important; background: rgba(11, 17, 32, .98) !important; border-right: 1px solid #1e293b !important; border-radius: 0 !important; padding-right: .7rem !important; box-shadow: 8px 0 12px -8px rgba(0,0,0,.8); }
 
 /* ─── Inicio ─── */
 .mn-inicio { max-width: 760px; margin: 0 auto 1.5rem; font-family: var(--font); color: #e2e8f0; animation: mnUp .5s both; }
@@ -83,10 +84,6 @@ body {
 
 @keyframes mnUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-/* El menú lateral se abre desde el botón «Menú» del header (ya no está en la barra inferior) */
-@media (max-width: 1024px) {
-  .header .mobile-menu-btn { display: flex !important; }
-}
 
 /* ─── Mis clases: módulos ─── */
 .mn-mods { display: grid; gap: .65rem; max-width: 760px; }
@@ -118,3 +115,16 @@ body {
 .mn-yo-plan b { display: block; font-size: 1.05rem; margin-top: 2px; }
 .mn-logout { width: 100%; margin-top: .8rem; padding: .8rem; border-radius: 14px; background: transparent; border: 1px solid #3f1d1d; color: #fca5a5; font-family: var(--font); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: .5rem; cursor: pointer; }
 .mn-yo-sec { font-size: .8rem; color: var(--mn-dim); text-transform: uppercase; letter-spacing: .12em; margin: 1.6rem 0 .2rem; font-weight: 500; }
+
+/* Header: logo eunacomapp a la izquierda; el «Menú» vive en la barra inferior */
+.header .mobile-menu-btn { display: none !important; }
+.header .mn-header-logo { margin-left: 0; margin-right: auto; }
+@media (min-width: 969px) { .header .mn-header-logo { display: none; } }
+
+/* Mis clases: barra visible, «Seguir viendo», contador */
+.mn-mod-txt .mn-bar, .mn-continue .mn-bar { display: block; margin-top: .5rem; }
+.mn-pill { font-size: .75rem; color: var(--mn-mut); background: var(--mn-tile); border: 1px solid var(--mn-tline); padding: .3rem .7rem; border-radius: 999px; }
+.mn-continue { width: 100%; max-width: 760px; display: flex; align-items: center; gap: .85rem; padding: .9rem 1rem; margin-bottom: .75rem; border-radius: 18px; background: var(--mn-card); border: 1px solid var(--mn-line); color: #e2e8f0; text-align: left; font-family: var(--font); cursor: pointer; animation: mnUp .4s both; }
+.mn-continue small { display: block; color: var(--mn-mut); font-size: .72rem; }
+.mn-continue b { font-size: .92rem; font-weight: 600; }
+.mn-continue-play { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; flex: none; color: #fff; background: var(--gradient-primary); box-shadow: 0 6px 18px -8px var(--mn-sky); }
