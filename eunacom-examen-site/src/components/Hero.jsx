@@ -58,7 +58,7 @@ export default function Hero({ onOpenMentorship, onStartDiagnostic }) {
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }}>
               <a href="#cursos" className="btn" style={{ backgroundColor: '#ffffff', color: '#08365f' }}>
-                <span>Cursos y precios</span>
+                <span>Ver cursos online</span>
                 <ArrowRight size={16} />
               </a>
               <button

@@ -17,10 +17,12 @@ Welcome to your Solopreneur Operating System.
 ## 📈 🔍 EUNACOM Organic SEO & Search Console Intelligence
 *Live Multi-Agent Autonomous SEO Audit & GSC Tracking:*
 
-- 📊 **Latest Executive SEO Briefing**: [[2026-08-31-seo-intelligence]] *(Health Score: **98/100** | 8 clicks · 114 impressions · 7.0% CTR)*
+- 📊 **Latest Executive SEO Briefing**: [[2026-10-25-seo-intelligence]] *(Health Score: **93/100** | 8 clicks · 114 impressions · 7.02% CTR)*
 - 🎯 **Top Striking Distance Targets**:
-  - `/blog/fechas-eunacom-2026` (Pos #10.0–11.0 · High Search Demand)
-  - `/blog/eunacom-st-vs-eunacom-sp` (Pos #10.5 · 50% CTR)
+  - `/blog/fechas-eunacom-2026` (Pos #13.9 · 18 impressions)
+  - `/guia-eunacom-2026` (Pos #10.3 · 10 impressions)
+  - `/blog/eunacom-st-vs-eunacom-sp` (Pos #22.4 · 8 impressions · 1 clicks (12.5%))
+  - `/curso-eunacom-2026` (Pos #8.8 · 6 impressions)
 - ⚡ **Technical & Speed Optimization**: `<script type="speculationrules">` (prefetch + prerender) + high-priority LCP preloading verified 🟢
 - 📦 **Raw Cached SEO Payload**: `os/cached_seo.json`
 

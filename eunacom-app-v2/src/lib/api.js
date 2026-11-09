@@ -1,20 +1,40 @@
 import bundledClassesList from '../data/classesList.json'
+import { supabase } from './supabase'
 
 // Frontend HTTP client — calls our Vercel API routes (or local vite-node proxy in dev)
 // Never exposes Turso credentials to the browser.
 
 const BASE = import.meta.env.PROD ? '' : ''  // always relative — works locally + on Vercel
 
-async function apiFetch(path, options = {}) {
+// Login token for the server, which identifies the caller from it (not from userId/adminEmail).
+export async function authHeaders() {
+  const { data } = await supabase.auth.getSession()
+  const token = data?.session?.access_token
+  return token ? { Authorization: `Bearer ${token}` } : {}
+}
+
+export async function apiFetch(path, options = {}) {
   const res = await fetch(BASE + path, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options
+    ...options,
+    headers: { 'Content-Type': 'application/json', ...(await authHeaders()), ...(options.headers || {}) }
   })
   if (!res.ok) {
     const err = await res.text()
     throw new Error(`API error ${res.status}: ${err}`)
   }
   return res.json()
+}
+
+// Authenticated file download (window.open can't send the login token).
+async function apiDownload(path, filename) {
+  const res = await fetch(BASE + path, { headers: await authHeaders() })
+  if (!res.ok) throw new Error(`API error ${res.status}`)
+  const url = URL.createObjectURL(await res.blob())
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
 // ── USER PROGRESS ─────────────────────────────────────────────────────────────
@@ -313,7 +333,7 @@ export async function fetchPaypalTransactions(adminEmail) {
 }
 
 export function downloadPaypalCsv(adminEmail) {
-  window.open(`/api/paypal-export?adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
+  return apiDownload(`/api/paypal-export?format=csv`, 'paypal-transactions.csv')
 }
 
 // ── FINANCES & REVENUE (Admin) ────────────────────────────────────────────────
@@ -323,7 +343,7 @@ export async function fetchAdminFinances(adminEmail) {
 }
 
 export function downloadFinancesCsv(adminEmail) {
-  window.open(`/api/admin-users?action=finances&adminEmail=${encodeURIComponent(getAdminEmail(adminEmail))}&format=csv`, '_blank')
+  return apiDownload(`/api/admin-users?action=finances&format=csv`, 'finanzas.csv')
 }
 
 // ── MAILING CAMPAIGNS & MARKETING ────────────────────────────────────────────

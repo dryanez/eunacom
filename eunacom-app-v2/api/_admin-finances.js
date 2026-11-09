@@ -1,3 +1,4 @@
+import { requireAdmin } from './_auth.js'
 import { getTurso } from './_turso.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -46,11 +47,8 @@ function normalizePlanId(planId, desc, amount) {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { adminEmail, format } = req.query
-  const isDev = process.env.NODE_ENV !== 'production'
-  if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
-    return res.status(403).json({ error: 'Forbidden' })
-  }
+  const { format } = req.query
+  if (!(await requireAdmin(req, res))) return
 
   let db = null
   if (process.env.TURSO_DATABASE_URL) {
@@ -199,8 +197,9 @@ export default async function handler(req, res) {
         const amt = parseFloat(row.amount || 0)
         paypalTransactions.push({
           id: row.transaction_id,
-          gateway: 'paypal',
-          gateway_name: 'PayPal',
+          // CLP rows in paypal_transactions are manual bank transfers (TRANSFER-*)
+          gateway: row.currency === 'CLP' ? 'transferencia' : 'paypal',
+          gateway_name: row.currency === 'CLP' ? 'Transferencia' : 'PayPal',
           date: row.payment_date || row.created_at,
           date_approved: row.payment_date || row.created_at,
           amount: amt,
@@ -221,7 +220,7 @@ export default async function handler(req, res) {
           user_university: row.profile_university || null,
           user_whatsapp: row.profile_whatsapp || null,
           is_user_premium: row.is_premium === 1,
-          payment_method: 'paypal',
+          payment_method: row.currency === 'CLP' ? 'transfer' : 'paypal',
           external_reference: row.plan_id || null
         })
       }
@@ -274,7 +273,7 @@ export default async function handler(req, res) {
 
       if (isApproved) {
         m.successfulCount++
-        if (t.gateway === 'mercadopago') {
+        if (t.gateway === 'mercadopago' || t.gateway === 'transferencia') {
           m.mpTotalCLP += t.amount
           m.mpNetCLP += t.net_amount
           m.mpCount++
@@ -328,7 +327,7 @@ export default async function handler(req, res) {
       const isApproved = t.status === 'approved' || t.status === 'completed' || t.status === 'COMPLETED'
       if (isApproved) {
         totalApprovedCount++
-        if (t.gateway === 'mercadopago') {
+        if (t.gateway === 'mercadopago' || t.gateway === 'transferencia') {
           totalRevenueCLP += t.amount
           totalNetCLP += t.net_amount
           if (globalPlans[t.plan_id]) {

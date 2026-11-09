@@ -1,189 +1,113 @@
 export const COURSES = [
   {
-    slug: "anual",
-    kicker: "Curso teórico · anual",
+    slug: "online-intensivo",
+    kicker: "Curso teórico · Intensivo",
     estado: "Inscripciones abiertas",
-    badge: "Más completo",
-    nombre: "Curso teórico online anual 2027",
-    resumen: "Doce meses de preparación que cubren las dos convocatorias del año: si rindes en julio y necesitas volver a rendir en diciembre, el curso sigue activo. Incluye todo el material, banco de preguntas y seguimiento semanal.",
-    duracion: "12 meses",
-    inicio: "11 de enero de 2027",
-    termino: "20 de diciembre de 2027",
-    examen: "Julio y diciembre 2027",
-    modalidad: "Online, plataforma e-learning 24/7",
-    cupos: "Cupos limitados con tutoría",
-    precioClp: "$1.190.000",
-    precioUsd: "≈ US$ 1.240",
-    precioNota: "Hasta 12 cuotas sin interés con Webpay. También en dos pagos de $595.000.",
-    intro: [
-      "Es el curso más completo y el que recomendamos a quien no quiere depender de una sola oportunidad. Cubre la convocatoria de julio y la de diciembre del mismo año, con el calendario reordenado después de julio según cómo te haya ido.",
-      "El curso se dicta a través de la plataforma e-learning y contempla un calendario con todos los temas a evaluar en el EUNACOM. Todo el material está disponible desde el primer día; lo que se calendariza es tu tiempo."
-    ],
-    incluye: [
-      "86 clases grabadas de alta resolución, una por tema del perfil oficial ASOFAMECH",
-      "Seis manuales clínicos maquetados en PDF descargable e imprimible",
-      "Banco de 4.000+ preguntas comentadas con justificación de distractores",
-      "Doce simulacros cronometrados de 180 preguntas con informe por especialidad",
-      "Calendario anual personalizado ajustado a tu diagnóstico inicial",
-      "Revisión semanal de avance con devolución personalizada del equipo académico",
-      "Módulo especializado de Sistema de Salud Chileno, GES, Notificación y Medicina Legal",
-      "Reordenamiento estratégico del plan después de la convocatoria de julio",
-      "Acceso continuo a la plataforma durante los doce meses",
-      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
-    ],
-    comoFunciona: [
-      "El curso parte con un diagnóstico: un simulacro corto y treinta preguntas por eje. Sobre ese resultado se arma tu calendario, no sobre un temario genérico.",
-      "Cada bloque de estudio junta clase, capítulo del manual y preguntas del mismo tema. Terminas el bloque habiendo visto, leído y respondido sobre el mismo contenido.",
-      "Cada semana entregas un simulacro corto y recibes por escrito qué falló y qué se mueve del calendario. Después de la convocatoria de julio el plan se rehace completo con tus resultados reales."
-    ],
-    paraQuien: "Médicos que buscan asegurar la aprobación sin depender de un único intento, médicos trabajando o con turnos, y quienes vienen de un intento previo y requieren reestructurar sus bases con método.",
-    temarioNota: "Doce meses estructurados. Los primeros seis apuntan a julio; los siguientes seis se reordenan según tu desempeño real.",
-    temario: [
-      { s: "Enero–febrero", t: "Diagnóstico y Medicina Interna I", d: "Cardiovascular y respiratorio. Simulacro inicial y armado del calendario." },
-      { s: "Marzo", t: "Medicina Interna II", d: "Digestivo, nefrología y medio interno, endocrinología y diabetes." },
-      { s: "Abril", t: "Infectología y Medicina Interna III", d: "Infecciones frecuentes, antibióticos, hematología y reumatología." },
-      { s: "Mayo", t: "Cirugía General y Traumatología", d: "Abdomen agudo, patología biliar, trauma, urgencias quirúrgicas y urología." },
-      { s: "Junio", t: "Pediatría y Repaso Intensivo", d: "Recién nacido, crecimiento/desarrollo, patología respiratoria infantil. Simulacros completos." },
-      { s: "Julio", t: "Convocatoria de Julio", d: "Semana de repaso dirigido, estrategia de examen y primera rendición oficial." },
-      { s: "Agosto", t: "Reordenamiento Estratégico", d: "Análisis del resultado oficial y reconfiguración del calendario hacia diciembre." },
-      { s: "Sept.–octubre", t: "Ginecología, Obstetricia y Salud Pública", d: "Control prenatal, patología del embarazo, red asistencial chilena, GES y garantías explícitas." },
-      { s: "Noviembre", t: "Psiquiatría, Neurología y Dermatología", d: "Trastornos del ánimo, urgencias psiquiátricas, ACV, cefaleas, lesiones elementales de piel." },
-      { s: "Diciembre", t: "Repaso Final de Errores y Cierre", d: "Enfoque exclusivo en tus errores acumulados. Dos simulacros finales y rendición." }
-    ]
-  },
-  {
-    slug: "seis-julio",
-    kicker: "Curso teórico · seis meses",
-    estado: "Inscripciones abiertas",
-    badge: "Más popular",
+    badge: "Más elegido",
     destacado: true,
-    nombre: "Curso teórico online 6 meses · EUNACOM julio 2027",
-    resumen: "Seis meses dirigidos a la convocatoria de julio. Mismo material y mismo seguimiento que el curso anual, concentrado en un semestre de estudio con carga de diez a quince horas semanales.",
-    duracion: "6 meses",
-    inicio: "11 de enero de 2027",
-    termino: "5 de julio de 2027",
-    examen: "Julio 2027",
-    modalidad: "Online, plataforma e-learning 24/7",
-    cupos: "Cupos limitados",
-    precioClp: "$690.000",
-    precioUsd: "≈ US$ 720",
-    precioNota: "Hasta 6 cuotas sin interés con Webpay. También en dos pagos de $345.000.",
-    intro: [
-      "Seis meses ordenados por el peso real de cada eje en el perfil de conocimientos vigente, no por el orden en que se enseña la medicina en la universidad. Antes de la primera clase hacemos un diagnóstico y el calendario se arma sobre tu resultado.",
-      "Es el curso que toma la mayoría: alcanza cómodamente si vienes con bases razonables y puedes sostener entre diez y quince horas semanales de estudio."
-    ],
-    incluye: [
-      "86 clases grabadas de alta resolución sobre el perfil de conocimientos oficial",
-      "Seis manuales clínicos en PDF descargable",
-      "Banco de 4.000+ preguntas comentadas",
-      "Ocho simulacros cronometrados con informe pormenorizado por eje",
-      "Calendario de seis meses ajustado a tu diagnóstico",
-      "Revisión semanal de avance con devolución escrita",
-      "Módulo de Sistema de Salud Chileno, GES y Medicina Legal",
-      "Acceso a la plataforma hasta el día de tu examen",
-      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
-    ],
-    comoFunciona: [
-      "Estudias cuando puedes. El calendario reparte diez a quince horas semanales en bloques de noventa minutos, pensado para quien está con turnos o trabajando.",
-      "Cada bloque junta clase, capítulo del manual y preguntas del mismo tema, para que la corrección llegue mientras el contenido está fresco.",
-      "Los domingos cierras con un simulacro corto. Lo revisamos y el lunes tienes por escrito qué falló y qué se mueve del calendario."
-    ],
-    paraQuien: "Médicos que rinden en julio con bases razonables, recién egresados o profesionales extranjeros en proceso de revalidación que pueden dedicar 10-15 horas por semana.",
-    temarioNota: "Seis meses continuos con simulacros quincenales y mensuales.",
-    temario: [
-      { s: "Mes 1", t: "Medicina Interna I & Diagnóstico", d: "Cardiología, neumología y simulacro basal de 180 preguntas." },
-      { s: "Mes 2", t: "Medicina Interna II & Nefro/Endocrino", d: "Gastroenterología, diabetes, tiroides y trastornos electrolíticos." },
-      { s: "Mes 3", t: "Infectología, Reumatología & Hematología", d: "Infecciones prevalentes en Chile, anemias y enfermedades autoinmunes." },
-      { s: "Mes 4", t: "Cirugía General & Pediatría", d: "Patología de urgencia quirúrgica, neonatología e infecciones pediátricas." },
-      { s: "Mes 5", t: "Gineco-Obstetricia & Salud Pública", d: "Embarazo de alto riesgo, patología ginecológica, GES, FONASA e ISAPRE." },
-      { s: "Mes 6", t: "Psiquiatría, Neurología & Simulacros Finales", d: "Urgencias, ACV, simulacros completos cronometrados de integración." }
-    ]
-  },
-  {
-    slug: "seis-diciembre",
-    kicker: "Curso teórico · seis meses",
-    estado: "Inscripciones abiertas",
-    badge: "Convocatoria fin de año",
-    nombre: "Curso teórico online 6 meses · EUNACOM diciembre 2026",
-    resumen: "Seis meses concentrados en la convocatoria de diciembre. Ideal para médicos recién egresados de universidades chilenas o médicos extranjeros que completaron su inscripción en el segundo semestre.",
-    duracion: "6 meses",
-    inicio: "6 de julio de 2026",
-    termino: "7 de diciembre de 2026",
-    examen: "Diciembre 2026",
-    modalidad: "Online, plataforma e-learning 24/7",
-    cupos: "Cupos limitados",
-    precioClp: "$690.000",
-    precioUsd: "≈ US$ 720",
-    precioNota: "Hasta 6 cuotas con Webpay o dos pagos de $345.000.",
-    intro: [
-      "El curso de segundo semestre está diseñado para llegar en el pico de rendimiento a la rendición masiva de diciembre.",
-      "El ritmo es ágil pero estructurado: 86 clases modulares, resolución intensiva de casos y corrección de distractores."
-    ],
-    incluye: [
-      "86 clases grabadas ordenadas por perfil oficial",
-      "Manuales clínicos en PDF actualizados 2026",
-      "Banco de 4.000+ preguntas con justificación",
-      "Ocho simulacros cronometrados de 180 preguntas",
-      "Seguimiento y tutoría académica semanal",
-      "Módulo completo de Salud Pública chilena y GES",
-      "Reconstrucciones de las pruebas desde 2013, armadas en cada convocatoria por alumnos y docentes que rinden el examen"
-    ],
-    comoFunciona: [
-      "Simulacro diagnóstico inicial para ponderar fortalezas y debilidades.",
-      "Estudio por bloques de alta rentabilidad clínica.",
-      "Simulacros de integración final y análisis de patrones de error."
-    ],
-    paraQuien: "Médicos nacionales y extranjeros que rinden en diciembre 2026.",
-    temarioNota: "Segundo semestre completo enfocado en la prueba de diciembre.",
-    temario: [
-      { s: "Julio–agosto", t: "Medicina Interna Completa", d: "Cardio, respiratorio, digestivo, endocrino y nefrología." },
-      { s: "Septiembre", t: "Cirugía y Pediatría", d: "Patología quirúrgica aguda, control de niño sano y urgencias." },
-      { s: "Octubre", t: "Gineco-Obstetricia y Salud Pública", d: "Patología obstétrica, programas MINSAL y garantías GES." },
-      { s: "Nov.–diciembre", t: "Especialidades y Repaso Intensivo", d: "Psiquiatría, derma, neuro, oftalmo, ORL y simulacros de 180 preguntas." }
-    ]
-  },
-  {
-    slug: "banco",
-    kicker: "Herramienta · autoestudio",
-    estado: "Acceso inmediato",
-    badge: "Autoaprendizaje",
-    nombre: "Banco de 4.000+ preguntas comentadas EUNACOM",
-    resumen: "Para quien ya tiene base teórica y necesita exclusivamente entrenar preguntas con reloj, revisar justificaciones detalladas y medir su percentil respecto a miles de médicos en Chile.",
-    duracion: "Acceso por 6 o 12 meses",
-    inicio: "Inmediato tras el pago",
+    nombre: "Curso Online Intensivo EUNACOM",
+    headerTitulo: "Prepárate para el Eunacom de diciembre 2026",
+    resumen: "Este curso está dirigido a médicos que desean prepararse para rendir el Eunacom de diciembre del 2026. Es un curso que abarca todos los temas del Eunacom.",
+    duracion: "3 a 6 meses",
+    inicio: "14 de septiembre del 2026",
+    fechaInicioTexto: "14 de septiembre del 2026",
+    parrafoObjetivo: "Este curso está dirigido a médicos que desean prepararse para rendir el Eunacom de diciembre del 2026. Es un curso que abarca todos los temas del Eunacom.",
     termino: "Hasta tu fecha de examen",
-    examen: "Julio / Diciembre",
-    modalidad: "Online, multiplataforma (Web, iOS, Android)",
-    cupos: "Sin límite",
-    precioClp: "$340.000",
-    precioUsd: "≈ US$ 360",
-    precioNota: "Pago único. Acceso ilimitado por 12 meses.",
+    examen: "Diciembre 2026 / Julio 2027",
+    modalidad: "Plataforma E-Learning 24/7",
+    cupos: "Cupos limitados con seguimiento",
+    precioClp: "$359.000",
+    precioUsd: "≈ US$ 390",
+    precioNota: "359.000 pesos chilenos / 390 USD. Webpay con acceso a cuotas o transferencia bancaria.",
+    ctaDetalles: "Haz clic para más detalles",
     intro: [
-      "El banco de preguntas no es solo una lista de ejercicios: es un motor de aprendizaje activo con justificaciones exhaustivas de por qué cada alternativa es correcta o incorrecta.",
-      "Permite crear exámenes personalizados por especialidad, por preguntas falladas, o simulacros completos de 180 preguntas con temporizador idéntico al examen real."
+      "Este curso está dirigido a médicos que desean prepararse para rendir el Eunacom de diciembre del 2026. Es un curso que abarca todos los temas del Eunacom.",
+      "Se dicta por medio de una plataforma E-Learning, y cuenta con tres recursos principales:"
+    ],
+    recursosPrincipales: [
+      "300 vídeos de todos los temas.",
+      "Exámenes tipo Eunacom con puntaje inmediato, y feedback con respuestas correctas.",
+      "Seguimiento de estudio."
     ],
     incluye: [
-      "4.000+ preguntas redactadas bajo el formato oficial de viñeta clínica EUNACOM",
-      "Explicación detallada de la opción correcta y de cada distractor",
-      "Filtros por especialidad, tema, dificultad y preguntas nunca vistas",
-      "Simulador de examen de 180 preguntas con cronómetro de 180 minutos",
-      "Curva de percentil en tiempo real y reporte de áreas débiles",
-      "Acceso ilimitado desde cualquier dispositivo"
+      "300 vídeos de todos los temas del temario EUNACOM",
+      "Exámenes tipo Eunacom con puntaje inmediato y feedback con respuestas correctas",
+      "Seguimiento de estudio continuo",
+      "Manuales clínicos en PDF descargables",
+      "Simulacros cronometrados de 180 preguntas",
+      "Reconstrucciones de exámenes oficiales pasados ASOFAMECH"
     ],
     comoFunciona: [
-      "Seleccionas las áreas que quieres ejercitar o lanzas un simulacro aleatorio.",
-      "Al responder recibes feedback inmediato o al finalizar la prueba.",
-      "El algoritmo identifica automáticamente tus puntos ciegos y te sugiere preguntas de refuerzo."
+      "Diagnóstico inicial para identificar fortalezas y debilidades.",
+      "Visualización de los más de 300 videos modulares con guías GES y MINSAL.",
+      "Resolución de exámenes con retroalimentación inmediata y distractores justificados.",
+      "Seguimiento de tu curva de rendimiento y simulacros tipo examen oficial."
     ],
-    paraQuien: "Médicos que ya hicieron cursos previos o que estudian de forma autodidacta y necesitan entrenamiento intensivo con preguntas.",
-    temarioNota: "Disponible 24/7 con actualización constante de preguntas clínicas.",
+    paraQuien: "Médicos nacionales y extranjeros que buscan una preparación ágil, focalizada y de alto rendimiento clínico para la próxima convocatoria.",
+    temarioNota: "Programa intensivo que cubre Medicina Interna, Cirugía, Pediatría, Gineco-Obstetricia, Psiquiatría y Salud Pública.",
     temario: [
-      { s: "Medicina Interna", t: "1.400+ Preguntas", d: "Cardiología, respiratorio, digestivo, nefro, endocrino, infecto, hemo, reuma." },
-      { s: "Cirugía", t: "650+ Preguntas", d: "Abdomen agudo, trauma, patología vascular periférica, urología, cirugía infantil." },
-      { s: "Pediatría", t: "700+ Preguntas", d: "Neonatología, desarrollo psicomotor, nutrición, infecciones, urgencias pediátricas." },
-      { s: "Gineco-Obstetricia", t: "600+ Preguntas", d: "Control prenatal, parto, hemorragias del embarazo, oncología ginecológica." },
-      { s: "Salud Pública & GES", t: "350+ Preguntas", d: "Programas de salud, epidemiología, bioética, medicina legal y garantías GES." },
-      { s: "Especialidades Menores", t: "300+ Preguntas", d: "Psiquiatría, neurología, dermatología, oftalmología y otorrinolaringología." }
+      { s: "Módulo 1", t: "Diagnóstico & Medicina Interna I", d: "Cardiología, respiratorio y simulacro de diagnóstico basal." },
+      { s: "Módulo 2", t: "Medicina Interna II & Especialidades", d: "Digestivo, nefrología, diabetes, tiroides, infectología y hematología." },
+      { s: "Módulo 3", t: "Cirugía General & Urgencias", d: "Abdomen agudo, trauma, patología biliar y urgencias quirúrgicas." },
+      { s: "Módulo 4", t: "Pediatría & Neonatología", d: "Control de niño sano, patología respiratoria y emergencias pediátricas." },
+      { s: "Módulo 5", t: "Ginecología, Obstetricia & Salud Pública", d: "Control prenatal, urgencias obstétricas, GES, FONASA y bioética." },
+      { s: "Módulo 6", t: "Simulacros Finales & Feedback", d: "Simulacros de 180 preguntas con cronómetro y resolución de dudas." }
+    ]
+  },
+  {
+    slug: "online-regular",
+    kicker: "Curso teórico · Regular",
+    estado: "Inscripciones abiertas",
+    badge: "Paso a paso",
+    destacado: false,
+    nombre: "Curso Online Regular EUNACOM",
+    headerTitulo: "Prepárate para el Eunacom 2026 - 2027",
+    resumen: "Este curso está dirigido a médicos que desean prepararse con tiempo para rendir el Eunacom. Abarca todos los temas del temario oficial con inicio inmediato y a tu ritmo.",
+    duracion: "6 a 12 meses",
+    inicio: "En cualquier momento (acceso inmediato)",
+    fechaInicioTexto: "En cualquier momento (acceso inmediato tras inscripción)",
+    parrafoObjetivo: "Este curso está dirigido a médicos que desean prepararse para rendir el Eunacom a su propio ritmo. Es un curso que abarca todos los temas del Eunacom y puedes comenzarlo en cualquier fecha del año.",
+    termino: "Hasta tu fecha de examen",
+    examen: "Julio / Diciembre 2027",
+    modalidad: "Plataforma E-Learning 24/7",
+    cupos: "Cupos limitados con seguimiento",
+    precioClp: "$359.000",
+    precioUsd: "≈ US$ 390",
+    precioNota: "359.000 pesos chilenos / 390 USD. Webpay con acceso a cuotas o transferencia bancaria.",
+    ctaDetalles: "Haz clic para más detalles",
+    intro: [
+      "Este curso está dirigido a médicos que desean prepararse para rendir el Eunacom con mayor holgura de tiempo. Es un curso que abarca todos los temas del Eunacom.",
+      "Se dicta por medio de una plataforma E-Learning, y cuenta con tres recursos principales:"
+    ],
+    recursosPrincipales: [
+      "300 vídeos de todos los temas.",
+      "Exámenes tipo Eunacom con puntaje inmediato, y feedback con respuestas correctas.",
+      "Seguimiento de estudio."
+    ],
+    incluye: [
+      "300 vídeos de todos los temas del temario EUNACOM",
+      "Exámenes tipo Eunacom con puntaje inmediato y feedback con respuestas correctas",
+      "Seguimiento de estudio continuo",
+      "Manuales clínicos en PDF descargables",
+      "Simulacros cronometrados de 180 preguntas",
+      "Reconstrucciones de exámenes oficiales pasados ASOFAMECH"
+    ],
+    comoFunciona: [
+      "Planificación mensual equilibrada para compatibilizar con trabajo o turnos.",
+      "Acceso continuo a los más de 300 videos y manuales descargables.",
+      "Evaluaciones periódicas por especialidad con puntaje inmediato.",
+      "Simulacros acumulativos y seguimiento personalizado hasta el examen."
+    ],
+    paraQuien: "Médicos recién egresados, trabajando en CESFAM o clínicas, y médicos extranjeros que inician su proceso de revalidación con anticipación.",
+    temarioNota: "Programa integral de ritmo progresivo para consolidar bases clínicas sólidas.",
+    temario: [
+      { s: "Fase 1", t: "Bases Clínicas & Medicina Interna I", d: "Cardiología, neumología, medio interno y simulacro diagnóstico." },
+      { s: "Fase 2", t: "Medicina Interna II & Infectología", d: "Gastroenterología, endocrino, diabetes, infecciones prevalentes." },
+      { s: "Fase 3", t: "Cirugía General & Traumatología", d: "Abdomen agudo, urgencias quirúrgicas, quemaduras y urología." },
+      { s: "Fase 4", t: "Pediatría & Neonatología Integral", d: "Desarrollo psicomotor, nutrición, vacunas y patología pediátrica." },
+      { s: "Fase 5", t: "Gineco-Obstetricia, Salud Pública & GES", d: "Patología del embarazo, parto, garantías GES y normativa chilena." },
+      { s: "Fase 6", t: "Psiquiatría, Neurología & Especialidades", d: "Trastornos del ánimo, ACV, cefaleas, dermatología, oftalmo y ORL." },
+      { s: "Fase 7", t: "Simulacros de Integración Final", d: "Simulacros de 180 preguntas cronometradas y refuerzo de puntos débiles." }
     ]
   }
 ];

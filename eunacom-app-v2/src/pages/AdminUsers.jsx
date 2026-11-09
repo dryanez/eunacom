@@ -1382,7 +1382,7 @@ const AdminUsers = () => {
                                 color: t.gateway === 'mercadopago' ? '#38bdf8' : '#93c5fd',
                                 border: t.gateway === 'mercadopago' ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid rgba(0, 48, 135, 0.5)'
                               }}>
-                                {t.gateway === 'mercadopago' ? 'Mercado Pago' : 'PayPal'}
+                                {t.gateway === 'mercadopago' ? 'Mercado Pago' : t.gateway === 'transferencia' ? 'Transferencia' : 'PayPal'}
                               </span>
                             </TD>
 

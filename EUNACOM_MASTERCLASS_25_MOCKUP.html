@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUNACOM 2026 · Masterclass Design System (25 Clases Mock)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            crimson: {
+              500: '#e11d48',
+              600: '#be123c',
+            },
+            clinical: {
+              dark: '#090d16',
+              card: '#111827',
+              border: '#1f293d',
+              surface: '#172033',
+              accent: '#38bdf8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    * { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-clinical-dark text-slate-100 min-h-screen flex flex-col antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="h-16 border-b border-clinical-border bg-clinical-card/90 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-950/40">
+        <i class="fa-solid fa-heart-pulse text-white text-lg animate-pulse"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-black tracking-widest text-sky-400 uppercase">EUNACOM 2026</span>
+          <span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Perfil V3 Oficial</span>
+        </div>
+        <h1 class="text-sm font-bold text-white tracking-tight">Masterclass Studio · Especialidad de Cardiología</h1>
+      </div>
+    </div>
+
+    <!-- Center Badge: Class count -->
+    <div class="hidden md:flex items-center gap-3 bg-clinical-surface px-4 py-1.5 rounded-full border border-clinical-border">
+      <span class="text-xs font-semibold text-slate-400">Progreso del Programa:</span>
+      <div class="w-32 bg-slate-800 h-2 rounded-full overflow-hidden">
+        <div class="bg-gradient-to-r from-sky-500 to-emerald-400 h-full w-[100%] rounded-full"></div>
+      </div>
+      <span class="text-xs font-extrabold text-emerald-400">25 / 25 Clases Listas</span>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white">
+        <i class="fa-solid fa-list-ul"></i>
+      </button>
+      <div class="flex items-center gap-2 bg-slate-800/80 p-1 rounded-xl border border-slate-700/60">
+        <button id="view-mode-deck" onclick="setViewMode('deck')" class="px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white shadow">
+          <i class="fa-solid fa-chalkboard mr-1.5"></i>Reproductor
+        </button>
+        <button id="view-mode-grid" onclick="setViewMode('grid')" class="px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">
+          <i class="fa-solid fa-table-cells-large mr-1.5"></i>Malla 25
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="flex-1 flex overflow-hidden">
+
+    <!-- ── LEFT SIDEBAR: 25 CLASSES DIRECTORY ── -->
+    <aside id="sidebar" class="w-80 border-r border-clinical-border bg-clinical-card flex flex-col flex-shrink-0 transition-all duration-300 z-40 fixed lg:static inset-y-16 left-0 -translate-x-full lg:translate-x-0">
+      <!-- Search & Filters -->
+      <div class="p-4 border-b border-clinical-border">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+          <input 
+            type="text" 
+            id="class-search" 
+            oninput="filterClasses(this.value)"
+            placeholder="Buscar por patología o código..." 
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500 placeholder-slate-500"
+          />
+        </div>
+      </div>
+
+      <!-- Classes List -->
+      <div id="classes-list" class="flex-1 overflow-y-auto p-3 space-y-1.5">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Footer Info -->
+      <div class="p-3 border-t border-clinical-border bg-slate-900/60 flex items-center justify-between text-[11px] text-slate-400">
+        <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i>MinSAL / GES 2026</span>
+        <span class="font-mono text-slate-500">v3.4.0-mock</span>
+      </div>
+    </aside>
+
+    <!-- ── MAIN STAGE ── -->
+    <main class="flex-1 flex flex-col overflow-y-auto bg-clinical-dark relative">
+
+      <!-- DECK PLAYER VIEW -->
+      <div id="deck-view" class="flex-1 flex flex-col p-4 md:p-6 max-w-7xl mx-auto w-full">
+        
+        <!-- Header Info Bar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 bg-clinical-card p-4 rounded-2xl border border-clinical-border shadow-sm">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span id="current-class-badge" class="bg-rose-500 text-white text-xs font-black px-2.5 py-0.5 rounded-md uppercase">
+                CLASE 01
+              </span>
+              <span id="current-class-codes" class="text-xs font-mono font-bold text-sky-400">
+                1.01.1.001 · 1.01.4.004
+              </span>
+              <span class="text-slate-500 text-xs">•</span>
+              <span class="text-slate-400 text-xs font-semibold">Tier 2 (Urgencia & APS)</span>
+            </div>
+            <h2 id="current-class-title" class="text-xl md:text-2xl font-black text-white tracking-tight">
+              Angina Crónica Estable & Cardiopatía Isquémica
+            </h2>
+          </div>
+
+          <!-- Slide Navigator Pills -->
+          <div class="flex items-center gap-1.5 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800 overflow-x-auto">
+            <button onclick="goToSlide(0)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white">1. Portada</button>
+            <button onclick="goToSlide(1)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">2. Matriz Legal</button>
+            <button onclick="goToSlide(2)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">3. Fisiopatología</button>
+            <button onclick="goToSlide(3)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">4. Algoritmo</button>
+            <button onclick="goToSlide(4)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">5. Farmacoterapia</button>
+            <button onclick="goToSlide(5)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">6. Score Riesgo</button>
+            <button onclick="goToSlide(6)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">7. Caso EUNACOM</button>
+            <button onclick="goToSlide(7)" class="slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">8. Checklist</button>
+          </div>
+        </div>
+
+        <!-- ── CANVAS SLIDE PRESENTATION STAGE ── -->
+        <div class="relative w-full aspect-[16/9] min-h-[480px] bg-slate-950 rounded-2xl border-2 border-clinical-border overflow-hidden shadow-2xl flex flex-col">
+          
+          <!-- Inner Slide Container -->
+          <div id="slide-stage" class="flex-1 w-full h-full relative overflow-hidden">
+            <!-- Dynamic Slide Injected via JS -->
+          </div>
+
+          <!-- Bottom Control Bar -->
+          <div class="h-14 bg-slate-900/90 border-t border-slate-800 px-6 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-4 text-slate-400">
+              <span id="slide-counter" class="font-mono font-bold text-sky-400">DIAPOSITIVA 1 / 8</span>
+              <span class="hidden sm:inline text-slate-600">|</span>
+              <span class="hidden sm:inline flex items-center gap-1.5">
+                <i class="fa-solid fa-volume-high text-emerald-400"></i> Audio ElevenLabs: <span id="teleprompter-time" class="text-slate-300 font-mono">01:42</span>
+              </span>
+            </div>
+
+            <!-- Slide Action Buttons -->
+            <div class="flex items-center gap-2">
+              <button onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1">
+                <i class="fa-solid fa-chevron-left text-[10px]"></i> Anterior
+              </button>
+              <button onclick="toggleAudio()" id="btn-audio" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 border border-emerald-500/30 font-bold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-play text-[10px]"></i> Escuchar Explicación
+              </button>
+              <button onclick="nextSlide()" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold transition flex items-center gap-1 shadow-md shadow-sky-900/30">
+                Siguiente <i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TELEPROMPTER & CLINICAL NOTES DRAWER ── -->
+        <div class="mt-4 bg-clinical-card border border-clinical-border rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-microphone-lines"></i> Guión Teleprompter Docente (Transcripción Médica EUNACOM)
+            </span>
+            <span class="text-[11px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-md font-mono">Docente Clínico IA · Modelo Board & Beyond</span>
+          </div>
+          <p id="teleprompter-text" class="text-sm text-slate-300 leading-relaxed font-normal">
+            Cargando guión clínico...
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ── GRID VIEW (ALL 25 CLASSES CATALOG) ── -->
+      <div id="grid-view" class="hidden flex-1 p-6 max-w-7xl mx-auto w-full">
+        <div class="mb-6">
+          <h2 class="text-2xl font-black text-white">Malla Completa · 25 Masterclasses de Cardiología</h2>
+          <p class="text-sm text-slate-400">Estructura curricular basada al 100% en el Perfil de Conocimientos EUNACOM 2026 (ASOFAMECh).</p>
+        </div>
+
+        <div id="classes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- SCRIPT DATA & ENGINE -->
+  <script>
+    // 25 Masterclasses Dataset
+    const CLASSES_25 = [
+      { id: 'cardio-01', num: '01', title: 'Angina Crónica Estable & Cardiopatía Isquémica', category: 'Isquemia', codes: ['1.01.1.001', '1.01.4.004'], tier: 2, slides: 14, tags: ['PEG Bruce', 'Betabloqueo', 'GES'] },
+      { id: 'cardio-02', num: '02', title: 'SCASEST: Angina Inestable e IAM sin SDST', category: 'Isquemia', codes: ['1.01.2.001', '1.01.2.003'], tier: 3, slides: 14, tags: ['Troponina hs', 'GRACE', 'DAPT'] },
+      { id: 'cardio-03', num: '03', title: 'SCACEST: IAM con SDST & Reperfusión GES', category: 'Isquemia', codes: ['1.01.2.002', '1.01.3.005'], tier: 3, slides: 16, tags: ['Tenecteplase', 'Angioplastia', 'GES 120min'] },
+      { id: 'cardio-04', num: '04', title: 'Complicaciones Mecánicas y Eléctricas del IAM', category: 'Isquemia', codes: ['1.01.2.004', '1.01.4.005'], tier: 2, slides: 14, tags: ['Ruptura Septal', 'Insuf. Mitral Aguda'] },
+      { id: 'cardio-05', num: '05', title: 'Insuficiencia Cardíaca Crónica: Fenotipos & Criterios', category: 'Insuficiencia Cardíaca', codes: ['1.01.1.018', '1.01.4.006'], tier: 2, slides: 14, tags: ['Framingham', 'BNP', 'FEr vs FEp'] },
+      { id: 'cardio-06', num: '06', title: 'Cuádruple Terapia GDMT en IC-FEr (Los 4 Fantásticos)', category: 'Insuficiencia Cardíaca', codes: ['1.01.1.018', '1.01.3.007'], tier: 3, slides: 14, tags: ['ARNI/iECA', 'BB', 'ARM', 'iSGLT2'] },
+      { id: 'cardio-07', num: '07', title: 'Edema Agudo de Pulmón & Cuadrícula de Forrester', category: 'Insuficiencia Cardíaca', codes: ['1.01.2.005', '1.01.3.006'], tier: 3, slides: 14, tags: ['VNI BiPAP', 'Furosemida IV', 'Morfina'] },
+      { id: 'cardio-08', num: '08', title: 'Shock Cardiogénico: Inótropos & Manejo en UCI', category: 'Insuficiencia Cardíaca', codes: ['1.01.2.005', '1.01.3.003'], tier: 3, slides: 14, tags: ['Norepinefrina', 'Dobutamina', 'Lactato'] },
+      { id: 'cardio-09', num: '09', title: 'Miocardiopatías (Dilatada, Hipertrófica & Restrictiva)', category: 'Miocardio', codes: ['1.01.1.020'], tier: 2, slides: 14, tags: ['MCH', 'MCD Chagas', 'Muerte Súbita'] },
+      { id: 'cardio-10', num: '10', title: 'Cor Pulmonale Crónico & Hipertensión Pulmonar', category: 'Miocardio', codes: ['1.01.1.004'], tier: 1, slides: 14, tags: ['EPOC', 'ECG VD', 'Sildenafil'] },
+      { id: 'cardio-11', num: '11', title: 'Bradicardias & Bloqueos Aurículo-Ventriculares (BAV)', category: 'Arritmias', codes: ['1.01.1.002', '1.01.2.009'], tier: 2, slides: 14, tags: ['Mobitz I/II', 'BAV Completo', 'Atropina'] },
+      { id: 'cardio-12', num: '12', title: 'Fibrilación Auricular: Rate vs Rhythm & DOACs', category: 'Arritmias', codes: ['1.01.1.012', '1.01.1.013'], tier: 3, slides: 16, tags: ['CHA2DS2-VASc', 'Cardioversión', 'Apixaban'] },
+      { id: 'cardio-13', num: '13', title: 'Flutter Auricular & Taquicardias Auriculares', category: 'Arritmias', codes: ['1.01.1.014'], tier: 1, slides: 14, tags: ['Ondas F Dientes de Sierra', 'Ablación'] },
+      { id: 'cardio-14', num: '14', title: 'TPSV & Síndrome de Wolff-Parkinson-White (WPW)', category: 'Arritmias', codes: ['1.01.1.024', '1.01.2.008'], tier: 2, slides: 14, tags: ['Adenosina 6-12mg', 'Onda Delta', 'Maniobra Valsalva'] },
+      { id: 'cardio-15', num: '15', title: 'Extrasístoles & Taquicardia Ventricular (TV)', category: 'Arritmias', codes: ['1.01.1.011', '1.01.2.007'], tier: 3, slides: 14, tags: ['Criterios Brugada', 'Amiodarona', 'Desfibrilar'] },
+      { id: 'cardio-16', num: '16', title: 'Paro Cardiorrespiratorio & Algoritmos ACLS 2026', category: 'Arritmias', codes: ['1.01.2.007', '1.01.3.002'], tier: 3, slides: 16, tags: ['FV/TVSP', 'Asistolia/AESP', 'Adrenalina 1mg'] },
+      { id: 'cardio-17', num: '17', title: 'Estenosis Aórtica: Semiología, Criterios & TAVI', category: 'Valvulopatías', codes: ['1.01.1.009', '1.01.1.021'], tier: 2, slides: 14, tags: ['Soplo Sistólico', 'Pulso Parvus et Tardus', 'Área < 1cm²'] },
+      { id: 'cardio-18', num: '18', title: 'Insuficiencia Aórtica: Aguda vs Crónica', category: 'Valvulopatías', codes: ['1.01.1.017'], tier: 2, slides: 14, tags: ['Signos Periféricos', 'Pulso Corrigan', 'Austin Flint'] },
+      { id: 'cardio-19', num: '19', title: 'Estenosis Mitral: Reumática, FA & Score Wilkins', category: 'Valvulopatías', codes: ['1.01.1.010'], tier: 2, slides: 14, tags: ['Chasquido Apertura', 'Hemoptisis', 'Valvuloplastía'] },
+      { id: 'cardio-20', num: '20', title: 'Insuficiencia Mitral Orgánica vs Funcional', category: 'Valvulopatías', codes: ['1.01.1.019'], tier: 2, slides: 14, tags: ['Prolapso Barlow', 'Soplo Holosistólico Axilar'] },
+      { id: 'cardio-21', num: '21', title: 'Semiología de Soplos & Maniobras Dinámicas', category: 'Valvulopatías', codes: ['1.01.1.021'], tier: 2, slides: 14, tags: ['Valsalva', 'Squatting', 'Handgrip'] },
+      { id: 'cardio-22', num: '22', title: 'Cardiopatías Congénitas en el Adulto (CIA, CIV, Ductus)', category: 'Congénitas', codes: ['1.01.1.003'], tier: 2, slides: 14, tags: ['Desdoblamiento Fijo R2', 'Eisenmenger'] },
+      { id: 'cardio-23', num: '23', title: 'Hipertensión Arterial: Diagnóstico, Metas & GES MINSAL', category: 'Hipertensión', codes: ['1.01.1.015'], tier: 2, slides: 14, tags: ['MAPA/AMPA', 'Meta < 130/80', 'Riesgo CV MINSAL'] },
+      { id: 'cardio-24', num: '24', title: 'Farmacoterapia Antihipertensiva & Combinaciones Fijas', category: 'Hipertensión', codes: ['1.01.1.015'], tier: 2, slides: 14, tags: ['IECA + Calcioantagonista', 'Tiazidas', 'Espironolactona'] },
+      { id: 'cardio-25', num: '25', title: 'Crisis Hipertensiva: Urgencia vs Emergencia Hipertensiva', category: 'Hipertensión', codes: ['1.01.2.006'], tier: 3, slides: 16, tags: ['Daño Órgano Blanco', 'Labetalol IV', 'Nitroprusiato'] },
+    ];
+
+    // State
+    let currentClassIndex = 0;
+    let currentSlideIndex = 0;
+    let isPlayingAudio = false;
+
+    // Render Classes in Sidebar
+    function renderSidebar(classes = CLASSES_25) {
+      const container = document.getElementById('classes-list');
+      container.innerHTML = classes.map((c, idx) => {
+        const isSelected = idx === currentClassIndex;
+        return `
+          <div 
+            onclick="selectClass(${idx})"
+            class="p-2.5 rounded-xl border cursor-pointer transition-all ${
+              isSelected 
+                ? 'bg-sky-500/10 border-sky-500/40 text-white shadow-sm' 
+                : 'bg-slate-900/40 border-slate-800/80 text-slate-300 hover:bg-slate-800/60 hover:border-slate-700'
+            }"
+          >
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] font-black tracking-wider ${isSelected ? 'text-sky-400' : 'text-slate-500'}">
+                CLASE ${c.num}
+              </span>
+              <span class="text-[10px] bg-slate-800/90 text-slate-400 px-1.5 py-0.5 rounded font-mono">
+                ${c.category}
+              </span>
+            </div>
+            <h4 class="text-xs font-bold line-clamp-1 text-slate-100">${c.title}</h4>
+            <div class="flex items-center gap-2 mt-1.5 text-[10px] text-slate-400 font-mono">
+              <span class="text-emerald-400"><i class="fa-solid fa-circle-check text-[9px] mr-1"></i>Perfil V3</span>
+              <span>•</span>
+              <span>${c.slides} slides</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Classes in Grid View
+    function renderGrid() {
+      const grid = document.getElementById('classes-grid');
+      grid.innerHTML = CLASSES_25.map((c, idx) => {
+        return `
+          <div onclick="selectClass(${idx}); setViewMode('deck');" class="bg-clinical-card border border-clinical-border rounded-2xl p-5 hover:border-sky-500/50 cursor-pointer transition group relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-rose-500 text-white text-xs font-black px-2.5 py-0.5 rounded-md">
+                CLASE ${c.num}
+              </span>
+              <span class="text-xs font-mono font-bold text-sky-400">${c.codes[0]}</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2 group-hover:text-sky-400 transition line-clamp-2">${c.title}</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2">Revisión profunda según guías clínicas MINSAL y pautas de examen EUNACOM 2026.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              ${c.tags.map(t => `<span class="bg-slate-800 text-slate-300 text-[10px] px-2 py-0.5 rounded-md font-medium">${t}</span>`).join('')}
+            </div>
+            <div class="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
+              <span class="text-emerald-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-play"></i> Abrir Masterclass</span>
+              <span class="text-slate-500 font-mono">${c.slides} slides</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Slide Content Generators based on High-Impact Clinical Design
+    function getSlideContent(cls, slideIdx) {
+      switch(slideIdx) {
+        // SLIDE 1: COVER
+        case 0:
+          return `
+            <div class="w-full h-full flex flex-col justify-center items-center text-center p-8 bg-gradient-to-br from-slate-950 via-slate-900 to-sky-950">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="bg-rose-600 text-white font-black text-xs px-3 py-1 rounded-lg tracking-widest">[CLASE ${cls.num}]</span>
+                <span class="text-xs font-black text-sky-400 tracking-widest uppercase">MEDICINA INTERNA · CARDIOLOGÍA</span>
+              </div>
+              <h1 class="text-3xl md:text-5xl font-black text-white max-w-4xl tracking-tight leading-tight mb-4">
+                ${cls.title}
+              </h1>
+              <p class="text-slate-300 text-base md:text-lg max-w-2xl font-medium mb-8 leading-relaxed">
+                Algoritmos diagnósticos oficiales, farmacoterapia de APS y las trampas clave del examen EUNACOM 2026.
+              </p>
+              <div class="flex flex-wrap gap-3 justify-center">
+                ${cls.codes.map(code => `
+                  <span class="bg-sky-500/10 border border-sky-500/30 text-sky-300 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold">
+                    CÓDIGO: ${code}
+                  </span>
+                `).join('')}
+                <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold">
+                  ✓ Guía GES / MINSAL 2026
+                </span>
+              </div>
+            </div>
+          `;
+
+        // SLIDE 2: PERFIL V3 AUDIT TABLE
+        case 1:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-900">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-sky-400 uppercase tracking-widest">Matriz de Exigencia Legal · Perfil V3</span>
+                <h3 class="text-2xl font-black text-white">Alcance de Práctica Obligatorio para Médico General</h3>
+              </div>
+              <div class="overflow-hidden rounded-xl border border-slate-700 bg-slate-950">
+                <table class="w-full text-left text-xs md:text-sm">
+                  <thead class="bg-slate-800/80 text-slate-300 uppercase text-[11px] font-bold border-b border-slate-700">
+                    <tr>
+                      <th class="p-3.5">Código</th>
+                      <th class="p-3.5">Entidad Clínica</th>
+                      <th class="p-3.5">Diagnóstico</th>
+                      <th class="p-3.5">Tratamiento</th>
+                      <th class="p-3.5 bg-sky-950/40 text-sky-300">Nivel de Práctica</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr>
+                      <td class="p-3.5 font-mono text-slate-400">${cls.codes[0]}</td>
+                      <td class="p-3.5 font-bold text-white">${cls.title.split('&')[0]}</td>
+                      <td class="p-3.5 text-emerald-400 font-semibold">Específico</td>
+                      <td class="p-3.5 text-emerald-400 font-semibold">Completo en APS</td>
+                      <td class="p-3.5 bg-sky-950/20 text-sky-200 font-bold">Atención Primaria (CESFAM)</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3.5 font-mono text-slate-400">${cls.codes[1] || '1.01.4.004'}</td>
+                      <td class="p-3.5 font-bold text-white">Examen Confirmatorio / Procedimiento</td>
+                      <td class="p-3.5 text-sky-400 font-semibold">Interpreta</td>
+                      <td class="p-3.5 text-slate-300">Solicita</td>
+                      <td class="p-3.5 bg-sky-950/20 text-sky-200 font-bold">Derivación Secundaria</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3.5 font-mono text-slate-400">1.01.2.999</td>
+                      <td class="p-3.5 font-bold text-rose-300">Criterio de Inestabilidad / Urgencia</td>
+                      <td class="p-3.5 text-amber-400 font-semibold">Sospecha Inmediata</td>
+                      <td class="p-3.5 text-amber-400 font-semibold">Manejo Inicial</td>
+                      <td class="p-3.5 bg-rose-950/20 text-rose-300 font-bold">🚨 Urgencia Hospitalaria</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-xs text-slate-400 mt-3 flex items-center gap-1.5">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+                En el EUNACOM se evalúa si el médico general sabe <strong>cuándo retener en APS</strong> y <strong>cuándo derivar de urgencia</strong>.
+              </p>
+            </div>
+          `;
+
+        // SLIDE 3: FISIOPATOLOGÍA BENTO GRID
+        case 2:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-950">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Fisiopatología & Semiología</span>
+                <h3 class="text-2xl font-black text-white">La Tríada Clásica de Presentación</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between hover:border-slate-700 transition">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-black text-sm mb-3">01</div>
+                    <h4 class="text-sm font-bold text-white mb-2">Desbalance Oferta / Demanda</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      Estenosis aterosclerótica fija (> 70%). El flujo coronario es suficiente en reposo pero claudica ante el estrés miocárdico o ejercicio.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-sky-400">
+                    MVO₂ = FC × Presión Sistólica
+                  </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between hover:border-slate-700 transition">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black text-sm mb-3">02</div>
+                    <h4 class="text-sm font-bold text-white mb-2">Semiología del Dolor Isquémico</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      Opresivo, retroesternal, irradiado a mandíbula o brazo izquierdo. <strong>Desencadenado por esfuerzo</strong> y <strong>cede con reposo en < 10 minutos</strong>.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-emerald-400">
+                    Duración típica: 2 a 15 min
+                  </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between hover:border-slate-700 transition">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-black text-sm mb-3">03</div>
+                    <h4 class="text-sm font-bold text-white mb-2">Banderas Rojas de Alarma</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      Aparición en reposo, duración > 20 minutos, patrón in crescendo o refractario a nitroglicerina sublingual. Pasa a ser <strong>SCA Agudo</strong>.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-rose-400">
+                    Cambio de conducta → Hospitalizar
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+        // SLIDE 4: ALGORITMO DE DECISIÓN
+        case 3:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-900">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest">Algoritmo Diagnóstico EUNACOM 2026</span>
+                <h3 class="text-2xl font-black text-white">Flujograma de Decisión en APS</h3>
+              </div>
+              <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center w-full md:w-1/4">
+                  <span class="text-[10px] font-black uppercase text-slate-400">PASO 1</span>
+                  <div class="text-sm font-bold text-white mt-1">Sospecha Clínica</div>
+                  <p class="text-xs text-slate-400 mt-1">Dolor típico + Factores de Riesgo CV</p>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-600 hidden md:block"></i>
+                <div class="bg-slate-900 p-4 rounded-xl border border-sky-500/40 text-center w-full md:w-1/4 shadow-lg shadow-sky-950/30">
+                  <span class="text-[10px] font-black uppercase text-sky-400">PASO 2 (GES)</span>
+                  <div class="text-sm font-bold text-white mt-1">ECG de Reposo</div>
+                  <p class="text-xs text-slate-400 mt-1">Normal en el 50% de los casos</p>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-600 hidden md:block"></i>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center w-full md:w-1/4">
+                  <span class="text-[10px] font-black uppercase text-slate-400">PASO 3</span>
+                  <div class="text-sm font-bold text-white mt-1">Test Provocativo</div>
+                  <p class="text-xs text-slate-400 mt-1">Test de Esfuerzo (PEG) Bruce</p>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-600 hidden md:block"></i>
+                <div class="bg-emerald-950/40 p-4 rounded-xl border border-emerald-500/50 text-center w-full md:w-1/4">
+                  <span class="text-[10px] font-black uppercase text-emerald-400">PASO 4</span>
+                  <div class="text-sm font-bold text-emerald-200 mt-1">Inicio GDMT</div>
+                  <p class="text-xs text-emerald-400/80 mt-1">Aspirina + Estatina + Betabloqueo</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+        // SLIDE 5: FARMACOTERAPIA APS
+        case 4:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-950">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-rose-400 uppercase tracking-widest">Farmacoterapia con Dosis Exactas</span>
+                <h3 class="text-2xl font-black text-white">Esquema Terapéutico en CESFAM / Urgencia</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                  <div class="flex items-center justify-between mb-2">
+                    <h4 class="text-sm font-bold text-white">1. Betabloqueadores (Primera Línea)</h4>
+                    <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded">Clase I</span>
+                  </div>
+                  <p class="text-xs text-slate-300 mb-3">Reducen la frecuencia cardíaca y la contractilidad miocárdica (objetivo: FC 55-60 lpm).</p>
+                  <div class="space-y-1.5 text-xs font-mono text-slate-400 bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                    <div>• <strong>Atenolol:</strong> 50 - 100 mg / día VO</div>
+                    <div>• <strong>Bisoprolol:</strong> 5 - 10 mg / día VO</div>
+                    <div>• <strong>Carvedilol:</strong> 6.25 - 25 mg c/12h VO</div>
+                  </div>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                  <div class="flex items-center justify-between mb-2">
+                    <h4 class="text-sm font-bold text-white">2. Antiagregación & Estatinas</h4>
+                    <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded">Pronóstico</span>
+                  </div>
+                  <p class="text-xs text-slate-300 mb-3">Prevención secundaria de eventos coronarios agudos mayores (MACE).</p>
+                  <div class="space-y-1.5 text-xs font-mono text-slate-400 bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                    <div>• <strong>Aspirina:</strong> 100 mg / día de por vida</div>
+                    <div>• <strong>Atorvastatina:</strong> 80 mg / día (alta potencia)</div>
+                    <div>• <strong>Nitroglicerina SL:</strong> 0.6 mg SOS (máx 3 dosis)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+        // SLIDE 6: SCORE RIESGO
+        case 5:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-900">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-purple-400 uppercase tracking-widest">Estratificación Pronóstica</span>
+                <h3 class="text-2xl font-black text-white">Criterios de Alto Riesgo en Test de Esfuerzo (Duke Score)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl text-center">
+                  <i class="fa-solid fa-gauge-high text-rose-400 text-2xl mb-2"></i>
+                  <h4 class="text-sm font-bold text-white mb-1">Depresión ST Precoz</h4>
+                  <p class="text-xs text-slate-400">Infradesnivel del ST > 2 mm en etapa 1 o 2 de Bruce o persistente > 5 min post esfuerzo.</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl text-center">
+                  <i class="fa-solid fa-heart-crack text-amber-400 text-2xl mb-2"></i>
+                  <h4 class="text-sm font-bold text-white mb-1">Caída Tensional</h4>
+                  <p class="text-xs text-slate-400">Caída de la Presión Sistólica > 10 mmHg durante el esfuerzo físico (indica disfunción ventricular severa).</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl text-center">
+                  <i class="fa-solid fa-bolt text-sky-400 text-2xl mb-2"></i>
+                  <h4 class="text-sm font-bold text-white mb-1">Arritmia Ventricular</h4>
+                  <p class="text-xs text-slate-400">Aparición de TV o extrasístoles polimórficas inducidas por el ejercicio.</p>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-rose-950/30 border border-rose-500/40 rounded-xl text-xs text-rose-300 text-center font-bold">
+                ⚠️ CONDUCTA INMEDIATA ANTE TEST POSITIVO DE ALTO RIESGO: Derivación urgente a Coronariografía / Angioplastia.
+              </div>
+            </div>
+          `;
+
+        // SLIDE 7: CASO CLÍNICO EUNACOM INTERACTIVO
+        case 6:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-950">
+              <div class="flex items-center justify-between mb-3">
+                <span class="bg-rose-500 text-white text-xs font-black px-2.5 py-0.5 rounded">PREGUNTA EUNACOM CLAVE</span>
+                <span class="text-xs text-slate-400 font-mono">Dificultad: Alta</span>
+              </div>
+              <p class="text-xs md:text-sm text-slate-200 bg-slate-900 p-3.5 rounded-xl border border-slate-800 mb-3 leading-relaxed">
+                Varón de 58 años, fumador y diabético, consulta por dolor retroesternal opresivo al subir 2 pisos de escaleras, que cede a los 5 minutos de reposo. Examen físico y ECG de reposo normales. ¿Cuál es la conducta diagnóstica más adecuada?
+              </p>
+              <div class="space-y-2">
+                <button onclick="checkQuestion(this, false, 'A')" class="q-opt w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 transition flex items-center justify-between">
+                  <span><strong>A)</strong> Solicitar Troponinas ultrasensibles y CK-MB seriales</span>
+                  <span class="feedback hidden text-[11px] font-bold text-rose-400">Incorrecto: El dolor no es agudo ni de reposo.</span>
+                </button>
+                <button onclick="checkQuestion(this, true, 'B')" class="q-opt w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 transition flex items-center justify-between">
+                  <span><strong>B)</strong> Solicitar Test de Esfuerzo en cinta rodante (PEG)</span>
+                  <span class="feedback hidden text-[11px] font-bold text-emerald-400">✓ CORRECTA: Primera línea ante sospecha de Angina Estable con ECG basal normal.</span>
+                </button>
+                <button onclick="checkQuestion(this, false, 'C')" class="q-opt w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 transition flex items-center justify-between">
+                  <span><strong>C)</strong> Indicar Coronariografía de urgencia inmediata</span>
+                  <span class="feedback hidden text-[11px] font-bold text-rose-400">Incorrecto: Es invasivo; se reserva para alto riesgo comprobado.</span>
+                </button>
+                <button onclick="checkQuestion(this, false, 'D')" class="q-opt w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 transition flex items-center justify-between">
+                  <span><strong>D)</strong> Iniciar únicamente Omeprazol por sospecha de reflujo</span>
+                  <span class="feedback hidden text-[11px] font-bold text-rose-400">Incorrecto: El perfil coronario exige descartar isquemia primero.</span>
+                </button>
+              </div>
+            </div>
+          `;
+
+        // SLIDE 8: CHECKLIST DE ALTO RENDIMIENTO
+        case 7:
+          return `
+            <div class="w-full h-full p-8 flex flex-col justify-center bg-slate-900">
+              <div class="mb-4">
+                <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Resumen de Alto Rendimiento</span>
+                <h3 class="text-2xl font-black text-white">4 Puntos Clave para no fallar en el EUNACOM</h3>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-circle-check text-emerald-400 mt-1 text-sm"></i>
+                  <div class="text-xs text-slate-300">
+                    <strong class="text-white">ECG de reposo normal NO descarta angina:</strong> El 50% de los pacientes con cardiopatía isquémica severa tienen trazado basal completamente normal.
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-circle-check text-emerald-400 mt-1 text-sm"></i>
+                  <div class="text-xs text-slate-300">
+                    <strong class="text-white">Tríada Antiisquémica Esencial:</strong> Aspirina 100mg + Atorvastatina 80mg + Betabloqueo (Atenolol/Bisoprolol). Meta FC en reposo: 55 a 60 lpm.
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-circle-check text-emerald-400 mt-1 text-sm"></i>
+                  <div class="text-xs text-slate-300">
+                    <strong class="text-white">Nitratos Sublinguales:</strong> Son sólo sintomáticos para el episodio de dolor (SOS), <em>no mejoran sobrevida ni pronóstico</em>.
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-circle-check text-emerald-400 mt-1 text-sm"></i>
+                  <div class="text-xs text-slate-300">
+                    <strong class="text-white">Criterio de Derivación a Hemodinamia:</strong> Angina refractaria al tratamiento médico óptimo o Test de esfuerzo con criterios de alto riesgo (caída tensional o depresión ST precoz).
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+      }
+    }
+
+    // Teleprompter Script generator
+    function getTeleprompter(cls, slideIdx) {
+      const scripts = [
+        `Bienvenidos a la Masterclass sobre ${cls.title}. Esta clase cubre las exigencias oficiales del Perfil V3 de la ASOFAMECh. El médico general en Chile es el responsable legal de sospechar, diagnosticar y realizar el manejo inicial en la Atención Primaria.`,
+        `En esta matriz legal vemos la delimitación exacta de competencias. Fíjense en la columna de APS: el diagnóstico debe ser específico y la terapia médica completa. Solamente ante signos de alarma o sospecha de síndrome coronario agudo se realiza la derivación de urgencia.`,
+        `Revisemos la fisiopatología cardinal. El dolor torácico isquémico clásico ocurre cuando el consumo miocárdico de oxígeno supera el aporte de las arterias coronarias estenosadas. Recuerden que si el dolor dura más de 20 minutos o aparece en reposo, ya no es angina estable sino un síndrome coronario agudo.`,
+        `Este es el flujograma de decisión clínica que el EUNACOM pregunta repetidamente. Todo paciente con dolor torácico en APS requiere un electrocardiograma de doce derivaciones en menos de diez minutos. Si el trazado es normal, el siguiente paso es solicitar el test de esfuerzo.`,
+        `Pasemos a la farmacoterapia obligatoria de APS. La tríada salvavidas consiste en Aspirina cien miligramos, Atorvastatina en dosis alta de ochenta miligramos para estabilizar placa, y Betabloqueadores como Bisoprolol o Atenolol buscando una frecuencia cardíaca meta de cincuenta y cinco a sesenta latidos por minuto.`,
+        `La estratificación pronóstica define si el paciente puede seguir manejándose en el CESFAM o requiere coronariografía. La caída de la presión sistólica durante el test de esfuerzo es el signo más ominoso de disfunción miocárdica severa.`,
+        `Resolvamos esta pregunta real de examen. Noten cómo el paciente tiene factores de riesgo cardiovascular y dolor con el esfuerzo típico. Dado que su electrocardiograma basal está normal, el estándar de oro inicial para documentar isquemia inducible es el test de esfuerzo.`,
+        `Finalizamos con el checklist de alto rendimiento. Grábense estas cuatro reglas de oro: el electrocardiograma normal no descarta isquemia, los nitratos solo alivian el dolor pero no cambian el pronóstico, y los betabloqueadores son la piedra angular del tratamiento.`
+      ];
+      return scripts[slideIdx] || scripts[0];
+    }
+
+    // Navigation Logic
+    function selectClass(idx) {
+      currentClassIndex = idx;
+      currentSlideIndex = 0;
+      updateUI();
+      renderSidebar();
+    }
+
+    function goToSlide(slideIdx) {
+      currentSlideIndex = slideIdx;
+      updateSlideStage();
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < 7) {
+        currentSlideIndex++;
+        updateSlideStage();
+      } else if (currentClassIndex < CLASSES_25.length - 1) {
+        selectClass(currentClassIndex + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSlideStage();
+      } else if (currentClassIndex > 0) {
+        selectClass(currentClassIndex - 1);
+        currentSlideIndex = 7;
+        updateSlideStage();
+      }
+    }
+
+    function updateUI() {
+      const cls = CLASSES_25[currentClassIndex];
+      document.getElementById('current-class-badge').innerText = `CLASE ${cls.num}`;
+      document.getElementById('current-class-codes').innerText = cls.codes.join(' · ');
+      document.getElementById('current-class-title').innerText = cls.title;
+      updateSlideStage();
+    }
+
+    function updateSlideStage() {
+      const cls = CLASSES_25[currentClassIndex];
+      const stage = document.getElementById('slide-stage');
+      stage.innerHTML = getSlideContent(cls, currentSlideIndex);
+
+      // Update pills
+      document.querySelectorAll('.slide-pill').forEach((btn, i) => {
+        if (i === currentSlideIndex) {
+          btn.className = 'slide-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white shadow-md';
+        } else {
+          btn.className = 'slide-pill px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all';
+        }
+      });
+
+      // Update counter and teleprompter
+      document.getElementById('slide-counter').innerText = `DIAPOSITIVA ${currentSlideIndex + 1} / 8`;
+      document.getElementById('teleprompter-text').innerText = getTeleprompter(cls, currentSlideIndex);
+      
+      // Reset audio button state
+      isPlayingAudio = false;
+      const btn = document.getElementById('btn-audio');
+      btn.innerHTML = `<i class="fa-solid fa-play text-[10px]"></i> Escuchar Explicación`;
+      btn.classList.remove('bg-rose-600/30', 'text-rose-400');
+      btn.classList.add('bg-emerald-600/20', 'text-emerald-400');
+    }
+
+    // Toggle Audio Simulation
+    function toggleAudio() {
+      const btn = document.getElementById('btn-audio');
+      if (!isPlayingAudio) {
+        isPlayingAudio = true;
+        btn.innerHTML = `<i class="fa-solid fa-pause text-[10px]"></i> Pausar Audio Docente`;
+        btn.classList.remove('bg-emerald-600/20', 'text-emerald-400');
+        btn.classList.add('bg-rose-600/30', 'text-rose-400');
+      } else {
+        isPlayingAudio = false;
+        btn.innerHTML = `<i class="fa-solid fa-play text-[10px]"></i> Reanudar Explicación`;
+        btn.classList.remove('bg-rose-600/30', 'text-rose-400');
+        btn.classList.add('bg-emerald-600/20', 'text-emerald-400');
+      }
+    }
+
+    // Check Question Answer
+    function checkQuestion(btn, isCorrect, letter) {
+      document.querySelectorAll('.q-opt').forEach(b => {
+        b.classList.remove('border-emerald-500', 'bg-emerald-950/40', 'border-rose-500', 'bg-rose-950/40');
+        const fb = b.querySelector('.feedback');
+        if (fb) fb.classList.add('hidden');
+      });
+
+      const feedback = btn.querySelector('.feedback');
+      if (feedback) feedback.classList.remove('hidden');
+
+      if (isCorrect) {
+        btn.classList.add('border-emerald-500', 'bg-emerald-950/40');
+      } else {
+        btn.classList.add('border-rose-500', 'bg-rose-950/40');
+      }
+    }
+
+    // Filter classes in sidebar
+    function filterClasses(query) {
+      const q = query.toLowerCase();
+      const filtered = CLASSES_25.filter(c => 
+        c.title.toLowerCase().includes(q) || 
+        c.codes.some(code => code.includes(q)) || 
+        c.category.toLowerCase().includes(q)
+      );
+      renderSidebar(filtered);
+    }
+
+    // Toggle View Mode (Deck vs Grid)
+    function setViewMode(mode) {
+      const deckView = document.getElementById('deck-view');
+      const gridView = document.getElementById('grid-view');
+      const btnDeck = document.getElementById('view-mode-deck');
+      const btnGrid = document.getElementById('view-mode-grid');
+
+      if (mode === 'deck') {
+        deckView.classList.remove('hidden');
+        gridView.classList.add('hidden');
+        btnDeck.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white shadow';
+        btnGrid.className = 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all';
+      } else {
+        deckView.classList.add('hidden');
+        gridView.classList.remove('hidden');
+        btnGrid.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white shadow';
+        btnDeck.className = 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all';
+        renderGrid();
+      }
+    }
+
+    // Toggle Mobile Sidebar
+    function toggleSidebar() {
+      const sb = document.getElementById('sidebar');
+      sb.classList.toggle('-translate-x-full');
+    }
+
+    // Keyboard navigation (Arrow keys)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Initialize
+    renderSidebar();
+    updateUI();
+  </script>
+</body>
+</html>

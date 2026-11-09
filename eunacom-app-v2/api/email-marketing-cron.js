@@ -1,3 +1,4 @@
+import { getAuthUser, isAdminUser } from './_auth.js'
 import { getTurso } from './_turso.js';
 import { Resend } from 'resend';
 import { 
@@ -91,10 +92,9 @@ export default async function handler(req, res) {
 
     // 2. Auth check
     const authHeader = req.headers['authorization'] || '';
-    const cronSecret = process.env.CRON_SECRET || 'eunacom-cron-secret';
-    const isCronAuth = authHeader === `Bearer ${cronSecret}`;
-    const adminEmail = req.query.adminEmail || req.body?.adminEmail;
-    const isAdminAuth = adminEmail === 'dr.felipeyanez@gmail.com';
+    const cronSecret = process.env.CRON_SECRET;
+    const isCronAuth = !!cronSecret && authHeader === `Bearer ${cronSecret}`;
+    const isAdminAuth = !isCronAuth && isAdminUser(await getAuthUser(req));
     const isLocalDev = process.env.NODE_ENV !== 'production' && !authHeader;
 
     if (!isCronAuth && !isAdminAuth && !isLocalDev) {
