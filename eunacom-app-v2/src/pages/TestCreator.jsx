@@ -43,9 +43,11 @@ const TestCreator = () => {
     const [propioDB, setPropioDB] = useState([])        // questionDB.json (banco propio)
     const [bancoIdx, setBancoIdx] = useState({ rows: [], propioTipo: {}, tipos: TIPO_NAMES_CORTOS }) // índice liviano (nuevas + tipo de las propias)
     // Banco completo, sin distinguir fuente; cada pregunta lleva su tipo de situación ('1'..'5', '0' sin clasificar)
+    // Salud Pública es el Módulo 4 del EUNACOM (en los datos venía dentro del Módulo 2)
+    const toModulo = q => (/salud p[uú]blica/i.test(q.topic || '') ? { ...q, category: 'Módulo 4' } : q)
     const questionDB = useMemo(() => [
-        ...propioDB.map(q => ({ ...q, tipo: bancoIdx.propioTipo[q.id] || '0' })),
-        ...bancoIdx.rows,
+        ...propioDB.map(q => toModulo({ ...q, tipo: bancoIdx.propioTipo[q.id] || '0' })),
+        ...bancoIdx.rows.map(toModulo),
     ], [propioDB, bancoIdx])
     // Tipos de situación excluidos dentro de una especialidad marcada: { [cat]: { [topic]: { [tipo]: true } } }
     const [excludedTipos, setExcludedTipos] = useState({})

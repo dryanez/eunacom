@@ -195,3 +195,22 @@
   .mn-tc-nb { font-size: .82rem; padding: .85rem .7rem; }
   .mn-tc-start { font-size: .92rem; padding: .9rem .75rem; }
 }
+
+/* Área y tema: módulos plegables */
+.mn-bm-list { display: flex; flex-direction: column; gap: .65rem; }
+.mn-bm { border-radius: 18px; background: var(--mn-tile); border: 1px solid var(--mn-tline); overflow: hidden; }
+.mn-bm.open { border-color: rgba(56,189,248,.3); }
+.mn-bm-h { width: 100%; display: flex; align-items: center; gap: .8rem; padding: .95rem 1rem; background: none; border: 0; color: inherit; cursor: pointer; text-align: left; font-family: inherit; }
+.mn-bm-ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; border: 1px solid; }
+.mn-bm-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.mn-bm-t b { color: #fff; font-size: .98rem; }
+.mn-bm-t small { color: var(--mn-dim); font-size: .76rem; margin-top: .1rem; }
+.mn-bm-n { font-size: .85rem; font-weight: 800; color: #e2e8f0; font-variant-numeric: tabular-nums; }
+.mn-bm-chev { color: var(--mn-dim); transition: transform .2s; flex-shrink: 0; }
+.mn-bm.open .mn-bm-chev { transform: rotate(180deg); color: var(--mn-sky); }
+.mn-bm-body { display: flex; flex-direction: column; gap: .45rem; padding: 0 .75rem .8rem; }
+.mn-bm-row { width: 100%; display: flex; align-items: center; gap: .75rem; padding: .75rem .85rem; border-radius: 14px; border: 1px solid #1e2a44; background: rgba(15,23,42,.6); color: inherit; cursor: pointer; text-align: left; font-family: inherit; }
+.mn-bm-row:hover { border-color: rgba(56,189,248,.45); }
+.mn-bm-row .mn-bm-t b { font-size: .9rem; }
+.mn-bm-k { font-family: ui-monospace, Menlo, monospace; font-weight: 700; font-size: .85rem; color: var(--mn-sky); width: 14px; }
+.mn-bm-empty { color: var(--mn-dim); font-size: .82rem; padding: .4rem .2rem; }

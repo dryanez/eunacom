@@ -132,7 +132,7 @@ function OptBtn({ val, cur, set, label }) {
 // ─── SETUP MODAL (3-step onboarding) ─────────────────────────────────────────
 function SetupModal({ onSave, initial }) {
   const [step, setStep] = useState(1)
-  const [examDate,   setExamDate]   = useState(initial?.exam_date      || '2026-07-08')
+  const [examDate,   setExamDate]   = useState(initial?.exam_date      || (toStr(new Date()) < '2026-07-08' ? '2026-07-08' : '2026-12-16'))
   const [customDate, setCustomDate] = useState('')
   const [weekdayH,   setWeekdayH]   = useState(initial?.weekday_minutes  ? initial.weekday_minutes  / 60 : 2)
   const [satH,       setSatH]       = useState(initial?.saturday_minutes !== undefined ? initial.saturday_minutes / 60 : 1.5)
@@ -189,13 +189,13 @@ function SetupModal({ onSave, initial }) {
               {[
                 { date: '2026-07-08',  label: 'Julio 8, 2026',      sub: 'Próximo EUNACOM' },
                 { date: '2026-12-16',  label: 'Diciembre 16, 2026', sub: 'Segunda fecha 2026' },
-              ].map(opt => {
+              ].filter(opt => opt.date > toStr(new Date())).map((opt, oi) => {
                 const active = examDate === opt.date && !customDate
                 return (
                   <button key={opt.date} onClick={() => { setExamDate(opt.date); setCustomDate('') }} className={`mn-sp-date${active ? ' on' : ''}`}>
                     <div>
                       <b>{opt.label}</b>
-                      <small>{opt.sub}</small>
+                      <small>{oi === 0 ? 'Próximo EUNACOM' : opt.sub}</small>
                     </div>
                     {active && <CheckCircle size={20} />}
                   </button>
