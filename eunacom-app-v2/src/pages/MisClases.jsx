@@ -1,3 +1,4 @@
+import '../components/redesign/midnight.css'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -2765,6 +2766,13 @@ function getSubsystemStyle(name) {
 /* ════════════════════════════════════════════════════════════════
    MAIN PAGE — Folder Navigation
    ════════════════════════════════════════════════════════════════ */
+const MODULE_META = {
+  'Módulo 1': { name: 'Medicina Interna', tone: 'blue' },
+  'Módulo 2': { name: 'Cirugía y especialidades', tone: 'amber' },
+  'Módulo 3': { name: 'Materno-infantil', tone: 'pink' },
+  'Módulo 4': { name: 'Salud Pública', tone: 'green' },
+}
+
 const MisClases = () => {
   const { user } = useAuth()
   const location = useLocation()
@@ -3296,103 +3304,44 @@ const MisClases = () => {
           )}
         </div>
       ) : !currentSpecialty ? (
-        /* ─── Level 1: Specialties ─── */
-        <>
-        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-        <div className="grid-auto-responsive">
-          {specialties.map((spec, i) => {
+        /* ─── Level 1: Módulos (Midnight Pro) ─── */
+        <div className="mn-mods">
+          {specialties.map(spec => {
+            const meta = MODULE_META[spec] || { name: spec, tone: 'blue' }
             const style = getSpecialtyStyle(spec)
             const subsCount = Object.keys(tree[spec]).length
             const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
-            const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
             const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
             return (
-              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
-                padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
-                borderLeft: `4px solid ${style.color}`,
-                background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
-                position: 'relative',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                  <div style={{
-                    width: 48, height: 48, borderRadius: 14, background: style.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: style.color, border: `1px solid ${style.color}25`,
-                  }}>
-                    {style.icon}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{spec}</div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
-                      {lessonCount} clases · {completedCount > 0 ? `${completedCount} completadas` : `${subsCount} subsistemas`}
-                    </div>
-                  </div>
-                  <ProgressRing percent={specPct} size={42} stroke={3} />
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {Object.keys(tree[spec]).map(sub => {
-                    const subStyle = getSubsystemStyle(sub)
-                    return (
-                      <span key={sub} style={{
-                        fontSize: '0.72rem', padding: '0.2rem 0.6rem', borderRadius: '50px',
-                        background: subStyle.bg, color: subStyle.color, fontWeight: 600,
-                        display: 'flex', alignItems: 'center', gap: '0.3rem',
-                      }}>
-                        {React.cloneElement(subStyle.icon, { size: 11 })} {sub}
-                      </span>
-                    )
-                  })}
-                </div>
-              </div>
+              <button key={spec} className={`mn-mod mn-tone-${meta.tone}`} onClick={() => setCurrentSpecialty(spec)}>
+                <span className="mn-mod-ic">{style.icon}</span>
+                <span className="mn-mod-txt">
+                  <b>{spec} · {meta.name}</b>
+                  <small>{subsCount} especialidades · {lessonCount} clases</small>
+                  <span className="mn-bar"><b style={{ width: `${Math.max(2, specPct)}%` }} /></span>
+                </span>
+                <ChevronRight size={18} className="mn-li-go" />
+              </button>
             )
           })}
         </div>
-        </>
       ) : !currentSubsystem ? (
-        /* ─── Level 2: Subsystems (MedSchool Cards) ─── */
-        <>
-        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1.25rem',
-        }}>
+        /* ─── Level 2: Especialidades del módulo (Midnight Pro) ─── */
+        <div className="mn-card mn-list">
           {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
+            const subStyle = getSubsystemStyle(sub)
             const completed = lessons.filter(l => getProgress(l.id) >= 100).length
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
-            
-            // Calculate quiz correct/wrong answers
-            let correctCount = 0
-            let wrongCount = 0
-            lessons.forEach(l => {
-              const p = progressMap[l.id]
-              if (p && p.quiz_completed) {
-                const tot = p.quiz_total || 5
-                const corr = p.quiz_correct || Math.round(((p.quiz_score || 0) / 100) * tot)
-                correctCount += corr
-                wrongCount += Math.max(0, tot - corr)
-              }
-            })
-
-            const questionsCount = lessons.length * 20
-
             return (
-              <TopicCard
-                key={sub}
-                topic={sub}
-                specialty={currentSpecialty}
-                questionsCount={questionsCount}
-                classesCount={lessons.length}
-                completedClasses={completed}
-                correctCount={correctCount}
-                wrongCount={wrongCount}
-                masteryPct={subPct}
-                onClick={() => setCurrentSubsystem(sub)}
-              />
+              <button key={sub} className="mn-li" onClick={() => setCurrentSubsystem(sub)}>
+                <span className="mn-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 18 })}</span>
+                <span className="mn-li-txt">{sub}<small>{lessons.length} clases{completed ? ` · ${completed} vistas` : ''}</small></span>
+                <span className="mn-pct">{subPct >= 100 ? '✓' : `${subPct}%`}</span>
+                <ChevronRight size={16} className="mn-li-go" />
+              </button>
             )
           })}
         </div>
-        </>
       ) : subView === 'pruebas' ? (
         /* ─── Pruebas View ─── */
         <PruebasView
