@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCACEST - Estilo 2: Swiss Medical Minimalist (14 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter+Tight:wght@500;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100vw; height: 100vh; overflow: hidden; background: #e2e8f0; color: #0f172a; font-family: 'DM Sans', sans-serif; }
+    
+    #viewport { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #0f172a; }
+    #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; flex-shrink: 0; overflow: hidden; background: #ffffff; }
+    
+    /* Swiss Layout Elements */
+    .slide {
+      position: absolute; inset: 0; padding: 70px 90px;
+      display: grid; grid-template-rows: auto 1fr;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    .swiss-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-bottom: 4px solid #0f172a; padding-bottom: 24px; margin-bottom: 36px;
+    }
+    .swiss-tag {
+      font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.1em; background: #e11d48; color: #fff;
+      padding: 6px 14px; display: inline-block; margin-bottom: 8px;
+    }
+    .swiss-title {
+      font-family: 'Inter Tight', sans-serif; font-size: 44px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.05; color: #0f172a;
+    }
+    .swiss-num {
+      font-family: 'Inter Tight', sans-serif; font-size: 80px; font-weight: 900; line-height: 0.8;
+      letter-spacing: -0.05em; color: #0f172a;
+    }
+
+    /* Swiss Columns & Cards */
+    .swiss-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; height: calc(100% - 30px); }
+    .swiss-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; height: calc(100% - 30px); }
+    .swiss-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; height: calc(100% - 30px); }
+
+    .swiss-col {
+      border-top: 3px solid #0f172a; padding-top: 20px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .swiss-col-title {
+      font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px;
+    }
+    .swiss-metric {
+      font-family: 'Inter Tight', sans-serif; font-size: 48px; font-weight: 900; color: #0f172a; line-height: 1; margin-bottom: 12px;
+    }
+    .swiss-metric.red { color: #e11d48; }
+    .swiss-metric.blue { color: #0284c7; }
+
+    .swiss-list { list-style: none; margin-top: 16px; }
+    .swiss-list li {
+      padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-size: 16px; font-weight: 600; color: #1e293b;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    /* Table in Swiss Mode */
+    .swiss-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .swiss-table th {
+      background: #0f172a; color: #ffffff; font-family: 'Inter Tight', sans-serif; font-size: 15px;
+      font-weight: 900; text-transform: uppercase; padding: 14px 18px; text-align: left;
+    }
+    .swiss-table td {
+      padding: 18px; border-bottom: 2px solid #0f172a; font-size: 16px; color: #1e293b; vertical-align: top;
+    }
+
+    /* Interactive Questions */
+    .swiss-qbox {
+      border: 3px solid #0f172a; padding: 32px; background: #f8fafc; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .swiss-qstem {
+      font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1.5; margin-bottom: 24px;
+    }
+    .swiss-opt-btn {
+      background: #ffffff; border: 2px solid #0f172a; padding: 18px 22px; font-family: inherit;
+      font-size: 16px; font-weight: 700; color: #0f172a; cursor: pointer; transition: all 0.15s ease;
+      text-align: left; margin-bottom: 12px; width: 100%;
+    }
+    .swiss-opt-btn:hover { background: #0f172a; color: #ffffff; }
+    .swiss-opt-btn.correct { background: #059669 !important; border-color: #059669 !important; color: #fff !important; }
+    .swiss-opt-btn.wrong { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
+    .swiss-feedback {
+      display: none; background: #0f172a; color: #fff; padding: 18px 24px; font-size: 15px; font-weight: 600; margin-top: 12px;
+    }
+
+    /* Bottom HUD */
+    #swiss-hud {
+      position: absolute; bottom: 24px; left: 90px; right: 90px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid #cbd5e1; padding-top: 16px;
+    }
+    .swiss-nav-btn {
+      background: #0f172a; color: #fff; font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 900;
+      text-transform: uppercase; padding: 8px 18px; border: none; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewport">
+  <div id="stage">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide active" id="s1" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+      <span class="swiss-tag">EUNACOM 2026 · MEDICINA INTERNA · CLASE 08</span>
+      <h1 style="font-family: 'Inter Tight'; font-size: 78px; font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.04em; color: #0f172a; margin: 20px 0;">
+        SCACEST & PROTOCOLO<br>DE REPERFUSIÓN GES
+      </h1>
+      <p style="font-size: 24px; font-weight: 600; color: #475569; max-width: 1200px; margin-bottom: 40px;">
+        Infarto Agudo al Miocardio con Supradesnivel del ST · Metas Puerta-Balón & Puerta-Aguja · Antiagregación Dual · Algoritmos de Rescate
+      </p>
+      <div style="display: flex; gap: 16px;">
+        <span style="border: 2px solid #0f172a; font-family: 'Space Mono'; font-size: 14px; font-weight: 700; padding: 10px 20px;">CÓD: 1.01.2.002</span>
+        <span style="border: 2px solid #0f172a; font-family: 'Space Mono'; font-size: 14px; font-weight: 700; padding: 10px 20px;">CÓD: 1.01.3.005</span>
+        <span style="background: #e11d48; color: #fff; font-family: 'Space Mono'; font-size: 14px; font-weight: 700; padding: 10px 20px;">GES OBLIGATORIO</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: MATRIZ PERFIL V3 -->
+    <div class="slide" id="s2">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">AUDITORÍA MÉDICO-LEGAL</span>
+          <h2 class="swiss-title">MATRIZ DE COMPETENCIAS PERFIL V3</h2>
+        </div>
+        <div class="swiss-num">02</div>
+      </div>
+      <div>
+        <table class="swiss-table">
+          <thead>
+            <tr>
+              <th>ÁMBITO</th>
+              <th>EXIGENCIA OFICIAL</th>
+              <th>ACCIONES OBLIGATORIAS EN CHILE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>DIAGNÓSTICO</strong></td>
+              <td style="color: #e11d48; font-weight: 900;">ESPECÍFICO</td>
+              <td>ECG 12 derivaciones en &le; 10 min. Confirmación de SDST, nuevo BCRI o criterios de Sgarbossa.</td>
+            </tr>
+            <tr>
+              <td><strong>TRATAMIENTO</strong></td>
+              <td style="color: #e11d48; font-weight: 900;">URGENCIA TOTAL</td>
+              <td>Carga DAPT inmediata (AAS + Ticagrelor/Clopidogrel), anticoagulación parenteral e inicio de reperfusión antes de 120 min.</td>
+            </tr>
+            <tr>
+              <td><strong>SEGUIMIENTO</strong></td>
+              <td style="color: #0284c7; font-weight: 900;">DERIVACIÓN / APS</td>
+              <td>Traslado urgente SAMU a hemodinamia. Control post-infarto en APS con cuatro pilares de prevención secundaria.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: FISIOPATOLOGÍA -->
+    <div class="slide" id="s3">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">FISIOPATOLOGÍA & ECG</span>
+          <h2 class="swiss-title">OCLUSIÓN CORONARIA TRANSMURAL</h2>
+        </div>
+        <div class="swiss-num">03</div>
+      </div>
+      <div class="swiss-grid-2">
+        <div class="swiss-col">
+          <div class="swiss-col-title">01 · CASCADA DE TROMBOSIS</div>
+          <p style="font-size: 18px; color: #1e293b; line-height: 1.6;">
+            1. <strong>Ruptura de Placa Aterosclerótica:</strong> Exposición de matriz lipídica y colágeno al torrente vascular.<br><br>
+            2. <strong>Activación Plaquetaria Masiva:</strong> Síntesis de Tromboxano A2 y unión a receptor GP IIb/IIIa.<br><br>
+            3. <strong>Oclusión Luminal 100%:</strong> Isquemia transmural aguda con progresión a necrosis celular en &lt; 6 horas.
+          </p>
+        </div>
+        <div class="swiss-col" style="background: #f8fafc; padding: 24px; border: 2px solid #0f172a;">
+          <div class="swiss-col-title" style="color: #e11d48;">02 · CRITERIOS OFICIALES DE SDST</div>
+          <ul class="swiss-list">
+            <li>• <strong>V2-V3:</strong> &ge; 2.0 mm (&ge;40a varón) o &ge; 1.5 mm (mujer).</li>
+            <li>• <strong>Otras derivaciones:</strong> &ge; 1.0 mm en &ge; 2 derivaciones contiguas.</li>
+            <li>• <strong>BCRI nuevo:</strong> Equivalente clínico de SCACEST activo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: ALGORITMO ABCDE -->
+    <div class="slide" id="s4">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">SOPORTE VITAL INICIAL</span>
+          <h2 class="swiss-title">REANIMACIÓN INICIAL & PROTOCOLO ABCDE</h2>
+        </div>
+        <div class="swiss-num">04</div>
+      </div>
+      <div class="swiss-grid-4">
+        <div class="swiss-col">
+          <div class="swiss-metric red">A - B</div>
+          <div class="swiss-col-title">VÍA AÉREA & OXÍGENO</div>
+          <p style="font-size: 15px; color: #334155;">O2 suplementario <strong>únicamente si SatO2 &lt; 90%</strong>. Evitar hiperoxia normoxémica.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric blue">C</div>
+          <div class="swiss-col-title">ACCESOS & MONITOR</div>
+          <p style="font-size: 15px; color: #334155;">2 vías venosas periféricas gruesas (#18G) + monitor desfibrilador listo para FV.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric">D</div>
+          <div class="swiss-col-title">DOLOR ISQUÉMICO</div>
+          <p style="font-size: 15px; color: #334155;">Morfina 2-4mg EV solo si refractario; cautela con retraso en absorción de P2Y12.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric red">E</div>
+          <div class="swiss-col-title">ECG &lt; 10 MIN</div>
+          <p style="font-size: 15px; color: #334155;">Toma e interpretación médica en &le; 10 min. Agregar derivaciones derechas si cara inferior.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: FARMACOTERAPIA -->
+    <div class="slide" id="s5">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">TERAPIA FARMACOLÓGICA</span>
+          <h2 class="swiss-title">DOSIS EXACTAS DE ANTIAGREGACIÓN & HEPARINAS</h2>
+        </div>
+        <div class="swiss-num">05</div>
+      </div>
+      <div>
+        <table class="swiss-table">
+          <thead>
+            <tr>
+              <th>FÁRMACO</th>
+              <th>DOSIS DE CARGA</th>
+              <th>MANTENCIÓN</th>
+              <th>INDICACIÓN GUÍAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AAS</strong></td>
+              <td style="color: #e11d48; font-weight: 900;">250 - 500 mg VO masticable</td>
+              <td>100 mg / día</td>
+              <td>Inmediata en todo paciente.</td>
+            </tr>
+            <tr>
+              <td><strong>TICAGRELOR</strong></td>
+              <td style="color: #0284c7; font-weight: 900;">180 mg VO</td>
+              <td>90 mg c/12h</td>
+              <td>Estrategia de Angioplastía Primaria (PCI).</td>
+            </tr>
+            <tr>
+              <td><strong>CLOPIDOGREL</strong></td>
+              <td>300 mg VO (75mg si &gt;75a)</td>
+              <td>75 mg / día</td>
+              <td>Estrategia de Fibrinolisis con Tenecteplase.</td>
+            </tr>
+            <tr>
+              <td><strong>ENOXAPARINA</strong></td>
+              <td>30 mg EV bolo + 1 mg/kg SC</td>
+              <td>1 mg/kg c/12h SC</td>
+              <td>Anticoagulación parenteral estándar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: SCORE KILLIP-KIMBALL -->
+    <div class="slide" id="s6">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">ESTRATIFICACIÓN PRONÓSTICA</span>
+          <h2 class="swiss-title">CLASIFICACIÓN DE KILLIP-KIMBALL</h2>
+        </div>
+        <div class="swiss-num">06</div>
+      </div>
+      <div class="swiss-grid-4">
+        <div class="swiss-col">
+          <div class="swiss-metric">6%</div>
+          <div class="swiss-col-title">KILLIP I · SIN CONGESTIÓN</div>
+          <p style="font-size: 15px; color: #334155;">Sin signos de falla cardíaca ni estertores audibles.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric blue">17%</div>
+          <div class="swiss-col-title">KILLIP II · CONGESTIÓN LEVE</div>
+          <p style="font-size: 15px; color: #334155;">Crepitaciones en &lt; 50% de campos y 3er ruido (R3).</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric">38%</div>
+          <div class="swiss-col-title">KILLIP III · EDEMA AGUDO</div>
+          <p style="font-size: 15px; color: #334155;">Crepitaciones difusas &gt; 50% y distress severo.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-metric red">81%</div>
+          <div class="swiss-col-title">KILLIP IV · SHOCK</div>
+          <p style="font-size: 15px; color: #334155;">PAS &lt; 90 mmHg, hipoperfusión. Reperfusión urgente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: PROTOCOLO REPERFUSIÓN -->
+    <div class="slide" id="s7">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">DECISIÓN DE REPERFUSIÓN</span>
+          <h2 class="swiss-title">ANGIOPLASTÍA PRIMARIA VS TROMBÓLISIS</h2>
+        </div>
+        <div class="swiss-num">07</div>
+      </div>
+      <div class="swiss-grid-2">
+        <div class="swiss-col">
+          <div class="swiss-metric blue">&lt; 90 MIN</div>
+          <div class="swiss-col-title">ANGIOPLASTÍA PRIMARIA (PCI)</div>
+          <p style="font-size: 17px; color: #1e293b; line-height: 1.5;">
+            Tratamiento de elección si el tiempo de traslado al laboratorio de hemodinamia es menor a 120 minutos. Acceso radial preferente y colocación de stent farmacológico.
+          </p>
+        </div>
+        <div class="swiss-col" style="border-top-color: #e11d48;">
+          <div class="swiss-metric red">&lt; 30 MIN</div>
+          <div class="swiss-col-title">TROMBÓLISIS CON TENECTEPLASE</div>
+          <p style="font-size: 17px; color: #1e293b; line-height: 1.5;">
+            Si el traslado a hemodinamia demora más de 120 minutos, administrar Tenecteplase (TNK) en bolo único peso-adaptado en el hospital periférico.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: LOCALIZACIÓN ANATÓMICA -->
+    <div class="slide" id="s8">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">CORRELACIÓN ANATÓMICA</span>
+          <h2 class="swiss-title">LOCALIZACIÓN ELECTROCARDIOGRÁFICA</h2>
+        </div>
+        <div class="swiss-num">08</div>
+      </div>
+      <div class="swiss-grid-3">
+        <div class="swiss-col">
+          <div class="swiss-col-title">V1 A V4 · ANTEROSEPTAL</div>
+          <div class="swiss-metric blue">LAD</div>
+          <p style="font-size: 15px; color: #334155;">Arteria Descendente Anterior. Mayor riesgo de shock y rotura de pared libre.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-col-title">DII, DIII, aVF · INFERIOR</div>
+          <div class="swiss-metric red">RCA</div>
+          <p style="font-size: 15px; color: #334155;">Arteria Coronaria Derecha. Asociado a BAV y compromiso de Ventrículo Derecho.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-col-title">DI, aVL, V5-V6 · LATERAL</div>
+          <div class="swiss-metric">LCx</div>
+          <p style="font-size: 15px; color: #334155;">Arteria Circunfleja. En infarto posterior tomar derivaciones V7-V9.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: CONTRAINDICACIONES TROMBÓLISIS -->
+    <div class="slide" id="s9">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">SEGURIDAD CLÍNICA</span>
+          <h2 class="swiss-title">CONTRAINDICACIONES ABSOLUTAS DE TROMBÓLISIS</h2>
+        </div>
+        <div class="swiss-num">09</div>
+      </div>
+      <div class="swiss-grid-2">
+        <div class="swiss-col" style="border-top-color: #e11d48;">
+          <div class="swiss-col-title" style="color: #e11d48;">CRITERIOS DE EXCLUSIÓN TOTAL</div>
+          <ul class="swiss-list">
+            <li>⛔ Hemorragia intracraneal previa en cualquier momento.</li>
+            <li>⛔ ACV isquémico en los últimos 6 meses.</li>
+            <li>⛔ Neoplasia o malformación vascular cerebral.</li>
+            <li>⛔ Cirugía mayor o TEC severo en &lt; 3 meses.</li>
+          </ul>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-col-title">CONDUCTA ANTE CONTRAINDICACIÓN</div>
+          <p style="font-size: 18px; color: #1e293b; line-height: 1.6;">
+            Si el paciente presenta contraindicación absoluta para trombólisis, <strong>la fibrinolisis está prohibida</strong> sin importar la distancia. Se debe coordinar traslado prioritario para <strong>Angioplastía Primaria</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: 4 TRAMPAS EUNACOM -->
+    <div class="slide" id="s10">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">HIGH-YIELD EUNACOM</span>
+          <h2 class="swiss-title">LAS 4 REGLAS CRÍTICAS DEL EXAMEN</h2>
+        </div>
+        <div class="swiss-num">10</div>
+      </div>
+      <div class="swiss-grid-2">
+        <div class="swiss-col">
+          <div class="swiss-col-title">1 · INFARTO DE VENTRÍCULO DERECHO</div>
+          <p style="font-size: 15px; color: #334155;">Prohibido usar nitroglicerina o diuréticos. Tratar con carga de volumen (SF 0.9%).</p>
+          <div class="swiss-col-title" style="margin-top: 20px;">2 · REPERFUSIÓN FALLIDA A LOS 90 MIN</div>
+          <p style="font-size: 15px; color: #334155;">Descenso del ST &lt;50% post-trombólisis exige Angioplastía de rescate inmediata.</p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-col-title">3 · BCRI NUEVO</div>
+          <p style="font-size: 15px; color: #334155;">Se considera equivalente a SCACEST con indicación de reperfusión urgente.</p>
+          <div class="swiss-col-title" style="margin-top: 20px;">4 · VENTANA &gt; 12 HORAS</div>
+          <p style="font-size: 15px; color: #334155;">Sin dolor y estable con &gt;12h: no trombolizar sistemáticamente, estudiar electivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: CASO 1 -->
+    <div class="slide" id="s11">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">CASO CLÍNICO EUNACOM 1 / 3</span>
+          <h2 class="swiss-title">DIAGNÓSTICO & CONDUCTA EN URGENCIAS</h2>
+        </div>
+        <div class="swiss-num">11</div>
+      </div>
+      <div class="swiss-qbox">
+        <div class="swiss-qstem">
+          Hombre de 58 años con dolor torácico opresivo de 45 minutos. ECG muestra SDST de 3 mm en V1-V4. PA 150/90, SatO2 96%. ¿Conducta prioritaria?
+        </div>
+        <div>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs1', 'Incorrecto. La SatO2 es normal (96%), no requiere oxígeno y no se esperan troponinas.')">A) Oxígeno por mascarilla y esperar troponinas ultrasensibles.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, true, 'fs1', '¡Correcto! En SCACEST se indica DAPT de carga (AAS + Ticagrelor) y activación inmediata de Angioplastía Primaria.')">B) AAS 250 mg masticable + Ticagrelor 180 mg y activar Angioplastía Primaria.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs1', 'Incorrecto. No se realiza trombólisis si la PCI está disponible dentro de ventana.')">C) Trombólisis con Tenecteplase y ecocardiograma previo.</button>
+        </div>
+        <div class="swiss-feedback" id="fs1"></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: CASO 2 -->
+    <div class="slide" id="s12">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">CASO CLÍNICO EUNACOM 2 / 3</span>
+          <h2 class="swiss-title">TIEMPOS DE TRASLADO & TROMBÓLISIS</h2>
+        </div>
+        <div class="swiss-num">12</div>
+      </div>
+      <div class="swiss-qbox">
+        <div class="swiss-qstem">
+          Mujer de 64 años con SCACEST anterior en hospital comunitario. Centro con hemodinamia está a 3.5 horas de distancia (&gt;120 min). ¿Manejo indicado?
+        </div>
+        <div>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs2', 'Incorrecto. 3.5 horas de traslado provocan necrosis transmural irreversible.')">A) Trasladar en ambulancia para angioplastía sin trombolizar.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, true, 'fs2', '¡Correcto! Por exceder 120 min de traslado, se debe trombolizar de inmediato con Tenecteplase en bolo + DAPT.')">B) Trombolizar de inmediato con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs2', 'Incorrecto. La trombólisis no exime de la derivación posterior a coronariografía.')">C) Trombolizar y mantener en hospital comunitario sin derivar.</button>
+        </div>
+        <div class="swiss-feedback" id="fs2"></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: CASO 3 -->
+    <div class="slide" id="s13">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">CASO CLÍNICO EUNACOM 3 / 3</span>
+          <h2 class="swiss-title">INFARTO INFERIOR & HIPOTENSIÓN</h2>
+        </div>
+        <div class="swiss-num">13</div>
+      </div>
+      <div class="swiss-qbox">
+        <div class="swiss-qstem">
+          Paciente con IAM inferior recibe Nitroglicerina y cae en shock (PA 70/40) con yugulares ingurgitadas y campos limpios. ¿Paso siguiente?
+        </div>
+        <div>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs3', 'Incorrecto. La causa es la depleción de precarga en el ventrículo derecho.')">A) Iniciar infusión de noradrenalina a dosis alta.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, true, 'fs3', '¡Correcto! Suspender nitratos y administrar volumen con Suero Fisiológico 0.9% para restablecer la precarga del VD.')">B) Suspender nitroglicerina y administrar bolo de Suero Fisiológico 0.9% EV.</button>
+          <button class="swiss-opt-btn" onclick="checkSwiss(this, false, 'fs3', 'Incorrecto. La furosemida colapsaría aún más el retorno venoso.')">C) Furosemida 40 mg EV para aliviar la ingurgitación.</button>
+        </div>
+        <div class="swiss-feedback" id="fs3"></div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: RESUMEN CHECKLIST -->
+    <div class="slide" id="s14">
+      <div class="swiss-header">
+        <div>
+          <span class="swiss-tag">RESUMEN EJECUTIVO</span>
+          <h2 class="swiss-title">CHECKLIST FINAL DE ALTA FIDELIDAD</h2>
+        </div>
+        <div class="swiss-num">14</div>
+      </div>
+      <div class="swiss-grid-3">
+        <div class="swiss-col">
+          <div class="swiss-col-title">1 · EVALUACIÓN</div>
+          <p style="font-size: 16px; color: #1e293b; line-height: 1.6;">
+            ✓ ECG &le; 10 min.<br>
+            ✓ Carga AAS 250-500mg.<br>
+            ✓ O2 solo si Sat &lt; 90%.
+          </p>
+        </div>
+        <div class="swiss-col">
+          <div class="swiss-col-title">2 · REPERFUSIÓN</div>
+          <p style="font-size: 16px; color: #1e293b; line-height: 1.6;">
+            ✓ PCI si traslado &le; 120m.<br>
+            ✓ TNK en &lt; 30m si &gt; 120m.<br>
+            ✓ Enoxaparina EV + SC.
+          </p>
+        </div>
+        <div class="swiss-col" style="border-top-color: #e11d48;">
+          <div class="swiss-col-title" style="color: #e11d48;">3 · SEGURIDAD</div>
+          <p style="font-size: 16px; color: #1e293b; line-height: 1.6;">
+            ✓ No nitratos en IAM VD.<br>
+            ✓ ST &lt;50% a 90m ➔ Rescate.<br>
+            ✓ Prevención secundaria APS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="swiss-hud">
+      <div style="font-family: 'Space Mono'; font-weight: 700; font-size: 14px;" id="s-counter">SLIDE 01 / 14</div>
+      <div>
+        <button class="swiss-nav-btn" onclick="prevS()">◀ Anterior</button>
+        <button class="swiss-nav-btn" onclick="nextS()" style="margin-left: 8px;">Siguiente ▶</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let cur = 1;
+  const tot = 14;
+
+  function fitStage() {
+    const st = document.getElementById('stage');
+    const vp = document.getElementById('viewport');
+    const sc = Math.min(vp.clientWidth / 1920, vp.clientHeight / 1080);
+    st.style.transform = `scale(${sc})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  function show(n) {
+    if (n < 1) n = 1;
+    if (n > tot) n = tot;
+    cur = n;
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i + 1 === cur));
+    document.getElementById('s-counter').innerText = `SLIDE ${String(cur).padStart(2, '0')} / ${String(tot).padStart(2, '0')}`;
+  }
+  function nextS() { show(cur + 1); }
+  function prevS() { show(cur - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextS();
+    if (e.key === 'ArrowLeft') prevS();
+  });
+
+  function checkSwiss(btn, ok, id, exp) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.swiss-opt-btn').forEach(b => { b.disabled = true; });
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById(id);
+    fb.style.display = 'block';
+    fb.innerText = (ok ? 'CORRECTO: ' : 'INCORRECTO: ') + exp;
+    fb.style.background = ok ? '#059669' : '#dc2626';
+  }
+</script>
+</body>
+</html>

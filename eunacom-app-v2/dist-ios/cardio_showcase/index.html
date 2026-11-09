@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUNACOM 2026 - Masterclass Studio Showcase (5 Complete 14-Slide Styles)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100vw; height: 100vh; overflow: hidden; background: #030712; color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    #top-bar {
+      height: 64px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center;
+      justify-content: space-between; padding: 0 24px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    }
+
+    .brand-section {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .badge-v3 {
+      background: #e11d48; color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .main-title {
+      font-size: 15px; font-weight: 800; color: #f8fafc; letter-spacing: 0.02em;
+    }
+    .main-title span { color: #38bdf8; }
+
+    .style-selector {
+      display: flex; gap: 8px;
+    }
+    .style-tab {
+      background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8; font-family: inherit; font-size: 13px; font-weight: 700; padding: 8px 14px;
+      border-radius: 8px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+    }
+    .style-tab:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
+    .style-tab.active {
+      background: #0284c7; border-color: #38bdf8; color: #ffffff;
+      box-shadow: 0 0 16px rgba(2, 132, 199, 0.45);
+    }
+
+    .info-pills {
+      display: flex; gap: 10px; align-items: center;
+    }
+    .info-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05); padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    #frame-container {
+      position: absolute; top: 64px; left: 0; right: 0; bottom: 0; background: #020617;
+    }
+    iframe {
+      width: 100%; height: 100%; border: none; display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="top-bar">
+    <div class="brand-section">
+      <span class="badge-v3">EUNACOM 2026</span>
+      <div class="main-title">CARDIOLOGÍA · CLASE 08: <span>SCACEST & GES</span> (14 SLIDES)</div>
+    </div>
+
+    <div class="style-selector">
+      <button class="style-tab active" onclick="loadStyle('style1_cyberpunk.html', this)">
+        <span>⚡ 1. Clinical Cyberpunk</span>
+      </button>
+      <button class="style-tab" onclick="loadStyle('style2_swiss.html', this)">
+        <span>◻️ 2. Swiss Surgical</span>
+      </button>
+      <button class="style-tab" onclick="loadStyle('style3_nordic.html', this)">
+        <span>✨ 3. Dark Botanical</span>
+      </button>
+      <button class="style-tab" onclick="loadStyle('style4_bento.html', this)">
+        <span>📊 4. Modern Bento</span>
+      </button>
+      <button class="style-tab" onclick="loadStyle('style5_atlas.html', this)">
+        <span>📖 5. Medical Atlas</span>
+      </button>
+    </div>
+
+    <div class="info-pills">
+      <a href="Manual_Oficial_Cardiologia_EUNACOM_2026_Alta_Densidad.pdf" target="_blank" class="info-tag" style="color: #34d399; text-decoration: none; font-weight: 700; border-color: #059669; background: rgba(5, 150, 105, 0.25); font-size: 11px;">
+        📘 Libro Completo 2026 (59 Págs · 23 Clases · Reconstrucciones Reales)
+      </a>
+      <a href="Bloque_I_Arritmias_Full_Length_EUNACOM.pdf" target="_blank" class="info-tag" style="color: #fbbf24; text-decoration: none; font-weight: 700; border-color: #d97706; background: rgba(217, 119, 6, 0.2);">
+        ⭐ Bloque I (Arritmias 17 Págs)
+      </a>
+      <a href="Capitulo_08_SCACEST.pdf" target="_blank" class="info-tag" style="color: #38bdf8; text-decoration: none; font-weight: 700; border-color: #0284c7; background: rgba(2, 132, 199, 0.2);">
+        📑 Cap. 08 SCACEST
+      </a>
+      <span class="info-tag">1920×1080 Stage</span>
+    </div>
+  </div>
+
+  <div id="frame-container">
+    <iframe id="slide-frame" src="style1_cyberpunk.html"></iframe>
+  </div>
+
+  <script>
+    function loadStyle(file, btn) {
+      document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('slide-frame').src = file;
+    }
+  </script>
+</body>
+</html>

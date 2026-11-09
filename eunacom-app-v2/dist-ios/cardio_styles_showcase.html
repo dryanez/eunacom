@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUNACOM 2026 - Cardiology Slide Design Styles (5 Distinct Aesthetics)</title>
+  <!-- Google Fonts for all 5 styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Inter+Tight:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VIEWPORT BASE & STAGE SCALING (Mandatory frontend-slides invariant)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #030712;
+      color: #f3f4f6;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    /* Style Switcher Top Bar */
+    #style-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 10000;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      background: #e11d48;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .style-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .style-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .style-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .style-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(2, 132, 199, 0.5);
+    }
+
+    .slide-nav-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    /* Fixed 16:9 Viewport Stage */
+    #viewport {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #020617;
+      overflow: hidden;
+    }
+
+    #stage-container {
+      width: 1920px;
+      height: 1080px;
+      transform-origin: center center;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .slide-view {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .slide-view.active {
+      display: block;
+    }
+
+    /* ==========================================================================
+       STYLE 1: CLINICAL CYBERPUNK / ELECTRIC TELEMETRY DARK
+       ========================================================================== */
+    .style-cyber {
+      background: #070b14;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      padding: 60px 80px;
+    }
+
+    .style-cyber::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .style-cyber .glow-orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+
+    .style-cyber .cyber-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      padding-bottom: 24px;
+    }
+
+    .style-cyber .cyber-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .style-cyber .cyber-title span {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .style-cyber .telemetry-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid #00f2fe;
+      padding: 8px 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .style-cyber .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .style-cyber .cyber-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      height: calc(100% - 150px);
+    }
+
+    .style-cyber .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .style-cyber .glass-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: #00f2fe;
+    }
+
+    .style-cyber .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .style-cyber .timeline-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 800;
+      color: #38bdf8;
+      min-width: 120px;
+    }
+
+    .style-cyber .timeline-content h4 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .style-cyber .timeline-content p {
+      font-size: 16px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    .style-cyber .alert-banner {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #fca5a5;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       STYLE 2: SWISS MEDICAL MINIMALIST / PURE SURGICAL WHITE
+       ========================================================================== */
+    .style-swiss {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter Tight', 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      padding: 70px 90px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .style-swiss .swiss-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 4px solid #0f172a;
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+    }
+
+    .style-swiss .swiss-num {
+      font-size: 96px;
+      font-weight: 900;
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      color: #0f172a;
+    }
+
+    .style-swiss .swiss-headline {
+      font-size: 46px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #0f172a;
+    }
+
+    .style-swiss .swiss-tag {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: #e11d48;
+      color: #ffffff;
+      padding: 6px 14px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .style-swiss .swiss-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .style-swiss .swiss-col {
+      border-top: 2px solid #0f172a;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .style-swiss .swiss-col-header {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    .style-swiss .swiss-metric {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .style-swiss .swiss-metric.accent-red {
+      color: #e11d48;
+    }
+
+    .style-swiss .swiss-desc {
+      font-size: 16px;
+      color: #334155;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .style-swiss .swiss-checklist {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .style-swiss .swiss-checklist li {
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       STYLE 3: NORDIC DARK BOTANICAL / LUXURY EDITORIAL SLATE
+       ========================================================================== */
+    .style-nordic {
+      background: #0b0f19;
+      color: #e2e8f0;
+      font-family: 'Outfit', sans-serif;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      padding: 70px 90px;
+      overflow: hidden;
+    }
+
+    .style-nordic .nordic-blob {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(251, 113, 133, 0.06) 40%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    .style-nordic .nordic-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 24px;
+      margin-bottom: 50px;
+    }
+
+    .style-nordic .nordic-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 700;
+      font-style: italic;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .style-nordic .nordic-sub {
+      font-size: 16px;
+      color: #d97706;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+    }
+
+    .style-nordic .nordic-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .style-nordic .nordic-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .style-nordic .nordic-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 16px;
+    }
+
+    .style-nordic .nordic-card p {
+      font-size: 17px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .style-nordic .golden-tag {
+      display: inline-block;
+      border: 1px solid #f59e0b;
+      color: #fbbf24;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ==========================================================================
+       STYLE 4: MODERN BENTO GRID / CLINICAL SAAS DASHBOARD
+       ========================================================================== */
+    .style-bento {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Manrope', sans-serif;
+      height: 100%;
+      width: 100%;
+      padding: 50px 70px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .style-bento .bento-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .style-bento .bento-title {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .style-bento .bento-badge-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .style-bento .bento-badge {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .style-bento .bento-badge.blue { background: #0284c7; color: #ffffff; }
+    .style-bento .bento-badge.purple { background: #7c3aed; color: #ffffff; }
+
+    .style-bento .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+
+    .style-bento .bento-box {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .style-bento .bento-box:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .style-bento .box-span-7 { grid-column: span 7; }
+    .style-bento .box-span-5 { grid-column: span 5; }
+    .style-bento .box-span-4 { grid-column: span 4; }
+    .style-bento .box-span-8 { grid-column: span 8; }
+
+    .style-bento .bento-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .style-bento .bento-box h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .style-bento .bento-box p {
+      font-size: 15px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       STYLE 5: TACTILE MEDICAL ATLAS / NOTEBOOK TABS
+       ========================================================================== */
+    .style-atlas {
+      background: #23272e;
+      color: #1c1917;
+      font-family: 'DM Sans', sans-serif;
+      height: 100%;
+      width: 100%;
+      padding: 40px;
+      display: flex;
+    }
+
+    .style-atlas .atlas-paper {
+      background: #fbf9f4;
+      flex: 1;
+      border-radius: 12px 0 0 12px;
+      padding: 50px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .style-atlas .atlas-tabs {
+      width: 80px;
+      background: #1a1d24;
+      border-radius: 0 12px 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 30px 0;
+    }
+
+    .style-atlas .atlas-tab-pill {
+      background: #334155;
+      color: #ffffff;
+      padding: 14px 8px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    .style-atlas .atlas-tab-pill.active {
+      background: #b91c1c;
+      color: #ffffff;
+      width: 95px;
+    }
+
+    .style-atlas .atlas-head {
+      border-bottom: 2px solid #e7e5e4;
+      padding-bottom: 20px;
+    }
+
+    .style-atlas .atlas-chapter {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #b91c1c;
+      text-transform: uppercase;
+    }
+
+    .style-atlas .atlas-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: #1c1917;
+      margin-top: 4px;
+    }
+
+    .style-atlas .atlas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 24px;
+    }
+
+    .style-atlas .atlas-box {
+      border: 1px dashed #d6d3d1;
+      padding: 24px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .style-atlas .atlas-box h4 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 10px;
+    }
+
+    .style-atlas .atlas-box p {
+      font-size: 15px;
+      color: #57534e;
+      line-height: 1.6;
+    }
+
+    .style-atlas .atlas-stamp {
+      border: 2px solid #b91c1c;
+      color: #b91c1c;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      transform: rotate(-3deg);
+      border-radius: 4px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Style Selector Bar -->
+  <div id="style-bar">
+    <div class="brand-title">
+      <span class="brand-badge">EUNACOM 2026</span>
+      <span>CARDIOLOGY MASTERCLASS · 5 PRESENTATION STYLES</span>
+    </div>
+
+    <div class="style-buttons">
+      <button class="style-btn active" onclick="switchStyle('cyber')">
+        <span>⚡ 1. Clinical Cyberpunk</span>
+      </button>
+      <button class="style-btn" onclick="switchStyle('swiss')">
+        <span>◻️ 2. Swiss Surgical</span>
+      </button>
+      <button class="style-btn" onclick="switchStyle('nordic')">
+        <span>✨ 3. Dark Botanical</span>
+      </button>
+      <button class="style-btn" onclick="switchStyle('bento')">
+        <span>📊 4. Modern Bento</span>
+      </button>
+      <button class="style-btn" onclick="switchStyle('atlas')">
+        <span>📖 5. Medical Atlas</span>
+      </button>
+    </div>
+
+    <div class="slide-nav-pills">
+      <span style="font-size: 12px; color: #94a3b8; margin-right: 8px;">Clase: cardio-08 (SCACEST GES)</span>
+    </div>
+  </div>
+
+  <!-- Main 16:9 Fixed Viewport -->
+  <div id="viewport">
+    <div id="stage-container">
+
+      <!-- ====================================================================
+           SLIDE VIEW 1: CLINICAL CYBERPUNK
+           ==================================================================== -->
+      <div id="view-cyber" class="slide-view active">
+        <div class="style-cyber">
+          <div class="glow-orb" style="top: -100px; left: -100px;"></div>
+          <div class="glow-orb" style="bottom: -100px; right: -100px; background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);"></div>
+
+          <div class="cyber-header">
+            <div>
+              <div style="font-family: 'JetBrains Mono'; font-size: 14px; color: #38bdf8; font-weight: 700; margin-bottom: 8px;">
+                MÓDULO 1: CARDIOLOGÍA · CLASE 08 (CÓD: 1.01.2.002 / 1.01.3.005)
+              </div>
+              <h1 class="cyber-title">SCACEST: <span>Protocolo Reperfusión GES</span></h1>
+            </div>
+            <div class="telemetry-pill">
+              <div class="pulse-dot"></div>
+              <span>VENTANA ISQUÉMICA: &lt; 12 HORAS</span>
+            </div>
+          </div>
+
+          <div class="cyber-grid">
+            <div class="glass-card">
+              <div>
+                <h3 style="font-size: 24px; font-weight: 800; color: #38bdf8; margin-bottom: 24px;">
+                  Algoritmo de Elección de Reperfusión (Guías MINSAL / ESC)
+                </h3>
+
+                <div class="timeline-item">
+                  <div class="timeline-time">&lt; 120 MIN</div>
+                  <div class="timeline-content">
+                    <h4>Angioplastía Primaria (PCI) · Gold Standard</h4>
+                    <p>Meta Puerta-Balón &lt; 90 min en centro con hemodinamia (o &lt; 120 min si requiere traslado). DAPT inmediata: AAS 250-500mg + Ticagrelor 180mg.</p>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-time">&gt; 120 MIN</div>
+                  <div class="timeline-content">
+                    <h4>Trombólisis Sistémica Inmediata (Tenecteplase)</h4>
+                    <p>Meta Puerta-Aguja &lt; 30 min en hospital periférico / SAMU. Bolo peso-adaptado + DAPT (AAS + Clopidogrel 300mg si ≤75a).</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert-banner">
+                <span style="font-size: 24px;">⚠️</span>
+                <span><strong>CRITERIO DE ÉXITO:</strong> Descenso &gt;50% del supradesnivel del ST a los 60-90 min post-trombólisis + alivio del dolor. Si falla ➔ Angioplastía de rescate inmediata.</span>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="glass-card" style="flex: 1;">
+                <h4 style="font-family: 'JetBrains Mono'; font-size: 14px; color: #10b981; margin-bottom: 12px;">
+                  TRATAMIENTO MÉDICO COADYUVANTE (MONA-B)
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
+                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+                    <span style="color: #94a3b8;">AAS (Carga):</span>
+                    <strong style="color: #fff;">250 - 500 mg masticable</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+                    <span style="color: #94a3b8;">Anticoagulación:</span>
+                    <strong style="color: #fff;">Enoxaparina 30mg EV + 1mg/kg SC</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+                    <span style="color: #94a3b8;">Estatina Alta Potencia:</span>
+                    <strong style="color: #fff;">Atorvastatina 80 mg VO</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #94a3b8;">Oxígeno:</span>
+                    <strong style="color: #ef4444;">Solo si SatO2 &lt; 90%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+                <h4 style="font-family: 'JetBrains Mono'; font-size: 13px; color: #fca5a5; margin-bottom: 6px;">
+                  PROHIBICIÓN ESTRICTA EUNACOM
+                </h4>
+                <p style="font-size: 14px; color: #fecaca; line-height: 1.4;">
+                  Contraindicados Nitratos y Betabloqueadores en <strong>IAM de Pared Inferior con sospecha de Ventrículo Derecho</strong> (V3R-V4R) o Shock Cardiogénico.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           SLIDE VIEW 2: SWISS SURGICAL MINIMALIST
+           ==================================================================== -->
+      <div id="view-swiss" class="slide-view">
+        <div class="style-swiss">
+          <div class="swiss-topbar">
+            <div>
+              <span class="swiss-tag">CARDIOLOGÍA · PERFIL V3 · CÓD 1.01.2.002</span>
+              <h1 class="swiss-headline">SCACEST & PROTOCOLO DE REPERFUSIÓN</h1>
+            </div>
+            <div class="swiss-num">08</div>
+          </div>
+
+          <div class="swiss-grid">
+            <div class="swiss-col">
+              <div>
+                <div class="swiss-col-header">01 · VENTANA & PCI PRIMARIA</div>
+                <div class="swiss-metric accent-red">&lt; 90 MIN</div>
+                <p class="swiss-desc">
+                  Meta Puerta-Balón para Angioplastía Primaria. Es el tratamiento de 1ra elección si el tiempo de traslado con hemodinamia es menor a 120 minutos.
+                </p>
+              </div>
+              <ul class="swiss-checklist">
+                <li>✓ Acceso radial preferente</li>
+                <li>✓ Stent farmacoactivo (DES)</li>
+                <li>✓ DAPT: AAS + Ticagrelor 180mg</li>
+              </ul>
+            </div>
+
+            <div class="swiss-col">
+              <div>
+                <div class="swiss-col-header">02 · TROMBÓLISIS DE RESCATE</div>
+                <div class="swiss-metric">&lt; 30 MIN</div>
+                <p class="swiss-desc">
+                  Meta Puerta-Aguja con Tenecteplase (TNK) en bolo único si el traslado a hemodinamia excede 120 minutos.
+                </p>
+              </div>
+              <ul class="swiss-checklist">
+                <li>✓ Evaluar contraindicaciones absolutas</li>
+                <li>✓ Dosis TNK según peso del paciente</li>
+                <li>✓ ECG control a los 60 y 90 minutos</li>
+              </ul>
+            </div>
+
+            <div class="swiss-col" style="background: #f8fafc; padding: 24px; border: 2px solid #0f172a;">
+              <div>
+                <div class="swiss-col-header" style="color: #e11d48;">03 · REGLAS DE ORO EUNACOM</div>
+                <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 12px; line-height: 1.3;">
+                  Criterios Clínicos de Alto Impacto
+                </div>
+                <p class="swiss-desc" style="font-size: 14px;">
+                  1. <strong>Bloqueo Completo de Rama Izquierda (BCRI) nuevo o presumiblemente nuevo</strong> con clínica isquémica se maneja como SCACEST.<br><br>
+                  2. <strong>Criterios de Sgarbossa</strong> para diagnosticar IAM en presencia de BCRI previo.<br><br>
+                  3. Derivación hemodinámica inmediata en Shock Cardiogénico (Killip IV).
+                </p>
+              </div>
+              <div style="font-size: 12px; font-weight: 900; color: #64748b; text-transform: uppercase;">
+                GARANTÍA EXPLÍCITA EN SALUD (GES 2026)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           SLIDE VIEW 3: NORDIC DARK BOTANICAL
+           ==================================================================== -->
+      <div id="view-nordic" class="slide-view">
+        <div class="style-nordic">
+          <div class="nordic-blob"></div>
+
+          <div class="nordic-header">
+            <div>
+              <div class="nordic-sub">Medicina Interna · Máster EUNACOM 2026</div>
+              <h1 class="nordic-title">Síndrome Coronario Agudo con Supradesnivel del ST</h1>
+            </div>
+            <div class="golden-tag">Perfil Legal V3 · Urgencia Crítica</div>
+          </div>
+
+          <div class="nordic-body">
+            <div class="nordic-card">
+              <h3>Estrategia Invasiva vs Farmacológica</h3>
+              <p>
+                El tiempo es miocardio. En pacientes con dolor torácico isquémico y supradesnivel del ST ≥ 1 mm en 2 derivaciones contiguas (o ≥ 2 mm en V2-V3), la meta diagnóstica y terapéutica es la recanalización arterial inmediata.
+              </p>
+
+              <div style="display: flex; gap: 20px; margin-top: 30px;">
+                <div style="flex: 1; border-left: 2px solid #f59e0b; padding-left: 16px;">
+                  <div style="font-size: 28px; font-weight: 700; color: #ffffff; font-family: 'Cormorant Garamond';">Angioplastía</div>
+                  <div style="font-size: 14px; color: #d97706; font-weight: 600;">&lt; 90 min en centro</div>
+                </div>
+                <div style="flex: 1; border-left: 2px solid #fb7185; padding-left: 16px;">
+                  <div style="font-size: 28px; font-weight: 700; color: #ffffff; font-family: 'Cormorant Garamond';">Tenecteplase</div>
+                  <div style="font-size: 14px; color: #fb7185; font-weight: 600;">&lt; 30 min en periferia</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nordic-card" style="background: rgba(245, 158, 11, 0.04); border-color: rgba(245, 158, 11, 0.2);">
+              <h3 style="color: #f59e0b;">Perlas Diagnósticas & Trampas</h3>
+              <p>
+                En el EUNACOM se evalúa constantemente la diferenciación anatómica por electrocardiograma:
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; color: #cbd5e1;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="color: #fbbf24; font-size: 18px;">◆</span>
+                  <span><strong>Derivaciones DII, DIII, aVF:</strong> Coronaria Derecha (Sospechar compromiso de VD).</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="color: #fbbf24; font-size: 18px;">◆</span>
+                  <span><strong>Derivaciones V1 a V4:</strong> Arteria Descendente Anterior (Mayor riesgo de Shock y Fallo de Bomba).</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="color: #fbbf24; font-size: 18px;">◆</span>
+                  <span><strong>Derivaciones DI, aVL, V5-V6:</strong> Arteria Circunfleja / Lateral Alta.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           SLIDE VIEW 4: MODERN BENTO GRID
+           ==================================================================== -->
+      <div id="view-bento" class="slide-view">
+        <div class="style-bento">
+          <div class="bento-head">
+            <div>
+              <h1 class="bento-title">SCACEST: Protocolo GES y Manejo Integral</h1>
+              <div style="font-size: 15px; color: #94a3b8;">Clase cardio-08 · Perfil V3 (1.01.2.002 / 1.01.3.005)</div>
+            </div>
+            <div class="bento-badge-group">
+              <div class="bento-badge blue">GUÍA GES 2026</div>
+              <div class="bento-badge purple">STEP 2 CK LEVEL</div>
+            </div>
+          </div>
+
+          <div class="bento-grid">
+            <div class="bento-box box-span-7">
+              <div>
+                <h4>Algoritmo de Reperfusión</h4>
+                <h3>Elección entre PCI y Fibrinolisis</h3>
+                <p>
+                  Si tiempo desde el primer contacto médico hasta el inflado del balón es <strong>&le; 120 min</strong>, trasladar para PCI primaria. Si es <strong>&gt; 120 min</strong>, administrar bolo de Tenecteplase en &le; 30 min y trasladar para angiografía sistemática (2-24h).
+                </p>
+              </div>
+              <div style="display: flex; gap: 16px; margin-top: 14px;">
+                <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;">PCI &lt; 90m</span>
+                <span style="background: rgba(244, 63, 94, 0.15); color: #fb7185; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;">TNK &lt; 30m</span>
+                <span style="background: rgba(52, 211, 153, 0.15); color: #34d399; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;">DAPT Inmediata</span>
+              </div>
+            </div>
+
+            <div class="bento-box box-span-5" style="background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);">
+              <div>
+                <h4 style="color: #a78bfa;">Antiagregación Dual (DAPT)</h4>
+                <h3 style="font-size: 22px;">Dosis de Carga Inicial</h3>
+                <p style="font-size: 14px;">
+                  • <strong>AAS:</strong> 250 a 500 mg masticable oral.<br>
+                  • <strong>Ticagrelor:</strong> 180 mg (PCI preferente).<br>
+                  • <strong>Clopidogrel:</strong> 300 mg (si fibrinolisis, o 75 mg en &gt;75 años).
+                </p>
+              </div>
+            </div>
+
+            <div class="bento-box box-span-4">
+              <div>
+                <h4 style="color: #34d399;">Score Killip-Kimball</h4>
+                <h3 style="font-size: 20px;">Estratificación de Riesgo</h3>
+                <p style="font-size: 13px;">
+                  <strong>I:</strong> Sin congestión (Mortalidad 6%).<br>
+                  <strong>II:</strong> Crepitaciones basales / R3 (17%).<br>
+                  <strong>III:</strong> Edema pulmonar agudo (38%).<br>
+                  <strong>IV:</strong> Shock cardiogénico (81%).
+                </p>
+              </div>
+            </div>
+
+            <div class="bento-box box-span-8" style="border-color: rgba(239, 68, 68, 0.3);">
+              <div>
+                <h4 style="color: #f87171;">Contraindicaciones Absolutas de Fibrinolisis</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; font-size: 13px; color: #cbd5e1;">
+                  <div>• Hemorragia intracraneal previa (cualquier momento).</div>
+                  <div>• ACV isquémico en los últimos 6 meses.</div>
+                  <div>• Neoplasia o malformación vascular del SNC.</div>
+                  <div>• Traumatismo craneoencefálico grave reciente (&lt;3 meses).</div>
+                  <div>• Sospecha de Disección Aórtica Aguda.</div>
+                  <div>• Sangrado digestivo activo en el último mes.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           SLIDE VIEW 5: TACTILE MEDICAL ATLAS / NOTEBOOK TABS
+           ==================================================================== -->
+      <div id="view-atlas" class="slide-view">
+        <div class="style-atlas">
+          <div class="atlas-paper">
+            <div class="atlas-head">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="atlas-chapter">EUNACOM V3 · SECCIÓN 1.01 · CLASE 08</div>
+                <div class="atlas-stamp">URGENCIA GES CHILE</div>
+              </div>
+              <h1 class="atlas-title">Infarto Agudo al Miocardio con Supradesnivel ST</h1>
+            </div>
+
+            <div class="atlas-grid">
+              <div class="atlas-box">
+                <h4>Diagnóstico Electrocardiográfico</h4>
+                <p>
+                  Supradesnivel del punto J persistente en ≥ 2 derivaciones contiguas:
+                </p>
+                <div style="margin-top: 12px; font-size: 14px; color: #1c1917;">
+                  • <strong>V2-V3:</strong> ≥ 2.0 mm (hombres ≥ 40a), ≥ 2.5 mm (hombres &lt; 40a), o ≥ 1.5 mm (mujeres).<br>
+                  • <strong>Otras derivaciones:</strong> ≥ 1.0 mm.<br>
+                  • <strong>BCRI nuevo:</strong> Equivalente de SCACEST.
+                </div>
+              </div>
+
+              <div class="atlas-box">
+                <h4>Manejo Clínico Escalonado</h4>
+                <p>
+                  Prioridad #1: Reperfusión coronaria antes de que se complete la necrosis transmural.
+                </p>
+                <div style="margin-top: 12px; font-size: 14px; color: #1c1917;">
+                  • <strong>PCI Primaria:</strong> Centro &lt; 120 min de traslado.<br>
+                  • <strong>Fibrinolisis TNK:</strong> Periferia en &lt; 30 min.<br>
+                  • <strong>Enoxaparina + Estatina:</strong> En todos los casos sin contraindicación.
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #f5f5f4; border-left: 4px solid #b91c1c; padding: 16px 20px; border-radius: 0 8px 8px 0;">
+              <strong style="color: #b91c1c; font-size: 14px; text-transform: uppercase;">Perla Clave de Examen:</strong>
+              <div style="font-size: 14px; color: #44403c; margin-top: 4px;">
+                Si un paciente presenta IAM de pared inferior y se administra Nitroglicerina, cayendo en hipotensión severa y shock, la conducta inmediata es <strong>suspender el nitrato y administrar bolo de Suero Fisiológico 0.9%</strong> para restaurar la precarga del ventrículo derecho.
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Tabs on the Right -->
+          <div class="atlas-tabs">
+            <div class="atlas-tab-pill active">08 · SCACEST</div>
+            <div class="atlas-tab-pill">09 · MECÁNICAS</div>
+            <div class="atlas-tab-pill">10 · IC CRÓNICA</div>
+            <div class="atlas-tab-pill">11 · GDMT</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Viewport Scaling & Switcher Script -->
+  <script>
+    function fitStage() {
+      const container = document.getElementById('stage-container');
+      const viewport = document.getElementById('viewport');
+      
+      const vW = viewport.clientWidth;
+      const vH = viewport.clientHeight;
+      
+      const targetW = 1920;
+      const targetH = 1080;
+      
+      const scale = Math.min(vW / targetW, vH / targetH);
+      container.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', fitStage);
+    fitStage();
+
+    function switchStyle(styleName) {
+      // Switch buttons
+      document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      // Switch views
+      document.querySelectorAll('.slide-view').forEach(view => view.classList.remove('active'));
+      const targetView = document.getElementById('view-' + styleName);
+      if (targetView) targetView.classList.add('active');
+    }
+  </script>
+</body>
+</html>

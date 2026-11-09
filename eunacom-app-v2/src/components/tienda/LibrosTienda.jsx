@@ -1,3 +1,4 @@
+import { isAndroidApp } from '../../lib/playBilling'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
@@ -337,7 +338,7 @@ export default function LibrosTienda() {
             <h2>Preguntas frecuentes</h2>
             <details open><summary>¿Cómo leo los libros?</summary><p>En línea, dentro de la app: quedan en «Mis libros» de tu cuenta y los abres en el computador, la tablet o el celular. No se descargan.</p></details>
             <details><summary>¿Los libros vencen?</summary><p>No. Es un pago único y el acceso a lo que compras no vence. La app, en cambio, se contrata por meses.</p></details>
-            <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago (Webpay, débito o crédito), Apple Pay, Google Pay o PayPal (en dólares), o por transferencia.</p></details>
+            {!isAndroidApp() && <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago (Webpay, débito o crédito), Apple Pay, Google Pay o PayPal (en dólares), o por transferencia.</p></details>}
             <details><summary>¿Sirve el código SHORTS20 en los libros?</summary><p>SHORTS20 es para los planes de la app (20 % en cualquier plan). Los packs de libros ya vienen con el descuento aplicado.</p></details>
           </section>
         </>

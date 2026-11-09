@@ -4,10 +4,17 @@ import { useAuth } from '../../contexts/AuthContext'
 import { createBookCheckout, createBookPaypalOrder } from '../../lib/api'
 import { PRODUCTS, TRANSFER, cartTotal, fmtClp, usdPrice } from '../../config/tienda'
 import PayButtons from '../PayButtons'
+import PlayBookCheckout from './PlayBookCheckout'
+import { isAndroidApp } from '../../lib/playBilling'
 
 // Pago del carro de libros: Mercado Pago (CLP) o PayPal en USD (con Apple Pay / Google Pay);
 // ambos desbloquean solos. Transferencia: el admin lo registra en Admin → Libros.
-export default function BookCheckoutModal({ skus, onClose, onPaid }) {
+export default function BookCheckoutModal(props) {
+  if (isAndroidApp()) return <PlayBookCheckout {...props} />
+  return <WebBookCheckout {...props} />
+}
+
+function WebBookCheckout({ skus, onClose, onPaid }) {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
