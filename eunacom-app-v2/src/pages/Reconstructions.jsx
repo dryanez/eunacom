@@ -712,21 +712,7 @@ const Reconstructions = () => {
             </div>
           </div>
 
-          {/* Pro Max Tabs Switcher */}
-          <div className="promax-tab-bar">
-            <button
-              onClick={() => { setActiveTab('exams'); setSelectedTopic(null) }}
-              className={`promax-tab-btn ${activeTab === 'exams' ? 'active' : ''}`}
-            >
-              <FileText size={16} /> Por Examen Oficial
-            </button>
-            <button
-              onClick={() => { setActiveTab('topics'); setSelectedTopic(null) }}
-              className={`promax-tab-btn ${activeTab === 'topics' ? 'active' : ''}`}
-            >
-              <Flame size={16} /> Temas Más Preguntados
-            </button>
-          </div>
+          {/* Midnight Pro: solo «Por examen oficial» (se quitó «Temas más preguntados») */}
 
           {/* Tab: Exams */}
           {activeTab === 'exams' && years.map(year => (

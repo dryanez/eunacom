@@ -640,185 +640,69 @@ const Dashboard = () => {
         />
       )}
 
-      {/* ─── STATS GRID (logged-in only) ─── */}
+      {/* ─── TU PROGRESO (Midnight Pro) ─── */}
       {user && (
-        <>
-          <div className="stats-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)', overflowX: 'auto', flexWrap: 'nowrap', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', paddingBottom: '0.2rem' }}>
-            <style>{`.stats-tabs::-webkit-scrollbar { display: none; }`}</style>
+        <section className="mn-sec">
+          <div className="mn-sec-head"><h2>Tu progreso</h2></div>
+          <div className="mn-chips">
             {[
-                { id: 'general', label: 'General' },
-                { id: 'clases', label: 'Clases' },
-                { id: 'reconstructions', label: 'Reconstrucciones' },
-                { id: 'custom', label: 'Exámenes Práctica' },
+              { id: 'general', label: 'General' },
+              { id: 'clases', label: 'Clases' },
+              { id: 'reconstructions', label: 'Reconstrucciones' },
+              { id: 'custom', label: 'Exámenes' },
             ].map(tab => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ flexShrink: 0, whiteSpace: 'nowrap', padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
-                  {tab.label}
-                </button>
+              <button key={tab.id} className={activeTab === tab.id ? 'on' : ''} onClick={() => setActiveTab(tab.id)}>{tab.label}</button>
             ))}
           </div>
-          <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
-            {/* Accuracy */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><PieChart size={18} color="var(--primary-300)" /></div>
-                Puntaje
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', padding: '0.75rem 0' }}>
-                <div className="donut-wrapper">
-                  <svg viewBox="0 0 36 36" className="circular-chart">
-                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
-                    <path strokeDasharray={`${accuracy}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--primary-400)'} strokeWidth="3" strokeLinecap="round" />
-                  </svg>
-                  <div className="donut-center">
-                    <div className="donut-value" style={{ fontSize: '1.1rem' }}>{accuracy}%</div>
-                    <div className="donut-label">Correctas</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Total questions */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><FileText size={18} color="var(--primary-300)" /></div>
-                Respondidas
-              </div>
-              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-                <div className="stat-card__value">{currentAnswered.toLocaleString()}</div>
-                <div className="stat-card__sub">{currentCorrect} correctas</div>
-              </div>
-            </div>
-
-            {/* Exámenes */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Activity size={18} color="var(--accent-teal)" /></div>
-                Exámenes
-              </div>
-              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-                <div className="stat-card__value">{currentExams || 0}</div>
-                <div className="stat-card__sub">Completados</div>
-              </div>
-            </div>
-
-          {/* Daily goal */}
-          <div className="stat-card">
-            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Target size={18} color={dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-300)'} /></div>
-              Meta Diaria
-            </div>
-            <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-              <div className="stat-card__value" style={{ color: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--surface-50)', WebkitTextFillColor: 'initial', background: 'none' }}>
-                {todayAnswers}<span style={{ color: 'var(--surface-400)', fontSize: '1.5rem', fontWeight: 600 }}>/{DAILY_GOAL}</span>
-              </div>
-              <div style={{ margin: '0.5rem auto 0', width: '80%' }}>
-                <div className="xp-bar" style={{ height: 6 }}>
-                  <div className="xp-bar__fill" style={{ width: `${dailyPct}%`, background: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-400)' }} />
-                </div>
-              </div>
-              {dailyPct >= 100 && <div style={{ fontSize: '0.75rem', color: 'var(--accent-green)', fontWeight: 600, marginTop: 4 }}>✅ ¡Meta cumplida!</div>}
+          <div className="mn-stats">
+            <div className="mn-stat"><b className="mn-blue">{accuracy}%</b><span>Correctas</span></div>
+            <div className="mn-stat"><b>{currentAnswered.toLocaleString('es-CL')}</b><span>Respondidas</span></div>
+            <div className="mn-stat"><b>{(currentExams || 0).toLocaleString('es-CL')}</b><span>Exámenes</span></div>
+            <div className="mn-stat"><b>{todayAnswers}<small>/{DAILY_GOAL}</small></b><span>Meta de hoy</span>
+              <span className="mn-bar"><b style={{ width: `${Math.max(3, Math.min(100, (todayAnswers / DAILY_GOAL) * 100))}%` }} /></span>
             </div>
           </div>
-        </div>
-        </>
+        </section>
       )}
 
-      {/* ─── TEMAS Y CLASES EUNACOM (MEDSCHOOL TOPIC CARDS) ─── */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: '10px',
-              background: 'rgba(56, 189, 248, 0.12)',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#0284c7'
-            }}>
-              <BookOpen size={18} />
-            </div>
-            <div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--surface-50)', margin: 0, letterSpacing: '-0.01em' }}>
-                Temas y Especialidades
-              </h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--surface-400)', margin: '2px 0 0', fontWeight: 500 }}>
-                Progreso curricular, videoclases y banco de preguntas por área
-              </p>
-            </div>
-          </div>
-
-          {/* Module Filter Segmented Control */}
-          <div style={{
-            display: 'inline-flex',
-            background: 'var(--surface-700)',
-            padding: '4px',
-            borderRadius: '10px',
-            border: '1px solid var(--surface-600)',
-            gap: '3px',
-            overflowX: 'auto',
-            maxWidth: '100%',
-            scrollbarWidth: 'none',
-          }}>
-            {[
-              { key: 'all', label: 'Todos' },
-              { key: 'modulo-1', label: 'Medicina Interna' },
-              { key: 'modulo-2', label: 'Cirugía & Especialidades' },
-              { key: 'modulo-3', label: 'Pediatría & Gineco' },
-            ].map(f => (
-              <button
-                key={f.key}
-                onClick={() => setTopicModuleFilter(f.key)}
-                style={{
-                  padding: '0.4rem 0.85rem',
-                  borderRadius: '7px',
-                  border: 'none',
-                  background: topicModuleFilter === f.key ? 'var(--surface-800)' : 'transparent',
-                  color: topicModuleFilter === f.key ? 'var(--primary-600)' : 'var(--surface-400)',
-                  boxShadow: topicModuleFilter === f.key ? 'var(--shadow-sm)' : 'none',
-                  fontSize: '0.78rem',
-                  fontWeight: topicModuleFilter === f.key ? 700 : 500,
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+      {/* ─── TEMAS Y ESPECIALIDADES (Midnight Pro) ─── */}
+      <section className="mn-sec">
+        <div className="mn-sec-head">
+          <h2>Temas y especialidades</h2>
+          <span className="mn-sub">Preguntas, clases y dominio por tema</span>
         </div>
-
-        {/* Responsive Grid of MedSchool Topic Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1.25rem',
-        }}>
+        <div className="mn-chips">
+          {[
+            { key: 'all', label: 'Todos' },
+            { key: 'modulo-1', label: 'Medicina Interna' },
+            { key: 'modulo-2', label: 'Cirugía y especialidades' },
+            { key: 'modulo-3', label: 'Materno-infantil' },
+          ].map(f => (
+            <button key={f.key} className={topicModuleFilter === f.key ? 'on' : ''} onClick={() => setTopicModuleFilter(f.key)}>{f.label}</button>
+          ))}
+        </div>
+        <div className="mn-card mn-list mn-topics">
           {topicsList
             .filter(t => topicModuleFilter === 'all' || t.module === topicModuleFilter)
-            .map((t, idx) => (
-              <TopicCard
-                key={t.topic || idx}
-                topic={t.topic}
-                specialty={t.specialty}
-                tag={t.tag}
-                questionsCount={t.questionsCount}
-                classesCount={t.classesCount}
-                completedClasses={t.completedClasses}
-                correctCount={t.correctCount}
-                wrongCount={t.wrongCount}
-                masteryPct={t.masteryPct}
-                onClick={() => setSelectedTopicForModal(t)}
-                onDirectNavigate={() => {
-                  navigate('/mis-clases', { state: { specialty: t.specialty, subsystem: t.topic } })
-                }}
-              />
-            ))}
+            .map((t, idx) => {
+              const ab = (t.topic || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').slice(0, 3).toUpperCase()
+              const tone = { 'modulo-1': 'blue', 'modulo-2': 'amber', 'modulo-3': 'pink' }[t.module] || 'blue'
+              const pct = Math.round(t.masteryPct || 0)
+              return (
+                <button key={t.topic || idx} className="mn-li" onClick={() => setSelectedTopicForModal(t)}>
+                  <span className={`mn-ab mn-tone-${tone}`}>{ab}</span>
+                  <span className="mn-li-txt">
+                    {t.topic}
+                    <small>{(t.questionsCount || 0).toLocaleString('es-CL')} preguntas · {t.classesCount || 0} clases</small>
+                    <span className="mn-bar"><b style={{ width: `${Math.max(2, pct)}%` }} /></span>
+                  </span>
+                  <span className="mn-pct">{pct}%</span>
+                  <ChevronRight size={16} className="mn-li-go" />
+                </button>
+              )
+            })}
         </div>
-      </div>
+      </section>
 
       {/* Pop-up Bigger Modal for Topics */}
       <TopicQuickModal

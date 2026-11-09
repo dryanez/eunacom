@@ -128,3 +128,25 @@ body {
 .mn-continue small { display: block; color: var(--mn-mut); font-size: .72rem; }
 .mn-continue b { font-size: .92rem; font-weight: 600; }
 .mn-continue-play { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; flex: none; color: #fff; background: var(--gradient-primary); box-shadow: 0 6px 18px -8px var(--mn-sky); }
+
+/* ─── Inicio: Tu progreso + Temas ─── */
+.mn-sec { max-width: 760px; margin: 1.4rem auto 0; font-family: var(--font); color: #e2e8f0; }
+.mn-sec-head { margin-bottom: .55rem; }
+.mn-sec-head h2 { font-size: 1.08rem; font-weight: 600; margin: 0 0 .1rem; color: #f1f5f9; }
+.mn-chips { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; margin-bottom: .7rem; }
+.mn-chips::-webkit-scrollbar { display: none; }
+.mn-chips button { flex: none; font-family: var(--font); font-size: .75rem; padding: .42rem .8rem; border-radius: 999px; background: var(--mn-tile); border: 1px solid var(--mn-tline); color: #cbd5e1; cursor: pointer; }
+.mn-chips button.on { background: rgba(37,99,235,.25); border-color: var(--mn-sky); color: #fff; }
+.mn-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+@media (min-width: 900px) { .mn-stats { grid-template-columns: repeat(4, 1fr); } }
+.mn-stat { background: var(--mn-tile); border: 1px solid var(--mn-tline); border-radius: 16px; padding: .75rem .9rem; }
+.mn-stat > b { display: block; font-size: 1.35rem; font-weight: 700; line-height: 1.2; }
+.mn-stat > b small { font-size: .8rem; color: var(--mn-dim); font-weight: 500; }
+.mn-stat > span { font-size: .72rem; color: var(--mn-mut); }
+.mn-stat .mn-bar { display: block; margin-top: .4rem; height: 5px; }
+.mn-blue { background: linear-gradient(90deg, #60a5fa, #38bdf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mn-topics .mn-li-txt .mn-bar { display: block; height: 4px; margin-top: .4rem; }
+.mn-ab { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; flex: none; font-size: .68rem; font-weight: 600; letter-spacing: .03em; }
+.mn-ab.mn-tone-blue { background: rgba(59,130,246,.15); color: #60a5fa; }
+.mn-ab.mn-tone-amber { background: rgba(245,158,11,.15); color: #fbbf24; }
+.mn-ab.mn-tone-pink { background: rgba(236,72,153,.15); color: #f472b6; }
