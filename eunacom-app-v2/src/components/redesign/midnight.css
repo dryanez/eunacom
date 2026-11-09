@@ -197,3 +197,7 @@ button.mn-lb-row { cursor: pointer; }
 /* Resalta el destino de un botón de salto (Biblioteca) */
 @keyframes mnFlash { 0%,100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); } 30% { box-shadow: 0 0 0 3px rgba(56,189,248,.85), 0 0 30px rgba(56,189,248,.45); } }
 .mn-flash { animation: mnFlash 1.6s ease; border-radius: 16px; }
+
+.mn-guest-cta { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: .3rem; }
+.mn-guest-cta .mn-btn { margin-top: .6rem; }
+@media (max-width: 380px) { .mn-guest-cta { grid-template-columns: 1fr; } }

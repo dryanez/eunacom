@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Database, PlayCircle, BookOpen, Archive, ChevronRight, PenLine, Flame,
-  Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon,
+  Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus,
 } from 'lucide-react'
 import './midnight.css'
 
@@ -23,9 +23,10 @@ const MORE = [
   { to: '/biblioteca?sec=atlas', icon: ImageIcon, title: '19 Atlas de imágenes', sub: '1.144 fotos comentadas' },
 ]
 
-export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAnswers = 0, dailyGoal = 50 }) {
+// guest: mismo Inicio que un usuario premium, pero cada botón pide crear cuenta (onAuth('register'|'login'))
+export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAnswers = 0, dailyGoal = 50, guest = false, onAuth }) {
   const navigate = useNavigate()
-  const go = to => () => navigate(to)
+  const go = to => () => (guest ? onAuth?.('register') : navigate(to))
   const dailyPct = Math.min(100, Math.round((todayAnswers / dailyGoal) * 100))
 
   return (
@@ -33,7 +34,7 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
       <div className="mn-row mn-between">
         <div>
           <h1 className="mn-h1">Hola, {name || 'Doctor'}</h1>
-          <p className="mn-sub">Continúa tu preparación para el EUNACOM</p>
+          <p className="mn-sub">{guest ? 'Crea tu cuenta gratis y empieza a prepararte para el EUNACOM' : 'Continúa tu preparación para el EUNACOM'}</p>
         </div>
         {streak > 0 && (
           <span className="mn-streak"><Flame size={15} />{streak}</span>
@@ -47,6 +48,12 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
           <span className="mn-sub">Hoy: {todayAnswers} / {dailyGoal} preguntas</span>
         </div>
         <div className="mn-bar"><b style={{ width: `${Math.max(3, dailyPct)}%` }} /></div>
+        {guest && (
+          <div className="mn-guest-cta">
+            <button className="mn-btn" onClick={() => onAuth?.('register')}><UserPlus size={16} /> Crear cuenta gratis</button>
+            <button className="mn-btn mn-btn-ghost" onClick={() => onAuth?.('login')}><LogIn size={16} /> Iniciar sesión</button>
+          </div>
+        )}
       </div>
 
       <div className="mn-tiles">

@@ -516,113 +516,12 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* ─── GUEST HERO BANNER ─── */}
-      {!user && (
-        <div style={{
-          position: 'relative',
-          background: 'var(--card-bg, #ffffff)',
-          border: '1px solid var(--card-border, rgba(56, 189, 248, 0.25))',
-          borderRadius: '16px',
-          padding: '2rem 1.75rem',
-          marginBottom: '1.75rem',
-          overflow: 'hidden',
-          boxShadow: 'var(--shadow-md)',
-        }}>
-          <div style={{ maxWidth: '620px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.25rem 0.65rem',
-              borderRadius: '6px',
-              background: 'rgba(56, 189, 248, 0.12)',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
-              color: '#0284c7',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              marginBottom: '0.85rem',
-            }}>
-              <span>🩺 Preparación Médica EUNACOM 2026</span>
-            </div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.5rem', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
-              La plataforma médica estándar para rendir el EUNACOM
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--surface-400)', margin: '0 0 1.5rem', lineHeight: 1.5, fontWeight: 500 }}>
-              Banco con +10.000 preguntas clínicas justificadas, +650 videoclases según perfil ASOFAMECH, reconstrucciones oficiales y simulacros cronometrados.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => openAuthModal('register')}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: '#0284c7',
-                  color: '#ffffff',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#0369a1' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = '#0284c7' }}
-              >
-                <span>Crear cuenta gratis</span>
-                <ChevronRight size={16} />
-              </button>
-              <button
-                onClick={() => openAuthModal('login')}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: 'var(--surface-700)',
-                  color: 'var(--surface-50)',
-                  borderRadius: '8px',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
-                  border: '1px solid var(--surface-600)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-600)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--surface-700)' }}
-              >
-                <span>Iniciar sesión</span>
-              </button>
-              <button
-                onClick={triggerDemoLevelUp}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(234, 88, 12, 0.25) 100%)',
-                  color: '#ea580c',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  border: '1px solid rgba(249, 115, 22, 0.35)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-              >
-                <Sparkles size={16} color="#d97706" />
-                <span>✨ Probar Subida de Nivel</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
-      {user && (
+      {(
         <InicioMidnight
-          name={userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : (user?.user_metadata?.full_name || 'Doctor')}
+          guest={!user}
+          onAuth={mode => openAuthModal(mode)}
+          name={!user ? 'Doctor(a)' : userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : (user?.user_metadata?.full_name || 'Doctor')}
           streak={stats.streak}
           accuracy={accuracy}
           todayAnswers={todayAnswers}
