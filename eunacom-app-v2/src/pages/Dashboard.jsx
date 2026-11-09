@@ -712,7 +712,7 @@ const Dashboard = () => {
         onOpenClass={(claseId) => {
           const selectedTopic = selectedTopicForModal
           setSelectedTopicForModal(null)
-          navigate('/mis-clases', { state: { specialty: selectedTopic?.specialty, subsystem: selectedTopic?.topic, openLesson: selectedTopic?.lessons?.find(l => l.id === claseId)?.lessonNumber } })
+          navigate('/mis-clases', { state: { specialty: selectedTopic?.specialty, subsystem: selectedTopic?.topic, openClaseId: claseId, openLesson: selectedTopic?.lessons?.find(l => l.id === claseId)?.lessonNumber } })
         }}
         onNavigateToSubsystem={(topicName, specialtyName) => {
           setSelectedTopicForModal(null)

@@ -4,6 +4,7 @@ import { User, Flame, Sparkles, Trophy, Shield, Heart, Award, ChevronRight, Stet
 import { DOCTOR_CHARACTERS } from '../../../utils/doctorAvatars'
 import { LEAGUE_TIERS } from '../../../utils/leagueSystem'
 import { playTapSound } from '../../../utils/medlingoAudio'
+import { getTodayDateString } from '../../../utils/gamificationStore'
 
 export default function MedLingoProfileTab({
   state,
@@ -15,19 +16,20 @@ export default function MedLingoProfileTab({
   const currentTier = LEAGUE_TIERS[state.leagueTierIndex || 0] || LEAGUE_TIERS[0]
   const mentorImage = activeMentor.image || '/avatars/dr_house.png'
 
-  // Weekly XP Data (Mon - Sun)
-  const weeklyData = [
-    { day: 'L', xp: 280, active: true },
-    { day: 'M', xp: 450, active: true },
-    { day: 'M', xp: 190, active: true },
-    { day: 'J', xp: 620, active: true },
-    { day: 'V', xp: 380, active: true },
-    { day: 'S', xp: 520, active: true },
-    { day: 'D', xp: 410, active: true }
-  ]
+  // Progreso semanal REAL: XP ganado cada día de esta semana (lunes a domingo), desde state.xpByDay
+  const weeklyData = (() => {
+    const now = new Date()
+    const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - ((now.getDay() + 6) % 7))
+    const todayKey = getTodayDateString()
+    return ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((day, i) => {
+      const d = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i)
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+      return { day, xp: (state.xpByDay || {})[key] || 0, active: key <= todayKey }
+    })
+  })()
 
   const totalWeeklyXp = weeklyData.reduce((acc, curr) => acc + curr.xp, 0)
-  const maxY = 800
+  const maxY = Math.max(100, Math.ceil(Math.max(...weeklyData.map(d => d.xp)) * 1.25))
 
   // SVG Line Chart Points calculation (width: 320, height: 140)
   const chartWidth = 320

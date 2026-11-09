@@ -3056,7 +3056,7 @@ const MisClases = () => {
     const lessonNum = state.openLesson || (params.get('lesson') ? parseInt(params.get('lesson')) : null)
     const sv = state.subView || params.get('view')
 
-    if (spec || sub || lessonNum) {
+    if (spec || sub || lessonNum || state.openClaseId) {
       handledNavState.current = true
       if (spec) setCurrentSpecialty(spec)
       if (sub) {
@@ -3067,8 +3067,10 @@ const MisClases = () => {
         setCurrentSubsystem(sub)
         if (sv) setSubView(sv)
       }
-      if (lessonNum && sub) {
-        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && c.lessonNumber === lessonNum)
+      const byId = state.openClaseId && clases.find(c => c.id === state.openClaseId)
+      if (byId) openClase(byId.id)
+      else if (lessonNum && sub) {
+        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && Number(c.lessonNumber) === Number(lessonNum))
         if (target) openClase(target.id)
       }
     }
@@ -3363,232 +3365,57 @@ const MisClases = () => {
           subsystemStyle={getSubsystemStyle(currentSubsystem)}
           onBack={() => setSubView(null)}
         />
-      ) : subView === 'clases' ? (
-        /* ─── Level 3: Lessons ─── */
-        <div style={{ paddingBottom: '2rem' }}>
-          <button onClick={() => setSubView(null)} style={{
-            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
-            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
-            marginBottom: '1.25rem'
-          }}>
-            <ChevronLeft size={16} /> Volver
-          </button>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
-              const isAlreadyDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
-              const completedCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
-              const isLocked = !isPremium && completedCount >= 3 && !isAlreadyDone;
-              const style = getSpecialtyStyle(currentSpecialty)
-              const pct = getProgress(clase.id)
-              return (
-                <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
-                  padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  borderLeft: `3px solid ${isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color}`,
-                  position: 'relative',
-                  opacity: isLocked ? 0.75 : 1
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
-                    <div style={{
-                      width: 40, height: 40, borderRadius: 10, background: isLocked ? 'rgba(245,158,11,0.15)' : pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '1rem', fontWeight: 800, color: isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color,
-                    }}>
-                      {isLocked ? <Lock size={18} /> : pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                        {clase.topic}
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                        {isLocked ? (
-                          <span style={{ color: '#f59e0b', fontWeight: 600 }}>Disponible en Premium (3 clases gratis completadas)</span>
-                        ) : (
-                          <>
-                            {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
-                            Clase {clase.lessonNumber}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
-                    {isLocked ? <Lock size={16} style={{ color: '#f59e0b' }} /> : <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
       ) : (
-        /* ─── Choice Screen: Clases vs Pruebas ─── */
+        /* ─── Tema (Midnight Pro): mismo flujo que la página del tema en Inicio ─── */
         (() => {
           const subStyle = getSubsystemStyle(currentSubsystem)
           const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
           const completed = lessons.filter(l => getProgress(l.id) >= 100).length
           const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
-          const totalQuestionsEst = lessons.length * 20
-
+          const doneCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
+          const meta = MODULE_META[currentSpecialty]
           return (
-            <div className="promax-page-wrapper" style={{ paddingBottom: '2.5rem' }}>
-              {/* Ambient Glows */}
-              <div className="promax-ambient-bg">
-                <div className="promax-ambient-glow promax-glow-cyan" style={{ top: -60, left: '5%', width: 480, height: 320 }} />
-                <div className="promax-ambient-glow promax-glow-indigo" style={{ top: 120, right: '5%', width: 440, height: 300 }} />
-              </div>
-
-              <div className="promax-content-layer">
-                {/* Subject Hero Bento Header */}
-                <div className="promax-hero-bento" style={{
-                  '--hero-accent-gradient': `linear-gradient(90deg, ${subStyle.color} 0%, #38bdf8 50%, #10b981 100%)`
-                }}>
-                  <div className="promax-hero-header-row">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', flex: 1, minWidth: 260 }}>
-                      <div className="promax-hero-avatar-box" style={{
-                        '--avatar-bg': subStyle.bg,
-                        '--avatar-border': `${subStyle.color}40`,
-                        '--avatar-color': subStyle.color,
-                        '--avatar-glow': `${subStyle.color}30`
-                      }}>
-                        {React.cloneElement(subStyle.icon, { size: 28 })}
-                      </div>
-                      <div className="promax-hero-titles">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
-                          <h2>{currentSubsystem}</h2>
-                          <span className="promax-badge-pill promax-badge-cyan">
-                            <Sparkles size={11} /> {currentSpecialty}
-                          </span>
-                        </div>
-                        <p>
-                          {lessons.length} clases interactivas · ~{totalQuestionsEst} preguntas tipo EUNACOM explicadas
-                        </p>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          Progreso del Tema
-                        </div>
-                        <div style={{ fontSize: '1rem', fontWeight: 800, color: subPct >= 100 ? '#10b981' : '#f8fafc', marginTop: '0.15rem' }}>
-                          {completed}/{lessons.length} completadas
-                        </div>
-                      </div>
-                      <ProgressRing percent={subPct} size={52} stroke={4} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Two Big Bento Cards: Clases & Pruebas */}
-                <div className="promax-bento-grid-2">
-                  {/* Bento Card 1: Clases Interactivas */}
-                  <div
-                    className="promax-bento-card promax-theme-indigo"
-                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }}
-                  >
-                    <div className="promax-card-ambient-tint" />
-                    <div className="promax-card-top-line" />
-
-                    <div>
-                      <div className="promax-card-header">
-                        <div className="promax-card-icon-box">
-                          <Presentation size={26} />
-                        </div>
-                        <span className="promax-badge-pill promax-badge-indigo">
-                          <BookOpen size={11} /> Video + Resúmenes
-                        </span>
-                      </div>
-
-                      <h3 className="promax-card-title">Clases Interactivas</h3>
-                      <p className="promax-card-desc">
-                        Aprende con videos, resúmenes diagnósticos, esquemas de manejo clínico y perfiles de alta frecuencia EUNACOM.
-                      </p>
-
-                      <div className="promax-card-features-list">
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> {lessons.length} videoclases explicativas estructuradas
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> Algoritmos terapéuticos y guías GES/MINSAL
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> Quizzes interactivos de retención por clase
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="promax-card-footer">
-                      <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                        fontSize: '0.78rem', fontWeight: 700,
-                        color: completed === lessons.length && lessons.length > 0 ? '#10b981' : '#c7d2fe',
-                      }}>
-                        {completed === lessons.length && lessons.length > 0 ? (
-                          <><CheckCircle2 size={14} color="#10b981" /> 100% Completado</>
-                        ) : (
-                          <><Clock size={13} /> {completed}/{lessons.length} clases vistas</>
-                        )}
-                      </div>
-
-                      <div className="promax-card-action-btn">
-                        Ver Clases <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bento Card 2: Pruebas EUNACOM */}
-                  <div
-                    className="promax-bento-card promax-theme-emerald"
-                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}
-                  >
-                    <div className="promax-card-ambient-tint" />
-                    <div className="promax-card-top-line" />
-
-                    <div>
-                      <div className="promax-card-header">
-                        <div className="promax-card-icon-box">
-                          <ClipboardList size={26} />
-                        </div>
-                        <span className="promax-badge-pill promax-badge-emerald">
-                          <Target size={11} /> Banco Clínico
-                        </span>
-                      </div>
-
-                      <h3 className="promax-card-title">Pruebas EUNACOM</h3>
-                      <p className="promax-card-desc">
-                        Entrena con sets de preguntas oficiales justificadas por alternativa, estadísticas de respuesta y repaso de errores.
-                      </p>
-
-                      <div className="promax-card-features-list">
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Preguntas tipo examen con justificación inmediata
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Estadísticas y tasa de aciertos de la comunidad
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Sistema inteligente para reentrenar errores
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="promax-card-footer">
-                      <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                        fontSize: '0.78rem', fontWeight: 700, color: '#6ee7b7'
-                      }}>
-                        <Award size={14} color="#10b981" /> Modo Entrenamiento & Examen
-                      </div>
-
-                      <div className="promax-card-action-btn">
-                        Practicar Ahora <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </div>
+            <div className="mn-tema">
+              <div className="mn-row" style={{ gap: '.85rem' }}>
+                <span className="mn-mod-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 24 })}</span>
+                <div style={{ minWidth: 0 }}>
+                  <span className="mn-pill mn-pill-sky">{currentSpecialty}{meta ? ` · ${meta.name}` : ''}</span>
+                  <h2 className="mn-h1" style={{ margin: '.35rem 0 0' }}>{currentSubsystem}</h2>
                 </div>
               </div>
+              <div className="mn-stats mn-stats-3">
+                <div className="mn-stat"><b className="mn-blue">{subPct}%</b><span>Dominio</span></div>
+                <div className="mn-stat"><b>{completed}<small>/{lessons.length}</small></b><span>Vistas</span></div>
+                <div className="mn-stat"><b>{lessons.length}</b><span>Clases</span></div>
+              </div>
+
+              <div className="mn-sec-head" style={{ marginTop: '1.1rem' }}><h2>Clases del tema</h2></div>
+              <div className="mn-card mn-list">
+                {lessons.map(clase => {
+                  const isDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
+                  const isLocked = !isPremium && doneCount >= 3 && !isDone
+                  const pct = Math.round(getProgress(clase.id))
+                  return (
+                    <button key={clase.id} className="mn-li" onClick={() => {
+                      if (!user) { setShowLoginGate(true); return }
+                      isLocked ? setShowPaymentModal(true) : openClase(clase.id)
+                    }}>
+                      <span className={`mn-ab ${isLocked ? 'mn-ab-lock' : pct >= 100 ? 'mn-ab-done' : 'mn-tone-blue'}`}>
+                        {isLocked ? <Lock size={16} /> : pct >= 100 ? <CheckCircle2 size={18} /> : clase.lessonNumber}
+                      </span>
+                      <span className="mn-li-txt">
+                        {clase.topic}
+                        <small>{isLocked ? 'Disponible en Premium' : pct > 0 && pct < 100 ? `${pct}% visto · Clase ${clase.lessonNumber}` : `Clase ${clase.lessonNumber}`}</small>
+                      </span>
+                      <ChevronRight size={16} className="mn-li-go" />
+                    </button>
+                  )
+                })}
+              </div>
+
+              <button className="mn-btn mn-btn-ghost" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}>
+                <ClipboardList size={16} /> Pruebas de {currentSubsystem}
+              </button>
             </div>
           )
         })()
