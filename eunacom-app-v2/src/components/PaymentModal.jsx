@@ -4,6 +4,8 @@ import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { isAndroidApp } from '../lib/playBilling';
+import PlayPayButton from './PlayPayButton';
 import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
 import '../styles/tienda.css';
@@ -23,6 +25,7 @@ const LIB_ITEMS = [
 ];
 
 const PaymentModal = ({ onClose }) => {
+  const androidApp = isAndroidApp();
   const { user } = useAuth();
   const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
   const navigate = useNavigate();
@@ -246,7 +249,7 @@ const PaymentModal = ({ onClose }) => {
         </div>
 
         <div className="plan-extras">
-          <div>
+          <div style={androidApp ? { display: 'none' } : undefined}>
             {!showCouponBox ? (
               <button onClick={() => setShowCouponBox(true)} className="plan-link">
                 <Tag size={13} /> ¿Tienes un código de descuento?
@@ -290,6 +293,9 @@ const PaymentModal = ({ onClose }) => {
             Completar pago: <span>{selectedPlan.name} · {selectedPlan.price}</span>
           </h3>
 
+          {androidApp ? (
+            <PlayPayButton plan={selectedPlan} userId={user?.id} />
+          ) : (<>
           <div className="plan-country">
             <button onClick={() => setCountry('CL')} className={country === 'CL' ? 'on' : ''}>🇨🇱 Chile</button>
             <button onClick={() => setCountry('BO')} className={country === 'BO' ? 'on' : ''}>🇧🇴 Bolivia / Int.</button>
@@ -337,6 +343,7 @@ const PaymentModal = ({ onClose }) => {
               {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
             </>
           )}
+          </>)}
         </div>
       </div>
 

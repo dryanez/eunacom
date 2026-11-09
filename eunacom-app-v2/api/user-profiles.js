@@ -6,6 +6,7 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 import { handleRegalo } from './_regalos.js'
+import { syncPlaySubscription } from './_play-billing.js'
 import { Resend } from 'resend'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -409,6 +410,30 @@ export default async function handler(req, res) {
       const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
       if (flag === 'credit') await markCreditUsed(db, userId, `paypal:${order.id}`).catch(() => {})
       return res.json({ success: true, premium_until: premiumUntil })
+    }
+
+    // --- GOOGLE PLAY (Android app) ---
+    // Subscription bought (or re-checked at app start) in the Android app
+    if (req.method === 'POST' && req.body?.action === 'play_subscription') {
+      const { userId, purchaseToken } = req.body
+      if (!userId || !purchaseToken) return res.status(400).json({ error: 'Missing parameters' })
+      const r = await syncPlaySubscription(db, purchaseToken, userId)
+      if (!r.ok) return res.status(r.status).json({ error: r.error })
+      return res.json({ success: true, active: r.active, premium_until: r.expiry })
+    }
+    // Google's real-time notifications (Pub/Sub push subscription pointed at ?play_rtdn=<PLAY_RTDN_SECRET>):
+    // renewals, cancellations, refunds → refresh premium_until
+    if (req.method === 'POST' && req.query?.play_rtdn) {
+      if (!process.env.PLAY_RTDN_SECRET || req.query.play_rtdn !== process.env.PLAY_RTDN_SECRET) return res.status(403).end()
+      try {
+        const n = JSON.parse(Buffer.from(req.body?.message?.data || '', 'base64').toString('utf8') || '{}')
+        const token = n.subscriptionNotification?.purchaseToken
+        if (token) {
+          const r = await syncPlaySubscription(db, token)
+          console.log(`[Play RTDN] type ${n.subscriptionNotification.notificationType}: ${r.ok ? `${r.userId} ${r.state} until ${r.expiry}` : r.error}`)
+        }
+      } catch (e) { console.error('[Play RTDN] error', e) }
+      return res.status(200).end() // 2xx so Pub/Sub does not retry forever
     }
 
     // --- DONATE CREATION ---
