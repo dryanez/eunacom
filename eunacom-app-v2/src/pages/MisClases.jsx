@@ -25,6 +25,7 @@ import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
+import PruebasDias from '../components/redesign/PruebasDias'
 import '../styles/proMaxPages.css'
 
 /* ════════════════════════════════════════════════════════════════
@@ -783,10 +784,8 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
       {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
       {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onNextClass={onNextClass} nextClase={nextClase} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
       {step === 3 && (
-        <PruebasView
-          specialty={clase.specialty}
+        <PruebasDias
           subsystem={clase.subsystem}
-          subsystemStyle={getSubsystemStyle(clase.subsystem)}
           onBack={() => handleStep(2)}
         />
       )}
@@ -2912,10 +2911,8 @@ const MisClases = () => {
         </div>
       ) : subView === 'pruebas' ? (
         /* ─── Pruebas View ─── */
-        <PruebasView
-          specialty={currentSpecialty}
+        <PruebasDias
           subsystem={currentSubsystem}
-          subsystemStyle={getSubsystemStyle(currentSubsystem)}
           onBack={() => setSubView(null)}
         />
       ) : (

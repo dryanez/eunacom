@@ -24,7 +24,7 @@ const TestRunner = () => {
     const isTutorMode = mode === 'tutor'
     // Libros Gordos online: modo bloqueado, sin volver al dashboard; { token, book, bookName, returnTo }
     const locked = location.state?.locked || null
-    const exitPath = locked ? locked.returnTo : '/dashboard'
+    const exitPath = locked ? locked.returnTo : (location.state?.returnTo || '/dashboard')
 
     const [answers, setAnswers] = useState(location.state?.savedAnswers || {})
     const initTutorState = location.state?.tutorState || { firstAttempts: {}, wrongAttempts: {} }
@@ -452,7 +452,7 @@ const TestRunner = () => {
                     )}
 
                     <button className="btn-primary btn-primary--full" onClick={() => navigate(exitPath)} style={{ padding: '1rem', borderRadius: 12, fontWeight: 700 }}>
-                        {locked ? `Volver a mi Libro Gordo` : 'Volver al Dashboard'}
+                        {locked ? `Volver a mi Libro Gordo` : location.state?.returnTo === '/mis-clases' ? 'Volver a Mis clases' : 'Volver al Dashboard'}
                     </button>
                 </div>
             </div>
