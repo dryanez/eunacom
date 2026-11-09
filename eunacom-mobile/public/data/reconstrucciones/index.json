@@ -16,7 +16,7 @@
       "name": "EUNACOM Julio 2015",
       "month": "Julio",
       "year": 2015,
-      "total_questions": 180,
+      "total_questions": 179,
       "questions_with_answers": 180,
       "file": "eunacom-jul-2015.json"
     },
@@ -79,7 +79,7 @@
       "name": "EUNACOM Julio 2019",
       "month": "Julio",
       "year": 2019,
-      "total_questions": 180,
+      "total_questions": 179,
       "questions_with_answers": 180,
       "file": "eunacom-jul-2019.json"
     },
@@ -115,7 +115,7 @@
       "name": "EUNACOM Diciembre 2024",
       "month": "Diciembre",
       "year": 2024,
-      "total_questions": 175,
+      "total_questions": 180,
       "questions_with_answers": 175,
       "file": "eunacom-dic-2024.json"
     },
@@ -142,7 +142,7 @@
       "name": "EUNACOM Julio 2025",
       "month": "Julio",
       "year": 2025,
-      "total_questions": 167,
+      "total_questions": 180,
       "questions_with_answers": 167,
       "file": "eunacom-jul-2025.json"
     }
