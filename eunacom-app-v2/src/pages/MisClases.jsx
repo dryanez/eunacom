@@ -1,4 +1,5 @@
 import '../components/redesign/midnight.css'
+import '../components/redesign/clase.css'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -15,7 +16,8 @@ import {
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
-  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle, Users, PlayCircle
+  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle, Users, PlayCircle,
+  AlertTriangle, StickyNote
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -52,41 +54,14 @@ function ProgressRing({ percent, size = 48, stroke = 4 }) {
    ════════════════════════════════════════════════════════════════ */
 function StepBar({ steps, current, onStep }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: '2rem' }}>
-      {steps.map((s, i) => {
-        const isActive = i === current
-        const isDone = i < current
-        return (
-          <React.Fragment key={s.id}>
-            {i > 0 && (
-              <div style={{
-                flex: 1, height: 2, margin: '0 -1px',
-                background: isDone ? 'var(--primary-500)' : 'var(--border-color)',
-                transition: 'background 0.3s'
-              }} />
-            )}
-            <button onClick={() => onStep(i)} style={{
-              display: 'flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.6rem 1.2rem', borderRadius: '50px', border: 'none', cursor: 'pointer',
-              fontSize: '0.82rem', fontWeight: 600, whiteSpace: 'nowrap',
-              background: isActive ? 'var(--primary-500)' : isDone ? 'rgba(19,91,236,0.15)' : 'var(--surface-700)',
-              color: isActive ? '#fff' : isDone ? 'var(--primary-500)' : 'var(--text-tertiary)',
-              transition: 'all 0.3s', transform: isActive ? 'scale(1.05)' : 'scale(1)',
-              boxShadow: isActive ? '0 4px 12px rgba(19,91,236,0.3)' : 'none',
-            }}>
-              <div style={{
-                width: 22, height: 22, borderRadius: '50%', fontSize: '0.7rem',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: isActive ? 'rgba(255,255,255,0.25)' : isDone ? 'var(--primary-500)' : 'var(--surface-600)',
-                color: isActive || isDone ? '#fff' : 'var(--text-tertiary)',
-              }}>
-                {isDone ? <CheckCircle2 size={13} /> : i + 1}
-              </div>
-              {s.label}
-            </button>
-          </React.Fragment>
-        )
-      })}
+    <div className="mn-cl-steps">
+      {steps.map((st, i) => (
+        <button key={st.id} type="button" onClick={() => onStep(i)}
+          className={`mn-cl-step ${i === current ? 'is-on' : i < current ? 'is-done' : ''}`}>
+          {i < current ? <CheckCircle2 size={15} /> : st.icon}
+          <span>{st.label}</span>
+        </button>
+      ))}
     </div>
   )
 }
@@ -99,17 +74,12 @@ function BoldText({ text, onNavigate }) {
   const parts = text.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g)
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} style={{ color: 'var(--text-primary)' }}>{part.slice(2, -2)}</strong>
+      return <strong key={i}>{part.slice(2, -2)}</strong>
     }
     if (part.startsWith('[[') && part.endsWith(']]')) {
       const linkText = part.slice(2, -2)
       return (
-        <span key={i} onClick={(e) => { e.stopPropagation(); onNavigate?.(linkText) }}
-          style={{
-            color: 'var(--primary-500)', cursor: onNavigate ? 'pointer' : 'default',
-            borderBottom: '1px dashed var(--primary-500)',
-            fontWeight: 600, transition: 'opacity 0.2s',
-          }}
+        <span key={i} className="mn-cl-wiki" onClick={(e) => { e.stopPropagation(); onNavigate?.(linkText) }}
           title={`Ver: ${linkText}`}
         >
           {linkText}
@@ -166,16 +136,6 @@ function PuntosClaveSection({ keyPoints }) {
 
   const cleanedPoints = keyPoints.map(cleanKeyPoint).filter(Boolean)
 
-  const cardStyles = [
-    { gradient: 'linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.03) 100%)', accent: '#3b82f6', glow: 'rgba(59,130,246,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(16,185,129,0.10) 0%, rgba(16,185,129,0.03) 100%)', accent: '#10b981', glow: 'rgba(16,185,129,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.03) 100%)', accent: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(139,92,246,0.10) 0%, rgba(139,92,246,0.03) 100%)', accent: '#8b5cf6', glow: 'rgba(139,92,246,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(236,72,153,0.10) 0%, rgba(236,72,153,0.03) 100%)', accent: '#ec4899', glow: 'rgba(236,72,153,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(14,165,233,0.10) 0%, rgba(14,165,233,0.03) 100%)', accent: '#0ea5e9', glow: 'rgba(14,165,233,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(244,63,94,0.10) 0%, rgba(244,63,94,0.03) 100%)', accent: '#f43f5e', glow: 'rgba(244,63,94,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(34,197,94,0.10) 0%, rgba(34,197,94,0.03) 100%)', accent: '#22c55e', glow: 'rgba(34,197,94,0.15)' },
-  ]
 
   // Split a point into a "headline" and optional "detail" at the first colon, period, or dash pattern
   const splitPoint = (text) => {
@@ -204,101 +164,64 @@ function PuntosClaveSection({ keyPoints }) {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: 8, background: 'rgba(251,191,36,0.12)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-          <Lightbulb size={17} style={{ color: '#f59e0b' }} />
-        </div>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Puntos Clave</h3>
+      <div className="mn-cl-sec-h">
+        <div className="ico"><Lightbulb size={17} /></div>
+        <h3>Puntos clave</h3>
       </div>
-      {anyHasDetail && (
-        <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: '1.25rem', marginLeft: '2.75rem' }}>
-          Toca una tarjeta para ver el detalle
-        </p>
-      )}
-
-      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-      <div className="grid-auto-responsive" style={{
-        marginTop: anyHasDetail ? 0 : '1.25rem',
-      }}>
+      <p className="mn-cl-sec-sub">{anyHasDetail ? 'Toca una tarjeta para ver el detalle' : `${cleanedPoints.length} ideas para el examen`}</p>
+      <div className="mn-cl-kp">
         {cleanedPoints.map((point, i) => {
-          const s = cardStyles[i % cardStyles.length]
           const { headline, detail } = splitPoint(point)
-          const isFlipped = flipped[i]
-
+          const isOpen = flipped[i]
           return (
-            <div
-              key={i}
-              onClick={() => detail && toggleFlip(i)}
-              className="card"
-              style={{
-                padding: 0,
-                background: isFlipped ? s.gradient : 'var(--surface-700)',
-                border: `1px solid ${isFlipped ? s.accent + '40' : 'var(--border-color)'}`,
-                borderRadius: '14px',
-                cursor: detail ? 'pointer' : 'default',
-                transition: 'all 0.3s ease',
-                overflow: 'hidden',
-                boxShadow: isFlipped ? `0 4px 20px ${s.glow}` : 'none',
-                transform: isFlipped ? 'scale(1.02)' : 'scale(1)',
-              }}
-            >
-              {/* Top accent bar */}
-              <div style={{ height: 3, background: s.accent, opacity: isFlipped ? 1 : 0.4, transition: 'opacity 0.3s' }} />
-
-              <div style={{ padding: '1.1rem 1.2rem' }}>
-                {/* Number badge + headline */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <div style={{
-                    minWidth: 26, height: 26, borderRadius: '8px',
-                    background: s.accent + '20',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.72rem', fontWeight: 800, color: s.accent, flexShrink: 0,
-                    marginTop: '0.1rem',
-                  }}>
-                    {i + 1}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{
-                      fontSize: '0.88rem', fontWeight: 700, lineHeight: 1.5,
-                      color: 'var(--text-primary)',
-                    }}>
-                      <BoldText text={headline} />
-                    </div>
-
-                    {/* Detail — shown when flipped */}
-                    {detail && isFlipped && (
-                      <div style={{
-                        marginTop: '0.6rem', paddingTop: '0.6rem',
-                        borderTop: `1px dashed ${s.accent}30`,
-                        fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
-                        animation: 'fadeIn 0.3s ease',
-                      }}>
-                        <BoldText text={detail} />
-                      </div>
-                    )}
-
-                    {/* Expand hint */}
-                    {detail && !isFlipped && (
-                      <div style={{
-                        marginTop: '0.4rem', fontSize: '0.72rem', color: s.accent,
-                        opacity: 0.7, fontWeight: 500,
-                      }}>
-                        ver más →
-                      </div>
-                    )}
-                  </div>
+            <div key={i} onClick={() => detail && toggleFlip(i)}
+              className={`mn-cl-kpc ${detail ? 'can' : ''} ${isOpen ? 'open' : ''}`}>
+              <div className="mn-cl-kpc-row">
+                <span className="mn-cl-num">{i + 1}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="mn-cl-kpc-t"><BoldText text={headline} /></div>
+                  {detail && isOpen && <div className="mn-cl-kpc-d"><BoldText text={detail} /></div>}
+                  {detail && !isOpen && <span className="mn-cl-kpc-more">Ver más <ChevronRight size={12} /></span>}
                 </div>
               </div>
             </div>
           )
         })}
       </div>
+    </div>
+  )
+}
 
-      {/* Inline animation */}
-      <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+/* Tarjeta de pregunta (Midnight) */
+function MnQuestionCard({ index, total, badge, text, options, picked, isCorrect, onPick, explanation }) {
+  const answered = !!picked
+  return (
+    <div className="mn-cl-q">
+      <div className="mn-cl-q-badges">
+        <span className="mn-pill mn-pill-sky">Pregunta {index + 1} de {total}</span>
+        <span className="mn-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Award size={12} /> {badge}</span>
+      </div>
+      <p className="mn-cl-q-text">{text}</p>
+      {options.map((opt, oi) => {
+        const ok = answered && isCorrect(opt)
+        const bad = answered && picked === opt.id && !isCorrect(opt)
+        const letter = opt.id || String.fromCharCode(65 + oi)
+        return (
+          <button key={opt.id ?? oi} type="button" disabled={answered} onClick={() => onPick(opt.id)}
+            className={`mn-cl-opt ${ok ? 'ok' : bad ? 'bad' : answered ? 'dim' : ''}`}>
+            <span className="l">{ok ? <Check size={15} strokeWidth={2.5} /> : bad ? <X size={15} strokeWidth={2.5} /> : letter}</span>
+            <span className="t">{opt.text}</span>
+            {ok && <span className="tag">Correcta</span>}
+            {bad && <span className="tag">Incorrecta</span>}
+          </button>
+        )
+      })}
+      {answered && explanation && (
+        <div className="mn-cl-fb">
+          <div className="mn-cl-fb-h"><CheckCircle size={15} /> Retroalimentación clínica (Guías GES / MINSAL)</div>
+          <p>{explanation}</p>
+        </div>
+      )}
     </div>
   )
 }
@@ -408,115 +331,15 @@ function EunacomQuestionsSection({ claseId, eunacomCode }) {
           return (
             <div key={i} onClick={() => setCurrentQ(i)} style={{
               width: i === currentQ ? 24 : 10, height: 8, borderRadius: 9999, cursor: 'pointer', transition: 'all 0.3s',
-              background: !s ? (i === currentQ ? '#0284c7' : '#cbd5e1') : isOk ? '#10b981' : '#ef4444',
+              background: !s ? (i === currentQ ? '#38bdf8' : '#1e2a44') : isOk ? '#10b981' : '#ef4444',
             }} />
           )
         })}
       </div>
 
-      {/* Hero Shot Question Card */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 18,
-        padding: '24px 20px',
-        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
-      }}>
-        {/* Badges row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
-            Pregunta {currentQ + 1} de {total}
-          </span>
-          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Award size={12} color="#d97706" /> Evaluación de Clase
-          </span>
-        </div>
-
-        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
-          {q.pregunta}
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {q.opciones.map((opt, optIdx) => {
-            const isCorrect = isCorrectOpt(opt)
-            const isWrong   = isWrongPick(opt)
-            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
-            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-
-            if (answered) {
-              if (isCorrect) {
-                bg = '#ecfdf5'
-                border = '#10b981'
-                textColor = '#065f46'
-                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
-              } else if (isWrong) {
-                bg = '#fef2f2'
-                border = '#ef4444'
-                textColor = '#991b1b'
-                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
-              } else {
-                bg = '#f8fafc'
-                border = '#f1f5f9'
-                textColor = '#94a3b8'
-                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-              }
-            }
-
-            return (
-              <div key={opt.id}>
-                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '12px 14px',
-                  background: bg, border: `1.5px solid ${border}`,
-                  borderRadius: 12, color: textColor,
-                  cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isWrong ? 0.45 : 1,
-                  transition: 'all 0.15s ease', fontSize: '0.92rem',
-                  lineHeight: 1.5,
-                  display: 'flex', alignItems: 'flex-start', gap: 10,
-                }}>
-                  <div style={{
-                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, marginTop: 1
-                  }}>
-                    {badgeContent}
-                  </div>
-                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
-                  {answered && isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
-                      ✓ Correcto
-                    </span>
-                  )}
-                  {answered && isWrong && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
-                      ✗ Incorrecto
-                    </span>
-                  )}
-                </button>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Retroalimentación Clínica Official Card */}
-        {answered && q.explicacion && (
-          <div style={{
-            marginTop: 16,
-            padding: '16px 18px',
-            backgroundColor: '#f0fdf4',
-            border: '1px solid #bbf7d0',
-            borderRadius: 14
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
-            </div>
-            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
-              {q.explicacion}
-            </p>
-          </div>
-        )}
-      </div>
+      <MnQuestionCard index={currentQ} total={total} badge="Evaluación de clase"
+        text={q.pregunta} options={q.opciones} picked={picked}
+        isCorrect={isCorrectOpt} onPick={handleSelect} explanation={q.explicacion} />
 
       {/* Navigation */}
       <div style={{ display: 'flex', justifyContent: currentQ === 0 ? 'flex-end' : 'space-between', marginTop: '1rem' }}>
@@ -662,109 +485,10 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
         </div>
       </div>
 
-      {/* Hero Shot Question Card */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 18,
-        padding: '24px 20px',
-        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
-      }}>
-        {/* Badges row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
-            Pregunta {currentQ + 1} de {total}
-          </span>
-          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Award size={12} color="#d97706" /> Quiz de Especialidad
-          </span>
-        </div>
-
-        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
-          {q.questionText}
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {q.options.map((opt, optIdx) => {
-            const isSelected = picked === opt.id
-            const isCorrect = opt.isCorrect
-            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
-            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-
-            if (answered) {
-              if (isCorrect) {
-                bg = '#ecfdf5'
-                border = '#10b981'
-                textColor = '#065f46'
-                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
-              } else if (isSelected) {
-                bg = '#fef2f2'
-                border = '#ef4444'
-                textColor = '#991b1b'
-                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
-              } else {
-                bg = '#f8fafc'
-                border = '#f1f5f9'
-                textColor = '#94a3b8'
-                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-              }
-            }
-
-            return (
-              <div key={opt.id}>
-                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '12px 14px',
-                  background: bg, border: `1.5px solid ${border}`,
-                  borderRadius: 12, color: textColor,
-                  cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isSelected ? 0.45 : 1,
-                  transition: 'all 0.15s ease', fontSize: '0.92rem',
-                  lineHeight: 1.5,
-                  display: 'flex', alignItems: 'flex-start', gap: 10,
-                }}>
-                  <div style={{
-                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, marginTop: 1
-                  }}>
-                    {badgeContent}
-                  </div>
-                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
-                  {answered && isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
-                      ✓ Correcto
-                    </span>
-                  )}
-                  {answered && isSelected && !isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
-                      ✗ Incorrecto
-                    </span>
-                  )}
-                </button>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Retroalimentación Clínica Official Card */}
-        {answered && (
-          <div style={{
-            marginTop: 16,
-            padding: '16px 18px',
-            backgroundColor: '#f0fdf4',
-            border: '1px solid #bbf7d0',
-            borderRadius: 14
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
-            </div>
-            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
-              {q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'}
-            </p>
-          </div>
-        )}
-      </div>
+      <MnQuestionCard index={currentQ} total={total} badge="Quiz de la clase"
+        text={q.questionText} options={q.options} picked={picked}
+        isCorrect={(o) => !!o.isCorrect} onPick={handleSelect}
+        explanation={q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.25rem' }}>
         <button onClick={goPrev} disabled={currentQ === 0} style={{
@@ -797,25 +521,19 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
    ════════════════════════════════════════════════════════════════ */
 /* Callout box styles */
 const calloutStyles = {
-  tip: { bg: 'rgba(16,185,129,0.08)', border: '#10b981', icon: '💡', label: 'PRO TIP', color: '#10b981' },
-  important: { bg: 'rgba(239,68,68,0.08)', border: '#ef4444', icon: '🎯', label: 'CLAVE EUNACOM', color: '#ef4444' },
-  warning: { bg: 'rgba(245,158,11,0.08)', border: '#f59e0b', icon: '⚠️', label: 'OJO', color: '#f59e0b' },
-  note: { bg: 'rgba(59,130,246,0.08)', border: '#3b82f6', icon: '📝', label: 'NOTA', color: '#3b82f6' },
+  tip: { Icon: Lightbulb, label: 'Pro tip' },
+  important: { Icon: Target, label: 'Clave EUNACOM' },
+  warning: { Icon: AlertTriangle, label: 'Ojo' },
+  note: { Icon: StickyNote, label: 'Nota' },
 }
 
-function CalloutBox({ type, children, onNavigate }) {
-  const s = calloutStyles[type] || calloutStyles.note
+function CalloutBox({ type, children }) {
+  const key = calloutStyles[type] ? type : 'note'
+  const { Icon, label } = calloutStyles[key]
   return (
-    <div style={{
-      padding: '1rem 1.25rem', borderRadius: 10, margin: '0.5rem 0',
-      background: s.bg, borderLeft: `4px solid ${s.border}`,
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: 800, color: s.color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-        {s.icon} {s.label}
-      </div>
-      <div style={{ fontSize: '0.88rem', lineHeight: 1.75, color: 'var(--text-primary)', fontWeight: 500 }}>
-        {children}
-      </div>
+    <div className={`mn-cl-call mn-cl-call--${key}`}>
+      <div className="mn-cl-call-h"><Icon size={14} /> {label}</div>
+      <div className="mn-cl-call-b">{children}</div>
     </div>
   )
 }
@@ -893,118 +611,60 @@ function TranscriptSection({ transcript, summary, onNavigate }) {
     i++
   }
 
-  const sectionColors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#0ea5e9', '#f43f5e', '#22c55e']
   let headingIndex = 0
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+    <div className="mn-cl-body">
       {blocks.map((block, bi) => {
         if (block.type === 'heading') {
-          const color = sectionColors[headingIndex++ % sectionColors.length]
+          headingIndex++
           return (
-            <div key={bi} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: bi > 0 ? '0.75rem' : 0 }}>
-              <div style={{ width: 4, height: 24, borderRadius: 2, background: color }} />
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
-                {block.text}
-              </h3>
+            <div key={bi} className="mn-cl-h">
+              <i>{headingIndex}</i>
+              <h3>{block.text.replace(/^\d+[.)]\s*/, '')}</h3>
             </div>
           )
         }
-
         if (block.type === 'callout') {
           return (
-            <CalloutBox key={bi} type={block.calloutType} onNavigate={onNavigate}>
+            <CalloutBox key={bi} type={block.calloutType}>
               <BoldText text={block.text} onNavigate={onNavigate} />
             </CalloutBox>
           )
         }
-
-        if (block.type === 'bullets') {
+        if (block.type === 'bullets' || block.type === 'numbered') {
           return (
-            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <div key={bi} className="mn-cl-list">
               {block.items.map((item, ii) => (
-                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
-                  <span style={{ color: 'var(--primary-500)', fontSize: '0.7rem', marginTop: '0.45rem', flexShrink: 0 }}>●</span>
+                <div key={ii} className="mn-cl-li">
+                  {block.type === 'bullets' ? <span className="mn-cl-dot" /> : <span className="mn-cl-num">{ii + 1}</span>}
                   <span><BoldText text={item} onNavigate={onNavigate} /></span>
                 </div>
               ))}
             </div>
           )
         }
-
-        if (block.type === 'numbered') {
-          return (
-            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {block.items.map((item, ii) => (
-                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
-                  <span style={{
-                    minWidth: 22, height: 22, borderRadius: 6, background: 'rgba(59,130,246,0.1)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.7rem', fontWeight: 700, color: 'var(--primary-500)', flexShrink: 0, marginTop: '0.2rem',
-                  }}>
-                    {ii + 1}
-                  </span>
-                  <span><BoldText text={item} onNavigate={onNavigate} /></span>
-                </div>
-              ))}
-            </div>
-          )
-        }
-
-        // Table
         if (block.type === 'table') {
           return (
-            <div key={bi} style={{ overflowX: 'auto', margin: '0.5rem 0', paddingLeft: '1.25rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
-                <thead>
-                  <tr>
-                    {block.header.map((h, hi) => (
-                      <th key={hi} style={{
-                        padding: '0.6rem 0.8rem', textAlign: 'left', fontWeight: 700,
-                        color: 'var(--text-primary)', borderBottom: '2px solid var(--primary-500)',
-                        background: 'rgba(59,130,246,0.06)', whiteSpace: 'nowrap',
-                      }}>
-                        <BoldText text={h} onNavigate={onNavigate} />
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+            <div key={bi} className="mn-cl-tablewrap">
+              <table className="mn-cl-table">
+                <thead><tr>{block.header.map((h, hi) => <th key={hi}><BoldText text={h} onNavigate={onNavigate} /></th>)}</tr></thead>
                 <tbody>
                   {block.rows.map((row, ri) => (
-                    <tr key={ri} style={{ background: ri % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
-                      {row.map((cell, ci) => (
-                        <td key={ci} style={{
-                          padding: '0.5rem 0.8rem', borderBottom: '1px solid var(--border-color)',
-                          color: ci === 0 ? 'var(--text-primary)' : 'var(--text-secondary)',
-                          fontWeight: ci === 0 ? 600 : 400, lineHeight: 1.6,
-                        }}>
-                          <BoldText text={cell} onNavigate={onNavigate} />
-                        </td>
-                      ))}
-                    </tr>
+                    <tr key={ri}>{row.map((cell, ci) => <td key={ci}><BoldText text={cell} onNavigate={onNavigate} /></td>)}</tr>
                   ))}
                 </tbody>
               </table>
             </div>
           )
         }
-
-        // Paragraph
         return (
-          <p key={bi} style={{ fontSize: '0.92rem', lineHeight: 1.85, color: 'var(--text-secondary)', margin: 0, paddingLeft: '1.25rem' }}>
-            <BoldText text={block.text} onNavigate={onNavigate} />
-          </p>
+          <p key={bi} className="mn-cl-p"><BoldText text={block.text} onNavigate={onNavigate} /></p>
         )
       })}
 
       {!transcript && summary && (
-        <div style={{
-          padding: '0.75rem 1rem', borderRadius: 8, marginTop: '0.5rem',
-          background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)',
-          fontSize: '0.8rem', color: '#f59e0b',
-        }}>
-          Esta clase muestra solo el resumen. El contenido completo de la clase estará disponible próximamente.
-        </div>
+        <div className="mn-cl-soon">Esta clase muestra solo el resumen. El contenido completo estará disponible próximamente.</div>
       )}
     </div>
   )
@@ -1039,9 +699,9 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
 
   const steps = [
     { id: 'clase',     label: 'Clase',             icon: <BookOpen size={14} /> },
-    { id: 'puntos',    label: 'Puntos Clave',       icon: <Lightbulb size={14} /> },
+    { id: 'puntos',    label: 'Puntos clave',       icon: <Lightbulb size={14} /> },
     { id: 'quiz',      label: 'Quiz',               icon: <Target size={14} /> },
-    { id: 'preguntas', label: 'Banco EUNACOM',      icon: <HelpCircle size={14} /> },
+    { id: 'preguntas', label: 'Banco',              icon: <HelpCircle size={14} /> },
   ]
   const maxStep = steps.length - 1
 
@@ -1063,55 +723,49 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
     setShowQuizPrompt(true)
   }
 
-  return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-        <button onClick={onBack} style={{
-          background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-          borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
-          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
-        }}>
-          <ChevronLeft size={16} /> Volver
-        </button>
+  const p = clase.perfilData?.[0]
+  const xpPrompt = showQuizPrompt && (
+    <div className="mn-cl-xp">
+      <div className="mn-cl-xp-ico"><Zap size={19} /></div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="mn-cl-xp-t">+50 XP obtenidos</div>
+        <div className="mn-cl-xp-s">Responde el quiz para ganar los 50 XP restantes.</div>
       </div>
+      <button className="go" onClick={() => { setShowQuizPrompt(false); handleStep(2) }}>Ir al quiz <ArrowRight size={14} /></button>
+      <button className="x" aria-label="Cerrar" onClick={() => setShowQuizPrompt(false)}><X size={16} /></button>
+    </div>
+  )
+  const nextBtn = (label, onClick) => (
+    <button className="mn-cl-nb pri" onClick={onClick} style={{ touchAction: 'manipulation' }}>{label} <ArrowRight size={16} /></button>
+  )
 
-      <div className="card" style={{
-        padding: '1.5rem 1.75rem', marginBottom: '1.5rem',
-        background: 'linear-gradient(135deg, rgba(19,91,236,0.06) 0%, rgba(168,85,247,0.06) 100%)',
-        borderLeft: '4px solid var(--primary-500)'
-      }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-500)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          {clase.specialty} / {clase.subsystem}
-        </div>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-          Clase {clase.lessonNumber}: {clase.topic}
-        </h2>
-        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
-          {clase.quiz?.length > 0 && <span>{clase.quiz.length} preguntas</span>}
-          {clase.keyPoints?.length > 0 && <span>{clase.keyPoints.length} puntos clave</span>}
+  return (
+    <div className="mn-cl">
+      <button className="mn-cl-back" onClick={onBack}><ChevronLeft size={16} /> Volver</button>
+
+      <div className="mn-cl-hero">
+        <div className="mn-cl-eyebrow">{clase.specialty} · {clase.subsystem}</div>
+        <h2 className="mn-cl-title">Clase {clase.lessonNumber}: {clase.topic}</h2>
+        <div className="mn-cl-chips">
           {videoUrl && (
-            <span style={{ color: isVideoWatched ? '#10b981' : 'var(--primary-400)', fontWeight: 600 }}>
-              {isVideoWatched ? '✓ Video visto' : '▶ Video disponible'}
+            <span className={`mn-cl-chip ${isVideoWatched ? 'mn-cl-chip--ok' : ''}`}>
+              {isVideoWatched ? <CheckCircle2 size={13} /> : <PlayCircle size={13} />}
+              {isVideoWatched ? 'Video visto' : 'Video disponible'}
             </span>
           )}
+          {clase.keyPoints?.length > 0 && <span className="mn-cl-chip"><Lightbulb size={13} /> {clase.keyPoints.length} puntos clave</span>}
+          {clase.quiz?.length > 0 && <span className="mn-cl-chip"><Target size={13} /> {clase.quiz.length} preguntas</span>}
         </div>
-        {/* Perfil EUNACOM badges — show only the primary (first) match */}
-        {clase.perfilData && clase.perfilData.length > 0 && (() => {
-          const p = clase.perfilData[0] // Primary perfil item for this class
-          return (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', padding: '0.5rem 0.8rem', borderRadius: 8, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)' }}>
-              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                EUNACOM {p.codigo}:
-              </span>
-              {p.diagnostico && <PerfilBadge label={p.diagnostico} prefix="Dx" />}
-              {p.tratamiento && <PerfilBadge label={p.tratamiento} prefix="Tx" />}
-              {p.seguimiento && <PerfilBadge label={p.seguimiento} prefix="Seg" />}
-            </div>
-          )
-        })()}
+        {p && (
+          <div className="mn-cl-code">
+            <b>EUNACOM {p.codigo}</b>
+            {p.diagnostico && <span><i>Dx</i>{p.diagnostico}</span>}
+            {p.tratamiento && <span><i>Tx</i>{p.tratamiento}</span>}
+            {p.seguimiento && <span><i>Seg</i>{p.seguimiento}</span>}
+          </div>
+        )}
       </div>
 
-      {/* ─── VIDEO PLAYER (above tabs) ─── */}
       {videoUrl && (
         <VideoPlayer
           src={videoUrl}
@@ -1121,77 +775,11 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
         />
       )}
 
-      {/* ─── POST-VIDEO QUIZ PROMPT ─── */}
-      {showQuizPrompt && !isVideoWatched && (
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: '1rem',
-          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
-          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
-          border: '1px solid rgba(16,185,129,0.3)',
-          animation: 'slideIn 0.4s ease',
-        }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Zap size={20} style={{ color: '#10b981' }} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
-          </div>
-          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
-            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
-            background: '#10b981', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
-            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
-          }}>
-            Ir al Quiz →
-          </button>
-          <button onClick={() => setShowQuizPrompt(false)} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
-          }}>×</button>
-        </div>
-      )}
-      {showQuizPrompt && isVideoWatched && (
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: '1rem',
-          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
-          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
-          border: '1px solid rgba(16,185,129,0.3)',
-          animation: 'slideIn 0.4s ease',
-        }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Zap size={20} style={{ color: '#10b981' }} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
-          </div>
-          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
-            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
-            background: '#10b981', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
-            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
-          }}>
-            Ir al Quiz →
-          </button>
-          <button onClick={() => setShowQuizPrompt(false)} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
-          }}>×</button>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
+      {xpPrompt}
 
       <StepBar steps={steps} current={step} onStep={handleStep} />
 
-      {step === 0 && (
-        <div className="card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary-500)' }}>
-          <TranscriptSection transcript={clase.cleanTranscript} summary={clase.summary} onNavigate={onNavigateToTopic} />
-        </div>
-      )}
+      {step === 0 && <TranscriptSection transcript={clase.cleanTranscript} summary={clase.summary} onNavigate={onNavigateToTopic} />}
       {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
       {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onNextClass={onNextClass} nextClase={nextClase} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
       {step === 3 && (
@@ -1203,49 +791,14 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
         />
       )}
 
-      <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
+      <div className="mn-cl-nav">
         {step > 0 && (
-          <button onClick={goPrev} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.3rem', borderRadius: '10px',
-            border: '1px solid var(--border-color)', background: 'var(--surface-700)',
-            color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600,
-          }}>
-            <ArrowLeft size={16} /> {steps[step - 1].label}
-          </button>
+          <button className="mn-cl-nb" onClick={goPrev}><ArrowLeft size={16} /> {steps[step - 1].label}</button>
         )}
-
-        {step === 2 && onNextClass ? (
-          <button onClick={onNextClass} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
-            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            Siguiente Clase <ArrowRight size={16} />
-          </button>
-        ) : step < maxStep ? (
-          <button onClick={goNext} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.3rem', borderRadius: '10px', border: 'none',
-            background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            {steps[step + 1].label} <ArrowRight size={16} />
-          </button>
-        ) : onNextClass ? (
-          <button onClick={onNextClass} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
-            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            Siguiente Clase <ArrowRight size={16} />
-          </button>
-        ) : null}
+        <span className="sp" />
+        {step === 2 && onNextClass ? nextBtn('Siguiente clase', onNextClass)
+          : step < maxStep ? nextBtn(steps[step + 1].label, goNext)
+          : onNextClass ? nextBtn('Siguiente clase', onNextClass) : null}
       </div>
     </div>
   )
