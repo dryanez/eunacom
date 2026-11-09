@@ -26,6 +26,7 @@ import { useSubscription } from '../contexts/SubscriptionContext'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import PruebasDias from '../components/redesign/PruebasDias'
+import { specialtyImage } from '../lib/specialtyImage'
 import '../styles/proMaxPages.css'
 
 /* ════════════════════════════════════════════════════════════════
@@ -2897,7 +2898,9 @@ const MisClases = () => {
             const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
             return (
               <button key={sub} className="mn-li" onClick={() => setCurrentSubsystem(sub)}>
-                <span className="mn-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 18 })}</span>
+                {specialtyImage(sub)
+                  ? <img className="mn-sp-img" src={specialtyImage(sub)} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = 'hidden' }} />
+                  : <span className="mn-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 18 })}</span>}
                 <span className="mn-li-txt">{sub}<small>{lessons.length} clases{completed ? ` · ${completed} vistas` : ''}</small></span>
                 <span className="mn-pct">{subPct >= 100 ? '✓' : `${subPct}%`}</span>
                 <ChevronRight size={16} className="mn-li-go" />
@@ -2923,7 +2926,9 @@ const MisClases = () => {
           return (
             <div className="mn-tema">
               <div className="mn-row" style={{ gap: '.85rem' }}>
-                <span className="mn-mod-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 24 })}</span>
+                {specialtyImage(currentSubsystem)
+                  ? <img className="mn-sp-img mn-sp-img--lg" src={specialtyImage(currentSubsystem)} alt="" onError={e => { e.currentTarget.style.visibility = 'hidden' }} />
+                  : <span className="mn-mod-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 24 })}</span>}
                 <div style={{ minWidth: 0 }}>
                   <span className="mn-pill mn-pill-sky">{currentSpecialty}{meta ? ` · ${meta.name}` : ''}</span>
                   <h2 className="mn-h1" style={{ margin: '.35rem 0 0' }}>{currentSubsystem}</h2>

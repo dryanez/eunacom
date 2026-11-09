@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estilos de iconos · Especialidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+  :root { --bg:#0b1120; --tile:#111a2e; --line:#1e2a44; --mut:#94a3b8; --dim:#64748b; --sky:#38bdf8; --blue:#2563eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Lexend, system-ui, sans-serif; color:#e2e8f0; background: radial-gradient(120% 45% at 85% -8%, #1e3a8a 0%, #0b1120 55%) fixed #0b1120; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  h1 { font-size: 1.6rem; margin: 0 0 .3rem; color:#fff; }
+  .lead { color: var(--mut); margin: 0 0 1.5rem; font-size: .92rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
+  .opt { background: rgba(17,26,46,.85); border: 1px solid var(--line); border-radius: 22px; padding: 1.1rem; }
+  .opt h2 { margin: 0; font-size: 1.05rem; color:#fff; display:flex; align-items:center; gap:.5rem; }
+  .opt h2 b { width: 26px; height: 26px; border-radius: 8px; display:grid; place-items:center; font-size:.8rem; background: linear-gradient(135deg,#2563eb,#38bdf8); color:#fff; }
+  .opt p { margin: .3rem 0 .9rem; color: var(--mut); font-size: .8rem; line-height: 1.5; }
+  .list { background: rgba(30,41,59,.4); border: 1px solid rgba(56,189,248,.12); border-radius: 18px; padding: .3rem; }
+  .row { display:flex; align-items:center; gap:.8rem; padding:.6rem .55rem; border-radius: 14px; }
+  .row + .row { border-top: 1px solid rgba(148,163,184,.08); }
+  .txt { flex:1; min-width:0; }
+  .txt b { display:block; font-size:.9rem; color:#fff; font-weight:600; }
+  .txt small { color: var(--dim); font-size:.72rem; }
+  .pct { font-size:.8rem; color: var(--mut); font-weight:600; }
+  .strip { display:flex; gap:.5rem; margin-top:.9rem; flex-wrap: wrap; }
+  .strip > * { flex-shrink:0; }
+
+  /* 0 — actual (imágenes IA) */
+  .s0 { width:44px; height:44px; border-radius:13px; object-fit:cover; border:1px solid rgba(56,189,248,.22); }
+
+  /* 1 — Contorno */
+  .s1 { width:44px; height:44px; border-radius:13px; display:grid; place-items:center; background:#0b1120; border:1px solid var(--line); color: var(--c); }
+  .s1 svg { width:21px; height:21px; stroke-width:1.75; }
+
+  /* 2 — Duotono */
+  .s2 { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--c); }
+  .s2 svg { width:22px; height:22px; stroke-width:2; fill: color-mix(in srgb, var(--c) 28%, transparent); }
+
+  /* 3 — Gradiente app */
+  .s3 { width:44px; height:44px; border-radius:13px; display:grid; place-items:center; color:#fff; background: linear-gradient(140deg, var(--c), var(--c2)); box-shadow: 0 8px 18px -10px var(--c), inset 0 1px 0 rgba(255,255,255,.25); }
+  .s3 svg { width:22px; height:22px; stroke-width:2.1; }
+
+  /* 4 — Anillo de progreso */
+  .s4 { position:relative; width:46px; height:46px; display:grid; place-items:center; color: var(--c); }
+  .s4 svg.ic { width:19px; height:19px; stroke-width:2; }
+  .s4 svg.ring { position:absolute; inset:0; width:46px; height:46px; transform: rotate(-90deg); }
+
+  /* 5 — Monograma */
+  .s5 { position:relative; width:44px; height:44px; border-radius:13px; display:grid; place-items:center; background: var(--tile); border:1px solid color-mix(in srgb, var(--c) 40%, transparent); color:#fff; font-weight:800; font-size:.78rem; letter-spacing:.04em; }
+  .s5 i { position:absolute; right:-5px; bottom:-5px; width:20px; height:20px; border-radius:7px; display:grid; place-items:center; background: var(--c); color:#0b1120; }
+  .s5 i svg { width:12px; height:12px; stroke-width:2.6; }
+
+  .note { margin-top: 1.8rem; padding: 1rem 1.1rem; border-radius: 16px; border:1px dashed #334155; color: var(--mut); font-size:.85rem; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Iconos de especialidades · 5 estilos</h1>
+  <p class="lead">Así se verían en la lista «Temas y especialidades». Colores por módulo: M1 celeste · M2 ámbar · M3 rosado · M4 verde. La opción 0 son las imágenes actuales (generadas), para comparar.</p>
+  <div class="grid" id="grid"></div>
+  <div class="note">Los estilos 1–5 son vectoriales (nítidos en cualquier tamaño, livianos, no se ven «IA»). Si eliges uno, lo aplico a las 21 especialidades en toda la app.</div>
+</div>
+<script>
+const M = { 1:['#38bdf8','#2563eb'], 2:['#fbbf24','#ea580c'], 3:['#f472b6','#a855f7'], 4:['#34d399','#0d9488'] }
+const SP = [
+  { n:'Cardiología', ab:'CAR', ic:'heart-pulse', m:1, q:'418 preguntas · 47 clases', p:62, img:'cardiologia' },
+  { n:'Neurología y Geriatría', ab:'NEU', ic:'brain', m:1, q:'528 preguntas · 26 clases', p:35, img:'neurologia' },
+  { n:'Respiratorio', ab:'RES', ic:'wind', m:1, q:'353 preguntas · 67 clases', p:18, img:'respiratorio' },
+  { n:'Infectología', ab:'INF', ic:'microscope', m:1, q:'389 preguntas · 24 clases', p:44, img:'infectologia' },
+  { n:'Traumatología', ab:'TRA', ic:'bone', m:2, q:'221 preguntas · 15 clases', p:10, img:'traumatologia' },
+  { n:'Oftalmología', ab:'OFT', ic:'eye', m:2, q:'239 preguntas · 24 clases', p:71, img:'oftalmologia' },
+  { n:'Pediatría', ab:'PED', ic:'baby', m:3, q:'1.424 preguntas · 18 clases', p:28, img:'pediatria' },
+  { n:'Salud Pública', ab:'SP', ic:'users', m:4, q:'998 preguntas · 12 clases', p:5, img:'salud-publica' },
+]
+const STYLES = [
+  { k:0, t:'Actual · imágenes generadas', d:'Ilustraciones 3D de anatomía. Ricas, pero pesadas y con aspecto «IA».' },
+  { k:1, t:'Contorno', d:'Línea fina celeste del color del módulo sobre un cuadro oscuro. Sobrio, tipo Apple Health / Linear.' },
+  { k:2, t:'Duotono', d:'Icono con relleno suave del color del módulo. Más color sin ser chillón.' },
+  { k:3, t:'Gradiente app', d:'Cuadro con degradado del módulo e icono blanco, como íconos de app iOS. El más llamativo.' },
+  { k:4, t:'Anillo de progreso', d:'El icono dentro de un anillo que muestra tu dominio del tema. Útil: se ve el avance de un vistazo.' },
+  { k:5, t:'Monograma', d:'Las siglas (CAR, NEU…) bien diseñadas, con un mini-icono en la esquina. Muy limpio y legible.' },
+]
+const icon = (name, cls='') => `<i data-lucide="${name}" class="${cls}"></i>`
+function mark(s, sp) {
+  const [c, c2] = M[sp.m]
+  const st = `style="--c:${c};--c2:${c2}"`
+  if (s === 0) return `<img class="s0" src="/img/especialidades/${sp.img}.jpg" onerror="this.style.visibility='hidden'" alt="">`
+  if (s === 1) return `<span class="s1" ${st}>${icon(sp.ic)}</span>`
+  if (s === 2) return `<span class="s2" ${st}>${icon(sp.ic)}</span>`
+  if (s === 3) return `<span class="s3" ${st}>${icon(sp.ic)}</span>`
+  if (s === 4) { const r=20, C=2*Math.PI*r, off=C*(1-sp.p/100); return `<span class="s4" ${st}><svg class="ring" viewBox="0 0 46 46"><circle cx="23" cy="23" r="${r}" fill="none" stroke="#1e2a44" stroke-width="3"/><circle cx="23" cy="23" r="${r}" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${off}"/></svg>${icon(sp.ic,'ic')}</span>` }
+  if (s === 5) return `<span class="s5" ${st}>${sp.ab}<i>${icon(sp.ic)}</i></span>`
+}
+const grid = document.getElementById('grid')
+grid.innerHTML = STYLES.map(S => `
+  <section class="opt">
+    <h2><b>${S.k}</b>${S.t}</h2>
+    <p>${S.d}</p>
+    <div class="list">${SP.slice(0,4).map(sp => `
+      <div class="row">${mark(S.k, sp)}<span class="txt"><b>${sp.n}</b><small>${sp.q}</small></span><span class="pct">${sp.p}%</span></div>`).join('')}
+    </div>
+    <div class="strip">${SP.slice(4).map(sp => mark(S.k, sp)).join('')}</div>
+  </section>`).join('')
+lucide.createIcons()
+</script>
+</body>
+</html>

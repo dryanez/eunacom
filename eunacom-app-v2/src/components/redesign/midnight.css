@@ -201,3 +201,8 @@ button.mn-lb-row { cursor: pointer; }
 .mn-guest-cta { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: .3rem; }
 .mn-guest-cta .mn-btn { margin-top: .6rem; }
 @media (max-width: 380px) { .mn-guest-cta { grid-template-columns: 1fr; } }
+
+/* Imagen de especialidad (set Antigravity, fondo navy) */
+.mn-sp-img { width: 44px; height: 44px; border-radius: 13px; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(56,189,248,.22); background: #0b1120; box-shadow: 0 6px 16px -10px rgba(56,189,248,.6); }
+.mn-sp-img--lg { width: 84px; height: 84px; border-radius: 20px; position: relative; z-index: 2; }
+@media (max-width: 420px) { .mn-sp-img--lg { width: 68px; height: 68px; border-radius: 16px; } }

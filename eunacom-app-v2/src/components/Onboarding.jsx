@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Stethoscope, GraduationCap, Building2, User, Phone,
+  Stethoscope, GraduationCap, Building2, User, Phone, ChevronDown,
   ChevronRight, ChevronLeft, Sparkles, CheckCircle2,
   Calendar, Clock, ArrowRight, Loader2, PartyPopper,
   MapPin, Globe2, Trophy, Target, HeartPulse, Baby, Venus,
@@ -374,28 +374,14 @@ const Onboarding = ({ user, onComplete }) => {
                       </select>
                     </div>
 
-                    <div className="ob-mn-field accent">
-                      <Building2 size={19} />
-                      <select
-                        className={university ? '' : 'is-empty'}
-                        value={university}
-                        onChange={(e) => {
-                          const val = e.target.value
-                          setUniversity(val)
-                          const sedes = getSedesForUniversity(val)
-                          if (sedes && sedes.length > 0) {
-                            setSede(sedes[0])
-                          }
-                        }}
-                      >
-                        <option value="" disabled>Selecciona tu universidad...</option>
-                        {CHILEAN_UNIVERSITIES.map((u) => (
-                          <option key={u.id} value={u.name}>
-                            {u.flag} {u.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    <UniPicker
+                      value={university}
+                      onChange={(val) => {
+                        setUniversity(val)
+                        const sedes = getSedesForUniversity(val)
+                        if (sedes && sedes.length > 0) setSede(sedes[0])
+                      }}
+                    />
 
                     {university && (
                       <div className="ob-mn-field accent">
@@ -729,6 +715,33 @@ const Onboarding = ({ user, onComplete }) => {
         </div>
       </div>
     </>
+  )
+}
+
+// Selector de universidad con el escudo de cada una (un <select> nativo no puede mostrar imágenes)
+function UniPicker({ value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const sel = CHILEAN_UNIVERSITIES.find(u => u.name === value)
+  return (
+    <div className="ob-uni">
+      <button type="button" className={`ob-mn-field accent ob-uni-btn ${value ? '' : 'is-empty'}`} onClick={() => setOpen(o => !o)} aria-expanded={open}>
+        {sel?.logo ? <img src={sel.logo} alt="" className="ob-uni-crest" /> : <Building2 size={19} />}
+        <span className="ob-uni-name">{sel ? sel.name : 'Selecciona tu universidad...'}</span>
+        <ChevronDown size={17} className="ob-uni-chev" />
+      </button>
+      {open && (
+        <div className="ob-uni-list" role="listbox">
+          {CHILEAN_UNIVERSITIES.map(u => (
+            <button key={u.id} type="button" role="option" aria-selected={u.name === value}
+              className={`ob-uni-opt ${u.name === value ? 'on' : ''}`}
+              onClick={() => { onChange(u.name); setOpen(false) }}>
+              {u.logo ? <img src={u.logo} alt="" className="ob-uni-crest" loading="lazy" /> : <Building2 size={18} />}
+              <span>{u.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
