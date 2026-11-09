@@ -1,4 +1,5 @@
 import { isAndroidApp } from '../../lib/playBilling'
+import { Check, X as XIcon, Star, RefreshCw, CheckCircle2, Smartphone } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
@@ -127,7 +128,7 @@ export default function LibrosTienda() {
   }
 
   const btnState = sku => isOwned(sku) ? 'owned' : (cart.includes(sku) || coveredByCart(sku)) ? 'added' : ''
-  const btnLabel = (sku, idle) => isOwned(sku) ? '✓ Tuyo' : cart.includes(sku) ? '✓ En el carro' : coveredByCart(sku) ? '✓ En tu pack' : idle
+  const btnLabel = (sku, idle) => isOwned(sku) ? 'Tuyo' : cart.includes(sku) ? 'En el carro' : coveredByCart(sku) ? 'En tu pack' : idle
 
   // Mis libros: biblioteca completa por plan, o lo comprado, separados por tipo
   const shelfBySection = { tomos: TOMOS.filter(t => ownedBooks.has(t.sku)).map(t => ({ key: t.sku, item: t.sku, cover: t.cover, label: `Tomo ${t.n} · ${t.name}` })) }
@@ -147,7 +148,7 @@ export default function LibrosTienda() {
     <div className="tienda">
       {paidBanner === 'success' && (
         <div className="tienda-banner ok">
-          <span>✅ ¡Pago recibido! Tus libros quedan desbloqueados en «Mis libros» (puede tardar unos segundos).</span>
+          <span><CheckCircle2 size={16} style={{ verticalAlign: -3, marginRight: 6 }} />¡Pago recibido! Tus libros quedan desbloqueados en «Mis libros» (puede tardar unos segundos).</span>
           <button className="mini-btn" onClick={() => setPaidBanner(null)}>OK</button>
         </div>
       )}
@@ -191,7 +192,7 @@ export default function LibrosTienda() {
           {shortPlan && (
             <div className="tienda-banner info">
               <span>Tu plan de {planMonths} {planMonths === 1 ? 'mes' : 'meses'} no incluye la biblioteca. Agrégala por <strong>{fmtClp(BIBLIOTECA.price)}</strong> o pásate al plan de 6 meses, que la trae incluida.</span>
-              <button className="mini-btn" onClick={() => toggle('biblioteca')}>{cart.includes('biblioteca') ? '✓ En el carro' : 'Agregar biblioteca'}</button>
+              <button className="mini-btn" onClick={() => toggle('biblioteca')}>{cart.includes('biblioteca') ? 'En el carro' : 'Agregar biblioteca'}</button>
             </div>
           )}
 
@@ -205,12 +206,12 @@ export default function LibrosTienda() {
                 const save = Math.round((1 - p.price / was) * 100)
                 return (
                   <div key={p.sku} className={`pack-card ${p.star ? 'star' : ''}`}>
-                    {p.star && <span className="pack-ribbon">⭐ Más conveniente · Ahorra {save} %</span>}
+                    {p.star && <span className="pack-ribbon"><Star size={12} fill="currentColor" style={{ verticalAlign: -1, marginRight: 4 }} />Más conveniente · Ahorra {save} %</span>}
                     <div className="pack-covers">{p.covers.map((c, i) => <Cover key={i} src={c} alt="" />)}</div>
                     <h3>{p.name}</h3>
                     <p className="desc">{p.desc}</p>
                     <div className="pack-price">{fmtClp(p.price)}<span className="was">{fmtClp(was)}</span></div>
-                    <ul className="pack-feat">{p.features.map(f => <li key={f}><i>✓</i>{f}</li>)}</ul>
+                    <ul className="pack-feat">{p.features.map(f => <li key={f}><i><Check size={13} strokeWidth={3} /></i>{f}</li>)}</ul>
                     <button className={`t-btn ${btnState(p.sku)}`} onClick={() => toggle(p.sku)}>{btnLabel(p.sku, 'Agregar al carro')}</button>
                   </div>
                 )
@@ -250,7 +251,7 @@ export default function LibrosTienda() {
                   <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
                   <div className="tomo-row">
                     <span className="p">{fmtClp(r.price)}</span>
-                    <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? '✓ Tuyo' : btnState(r.sku) ? '✓' : '+'}</button>
+                    <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>
                   </div>
                 </div>
               ))}
@@ -266,12 +267,12 @@ export default function LibrosTienda() {
                 <h3>{BIBLIOTECA.name}</h3>
                 <div className="pack-price">{fmtClp(BIBLIOTECA.price)}</div>
                 <ul className="pack-feat">
-                  <li><i>✓</i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
-                  <li><i>✓</i>1.569 códigos explicados + 19 atlas de imágenes</li>
-                  <li><i>✓</i>Reconstrucciones 2013–2025</li>
-                  <li className="no"><i>✕</i>+650 clases en video</li>
-                  <li className="no"><i>✕</i>+10.000 preguntas en la app y simulacros</li>
-                  <li className="no"><i>✕</i>Plan de estudio y estadísticas</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>1.569 códigos explicados + 19 atlas de imágenes</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Reconstrucciones 2013–2025</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+650 clases en video</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+47.000 preguntas en la app y simulacros</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>Plan de estudio y estadísticas</li>
                 </ul>
                 <button className={`t-btn ${btnState('biblioteca')}`} onClick={() => toggle('biblioteca')}>{btnLabel('biblioteca', 'Solo los libros')}</button>
               </div>
@@ -281,11 +282,11 @@ export default function LibrosTienda() {
                 <h3>App · Plan 6 meses</h3>
                 <div className="pack-price">{fmtClp(PLAN_6M.price)}</div>
                 <ul className="pack-feat">
-                  <li><i>✓</i><b>La misma biblioteca completa</b></li>
-                  <li><i>✓</i>+650 clases en video, con animaciones</li>
-                  <li><i>✓</i>+10.000 preguntas reales y simulacros cronometrados</li>
-                  <li><i>✓</i>Reconstrucciones resueltas en la app</li>
-                  <li><i>✓</i>Plan de estudio y estadísticas por especialidad</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i><b>La misma biblioteca completa</b></li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>+650 clases en video, con animaciones</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>+47.000 preguntas reales y simulacros cronometrados</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Reconstrucciones resueltas en la app</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Plan de estudio y estadísticas por especialidad</li>
                 </ul>
                 <button className="t-btn fill" onClick={openPlans}>Ver el plan de 6 meses →</button>
               </div>
@@ -297,7 +298,7 @@ export default function LibrosTienda() {
 
           <section className="tienda-section">
             <div className="tienda-note">
-              <div className="ic">🔁</div>
+              <div className="ic"><RefreshCw size={22} /></div>
               <div>
                 <h3>¿Compraste libros y ahora quieres la app?</h3>
                 <p>Si te pasas a un plan dentro de {UPGRADE_CREDIT_DAYS} días, te descontamos lo que pagaste en libros. El descuento aparece solo al elegir el plan.</p>

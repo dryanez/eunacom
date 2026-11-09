@@ -237,7 +237,7 @@ export default function LectorMovil({ item, title, fileIdx = 0, equipo = 'telefo
             <article className={`lm-doc ${tablas === 'tabla' ? 'lm-tabla' : 'lm-cards'}`} style={{ ...themeStyle, fontSize: fs }} onClick={onBodyClick}>
               {aviso && (
                 <div className="lm-aviso" data-version="celular">
-                  <b>📱 Estás en la versión celular</b>
+                  <b>Estás en la versión celular</b>
                   <p>{equipo === 'telefono'
                     ? 'Es el mismo contenido del libro, adaptado a la pantalla del teléfono. La versión completa, con el diseño original de cada página, se ve mejor en el computador: entra a eunacomapp.cl/biblioteca con tu misma cuenta.'
                     : 'Es el mismo contenido del libro en texto adaptable. Para ver la versión completa con el diseño original de cada página, toca «PDF».'}</p>
