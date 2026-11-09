@@ -80,7 +80,7 @@ export default function MedLingoMentorPickerModal({
                     onSelectMentor(doc.id)
                     onClose()
                   } else {
-                    setLockedAlert(`🔒 ${doc.name} se desbloquea en Nivel ${doc.level}. Eres Nivel ${userLevel}.`)
+                    setLockedAlert(`${doc.name} se desbloquea en Nivel ${doc.level}. Eres Nivel ${userLevel}.`)
                   }
                 }}
               >

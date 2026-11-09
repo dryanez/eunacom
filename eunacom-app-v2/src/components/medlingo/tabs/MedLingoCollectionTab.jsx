@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BookOpen, Sparkles, Info, Heart, CheckCircle2, ChevronRight, Stethoscope, Award, Flame, Search } from 'lucide-react'
 import { MEDLINGO_MODULES } from '../../../data/medlingo/modulePaths'
 import { playTapSound } from '../../../utils/medlingoAudio'
+import { getModuleIcon } from '../moduleIcons'
 
 const HIGH_YIELD_PEARLS = [
   {
@@ -115,31 +116,31 @@ export default function MedLingoCollectionTab({ state, onOpenShop }) {
             className={`cat-pill ${selectedCategory === 'cardiologia' ? 'active' : ''}`}
             onClick={() => { playTapSound(); setSelectedCategory('cardiologia') }}
           >
-            ❤️ Cardio
+            Cardio
           </button>
           <button 
             className={`cat-pill ${selectedCategory === 'gastroenterologia' ? 'active' : ''}`}
             onClick={() => { playTapSound(); setSelectedCategory('gastroenterologia') }}
           >
-            🍔 Gastro
+            Gastro
           </button>
           <button 
             className={`cat-pill ${selectedCategory === 'respiratorio' ? 'active' : ''}`}
             onClick={() => { playTapSound(); setSelectedCategory('respiratorio') }}
           >
-            🫁 Respiratorio
+            Respiratorio
           </button>
           <button 
             className={`cat-pill ${selectedCategory === 'pediatria' ? 'active' : ''}`}
             onClick={() => { playTapSound(); setSelectedCategory('pediatria') }}
           >
-            🧸 Pediatría
+            Pediatría
           </button>
           <button 
             className={`cat-pill ${selectedCategory === 'ginecologia' ? 'active' : ''}`}
             onClick={() => { playTapSound(); setSelectedCategory('ginecologia') }}
           >
-            🩺 Ginecología
+            Ginecología
           </button>
         </div>
       </div>
@@ -163,7 +164,7 @@ export default function MedLingoCollectionTab({ state, onOpenShop }) {
                 }}
               >
                 <div className="card-top-row">
-                  <span className="card-emoji">{m.emoji}</span>
+                  <span className="card-emoji">{React.createElement(getModuleIcon(m.id), { size: 20 })}</span>
                   <div className="card-info-badge">
                     <Info size={14} />
                   </div>

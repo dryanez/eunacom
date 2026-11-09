@@ -1,5 +1,5 @@
 import React from 'react'
-import { Check, Lock, Star, Gift, Crown, Zap, Activity, Heart, Stethoscope, Award, Flame } from 'lucide-react'
+import { Check, Lock, Star, Gift, Crown, Zap, Activity, Heart, Stethoscope, Award, Flame, Gem, BookOpen } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { playTapSound, playChestOpenSound } from '../../utils/medlingoAudio'
 
@@ -37,19 +37,18 @@ export default function MedLingoPath({
         return (
           <section key={unit.id} className="medlingo-unit">
             {/* ── Unit Header Banner (Duolingo Style) ── */}
-            <div 
+            <div
               className="medlingo-unit-banner"
-              style={{ 
-                background: `linear-gradient(135deg, ${unit.color || moduleData.themeColor} 0%, ${moduleData.accentColor} 100%)` 
-              }}
+              style={{ '--unit-accent': unit.color || moduleData.themeColor }}
             >
+              <div className="medlingo-unit-banner__badge">
+                <BookOpen size={19} />
+              </div>
               <div className="medlingo-unit-banner__content">
                 <div className="medlingo-unit-banner__title">{unit.title}</div>
                 <div className="medlingo-unit-banner__desc">{unit.description}</div>
               </div>
-              <div className="medlingo-unit-banner__badge">
-                <Crown size={24} />
-              </div>
+              <Crown size={16} className="medlingo-unit-banner__crown" />
             </div>
 
             {/* ── Unit Path Nodes ── */}
@@ -82,9 +81,6 @@ export default function MedLingoPath({
                     <button
                       className={`medlingo-node-btn ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''} ${!isUnlocked ? 'locked' : ''} ${isBoss ? 'boss' : ''} ${isChest ? 'chest' : ''}`}
                       disabled={!isUnlocked}
-                      style={{
-                        '--theme-color': isCompleted ? '#58cc02' : (unit.color || moduleData.themeColor)
-                      }}
                       onClick={() => {
                         if (!isUnlocked) return
                         playTapSound()
@@ -103,13 +99,13 @@ export default function MedLingoPath({
                       {isActive && <div className="medlingo-active-halo" />}
 
                       {isCompleted ? (
-                        <Check size={34} strokeWidth={3.5} />
+                        <Check size={30} strokeWidth={3} />
                       ) : !isUnlocked ? (
-                        <Lock size={26} />
+                        <Lock size={22} />
                       ) : isChest ? (
-                        <Gift size={32} className={`medlingo-chest-icon ${!isChestOpened ? 'pulsing' : ''}`} />
+                        <Gift size={28} className={`medlingo-chest-icon ${!isChestOpened ? 'pulsing' : ''}`} />
                       ) : (
-                        <IconComponent size={30} />
+                        <IconComponent size={26} />
                       )}
                     </button>
 
@@ -132,7 +128,7 @@ export default function MedLingoPath({
                       {isBoss && <span className="medlingo-node-tag boss">CASO JEFE</span>}
                       {isChest && (
                         <span className="medlingo-node-tag chest">
-                          {isChestOpened ? 'ABIERTO' : `+${node.gemsReward || 25} 💎`}
+                          {isChestOpened ? 'ABIERTO' : <>+{node.gemsReward || 25} <Gem size={11} /></>}
                         </span>
                       )}
                     </div>

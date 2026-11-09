@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { User, Flame, Sparkles, Trophy, Shield, Heart, Award, ChevronRight, Stethoscope, Zap, Star, Home } from 'lucide-react'
+import { User, Flame, Sparkles, Trophy, Shield, Heart, Award, ChevronRight, Stethoscope, Zap, Star, Home, Gem } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../../utils/doctorAvatars'
 import { LEAGUE_TIERS } from '../../../utils/leagueSystem'
 import { playTapSound } from '../../../utils/medlingoAudio'
@@ -80,11 +80,11 @@ export default function MedLingoProfileTab({
               <span className="p-stat-lbl">Especialidades</span>
             </div>
             <div className="p-stat">
-              <span className="p-stat-val streak">🔥 {state.currentStreak || 1}</span>
+              <span className="p-stat-val streak"><Flame size={16} /> {state.currentStreak || 1}</span>
               <span className="p-stat-lbl">Días Racha</span>
             </div>
             <div className="p-stat">
-              <span className="p-stat-val gems">💎 {state.gems || 0}</span>
+              <span className="p-stat-val gems"><Gem size={16} /> {state.gems || 0}</span>
               <span className="p-stat-lbl">Gemas</span>
             </div>
           </div>

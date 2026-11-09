@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Trophy, Clock, Sparkles, ArrowUp, ArrowDown, Crown } from 'lucide-react'
+import { Trophy, Clock, Sparkles, ArrowUp, ArrowDown, Crown, Gem, Medal } from 'lucide-react'
 import { LEAGUE_TIERS, getLeagueCohort, getWeeklyResetTimeLeft } from '../../../utils/leagueSystem'
 import { playTapSound } from '../../../utils/medlingoAudio'
 import { UserInstitutionBadge } from '../../../utils/universityAndCountry'
@@ -20,14 +20,11 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
       {/* ── Top League Hero ── */}
       <div 
         className="league-hero-header"
-        style={{ 
-          background: displayedTier.badgeBg,
-          borderColor: displayedTier.color 
-        }}
+        style={{ '--tier-accent': displayedTier.color }}
       >
         <div className="league-hero-top">
           <div className="league-tier-icon-big">
-            <span>{displayedTier.icon}</span>
+            <Trophy size={26} color={displayedTier.color} />
           </div>
           <div className="league-hero-info">
             <div className="league-tag-pill" style={{ color: displayedTier.color }}>
@@ -45,8 +42,8 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
             <span>Finaliza en: <strong>{resetTimeLeft}</strong></span>
           </div>
           <div className="prizes-badge">
-            <Sparkles size={14} color="#eab308" />
-            <span>Premios: Top 3 ganan hasta 💎 300</span>
+            <Sparkles size={14} color="#fbbf24" />
+            <span>Premios: Top 3 ganan hasta <Gem size={12} /> 300</span>
           </div>
         </div>
       </div>
@@ -66,7 +63,7 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
                 setSelectedLeagueIndex(idx)
               }}
             >
-              <span className="tier-emoji">{tier.icon}</span>
+              <span className="tier-emoji"><Trophy size={14} color={tier.color} /></span>
               <span className="tier-name">{tier.name.split('(')[0]}</span>
               {idx === 0 && <span className="current-dot">TU LIGA</span>}
             </button>
@@ -97,8 +94,8 @@ export default function MedLingoLeaguesTab({ state, onOpenShop }) {
               <div key={player.name || idx} className={rowClass}>
                 <div className="rank-badge-cell">
                   {idx === 0 && <Crown size={18} color="#eab308" className="crown-icon" />}
-                  {idx === 1 && <span className="medal-emoji">🥈</span>}
-                  {idx === 2 && <span className="medal-emoji">🥉</span>}
+                  {idx === 1 && <span className="medal-emoji"><Medal size={16} className="mn-medal mn-medal-2" /></span>}
+                  {idx === 2 && <span className="medal-emoji"><Medal size={16} className="mn-medal mn-medal-3" /></span>}
                   {idx > 2 && <span className="rank-num">{idx + 1}</span>}
                 </div>
 

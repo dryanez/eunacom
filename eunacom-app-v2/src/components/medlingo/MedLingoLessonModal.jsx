@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { 
   X, Heart, Sparkles, Flame, CheckCircle2, AlertCircle, 
-  ArrowRight, Trophy, Star, Stethoscope, Zap, Shield, Check, PartyPopper, Lightbulb
+  ArrowRight, Trophy, Star, Stethoscope, Zap, Shield, Check, PartyPopper, Lightbulb,
+  Gem, HeartCrack, HeartPulse, Wind, Target
 } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { 
@@ -254,7 +255,7 @@ export default function MedLingoLessonModal({
           <div className="medlingo-progressbar-track">
             <div 
               className="medlingo-progressbar-fill"
-              style={{ width: `${progressPercent}%`, backgroundColor: moduleData.themeColor || '#58cc02' }}
+              style={{ width: `${progressPercent}%` }}
             />
           </div>
 
@@ -272,12 +273,12 @@ export default function MedLingoLessonModal({
             
             {/* Confetti Sparkles Burst */}
             <div className="confetti-burst-container">
-              <span className="confetti-particle p1">🎉</span>
-              <span className="confetti-particle p2">✨</span>
-              <span className="confetti-particle p3">🩺</span>
-              <span className="confetti-particle p4">💎</span>
-              <span className="confetti-particle p5">⭐</span>
-              <span className="confetti-particle p6">🔥</span>
+              <span className="confetti-particle p1"><PartyPopper size={22} /></span>
+              <span className="confetti-particle p2"><Sparkles size={22} /></span>
+              <span className="confetti-particle p3"><Stethoscope size={22} /></span>
+              <span className="confetti-particle p4"><Gem size={22} /></span>
+              <span className="confetti-particle p5"><Star size={22} /></span>
+              <span className="confetti-particle p6"><Flame size={22} /></span>
             </div>
 
             {/* Glowing 3D Trophy */}
@@ -350,7 +351,7 @@ export default function MedLingoLessonModal({
         ) : outOfHearts ? (
           /* ── Out of Hearts Overlay ── */
           <div className="medlingo-out-of-hearts-card animate-scale-up">
-            <div className="heart-broken-icon">💔</div>
+            <div className="heart-broken-icon"><HeartCrack size={44} /></div>
             <h2>¡Te has quedado sin vidas!</h2>
             <p>Necesitas al menos 1 vida para continuar este turno de guardia.</p>
             
@@ -362,7 +363,7 @@ export default function MedLingoLessonModal({
                   onOpenShop()
                 }}
               >
-                RECARGAR VIDAS (💎 100)
+                RECARGAR VIDAS (<Gem size={14} /> 100)
               </button>
               <button 
                 className="medlingo-action-btn secondary full"
@@ -417,11 +418,11 @@ export default function MedLingoLessonModal({
                   {currentQuestion.keyPoints?.map((point, pIdx) => {
                     // Smart parser for clinical keypoints
                     let cleanStr = point.replace(/^[🩺🫀🫁⚡✦\s]+/, '').trim()
-                    let emoji = '🩺'
-                    if (point.includes('Aórtico') || point.includes('Parvus') || point.includes('Celer')) emoji = '🫀'
-                    else if (point.includes('Pulmonar') || point.includes('Paradójico')) emoji = '🫁'
-                    else if (point.includes('Mitral') || point.includes('Alternante')) emoji = '⚡'
-                    else if (point.includes('R3') || point.includes('R4')) emoji = '🩺'
+                    let PointIcon = Stethoscope
+                    if (point.includes('Aórtico') || point.includes('Parvus') || point.includes('Celer')) PointIcon = HeartPulse
+                    else if (point.includes('Pulmonar') || point.includes('Paradójico')) PointIcon = Wind
+                    else if (point.includes('Mitral') || point.includes('Alternante')) PointIcon = Zap
+                    else if (point.includes('R3') || point.includes('R4')) PointIcon = Stethoscope
 
                     let title = cleanStr
                     let desc = ''
@@ -443,14 +444,14 @@ export default function MedLingoLessonModal({
                     return (
                       <div key={pIdx} className="duo-keypoint-card-clean">
                         <div className="card-emoji-badge">
-                          <span>{emoji}</span>
+                          <span><PointIcon size={18} /></span>
                         </div>
                         <div className="card-content-wrap">
                           <div className="card-title-row">
                             <span className="card-main-title">{title}</span>
                             {diagnosis && (
                               <span className="card-diagnosis-pill">
-                                🎯 {diagnosis}
+                                <Target size={11} /> {diagnosis}
                               </span>
                             )}
                           </div>

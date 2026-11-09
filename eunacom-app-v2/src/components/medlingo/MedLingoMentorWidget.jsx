@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Lightbulb, MessageCircle, Sparkles, X } from 'lucide-react'
+import { Lightbulb, MessageCircle, Sparkles, X, Flame } from 'lucide-react'
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { playTapSound, playChestOpenSound } from '../../utils/medlingoAudio'
 
@@ -19,7 +19,7 @@ export default function MedLingoMentorWidget({
   // Determine speech text
   const getSpeechText = () => {
     if (combo >= 3) {
-      return `🔥 ¡${combo} aciertos seguidos! ¡Diagnóstico clínico impecable, doctor(a)!`
+      return `¡${combo} aciertos seguidos! ¡Diagnóstico clínico impecable, doctor(a)!`
     }
     if (isCorrect === false) {
       return `¡Cuidado con ese error! Recuerda la guía MINSAL. Toca "Pista" si necesitas ayuda.`
@@ -114,7 +114,7 @@ export default function MedLingoMentorWidget({
           <span className="mascot-emoji">{mentor.emoji}</span>
           {combo >= 2 && (
             <div className="combo-flame-badge">
-              🔥{combo}
+              <Flame size={11} />{combo}
             </div>
           )}
         </div>
