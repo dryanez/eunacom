@@ -364,7 +364,8 @@ const JUMPS = [
   { id: 'recons', label: 'Reconstrucciones', sub: '16 + Gran Libro', icon: Archive, bg: 'rgba(34,197,94,.15)', color: '#4ade80' },
   { id: 'perfil', label: 'Perfil V3', sub: '1.569 códigos', icon: ClipboardList, bg: 'rgba(56,189,248,.15)', color: '#38bdf8' },
 ]
-const STORE_ANCHOR = { tomos: 'tomos', recons: 'recs' }
+// Sin sesión no hay estantes: cada botón lleva a la parte de la tienda que lo incluye
+const STORE_ANCHOR = { tomos: 'tomos', recons: 'recs', repasos: 'pack-completa', atlas: 'pack-completa', gordos: 'pack-completa' }
 
 const Biblioteca = () => {
   const [tab, setTab] = useState(() => (new URLSearchParams(window.location.search).get('tab') === 'perfil' ? 'perfil' : 'libros'))
@@ -375,7 +376,10 @@ const Biblioteca = () => {
     setTab('libros')
     setTimeout(() => {
       const el = document.getElementById(`shelf-${target}`) || document.getElementById(STORE_ANCHOR[target] || 'packs')
-      el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (!el) return
+      el.scrollIntoView({ behavior: 'smooth', block: el.id.startsWith('pack-') ? 'center' : 'start' })
+      el.classList.remove('mn-flash'); void el.offsetWidth; el.classList.add('mn-flash')
+      setTimeout(() => el.classList.remove('mn-flash'), 1800)
     }, 60)
   }
 

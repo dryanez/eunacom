@@ -205,7 +205,7 @@ export default function LibrosTienda() {
                 const was = looseValue(p.sku)
                 const save = Math.round((1 - p.price / was) * 100)
                 return (
-                  <div key={p.sku} className={`pack-card ${p.star ? 'star' : ''}`}>
+                  <div key={p.sku} id={p.star ? 'pack-completa' : `pack-${p.sku}`} className={`pack-card ${p.star ? 'star' : ''}`}>
                     {p.star && <span className="pack-ribbon"><Star size={12} fill="currentColor" style={{ verticalAlign: -1, marginRight: 4 }} />Más conveniente · Ahorra {save} %</span>}
                     <div className="pack-covers">{p.covers.map((c, i) => <Cover key={i} src={c} alt="" />)}</div>
                     <h3>{p.name}</h3>

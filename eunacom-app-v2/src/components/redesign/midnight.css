@@ -193,3 +193,7 @@ button.mn-lb-row { cursor: pointer; }
 .mn-ab-done { background: rgba(34,197,94,.15); color: #4ade80; }
 .mn-ab-lock { background: rgba(245,158,11,.15); color: #fbbf24; }
 .mn-btn-ghost { background: transparent !important; border: 1px solid #334155 !important; color: #cbd5e1 !important; box-shadow: none !important; }
+
+/* Resalta el destino de un botón de salto (Biblioteca) */
+@keyframes mnFlash { 0%,100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); } 30% { box-shadow: 0 0 0 3px rgba(56,189,248,.85), 0 0 30px rgba(56,189,248,.45); } }
+.mn-flash { animation: mnFlash 1.6s ease; border-radius: 16px; }
