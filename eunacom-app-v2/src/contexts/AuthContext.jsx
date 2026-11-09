@@ -46,14 +46,14 @@ const isLocalHost = isDevHost && !devGuest
 
 export const AuthProvider = ({ children }) => {
     const [localDevUser, setLocalDevUser] = useState(() => {
-        if (devGuest) return null
+        if (devGuest) return (() => { try { return JSON.parse(localStorage.getItem('eunacom_local_dev_user') || 'null') } catch { return null } })()
         if (isLocalHost) return DEFAULT_LOCAL_ADMIN
         const stored = localStorage.getItem('eunacom_local_dev_user')
         return stored ? JSON.parse(stored) : null
     })
 
     const [user, setUser] = useState(() => {
-        if (devGuest) return null
+        if (devGuest) return (() => { try { return JSON.parse(localStorage.getItem('eunacom_local_dev_user') || 'null') } catch { return null } })()
         try {
             const storedDev = localStorage.getItem('eunacom_local_dev_user')
             if (storedDev) return JSON.parse(storedDev)

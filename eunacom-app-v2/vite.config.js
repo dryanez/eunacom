@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { createClient } from '@libsql/client'
 import fs from 'fs'
 import path from 'path'
+import os from 'os'
 
 // Dev middleware: serve /api/clases locally using Turso
 function clasesApiPlugin() {
@@ -178,9 +179,40 @@ function clasesApiPlugin() {
       // creating/saving tests and progress from `npm run dev` without credentials is a no-op.
       if (!process.env.VITE_TURSO_DATABASE_URL && !process.env.TURSO_DATABASE_URL) {
         server.config.logger.info('[clases-api] TURSO_DATABASE_URL not set: proxying /api (reads) to www.eunacomapp.cl; writes to /api/tests and /api/progress are ignored locally')
+        // Perfil y plan de estudio de las cuentas de prueba: se guardan en este computador
+        // (/tmp/eunacom-dev-store.json), nunca en producción.
+        const devStorePath = path.join(os.tmpdir(), 'eunacom-dev-store.json')
+        const readStore = () => { try { return JSON.parse(fs.readFileSync(devStorePath, 'utf8')) } catch { return {} } }
+        const writeStore = st => fs.writeFileSync(devStorePath, JSON.stringify(st))
+        const readBody = req => req.body !== undefined ? Promise.resolve(req.body) : new Promise(r => { let d = ''; req.on('data', c => d += c); req.on('end', () => { try { r(JSON.parse(d)) } catch { r({}) } }) })
+        server.middlewares.use(async (req, res, next) => {
+          const local = [['/api/user-profiles', 'profiles'], ['/api/study-plan', 'plans']].find(([p]) => req.url.startsWith(p))
+          if (!local) return next()
+          const url = new URL(req.url, 'http://localhost')
+          if (url.searchParams.get('action')) return next()
+          const kind = local[1]
+          const st = readStore(); st[kind] ||= {}
+          if (req.method === 'GET') {
+            const id = url.searchParams.get('userId')
+            if (!st[kind][id]) return next() // sin datos locales: lectura normal
+            res.setHeader('Content-Type', 'application/json')
+            return res.end(JSON.stringify({ data: st[kind][id] }))
+          }
+          if (req.method !== 'POST') return next()
+          const b = await readBody(req)
+          const id = b.userId || b.id
+          if (id) {
+            const snake = Object.fromEntries(Object.entries(b).map(([k, v]) => [k.replace(/[A-Z]/g, m => '_' + m.toLowerCase()), Array.isArray(v) ? JSON.stringify(v) : v]))
+            st[kind][id] = { ...(st[kind][id] || {}), ...snake, id, user_id: id, updated_at: new Date().toISOString() }
+            writeStore(st)
+          }
+          res.setHeader('Content-Type', 'application/json')
+          return res.end(JSON.stringify({ ok: true, data: id ? st[kind][id] : null, devLocal: true }))
+        })
+        // Ninguna otra escritura desde localhost llega a producción
         server.middlewares.use((req, res, next) => {
-          if (req.method === 'GET' || req.method === 'OPTIONS') return next()
-          if (!req.url.startsWith('/api/tests') && !req.url.startsWith('/api/progress')) return next()
+          if (req.method === 'GET' || req.method === 'OPTIONS' || req.method === 'HEAD') return next()
+          if (!req.url.startsWith('/api/')) return next()
           res.setHeader('Content-Type', 'application/json')
           return res.end(JSON.stringify({ ok: true, data: [], devNoop: true }))
         })

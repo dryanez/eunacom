@@ -147,3 +147,9 @@
 .mn-cl-hb:hover { border-color: rgba(56,189,248,.5); color: #fff; }
 .mn-cl-hb.next { padding: .38rem .5rem .38rem .75rem; border: 0; background: var(--gradient-primary); color: #fff; box-shadow: 0 6px 16px -8px rgba(56,189,248,.8); }
 @media (max-width: 420px) { .mn-cl-hb:not(.next) span { display: none; } .mn-cl-hb:not(.next) { padding: .4rem; } }
+
+/* Aviso de plan gratuito */
+.mn-free { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; padding: .75rem .95rem; margin-bottom: 1rem; border-radius: 16px; background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.28); color: #fbbf24; font-size: .84rem; }
+.mn-free span { flex: 1; min-width: 200px; color: #fde68a; }
+.mn-free b { color: #fff; }
+.mn-free button { padding: .45rem .85rem; border-radius: 10px; border: 0; background: var(--gradient-primary); color: #fff; font-weight: 700; font-size: .8rem; cursor: pointer; font-family: inherit; }

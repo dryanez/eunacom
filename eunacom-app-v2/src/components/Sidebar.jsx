@@ -34,6 +34,9 @@ const ProgressItem = ({ label, used, total }) => {
 };
 
 // Midnight Pro: menú agrupado (Estudiar · Practicar · Mi progreso). Sin emojis.
+// Quita un «Dr.»/«Dra.»/«Dr(a).» que ya venga en el nombre, para no mostrarlo dos veces
+const noTitle = n => String(n || '').replace(/^\s*(dr\(a\)|dra?)\.?\s+/i, '').trim()
+
 const NAV_GROUPS = [
     { title: 'Estudiar', items: [
         { to: '/dashboard', label: 'Inicio', icon: Home, tour: 'dashboard' },
@@ -92,9 +95,9 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             const userLvl = stats?.level || 1
             setUserLevel(userLvl)
             if (profile?.first_name) {
-                setDisplayName(`Dr(a). ${profile.first_name} ${profile.last_name || ''}`.trim())
+                setDisplayName(`Dr(a). ${noTitle(`${profile.first_name} ${profile.last_name || ''}`)}`.trim())
             } else if (user.user_metadata?.full_name) {
-                setDisplayName(`Dr(a). ${user.user_metadata.full_name}`)
+                setDisplayName(`Dr(a). ${noTitle(user.user_metadata.full_name)}`)
             }
             const doc = getDoctorAvatar(profile || user, userLvl)
             if (doc?.image) setAvatarImage(doc.image)

@@ -2798,17 +2798,10 @@ const MisClases = () => {
       <p className="mn-sub" style={{ marginBottom: '.9rem' }}>{clases.length} clases en video, por módulo</p>
 
       {!isPremium && (
-        <div style={{
-          background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
-          borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.25rem',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
-        }}>
-          <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
-            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
-          </span>
-          <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
-            Desbloquear Ilimitado
-          </button>
+        <div className="mn-free">
+          <Lock size={16} />
+          <span>Plan gratuito: <b>{Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3</b> clases gratis usadas. Puedes entrar a cualquier clase.</span>
+          <button onClick={() => setShowPaymentModal(true)}>Desbloquear todo</button>
         </div>
       )}
 
