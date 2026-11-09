@@ -742,10 +742,14 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
 
   return (
     <div className="mn-cl">
-      <button className="mn-cl-back" onClick={onBack}><ChevronLeft size={16} /> Volver</button>
-
       <div className="mn-cl-hero">
-        <div className="mn-cl-eyebrow">{clase.specialty} · {clase.subsystem}</div>
+        <div className="mn-cl-hero-top">
+          <button className="mn-cl-hb" onClick={onBack} aria-label="Volver"><ChevronLeft size={16} /><span>Volver</span></button>
+          <div className="mn-cl-eyebrow">{clase.specialty} · {clase.subsystem}</div>
+          {onNextClass && nextClase && (
+            <button className="mn-cl-hb next" onClick={onNextClass} title={`Siguiente: ${nextClase.topic || ''}`}><span>Siguiente</span><ChevronRight size={16} /></button>
+          )}
+        </div>
         <h2 className="mn-cl-title">Clase {clase.lessonNumber}: {clase.topic}</h2>
         <div className="mn-cl-chips">
           {videoUrl && (
@@ -770,7 +774,6 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
       {videoUrl && (
         <VideoPlayer
           src={videoUrl}
-          title={`Clase ${clase.lessonNumber}: ${clase.topic}`}
           watched={isVideoWatched}
           onWatched={handleVideoWatched}
         />

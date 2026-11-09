@@ -115,10 +115,10 @@ export default function VideoPlayer({ src, title, watched: initialWatched, onWat
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {title}
+            {title || (watched ? 'Clase vista' : 'Video de la clase')}
           </div>
           <div style={{ fontSize: '0.7rem', color: watched ? '#10b981' : 'var(--text-tertiary)', fontWeight: 600 }}>
-            {watched ? '✓ Clase vista · +50 XP obtenidos' : 'Ver el video completo para ganar 50 XP'}
+            {watched ? '+50 XP obtenidos' : 'Mira el video completo para ganar 50 XP'}
           </div>
         </div>
         {watched && (

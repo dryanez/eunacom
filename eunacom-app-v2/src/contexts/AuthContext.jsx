@@ -25,20 +25,35 @@ const DEFAULT_LOCAL_ADMIN = {
     created_at: '2026-04-15 03:26:36'
 }
 
-const isLocalHost = typeof window !== 'undefined' && (
+const isDevHost = typeof window !== 'undefined' && (
     window.location.hostname === 'localhost' ||
     window.location.hostname === '127.0.0.1' ||
     import.meta.env.DEV
 )
 
+// Solo en localhost: ?invitado=1 muestra la app sin sesión (para revisar la vista de visitantes); ?invitado=0 la apaga
+const devGuest = (() => {
+    if (!isDevHost) return false
+    try {
+        const q = new URLSearchParams(window.location.search).get('invitado')
+        if (q === '1') sessionStorage.setItem('eunacom_dev_guest', '1')
+        if (q === '0') sessionStorage.removeItem('eunacom_dev_guest')
+        return sessionStorage.getItem('eunacom_dev_guest') === '1'
+    } catch { return false }
+})()
+
+const isLocalHost = isDevHost && !devGuest
+
 export const AuthProvider = ({ children }) => {
     const [localDevUser, setLocalDevUser] = useState(() => {
+        if (devGuest) return null
         if (isLocalHost) return DEFAULT_LOCAL_ADMIN
         const stored = localStorage.getItem('eunacom_local_dev_user')
         return stored ? JSON.parse(stored) : null
     })
 
     const [user, setUser] = useState(() => {
+        if (devGuest) return null
         try {
             const storedDev = localStorage.getItem('eunacom_local_dev_user')
             if (storedDev) return JSON.parse(storedDev)
