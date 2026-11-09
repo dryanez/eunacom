@@ -5,8 +5,10 @@ import { fetchPerfil } from '../lib/api'
 import {
   Search, BookOpen, ChevronRight, Stethoscope, AlertTriangle,
   Brain, FileText, Wrench, Filter, X, Shield, ArrowRight,
-  Activity, Eye, Clipboard, Lock
+  Activity, Eye, Clipboard, Lock,
+  BookMarked, RefreshCw, Image as ImageIcon, Archive, ClipboardList
 } from 'lucide-react'
+import '../components/redesign/midnight.css'
 import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import LibrosTienda from '../components/tienda/LibrosTienda'
@@ -354,25 +356,40 @@ const PerfilBrowser = () => {
 /* ════════════════════════════════════════════════════════════════
    MAIN PAGE: Libros (tienda / mis libros) + Perfil EUNACOM
    ════════════════════════════════════════════════════════════════ */
+const JUMPS = [
+  { id: 'tomos', label: 'Tomos', sub: '21 manuales', icon: BookMarked, bg: 'rgba(37,99,235,.2)', color: '#60a5fa' },
+  { id: 'repasos', label: 'Repaso Final', sub: '21 libros', icon: RefreshCw, bg: 'rgba(249,115,22,.18)', color: '#fb923c' },
+  { id: 'atlas', label: 'Atlas', sub: '19 · 1.144 fotos', icon: ImageIcon, bg: 'rgba(167,139,250,.18)', color: '#a78bfa' },
+  { id: 'gordos', label: 'Libros Gordos', sub: '23 · 90 preguntas c/u', icon: FileText, bg: 'rgba(239,68,68,.15)', color: '#f87171' },
+  { id: 'recons', label: 'Reconstrucciones', sub: '16 + Gran Libro', icon: Archive, bg: 'rgba(34,197,94,.15)', color: '#4ade80' },
+  { id: 'perfil', label: 'Perfil V3', sub: '1.569 códigos', icon: ClipboardList, bg: 'rgba(56,189,248,.15)', color: '#38bdf8' },
+]
+const STORE_ANCHOR = { tomos: 'tomos', recons: 'recs' }
+
 const Biblioteca = () => {
   const [tab, setTab] = useState(() => (new URLSearchParams(window.location.search).get('tab') === 'perfil' ? 'perfil' : 'libros'))
   const { libraryIncluded } = useSubscription()
 
+  const jump = target => {
+    if (target === 'perfil') { setTab('perfil'); return }
+    setTab('libros')
+    setTimeout(() => {
+      const el = document.getElementById(`shelf-${target}`) || document.getElementById(STORE_ANCHOR[target] || 'packs')
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 60)
+  }
+
   return (
     <div style={{ paddingBottom: '2rem' }}>
-      <div style={{ marginBottom: '1rem' }}>
-        <h1 className="page__title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <BookOpen size={24} style={{ color: 'var(--primary-500)' }} />
-          Biblioteca EUNACOM
-        </h1>
-      </div>
-      <div className="tienda-tabs" role="tablist">
-        <button role="tab" aria-selected={tab === 'libros'} className={tab === 'libros' ? 'on' : ''} onClick={() => setTab('libros')}>
-          📚 {libraryIncluded ? 'Mis libros' : 'Libros'}
-        </button>
-        <button role="tab" aria-selected={tab === 'perfil'} className={tab === 'perfil' ? 'on' : ''} onClick={() => setTab('perfil')}>
-          🩺 Perfil EUNACOM (1542 ítems)
-        </button>
+      <h1 className="page__title" style={{ marginBottom: '.2rem' }}>Biblioteca</h1>
+      <p style={{ color: 'var(--mn-mut)', fontSize: '.82rem', margin: '0 0 .6rem' }}>~100 libros para leer en la app</p>
+      <div className="mn-jump">
+        {JUMPS.map(j => (
+          <button key={j.id} className={(j.id === 'perfil') === (tab === 'perfil') && j.id === 'perfil' ? 'on' : ''} onClick={() => jump(j.id)}>
+            <span className="mn-ti" style={{ background: j.bg, color: j.color }}><j.icon size={18} /></span>
+            <span>{j.label}<small>{j.sub}</small></span>
+          </button>
+        ))}
       </div>
       {tab === 'libros' ? <LibrosTienda /> : <PerfilBrowser />}
     </div>

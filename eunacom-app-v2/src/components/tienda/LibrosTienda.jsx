@@ -159,12 +159,12 @@ export default function LibrosTienda() {
 
       {shelf.length > 0 && (
         <section className="tienda-section">
-          <h2>📚 Mis libros</h2>
+          <h2>Mis libros</h2>
           <p className="sub">
             {libraryIncluded ? 'Tu plan incluye la biblioteca completa.' : `Tienes ${purchasedBookSkus.length} compra${purchasedBookSkus.length === 1 ? '' : 's'} de libros en tu cuenta.`}
           </p>
           {SHELF_SECTIONS.filter(s => shelfBySection[s.id]?.length).map(s => (
-            <div key={s.id} className="shelf-section">
+            <div key={s.id} id={`shelf-${s.id}`} className="shelf-section">
               <h3 className="shelf-section__title">{s.title} <span>{shelfBySection[s.id].length}</span></h3>
               <div className="shelf">
                 {shelfBySection[s.id].map(b => (
@@ -174,7 +174,7 @@ export default function LibrosTienda() {
                       : <Cover src={b.cover} alt={b.label} />}
                     <b>{b.label}</b>
                     {itemFiles(b.item).length
-                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>📖 Leer</button>
+                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>Leer</button>
                       : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
                   </div>
                 ))}
@@ -194,25 +194,6 @@ export default function LibrosTienda() {
             </div>
           )}
 
-          <div className="tienda-hero">
-            <div>
-              <span className="tienda-kick">Biblioteca AEE · Perfil EUNACOM V3</span>
-              <h1>Los libros para aprobar el EUNACOM, <span>en la app</span></h1>
-              <p>Los 21 tomos de Academia Examen EUNACOM, las reconstrucciones de cada EUNACOM desde 2013, los Libros Gordos, el Repaso Final de cada especialidad, los 1.569 códigos del Perfil V3 explicados y 19 atlas de imágenes (1.144 fotos comentadas). Pago único: los lees en línea, sin vencimiento.</p>
-              <div className="tienda-stats">
-                <div><b>21</b><span>tomos, todas las especialidades</span></div>
-                <div><b>16</b><span>EUNACOM reconstruidos</span></div>
-                <div><b>2.739</b><span>preguntas reales con explicación</span></div>
-                <div><b>1.569</b><span>códigos del Perfil V3 explicados</span></div>
-              </div>
-            </div>
-            <div className="tienda-fan" aria-hidden="true">
-              {[1, 5, 8, 18, 'recons', 19, 11].map((k, i) => (
-                <Cover key={k} alt="" src={k === 'recons' ? EXTRAS[0].cover : TOMOS[k - 1].cover}
-                  style={{ position: 'absolute', width: 110, left: `${i * 13}%`, top: 30 + Math.abs(i - 3) * 16, transform: `rotate(${(i - 3) * 5}deg)`, zIndex: 10 - Math.abs(i - 3) }} />
-              ))}
-            </div>
-          </div>
 
           <section className="tienda-section" id="packs">
             <h2>Elige tu pack</h2>
@@ -323,23 +304,6 @@ export default function LibrosTienda() {
             </div>
           </section>
 
-          <section className="tienda-section">
-            <h2>Gratis en nuestras redes</h2>
-            <p className="sub">Comenta la palabra en el video de Instagram o TikTok y te mandamos un libro por mensaje. La colección completa viene en la Biblioteca.</p>
-            <div className="tienda-free">
-              <div><b>Libro Gordo de la especialidad</b>90 preguntas reales con explicación<br /><code>Comenta POTASIO, CRISIS, PTT…</code></div>
-              <div><b>Repaso Final</b>Lo que más se pregunta, en una guía<br /><code>Comenta SUERO, OJO, EPLEY…</code></div>
-              <div><b>Atlas de Imágenes</b>19 especialidades: lo que hay que reconocer<br /><code>Comenta ATLAS</code></div>
-            </div>
-          </section>
-
-          <section className="tienda-section tienda-faq">
-            <h2>Preguntas frecuentes</h2>
-            <details open><summary>¿Cómo leo los libros?</summary><p>En línea, dentro de la app: quedan en «Mis libros» de tu cuenta y los abres en el computador, la tablet o el celular. No se descargan.</p></details>
-            <details><summary>¿Los libros vencen?</summary><p>No. Es un pago único y el acceso a lo que compras no vence. La app, en cambio, se contrata por meses.</p></details>
-            <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago (Webpay, débito o crédito), Apple Pay, Google Pay o PayPal (en dólares), o por transferencia.</p></details>
-            <details><summary>¿Sirve el código SHORTS20 en los libros?</summary><p>SHORTS20 es para los planes de la app (20 % en cualquier plan). Los packs de libros ya vienen con el descuento aplicado.</p></details>
-          </section>
         </>
       )}
 

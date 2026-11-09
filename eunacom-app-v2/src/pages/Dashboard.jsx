@@ -17,6 +17,7 @@ import { getDoctorAvatar, DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
 import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
+import InicioMidnight from '../components/redesign/InicioMidnight'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
@@ -618,98 +619,15 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* ─── LOGGED IN USER GREETING & DOCTOR PROFILE ─── */}
+      {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
       {user && (
-        <div className="dash-header-greeting">
-          <div className="dash-greeting-left">
-            <div className="dash-user-avatar-frame">
-              <img 
-                src={activeDoctor.image || '/avatars/dr_house.png'} 
-                alt={activeDoctor.name} 
-                onError={(e) => { e.target.src = '/avatars/dr_house.png' }}
-              />
-            </div>
-            <div className="dash-greeting-titles">
-              <h1>
-                Hola, {userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : 'Doctor'} 👋
-              </h1>
-              <p>
-                {activeDoctor.name} · {activeDoctor.quote || 'Continúa tu preparación y revisa tus métricas de dominio'}
-              </p>
-            </div>
-          </div>
-          {userProfile && (userProfile.university || userProfile.country) && (
-            <div className="dash-greeting-right">
-              <UserInstitutionBadge user={userProfile} size={28} showLabel={true} />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ─── HERO BENTO: LEVEL, XP & RACHA WIDGET ─── */}
-      {user && (
-        <div className="dash-hero-level-bento">
-          <div className="dash-level-progress-col">
-            <div className="dash-level-top-row">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                <div className="dash-rank-badge">
-                  <Zap size={14} />
-                  <span>Nivel {stats.level} · {levelTitle}</span>
-                </div>
-                <button
-                  onClick={triggerDemoLevelUp}
-                  className="dash-demo-levelup-btn"
-                  title="Toca para probar la animación y modal de subida de nivel"
-                >
-                  <Sparkles size={13} color="#f97316" />
-                  <span>✨ Ver Promoción</span>
-                </button>
-              </div>
-              <div className="dash-xp-fraction">
-                <strong>{formatXP(stats.xp)}</strong> / {formatXP(levelCapXP)} XP
-              </div>
-            </div>
-            
-            <div className="dash-progress-track">
-              <div 
-                className="dash-progress-fill" 
-                style={{ width: `${Math.max(4, Math.min(100, xpProgress))}%` }} 
-              />
-            </div>
-
-            <div className="dash-level-sub-meta">
-              <span>{formatXP(Math.max(0, levelCapXP - stats.xp))} XP para el siguiente nivel</span>
-              <span>Total acumulado: {formatXP(stats.totalXP || stats.xp)} XP</span>
-            </div>
-          </div>
-
-          {/* Quick Streak Widget Linking to MedLingo / Streak Saver */}
-          <div 
-            onClick={() => {
-              if (todayAnswers === 0 && (stats.streak > 0)) {
-                setShowStreakSaverModal(true)
-              } else {
-                navigate('/medlingo')
-              }
-            }}
-            className={`dash-streak-quick-widget ${todayAnswers === 0 && stats.streak > 0 ? 'streak-widget-risk' : ''}`}
-            title={todayAnswers === 0 && stats.streak > 0 ? "⚠️ Racha en riesgo hoy — Toca para responder 3 preguntas y salvarla" : "Toca para entrenar tu racha en MedLingo"}
-            style={{ cursor: 'pointer' }}
-          >
-            <div className="dash-streak-flame-box">
-              <Flame size={24} className={todayAnswers === 0 && stats.streak > 0 ? "dash-flame-anim flame-pulse-fast" : "dash-flame-anim"} />
-            </div>
-            <div className="dash-streak-data">
-              <span className="dash-streak-lbl">
-                {todayAnswers === 0 && stats.streak > 0 ? '⚠️ En Riesgo' : 'Racha Activa'}
-              </span>
-              <span className="dash-streak-val">
-                {stats.streak || 1} <span>{stats.streak === 1 ? 'día' : 'días'}</span>
-              </span>
-            </div>
-            <ChevronRight size={18} color="#f97316" />
-          </div>
-        </div>
+        <InicioMidnight
+          name={userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : (user?.user_metadata?.full_name || 'Doctor')}
+          streak={stats.streak}
+          accuracy={accuracy}
+          todayAnswers={todayAnswers}
+          dailyGoal={DAILY_GOAL}
+        />
       )}
 
       {/* ─── STREAK FREEZE WARNING BANNER (Trigger de Racha en Riesgo) ─── */}
@@ -721,181 +639,6 @@ const Dashboard = () => {
           onOpenStreakSaver={() => setShowStreakSaverModal(true)}
         />
       )}
-
-      {/* ─── UI/UX PRO MAX BENTO GRID (1st: MIS CLASES, 2nd: MEDLINGO) ─── */}
-      <div className="dash-bento-section">
-        <div className="dash-bento-section-header">
-          <h2 className="dash-bento-section-title">
-            <Sparkles size={18} color="#38bdf8" />
-            <span>Módulos de Preparación EUNACOM</span>
-          </h2>
-        </div>
-
-        <div className="dash-bento-grid">
-          {/* 1. HERO BENTO #1: MIS CLASES (First & Prominent) */}
-          <a href="/mis-clases" className="dash-bento-card bento-card-clases">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Video size={24} />
-                </div>
-                <span className="dash-card-badge">📺 Masterclasses HD</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Mis Clases Teóricas</h3>
-                <p className="dash-card-desc">
-                  +650 videoclases de alto rendimiento según perfil ASOFAMECH, resúmenes MINSAL, fisiopatología y algoritmos clínicos.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">⚡ Módulos 1, 2 y 3</span>
-              <span className="dash-card-action-link">
-                <span>Ver Clases</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 2. HERO BENTO #2: MEDLINGO EUNACOM (Second & Prominent) */}
-          <a href="/medlingo" className="dash-bento-card bento-card-medlingo">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Flame size={24} className="dash-flame-anim" />
-                </div>
-                <span className="dash-card-badge">🦉 Modo Gamificado</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">MedLingo EUNACOM</h3>
-                <p className="dash-card-desc">
-                  Aprende semiología y farmacología jugando con vidas, niveles, misiones diarias y torneos semanales de ligas médicas.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">🔥 Racha & 6 Ligas</span>
-              <span className="dash-card-action-link">
-                <span>Entrenar Racha</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* BENTO: BIBLIOTECA DE LIBROS (acceso rápido a la tienda / mis libros) */}
-          <a href="/biblioteca" className="dash-bento-card bento-card-libros">
-            <div className="dash-card-ambient-tint" />
-            <div className="libros-bento-text">
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <BookOpen size={22} />
-                </div>
-                <span className="dash-card-badge">{libraryIncluded ? '✅ Incluida en tu plan' : `📚 Desde ${fmtClp(TOMOS[0].price)}`}</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM'}</h3>
-                <p className="dash-card-desc">
-                  {libraryIncluded
-                    ? '21 tomos, reconstrucciones 2013–2025, Libros Gordos, Repaso Final, 1.569 códigos explicados y 19 atlas de imágenes.'
-                    : `21 tomos, reconstrucciones, Libros Gordos, Repaso Final y 19 atlas de imágenes. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
-                </p>
-              </div>
-              <div className="dash-card-footer">
-                <span className="dash-card-tag">{ownedBooks.size && !libraryIncluded ? `📖 ${ownedBooks.size} en tu cuenta` : '📖 Tomos · Reconstrucciones · Libros Gordos'}</span>
-                <span className="dash-card-action-link">
-                  <span>{libraryIncluded ? 'Abrir biblioteca' : 'Ver libros'}</span>
-                  <ArrowRight size={16} />
-                </span>
-              </div>
-            </div>
-            <div className="libros-bento-covers" aria-hidden="true">
-              {[TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, TOMOS[17].cover, EXTRAS[4].cover].map((c, i) => (
-                <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2) * 4}deg)`, zIndex: 5 - Math.abs(i - 2) }} />
-              ))}
-            </div>
-          </a>
-
-          {/* 3. BENTO #3: BANCO DE PREGUNTAS & SIMULADOR */}
-          <a href="/test" className="dash-bento-card bento-card-test">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <FileText size={22} />
-                </div>
-                <span className="dash-card-badge">🎯 +10.000 Preguntas</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Banco & Simulacros</h3>
-                <p className="dash-card-desc">
-                  Preguntas clínicas con justificación instantánea, modo tutor AI y filtros personalizados por tema.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">🩺 Modo Tutor & Examen</span>
-              <span className="dash-card-action-link">
-                <span>Iniciar Test</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 4. BENTO #4: RECONSTRUCCIONES OFICIALES */}
-          <a href="/reconstructions" className="dash-bento-card bento-card-reconstructions">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Layers size={22} />
-                </div>
-                <span className="dash-card-badge">🏛️ Oficiales 2020–2026</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Reconstrucciones</h3>
-                <p className="dash-card-desc">
-                  Exámenes oficiales ASOFAMECH completos con pautas oficiales corregidas y estadísticas históricas.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">📋 Pruebas ST y SP</span>
-              <span className="dash-card-action-link">
-                <span>Resolver</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 5. BENTO #5: ANALÍTICA & PLAN DE ESTUDIO */}
-          <a href="/stats" className="dash-bento-card bento-card-plan">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Activity size={22} />
-                </div>
-                <span className="dash-card-badge">📊 Analítica EUNACOM</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Estadísticas & Métricas</h3>
-                <p className="dash-card-desc">
-                  Métricas de dominio, tasa de acierto por especialidad, análisis de debilidades y proyección de puntaje.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">📈 Proyección en Vivo</span>
-              <span className="dash-card-action-link">
-                <span>Ver Reportes</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
 
       {/* ─── STATS GRID (logged-in only) ─── */}
       {user && (

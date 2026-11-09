@@ -1,56 +1,27 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Home, Video, Target, BookOpen, Menu, FileText, BarChart2, CheckSquare, Calendar, Clock, Flame, Settings } from 'lucide-react'
+import { Home, PenLine, PlayCircle, BookOpen, User } from 'lucide-react'
+import './redesign/midnight.css'
 
-const BottomNavigation = ({ onMenuToggle }) => {
-    return (
-        <nav className="bottom-nav">
-            <NavLink to="/dashboard" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <Home size={22} />
-                <span>Inicio</span>
-            </NavLink>
-            <NavLink to="/mis-clases" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#818cf8' }}>
-                <Video size={22} />
-                <span>Clases</span>
-            </NavLink>
-            <NavLink to="/biblioteca" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#fbbf24' }}>
-                <BookOpen size={22} />
-                <span>Libros</span>
-            </NavLink>
-            <NavLink to="/medlingo" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`} style={{ color: '#f97316' }}>
-                <Flame size={22} />
-                <span>MedLingo</span>
-            </NavLink>
-            <NavLink to="/reconstructions" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <FileText size={22} />
-                <span>Rec.</span>
-            </NavLink>
-            <NavLink to="/simulation" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <Target size={22} />
-                <span>Simulación</span>
-            </NavLink>
-            <NavLink to="/test" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <CheckSquare size={22} />
-                <span>Pruebas</span>
-            </NavLink>
-            <NavLink to="/stats" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <BarChart2 size={22} />
-                <span>Stats</span>
-            </NavLink>
-            <NavLink to="/history" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <Clock size={22} />
-                <span>Historial</span>
-            </NavLink>
-            <NavLink to="/settings" className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
-                <Settings size={22} />
-                <span>Ajustes</span>
-            </NavLink>
-            <button className="bottom-nav__link bottom-nav__menu-btn" onClick={onMenuToggle}>
-                <Menu size={22} />
-                <span>Menú</span>
-            </button>
-        </nav>
-    )
-}
+// Midnight Pro: 5 pestañas fijas. El resto (Reconstrucciones, Simulación, Stats, Historial…)
+// está en Inicio y en el menú lateral.
+const TABS = [
+  { to: '/dashboard', icon: Home, label: 'Inicio' },
+  { to: '/test', icon: PenLine, label: 'Preguntas' },
+  { to: '/mis-clases', icon: PlayCircle, label: 'Clases' },
+  { to: '/biblioteca', icon: BookOpen, label: 'Biblioteca' },
+  { to: '/settings', icon: User, label: 'Yo' },
+]
+
+const BottomNavigation = () => (
+  <nav className="bottom-nav mn-bottom">
+    {TABS.map(({ to, icon: Icon, label }) => (
+      <NavLink key={to} to={to} className={({ isActive }) => `bottom-nav__link ${isActive ? 'bottom-nav__link--active' : ''}`}>
+        <Icon size={22} />
+        <span>{label}</span>
+      </NavLink>
+    ))}
+  </nav>
+)
 
 export default BottomNavigation
