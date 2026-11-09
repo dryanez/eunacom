@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams, useLocation, Navigate } from 'react-router-dom'
-import { BookOpen, GraduationCap, Clock, Lock, CheckCircle, PlayCircle, ArrowLeft, AlertCircle } from 'lucide-react'
+import { BookOpen, GraduationCap, Clock, Lock, CheckCircle, PlayCircle, ArrowLeft, AlertCircle, ChevronRight } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { createTest, genId, fetchLibroGordoLink, fetchLibroGordoQuestions } from '../lib/api'
 import { EunacomLogo } from '../components/EunacomLogo'
 import LoadingScreen from '../components/LoadingScreen'
 import TestRunner from './TestRunner'
+import '../components/redesign/midnight.css'
+import '../components/redesign/clase.css'
+import '../components/redesign/misc-pages.css'
 
 // Libros Gordos online — modo bloqueado. Quien tiene el enlace /libro-gordo/<token> (comprado en la
 // Academia Examen EUNACOM) solo puede hacer ese ensayo: sin menú ni navegación de la app. Salir lleva a
@@ -18,46 +21,23 @@ const ERRORS = {
     book_not_in_link: ['Libro no incluido', 'Este enlace no incluye ese Libro Gordo.'],
 }
 
-const page = { minHeight: '100vh', background: 'var(--surface-900)', color: 'var(--surface-50)' }
-const wrap = { maxWidth: 760, margin: '0 auto', padding: '1.25rem 1rem 3rem' }
-
 function LockedHeader({ onExit }) {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.9rem 1.25rem', background: 'var(--surface-800)', borderBottom: '1px solid var(--surface-700)' }}>
-            <EunacomLogo size={28} textColor="var(--surface-50)" />
-            <button onClick={onExit} style={{ background: 'transparent', border: '1px solid var(--surface-600)', color: 'var(--surface-200)', borderRadius: 8, padding: '0.4rem 0.8rem', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}>
-                Salir
-            </button>
+        <div className="mn-lg-head">
+            <EunacomLogo size={28} textColor="#f1f5f9" />
+            <button className="mn-lg-exit" onClick={onExit}>Salir</button>
         </div>
     )
 }
 
 function ModeButton({ tone, icon, title, badge, text, onClick, disabled }) {
-    const c = tone === 'amber'
-        ? { bg: 'rgba(245, 158, 11, 0.15)', border: 'rgba(245, 158, 11, 0.35)', hover: '#fbbf24', icon: '#fde68a', iconBg: 'rgba(245, 158, 11, 0.25)' }
-        : { bg: 'rgba(99, 102, 241, 0.15)', border: 'rgba(99, 102, 241, 0.35)', hover: '#818cf8', icon: '#a5b4fc', iconBg: 'rgba(99, 102, 241, 0.25)' }
     return (
-        <button
-            onClick={onClick}
-            disabled={disabled}
-            style={{
-                display: 'flex', gap: '1rem', padding: '1.25rem', width: '100%',
-                background: `linear-gradient(135deg, ${c.bg} 0%, rgba(15, 23, 42, 0.7) 100%)`,
-                border: `1px solid ${c.border}`, borderRadius: 16, cursor: disabled ? 'wait' : 'pointer', textAlign: 'left',
-                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = c.hover; e.currentTarget.style.transform = 'translateY(-2px)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.transform = 'none' }}
-        >
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: c.iconBg, border: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.icon, flexShrink: 0 }}>
-                {icon}
-            </div>
-            <div>
-                <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '1rem', marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    {title} <span className={`promax-badge-pill promax-badge-${tone === 'amber' ? 'amber' : 'indigo'}`}>{badge}</span>
-                </div>
-                <div style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.45 }}>{text}</div>
-            </div>
+        <button className={`mn-lg-mode${tone === 'amber' ? ' amber' : ''}`} onClick={onClick} disabled={disabled}>
+            <span className="mn-lg-mode-ic">{icon}</span>
+            <span className="mn-lg-mode-t">
+                <b>{title} <span className="mn-lg-badge">{badge}</span></b>
+                <span>{text}</span>
+            </span>
         </button>
     )
 }
@@ -156,19 +136,17 @@ export default function LibroGordo() {
 
     if (state.needsLogin) {
         return (
-            <div style={page}>
+            <div className="mn-lg">
                 <LockedHeader onExit={exit} />
-                <div style={{ ...wrap, textAlign: 'center', paddingTop: '3rem' }}>
-                    <div style={{ width: 64, height: 64, borderRadius: 18, background: 'rgba(56,189,248,0.15)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                        <BookOpen size={30} color="#38bdf8" />
-                    </div>
-                    <h1 style={{ fontSize: '1.7rem', fontWeight: 900, margin: '0 0 0.5rem' }}>Tu Libro Gordo online</h1>
-                    <p style={{ color: 'var(--surface-300)', maxWidth: 460, margin: '0 auto 1.75rem', lineHeight: 1.55 }}>
+                <div className="mn-lg-wrap mn-lg-center">
+                    <div className="mn-mp-bigic"><BookOpen size={30} /></div>
+                    <h1>Tu Libro Gordo online</h1>
+                    <p>
                         Responde las 90 preguntas en modo tutor o simulacro cronometrado. Crea tu cuenta gratis o inicia sesión para empezar: tus puntajes quedan guardados.
                     </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 340, margin: '0 auto' }}>
-                        <button className="btn-primary btn-primary--full" onClick={() => login('register')} style={{ padding: '0.95rem', borderRadius: 12, fontWeight: 800 }}>Crear cuenta</button>
-                        <button onClick={() => login('login')} style={{ padding: '0.95rem', borderRadius: 12, fontWeight: 700, background: 'transparent', border: '1px solid var(--surface-600)', color: 'var(--surface-100)', cursor: 'pointer' }}>Ya tengo cuenta</button>
+                    <div className="mn-lg-btns">
+                        <button className="mn-cl-nb pri" onClick={() => login('register')}>Crear cuenta</button>
+                        <button className="mn-cl-nb" onClick={() => login('login')}>Ya tengo cuenta</button>
                     </div>
                 </div>
             </div>
@@ -178,13 +156,15 @@ export default function LibroGordo() {
     if (state.error) {
         const [title, text] = ERRORS[state.error] || ['No pudimos abrir tu Libro Gordo', 'Intenta de nuevo en unos minutos.']
         return (
-            <div style={page}>
+            <div className="mn-lg">
                 <LockedHeader onExit={exit} />
-                <div style={{ ...wrap, textAlign: 'center', paddingTop: '3rem' }}>
-                    <Lock size={40} color="#f87171" style={{ marginBottom: '1rem' }} />
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 900, margin: '0 0 0.5rem' }}>{title}</h1>
-                    <p style={{ color: 'var(--surface-300)', maxWidth: 460, margin: '0 auto 1.75rem', lineHeight: 1.55 }}>{text}</p>
-                    <button className="btn-primary" onClick={exit} style={{ padding: '0.9rem 1.5rem', borderRadius: 12, fontWeight: 800 }}>Conoce EUNACOMapp</button>
+                <div className="mn-lg-wrap mn-lg-center">
+                    <div className="mn-mp-bigic bad"><Lock size={30} /></div>
+                    <h1>{title}</h1>
+                    <p>{text}</p>
+                    <div className="mn-lg-btns">
+                        <button className="mn-cl-nb pri" onClick={exit}>Conoce EUNACOMapp</button>
+                    </div>
                 </div>
             </div>
         )
@@ -194,28 +174,37 @@ export default function LibroGordo() {
     const attemptsFor = key => (state.attempts || []).filter(a => a.book === key)
 
     return (
-        <div style={page}>
+        <div className="mn-lg">
             <LockedHeader onExit={exit} />
-            <div style={wrap}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(245,158,11,0.15)', color: '#fbbf24', fontWeight: 800, fontSize: '0.75rem', padding: '4px 12px', borderRadius: 9999, marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-                    <BookOpen size={13} /> LIBRO GORDO ONLINE
-                </div>
-                <h1 style={{ fontSize: '1.8rem', fontWeight: 900, margin: '0 0 0.35rem' }}>{selectedBook && multi ? selectedBook.name : state.bookName}</h1>
-                <p style={{ color: 'var(--surface-300)', margin: '0 0 1.5rem' }}>
-                    {multi && !selectedBook ? 'Elige la especialidad que quieres rendir. Cada Libro Gordo tiene 90 preguntas.' : 'Elige cómo quieres rendirlo. Tus resultados quedan guardados en tu cuenta.'}
-                </p>
+            <div className="mn-lg-wrap">
+                {selectedBook && multi && (
+                    <button className="mn-cl-back" onClick={() => setSelectedBook(null)}>
+                        <ArrowLeft size={16} /> Otras especialidades
+                    </button>
+                )}
+                <header className="mn-cl-hero">
+                    <div className="mn-cl-eyebrow">Libro Gordo online</div>
+                    <h1 className="mn-cl-title">{selectedBook && multi ? selectedBook.name : state.bookName}</h1>
+                    <p className="mn-lg-sub">
+                        {multi && !selectedBook ? 'Elige la especialidad que quieres rendir. Cada Libro Gordo tiene 90 preguntas.' : 'Elige cómo quieres rendirlo. Tus resultados quedan guardados en tu cuenta.'}
+                    </p>
+                </header>
 
                 {multi && !selectedBook && (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '0.75rem' }}>
+                    <div className="mn-lg-books">
                         {state.books.map(b => {
                             const done = attemptsFor(b.key).find(a => a.status === 'completed')
                             return (
-                                <button key={b.key} onClick={() => setSelectedBook(b)} className="card" style={{ textAlign: 'left', padding: '1rem', borderRadius: 14, cursor: 'pointer', border: '1px solid var(--surface-700)' }}>
-                                    <div style={{ fontWeight: 800, color: 'var(--surface-50)', marginBottom: 4 }}>{b.name}</div>
-                                    <div style={{ fontSize: '0.8rem', color: 'var(--surface-400)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                                        {b.questions} preguntas
-                                        {done && <span style={{ color: '#10b981', fontWeight: 700 }}>· {done.score}%</span>}
-                                    </div>
+                                <button key={b.key} className="mn-lg-book" onClick={() => setSelectedBook(b)}>
+                                    <span className="mn-lg-book-ic"><BookOpen size={18} /></span>
+                                    <span className="mn-lg-book-t">
+                                        <b>{b.name}</b>
+                                        <small>
+                                            {b.questions} preguntas
+                                            {done && <em>· {done.score}%</em>}
+                                        </small>
+                                    </span>
+                                    <ChevronRight size={18} />
                                 </button>
                             )
                         })}
@@ -224,12 +213,7 @@ export default function LibroGordo() {
 
                 {selectedBook && (
                     <>
-                        {multi && (
-                            <button onClick={() => setSelectedBook(null)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'transparent', border: 'none', color: 'var(--primary-400)', fontWeight: 700, cursor: 'pointer', padding: 0, marginBottom: '1rem' }}>
-                                <ArrowLeft size={16} /> Otras especialidades
-                            </button>
-                        )}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.75rem' }}>
+                        <div className="mn-lg-modes">
                             <ModeButton
                                 tone="indigo" icon={<GraduationCap size={22} />} title="Modo Tutor" badge="Recomendado" disabled={starting}
                                 text="Sin límite de tiempo. Obtén pistas y explicaciones en tiempo real para aprender de tus errores al instante."
@@ -243,22 +227,20 @@ export default function LibroGordo() {
                         </div>
 
                         {attemptsFor(selectedBook.key).length > 0 && (
-                            <div className="card" style={{ borderRadius: 16, padding: '1.1rem 1.25rem' }}>
-                                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--surface-400)', letterSpacing: '0.07em', marginBottom: '0.75rem' }}>TUS INTENTOS</div>
+                            <div className="mn-mp-card">
+                                <div className="mn-mp-label">Tus intentos</div>
                                 {attemptsFor(selectedBook.key).map(a => {
                                     const done = a.status === 'completed'
                                     return (
-                                        <div key={a.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', padding: '0.6rem 0', borderTop: '1px solid var(--surface-700)' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                                {done ? <CheckCircle size={18} color="#10b981" /> : <AlertCircle size={18} color="#fbbf24" />}
+                                        <div key={a.id} className="mn-lg-att">
+                                            <div className="mn-lg-att-l">
+                                                {done ? <CheckCircle size={18} color="#34d399" style={{ flex: 'none' }} /> : <AlertCircle size={18} color="#fbbf24" style={{ flex: 'none' }} />}
                                                 <div>
-                                                    <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>
-                                                        {a.mode === 'exam' ? 'Simulacro' : 'Tutor'} · {done ? `${a.score}%` : 'en curso'}
-                                                    </div>
-                                                    <div style={{ fontSize: '0.75rem', color: 'var(--surface-400)' }}>{new Date(String(a.created_at).replace(' ', 'T') + 'Z').toLocaleDateString('es-CL')}</div>
+                                                    <b>{a.mode === 'exam' ? 'Simulacro' : 'Tutor'} · {done ? `${a.score}%` : 'en curso'}</b>
+                                                    <small>{new Date(String(a.created_at).replace(' ', 'T') + 'Z').toLocaleDateString('es-CL')}</small>
                                                 </div>
                                             </div>
-                                            <button onClick={() => openAttempt(selectedBook, a)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(56,189,248,0.12)', border: '1px solid rgba(56,189,248,0.35)', color: '#38bdf8', borderRadius: 8, padding: '0.4rem 0.8rem', fontWeight: 700, fontSize: '0.82rem', cursor: 'pointer' }}>
+                                            <button className="mn-lg-attbtn" onClick={() => openAttempt(selectedBook, a)}>
                                                 <PlayCircle size={15} /> {done ? 'Revisar' : 'Continuar'}
                                             </button>
                                         </div>
