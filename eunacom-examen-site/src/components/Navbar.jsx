@@ -3,10 +3,10 @@ import { Menu, X } from 'lucide-react';
 import { BRAND, CONTACTO } from '../site.config';
 
 const NAV_LINKS = [
-  { href: '#cursos', label: 'Cursos y precios' },
+  { href: '#clase-magistral', label: 'Clase magistral' },
+  { href: '#cursos', label: 'Cursos' },
   { href: '#diagnostico', label: 'Pruebas gratis' },
   { href: '#revalidacion', label: 'Para médicos extranjeros' },
-  { href: '#clase-magistral', label: 'Clase magistral' },
   { href: '#blog', label: 'Blog' },
   { href: '#faq', label: 'Preguntas' },
 ];
@@ -23,8 +23,37 @@ const linkStyle = {
   textDecoration: 'none',
 };
 
-export default function Navbar({ onOpenMentorship }) {
+export default function Navbar({ onOpenMentorship, currentView, onNavigateHome, onNavigateBlog, onNavigateRevalidacion }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLinkClick = (href, e) => {
+    if (e) e.preventDefault();
+    setMobileMenuOpen(false);
+    if (href === '#blog') {
+      if (onNavigateBlog) onNavigateBlog();
+      else window.location.hash = '#blog';
+    } else if (href === '#revalidacion') {
+      if (onNavigateRevalidacion) onNavigateRevalidacion();
+      else window.location.hash = '#revalidacion';
+    } else {
+      if (onNavigateHome) onNavigateHome(href);
+      else {
+        window.location.hash = href;
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    if (e) e.preventDefault();
+    setMobileMenuOpen(false);
+    if (onNavigateHome) onNavigateHome('');
+    else {
+      window.location.hash = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
@@ -63,7 +92,11 @@ export default function Navbar({ onOpenMentorship }) {
           alignItems: 'center',
           gap: 'clamp(10px,1.5vw,24px)',
         }}>
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '11px', flex: 'none', textDecoration: 'none' }}>
+          <a
+            href="#"
+            onClick={handleLogoClick}
+            style={{ display: 'flex', alignItems: 'center', gap: '11px', flex: 'none', textDecoration: 'none' }}
+          >
             <span style={{
               width: '44px',
               height: '44px',
@@ -114,11 +147,28 @@ export default function Navbar({ onOpenMentorship }) {
             alignItems: 'center',
             fontFamily: 'var(--font-heading)',
           }}>
-            {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} style={linkStyle} className="nav-link">
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = 
+                (link.href === '#blog' && currentView === 'blog') || 
+                (link.href === '#revalidacion' && currentView === 'revalidacion') ||
+                (link.href === '#cursos' && (currentView === 'curso-teorico' || currentView === 'curso-practico'));
+              return (
+                <button
+                  key={link.href}
+                  onClick={(e) => handleLinkClick(link.href, e)}
+                  style={{
+                    ...linkStyle,
+                    color: isActive ? '#0b5ea8' : '#41556b',
+                    fontWeight: isActive ? '700' : '600',
+                    borderBottom: isActive ? '2px solid #0b5ea8' : 'none',
+                    paddingBottom: isActive ? '4px' : '6px'
+                  }}
+                  className="nav-link"
+                >
+                  {link.label}
+                </button>
+              );
+            })}
             <button onClick={onOpenMentorship} style={linkStyle} className="nav-link">
               Contacto
             </button>
@@ -153,14 +203,13 @@ export default function Navbar({ onOpenMentorship }) {
             fontFamily: 'var(--font-heading)',
           }}>
             {NAV_LINKS.map((link) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                style={{ ...linkStyle, fontSize: '14px' }}
+                onClick={(e) => handleLinkClick(link.href, e)}
+                style={{ ...linkStyle, fontSize: '14px', textAlign: 'left' }}
               >
                 {link.label}
-              </a>
+              </button>
             ))}
             <button
               onClick={() => { setMobileMenuOpen(false); onOpenMentorship(); }}

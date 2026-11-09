@@ -1,4 +1,5 @@
 import { getTurso } from './_turso.js'
+import { requireUser, ownUserId, isAdminUser } from './_auth.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies } from './_tienda.js'
@@ -306,6 +307,12 @@ export default async function handler(req, res) {
       createPreference: bookPreference, paypalOrder: bookPaypalOrder, paypalCapture: bookPaypalCapture, signFile: signBookFile
     })) return
 
+    // Everything below acts for the logged-in caller only (admins may act on others).
+    const authUser = await requireUser(req, res)
+    if (!authUser) return
+    const wantedUserId = req.query?.userId || req.body?.userId || (req.method === 'POST' && !req.body?.action ? req.body?.id : null)
+    if (ownUserId(req, res, authUser, wantedUserId) === null) return
+
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
       const { userId, planId, discount, coupon } = req.body
@@ -514,6 +521,10 @@ export default async function handler(req, res) {
       } = req.body
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
+      // Premium is inherited by email below, so the email must be the caller's own
+      if (!isAdminUser(authUser) && String(email).toLowerCase() !== authUser.email) {
+        return res.status(403).json({ error: 'Forbidden' })
+      }
 
       // Ensure all columns exist if adding to old DB (catch errors if they already exist)
       const newCols = [

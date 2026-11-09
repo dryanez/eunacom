@@ -1,4 +1,5 @@
 import { getTurso } from './_turso.js'
+import { requireAdmin } from './_auth.js'
 import { Resend } from 'resend'
 import financesHandler from './_admin-finances.js'
 import seoHandler from './_admin-seo.js'
@@ -105,10 +106,7 @@ export default async function handler(req, res) {
         return res.json({ settings })
       }
 
-      const isDev = process.env.NODE_ENV !== 'production'
-      if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
-        return res.status(403).json({ error: 'Forbidden' })
-      }
+      if (!(await requireAdmin(req, res))) return
 
       // Finances route
       if (action === 'finances') {
@@ -316,9 +314,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'PATCH') {
       const { adminEmail, userId, months } = req.body
-      if (adminEmail !== 'dr.felipeyanez@gmail.com') {
-        return res.status(403).json({ error: 'Forbidden' })
-      }
+      if (!(await requireAdmin(req, res))) return
       if (!userId || !months) {
         return res.status(400).json({ error: 'Missing userId or months' })
       }
@@ -342,9 +338,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       const { adminEmail, targetEmails, subject, htmlContent, action, key, value } = req.body
-      if (adminEmail !== 'dr.felipeyanez@gmail.com') {
-        return res.status(403).json({ error: 'Unauthorized' })
-      }
+      if (!(await requireAdmin(req, res))) return
 
       // App Settings update route
       if (action === 'settings') {

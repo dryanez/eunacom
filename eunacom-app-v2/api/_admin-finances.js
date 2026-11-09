@@ -1,3 +1,4 @@
+import { requireAdmin } from './_auth.js'
 import { getTurso } from './_turso.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -46,11 +47,8 @@ function normalizePlanId(planId, desc, amount) {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { adminEmail, format } = req.query
-  const isDev = process.env.NODE_ENV !== 'production'
-  if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
-    return res.status(403).json({ error: 'Forbidden' })
-  }
+  const { format } = req.query
+  if (!(await requireAdmin(req, res))) return
 
   let db = null
   if (process.env.TURSO_DATABASE_URL) {

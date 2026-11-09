@@ -5,16 +5,16 @@ const COLUMNS = [
   {
     title: 'Sitio',
     links: [
-      { href: '#cursos', label: 'Cursos y precios' },
-      { href: '#diagnostico', label: 'Material y pruebas gratis' },
       { href: '#clase-magistral', label: 'Clase magistral' },
+      { href: '#cursos', label: 'Cursos online' },
+      { href: '#diagnostico', label: 'Material y pruebas gratis' },
     ],
   },
   {
     title: 'Recursos',
     links: [
       { href: '#revalidacion', label: 'Para médicos extranjeros' },
-      { href: '#blog', label: 'Blog' },
+      { href: '#blog', label: 'Blog y Guías' },
       { href: '#faq', label: 'Preguntas frecuentes' },
     ],
   },
@@ -30,9 +30,37 @@ const headingStyle = {
   marginBottom: '16px',
 };
 
-const linkStyle = { color: '#a9c6de', fontSize: '14px', textDecoration: 'none', display: 'block', padding: '3px 0' };
+const linkStyle = {
+  color: '#a9c6de',
+  fontSize: '14px',
+  textDecoration: 'none',
+  display: 'block',
+  padding: '3px 0',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  textAlign: 'left'
+};
 
-export default function Footer({ onOpenMentorship, onOpenSEOStudio }) {
+export default function Footer({ onOpenMentorship, onOpenSEOStudio, onNavigateHome, onNavigateBlog, onNavigateRevalidacion }) {
+  const handleLinkClick = (href, e) => {
+    if (e) e.preventDefault();
+    if (href === '#blog') {
+      if (onNavigateBlog) onNavigateBlog();
+      else window.location.hash = '#blog';
+    } else if (href === '#revalidacion') {
+      if (onNavigateRevalidacion) onNavigateRevalidacion();
+      else window.location.hash = '#revalidacion';
+    } else {
+      if (onNavigateHome) onNavigateHome(href);
+      else {
+        window.location.hash = href;
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <footer style={{ marginTop: '80px', background: '#08365f', color: '#a9c6de' }}>
       <div className="container" style={{ padding: '54px 36px 36px' }}>
@@ -71,7 +99,7 @@ export default function Footer({ onOpenMentorship, onOpenSEOStudio }) {
               </span>
             </div>
             <p style={{ fontSize: '14px', lineHeight: '1.9', margin: 0 }}>
-              Prueba para el ejercicio de la Medicina en Chile. Preparación para el EUNACOM teórico.
+              Prueba para el ejercicio de la Medicina en Chile. Cursos Online Intensivo y Regular para el EUNACOM teórico.
             </p>
           </div>
 
@@ -79,12 +107,18 @@ export default function Footer({ onOpenMentorship, onOpenSEOStudio }) {
             <div key={col.title}>
               <div style={headingStyle}>{col.title}</div>
               {col.links.map((link) => (
-                <a key={link.href} href={link.href} style={linkStyle}>▸ {link.label}</a>
+                <button
+                  key={link.href}
+                  onClick={(e) => handleLinkClick(link.href, e)}
+                  style={linkStyle}
+                >
+                  ▸ {link.label}
+                </button>
               ))}
               {col.title === 'Recursos' && (
                 <button
                   onClick={onOpenSEOStudio}
-                  style={{ ...linkStyle, background: 'none', border: 'none', padding: '3px 0', cursor: 'pointer', textAlign: 'left' }}
+                  style={linkStyle}
                 >
                   ▸ Laboratorio de temas
                 </button>
