@@ -521,7 +521,7 @@ const Dashboard = () => {
         <InicioMidnight
           guest={!user}
           onAuth={mode => openAuthModal(mode)}
-          name={!user ? 'Doctor(a)' : userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : (user?.user_metadata?.full_name || 'Doctor')}
+          name={!user ? 'Doctor(a)' : `Dr(a). ${String(userProfile?.first_name || user?.user_metadata?.full_name || 'Doctor').replace(/^\s*(dr\(a\)|dra?)\.?\s+/i, '')}`}
           streak={stats.streak}
           accuracy={accuracy}
           todayAnswers={todayAnswers}
