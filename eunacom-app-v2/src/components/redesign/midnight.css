@@ -180,3 +180,9 @@ button.mn-lb-row { cursor: pointer; }
 .mn-lb-xp b { display: inline-flex; align-items: center; gap: 2px; font-size: .84rem; font-weight: 700; color: #fbbf24; }
 .mn-lb-xp small { display: block; font-size: .66rem; color: var(--mn-dim); }
 .mn-lb-empty { padding: 1.4rem .5rem; text-align: center; color: var(--mn-mut); font-size: .82rem; }
+
+/* ─── Tema: página completa en vez de pop-up ─── */
+.mn-topic-page { padding: 0 !important; align-items: stretch !important; justify-content: stretch !important; background: #0b1120 !important; backdrop-filter: none !important; }
+.mn-topic-sheet { max-width: none !important; max-height: none !important; height: 100dvh; border-radius: 0 !important; border: 0 !important; box-shadow: none !important; background: radial-gradient(120% 40% at 85% -8%, #1e3a8a 0%, #0b1120 55%) #0b1120 !important; overflow-y: auto !important; animation: mnUp .3s both !important; }
+.mn-topic-sheet > * { width: 100%; max-width: 760px; margin-left: auto !important; margin-right: auto !important; }
+.mn-topic-sheet > *:last-child { position: sticky; bottom: 0; background: rgba(11,17,32,.96); backdrop-filter: blur(10px); z-index: 2; margin-top: auto; }
