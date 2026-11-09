@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { ChevronDown, AlertCircle, TrendingUp } from 'lucide-react'
+import { BarChart3, AlertCircle, TrendingUp } from 'lucide-react'
 import { fetchProgress, fetchTests } from '../lib/api'
 import { useAuth } from '../contexts/AuthContext'
 import { getQuestionDB } from '../lib/questionDB'
+import '../components/redesign/midnight.css'
+import '../components/redesign/stats-history.css'
 
 const Stats = () => {
     const { user } = useAuth()
@@ -83,140 +85,107 @@ const Stats = () => {
           ` L ${chartPoints[chartPoints.length - 1].x},180 L ${chartPoints[0].x},180 Z`
         : ''
 
+    const totalAnswered = progressData.length
+    const totalCorrect = progressData.filter(p => p.is_correct).length
+    const overallPct = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0
+    const fmt = n => (n || 0).toLocaleString('es-CL')
+    const tone = pct => pct < 50 ? 'red' : pct < 75 ? 'amber' : 'green'
+    const toneText = { red: 'sh-bad', amber: 'sh-mid', green: 'sh-good' }
+
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '4rem' }}>
-            <h1 className="page__title">Estadísticas Avanzadas</h1>
-            <p className="page__subtitle">Seguimiento detallado de tu rendimiento</p>
+        <section className="sh-page">
+            <h1 className="mn-h1">Estadísticas</h1>
+            <p className="mn-sub">{loading ? 'Seguimiento detallado de tu rendimiento' : `${fmt(totalAnswered)} preguntas respondidas`}</p>
 
-            {/* ── Rendimiento por Especialidad ── */}
-            <div className="card" style={{ padding: 0, marginBottom: '1.5rem', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)' }}>
-                    <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Rendimiento por Especialidad</h3>
-                    <ChevronDown size={20} color="var(--surface-400)" />
-                </div>
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    {loading ? (
-                        <div style={{ color: 'var(--surface-400)', textAlign: 'center' }}>Cargando estadísticas...</div>
-                    ) : barData.length === 0 ? (
-                        <div style={{ color: 'var(--surface-400)', textAlign: 'center' }}>No hay suficientes datos. Responde más preguntas.</div>
-                    ) : barData.map(item => (
-                        <div key={item.name} style={{ width: '100%', marginBottom: '0.5rem' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem', fontSize: '0.85rem', color: 'var(--surface-300)' }}>
+            <div className="mn-stats sh-3">
+                <div className="mn-stat"><b className="mn-blue">{loading ? '–' : `${overallPct}%`}</b><span>Correctas</span></div>
+                <div className="mn-stat"><b>{loading ? '–' : fmt(totalAnswered)}</b><span>Respondidas</span></div>
+                <div className="mn-stat"><b>{loading ? '–' : fmt(testHistory.length)}</b><span>Completados</span></div>
+            </div>
+
+            {/* ── Rendimiento por especialidad ── */}
+            <div className="mn-card">
+                <div className="sh-head"><h2>Por especialidad</h2><BarChart3 size={18} /></div>
+                {loading ? (
+                    <div className="sh-empty">Cargando estadísticas...</div>
+                ) : barData.length === 0 ? (
+                    <div className="sh-empty">No hay suficientes datos. Responde más preguntas.</div>
+                ) : barData.map(item => {
+                    const t = tone(item.percentage)
+                    return (
+                        <div key={item.name} className="sh-spec">
+                            <div className="sh-spec-top">
                                 <span>{item.name}</span>
-                                <span style={{ color: 'var(--surface-400)', fontSize: '0.78rem' }}>
-                                    {item.correct}/{item.total} &nbsp;
-                                    <strong style={{ color: item.color }}>{item.score}</strong>
-                                </span>
+                                <small>{item.correct}/{item.total}</small>
+                                <b className={toneText[t]}>{item.score}</b>
                             </div>
-                            <div style={{ width: '100%', background: 'var(--surface-600)', borderRadius: '4px', height: '10px', overflow: 'hidden' }}>
-                                <div style={{ width: item.width, background: item.color, height: '100%', borderRadius: '4px', transition: 'width 1s ease-out' }} />
-                            </div>
+                            <span className={`mn-bar${t === 'green' ? '' : ` sh-bar-${t}`}`}><b style={{ width: `${Math.max(2, item.percentage)}%`, transition: 'width 1s ease-out' }} /></span>
                         </div>
-                    ))}
-                </div>
+                    )
+                })}
             </div>
 
-            {/* ── Evolución de Puntaje (real data) ── */}
-            <div className="card" style={{ padding: 0, marginBottom: '1.5rem', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)' }}>
-                    <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Evolución de Puntaje</h3>
-                    <TrendingUp size={20} color="var(--surface-400)" />
-                </div>
-                <div style={{ padding: '1.5rem' }}>
-                    {loading ? (
-                        <div style={{ color: 'var(--surface-400)', textAlign: 'center' }}>Cargando...</div>
-                    ) : chartPoints.length < 2 ? (
-                        <div style={{ color: 'var(--surface-400)', textAlign: 'center', padding: '2rem 0' }}>
-                            Completa al menos 2 exámenes para ver tu evolución.
-                        </div>
-                    ) : (
-                        <div style={{ position: 'relative', width: '100%', height: '240px' }}>
-                            <svg viewBox="0 0 400 240" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
-                                <defs>
-                                    <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="rgba(59,130,246,0.35)" />
-                                        <stop offset="100%" stopColor="rgba(59,130,246,0)" />
-                                    </linearGradient>
-                                </defs>
-                                {[0, 25, 50, 75, 100].map((pct, i) => {
-                                    const y = Math.round((1 - pct / 100) * 160) + 20
-                                    return (
-                                        <g key={i}>
-                                            <line x1="0" y1={y} x2="400" y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                                            <text x="2" y={y - 3} fill="rgba(255,255,255,0.4)" fontSize="10" fontWeight="500">{pct}%</text>
-                                        </g>
-                                    )
-                                })}
-                                {area && <path d={area} fill="url(#areaGradient)" />}
-                                {polyline && <polyline points={polyline} fill="none" stroke="var(--primary-400)" strokeWidth="3" strokeLinejoin="round" />}
-                                {chartPoints.map((p, i) => (
+            {/* ── Evolución de puntaje (datos reales) ── */}
+            <div className="mn-card">
+                <div className="sh-head"><h2>Evolución de puntaje</h2><TrendingUp size={18} /></div>
+                <p className="mn-sub">Tus últimos {Math.min(10, testHistory.length) || ''} exámenes completados</p>
+                {loading ? (
+                    <div className="sh-empty">Cargando...</div>
+                ) : chartPoints.length < 2 ? (
+                    <div className="sh-empty">Completa al menos 2 exámenes para ver tu evolución.</div>
+                ) : (
+                    <div className="sh-chart">
+                        <svg viewBox="0 0 400 240">
+                            <defs>
+                                <linearGradient id="shAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="rgba(56,189,248,0.32)" />
+                                    <stop offset="100%" stopColor="rgba(37,99,235,0)" />
+                                </linearGradient>
+                            </defs>
+                            {[0, 25, 50, 75, 100].map((pct, i) => {
+                                const y = Math.round((1 - pct / 100) * 160) + 20
+                                return (
                                     <g key={i}>
-                                        <circle cx={p.x} cy={p.y} r="5" fill="var(--primary-400)" stroke="var(--surface-900)" strokeWidth="2.5" />
-                                        <title>{p.date}: {p.score}%</title>
-                                        {/* Rotated labels to fit without scrolling */}
-                                        <text 
-                                            x={p.x} 
-                                            y={200} 
-                                            fill="var(--surface-400)" 
-                                            fontSize="11" 
-                                            textAnchor="end" 
-                                            transform={`rotate(-45, ${p.x}, 200)`}
-                                        >
-                                            {p.date}
-                                        </text>
+                                        <line x1="0" y1={y} x2="400" y2={y} stroke="#1e2a44" strokeWidth="1" />
+                                        <text x="2" y={y - 3} fill="#64748b" fontSize="10" fontWeight="500">{pct}%</text>
                                     </g>
-                                ))}
-                            </svg>
-                        </div>
-                    )}
-                </div>
+                                )
+                            })}
+                            {area && <path d={area} fill="url(#shAreaGradient)" />}
+                            {polyline && <polyline points={polyline} fill="none" stroke="#38bdf8" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />}
+                            {chartPoints.map((p, i) => (
+                                <g key={i}>
+                                    <circle cx={p.x} cy={p.y} r="4.5" fill="#38bdf8" stroke="#0b1120" strokeWidth="2.5" />
+                                    <title>{p.date}: {p.score}%</title>
+                                    <text x={p.x} y={200} fill="#64748b" fontSize="11" textAnchor="end" transform={`rotate(-45, ${p.x}, 200)`}>
+                                        {p.date}
+                                    </text>
+                                </g>
+                            ))}
+                        </svg>
+                    </div>
+                )}
             </div>
 
-            {/* ── Puntos Débiles ── */}
-            <div className="card" style={{ padding: 0, marginBottom: '1.5rem', overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.03)' }}>
-                    <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Puntos Débiles</h3>
-                    <ChevronDown size={20} color="var(--surface-400)" />
-                </div>
-                <div style={{ padding: '0.5rem 1.5rem 1.5rem 1.5rem' }}>
-                    {loading ? null : weaknesses.length === 0 ? (
-                        <div style={{ color: 'var(--surface-400)', textAlign: 'center', padding: '1rem 0' }}>
-                            ¡Sin puntos débiles por ahora! Sigue practicando.
-                        </div>
-                    ) : (
-                        <div style={{ position: 'relative' }}>
-                            <button onClick={() => {
-                                const container = document.getElementById('weakpoints-container')
-                                if (container) container.scrollBy({ left: -250, behavior: 'smooth' })
-                            }} style={{ position: 'absolute', left: '-15px', top: '50%', transform: 'translateY(-50%)', zIndex: 2, background: 'var(--surface-700)', border: '1px solid var(--surface-500)', borderRadius: '50%', width: '36px', height: '36px', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>&lt;</button>
-                            
-                            <div id="weakpoints-container" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', scrollBehavior: 'smooth', scrollSnapType: 'x mandatory', padding: '0.5rem', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                                {weaknesses.map(item => (
-                                    <div key={item.name} style={{ flex: '0 0 240px', scrollSnapAlign: 'start', background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span style={{ fontWeight: 600, color: 'var(--surface-200)', fontSize: '0.95rem' }}>{item.name}</span>
-                                            <AlertCircle size={18} color="var(--accent-red)" />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-                                            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-red)' }}>{item.score}</span>
-                                            <span style={{ fontSize: '0.8rem', color: 'var(--surface-400)' }}>correctas</span>
-                                        </div>
-                                        <div style={{ fontSize: '0.78rem', color: 'var(--surface-400)' }}>
-                                            {item.correct} de {item.total} respondidas
-                                        </div>
-                                    </div>
-                                ))}
+            {/* ── Puntos débiles ── */}
+            <div className="mn-card">
+                <div className="sh-head"><h2>Puntos débiles</h2><AlertCircle size={18} /></div>
+                <p className="mn-sub">Temas bajo 60% de acierto</p>
+                {loading ? null : weaknesses.length === 0 ? (
+                    <div className="sh-empty">Sin puntos débiles por ahora. Sigue practicando.</div>
+                ) : (
+                    <div className="mn-list" style={{ padding: 0, marginTop: '.3rem' }}>
+                        {weaknesses.map(item => (
+                            <div key={item.name} className="mn-li sh-static">
+                                <span className="sh-weak-ic"><AlertCircle size={17} /></span>
+                                <span className="mn-li-txt">{item.name}<small>{item.correct} correctas de {item.total} respondidas</small></span>
+                                <span className="sh-score sh-bad">{item.score}</span>
                             </div>
-                            
-                            <button onClick={() => {
-                                const container = document.getElementById('weakpoints-container')
-                                if (container) container.scrollBy({ left: 250, behavior: 'smooth' })
-                            }} style={{ position: 'absolute', right: '-15px', top: '50%', transform: 'translateY(-50%)', zIndex: 2, background: 'var(--surface-700)', border: '1px solid var(--surface-500)', borderRadius: '50%', width: '36px', height: '36px', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>&gt;</button>
-                        </div>
-                    )}
-                </div>
+                        ))}
+                    </div>
+                )}
             </div>
-        </div>
+        </section>
     )
 }
 
