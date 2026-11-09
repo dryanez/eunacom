@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react'
 import {
     PlayCircle, Clock, CheckCircle2, Circle, AlertCircle, Flag,
     ChevronDown, ChevronRight, ChevronLeft, RefreshCw, BookOpen, Loader2,
-    Sparkles, ArrowRight, ArrowLeft, Check
+    Sparkles, ArrowRight, ArrowLeft, Check, Timer, Lightbulb, Crown,
+    ListChecks, FolderTree, Hash, Filter, Layers
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -14,6 +15,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import BancoPerfil from '../components/banco/BancoPerfil'
 import { fetchBancoIndex, fetchBancoByIds, toRunnerQuestion, TIPO_NAMES_CORTOS, TIPO_ORDER } from '../lib/banco'
 import { useSearchParams } from 'react-router-dom'
+import '../components/redesign/testcreator.css'
 
 const TestCreator = () => {
     const navigate = useNavigate()
@@ -302,7 +304,7 @@ const TestCreator = () => {
     }, [isPremium, usageStats?.customQuestionsAnswered])
 
     const statusConfig = [
-        { key: 'unused', label: 'Sin usar', color: 'var(--primary-400)', icon: BookOpen },
+        { key: 'unused', label: 'Sin usar', color: '#38bdf8', icon: BookOpen },
         { key: 'incorrect', label: 'Incorrectas', color: '#f87171', icon: AlertCircle },
         { key: 'omitted', label: 'Omitidas', color: '#fbbf24', icon: Clock },
         { key: 'marked', label: 'Marcadas', color: '#a78bfa', icon: Flag },
@@ -314,86 +316,98 @@ const TestCreator = () => {
 
     // ── Toggle de navegación del banco (Crear examen | Por área y tema | Por código) ──
     const BANCO_MODES = [
-        { id: 'examen', label: 'Crear examen', hint: 'Elige temas, estado y cantidad' },
-        { id: 'arbol', label: 'Por área y tema', hint: 'Área › Especialidad › Tipo › Tema del Perfil 2026' },
-        { id: 'codigo', label: 'Por código', hint: 'Escribe un código del Perfil (p. ej. 1.01.2)' },
+        { id: 'examen', label: 'Crear examen', short: 'Examen', icon: ListChecks, hint: 'Elige temas, estado y cantidad' },
+        { id: 'arbol', label: 'Por área y tema', short: 'Área y tema', icon: FolderTree, hint: 'Área › Especialidad › Tipo › Tema del Perfil 2026' },
+        { id: 'codigo', label: 'Por código', short: 'Código', icon: Hash, hint: 'Escribe un código del Perfil (p. ej. 1.01.2)' },
     ]
     const renderBancoToggle = () => (
-        <div role="tablist" aria-label="Modo del banco" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, padding: 4, borderRadius: 14, background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.25rem' }}>
+        <div role="tablist" aria-label="Modo del banco" className="mn-tc-tabs">
             {BANCO_MODES.map(m => {
                 const active = bancoMode === m.id
+                const Icon = m.icon
                 return (
-                    <button key={m.id} type="button" role="tab" aria-selected={active} title={m.hint} onClick={() => setBancoMode(m.id)} style={{
-                        padding: '0.6rem 0.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
-                        background: active ? 'var(--primary-500)' : 'transparent', color: active ? '#fff' : 'var(--surface-300)',
-                        fontWeight: 700, fontSize: '0.85rem', transition: 'all 0.15s ease'
-                    }}>{m.label}</button>
+                    <button key={m.id} type="button" role="tab" aria-selected={active} title={m.hint} onClick={() => setBancoMode(m.id)} className={`mn-tc-tab${active ? ' is-on' : ''}`}>
+                        <Icon size={16} />
+                        <span className="l">{m.label}</span>
+                        <span className="s">{m.short}</span>
+                    </button>
                 )
             })}
         </div>
     )
 
+    const renderHero = (eyebrow, title, subtitle, extra) => (
+        <div className="mn-tc-hero">
+            <div className="mn-tc-eyebrow">{eyebrow}</div>
+            <div className="mn-tc-hero-row">
+                <h1 className="mn-tc-title">{title}</h1>
+                {extra}
+            </div>
+            <p className="mn-tc-sub">{subtitle}</p>
+        </div>
+    )
+
     const renderBancoPerfil = () => (
-        <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
-            <h1 className="page__title">{bancoMode === 'arbol' ? 'Banco por área y tema' : 'Banco por código'}</h1>
-            <p className="page__subtitle">{bancoMode === 'arbol' ? 'Navega el Perfil de Conocimientos EUNACOM 2026 y practica un tema completo' : 'Busca un código del Perfil (o un prefijo) y practica todas sus preguntas'}</p>
+        <div className="mn-tc">
+            {renderHero('Banco de preguntas', bancoMode === 'arbol' ? 'Banco por área y tema' : 'Banco por código', bancoMode === 'arbol' ? 'Navega el Perfil de Conocimientos EUNACOM 2026 y practica un tema completo' : 'Busca un código del Perfil (o un prefijo) y practica todas sus preguntas')}
             {renderBancoToggle()}
-            <BancoPerfil modo={bancoMode} />
+            <div className="mn-tc-perfil">
+                <BancoPerfil modo={bancoMode} />
+            </div>
+        </div>
+    )
+
+    const renderCardHead = (Icon, title, sub, right) => (
+        <div className="mn-tc-card-h">
+            <span className="ico"><Icon size={17} /></span>
+            <div className="txt">
+                <h3>{title}</h3>
+                {sub}
+            </div>
+            {right}
         </div>
     )
 
     // ── SUB-COMPONENT: Mode Section ──
     const renderModeSection = () => (
-        <div className="card" style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', fontWeight: 700 }}>Modo de Examen</h3>
-            <div className="grid-2-responsive">
+        <section className="mn-tc-card">
+            {renderCardHead(PlayCircle, 'Modo de Examen')}
+            <div className="mn-tc-modes">
                 {[
-                    { id: 'tutor', label: 'Modo Tutor', desc: 'Feedback inmediato y explicaciones clínicas después de cada respuesta.' },
-                    { id: 'timed', label: 'Modo Tiempo', desc: 'Simula condiciones reales del EUNACOM (1 min por pregunta).' }
+                    { id: 'tutor', label: 'Modo Tutor', icon: Lightbulb, desc: 'Feedback inmediato y explicaciones clínicas después de cada respuesta.' },
+                    { id: 'timed', label: 'Modo Tiempo', icon: Timer, desc: 'Simula condiciones reales del EUNACOM (1 min por pregunta).' }
                 ].map(m => {
                     const isActive = mode === m.id
+                    const Icon = m.icon
                     return (
-                        <button key={m.id} onClick={() => setMode(m.id)} style={{
-                            position: 'relative',
-                            padding: '1.1rem 1.25rem', borderRadius: 'var(--radius-xl)',
-                            border: `2px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
-                            background: isActive ? 'rgba(19,91,236,0.18)' : 'var(--surface-800)',
-                            color: 'white', textAlign: 'left', cursor: 'pointer',
-                            boxShadow: isActive ? '0 0 16px rgba(19,91,236,0.3)' : 'none',
-                            transition: 'all 0.2s ease',
-                            outline: 'none'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
-                                <span style={{ fontWeight: 800, fontSize: '1rem', color: isActive ? '#fff' : 'var(--surface-200)' }}>{m.label}</span>
-                                {isActive ? (
-                                    <CheckCircle2 size={20} color="var(--primary-400)" style={{ flexShrink: 0 }} />
-                                ) : (
-                                    <Circle size={18} color="var(--surface-500)" style={{ flexShrink: 0 }} />
-                                )}
-                            </div>
-                            <div style={{ fontSize: '0.84rem', color: isActive ? 'var(--surface-200)' : 'var(--surface-400)', lineHeight: 1.45 }}>{m.desc}</div>
+                        <button key={m.id} type="button" onClick={() => setMode(m.id)} aria-pressed={isActive} className={`mn-tc-mode${isActive ? ' is-on' : ''}`}>
+                            <span className="mi"><Icon size={18} /></span>
+                            <span className="mt">
+                                <span className="mh">
+                                    <span className="ml">{m.label}</span>
+                                    {isActive ? <CheckCircle2 size={18} className="mc on" /> : <Circle size={18} className="mc" />}
+                                </span>
+                                <span className="md">{m.desc}</span>
+                            </span>
                         </button>
                     )
                 })}
             </div>
-        </div>
+        </section>
     )
 
     // ── SUB-COMPONENT: Status Filters ──
     const renderStatusFilters = () => (
-        <div className="card" style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                <div>
-                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700 }}>Estado de Preguntas</h3>
-                    <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'var(--surface-400)' }}>Filtra qué preguntas incluir según tu historial</p>
-                </div>
-                {!loading && (
-                    <button onClick={fetchData} style={{ background: 'transparent', border: 'none', color: 'var(--primary-400)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.82rem', fontWeight: 600 }}>
-                        <RefreshCw size={13} /> Actualizar
+        <section className="mn-tc-card">
+            {renderCardHead(Filter, 'Estado de Preguntas',
+                <p>Filtra qué preguntas incluir según tu historial</p>,
+                !loading && (
+                    <button type="button" onClick={fetchData} className="mn-tc-icobtn" title="Actualizar" aria-label="Actualizar">
+                        <RefreshCw size={15} />
                     </button>
-                )}
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                )
+            )}
+            <div className="mn-tc-status">
                 {statusConfig.map(({ key, label, color, icon: Icon }) => {
                     const isChecked = !!statusFilters[key]
                     return (
@@ -401,51 +415,36 @@ const TestCreator = () => {
                             key={key}
                             type="button"
                             onClick={() => toggleStatus(key)}
-                            style={{
-                                display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer',
-                                padding: '0.65rem 1rem', borderRadius: 'var(--radius-full)',
-                                border: `2px solid ${isChecked ? color : 'var(--surface-600)'}`,
-                                background: isChecked ? `${color}22` : 'var(--surface-800)',
-                                color: isChecked ? '#fff' : 'var(--surface-300)',
-                                fontWeight: isChecked ? 700 : 500,
-                                fontSize: '0.88rem',
-                                boxShadow: isChecked ? `0 0 12px ${color}33` : 'none',
-                                transition: 'all 0.18s ease'
-                            }}
+                            aria-pressed={isChecked}
+                            className={`mn-tc-st${isChecked ? ' is-on' : ''}`}
+                            style={{ '--c': color }}
                         >
-                            {isChecked ? <CheckCircle2 size={16} color={color} /> : <Circle size={16} color="var(--surface-500)" />}
-                            <span>{label}</span>
-                            <span style={{
-                                background: isChecked ? color : 'var(--surface-700)',
-                                color: isChecked ? '#000' : 'var(--surface-300)',
-                                borderRadius: '999px', padding: '2px 8px', fontSize: '0.78rem', fontWeight: 800
-                            }}>{counts[key]}</span>
+                            <Icon size={15} className="si" />
+                            <span className="sl">{label}</span>
+                            <span className="sn">{counts[key]}</span>
                         </button>
                     )
                 })}
             </div>
-        </div>
+        </section>
     )
 
     // ── SUB-COMPONENT: Topics & Categories ──
     const renderTopicsSection = () => (
-        <div className="card" style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <div>
-                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700 }}>Temas y Especialidades</h3>
-                    <span style={{ fontSize: '0.82rem', color: maxQuestions > 0 ? 'var(--accent-green)' : 'var(--accent-amber)', fontWeight: 600 }}>
-                        {maxQuestions} pregunta{maxQuestions !== 1 ? 's' : ''} disponibles seleccionadas
-                    </span>
-                </div>
+        <section className="mn-tc-card">
+            {renderCardHead(Layers, 'Temas y Especialidades',
+                <p className={maxQuestions > 0 ? 'mn-tc-ok' : 'mn-tc-warn'}>
+                    {maxQuestions} pregunta{maxQuestions !== 1 ? 's' : ''} disponibles seleccionadas
+                </p>,
                 <button
                     type="button"
                     onClick={allTopicsSelected ? handleDeselectAll : handleSelectAllTopics}
-                    style={{ background: 'rgba(19,91,236,0.1)', border: '1px solid rgba(19,91,236,0.3)', color: 'var(--primary-400)', cursor: 'pointer', fontSize: '0.82rem', fontWeight: 700, padding: '0.4rem 0.85rem', borderRadius: 'var(--radius-full)' }}
+                    className="mn-tc-link"
                 >
                     {allTopicsSelected ? 'Deseleccionar todo' : 'Seleccionar todo'}
                 </button>
-            </div>
-            <div style={{ maxHeight: isMobile ? '380px' : '420px', overflowY: 'auto', paddingRight: '0.25rem' }}>
+            )}
+            <div className="mn-tc-cats">
                 {Object.keys(categories).sort().map(cat => {
                     const topics = categories[cat]
                     const topicList = Object.keys(topics).sort()
@@ -455,35 +454,31 @@ const TestCreator = () => {
                     const allCatSelected = topicList.length > 0 && selectedCount === topicList.length
 
                     return (
-                        <div key={cat} style={{ marginBottom: '0.6rem', background: 'rgba(255,255,255,0.02)', borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.65rem 0.85rem', background: 'var(--surface-800)' }}>
+                        <div key={cat} className={`mn-tc-cat${isExpanded ? ' is-open' : ''}`}>
+                            <div className="mn-tc-cat-h">
                                 <button
                                     type="button"
                                     onClick={() => toggleCategoryExpand(cat)}
-                                    style={{ background: 'transparent', border: 'none', color: 'var(--surface-300)', padding: 4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                                    className="mn-tc-exp"
                                     aria-label={isExpanded ? "Colapsar categoría" : "Expandir categoría"}
                                 >
                                     {isExpanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                                 </button>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', flex: 1, minHeight: '36px' }}>
+                                <label className="mn-tc-cat-l">
                                     <input
                                         type="checkbox"
+                                        className="mn-tc-chk"
                                         checked={allCatSelected}
                                         onChange={() => toggleCategorySelection(cat)}
-                                        style={{ width: '19px', height: '19px', accentColor: 'var(--primary-400)', cursor: 'pointer' }}
                                     />
-                                    <strong style={{ fontWeight: 700, fontSize: '0.92rem' }}>{cat}</strong>
-                                    <span style={{
-                                        background: selectedCount > 0 ? 'rgba(19,91,236,0.2)' : 'var(--surface-700)',
-                                        color: selectedCount > 0 ? 'var(--primary-300)' : 'var(--surface-400)',
-                                        borderRadius: '999px', padding: '2px 8px', fontSize: '0.72rem', fontWeight: 700, marginLeft: 'auto'
-                                    }}>
+                                    <strong>{cat}</strong>
+                                    <span className={`mn-tc-badge${selectedCount > 0 ? ' is-on' : ''}`}>
                                         {selectedCount}/{topicList.length} ({totalCatCount} pgs)
                                     </span>
                                 </label>
                             </div>
                             {isExpanded && (
-                                <div style={{ padding: '0.5rem 0.85rem 0.6rem 2.25rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                                <div className="mn-tc-topics">
                                     {topicList.map(topic => {
                                         const topicCount = topicCounts[cat]?.[topic] || 0
                                         const isChecked = !!selectedTopics[cat]?.[topic]
@@ -493,41 +488,24 @@ const TestCreator = () => {
                                         const topicSel = tiposDelTema.reduce((acc, t) => acc + (excl[t] ? 0 : porTipo[t]), 0)
                                         return (
                                             <div key={topic}>
-                                            <label
-                                                style={{
-                                                    display: 'flex', alignItems: 'center', gap: '0.75rem',
-                                                    cursor: topicCount === 0 ? 'not-allowed' : 'pointer',
-                                                    opacity: topicCount === 0 ? 0.35 : 1,
-                                                    padding: '0.45rem 0.65rem',
-                                                    borderRadius: 'var(--radius)',
-                                                    background: isChecked ? 'rgba(19,91,236,0.12)' : 'transparent',
-                                                    border: `1px solid ${isChecked ? 'rgba(19,91,236,0.3)' : 'transparent'}`,
-                                                    transition: 'all 0.15s ease',
-                                                    minHeight: '40px'
-                                                }}
-                                            >
+                                            <label className={`mn-tc-topic${isChecked ? ' is-on' : ''}${topicCount === 0 ? ' is-off' : ''}`}>
                                                 <input
                                                     type="checkbox"
+                                                    className="mn-tc-chk sm"
                                                     checked={isChecked}
                                                     onChange={() => topicCount > 0 && toggleTopicSelection(cat, topic)}
                                                     disabled={topicCount === 0}
-                                                    style={{ width: '17px', height: '17px', accentColor: 'var(--primary-400)', cursor: topicCount === 0 ? 'not-allowed' : 'pointer' }}
                                                 />
-                                                <span style={{ fontSize: '0.88rem', fontWeight: isChecked ? 600 : 400, flex: 1, minWidth: 0 }}>{topic}</span>
-                                                <span style={{ color: isChecked ? 'var(--primary-300)' : 'var(--surface-400)', fontSize: '0.78rem', fontWeight: 600 }}>({isChecked && topicSel !== topicCount ? `${topicSel}/${topicCount}` : topicCount})</span>
+                                                <span className="tt">{topic}</span>
+                                                <span className="tn">({isChecked && topicSel !== topicCount ? `${topicSel}/${topicCount}` : topicCount})</span>
                                             </label>
                                             {isChecked && tiposDelTema.length > 1 && (
-                                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: '0.3rem 0.65rem 0.55rem 2.4rem' }}>
+                                                <div className="mn-tc-tipos">
                                                     {tiposDelTema.map(t => {
                                                         const on = !excl[t]
                                                         return (
-                                                            <button key={t} type="button" onClick={() => toggleTipo(cat, topic, t)} aria-pressed={on} style={{
-                                                                display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 9px', borderRadius: 999, cursor: 'pointer', fontSize: '0.74rem', fontWeight: 600,
-                                                                border: `1px solid ${on ? 'rgba(19,91,236,0.45)' : 'rgba(255,255,255,0.12)'}`,
-                                                                background: on ? 'rgba(19,91,236,0.18)' : 'transparent', color: on ? 'var(--primary-200, #bfdbfe)' : 'var(--surface-400)',
-                                                                textDecoration: on ? 'none' : 'line-through'
-                                                            }}>
-                                                                {on ? <CheckCircle2 size={12} /> : null}{TIPO_NAMES_CORTOS[t]} <span style={{ opacity: 0.75 }}>{porTipo[t]}</span>
+                                                            <button key={t} type="button" onClick={() => toggleTipo(cat, topic, t)} aria-pressed={on} className={`mn-tc-tipo${on ? ' is-on' : ''}`}>
+                                                                {on ? <Check size={12} /> : null}{TIPO_NAMES_CORTOS[t]} <span>{porTipo[t]}</span>
                                                             </button>
                                                         )
                                                     })}
@@ -542,23 +520,23 @@ const TestCreator = () => {
                     )
                 })}
             </div>
-        </div>
+        </section>
     )
 
     // ── SUB-COMPONENT: Number of Questions ──
     const renderQuestionsCount = () => (
-        <div className="card" style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700 }}>Nº de Preguntas</h3>
-                {!isPremium && (
-                    <span style={{ fontSize: '0.82rem', color: hasExceededQuestions ? 'var(--accent-red)' : 'var(--primary-400)', fontWeight: 600 }}>
+        <section className="mn-tc-card">
+            {renderCardHead(Hash, 'Nº de Preguntas', null,
+                !isPremium && (
+                    <span className={`mn-tc-used${hasExceededQuestions ? ' is-over' : ''}`}>
                         Usadas: {usageStats.customQuestionsAnswered} / 20
                     </span>
-                )}
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+                )
+            )}
+            <div className="mn-tc-count">
                 <input
                     type="number"
+                    className="mn-tc-num"
                     min={1}
                     max={!isPremium ? Math.min(remainingFreeQuestions, maxQuestions || 1) : (maxQuestions || 1)}
                     value={numQuestions}
@@ -581,33 +559,29 @@ const TestCreator = () => {
                         }
                         setNumQuestions(String(clamped))
                     }}
-                    style={{
-                        width: '85px', padding: '0.7rem', fontSize: '1.35rem', fontWeight: 800,
-                        textAlign: 'center', background: 'var(--surface-800)', color: 'white',
-                        border: '2px solid var(--primary-400)', borderRadius: 'var(--radius-xl)', outline: 'none',
-                        boxShadow: '0 0 10px rgba(19,91,236,0.2)'
-                    }}
                 />
-                <div>
-                    <div style={{ fontSize: '0.84rem', color: 'var(--surface-400)' }}>
-                        Disponibles: <strong style={{ color: 'white' }}>{!isPremium ? Math.min(remainingFreeQuestions, maxQuestions) : maxQuestions}</strong> {!isPremium && maxQuestions > remainingFreeQuestions && `(Free restante: ${remainingFreeQuestions})`}
+                <div className="mn-tc-meta">
+                    <div>
+                        Disponibles: <strong>{!isPremium ? Math.min(remainingFreeQuestions, maxQuestions) : maxQuestions}</strong> {!isPremium && maxQuestions > remainingFreeQuestions && `(Free restante: ${remainingFreeQuestions})`}
                     </div>
-                    <div style={{ fontSize: '0.84rem', color: 'var(--surface-400)', marginTop: '0.25rem' }}>
-                        Tiempo estimado: <strong style={{ color: 'white' }}>
+                    <div>
+                        <Clock size={13} /> Tiempo estimado: <strong>
                             {timeEstimateH > 0 ? `${timeEstimateH}h ` : ''}{timeEstimateRem}min
                         </strong>
                     </div>
                 </div>
-                <div style={{ marginLeft: isMobile ? 0 : 'auto', width: isMobile ? '100%' : 'auto', display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: isMobile ? '0.5rem' : 0 }}>
+                <div className="mn-tc-presets">
                     {[10, 20, 40, 'Todas'].map(n => {
                         const targetVal = n === 'Todas' ? Math.max(1, maxQuestions) : Math.min(n, Math.max(1, maxQuestions))
                         const currentVal = parseInt(numQuestions) || 0
                         const isActive = n === 'Todas' ? currentVal === maxQuestions && maxQuestions > 0 : currentVal === n
-                        
+
                         return (
                             <button
                                 key={n}
                                 type="button"
+                                aria-pressed={isActive}
+                                className={`mn-tc-preset${isActive ? ' is-on' : ''}`}
                                 onClick={() => {
                                     if (!isPremium && (n === 'Todas' || (typeof n === 'number' && n > remainingFreeQuestions) || targetVal > remainingFreeQuestions)) {
                                         setShowPaymentModal(true)
@@ -615,16 +589,6 @@ const TestCreator = () => {
                                         return
                                     }
                                     setNumQuestions(String(targetVal))
-                                }}
-                                style={{
-                                    padding: '0.5rem 0.85rem', borderRadius: 'var(--radius-full)', fontSize: '0.84rem', fontWeight: 700,
-                                    border: `2px solid ${isActive ? 'var(--primary-400)' : 'var(--surface-600)'}`,
-                                    background: isActive ? 'var(--gradient-primary)' : 'var(--surface-800)',
-                                    color: isActive ? '#fff' : 'var(--surface-300)', cursor: 'pointer',
-                                    boxShadow: isActive ? '0 4px 12px rgba(19,91,236,0.4)' : 'none',
-                                    transition: 'all 0.18s ease',
-                                    flex: isMobile ? 1 : 'none',
-                                    textAlign: 'center'
                                 }}
                             >
                                 {n}
@@ -634,43 +598,32 @@ const TestCreator = () => {
                 </div>
             </div>
             {!isPremium && (
-                <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: '#fef08a', background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)', padding: '0.5rem 0.85rem', borderRadius: 'var(--radius)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
-                    <span>👑 Plan Gratuito: máximo 20 preguntas por examen.</span>
-                    <button type="button" onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, padding: 0 }}>
+                <div className="mn-tc-free sm">
+                    <span><Crown size={14} /> Plan Gratuito: máximo 20 preguntas por examen.</span>
+                    <button type="button" onClick={() => setShowPaymentModal(true)}>
                         Desbloquear Ilimitado
                     </button>
                 </div>
             )}
-        </div>
+        </section>
     )
 
     // ── SUB-COMPONENT: Start Button & Errors ──
     const renderStartButton = () => (
-        <div style={{ marginTop: '1.5rem' }}>
+        <div className="mn-tc-startwrap">
             {createError && (
-                <div style={{
-                    background: 'rgba(239, 68, 68, 0.18)', border: '1.5px solid #ef4444',
-                    borderRadius: 'var(--radius)', padding: '0.85rem 1rem', marginBottom: '0.75rem',
-                    color: '#fca5a5', fontSize: '0.88rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem'
-                }}>
-                    <AlertCircle size={18} color="#ef4444" style={{ flexShrink: 0 }} />
+                <div className="mn-tc-err" role="alert">
+                    <AlertCircle size={18} />
                     <span>{createError}</span>
                 </div>
             )}
             <button
+                type="button"
                 onClick={handleStartExam}
                 disabled={maxQuestions === 0 || isCreating}
-                className="btn-primary btn-primary--full"
-                style={{
-                    padding: '1.1rem', fontSize: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem',
-                    opacity: (maxQuestions === 0 || isCreating) ? 0.5 : 1,
-                    cursor: (maxQuestions === 0 || isCreating) ? 'not-allowed' : 'pointer',
-                    boxShadow: (maxQuestions > 0 && !isCreating) ? '0 8px 25px rgba(19,91,236,0.45)' : 'none',
-                    transition: 'all 0.2s ease',
-                    width: '100%'
-                }}
+                className="mn-tc-start"
             >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span className="r">
                     {isCreating ? (
                         <>
                             <Loader2 size={20} className="spin" />
@@ -687,10 +640,10 @@ const TestCreator = () => {
                             <span>Comenzar Examen · {Math.min(activeNum, maxQuestions)} Preguntas</span>
                         </>
                     )}
-                </div>
+                </span>
                 {maxQuestions > 0 && !isCreating && (
-                    <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>
-                        {mode === 'timed' ? '⏱ Modo Tiempo · 1 min/pregunta' : '💡 Modo Tutor · Feedback inmediato'}
+                    <span className="s">
+                        {mode === 'timed' ? <><Timer size={12} /> Modo Tiempo · 1 min/pregunta</> : <><Lightbulb size={12} /> Modo Tutor · Feedback inmediato</>}
                     </span>
                 )}
             </button>
@@ -706,60 +659,38 @@ const TestCreator = () => {
     ]
 
     const renderMobileWizard = () => (
-        <div style={{ paddingBottom: '9rem' }}>
-            {/* Mobile Header & Progress Stepper */}
-            <div style={{ marginBottom: '1.25rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                    <h1 style={{ fontSize: '1.35rem', fontWeight: 800, margin: 0, color: '#f8fafc' }}>
-                        Crear Examen
-                    </h1>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--primary-400)', fontWeight: 700, background: 'rgba(56, 189, 248, 0.12)', padding: '2px 10px', borderRadius: 9999 }}>
-                        Paso {mobileStep} de 4
-                    </span>
-                </div>
-                {renderBancoToggle()}
+        <div className="mn-tc mn-tc--wiz">
+            {renderHero('Banco de preguntas', 'Crear Examen', 'Configura tu examen personalizado',
+                <span className="mn-tc-steppill">Paso {mobileStep} de 4</span>
+            )}
+            {renderBancoToggle()}
 
-                {/* Interactive Step Pills */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem', marginBottom: '0.5rem' }}>
-                    {mobileStepsList.map(s => {
-                        const isCurrent = mobileStep === s.num
-                        const isPassed = mobileStep > s.num
-                        return (
-                            <button
-                                key={s.num}
-                                type="button"
-                                onClick={() => setMobileStep(s.num)}
-                                style={{
-                                    padding: '0.4rem 0.2rem',
-                                    borderRadius: '8px',
-                                    border: 'none',
-                                    background: isCurrent ? 'var(--primary-500)' : isPassed ? 'rgba(56, 189, 248, 0.25)' : 'rgba(255,255,255,0.06)',
-                                    color: isCurrent ? '#ffffff' : isPassed ? '#38bdf8' : 'var(--surface-400)',
-                                    fontSize: '0.72rem',
-                                    fontWeight: 700,
-                                    cursor: 'pointer',
-                                    textAlign: 'center',
-                                    transition: 'all 0.15s ease'
-                                }}
-                            >
-                                {isPassed ? `✓ ${s.title}` : `${s.num}. ${s.title}`}
-                            </button>
-                        )
-                    })}
-                </div>
+            {/* Interactive Step Pills */}
+            <div className="mn-tc-steps">
+                {mobileStepsList.map(s => {
+                    const isCurrent = mobileStep === s.num
+                    const isPassed = mobileStep > s.num
+                    return (
+                        <button
+                            key={s.num}
+                            type="button"
+                            onClick={() => setMobileStep(s.num)}
+                            className={`mn-tc-step${isCurrent ? ' is-on' : ''}${isPassed ? ' is-done' : ''}`}
+                            aria-current={isCurrent ? 'step' : undefined}
+                        >
+                            <i>{isPassed ? <Check size={11} strokeWidth={3} /> : s.num}</i>
+                            <span>{s.title}</span>
+                        </button>
+                    )
+                })}
             </div>
 
             {/* Step 1: Mode */}
             {mobileStep === 1 && (
                 <div>
                     {renderModeSection()}
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(2)}
-                            className="btn-primary"
-                            style={{ width: '100%', padding: '0.95rem', borderRadius: 12, fontWeight: 700, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
-                        >
+                    <div className="mn-tc-nav">
+                        <button type="button" onClick={() => setMobileStep(2)} className="mn-tc-nb pri full">
                             <span>Siguiente: Estado de Preguntas</span>
                             <ArrowRight size={18} />
                         </button>
@@ -771,20 +702,11 @@ const TestCreator = () => {
             {mobileStep === 2 && (
                 <div>
                     {renderStatusFilters()}
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(1)}
-                            style={{ flex: 1, padding: '0.95rem', borderRadius: 12, background: 'var(--surface-800)', color: 'var(--surface-200)', border: '1px solid var(--surface-600)', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
-                        >
+                    <div className="mn-tc-nav">
+                        <button type="button" onClick={() => setMobileStep(1)} className="mn-tc-nb">
                             <ArrowLeft size={16} /> Modo
                         </button>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(3)}
-                            className="btn-primary"
-                            style={{ flex: 2, padding: '0.95rem', borderRadius: 12, fontWeight: 700, fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
-                        >
+                        <button type="button" onClick={() => setMobileStep(3)} className="mn-tc-nb pri">
                             <span>Siguiente: Temas</span>
                             <ArrowRight size={16} />
                         </button>
@@ -796,21 +718,11 @@ const TestCreator = () => {
             {mobileStep === 3 && (
                 <div>
                     {renderTopicsSection()}
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(2)}
-                            style={{ flex: 1, padding: '0.95rem', borderRadius: 12, background: 'var(--surface-800)', color: 'var(--surface-200)', border: '1px solid var(--surface-600)', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
-                        >
+                    <div className="mn-tc-nav">
+                        <button type="button" onClick={() => setMobileStep(2)} className="mn-tc-nb">
                             <ArrowLeft size={16} /> Estado
                         </button>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(4)}
-                            disabled={maxQuestions === 0}
-                            className="btn-primary"
-                            style={{ flex: 2, padding: '0.95rem', borderRadius: 12, fontWeight: 700, fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', opacity: maxQuestions === 0 ? 0.45 : 1, cursor: maxQuestions === 0 ? 'not-allowed' : 'pointer' }}
-                        >
+                        <button type="button" onClick={() => setMobileStep(4)} disabled={maxQuestions === 0} className="mn-tc-nb pri">
                             <span>Siguiente: Cantidad ({maxQuestions})</span>
                             <ArrowRight size={16} />
                         </button>
@@ -822,38 +734,25 @@ const TestCreator = () => {
             {mobileStep === 4 && (
                 <div>
                     {/* Summary Card */}
-                    <div style={{
-                        backgroundColor: 'rgba(30, 41, 59, 0.5)',
-                        border: '1px solid rgba(56, 189, 248, 0.25)',
-                        borderRadius: '14px',
-                        padding: '1rem',
-                        marginBottom: '1rem',
-                        fontSize: '0.85rem'
-                    }}>
-                        <div style={{ fontWeight: 700, color: '#38bdf8', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <Sparkles size={15} /> Resumen de tu Examen
+                    <div className="mn-tc-sum">
+                        <div className="mn-tc-eyebrow"><Sparkles size={13} /> Resumen de tu Examen</div>
+                        <div className="row">
+                            <span>Modo</span>
+                            <strong>{mode === 'timed' ? <><Timer size={13} /> Tiempo (1 min/Q)</> : <><Lightbulb size={13} /> Modo Tutor</>}</strong>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1', marginBottom: 4 }}>
-                            <span>Modo:</span>
-                            <strong style={{ color: '#fff' }}>{mode === 'timed' ? '⏱ Tiempo (1 min/Q)' : '💡 Modo Tutor'}</strong>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', color: '#cbd5e1' }}>
-                            <span>Preguntas en banco seleccionadas:</span>
-                            <strong style={{ color: '#34d399' }}>{maxQuestions} disponibles</strong>
+                        <div className="row">
+                            <span>Preguntas en banco seleccionadas</span>
+                            <strong className="ok">{maxQuestions} disponibles</strong>
                         </div>
                     </div>
 
                     {renderQuestionsCount()}
 
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
-                        <button
-                            type="button"
-                            onClick={() => setMobileStep(3)}
-                            style={{ flex: 1, padding: '0.95rem', borderRadius: 12, background: 'var(--surface-800)', color: 'var(--surface-200)', border: '1px solid var(--surface-600)', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
-                        >
+                    <div className="mn-tc-nav mn-tc-nav--end">
+                        <button type="button" onClick={() => setMobileStep(3)} className="mn-tc-nb">
                             <ArrowLeft size={16} /> Temas
                         </button>
-                        <div style={{ flex: 2 }}>
+                        <div className="grow">
                             {renderStartButton()}
                         </div>
                     </div>
@@ -864,21 +763,16 @@ const TestCreator = () => {
 
     // ── DESKTOP UNIFIED VIEW RENDER ──
     const renderDesktopView = () => (
-        <div style={{ paddingBottom: '8rem', maxWidth: '860px', margin: '0 auto' }}>
-            <h1 className="page__title">Crear Examen</h1>
-            <p className="page__subtitle">Configura tu examen personalizado</p>
+        <div className="mn-tc">
+            {renderHero('Banco de preguntas', 'Crear Examen', 'Configura tu examen personalizado')}
             {renderBancoToggle()}
 
             {!isPremium && (
-                <div style={{
-                    background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
-                    borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.5rem',
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
-                }}>
-                    <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
-                        👑 Plan Gratuito: {usageStats?.customQuestionsAnswered || 0} de 20 preguntas respondidas en total. {remainingFreeQuestions > 0 ? `(Te quedan ${remainingFreeQuestions} preguntas disponibles)` : '(Has alcanzado el límite free)'}
+                <div className="mn-tc-free">
+                    <span>
+                        <Crown size={15} /> Plan Gratuito: {usageStats?.customQuestionsAnswered || 0} de 20 preguntas respondidas en total. {remainingFreeQuestions > 0 ? `(Te quedan ${remainingFreeQuestions} preguntas disponibles)` : '(Has alcanzado el límite free)'}
                     </span>
-                    <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
+                    <button type="button" onClick={() => setShowPaymentModal(true)}>
                         Desbloquear Ilimitado
                     </button>
                 </div>
