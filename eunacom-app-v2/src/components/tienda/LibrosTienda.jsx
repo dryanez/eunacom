@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import {
-  PACKS, TOMOS, RECONS, EXTRAS, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
+  PACKS, TOMOS, RECONS, EXTRAS, COLLECTIONS, SINGLES, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
   expandSkus, looseValue, cartTotal, fmtClp, itemFiles,
 } from '../../config/tienda'
 import { captureBookPaypal } from '../../lib/api'
@@ -170,6 +170,11 @@ export default function LibrosTienda() {
       ? x.files.map((f, i) => ({ key: `${x.sku}-${i}`, item: x.sku, fileIdx: i, cover: fileCover(x.sku, f.label, x.cover), label: ACCENTED[f.label] || f.label }))
       : [{ key: x.sku, item: x.sku, cover: x.cover, label: x.name }])]
   }
+  // Libros sueltos comprados sin su colección completa
+  for (const x of SINGLES.filter(x => ownedBooks.has(x.sku) && !ownedBooks.has(x.collection))) {
+    const fallback = COLLECTIONS.find(c => c.sku === x.collection).cover
+    shelfBySection[x.collection] = [...(shelfBySection[x.collection] || []), { key: x.sku, item: x.sku, cover: fileCover(x.collection, x.label, fallback), label: x.label }]
+  }
   if (!ownedBooks.has('gran-recons')) {
     shelfBySection.recons = [...(shelfBySection.recons || []), ...RECONS.filter(r => ownedBooks.has(r.sku)).map(r => ({ key: r.sku, item: r.sku, rec: r, label: r.name }))]
   }
@@ -289,6 +294,28 @@ export default function LibrosTienda() {
               ))}
             </div>
           </section>
+
+          {COLLECTIONS.map(c => {
+            const pack = PACKS.find(p => p.includes[0] === c.sku)
+            return (
+              <section key={c.sku} className="tienda-section" id={`sueltos-${c.sku}`}>
+                <h2>{c.section}, uno por uno</h2>
+                <p className="sub">{c.sub} Cada uno a {fmtClp(SINGLES.find(x => x.collection === c.sku && x.price < 10000).price)}{pack ? <>, o todos en el {pack.name} por {fmtClp(pack.price)}.</> : '.'}</p>
+                <div className="tomo-grid">
+                  {SINGLES.filter(x => x.collection === c.sku).map(x => (
+                    <div key={x.sku} className="tomo-item">
+                      <Cover src={fileCover(c.sku, x.label, c.cover)} alt={x.name} />
+                      <b>{x.label}</b>
+                      <div className="tomo-row">
+                        <span className="p">{fmtClp(x.price)}</span>
+                        <button className={`mini-btn ${btnState(x.sku)}`} onClick={() => toggle(x.sku)}>{btnLabel(x.sku, '+ Agregar').replace('En el carro', '').replace('En tu pack', 'Pack').trim() || <Check size={15} strokeWidth={3} />}</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )
+          })}
 
           {/* Ancla: la app como upgrade */}
           <section className="tienda-section">

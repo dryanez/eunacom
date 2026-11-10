@@ -193,6 +193,32 @@ export const EXTRAS = [
 const ALL_TOMOS = TOMOS.map(t => t.sku)
 const ALL_RECS = RECONS.map(r => r.sku)
 
+// Cada archivo de las colecciones (Libros Gordos, Repaso Final, Atlas, Perfil V3) también se vende suelto.
+// sku `<prefix>-<slug>`; los libros grandes (Gran Libro Gordo, Perfil V3 completo) a BIG_PRICE.
+const SINGLE_PRICE = 4990
+const BIG_PRICE = 14990
+const COLLECTION_PACK_PRICE = 14990
+const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const ACCENT = { Cardiologia: 'Cardiología', Cirugia: 'Cirugía', Dermatologia: 'Dermatología', Endocrinologia: 'Endocrinología', Gastroenterologia: 'Gastroenterología', Ginecologia: 'Ginecología', Hematologia: 'Hematología', Infectologia: 'Infectología', Nefrologia: 'Nefrología', Neurologia: 'Neurología', Oftalmologia: 'Oftalmología', Otorrinolaringologia: 'Otorrinolaringología', Pediatria: 'Pediatría', Psiquiatria: 'Psiquiatría', Reumatologia: 'Reumatología', Traumatologia: 'Traumatología', Urologia: 'Urología' }
+export const COLLECTIONS = [
+  { sku: 'gordos', prefix: 'gordo', title: 'Libro Gordo', section: 'Libros Gordos', sub: '90 preguntas por tema, con respuesta y explicación.' },
+  { sku: 'repasos', prefix: 'repaso', title: 'Repaso Final', section: 'Repaso Final', sub: 'Lo esencial de cada especialidad para la última semana.' },
+  { sku: 'atlas', prefix: 'atlas', title: 'Atlas de Imágenes', section: 'Atlas de Imágenes', sub: 'Imágenes comentadas de cada especialidad.' },
+  { sku: 'perfil-v3', prefix: 'perfil', title: 'Perfil V3', section: 'Perfil V3 código por código', sub: 'Cada código del Perfil V3 explicado, por especialidad.' },
+].map(c => ({ ...c, cover: EXTRAS.find(x => x.sku === c.sku).cover }))
+export const SINGLES = COLLECTIONS.flatMap(c => EXTRAS.find(x => x.sku === c.sku).files.map(f => {
+  const label = ACCENT[f.label] || f.label
+  const big = /gran libro|completo/i.test(label)
+  return { sku: `${c.prefix}-${slug(f.label.replace(/\s*\(.*\)/, ''))}`, collection: c.sku, label, name: big ? label : `${c.title} · ${label}`, price: big ? BIG_PRICE : SINGLE_PRICE, file: f.file }
+}))
+const singlesOf = col => SINGLES.filter(s => s.collection === col).map(s => s.sku)
+const COLLECTION_PACKS = [
+  { sku: 'pack-gordos', col: 'gordos', name: 'Pack Libros Gordos', desc: 'El Gran Libro Gordo + los 22 Libros Gordos por tema.', features: ['Gran Libro Gordo (1.890 preguntas)', '22 libros de 90 preguntas por tema', 'Respuesta y explicación de cada pregunta'] },
+  { sku: 'pack-repasos', col: 'repasos', name: 'Pack 21 Repaso Final', desc: 'Un libro de repaso por especialidad, para la recta final.', features: ['21 libros, uno por especialidad', 'Lo que más se pregunta', 'Actualizados 2026'] },
+  { sku: 'pack-atlas', col: 'atlas', name: 'Pack 19 Atlas de Imágenes', desc: '1.144 imágenes comentadas, un atlas por especialidad.', features: ['19 atlas, uno por especialidad', '1.144 imágenes comentadas', 'Para reconocer lo que sale en el examen'] },
+  { sku: 'pack-perfil', col: 'perfil-v3', name: 'Pack Perfil V3 código por código', desc: 'Los 1.569 códigos del Perfil V3 explicados.', features: ['Perfil V3 completo', 'Un libro por especialidad', 'Preguntas de práctica'] },
+].map(({ col, ...p }) => ({ ...p, price: COLLECTION_PACK_PRICE, covers: [EXTRAS.find(x => x.sku === col).cover], includes: [col, ...singlesOf(col)] }))
+
 export const PACKS = [
   {
     sku: 'pack-tomos', name: 'Pack 21 Tomos AEE', price: 29990, desc: 'Toda la teoría del Perfil V3, especialidad por especialidad.',
@@ -204,7 +230,7 @@ export const PACKS = [
     sku: 'biblioteca', name: 'Biblioteca completa', price: 39990, star: true, desc: 'Teoría + todas las preguntas: lo que necesitas para estudiar sin la app.',
     covers: [TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover],
     features: ['Los 21 tomos AEE', 'Gran Libro de Reconstrucciones 2013–2025', 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', '21 libros Repaso Final, uno por especialidad', 'Perfil V3: los 1.569 códigos explicados', '19 Atlas de Imágenes, uno por especialidad'],
-    includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3', 'repasos', 'atlas'],
+    includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3', 'repasos', 'atlas', ...SINGLES.map(x => x.sku)],
   },
   {
     sku: 'pack-recons', name: 'Gran Libro de Reconstrucciones', price: 19990, desc: 'Los 16 EUNACOM desde 2013, pregunta por pregunta y con explicación.',
@@ -212,10 +238,11 @@ export const PACKS = [
     features: ['2.739 preguntas reales 2013–2025', 'Ordenado por examen y por tema', 'Respuesta y explicación de cada una'],
     includes: [...ALL_RECS, 'gran-recons'],
   },
+  ...COLLECTION_PACKS,
 ]
 
 export const PRODUCTS = Object.fromEntries(
-  [...PACKS, ...TOMOS, ...RECONS].map(p => [p.sku, { includes: [p.sku], ...p }])
+  [...PACKS, ...TOMOS, ...RECONS, ...SINGLES].map(p => [p.sku, { includes: [p.sku], ...p }])
 )
 export const LIBRARY_ITEMS = PACKS.find(p => p.sku === 'biblioteca').includes
 
@@ -239,8 +266,8 @@ export const fmtClp = n => `$${Math.round(n).toLocaleString('es-CL')}`
 
 // Archivos legibles de un ítem desbloqueado (ruta dentro de books/dist; en producción, clave `libros/<ruta>` en R2)
 export function itemFiles(item) {
-  const x = TOMOS.find(t => t.sku === item) || EXTRAS.find(t => t.sku === item) || RECONS.find(t => t.sku === item)
+  const x = TOMOS.find(t => t.sku === item) || EXTRAS.find(t => t.sku === item) || RECONS.find(t => t.sku === item) || SINGLES.find(t => t.sku === item)
   if (!x) return []
   if (x.files) return x.files
-  return x.file ? [{ label: x.name, file: x.file }] : []
+  return x.file ? [{ label: x.label || x.name, file: x.file }] : []
 }
