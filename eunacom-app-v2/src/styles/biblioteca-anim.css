@@ -1,0 +1,39 @@
+/* Animaciones de libros (Biblioteca) */
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada: los libros suben uno tras otro al aparecer en pantalla */
+  .bk-anim { opacity: 0; transform: translateY(26px) perspective(800px) rotateX(14deg); }
+  .bk-anim.bk-in { animation: bkIn .7s cubic-bezier(.2,.85,.25,1) var(--d, 0ms) both; }
+  @keyframes bkIn {
+    0% { opacity: 0; transform: translateY(26px) perspective(800px) rotateX(14deg); }
+    60% { opacity: 1; }
+    100% { opacity: 1; transform: none; }
+  }
+
+  /* Packs: las portadas flotan suave, y se abren en abanico */
+  .pack-covers { perspective: 900px; }
+  .pack-covers img { transition: transform .45s cubic-bezier(.2,.8,.2,1), margin .45s cubic-bezier(.2,.8,.2,1); animation: bkFloat 4.5s ease-in-out infinite; }
+  .pack-covers img:nth-child(2) { animation-delay: -1.1s; }
+  .pack-covers img:nth-child(3) { animation-delay: -2.2s; }
+  .pack-covers img:nth-child(4) { animation-delay: -3.3s; }
+  @keyframes bkFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+  .pack-card:hover .pack-covers img, .pack-card:active .pack-covers img { margin-left: -14px; }
+  .pack-card:hover .pack-covers img:first-child, .pack-card:active .pack-covers img:first-child { margin-left: 0; }
+  .pack-card:hover .pack-covers img:nth-child(odd) { transform: rotate(-5deg) translateY(-4px); }
+  .pack-card:hover .pack-covers img:nth-child(even) { transform: rotate(4deg) translateY(-8px); }
+  .pack-card.star .pack-covers img { box-shadow: inset 5px 0 8px -4px rgba(0,0,0,.45), 0 16px 30px -12px rgba(56,189,248,.55); }
+
+  /* Tomos: el libro se levanta y gira como uno real */
+  .tomo-item .book-cover { transform-origin: left center; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, filter .35s ease; }
+  .tomo-item:hover .book-cover { transform: translateY(-7px) perspective(700px) rotateY(-14deg) scale(1.03); box-shadow: inset 6px 0 9px -4px rgba(0,0,0,.5), 14px 22px 30px -14px rgba(0,0,0,.8); filter: brightness(1.06); }
+  .tomo-item:active .book-cover { transform: translateY(-2px) scale(.96); transition-duration: .12s; }
+
+  /* Reconstrucciones: brillo que recorre la franja */
+  .rec-item { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease; }
+  .rec-item .band { background-size: 200% 100%; background-image: linear-gradient(90deg, #10b981, #3b82f6, #10b981); animation: bkBand 6s linear infinite; }
+  @keyframes bkBand { to { background-position: -200% 0; } }
+  .rec-item:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -18px rgba(56,189,248,.5); }
+  .rec-item:active { transform: scale(.97); }
+
+  /* Tus libros: al tocar, el libro "se abre" un poco */
+  .shelf-item:active .book-cover { transform: perspective(700px) rotateY(-22deg) scale(.98); }
+}

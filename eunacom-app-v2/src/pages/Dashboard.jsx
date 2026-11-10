@@ -473,50 +473,6 @@ const Dashboard = () => {
       </div>
 
       <div className="dash-content-layer" style={{ paddingBottom: '2.5rem' }}>
-        {/* ─── PWA INSTALL BANNER (Subtle & Non-Intrusive) ─── */}
-      {!isStandalone && !dismissed && (
-        <div style={{
-          background: 'var(--surface-700)',
-          border: '1px solid var(--surface-600)',
-          borderRadius: '10px',
-          padding: '0.5rem 0.9rem',
-          marginBottom: '1.25rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '0.75rem',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--surface-300)' }}>
-            <Download size={15} color="#0284c7" />
-            <span>Instala <strong>EUNACOM App</strong> en tu dispositivo para un acceso directo rápido.</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
-            <button
-              onClick={handleInstallClick}
-              style={{
-                padding: '0.3rem 0.75rem',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#0284c7',
-                border: '1px solid rgba(56, 189, 248, 0.3)',
-                borderRadius: '6px',
-                fontWeight: 700,
-                fontSize: '0.75rem',
-                cursor: 'pointer',
-              }}
-            >
-              Instalar
-            </button>
-            <button
-              onClick={handleDismiss}
-              title="Cerrar"
-              style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}
-            >
-              <X size={15} />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
       {(
         <InicioMidnight

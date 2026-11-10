@@ -11,6 +11,7 @@ import { captureBookPaypal } from '../../lib/api'
 import BookCheckoutModal from './BookCheckoutModal'
 import LectorLibro from './LectorLibro'
 import '../../styles/tienda.css'
+import '../../styles/biblioteca-anim.css'
 
 const CART_KEY = 'eunacom_book_cart'
 const PLAN_6M = APP_PLANS.find(p => p.id === '6m')
@@ -47,8 +48,39 @@ function Cover({ src, alt, style }) {
   return <img className="book-cover" src={src} alt={alt} loading="lazy" style={style} />
 }
 
+// Los libros entran con animación al aparecer en pantalla (escalonados dentro de su grilla).
+// Mide la posición directamente (no depende de IntersectionObserver) y nunca deja un libro oculto.
+function useBookReveal() {
+  React.useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const SEL = '.tomo-item, .shelf-item, .pack-card, .rec-item'
+    let raf = 0
+    const check = () => {
+      raf = 0
+      const vh = window.innerHeight || 800
+      document.querySelectorAll(SEL).forEach(el => {
+        if (el.classList.contains('bk-in')) return
+        if (!el.classList.contains('bk-anim')) {
+          const i = Array.prototype.indexOf.call(el.parentNode.children, el)
+          el.style.setProperty('--d', `${Math.min(i % 12, 8) * 70}ms`)
+          el.classList.add('bk-anim')
+        }
+        const r = el.getBoundingClientRect()
+        if (r.top < vh * 0.94) el.classList.add('bk-in') // en pantalla o ya pasado
+      })
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check) }
+    check()
+    const t = setInterval(check, 700)
+    window.addEventListener('scroll', onScroll, { capture: true, passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => { clearInterval(t); cancelAnimationFrame(raf); window.removeEventListener('scroll', onScroll, { capture: true }); window.removeEventListener('resize', onScroll) }
+  })
+}
+
 // Tienda de libros: oferta primero, la app como upgrade (en el checkout de planes es al revés).
 export default function LibrosTienda() {
+  useBookReveal()
   const { user, openAuthModal } = useAuth()
   const { isPremium, planMonths, libraryIncluded, ownedBooks, purchasedBookSkus, setShowPaymentModal, refreshBooks } = useSubscription()
 
