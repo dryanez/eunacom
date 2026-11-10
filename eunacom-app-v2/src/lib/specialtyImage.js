@@ -26,7 +26,11 @@ const RULES = [
 
 const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
+// Apagado hasta elegir estilo (Felipe, 10-nov-2026): las listas muestran las siglas
+const ENABLED = false
+
 export function specialtyImage(name) {
+  if (!ENABLED) return null
   const n = norm(name)
   const hit = RULES.find(([k]) => n.includes(k))
   return hit ? `/img/especialidades/${hit[1]}.jpg` : null
