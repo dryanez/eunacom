@@ -21,7 +21,8 @@ import nodemailer from 'nodemailer'
 const CAMPAIGN = 'reconstruccion_jul_2026'
 const RELEASE = Date.parse('2026-11-16T00:00:00-03:00')
 const HERE = dirname(fileURLToPath(import.meta.url))
-const TEMPLATE = readFileSync(join(HERE, 'reconstruccion_jul_2026.html'), 'utf8')
+// HTML generado con el kit de eunacomapp: redes-hub/emails/campanas/reconstruccion-jul-2026.mjs
+const TEMPLATES = { plan: readFileSync(join(HERE, 'reconstruccion_jul_2026_plan.html'), 'utf8'), libre: readFileSync(join(HERE, 'reconstruccion_jul_2026_libre.html'), 'utf8') }
 const USE_SES = !!process.env.SES_SMTP_USER
 const FROM = USE_SES ? 'equipo@eunacomapp.cl' : process.env.GMAIL_USER
 const REPLY_TO = 'eunacomapp@gmail.com'
@@ -30,21 +31,9 @@ const UTM = 'utm_source=email&utm_medium=email&utm_campaign=reconstruccion_jul_2
 const SEGMENTS = {
   plan: {
     subject: '🆕 Ya está la Reconstrucción EUNACOM Julio 2026 (gratis en tu plan)',
-    preheader: 'La última reconstrucción antes de tu examen ya está en tu cuenta, sin costo extra.',
-    bloque: '<p style="margin:0 0 14px;">Como tienes un plan activo, <strong>ya la tienes incluida, gratis</strong>. No tienes que hacer nada: entra a Reconstrucciones y hazla en modo examen para medirte antes de la prueba.</p>',
-    cta_url: `https://www.eunacomapp.cl/reconstructions?${UTM}`,
-    cta_texto: 'Hacer la reconstrucción Julio 2026',
-    cta_secundario: '',
   },
   libre: {
     subject: '🆕 Reconstrucción EUNACOM Julio 2026: la última antes de tu examen',
-    preheader: 'Gratis con cualquier plan de EUNACOM App, o suelta por $12.999.',
-    bloque: '<p style="margin:0 0 14px;">Tienes dos formas de tenerla:</p>' +
-      '<p style="margin:0 0 10px;">🎁 <strong>Gratis con cualquier plan</strong> de EUNACOM App (viene incluida, junto a todo el banco de preguntas y las clases).</p>' +
-      '<p style="margin:0 0 14px;">📘 <strong>Suelta por $12.999</strong>, si solo quieres esta reconstrucción.</p>',
-    cta_url: `https://www.eunacomapp.cl/biblioteca?${UTM}#reconstruccion-julio-2026`,
-    cta_texto: 'Obtenerla gratis con un plan',
-    cta_secundario: `<tr><td align="center" style="padding:6px 24px 8px;font-size:14px;"><a href="https://www.eunacomapp.cl/biblioteca?${UTM}#reconstruccion-julio-2026" style="color:#7c3aed;font-weight:bold;">o cómprala suelta por $12.999 →</a></td></tr>`,
   },
 }
 
@@ -57,13 +46,10 @@ const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<':
 const unsubscribe = () => `mailto:${REPLY_TO}?subject=${encodeURIComponent('Baja correos EUNACOM App')}`
 
 function render(segment, firstName) {
-  const s = SEGMENTS[segment]
   const name = (firstName || '').trim().split(/\s+/)[0]
-  return TEMPLATE
-    .replace('Hola Dr(a). {{nombre}},', name ? `Hola Dr(a). ${escapeHtml(name)},` : 'Hola,')
-    .replace('{{preheader}}', s.preheader).replace('{{bloque}}', s.bloque)
-    .replace('{{cta_url}}', s.cta_url).replace('{{cta_texto}}', s.cta_texto).replace('{{cta_secundario}}', s.cta_secundario)
-    .replace('{{unsubscribe_url}}', unsubscribe())
+  return TEMPLATES[segment]
+    .replace(/Dr\(a\)\. \{\{nombre\}\}/g, name ? `Dr(a). ${escapeHtml(name)}` : 'Doctor(a)')
+    .replace(/\{\{unsubscribe_url\}\}/g, unsubscribe())
 }
 
 function mailer() {
@@ -109,7 +95,7 @@ async function main() {
   if (mode === 'html') {
     for (const seg of Object.keys(SEGMENTS)) {
       const out = join(HERE, `reconstruccion_jul_2026_${seg}.preview.html`)
-      writeFileSync(out, render(seg, 'Felipe')); console.log(out)
+      writeFileSync(out, render(seg, 'Camila')); console.log(out)
     }
     return
   }
