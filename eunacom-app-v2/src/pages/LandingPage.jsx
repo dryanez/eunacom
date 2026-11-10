@@ -33,21 +33,21 @@ const DEMO_QUESTION = {
 
 // ─── PRICING PLANS ────────────────────────────────────────────────────────────
 // Cifras reales (nov-2026): 47.271 preguntas en Turso → «+47.000».
+// Planes desde nov-2026 (auditoria-2026-11/precios): 1 mes, 3 meses con Biblioteca, De por vida.
 const PLANS = [
   {
     id: '1m',
     name: '1 Mes',
-    price: '$14.990',
+    price: '$29.990',
     unit: 'pago único',
-    badge: 'Express',
-    desc: 'Curso completo con videos y preguntas para repaso final intensivo.',
+    badge: 'Recta final',
+    desc: 'Curso completo con videos y preguntas para la recta final antes del examen.',
     features: [
       'Curso Completo: +650 Clases en Video (Perfil EUNACOM)',
       '+47.000 preguntas clínicas clasificadas por especialidad',
-      'Acceso total a reconstrucciones de exámenes reales',
+      'Reconstrucciones de exámenes reales 2013–2026',
       'Simulacros cronometrados oficiales de 180 preguntas',
       'Retroalimentación explicada por alternativa y Guías GES',
-      'App PWA instalable para estudiar en celular y PC',
     ],
     popular: false,
     cta: 'Elegir 1 Mes',
@@ -55,55 +55,35 @@ const PLANS = [
   {
     id: '3m',
     name: '3 Meses',
-    price: '$34.990',
-    unit: 'pago único (~$11.660/mes)',
-    badge: 'Ahorro 22%',
-    desc: 'El período óptimo para ver el curso completo y resolver todo el banco.',
+    price: '$55.990',
+    unit: 'pago único (~$18.660/mes)',
+    badge: 'Más elegido',
+    desc: 'Prepárate para este EUNACOM: el curso completo, todo el banco y los libros.',
     features: [
       'Todo lo incluido en 1 Mes (+650 Videos + 47k Preguntas)',
+      'Biblioteca completa: 86 libros (Manuales, Repaso Final, Libros Gordos, Atlas)',
+      'Gran Libro de Reconstrucciones 2013–2026',
       'Estadísticas de rendimiento y diagnóstico por área médica',
       'Módulo de revisión de errores recurrentes',
-      'Simulacros ilimitados con ranking en tiempo real',
-      'Acceso prioritario a nuevas reconstrucciones',
-      'Estudio 24/7 sin límites en todos tus dispositivos',
-    ],
-    popular: false,
-    cta: 'Elegir 3 Meses',
-  },
-  {
-    id: '6m',
-    name: '6 Meses',
-    price: '$54.990',
-    unit: 'pago único (~$9.165/mes)',
-    badge: 'Más Popular',
-    desc: 'Preparación integral desde cero con calendario adaptativo y guías clínicas.',
-    features: [
-      'Todo lo incluido en 3 Meses (+650 Videos + 47k Preguntas)',
-      'Plan de estudio inteligente adaptativo a tu fecha de examen',
-      'Guías clínicas y resúmenes descargables en PDF',
-      'Banco de preguntas y clases actualizado periódicamente',
-      'Soporte prioritario para dudas de plataforma',
-      'Cobertura completa de Medicina Interna, Cirugía, Gine y Pedia',
     ],
     popular: true,
-    cta: 'Empezar con 6 Meses',
+    cta: 'Empezar con 3 Meses',
   },
   {
-    id: '1y',
-    name: '1 Año',
-    price: '$89.990',
-    unit: 'pago único (~$7.499/mes)',
-    badge: 'Mejor Valor',
-    desc: 'Acceso total extendido para asegurar tu aprobación en cualquier convocatoria.',
+    id: 'life',
+    name: 'De por vida',
+    price: '$129.990',
+    unit: 'un solo pago',
+    badge: 'Hasta que apruebes',
+    desc: 'Acceso para siempre: si tienes que repetir, no vuelves a pagar.',
     features: [
-      'Todo lo incluido en 6 Meses (+650 Videos + 47k Preguntas)',
-      'Acceso irrestricto por 12 meses completos (Julio & Diciembre)',
-      'Todas las futuras clases y nuevos módulos incluidos sin costo',
-      'Garantía de contenido según normativas MINSAL/ASOFAMECH',
-      'Máxima flexibilidad para estudiar con total tranquilidad',
+      'Todo lo incluido en 3 Meses, con la Biblioteca completa',
+      'Acceso sin vencimiento: Julio, Diciembre y los que vengan',
+      'Todas las futuras clases, preguntas y reconstrucciones incluidas',
+      'Estudia a tu ritmo, sin renovar nunca',
     ],
     popular: false,
-    cta: 'Elegir 1 Año',
+    cta: 'Elegir De por vida',
   },
 ]
 
@@ -119,7 +99,7 @@ const FAQ_ITEMS = [
   },
   {
     q: '¿Qué diferencia a Eunacom App de cursos tradicionales como Guevara o EUNAMED?',
-    a: 'Los cursos tradicionales suelen costar entre $400.000 y más de $1.000.000 CLP con clases en horarios fijos. Eunacom App te da acceso 24/7 desde cualquier dispositivo a un banco más de 10x más grande (+47.000 preguntas), simulacros reales, videos y calendario personalizado desde solo $14.990 CLP.',
+    a: 'Los cursos tradicionales suelen costar entre $400.000 y más de $1.000.000 CLP con clases en horarios fijos. Eunacom App te da acceso 24/7 desde cualquier dispositivo a un banco más de 10x más grande (+47.000 preguntas), simulacros reales, videos y calendario personalizado desde $29.990 CLP.',
   },
   {
     q: '¿Es un cobro recurrente o pago único?',
@@ -155,7 +135,7 @@ const FEATURES = [
 const SPECIALTIES = ['Cardiología', 'Neurología', 'Respiratorio', 'Gastroenterología', 'Nefrología', 'Endocrinología', 'Cirugía', 'Traumatología', 'Pediatría', 'Obstetricia', 'Ginecología', 'Psiquiatría', 'Salud Pública']
 
 const COMPARISON = [
-  { label: 'Arancel / Precio', us: 'Desde $14.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
+  { label: 'Arancel / Precio', us: 'Desde $29.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
   { label: 'Banco de Preguntas', us: '+47.000 preguntas con justificación', them: '1.000 – 3.000 preguntas', bold: false },
   { label: 'Clases en Video', us: '+650 videoclases modulares organizadas por subespecialidad', them: 'Clases sincrónicas largas sin videoteca modular', bold: true },
   { label: 'Reconstrucciones Reales', us: 'Completas de todas las convocatorias', them: 'Desactualizadas o restringidas', bold: false },
@@ -227,7 +207,7 @@ export default function LandingPage() {
 
   usePageSeo({
     title: 'EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +47.000 Preguntas)',
-    description: 'Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +47.000 preguntas, reconstrucciones y simulacros. Desde $14.990 CLP.',
+    description: 'Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +47.000 preguntas, reconstrucciones y simulacros. Desde $29.990 CLP.',
     canonical: 'https://www.eunacomapp.cl/'
   })
 
@@ -253,7 +233,7 @@ export default function LandingPage() {
       <div className="ln-announce">
         <GraduationCap size={15} />
         <span>100% Actualizado al <strong>Perfil de Conocimientos V3 2026</strong> (Convocatoria Diciembre & Julio) · +47.000 preguntas y +650 clases en video</span>
-        <a href="#planes">Ver planes desde $14.990 <ArrowRight size={13} /></a>
+        <a href="#planes">Ver planes desde $29.990 <ArrowRight size={13} /></a>
       </div>
 
       {/* ── HEADER / NAVIGATION ── */}
@@ -344,7 +324,7 @@ export default function LandingPage() {
               Comenzar ahora (Ver App) <ArrowRight size={18} />
             </button>
             <a href="#planes" className="ln-btn-ghost">
-              Ver Planes desde $14.990
+              Ver Planes desde $29.990
             </a>
           </div>
 

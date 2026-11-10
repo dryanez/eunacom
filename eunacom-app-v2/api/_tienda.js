@@ -3,13 +3,18 @@
 
 // ── Planes de la app ──────────────────────────────────────────────────────────
 // includesLibrary: el plan desbloquea la biblioteca completa en /biblioteca.
+// Planes a la venta desde nov-2026 (informe auditoria-2026-11/precios): 1 mes, 3 meses con libros y de por vida.
+// 6m y 1y quedan `hidden`: ya no se venden, pero el checkout y los webhooks los reconocen (pagos y links antiguos).
+export const LIFETIME_MONTHS = 1200 // plan_months de «De por vida» (y de los founders)
 export const APP_PLANS = [
-  { id: '1m', name: '1 Mes', months: 1, price: 14990, includesLibrary: false, paypal: 'https://www.paypal.com/ncp/payment/KMT3QCWH9M96A' },
-  { id: '3m', name: '3 Meses', months: 3, price: 34990, includesLibrary: false, paypal: 'https://www.paypal.com/ncp/payment/FJSVXQV45GHWC' },
-  { id: '6m', name: '6 Meses', months: 6, price: 54990, includesLibrary: true, popular: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
-  { id: '1y', name: '1 Año', months: 12, price: 89990, includesLibrary: true, paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' },
+  { id: '1m', name: '1 Mes', months: 1, price: 29990, includesLibrary: false, tagline: 'La recta final antes del examen', paypal: null },
+  { id: '3m', name: '3 Meses', months: 3, price: 55990, includesLibrary: true, popular: true, tagline: 'Prepárate para este EUNACOM', paypal: null },
+  { id: 'life', name: 'De por vida', months: LIFETIME_MONTHS, price: 129990, includesLibrary: true, lifetime: true, tagline: 'Hasta que apruebes, sin volver a pagar', paypal: null },
+  { id: '6m', name: '6 Meses', months: 6, price: 54990, includesLibrary: true, hidden: true, paypal: 'https://www.paypal.com/ncp/payment/UE9AAX3JRPS7Y' },
+  { id: '1y', name: '1 Año', months: 12, price: 89990, includesLibrary: true, hidden: true, paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' },
 ]
-export const LIBRARY_MIN_PLAN_MONTHS = 6 // plan_months >= 6 (incluye founders, 1200) → biblioteca completa
+export const SALE_PLANS = APP_PLANS.filter(p => !p.hidden)
+export const LIBRARY_MIN_PLAN_MONTHS = 3 // plan_months >= 3 (3 meses, de por vida, founders 1200) → biblioteca completa
 
 // ── Cupones de planes ─────────────────────────────────────────────────────────
 // Solo planes de la app (los packs de libros ya vienen con descuento). No se suman a la promo: gana el mayor.

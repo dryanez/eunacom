@@ -230,8 +230,8 @@
 
 /* ── Planes ── */
 .ln-plans { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: stretch; }
-@media (min-width: 640px) { .ln-plans { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1100px) { .ln-plans { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+@media (min-width: 820px) { .ln-plans { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) { .ln-plans { grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1040px; margin: 0 auto; } }
 .ln-plan { position: relative; display: flex; flex-direction: column; padding: 28px 20px 20px; border-radius: 22px; background: var(--ln-tile); border: 1px solid var(--ln-line); transition: border-color .2s, transform .2s; }
 .ln-plan:hover { border-color: rgba(56, 189, 248, .45); transform: translateY(-3px); }
 .ln-plan.is-pop { background: linear-gradient(165deg, rgba(37, 99, 235, .3), rgba(17, 26, 46, .95) 60%); border-color: var(--ln-sky); box-shadow: 0 24px 50px -24px rgba(56, 189, 248, .55); }

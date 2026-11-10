@@ -319,10 +319,18 @@ export async function createCheckoutSession(userId, planId, discount = null, cou
   })
 }
 
-export async function createPaypalOrder(userId, planId, coupon = null) {
+export async function createPaypalOrder(userId, planId, coupon = null, discount = null) {
   return apiFetch('/api/user-profiles', {
     method: 'POST',
-    body: JSON.stringify({ action: 'paypal_order', userId, planId, coupon })
+    body: JSON.stringify({ action: 'paypal_order', userId, planId, coupon, discount })
+  })
+}
+
+// Email discount (?discount=30|40|50): { percent, expiresAt, expired } for this user
+export async function getEmailDiscount(userId, discount) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'discount_status', userId, discount })
   })
 }
 
