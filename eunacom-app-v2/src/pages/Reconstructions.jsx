@@ -199,6 +199,9 @@ function SubjectCard({ subject, onSelectTopic, isLocked, onShowPayment }) {
   )
 }
 
+// Exámenes con fecha de salida (Julio 2026): «próximamente» hasta el día de salida, hora Chile
+const isSoon = e => !!e.coming_soon && Date.now() < Date.parse(`${e.release_date}T00:00:00-03:00`)
+
 /* ── Main ── */
 const Reconstructions = () => {
   const navigate = useNavigate()
@@ -271,7 +274,7 @@ const Reconstructions = () => {
   const handleStartExam = async (exam, selectedMode) => {
     if (!user) { setShowLoginGate(true); return }
     const activeTest = activeTests[exam.id]?.[selectedMode]
-    if (exam.coming_soon) return
+    if (isSoon(exam)) return
     // Julio 2026: gratis con cualquier plan, o comprada suelta en la Tienda (no usa la reconstrucción gratis)
     if (exam.requires_sku && !isPremium && !ownedBooks?.has(exam.requires_sku)) { setSelectedExam(null); navigate('/biblioteca'); return }
     if (!activeTest && !isPremium && hasExceededReconstructions) {
@@ -497,7 +500,7 @@ const Reconstructions = () => {
             {examsByYear[year].map((exam, i) => {
               const result = examResults[exam.id]
               const pct = result?.pct
-              const soon = !!exam.coming_soon
+              const soon = isSoon(exam)
               const hasSku = !exam.requires_sku || isPremium || ownedBooks?.has(exam.requires_sku)
               const isLocked = !soon && (exam.requires_sku ? !hasSku : hasExceededReconstructions);
               const state = result ? (pct >= 60 ? 'is-pass' : 'is-fail') : ''
