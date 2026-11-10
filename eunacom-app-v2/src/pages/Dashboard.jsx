@@ -18,7 +18,7 @@ import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
 import InicioMidnight from '../components/redesign/InicioMidnight'
-import { specialtyImage } from '../lib/specialtyImage'
+import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
@@ -590,8 +590,8 @@ const Dashboard = () => {
               const pct = Math.round(t.masteryPct || 0)
               return (
                 <button key={t.topic || idx} className="mn-li" onClick={() => setSelectedTopicForModal(t)}>
-                  {specialtyImage(t.topic)
-                    ? <img className="mn-sp-img" src={specialtyImage(t.topic)} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = 'hidden' }} />
+                  {hasSpecialtyIcon(t.topic)
+                    ? <SpecialtyIcon name={t.topic} size={44} />
                     : <span className={`mn-ab mn-tone-${tone}`}>{ab}</span>}
                   <span className="mn-li-txt">
                     {t.topic}

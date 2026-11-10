@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom'
-import { specialtyImage } from '../lib/specialtyImage'
+import SpecialtyIcon from './redesign/SpecialtyIcon'
 import React from 'react'
 import { X, Play, BookOpen, Target, CheckCircle2, ChevronRight, Sparkles, Award, ArrowRight } from 'lucide-react'
 import { MedicalIllustration } from './MedicalIllustrations'
@@ -167,9 +167,7 @@ export const TopicQuickModal = ({
           </div>
 
           {/* Right Vector Illustration */}
-          {specialtyImage(topic) && (
-            <img className="mn-sp-img mn-sp-img--lg" src={specialtyImage(topic)} alt="" onError={e => { e.currentTarget.style.visibility = 'hidden' }} />
-          )}
+          <span style={{ marginRight: 34, marginTop: 14, display: "flex" }}><SpecialtyIcon name={topic} size={64} /></span>
         </div>
 
         {/* Scrollable Modal Content */}

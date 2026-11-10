@@ -35,3 +35,10 @@ export function specialtyImage(name) {
   const hit = RULES.find(([k]) => n.includes(k))
   return hit ? `/img/especialidades/${hit[1]}.jpg` : null
 }
+
+// Slug de la especialidad (para los iconos propios)
+export function specialtySlug(name) {
+  const n = norm(name)
+  const hit = RULES.find(([k]) => n.includes(k))
+  return hit ? hit[1] : null
+}
