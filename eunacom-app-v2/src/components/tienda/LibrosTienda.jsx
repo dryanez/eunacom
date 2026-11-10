@@ -34,6 +34,25 @@ function fileCover(sku, label, fallback) {
   const key = SPECIALTY_KEYS.find(([k]) => norm.includes(k))?.[1]
   return key && COVER_PREFIX[sku] ? `/tienda/${COVER_PREFIX[sku]}_${key}.jpg` : fallback
 }
+// Módulo de cada especialidad (para filtrar los libros sueltos que no son tomos)
+const KEY_MODULE = {
+  cardiologia: 1, diabetes: 1, endocrinologia: 1, gastroenterologia: 1, hematologia: 1, infectologia: 1, nefrologia: 1,
+  neurologia: 1, neumologia: 1, reumatologia: 1, cirugia: 2, traumatologia: 2, urologia: 2, otorrino: 2, oftalmologia: 2,
+  dermatologia: 2, psiquiatria: 2, pediatria: 3, obstetricia: 3, ginecologia: 3, saludpublica: 4,
+}
+function labelModule(label) {
+  const norm = label.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  if (/completo|gran libro|ponderado/.test(norm)) return null
+  const key = SPECIALTY_KEYS.find(([k]) => norm.includes(k))?.[1]
+  return key ? KEY_MODULE[key] : null
+}
+// Pestañas de «Libros sueltos»: primero el tipo de libro, después el módulo
+const LOOSE_TYPES = [
+  { id: 'tomos', title: 'Manuales' },
+  ...COLLECTIONS.map(c => ({ id: c.sku, title: c.section.replace(' código por código', '') })),
+  { id: 'recons', title: 'Reconstrucciones' },
+]
+const SHORT_MODULE = { 1: 'Medicina Interna', 2: 'Cirugía y especialidades', 3: 'Materno-infantil', 4: 'Salud Pública' }
 // Mis libros por tipo: cada archivo de los packs (Libros Gordos, Repaso, Atlas, Perfil) es su propia tarjeta
 const SHELF_SECTIONS = [
   { id: 'tomos', title: 'Manuales' },
@@ -43,6 +62,22 @@ const SHELF_SECTIONS = [
   { id: 'perfil-v3', title: 'Perfil V3 código por código' },
   { id: 'recons', title: 'Reconstrucciones' },
 ]
+
+function looseItems(type) {
+  if (type === 'tomos') return TOMOS.map(t => ({ sku: t.sku, cover: t.cover, alt: `Tomo ${t.n} ${t.name}`, kicker: `TOMO ${t.n}`, title: t.name, price: t.price, module: t.module }))
+  const c = COLLECTIONS.find(x => x.sku === type)
+  return SINGLES.filter(x => x.collection === type).map(x => ({
+    sku: x.sku, cover: fileCover(type, x.label, c.cover), alt: x.name, kicker: null, title: x.label, price: x.price, module: labelModule(x.label),
+  }))
+}
+function looseSub(type) {
+  if (type === 'tomos') return `Cada manual a ${fmtClp(TOMOS[0].price)}. Si llevas 5 o más, te conviene el pack.`
+  if (type === 'recons') return `Cada EUNACOM reconstruido, 180 preguntas con explicación, a ${fmtClp(RECONS[0].price)}.`
+  const c = COLLECTIONS.find(x => x.sku === type)
+  const one = SINGLES.find(x => x.collection === type && x.price < 10000)
+  const pack = PACKS.find(p => p.includes[0] === type)
+  return `${c.sub} Cada uno a ${fmtClp(one.price)}${pack ? `, o todos en el ${pack.name} por ${fmtClp(pack.price)}` : ''}.`
+}
 
 function Cover({ src, alt, style }) {
   return <img className="book-cover" src={src} alt={alt} loading="lazy" style={style} />
@@ -88,6 +123,7 @@ export default function LibrosTienda() {
     try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]').filter(s => PRODUCTS[s]) } catch { return [] }
   })
   const [module, setModule] = useState('all')
+  const [looseType, setLooseType] = useState('tomos')
   const [checkout, setCheckout] = useState(false)
   const [paidBanner, setPaidBanner] = useState(() => new URLSearchParams(window.location.search).get('books'))
   const [reading, setReading] = useState(null) // { item, title, fileIdx }
@@ -257,65 +293,49 @@ export default function LibrosTienda() {
           </section>
 
           <section className="tienda-section" id="tomos">
-            <h2>Tomos sueltos</h2>
-            <p className="sub">¿Te falta una especialidad? Cada tomo a {fmtClp(TOMOS[0].price)}. Si llevas 5 o más, te conviene el pack.</p>
-            <div className="tienda-chips">
-              <button className={module === 'all' ? 'on' : ''} onClick={() => setModule('all')}>Todos</button>
-              {MODULES.map(m => <button key={m.id} className={module === m.id ? 'on' : ''} onClick={() => setModule(m.id)}>Módulo {m.id} · {m.name}</button>)}
-            </div>
-            <div className="tomo-grid">
-              {TOMOS.filter(t => module === 'all' || t.module === module).map(t => (
-                <div key={t.sku} className="tomo-item">
-                  <Cover src={t.cover} alt={`Tomo ${t.n} ${t.name}`} />
-                  <span className="n">TOMO {t.n}</span>
-                  <b>{t.name}</b>
-                  <div className="tomo-row">
-                    <span className="p">{fmtClp(t.price)}</span>
-                    <button className={`mini-btn ${btnState(t.sku)}`} onClick={() => toggle(t.sku)}>{btnLabel(t.sku, '+ Agregar').replace('En el carro', '').replace('En tu pack', 'Pack').trim()}</button>
-                  </div>
-                </div>
+            <h2>Libros sueltos</h2>
+            <p className="sub">{looseSub(looseType)}</p>
+            <div className="tienda-chips tienda-chips-type" role="tablist" aria-label="Tipo de libro">
+              {LOOSE_TYPES.map(t => (
+                <button key={t.id} role="tab" aria-selected={looseType === t.id} className={looseType === t.id ? 'on' : ''} onClick={() => setLooseType(t.id)}>{t.title}</button>
               ))}
             </div>
-          </section>
+            {looseType !== 'recons' && (
+              <div className="tienda-chips tienda-chips-mod" aria-label="Módulo">
+                <button className={module === 'all' ? 'on' : ''} onClick={() => setModule('all')}>Todos</button>
+                {MODULES.map(m => <button key={m.id} className={module === m.id ? 'on' : ''} onClick={() => setModule(m.id)}>{SHORT_MODULE[m.id]}</button>)}
+              </div>
+            )}
 
-          <section className="tienda-section" id="recs">
-            <h2>Reconstrucciones por examen</h2>
-            <p className="sub">Cada EUNACOM reconstruido, 180 preguntas con explicación. Ideal para hacerlo cronometrado como simulacro.</p>
-            <div className="rec-grid">
-              {RECONS.map(r => (
-                <div key={r.sku} className="rec-item">
-                  <div className="band" />
-                  <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
-                  <div className="tomo-row">
-                    <span className="p">{fmtClp(r.price)}</span>
-                    <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {COLLECTIONS.map(c => {
-            const pack = PACKS.find(p => p.includes[0] === c.sku)
-            return (
-              <section key={c.sku} className="tienda-section" id={`sueltos-${c.sku}`}>
-                <h2>{c.section}, uno por uno</h2>
-                <p className="sub">{c.sub} Cada uno a {fmtClp(SINGLES.find(x => x.collection === c.sku && x.price < 10000).price)}{pack ? <>, o todos en el {pack.name} por {fmtClp(pack.price)}.</> : '.'}</p>
-                <div className="tomo-grid">
-                  {SINGLES.filter(x => x.collection === c.sku).map(x => (
-                    <div key={x.sku} className="tomo-item">
-                      <Cover src={fileCover(c.sku, x.label, c.cover)} alt={x.name} />
-                      <b>{x.label}</b>
-                      <div className="tomo-row">
-                        <span className="p">{fmtClp(x.price)}</span>
-                        <button className={`mini-btn ${btnState(x.sku)}`} onClick={() => toggle(x.sku)}>{btnLabel(x.sku, '+ Agregar').replace('En el carro', '').replace('En tu pack', 'Pack').trim() || <Check size={15} strokeWidth={3} />}</button>
-                      </div>
+            {looseType === 'recons' ? (
+              <div className="rec-grid">
+                {RECONS.map(r => (
+                  <div key={r.sku} className="rec-item">
+                    <div className="band" />
+                    <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
+                    <div className="tomo-row">
+                      <span className="p">{fmtClp(r.price)}</span>
+                      <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>
                     </div>
-                  ))}
-                </div>
-              </section>
-            )
-          })}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="tomo-grid">
+                {looseItems(looseType).filter(x => module === 'all' || x.module === module).map(x => (
+                  <div key={x.sku} className="tomo-item">
+                    <Cover src={x.cover} alt={x.alt} />
+                    {x.kicker && <span className="n">{x.kicker}</span>}
+                    <b>{x.title}</b>
+                    <div className="tomo-row">
+                      <span className="p">{fmtClp(x.price)}</span>
+                      <button className={`mini-btn ${btnState(x.sku)}`} onClick={() => toggle(x.sku)}>{btnLabel(x.sku, '+ Agregar').replace('En el carro', '').replace('En tu pack', 'Pack').trim() || <Check size={15} strokeWidth={3} />}</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
 
           {/* Ancla: la app como upgrade */}
           <section className="tienda-section">
@@ -338,6 +358,14 @@ export default function LibrosTienda() {
               <div className="vs">vs</div>
               <div className="pack-card star">
                 <span className="pack-ribbon">Lo que más eligen</span>
+                <div className="anchor-combo" aria-label="Manual y app eunacomapp">
+                  <img className="ac-book" src={TOMOS[0].cover} alt="Manual de Cardiología" loading="lazy" />
+                  <span className="ac-plus">+</span>
+                  <span className="ac-app">
+                    <img src="/apple-touch-icon.png" alt="App eunacomapp" loading="lazy" />
+                    <b>eunacomapp</b>
+                  </span>
+                </div>
                 <h3>App · Plan 3 meses</h3>
                 <div className="pack-price">{fmtClp(PLAN_3M.price)}</div>
                 <ul className="pack-feat">
