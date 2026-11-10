@@ -17,8 +17,8 @@ const baseHtml = fs.readFileSync(path.join(distDir, "index.html"), "utf8")
 const STATIC_ROUTES = [
   {
     route: "/",
-    title: "EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +10.000 Preguntas)",
-    description: "Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +10.000 preguntas, reconstrucciones y simulacros. Desde $14.990 CLP.",
+    title: "EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +47.000 Preguntas)",
+    description: "Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +47.000 preguntas, reconstrucciones y simulacros. Desde $14.990 CLP.",
     canonical: "https://www.eunacomapp.cl/",
     ogType: "website",
     h1: "Eunacom App: El Curso #1 y Plataforma de Preparación para el EUNACOM 2026 en Chile"
@@ -26,14 +26,14 @@ const STATIC_ROUTES = [
   {
     route: "/curso-eunacom-2026",
     title: "Mejor Curso EUNACOM 2026 | Tabla Comparativa y Plataforma #1 en Chile",
-    description: "Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +10.000 preguntas reales, 650+ clases y precios desde $14.990 CLP.",
+    description: "Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +47.000 preguntas reales, 650+ clases y precios desde $14.990 CLP.",
     canonical: "https://www.eunacomapp.cl/curso-eunacom-2026",
     ogType: "website",
     h1: "Comparativa de los Mejores Cursos EUNACOM 2026 en Chile"
   },
   {
     route: "/simulacros-eunacom",
-    title: "Simulacros Oficiales EUNACOM 2026 | Banco de +10.000 Preguntas Clínicas",
+    title: "Simulacros Oficiales EUNACOM 2026 | Banco de +47.000 Preguntas Clínicas",
     description: "Practica con simulacros de 180 preguntas cronometradas idénticas al examen EUNACOM-ST oficial de ASOFAMECH. Retroalimentación justificada con Guías GES y MINSAL vigentes.",
     canonical: "https://www.eunacomapp.cl/simulacros-eunacom",
     ogType: "website",
@@ -150,7 +150,7 @@ for (const item of STATIC_ROUTES) {
       "@context": "https://schema.org",
       "@type": "Course",
       name: "Curso de Preparación EUNACOM 2026",
-      description: "Curso integral con +650 clases en video según Perfil ASOFAMECH, banco con +10.000 preguntas y simulacros cronometrados.",
+      description: "Curso integral con +650 clases en video según Perfil ASOFAMECH, banco con +47.000 preguntas y simulacros cronometrados.",
       provider: {
         "@type": "Organization",
         name: "Eunacom App",

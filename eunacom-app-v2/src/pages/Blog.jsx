@@ -116,7 +116,7 @@ export default function Blog() {
               onClick={() => openAuthModal('register')}
               className="px-4 py-2 rounded-xl bg-[var(--eunacom-navy)] hover:bg-[var(--eunacom-navy-dark)] text-white text-xs sm:text-sm font-bold transition shadow-sm"
             >
-              Practicar +10.000 Preguntas
+              Practicar +47.000 preguntas
             </button>
           </div>
         </div>
