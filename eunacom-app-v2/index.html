@@ -4,11 +4,12 @@
     <script>
       (function() {
         var h = window.location.hostname;
-        if (h.endsWith('vercel.app')) {
+        // Las vistas previas (…-dryanezs-projects.vercel.app) no se redirigen
+        if (h.endsWith('vercel.app') && h.indexOf('dryanezs-projects') === -1) {
           window.location.replace('https://www.eunacomapp.cl' + window.location.pathname + window.location.search + window.location.hash);
         }
         // Force-bust stale Service Workers & cache storage across app version upgrades
-        var APP_BUILD_VER = '2026.09.08.v3';
+        var APP_BUILD_VER = '2026.11.10.midnight';
         try {
           if (localStorage.getItem('eunacom_app_build') !== APP_BUILD_VER) {
             localStorage.setItem('eunacom_app_build', APP_BUILD_VER);
