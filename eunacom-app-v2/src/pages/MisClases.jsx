@@ -27,6 +27,7 @@ import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import PruebasDias from '../components/redesign/PruebasDias'
 import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
+import { specialtySlug } from '../lib/specialtyImage'
 import '../styles/proMaxPages.css'
 
 /* ════════════════════════════════════════════════════════════════
@@ -2858,7 +2859,7 @@ const MisClases = () => {
             const pct = Math.round(getProgress(c.id))
             return (
               <button className="mn-continue" onClick={() => openClase(c.id)}>
-                <span className="mn-continue-play"><PlayCircle size={22} /></span>
+                {hasSpecialtyIcon(last.sub) ? <span className="mn-continue-spi"><SpecialtyIcon name={last.sub} size={46} /><i><PlayCircle size={14} /></i></span> : <span className="mn-continue-play"><PlayCircle size={22} /></span>}
                 <span className="mn-mod-txt">
                   <small>Seguir viendo{last.sub ? ` · ${last.sub}` : ''}</small>
                   <b>{last.title}</b>
@@ -2877,7 +2878,13 @@ const MisClases = () => {
               const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
               return (
                 <button key={spec} className={`mn-mod mn-tone-${meta.tone}`} onClick={() => setCurrentSpecialty(spec)}>
-                  <span className="mn-mod-ic"><meta.Icon size={22} /></span>
+                  {(() => {
+                    const seenSlug = new Set()
+                    const icons = Object.keys(tree[spec]).filter(n => { const k = specialtySlug(n); if (!k || !hasSpecialtyIcon(n) || seenSlug.has(k)) return false; seenSlug.add(k); return true }).slice(0, 3)
+                    return icons.length
+                      ? <span className="mn-mod-stack">{icons.map(n => <SpecialtyIcon key={n} name={n} size={34} />)}</span>
+                      : <span className="mn-mod-ic"><meta.Icon size={22} /></span>
+                  })()}
                   <span className="mn-mod-txt">
                     <b>{spec} · {meta.name}</b>
                     <small>{subsCount} especialidades · {lessonCount} clases{seen ? ` · ${seen} vistas` : ''}</small>

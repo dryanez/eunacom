@@ -525,7 +525,7 @@ const Dashboard = () => {
       <section className="mn-sec">
         <div className="mn-sec-head">
           <h2>Temas y especialidades</h2>
-          <span className="mn-sub">Preguntas, clases y dominio por tema</span>
+          <span className="mn-sub">Videoclases, preguntas y dominio por tema</span>
         </div>
         <div className="mn-chips">
           {[

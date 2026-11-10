@@ -7,3 +7,11 @@
 .mn-spi-m2 { --spi-c: #fbbf24; --spi-c2: #ea580c; }
 .mn-spi-m3 { --spi-c: #f472b6; --spi-c2: #a855f7; }
 .mn-spi-m4 { --spi-c: #34d399; --spi-c2: #0d9488; }
+
+/* Mis clases: «Seguir viendo» con el icono de la especialidad + botón play */
+.mn-continue-spi { position: relative; flex-shrink: 0; display: inline-flex; }
+.mn-continue-spi i { position: absolute; right: -5px; bottom: -5px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: #0b1120; color: #38bdf8; border: 1px solid #1e2a44; }
+/* Tarjeta de módulo: 3 iconos de sus especialidades en abanico */
+.mn-mod-stack { display: inline-flex; flex-shrink: 0; padding-left: 2px; }
+.mn-mod-stack .mn-spi { border: 2px solid #111a2e; box-sizing: content-box; }
+.mn-mod-stack .mn-spi + .mn-spi { margin-left: -14px; }
