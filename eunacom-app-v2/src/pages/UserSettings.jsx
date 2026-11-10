@@ -216,6 +216,10 @@ const UserSettings = () => {
           ))}
         </div>
 
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', margin: '0 0 .8rem', fontSize: '.82rem' }}>
+          <a href="/privacidad" onClick={e => { e.preventDefault(); navigate('/privacidad') }} style={{ color: 'var(--mn-mut, #94a3b8)' }}>Política de privacidad</a>
+          <a href="/eliminar-cuenta" onClick={e => { e.preventDefault(); navigate('/eliminar-cuenta') }} style={{ color: '#f87171' }}>Eliminar mi cuenta</a>
+        </div>
         <button className="mn-logout" onClick={async () => { await signOut(); navigate('/login') }}>
           <LogOut size={16} /> Cerrar sesión
         </button>

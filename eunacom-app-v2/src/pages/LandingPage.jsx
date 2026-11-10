@@ -636,6 +636,8 @@ export default function LandingPage() {
             <a href="#planes">Planes</a>
             <Link to="/faq">FAQ</Link>
             <Link to="/reembolsos">Política de Reembolsos</Link>
+            <Link to="/privacidad">Privacidad</Link>
+            <Link to="/eliminar-cuenta">Eliminar mi cuenta</Link>
             <Link to="/blog">Blog EUNACOM</Link>
             <a href="/login" onClick={(e) => { e.preventDefault(); openAuthModal('login') }}>Iniciar Sesión</a>
           </div>

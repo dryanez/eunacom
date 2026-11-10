@@ -41,6 +41,8 @@ import SimulacrosLanding from './pages/SimulacrosLanding'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ConveniosLanding from './pages/ConveniosLanding'
+import Privacidad from './pages/Privacidad'
+import EliminarCuenta from './pages/EliminarCuenta'
 import LibroGordo, { LibroGordoRunner } from './pages/LibroGordo'
 import { useAuth } from './contexts/AuthContext'
 import AuthModal from './components/AuthModal'
@@ -83,6 +85,9 @@ function App() {
               <Route path="/guia-eunacom-2026" element={<GuiaCompletaLanding />} />
               <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
               <Route path="/convenios" element={<ConveniosLanding />} />
+              <Route path="/privacidad" element={<Privacidad />} />
+              <Route path="/politica-de-privacidad" element={<Privacidad />} />
+              <Route path="/eliminar-cuenta" element={<EliminarCuenta />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/reembolsos" element={<Reembolsos />} />
               <Route path="/blog" element={<Blog />} />
