@@ -4,11 +4,12 @@
     <script>
       (function() {
         var h = window.location.hostname;
-        if (h.endsWith('vercel.app')) {
+        // Las vistas previas (…-dryanezs-projects.vercel.app) no se redirigen
+        if (h.endsWith('vercel.app') && h.indexOf('dryanezs-projects') === -1) {
           window.location.replace('https://www.eunacomapp.cl' + window.location.pathname + window.location.search + window.location.hash);
         }
         // Force-bust stale Service Workers & cache storage across app version upgrades
-        var APP_BUILD_VER = '2026.09.08.v3';
+        var APP_BUILD_VER = '2026.11.10.midnight';
         try {
           if (localStorage.getItem('eunacom_app_build') !== APP_BUILD_VER) {
             localStorage.setItem('eunacom_app_build', APP_BUILD_VER);
@@ -270,7 +271,7 @@
               "name": "¿Cuánto cuesta prepararse con Eunacom App?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Eunacom App ofrece planes de pago único transparente: 1 Mes ($29.990 CLP), 3 Meses ($55.990 CLP, con la biblioteca completa de libros) y De por vida ($129.990 CLP, hasta que apruebes, con la biblioteca incluida). Sin cobros automáticos ni renovaciones sorpresivas."
+                "text": "Eunacom App ofrece planes de pago único transparente: 1 Mes ($29.990 CLP), 3 Meses con la Biblioteca de libros ($55.990 CLP) y De por vida ($129.990 CLP). Sin cobros automáticos ni renovaciones sorpresivas."
               }
             }
           ]

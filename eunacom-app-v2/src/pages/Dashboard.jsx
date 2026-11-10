@@ -1,4 +1,3 @@
-import { nextExam } from '../config/examen';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -18,6 +17,8 @@ import { getDoctorAvatar, DOCTOR_CHARACTERS } from '../utils/doctorAvatars'
 import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
+import InicioMidnight from '../components/redesign/InicioMidnight'
+import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
@@ -472,248 +473,17 @@ const Dashboard = () => {
       </div>
 
       <div className="dash-content-layer" style={{ paddingBottom: '2.5rem' }}>
-        {/* ─── PWA INSTALL BANNER (Subtle & Non-Intrusive) ─── */}
-      {!isStandalone && !dismissed && (
-        <div style={{
-          background: 'var(--surface-700)',
-          border: '1px solid var(--surface-600)',
-          borderRadius: '10px',
-          padding: '0.5rem 0.9rem',
-          marginBottom: '1.25rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '0.75rem',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--surface-300)' }}>
-            <Download size={15} color="#0284c7" />
-            <span>Instala <strong>EUNACOM App</strong> en tu dispositivo para un acceso directo rápido.</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
-            <button
-              onClick={handleInstallClick}
-              style={{
-                padding: '0.3rem 0.75rem',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#0284c7',
-                border: '1px solid rgba(56, 189, 248, 0.3)',
-                borderRadius: '6px',
-                fontWeight: 700,
-                fontSize: '0.75rem',
-                cursor: 'pointer',
-              }}
-            >
-              Instalar
-            </button>
-            <button
-              onClick={handleDismiss}
-              title="Cerrar"
-              style={{ background: 'none', border: 'none', color: 'var(--surface-400)', cursor: 'pointer', padding: 2, display: 'flex', alignItems: 'center' }}
-            >
-              <X size={15} />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* ─── GUEST HERO BANNER ─── */}
-      {!user && (
-        <div style={{
-          position: 'relative',
-          background: 'var(--card-bg, #ffffff)',
-          border: '1px solid var(--card-border, rgba(56, 189, 248, 0.25))',
-          borderRadius: '16px',
-          padding: '2rem 1.75rem',
-          marginBottom: '1.75rem',
-          overflow: 'hidden',
-          boxShadow: 'var(--shadow-md)',
-        }}>
-          <div style={{ maxWidth: '620px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.25rem 0.65rem',
-              borderRadius: '6px',
-              background: 'rgba(56, 189, 248, 0.12)',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
-              color: '#0284c7',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              marginBottom: '0.85rem',
-            }}>
-              <span>🩺 Preparación Médica EUNACOM 2026</span>
-            </div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--surface-50)', margin: '0 0 0.5rem', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
-              La plataforma médica estándar para rendir el EUNACOM
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--surface-400)', margin: '0 0 1.5rem', lineHeight: 1.5, fontWeight: 500 }}>
-              Banco con +10.000 preguntas clínicas justificadas, +650 videoclases según perfil ASOFAMECH, reconstrucciones oficiales y simulacros cronometrados.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => openAuthModal('register')}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: '#0284c7',
-                  color: '#ffffff',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#0369a1' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = '#0284c7' }}
-              >
-                <span>Crear cuenta gratis</span>
-                <ChevronRight size={16} />
-              </button>
-              <button
-                onClick={() => openAuthModal('login')}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: 'var(--surface-700)',
-                  color: 'var(--surface-50)',
-                  borderRadius: '8px',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
-                  border: '1px solid var(--surface-600)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-600)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--surface-700)' }}
-              >
-                <span>Iniciar sesión</span>
-              </button>
-              <button
-                onClick={triggerDemoLevelUp}
-                style={{
-                  padding: '0.7rem 1.4rem',
-                  background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(234, 88, 12, 0.25) 100%)',
-                  color: '#ea580c',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  border: '1px solid rgba(249, 115, 22, 0.35)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                }}
-              >
-                <Sparkles size={16} color="#d97706" />
-                <span>✨ Probar Subida de Nivel</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ─── LOGGED IN USER GREETING & DOCTOR PROFILE ─── */}
-      {user && (
-        <div className="dash-header-greeting">
-          <div className="dash-greeting-left">
-            <div className="dash-user-avatar-frame">
-              <img 
-                src={activeDoctor.image || '/avatars/dr_house.png'} 
-                alt={activeDoctor.name} 
-                onError={(e) => { e.target.src = '/avatars/dr_house.png' }}
-              />
-            </div>
-            <div className="dash-greeting-titles">
-              <h1>
-                Hola, {userProfile?.first_name ? `Dr(a). ${userProfile.first_name}` : 'Doctor'} 👋
-              </h1>
-              <p>
-                {activeDoctor.name} · {activeDoctor.quote || 'Continúa tu preparación y revisa tus métricas de dominio'}
-              </p>
-              {(() => { const ex = nextExam(); return ex && ex.days <= 120 ? (
-                <p style={{ marginTop: 6, fontWeight: 800, color: '#22d3ee' }}>⏳ Faltan {ex.days} días para el EUNACOM del {ex.label}</p>
-              ) : null })()}
-            </div>
-          </div>
-          {userProfile && (userProfile.university || userProfile.country) && (
-            <div className="dash-greeting-right">
-              <UserInstitutionBadge user={userProfile} size={28} showLabel={true} />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ─── HERO BENTO: LEVEL, XP & RACHA WIDGET ─── */}
-      {user && (
-        <div className="dash-hero-level-bento">
-          <div className="dash-level-progress-col">
-            <div className="dash-level-top-row">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                <div className="dash-rank-badge">
-                  <Zap size={14} />
-                  <span>Nivel {stats.level} · {levelTitle}</span>
-                </div>
-                <button
-                  onClick={triggerDemoLevelUp}
-                  className="dash-demo-levelup-btn"
-                  title="Toca para probar la animación y modal de subida de nivel"
-                >
-                  <Sparkles size={13} color="#f97316" />
-                  <span>✨ Ver Promoción</span>
-                </button>
-              </div>
-              <div className="dash-xp-fraction">
-                <strong>{formatXP(stats.xp)}</strong> / {formatXP(levelCapXP)} XP
-              </div>
-            </div>
-            
-            <div className="dash-progress-track">
-              <div 
-                className="dash-progress-fill" 
-                style={{ width: `${Math.max(4, Math.min(100, xpProgress))}%` }} 
-              />
-            </div>
-
-            <div className="dash-level-sub-meta">
-              <span>{formatXP(Math.max(0, levelCapXP - stats.xp))} XP para el siguiente nivel</span>
-              <span>Total acumulado: {formatXP(stats.totalXP || stats.xp)} XP</span>
-            </div>
-          </div>
-
-          {/* Quick Streak Widget Linking to MedLingo / Streak Saver */}
-          <div 
-            onClick={() => {
-              if (todayAnswers === 0 && (stats.streak > 0)) {
-                setShowStreakSaverModal(true)
-              } else {
-                navigate('/medlingo')
-              }
-            }}
-            className={`dash-streak-quick-widget ${todayAnswers === 0 && stats.streak > 0 ? 'streak-widget-risk' : ''}`}
-            title={todayAnswers === 0 && stats.streak > 0 ? "⚠️ Racha en riesgo hoy — Toca para responder 3 preguntas y salvarla" : "Toca para entrenar tu racha en MedLingo"}
-            style={{ cursor: 'pointer' }}
-          >
-            <div className="dash-streak-flame-box">
-              <Flame size={24} className={todayAnswers === 0 && stats.streak > 0 ? "dash-flame-anim flame-pulse-fast" : "dash-flame-anim"} />
-            </div>
-            <div className="dash-streak-data">
-              <span className="dash-streak-lbl">
-                {todayAnswers === 0 && stats.streak > 0 ? '⚠️ En Riesgo' : 'Racha Activa'}
-              </span>
-              <span className="dash-streak-val">
-                {stats.streak || 1} <span>{stats.streak === 1 ? 'día' : 'días'}</span>
-              </span>
-            </div>
-            <ChevronRight size={18} color="#f97316" />
-          </div>
-        </div>
+      {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
+      {(
+        <InicioMidnight
+          guest={!user}
+          onAuth={mode => openAuthModal(mode)}
+          name={!user ? 'Doctor(a)' : `Dr(a). ${String(userProfile?.first_name || user?.user_metadata?.full_name || 'Doctor').replace(/^\s*(dr\(a\)|dra?)\.?\s+/i, '')}`}
+          streak={stats.streak}
+          accuracy={accuracy}
+          todayAnswers={todayAnswers}
+          dailyGoal={DAILY_GOAL}
+        />
       )}
 
       {/* ─── STREAK FREEZE WARNING BANNER (Trigger de Racha en Riesgo) ─── */}
@@ -726,360 +496,71 @@ const Dashboard = () => {
         />
       )}
 
-      {/* ─── UI/UX PRO MAX BENTO GRID (1st: MIS CLASES, 2nd: MEDLINGO) ─── */}
-      <div className="dash-bento-section">
-        <div className="dash-bento-section-header">
-          <h2 className="dash-bento-section-title">
-            <Sparkles size={18} color="#38bdf8" />
-            <span>Módulos de Preparación EUNACOM</span>
-          </h2>
-        </div>
-
-        <div className="dash-bento-grid">
-          {/* 1. HERO BENTO #1: MIS CLASES (First & Prominent) */}
-          <a href="/mis-clases" className="dash-bento-card bento-card-clases">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Video size={24} />
-                </div>
-                <span className="dash-card-badge">📺 Masterclasses HD</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Mis Clases Teóricas</h3>
-                <p className="dash-card-desc">
-                  +650 videoclases de alto rendimiento según perfil ASOFAMECH, resúmenes MINSAL, fisiopatología y algoritmos clínicos.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">⚡ Módulos 1, 2 y 3</span>
-              <span className="dash-card-action-link">
-                <span>Ver Clases</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 2. HERO BENTO #2: MEDLINGO EUNACOM (Second & Prominent) */}
-          <a href="/medlingo" className="dash-bento-card bento-card-medlingo">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Flame size={24} className="dash-flame-anim" />
-                </div>
-                <span className="dash-card-badge">🦉 Modo Gamificado</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">MedLingo EUNACOM</h3>
-                <p className="dash-card-desc">
-                  Aprende semiología y farmacología jugando con vidas, niveles, misiones diarias y torneos semanales de ligas médicas.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">🔥 Racha & 6 Ligas</span>
-              <span className="dash-card-action-link">
-                <span>Entrenar Racha</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* BENTO: BIBLIOTECA DE LIBROS (acceso rápido a la tienda / mis libros) */}
-          <a href="/biblioteca" className="dash-bento-card bento-card-libros">
-            <div className="dash-card-ambient-tint" />
-            <div className="libros-bento-text">
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <BookOpen size={22} />
-                </div>
-                <span className="dash-card-badge">{libraryIncluded ? '✅ Incluida en tu plan' : `📚 Desde ${fmtClp(TOMOS[0].price)}`}</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">{libraryIncluded ? 'Mis libros' : 'Libros EUNACOM'}</h3>
-                <p className="dash-card-desc">
-                  {libraryIncluded
-                    ? '21 tomos, reconstrucciones 2013–2025, Libros Gordos, Repaso Final, 1.569 códigos explicados y 19 atlas de imágenes.'
-                    : `21 tomos, reconstrucciones, Libros Gordos, Repaso Final y 19 atlas de imágenes. Biblioteca completa ${fmtClp(PRODUCTS.biblioteca.price)}, o incluida en los planes de 6 y 12 meses.`}
-                </p>
-              </div>
-              <div className="dash-card-footer">
-                <span className="dash-card-tag">{ownedBooks.size && !libraryIncluded ? `📖 ${ownedBooks.size} en tu cuenta` : '📖 Tomos · Reconstrucciones · Libros Gordos'}</span>
-                <span className="dash-card-action-link">
-                  <span>{libraryIncluded ? 'Abrir biblioteca' : 'Ver libros'}</span>
-                  <ArrowRight size={16} />
-                </span>
-              </div>
-            </div>
-            <div className="libros-bento-covers" aria-hidden="true">
-              {[TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, TOMOS[17].cover, EXTRAS[4].cover].map((c, i) => (
-                <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2) * 4}deg)`, zIndex: 5 - Math.abs(i - 2) }} />
-              ))}
-            </div>
-          </a>
-
-          {/* 3. BENTO #3: BANCO DE PREGUNTAS & SIMULADOR */}
-          <a href="/test" className="dash-bento-card bento-card-test">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <FileText size={22} />
-                </div>
-                <span className="dash-card-badge">🎯 +10.000 Preguntas</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Banco & Simulacros</h3>
-                <p className="dash-card-desc">
-                  Preguntas clínicas con justificación instantánea, modo tutor AI y filtros personalizados por tema.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">🩺 Modo Tutor & Examen</span>
-              <span className="dash-card-action-link">
-                <span>Iniciar Test</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 4. BENTO #4: RECONSTRUCCIONES OFICIALES */}
-          <a href="/reconstructions" className="dash-bento-card bento-card-reconstructions">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Layers size={22} />
-                </div>
-                <span className="dash-card-badge">🏛️ Oficiales 2020–2026</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Reconstrucciones</h3>
-                <p className="dash-card-desc">
-                  Exámenes oficiales ASOFAMECH completos con pautas oficiales corregidas y estadísticas históricas.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">📋 Pruebas ST y SP</span>
-              <span className="dash-card-action-link">
-                <span>Resolver</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-
-          {/* 5. BENTO #5: ANALÍTICA & PLAN DE ESTUDIO */}
-          <a href="/stats" className="dash-bento-card bento-card-plan">
-            <div className="dash-card-ambient-tint" />
-            <div>
-              <div className="dash-card-header">
-                <div className="dash-card-icon-box">
-                  <Activity size={22} />
-                </div>
-                <span className="dash-card-badge">📊 Analítica EUNACOM</span>
-              </div>
-              <div className="dash-card-body">
-                <h3 className="dash-card-title">Estadísticas & Métricas</h3>
-                <p className="dash-card-desc">
-                  Métricas de dominio, tasa de acierto por especialidad, análisis de debilidades y proyección de puntaje.
-                </p>
-              </div>
-            </div>
-            <div className="dash-card-footer">
-              <span className="dash-card-tag">📈 Proyección en Vivo</span>
-              <span className="dash-card-action-link">
-                <span>Ver Reportes</span>
-                <ArrowRight size={16} />
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      {/* ─── STATS GRID (logged-in only) ─── */}
+      {/* ─── TU PROGRESO (Midnight Pro) ─── */}
       {user && (
-        <>
-          <div className="stats-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--surface-700)', overflowX: 'auto', flexWrap: 'nowrap', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', paddingBottom: '0.2rem' }}>
-            <style>{`.stats-tabs::-webkit-scrollbar { display: none; }`}</style>
+        <section className="mn-sec">
+          <div className="mn-sec-head"><h2>Tu progreso</h2></div>
+          <div className="mn-chips">
             {[
-                { id: 'general', label: 'General' },
-                { id: 'clases', label: 'Clases' },
-                { id: 'reconstructions', label: 'Reconstrucciones' },
-                { id: 'custom', label: 'Exámenes Práctica' },
+              { id: 'general', label: 'General' },
+              { id: 'clases', label: 'Clases' },
+              { id: 'reconstructions', label: 'Reconstrucciones' },
+              { id: 'custom', label: 'Exámenes' },
             ].map(tab => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ flexShrink: 0, whiteSpace: 'nowrap', padding: '0.6rem 1.1rem', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab===tab.id ? 'var(--primary-400)' : 'transparent'}`, color: activeTab===tab.id ? 'var(--primary-400)' : 'var(--surface-400)', fontWeight: activeTab===tab.id ? 700 : 500, cursor: 'pointer', fontSize: '0.88rem', marginBottom: '-1px', transition: 'all 0.15s' }}>
-                  {tab.label}
-                </button>
+              <button key={tab.id} className={activeTab === tab.id ? 'on' : ''} onClick={() => setActiveTab(tab.id)}>{tab.label}</button>
             ))}
           </div>
-          <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
-            {/* Accuracy */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><PieChart size={18} color="var(--primary-300)" /></div>
-                Puntaje
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', padding: '0.75rem 0' }}>
-                <div className="donut-wrapper">
-                  <svg viewBox="0 0 36 36" className="circular-chart">
-                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-600)" strokeWidth="3" />
-                    <path strokeDasharray={`${accuracy}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={accuracy >= 70 ? 'var(--accent-green)' : accuracy >= 50 ? 'var(--accent-amber)' : 'var(--primary-400)'} strokeWidth="3" strokeLinecap="round" />
-                  </svg>
-                  <div className="donut-center">
-                    <div className="donut-value" style={{ fontSize: '1.1rem' }}>{accuracy}%</div>
-                    <div className="donut-label">Correctas</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Total questions */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><FileText size={18} color="var(--primary-300)" /></div>
-                Respondidas
-              </div>
-              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-                <div className="stat-card__value">{currentAnswered.toLocaleString()}</div>
-                <div className="stat-card__sub">{currentCorrect} correctas</div>
-              </div>
-            </div>
-
-            {/* Exámenes */}
-            <div className="stat-card">
-              <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Activity size={18} color="var(--accent-teal)" /></div>
-                Exámenes
-              </div>
-              <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-                <div className="stat-card__value">{currentExams || 0}</div>
-                <div className="stat-card__sub">Completados</div>
-              </div>
-            </div>
-
-          {/* Daily goal */}
-          <div className="stat-card">
-            <div className="stat-card__label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <div style={{ padding: '0.4rem', background: 'var(--surface-600)', borderRadius: 'var(--radius)' }}><Target size={18} color={dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-300)'} /></div>
-              Meta Diaria
-            </div>
-            <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 90 }}>
-              <div className="stat-card__value" style={{ color: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--surface-50)', WebkitTextFillColor: 'initial', background: 'none' }}>
-                {todayAnswers}<span style={{ color: 'var(--surface-400)', fontSize: '1.5rem', fontWeight: 600 }}>/{DAILY_GOAL}</span>
-              </div>
-              <div style={{ margin: '0.5rem auto 0', width: '80%' }}>
-                <div className="xp-bar" style={{ height: 6 }}>
-                  <div className="xp-bar__fill" style={{ width: `${dailyPct}%`, background: dailyPct >= 100 ? 'var(--accent-green)' : 'var(--primary-400)' }} />
-                </div>
-              </div>
-              {dailyPct >= 100 && <div style={{ fontSize: '0.75rem', color: 'var(--accent-green)', fontWeight: 600, marginTop: 4 }}>✅ ¡Meta cumplida!</div>}
+          <div className="mn-stats">
+            <div className="mn-stat"><b className="mn-blue">{accuracy}%</b><span>Correctas</span></div>
+            <div className="mn-stat"><b>{currentAnswered.toLocaleString('es-CL')}</b><span>Respondidas</span></div>
+            <div className="mn-stat"><b>{(currentExams || 0).toLocaleString('es-CL')}</b><span>Exámenes</span></div>
+            <div className="mn-stat"><b>{todayAnswers}<small>/{DAILY_GOAL}</small></b><span>Meta de hoy</span>
+              <span className="mn-bar"><b style={{ width: `${Math.max(3, Math.min(100, (todayAnswers / DAILY_GOAL) * 100))}%` }} /></span>
             </div>
           </div>
-        </div>
-        </>
+        </section>
       )}
 
-      {/* ─── TEMAS Y CLASES EUNACOM (MEDSCHOOL TOPIC CARDS) ─── */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: '10px',
-              background: 'rgba(56, 189, 248, 0.12)',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#0284c7'
-            }}>
-              <BookOpen size={18} />
-            </div>
-            <div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--surface-50)', margin: 0, letterSpacing: '-0.01em' }}>
-                Temas y Especialidades
-              </h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--surface-400)', margin: '2px 0 0', fontWeight: 500 }}>
-                Progreso curricular, videoclases y banco de preguntas por área
-              </p>
-            </div>
-          </div>
-
-          {/* Module Filter Segmented Control */}
-          <div style={{
-            display: 'inline-flex',
-            background: 'var(--surface-700)',
-            padding: '4px',
-            borderRadius: '10px',
-            border: '1px solid var(--surface-600)',
-            gap: '3px',
-            overflowX: 'auto',
-            maxWidth: '100%',
-            scrollbarWidth: 'none',
-          }}>
-            {[
-              { key: 'all', label: 'Todos' },
-              { key: 'modulo-1', label: 'Medicina Interna' },
-              { key: 'modulo-2', label: 'Cirugía & Especialidades' },
-              { key: 'modulo-3', label: 'Pediatría & Gineco' },
-            ].map(f => (
-              <button
-                key={f.key}
-                onClick={() => setTopicModuleFilter(f.key)}
-                style={{
-                  padding: '0.4rem 0.85rem',
-                  borderRadius: '7px',
-                  border: 'none',
-                  background: topicModuleFilter === f.key ? 'var(--surface-800)' : 'transparent',
-                  color: topicModuleFilter === f.key ? 'var(--primary-600)' : 'var(--surface-400)',
-                  boxShadow: topicModuleFilter === f.key ? 'var(--shadow-sm)' : 'none',
-                  fontSize: '0.78rem',
-                  fontWeight: topicModuleFilter === f.key ? 700 : 500,
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+      {/* ─── TEMAS Y ESPECIALIDADES (Midnight Pro) ─── */}
+      <section className="mn-sec">
+        <div className="mn-sec-head">
+          <h2>Temas y especialidades</h2>
+          <span className="mn-sub">Preguntas, clases y dominio por tema</span>
         </div>
-
-        {/* Responsive Grid of MedSchool Topic Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1.25rem',
-        }}>
+        <div className="mn-chips">
+          {[
+            { key: 'all', label: 'Todos' },
+            { key: 'modulo-1', label: 'Medicina Interna' },
+            { key: 'modulo-2', label: 'Cirugía y especialidades' },
+            { key: 'modulo-3', label: 'Materno-infantil' },
+          ].map(f => (
+            <button key={f.key} className={topicModuleFilter === f.key ? 'on' : ''} onClick={() => setTopicModuleFilter(f.key)}>{f.label}</button>
+          ))}
+        </div>
+        <div className="mn-card mn-list mn-topics">
           {topicsList
             .filter(t => topicModuleFilter === 'all' || t.module === topicModuleFilter)
-            .map((t, idx) => (
-              <TopicCard
-                key={t.topic || idx}
-                topic={t.topic}
-                specialty={t.specialty}
-                tag={t.tag}
-                questionsCount={t.questionsCount}
-                classesCount={t.classesCount}
-                completedClasses={t.completedClasses}
-                correctCount={t.correctCount}
-                wrongCount={t.wrongCount}
-                masteryPct={t.masteryPct}
-                onClick={() => setSelectedTopicForModal(t)}
-                onDirectNavigate={() => {
-                  navigate('/mis-clases', { state: { specialty: t.specialty, subsystem: t.topic } })
-                }}
-              />
-            ))}
+            .map((t, idx) => {
+              const ab = (t.topic || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').slice(0, 3).toUpperCase()
+              const tone = { 'modulo-1': 'blue', 'modulo-2': 'amber', 'modulo-3': 'pink' }[t.module] || 'blue'
+              const pct = Math.round(t.masteryPct || 0)
+              return (
+                <button key={t.topic || idx} className="mn-li" onClick={() => setSelectedTopicForModal(t)}>
+                  {hasSpecialtyIcon(t.topic)
+                    ? <SpecialtyIcon name={t.topic} size={44} />
+                    : <span className={`mn-ab mn-tone-${tone}`}>{ab}</span>}
+                  <span className="mn-li-txt">
+                    {t.topic}
+                    <small>{(t.questionsCount || 0).toLocaleString('es-CL')} preguntas · {t.classesCount || 0} clases</small>
+                    <span className="mn-bar"><b style={{ width: `${Math.max(2, pct)}%` }} /></span>
+                  </span>
+                  <span className="mn-pct">{pct}%</span>
+                  <ChevronRight size={16} className="mn-li-go" />
+                </button>
+              )
+            })}
         </div>
-      </div>
+      </section>
 
       {/* Pop-up Bigger Modal for Topics */}
       <TopicQuickModal
@@ -1089,7 +570,7 @@ const Dashboard = () => {
         onOpenClass={(claseId) => {
           const selectedTopic = selectedTopicForModal
           setSelectedTopicForModal(null)
-          navigate('/mis-clases', { state: { specialty: selectedTopic?.specialty, subsystem: selectedTopic?.topic, openLesson: selectedTopic?.lessons?.find(l => l.id === claseId)?.lessonNumber } })
+          navigate('/mis-clases', { state: { specialty: selectedTopic?.specialty, subsystem: selectedTopic?.topic, openClaseId: claseId, openLesson: selectedTopic?.lessons?.find(l => l.id === claseId)?.lessonNumber } })
         }}
         onNavigateToSubsystem={(topicName, specialtyName) => {
           setSelectedTopicForModal(null)
@@ -1097,558 +578,115 @@ const Dashboard = () => {
         }}
       />
 
-      {/* ─── LEADERBOARD SECTION ─── */}
-      <div className="card" style={{ padding: '1.25rem', marginBottom: '1.5rem', background: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '16px', boxShadow: 'var(--shadow-md)' }}>
-        
-        {/* Header with Title & Period Selector */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <div style={{ width: 36, height: 36, background: 'rgba(234, 179, 8, 0.12)', borderRadius: '10px', border: '1px solid rgba(234, 179, 8, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Trophy size={18} color="#d97706" />
-            </div>
-            <div>
-              <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--surface-50)', letterSpacing: '-0.01em' }}>
-                Tabla de Clasificación
-              </h3>
-              <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: 'var(--surface-400)', fontWeight: 500 }}>
-                Rendimiento y actividad de la comunidad médica en preparación
-              </p>
-            </div>
-            {myRank > 0 && lbView === 'doctors' && (
-              <span style={{ fontSize: '0.72rem', color: '#0284c7', fontWeight: 700, background: 'rgba(56, 189, 248, 0.12)', border: '1px solid rgba(56, 189, 248, 0.25)', padding: '0.2rem 0.6rem', borderRadius: '6px', marginLeft: '0.25rem' }}>
-                Tu puesto: #{myRank}
-              </span>
-            )}
+      {/* ─── TABLA DE CLASIFICACIÓN (Midnight Pro) ─── */}
+      <section className="mn-sec mn-lb">
+        <div className="mn-row mn-between mn-sec-head">
+          <div>
+            <h2>Tabla de clasificación</h2>
+            <span className="mn-sub">La comunidad que se prepara contigo</span>
           </div>
-
-          {/* Period Selector */}
-          <div style={{ display: 'flex', background: 'var(--surface-700)', padding: '3px', borderRadius: '8px', border: '1px solid var(--surface-600)', gap: '2px' }}>
-            {PERIODS.map(p => (
-              <button
-                key={p.key}
-                onClick={() => loadLeaderboard(p.key, filterUniversity, filterCountry)}
-                style={{
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '6px',
-                  border: 'none',
-                  background: lbPeriod === p.key ? 'var(--surface-800)' : 'transparent',
-                  color: lbPeriod === p.key ? 'var(--primary-600)' : 'var(--surface-400)',
-                  boxShadow: lbPeriod === p.key ? 'var(--shadow-sm)' : 'none',
-                  fontSize: '0.75rem',
-                  fontWeight: lbPeriod === p.key ? 700 : 500,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                {p.label}
-              </button>
-            ))}
-          </div>
+          {myRank > 0 && lbView === 'doctors' && <span className="mn-pill mn-pill-sky">Tu puesto #{myRank}</span>}
         </div>
 
-        {/* ─── SCOPE NAVIGATION TABS ─── */}
-        <div style={{
-          display: 'flex',
-          gap: '0.4rem',
-          borderBottom: '1px solid var(--surface-600)',
-          paddingBottom: '0.75rem',
-          marginBottom: '1rem',
-          overflowX: 'auto',
-          scrollbarWidth: 'none'
-        }}>
-          <button
-            onClick={() => setLbView('doctors')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.45rem 0.85rem',
-              borderRadius: '8px',
-              border: 'none',
-              background: lbView === 'doctors' ? 'var(--surface-700)' : 'transparent',
-              color: lbView === 'doctors' ? 'var(--surface-50)' : 'var(--surface-400)',
-              boxShadow: lbView === 'doctors' ? 'inset 0 0 0 1px var(--surface-600)' : 'none',
-              fontSize: '0.8rem',
-              fontWeight: lbView === 'doctors' ? 700 : 500,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <Users size={15} />
-            <span>Médicos Postulantes</span>
-          </button>
-
-          <button
-            onClick={() => setLbView('sedes')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.45rem 0.85rem',
-              borderRadius: '8px',
-              border: 'none',
-              background: lbView === 'sedes' ? 'var(--surface-700)' : 'transparent',
-              color: lbView === 'sedes' ? 'var(--surface-50)' : 'var(--surface-400)',
-              boxShadow: lbView === 'sedes' ? 'inset 0 0 0 1px var(--surface-600)' : 'none',
-              fontSize: '0.8rem',
-              fontWeight: lbView === 'sedes' ? 700 : 500,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <Building2 size={15} />
-            <span>Universidades y Sedes</span>
-          </button>
-
-          <button
-            onClick={() => setLbView('countries')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.45rem 0.85rem',
-              borderRadius: '8px',
-              border: 'none',
-              background: lbView === 'countries' ? 'var(--surface-700)' : 'transparent',
-              color: lbView === 'countries' ? 'var(--surface-50)' : 'var(--surface-400)',
-              boxShadow: lbView === 'countries' ? 'inset 0 0 0 1px var(--surface-600)' : 'none',
-              fontSize: '0.8rem',
-              fontWeight: lbView === 'countries' ? 700 : 500,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <Globe size={15} />
-            <span>Países</span>
-          </button>
+        <div className="mn-chips">
+          {PERIODS.map(p => (
+            <button key={p.key} className={lbPeriod === p.key ? 'on' : ''} onClick={() => loadLeaderboard(p.key, filterUniversity, filterCountry)}>{p.label}</button>
+          ))}
+          <span className="mn-chip-sep" />
+          {[
+            { key: 'doctors', label: 'Médicos', icon: Users },
+            { key: 'sedes', label: 'Universidades', icon: Building2 },
+            { key: 'countries', label: 'Países', icon: Globe },
+          ].map(v => (
+            <button key={v.key} className={lbView === v.key ? 'on' : ''} onClick={() => setLbView(v.key)}><v.icon size={13} /> {v.label}</button>
+          ))}
         </div>
 
-        {/* ─── FILTERS ROW (When in Médicos view) ─── */}
         {lbView === 'doctors' && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '0.5rem',
-            marginBottom: '1rem',
-            background: 'var(--surface-700)',
-            padding: '0.45rem 0.65rem',
-            borderRadius: '10px',
-            border: '1px solid var(--surface-600)'
-          }}>
-            {/* Quick Filter Buttons */}
-            <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button
-                onClick={() => {
-                  setFilterUniversity('')
-                  setFilterCountry('')
-                  loadLeaderboard(lbPeriod, '', '')
-                }}
-                style={{
-                  padding: '0.25rem 0.65rem',
-                  borderRadius: '6px',
-                  border: 'none',
-                  background: !filterUniversity && !filterCountry ? 'rgba(56, 189, 248, 0.15)' : 'var(--surface-800)',
-                  color: !filterUniversity && !filterCountry ? '#0284c7' : 'var(--surface-400)',
-                  boxShadow: !filterUniversity && !filterCountry ? 'inset 0 0 0 1px rgba(56, 189, 248, 0.3)' : 'none',
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                Todos
-              </button>
-
-              {userProfile?.university && (
-                <button
-                  onClick={() => {
-                    const uni = userProfile.university
-                    setFilterUniversity(uni)
-                    setFilterCountry('')
-                    loadLeaderboard(lbPeriod, uni, '')
-                  }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.3rem',
-                    padding: '0.25rem 0.65rem',
-                    borderRadius: '6px',
-                    border: 'none',
-                    background: filterUniversity === userProfile.university ? 'rgba(168, 85, 247, 0.15)' : 'var(--surface-800)',
-                    color: filterUniversity === userProfile.university ? '#7e22ce' : 'var(--surface-400)',
-                    boxShadow: filterUniversity === userProfile.university ? 'inset 0 0 0 1px rgba(168, 85, 247, 0.3)' : 'none',
-                    fontSize: '0.74rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  <UserInstitutionBadge user={userProfile} size={14} />
-                  <span>Mi Sede ({userProfile.sede || 'Mi Universidad'})</span>
-                </button>
-              )}
-
-              {userProfile?.country && (
-                <button
-                  onClick={() => {
-                    const c = userProfile.country
-                    setFilterCountry(c)
-                    setFilterUniversity('')
-                    loadLeaderboard(lbPeriod, '', c)
-                  }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.3rem',
-                    padding: '0.25rem 0.65rem',
-                    borderRadius: '6px',
-                    border: 'none',
-                    background: filterCountry === userProfile.country ? 'rgba(16, 185, 129, 0.15)' : 'var(--surface-800)',
-                    color: filterCountry === userProfile.country ? '#059669' : 'var(--surface-400)',
-                    boxShadow: filterCountry === userProfile.country ? 'inset 0 0 0 1px rgba(16, 185, 129, 0.3)' : 'none',
-                    fontSize: '0.74rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  <span>{userProfile.country === 'Chile' ? '🇨🇱' : '🌐'}</span>
-                  <span>Mi País ({userProfile.country})</span>
-                </button>
-              )}
-            </div>
-
-            {/* Dropdown Selectors */}
-            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <select
-                value={filterUniversity}
-                onChange={(e) => {
-                  const val = e.target.value
-                  setFilterUniversity(val)
-                  loadLeaderboard(lbPeriod, val, filterCountry)
-                }}
-                style={{
-                  background: 'var(--surface-800)',
-                  border: '1px solid var(--surface-600)',
-                  borderRadius: '6px',
-                  padding: '0.25rem 0.5rem',
-                  fontSize: '0.74rem',
-                  color: filterUniversity ? '#0284c7' : 'var(--surface-400)',
-                  outline: 'none',
-                  cursor: 'pointer',
-                  maxWidth: '160px'
-                }}
-              >
-                <option value="">Todas las Sedes</option>
-                {CHILEAN_UNIVERSITIES.map(u => (
-                  <option key={u.id} value={u.name}>{u.shortName} ({u.country})</option>
-                ))}
-              </select>
-
-              <select
-                value={filterCountry}
-                onChange={(e) => {
-                  const val = e.target.value
-                  setFilterCountry(val)
-                  loadLeaderboard(lbPeriod, filterUniversity, val)
-                }}
-                style={{
-                  background: 'var(--surface-800)',
-                  border: '1px solid var(--surface-600)',
-                  borderRadius: '6px',
-                  padding: '0.25rem 0.5rem',
-                  fontSize: '0.74rem',
-                  color: filterCountry ? '#059669' : 'var(--surface-400)',
-                  outline: 'none',
-                  cursor: 'pointer',
-                  maxWidth: '140px'
-                }}
-              >
-                <option value="">Todos los Países</option>
-                {COUNTRIES.map(c => (
-                  <option key={c.code} value={c.name}>{c.flag} {c.name}</option>
-                ))}
-              </select>
-            </div>
+          <div className="mn-lb-filters">
+            <button className={!filterUniversity && !filterCountry ? 'on' : ''} onClick={() => { setFilterUniversity(''); setFilterCountry(''); loadLeaderboard(lbPeriod, '', '') }}>Todos</button>
+            {userProfile?.university && (
+              <button className={filterUniversity === userProfile.university ? 'on' : ''} onClick={() => { const uni = userProfile.university; setFilterUniversity(uni); setFilterCountry(''); loadLeaderboard(lbPeriod, uni, '') }}>Mi sede</button>
+            )}
+            {userProfile?.country && (
+              <button className={filterCountry === userProfile.country ? 'on' : ''} onClick={() => { const c = userProfile.country; setFilterCountry(c); setFilterUniversity(''); loadLeaderboard(lbPeriod, '', c) }}>Mi país</button>
+            )}
+            <select value={filterUniversity} onChange={e => { const val = e.target.value; setFilterUniversity(val); loadLeaderboard(lbPeriod, val, filterCountry) }}>
+              <option value="">Todas las sedes</option>
+              {CHILEAN_UNIVERSITIES.map(u => <option key={u.id} value={u.name}>{u.shortName} ({u.country})</option>)}
+            </select>
+            <select value={filterCountry} onChange={e => { const val = e.target.value; setFilterCountry(val); loadLeaderboard(lbPeriod, filterUniversity, val) }}>
+              <option value="">Todos los países</option>
+              {COUNTRIES.map(c => <option key={c.code} value={c.name}>{c.name}</option>)}
+            </select>
           </div>
         )}
 
-        {/* ─── LEADERBOARD CONTENT ─── */}
-        {lbLoading ? (
-          <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
-            <div className="spinner" style={{ margin: '0 auto 0.5rem', width: 24, height: 24 }} />
-            Cargando clasificaciones...
-          </div>
-        ) : lbView === 'doctors' ? (
-          /* 1. DOCTORS VIEW */
-          leaderboard.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
-              Aún no hay actividad registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''} {filterUniversity ? `en ${filterUniversity}` : ''} {filterCountry ? `en ${filterCountry}` : ''}. ¡Sé el primero en responder casos!
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-              {leaderboard.slice(0, 20).map((u, i) => {
+        <div className="mn-card mn-list mn-lb-list">
+          {(() => {
+            const rankCell = i => i === 0 ? <Crown size={16} color="#fbbf24" /> : i === 1 ? <Medal size={16} color="#cbd5e1" /> : i === 2 ? <Medal size={16} color="#d97706" /> : <span>{i + 1}</span>
+            const periodTxt = lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''
+            if (lbLoading) return <div className="mn-lb-empty">Cargando clasificación…</div>
+
+            if (lbView === 'doctors') {
+              if (!leaderboard.length) return <div className="mn-lb-empty">Aún no hay actividad {periodTxt}{filterUniversity ? ` en ${filterUniversity}` : ''}{filterCountry ? ` en ${filterCountry}` : ''}. Responde preguntas y aparece aquí.</div>
+              return leaderboard.slice(0, 20).map((u, i) => {
                 const isMe = u.user_id === user?.id
                 const rawFirst = (u.first_name || '').trim()
                 const rawLast = (u.last_name || '').trim()
-                const cleanName = rawFirst
+                const name = rawFirst
                   ? `Dr(a). ${rawFirst.charAt(0).toUpperCase() + rawFirst.slice(1).toLowerCase()}${rawLast ? ` ${rawLast.charAt(0).toUpperCase()}.` : ''}`
-                  : (u.email ? `Dr(a). ${u.email.split('@')[0]}` : 'Médico Postulante')
-                const initial = rawFirst ? rawFirst.charAt(0).toUpperCase() : (u.email ? u.email.charAt(0).toUpperCase() : 'M')
-                
-                const avatarGradients = [
-                  'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                  'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
-                  'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-                  'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
-                  'linear-gradient(135deg, #0d9488 0%, #115e59 100%)',
-                  'linear-gradient(135deg, #059669 0%, #047857 100%)',
-                  'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
-                ]
-                const avatarBg = isMe
-                  ? 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)'
-                  : avatarGradients[initial.charCodeAt(0) % avatarGradients.length]
-
-                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#cbd5e1' : i === 2 ? '#d97706' : '#64748b'
-                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#cbd5e1" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
+                  : (u.email ? `Dr(a). ${u.email.split('@')[0]}` : 'Médico postulante')
                 const uLvl = calculateLevelUp(Number(u.xp || 0), 1).newLevel
-                const correctPct = u.total_answers > 0 ? Math.round((u.correct / u.total_answers) * 100) : 0
-                const institutionText = u.university ? (u.university.split('(')[0] || u.university) : (u.country || 'Chile')
-
+                const pct = u.total_answers > 0 ? Math.round((u.correct / u.total_answers) * 100) : 0
+                const inst = u.university ? (u.university.split('(')[0] || u.university).trim() : (u.country || 'Chile')
+                const doc = getDoctorAvatar(u, uLvl)
                 return (
-                  <div
-                    key={u.user_id || i}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem',
-                      padding: '0.65rem 0.85rem',
-                      borderRadius: '10px',
-                      background: isMe ? 'rgba(56, 189, 248, 0.08)' : i < 3 ? 'var(--surface-700)' : 'var(--surface-800)',
-                      border: isMe ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid var(--surface-600)',
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    {/* Rank Number / Medal */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
-                      {rankIcon || (i + 1)}
-                    </div>
-
-                    {/* Doctor Avatar with Character Image & Institution Logo Badge */}
-                    <div style={{ position: 'relative', flexShrink: 0 }}>
-                      <img
-                        src={getDoctorAvatar(u, uLvl).image}
-                        alt={getDoctorAvatar(u, uLvl).name}
-                        title={`${getDoctorAvatar(u, uLvl).name} (Nivel ${uLvl})`}
-                        style={{
-                          width: 38,
-                          height: 38,
-                          borderRadius: '50%',
-                          objectFit: 'cover',
-                          border: isMe ? '2px solid #0284c7' : '1.5px solid var(--surface-600)',
-                          boxShadow: 'var(--shadow-sm)',
-                          background: 'var(--surface-700)',
-                          display: 'block'
-                        }}
-                      />
-                      
-                      {/* University Logo / Country Flag badge */}
-                      <div style={{ position: 'absolute', bottom: -3, right: -4 }}>
-                        <UserInstitutionBadge
-                          user={u}
-                          size={16}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Doctor Info */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: isMe ? 700 : 600, fontSize: '0.88rem', color: isMe ? '#0284c7' : 'var(--surface-50)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {cleanName}
-                        </span>
-                        {isMe && (
-                          <span style={{ fontSize: '0.68rem', color: '#0284c7', background: 'rgba(56, 189, 248, 0.15)', border: '1px solid rgba(56, 189, 248, 0.25)', padding: '1px 5px', borderRadius: '4px', fontWeight: 700 }}>
-                            Tú
-                          </span>
-                        )}
-                      </div>
-
-                      <div style={{ fontSize: '0.72rem', color: 'var(--surface-400)', display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap', marginTop: 2, fontWeight: 500 }}>
-                        <span style={{ color: '#0284c7', fontWeight: 700 }}>Nvl {uLvl}</span>
-                        <span>·</span>
-                        <span style={{ color: 'var(--surface-300)' }}>{getLevelTitle(uLvl)}</span>
-                        <span>·</span>
-                        <span style={{ color: 'var(--surface-400)' }}>
-                          {institutionText}{u.sede ? ` · ${u.sede}` : ''}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Stats & XP */}
-                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                        <Zap size={13} color="#d97706" /> {Number(u.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: 'var(--surface-400)', fontWeight: 600 }}>XP</span>
-                      </div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--surface-400)', marginTop: 1, fontWeight: 500 }}>
-                        {u.total_answers || 0} pregs · {correctPct}% acierto
-                      </div>
-                    </div>
+                  <div key={u.user_id || i} className={`mn-lb-row${isMe ? ' me' : ''}`}>
+                    <span className="mn-lb-rank">{rankCell(i)}</span>
+                    <span className="mn-lb-av">
+                      <img src={doc.image} alt="" />
+                      <span className="mn-lb-badge"><UserInstitutionBadge user={u} size={14} /></span>
+                    </span>
+                    <span className="mn-lb-txt">
+                      <b>{name}{isMe && <em>Tú</em>}</b>
+                      <small>Nvl {uLvl} · {inst}</small>
+                    </span>
+                    <span className="mn-lb-xp">
+                      <b><Zap size={12} />{Number(u.xp || 0).toLocaleString('es-CL')}</b>
+                      <small>{u.total_answers || 0} preg · {pct}%</small>
+                    </span>
                   </div>
                 )
-              })}
-            </div>
-          )
-        ) : lbView === 'sedes' ? (
-          /* 2. SEDES & UNIVERSITIES VIEW */
-          sedeLeaderboard.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
-              Aún no hay actividad de sedes registradas {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {sedeLeaderboard.map((s, i) => {
-                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#d97706' : 'var(--surface-400)'
-                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#94a3b8" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
+              })
+            }
 
-                return (
-                  <div
-                    key={`${s.university}-${s.sede}-${i}`}
-                    onClick={() => {
-                      setFilterUniversity(s.university)
-                      setLbView('doctors')
-                      loadLeaderboard(lbPeriod, s.university, '')
-                    }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.85rem',
-                      padding: '0.75rem 1rem',
-                      borderRadius: '10px',
-                      background: i < 3 ? 'var(--surface-700)' : 'var(--surface-800)',
-                      border: i === 0 ? '1px solid rgba(234, 179, 8, 0.4)' : '1px solid var(--surface-600)',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
-                    }}
-                    title="Haz clic para ver los médicos de esta sede"
-                  >
-                    {/* Rank */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
-                      {rankIcon || (i + 1)}
-                    </div>
-
-                    {/* University Logo */}
-                    <UserInstitutionBadge
-                      user={{ university: s.university, sede: s.sede, country: s.country }}
-                      size={34}
-                    />
-
-                    {/* Info */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--surface-50)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {s.university}
-                      </div>
-                      <div style={{ fontSize: '0.74rem', color: '#7e22ce', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: 2 }}>
-                        <span>📍 {s.sede}</span>
-                        <span>·</span>
-                        <span style={{ color: 'var(--surface-400)' }}>👥 {s.total_doctors} médico{s.total_doctors > 1 ? 's' : ''}</span>
-                      </div>
-                    </div>
-
-                    {/* XP & Action */}
-                    <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                          <Zap size={13} color="#d97706" /> {Number(s.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: 'var(--surface-400)', fontWeight: 600 }}>XP</span>
-                        </div>
-                        <div style={{ fontSize: '0.7rem', color: 'var(--surface-400)', marginTop: 1, fontWeight: 500 }}>
-                          {s.total_answers || 0} respuestas
-                        </div>
-                      </div>
-                      <ArrowUpRight size={15} color="#0284c7" />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        ) : (
-          /* 3. COUNTRIES VIEW */
-          countryLeaderboard.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--surface-400)', fontSize: '0.85rem' }}>
-              Aún no hay actividad de países registrada {lbPeriod === 'today' ? 'hoy' : lbPeriod === 'week' ? 'esta semana' : ''}.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {countryLeaderboard.map((c, i) => {
-                const rankColor = i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#d97706' : 'var(--surface-400)'
-                const rankIcon = i === 0 ? <Crown size={17} color="#fbbf24" /> : i === 1 ? <Medal size={17} color="#94a3b8" /> : i === 2 ? <Medal size={17} color="#d97706" /> : null
-
-                return (
-                  <div
-                    key={`${c.country}-${i}`}
-                    onClick={() => {
-                      setFilterCountry(c.country)
-                      setLbView('doctors')
-                      loadLeaderboard(lbPeriod, '', c.country)
-                    }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.85rem',
-                      padding: '0.75rem 1rem',
-                      borderRadius: '10px',
-                      background: i < 3 ? 'var(--surface-700)' : 'var(--surface-800)',
-                      border: i === 0 ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid var(--surface-600)',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
-                    }}
-                    title="Haz clic para ver los médicos de este país"
-                  >
-                    {/* Rank */}
-                    <div style={{ width: 28, textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: rankColor, flexShrink: 0 }}>
-                      {rankIcon || (i + 1)}
-                    </div>
-
-                    {/* Flag Badge */}
-                    <UserInstitutionBadge
-                      user={{ country: c.country }}
-                      size={34}
-                    />
-
-                    {/* Info */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--surface-50)' }}>
-                        {c.country}
-                      </div>
-                      <div style={{ fontSize: '0.74rem', color: '#059669', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: 2 }}>
-                        <span>👥 {c.total_doctors} médico{c.total_doctors > 1 ? 's' : ''}</span>
-                        <span>·</span>
-                        <span style={{ color: 'var(--surface-400)' }}>{c.total_answers || 0} casos</span>
-                      </div>
-                    </div>
-
-                    {/* XP & Action */}
-                    <div style={{ textAlign: 'right', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3 }}>
-                          <Zap size={13} color="#d97706" /> {Number(c.xp || 0).toLocaleString()} <span style={{ fontSize: '0.7rem', color: 'var(--surface-400)', fontWeight: 600 }}>XP</span>
-                        </div>
-                        <div style={{ fontSize: '0.7rem', color: 'var(--surface-400)', marginTop: 1, fontWeight: 500 }}>
-                          Puntaje Nacional
-                        </div>
-                      </div>
-                      <ArrowUpRight size={15} color="#0284c7" />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        )}
-      </div>
+            const rows = lbView === 'sedes' ? sedeLeaderboard : countryLeaderboard
+            if (!rows.length) return <div className="mn-lb-empty">Aún no hay actividad {lbView === 'sedes' ? 'de sedes' : 'de países'} {periodTxt}.</div>
+            return rows.map((r, i) => {
+              const isSede = lbView === 'sedes'
+              const open = () => {
+                if (isSede) { setFilterUniversity(r.university); setLbView('doctors'); loadLeaderboard(lbPeriod, r.university, '') }
+                else { setFilterCountry(r.country); setLbView('doctors'); loadLeaderboard(lbPeriod, '', r.country) }
+              }
+              return (
+                <button key={`${r.university || r.country}-${r.sede || ''}-${i}`} className="mn-lb-row" onClick={open}>
+                  <span className="mn-lb-rank">{rankCell(i)}</span>
+                  <span className="mn-lb-av mn-lb-inst"><UserInstitutionBadge user={isSede ? { university: r.university, sede: r.sede, country: r.country } : { country: r.country }} size={30} /></span>
+                  <span className="mn-lb-txt">
+                    <b>{isSede ? r.university : r.country}</b>
+                    <small>{isSede ? `${r.sede} · ` : ''}{r.total_doctors} médico{r.total_doctors > 1 ? 's' : ''}</small>
+                  </span>
+                  <span className="mn-lb-xp">
+                    <b><Zap size={12} />{Number(r.xp || 0).toLocaleString('es-CL')}</b>
+                    <small>{(r.total_answers || 0).toLocaleString('es-CL')} resp.</small>
+                  </span>
+                </button>
+              )
+            })
+          })()}
+        </div>
+      </section>
 
       {/* ─── LEVEL UP CELEBRATION MODAL ─── */}
       {levelUpModalData && (

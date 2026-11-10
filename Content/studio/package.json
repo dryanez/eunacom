@@ -1,0 +1,13 @@
+{
+  "name": "eunacom-content-studio",
+  "version": "1.0.0",
+  "description": "Teleprompter, Multi-Hook Studio & 9:16 Video Engine for EUNACOM",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["eunacom", "teleprompter", "video-engine", "remotion", "higgsfield"],
+  "author": "EUNACOM",
+  "license": "ISC"
+}

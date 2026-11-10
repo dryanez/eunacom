@@ -15,6 +15,8 @@ const { default: EnrollmentModal } = await load('/src/components/EnrollmentModal
 const { default: BlogArticleModalOrPage } = await load('/src/components/BlogArticleModalOrPage.jsx');
 const { default: DoctorMentorshipModal } = await load('/src/components/DoctorMentorshipModal.jsx');
 const { default: BlogTopicProposer } = await load('/src/components/BlogTopicProposer.jsx');
+const { default: CursoTeoricoPage } = await load('/src/components/CursoTeoricoPage.jsx');
+const { default: CursoPracticoPage } = await load('/src/components/CursoPracticoPage.jsx');
 
 const noop = () => {};
 const cases = [['App', React.createElement(App)]];
@@ -27,6 +29,8 @@ for (const a of BLOG_ARTICLES) {
 }
 cases.push(['DoctorMentorshipModal', React.createElement(DoctorMentorshipModal, { onClose: noop })]);
 cases.push(['BlogTopicProposer', React.createElement(BlogTopicProposer, { onClose: noop })]);
+cases.push(['CursoTeoricoPage', React.createElement(CursoTeoricoPage, { onNavigateHome: noop, onEnroll: noop })]);
+cases.push(['CursoPracticoPage', React.createElement(CursoPracticoPage, { onNavigateHome: noop, onOpenMentorship: noop })]);
 
 let failed = 0, html = '';
 for (const [name, el] of cases) {

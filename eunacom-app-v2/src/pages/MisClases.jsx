@@ -1,3 +1,5 @@
+import '../components/redesign/midnight.css'
+import '../components/redesign/clase.css'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -14,7 +16,8 @@ import {
   Eye, Ear, Baby, Scissors, Pill, Syringe, Activity, Shield,
   Hospital, Ambulance, Thermometer, Dna, Ribbon, Scale, Beaker,
   TestTubes, ScanHeart, Cross, Tablets, PersonStanding, Sparkles, Zap,
-  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle
+  Printer, RefreshCw, BookMarked, Lock, Check, X, CheckCircle, Users, PlayCircle,
+  AlertTriangle, StickyNote
 } from 'lucide-react'
 import LoadingScreen from '../components/LoadingScreen'
 import LoginGateModal from '../components/LoginGateModal'
@@ -22,6 +25,8 @@ import PaymentModal from '../components/PaymentModal'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
+import PruebasDias from '../components/redesign/PruebasDias'
+import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/proMaxPages.css'
 
 /* ════════════════════════════════════════════════════════════════
@@ -51,41 +56,14 @@ function ProgressRing({ percent, size = 48, stroke = 4 }) {
    ════════════════════════════════════════════════════════════════ */
 function StepBar({ steps, current, onStep }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: '2rem' }}>
-      {steps.map((s, i) => {
-        const isActive = i === current
-        const isDone = i < current
-        return (
-          <React.Fragment key={s.id}>
-            {i > 0 && (
-              <div style={{
-                flex: 1, height: 2, margin: '0 -1px',
-                background: isDone ? 'var(--primary-500)' : 'var(--border-color)',
-                transition: 'background 0.3s'
-              }} />
-            )}
-            <button onClick={() => onStep(i)} style={{
-              display: 'flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.6rem 1.2rem', borderRadius: '50px', border: 'none', cursor: 'pointer',
-              fontSize: '0.82rem', fontWeight: 600, whiteSpace: 'nowrap',
-              background: isActive ? 'var(--primary-500)' : isDone ? 'rgba(19,91,236,0.15)' : 'var(--surface-700)',
-              color: isActive ? '#fff' : isDone ? 'var(--primary-500)' : 'var(--text-tertiary)',
-              transition: 'all 0.3s', transform: isActive ? 'scale(1.05)' : 'scale(1)',
-              boxShadow: isActive ? '0 4px 12px rgba(19,91,236,0.3)' : 'none',
-            }}>
-              <div style={{
-                width: 22, height: 22, borderRadius: '50%', fontSize: '0.7rem',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: isActive ? 'rgba(255,255,255,0.25)' : isDone ? 'var(--primary-500)' : 'var(--surface-600)',
-                color: isActive || isDone ? '#fff' : 'var(--text-tertiary)',
-              }}>
-                {isDone ? <CheckCircle2 size={13} /> : i + 1}
-              </div>
-              {s.label}
-            </button>
-          </React.Fragment>
-        )
-      })}
+    <div className="mn-cl-steps">
+      {steps.map((st, i) => (
+        <button key={st.id} type="button" onClick={() => onStep(i)}
+          className={`mn-cl-step ${i === current ? 'is-on' : i < current ? 'is-done' : ''}`}>
+          {i < current ? <CheckCircle2 size={15} /> : st.icon}
+          <span>{st.label}</span>
+        </button>
+      ))}
     </div>
   )
 }
@@ -98,17 +76,12 @@ function BoldText({ text, onNavigate }) {
   const parts = text.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g)
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} style={{ color: 'var(--text-primary)' }}>{part.slice(2, -2)}</strong>
+      return <strong key={i}>{part.slice(2, -2)}</strong>
     }
     if (part.startsWith('[[') && part.endsWith(']]')) {
       const linkText = part.slice(2, -2)
       return (
-        <span key={i} onClick={(e) => { e.stopPropagation(); onNavigate?.(linkText) }}
-          style={{
-            color: 'var(--primary-500)', cursor: onNavigate ? 'pointer' : 'default',
-            borderBottom: '1px dashed var(--primary-500)',
-            fontWeight: 600, transition: 'opacity 0.2s',
-          }}
+        <span key={i} className="mn-cl-wiki" onClick={(e) => { e.stopPropagation(); onNavigate?.(linkText) }}
           title={`Ver: ${linkText}`}
         >
           {linkText}
@@ -165,16 +138,6 @@ function PuntosClaveSection({ keyPoints }) {
 
   const cleanedPoints = keyPoints.map(cleanKeyPoint).filter(Boolean)
 
-  const cardStyles = [
-    { gradient: 'linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.03) 100%)', accent: '#3b82f6', glow: 'rgba(59,130,246,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(16,185,129,0.10) 0%, rgba(16,185,129,0.03) 100%)', accent: '#10b981', glow: 'rgba(16,185,129,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.03) 100%)', accent: '#f59e0b', glow: 'rgba(245,158,11,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(139,92,246,0.10) 0%, rgba(139,92,246,0.03) 100%)', accent: '#8b5cf6', glow: 'rgba(139,92,246,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(236,72,153,0.10) 0%, rgba(236,72,153,0.03) 100%)', accent: '#ec4899', glow: 'rgba(236,72,153,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(14,165,233,0.10) 0%, rgba(14,165,233,0.03) 100%)', accent: '#0ea5e9', glow: 'rgba(14,165,233,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(244,63,94,0.10) 0%, rgba(244,63,94,0.03) 100%)', accent: '#f43f5e', glow: 'rgba(244,63,94,0.15)' },
-    { gradient: 'linear-gradient(135deg, rgba(34,197,94,0.10) 0%, rgba(34,197,94,0.03) 100%)', accent: '#22c55e', glow: 'rgba(34,197,94,0.15)' },
-  ]
 
   // Split a point into a "headline" and optional "detail" at the first colon, period, or dash pattern
   const splitPoint = (text) => {
@@ -203,101 +166,64 @@ function PuntosClaveSection({ keyPoints }) {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: 8, background: 'rgba(251,191,36,0.12)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-          <Lightbulb size={17} style={{ color: '#f59e0b' }} />
-        </div>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Puntos Clave</h3>
+      <div className="mn-cl-sec-h">
+        <div className="ico"><Lightbulb size={17} /></div>
+        <h3>Puntos clave</h3>
       </div>
-      {anyHasDetail && (
-        <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: '1.25rem', marginLeft: '2.75rem' }}>
-          Toca una tarjeta para ver el detalle
-        </p>
-      )}
-
-      <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-      <div className="grid-auto-responsive" style={{
-        marginTop: anyHasDetail ? 0 : '1.25rem',
-      }}>
+      <p className="mn-cl-sec-sub">{anyHasDetail ? 'Toca una tarjeta para ver el detalle' : `${cleanedPoints.length} ideas para el examen`}</p>
+      <div className="mn-cl-kp">
         {cleanedPoints.map((point, i) => {
-          const s = cardStyles[i % cardStyles.length]
           const { headline, detail } = splitPoint(point)
-          const isFlipped = flipped[i]
-
+          const isOpen = flipped[i]
           return (
-            <div
-              key={i}
-              onClick={() => detail && toggleFlip(i)}
-              className="card"
-              style={{
-                padding: 0,
-                background: isFlipped ? s.gradient : 'var(--surface-700)',
-                border: `1px solid ${isFlipped ? s.accent + '40' : 'var(--border-color)'}`,
-                borderRadius: '14px',
-                cursor: detail ? 'pointer' : 'default',
-                transition: 'all 0.3s ease',
-                overflow: 'hidden',
-                boxShadow: isFlipped ? `0 4px 20px ${s.glow}` : 'none',
-                transform: isFlipped ? 'scale(1.02)' : 'scale(1)',
-              }}
-            >
-              {/* Top accent bar */}
-              <div style={{ height: 3, background: s.accent, opacity: isFlipped ? 1 : 0.4, transition: 'opacity 0.3s' }} />
-
-              <div style={{ padding: '1.1rem 1.2rem' }}>
-                {/* Number badge + headline */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <div style={{
-                    minWidth: 26, height: 26, borderRadius: '8px',
-                    background: s.accent + '20',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.72rem', fontWeight: 800, color: s.accent, flexShrink: 0,
-                    marginTop: '0.1rem',
-                  }}>
-                    {i + 1}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{
-                      fontSize: '0.88rem', fontWeight: 700, lineHeight: 1.5,
-                      color: 'var(--text-primary)',
-                    }}>
-                      <BoldText text={headline} />
-                    </div>
-
-                    {/* Detail — shown when flipped */}
-                    {detail && isFlipped && (
-                      <div style={{
-                        marginTop: '0.6rem', paddingTop: '0.6rem',
-                        borderTop: `1px dashed ${s.accent}30`,
-                        fontSize: '0.83rem', lineHeight: 1.7, color: 'var(--text-secondary)',
-                        animation: 'fadeIn 0.3s ease',
-                      }}>
-                        <BoldText text={detail} />
-                      </div>
-                    )}
-
-                    {/* Expand hint */}
-                    {detail && !isFlipped && (
-                      <div style={{
-                        marginTop: '0.4rem', fontSize: '0.72rem', color: s.accent,
-                        opacity: 0.7, fontWeight: 500,
-                      }}>
-                        ver más →
-                      </div>
-                    )}
-                  </div>
+            <div key={i} onClick={() => detail && toggleFlip(i)}
+              className={`mn-cl-kpc ${detail ? 'can' : ''} ${isOpen ? 'open' : ''}`}>
+              <div className="mn-cl-kpc-row">
+                <span className="mn-cl-num">{i + 1}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="mn-cl-kpc-t"><BoldText text={headline} /></div>
+                  {detail && isOpen && <div className="mn-cl-kpc-d"><BoldText text={detail} /></div>}
+                  {detail && !isOpen && <span className="mn-cl-kpc-more">Ver más <ChevronRight size={12} /></span>}
                 </div>
               </div>
             </div>
           )
         })}
       </div>
+    </div>
+  )
+}
 
-      {/* Inline animation */}
-      <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+/* Tarjeta de pregunta (Midnight) */
+function MnQuestionCard({ index, total, badge, text, options, picked, isCorrect, onPick, explanation }) {
+  const answered = !!picked
+  return (
+    <div className="mn-cl-q">
+      <div className="mn-cl-q-badges">
+        <span className="mn-pill mn-pill-sky">Pregunta {index + 1} de {total}</span>
+        <span className="mn-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Award size={12} /> {badge}</span>
+      </div>
+      <p className="mn-cl-q-text">{text}</p>
+      {options.map((opt, oi) => {
+        const ok = answered && isCorrect(opt)
+        const bad = answered && picked === opt.id && !isCorrect(opt)
+        const letter = opt.id || String.fromCharCode(65 + oi)
+        return (
+          <button key={opt.id ?? oi} type="button" disabled={answered} onClick={() => onPick(opt.id)}
+            className={`mn-cl-opt ${ok ? 'ok' : bad ? 'bad' : answered ? 'dim' : ''}`}>
+            <span className="l">{ok ? <Check size={15} strokeWidth={2.5} /> : bad ? <X size={15} strokeWidth={2.5} /> : letter}</span>
+            <span className="t">{opt.text}</span>
+            {ok && <span className="tag">Correcta</span>}
+            {bad && <span className="tag">Incorrecta</span>}
+          </button>
+        )
+      })}
+      {answered && explanation && (
+        <div className="mn-cl-fb">
+          <div className="mn-cl-fb-h"><CheckCircle size={15} /> Retroalimentación clínica (Guías GES / MINSAL)</div>
+          <p>{explanation}</p>
+        </div>
+      )}
     </div>
   )
 }
@@ -407,115 +333,15 @@ function EunacomQuestionsSection({ claseId, eunacomCode }) {
           return (
             <div key={i} onClick={() => setCurrentQ(i)} style={{
               width: i === currentQ ? 24 : 10, height: 8, borderRadius: 9999, cursor: 'pointer', transition: 'all 0.3s',
-              background: !s ? (i === currentQ ? '#0284c7' : '#cbd5e1') : isOk ? '#10b981' : '#ef4444',
+              background: !s ? (i === currentQ ? '#38bdf8' : '#1e2a44') : isOk ? '#10b981' : '#ef4444',
             }} />
           )
         })}
       </div>
 
-      {/* Hero Shot Question Card */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 18,
-        padding: '24px 20px',
-        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
-      }}>
-        {/* Badges row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
-            Pregunta {currentQ + 1} de {total}
-          </span>
-          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Award size={12} color="#d97706" /> Evaluación de Clase
-          </span>
-        </div>
-
-        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
-          {q.pregunta}
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {q.opciones.map((opt, optIdx) => {
-            const isCorrect = isCorrectOpt(opt)
-            const isWrong   = isWrongPick(opt)
-            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
-            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-
-            if (answered) {
-              if (isCorrect) {
-                bg = '#ecfdf5'
-                border = '#10b981'
-                textColor = '#065f46'
-                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
-              } else if (isWrong) {
-                bg = '#fef2f2'
-                border = '#ef4444'
-                textColor = '#991b1b'
-                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
-              } else {
-                bg = '#f8fafc'
-                border = '#f1f5f9'
-                textColor = '#94a3b8'
-                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-              }
-            }
-
-            return (
-              <div key={opt.id}>
-                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '12px 14px',
-                  background: bg, border: `1.5px solid ${border}`,
-                  borderRadius: 12, color: textColor,
-                  cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isWrong ? 0.45 : 1,
-                  transition: 'all 0.15s ease', fontSize: '0.92rem',
-                  lineHeight: 1.5,
-                  display: 'flex', alignItems: 'flex-start', gap: 10,
-                }}>
-                  <div style={{
-                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, marginTop: 1
-                  }}>
-                    {badgeContent}
-                  </div>
-                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
-                  {answered && isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
-                      ✓ Correcto
-                    </span>
-                  )}
-                  {answered && isWrong && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
-                      ✗ Incorrecto
-                    </span>
-                  )}
-                </button>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Retroalimentación Clínica Official Card */}
-        {answered && q.explicacion && (
-          <div style={{
-            marginTop: 16,
-            padding: '16px 18px',
-            backgroundColor: '#f0fdf4',
-            border: '1px solid #bbf7d0',
-            borderRadius: 14
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
-            </div>
-            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
-              {q.explicacion}
-            </p>
-          </div>
-        )}
-      </div>
+      <MnQuestionCard index={currentQ} total={total} badge="Evaluación de clase"
+        text={q.pregunta} options={q.opciones} picked={picked}
+        isCorrect={isCorrectOpt} onPick={handleSelect} explanation={q.explicacion} />
 
       {/* Navigation */}
       <div style={{ display: 'flex', justifyContent: currentQ === 0 ? 'flex-end' : 'space-between', marginTop: '1rem' }}>
@@ -661,109 +487,10 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
         </div>
       </div>
 
-      {/* Hero Shot Question Card */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 18,
-        padding: '24px 20px',
-        boxShadow: '0 10px 28px -4px rgba(0, 0, 0, 0.12)',
-      }}>
-        {/* Badges row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, flexWrap: 'wrap', gap: 6 }}>
-          <span style={{ backgroundColor: '#e0f2fe', border: '1px solid #bae6fd', color: '#0369a1', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999 }}>
-            Pregunta {currentQ + 1} de {total}
-          </span>
-          <span style={{ backgroundColor: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', fontSize: '0.74rem', fontWeight: 700, padding: '3px 10px', borderRadius: 9999, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <Award size={12} color="#d97706" /> Quiz de Especialidad
-          </span>
-        </div>
-
-        <p style={{ fontWeight: 500, fontSize: '1.02rem', marginBottom: '1.25rem', lineHeight: 1.65, color: '#1e293b' }}>
-          {q.questionText}
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {q.options.map((opt, optIdx) => {
-            const isSelected = picked === opt.id
-            const isCorrect = opt.isCorrect
-            let bg = '#ffffff', border = '#e2e8f0', textColor = '#334155'
-            let badgeContent = <span style={{ color: '#64748b', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-
-            if (answered) {
-              if (isCorrect) {
-                bg = '#ecfdf5'
-                border = '#10b981'
-                textColor = '#065f46'
-                badgeContent = <Check size={15} color="#10b981" strokeWidth={2.5} />
-              } else if (isSelected) {
-                bg = '#fef2f2'
-                border = '#ef4444'
-                textColor = '#991b1b'
-                badgeContent = <X size={15} color="#ef4444" strokeWidth={2.5} />
-              } else {
-                bg = '#f8fafc'
-                border = '#f1f5f9'
-                textColor = '#94a3b8'
-                badgeContent = <span style={{ color: '#cbd5e1', fontWeight: 700, fontSize: '0.84rem' }}>{opt.id || String.fromCharCode(65 + optIdx)}</span>
-              }
-            }
-
-            return (
-              <div key={opt.id}>
-                <button onClick={() => handleSelect(opt.id)} disabled={answered} style={{
-                  width: '100%', textAlign: 'left', padding: '12px 14px',
-                  background: bg, border: `1.5px solid ${border}`,
-                  borderRadius: 12, color: textColor,
-                  cursor: answered ? 'default' : 'pointer',
-                  opacity: answered && !isCorrect && !isSelected ? 0.45 : 1,
-                  transition: 'all 0.15s ease', fontSize: '0.92rem',
-                  lineHeight: 1.5,
-                  display: 'flex', alignItems: 'flex-start', gap: 10,
-                }}>
-                  <div style={{
-                    width: 24, height: 24, minWidth: 24, borderRadius: 7,
-                    backgroundColor: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.06)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, marginTop: 1
-                  }}>
-                    {badgeContent}
-                  </div>
-                  <span style={{ flex: 1, paddingTop: 1 }}>{opt.text}</span>
-                  {answered && isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#059669', fontWeight: 700, flexShrink: 0 }}>
-                      ✓ Correcto
-                    </span>
-                  )}
-                  {answered && isSelected && !isCorrect && (
-                    <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>
-                      ✗ Incorrecto
-                    </span>
-                  )}
-                </button>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Retroalimentación Clínica Official Card */}
-        {answered && (
-          <div style={{
-            marginTop: 16,
-            padding: '16px 18px',
-            backgroundColor: '#f0fdf4',
-            border: '1px solid #bbf7d0',
-            borderRadius: 14
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#166534', fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              <CheckCircle size={16} color="#16a34a" /> Retroalimentación Clínica (Guías GES / MINSAL)
-            </div>
-            <p style={{ fontSize: '0.88rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>
-              {q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'}
-            </p>
-          </div>
-        )}
-      </div>
+      <MnQuestionCard index={currentQ} total={total} badge="Quiz de la clase"
+        text={q.questionText} options={q.options} picked={picked}
+        isCorrect={(o) => !!o.isCorrect} onPick={handleSelect}
+        explanation={q.options.find(o => o.isCorrect)?.explanation || 'Respuesta justificada según norma clínica MINSAL.'} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.25rem' }}>
         <button onClick={goPrev} disabled={currentQ === 0} style={{
@@ -796,25 +523,19 @@ function QuizSection({ quiz, onComplete, onNextClass, nextClase }) {
    ════════════════════════════════════════════════════════════════ */
 /* Callout box styles */
 const calloutStyles = {
-  tip: { bg: 'rgba(16,185,129,0.08)', border: '#10b981', icon: '💡', label: 'PRO TIP', color: '#10b981' },
-  important: { bg: 'rgba(239,68,68,0.08)', border: '#ef4444', icon: '🎯', label: 'CLAVE EUNACOM', color: '#ef4444' },
-  warning: { bg: 'rgba(245,158,11,0.08)', border: '#f59e0b', icon: '⚠️', label: 'OJO', color: '#f59e0b' },
-  note: { bg: 'rgba(59,130,246,0.08)', border: '#3b82f6', icon: '📝', label: 'NOTA', color: '#3b82f6' },
+  tip: { Icon: Lightbulb, label: 'Pro tip' },
+  important: { Icon: Target, label: 'Clave EUNACOM' },
+  warning: { Icon: AlertTriangle, label: 'Ojo' },
+  note: { Icon: StickyNote, label: 'Nota' },
 }
 
-function CalloutBox({ type, children, onNavigate }) {
-  const s = calloutStyles[type] || calloutStyles.note
+function CalloutBox({ type, children }) {
+  const key = calloutStyles[type] ? type : 'note'
+  const { Icon, label } = calloutStyles[key]
   return (
-    <div style={{
-      padding: '1rem 1.25rem', borderRadius: 10, margin: '0.5rem 0',
-      background: s.bg, borderLeft: `4px solid ${s.border}`,
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: 800, color: s.color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-        {s.icon} {s.label}
-      </div>
-      <div style={{ fontSize: '0.88rem', lineHeight: 1.75, color: 'var(--text-primary)', fontWeight: 500 }}>
-        {children}
-      </div>
+    <div className={`mn-cl-call mn-cl-call--${key}`}>
+      <div className="mn-cl-call-h"><Icon size={14} /> {label}</div>
+      <div className="mn-cl-call-b">{children}</div>
     </div>
   )
 }
@@ -892,118 +613,60 @@ function TranscriptSection({ transcript, summary, onNavigate }) {
     i++
   }
 
-  const sectionColors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#0ea5e9', '#f43f5e', '#22c55e']
   let headingIndex = 0
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+    <div className="mn-cl-body">
       {blocks.map((block, bi) => {
         if (block.type === 'heading') {
-          const color = sectionColors[headingIndex++ % sectionColors.length]
+          headingIndex++
           return (
-            <div key={bi} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: bi > 0 ? '0.75rem' : 0 }}>
-              <div style={{ width: 4, height: 24, borderRadius: 2, background: color }} />
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
-                {block.text}
-              </h3>
+            <div key={bi} className="mn-cl-h">
+              <i>{headingIndex}</i>
+              <h3>{block.text.replace(/^\d+[.)]\s*/, '')}</h3>
             </div>
           )
         }
-
         if (block.type === 'callout') {
           return (
-            <CalloutBox key={bi} type={block.calloutType} onNavigate={onNavigate}>
+            <CalloutBox key={bi} type={block.calloutType}>
               <BoldText text={block.text} onNavigate={onNavigate} />
             </CalloutBox>
           )
         }
-
-        if (block.type === 'bullets') {
+        if (block.type === 'bullets' || block.type === 'numbered') {
           return (
-            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <div key={bi} className="mn-cl-list">
               {block.items.map((item, ii) => (
-                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
-                  <span style={{ color: 'var(--primary-500)', fontSize: '0.7rem', marginTop: '0.45rem', flexShrink: 0 }}>●</span>
+                <div key={ii} className="mn-cl-li">
+                  {block.type === 'bullets' ? <span className="mn-cl-dot" /> : <span className="mn-cl-num">{ii + 1}</span>}
                   <span><BoldText text={item} onNavigate={onNavigate} /></span>
                 </div>
               ))}
             </div>
           )
         }
-
-        if (block.type === 'numbered') {
-          return (
-            <div key={bi} style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              {block.items.map((item, ii) => (
-                <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.9rem', lineHeight: 1.75, color: 'var(--text-secondary)' }}>
-                  <span style={{
-                    minWidth: 22, height: 22, borderRadius: 6, background: 'rgba(59,130,246,0.1)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.7rem', fontWeight: 700, color: 'var(--primary-500)', flexShrink: 0, marginTop: '0.2rem',
-                  }}>
-                    {ii + 1}
-                  </span>
-                  <span><BoldText text={item} onNavigate={onNavigate} /></span>
-                </div>
-              ))}
-            </div>
-          )
-        }
-
-        // Table
         if (block.type === 'table') {
           return (
-            <div key={bi} style={{ overflowX: 'auto', margin: '0.5rem 0', paddingLeft: '1.25rem' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
-                <thead>
-                  <tr>
-                    {block.header.map((h, hi) => (
-                      <th key={hi} style={{
-                        padding: '0.6rem 0.8rem', textAlign: 'left', fontWeight: 700,
-                        color: 'var(--text-primary)', borderBottom: '2px solid var(--primary-500)',
-                        background: 'rgba(59,130,246,0.06)', whiteSpace: 'nowrap',
-                      }}>
-                        <BoldText text={h} onNavigate={onNavigate} />
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+            <div key={bi} className="mn-cl-tablewrap">
+              <table className="mn-cl-table">
+                <thead><tr>{block.header.map((h, hi) => <th key={hi}><BoldText text={h} onNavigate={onNavigate} /></th>)}</tr></thead>
                 <tbody>
                   {block.rows.map((row, ri) => (
-                    <tr key={ri} style={{ background: ri % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
-                      {row.map((cell, ci) => (
-                        <td key={ci} style={{
-                          padding: '0.5rem 0.8rem', borderBottom: '1px solid var(--border-color)',
-                          color: ci === 0 ? 'var(--text-primary)' : 'var(--text-secondary)',
-                          fontWeight: ci === 0 ? 600 : 400, lineHeight: 1.6,
-                        }}>
-                          <BoldText text={cell} onNavigate={onNavigate} />
-                        </td>
-                      ))}
-                    </tr>
+                    <tr key={ri}>{row.map((cell, ci) => <td key={ci}><BoldText text={cell} onNavigate={onNavigate} /></td>)}</tr>
                   ))}
                 </tbody>
               </table>
             </div>
           )
         }
-
-        // Paragraph
         return (
-          <p key={bi} style={{ fontSize: '0.92rem', lineHeight: 1.85, color: 'var(--text-secondary)', margin: 0, paddingLeft: '1.25rem' }}>
-            <BoldText text={block.text} onNavigate={onNavigate} />
-          </p>
+          <p key={bi} className="mn-cl-p"><BoldText text={block.text} onNavigate={onNavigate} /></p>
         )
       })}
 
       {!transcript && summary && (
-        <div style={{
-          padding: '0.75rem 1rem', borderRadius: 8, marginTop: '0.5rem',
-          background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)',
-          fontSize: '0.8rem', color: '#f59e0b',
-        }}>
-          Esta clase muestra solo el resumen. El contenido completo de la clase estará disponible próximamente.
-        </div>
+        <div className="mn-cl-soon">Esta clase muestra solo el resumen. El contenido completo estará disponible próximamente.</div>
       )}
     </div>
   )
@@ -1038,9 +701,9 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
 
   const steps = [
     { id: 'clase',     label: 'Clase',             icon: <BookOpen size={14} /> },
-    { id: 'puntos',    label: 'Puntos Clave',       icon: <Lightbulb size={14} /> },
+    { id: 'puntos',    label: 'Puntos clave',       icon: <Lightbulb size={14} /> },
     { id: 'quiz',      label: 'Quiz',               icon: <Target size={14} /> },
-    { id: 'preguntas', label: 'Banco EUNACOM',      icon: <HelpCircle size={14} /> },
+    { id: 'preguntas', label: 'Banco',              icon: <HelpCircle size={14} /> },
   ]
   const maxStep = steps.length - 1
 
@@ -1062,189 +725,83 @@ function ClaseDetail({ clase, onBack, onNavigateToTopic, onTrackProgress, onQuiz
     setShowQuizPrompt(true)
   }
 
-  return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-        <button onClick={onBack} style={{
-          background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-          borderRadius: '10px', padding: '0.5rem 1rem', color: 'var(--text-primary)',
-          cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
-        }}>
-          <ChevronLeft size={16} /> Volver
-        </button>
+  const p = clase.perfilData?.[0]
+  const xpPrompt = showQuizPrompt && (
+    <div className="mn-cl-xp">
+      <div className="mn-cl-xp-ico"><Zap size={19} /></div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="mn-cl-xp-t">+50 XP obtenidos</div>
+        <div className="mn-cl-xp-s">Responde el quiz para ganar los 50 XP restantes.</div>
       </div>
+      <button className="go" onClick={() => { setShowQuizPrompt(false); handleStep(2) }}>Ir al quiz <ArrowRight size={14} /></button>
+      <button className="x" aria-label="Cerrar" onClick={() => setShowQuizPrompt(false)}><X size={16} /></button>
+    </div>
+  )
+  const nextBtn = (label, onClick) => (
+    <button className="mn-cl-nb pri" onClick={onClick} style={{ touchAction: 'manipulation' }}>{label} <ArrowRight size={16} /></button>
+  )
 
-      <div className="card" style={{
-        padding: '1.5rem 1.75rem', marginBottom: '1.5rem',
-        background: 'linear-gradient(135deg, rgba(19,91,236,0.06) 0%, rgba(168,85,247,0.06) 100%)',
-        borderLeft: '4px solid var(--primary-500)'
-      }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-500)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          {clase.specialty} / {clase.subsystem}
-        </div>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
-          Clase {clase.lessonNumber}: {clase.topic}
-        </h2>
-        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
-          {clase.quiz?.length > 0 && <span>{clase.quiz.length} preguntas</span>}
-          {clase.keyPoints?.length > 0 && <span>{clase.keyPoints.length} puntos clave</span>}
-          {videoUrl && (
-            <span style={{ color: isVideoWatched ? '#10b981' : 'var(--primary-400)', fontWeight: 600 }}>
-              {isVideoWatched ? '✓ Video visto' : '▶ Video disponible'}
-            </span>
+  return (
+    <div className="mn-cl">
+      <div className="mn-cl-hero">
+        <div className="mn-cl-hero-top">
+          <button className="mn-cl-hb" onClick={onBack} aria-label="Volver"><ChevronLeft size={16} /><span>Volver</span></button>
+          <div className="mn-cl-eyebrow">{clase.specialty} · {clase.subsystem}</div>
+          {onNextClass && nextClase && (
+            <button className="mn-cl-hb next" onClick={onNextClass} title={`Siguiente: ${nextClase.topic || ''}`}><span>Siguiente</span><ChevronRight size={16} /></button>
           )}
         </div>
-        {/* Perfil EUNACOM badges — show only the primary (first) match */}
-        {clase.perfilData && clase.perfilData.length > 0 && (() => {
-          const p = clase.perfilData[0] // Primary perfil item for this class
-          return (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', padding: '0.5rem 0.8rem', borderRadius: 8, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)' }}>
-              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                EUNACOM {p.codigo}:
-              </span>
-              {p.diagnostico && <PerfilBadge label={p.diagnostico} prefix="Dx" />}
-              {p.tratamiento && <PerfilBadge label={p.tratamiento} prefix="Tx" />}
-              {p.seguimiento && <PerfilBadge label={p.seguimiento} prefix="Seg" />}
-            </div>
-          )
-        })()}
+        <h2 className="mn-cl-title">Clase {clase.lessonNumber}: {clase.topic}</h2>
+        <div className="mn-cl-chips">
+          {videoUrl && (
+            <span className={`mn-cl-chip ${isVideoWatched ? 'mn-cl-chip--ok' : ''}`}>
+              {isVideoWatched ? <CheckCircle2 size={13} /> : <PlayCircle size={13} />}
+              {isVideoWatched ? 'Video visto' : 'Video disponible'}
+            </span>
+          )}
+          {clase.keyPoints?.length > 0 && <span className="mn-cl-chip"><Lightbulb size={13} /> {clase.keyPoints.length} puntos clave</span>}
+          {clase.quiz?.length > 0 && <span className="mn-cl-chip"><Target size={13} /> {clase.quiz.length} preguntas</span>}
+        </div>
+        {p && (
+          <div className="mn-cl-code">
+            <b>EUNACOM {p.codigo}</b>
+            {p.diagnostico && <span><i>Dx</i>{p.diagnostico}</span>}
+            {p.tratamiento && <span><i>Tx</i>{p.tratamiento}</span>}
+            {p.seguimiento && <span><i>Seg</i>{p.seguimiento}</span>}
+          </div>
+        )}
       </div>
 
-      {/* ─── VIDEO PLAYER (above tabs) ─── */}
       {videoUrl && (
         <VideoPlayer
           src={videoUrl}
-          title={`Clase ${clase.lessonNumber}: ${clase.topic}`}
           watched={isVideoWatched}
           onWatched={handleVideoWatched}
         />
       )}
 
-      {/* ─── POST-VIDEO QUIZ PROMPT ─── */}
-      {showQuizPrompt && !isVideoWatched && (
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: '1rem',
-          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
-          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
-          border: '1px solid rgba(16,185,129,0.3)',
-          animation: 'slideIn 0.4s ease',
-        }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Zap size={20} style={{ color: '#10b981' }} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
-          </div>
-          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
-            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
-            background: '#10b981', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
-            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
-          }}>
-            Ir al Quiz →
-          </button>
-          <button onClick={() => setShowQuizPrompt(false)} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
-          }}>×</button>
-        </div>
-      )}
-      {showQuizPrompt && isVideoWatched && (
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: '1rem',
-          padding: '1rem 1.25rem', borderRadius: 14, marginBottom: '1.25rem',
-          background: 'linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(19,91,236,0.08) 100%)',
-          border: '1px solid rgba(16,185,129,0.3)',
-          animation: 'slideIn 0.4s ease',
-        }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Zap size={20} style={{ color: '#10b981' }} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>¡+50 XP obtenidos!</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>Ahora responde el quiz para ganar los 50 XP restantes.</div>
-          </div>
-          <button onClick={() => { setShowQuizPrompt(false); handleStep(2) }} style={{
-            padding: '0.6rem 1.2rem', borderRadius: 10, border: 'none',
-            background: '#10b981', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap',
-            boxShadow: '0 2px 12px rgba(16,185,129,0.4)',
-          }}>
-            Ir al Quiz →
-          </button>
-          <button onClick={() => setShowQuizPrompt(false)} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--text-tertiary)', fontSize: '1.2rem', lineHeight: 1, padding: '0.25rem',
-          }}>×</button>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
+      {xpPrompt}
 
       <StepBar steps={steps} current={step} onStep={handleStep} />
 
-      {step === 0 && (
-        <div className="card" style={{ padding: '2rem', borderLeft: '4px solid var(--primary-500)' }}>
-          <TranscriptSection transcript={clase.cleanTranscript} summary={clase.summary} onNavigate={onNavigateToTopic} />
-        </div>
-      )}
+      {step === 0 && <TranscriptSection transcript={clase.cleanTranscript} summary={clase.summary} onNavigate={onNavigateToTopic} />}
       {step === 1 && <PuntosClaveSection keyPoints={clase.keyPoints} />}
       {step === 2 && clase.quiz?.length > 0 && <QuizSection quiz={clase.quiz} onNextClass={onNextClass} nextClase={nextClase} onComplete={(score, correct, total, wrong) => onQuizComplete?.(clase.id, score, correct, total, wrong)} />}
       {step === 3 && (
-        <PruebasView
-          specialty={clase.specialty}
+        <PruebasDias
           subsystem={clase.subsystem}
-          subsystemStyle={getSubsystemStyle(clase.subsystem)}
           onBack={() => handleStep(2)}
         />
       )}
 
-      <div style={{ display: 'flex', justifyContent: step === 0 ? 'flex-end' : 'space-between', marginTop: '1.5rem' }}>
+      <div className="mn-cl-nav">
         {step > 0 && (
-          <button onClick={goPrev} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.3rem', borderRadius: '10px',
-            border: '1px solid var(--border-color)', background: 'var(--surface-700)',
-            color: 'var(--text-primary)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600,
-          }}>
-            <ArrowLeft size={16} /> {steps[step - 1].label}
-          </button>
+          <button className="mn-cl-nb" onClick={goPrev}><ArrowLeft size={16} /> {steps[step - 1].label}</button>
         )}
-
-        {step === 2 && onNextClass ? (
-          <button onClick={onNextClass} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
-            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            Siguiente Clase <ArrowRight size={16} />
-          </button>
-        ) : step < maxStep ? (
-          <button onClick={goNext} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.3rem', borderRadius: '10px', border: 'none',
-            background: 'var(--primary-500)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 2px 8px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            {steps[step + 1].label} <ArrowRight size={16} />
-          </button>
-        ) : onNextClass ? (
-          <button onClick={onNextClass} style={{
-            display: 'flex', alignItems: 'center', gap: '0.4rem',
-            padding: '0.7rem 1.4rem', borderRadius: '10px', border: 'none',
-            background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
-            fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 2px 10px rgba(19,91,236,0.3)',
-            touchAction: 'manipulation'
-          }}>
-            Siguiente Clase <ArrowRight size={16} />
-          </button>
-        ) : null}
+        <span className="sp" />
+        {step === 2 && onNextClass ? nextBtn('Siguiente clase', onNextClass)
+          : step < maxStep ? nextBtn(steps[step + 1].label, goNext)
+          : onNextClass ? nextBtn('Siguiente clase', onNextClass) : null}
       </div>
     </div>
   )
@@ -2765,6 +2322,13 @@ function getSubsystemStyle(name) {
 /* ════════════════════════════════════════════════════════════════
    MAIN PAGE — Folder Navigation
    ════════════════════════════════════════════════════════════════ */
+const MODULE_META = {
+  'Módulo 1': { name: 'Medicina Interna', tone: 'blue', Icon: Stethoscope },
+  'Módulo 2': { name: 'Cirugía y especialidades', tone: 'amber', Icon: Scissors },
+  'Módulo 3': { name: 'Materno-infantil', tone: 'pink', Icon: Baby },
+  'Módulo 4': { name: 'Salud Pública', tone: 'green', Icon: Users },
+}
+
 const MisClases = () => {
   const { user } = useAuth()
   const location = useLocation()
@@ -2946,6 +2510,10 @@ const MisClases = () => {
       return
     }
     setSelectedId(id)
+    try {
+      const c = clases.find(x => x.id === id)
+      if (c) localStorage.setItem('mn_last_clase', JSON.stringify({ id, title: c.topic || c.title || 'Clase', sub: c.subsystem || '', mod: c.specialty || '' }))
+    } catch {}
     setLoadingDetail(true)
     try {
       const r = await fetchClase(id)
@@ -3044,7 +2612,7 @@ const MisClases = () => {
     const lessonNum = state.openLesson || (params.get('lesson') ? parseInt(params.get('lesson')) : null)
     const sv = state.subView || params.get('view')
 
-    if (spec || sub || lessonNum) {
+    if (spec || sub || lessonNum || state.openClaseId) {
       handledNavState.current = true
       if (spec) setCurrentSpecialty(spec)
       if (sub) {
@@ -3055,8 +2623,10 @@ const MisClases = () => {
         setCurrentSubsystem(sub)
         if (sv) setSubView(sv)
       }
-      if (lessonNum && sub) {
-        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && c.lessonNumber === lessonNum)
+      const byId = state.openClaseId && clases.find(c => c.id === state.openClaseId)
+      if (byId) openClase(byId.id)
+      else if (lessonNum && sub) {
+        const target = clases.find(c => (c.subsystem || '').toLowerCase() === sub.toLowerCase() && Number(c.lessonNumber) === Number(lessonNum))
         if (target) openClase(target.id)
       }
     }
@@ -3219,38 +2789,20 @@ const MisClases = () => {
         />
       )}
       {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} />}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
-        <h1 className="page__title">Mis Clases</h1>
+      <div className="mn-row mn-between" style={{ marginBottom: '.2rem' }}>
+        <h1 className="mn-h1" style={{ fontSize: '1.6rem' }}>Mis clases</h1>
         {(() => {
-          const totalClases = clases.length
-          const completedClases = clases.filter(c => getProgress(c.id) >= 100).length
-          const pct = totalClases ? Math.round(clases.reduce((sum, c) => sum + getProgress(c.id), 0) / totalClases) : 0
-          return (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textAlign: 'right' }}>
-                <span style={{ fontWeight: 700, color: pct > 0 ? '#10b981' : 'var(--text-secondary)' }}>{completedClases}</span>/{totalClases} completadas
-              </div>
-              <ProgressRing percent={pct} size={40} stroke={3} />
-            </div>
-          )
+          const done = clases.filter(c => getProgress(c.id) >= 100).length
+          return <span className="mn-pill">{done}/{clases.length} vistas</span>
         })()}
       </div>
-      <p className="page__subtitle" style={{ marginBottom: '1rem' }}>
-        {clases.length} clases disponibles · Tu progreso se guarda automáticamente.
-      </p>
+      <p className="mn-sub" style={{ marginBottom: '.9rem' }}>{clases.length} clases en video, por módulo</p>
 
       {!isPremium && (
-        <div style={{
-          background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)',
-          borderRadius: '12px', padding: '0.75rem 1rem', marginBottom: '1.25rem',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem'
-        }}>
-          <span style={{ fontSize: '0.85rem', color: '#fef08a', fontWeight: 600 }}>
-            👑 Plan Gratuito: {Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3 clases completadas. ¡Puedes ingresar a cualquiera de las clases!
-          </span>
-          <button onClick={() => setShowPaymentModal(true)} style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', textDecoration: 'underline', fontWeight: 700, fontSize: '0.85rem' }}>
-            Desbloquear Ilimitado
-          </button>
+        <div className="mn-free">
+          <Lock size={16} />
+          <span>Plan gratuito: <b>{Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length} de 3</b> clases gratis usadas. Puedes entrar a cualquier clase.</span>
+          <button onClick={() => setShowPaymentModal(true)}>Desbloquear todo</button>
         </div>
       )}
 
@@ -3296,337 +2848,125 @@ const MisClases = () => {
           )}
         </div>
       ) : !currentSpecialty ? (
-        /* ─── Level 1: Specialties ─── */
+        /* ─── Level 1: Módulos (Midnight Pro) ─── */
         <>
-        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-        <div className="grid-auto-responsive">
-          {specialties.map((spec, i) => {
-            const style = getSpecialtyStyle(spec)
-            const subsCount = Object.keys(tree[spec]).length
-            const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
-            const completedCount = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
-            const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
+          {(() => {
+            let last = null
+            try { last = JSON.parse(localStorage.getItem('mn_last_clase') || 'null') } catch {}
+            const c = last && clases.find(x => x.id === last.id)
+            if (!c) return null
+            const pct = Math.round(getProgress(c.id))
             return (
-              <div key={spec} className="card" onClick={() => setCurrentSpecialty(spec)} style={{
-                padding: '1.5rem', cursor: 'pointer', transition: 'all 0.25s',
-                borderLeft: `4px solid ${style.color}`,
-                background: `linear-gradient(135deg, ${style.bg} 0%, transparent 100%)`,
-                position: 'relative',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                  <div style={{
-                    width: 48, height: 48, borderRadius: 14, background: style.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: style.color, border: `1px solid ${style.color}25`,
-                  }}>
-                    {style.icon}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{spec}</div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>
-                      {lessonCount} clases · {completedCount > 0 ? `${completedCount} completadas` : `${subsCount} subsistemas`}
-                    </div>
-                  </div>
-                  <ProgressRing percent={specPct} size={42} stroke={3} />
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {Object.keys(tree[spec]).map(sub => {
-                    const subStyle = getSubsystemStyle(sub)
-                    return (
-                      <span key={sub} style={{
-                        fontSize: '0.72rem', padding: '0.2rem 0.6rem', borderRadius: '50px',
-                        background: subStyle.bg, color: subStyle.color, fontWeight: 600,
-                        display: 'flex', alignItems: 'center', gap: '0.3rem',
-                      }}>
-                        {React.cloneElement(subStyle.icon, { size: 11 })} {sub}
-                      </span>
-                    )
-                  })}
-                </div>
-              </div>
+              <button className="mn-continue" onClick={() => openClase(c.id)}>
+                <span className="mn-continue-play"><PlayCircle size={22} /></span>
+                <span className="mn-mod-txt">
+                  <small>Seguir viendo{last.sub ? ` · ${last.sub}` : ''}</small>
+                  <b>{last.title}</b>
+                  <span className="mn-bar"><b style={{ width: `${Math.max(3, pct)}%` }} /></span>
+                </span>
+                <ChevronRight size={18} className="mn-li-go" />
+              </button>
             )
-          })}
-        </div>
-        </>
-      ) : !currentSubsystem ? (
-        /* ─── Level 2: Subsystems (MedSchool Cards) ─── */
-        <>
-        <div className="mobile-swipe-hint">👉 Desliza para ver más</div>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '1.25rem',
-        }}>
-          {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
-            const completed = lessons.filter(l => getProgress(l.id) >= 100).length
-            const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
-            
-            // Calculate quiz correct/wrong answers
-            let correctCount = 0
-            let wrongCount = 0
-            lessons.forEach(l => {
-              const p = progressMap[l.id]
-              if (p && p.quiz_completed) {
-                const tot = p.quiz_total || 5
-                const corr = p.quiz_correct || Math.round(((p.quiz_score || 0) / 100) * tot)
-                correctCount += corr
-                wrongCount += Math.max(0, tot - corr)
-              }
-            })
-
-            const questionsCount = lessons.length * 20
-
-            return (
-              <TopicCard
-                key={sub}
-                topic={sub}
-                specialty={currentSpecialty}
-                questionsCount={questionsCount}
-                classesCount={lessons.length}
-                completedClasses={completed}
-                correctCount={correctCount}
-                wrongCount={wrongCount}
-                masteryPct={subPct}
-                onClick={() => setCurrentSubsystem(sub)}
-              />
-            )
-          })}
-        </div>
-        </>
-      ) : subView === 'pruebas' ? (
-        /* ─── Pruebas View ─── */
-        <PruebasView
-          specialty={currentSpecialty}
-          subsystem={currentSubsystem}
-          subsystemStyle={getSubsystemStyle(currentSubsystem)}
-          onBack={() => setSubView(null)}
-        />
-      ) : subView === 'clases' ? (
-        /* ─── Level 3: Lessons ─── */
-        <div style={{ paddingBottom: '2rem' }}>
-          <button onClick={() => setSubView(null)} style={{
-            background: 'var(--surface-700)', border: '1px solid var(--border-color)',
-            borderRadius: 10, padding: '0.5rem 1rem', color: 'var(--text-primary)',
-            cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem',
-            marginBottom: '1.25rem'
-          }}>
-            <ChevronLeft size={16} /> Volver
-          </button>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {tree[currentSpecialty][currentSubsystem].map((clase, idx) => {
-              const isAlreadyDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
-              const completedCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
-              const isLocked = !isPremium && completedCount >= 3 && !isAlreadyDone;
-              const style = getSpecialtyStyle(currentSpecialty)
-              const pct = getProgress(clase.id)
+          })()}
+          <div className="mn-mods">
+            {specialties.map(spec => {
+              const meta = MODULE_META[spec] || { name: spec, tone: 'blue', Icon: Stethoscope }
+              const subsCount = Object.keys(tree[spec]).length
+              const lessonCount = Object.values(tree[spec]).reduce((sum, l) => sum + l.length, 0)
+              const seen = Object.values(tree[spec]).flat().filter(l => getProgress(l.id) >= 100).length
+              const specPct = lessonCount ? Math.round(Object.values(tree[spec]).flat().reduce((sum, l) => sum + getProgress(l.id), 0) / lessonCount) : 0
               return (
-                <div key={clase.id} className="card" onClick={() => isLocked ? setShowPaymentModal(true) : openClase(clase.id)} style={{
-                  padding: '1.25rem 1.5rem', cursor: 'pointer', transition: 'all 0.2s',
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  borderLeft: `3px solid ${isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color}`,
-                  position: 'relative',
-                  opacity: isLocked ? 0.75 : 1
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}>
-                    <div style={{
-                      width: 40, height: 40, borderRadius: 10, background: isLocked ? 'rgba(245,158,11,0.15)' : pct >= 100 ? 'rgba(16,185,129,0.12)' : style.bg,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '1rem', fontWeight: 800, color: isLocked ? '#f59e0b' : pct >= 100 ? '#10b981' : style.color,
-                    }}>
-                      {isLocked ? <Lock size={18} /> : pct >= 100 ? <CheckCircle2 size={20} /> : clase.lessonNumber}
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                        {clase.topic}
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: '0.15rem' }}>
-                        {isLocked ? (
-                          <span style={{ color: '#f59e0b', fontWeight: 600 }}>Disponible en Premium (3 clases gratis completadas)</span>
-                        ) : (
-                          <>
-                            {pct > 0 && pct < 100 && <span style={{ color: '#f59e0b', fontWeight: 600 }}>{pct}% · </span>}
-                            Clase {clase.lessonNumber}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {pct > 0 && <ProgressRing percent={pct} size={36} stroke={3} />}
-                    {isLocked ? <Lock size={16} style={{ color: '#f59e0b' }} /> : <ChevronRight size={18} style={{ color: 'var(--text-tertiary)' }} />}
-                  </div>
-                </div>
+                <button key={spec} className={`mn-mod mn-tone-${meta.tone}`} onClick={() => setCurrentSpecialty(spec)}>
+                  <span className="mn-mod-ic"><meta.Icon size={22} /></span>
+                  <span className="mn-mod-txt">
+                    <b>{spec} · {meta.name}</b>
+                    <small>{subsCount} especialidades · {lessonCount} clases{seen ? ` · ${seen} vistas` : ''}</small>
+                    <span className="mn-bar"><b style={{ width: `${Math.max(2, specPct)}%` }} /></span>
+                  </span>
+                  <ChevronRight size={18} className="mn-li-go" />
+                </button>
               )
             })}
           </div>
+        </>
+      ) : !currentSubsystem ? (
+        /* ─── Level 2: Especialidades del módulo (Midnight Pro) ─── */
+        <div className="mn-card mn-list">
+          {Object.entries(tree[currentSpecialty]).map(([sub, lessons]) => {
+            const subStyle = getSubsystemStyle(sub)
+            const completed = lessons.filter(l => getProgress(l.id) >= 100).length
+            const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
+            return (
+              <button key={sub} className="mn-li" onClick={() => setCurrentSubsystem(sub)}>
+                {hasSpecialtyIcon(sub)
+                  ? <SpecialtyIcon name={sub} size={44} />
+                  : <span className="mn-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 18 })}</span>}
+                <span className="mn-li-txt">{sub}<small>{lessons.length} clases{completed ? ` · ${completed} vistas` : ''}</small></span>
+                <span className="mn-pct">{subPct >= 100 ? '✓' : `${subPct}%`}</span>
+                <ChevronRight size={16} className="mn-li-go" />
+              </button>
+            )
+          })}
         </div>
+      ) : subView === 'pruebas' ? (
+        /* ─── Pruebas View ─── */
+        <PruebasDias
+          subsystem={currentSubsystem}
+          onBack={() => setSubView(null)}
+        />
       ) : (
-        /* ─── Choice Screen: Clases vs Pruebas ─── */
+        /* ─── Tema (Midnight Pro): mismo flujo que la página del tema en Inicio ─── */
         (() => {
           const subStyle = getSubsystemStyle(currentSubsystem)
           const lessons = tree[currentSpecialty]?.[currentSubsystem] || []
           const completed = lessons.filter(l => getProgress(l.id) >= 100).length
           const subPct = lessons.length ? Math.round(lessons.reduce((sum, l) => sum + getProgress(l.id), 0) / lessons.length) : 0
-          const totalQuestionsEst = lessons.length * 20
-
+          const doneCount = Object.values(progressMap || {}).filter(p => p && (p.video_watched === 1 || p.quiz_completed === 1)).length
+          const meta = MODULE_META[currentSpecialty]
           return (
-            <div className="promax-page-wrapper" style={{ paddingBottom: '2.5rem' }}>
-              {/* Ambient Glows */}
-              <div className="promax-ambient-bg">
-                <div className="promax-ambient-glow promax-glow-cyan" style={{ top: -60, left: '5%', width: 480, height: 320 }} />
-                <div className="promax-ambient-glow promax-glow-indigo" style={{ top: 120, right: '5%', width: 440, height: 300 }} />
-              </div>
-
-              <div className="promax-content-layer">
-                {/* Subject Hero Bento Header */}
-                <div className="promax-hero-bento" style={{
-                  '--hero-accent-gradient': `linear-gradient(90deg, ${subStyle.color} 0%, #38bdf8 50%, #10b981 100%)`
-                }}>
-                  <div className="promax-hero-header-row">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', flex: 1, minWidth: 260 }}>
-                      <div className="promax-hero-avatar-box" style={{
-                        '--avatar-bg': subStyle.bg,
-                        '--avatar-border': `${subStyle.color}40`,
-                        '--avatar-color': subStyle.color,
-                        '--avatar-glow': `${subStyle.color}30`
-                      }}>
-                        {React.cloneElement(subStyle.icon, { size: 28 })}
-                      </div>
-                      <div className="promax-hero-titles">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.2rem' }}>
-                          <h2>{currentSubsystem}</h2>
-                          <span className="promax-badge-pill promax-badge-cyan">
-                            <Sparkles size={11} /> {currentSpecialty}
-                          </span>
-                        </div>
-                        <p>
-                          {lessons.length} clases interactivas · ~{totalQuestionsEst} preguntas tipo EUNACOM explicadas
-                        </p>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.74rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          Progreso del Tema
-                        </div>
-                        <div style={{ fontSize: '1rem', fontWeight: 800, color: subPct >= 100 ? '#10b981' : '#f8fafc', marginTop: '0.15rem' }}>
-                          {completed}/{lessons.length} completadas
-                        </div>
-                      </div>
-                      <ProgressRing percent={subPct} size={52} stroke={4} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Two Big Bento Cards: Clases & Pruebas */}
-                <div className="promax-bento-grid-2">
-                  {/* Bento Card 1: Clases Interactivas */}
-                  <div
-                    className="promax-bento-card promax-theme-indigo"
-                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('clases') }}
-                  >
-                    <div className="promax-card-ambient-tint" />
-                    <div className="promax-card-top-line" />
-
-                    <div>
-                      <div className="promax-card-header">
-                        <div className="promax-card-icon-box">
-                          <Presentation size={26} />
-                        </div>
-                        <span className="promax-badge-pill promax-badge-indigo">
-                          <BookOpen size={11} /> Video + Resúmenes
-                        </span>
-                      </div>
-
-                      <h3 className="promax-card-title">Clases Interactivas</h3>
-                      <p className="promax-card-desc">
-                        Aprende con videos, resúmenes diagnósticos, esquemas de manejo clínico y perfiles de alta frecuencia EUNACOM.
-                      </p>
-
-                      <div className="promax-card-features-list">
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> {lessons.length} videoclases explicativas estructuradas
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> Algoritmos terapéuticos y guías GES/MINSAL
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#818cf8" /> Quizzes interactivos de retención por clase
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="promax-card-footer">
-                      <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                        fontSize: '0.78rem', fontWeight: 700,
-                        color: completed === lessons.length && lessons.length > 0 ? '#10b981' : '#c7d2fe',
-                      }}>
-                        {completed === lessons.length && lessons.length > 0 ? (
-                          <><CheckCircle2 size={14} color="#10b981" /> 100% Completado</>
-                        ) : (
-                          <><Clock size={13} /> {completed}/{lessons.length} clases vistas</>
-                        )}
-                      </div>
-
-                      <div className="promax-card-action-btn">
-                        Ver Clases <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bento Card 2: Pruebas EUNACOM */}
-                  <div
-                    className="promax-bento-card promax-theme-emerald"
-                    onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}
-                  >
-                    <div className="promax-card-ambient-tint" />
-                    <div className="promax-card-top-line" />
-
-                    <div>
-                      <div className="promax-card-header">
-                        <div className="promax-card-icon-box">
-                          <ClipboardList size={26} />
-                        </div>
-                        <span className="promax-badge-pill promax-badge-emerald">
-                          <Target size={11} /> Banco Clínico
-                        </span>
-                      </div>
-
-                      <h3 className="promax-card-title">Pruebas EUNACOM</h3>
-                      <p className="promax-card-desc">
-                        Entrena con sets de preguntas oficiales justificadas por alternativa, estadísticas de respuesta y repaso de errores.
-                      </p>
-
-                      <div className="promax-card-features-list">
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Preguntas tipo examen con justificación inmediata
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Estadísticas y tasa de aciertos de la comunidad
-                        </div>
-                        <div className="promax-card-feature-item">
-                          <CheckCircle2 size={13} color="#34d399" /> Sistema inteligente para reentrenar errores
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="promax-card-footer">
-                      <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                        fontSize: '0.78rem', fontWeight: 700, color: '#6ee7b7'
-                      }}>
-                        <Award size={14} color="#10b981" /> Modo Entrenamiento & Examen
-                      </div>
-
-                      <div className="promax-card-action-btn">
-                        Practicar Ahora <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </div>
+            <div className="mn-tema">
+              <div className="mn-row" style={{ gap: '.85rem' }}>
+                {hasSpecialtyIcon(currentSubsystem)
+                  ? <SpecialtyIcon name={currentSubsystem} size={84} />
+                  : <span className="mn-mod-ic" style={{ background: subStyle.bg, color: subStyle.color }}>{React.cloneElement(subStyle.icon, { size: 24 })}</span>}
+                <div style={{ minWidth: 0 }}>
+                  <span className="mn-pill mn-pill-sky">{currentSpecialty}{meta ? ` · ${meta.name}` : ''}</span>
+                  <h2 className="mn-h1" style={{ margin: '.35rem 0 0' }}>{currentSubsystem}</h2>
                 </div>
               </div>
+              <div className="mn-stats mn-stats-3">
+                <div className="mn-stat"><b className="mn-blue">{subPct}%</b><span>Dominio</span></div>
+                <div className="mn-stat"><b>{completed}<small>/{lessons.length}</small></b><span>Vistas</span></div>
+                <div className="mn-stat"><b>{lessons.length}</b><span>Clases</span></div>
+              </div>
+
+              <div className="mn-sec-head" style={{ marginTop: '1.1rem' }}><h2>Clases del tema</h2></div>
+              <div className="mn-card mn-list">
+                {lessons.map(clase => {
+                  const isDone = progressMap[clase.id]?.video_watched === 1 || progressMap[clase.id]?.quiz_completed === 1
+                  const isLocked = !isPremium && doneCount >= 3 && !isDone
+                  const pct = Math.round(getProgress(clase.id))
+                  return (
+                    <button key={clase.id} className="mn-li" onClick={() => {
+                      if (!user) { setShowLoginGate(true); return }
+                      isLocked ? setShowPaymentModal(true) : openClase(clase.id)
+                    }}>
+                      <span className={`mn-ab ${isLocked ? 'mn-ab-lock' : pct >= 100 ? 'mn-ab-done' : 'mn-tone-blue'}`}>
+                        {isLocked ? <Lock size={16} /> : pct >= 100 ? <CheckCircle2 size={18} /> : clase.lessonNumber}
+                      </span>
+                      <span className="mn-li-txt">
+                        {clase.topic}
+                        <small>{isLocked ? 'Disponible en Premium' : pct > 0 && pct < 100 ? `${pct}% visto · Clase ${clase.lessonNumber}` : `Clase ${clase.lessonNumber}`}</small>
+                      </span>
+                      <ChevronRight size={16} className="mn-li-go" />
+                    </button>
+                  )
+                })}
+              </div>
+
+              <button className="mn-btn mn-btn-ghost" onClick={() => { if (!user) { setShowLoginGate(true); return }; setSubView('pruebas') }}>
+                <ClipboardList size={16} /> Pruebas de {currentSubsystem}
+              </button>
             </div>
           )
         })()

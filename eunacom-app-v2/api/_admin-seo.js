@@ -1,15 +1,11 @@
+import { requireAdmin } from './_auth.js'
 import fs from 'fs';
 import path from 'path';
 
 // Fallback / cached data loader for SEO & GSC analytics
 export default async function seoHandler(req, res) {
   try {
-    const isDev = process.env.NODE_ENV !== 'production';
-    const adminEmail = req.query.adminEmail;
-
-    if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
+    if (!(await requireAdmin(req, res))) return;
 
     // Try reading cached GSC data from src/data/gsc-data.json
     const possiblePaths = [

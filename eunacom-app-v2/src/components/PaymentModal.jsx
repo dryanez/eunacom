@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
+import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
+import PlayPayButton from './PlayPayButton';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
@@ -25,6 +27,7 @@ export const LIB_ITEMS = [
 ];
 
 const PaymentModal = ({ onClose }) => {
+  const androidApp = isAndroidApp();
   const { user } = useAuth();
   const exam = nextExam();
   const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
@@ -69,7 +72,8 @@ const PaymentModal = ({ onClose }) => {
 
   // Mismo cálculo que el servidor (planPricing): descuento mayor y luego el crédito por libros
   const plansToDisplay = React.useMemo(() => {
-    return PLANS.map(p => {
+    // En la app Android se paga con Google Play: solo los planes que existen ahí (De por vida no)
+    return PLANS.filter(p => !androidApp || PLAY_BASE_PLANS[p.id]).map(p => {
       const num = APP_PLANS.find(x => x.id === p.id).price;
       const discounted = discountPercent ? Math.round(num * (1 - discountPercent / 100)) : num;
       const final = credit && creditApplies(p.id) ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
@@ -279,7 +283,7 @@ const PaymentModal = ({ onClose }) => {
         </div>
 
         <div className="plan-extras">
-          <div>
+          <div style={androidApp ? { display: 'none' } : undefined}>
             {!showCouponBox ? (
               <button onClick={() => setShowCouponBox(true)} className="plan-link">
                 <Tag size={13} /> ¿Tienes un código de descuento?
@@ -323,6 +327,9 @@ const PaymentModal = ({ onClose }) => {
             Completar pago: <span>{selectedPlan.name} · {selectedPlan.price}</span>
           </h3>
 
+          {androidApp ? (
+            <PlayPayButton plan={selectedPlan} userId={user?.id} />
+          ) : (<>
           <div className="plan-country">
             <button onClick={() => setCountry('CL')} className={country === 'CL' ? 'on' : ''}>🇨🇱 Chile</button>
             <button onClick={() => setCountry('BO')} className={country === 'BO' ? 'on' : ''}>🇧🇴 Bolivia / Int.</button>
@@ -370,6 +377,7 @@ const PaymentModal = ({ onClose }) => {
               {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
             </>
           )}
+          </>)}
         </div>
       </div>
 

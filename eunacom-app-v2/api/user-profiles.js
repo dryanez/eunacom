@@ -1,4 +1,5 @@
 import { getTurso } from './_turso.js'
+import { requireUser, ownUserId, isAdminUser } from './_auth.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies } from './_tienda.js'
@@ -6,6 +7,7 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 import { handleRegalo } from './_regalos.js'
+import { syncPlaySubscription } from './_play-billing.js'
 import { Resend } from 'resend'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -330,6 +332,12 @@ export default async function handler(req, res) {
       return res.status(200).json(await emailDiscount(db, req.body.userId, req.body.discount))
     }
 
+    // Everything below acts for the logged-in caller only (admins may act on others).
+    const authUser = await requireUser(req, res)
+    if (!authUser) return
+    const wantedUserId = req.query?.userId || req.body?.userId || (req.method === 'POST' && !req.body?.action ? req.body?.id : null)
+    if (ownUserId(req, res, authUser, wantedUserId) === null) return
+
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
       const { userId, planId, discount, coupon } = req.body
@@ -436,6 +444,30 @@ export default async function handler(req, res) {
       return res.json({ success: true, premium_until: premiumUntil })
     }
 
+    // --- GOOGLE PLAY (Android app) ---
+    // Subscription bought (or re-checked at app start) in the Android app
+    if (req.method === 'POST' && req.body?.action === 'play_subscription') {
+      const { userId, purchaseToken } = req.body
+      if (!userId || !purchaseToken) return res.status(400).json({ error: 'Missing parameters' })
+      const r = await syncPlaySubscription(db, purchaseToken, userId)
+      if (!r.ok) return res.status(r.status).json({ error: r.error })
+      return res.json({ success: true, active: r.active, premium_until: r.expiry })
+    }
+    // Google's real-time notifications (Pub/Sub push subscription pointed at ?play_rtdn=<PLAY_RTDN_SECRET>):
+    // renewals, cancellations, refunds → refresh premium_until
+    if (req.method === 'POST' && req.query?.play_rtdn) {
+      if (!process.env.PLAY_RTDN_SECRET || req.query.play_rtdn !== process.env.PLAY_RTDN_SECRET) return res.status(403).end()
+      try {
+        const n = JSON.parse(Buffer.from(req.body?.message?.data || '', 'base64').toString('utf8') || '{}')
+        const token = n.subscriptionNotification?.purchaseToken
+        if (token) {
+          const r = await syncPlaySubscription(db, token)
+          console.log(`[Play RTDN] type ${n.subscriptionNotification.notificationType}: ${r.ok ? `${r.userId} ${r.state} until ${r.expiry}` : r.error}`)
+        }
+      } catch (e) { console.error('[Play RTDN] error', e) }
+      return res.status(200).end() // 2xx so Pub/Sub does not retry forever
+    }
+
     // --- DONATE CREATION ---
     if (req.method === 'POST' && req.body?.action === 'donate') {
       const { userId } = req.body
@@ -514,6 +546,10 @@ export default async function handler(req, res) {
       } = req.body
 
       if (!id || !email) return res.status(400).json({ error: 'id and email required' })
+      // Premium is inherited by email below, so the email must be the caller's own
+      if (!isAdminUser(authUser) && String(email).toLowerCase() !== authUser.email) {
+        return res.status(403).json({ error: 'Forbidden' })
+      }
 
       // Ensure all columns exist if adding to old DB (catch errors if they already exist)
       const newCols = [

@@ -218,7 +218,12 @@ export const recordLessonSuccess = (state, { nodeId, stars = 3, scorePercent = 1
     xp: (state.xp || 0) + finalXp,
     gems: (state.gems || 0) + gemsEarned,
     completedNodes: updatedCompletedNodes,
-    dailyQuests
+    dailyQuests,
+    // XP real por día (para «Progreso semanal»); se guardan los últimos 21 días
+    xpByDay: Object.fromEntries(
+      Object.entries({ ...(state.xpByDay || {}), [today]: ((state.xpByDay || {})[today] || 0) + finalXp })
+        .sort(([a], [b]) => (a < b ? 1 : -1)).slice(0, 21)
+    )
   }
 }
 

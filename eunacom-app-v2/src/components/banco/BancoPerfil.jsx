@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronRight, Search, Loader2, PlayCircle, Hash, FolderTree, AlertCircle, Sparkles, BookOpen } from 'lucide-react'
+import { ChevronRight, ChevronDown, Search, Loader2, PlayCircle, Hash, FolderTree, AlertCircle, Sparkles, BookOpen, Stethoscope, Scissors, Baby, Users } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import { createTest, genId } from '../../lib/api'
@@ -9,6 +9,14 @@ import LoginGateModal from '../LoginGateModal'
 import PaymentModal from '../PaymentModal'
 
 const FREE_LIMIT = 20
+
+// Áreas del Perfil (1.. 7) agrupadas en los 4 módulos del EUNACOM, igual que en Mis clases
+const MODULOS = [
+  { key: 'm1', name: 'Módulo 1', sub: 'Medicina Interna', areas: ['1'], Icon: Stethoscope, tone: '#38bdf8' },
+  { key: 'm2', name: 'Módulo 2', sub: 'Cirugía, Psiquiatría y especialidades', areas: ['4', '5', '6'], Icon: Scissors, tone: '#fbbf24' },
+  { key: 'm3', name: 'Módulo 3', sub: 'Pediatría, Obstetricia y Ginecología', areas: ['2', '3'], Icon: Baby, tone: '#f472b6' },
+  { key: 'm4', name: 'Módulo 4', sub: 'Salud Pública', areas: ['7'], Icon: Users, tone: '#34d399' },
+]
 const MAX_PER_TEST = 300
 
 const mono = { fontFamily: 'ui-monospace, Menlo, monospace', fontSize: '0.78rem', color: 'var(--primary-400)', fontWeight: 700 }
@@ -45,6 +53,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
   const [startError, setStartError] = useState('')
   const [showLoginGate, setShowLoginGate] = useState(false)
   const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [openMods, setOpenMods] = useState({ m1: true })
 
   useEffect(() => {
     let alive = true
@@ -187,7 +196,7 @@ export default function BancoPerfil({ modo = 'arbol' }) {
   }
 
   // ── Modo «Por área y tema» ──
-  const crumbs = [{ label: 'Áreas', to: [] }]
+  const crumbs = [{ label: 'Módulos', to: [] }]
   if (area) crumbs.push({ label: area.name, to: [area.key] })
   if (spec) crumbs.push({ label: spec.name, to: [area.key, spec.key] })
   if (tipo) crumbs.push({ label: tipo.name, to: [area.key, spec.key, tipo.key] })
@@ -206,18 +215,43 @@ export default function BancoPerfil({ modo = 'arbol' }) {
         ))}
       </nav>
 
-      {!area && (
-        <div className="grid-2-responsive" style={{ gap: 10 }}>
-          {tree.areas.map(a => (
-            <button key={a.key} type="button" onClick={() => setPath([a.key])} style={{ ...rowStyle, padding: '1rem 1.1rem' }}>
-              <span style={{ ...mono, fontSize: '0.9rem' }}>{a.key}</span>
-              <span style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 800 }}>{a.name}</div><div style={{ fontSize: '0.72rem', color: 'var(--surface-400)' }}>{a.specs.length} especialidad{a.specs.length === 1 ? '' : 'es'}</div></span>
-              <Counts n={a.n} fuente={fuente} />
-              <ChevronRight size={16} color="var(--surface-500)" />
-            </button>
-          ))}
-        </div>
-      )}
+      {!area && (() => {
+        const known = new Set(MODULOS.flatMap(m => m.areas))
+        const otros = tree.areas.filter(a => !known.has(a.key))
+        const mods = otros.length ? [...MODULOS, { key: 'otros', name: 'Otros', sub: 'Sin módulo', areas: otros.map(a => a.key), Icon: FolderTree, tone: '#94a3b8' }] : MODULOS
+        return (
+          <div className="mn-bm-list">
+            {mods.map(m => {
+              const areas = m.areas.map(k => tree.areas.find(a => a.key === k)).filter(Boolean)
+              const count = areas.reduce((sum, a) => sum + total(a.n, fuente), 0)
+              const open = !!openMods[m.key]
+              return (
+                <div key={m.key} className={`mn-bm ${open ? 'open' : ''}`}>
+                  <button type="button" className="mn-bm-h" aria-expanded={open} onClick={() => setOpenMods(o => ({ ...o, [m.key]: !o[m.key] }))}>
+                    <span className="mn-bm-ic" style={{ color: m.tone, background: `${m.tone}1a`, borderColor: `${m.tone}40` }}><m.Icon size={19} /></span>
+                    <span className="mn-bm-t"><b>{m.name}</b><small>{m.sub}</small></span>
+                    <span className="mn-bm-n">{count.toLocaleString('es-CL')}</span>
+                    <ChevronDown size={18} className="mn-bm-chev" />
+                  </button>
+                  {open && (
+                    <div className="mn-bm-body">
+                      {areas.length === 0 && <div className="mn-bm-empty">Sin preguntas en este módulo todavía.</div>}
+                      {areas.map(a => (
+                        <button key={a.key} type="button" onClick={() => setPath([a.key])} className="mn-bm-row">
+                          <span className="mn-bm-k">{a.key}</span>
+                          <span className="mn-bm-t"><b>{a.name}</b><small>{a.specs.length} especialidad{a.specs.length === 1 ? '' : 'es'}</small></span>
+                          <Counts n={a.n} fuente={fuente} />
+                          <ChevronRight size={16} color="var(--surface-500)" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )
+      })()}
 
       {area && !spec && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>

@@ -1,119 +1,70 @@
 import React, { useState, useEffect } from 'react'
-import { Search, Filter, Play, Trash2 } from 'lucide-react'
+import { Search, Play, Trash2, ChevronRight, BookOpen, Archive, Timer, ClipboardCheck, PenLine } from 'lucide-react'
 import { fetchTests as apiFetchTests, deleteTest } from '../lib/api'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { loadTestQuestions, getQuestionDB } from '../lib/questionDB'
 import { fetchLibroGordoQuestions } from '../lib/api'
 import { bookName as libroGordoName } from '../../api/_libro-gordo.js'
+import '../components/redesign/midnight.css'
+import '../components/redesign/stats-history.css'
 
-const HistoryCard = ({ test }) => {
-    // Logic for score colors
-    let scoreColor = 'var(--primary-400)'
+const scoreTone = pct => pct >= 70 ? 'sh-good' : pct >= 50 ? 'sh-mid' : 'sh-bad'
+
+const typeIcon = test => {
+    if (test.libroGordo) return { Icon: BookOpen, cls: 'sh-ic-amber' }
+    if (test.isReconstruction) return { Icon: Archive, cls: 'sh-ic-violet' }
+    if (test.mode === 'Tiempo') return { Icon: Timer, cls: '' }
+    if (test.mode === 'Examen') return { Icon: ClipboardCheck, cls: '' }
+    return { Icon: PenLine, cls: '' }
+}
+
+const HistoryRow = ({ test }) => {
+    const completed = test.status === 'Completado'
     let displayScore = 0
-    
-    if (test.status === 'Completado') {
+    if (completed) {
         displayScore = test.score
-        scoreColor = test.score >= 50 ? 'var(--accent-green)' : 'var(--accent-red)'
     } else {
         const answeredKeys = new Set([
             ...Object.keys(test.savedAnswers || {}),
             ...Object.keys(test.tutorState?.firstAttempts || {})
         ])
-        const answeredCount = answeredKeys.size
         const totalCount = test.questions.length
-        displayScore = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0
+        displayScore = totalCount > 0 ? Math.round((answeredKeys.size / totalCount) * 100) : 0
     }
-    
-    const scoreText = test.status === 'Completado' ? (test.score >= 50 ? 'Aprobado' : 'Reprobado') : 'Progreso'
-
-    // Reconstrucciones vs regular markers
-    const typeColor = test.isReconstruction ? 'rgba(139, 92, 246, 0.15)' : 'rgba(19, 91, 236, 0.15)'
-    const typeTextColor = test.isReconstruction ? '#a78bfa' : 'var(--primary-300)'
-    const typeLabel = test.libroGordo ? 'Libro Gordo' : test.isReconstruction ? 'Reconstrucción' : 'Práctica'
+    const scoreText = completed ? (test.score >= 50 ? 'Aprobado' : 'Reprobado') : 'En curso'
+    const typeLabel = test.libroGordo ? 'Libro Gordo' : test.isReconstruction ? 'Reconstrucción' : null
+    const nQ = test.questions.length
+    const { Icon, cls } = typeIcon(test)
+    const meta = [typeLabel, test.mode, test.time, `${nQ} ${nQ === 1 ? 'pregunta' : 'preguntas'}`].filter(Boolean).join(' · ')
 
     return (
-        <div className="card" style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', padding: '1.25rem', marginBottom: '1rem', gap: '1.5rem' }}>
-            <div style={{ position: 'absolute', top: '0.5rem', right: '0.75rem', fontSize: '0.7rem', color: 'var(--surface-500)', fontFamily: 'monospace', fontWeight: 600 }}>
-                #{test.id.split('-')[0]}
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                <div className="donut-wrapper" style={{ width: '60px', height: '60px' }}>
-                    <svg viewBox="0 0 36 36" className="circular-chart">
-                    <path className="circle-bg"
-                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none" stroke="var(--surface-600)" strokeWidth="4"
-                    />
-                    <path className="circle"
-                        strokeDasharray={`${displayScore}, 100`}
-                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                        fill="none" stroke={scoreColor} strokeWidth="4" strokeLinecap="round"
-                    />
-                    </svg>
-                    <div className="donut-center" style={{ fontSize: '0.9rem', fontWeight: 700, color: scoreColor }}>
-                        {displayScore}%
-                    </div>
-                </div>
-                <span style={{ fontSize: '0.65rem', fontWeight: 700, color: scoreColor, textTransform: 'uppercase' }}>
-                    {scoreText}
+        <div className="sh-row">
+            <button className="mn-li" onClick={() => test.onContinue(test)} title={`${completed ? 'Revisar' : 'Continuar'} · #${test.id.split('-')[0]}`}>
+                <span className={`mn-ic ${cls}`}>{completed ? <Icon size={18} /> : <Play size={17} />}</span>
+                <span className="mn-li-txt">
+                    <span>{test.title}</span>
+                    <small>{meta}</small>
                 </span>
-            </div>
-            
-            <div style={{ flex: '1 1 200px' }}>
-                <div style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.2rem', color: 'white' }}>
-                    {test.title}
-                </div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--surface-300)', marginBottom: '0.75rem' }}>
-                    {test.date}
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <span style={{ 
-                        fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '4px', fontWeight: 600,
-                        background: typeColor, color: typeTextColor
-                    }}>
-                        {typeLabel}
-                    </span>
-                    <span style={{ 
-                        fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '4px', fontWeight: 600,
-                        background: test.mode === 'Tutor' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)',
-                        color: test.mode === 'Tutor' ? 'var(--accent-amber)' : 'var(--accent-green)'
-                    }}>
-                        {test.mode}
-                    </span>
-                    <span style={{ 
-                        fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '4px', fontWeight: 600,
-                        background: test.status === 'Completado' ? 'rgba(22, 163, 74, 0.15)' : 'rgba(6, 182, 212, 0.15)',
-                        color: test.status === 'Completado' ? 'var(--accent-green)' : 'var(--accent-teal)'
-                    }}>
-                        {test.status}
-                    </span>
-                </div>
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', flex: '1 1 100%' }}>
-                <button 
-                    onClick={() => test.onContinue(test)}
-                    style={{ 
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-                    background: test.status === 'En Progreso' ? 'var(--primary-500)' : 'var(--accent-green)',
-                    color: 'white', padding: '0.5rem 1rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 600, border: 'none', cursor: 'pointer',
-                    flex: 1
-                }}>
-                    <Play size={14} /> {test.status === 'En Progreso' ? 'Continuar' : 'Revisar'}
-                </button>
-                <button 
-                    onClick={() => test.onDelete(test.id)}
-                    style={{ 
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-                    background: 'rgba(239, 68, 68, 0.15)',
-                    color: 'var(--accent-red)', padding: '0.5rem 1rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 600, border: 'none', cursor: 'pointer',
-                    flex: 1
-                }}>
-                    <Trash2 size={14} /> Eliminar
-                </button>
-            </div>
+                <span className={`sh-score ${completed ? scoreTone(displayScore) : 'sh-prog'}`}>
+                    {displayScore}%<small>{scoreText}</small>
+                </span>
+                <ChevronRight size={16} className="mn-li-go" />
+            </button>
+            <button className="sh-del" onClick={() => test.onDelete(test.id)} aria-label="Eliminar examen" title="Eliminar">
+                <Trash2 size={16} />
+            </button>
         </div>
     )
+}
+
+const dayKey = d => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+const dayLabel = d => {
+    const today = new Date()
+    const yest = new Date(); yest.setDate(today.getDate() - 1)
+    if (dayKey(d) === dayKey(today)) return 'Hoy'
+    if (dayKey(d) === dayKey(yest)) return 'Ayer'
+    return d.toLocaleDateString('es-CL', { weekday: 'short', day: 'numeric', month: 'short', year: d.getFullYear() === today.getFullYear() ? undefined : 'numeric' })
 }
 
 const History = () => {
@@ -121,6 +72,8 @@ const History = () => {
     const navigate = useNavigate()
     const [tests, setTests] = useState([])
     const [loading, setLoading] = useState(true)
+    const [query, setQuery] = useState('')
+    const [statusFilter, setStatusFilter] = useState('all')
 
     useEffect(() => {
         if (user) loadTests()
@@ -169,6 +122,8 @@ const History = () => {
                 return {
                     id: t.id,
                     date: new Date(t.created_at).toLocaleDateString(),
+                    createdAt: new Date(t.created_at),
+                    time: new Date(t.created_at).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', hour12: false }),
                     mode: t.mode === 'timed' ? 'Tiempo' : t.mode === 'exam' ? 'Examen' : 'Tutor',
                     status: t.status === 'completed' ? 'Completado' : 'En Progreso',
                     score: t.score || 0,
@@ -235,39 +190,60 @@ const History = () => {
         })
     }
 
+    const q = query.trim().toLowerCase()
+    const visible = tests.filter(t =>
+        (statusFilter === 'all' || t.status === statusFilter) &&
+        (!q || t.id.toLowerCase().includes(q) || t.date.toLowerCase().includes(q) || (t.title || '').toLowerCase().includes(q))
+    )
+    const groups = []
+    visible
+        .slice()
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .forEach(t => {
+            const k = isNaN(t.createdAt) ? 'sin-fecha' : dayKey(t.createdAt)
+            let g = groups[groups.length - 1]
+            if (!g || g.key !== k) { g = { key: k, label: isNaN(t.createdAt) ? 'Sin fecha' : dayLabel(t.createdAt), items: [] }; groups.push(g) }
+            g.items.push(t)
+        })
+
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <h1 className="page__title">Historial de Exámenes</h1>
-            <p className="page__subtitle">Revisa tus exámenes pasados y en progreso</p>
+        <section className="sh-page">
+            <h1 className="mn-h1">Historial</h1>
+            <p className="mn-sub">Tus exámenes pasados y en progreso</p>
 
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-                <div style={{ flex: 1, position: 'relative' }}>
-                    <Search size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--surface-400)' }} />
-                    <input 
-                        type="text" 
-                        placeholder="Buscar por ID o fecha..." 
-                        style={{ width: '100%', padding: '0.85rem 1rem 0.85rem 2.8rem', background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', color: 'white', outline: 'none' }}
-                    />
-                </div>
-                <button style={{ background: 'var(--surface-700)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius)', padding: '0 1rem', color: 'var(--surface-200)', cursor: 'pointer' }}>
-                    <Filter size={20} />
-                </button>
+            <label className="sh-search">
+                <Search size={17} />
+                <input type="text" placeholder="Buscar por tema, ID o fecha..." value={query} onChange={e => setQuery(e.target.value)} />
+            </label>
+            <div className="mn-chips">
+                {[
+                    { id: 'all', label: 'Todos' },
+                    { id: 'En Progreso', label: 'En progreso' },
+                    { id: 'Completado', label: 'Completados' },
+                ].map(c => (
+                    <button key={c.id} className={statusFilter === c.id ? 'on' : ''} onClick={() => setStatusFilter(c.id)}>{c.label}</button>
+                ))}
             </div>
 
-            <div>
-                {loading ? (
-                    <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--surface-400)' }}>Cargando historial...</div>
-                ) : tests.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--surface-400)' }}>
-                        No hay exámenes en tu historial.
-                    </div>
-                ) : (
-                    tests.map(test => (
-                        <HistoryCard key={test.id} test={{...test, onDelete: handleDelete, onContinue: handleContinue}} />
-                    ))
-                )}
-            </div>
-        </div>
+            {loading ? (
+                <div className="sh-empty">Cargando historial...</div>
+            ) : tests.length === 0 ? (
+                <div className="sh-empty">No hay exámenes en tu historial.</div>
+            ) : visible.length === 0 ? (
+                <div className="sh-empty">Ningún examen coincide con la búsqueda.</div>
+            ) : (
+                groups.map(g => (
+                    <React.Fragment key={g.key}>
+                        <div className="sh-day">{g.label}</div>
+                        <div className="mn-card mn-list">
+                            {g.items.map(test => (
+                                <HistoryRow key={test.id} test={{ ...test, onDelete: handleDelete, onContinue: handleContinue }} />
+                            ))}
+                        </div>
+                    </React.Fragment>
+                ))
+            )}
+        </section>
     )
 }
 

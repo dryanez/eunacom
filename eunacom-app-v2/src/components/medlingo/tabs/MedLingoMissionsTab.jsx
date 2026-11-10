@@ -1,5 +1,5 @@
 import React from 'react'
-import { Target, Sparkles, CheckCircle2, Shield, Zap } from 'lucide-react'
+import { Target, Sparkles, CheckCircle2, Shield, Zap, Gem } from 'lucide-react'
 import { playChestOpenSound } from '../../../utils/medlingoAudio'
 
 const DAILY_QUESTS_DATA = [
@@ -67,9 +67,9 @@ export default function MedLingoMissionsTab({ state, onUpdateState, onOpenShop }
               <div key={quest.id} className={`mission-item-card ${isClaimed ? 'claimed' : ''}`}>
                 <div className="mission-icon-box">
                   {isClaimed ? (
-                    <CheckCircle2 size={28} color="#10b981" />
+                    <CheckCircle2 size={24} color="#22c55e" />
                   ) : (
-                    <Target size={28} color="#f97316" />
+                    <Target size={24} color="#38bdf8" />
                   )}
                 </div>
 
@@ -92,13 +92,13 @@ export default function MedLingoMissionsTab({ state, onUpdateState, onOpenShop }
                   <div className="mission-status-row">
                     <span className="mission-count-text">{currentProgress} / {quest.target}</span>
                     {isClaimed ? (
-                      <span className="claimed-badge">¡Completada! ✨</span>
+                      <span className="claimed-badge">¡Completada!</span>
                     ) : isReadyToClaim ? (
                       <button 
                         className="claim-reward-btn animate-bounce"
                         onClick={() => handleClaim(quest.id, quest.rewardGems)}
                       >
-                        ¡RECLAMAR +{quest.rewardGems} 💎!
+                        ¡RECLAMAR +{quest.rewardGems} <Gem size={13} />!
                       </button>
                     ) : (
                       <span className="in-progress-text">En progreso</span>
@@ -135,7 +135,7 @@ export default function MedLingoMissionsTab({ state, onUpdateState, onOpenShop }
               <strong>Poción Doble XP</strong>
               <span>
                 {state.inventory?.doubleXpActiveUntil && new Date(state.inventory.doubleXpActiveUntil) > new Date()
-                  ? 'Activa 🔥'
+                  ? 'Activa'
                   : 'Tienda'}
               </span>
             </div>

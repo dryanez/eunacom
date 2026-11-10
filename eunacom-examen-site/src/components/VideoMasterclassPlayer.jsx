@@ -58,7 +58,8 @@ export default function VideoMasterclassPlayer({ onSelectCourse, onOpenMentorshi
   };
 
   return (
-    <section id="masterclass" style={{ padding: '80px 0', backgroundColor: '#08365f', color: '#ffffff' }}>
+    <section id="clase-magistral" style={{ padding: '80px 0', backgroundColor: '#08365f', color: '#ffffff' }}>
+      <div id="masterclass" style={{ position: 'relative', top: '-80px' }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}

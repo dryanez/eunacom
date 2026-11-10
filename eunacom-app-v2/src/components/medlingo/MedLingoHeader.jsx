@@ -5,6 +5,7 @@ import { MAX_HEARTS, getNextHeartCountdownSeconds } from '../../utils/gamificati
 import { DOCTOR_CHARACTERS } from '../../utils/doctorAvatars'
 import { MEDLINGO_MODULES } from '../../data/medlingo/modulePaths'
 import { playTapSound } from '../../utils/medlingoAudio'
+import { getModuleIcon } from './moduleIcons'
 
 export default function MedLingoHeader({
   state,
@@ -18,6 +19,7 @@ export default function MedLingoHeader({
 
   const activeMentor = DOCTOR_CHARACTERS.find(d => d.id === state.activeMentorId) || DOCTOR_CHARACTERS[0]
   const currentModule = MEDLINGO_MODULES.find(m => m.id === currentModuleId) || MEDLINGO_MODULES[0]
+  const CurrentModuleIcon = getModuleIcon(currentModule.id)
 
   // Calculate module completion %
   const totalNodesInModule = currentModule.units.flatMap(u => u.nodes.filter(n => n.type !== 'chest')).length
@@ -62,13 +64,13 @@ export default function MedLingoHeader({
             setModuleDropdownOpen(!moduleDropdownOpen)
           }}
         >
-          <span className="medlingo-header__module-emoji">{currentModule.emoji}</span>
+          <span className="medlingo-header__module-emoji"><CurrentModuleIcon size={16} /></span>
           <div className="medlingo-header__module-info">
             <span className="medlingo-header__module-name">{currentModule.name}</span>
             <div className="medlingo-header__module-bar-wrap">
               <div 
                 className="medlingo-header__module-bar"
-                style={{ width: `${moduleProgressPercent}%`, backgroundColor: currentModule.themeColor }}
+                style={{ width: `${moduleProgressPercent}%`, }}
               />
             </div>
           </div>
@@ -85,6 +87,7 @@ export default function MedLingoHeader({
                 const totalNodes = m.units.flatMap(u => u.nodes.filter(n => n.type !== 'chest')).length
                 const completed = m.units.flatMap(u => u.nodes).filter(n => state.completedNodes?.[n.id]?.stars > 0).length
                 const pct = Math.round((completed / (totalNodes || 1)) * 100)
+                const ModIcon = getModuleIcon(m.id)
 
                 return (
                   <div
@@ -96,12 +99,12 @@ export default function MedLingoHeader({
                       setModuleDropdownOpen(false)
                     }}
                   >
-                    <span className="medlingo-header__dropdown-emoji">{m.emoji}</span>
+                    <span className="medlingo-header__dropdown-emoji"><ModIcon size={17} /></span>
                     <div className="medlingo-header__dropdown-meta">
                       <span className="medlingo-header__dropdown-name">{m.name}</span>
                       <span className="medlingo-header__dropdown-sub">{pct}% completado ({completed}/{totalNodes})</span>
                     </div>
-                    {pct === 100 && <Award size={16} color="#eab308" />}
+                    {pct === 100 && <Award size={16} color="#fbbf24" />}
                   </div>
                 )
               })}

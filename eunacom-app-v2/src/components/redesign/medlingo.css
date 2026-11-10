@@ -1,0 +1,258 @@
+/* ═══ MedLingo · Midnight Pro (rediseño nov-2026) ═══
+   Solo afecta a la página /medlingo (todo va bajo .medlingo-page). */
+
+.medlingo-page {
+  --duo-bg: #0b1120;
+  --duo-card-bg: rgba(30, 41, 59, .55);
+  --duo-card-border: rgba(56, 189, 248, .14);
+  --duo-card-shadow: transparent;
+  --duo-text-main: #e2e8f0;
+  --duo-text-muted: #64748b;
+  --duo-text-sub: #94a3b8;
+  --duo-blue: #38bdf8;
+  --duo-blue-shadow: #2563eb;
+  --duo-blue-tint: rgba(56, 189, 248, .14);
+  --duo-green: #22c55e;
+  --duo-green-shadow: #16a34a;
+  --duo-green-tint: rgba(34, 197, 94, .14);
+  --duo-orange: #f59e0b;
+  --duo-orange-shadow: #d97706;
+  --duo-orange-tint: rgba(245, 158, 11, .12);
+  --duo-red: #f87171;
+  --duo-red-shadow: #dc2626;
+  --duo-red-tint: rgba(248, 113, 113, .12);
+  --duo-gold: #fbbf24;
+  --duo-gold-shadow: #d97706;
+  --duo-purple: #60a5fa;
+  --duo-purple-shadow: #2563eb;
+  --mn-ml-tile: #111a2e;
+  --mn-ml-tline: #1e2a44;
+  background: radial-gradient(120% 40% at 85% -6%, #1e3a8a 0%, #0b1120 55%) fixed #0b1120;
+  font-family: var(--font);
+}
+.medlingo-page button, .medlingo-page input { font-family: var(--font); }
+
+/* ─── Barra superior ─── */
+.medlingo-page .medlingo-header {
+  background: rgba(11, 17, 32, .9);
+  border-bottom: 1px solid #1e293b;
+  backdrop-filter: blur(12px);
+}
+.medlingo-page .medlingo-exit-to-app-btn,
+.medlingo-page .medlingo-header__module-btn,
+.medlingo-page .medlingo-shop-btn {
+  background: var(--mn-ml-tile);
+  border: 1px solid var(--mn-ml-tline);
+  color: #e2e8f0;
+}
+.medlingo-page .medlingo-header__module-btn { border-radius: 14px; }
+.medlingo-page .medlingo-header__module-emoji {
+  width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center;
+  background: rgba(56, 189, 248, .14); color: var(--mn-sky, #38bdf8); flex: none;
+}
+.medlingo-page .medlingo-header__module-name { font-weight: 600; color: #f1f5f9; }
+.medlingo-page .medlingo-header__module-bar-wrap { background: #1e293b; }
+.medlingo-page .medlingo-header__module-bar { background: linear-gradient(90deg, #2563eb, #38bdf8); }
+.medlingo-page .medlingo-header__chevron { color: #64748b; }
+.medlingo-page .medlingo-header__dropdown {
+  background: #0f172a; border: 1px solid rgba(56, 189, 248, .14); border-radius: 16px;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .7);
+}
+.medlingo-page .medlingo-header__dropdown-emoji {
+  width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center;
+  background: #14203a; color: #38bdf8; flex: none;
+}
+.medlingo-page .medlingo-header__dropdown-item.selected { background: rgba(37, 99, 235, .2); border-color: rgba(56, 189, 248, .4); }
+
+.medlingo-page .medlingo-stat-pill {
+  background: var(--mn-ml-tile);
+  border: 1px solid var(--mn-ml-tline);
+  border-radius: 999px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.medlingo-page .medlingo-stat-pill--streak svg { color: #fb923c; }
+.medlingo-page .medlingo-stat-pill--gems svg { color: #38bdf8; }
+.medlingo-page .medlingo-stat-pill--hearts svg { color: #f87171; fill: #f87171; }
+.medlingo-page .medlingo-stat-pill--hearts.critical { border-color: rgba(248, 113, 113, .45); }
+.medlingo-page .medlingo-mentor-avatar { border: 1px solid rgba(56, 189, 248, .4); }
+
+@media (max-width: 640px) {
+  .medlingo-page .medlingo-header { gap: .4rem; }
+  .medlingo-page .medlingo-header__left { min-width: 0; flex: 1; }
+  .medlingo-page .medlingo-header__module-btn { min-width: 0; padding: .35rem .55rem; }
+  .medlingo-page .medlingo-header__module-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 96px; display: block; }
+  .medlingo-page .medlingo-header__module-info { min-width: 0; }
+  .medlingo-page .medlingo-header__right { gap: .3rem; }
+  .medlingo-page .medlingo-stat-pill { padding: .3rem .5rem; font-size: .78rem; }
+}
+
+/* ─── Racha en riesgo (compacto) ─── */
+.mn-ml-risk {
+  width: 100%; display: flex; align-items: center; gap: .7rem; margin-bottom: 1.1rem;
+  padding: .7rem .8rem; border-radius: 16px; text-align: left; cursor: pointer;
+  background: var(--duo-card-bg); border: 1px solid rgba(245, 158, 11, .28);
+  border-left: 3px solid #f59e0b; color: #e2e8f0; font-family: var(--font);
+  animation: mnMlUp .4s both;
+}
+.mn-ml-risk__ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; flex: none; background: rgba(245, 158, 11, .15); color: #fbbf24; }
+.mn-ml-risk__txt { flex: 1; min-width: 0; }
+.mn-ml-risk__txt b { display: block; font-size: .86rem; font-weight: 600; }
+.mn-ml-risk__txt small { display: block; color: #94a3b8; font-size: .72rem; margin-top: 1px; }
+.mn-ml-risk__go { display: inline-flex; align-items: center; gap: 2px; flex: none; font-size: .76rem; font-weight: 600; color: #fbbf24; }
+
+/* ─── Unidades: tarjeta Midnight con acento fino ─── */
+.medlingo-page .medlingo-path { gap: 2.4rem; }
+.medlingo-page .medlingo-unit-banner {
+  position: relative; overflow: hidden; justify-content: flex-start; gap: .8rem;
+  padding: .95rem 1rem; border-radius: 18px; color: #e2e8f0;
+  background: var(--duo-card-bg); border: 1px solid rgba(56, 189, 248, .14);
+  box-shadow: none;
+}
+.medlingo-page .medlingo-unit-banner::before {
+  content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--unit-accent, #38bdf8);
+}
+.medlingo-page .medlingo-unit-banner__badge {
+  width: 40px; height: 40px; padding: 0; border-radius: 12px; display: grid; place-items: center; flex: none;
+  background: color-mix(in srgb, var(--unit-accent, #38bdf8) 16%, transparent);
+  color: color-mix(in srgb, var(--unit-accent, #38bdf8) 70%, #fff);
+}
+.medlingo-page .medlingo-unit-banner__content { flex: 1; min-width: 0; }
+.medlingo-page .medlingo-unit-banner__title { font-size: .95rem; font-weight: 600; color: #f1f5f9; line-height: 1.3; }
+.medlingo-page .medlingo-unit-banner__desc { font-size: .74rem; font-weight: 400; color: #94a3b8; opacity: 1; margin-top: 2px; line-height: 1.4; }
+.medlingo-page .medlingo-unit-banner__crown { color: #64748b; flex: none; align-self: flex-start; }
+
+/* ─── Nodos del sendero ─── */
+.medlingo-page .medlingo-nodes-track { gap: 1.6rem; }
+.medlingo-page .medlingo-node-btn {
+  width: 66px; height: 66px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 10px 24px -10px rgba(56, 189, 248, .7);
+  color: #fff;
+}
+.medlingo-page .medlingo-node-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 26px -8px rgba(56, 189, 248, .8); }
+.medlingo-page .medlingo-node-btn:active:not(:disabled) { transform: scale(.96); box-shadow: 0 6px 16px -8px rgba(56, 189, 248, .7); }
+.medlingo-page .medlingo-active-halo { inset: -7px; border: 2px solid rgba(56, 189, 248, .8); }
+.medlingo-page .medlingo-node-btn.completed {
+  background: #0f2a1f; border: 2px solid #22c55e; color: #4ade80;
+  box-shadow: 0 0 18px -8px rgba(34, 197, 94, .7);
+}
+.medlingo-page .medlingo-node-btn.locked {
+  background: #111a2e !important; border: 1px solid #1e2a44; color: #475569; box-shadow: none;
+}
+.medlingo-page .medlingo-node-btn.boss:not(.locked):not(.completed) {
+  width: 76px; height: 76px;
+  background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+  border: 2px solid rgba(251, 191, 36, .7);
+  box-shadow: 0 10px 26px -10px rgba(251, 191, 36, .5);
+}
+.medlingo-page .medlingo-node-btn.boss.locked, .medlingo-page .medlingo-node-btn.boss.completed { width: 76px; height: 76px; }
+.medlingo-page .medlingo-node-btn.chest:not(.locked) {
+  background: #14203a; border: 1px solid rgba(56, 189, 248, .45); color: #38bdf8;
+  box-shadow: 0 0 20px -8px rgba(56, 189, 248, .6);
+}
+.medlingo-page .medlingo-node-title { font-weight: 500; font-size: .76rem; color: #cbd5e1; }
+.medlingo-page .medlingo-node-tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: #111a2e; border: 1px solid #1e2a44; border-radius: 999px; padding: .1rem .5rem;
+  color: #94a3b8; font-weight: 600; letter-spacing: .04em; font-size: .6rem;
+}
+.medlingo-page .medlingo-node-tag.boss { color: #fbbf24; border-color: rgba(251, 191, 36, .3); }
+.medlingo-page .medlingo-node-tag.chest { color: #38bdf8; }
+.medlingo-page .star-icon.filled { color: #fbbf24; fill: #fbbf24; filter: none; }
+.medlingo-page .star-icon.empty { color: #334155; }
+
+/* ─── Barra inferior de MedLingo (como la del app) ─── */
+.medlingo-page .medlingo-bottom-nav {
+  background: rgba(11, 17, 32, .96);
+  border-top: 1px solid #1e293b;
+  backdrop-filter: blur(12px);
+  padding-top: .25rem;
+}
+.medlingo-page .medlingo-tab-btn { color: #64748b; gap: 4px; padding: .35rem .4rem; min-width: 60px; }
+.medlingo-page .medlingo-tab-btn .tab-icon-wrapper { padding: 0; background: none; }
+.medlingo-page .medlingo-tab-btn .tab-label { font-size: .64rem; font-weight: 500; letter-spacing: 0; }
+.medlingo-page .medlingo-tab-btn.active,
+.medlingo-page .medlingo-tab-btn.active .tab-label { color: #38bdf8; }
+.medlingo-page .medlingo-tab-btn.active .tab-icon-wrapper {
+  background: none; color: #38bdf8; box-shadow: none; transform: none;
+}
+.medlingo-page .medlingo-tab-btn.active svg { filter: drop-shadow(0 0 6px rgba(56, 189, 248, .6)); }
+
+/* ─── Héroes de pestañas (Colección / Misiones / Ligas / Perfil) ─── */
+.medlingo-page .collection-hero-banner,
+.medlingo-page .missions-hero-banner {
+  background: linear-gradient(160deg, rgba(37, 99, 235, .3), rgba(17, 26, 46, .9));
+  border: 1px solid rgba(56, 189, 248, .14);
+  border-radius: 20px;
+}
+
+/* Medallas */
+.medlingo-page .mn-medal-1 { color: #fbbf24; }
+.medlingo-page .mn-medal-2 { color: #cbd5e1; }
+.medlingo-page .mn-medal-3 { color: #d97706; }
+@keyframes mnMlUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ─── Ligas ─── */
+.medlingo-page .league-hero-header {
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, rgba(37, 99, 235, .28), rgba(17, 26, 46, .92));
+  border: 1px solid rgba(56, 189, 248, .14); border-radius: 20px;
+}
+.medlingo-page .league-hero-header::before {
+  content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--tier-accent, #38bdf8);
+}
+.medlingo-page .league-tier-icon-big {
+  width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; flex: none; filter: none;
+  background: color-mix(in srgb, var(--tier-accent, #38bdf8) 16%, transparent);
+}
+.medlingo-page .league-hero-info p { color: #94a3b8; }
+.medlingo-page .league-timer-bar { background: #111a2e; border: 1px solid #1e2a44; }
+.medlingo-page .tier-pill-btn { background: #111a2e; border-color: #1e2a44; border-radius: 999px; }
+.medlingo-page .tier-pill-btn.active { background: rgba(37, 99, 235, .22); border-color: #38bdf8; }
+.medlingo-page .tier-emoji, .medlingo-page .league-icon-emoji { display: inline-flex; align-items: center; }
+.medlingo-page .current-dot { background: rgba(56, 189, 248, .18); color: #38bdf8; }
+
+/* ─── Colección / chips ─── */
+.medlingo-page .cat-pill { background: #111a2e; border-color: #1e2a44; color: #cbd5e1; border-radius: 999px; font-weight: 500; }
+.medlingo-page .cat-pill.active { background: rgba(37, 99, 235, .25); border-color: #38bdf8; color: #fff; }
+.medlingo-page .card-emoji {
+  width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center;
+  background: #14203a; color: #38bdf8;
+}
+
+/* Scrollbars horizontales ocultos (chips, ligas) */
+.medlingo-page .collection-category-pills,
+.medlingo-page .league-tiers-selector-row { scrollbar-width: none; }
+.medlingo-page .collection-category-pills::-webkit-scrollbar,
+.medlingo-page .league-tiers-selector-row::-webkit-scrollbar { display: none; }
+
+/* Botones principales en azul Midnight */
+.medlingo-page .medlingo-tab-content button[class*="claim"]:not(:disabled),
+.medlingo-page .medlingo-panel-card button[class*="claim"]:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #38bdf8); color: #fff; border: 0;
+}
+
+/* ─── Lección: botones y tarjetas ─── */
+.medlingo-page .duo-big-btn,
+.medlingo-page .medlingo-action-btn.primary {
+  background: linear-gradient(135deg, #2563eb, #38bdf8) !important; color: #fff;
+  box-shadow: 0 8px 24px -10px rgba(56, 189, 248, .6) !important; border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+}
+.medlingo-page .medlingo-action-btn.success { background: #16a34a !important; box-shadow: none !important; }
+.medlingo-page .medlingo-action-btn.danger { background: #dc2626 !important; box-shadow: none !important; }
+.medlingo-page .medlingo-action-btn:disabled { background: #1e2a44 !important; color: #64748b !important; box-shadow: none !important; }
+.medlingo-page .card-emoji-badge { color: #38bdf8; }
+.medlingo-page .card-diagnosis-pill { display: inline-flex; align-items: center; gap: 3px; }
+.medlingo-page .heart-broken-icon { color: #f87171; }
+.medlingo-page .confetti-particle { color: #38bdf8; }
+.medlingo-page .confetti-particle.p5, .medlingo-page .confetti-particle.p6 { color: #fbbf24; }
+.medlingo-page .combo-flame-badge { display: inline-flex; align-items: center; gap: 2px; }
+.medlingo-page .quest-reward, .medlingo-page .mission-reward-tag, .medlingo-page .p-stat-val,
+.medlingo-page .claim-quest-btn, .medlingo-page .prizes-badge span { display: inline-flex; align-items: center; gap: 3px; }
+.medlingo-page .medlingo-progressbar-track { background: #1e293b; }
+.medlingo-page .medlingo-progressbar-fill { background: linear-gradient(90deg, #2563eb, #38bdf8); box-shadow: 0 0 10px rgba(56, 189, 248, .6); }

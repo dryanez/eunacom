@@ -21,10 +21,11 @@ import MedLingoLessonModal from '../components/medlingo/MedLingoLessonModal'
 import MedLingoShopModal from '../components/medlingo/MedLingoShopModal'
 import MedLingoMentorPickerModal from '../components/medlingo/MedLingoMentorPickerModal'
 import MedLingoMissions from '../components/medlingo/MedLingoMissions'
-import StreakRiskBanner from '../components/StreakRiskBanner'
+import { Flame, ChevronRight } from 'lucide-react'
 import StreakSaverModal from '../components/StreakSaverModal'
 import { getTodayDateString } from '../utils/gamificationStore'
 import '../components/medlingo/medlingo.css'
+import '../components/redesign/medlingo.css'
 
 export default function MedLingoPage() {
   const { user } = useAuth()
@@ -187,14 +188,19 @@ export default function MedLingoPage() {
             <div className="medlingo-path-column">
               {/* Streak Freeze Warning Banner if study not completed today */}
               {isStreakInRisk && (
-                <div style={{ marginBottom: '1.25rem' }}>
-                  <StreakRiskBanner
-                    streak={gameState.currentStreak}
-                    userFirstName={user?.email?.split('@')[0] || ''}
-                    hoursRemaining={3}
-                    onOpenStreakSaver={() => setShowStreakSaverModal(true)}
-                  />
-                </div>
+                <button
+                  type="button"
+                  className="mn-ml-risk"
+                  onClick={() => setShowStreakSaverModal(true)}
+                  title="Responder 3 preguntas para salvar tu racha"
+                >
+                  <span className="mn-ml-risk__ic"><Flame size={18} /></span>
+                  <span className="mn-ml-risk__txt">
+                    <b>Racha en riesgo · {gameState.currentStreak} {gameState.currentStreak === 1 ? 'día' : 'días'}</b>
+                    <small>Responde 3 preguntas rápidas para mantenerla (3h restantes)</small>
+                  </span>
+                  <span className="mn-ml-risk__go">Salvar <ChevronRight size={14} /></span>
+                </button>
               )}
 
               <MedLingoPath

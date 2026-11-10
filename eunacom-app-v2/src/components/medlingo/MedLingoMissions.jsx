@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Target, Trophy, Sparkles, Shield, Clock, ArrowUp, ArrowDown, Award, Flame } from 'lucide-react'
+import { Target, Trophy, Sparkles, Shield, Clock, ArrowUp, ArrowDown, Award, Flame, Gem, Check, Medal } from 'lucide-react'
 import { playChestOpenSound, playTapSound } from '../../utils/medlingoAudio'
 import { LEAGUE_TIERS, getLeagueCohort, getWeeklyResetTimeLeft } from '../../utils/leagueSystem'
 
@@ -65,7 +65,7 @@ export default function MedLingoMissions({
             <div className="medlingo-quest-item">
               <div className="quest-meta">
                 <span className="quest-text">Completa 2 micro-lecciones</span>
-                <span className="quest-reward">+20 💎</span>
+                <span className="quest-reward">+20 <Gem size={11} /></span>
               </div>
               <div className="quest-bar-wrap">
                 <div className="quest-bar" style={{ width: `${(q1Progress / 2) * 100}%` }} />
@@ -74,7 +74,7 @@ export default function MedLingoMissions({
                 <span className="quest-count">{q1Progress}/2</span>
                 {q1Done ? (
                   q1Claimed ? (
-                    <span className="quest-badge claimed">Reclamado ✓</span>
+                    <span className="quest-badge claimed">Reclamado <Check size={11} /></span>
                   ) : (
                     <button 
                       className="quest-claim-btn"
@@ -94,7 +94,7 @@ export default function MedLingoMissions({
             <div className="medlingo-quest-item">
               <div className="quest-meta">
                 <span className="quest-text">Consigue 1 turno perfecto (3 ⭐)</span>
-                <span className="quest-reward">+30 💎</span>
+                <span className="quest-reward">+30 <Gem size={11} /></span>
               </div>
               <div className="quest-bar-wrap">
                 <div className="quest-bar" style={{ width: `${(q2Progress / 1) * 100}%` }} />
@@ -103,7 +103,7 @@ export default function MedLingoMissions({
                 <span className="quest-count">{q2Progress}/1</span>
                 {q2Done ? (
                   q2Claimed ? (
-                    <span className="quest-badge claimed">Reclamado ✓</span>
+                    <span className="quest-badge claimed">Reclamado <Check size={11} /></span>
                   ) : (
                     <button 
                       className="quest-claim-btn"
@@ -123,7 +123,7 @@ export default function MedLingoMissions({
             <div className="medlingo-quest-item">
               <div className="quest-meta">
                 <span className="quest-text">Gana 50 XP en el día</span>
-                <span className="quest-reward">+50 💎</span>
+                <span className="quest-reward">+50 <Gem size={11} /></span>
               </div>
               <div className="quest-bar-wrap">
                 <div className="quest-bar" style={{ width: `${(q3Progress / 50) * 100}%` }} />
@@ -132,7 +132,7 @@ export default function MedLingoMissions({
                 <span className="quest-count">{q3Progress}/50 XP</span>
                 {q3Done ? (
                   q3Claimed ? (
-                    <span className="quest-badge claimed">Reclamado ✓</span>
+                    <span className="quest-badge claimed">Reclamado <Check size={11} /></span>
                   ) : (
                     <button 
                       className="quest-claim-btn"
@@ -154,7 +154,7 @@ export default function MedLingoMissions({
         <div className="medlingo-panel-card animate-slide-up">
           <div className="medlingo-panel-card__header league">
             <div className="league-title-box">
-              <span className="league-icon-emoji">{currentTier.icon}</span>
+              <span className="league-icon-emoji"><Trophy size={18} color={currentTier.color} /></span>
               <div>
                 <h3>{currentTier.name}</h3>
                 <span className="league-time-tag">
@@ -175,7 +175,7 @@ export default function MedLingoMissions({
                   className={`league-row ${player.isUser ? 'user-highlight' : ''} ${player.zone}`}
                 >
                   <span className="league-rank-num">
-                    {player.rank === 1 ? '🥇' : player.rank === 2 ? '🥈' : player.rank === 3 ? '🥉' : `#${player.rank}`}
+                    {player.rank <= 3 ? <Medal size={15} className={`mn-medal mn-medal-${player.rank}`} /> : `#${player.rank}`}
                   </span>
                   <span className="league-player-avatar">{player.avatar}</span>
                   <span className="league-player-name">{player.name}</span>

@@ -1,0 +1,9 @@
+.mn-spi { display: inline-grid; place-items: center; flex-shrink: 0; color: #fff; position: relative; z-index: 2;
+  box-shadow: 0 8px 18px -10px var(--spi-c), inset 0 1px 0 rgba(255,255,255,.28); background: linear-gradient(140deg, var(--spi-c), var(--spi-c2)); }
+.mn-spi svg { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.mn-spi svg .f { fill: rgba(255,255,255,.22); }
+.mn-spi svg .dot { fill: currentColor; stroke: none; }
+.mn-spi-m1 { --spi-c: #38bdf8; --spi-c2: #2563eb; }
+.mn-spi-m2 { --spi-c: #fbbf24; --spi-c2: #ea580c; }
+.mn-spi-m3 { --spi-c: #f472b6; --spi-c2: #a855f7; }
+.mn-spi-m4 { --spi-c: #34d399; --spi-c2: #0d9488; }

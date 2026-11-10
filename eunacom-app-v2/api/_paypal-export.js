@@ -1,3 +1,4 @@
+import { requireAdmin } from './_auth.js'
 import { getTurso } from './_turso.js'
 
 // GET  /api/paypal-export?adminEmail=xxx         → export transactions as JSON
@@ -215,9 +216,8 @@ export default async function handler(req, res) {
   // ── GET: Admin Export ────────────────────────────────────────────────────
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { adminEmail, format } = req.query
-  const isDev = process.env.NODE_ENV !== 'production'
-  if (!isDev && adminEmail !== 'dr.felipeyanez@gmail.com') return res.status(403).json({ error: 'Forbidden' })
+  const { format } = req.query
+  if (!(await requireAdmin(req, res))) return
 
   try {
     await ensureTable(db)

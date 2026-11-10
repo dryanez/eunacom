@@ -1,3 +1,5 @@
+import { isAndroidApp } from '../../lib/playBilling'
+import { Check, X as XIcon, Star, RefreshCw, CheckCircle2, Smartphone } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
@@ -9,6 +11,7 @@ import { captureBookPaypal } from '../../lib/api'
 import BookCheckoutModal from './BookCheckoutModal'
 import LectorLibro from './LectorLibro'
 import '../../styles/tienda.css'
+import '../../styles/biblioteca-anim.css'
 
 const CART_KEY = 'eunacom_book_cart'
 const PLAN_3M = APP_PLANS.find(p => p.id === '3m')
@@ -45,8 +48,39 @@ function Cover({ src, alt, style }) {
   return <img className="book-cover" src={src} alt={alt} loading="lazy" style={style} />
 }
 
+// Los libros entran con animación al aparecer en pantalla (escalonados dentro de su grilla).
+// Mide la posición directamente (no depende de IntersectionObserver) y nunca deja un libro oculto.
+function useBookReveal() {
+  React.useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const SEL = '.tomo-item, .shelf-item, .pack-card, .rec-item'
+    let raf = 0
+    const check = () => {
+      raf = 0
+      const vh = window.innerHeight || 800
+      document.querySelectorAll(SEL).forEach(el => {
+        if (el.classList.contains('bk-in')) return
+        if (!el.classList.contains('bk-anim')) {
+          const i = Array.prototype.indexOf.call(el.parentNode.children, el)
+          el.style.setProperty('--d', `${Math.min(i % 12, 8) * 70}ms`)
+          el.classList.add('bk-anim')
+        }
+        const r = el.getBoundingClientRect()
+        if (r.top < vh * 0.94) el.classList.add('bk-in') // en pantalla o ya pasado
+      })
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check) }
+    check()
+    const t = setInterval(check, 700)
+    window.addEventListener('scroll', onScroll, { capture: true, passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => { clearInterval(t); cancelAnimationFrame(raf); window.removeEventListener('scroll', onScroll, { capture: true }); window.removeEventListener('resize', onScroll) }
+  })
+}
+
 // Tienda de libros: oferta primero, la app como upgrade (en el checkout de planes es al revés).
 export default function LibrosTienda() {
+  useBookReveal()
   const { user, openAuthModal } = useAuth()
   const { isPremium, planMonths, libraryIncluded, ownedBooks, purchasedBookSkus, setShowPaymentModal, refreshBooks } = useSubscription()
 
@@ -126,7 +160,7 @@ export default function LibrosTienda() {
   }
 
   const btnState = sku => isOwned(sku) ? 'owned' : (cart.includes(sku) || coveredByCart(sku)) ? 'added' : ''
-  const btnLabel = (sku, idle) => isOwned(sku) ? '✓ Tuyo' : cart.includes(sku) ? '✓ En el carro' : coveredByCart(sku) ? '✓ En tu pack' : idle
+  const btnLabel = (sku, idle) => isOwned(sku) ? 'Tuyo' : cart.includes(sku) ? 'En el carro' : coveredByCart(sku) ? 'En tu pack' : idle
 
   // Mis libros: biblioteca completa por plan, o lo comprado, separados por tipo
   const shelfBySection = { tomos: TOMOS.filter(t => ownedBooks.has(t.sku)).map(t => ({ key: t.sku, item: t.sku, cover: t.cover, label: `Tomo ${t.n} · ${t.name}` })) }
@@ -146,7 +180,7 @@ export default function LibrosTienda() {
     <div className="tienda">
       {paidBanner === 'success' && (
         <div className="tienda-banner ok">
-          <span>✅ ¡Pago recibido! Tus libros quedan desbloqueados en «Mis libros» (puede tardar unos segundos).</span>
+          <span><CheckCircle2 size={16} style={{ verticalAlign: -3, marginRight: 6 }} />¡Pago recibido! Tus libros quedan desbloqueados en «Mis libros» (puede tardar unos segundos).</span>
           <button className="mini-btn" onClick={() => setPaidBanner(null)}>OK</button>
         </div>
       )}
@@ -159,12 +193,12 @@ export default function LibrosTienda() {
 
       {shelf.length > 0 && (
         <section className="tienda-section">
-          <h2>📚 Mis libros</h2>
+          <h2>Mis libros</h2>
           <p className="sub">
             {libraryIncluded ? 'Tu plan incluye la biblioteca completa.' : `Tienes ${purchasedBookSkus.length} compra${purchasedBookSkus.length === 1 ? '' : 's'} de libros en tu cuenta.`}
           </p>
           {SHELF_SECTIONS.filter(s => shelfBySection[s.id]?.length).map(s => (
-            <div key={s.id} className="shelf-section">
+            <div key={s.id} id={`shelf-${s.id}`} className="shelf-section">
               <h3 className="shelf-section__title">{s.title} <span>{shelfBySection[s.id].length}</span></h3>
               <div className="shelf">
                 {shelfBySection[s.id].map(b => (
@@ -174,7 +208,7 @@ export default function LibrosTienda() {
                       : <Cover src={b.cover} alt={b.label} />}
                     <b>{b.label}</b>
                     {itemFiles(b.item).length
-                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>📖 Leer</button>
+                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>Leer</button>
                       : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
                   </div>
                 ))}
@@ -190,29 +224,10 @@ export default function LibrosTienda() {
           {shortPlan && (
             <div className="tienda-banner info">
               <span>Tu plan de {planMonths} {planMonths === 1 ? 'mes' : 'meses'} no incluye la biblioteca. Agrégala por <strong>{fmtClp(BIBLIOTECA.price)}</strong> o pásate al plan de 3 meses, que la trae incluida.</span>
-              <button className="mini-btn" onClick={() => toggle('biblioteca')}>{cart.includes('biblioteca') ? '✓ En el carro' : 'Agregar biblioteca'}</button>
+              <button className="mini-btn" onClick={() => toggle('biblioteca')}>{cart.includes('biblioteca') ? 'En el carro' : 'Agregar biblioteca'}</button>
             </div>
           )}
 
-          <div className="tienda-hero">
-            <div>
-              <span className="tienda-kick">Biblioteca AEE · Perfil EUNACOM V3</span>
-              <h1>Los libros para aprobar el EUNACOM, <span>en la app</span></h1>
-              <p>Los 21 tomos de Academia Examen EUNACOM, las reconstrucciones de cada EUNACOM desde 2013, los Libros Gordos, el Repaso Final de cada especialidad, los 1.569 códigos del Perfil V3 explicados y 19 atlas de imágenes (1.144 fotos comentadas). Pago único: los lees en línea, sin vencimiento.</p>
-              <div className="tienda-stats">
-                <div><b>21</b><span>tomos, todas las especialidades</span></div>
-                <div><b>16</b><span>EUNACOM reconstruidos</span></div>
-                <div><b>2.739</b><span>preguntas reales con explicación</span></div>
-                <div><b>1.569</b><span>códigos del Perfil V3 explicados</span></div>
-              </div>
-            </div>
-            <div className="tienda-fan" aria-hidden="true">
-              {[1, 5, 8, 18, 'recons', 19, 11].map((k, i) => (
-                <Cover key={k} alt="" src={k === 'recons' ? EXTRAS[0].cover : TOMOS[k - 1].cover}
-                  style={{ position: 'absolute', width: 110, left: `${i * 13}%`, top: 30 + Math.abs(i - 3) * 16, transform: `rotate(${(i - 3) * 5}deg)`, zIndex: 10 - Math.abs(i - 3) }} />
-              ))}
-            </div>
-          </div>
 
           <section className="tienda-section" id="packs">
             <h2>Elige tu pack</h2>
@@ -222,13 +237,13 @@ export default function LibrosTienda() {
                 const was = looseValue(p.sku)
                 const save = Math.round((1 - p.price / was) * 100)
                 return (
-                  <div key={p.sku} className={`pack-card ${p.star ? 'star' : ''}`}>
-                    {p.star && <span className="pack-ribbon">⭐ Más conveniente · Ahorra {save} %</span>}
+                  <div key={p.sku} id={p.star ? 'pack-completa' : `pack-${p.sku}`} className={`pack-card ${p.star ? 'star' : ''}`}>
+                    {p.star && <span className="pack-ribbon"><Star size={12} fill="currentColor" style={{ verticalAlign: -1, marginRight: 4 }} />Más conveniente · Ahorra {save} %</span>}
                     <div className="pack-covers">{p.covers.map((c, i) => <Cover key={i} src={c} alt="" />)}</div>
                     <h3>{p.name}</h3>
                     <p className="desc">{p.desc}</p>
                     <div className="pack-price">{fmtClp(p.price)}<span className="was">{fmtClp(was)}</span></div>
-                    <ul className="pack-feat">{p.features.map(f => <li key={f}><i>✓</i>{f}</li>)}</ul>
+                    <ul className="pack-feat">{p.features.map(f => <li key={f}><i><Check size={13} strokeWidth={3} /></i>{f}</li>)}</ul>
                     <button className={`t-btn ${btnState(p.sku)}`} onClick={() => toggle(p.sku)}>{btnLabel(p.sku, 'Agregar al carro')}</button>
                   </div>
                 )
@@ -268,7 +283,7 @@ export default function LibrosTienda() {
                   <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
                   <div className="tomo-row">
                     <span className="p">{fmtClp(r.price)}</span>
-                    <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? '✓ Tuyo' : btnState(r.sku) ? '✓' : '+'}</button>
+                    <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>
                   </div>
                 </div>
               ))}
@@ -284,12 +299,12 @@ export default function LibrosTienda() {
                 <h3>{BIBLIOTECA.name}</h3>
                 <div className="pack-price">{fmtClp(BIBLIOTECA.price)}</div>
                 <ul className="pack-feat">
-                  <li><i>✓</i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
-                  <li><i>✓</i>1.569 códigos explicados + 19 atlas de imágenes</li>
-                  <li><i>✓</i>Reconstrucciones 2013–2026</li>
-                  <li className="no"><i>✕</i>+650 clases en video</li>
-                  <li className="no"><i>✕</i>+47.000 preguntas en la app y simulacros</li>
-                  <li className="no"><i>✕</i>Plan de estudio y estadísticas</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>1.569 códigos explicados + 19 atlas de imágenes</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Reconstrucciones 2013–2026</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+650 clases en video</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+47.000 preguntas en la app y simulacros</li>
+                  <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>Plan de estudio y estadísticas</li>
                 </ul>
                 <button className={`t-btn ${btnState('biblioteca')}`} onClick={() => toggle('biblioteca')}>{btnLabel('biblioteca', 'Solo los libros')}</button>
               </div>
@@ -299,11 +314,11 @@ export default function LibrosTienda() {
                 <h3>App · Plan 3 meses</h3>
                 <div className="pack-price">{fmtClp(PLAN_3M.price)}</div>
                 <ul className="pack-feat">
-                  <li><i>✓</i><b>La misma biblioteca completa</b></li>
-                  <li><i>✓</i>+650 clases en video, con animaciones</li>
-                  <li><i>✓</i>+47.000 preguntas reales y simulacros cronometrados</li>
-                  <li><i>✓</i>Reconstrucciones resueltas en la app</li>
-                  <li><i>✓</i>Plan de estudio y estadísticas por especialidad</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i><b>La misma biblioteca completa</b></li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>+650 clases en video, con animaciones</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>+47.000 preguntas reales y simulacros cronometrados</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Reconstrucciones resueltas en la app</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>Plan de estudio y estadísticas por especialidad</li>
                 </ul>
                 <button className="t-btn fill" onClick={openPlans}>Ver el plan de 3 meses →</button>
               </div>
@@ -315,7 +330,7 @@ export default function LibrosTienda() {
 
           <section className="tienda-section">
             <div className="tienda-note">
-              <div className="ic">🔁</div>
+              <div className="ic"><RefreshCw size={22} /></div>
               <div>
                 <h3>¿Compraste libros y ahora quieres la app?</h3>
                 <p>Si te pasas a un plan dentro de {UPGRADE_CREDIT_DAYS} días, te descontamos lo que pagaste en libros. El descuento aparece solo al elegir el plan.</p>
@@ -323,23 +338,6 @@ export default function LibrosTienda() {
             </div>
           </section>
 
-          <section className="tienda-section">
-            <h2>Gratis en nuestras redes</h2>
-            <p className="sub">Comenta la palabra en el video de Instagram o TikTok y te mandamos un libro por mensaje. La colección completa viene en la Biblioteca.</p>
-            <div className="tienda-free">
-              <div><b>Libro Gordo de la especialidad</b>90 preguntas reales con explicación<br /><code>Comenta POTASIO, CRISIS, PTT…</code></div>
-              <div><b>Repaso Final</b>Lo que más se pregunta, en una guía<br /><code>Comenta SUERO, OJO, EPLEY…</code></div>
-              <div><b>Atlas de Imágenes</b>19 especialidades: lo que hay que reconocer<br /><code>Comenta ATLAS</code></div>
-            </div>
-          </section>
-
-          <section className="tienda-section tienda-faq">
-            <h2>Preguntas frecuentes</h2>
-            <details open><summary>¿Cómo leo los libros?</summary><p>En línea, dentro de la app: quedan en «Mis libros» de tu cuenta y los abres en el computador, la tablet o el celular. No se descargan.</p></details>
-            <details><summary>¿Los libros vencen?</summary><p>No. Es un pago único y el acceso a lo que compras no vence. La app, en cambio, se contrata por meses.</p></details>
-            <details><summary>¿Cómo pago?</summary><p>Con Mercado Pago (Webpay, débito o crédito), Apple Pay, Google Pay o PayPal (en dólares), o por transferencia.</p></details>
-            <details><summary>¿Sirve el código SHORTS20 en los libros?</summary><p>SHORTS20 es para los planes de la app (20 % en cualquier plan). Los packs de libros ya vienen con el descuento aplicado.</p></details>
-          </section>
         </>
       )}
 

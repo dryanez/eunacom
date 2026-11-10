@@ -1,6 +1,9 @@
+import { createPortal } from 'react-dom'
+import SpecialtyIcon from './redesign/SpecialtyIcon'
 import React from 'react'
 import { X, Play, BookOpen, Target, CheckCircle2, ChevronRight, Sparkles, Award, ArrowRight } from 'lucide-react'
 import { MedicalIllustration } from './MedicalIllustrations'
+import './redesign/midnight.css'
 
 /**
  * TopicQuickModal - "Popping Up Bigger" modal for examining a topic/specialty
@@ -35,8 +38,9 @@ export const TopicQuickModal = ({
   const totalAnswered = correctCount + wrongCount
   const displayMastery = masteryPct > 0 ? masteryPct : totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0
 
-  return (
+  return createPortal(
     <div
+      className="mn-topic-page"
       style={{
         position: 'fixed',
         inset: 0,
@@ -52,6 +56,7 @@ export const TopicQuickModal = ({
       onClick={onClose}
     >
       <div
+        className="mn-topic-sheet"
         style={{
           width: '100%',
           maxWidth: '560px',
@@ -162,9 +167,7 @@ export const TopicQuickModal = ({
           </div>
 
           {/* Right Vector Illustration */}
-          <div style={{ width: '90px', height: '80px', flexShrink: 0, position: 'relative', zIndex: 2 }}>
-            <MedicalIllustration name={topic} />
-          </div>
+          <span style={{ marginRight: 34, marginTop: 14, display: "flex" }}><SpecialtyIcon name={topic} size={64} /></span>
         </div>
 
         {/* Scrollable Modal Content */}
@@ -174,7 +177,7 @@ export const TopicQuickModal = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
               gap: '0.75rem',
             }}
           >
@@ -243,7 +246,7 @@ export const TopicQuickModal = ({
                 No hay clases registradas en este tema aún.
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '220px', overflowY: 'auto', paddingRight: '4px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingRight: '4px' }}>
                 {lessons.map((lesson, idx) => {
                   const p = progressMap[lesson.id]
                   const isDone = p && (p.video_watched === 1 || p.quiz_completed === 1)
@@ -344,7 +347,8 @@ export const TopicQuickModal = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

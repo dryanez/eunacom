@@ -1,0 +1,851 @@
+[
+  {
+    "id": "vid-01",
+    "title": "SCACEST: La regla de los 120 minutos que define vidas",
+    "specialty": "Cardiología",
+    "weight": "Medicina Interna (37%)",
+    "perfilV3Code": "1.01.2.002",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "headline": "El 80% de los médicos falla esta pregunta",
+        "text": "El 80% de los médicos duda en esta pregunta de infarto del EUNACOM: ¿trombolizar o trasladar?"
+      },
+      {
+        "id": "hook-b",
+        "type": "The Contrarian",
+        "headline": "No siempre la mejor conducta es angioplastia",
+        "text": "No siempre el mejor tratamiento es la angioplastia. Si estás en hospital provincial, esto reprueba."
+      },
+      {
+        "id": "hook-c",
+        "type": "The 60s Countdown",
+        "headline": "Tienes 60 segundos: supra ST en V1–V4",
+        "text": "Tienes 60 segundos en el EUNACOM: dolor torácico de 2 horas y supra ST en V1 a V4. ¿Qué haces ya?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, pon mucha atención porque esto cae en todos los exámenes.",
+        "silenceCutMs": 300,
+        "keywords": [
+          "atención",
+          "exámenes"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Si tienes un paciente con infarto con supradesnivel del ST menor a doce horas de evolución, la primera pregunta que te debes hacer no es qué fármaco dar, sino: ¿cuánto tardo en ponerlo en la mesa de hemodinamia?",
+        "silenceCutMs": 250,
+        "keywords": [
+          "supradesnivel del ST",
+          "hemodinamia"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Si el tiempo desde el primer contacto médico hasta inflar el balón es MENOR a ciento veinte minutos, la conducta de elección absoluta es el traslado inmediato para Angioplastia Primaria.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "MENOR a 120 minutos",
+          "Angioplastia Primaria"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Pero si estás en un centro sin hemodinamia y el traslado demora MÁS de ciento veinte minutos, tienes diez minutos de tiempo aguja para iniciar Trombólisis con Tenecteplase o Alteplase, y luego trasladar.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "MÁS de 120 minutos",
+          "Trombólisis",
+          "Tenecteplase"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Memorízalo: menos de 120 minutos, hemodinamia. Más de 120 minutos, trombolizas y derivas.",
+        "silenceCutMs": 300,
+        "keywords": [
+          "120 minutos",
+          "trombolizas y derivas"
+        ],
+        "highlightColor": "#00E5FF"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Mini-Simulacro de Cardiología (10 preguntas)",
+      "script": "¿Aprobarías Cardiología en el EUNACOM hoy? Haz el mini-simulacro gratis con el timer oficial en el link de la bio, o comenta 'INFARTO' para enviártelo al privado.",
+      "keyword": "INFARTO"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta EUNACOM: Paciente 58 años dolor retroesternal ECG supra ST en V1-V4"
+      },
+      {
+        "atSecond": 15,
+        "type": "app_timer",
+        "description": "Cronómetro de 60 segundos con cuenta regresiva oficial"
+      },
+      {
+        "atSecond": 28,
+        "type": "higgsfield_image",
+        "prompt": "Emergency room setting in a Chilean public hospital, doctor in teal medical scrubs analyzing a 12-lead ECG tracing with severe ST-segment elevation, cinematic realistic lighting, photorealistic 8k, clinical atmosphere, vertical 9:16 portrait"
+      },
+      {
+        "atSecond": 42,
+        "type": "app_rationale_card",
+        "description": "Guía Clínica Minsal 2026: Algoritmo Reperfusión SCACEST < 120 min vs Fibrinolisis"
+      }
+    ]
+  },
+  {
+    "id": "vid-02",
+    "title": "Bronquiolitis Aguda: El gran error de dar corticoides",
+    "specialty": "Pediatría",
+    "weight": "Pediatría (16%)",
+    "perfilV3Code": "2.01.2.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "Si respondes corticoides en esta pregunta de pediatría del EUNACOM, reprobaste automáticamente."
+      },
+      {
+        "id": "hook-b",
+        "type": "The Contrarian",
+        "text": "Lactante con sibilancias y dificultad respiratoria: el 70% de los médicos receta lo que las guías chilenas prohiben terminantemente."
+      },
+      {
+        "id": "hook-c",
+        "type": "The 60s Countdown",
+        "text": "Lactante de 4 meses con primer episodio de sibilancias y Score de Tal en 6. ¿Qué fármaco NO debes administrar jamás?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, anota esto: primer episodio de obstrucción bronquial en menor de dos años con pródromo de resfrío común es Bronquiolitis Aguda por VRS.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Bronquiolitis Aguda",
+          "VRS"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "En el EUNACOM les encanta ponerte como distractor: Hidrocortisona, Prednisona oral o Kinesioterapia respiratoria de rutina.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "NO corticoides",
+          "trampa de examen"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "La evidencia y la norma Minsal son clarísimas: los corticoides sistémicos NO tienen ninguna utilidad en bronquiolitis y NO se indican.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "NO tienen utilidad",
+          "norma Minsal"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "¿Cuál es el tratamiento real? Oxígeno para saturar sobre noventa y tres por ciento, aseo nasal frecuente e hidratación adecuada.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Oxígeno > 93%",
+          "Aseo nasal",
+          "Hidratación"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Simulacro de Pediatría EUNACOM (10 preguntas)",
+      "script": "¿Sabes manejar el Score de Tal al revés y al derecho? Haz el test diagnóstico de Pediatría en el enlace de la bio o comenta 'PEDIATRIA'.",
+      "keyword": "PEDIATRIA"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Lactante 4 meses rinorrea, tos, tiraje subcostal, sibilancias bilaterales"
+      },
+      {
+        "atSecond": 18,
+        "type": "higgsfield_image",
+        "prompt": "Pediatric emergency room in Chile, pediatrician in medical scrubs gently examining a 6-month-old infant with stethoscope, soft warm clinical lighting, high definition, vertical 9:16 format"
+      },
+      {
+        "atSecond": 35,
+        "type": "app_rationale_card",
+        "description": "Score de Tal modificado Minsal + tabla de contraindicación de corticoides"
+      }
+    ]
+  },
+  {
+    "id": "vid-03",
+    "title": "Preeclampsia Severa: Dosis exacta de Sulfato de Magnesio",
+    "specialty": "Ginecología y Obstetricia",
+    "weight": "Obstetricia y Ginecología (16%)",
+    "perfilV3Code": "3.01.2.004",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "En el EUNACOM no basta con saber que la preeclampsia severa lleva Sulfato de Magnesio. Te van a preguntar la dosis exacta de carga y de mantención."
+      },
+      {
+        "id": "hook-b",
+        "type": "The Contrarian",
+        "text": "El error más peligroso en obstetricia: bajar la presión arterial a niveles normales en una crisis hipertensiva del embarazo."
+      },
+      {
+        "id": "hook-c",
+        "type": "The 60s Countdown",
+        "text": "Embarazada de 34 semanas con PA 165 con 115, cefalea intensa y escotomas. ¿Cuál es tu primera indicación farmacológica?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, cuando veas una embarazada de más de 20 semanas con presión mayor o igual a 160 con 110, o síntomas de irritabilidad del sistema nervioso central, estás frente a una Preeclampsia Severa.",
+        "silenceCutMs": 300,
+        "keywords": [
+          "Preeclampsia Severa",
+          "160/110 mmHg"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Tu primera prioridad es prevenir las convulsiones. Y el fármaco de elección es el Sulfato de Magnesio con esquema Zuspan: cuatro a cinco gramos en bolo endovenoso a pasar en quince a veinte minutos, seguido de una mantención de uno a dos gramos por hora.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Sulfato de Magnesio",
+          "4-5g bolo",
+          "1-2g/hora"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Y para la crisis de presión: Labetalol endovenoso o Nifedipino oral. Ojo con la meta: no bajes la diastólica a menos de 90, o dejas sin flujo a la placenta.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Labetalol / Nifedipino",
+          "Meta: no < 90 PAD"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Checklist de Urgencias Obstétricas EUNACOM",
+      "script": "Descarga gratis el simulacro de Ginecología y Obstetricia en eunacomapp.cl o comenta 'OBSTETRICIA' y te lo envío.",
+      "keyword": "OBSTETRICIA"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta Caso: Primigesta 34 semanas PA 165/115 edema escotomas centelleantes"
+      },
+      {
+        "atSecond": 20,
+        "type": "higgsfield_image",
+        "prompt": "Maternity delivery emergency ward, obstetrician doctor preparing an intravenous magnesium sulfate infusion pump, modern hospital environment, realistic Chilean hospital setting, vertical 9:16"
+      },
+      {
+        "atSecond": 38,
+        "type": "app_rationale_card",
+        "description": "Esquema Zuspan Minsal: Dosis de impregnación vs mantención y signos de intoxicación"
+      }
+    ]
+  },
+  {
+    "id": "vid-04",
+    "title": "Neumonía del Adulto: Cómo usar el Score CURB-65 sin dudar",
+    "specialty": "Medicina Interna",
+    "weight": "Medicina Interna (37%)",
+    "perfilV3Code": "1.02.1.003",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "Si hospitalizas a todos los pacientes con neumonía en el EUNACOM, vas a perder puntos clave de Salud Pública y Medicina Interna."
+      },
+      {
+        "id": "hook-b",
+        "type": "The 60s Countdown",
+        "text": "Paciente de 68 años con neumonía basal derecha, lúcido, PA 110 con 70, frecuencia respiratoria 24 y Nitrógeno Ureico normal. ¿Dónde se trata?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, en la atención primaria chilena y en el EUNACOM, la decisión más importante en Neumonía Adquirida en la Comunidad es definir el lugar de manejo con el CURB-65.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "CURB-65",
+          "Lugar de manejo"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Recuerda la regla: Confusión, Urea sobre 42 (o BUN sobre 19), Respiratoria mayor o igual a 30, Blood pressure menor a 90 con 60, y edad mayor o igual a 65 años.",
+        "silenceCutMs": 300,
+        "keywords": [
+          "C-U-R-B-65",
+          "Criterios objetivos"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Cero a uno punto: manejo ambulatorio con Amoxicilina o Amoxicilina con Ácido Clavulánico. Dos puntos: hospitalización en sala básica. Tres o más puntos: hospitalización con evaluación inmediata por UTI.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "0-1 ambulatorio",
+          "2 sala básica",
+          "3+ UTI"
+        ],
+        "highlightColor": "#00E5FF"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Test Rápido de Neumología EUNACOM",
+      "script": "¿Quieres dominar todas las preguntas de respiratorio? Entra al simulador interactivo en el link de la bio o comenta 'NEUMONIA'.",
+      "keyword": "NEUMONIA"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta EUNACOM: Paciente 68 años tos con expectoración herrumbrosa fiebre 38.5C"
+      },
+      {
+        "atSecond": 15,
+        "type": "app_timer",
+        "description": "Timer oficial de 60 segundos"
+      },
+      {
+        "atSecond": 30,
+        "type": "app_rationale_card",
+        "description": "Algoritmo Minsal NAC: Puntajes CURB-65 y tratamiento antibiótico empírico de primera línea"
+      }
+    ]
+  },
+  {
+    "id": "vid-05",
+    "title": "Apendicitis Aguda Atípica: Cuándo pedir Eco vs TAC",
+    "specialty": "Cirugía General",
+    "weight": "Cirugía (12%)",
+    "perfilV3Code": "4.01.2.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "El error clásico en cirugía del EUNACOM: pedirle TAC de abdomen a un niño o una embarazada con sospecha de apendicitis."
+      },
+      {
+        "id": "hook-b",
+        "type": "The Contrarian",
+        "text": "Si el cuadro clínico de apendicitis es típico en un hombre joven, pedir imágenes es una falta grave que te descuenta puntaje en el examen."
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, en Cirugía General la apendicitis aguda es el cuadro de urgencia más preguntado del EUNACOM. Y la clave está en el algoritmo de imágenes.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Apendicitis Aguda",
+          "Algoritmo de imágenes"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Primero: si tienes un hombre joven con dolor periumbilical que migra a fosa ilíaca derecha, Blumberg positivo y fiebre, el diagnóstico es CLÍNICO. Va directo a pabellón sin perder tiempo en imágenes.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Diagnóstico CLÍNICO",
+          "Directo a pabellón"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Segundo: si hay duda en niños o embarazadas, el estudio inicial siempre es Ecografía Abdominal. Cero radiación.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Niños / Embarazadas",
+          "Ecografía Abdominal"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Tercero: si hay duda en adultos mayores o mujeres no embarazadas en edad fértil con eco dudosa, el Gold Standard es el TAC de abdomen y pelvis con contraste.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Adultos con duda",
+          "TAC con contraste"
+        ],
+        "highlightColor": "#00E5FF"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Banco de Cirugía General (15 preguntas típicas)",
+      "script": "Pruébate con el módulo de Cirugía en EUNACOM App. Tienes acceso gratis al simulacro en el enlace de la bio o comentando 'CIRUGIA'.",
+      "keyword": "CIRUGIA"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Mujer 24 años dolor en FID FUM hace 3 semanas leucocitosis 13.000"
+      },
+      {
+        "atSecond": 18,
+        "type": "higgsfield_image",
+        "prompt": "Surgical operating room preparation, Chilean surgeon in sterile surgical scrubs and cap examining a medical tablet before laparoscopic appendectomy, professional dramatic medical lighting, vertical 9:16"
+      },
+      {
+        "atSecond": 35,
+        "type": "app_rationale_card",
+        "description": "Escala de Alvarado y flujograma de decisión diagnóstica en abdomen agudo"
+      }
+    ]
+  },
+  {
+    "id": "vid-06",
+    "title": "Salud Pública: Las 6 Enfermedades de Notificación Inmediata",
+    "specialty": "Salud Pública",
+    "weight": "Salud Pública (5%)",
+    "perfilV3Code": "6.01.1.002",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "El 5% más fácil de tu puntaje del EUNACOM te lo juegas en esta lista de Salud Pública chilena."
+      },
+      {
+        "id": "hook-b",
+        "type": "The Score Secret",
+        "text": "¿Sabes cuál de estas enfermedades se notifica de inmediato ante la sola sospecha clínica sin esperar el resultado del laboratorio?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, Salud Pública puede parecer aburrido, pero en el EUNACOM son puntos regalados si te sabes la norma técnica de las ENO.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Salud Pública",
+          "Norma ENO"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Las Enfermedades de Notificación Obligatoria Inmediata se notifican por la vía más expedita frente a la simple sospecha clínica.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Notificación Inmediata",
+          "Simple sospecha"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Memoriza las fijas de examen: Meningitis meningocócica, Rabia humana, Cólera, Fiebre Amarilla, Botulismo y Sarampión.",
+        "silenceCutMs": 300,
+        "keywords": [
+          "Meningococo",
+          "Rabia",
+          "Cólera",
+          "Botulismo"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "En cambio, Tuberculosis, Sífilis, VIH y Hepatitis B son de notificación diaria al confirmar. ¡No las confundas en la prueba!",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Notificación Diaria",
+          "TBC, Sífilis, VIH"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Flashcards de Salud Pública y GES 2026",
+      "script": "¿Quieres asegurar ese 5% completo del EUNACOM? Descarga EUNACOM App en el link de la bio o comenta 'SALUD'.",
+      "keyword": "SALUD"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Caso sospechoso de enfermedad invasora por Neisseria meningitidis en CESFAM"
+      },
+      {
+        "atSecond": 16,
+        "type": "higgsfield_image",
+        "prompt": "Public health clinic office in Santiago Chile, physician in consultation room filing official epidemiological notification form, realistic administrative healthcare setting, vertical 9:16"
+      },
+      {
+        "atSecond": 32,
+        "type": "app_rationale_card",
+        "description": "Tabla comparativa Minsal: ENO Notificación Inmediata vs Diaria"
+      }
+    ]
+  },
+  {
+    "id": "vid-07",
+    "title": "Hemorragia Digestiva Alta: Clasificación de Forrest y manejo",
+    "specialty": "Gastroenterología",
+    "weight": "Medicina Interna (37%)",
+    "perfilV3Code": "1.04.2.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "En el EUNACOM te van a describir una úlcera con 'vaso visible no sangrante'. ¿Qué grado de Forrest es y requiere tratamiento endoscópico?"
+      },
+      {
+        "id": "hook-b",
+        "type": "The 60s Countdown",
+        "text": "Paciente con melena y PA 90 con 60. Tienes 60 segundos para definir los 3 pasos de reanimación y el fármaco endovenoso inicial."
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, ante una Hemorragia Digestiva Alta por úlcera péptica, lo primero siempre es la reanimación hemodinámica con cristaloides y dos vías venosas permeables.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Reanimación hemodinámica",
+          "Cristaloides"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Farmacológicamente: Omeprazol oclusivo en bolo de 80 miligramos endovenoso seguido de infusión continua.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Omeprazol 80mg bolo",
+          "Infusión continua"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Y en la Endoscopía alta, la Clasificación de Forrest es ley: Forrest 1a y 1b (sangrado activo) y Forrest 2a (vaso visible) TIENEN que recibir terapia endoscópica combinada.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Forrest Ia, Ib, IIa",
+          "Terapia endoscópica"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Forrest 2c y 3 (base negra o fondo de fibrina) tienen bajo riesgo de resangrado y no requieren hemostasia endoscópica.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Forrest IIc y III",
+          "Bajo riesgo"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Simulacro de Gastroenterología EUNACOM",
+      "script": "Practica preguntas reales con retroalimentación inmediata en EUNACOM App. Link en la bio o comenta 'FORREST'.",
+      "keyword": "FORREST"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Paciente 62 años consumo de AINEs con hematemesis y melena"
+      },
+      {
+        "atSecond": 18,
+        "type": "higgsfield_image",
+        "prompt": "Gastroenterology endoscopy suite, doctor in surgical scrubs operating high-definition endoscope monitor showing gastric ulcer, dark clinical room with blue glow, vertical 9:16"
+      },
+      {
+        "atSecond": 36,
+        "type": "app_rationale_card",
+        "description": "Esquema visual Clasificación de Forrest y Score de Glasgow-Blatchford"
+      }
+    ]
+  },
+  {
+    "id": "vid-08",
+    "title": "ACV Isquémico Agudo: Las contraindicaciones de la trombólisis",
+    "specialty": "Neurología",
+    "weight": "Medicina Interna (37%)",
+    "perfilV3Code": "1.05.2.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "Todo el mundo sabe la ventana de 4 horas y media para el ACV isquémico. Pero donde caen en el EUNACOM es en las contraindicaciones del rtPA."
+      },
+      {
+        "id": "hook-b",
+        "type": "The 60s Countdown",
+        "text": "Paciente de 65 años con hemiparesia derecha de 2 horas y PA 195 con 115. ¿Puedes trombolizarlo de inmediato? ¡Cuidado con esta trampa!"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, el ACV isquémico es una emergencia tiempo-dependiente. La ventana terapéutica para trombólisis endovenosa con Alteplase es de cuatro coma cinco horas.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Ventana 4.5 horas",
+          "Alteplase"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Pero ojo con la presión: si la presión arterial es mayor a 185 sistólica o mayor a 110 diastólica, está CONTRAINDICADO trombolizar hasta bajar la presión.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Contraindicado si PA > 185/110",
+          "Bajar antes"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Manejas con Labetalol endovenoso, logras presión bajo 185 con 110, y recién ahí puedes iniciar el trombolítico.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Labetalol IV",
+          "Lograr meta primero"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Y nunca olvides el primer examen: TAC de cerebro sin contraste para descartar hemorragia intracraneana.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "TAC sin contraste",
+          "Descartar hemorragia"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Guía Rápida de Neurología de Urgencia",
+      "script": "¿Sabías esto? En EUNACOM App tienes todos los casos de Neurología explicados paso a paso. Haz el test gratis en el enlace de la bio o comenta 'NEURO'.",
+      "keyword": "NEURO"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Paciente 70 años afasia súbita y paresia faciobraquial derecha"
+      },
+      {
+        "atSecond": 17,
+        "type": "higgsfield_image",
+        "prompt": "Neurology emergency room, Chilean doctor holding and examining a brain CT scan film pointing at MCA ischemic sign, focused expressions, photorealistic 8k, vertical 9:16"
+      },
+      {
+        "atSecond": 34,
+        "type": "app_rationale_card",
+        "description": "Protocolo Minsal Código ACV: Criterios de inclusión y exclusión de trombólisis"
+      }
+    ]
+  },
+  {
+    "id": "vid-09",
+    "title": "Cetoacidosis Diabética: El peligro mortal de la insulina",
+    "specialty": "Endocrinología",
+    "weight": "Medicina Interna (37%)",
+    "perfilV3Code": "1.03.2.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "Poner insulina de inmediato en una Cetoacidosis Diabética puede causarle un paro cardiorrespiratorio a tu paciente. Esta es la pregunta trampa de Endocrinología."
+      },
+      {
+        "id": "hook-b",
+        "type": "The Contrarian",
+        "text": "¿Paciente con glicemia en 450 y acidosis? Si no mides este electrolito antes de abrir la infusión de insulina, reprobaste el EUNACOM."
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, en Cetoacidosis Diabética la primera medida no es la insulina, es la HIDRATACIÓN con Suero Fisiológico al 0.9%.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Primera medida: HIDRATACIÓN",
+          "Suero Fisiológico"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Y la regla sagrada del potasio: la insulina mete el potasio dentro de la célula. Si el potasio sérico es menor a 3.3 miliequivalentes por litro, NO PUEDES iniciar insulina.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Si K < 3.3 mEq/L",
+          "NO iniciar insulina"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Debes reponer potasio primero. Solo cuando el potasio esté sobre 3.3 inicias la bomba de insulina regular a 0.1 unidades por kilo por hora.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Reponer potasio primero",
+          "Insulina a 0.1 U/kg/h"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Recuerda la meta: cerrar el anión gap, no solo bajar el número de la glicemia.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Cerrar el anión gap",
+          "Regla de oro"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Checklist de Criterios de Resolución CAD",
+      "script": "Pon a prueba tu razonamiento clínico con el simulador de Endocrinología en EUNACOM App. Link en la bio o comenta 'DIABETES'.",
+      "keyword": "DIABETES"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Paciente DM1 de 20 años dolor abdominal vómitos respiración de Kussmaul"
+      },
+      {
+        "atSecond": 16,
+        "type": "higgsfield_image",
+        "prompt": "Intensive care unit, physician in medical lab coat calibrating an insulin infusion pump while reviewing arterial blood gas and electrolyte results, crisp modern hospital, vertical 9:16"
+      },
+      {
+        "atSecond": 35,
+        "type": "app_rationale_card",
+        "description": "Algoritmo ADA/Minsal: Manejo hidroelectrolítico en CAD y criterios de resolución"
+      }
+    ]
+  },
+  {
+    "id": "vid-10",
+    "title": "Psiquiatría: Cuándo derivar a Urgencias en Depresión Mayor",
+    "specialty": "Psiquiatría",
+    "weight": "Psiquiatría (8%)",
+    "perfilV3Code": "5.01.1.001",
+    "hooks": [
+      {
+        "id": "hook-a",
+        "type": "The Trap",
+        "text": "¿Derivar a salud mental ambulatoria o enviar de inmediato a urgencia hospitalaria? En el EUNACOM esta distinción te da o te quita el 8% de Psiquiatría."
+      },
+      {
+        "id": "hook-b",
+        "type": "The 60s Countdown",
+        "text": "Paciente de 28 años en consultorio que confiesa plan suicida estructurado para esta misma noche. ¿Cuál es la conducta médico-legal obligatoria?"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Mentor",
+        "text": "Colega, la Depresión es una patología GES garantizada en Chile tanto en atención primaria como en el hospital.",
+        "silenceCutMs": 200,
+        "keywords": [
+          "Depresión GES",
+          "Chile"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Si el paciente tiene depresión leve a moderada sin ideación suicida, se maneja en el CESFAM con psicoterapia y fármacos de primera línea como Sertralina o Fluoxetina.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Manejo en CESFAM",
+          "ISRS de primera línea"
+        ],
+        "highlightColor": "#FFE600"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "Pero si el paciente tiene ideación suicida ACTIVA con plan estructurado, intento reciente o psicosis asociada, se considera una EMERGENCIA MÉDICA.",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Plan suicida ACTIVO",
+          "EMERGENCIA MÉDICA"
+        ],
+        "highlightColor": "#00E5FF"
+      },
+      {
+        "speaker": "Mentor",
+        "text": "La conducta es: no dejar solo al paciente, avisar a familiares y derivar de forma inmediata a la Urgencia del hospital con acompañamiento continuo. ¡Nunca lo mandes a la casa con interconsulta!",
+        "silenceCutMs": 250,
+        "keywords": [
+          "Derivación inmediata a Urgencia",
+          "Nunca mandar a casa"
+        ],
+        "highlightColor": "#FFE600"
+      }
+    ],
+    "cta": {
+      "leadMagnet": "Simulacro de Psiquiatría y Salud Mental EUNACOM",
+      "script": "Asegura todas las preguntas de Psiquiatría del EUNACOM. Haz el test de 10 preguntas en el link de la bio o comenta 'PSIQUIATRIA'.",
+      "keyword": "PSIQUIATRIA"
+    },
+    "brollCues": [
+      {
+        "atSecond": 2,
+        "type": "app_question_card",
+        "description": "Pregunta: Paciente con tristeza profunda anhedonia e ideación autolítica estructurada"
+      },
+      {
+        "atSecond": 18,
+        "type": "higgsfield_image",
+        "prompt": "Warm clinical consultation room in Chile, empathetic medical doctor in white coat talking calmly with a young patient, supportive gesture, natural warm lighting, vertical 9:16 portrait"
+      },
+      {
+        "atSecond": 35,
+        "type": "app_rationale_card",
+        "description": "Guía Clínica Minsal Depresión: Escala de riesgo suicida y flujograma de derivación a Urgencia"
+      }
+    ]
+  }
+]

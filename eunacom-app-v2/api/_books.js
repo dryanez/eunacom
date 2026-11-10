@@ -1,6 +1,7 @@
 // Compras de libros (tienda en /biblioteca). Se monta dentro de /api/user-profiles (Vercel ya
 // está en el límite de funciones). Tablas: book_orders (carro pagado con Webpay) y
 // book_purchases (una fila por producto comprado; de aquí sale el acceso y el crédito de upgrade).
+import { verifyPlayBook, acknowledgePlayPurchase } from './_play-billing.js'
 import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, LIBRARY_ITEMS, UPGRADE_CREDIT_DAYS, cartTotal, expandSkus, itemFiles, usdPrice } from './_tienda.js'
 
 const ADMIN_EMAIL = 'dr.felipeyanez@gmail.com'
@@ -200,6 +201,24 @@ export async function handleBooks(db, req, res, opts = {}) {
     }
     await fulfillBookOrder(db, orderId, `paypal:${r.id}`)
     res.json({ success: true })
+    return true
+  }
+
+  // Android app: one book/pack bought through Google Play (one-time product, stays owned)
+  if (b.action === 'book_play_purchase') {
+    const { userId, productId, purchaseToken } = b
+    if (!userId || !productId || !purchaseToken) { res.status(400).json({ error: 'Missing parameters' }); return true }
+    const v = await verifyPlayBook({ userId, productId, purchaseToken, products: PRODUCTS })
+    if (!v.ok) { res.status(v.status).json({ error: v.error }); return true }
+    await ensureBookTables(db)
+    const ref = `play:${v.orderId}`
+    const seen = await db.execute({ sql: `SELECT 1 FROM book_purchases WHERE ref = ? LIMIT 1`, args: [ref] })
+    if (!seen.rows.length) {
+      const email = (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [userId] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
+      await insertPurchases(db, { userId, email, skus: [v.sku], method: 'play', ref })
+    }
+    if (!v.acknowledged) await acknowledgePlayPurchase({ productId, purchaseToken }).catch(e => console.error('[Play] acknowledge failed', e))
+    res.json({ success: true, sku: v.sku, already_processed: !!seen.rows.length })
     return true
   }
 

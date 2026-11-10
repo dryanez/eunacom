@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCACEST - Estilo 3: Nordic Dark Botanical (14 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100vw; height: 100vh; overflow: hidden; background: #07090e; color: #e2e8f0; font-family: 'Outfit', sans-serif; }
+    
+    #viewport { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #040508; }
+    #stage { width: 1920px; height: 1080px; transform-origin: center center; position: relative; flex-shrink: 0; overflow: hidden; background: #0b0f19; }
+    
+    /* Nordic Atmosphere */
+    .nordic-glow-1 {
+      position: absolute; top: -140px; right: -140px; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(251, 113, 133, 0.05) 50%, transparent 70%);
+      filter: blur(70px); pointer-events: none;
+    }
+    .nordic-glow-2 {
+      position: absolute; bottom: -140px; left: -140px; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%);
+      filter: blur(70px); pointer-events: none;
+    }
+
+    .slide {
+      position: absolute; inset: 0; padding: 70px 90px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease; transform: scale(0.99);
+    }
+    .slide.active { opacity: 1; visibility: visible; pointer-events: auto; transform: scale(1); }
+
+    .nordic-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 24px;
+    }
+    .nordic-sub {
+      font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: #d97706; margin-bottom: 6px;
+    }
+    .nordic-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; font-style: italic; color: #ffffff; line-height: 1;
+    }
+    .golden-badge {
+      border: 1px solid #f59e0b; color: #fbbf24; background: rgba(245, 158, 11, 0.08);
+      font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    .nordic-card {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px; padding: 36px; position: relative;
+    }
+    .nordic-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #fbbf24; margin-bottom: 14px;
+    }
+
+    .nordic-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; flex: 1; }
+    .nordic-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 24px; flex: 1; }
+    .nordic-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 24px; flex: 1; }
+
+    /* Tables */
+    .nordic-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .nordic-table th {
+      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: #fbbf24;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.3); padding: 14px 18px; text-align: left;
+    }
+    .nordic-table td {
+      padding: 16px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 16px; color: #cbd5e1;
+    }
+
+    /* Questions */
+    .nordic-qbox {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px; padding: 32px; margin-top: 20px;
+    }
+    .nordic-qstem { font-size: 20px; font-weight: 500; color: #ffffff; line-height: 1.5; margin-bottom: 24px; }
+    .nordic-opt-btn {
+      background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px; padding: 16px 20px; color: #e2e8f0; font-family: inherit; font-size: 16px;
+      cursor: pointer; transition: all 0.2s ease; margin-bottom: 12px; width: 100%; text-align: left;
+    }
+    .nordic-opt-btn:hover { background: rgba(245, 158, 11, 0.12); border-color: #f59e0b; color: #fbbf24; }
+    .nordic-opt-btn.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: #10b981 !important; color: #34d399 !important; }
+    .nordic-opt-btn.wrong { background: rgba(239, 68, 68, 0.2) !important; border-color: #ef4444 !important; color: #fca5a5 !important; }
+    .nordic-fb {
+      display: none; background: rgba(0, 0, 0, 0.4); border-left: 3px solid #f59e0b; padding: 16px 20px; border-radius: 8px; margin-top: 16px; font-size: 15px; color: #cbd5e1;
+    }
+
+    #nordic-hud {
+      position: absolute; bottom: 24px; left: 90px; right: 90px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="viewport">
+  <div id="stage">
+    <div class="nordic-glow-1"></div>
+    <div class="nordic-glow-2"></div>
+
+    <!-- S1: COVER -->
+    <div class="slide active" id="s1" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+      <div class="nordic-sub">Colección Máster EUNACOM 2026 · Cardiología</div>
+      <h1 style="font-family: 'Cormorant Garamond'; font-size: 74px; font-weight: 700; font-style: italic; color: #ffffff; margin: 16px 0 24px; max-width: 1300px; line-height: 1.05;">
+        Síndrome Coronario Agudo con Supradesnivel del ST & Reperfusión
+      </h1>
+      <p style="font-size: 22px; color: #94a3b8; max-width: 950px; line-height: 1.5; margin-bottom: 36px;">
+        Análisis Clínico y Terapéutico de Alta Complejidad según el Perfil V3 de ASOFAMECh y las Guías GES de Urgencia en Chile.
+      </p>
+      <div style="display: flex; gap: 16px;">
+        <span class="golden-badge">Código Oficial 1.01.2.002</span>
+        <span class="golden-badge" style="border-color: #fb7185; color: #fda4af;">Código Oficial 1.01.3.005</span>
+        <span class="golden-badge" style="border-color: #2dd4bf; color: #5eead4;">Garantía GES</span>
+      </div>
+    </div>
+
+    <!-- S2: MATRIZ PERFIL V3 -->
+    <div class="slide" id="s2">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Estándar Legal ASOFAMECh</div>
+          <h2 class="nordic-title">Matriz de Competencias del Médico General</h2>
+        </div>
+        <div class="golden-badge">Perfil V3</div>
+      </div>
+      <div>
+        <table class="nordic-table">
+          <thead>
+            <tr>
+              <th>Dominio Clínico</th>
+              <th>Nivel Requerido</th>
+              <th>Conducta Asistencial en el Sistema de Salud Chileno</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Diagnóstico</strong></td>
+              <td style="color: #fbbf24;">Específico</td>
+              <td>Interpretación del ECG en &le; 10 min. Diagnóstico certero de isquemia transmural aguda sin esperar biomarcadores.</td>
+            </tr>
+            <tr>
+              <td><strong>Tratamiento</strong></td>
+              <td style="color: #fb7185;">Urgencia Total</td>
+              <td>Carga DAPT (AAS + Ticagrelor/Clopidogrel), anticoagulación parenteral con Enoxaparina y activación de reperfusión.</td>
+            </tr>
+            <tr>
+              <td><strong>Seguimiento</strong></td>
+              <td style="color: #5eead4;">Derivación / APS</td>
+              <td>Traslado asistido por SAMU a hemodinamia. Control post-infarto en APS para prevención secundaria agresiva.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- S3: FISIOPATOLOGÍA -->
+    <div class="slide" id="s3">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Etiopatogenia & Electrocardiografía</div>
+          <h2 class="nordic-title">Isquemia Transmural & Criterios del Segmento ST</h2>
+        </div>
+        <div class="golden-badge">Bases Biológicas</div>
+      </div>
+      <div class="nordic-grid-2">
+        <div class="nordic-card">
+          <h3>Evolución de la Placa Vulnerable</h3>
+          <p style="font-size: 16px; line-height: 1.6; color: #cbd5e1;">
+            La disrupción de la capa endotelial desencadena una cascada de trombogénesis oclusiva. En menos de 20 minutos se produce isquemia subendocárdica que rápidamente progresa a compromiso transmural completo si no se restablece el flujo.
+          </p>
+        </div>
+        <div class="nordic-card" style="border-color: rgba(245, 158, 11, 0.3);">
+          <h3>Criterios de Supradesnivel (Punto J)</h3>
+          <div style="font-size: 16px; line-height: 1.7; color: #cbd5e1;">
+            • <strong>V2-V3:</strong> &ge; 2.0 mm en hombres &ge; 40a (&ge; 2.5 mm en &lt; 40a; &ge; 1.5 mm en mujeres).<br>
+            • <strong>Resto:</strong> &ge; 1.0 mm en &ge; 2 derivaciones contiguas.<br>
+            • <strong>Nuevo BCRI:</strong> Equivalente clínico de SCACEST.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S4: ABCDE -->
+    <div class="slide" id="s4">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Protocolo de Resucitación</div>
+          <h2 class="nordic-title">Abordaje Inmediato en el Servicio de Urgencias</h2>
+        </div>
+        <div class="golden-badge">Primeros 10 Minutos</div>
+      </div>
+      <div class="nordic-grid-4">
+        <div class="nordic-card">
+          <h3 style="color: #fb7185;">Vía Aérea</h3>
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.5;">O2 solo si SatO2 &lt; 90%. Evitar la hiperoxia indiscriminada.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #fbbf24;">Accesos</h3>
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.5;">2 VVP gruesas (#18G) y monitorización continua ante FV primaria.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #2dd4bf;">Analgesia</h3>
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.5;">Morfina fraccionada 2-4mg EV solo si dolor intenso refractario.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #a78bfa;">ECG &lt; 10m</h3>
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.5;">Lectura médica obligatoria. Si cara inferior: tomar V3R-V4R.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5: FARMACOTERAPIA -->
+    <div class="slide" id="s5">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Farmacoterapia Guiada</div>
+          <h2 class="nordic-title">Esquema Antiagregante & Anticoagulante</h2>
+        </div>
+        <div class="golden-badge">DAPT Protocol</div>
+      </div>
+      <div>
+        <table class="nordic-table">
+          <thead>
+            <tr>
+              <th>Fármaco</th>
+              <th>Dosis de Carga</th>
+              <th>Estrategia Asociada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AAS</strong></td>
+              <td style="color: #fbbf24;">250 - 500 mg VO masticable</td>
+              <td>Universal e inmediata.</td>
+            </tr>
+            <tr>
+              <td><strong>Ticagrelor</strong></td>
+              <td style="color: #fbbf24;">180 mg VO</td>
+              <td>Angioplastía Primaria (PCI).</td>
+            </tr>
+            <tr>
+              <td><strong>Clopidogrel</strong></td>
+              <td style="color: #fbbf24;">300 mg VO (75 mg si &gt;75a)</td>
+              <td>Fibrinolisis con Tenecteplase.</td>
+            </tr>
+            <tr>
+              <td><strong>Enoxaparina</strong></td>
+              <td style="color: #fbbf24;">30 mg EV bolo + 1 mg/kg SC</td>
+              <td>Anticoagulación de elección.</td>
+            </tr>
+            <tr>
+              <td><strong>Atorvastatina</strong></td>
+              <td style="color: #fbbf24;">80 mg VO</td>
+              <td>Estabilización pleiotrópica de placa.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- S6: KILLIP -->
+    <div class="slide" id="s6">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Estratificación Pronóstica</div>
+          <h2 class="nordic-title">Score de Severidad de Killip-Kimball</h2>
+        </div>
+        <div class="golden-badge">Mortalidad Intrahospitalaria</div>
+      </div>
+      <div class="nordic-grid-4">
+        <div class="nordic-card">
+          <div style="font-size: 28px; font-family: 'Cormorant Garamond'; color: #2dd4bf; font-weight: 700;">Killip I (6%)</div>
+          <p style="font-size: 15px; color: #94a3b8; margin-top: 10px;">Sin congestión ni estertores audibles.</p>
+        </div>
+        <div class="nordic-card">
+          <div style="font-size: 28px; font-family: 'Cormorant Garamond'; color: #fbbf24; font-weight: 700;">Killip II (17%)</div>
+          <p style="font-size: 15px; color: #94a3b8; margin-top: 10px;">Crepitaciones en &lt; 50% de campos y R3.</p>
+        </div>
+        <div class="nordic-card">
+          <div style="font-size: 28px; font-family: 'Cormorant Garamond'; color: #f97316; font-weight: 700;">Killip III (38%)</div>
+          <p style="font-size: 15px; color: #94a3b8; margin-top: 10px;">Edema agudo de pulmón bilateral extenso.</p>
+        </div>
+        <div class="nordic-card">
+          <div style="font-size: 28px; font-family: 'Cormorant Garamond'; color: #fb7185; font-weight: 700;">Killip IV (81%)</div>
+          <p style="font-size: 15px; color: #94a3b8; margin-top: 10px;">Shock cardiogénico. Derivación inmediata.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S7: REPERFUSIÓN -->
+    <div class="slide" id="s7">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Estrategia Terapéutica</div>
+          <h2 class="nordic-title">Angioplastía Primaria vs Trombólisis Sistémica</h2>
+        </div>
+        <div class="golden-badge">Ventana 120 Minutos</div>
+      </div>
+      <div class="nordic-grid-2">
+        <div class="nordic-card">
+          <h3>Angioplastía Primaria (&lt; 90 min)</h3>
+          <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+            Gold Standard cuando el tiempo desde el diagnóstico hasta el cruce de la guía en hemodinamia es menor a 120 minutos. Se acompaña de Ticagrelor 180 mg.
+          </p>
+        </div>
+        <div class="nordic-card" style="border-color: rgba(251, 113, 133, 0.3);">
+          <h3 style="color: #fb7185;">Trombólisis con Tenecteplase (&lt; 30 min)</h3>
+          <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+            Indicada si el traslado supera los 120 minutos. Administrar bolo único peso-adaptado asociado a Clopidogrel 300 mg y Enoxaparina.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S8: LOCALIZACIÓN -->
+    <div class="slide" id="s8">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Topografía Isquémica</div>
+          <h2 class="nordic-title">Correlación Electrocardiográfica & Arteria Culpable</h2>
+        </div>
+        <div class="golden-badge">Anatomía Coronaria</div>
+      </div>
+      <div class="nordic-grid-3">
+        <div class="nordic-card">
+          <h3>Pared Anterior (V1-V4)</h3>
+          <p style="font-size: 15px; color: #cbd5e1;">Arteria Descendente Anterior (LAD). Compromete gran masa ventricular.</p>
+        </div>
+        <div class="nordic-card">
+          <h3>Pared Inferior (DII, DIII, aVF)</h3>
+          <p style="font-size: 15px; color: #cbd5e1;">Arteria Coronaria Derecha (RCA). Evaluar compromiso de VD (V3R-V4R).</p>
+        </div>
+        <div class="nordic-card">
+          <h3>Pared Lateral (DI, aVL, V5-6)</h3>
+          <p style="font-size: 15px; color: #cbd5e1;">Arteria Circunfleja (LCx). Tomar V7-V9 si se sospecha infarto posterior.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S9: CONTRAINDICACIONES -->
+    <div class="slide" id="s9">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Seguridad del Paciente</div>
+          <h2 class="nordic-title">Contraindicaciones Absolutas de Fibrinolisis</h2>
+        </div>
+        <div class="golden-badge" style="border-color: #fb7185; color: #fda4af;">Alerta Crítica</div>
+      </div>
+      <div class="nordic-grid-2">
+        <div class="nordic-card" style="border-color: rgba(251, 113, 133, 0.4);">
+          <h3 style="color: #fb7185;">Criterios de Exclusión Fibrinolítica</h3>
+          <div style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            • Hemorragia intracraneal previa (en cualquier momento de la vida).<br>
+            • ACV isquémico en los últimos 6 meses.<br>
+            • Neoplasia cerebral o malformación vascular conocida.<br>
+            • Sangrado gastrointestinal activo en el último mes.<br>
+            • Sospecha de Disección Aórtica Aguda.
+          </div>
+        </div>
+        <div class="nordic-card">
+          <h3>Alternativa Obligatoria</h3>
+          <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+            Ante cualquier contraindicación absoluta, el paciente debe ser derivado para <strong>Angioplastía Primaria</strong> sin administrar fibrinolíticos, independientemente de la distancia.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S10: 4 TRAMPAS -->
+    <div class="slide" id="s10">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Perlas de Rendimiento</div>
+          <h2 class="nordic-title">Las 4 Trampas Clásicas del EUNACOM</h2>
+        </div>
+        <div class="golden-badge">Claves de Examen</div>
+      </div>
+      <div class="nordic-grid-2">
+        <div class="nordic-card">
+          <h3 style="color: #fbbf24;">1. IAM Ventrículo Derecho</h3>
+          <p style="font-size: 15px; color: #94a3b8;">Hipotensión con nitratos. Prohibidos vasodilatadores y diuréticos; manejar con SF 0.9%.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #fbbf24;">2. Fracaso de Fibrinolisis</h3>
+          <p style="font-size: 15px; color: #94a3b8;">Descenso del ST &lt;50% a los 90 min exige Angioplastía de Rescate inmediata.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #fbbf24;">3. Bloqueo de Rama Izquierda</h3>
+          <p style="font-size: 15px; color: #94a3b8;">Un nuevo BCRI con clínica isquémica equivale a SCACEST y activa reperfusión.</p>
+        </div>
+        <div class="nordic-card">
+          <h3 style="color: #fbbf24;">4. Ventana Tardía &gt;12h</h3>
+          <p style="font-size: 15px; color: #94a3b8;">Estable y sin dolor: no trombolizar de urgencia; requiere coronariografía diferida.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S11: CASO 1 -->
+    <div class="slide" id="s11">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Caso Clínico 1 de 3</div>
+          <h2 class="nordic-title">Diagnóstico & Conducta Inmediata en Urgencias</h2>
+        </div>
+        <div class="golden-badge">Evaluación EUNACOM</div>
+      </div>
+      <div class="nordic-qbox">
+        <div class="nordic-qstem">
+          Hombre de 58 años con dolor torácico opresivo de 45 minutos. ECG muestra SDST de 3 mm en V1-V4. PA 150/90, SatO2 96%. ¿Conducta inicial prioritaria?
+        </div>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn1', 'Incorrecto. La SatO2 es normal (96%) y no se deben esperar troponinas para decidir reperfusión.')">A) O2 por mascarilla, tomar troponinas y esperar resultado para definir conducta.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, true, 'fn1', '¡Correcto! En SCACEST se indica DAPT de carga (AAS + Ticagrelor) y activación inmediata de Angioplastía Primaria.')">B) AAS 250 mg masticable + Ticagrelor 180 mg y activar inmediatamente Angioplastía Primaria.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn1', 'Incorrecto. La trombólisis no es de primera línea si se dispone de angioplastía primaria.')">C) Administrar bolo de Tenecteplase y solicitar ecocardiograma previo.</button>
+        <div class="nordic-fb" id="fn1"></div>
+      </div>
+    </div>
+
+    <!-- S12: CASO 2 -->
+    <div class="slide" id="s12">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Caso Clínico 2 de 3</div>
+          <h2 class="nordic-title">Tiempos de Traslado & Elección de Reperfusión</h2>
+        </div>
+        <div class="golden-badge">Evaluación EUNACOM</div>
+      </div>
+      <div class="nordic-qbox">
+        <div class="nordic-qstem">
+          Mujer de 64 años con SCACEST anterior en hospital periférico a 3.5 horas de centro con hemodinamia (&gt;120 min). ¿Manejo indicado?
+        </div>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn2', 'Incorrecto. El retraso de 3.5 horas genera necrosis transmural irreversible.')">A) Trasladar en ambulancia para angioplastía sin trombolizar.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, true, 'fn2', '¡Correcto! Por exceder 120 minutos de traslado, la indicación GES es trombolizar inmediatamente con Tenecteplase en bolo + AAS + Clopidogrel y coordinar traslado.')">B) Trombolizar de inmediato con Tenecteplase en bolo + AAS + Clopidogrel y coordinar posterior traslado.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn2', 'Incorrecto. La trombólisis debe complementarse con coronariografía sistemática.')">C) Trombolizar y mantener en hospital comunitario sin derivar.</button>
+        <div class="nordic-fb" id="fn2"></div>
+      </div>
+    </div>
+
+    <!-- S13: CASO 3 -->
+    <div class="slide" id="s13">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Caso Clínico 3 de 3</div>
+          <h2 class="nordic-title">Infarto Inferior & Trampa de Precarga</h2>
+        </div>
+        <div class="golden-badge">Evaluación EUNACOM</div>
+      </div>
+      <div class="nordic-qbox">
+        <div class="nordic-qstem">
+          Paciente con IAM inferior que recibe Nitroglicerina y se hipotensa a 70/40 con yugulares ingurgitadas y campos limpios. ¿Paso terapéutico prioritario?
+        </div>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn3', 'Incorrecto. Los vasopresores no sustituyen la restitución de precarga en ventrículo derecho.')">A) Iniciar infusión de noradrenalina inmediatamente.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, true, 'fn3', '¡Correcto! Suspender nitratos y administrar bolo de Suero Fisiológico 0.9% para restablecer la precarga del VD.')">B) Suspender nitroglicerina y administrar bolo rápido de Suero Fisiológico 0.9% EV.</button>
+        <button class="nordic-opt-btn" onclick="checkNordic(this, false, 'fn3', 'Incorrecto. La furosemida colapsaría aún más el retorno venoso al ventrículo derecho.')">C) Furosemida 40 mg EV para aliviar la ingurgitación.</button>
+        <div class="nordic-fb" id="fn3"></div>
+      </div>
+    </div>
+
+    <!-- S14: CHECKLIST FINAL -->
+    <div class="slide" id="s14">
+      <div class="nordic-header">
+        <div>
+          <div class="nordic-sub">Síntesis Clínica</div>
+          <h2 class="nordic-title">Checklist de Alta Fidelidad SCACEST</h2>
+        </div>
+        <div class="golden-badge">Resumen Final</div>
+      </div>
+      <div class="nordic-grid-3">
+        <div class="nordic-card">
+          <h3>1. Diagnóstico Rápido</h3>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ ECG en &le; 10 minutos.<br>
+            ✓ Carga AAS 250-500 mg.<br>
+            ✓ O2 solo si Sat &lt; 90%.
+          </p>
+        </div>
+        <div class="nordic-card">
+          <h3>2. Reperfusión Oportuna</h3>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ PCI si traslado &le; 120 min.<br>
+            ✓ TNK si traslado &gt; 120 min.<br>
+            ✓ Enoxaparina EV + SC.
+          </p>
+        </div>
+        <div class="nordic-card">
+          <h3>3. Seguridad & Rescate</h3>
+          <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+            ✓ No nitratos en IAM VD.<br>
+            ✓ ST &lt;50% a 90m ➔ PCI rescate.<br>
+            ✓ Seguimiento y GDMT en APS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="nordic-hud">
+      <div style="font-family: 'Space Mono'; font-size: 14px; color: #fbbf24;" id="n-counter">SLIDE 01 / 14</div>
+      <div>
+        <button style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 8px 18px; border-radius: 6px; font-family: inherit; cursor: pointer;" onclick="prevN()">◀ Anterior</button>
+        <button style="background: #f59e0b; border: none; color: #000; font-weight: 700; padding: 8px 18px; border-radius: 6px; font-family: inherit; cursor: pointer; margin-left: 8px;" onclick="nextN()">Siguiente ▶</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let curN = 1;
+  const totN = 14;
+
+  function fitStage() {
+    const st = document.getElementById('stage');
+    const vp = document.getElementById('viewport');
+    const sc = Math.min(vp.clientWidth / 1920, vp.clientHeight / 1080);
+    st.style.transform = `scale(${sc})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  function showN(n) {
+    if (n < 1) n = 1;
+    if (n > totN) n = totN;
+    curN = n;
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i + 1 === curN));
+    document.getElementById('n-counter').innerText = `SLIDE ${String(curN).padStart(2, '0')} / ${String(totN).padStart(2, '0')}`;
+  }
+  function nextN() { showN(curN + 1); }
+  function prevN() { showN(curN - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') nextN();
+    if (e.key === 'ArrowLeft') prevN();
+  });
+
+  function checkNordic(btn, ok, id, exp) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('.nordic-opt-btn').forEach(b => { b.disabled = true; });
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById(id);
+    fb.style.display = 'block';
+    fb.innerHTML = `<strong>${ok ? 'RESPUESTA CORRECTA: ' : 'RESPUESTA INCORRECTA: '}</strong>${exp}`;
+  }
+</script>
+</body>
+</html>

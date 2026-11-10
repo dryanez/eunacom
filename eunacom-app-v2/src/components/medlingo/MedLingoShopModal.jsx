@@ -126,7 +126,7 @@ export default function MedLingoShopModal({
               <p>Duplica tus puntos de experiencia ganados durante los próximos 15 minutos de estudio.</p>
               <div className="item-current-status">
                 {state.doubleXpActiveUntil && new Date(state.doubleXpActiveUntil) > new Date() ? (
-                  <span className="status-active">¡Activa ahora! 🔥</span>
+                  <span className="status-active">¡Activa ahora!</span>
                 ) : (
                   <span>Inactiva</span>
                 )}

@@ -1,3 +1,4 @@
+import { isAndroidApp } from '../lib/playBilling'
 import React, { useState } from 'react'
 import { APP_PLANS, PRODUCTS, TRANSFER, COUPONS, fmtClp } from '../config/tienda'
 import '../styles/tienda.css'
@@ -78,6 +79,8 @@ export default function Links() {
         <a className="bio-mini" href={`https://www.instagram.com/${INSTAGRAM_USER}/`} target="_blank" rel="noopener noreferrer" onClick={() => track('libro_gratis_reels')}>Ver los reels →</a>
       </div>
 
+      {/* Android app: Google Play only allows paying through Play, so no other payment options here */}
+      {!isAndroidApp() && <>
       <button className={`bio-btn ${intl ? 'open' : ''}`} onClick={() => { setIntl(v => !v); track('pago_internacional') }} aria-expanded={intl}>
         <span className="bio-btn__icon" aria-hidden="true">🌎</span>
         <span className="bio-btn__text">
@@ -97,6 +100,7 @@ export default function Links() {
           </div>
         </div>
       )}
+      </>}
 
       {TELEGRAM_URL ? (
         <LinkBtn id="telegram" icon="✈️" href={TELEGRAM_URL} external title="Grupo de Telegram gratis" sub="Preguntas diarias y avisos del EUNACOM" />

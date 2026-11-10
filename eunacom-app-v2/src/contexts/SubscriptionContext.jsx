@@ -7,6 +7,7 @@ import { expandSkus, resolveCoupon, LIBRARY_ITEMS, LIBRARY_MIN_PLAN_MONTHS } fro
 
 const COUPON_KEY = 'eunacom_coupon';
 import { track } from '../lib/analytics';
+import { isAndroidApp, finishPendingPlayPurchases } from '../lib/playBilling';
 
 const SubscriptionContext = createContext();
 
@@ -16,6 +17,11 @@ export function useSubscription() {
 
 export function SubscriptionProvider({ children }) {
   const { user, isAdmin, loading: authLoading } = useAuth();
+
+  // Android app: activate Play purchases that were paid but never confirmed (app closed mid-payment)
+  useEffect(() => {
+    if (user?.id && isAndroidApp()) finishPendingPlayPurchases(user.id).catch(() => {});
+  }, [user?.id]);
   const isUserAdmin = typeof isAdmin === 'function' && isAdmin();
 
   const [isPremium, setIsPremium] = useState(() => {
