@@ -1,3 +1,4 @@
+import { nextExam } from '../../config/examen'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -5,6 +6,7 @@ import {
   Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus,
 } from 'lucide-react'
 import './midnight.css'
+import BibliotecaCarrusel from './BibliotecaCarrusel'
 
 // Cifras reales (nov-2026): Turso eunacom_questions = 47.271; Biblioteca ≈ 100 libros
 // (21 tomos, 21 Repaso Final, 19 Atlas, 23 Libros Gordos, 16 reconstrucciones + Gran Libro, Perfil V3).
@@ -35,6 +37,7 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         <div>
           <h1 className="mn-h1">Hola, {name || 'Doctor'}</h1>
           <p className="mn-sub">{guest ? 'Crea tu cuenta gratis y empieza a prepararte para el EUNACOM' : 'Continúa tu preparación para el EUNACOM'}</p>
+          {(() => { const ex = nextExam(); return ex && ex.days <= 120 ? <p className="mn-sub" style={{ color: '#22d3ee', fontWeight: 700 }}>Faltan {ex.days} días para el EUNACOM del {ex.label}</p> : null })()}
         </div>
         {streak > 0 && (
           <span className="mn-streak"><Flame size={15} />{streak}</span>
@@ -70,6 +73,8 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
       <button className="mn-btn" onClick={go('/test')}>
         <PenLine size={16} /> Crear test de preguntas
       </button>
+
+      <BibliotecaCarrusel onOpen={go('/biblioteca')} />
 
       <div className="mn-card mn-list">
         {MORE.map(m => (

@@ -284,6 +284,7 @@ export function SubscriptionProvider({ children }) {
     <SubscriptionContext.Provider value={{ 
       isPremium: effectiveIsPremium, 
       isFounder: effectiveIsFounder, 
+      isAdminUser: isUserAdmin,
       togglePremium, 
       loadingPremium: loadingPremium || authLoading,
       freemiumMode,

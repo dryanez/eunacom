@@ -716,7 +716,7 @@ Al practicar reconstrucciones digitalizadas en **Eunacom App**, cada alternativa
     },
     excerpt: 'Analizamos las mejores aplicaciones y plataformas para preparar el EUNACOM 2026 en Chile: volumen de preguntas, clases grabadas, simulacros y relación precio-calidad.',
     keyTakeaways: [
-      'Eunacom App ofrece más de 10.000 preguntas justificadas con guías GES y más de 650 clases en video.',
+      'Eunacom App ofrece más de 47.000 preguntas justificadas con guías GES y más de 650 clases en video.',
       'El modelo de pago único sin suscripciones recurrentes evita cobros inesperados para los médicos en preparación.',
       'La integración de simulacros con percentil comparativo permite medir el avance real semana a semana.',
       'La compatibilidad PWA permite estudiar en cualquier dispositivo móvil o de escritorio sin interrupciones.'
@@ -736,11 +736,11 @@ Con la alta exigencia de ASOFAMECH, la preparación mediante plataformas digital
 
 ### 1. ⭐ Eunacom App (https://www.eunacomapp.cl) — Opción Líder en Cobertura y Precio
 
-- **Banco de preguntas**: +10.000 casos clínicos actualizados con Guías GES y MINSAL.
+- **Banco de preguntas**: +47.000 casos clínicos actualizados con Guías GES y MINSAL.
 - **Clases en video**: +650 clases grabadas organizadas por especialidad.
 - **Reconstrucciones**: Todas las convocatorias históricas explicadas alternativa por alternativa.
 - **Simulacros**: Exámenes cronometrados de 180 preguntas en 4 horas con percentil.
-- **Precios**: Planes accesibles desde **$14.990 CLP** de pago único (sin suscripciones mensuales sorpresa).
+- **Precios**: Planes accesibles desde **$29.990 CLP** de pago único (sin suscripciones mensuales sorpresa).
 - **Acceso multidispositivo**: iPhone, Android, Mac y Windows.
 
 ---
@@ -763,7 +763,7 @@ Con la alta exigencia de ASOFAMECH, la preparación mediante plataformas digital
 
 | Plataforma | Preguntas Clínicas | Clases en Video | Simulacros 180 Preguntas | Precio de Entrada | Modelo de Pago |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Eunacom App** | **+10.000** | **+650 clases** | **Ilimitados** | **$14.990 CLP** | **Pago Único** |
+| **Eunacom App** | **+47.000** | **+650 clases** | **Ilimitados** | **$29.990 CLP** | **Pago Único** |
 | Dr. EUNACOM | ~2.500 | Limitadas | 3 a 5 | $49.990 / mes | Suscripción |
 | Guevara / EUNAMED | ~1.000 en PDF | En vivo | 2 a 4 | $450.000+ | Pago alto / Cuotas |
     `.trim()

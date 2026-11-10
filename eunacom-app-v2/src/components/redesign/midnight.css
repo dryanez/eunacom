@@ -210,3 +210,17 @@ button.mn-lb-row { cursor: pointer; }
 /* Menú lateral: en pantallas bajas se desplaza en vez de aplastar los títulos */
 .sidebar__nav { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 .sidebar__nav > * { flex-shrink: 0; }
+
+/* Biblioteca: portadas que pasan solas (Inicio) */
+.mn-bib { display: block; width: 100%; text-align: left; cursor: pointer; padding: 1rem 0 1.1rem; overflow: hidden; color: inherit; font: inherit; }
+.mn-bib-head { padding: 0 1rem .8rem; }
+.mn-bib-title { font-size: 1.35rem; font-weight: 800; color: #cbd5e1; }
+.mn-bib-title small { font-size: .8rem; font-weight: 700; color: #fbbf24; margin-left: .4rem; }
+.mn-bib-go { display: inline-flex; align-items: center; gap: 2px; font-size: .82rem; font-weight: 700; color: #38bdf8; }
+.mn-bib-view { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.mn-bib-track { display: flex; gap: 14px; width: max-content; padding: 0 1rem; animation: mn-bib-scroll linear infinite; }
+.mn-bib-track img { width: 150px; height: 212px; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 24px rgba(0,0,0,.45); flex: none; background: #0f172a; }
+.mn-bib:hover .mn-bib-track, .mn-bib:active .mn-bib-track { animation-play-state: paused; }
+@keyframes mn-bib-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 520px) { .mn-bib-track img { width: 118px; height: 167px; } .mn-bib-track { gap: 10px; } }
+@media (prefers-reduced-motion: reduce) { .mn-bib-track { animation: none; } .mn-bib-view { overflow-x: auto; } }

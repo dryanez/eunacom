@@ -10,7 +10,7 @@ export default function SimulacrosLanding() {
   const navigate = useNavigate()
 
   usePageSeo({
-    title: 'Simulacros Oficiales EUNACOM 2026 | Banco de +10.000 Preguntas Clínicas',
+    title: 'Simulacros Oficiales EUNACOM 2026 | Banco de +47.000 Preguntas Clínicas',
     description: 'Practica con simulacros de 180 preguntas cronometradas idénticas al examen EUNACOM-ST oficial de ASOFAMECH. Retroalimentación justificada con Guías GES y MINSAL vigentes.',
     canonical: 'https://www.eunacomapp.cl/simulacros-eunacom'
   })
@@ -103,7 +103,7 @@ export default function SimulacrosLanding() {
               padding: '14px 24px', borderRadius: 10, fontSize: '1rem', fontWeight: 600, textDecoration: 'none'
             }}
           >
-            Ver Planes desde $14.990
+            Ver Planes desde $29.990
           </Link>
         </div>
       </section>

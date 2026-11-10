@@ -10,7 +10,7 @@ export default function ReconstruccionesLanding() {
   const navigate = useNavigate()
 
   usePageSeo({
-    title: 'Reconstrucciones EUNACOM Reales 2024-2026 | Exámenes Anteriores Explicados',
+    title: 'Reconstrucciones EUNACOM Reales 2013-2026 | Exámenes Anteriores Explicados',
     description: 'Accede a la recopilación más completa de reconstrucciones reales del EUNACOM. Practica con preguntas oficiales de exámenes anteriores justificadas por alternativa.',
     canonical: 'https://www.eunacomapp.cl/reconstrucciones-eunacom'
   })
@@ -92,7 +92,7 @@ export default function ReconstruccionesLanding() {
               padding: '14px 24px', borderRadius: 10, fontSize: '1rem', fontWeight: 600, textDecoration: 'none'
             }}
           >
-            Planes desde $14.990
+            Planes desde $29.990
           </Link>
         </div>
       </section>
