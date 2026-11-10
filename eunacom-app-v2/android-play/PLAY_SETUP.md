@@ -5,14 +5,15 @@ App: `com.eunacom.app` · cuenta Play Console «Academia EUNACOM» (Wiackowska G
 ## 1. Planes (precios nuevos, nov-2026)
 **Suscripción** — Play Console → Monetizar → Productos → **Suscripciones** → Crear suscripción
 - ID del producto: `eunacom_premium` · Nombre: «EUNACOM Premium»
-- 2 planes base (renovación automática), precio en CLP:
+- 3 planes base (renovación automática), precio en CLP:
 
 | ID del plan base | Período | Precio CLP |
 |---|---|---|
 | `mensual` | 1 mes (P1M) | 29.990 |
 | `trimestral` | 3 meses (P3M) | 55.990 (incluye Biblioteca) |
+| `semestral` | 6 meses (P6M) | 75.990 (incluye Biblioteca) |
 
-Activa cada plan base. Período de gracia: 7 días (recomendado). Los planes `semestral`/`anual` ya no se venden (el código aún los reconoce).
+Activa cada plan base. Período de gracia: 7 días (recomendado). El plan `anual` ya no se vende (el código aún lo reconoce).
 
 **De por vida** — Play no permite suscripciones sin fin, así que es una **compra única**:
 Monetizar → Productos → **Productos únicos** → Crear: ID `plan_de_por_vida`, nombre «EUNACOM De por vida», precio CLP 129.990.

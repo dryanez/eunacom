@@ -22,6 +22,7 @@ function normalizePlanId(planId, desc, amount) {
     if (planId === '3m') return { id: '3m', name: '3 Meses ($34.990)' }
     if (planId === '6m') return { id: '6m', name: '6 Meses ($54.990)' }
     if (planId === '1y') return { id: '1y', name: '1 Año ($89.990)' }
+    if (planId === 'life') return { id: 'life', name: 'De por vida ($129.990)' }
     if (planId === 'offer') return { id: 'offer', name: 'Oferta 1 Mes ($5.000)' }
     if (planId === 'donate') return { id: 'donation', name: 'Donación ($9.000)' }
   }
@@ -36,6 +37,11 @@ function normalizePlanId(planId, desc, amount) {
   const n = parseFloat(amount || 0)
   if (n === 5000) return { id: 'offer', name: 'Oferta 1 Mes ($5.000)' }
   if (n === 9000) return { id: 'donation', name: 'Donación ($9.000)' }
+  // Precios nuevos (nov-2026) antes de los rangos antiguos, que tomarían 29.990 como «1 Año»
+  if (n === 29990) return { id: '1m', name: '1 Mes ($29.990)' }
+  if (n === 55990) return { id: '3m', name: '3 Meses ($55.990)' }
+  if (n === 75990) return { id: '6m', name: '6 Meses ($75.990)' }
+  if (n === 129990) return { id: 'life', name: 'De por vida ($129.990)' }
   if (n === 14990 || n <= 20) return { id: '1m', name: '1 Mes ($14.990)' }
   if (n === 34990 || (n > 20 && n <= 45)) return { id: '3m', name: '3 Meses ($34.990)' }
   if (n === 54990 || (n > 45 && n <= 75)) return { id: '6m', name: '6 Meses ($54.990)' }

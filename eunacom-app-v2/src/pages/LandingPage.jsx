@@ -70,6 +70,22 @@ const PLANS = [
     cta: 'Empezar con 3 Meses',
   },
   {
+    id: '6m',
+    name: '6 Meses',
+    price: '$75.990',
+    unit: 'pago único (~$12.665/mes)',
+    badge: 'Más tiempo',
+    desc: 'Medio año para estudiar con calma, con el curso completo y los libros.',
+    features: [
+      'Todo lo incluido en 3 Meses, con la Biblioteca completa',
+      'Alcanza para dos convocatorias (Julio y Diciembre)',
+      'El mejor precio por mes de los planes con vencimiento',
+      'Plan de estudio y estadísticas durante todo el período',
+    ],
+    popular: false,
+    cta: 'Elegir 6 Meses',
+  },
+  {
     id: 'life',
     name: 'De por vida',
     price: '$129.990',

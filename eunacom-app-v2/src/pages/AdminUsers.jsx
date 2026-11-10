@@ -1337,6 +1337,7 @@ const AdminUsers = () => {
                     <option value="3m">3 Meses ($34.990)</option>
                     <option value="6m">6 Meses ($54.990)</option>
                     <option value="1y">1 Año ($89.990)</option>
+                    <option value="life">De por vida ($129.990)</option>
                     <option value="offer">Oferta 1 Mes ($5.000)</option>
                     <option value="donation">Donación ($9.000)</option>
                   </select>
