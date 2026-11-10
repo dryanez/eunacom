@@ -10,25 +10,24 @@ import {
 import { usePageSeo } from '../lib/seo'
 import { promoPrice } from '../config/promo'
 import { useSubscription } from '../contexts/SubscriptionContext'
-import SpecialtyIcon from '../components/redesign/SpecialtyIcon'
 import '../components/redesign/landing.css'
+import LandingHero from '../components/redesign/LandingHero'
 
 // ─── SAMPLE INTERACTIVE QUESTION DEMO ──────────────────────────────────────────
 const DEMO_QUESTION = {
-  area: 'Medicina Interna · Cardiología',
-  highYield: 'Alta Frecuencia EUNACOM',
-  vignette:
-    'Hombre de 58 años, hipertenso y diabético tipo 2, consulta por dolor torácico opresivo de 45 minutos de evolución, irradiado a mandíbula y brazo izquierdo, acompañado de diaforesis. Al examen: PA 140/90 mmHg, FC 88 lpm, saturación 97%. El ECG muestra supradesnivel del segmento ST de 2.5 mm en derivadas DII, DIII y aVF.',
-  question: '¿Cuál es la conducta inicial prioritaria y el diagnóstico más probable?',
+  area: 'Cardiología · Coronario',
+  highYield: 'Alta frecuencia',
+  vignette: 'Hombre de 58 años, HTA y DM2, con dolor torácico opresivo de 45 min y diaforesis. ECG: supradesnivel ST en DII, DIII y aVF.',
+  question: '¿Diagnóstico y conducta inicial?',
   options: [
-    { text: 'A) Infarto agudo al miocardio con supradesnivel ST de pared inferior; activar protocolo de reperfusión inmediata (Angioplastía primaria o Trombolisis).', correct: true },
-    { text: 'B) Angina inestable de alto riesgo; iniciar heparina sódica y solicitar troponinas seriadas a las 6 horas.', correct: false },
-    { text: 'C) Pericarditis aguda; iniciar Ibuprofeno 600 mg cada 8 horas y Colquicina.', correct: false },
-    { text: 'D) Disección aórtica tipo B; solicitar Angio-TAC de tórax antes de cualquier antitrombótico.', correct: false },
-    { text: 'E) Tromboembolismo pulmonar masivo; administrar anticoagulación oral y ecocardiograma transesofágico.', correct: false },
+    { text: 'Angina inestable: heparina y troponinas seriadas', correct: false },
+    { text: 'IAM con SDST inferior: reperfusión inmediata', correct: true },
+    { text: 'Pericarditis aguda: AINE y colchicina', correct: false },
+    { text: 'Disección aórtica: angio-TAC antes de todo', correct: false },
+    { text: 'TEP masivo: anticoagulación', correct: false },
   ],
   explanation:
-    'Diagnóstico: IAMCEST de pared inferior (DII, DIII, aVF). La conducta prioritaria en Chile (Guía Clínica GES Infarto Agudo del Miocardio) es la reperfusión urgente: angioplastía primaria si el tiempo puerta-balón es < 120 min, o trombolisis si es > 120 min. En el EUNACOM se evalúa frecuentemente el reconocimiento electrocardiográfico y los tiempos GES de reperfusión.',
+    'DII, DIII y aVF miran la pared inferior (habitualmente coronaria derecha). Según la guía GES de IAM: angioplastía primaria si puerta-balón < 120 min; si no, trombolisis.',
 }
 
 // ─── PRICING PLANS ────────────────────────────────────────────────────────────
@@ -67,6 +66,7 @@ const PLANS = [
       'Módulo de revisión de errores recurrentes',
     ],
     popular: true,
+    books: ['cov_01', 'gordo_cardiologia', 'repaso_pediatria', 'q_recons', 'atlas_dermatologia'],
     cta: 'Empezar con 3 Meses',
   },
   {
@@ -99,6 +99,7 @@ const PLANS = [
       'Estudia a tu ritmo, sin renovar nunca',
     ],
     popular: false,
+    books: ['cov_08', 'perfil_neurologia', 'gordo_ginecologia', 'repaso_cardiologia', 'atlas_pediatria'],
     cta: 'Elegir De por vida',
   },
 ]
@@ -131,24 +132,6 @@ const FAQ_ITEMS = [
   },
 ]
 
-const METRICS = [
-  { icon: Database, value: '+47.000', label: 'Preguntas con Guías', tone: 'blue' },
-  { icon: PlayCircle, value: '650+', label: 'Videoclases', tone: 'green' },
-  { icon: Library, value: '~100 libros', label: 'Biblioteca', tone: 'amber' },
-  { icon: Archive, value: '16', label: 'Reconstrucciones reales', tone: 'violet' },
-  { icon: Award, value: 'Perfil V3', label: 'Diciembre 2026 100% OK', tone: 'pink' },
-]
-
-const FEATURES = [
-  { icon: BookOpen, tone: 'blue', title: '+47.000 Preguntas Clínicas', text: 'Banco categorizado por especialidad y tema. Cada pregunta incluye justificación detallada y referencias a Guías Clínicas GES/MINSAL.' },
-  { icon: FileText, tone: 'green', title: 'Reconstrucciones Oficiales', text: 'Practica con preguntas extraídas de exámenes reales pasados. Aprende el patrón de preguntas y los distractores más comunes de ASOFAMECH.' },
-  { icon: Video, tone: 'violet', title: 'Clases en Video & Guías', text: 'Módulos explicativos por especialidad médica para reforzar los conceptos complejos y los protocolos de manejo de urgencia en Chile.' },
-  { icon: Calendar, tone: 'amber', title: 'Plan de Estudio Adaptativo', text: 'Ingresa tu fecha de examen y el sistema organizará tus semanas de estudio, priorizando Medicina Interna, Pediatría y tus puntos débiles.' },
-  { icon: Target, tone: 'red', title: 'Simulacros 180 Preguntas', text: 'Entrena en condiciones idénticas al EUNACOM real: 180 preguntas, cronómetro de 4 horas y distribución exacta por ponderación oficial.' },
-  { icon: BarChart2, tone: 'blue', title: 'Módulo de Errores & Stats', text: 'Visualiza tu porcentaje de acierto por especialidad y repasa exclusivamente las preguntas que tuviste malas para fijar el conocimiento.' },
-]
-
-const SPECIALTIES = ['Cardiología', 'Neurología', 'Respiratorio', 'Gastroenterología', 'Nefrología', 'Endocrinología', 'Cirugía', 'Traumatología', 'Pediatría', 'Obstetricia', 'Ginecología', 'Psiquiatría', 'Salud Pública']
 
 const COMPARISON = [
   { label: 'Arancel / Precio', us: 'Desde $29.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
@@ -320,42 +303,7 @@ export default function LandingPage() {
       )}
 
       {/* ── HERO SECTION ── */}
-      <section className="ln-hero">
-        <div className="ln-wrap">
-          <div className="ln-pill ln-in">
-            <Stethoscope size={14} />
-            <span>La plataforma y curso #1 en Chile de preparación EUNACOM 2026</span>
-          </div>
-
-          <h1 className="ln-h1 ln-in ln-d1">
-            La Plataforma y Curso <span className="ln-grad">#1 en Chile</span> de Preparación EUNACOM: <span className="ln-grad">+650 Clases en Video</span> y <span className="ln-grad">+47.000 Preguntas</span>
-          </h1>
-
-          <p className="ln-lead ln-in ln-d2">
-            El estándar de preparación médica en Chile para aprobar tu examen: curso on-demand con más de 650 clases en video (Perfil EUNACOM V3), reconstrucciones de exámenes oficiales, el banco #1 con +47.000 preguntas justificadas y plan adaptativo. Sin mensualidades abusivas.
-          </p>
-
-          <div className="ln-hero-ctas ln-in ln-d3">
-            <button type="button" className="ln-btn" onClick={() => navigate('/dashboard')}>
-              Comenzar ahora (Ver App) <ArrowRight size={18} />
-            </button>
-            <a href="#planes" className="ln-btn-ghost">
-              Ver Planes desde $29.990
-            </a>
-          </div>
-
-          {/* ── KEY METRICS BADGES ── */}
-          <div className="ln-metrics ln-in ln-d4">
-            {METRICS.map(({ icon: Icon, value, label, tone }) => (
-              <div key={label} className="ln-metric">
-                <div className={`ln-metric-ic ln-tone-${tone}`}><Icon size={17} /></div>
-                <b>{value}</b>
-                <span>{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LandingHero navigate={navigate} />
 
       {/* ── UNIVERSITIES INFINITE MOVING MARQUEE (GRAYSCALE TO COLOR HOVER) ── */}
       <section className="ln-unis">
@@ -377,16 +325,15 @@ export default function LandingPage() {
       <section id="simulador-demo" className="ln-sec">
         <div className="ln-wrap ln-narrow">
           <div className="ln-head ln-reveal">
-            <span className="ln-eyebrow">Pruébalo en tu celular o PC</span>
-            <h2 className="ln-h2">Simula una pregunta real del EUNACOM</h2>
-            <p className="ln-sub">Toca la alternativa correcta para ver la justificación clínica oficial.</p>
+            <h2 className="ln-h2">Prueba una pregunta</h2>
+            <p className="ln-sub">Toca la alternativa correcta.</p>
           </div>
 
           {/* Interactive Card */}
           <div className="ln-demo">
             <div className="ln-demo-tags">
               <span className="ln-tag ln-tag-sky">{DEMO_QUESTION.area}</span>
-              <span className="ln-tag ln-tag-amber"><Flame size={12} /> {DEMO_QUESTION.highYield}</span>
+              <span className="ln-tag ln-tag-amber"><Flame size={11} /> {DEMO_QUESTION.highYield}</span>
             </div>
 
             <p className="ln-vignette">{DEMO_QUESTION.vignette}</p>
@@ -425,49 +372,14 @@ export default function LandingPage() {
             {showExplanation && (
               <div className="ln-expl">
                 <div className="ln-expl-t">
-                  <CheckCircle size={16} /> Retroalimentación Clínica (Guías GES)
+                  <CheckCircle size={16} /> Retroalimentación clínica (GES)
                 </div>
                 <p>{DEMO_QUESTION.explanation}</p>
                 <button type="button" className="ln-btn ln-btn-block" onClick={() => navigate('/dashboard')}>
-                  Ver +47.000 Preguntas en la App <ArrowRight size={16} />
+                  Ver +47.000 preguntas <ArrowRight size={16} />
                 </button>
               </div>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CORE FEATURES GRID ── */}
-      <section id="caracteristicas" className="ln-sec ln-sec-alt">
-        <div className="ln-wrap">
-          <div className="ln-head ln-reveal">
-            <span className="ln-eyebrow">Todo en un Solo Lugar</span>
-            <h2 className="ln-h2">Herramientas diseñadas para médicos</h2>
-            <p className="ln-sub">
-              Estudia de forma activa con el mayor banco de preguntas y clases de especialidad en Chile.
-            </p>
-          </div>
-
-          <div className="ln-feats">
-            {FEATURES.map(({ icon: Icon, tone, title, text }) => (
-              <div key={title} className="ln-feat ln-reveal">
-                <div className={`ln-feat-ic ln-tone-${tone}`}><Icon size={22} /></div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="ln-specs ln-reveal">
-            <p>Cobertura completa de Medicina Interna, Cirugía, Gine y Pedia</p>
-            <div className="ln-specs-row">
-              {SPECIALTIES.map(name => (
-                <div key={name} className="ln-spec">
-                  <SpecialtyIcon name={name} size={44} />
-                  <span>{name}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -533,6 +445,12 @@ export default function LandingPage() {
 
                 <h3>{plan.name}</h3>
                 <p className="ln-plan-desc">{plan.desc}</p>
+                {plan.books && (
+                  <div className="ln-plan-books" aria-label="Libros incluidos">
+                    {plan.books.map(b => <img key={b} src={`/landing/libros/${b}.webp`} alt="" loading="lazy" />)}
+                    <span>+86 libros</span>
+                  </div>
+                )}
 
                 <div>
                   {promoOn && <div className="ln-price-old">{plan.price}</div>}

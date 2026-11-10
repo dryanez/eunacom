@@ -1,0 +1,82 @@
+/* ── Hero de la landing: texto compacto + animaciones 3D, app y Biblioteca ── */
+.hh-hero { padding: 28px 0 8px; overflow: hidden; }
+@media (min-width: 960px) { .hh-hero { padding: 56px 0 16px; } }
+.hh-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; }
+.hh-grid > * { min-width: 0; }
+@media (min-width: 960px) { .hh-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; } }
+
+.hh-copy { text-align: center; }
+@media (min-width: 960px) { .hh-copy { text-align: left; } }
+.hh-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 8px; border-radius: 999px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ln-sky); background: rgba(56, 189, 248, .08); border: 1px solid rgba(56, 189, 248, .25);
+}
+.hh-pill img { width: 20px; height: auto; display: block; }
+.hh-h1 { font-size: clamp(1.75rem, 5.2vw, 3.1rem); line-height: 1.08; font-weight: 700; letter-spacing: -.02em; color: #f8fafc; margin: 14px 0 12px !important; }
+.hh-lead { font-size: .9rem; line-height: 1.6; color: var(--ln-mut); max-width: 600px; margin: 0 auto 20px !important; }
+@media (min-width: 960px) { .hh-lead { font-size: 1rem; margin: 0 0 24px !important; } }
+.hh-ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 18px; }
+@media (min-width: 960px) { .hh-ctas { justify-content: flex-start; } }
+.hh-ctas .ln-btn, .hh-ctas .ln-btn-ghost { min-height: 48px; }
+@media (max-width: 559px) {
+  .hh-ctas { flex-wrap: nowrap; }
+  .hh-ctas .ln-btn, .hh-ctas .ln-btn-ghost { flex: 1 1 0; padding: .7rem .6rem; font-size: .84rem; min-height: 46px; white-space: nowrap; }
+}
+.hh-chips { list-style: none; padding: 0 !important; margin: 0 !important; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; mask-image: linear-gradient(90deg, #000 88%, transparent); }
+.hh-chips::-webkit-scrollbar { display: none; }
+@media (min-width: 960px) { .hh-chips { flex-wrap: wrap; overflow: visible; mask-image: none; } }
+.hh-chips li { flex: none; display: inline-flex; align-items: center; gap: 5px; padding: 6px 11px; border-radius: 999px; background: var(--ln-tile); border: 1px solid var(--ln-line); font-size: .78rem; color: var(--ln-mut); white-space: nowrap; }
+.hh-chips li svg { color: var(--ln-sky); }
+.hh-chips b { color: #f8fafc; font-weight: 700; }
+
+/* media: video + libros + teléfono */
+.hh-media { position: relative; padding: 0 0 92px; }
+@media (min-width: 960px) { .hh-media { padding: 0 0 120px; } }
+.hh-glow { position: absolute; inset: 5% 10%; background: radial-gradient(closest-side, rgba(37, 99, 235, .45), transparent); filter: blur(30px); }
+.hh-browser { position: relative; z-index: 1; width: calc(100% - 46px); border-radius: 16px; overflow: hidden; background: #0f172a; border: 1px solid var(--ln-line); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .8); }
+@media (min-width: 960px) { .hh-browser { width: calc(100% - 60px); } }
+.hh-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #111a2e; font-size: .72rem; color: var(--ln-dim); }
+.hh-bar i { width: 9px; height: 9px; border-radius: 9px; background: #334155; }
+.hh-bar span { margin-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hh-browser video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #1a1f2b; }
+.hh-live { position: absolute; right: 10px; top: 46px; display: inline-flex; gap: 5px; align-items: center; padding: 5px 10px; border-radius: 999px; font-size: .72rem; font-weight: 600; color: #fff; background: rgba(37, 99, 235, .9); }
+
+.hh-phone { position: absolute; z-index: 3; right: 0; bottom: 0; width: 108px; aspect-ratio: 1290 / 2544; border-radius: 20px; padding: 5px; background: linear-gradient(160deg, #2a3550, #0f172a); box-shadow: 0 24px 50px -16px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(255, 255, 255, .08); animation: hh-bob 6s ease-in-out infinite; }
+@media (min-width: 960px) { .hh-phone { width: 158px; border-radius: 28px; padding: 7px; } }
+.hh-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 34%; height: 8px; border-radius: 9px; background: #050914; z-index: 2; }
+.hh-screen { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
+@media (min-width: 960px) { .hh-screen { border-radius: 22px; } }
+.hh-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+.hh-books { position: absolute; z-index: 2; left: 4%; bottom: 0; width: 92px; aspect-ratio: 331 / 468; }
+@media (min-width: 960px) { .hh-books { width: 124px; left: 6%; } }
+.hh-book { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 6px; box-shadow: 0 18px 36px -12px rgba(0, 0, 0, .85); }
+.hh-book-3 { transform: translate(44%, -6%) rotate(8deg) scale(.88); opacity: .55; }
+.hh-book-2 { transform: translate(22%, -3%) rotate(4deg) scale(.94); opacity: .8; animation: hh-up2 .6s ease both; }
+.hh-book-1 { animation: hh-in .6s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes hh-in { from { transform: translate(-60%, 8%) rotate(-10deg); opacity: 0; } }
+@keyframes hh-up2 { from { transform: translate(44%, -6%) rotate(8deg) scale(.88); opacity: .55; } }
+.hh-books-tag { position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%); z-index: 3; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; padding: 4px 9px; border-radius: 999px; font-size: .7rem; font-weight: 600; color: #fde68a; background: rgba(17, 26, 46, .95); border: 1px solid rgba(251, 191, 36, .4); }
+@keyframes hh-bob { 50% { transform: translateY(-8px); } }
+
+/* estante de portadas que pasa */
+.hh-shelf { margin-top: 30px; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.hh-shelf-track { display: flex; gap: 12px; width: max-content; animation: hh-shelf 70s linear infinite; }
+.hh-shelf-track img { width: 74px; aspect-ratio: 331 / 468; object-fit: cover; border-radius: 5px; display: block; border: 1px solid var(--ln-line); }
+@media (min-width: 960px) { .hh-shelf-track img { width: 96px; } }
+.hh-shelf:hover .hh-shelf-track { animation-play-state: paused; }
+@keyframes hh-shelf { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-phone, .hh-shelf-track, .hh-book-1, .hh-book-2 { animation: none; }
+}
+
+/* En teléfono el párrafo largo no se muestra (sigue en el HTML para Google) */
+@media (max-width: 767px) { .hh-lead { display: none; } .hh-h1 { margin-bottom: 18px !important; } }
+
+/* En teléfono las 5 cifras se ven todas (sin deslizar) */
+@media (max-width: 959px) {
+  .hh-chips { flex-wrap: wrap; justify-content: center; overflow: visible; mask-image: none; gap: 6px; }
+  .hh-chips li { padding: 5px 9px; font-size: .74rem; gap: 4px; }
+}
