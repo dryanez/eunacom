@@ -427,11 +427,8 @@ export default function LandingPage() {
       <section id="planes" className="ln-sec ln-sec-alt">
         <div className="ln-wrap">
           <div className="ln-head ln-reveal">
-            <span className="ln-pill"><GraduationCap size={14} /> Curso completo todo-en-uno (videos + preguntas)</span>
-            <h2 className="ln-h2" style={{ marginTop: 16 }}>Planes Todo-en-Uno: Curso con +650 Videos y +47.000 Preguntas</h2>
-            <p className="ln-sub" style={{ maxWidth: 700 }}>
-              <strong>Todos los planes</strong> incluyen acceso ilimitado a las <strong>+650 Clases en Video</strong> organizadas por subespecialidad (según el Perfil EUNACOM), Banco de <strong>+47.000 Preguntas</strong>, Reconstrucciones y Simulacros. ¡Estudia la teoría viendo clases y practica a tu propio ritmo!
-            </p>
+            <h2 className="ln-h2">Planes: +650 videos y +47.000 preguntas</h2>
+            <p className="ln-sub">Pago único. Todos incluyen clases, preguntas, reconstrucciones y simulacros.</p>
           </div>
 
           <div className="ln-plans">
