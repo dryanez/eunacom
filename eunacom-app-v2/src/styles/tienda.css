@@ -342,3 +342,12 @@
   .tienda-chips-type button { font-size: .78rem; padding: .42rem .75rem; }
   .tienda-chips-mod button { font-size: .7rem; padding: .28rem .6rem; }
 }
+
+/* Reconstrucción Julio 2026 destacada */
+.rec-new__card { display: flex; gap: 1.25rem; align-items: center; padding: 1.25rem; border-radius: 16px; border: 1px solid rgba(139, 92, 246, .45); background: linear-gradient(135deg, rgba(139, 92, 246, .14), rgba(56, 189, 248, .08)); }
+.rec-new__card .rec-cover { flex: 0 0 auto; width: 96px; aspect-ratio: 3 / 4.2; border-radius: 3px 6px 6px 3px; background: linear-gradient(160deg, #4c1d95, #1e3a8a); display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center; }
+.rec-new__body h2 { margin: .25rem 0 .35rem; }
+.rec-new__kicker { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #a78bfa; }
+.rec-new__cta { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-top: .75rem; }
+.rec-new__cta .t-btn { width: auto; }
+@media (max-width: 560px) { .rec-new__card { flex-direction: column; align-items: flex-start; } }

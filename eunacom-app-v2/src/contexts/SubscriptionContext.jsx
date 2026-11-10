@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder, fetchUserBooks } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
 import { resolvePromo } from '../config/promo';
-import { expandSkus, resolveCoupon, LIBRARY_ITEMS, LIBRARY_MIN_PLAN_MONTHS } from '../config/tienda';
+import { expandSkus, resolveCoupon, LIBRARY_ITEMS, LIBRARY_MIN_PLAN_MONTHS, PLAN_FREE_ITEMS } from '../config/tienda';
 
 const COUPON_KEY = 'eunacom_coupon';
 import { track } from '../lib/analytics';
@@ -273,6 +273,8 @@ export function SubscriptionProvider({ children }) {
   // Planes de 6 meses o más (y admin) traen la biblioteca completa; si no, solo lo comprado
   const libraryIncluded = isUserAdmin || books.planLibrary || (isPremium && planMonths >= LIBRARY_MIN_PLAN_MONTHS);
   const ownedBooks = libraryIncluded ? new Set(LIBRARY_ITEMS) : expandSkus(books.skus);
+  // Cualquier plan activo trae la Reconstrucción Julio 2026 gratis
+  if (effectiveIsPremium) PLAN_FREE_ITEMS.forEach(i => ownedBooks.add(i));
 
   // Convenience flags for the UI
   const hasExceededClasses = !effectiveIsPremium && usageStats.clasesOpened >= 3;
