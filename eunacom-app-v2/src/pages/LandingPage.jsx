@@ -83,6 +83,7 @@ const PLANS = [
       'Plan de estudio y estadísticas durante todo el período',
     ],
     popular: false,
+    books: ['cov_13', 'gordo_neurologia', 'repaso_obstetricia', 'perfil_cirugia', 'atlas_cardiologia'],
     cta: 'Elegir 6 Meses',
   },
   {
