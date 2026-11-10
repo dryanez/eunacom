@@ -39,7 +39,7 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: '¿Qué incluye Eunacom App?',
-        a: 'Es un Curso Completo Todo-en-Uno que incluye el Curso Audiovisual de +650 Clases en Video (100% alineadas al Perfil de Conocimientos EUNACOM), Banco de +10.000 preguntas de casos clínicos justificadas, reconstrucciones oficiales de exámenes pasados, simulacros completos de 180 preguntas cronometrados y plan de estudio inteligente.',
+        a: 'Es un Curso Completo Todo-en-Uno que incluye el Curso Audiovisual de +650 Clases en Video (100% alineadas al Perfil de Conocimientos EUNACOM), Banco de +47.000 preguntas de casos clínicos justificadas, reconstrucciones oficiales de exámenes pasados, simulacros completos de 180 preguntas cronometrados y plan de estudio inteligente.',
       },
       {
         q: '¿Por qué las reconstrucciones de exámenes son tan efectivas?',
@@ -47,7 +47,7 @@ const FAQ_SECTIONS = [
       },
       {
         q: '¿Cuánto cuesta el acceso y qué incluye cada plan?',
-        a: 'Ofrecemos planes desde $14.990 CLP (1 Mes), $34.990 CLP (3 Meses), $54.990 CLP (6 Meses) hasta $89.990 CLP (1 Año). TODOS los planes incluyen acceso total al Curso de +650 Clases en Video + Banco de +10.000 Preguntas + Reconstrucciones + Simulacros. El pago es único sin renovaciones automáticas mediante Webpay/MercadoPago y PayPal.',
+        a: 'Ofrecemos tres planes: 1 Mes por $29.990 CLP, 3 Meses por $55.990 CLP (incluye la Biblioteca completa de libros) y De por vida por $129.990 CLP (pago único, sin vencimiento hasta que apruebes, con la Biblioteca incluida). TODOS los planes incluyen acceso total al Curso de +650 Clases en Video + Banco de +47.000 Preguntas + Reconstrucciones + Simulacros. El pago es único sin renovaciones automáticas mediante Webpay/MercadoPago y PayPal.',
       },
       {
         q: '¿Se renueva automáticamente mi suscripción?',
@@ -201,7 +201,7 @@ export default function FAQ() {
         }}>
           <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a', marginBottom: 8 }}>¿Listo para comenzar a practicar?</h3>
           <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: 24, maxWidth: '500px', margin: '0 auto 24px' }}>
-            Accede a más de 10.000 preguntas reales y simulacros oficiales desde $14.990 CLP.
+            Accede a más de 47.000 preguntas reales y simulacros oficiales desde $29.990 CLP.
           </p>
           <button
             onClick={() => openAuthModal('register')}

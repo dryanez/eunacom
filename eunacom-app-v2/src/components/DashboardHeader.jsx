@@ -10,7 +10,7 @@ import { UserInstitutionBadge } from '../utils/universityAndCountry'
 
 const DashboardHeader = ({ onMenuToggle }) => {
     const { user, signOut, openAuthModal } = useAuth()
-    const { isFounder, isPremium } = useSubscription()
+    const { isFounder, isPremium, isAdminUser } = useSubscription()
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [displayName, setDisplayName] = useState('')
@@ -76,7 +76,7 @@ const DashboardHeader = ({ onMenuToggle }) => {
                                     </div>
                                 </div>
                                 <span style={{ fontWeight: 700 }}>{displayName || 'Doctor'}</span>
-                                {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '2px', fontWeight: 800 }}>Founder 🚀</span>}
+                                {isFounder && <span style={{ background: '#fbbf24', color: '#000', fontSize: '0.65rem', padding: '2px 6px', borderRadius: '4px', marginLeft: '2px', fontWeight: 800 }}>{isAdminUser ? 'Founder 🚀' : 'De por vida ♾️'}</span>}
                                 <ChevronDown size={14} style={{ color: 'var(--surface-400)' }} />
                             </div>
                             {showMenu && (

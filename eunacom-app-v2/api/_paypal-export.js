@@ -19,14 +19,17 @@ export const PLAN_MAP = {
   '3m': { id: '3m', months: 3 },
   '6m': { id: '6m', months: 6 },
   '1y': { id: '1y', months: 12 },
+  'life': { id: 'life', months: 1200 },
 }
 
 function matchPlanByAmount(amount) {
   const n = parseFloat(amount)
+  // Montos USD de los planes actuales: 1m 32.99, 3m 60.99, de por vida 141.99 (antiguos: 16 / 39.99 / 59.99 / 99.99)
   if (n <= 20) return { id: '1m', months: 1 }
-  if (n <= 45) return { id: '3m', months: 3 }
-  if (n <= 70) return { id: '6m', months: 6 }
-  return { id: '1y', months: 12 }
+  if (n <= 36) return { id: '1m', months: 1 }
+  if (n <= 65) return { id: '3m', months: 3 }
+  if (n < 120) return { id: '1y', months: 12 }
+  return { id: 'life', months: 1200 }
 }
 
 async function ensureTable(db) {

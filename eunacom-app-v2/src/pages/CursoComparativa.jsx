@@ -11,7 +11,7 @@ export default function CursoComparativa() {
 
   usePageSeo({
     title: 'Mejor Curso EUNACOM 2026 | Tabla Comparativa y Plataforma #1 en Chile',
-    description: 'Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +10.000 preguntas reales, 650+ clases y precios desde $14.990 CLP.',
+    description: 'Compara los mejores cursos EUNACOM en Chile 2026. Descubre por qué Eunacom App supera a Guevara, EUNAMED y Dr. EUNACOM con +47.000 preguntas reales, 650+ clases y precios desde $29.990 CLP.',
     canonical: 'https://www.eunacomapp.cl/curso-eunacom-2026'
   })
 
@@ -22,18 +22,18 @@ export default function CursoComparativa() {
   const COMPARISON_DATA = [
     {
       feature: 'Banco de Preguntas Clínicas',
-      eunacomApp: '+10.000 preguntas justificadas',
+      eunacomApp: '+47.000 preguntas justificadas',
       competitors: '1.500 – 3.000 preguntas',
       traditional: '800 – 1.200 preguntas en PDF',
     },
     {
       feature: 'Precio y Modalidad de Pago',
-      eunacomApp: 'Desde $14.990 CLP (Pago único transparente)',
+      eunacomApp: 'Desde $29.990 CLP (Pago único transparente)',
       competitors: '$49.990 – $89.990 / mes',
       traditional: '$450.000 – $1.200.000+ CLP',
     },
     {
-      feature: 'Reconstrucciones Oficiales 2024-2026',
+      feature: 'Reconstrucciones Oficiales 2013-2026',
       eunacomApp: 'Sí, completas y explicadas por alternativa',
       competitors: 'Parciales o desactualizadas',
       traditional: 'Solo disponibles al final del curso',
@@ -178,7 +178,7 @@ export default function CursoComparativa() {
               </div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>El Banco de Preguntas Más Grande</h3>
               <p style={{ color: '#64748b', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                Más de 10.000 preguntas de casos clínicos minuciosamente categorizadas en las 7 áreas oficiales de ASOFAMECH con justificación basada en Guías Clínicas GES y MINSAL.
+                Más de 47.000 preguntas de casos clínicos minuciosamente categorizadas en las 7 áreas oficiales de ASOFAMECH con justificación basada en Guías Clínicas GES y MINSAL.
               </p>
             </div>
 
@@ -196,9 +196,9 @@ export default function CursoComparativa() {
               <div style={{ width: 44, height: 44, borderRadius: 10, backgroundColor: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                 <Zap size={22} color="#d97706" />
               </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>Curso Todo-en-Uno desde $14.990</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 8 }}>Curso Todo-en-Uno desde $29.990</h3>
               <p style={{ color: '#64748b', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                Sin contratos amarrados ni mensualidades de $600.000+. Todos los planes desde $14.990 CLP te dan acceso total al Curso en Video (+650 clases) + Banco de Preguntas (+10.000) + Reconstrucciones y Simulacros.
+                Sin contratos amarrados ni mensualidades de $600.000+. Todos los planes desde $29.990 CLP te dan acceso total al Curso en Video (+650 clases) + Banco de Preguntas (+47.000) + Reconstrucciones y Simulacros.
               </p>
             </div>
           </div>

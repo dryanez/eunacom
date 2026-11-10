@@ -11,6 +11,7 @@ import {
   getWeeklyPerformanceDigestHtml
 } from './_email-templates.js';
 import { randomUUID } from 'node:crypto';
+import { dripEmail, DISCOUNT_30_HOURS } from './_drip-emails.js';
 import { CYBER_WEEK_HTML, CYBER_WEEK_SUBJECT } from './_cyber-week-email.js';
 import { CYBER_WEEK_EXT_HTML, CYBER_WEEK_EXT_SUBJECT } from './_cyber-week-ext-email.js';
 import nodemailer from 'nodemailer';
@@ -235,9 +236,12 @@ export default async function handler(req, res) {
       if (type === 'welcome') {
         subject = '🩺 ¡Bienvenido/a Dr(a). Felipe! Tu plan para aprobar el EUNACOM';
         html = getWelcomeEmailHtml({ firstName: 'Felipe' });
-      } else if (type === 'discount_30') {
-        subject = '⏳ Dr(a). Felipe, no dejes tu preparación a medias (+ 30% DCTO)';
-        html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 30, questionsAnswered: 42 });
+      } else if (/^(drip_clase|discount_30(_reminder)?(_m[1-4])?)$/.test(type)) {
+        // drip_clase · discount_30[_m1..m4] · discount_30_reminder[_m1..m4]
+        const variant = (type.match(/_(m[1-4])$/) || [])[1];
+        const kind = type.replace(/_m[1-4]$/, '');
+        const m = dripEmail(kind, { id: 'preview', first_name: 'Felipe' }, { variant });
+        subject = m.subject; html = m.html;
       } else if (type === 'discount_40') {
         subject = '🩺 ¿Poco tiempo para estudiar? La estrategia de alto rendimiento (+ 40% DCTO)';
         html = getDiscountEmailHtml({ firstName: 'Felipe', discountPercent: 40, questionsAnswered: 42 });
@@ -312,7 +316,7 @@ export default async function handler(req, res) {
       }),
       db.execute({
         sql: `SELECT user_id, campaign_type, sent_at FROM email_campaign_logs
-              WHERE campaign_type IN ('discount_30', 'discount_40', 'discount_50')`,
+              WHERE campaign_type IN ('discount_30', 'discount_40', 'discount_50', 'drip_clase', 'discount_30_reminder')`,
         args: []
       }),
       db.execute({
@@ -335,9 +339,11 @@ export default async function handler(req, res) {
     ]);
 
     const userLogsMap = new Map();
+    const sent30At = new Map(); // cuándo se le mandó el cupón del 30 % (para el recordatorio y el vencimiento)
     for (const row of logsResult.rows) {
       if (!userLogsMap.has(row.user_id)) userLogsMap.set(row.user_id, new Set());
       userLogsMap.get(row.user_id).add(row.campaign_type);
+      if (row.campaign_type === 'discount_30') sent30At.set(row.user_id, new Date(String(row.sent_at).replace(' ', 'T') + 'Z'));
     }
 
     const streakSentToday = new Set(streakLogsResult.rows.map(r => r.user_id));
@@ -359,9 +365,9 @@ export default async function handler(req, res) {
     // so nobody gets a smaller coupon than the live promo or a second 50% email.
     const activePromo = await getActivePromo(db);
 
+    const eligibleClase = [];
     const eligible30 = [];
-    const eligible40 = [];
-    const eligible50 = [];
+    const eligibleReminder = [];
     const eligibleStreakWarning = [];
 
     for (const u of usersResult.rows) {
@@ -372,12 +378,15 @@ export default async function handler(req, res) {
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         const sentTypes = userLogsMap.get(u.id) || new Set();
 
-        if (diffDays >= 7 && diffDays < 14 && !sentTypes.has('discount_30')) {
+        // Secuencia nueva (10-nov-2026): día 2 clase, día 4 cupón 30 % (72 h), día 6 recordatorio. Sin 40 % ni 50 %.
+        // Ventanas de 2 días por si el cron falla un día; quien ya pasó el día 5 no recibe el cupón (sin envíos masivos).
+        if (diffDays >= 2 && diffDays <= 3 && !sentTypes.has('drip_clase') && !sentTypes.has('discount_30')) {
+          eligibleClase.push({ user: u, diffDays });
+        } else if (diffDays >= 4 && diffDays <= 5 && !sentTypes.has('discount_30')) {
           eligible30.push({ user: u, diffDays });
-        } else if (diffDays >= 14 && diffDays < 21 && !sentTypes.has('discount_40')) {
-          eligible40.push({ user: u, diffDays });
-        } else if (diffDays >= 21 && !sentTypes.has('discount_50')) {
-          eligible50.push({ user: u, diffDays });
+        } else if (sentTypes.has('discount_30') && !sentTypes.has('discount_30_reminder') && sent30At.has(u.id)) {
+          const hoursSince = (now - sent30At.get(u.id)) / 3600000;
+          if (hoursSince >= 40 && hoursSince < DISCOUNT_30_HOURS - 6) eligibleReminder.push({ user: u, diffDays, expires: new Date(sent30At.get(u.id).getTime() + DISCOUNT_30_HOURS * 3600000) });
         }
       }
 
@@ -412,9 +421,9 @@ export default async function handler(req, res) {
     const summary = {
       totalUsers: usersResult.rows.length,
       totalFreeUsers: freeUsersCount,
-      eligibleWeek1_30Pct: eligible30.length,
-      eligibleWeek2_40Pct: eligible40.length,
-      eligibleWeek3_50Pct: eligible50.length,
+      eligibleDay2_clase: eligibleClase.length,
+      eligibleDay4_30Pct: eligible30.length,
+      eligibleDay6_reminder: eligibleReminder.length,
       eligibleStreakWarning: eligibleStreakWarning.length,
       isDryRun
     };
@@ -425,9 +434,9 @@ export default async function handler(req, res) {
         dryRun: true,
         summary,
         samples: {
-          week1_30: eligible30.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
-          week2_40: eligible40.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
-          week3_50: eligible50.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
+          day2_clase: eligibleClase.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
+          day4_30: eligible30.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
+          day6_reminder: eligibleReminder.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, days: e.diffDays })),
           streak_warning: eligibleStreakWarning.slice(0, 5).map(e => ({ email: e.user.email, name: e.user.first_name, streak: e.streakDays, hoursRemaining: e.hoursRemaining })),
         }
       });
@@ -485,29 +494,30 @@ export default async function handler(req, res) {
       }
     };
 
-    // 1. Process 30% OFF (Day 7)
-    await sendBatch(
-      eligible30,
-      30,
-      'discount_30',
-      (name) => `⏳ Dr(a). ${name}, no dejes tu preparación a medias (+ 30% DCTO)`
-    );
-
-    // 2. Process 40% OFF (Day 14)
-    await sendBatch(
-      eligible40,
-      40,
-      'discount_40',
-      (name) => `🩺 ¿Poco tiempo para estudiar? La estrategia de alto rendimiento (+ 40% DCTO)`
-    );
-
-    // 3. Process 50% OFF (Day 21)
-    await sendBatch(
-      eligible50,
-      50,
-      'discount_50',
-      (name) => `🚨 Última oportunidad: 50% DCTO exclusivo para asegurar tu EUNACOM`
-    );
+    // Secuencia de registro: día 2 clase, día 4 cupón 30 % (A/B m1/m2), día 6 recordatorio
+    const sendDrip = async (list, kind) => {
+      const BATCH_SIZE = 50;
+      for (let i = 0; i < list.length; i += BATCH_SIZE) {
+        const chunk = list.slice(i, i + BATCH_SIZE);
+        const items = chunk.map(({ user, expires }) => {
+          const m = dripEmail(kind, user, { expires });
+          return { user, m, payload: { from: `EUNACOM App <${SENDER_EMAIL}>`, to: user.email, reply_to: 'eunacomapp@gmail.com', subject: m.subject, html: m.html, headers: m.headers } };
+        });
+        const { error } = await resend.batch.send(items.map(x => x.payload));
+        if (error) { console.error(`Resend batch error for ${kind}:`, error); continue; }
+        for (const { user, m, payload } of items) {
+          const logId = `log_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+          await db.execute({
+            sql: `INSERT INTO email_campaign_logs (id, user_id, email, campaign_type, subject, discount_percent, metadata) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            args: [logId, user.id, payload.to, kind, payload.subject, kind === 'drip_clase' ? null : 30, JSON.stringify({ modelo: m.variant })]
+          }).catch(e => console.error('Log insert error:', e));
+        }
+        totalDispatched += chunk.length;
+      }
+    };
+    await sendDrip(eligibleClase, 'drip_clase');
+    await sendDrip(eligible30, 'discount_30');
+    await sendDrip(eligibleReminder, 'discount_30_reminder');
 
     // 4. Process Streak Freeze Warnings (Streak >= 3 days)
     if (eligibleStreakWarning.length > 0) {

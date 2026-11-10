@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { createCheckoutSession, createPaypalOrder } from '../lib/api';
+import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
 import { useSubscription } from '../contexts/SubscriptionContext';
-import { APP_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
+import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
 import '../styles/tienda.css';
 import { track } from '../lib/analytics';
+import { nextExam } from '../config/examen';
 
 const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
-const PLANS = APP_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
+export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone: 'America/Santiago', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }) + ' h';
+const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
-const LIB_COVERS = [TOMOS[0].cover, TOMOS[17].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover];
-const LIB_ITEMS = [
+export const LIB_COVERS = [TOMOS[0].cover, TOMOS[17].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover];
+export const LIB_ITEMS = [
   { n: '21', t: 'Tomos AEE', d: 'Toda la teoría del Perfil V3, especialidad por especialidad, con algoritmos y tablas.' },
-  { n: '16', t: 'EUNACOM reconstruidos', d: 'Gran Libro de Reconstrucciones 2013–2025: 2.739 preguntas reales con explicación.' },
+  { n: '2013–26', t: 'EUNACOM reconstruidos', d: 'Gran Libro de Reconstrucciones 2013–2026: los exámenes reales, pregunta por pregunta, con explicación.' },
   { n: '23', t: 'Libros Gordos', d: 'El Gran Libro Gordo + 22 libros de 90 preguntas por tema.' },
   { n: '21', t: 'Repaso Final', d: 'Un libro de repaso por especialidad: lo que más se pregunta, para la última semana.' },
   { n: '1.569', t: 'Códigos explicados', d: 'Perfil V3 código por código: qué te pueden preguntar de cada uno.' },
@@ -24,6 +26,7 @@ const LIB_ITEMS = [
 
 const PaymentModal = ({ onClose }) => {
   const { user } = useAuth();
+  const exam = nextExam();
   const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,7 +37,7 @@ const PaymentModal = ({ onClose }) => {
   const credit = upgradeCredit?.amount || 0;
   
   // Read discount from URL or localStorage (30, 40, 50)
-  const [couponPercent] = useState(() => {
+  const [couponPercent, setCouponPercent] = useState(() => {
     try {
       const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
       const qDiscount = urlParams?.get('discount');
@@ -44,6 +47,21 @@ const PaymentModal = ({ onClose }) => {
     } catch {}
     return 0;
   });
+  // The email coupon only counts if it was emailed to this user and hasn't expired (the server checks the same)
+  const [emailExpires, setEmailExpires] = useState(null);
+  const [emailExpired, setEmailExpired] = useState(false);
+  useEffect(() => {
+    if (!user?.id || !couponPercent) return;
+    let alive = true;
+    getEmailDiscount(user.id, couponPercent).then(r => {
+      if (!alive) return;
+      if (r?.percent) { setEmailExpires(r.expiresAt); return; }
+      setCouponPercent(0); setEmailExpired(!!r?.expired);
+      try { localStorage.removeItem('eunacom_pending_discount'); } catch {}
+    }).catch(() => {});
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
   const socialPercent = coupon?.percent || 0;
   const discountPercent = Math.max(couponPercent, promo?.percent || 0, socialPercent);
   const isPromoDiscount = !!promo && discountPercent === promo.percent;
@@ -57,7 +75,7 @@ const PaymentModal = ({ onClose }) => {
       const final = credit && creditApplies(p.id) ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;
       // Precio tachado: sin promo, lo que costaría pagando mes a mes (el ahorro real del plan largo)
       const monthly = APP_PLANS[0].price * p.months;
-      const anchor = final !== num ? num : (p.months > 1 ? monthly : null);
+      const anchor = final !== num ? num : (p.months > 1 && !p.lifetime ? monthly : null);
       const save = anchor ? Math.round((1 - final / anchor) * 100) : 0;
       return { ...p, oldPrice: anchor ? fmtClp(anchor) : null, anchorIsMonthly: final === num && !!anchor, price: fmtClp(final), save, creditApplied: discounted - final };
     });
@@ -69,7 +87,14 @@ const PaymentModal = ({ onClose }) => {
     setCouponError(c ? '' : 'Código no válido');
   };
 
-  const [selectedPlanId, setSelectedPlanId] = useState('6m'); // Default 6 months
+  const [selectedPlanId, setSelectedPlanId] = useState(() => {
+    // /oferta deja marcado el plan que la persona eligió; si no, 3 meses (el más vendido)
+    try {
+      const pick = sessionStorage.getItem('eunacom_plan_pick');
+      if (pick) { sessionStorage.removeItem('eunacom_plan_pick'); if (PLANS.some(p => p.id === pick)) return pick; }
+    } catch {}
+    return '3m';
+  });
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const payRef = React.useRef(null);
   const libRef = React.useRef(null);
@@ -102,12 +127,13 @@ const PaymentModal = ({ onClose }) => {
     setErrorMp(null);
     try {
       track('checkout_started', { gateway: 'paypal', plan: selectedPlan.id, discount_percent: discountPercent || 0 });
-      const res = await createPaypalOrder(user.id, selectedPlan.id, coupon?.code);
+      const res = await createPaypalOrder(user.id, selectedPlan.id, coupon?.code, couponPercent || null);
       if (!res.approve_url) throw new Error('No approve_url');
       window.location.href = res.approve_url;
     } catch (err) {
       console.error(err);
-      window.location.href = selectedPlan.paypal;
+      if (selectedPlan.paypal) window.location.href = selectedPlan.paypal;
+      else setErrorMp('No pudimos abrir PayPal. Prueba con Mercado Pago o transferencia, o escríbenos por WhatsApp.');
     }
   };
 
@@ -152,7 +178,7 @@ const PaymentModal = ({ onClose }) => {
       <div className="plan-checkout__bar">
         <div>
           <div className="plan-checkout__title">Curso Completo Todo-en-Uno ⭐</div>
-          <div className="plan-checkout__sub">+650 clases en video · +10.000 preguntas · simulacros · reconstrucciones</div>
+          <div className="plan-checkout__sub">+650 clases en video · +47.000 preguntas · simulacros · reconstrucciones 2013–2026</div>
         </div>
         <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
       </div>
@@ -161,20 +187,26 @@ const PaymentModal = ({ onClose }) => {
         {discountPercent > 0 && (
           <div className="plan-banner promo">
             <span>
-              {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : isSocialCoupon ? `🏷️ Código ${coupon.code}: ${discountPercent}% DCTO aplicado` : `🏷️ Cupón Exclusivo: ${discountPercent}% DCTO Aplicado`}
+              {isPromoDiscount ? `🔥 ${promo.name}: ${discountPercent}% DCTO${promo.endLabel ? ` hasta el ${promo.endLabel}` : ''}` : isSocialCoupon ? `🏷️ Código ${coupon.code}: ${discountPercent}% DCTO aplicado` : `🏷️ Tu ${discountPercent}% del correo ya está aplicado${emailExpires ? ` · vence el ${fmtExpiry(emailExpires)}` : ''}`}
             </span>
             <span className="pill">VÁLIDO</span>
           </div>
         )}
+        {emailExpired && !discountPercent && (
+          <div className="plan-banner credit">⏳ El descuento de tu correo ya venció. Estos son los precios de hoy.</div>
+        )}
         {credit > 0 && (
           <div className="plan-banner credit">
-            📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> de los planes de 6 meses y 1 año
+            📚 Compraste libros hace poco: te descontamos <strong>{fmtClp(credit)}</strong> de los planes de 3 meses y de por vida
             {upgradeCredit?.until ? ` (válido hasta el ${new Date(upgradeCredit.until).toLocaleDateString('es-CL')})` : ''}.
           </div>
         )}
 
+        {exam && exam.days <= 120 && (
+          <div className="plan-banner credit">⏳ Faltan <strong>{exam.days} días</strong> para el EUNACOM del {exam.label}.</div>
+        )}
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
-        <p className="plan-checkout__lead">Todos los planes incluyen acceso total al curso. Los de 6 meses y 1 año traen además la biblioteca completa de libros.</p>
+        <p className="plan-checkout__lead">Todos los planes incluyen acceso total al curso. 3 meses y De por vida traen además la biblioteca completa de libros.</p>
 
         <div className="plan-grid">
           {plansToDisplay.map(plan => {
@@ -186,22 +218,23 @@ const PaymentModal = ({ onClose }) => {
                 className={`pack-card plan-card ${plan.popular ? 'star' : ''} ${selected ? 'selected' : ''}`}
                 onClick={() => setSelectedPlanId(plan.id)}
               >
-                {plan.popular && <span className="pack-ribbon">⭐ Más popular</span>}
+                {plan.popular && <span className="pack-ribbon">⭐ Más elegido</span>}
                 <h3>{plan.name}</h3>
-                <p className="desc">{plan.days} días de acceso</p>
+                <p className="desc">{plan.lifetime ? 'Acceso para siempre' : `${plan.days} días de acceso`}</p>
+                {plan.tagline && <p className="desc" style={{ fontWeight: 700 }}>{plan.tagline}</p>}
                 <div className="pack-price">
                   {plan.price}
                   {plan.oldPrice && <span className="was">{plan.oldPrice}</span>}
                 </div>
                 <div className="plan-permonth">
-                  {plan.months > 1 ? `≈ ${fmtClp(perMonth)} al mes` : '\u00a0'}
+                  {plan.lifetime ? 'Un solo pago' : plan.months > 1 ? `≈ ${fmtClp(perMonth)} al mes` : '\u00a0'}
                   {plan.save > 0 && <span className="pack-save">Ahorras {plan.save} %</span>}
                 </div>
                 {plan.anchorIsMonthly && <div className="plan-anchor-note">vs. {plan.oldPrice} pagando mes a mes</div>}
                 <ul className="pack-feat">
                   <li><i>✓</i>+650 clases en video</li>
-                  <li><i>✓</i>+10.000 preguntas y simulacros</li>
-                  <li><i>✓</i>16 reconstrucciones resueltas</li>
+                  <li><i>✓</i>+47.000 preguntas y simulacros</li>
+                  <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   {plan.includesLibrary
                     ? <li><i>✓</i><span><b>Biblioteca completa de libros</b> <span className="plan-libval">(valor {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
@@ -223,7 +256,7 @@ const PaymentModal = ({ onClose }) => {
           })}
         </div>
 
-        {/* Qué es la biblioteca (para que se entienda qué traen 6 meses y 1 año) */}
+        {/* Qué es la biblioteca (para que se entienda qué traen 3 meses y de por vida) */}
         <div ref={libRef} className="plan-lib">
           <div className="plan-lib__covers" aria-hidden="true">
             {LIB_COVERS.map((c, i) => (
@@ -240,7 +273,7 @@ const PaymentModal = ({ onClose }) => {
               ))}
             </div>
             <div className="plan-lib__value">
-              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con el plan de 6 meses o 1 año <strong>viene incluida</strong>.
+              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses o De por vida <strong>viene incluida</strong>.
             </div>
           </div>
         </div>

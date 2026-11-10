@@ -12,7 +12,7 @@ const IG_DM_URL = `https://ig.me/m/${INSTAGRAM_USER}`
 const UTM = 'utm_source=instagram&utm_medium=bio&utm_campaign=links'
 const withUtm = url => `${url}${url.includes('?') ? '&' : '?'}${UTM}`
 
-const PLAN_6M = APP_PLANS.find(p => p.id === '6m')
+const PLAN_3M = APP_PLANS.find(p => p.id === '3m')
 const SHORTS = COUPONS.SHORTS20
 
 // Evento de PostHog por click. PostHog solo se inicia si la persona aceptó cookies
@@ -63,7 +63,7 @@ export default function Links() {
         id="planes" variant="primary" icon="🎓"
         href={withUtm('/planes?code=SHORTS20')}
         title="Ver planes de la app"
-        sub={`⭐ 6 meses ${fmtClp(PLAN_6M.price)}: clases + preguntas + biblioteca de libros`}
+        sub={`⭐ 3 meses ${fmtClp(PLAN_3M.price)}: clases + preguntas + biblioteca de libros`}
       />
       <LinkBtn
         id="tienda" icon="📚"

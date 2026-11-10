@@ -11,7 +11,7 @@ import LectorLibro from './LectorLibro'
 import '../../styles/tienda.css'
 
 const CART_KEY = 'eunacom_book_cart'
-const PLAN_6M = APP_PLANS.find(p => p.id === '6m')
+const PLAN_3M = APP_PLANS.find(p => p.id === '3m')
 const BIBLIOTECA = PRODUCTS.biblioteca
 
 // Portada por especialidad (public/tienda/<tipo>_<clave>.jpg, copiadas de la Academia) a partir de la etiqueta del archivo
@@ -118,7 +118,7 @@ export default function LibrosTienda() {
   const nR = cart.filter(s => s.startsWith('rec-')).length
   let hint = null
   if (total >= BIBLIOTECA.price) {
-    hint = <>Por {fmtClp(Math.max(0, PLAN_6M.price - total))} más tienes la app 6 meses con toda la biblioteca, las clases y las preguntas. <button onClick={openPlans}>Ver plan →</button></>
+    hint = <>Por {fmtClp(Math.max(0, PLAN_3M.price - total))} más tienes la app 3 meses con toda la biblioteca, las clases y las preguntas. <button onClick={openPlans}>Ver plan →</button></>
   } else if (nT >= 5) {
     hint = <>Llevas {nT} tomos ({fmtClp(nT * TOMOS[0].price)}). El pack de los 21 cuesta {fmtClp(PRODUCTS['pack-tomos'].price)}. <button onClick={() => swapToPack('pack-tomos')}>Cambiar al pack →</button></>
   } else if (nR >= 4) {
@@ -189,7 +189,7 @@ export default function LibrosTienda() {
         <>
           {shortPlan && (
             <div className="tienda-banner info">
-              <span>Tu plan de {planMonths} {planMonths === 1 ? 'mes' : 'meses'} no incluye la biblioteca. Agrégala por <strong>{fmtClp(BIBLIOTECA.price)}</strong> o pásate al plan de 6 meses, que la trae incluida.</span>
+              <span>Tu plan de {planMonths} {planMonths === 1 ? 'mes' : 'meses'} no incluye la biblioteca. Agrégala por <strong>{fmtClp(BIBLIOTECA.price)}</strong> o pásate al plan de 3 meses, que la trae incluida.</span>
               <button className="mini-btn" onClick={() => toggle('biblioteca')}>{cart.includes('biblioteca') ? '✓ En el carro' : 'Agregar biblioteca'}</button>
             </div>
           )}
@@ -278,7 +278,7 @@ export default function LibrosTienda() {
           {/* Ancla: la app como upgrade */}
           <section className="tienda-section">
             <h2>¿Libros solos o libros + clases?</h2>
-            <p className="sub">El plan de 6 meses de la app incluye toda la biblioteca. La diferencia son las clases y el banco de preguntas.</p>
+            <p className="sub">El plan de 3 meses de la app incluye toda la biblioteca. La diferencia son las clases y el banco de preguntas.</p>
             <div className="tienda-anchor">
               <div className="pack-card">
                 <h3>{BIBLIOTECA.name}</h3>
@@ -286,9 +286,9 @@ export default function LibrosTienda() {
                 <ul className="pack-feat">
                   <li><i>✓</i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
                   <li><i>✓</i>1.569 códigos explicados + 19 atlas de imágenes</li>
-                  <li><i>✓</i>Reconstrucciones 2013–2025</li>
+                  <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li className="no"><i>✕</i>+650 clases en video</li>
-                  <li className="no"><i>✕</i>+10.000 preguntas en la app y simulacros</li>
+                  <li className="no"><i>✕</i>+47.000 preguntas en la app y simulacros</li>
                   <li className="no"><i>✕</i>Plan de estudio y estadísticas</li>
                 </ul>
                 <button className={`t-btn ${btnState('biblioteca')}`} onClick={() => toggle('biblioteca')}>{btnLabel('biblioteca', 'Solo los libros')}</button>
@@ -296,20 +296,20 @@ export default function LibrosTienda() {
               <div className="vs">vs</div>
               <div className="pack-card star">
                 <span className="pack-ribbon">Lo que más eligen</span>
-                <h3>App · Plan 6 meses</h3>
-                <div className="pack-price">{fmtClp(PLAN_6M.price)}</div>
+                <h3>App · Plan 3 meses</h3>
+                <div className="pack-price">{fmtClp(PLAN_3M.price)}</div>
                 <ul className="pack-feat">
                   <li><i>✓</i><b>La misma biblioteca completa</b></li>
                   <li><i>✓</i>+650 clases en video, con animaciones</li>
-                  <li><i>✓</i>+10.000 preguntas reales y simulacros cronometrados</li>
+                  <li><i>✓</i>+47.000 preguntas reales y simulacros cronometrados</li>
                   <li><i>✓</i>Reconstrucciones resueltas en la app</li>
                   <li><i>✓</i>Plan de estudio y estadísticas por especialidad</li>
                 </ul>
-                <button className="t-btn fill" onClick={openPlans}>Ver el plan de 6 meses →</button>
+                <button className="t-btn fill" onClick={openPlans}>Ver el plan de 3 meses →</button>
               </div>
             </div>
             <div className="tienda-diff">
-              Por <b>{fmtClp(PLAN_6M.price - BIBLIOTECA.price)} más</b>, el plan de 6 meses ({fmtClp(PLAN_6M.price)}) incluye la misma biblioteca + clases + preguntas.
+              Por <b>{fmtClp(PLAN_3M.price - BIBLIOTECA.price)} más</b>, el plan de 3 meses ({fmtClp(PLAN_3M.price)}) incluye la misma biblioteca + clases + preguntas.
             </div>
           </section>
 

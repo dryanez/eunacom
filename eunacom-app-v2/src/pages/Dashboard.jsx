@@ -1,3 +1,4 @@
+import { nextExam } from '../config/examen';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -636,6 +637,9 @@ const Dashboard = () => {
               <p>
                 {activeDoctor.name} · {activeDoctor.quote || 'Continúa tu preparación y revisa tus métricas de dominio'}
               </p>
+              {(() => { const ex = nextExam(); return ex && ex.days <= 120 ? (
+                <p style={{ marginTop: 6, fontWeight: 800, color: '#22d3ee' }}>⏳ Faltan {ex.days} días para el EUNACOM del {ex.label}</p>
+              ) : null })()}
             </div>
           </div>
           {userProfile && (userProfile.university || userProfile.country) && (

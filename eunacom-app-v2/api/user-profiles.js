@@ -11,7 +11,7 @@ import { Resend } from 'resend'
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 
 // PayPal can't charge CLP, so in-app PayPal orders use these regular USD prices (promo discount applied on top).
-const PAYPAL_USD = { '1m': 16, '3m': 39.99, '6m': 59.99, '1y': 99.99 } // same as the PayPal payment links
+const PAYPAL_USD = { '1m': 32.99, '3m': 60.99, 'life': 141.99, '6m': 59.99, '1y': 99.99 } // CLP / 920, a .99
 
 async function paypalToken() {
   const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
@@ -36,16 +36,27 @@ const PLANS = {
 
 // Precio final de un plan: el mayor entre cupón de email (?discount, verificado), promo admin y
 // cupón de redes (SHORTS20); después se descuenta lo pagado en libros los últimos 7 días.
+// Email coupon (?discount=30|40|50): valid only if we emailed it to this user, and only for a while
+// after the email.
+const EMAIL_DISCOUNT_DAYS = { 30: 3, 40: 8, 50: 3 } // 30 %: cupón del día 4, vence en 72 h (los 40/50 % ya no se mandan; valen para correos antiguos)
+async function emailDiscount(db, userId, discount) {
+  const pct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
+  if (!pct || !userId) return { percent: 0, expiresAt: null, expired: false }
+  const r = await db.execute({
+    sql: `SELECT MAX(sent_at) AS sent_at FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ?`,
+    args: [userId, `discount_${pct}`]
+  }).catch(() => ({ rows: [] }))
+  const sentAt = r.rows?.[0]?.sent_at
+  if (!sentAt) return { percent: 0, expiresAt: null, expired: false }
+  const sent = new Date(String(sentAt).replace(' ', 'T') + (String(sentAt).includes('Z') ? '' : 'Z'))
+  const expires = new Date(sent.getTime() + EMAIL_DISCOUNT_DAYS[pct] * 86400000)
+  if (Number.isNaN(expires.getTime()) || expires < new Date()) return { percent: 0, expiresAt: null, expired: true }
+  return { percent: pct, expiresAt: expires.toISOString(), expired: false }
+}
+
 async function planPricing(db, { userId, planId, discount, coupon }) {
   const plan = PLANS[planId]
-  let requestedPct = [30, 40, 50].includes(Number(discount)) ? Number(discount) : 0
-  if (requestedPct) {
-    const sent = await db.execute({
-      sql: `SELECT 1 FROM email_campaign_logs WHERE user_id = ? AND campaign_type = ? LIMIT 1`,
-      args: [userId, `discount_${requestedPct}`]
-    }).catch(() => ({ rows: [] }))
-    if (!sent.rows?.length) requestedPct = 0
-  }
+  const requestedPct = (await emailDiscount(db, userId, discount)).percent
   const promo = await getActivePromo(db)
   const couponPct = planId === 'offer' ? 0 : (resolveCoupon(coupon)?.percent || 0)
   const discountPct = Math.max(requestedPct, promo?.percent || 0, couponPct)
@@ -268,6 +279,7 @@ export default async function handler(req, res) {
               else if (planId === '3m') monthsToAdd = 3
               else if (planId === '6m') monthsToAdd = 6
               else if (planId === '1y') monthsToAdd = 12
+              else if (planId === 'life') monthsToAdd = 1200
 
               if (monthsToAdd === 12) {
                 baseDate.setFullYear(baseDate.getFullYear() + 1)
@@ -304,6 +316,19 @@ export default async function handler(req, res) {
     if (await handleBooks(db, req, res, {
       createPreference: bookPreference, paypalOrder: bookPaypalOrder, paypalCapture: bookPaypalCapture, signFile: signBookFile
     })) return
+
+    // --- BAJA de los correos de la app (link del pie y List-Unsubscribe one-click) ---
+    if ((req.query?.action || req.body?.action) === 'app_baja') {
+      const { appBaja } = await import('./_drip-emails.js')
+      const ok = await appBaja(db, req.query?.u || req.body?.u, req.query?.k || req.body?.k)
+      res.setHeader('Content-Type', 'text/html; charset=utf-8')
+      return res.status(ok ? 200 : 404).send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font-family:Arial,sans-serif;max-width:420px;margin:60px auto;padding:0 20px;color:#0b2545;text-align:center"><h2>${ok ? 'Listo, no te escribiremos más' : 'Link no válido'}</h2><p style="color:#475569">${ok ? 'Te sacamos de los correos de EUNACOM App.' : 'Si quieres darte de baja, responde cualquier correo nuestro.'}</p><p><a href="https://www.eunacomapp.cl" style="color:#0f62b0">eunacomapp.cl</a></p></body>`)
+    }
+
+    // --- EMAIL DISCOUNT STATUS (/oferta?discount=…): is it this user's, and until when ---
+    if (req.method === 'POST' && req.body?.action === 'discount_status') {
+      return res.status(200).json(await emailDiscount(db, req.body.userId, req.body.discount))
+    }
 
     // --- CHECKOUT CREATION ---
     if (req.method === 'POST' && req.body?.action === 'checkout') {
@@ -347,13 +372,13 @@ export default async function handler(req, res) {
 
     // --- PAYPAL ORDER (in-app, discount-aware) ---
     if (req.method === 'POST' && req.body?.action === 'paypal_order') {
-      const { userId, planId, coupon } = req.body
+      const { userId, planId, coupon, discount } = req.body
       if (!userId || !PAYPAL_USD[planId]) return res.status(400).json({ error: 'Missing or invalid parameters' })
       const token = await paypalToken()
       if (!token) return res.status(503).json({ error: 'PayPal API not configured' })
 
       // Same CLP pricing as Webpay, converted proportionally to the plan's USD price
-      const { discountPct: pct, credit, finalPrice } = await planPricing(db, { userId, planId, coupon })
+      const { discountPct: pct, credit, finalPrice } = await planPricing(db, { userId, planId, discount, coupon })
       const value = (PAYPAL_USD[planId] * (finalPrice / PLANS[planId].price)).toFixed(2)
       const r = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
         method: 'POST',

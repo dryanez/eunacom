@@ -34,13 +34,13 @@ const PLANS = [
   {
     id: '1m',
     name: '1 Mes',
-    price: '$14.990',
+    price: '$29.990',
     unit: 'pago único',
     badge: 'Express',
     desc: 'Curso completo con videos y preguntas para repaso final intensivo.',
     features: [
       '🎓 Curso Completo: +650 Clases en Video (Perfil EUNACOM)',
-      '🩺 +10.000 preguntas clínicas clasificadas por especialidad',
+      '🩺 +47.000 preguntas clínicas clasificadas por especialidad',
       '📋 Acceso total a reconstrucciones de exámenes reales',
       '⏱️ Simulacros cronometrados oficiales de 180 preguntas',
       '💡 Retroalimentación explicada por alternativa y Guías GES',
@@ -52,55 +52,38 @@ const PLANS = [
   {
     id: '3m',
     name: '3 Meses',
-    price: '$34.990',
-    unit: 'pago único (~$11.660/mes)',
-    badge: 'Ahorro 22%',
+    price: '$55.990',
+    unit: 'pago único (~$18.663/mes)',
+    badge: 'Más elegido ⭐',
     desc: 'El período óptimo para ver el curso completo y resolver todo el banco.',
     features: [
-      '🎓 Todo lo incluido en 1 Mes (+650 Videos + 10k Preguntas)',
+      '🎓 Todo lo incluido en 1 Mes (+650 Videos + 47.000 Preguntas)',
+      '📚 Biblioteca completa de libros incluida',
       '📊 Estadísticas de rendimiento y diagnóstico por área médica',
       '🔍 Módulo de revisión de errores recurrentes',
       '🏆 Simulacros ilimitados con ranking en tiempo real',
-      '⚡ Acceso prioritario a nuevas reconstrucciones',
       '📱 Estudio 24/7 sin límites en todos tus dispositivos',
     ],
-    popular: false,
+    popular: true,
     cta: 'Elegir 3 Meses',
   },
   {
-    id: '6m',
-    name: '6 Meses',
-    price: '$54.990',
-    unit: 'pago único (~$9.165/mes)',
-    badge: 'Más Popular ⭐',
-    desc: 'Preparación integral desde cero con calendario adaptativo y guías clínicas.',
-    features: [
-      '🎓 Todo lo incluido en 3 Meses (+650 Videos + 10k Preguntas)',
-      '📅 Plan de estudio inteligente adaptativo a tu fecha de examen',
-      '📑 Guías clínicas y resúmenes descargables en PDF',
-      '🔄 Banco de preguntas y clases actualizado periódicamente',
-      '⭐ Soporte prioritario para dudas de plataforma',
-      '🎯 Cobertura completa de Medicina Interna, Cirugía, Gine y Pedia',
-    ],
-    popular: true,
-    cta: 'Empezar con 6 Meses',
-  },
-  {
-    id: '1y',
-    name: '1 Año',
-    price: '$89.990',
-    unit: 'pago único (~$7.499/mes)',
+    id: 'life',
+    name: 'De por vida',
+    price: '$129.990',
+    unit: 'pago único',
     badge: 'Mejor Valor',
-    desc: 'Acceso total extendido para asegurar tu aprobación en cualquier convocatoria.',
+    desc: 'Un solo pago, acceso sin vencimiento hasta que apruebes el EUNACOM.',
     features: [
-      '🎓 Todo lo incluido en 6 Meses (+650 Videos + 10k Preguntas)',
-      '🗓️ Acceso irrestricto por 12 meses completos (Julio & Diciembre)',
-      '🚀 Todas las futuras clases y nuevos módulos incluidos sin costo',
-      '📜 Garantía de contenido según normativas MINSAL/ASOFAMECH',
-      '💎 Máxima flexibilidad para estudiar con total tranquilidad',
+      '🎓 Todo lo incluido en 3 Meses (+650 Videos + 47.000 Preguntas)',
+      '📚 Biblioteca completa de libros incluida',
+      '♾️ Acceso sin vencimiento hasta que apruebes',
+      '🔄 Clases y preguntas actualizadas periódicamente',
+      '🚀 Nuevos módulos y clases incluidos sin costo',
+      '💎 Sin volver a pagar en cada convocatoria',
     ],
     popular: false,
-    cta: 'Elegir 1 Año',
+    cta: 'Elegir De por vida',
   },
 ]
 
@@ -112,15 +95,15 @@ const FAQ_ITEMS = [
   },
   {
     q: '¿Cuántas preguntas tiene la plataforma y qué fuentes utilizan?',
-    a: 'Eunacom App cuenta con más de 10.000 preguntas que abarcan las 7 áreas oficiales de ASOFAMECH. Nuestro contenido se basa en reconstrucciones de exámenes pasados, guías clínicas GES/MINSAL y casos clínicos de alta frecuencia.',
+    a: 'Eunacom App cuenta con más de 47.000 preguntas que abarcan las 7 áreas oficiales de ASOFAMECH. Nuestro contenido se basa en reconstrucciones de exámenes pasados, guías clínicas GES/MINSAL y casos clínicos de alta frecuencia.',
   },
   {
     q: '¿Qué diferencia a Eunacom App de cursos tradicionales como Guevara o EUNAMED?',
-    a: 'Los cursos tradicionales suelen costar entre $400.000 y más de $1.000.000 CLP con clases en horarios fijos. Eunacom App te da acceso 24/7 desde cualquier dispositivo a un banco 10x más grande (+10.000 preguntas), simulacros reales, videos y calendario personalizado desde solo $14.990 CLP.',
+    a: 'Los cursos tradicionales suelen costar entre $400.000 y más de $1.000.000 CLP con clases en horarios fijos. Eunacom App te da acceso 24/7 desde cualquier dispositivo a un banco 10x más grande (+47.000 preguntas), simulacros reales, videos y calendario personalizado desde solo $29.990 CLP.',
   },
   {
     q: '¿Es un cobro recurrente o pago único?',
-    a: 'Es 100% pago único por el tiempo que elijas (1, 3, 6 o 12 meses). No guardamos tarjetas ni realizamos cobros automáticos sorpresivos.',
+    a: 'Es 100% pago único por el tiempo que elijas (1 mes, 3 meses o de por vida). No guardamos tarjetas ni realizamos cobros automáticos sorpresivos.',
   },
   {
     q: '¿Qué son las reconstrucciones de exámenes reales?',
@@ -143,8 +126,8 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   usePageSeo({
-    title: 'EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +10.000 Preguntas)',
-    description: 'Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +10.000 preguntas, reconstrucciones y simulacros. Desde $14.990 CLP.',
+    title: 'EUNACOM 2026 | El Curso y Plataforma #1 en Chile de Preparación – Eunacom App (+650 Videos y +47.000 Preguntas)',
+    description: 'Eunacom App (eunacomapp.cl) es la plataforma y curso #1 en Chile para la preparación del EUNACOM 2026. Incluye +650 clases en video según Perfil ASOFAMECH, el banco #1 con +47.000 preguntas, reconstrucciones y simulacros. Desde $29.990 CLP.',
     canonical: 'https://www.eunacomapp.cl/'
   })
 
@@ -166,8 +149,8 @@ export default function LandingPage() {
 
       {/* ── TOP ANNOUNCEMENT BAR ── */}
       <div style={{ background: 'linear-gradient(90deg, #0284c7 0%, #0369a1 100%)', color: '#ffffff', padding: '10px 16px', textAlign: 'center', fontSize: '0.84rem', fontWeight: 500 }}>
-        <span>🎓 100% Actualizado al <strong>Perfil de Conocimientos V3 2026</strong> (Convocatoria Diciembre & Julio) · +10.000 preguntas y +650 clases en video </span>
-        <a href="#planes" style={{ color: '#ffffff', fontWeight: 700, textDecoration: 'underline', marginLeft: 6 }}>Ver planes desde $14.990 →</a>
+        <span>🎓 100% Actualizado al <strong>Perfil de Conocimientos V3 2026</strong> (Convocatoria Diciembre & Julio) · +47.000 preguntas y +650 clases en video </span>
+        <a href="#planes" style={{ color: '#ffffff', fontWeight: 700, textDecoration: 'underline', marginLeft: 6 }}>Ver planes desde $29.990 →</a>
       </div>
 
       {/* ── HEADER / NAVIGATION ── */}
@@ -303,7 +286,7 @@ export default function LandingPage() {
           maxWidth: '1000px',
           margin: '0 auto 18px'
         }}>
-          La Plataforma y Curso <span style={{ color: '#0284c7' }}>#1 en Chile</span> de Preparación EUNACOM: <span style={{ color: '#0284c7' }}>+650 Clases en Video</span> y <span style={{ color: '#0284c7' }}>+10.000 Preguntas</span>
+          La Plataforma y Curso <span style={{ color: '#0284c7' }}>#1 en Chile</span> de Preparación EUNACOM: <span style={{ color: '#0284c7' }}>+650 Clases en Video</span> y <span style={{ color: '#0284c7' }}>+47.000 Preguntas</span>
         </h1>
 
         <p style={{
@@ -313,7 +296,7 @@ export default function LandingPage() {
           maxWidth: '780px',
           margin: '0 auto 30px'
         }}>
-          El estándar de preparación médica en Chile para aprobar tu examen: curso on-demand con más de 650 clases en video (Perfil EUNACOM V3), reconstrucciones de exámenes oficiales, el banco #1 con +10.000 preguntas justificadas y plan adaptativo. Sin mensualidades abusivas.
+          El estándar de preparación médica en Chile para aprobar tu examen: curso on-demand con más de 650 clases en video (Perfil EUNACOM V3), reconstrucciones de exámenes oficiales, el banco #1 con +47.000 preguntas justificadas y plan adaptativo. Sin mensualidades abusivas.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
@@ -352,7 +335,7 @@ export default function LandingPage() {
               justifyContent: 'center'
             }}
           >
-            Ver Planes desde $14.990
+            Ver Planes desde $29.990
           </a>
         </div>
 
@@ -369,7 +352,7 @@ export default function LandingPage() {
           margin: '0 auto'
         }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0284c7' }}>+10.000</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0284c7' }}>+47.000</div>
             <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500 }}>Preguntas con Guías</div>
           </div>
           <div style={{ textAlign: 'center' }}>
@@ -603,7 +586,7 @@ export default function LandingPage() {
                       padding: '10px 18px', borderRadius: 8, fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', width: '100%'
                     }}
                   >
-                    Ver +10.000 Preguntas en la App →
+                    Ver +47.000 Preguntas en la App →
                   </button>
                 </div>
               </div>
@@ -629,7 +612,7 @@ export default function LandingPage() {
             <div style={{ width: 44, height: 44, backgroundColor: '#e0f2fe', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
               <BookOpen size={22} color="#0284c7" />
             </div>
-            <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', marginBottom: 6 }}>+10.000 Preguntas Clínicas</h3>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', marginBottom: 6 }}>+47.000 Preguntas Clínicas</h3>
             <p style={{ color: '#64748b', fontSize: '0.88rem', lineHeight: 1.6 }}>
               Banco categorizado por especialidad y tema. Cada pregunta incluye justificación detallada y referencias a Guías Clínicas GES/MINSAL.
             </p>
@@ -709,8 +692,8 @@ export default function LandingPage() {
               </thead>
               <tbody>
                 {[
-                  { label: 'Arancel / Precio', us: 'Desde $14.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
-                  { label: 'Banco de Preguntas', us: '+10.000 preguntas con justificación', them: '1.000 – 3.000 preguntas', bold: false },
+                  { label: 'Arancel / Precio', us: 'Desde $29.990 CLP (Pago único)', them: '$450.000 a $1.200.000+ CLP', bold: true },
+                  { label: 'Banco de Preguntas', us: '+47.000 preguntas con justificación', them: '1.000 – 3.000 preguntas', bold: false },
                   { label: 'Clases en Video', us: '+650 videoclases modulares organizadas por subespecialidad', them: 'Clases sincrónicas largas sin videoteca modular', bold: true },
                   { label: 'Reconstrucciones Reales', us: 'Completas de todas las convocatorias', them: 'Desactualizadas o restringidas', bold: false },
                   { label: 'Flexibilidad de Horarios', us: '24/7 a tu propio ritmo en celular/PC', them: 'Clases sincrónicas rígidas', bold: false },
@@ -740,10 +723,10 @@ export default function LandingPage() {
             🎓 CURSO COMPLETO TODO-EN-UNO (VIDEOS + PREGUNTAS)
           </span>
           <h2 style={{ fontSize: 'clamp(1.7rem, 4vw, 2.6rem)', fontWeight: 800, color: '#0f172a', marginTop: 12, marginBottom: 12, lineHeight: 1.25 }}>
-            Planes Todo-en-Uno: Curso con +650 Videos y +10.000 Preguntas
+            Planes Todo-en-Uno: Curso con +650 Videos y +47.000 Preguntas
           </h2>
           <p style={{ color: '#475569', fontSize: '1rem', maxWidth: '680px', margin: '0 auto', lineHeight: 1.6 }}>
-            <strong>Todos los planes</strong> incluyen acceso ilimitado a las <strong>+650 Clases en Video</strong> organizadas por subespecialidad (según el Perfil EUNACOM), Banco de <strong>+10.000 Preguntas</strong>, Reconstrucciones y Simulacros. ¡Estudia la teoría viendo clases y practica a tu propio ritmo!
+            <strong>Todos los planes</strong> incluyen acceso ilimitado a las <strong>+650 Clases en Video</strong> organizadas por subespecialidad (según el Perfil EUNACOM), Banco de <strong>+47.000 Preguntas</strong>, Reconstrucciones y Simulacros. ¡Estudia la teoría viendo clases y practica a tu propio ritmo!
           </p>
         </div>
 
