@@ -10,6 +10,8 @@ export const isAndroidApp = () =>
 // (create in Play Console → Subscriptions; ids must match api/_play-billing.js)
 export const PLAY_SUBSCRIPTION = 'eunacom_premium'
 export const PLAY_BASE_PLANS = { '1m': 'mensual', '3m': 'trimestral', '6m': 'semestral', '1y': 'anual' }
+// «De por vida» no puede ser suscripción en Play: es una compra única (mismo id que api/_play-billing.js)
+export const PLAY_LIFETIME = 'plan_de_por_vida'
 
 // Localized prices from Play (e.g. "$14.990"), keyed by app plan id
 export async function getPlayPrices() {
@@ -18,7 +20,12 @@ export async function getPlayPrices() {
     productType: PURCHASE_TYPE.SUBS,
   })
   const byBasePlan = Object.fromEntries(products.filter(p => p.planIdentifier).map(p => [p.planIdentifier, p.priceString]))
-  return Object.fromEntries(Object.entries(PLAY_BASE_PLANS).map(([plan, base]) => [plan, byBasePlan[base]]))
+  const prices = Object.fromEntries(Object.entries(PLAY_BASE_PLANS).map(([plan, base]) => [plan, byBasePlan[base]]))
+  try {
+    const { products: life } = await NativePurchases.getProducts({ productIdentifiers: [PLAY_LIFETIME], productType: PURCHASE_TYPE.INAPP })
+    prices.life = life?.[0]?.priceString
+  } catch {}
+  return prices
 }
 
 async function post(body) {
@@ -33,6 +40,16 @@ async function post(body) {
 }
 
 export async function buyPlanWithPlay(planId, userId) {
+  if (planId === 'life') {
+    const tx = await NativePurchases.purchaseProduct({
+      productIdentifier: PLAY_LIFETIME,
+      productType: PURCHASE_TYPE.INAPP,
+      appAccountToken: userId,
+      autoAcknowledgePurchases: false,
+    })
+    if (!tx?.purchaseToken) throw new Error('Google Play no devolvió la compra')
+    return post({ action: 'play_lifetime', userId, purchaseToken: tx.purchaseToken })
+  }
   const tx = await NativePurchases.purchaseProduct({
     productIdentifier: PLAY_SUBSCRIPTION,
     planIdentifier: PLAY_BASE_PLANS[planId],
@@ -59,6 +76,10 @@ export async function finishPendingPlayPurchases(userId) {
   const { purchases: books } = await NativePurchases.getPurchases({ productType: PURCHASE_TYPE.INAPP })
   for (const p of books || []) {
     // Acknowledged = the server already saved it; only retry the unfinished ones
+    if (p.purchaseToken && !p.isAcknowledged && p.productIdentifier === PLAY_LIFETIME) {
+      await post({ action: 'play_lifetime', userId, purchaseToken: p.purchaseToken }).catch(() => {})
+      continue
+    }
     if (p.purchaseToken && !p.isAcknowledged && p.productIdentifier?.startsWith('book_')) {
       await confirmBookOnServer(userId, p.productIdentifier, p.purchaseToken).catch(() => {})
     }

@@ -73,7 +73,7 @@ const PaymentModal = ({ onClose }) => {
   // Mismo cálculo que el servidor (planPricing): descuento mayor y luego el crédito por libros
   const plansToDisplay = React.useMemo(() => {
     // En la app Android se paga con Google Play: solo los planes que existen ahí (De por vida no)
-    return PLANS.filter(p => !androidApp || PLAY_BASE_PLANS[p.id]).map(p => {
+    return PLANS.filter(p => !androidApp || PLAY_BASE_PLANS[p.id] || p.id === 'life').map(p => {
       const num = APP_PLANS.find(x => x.id === p.id).price;
       const discounted = discountPercent ? Math.round(num * (1 - discountPercent / 100)) : num;
       const final = credit && creditApplies(p.id) ? Math.max(MIN_CHARGE_CLP, discounted - credit) : discounted;

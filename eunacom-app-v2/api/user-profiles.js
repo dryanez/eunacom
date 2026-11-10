@@ -2,12 +2,12 @@ import { getTurso } from './_turso.js'
 import { requireUser, ownUserId, isAdminUser } from './_auth.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
-import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies } from './_tienda.js'
+import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies, LIFETIME_MONTHS } from './_tienda.js'
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
 import { handleRegalo } from './_regalos.js'
-import { syncPlaySubscription } from './_play-billing.js'
+import { syncPlaySubscription, verifyPlayLifetime, acknowledgePlayPurchase, PLAY_LIFETIME } from './_play-billing.js'
 import { Resend } from 'resend'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
@@ -452,6 +452,19 @@ export default async function handler(req, res) {
       const r = await syncPlaySubscription(db, purchaseToken, userId)
       if (!r.ok) return res.status(r.status).json({ error: r.error })
       return res.json({ success: true, active: r.active, premium_until: r.expiry })
+    }
+    // «De por vida» bought in the Android app (one-time Play product, see api/_play-billing.js)
+    if (req.method === 'POST' && req.body?.action === 'play_lifetime') {
+      const { userId, purchaseToken } = req.body
+      if (!userId || !purchaseToken) return res.status(400).json({ error: 'Missing parameters' })
+      const v = await verifyPlayLifetime({ userId, purchaseToken })
+      if (!v.ok) return res.status(v.status).json({ error: v.error })
+      await db.execute({ sql: `CREATE TABLE IF NOT EXISTS play_lifetime_orders (order_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, purchase_token TEXT, created_at TEXT DEFAULT (datetime('now')))`, args: [] })
+      const ins = await db.execute({ sql: `INSERT OR IGNORE INTO play_lifetime_orders (order_id, user_id, purchase_token) VALUES (?, ?, ?)`, args: [v.orderId, userId, purchaseToken] })
+      let premiumUntil = null
+      if (ins.rowsAffected) premiumUntil = await activatePremium(db, userId, LIFETIME_MONTHS)
+      if (!v.acknowledged) await acknowledgePlayPurchase({ productId: PLAY_LIFETIME, purchaseToken }).catch(e => console.error('[Play] lifetime ack failed', e))
+      return res.json({ success: true, premium_until: premiumUntil, already_processed: !ins.rowsAffected })
     }
     // Google's real-time notifications (Pub/Sub push subscription pointed at ?play_rtdn=<PLAY_RTDN_SECRET>):
     // renewals, cancellations, refunds → refresh premium_until

@@ -35,11 +35,13 @@ export default function PlayPayButton({ plan, userId }) {
           background: '#fff', color: '#111', fontWeight: 700, fontSize: '1rem', opacity: busy ? 0.6 : 1,
         }}
       >
-        {busy ? 'Abriendo Google Play…' : `Suscribirme con Google Play${price ? ` · ${price}` : ''}`}
+        {busy ? 'Abriendo Google Play…' : `${plan.id === 'life' ? 'Comprar' : 'Suscribirme'} con Google Play${price ? ` · ${price}` : ''}`}
       </button>
       <p style={{ color: 'var(--surface-300)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
-        {price ? `${price} ` : ''}{PERIOD[plan.id]}, se renueva automáticamente hasta que la canceles.
-        Cancela cuando quieras en Google Play → Pagos y suscripciones. Paga con Google Pay, tarjeta o saldo de Google Play.
+        {plan.id === 'life'
+          ? `${price ? `${price} ` : ''}un solo pago, sin renovación: acceso para siempre. Paga con Google Pay, tarjeta o saldo de Google Play.`
+          : <>{price ? `${price} ` : ''}{PERIOD[plan.id]}, se renueva automáticamente hasta que la canceles.
+        Cancela cuando quieras en Google Play → Pagos y suscripciones. Paga con Google Pay, tarjeta o saldo de Google Play.</>}
       </p>
       {error && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem' }}>{error}</div>}
     </div>

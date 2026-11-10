@@ -44,6 +44,14 @@ const productUrl = (productId, token) =>
 
 // Books: each store product is a one-time Play product that stays owned (book_tomo_1,
 // book_rec_jul2013, book_biblioteca…). Play ids allow only a-z, 0-9, _ and .
+// «De por vida»: compra única de Play (no puede ser suscripción). Debe existir en Play Console → Productos únicos.
+export const PLAY_LIFETIME = 'plan_de_por_vida'
+
+// Lifetime plan bought in the Android app → { ok, orderId, acknowledged } like a book
+export async function verifyPlayLifetime({ userId, purchaseToken }) {
+  return readPurchase({ userId, productId: PLAY_LIFETIME, purchaseToken })
+}
+
 export const bookPlayId = sku => 'book_' + sku.toLowerCase().replace(/[^a-z0-9]/g, '_')
 
 // Reads a purchase from Google and checks it belongs to this user and is paid.

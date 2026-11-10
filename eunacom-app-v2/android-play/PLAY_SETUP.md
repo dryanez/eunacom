@@ -2,19 +2,20 @@
 
 App: `com.eunacom.app` · cuenta Play Console «Academia EUNACOM» (Wiackowska Group SpA).
 
-## 1. Suscripción de planes (renovación automática, solo en la app Android)
-Play Console → Monetizar → Productos → **Suscripciones** → Crear suscripción
+## 1. Planes (precios nuevos, nov-2026)
+**Suscripción** — Play Console → Monetizar → Productos → **Suscripciones** → Crear suscripción
 - ID del producto: `eunacom_premium` · Nombre: «EUNACOM Premium»
-- 4 planes base (renovación automática), precio en CLP:
+- 2 planes base (renovación automática), precio en CLP:
 
 | ID del plan base | Período | Precio CLP |
 |---|---|---|
-| `mensual` | 1 mes (P1M) | 14.990 |
-| `trimestral` | 3 meses (P3M) | 34.990 |
-| `semestral` | 6 meses (P6M) | 54.990 |
-| `anual` | 1 año (P1Y) | 89.990 |
+| `mensual` | 1 mes (P1M) | 29.990 |
+| `trimestral` | 3 meses (P3M) | 55.990 (incluye Biblioteca) |
 
-Activa cada plan base. Período de gracia: 7 días (recomendado).
+Activa cada plan base. Período de gracia: 7 días (recomendado). Los planes `semestral`/`anual` ya no se venden (el código aún los reconoce).
+
+**De por vida** — Play no permite suscripciones sin fin, así que es una **compra única**:
+Monetizar → Productos → **Productos únicos** → Crear: ID `plan_de_por_vida`, nombre «EUNACOM De por vida», precio CLP 129.990.
 
 ## 2. Libros (40 compras únicas)
 Play Console → Monetizar → Productos → **Productos únicos** → Importar → `play-products.csv`.
