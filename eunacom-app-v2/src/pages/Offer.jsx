@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useAuth } from '../contexts/AuthContext';
-import { SALE_PLANS, PRODUCTS, fmtClp, looseValue } from '../config/tienda';
+import { SALE_PLANS, PRODUCTS, RECON_JUL2026, fmtClp, looseValue } from '../config/tienda';
 import { getEmailDiscount } from '../lib/api';
 import { fmtExpiry, LIB_ITEMS, LIB_COVERS } from '../components/PaymentModal';
 import { nextExam } from '../config/examen';
@@ -37,7 +37,8 @@ const CSS = `
 .of-price{font-size:40px;font-weight:900;color:${NAVY};line-height:1.05}
 .of-pm{font-size:13px;color:#2563eb;font-weight:800;min-height:18px}
 .of-feat{list-style:none;padding:0;margin:16px 0;font-size:14px;line-height:1.5;flex:1}
-.of-feat li{padding:4px 0}.of-feat .no{color:#94a3b8}
+.of-feat li{padding:4px 0}.of-feat .of-r26{background:#ecfeff;border:1px solid #a5f3fc;border-radius:10px;padding:7px 10px;margin:4px 0}.of-feat .of-r26 span{color:#64748b;font-size:12px}
+.of-r26band{max-width:1008px;margin:-90px auto 16px;position:relative;z-index:2;display:flex;gap:16px;align-items:center;background:#0b2545;color:#fff;border:2px solid #22d3ee;border-radius:16px;padding:12px 18px}.of-r26band img{width:64px;border-radius:3px 6px 6px 3px;box-shadow:0 8px 18px rgba(0,0,0,.4)}.of-r26band div{display:flex;flex-direction:column;gap:2px}.of-r26band span{font-size:12px;font-weight:800;color:#22d3ee;letter-spacing:.04em}.of-r26band b{font-size:17px;line-height:1.25}.of-r26band small{color:#bfdbfe;font-size:13px}@media(max-width:640px){.of-r26band{margin:-90px 16px 14px}.of-r26band b{font-size:15px}}.of-feat .no{color:#94a3b8}
 .of-btn{width:100%;border:none;border-radius:12px;padding:15px 0;font-size:16px;font-weight:900;cursor:pointer;background:#e2e8f0;color:${NAVY}}
 .of-card.star .of-btn{background:${NAVY};color:#fff}
 .of-sec{max-width:1040px;margin:40px auto 0;padding:0 16px}
@@ -156,7 +157,12 @@ const Offer = () => {
           </div>
         </div>
       ) : (
-        <section className="of-plans">
+        <>
+        <div className="of-r26band">
+          <img src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" />
+          <div><span>🆕 Nueva · la última antes de tu examen</span><b>Reconstrucción EUNACOM Julio 2026 gratis con cualquier plan</b><small>180 preguntas con explicación · suelta vale {fmtClp(RECON_JUL2026.price)}</small></div>
+        </div>
+        <section className="of-plans" style={{ marginTop: 0 }}>
           {SALE_PLANS.map(p => {
             const final = off(p.price, percent);
             const perMonth = p.lifetime || p.months === 1 ? null : Math.round(final / p.months);
@@ -172,6 +178,7 @@ const Offer = () => {
                   <li>✓ +650 clases en video</li>
                   <li>✓ +47.000 preguntas y simulacros</li>
                   <li>✓ Reconstrucciones 2013–2026</li>
+                  <li className="of-r26">🆕 <b>Reconstrucción Julio 2026 gratis</b> <span>(suelta {fmtClp(RECON_JUL2026.price)})</span></li>
                   {p.includesLibrary
                     ? <li className="of-lib">
                         <b>📚 + Biblioteca completa: {BOOKS} libros</b>
@@ -189,6 +196,7 @@ const Offer = () => {
             );
           })}
         </section>
+        </>
       )}
 
       <section className="of-sec">
