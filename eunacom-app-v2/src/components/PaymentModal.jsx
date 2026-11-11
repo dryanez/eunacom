@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
 import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
 import PlayPayButton from './PlayPayButton';
+import Paywall from './Paywall';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
@@ -390,4 +391,12 @@ const PaymentModal = ({ onClose }) => {
   );
 };
 
-export default PaymentModal;
+// En la app Android se muestra el paywall con slides (Paywall.jsx). En la web, para verlo:
+// localStorage.eunacom_paywall_preview = '1'
+const PlansEntry = props => {
+  let preview = false;
+  try { preview = localStorage.getItem('eunacom_paywall_preview') === '1'; } catch {}
+  return isAndroidApp() || preview ? <Paywall {...props} /> : <PaymentModal {...props} />;
+};
+
+export default PlansEntry;

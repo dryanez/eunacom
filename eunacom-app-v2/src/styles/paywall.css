@@ -1,0 +1,78 @@
+/* Paywall de la app Android (src/components/Paywall.jsx) */
+.pw {
+  position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column;
+  background: radial-gradient(120% 70% at 50% 0%, #1e3a8a 0%, #0b1220 55%, #070b14 100%);
+  color: #fff; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  font-family: inherit; animation: pw-in .25s ease-out;
+}
+@keyframes pw-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.pw-close {
+  position: absolute; top: calc(env(safe-area-inset-top) + 12px); right: 12px; z-index: 3;
+  width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+  background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center;
+}
+
+.pw-slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; flex-shrink: 0; }
+.pw-slides::-webkit-scrollbar { display: none; }
+.pw-slide { flex: 0 0 100%; scroll-snap-align: center; text-align: center; padding: 44px 28px 0; box-sizing: border-box; }
+.pw-slide h2 { margin: 14px 0 4px; font-size: 1.55rem; font-weight: 800; letter-spacing: -.01em; }
+.pw-slide p { margin: 0 auto; max-width: 340px; color: #cbd5e1; font-size: .95rem; line-height: 1.4; }
+
+.pw-art { height: 150px; display: flex; align-items: center; justify-content: center; position: relative; }
+.pw-art img { box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+.pw-art--wide img { width: min(330px, 86vw); border-radius: 16px; }
+.pw-art--phone img { height: 150px; border-radius: 18px; border: 4px solid #1f2937; }
+.pw-art--book img { height: 150px; border-radius: 6px; transform: rotate(-4deg); }
+.pw-art--covers img { position: absolute; height: 135px; border-radius: 6px; }
+
+.pw-dots { display: flex; justify-content: center; gap: 7px; margin: 12px 0 2px; }
+.pw-dots button { width: 7px; height: 7px; padding: 0; border-radius: 4px; border: none; background: rgba(255,255,255,.3); cursor: pointer; transition: width .2s; }
+.pw-dots button.on { width: 22px; background: #fbbf24; }
+
+.pw-sheet { margin-top: auto; padding: 14px 16px 18px; max-width: 520px; width: 100%; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+.pw-exam { text-align: center; font-size: .85rem; color: #fde68a; margin-bottom: 10px; }
+
+.pw-plans { display: flex; flex-direction: column; gap: 9px; }
+.pw-plan {
+  position: relative; display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 11px 14px; border-radius: 14px; cursor: pointer; color: #fff; font: inherit;
+  background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.12); transition: border-color .15s, background .15s;
+}
+.pw-plan.on { border-color: #fbbf24; background: rgba(251,191,36,.10); }
+.pw-plan.star { margin-top: 8px; }
+.pw-badge {
+  position: absolute; top: -10px; left: 14px; padding: 2px 9px; border-radius: 999px;
+  background: #fbbf24; color: #111; font-size: .7rem; font-weight: 800;
+}
+.pw-radio { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; border: 2px solid rgba(255,255,255,.4); display: grid; place-items: center; }
+.pw-plan.on .pw-radio { background: #fbbf24; border-color: #fbbf24; color: #111; }
+.pw-plan__main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.pw-plan__main b { font-size: 1rem; }
+.pw-plan__main small, .pw-plan__price small { color: #94a3b8; font-size: .75rem; }
+.pw-plan__price { display: flex; flex-direction: column; align-items: flex-end; white-space: nowrap; }
+.pw-plan__price b { font-size: 1.05rem; }
+.pw-plan__price small.save { color: #4ade80; font-weight: 700; }
+
+.pw-foot {
+  position: sticky; bottom: 0; margin: 0 -16px -18px; padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(7,11,20,0) 0%, rgba(7,11,20,.96) 22%, #070b14 100%);
+}
+.pw-cta {
+  width: 100%; margin-top: 6px; padding: 16px; border: none; border-radius: 14px; cursor: pointer;
+  background: linear-gradient(180deg, #fcd34d, #f59e0b); color: #111; font: inherit; font-size: 1.08rem; font-weight: 800;
+  box-shadow: 0 10px 28px rgba(245,158,11,.35);
+}
+.pw-cta:disabled { opacity: .6; }
+.pw-terms { margin: 9px 4px 0; text-align: center; color: #94a3b8; font-size: .72rem; line-height: 1.4; }
+.pw-error { margin-top: 8px; text-align: center; color: #f87171; font-size: .82rem; }
+.pw-links { display: flex; justify-content: center; gap: 18px; margin-top: 10px; }
+.pw-links a, .pw-links button { background: none; border: none; padding: 0; color: #94a3b8; font: inherit; font-size: .75rem; text-decoration: underline; cursor: pointer; }
+
+@media (max-height: 700px) {
+  .pw-slide { padding-top: 44px; }
+  .pw-art { height: 140px; }
+  .pw-art--phone img { height: 140px; }
+  .pw-art--book img, .pw-art--covers img { height: 125px; }
+  .pw-slide h2 { font-size: 1.3rem; margin-top: 12px; }
+}

@@ -48,6 +48,7 @@ import { useAuth } from './contexts/AuthContext'
 import AuthModal from './components/AuthModal'
 import CyberWeekPopup from './components/CyberWeekPopup'
 import './index.css'
+const DevPaywall = React.lazy(() => import('./components/Paywall')) // solo en desarrollo: /dev/paywall
 
 const AdminRoute = ({ children }) => {
   const { user, isAdmin, loading } = useAuth()
@@ -90,6 +91,7 @@ function App() {
               <Route path="/eliminar-cuenta" element={<EliminarCuenta />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/reembolsos" element={<Reembolsos />} />
+              {import.meta.env.DEV && <Route path="/dev/paywall" element={<React.Suspense fallback={null}><DevPaywall onClose={() => window.history.back()} /></React.Suspense>} />}
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
 
