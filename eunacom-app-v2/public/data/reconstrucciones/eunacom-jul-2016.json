@@ -53,7 +53,7 @@
         "Linfoma no Hodgkin"
       ],
       "correctAnswer": "d",
-      "explanation": "Puede ser cualquiera de los tipos de linfoma (adenopatías, síntomas B). Sin embargo, los síntomas B (sudoración, fiebre y baja de peso) y la edad orientan más a linfoma Hodgkin (clásico de adolescentes y adultos jóvenes) La palidez y otros signos de anemia son más frecuentes en las leucemias, pero el resto de la clínica sugiere linfoma.",
+      "explanation": "En estricto rigor, es una mala pregunta, ya que puede ser cualquiera de los tipos de linfoma (adenopatías, síntomas B). Sin embargo, los síntomas B (sudoración, fiebre y baja de peso) y la edad orientan más a linfoma Hodgkin (clásico de adolescentes y adultos jóvenes) La palidez y otros signos de anemia son más frecuentes en las leucemias, pero el resto de la clínica sugiere linfoma.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -120,7 +120,7 @@
         "Tramadol v.o."
       ],
       "correctAnswer": "e",
-      "explanation": "Si bien los AINES son el tratamiento de segunda línea (paracetamol es de primera), en los pacientes hipertensos (mal controlados) y con insuficiencia cardiaca suelen estar contraindicados (por el riesgo de insuficiencia renal aguda), por lo que la respuesta es tramadol (aunque habitualmente es de tercera línea). No se es tan explícito en la contraindicación (otras contraindicaciones son úlcera por AINES y la IRC).",
+      "explanation": "Si bien los AINES son el tratamiento de segunda línea (paracetamol es de primera), en los pacientes hipertensos (mal controlados) y con insuficiencia cardiaca suelen estar contraindicados (por el riesgo de insuficiencia renal aguda), por lo que creo que la respuesta es tramadol (aunque habitualmente es de tercera línea). Aun así es una pregunta difícil, ya que no se es tan explícito en la contraindicación (otras contraindicaciones son úlcera por AINES y la IRC).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Tramadol vs lidocaína en parches; la explicación admite que es pregunta difícil (AINEs contraindicados por ICC/HTA)."
     },
@@ -194,7 +194,7 @@
         "Enalapril"
       ],
       "correctAnswer": "e",
-      "explanation": "Tanto por ser menor de 55 años, como especialmente por ser diabética, el antihipertensivo de elección son los IECAs (enalapril)."
+      "explanation": "Mujer de 53 años, diabética tipo 2 con hipertensión recién diagnosticada y sin otras alteraciones: el fármaco de primera línea es un inhibidor de la enzima convertidora de angiotensina (enalapril), porque en diabéticos con hipertensión ofrece protección renal y cardiovascular. Es además la elección en menores de 55 años. Si no tolera el IECA se usa un ARA II. La hidroclorotiazida es de primera línea en hipertensos sin comorbilidades, y puede usarse en combinación, pero no es la mejor elección inicial en la diabetes. El atenolol y el carvedilol (betabloqueadores) pueden enmascarar hipoglucemias. El amlodipino se agrega como segunda droga."
     },
     {
       "id": 15,
@@ -207,7 +207,7 @@
         "Lupus"
       ],
       "correctAnswer": "b",
-      "explanation": "Balanopostitis candidiásica recurrente: descartar diabetes mellitus."
+      "explanation": "Varón de 50 años con prurito, eritema y edema del glande y el prepucio, con episodios similares previos y fimosis: es una balanopostitis candidiásica recurrente. La diabetes mellitus es la enfermedad que se debe descartar en estos casos, porque la glucosuria favorece la proliferación de Candida y la inmunidad celular está alterada. La balanopostitis recurrente puede ser la forma de debut de la diabetes. El alcoholismo no tiene relación específica con este cuadro. El VIH puede asociarse a candidiasis, pero la candidiasis genital aislada no es lo primero a sospechar. La esclerodermia y el lupus no producen balanitis candidiásica recurrente. Corresponde solicitar glicemia."
     },
     {
       "id": 16,
@@ -233,7 +233,7 @@
         "Observar evolución y controlar en 2 meses"
       ],
       "correctAnswer": "e",
-      "explanation": "La erupción dentaria puede observarse hasta los 15 meses. A esa edad recién se piden las radiografías. Ante una alteración aislada, sin otros hallazgos y con el resto del examen normal, la conducta es observar."
+      "explanation": "La erupción dentaria puede observarse hasta los 15 meses. A esa edad recién se piden las radiografías. Nota: la típica pregunta de pediatría: “un niño tiene una alteración rara que nunca has escuchado en tu vida, pero todo lo demás está estrictamente normal. La conducta es:”… ¡¡¡Observar!!!"
     },
     {
       "id": 18,
@@ -324,7 +324,7 @@
         "Centros centinelas"
       ],
       "correctAnswer": "a",
-      "explanation": "La vigilancia activa de los acuíferos (aguas superficiales y aguas subterráneas) es lo más razonable, con toma de muestras y análisis periódicos de las aguas en cuestión, más análisis directo, en caso de reportarse casos sospechosos. Pero en Chile, las diarreas (incluyendo el cólera, por ejemplo), se vigilan mediante centros centinelas (hospitales o clínicas determinadas, que deben estudiar las etiologías y notificarlas a la Seremi de Salud).",
+      "explanation": "Pregunta muy rara. La vigilancia activa de los acuíferos (aguas superficiales y aguas subterráneas) es lo más razonable, con toma de muestras y análisis periódicos de las aguas en cuestión, más análisis directo, en caso de reportarse casos sospechosos (por eso marcamos la vigilancia activa como respuesta). Pero la verdad es que, en Chile, las diarreas (incluyendo el cólera, por ejemplo), se vigilan mediante centros centinelas (hospitales o clínicas determinadas, que deben estudiar las etiologías y notificarlas a la Seremi de Salud). Sin embargo, dado que vigilancia activa y vigilancia pasiva son términos muy amplios, que abarcan todo lo demás, lo más probable es que quien redactó la pregunta apuntara a una de esas opciones.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: La propia explicación admite que en Chile las diarreas hídricas se vigilan con centros centinelas, pregunta ambigua"
     },
@@ -339,22 +339,20 @@
         "TAC cervical"
       ],
       "correctAnswer": "a",
-      "explanation": "Ante un nódulo tiroideo, lo primero es pedir TSH, luego la ecografía y luego la punción con aguja fina (si es mayor a 10 mm)."
+      "explanation": "Mujer joven con un nódulo tiroideo palpable de 2 cm y función tiroidea normal (TSH y T4 libre): el examen de elección para continuar el estudio es la ecografía cervical, que caracteriza el nódulo y define su riesgo según tamaño, bordes y microcalcificaciones. Según esos hallazgos se decide la punción aspirativa con aguja fina (PAAF), que se hace en nódulos de más de 1 cm con características sospechosas. Realizar la PAAF directamente sin ecografía no es lo recomendado. La cintigrafía se reserva para nódulos con TSH suprimida, donde busca un nódulo caliente. Los anticuerpos antitiroideos y el TAC cervical no aportan a la decisión inicial."
     },
     {
       "id": 26,
-      "question": "Un paciente de 30 años sufre una caída de altura, desde 15 metros, golpéandose contra el suelo. Al examen físico está orientado, con FC: 80x' y PA: 120/80 mmHg, con mucho dolor a la compresión de la pelvis, mayor a izquierda. Se solicita una radiografía de pelvis AP, que se muestra a continuación: ¿Cuál es la conducta inicial más adecuada?",
+      "question": "Un paciente de 30 años sufre una caída desde 15 metros de altura y se golpea contra el suelo. Al examen físico está orientado, con FC 80 lpm y PA 120/80 mmHg, y tiene mucho dolor a la compresión de la pelvis, mayor a izquierda. Se le instalan dos vías venosas periféricas. La radiografía AP de pelvis muestra una diástasis de la sínfisis púbica de 4 cm y una disrupción de la articulación sacroilíaca izquierda (fractura en libro abierto). ¿Cuál es la conducta inicial más adecuada?",
       "options": [
-        "Pasar una sonda Foley",
-        "Indicar reposo en hamaca",
+        "Instalar una sonda Foley",
+        "Estabilizar la pelvis con una faja o sábana pélvica (hamaca)",
         "Administrar antibióticos",
-        "Realizar cirugía",
-        "Solicitar ecografía de abdomen y pelvis"
+        "Realizar una osteosíntesis interna definitiva de urgencia",
+        "Solicitar TAC de pelvis antes de cualquier intervención"
       ],
       "correctAnswer": "b",
-      "explanation": "Lo primero frente a una fractura de pelvis, y frente a un politraumatizado en general, es hacer el ABC y en este caso, instalar vías venosas periféricas y aportar volumen. Luego, lo principal es reducir de manera externa la pelvis, de modo de evitar o al menos limitar las hemorragias pélvicas, lo que se puede hacer con un tutor externo y si no se tiene, son una férula neumática o por último con una sábana o hamaca pélvica (por eso elegimos esta respuesta, aunque la redacción no es la mejor). Una opción razonable era la cirugía de reducción, pero al preguntar la conducta inicial, parecería que la respuesta es otra. Respecto a la sonda Foley, es posible ponerla, pero la indicación es la retención urinaria y en la fractura de pelvis, hay riesgo de rotura uretral, lo que contraindica la Sonda Foley, hasta no haberla descartado con una uretrocistografía.",
-      "excluir": true,
-      "audit_nota": "Requiere Rx de pelvis; la clave \"reposo en hamaca\" (estabilización externa) es la sustentada en la explicación y trauma-05, pero la redacción es débil."
+      "explanation": "La fractura de pelvis en libro abierto aumenta el volumen pélvico y puede causar una hemorragia masiva, sobre todo venosa, aunque el paciente esté estable al principio. Según ATLS, después del ABC y del acceso venoso, la conducta inicial es cerrar y estabilizar la pelvis por fuera con una faja pélvica, una sábana o una hamaca, para disminuir el sangrado. La fijación definitiva se hace después. La sonda Foley está contraindicada hasta descartar una lesión uretral con uretrocistografía, por el riesgo de rotura de uretra. Los antibióticos solo se indican si la fractura es expuesta. El TAC es necesario, pero no debe retrasar la estabilización."
     },
     {
       "id": 27,
@@ -393,7 +391,7 @@
         "Infección por Mycobacterium tuberculosis"
       ],
       "correctAnswer": "d",
-      "explanation": "Parece una infección por Pneumocystis en un paciente VIH, tan inmunosuprimido que no condensa la radiografía. El tiempo de evolución hace imposible el ADV y la influenza (son agudos y de corta evolución). La tos es compatible con Bordetella, pero no la fiebre ni la disnea. Finalmente, no tiene clínica ni radiografía de TBC (falta expectoración, fiebre alta y RxTx alterada)."
+      "explanation": "Pregunta difícil. Parece una infección por Pneumocystis en un paciente VIH, tan inmunosuprimido que no condensa la radiografía. El tiempo de evolución hace imposible el ADV y la influenza (son agudos y de corta evolución). La tos es compatible con Bordetella, pero no la fiebre ni la disnea. Finalmente, no tiene clínica ni radiografía de TBC (falta expectoración, fiebre alta y RxTx alterada)."
     },
     {
       "id": 30,
@@ -406,7 +404,7 @@
         "Hematoma capsular izquierdo"
       ],
       "correctAnswer": "c",
-      "explanation": "Es una presentación clásica de neuropatía compresiva del nervio radial. De hecho, la llaman la “parálisis del borracho”."
+      "explanation": "Paciente alcohólico que se duerme apoyado sobre su brazo y al despertar no puede extender la muñeca ni los dedos, pero sí flectarlos: es una neuropatía compresiva del nervio radial, la clásica parálisis del sábado por la noche o del borracho, con mano en gota. Los hematomas subdural y capsular izquierdos producirían déficit motor de la hemicara o hemicuerpo, con alteraciones como afasia (la lesión izquierda comprometería el lenguaje) y la debilidad sería distinta, no selectiva de los extensores. Las trombosis de la vena o de la arteria subclavia causan edema o isquemia del brazo, con dolor, frialdad o pérdida de pulsos, no una parálisis selectiva sin alteración vascular."
     },
     {
       "id": 31,
@@ -419,7 +417,7 @@
         "Solución de bicarbonato al 2/3 molar"
       ],
       "correctAnswer": "b",
-      "explanation": "Lo primero en un paciente shockeado siempre es reponer la volemia y luego preocuparse de los electrolitos. La volemia se repone preferentemente con cristaloides (suero fisiológico y Ringer lactato) y en este caso, por la severa hipokalemia es más recomendable el Ringer (aunque no ha demostrado ser mejor que el SF en ninguna situación). Además, no salía SF dentro de las alternativas."
+      "explanation": "Lo primero en un paciente shockeado siempre es reponer la volemia y luego preocuparse de los electrolitos. La volemia se repone preferentemente con cristaloides (suero fisiológico y Ringer lactato) y en este caso, por la severa hipokalemia es más recomendable el Ringer (aunque no ha demostrado ser mejor que el SF en ninguna situación). Además, no salía SF dentro de las alternativas. La única excepción (aunque sin evidencia que lo demuestre) es la deshidratación hiperosmolar, en que da miedo dar SF, por el riesgo de una mayor hipernatremia (ahí se da suero hipotónico al 0,45% o suero glucosalino: 0,45% NaCl + glucosa 2,5%, aunque insisto que no hay evidencia)."
     },
     {
       "id": 32,
@@ -597,7 +595,7 @@
         "Trastorno por ansiedad de separación"
       ],
       "correctAnswer": "b",
-      "explanation": "Es una aerofobia, que es la fobia específica a volar."
+      "explanation": "Un hombre joven con temor intenso y específico a volar, que lleva un año evitando los viajes en avión y presenta angustia y palpitaciones anticipatorias, tiene una fobia específica (aerofobia, tipo situacional). El dato central es que el miedo es a un estímulo concreto y se acompaña de evitación con deterioro funcional. El trastorno de ansiedad generalizada implica preocupación excesiva por múltiples temas, no un solo estímulo. La agorafobia es miedo a lugares donde escapar es difícil, con varias situaciones. El trastorno de pánico requiere crisis inesperadas y recurrentes. La ansiedad de separación se refiere al temor a separarse de figuras de apego."
     },
     {
       "id": 45,
@@ -610,7 +608,7 @@
         "Trastorno de ansiedad generalizada"
       ],
       "correctAnswer": "d",
-      "explanation": "Es una bulimia, con los atracones característicos y además con la purga, por medio de ejercicios y ayuna (no solo se purga con vómitos o laxantes)."
+      "explanation": "Joven disconforme con su figura que presenta atracones (come sin parar hasta no poder más) y conductas compensatorias inapropiadas: ejercicio excesivo (5 horas de trote) y ayuno con menos de 200 kcal al día. Esto corresponde a bulimia nerviosa, pues la compensación no necesita ser vómito o laxantes, también incluye el ejercicio y el ayuno. En el trastorno por atracones no hay conductas compensatorias. La anorexia nerviosa exige bajo peso significativo y restricción persistente, y no se describe. La depresión mayor y el trastorno de ansiedad generalizada pueden coexistir, pero no explican la conducta alimentaria central del caso."
     },
     {
       "id": 46,
@@ -636,7 +634,7 @@
         "Teratoma ovárico"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un endometrioma clásico, que también puede llamarse quiste endometriósico."
+      "explanation": "Mujer de 35 años con dolor pélvico que empeora con la menstruación, y una lesión quística ovárica de 6 cm con contenido denso (aspecto en vidrio esmerilado) y Ca-125 elevado en 160: es un endometrioma, también llamado quiste endometriósico o quiste de chocolate. El Ca-125 se eleva en la endometriosis, de modo que su alza no implica cáncer. El quiste folicular es de contenido anecoico, uniloculado y se resuelve solo. El teratoma maduro tiene componentes grasos y calcificaciones característicos. El cáncer de ovario inicial o avanzado no explica el dolor cíclico en una mujer joven con quiste de contenido denso homogéneo. El uso de DIU no cambia este razonamiento."
     },
     {
       "id": 48,
@@ -649,7 +647,7 @@
         "Pénfigo"
       ],
       "correctAnswer": "d",
-      "explanation": "Es una NET clásica, con el signo de Kikolski (se desprende la epidermis), aunque no era la imagen más característica de la NET."
+      "explanation": "Mujer joven que 2 semanas después de una cirugía (probable exposición a fármacos nuevos) presenta fiebre, dolor cutáneo, eritema generalizado, compromiso de mucosas y ampollas con desprendimiento epidérmico: es una necrólisis epidérmica tóxica (síndrome de Lyell), reacción adversa grave a fármacos con signo de Nikolsky positivo. Es una urgencia que requiere suspender el fármaco causal y manejo en unidad de quemados o UCI. La psoriasis eritrodérmica es crónica y sin ampollas ni mucosas. La escarlatina da eritema en lija sin ampollas. La pustulosis exantemática es aguda con pústulas estériles, no con desprendimiento. El pénfigo es de curso crónico con erosiones, y no con fiebre y dolor agudos."
     },
     {
       "id": 49,
@@ -662,7 +660,7 @@
         "Esofagitis por Cándida albicans"
       ],
       "correctAnswer": "a",
-      "explanation": "La clínica calza tanto con cáncer de esófago, como con cáncer gástrico cardial, ya que se trata de una disfagia lógica. Sin embargo, la correcta será cáncer de esófago, por ser la presentación clásica.",
+      "explanation": "Es una pregunta algo capciosa, porque la clínica calza tanto con cáncer de esófago, como con cáncer gástrico cardial, ya que se trata de una disfagia lógica. Sin embargo, la correcta será cáncer de esófago, por ser la presentación clásica.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Regurgitación de alimentos no digeridos y necesidad de tomar agua para tragar sugiere disfagia ilógica/acalasia (D); cáncer de esófago (A) es defendible por la baja de peso"
     },
@@ -677,7 +675,7 @@
         "Rectosigmoidoscopía"
       ],
       "correctAnswer": "d",
-      "explanation": "Es un cuadro sugerente de cáncer de colon (constipación y anemia en adulto mayor), que se estudia con colonoscopía."
+      "explanation": "Paciente de 70 años con meses de alteración del hábito intestinal (constipación alternada con diarrea) y anemia leve: es un cuadro sugerente de cáncer colorrectal, y el examen indicado es la colonoscopía completa, que permite visualizar todo el colon, tomar biopsias y resecar pólipos. El test de sangre oculta en deposiciones es un examen de tamizaje en personas asintomáticas, no de estudio de un paciente con síntomas. La rectosigmoidoscopía no explora el colon proximal, que puede albergar la lesión. La ecografía abdominal y el TAC tienen baja sensibilidad para lesiones mucosas, y el TAC se usa después, para etapificar un cáncer confirmado."
     },
     {
       "id": 51,
@@ -703,7 +701,7 @@
         "Colangiografía endoscópica retrógrada"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un probable cáncer con obstrucción de la vía biliar (colestasia silente), probable cáncer de páncreas, por ser fumador. El examen de primera línea de la colestasia silente es la Ecografía abdominal, mientras que el examen de elección, para el cáncer de páncreas en específico, es el TAC abdominal con contraste. Finalmente, el mejor examen para ver las ictericias malignas en general es la colangioRMN y se suele pedir después de la Ecografía. Por la clínica con algo de dolor y el antecedente de fumar, el cuadro apunta a un cáncer de páncreas en específico, por lo que la TAC es la alternativa correcta.",
+      "explanation": "Es un probable cáncer con obstrucción de la vía biliar (colestasia silente), probable cáncer de páncreas, por ser fumador. Es una pregunta muy difícil, porque el examen de primera línea de la colestasia silente es la Ecografía abdominal, mientras que el examen de elección, para el cáncer de páncreas en específico, es el TAC abdominal con contraste. Finalmente, el mejor examen para ver las ictericias malignas en general es la colangioRMN y se suele pedir después de la Ecografía. Por la clínica con algo de dolor y el antecedente de fumar, asumiremos que estaban preguntando un cáncer de páncreas en específico, por lo que dejaremos como correcta la TAC.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Colestasia silente: la ecografía es el examen de primera línea (B); el TAC (C) es el de elección para estadificar cáncer de páncreas; la propia explicación admite la duda"
     },
@@ -876,7 +874,7 @@
         "Luxación de cúpula radial"
       ],
       "correctAnswer": "b",
-      "explanation": "No hay duda de que es una fractura de radio distal, pero la clínica es insuficiente para distinguir entre la fractura de epífisis y la disyunción fractura. Sin embargo, “disyunción fractura” o “luxofractura” se usa más para las fracturas de Monteggia y Galeazzi, que no corresponden a este cuadro. Sin embargo, la fractura no necesariamente es de la epífisis y puede ser de la metáfisis por ejemplo. Dolor epicrítico es sinónimo de dolor somático o superficial, en contraposición a dolor profundo o visceral.",
+      "explanation": "Es una mala pregunta: no hay duda de que es una fractura de radio distal, pero la clínica es insuficiente para distinguir entre la fractura de epífisis y la disyunción fractura. Sin embargo, “disyunción fractura” o “luxofractura” se usa más para las fracturas de Monteggia y Galeazzi, que no corresponden a este cuadro, por lo que dejaremos la B como correcta. Sin embargo, la fractura no necesariamente es de la epífisis y puede ser de la metáfisis por ejemplo, así que definitivamente es una mala pregunta. Dolor epicrítico es sinónimo de dolor somático o superficial, en contraposición a dolor profundo o visceral.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -891,7 +889,7 @@
         "Administrar tocolíticos"
       ],
       "correctAnswer": "b",
-      "explanation": "Tiene clínica de corioamnionitis (por lo que es una corioamnionitis), por lo que lo más correcto es interrumpir el embarazo, bajo cobertura antibiótica (clinda-genta). Ninguna de las opciones entregaba el manejo completo. Lo más importante es la interrupción del embarazo. Es importante aclarar que la corioamnionitis no es indicación per sé de cesárea y puede nacer por parto vaginal, siempre y cuando ya esté en trabajo de parto avanzado, de modo que no demore mucho en salir.",
+      "explanation": "Pregunta con información insuficiente. Tiene clínica de corioamnionitis (por lo que es una corioamnionitis), por lo que lo más correcto es interrumpir el embarazo, bajo cobertura antibiótica (clinda-genta). Ninguna de las opciones entregaba el manejo completo. Lo más importante es la interrupción del embarazo, por lo que dejaremos como correcta la B. Es importante aclarar que la corioamnionitis no es indicación per sé de cesárea y puede nacer por parto vaginal, siempre y cuando ya esté en trabajo de parto avanzado, de modo que no demore mucho en salir.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Corioamnionitis no es indicacion de cesarea: se interrumpe preferentemente por via vaginal bajo ATB (A inducir, D sola incompleta)"
     },
@@ -906,7 +904,7 @@
         "Niveles de vitamina B12 y Ácido fólico."
       ],
       "correctAnswer": "e",
-      "explanation": "Era una anemia perniciosa clásica, con la macrocitosis y pancitopenia clásicas. Se estudia con B12 (cianocobalamina) y B9 (folatos)."
+      "explanation": "Adulto mayor con astenia, palidez, leve ictericia, anemia macrocítica (VCM 117) y pancitopenia (plaquetas 110.000, leucocitos 3.400): es el cuadro de una anemia megaloblástica, clásicamente por déficit de vitamina B12 (anemia perniciosa), donde la ictericia se debe a hemólisis intramedular. El examen para confirmar es la medición de vitamina B12 y ácido fólico. El mielograma muestra megaloblastos, pero no es necesario si los niveles confirman el déficit. La citometría de flujo se usa en sospecha de leucemias o linfomas. La prueba de Coombs estudia anemias hemolíticas autoinmunes, que cursan con VCM normal o levemente alto. La eritropoyetina no ayuda al diagnóstico."
     },
     {
       "id": 68,
@@ -919,7 +917,7 @@
         "Plastrón apendicular"
       ],
       "correctAnswer": "b",
-      "explanation": "Es una apendicitis clásica."
+      "explanation": "Niña de 7 años con 12 horas de fiebre y dolor en hipogastrio, Blumberg positivo, defensa de la pared abdominal, leucocitosis de 18.000 y PCR elevada: es una apendicitis aguda con irritación peritoneal. Los leucocitos en la orina (20 por campo) pueden aparecer por inflamación del apéndice adyacente a la vejiga y no deben llevar a diagnosticar una infección urinaria. La pielonefritis y la ITU baja no producen signo de Blumberg ni defensa. La torsión ovárica es posible en niñas, pero no cursa con fiebre alta y leucocitosis. El plastrón apendicular se forma tras varios días de evolución, no a las 12 horas."
     },
     {
       "id": 69,
@@ -932,11 +930,11 @@
         "Trastorno adaptativo"
       ],
       "correctAnswer": "c",
-      "explanation": "Los mesoteliomas son por exposición a asbesto. De todos modos, era la que hacía placas de asbesto)."
+      "explanation": "Los mesoteliomas son por exposición a asbesto. De todos modos, es una pregunta muy específica y además la frecuencia de mesoteliomas es muy baja en la actualidad (cerraron la empresa Pizarreño hace muchos años: era la que hacía placas de asbesto)."
     },
     {
       "id": 70,
-      "question": "Un lactante de 10 meses de edad, con antecedente de dermatitis del pañal presenta aparición de lesiones eritematosas y pruriginosas en los muslos, que se muestran en la imagen: El tratamiento más adecuado es:",
+      "question": "Un lactante de 10 meses, con antecedente de dermatitis del pañal, presenta lesiones eritematosas y pruriginosas en la cara interna de los muslos. Al examen se observa un eritema rojo intenso en la zona del pañal que compromete los pliegues inguinales, y en los muslos múltiples pápulas y pústulas pequeñas, aisladas, alrededor de la placa principal (lesiones satélite), sin costras melicéricas. ¿Cuál es el tratamiento más adecuado?",
       "options": [
         "Antimicóticos tópicos en crema",
         "Corticoides tópicos en crema",
@@ -945,9 +943,7 @@
         "Vaselina tópica"
       ],
       "correctAnswer": "a",
-      "explanation": "Si bien en la foto original parecían ectimas bacterianos en la foto, lo que se preguntaban eran las lesiones satélite en el muslo del lactante, por lo que se trataba de una candidiasis.",
-      "excluir": true,
-      "audit_nota": "Candidiasis por lesiones satélite visibles solo en la foto ausente, clave A coherente, explicación con comentario del recopilador"
+      "explanation": "Las pápulas y pústulas satélite que rodean una placa eritematosa intensa que compromete los pliegues son el signo característico de la candidiasis del pañal, que suele sobreinfectar una dermatitis irritativa persistente. El tratamiento es un antimicótico tópico en crema, como clotrimazol, miconazol o nistatina, junto con mantener la zona seca y con cambios frecuentes del pañal. Los corticoides tópicos pueden empeorar la infección por Candida. Los antibióticos tópicos sirven para el impétigo, que da costras melicéricas. El aciclovir trata el herpes, que forma vesículas agrupadas. La vaselina es solo de barrera y no trata la infección."
     },
     {
       "id": 71,
@@ -960,7 +956,7 @@
         "Sarcoma"
       ],
       "correctAnswer": "b",
-      "explanation": "Clínicamente es imposible distinguir un lipoma de un adenoma pleomorfo solo con la descripción del examen físico. Tiene las características clínicas de un lipoma (consistencia blanda, adherido en la zona profunda, pero sin compromiso de la piel). Sin embargo, la ubicación sugiere muy fuertemente un adenoma pleomorfo, que es el tumor benigno más frecuente de la parótida (50%, vs. 3% de los lipomas). El adenoma pleomorfo suele ser más móvil y no fijo y puede ser tanto duro, como blando, pero, aun así.",
+      "explanation": "Es una mala pregunta, porque clínicamente es imposible distinguir un lipoma de un adenoma pleomorfo solo con la descripción del examen físico. Tiene las características clínicas de un lipoma (consistencia blanda, adherido en la zona profunda, pero sin compromiso de la piel). Sin embargo, la ubicación sugiere muy fuertemente un adenoma pleomorfo, que es el tumor benigno más frecuente de la parótida (50%, vs. 3% de los lipomas). El adenoma pleomorfo suele ser más móvil y no fijo y puede ser tanto duro, como blando, pero, aun así, dejaremos esa como respuesta correcta.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: La explicación admite que clínicamente no se distingue lipoma de adenoma pleomorfo, la clave depende de interpretar 'fija' como tumor parotídeo"
     },
@@ -988,7 +984,7 @@
         "Neumonía por Pneumocystis jiroveci"
       ],
       "correctAnswer": "c",
-      "explanation": "La aspergilosis es una complicación clásica de la neutropenia prolongada. Además, por ser un hongo, no responde a los antibióticos."
+      "explanation": "Paciente con leucemia mieloide aguda, quimioterapia reciente, neutropenia profunda (100 neutrófilos) y fiebre persistente a pesar de antibióticos de amplio espectro, que presenta una lesión pulmonar apical espiculada: es una aspergilosis invasiva, infección fúngica clásica del neutropénico prolongado. Los hongos no responden a antibióticos, por eso persiste la fiebre. La tuberculosis es posible, pero el contexto de neutropenia y la falta de respuesta a antibióticos orientan a un hongo. La neumonía intrahospitalaria bacteriana habría respondido a la cobertura de amplio espectro. Nocardia y Pneumocystis suelen dar infiltrados difusos, no una lesión nodular."
     },
     {
       "id": 74,
@@ -1014,7 +1010,7 @@
         "Conjuntivitis bacteriana crónica"
       ],
       "correctAnswer": "e",
-      "explanation": "La clínica parece una conjuntivitis alérgica (antecedente de asma), pero no estaba en las alternativas. El antecedente de rosácea orienta mucho a blefaritis, sin embargo, falta la descripción del eritema y descamación palpebral y le sobra la secreción mucosa y mucopurulenta. La conjuntivitis bacteriana crónica (mayor a 4 semanas) clásicamente se asocia a otras alteraciones, como la blefaritis, y sí tiene secreción mucosa y purulenta, más el ojo rojo. No se describe el aumento de volumen de la dacriocistitis.",
+      "explanation": "La clínica parece una conjuntivitis alérgica (antecedente de asma), pero no estaba en las alternativas. El antecedente de rosácea orienta mucho a blefaritis, sin embargo, falta la descripción del eritema y descamación palpebral y le sobra la secreción mucosa y mucopurulenta. La conjuntivitis bacteriana crónica (mayor a 4 semanas) clásicamente se asocia a otras alteraciones, como la blefaritis, y sí tiene secreción mucosa y purulenta, más el ojo rojo. No se describe el aumento de volumen de la dacriocistitis. Es una pregunta difícil y no queda completamente claro cuál es el diagnóstico, pero dejaremos como correcta la conjuntivitis crónica, por el tiempo de evolución, por el factor de riesgo y por la clínica compatible. Es una pregunta muy difícil.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: La explicación admite que no queda claro (asma sugiere alérgica, rosácea blefaritis, falta alternativa)"
     },
@@ -1029,22 +1025,20 @@
         "Antibióticos, como profilaxis de ITU"
       ],
       "correctAnswer": "d",
-      "explanation": "Es una incontinencia de esfuerzo, cuyo tratamiento inicial son los ejercicios de Kegel. Si fallan, se indica el TVT o TOT (cirugía)."
+      "explanation": "Mujer posmenopáusica multípara con escape de orina al toser, reír o hacer esfuerzos, sin urgencia: es una incontinencia de orina de esfuerzo, por debilidad del piso pélvico, favorecida por los partos vaginales y el hipoestrogenismo. El tratamiento de primera línea es conservador: kinesioterapia del piso pélvico (ejercicios de Kegel), junto con modificación de hábitos. La cirugía (TVT o TOT) se indica si fallan las medidas conservadoras. Los anticolinérgicos tratan la incontinencia de urgencia por vejiga hiperactiva, que no existe aquí. Los alfa adrenérgicos no son de uso habitual en el esfuerzo femenino. Los antibióticos profilácticos no tienen indicación."
     },
     {
       "id": 77,
-      "question": "Una lactante de 8 meses de edad, con antecedente de prematurez, presenta un cuadro de 12 horas de evolución, de irritabilidad, llanto y dolor abdominal, asociado a dos de posiciones sanguinolentas. Al examen físico presenta abdomen blando y doloroso a la palpación. En su analítica destaca hematocrito de 34%, con Hemoglobina de 11,2 g/dl, leucocitos: 14.500 por mm3 y plaquetas: 230.000 por mm3. El diagnóstico más probable es:",
+      "question": "Una lactante de 8 meses, con antecedente de prematurez, presenta un cuadro de 12 horas de evolución de irritabilidad, llanto y dolor abdominal, asociado a dos deposiciones sanguinolentas. Al examen físico tiene un abdomen blando y doloroso a la palpación. En los exámenes destacan un hematocrito de 34%, hemoglobina de 11,2 g/dL, 14.500 leucocitos/mm3 y 230.000 plaquetas/mm3. ¿Cuál es el diagnóstico más probable?",
       "options": [
         "Enterocolitis necrotizante",
         "Divertículo de Meckel complicado",
-        "Atresia esófagica",
-        "Invaginacion intestinal",
+        "Atresia esofágica",
+        "Invaginación intestinal",
         "Shigellosis"
       ],
       "correctAnswer": "d",
-      "explanation": "Es una invaginación o intususcepción clásica (incluyendo la edad y la clínica: dolor y hematoquecia).",
-      "excluir": true,
-      "audit_nota": "Enunciado abreviado por el recopilador (Clínica de Sarna perlada con acarotest negativo) y explicación plantilla, permetrina es primera línea en Chile."
+      "explanation": "Una lactante de 8 meses con dolor abdominal cólico, que se manifiesta como irritabilidad y llanto, y deposiciones con sangre corresponde a una invaginación intestinal, la causa más frecuente de obstrucción intestinal entre los 6 y los 36 meses. Se confirma con ecografía abdominal y se trata con desinvaginación hidrostática o neumática. La enterocolitis necrotizante es propia del recién nacido, sobre todo del prematuro en sus primeras semanas, no a los 8 meses. El divertículo de Meckel suele sangrar sin dolor. La atresia esofágica se manifiesta al nacer. La shigellosis daría fiebre y diarrea disentérica."
     },
     {
       "id": 78,
@@ -1083,7 +1077,7 @@
         "Tasa"
       ],
       "correctAnswer": "e",
-      "explanation": "Es la tasa de letalidad (probabilidad de fallecer si se enferma).",
+      "explanation": "La afirmación «de 100 pacientes tuberculosos, 13 fallecen» relaciona los fallecidos por una enfermedad con los pacientes que la padecen: es la tasa de letalidad, que mide la probabilidad de morir una vez enfermo. Es una tasa porque el numerador (fallecidos) forma parte del denominador (enfermos) y se expresa en relación con una población de referencia en un período. Un valor absoluto sería solo el número de fallecidos. Una razón compara dos cantidades independientes, sin que una incluya a la otra. La frecuencia relativa o proporción expresa una parte del todo sin el componente de tiempo o riesgo. Un índice es una medida compuesta. Perla: letalidad no es lo mismo que mortalidad.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: 13 de 100 es proporción (frecuencia relativa) mas que tasa, clave 'tasa' sigue la jerga 'tasa de letalidad', explicación plantilla"
     },
@@ -1124,7 +1118,7 @@
         "Trastorno de personalidad narcisista"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un trastorno delirante crónico de libro (delirio sistematizado; pérdida de juicio de realidad)."
+      "explanation": "Hombre de 46 años con una convicción falsa, sistematizada y mantenida (las mujeres de su trabajo se le insinúan) que es refutada por los testigos, sin otros síntomas psicóticos ni deterioro: es un trastorno delirante crónico, subtipo erotomaníaco. La esquizofrenia exigiría alucinaciones, desorganización o síntomas negativos, y deterioro funcional. La hipomanía cursa con euforia, aumento de energía y menor necesidad de sueño. La dismorfofobia es la preocupación excesiva por un defecto corporal imaginario. El trastorno narcisista de personalidad implica grandiosidad y necesidad de admiración, pero sin una creencia delirante fija."
     },
     {
       "id": 84,
@@ -1176,7 +1170,7 @@
         "Realizar IgE específica del huevo y decidir según resultado"
       ],
       "correctAnswer": "a",
-      "explanation": "Disminución progresiva de AV con alteración del rojo pupilar y menor contraste en anciano: catarata."
+      "explanation": "Un exantema al introducir el huevo, que llevó a suspenderlo, no es una contraindicación para la vacuna trivírica (sarampión, rubéola y parotiditis). Aunque se cultiva en células de embrión de pollo, la cantidad de proteína de huevo es mínima, y solo la anafilaxia grave al huevo requiere precaución, y aun así no la contraindica. Un cuadro cutáneo leve sin reexposición no justifica estudios, por lo que corresponde vacunar a los 12 meses según el calendario. No hay razón para contraindicarla ni para adelantarla o posponerla a los 18 meses o a los 2 años. Tampoco se necesita IgE específica de huevo para decidir la vacunación."
     },
     {
       "id": 88,
@@ -1204,7 +1198,7 @@
         "Enfermedad de Cröhn"
       ],
       "correctAnswer": "d",
-      "explanation": "Es un cáncer de recto, que aumenta el riesgo en el paciente VIH, en especial con VPH de alto riesgo (serotipos 16 y 18)."
+      "explanation": "Paciente con VIH, sangrado rectal y una lesión exofítica de 4 cm en el margen anal que se extiende al recto, con ulceración central: es un cáncer anal epidermoide. El VPH de alto riesgo (16 y 18) y la inmunosupresión por VIH son los factores de riesgo principales. Una hemorroide externa trombosada es una lesión pequeña, dolorosa y azulada, no ulcerada ni infiltrante. El condiloma acuminado forma lesiones verrugosas múltiples, que no ulceran ni invaden el recto. La sífilis produce un chancro indoloro o condilomas planos, de mucho menor tamaño. La enfermedad de Crohn perianal da fístulas y fisuras con síntomas intestinales. Se confirma con biopsia."
     },
     {
       "id": 90,
@@ -1230,7 +1224,7 @@
         "Solicitar ecografía testicular"
       ],
       "correctAnswer": "c",
-      "explanation": "Es una torsión testicular o al menos es un testículo agudo, que se maneja con exploración quirúrgica."
+      "explanation": "Adolescente con dolor testicular súbito e intenso de menos de una hora, náuseas, vómitos, testículo retraído y doloroso, escroto eritematoso y sin fiebre: es una torsión testicular hasta que se demuestre lo contrario, una urgencia quirúrgica con ventana de unas 6 horas para salvar el testículo. La conducta es la exploración quirúrgica inmediata, con orquidopexia bilateral. Los AINES solo alivian el dolor y retrasan el tratamiento. Los antibióticos tratan epididimitis, que cursa con fiebre y alteración urinaria, no con testículo retraído. La ecografía es válida si hay duda, pero con cuadro tan claro no debe demorar la cirugía."
     },
     {
       "id": 92,
@@ -1299,7 +1293,7 @@
         "Clearence de creatinina"
       ],
       "correctAnswer": "a",
-      "explanation": "Parece una rabdomiólisis, que se estudia con CK."
+      "explanation": "Hombre joven con mialgias y oliguria 24 horas después de ejercicio intenso, con falla renal aguda (creatinina de 5) e hiperkalemia leve: la sospecha es una rabdomiólisis con necrosis tubular aguda por mioglobinuria. El examen que confirma la causa es la creatinincinasa (CK), que en estos casos supera con facilidad las 5.000 UI/L, junto con mioglobina en orina. La proteinuria de 24 horas y el clearance de creatinina evalúan función renal crónica o glomerular, pero no la causa. El hemograma no orienta etiológicamente. El sedimento de orina muestra cilindros granulosos, hallazgo inespecífico de necrosis tubular, que no identifica la rabdomiólisis."
     },
     {
       "id": 97,
@@ -1325,7 +1319,7 @@
         "Solicitar fibrobroncoscopia"
       ],
       "correctAnswer": "a",
-      "explanation": "Si bien es imposible ver bien la radiografía, la historia sugería mucho una fibrosis pulmonar por amiodarona, por lo que se debe suspender."
+      "explanation": "Mujer cardiópata con fibrilación auricular crónica en tratamiento con amiodarona que, tras 6 meses, presenta disnea, tos seca y crépitos bibasales: es una toxicidad pulmonar por amiodarona, que produce neumonitis intersticial o fibrosis dosis-dependiente. La conducta inicial es suspender el fármaco, que es la causa más probable, y evaluar luego con estudios y, si es necesario, corticoides. El TAC o la fibrobroncoscopía sin retirar el fármaco retrasan el manejo. Aumentar el diurético supone una falla cardíaca descompensada, pero el cuadro es de tos seca y evolución de meses, con patrón intersticial. El ecocardiograma sería razonable, pero el primer paso es retirar la amiodarona."
     },
     {
       "id": 99,
@@ -1353,7 +1347,7 @@
         "Repetir la proteinuria en 2 semanas"
       ],
       "correctAnswer": "d",
-      "explanation": "Tiene una preclamsia, que pareciera ser moderada, aunque falta información para estar seguro. De todos modos, por haber llegado al término, se debe interrumpir el embarazo. No hay indicación de cesárea con la información que se entrega. Sin embargo, es una pregunta que induce a error, porque no está de más, evaluar el bienestar fetal antes, ya que en toda paciente con preclamsia debería hacerse un Doppler fetal. Sin embargo lo correcto es la interrupción, ya que ese es el tratamiento de la preclamsia a las 38 semanas y aunque el Doppler salga normal, igualmente se debe interrumpir."
+      "explanation": "Tiene una preclamsia, que pareciera ser moderada, aunque falta información para estar seguro. De todos modos, por haber llegado al término, se debe interrumpir el embarazo. No hay indicación de cesárea con la información que se entrega. Sin embargo, es una pregunta que induce a error, porque no está de más, evaluar el bienestar fetal antes, ya que en toda paciente con preclamsia debería hacerse un Doppler fetal. Sin embargo, a mi parecer lo correcto es la interrupción, ya que ese es el tratamiento de la preclamsia a las 38 semanas y aunque el Doppler salga normal, igualmente se debe interrumpir."
     },
     {
       "id": 101,
@@ -1407,7 +1401,7 @@
         "Tiamina"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un déficit de B12 o cianocobalamina, por el antecedente de cirugía gástrica y porque tiene una bicitopenia con macrocitosis."
+      "explanation": "Mujer de 64 años con bypass gástrico previo, alteraciones de la marcha (sugiere compromiso medular posterior o neuropatía), anemia macrocítica y plaquetas bajas: es un déficit de vitamina B12. La cirugía bariátrica reduce el factor intrínseco y el ácido gástrico necesarios para absorberla, por lo que debe reponerse con cianocobalamina parenteral. El hierro está en rango bajo-normal (ferritina de 56) y no explica la macrocitosis. El ácido folato corrige la anemia pero no la neuropatía, y administrarlo solo puede empeorarla. El zinc y la tiamina no corrigen una anemia macrocítica con compromiso neurológico. Perla: el déficit de B12 produce pancitopenia con macrocitosis y síntomas neurológicos."
     },
     {
       "id": 105,
@@ -1420,7 +1414,7 @@
         "Tumor de Ewing"
       ],
       "correctAnswer": "a",
-      "explanation": "Si bien la sinovitis transitoria suele ser en menores de 5 años, la clínica es compatible, por estar en buenas condiciones."
+      "explanation": "Niña de 5 años con dolor que parte en el muslo, pasa a la cadera y limita el movimiento, pero con buen estado general: el cuadro es una sinovitis transitoria de cadera, causa más frecuente de cojera dolorosa en preescolares y escolares, generalmente tras una infección viral y de evolución benigna. La artritis séptica y la osteomielitis cursan con fiebre, compromiso del estado general y elevación de reactantes. La artritis reumatoidea juvenil tiene un curso más prolongado y compromiso de varias articulaciones. El tumor de Ewing da dolor óseo progresivo, nocturno y masa. Si hay fiebre, se debe descartar infección con ecografía y exámenes."
     },
     {
       "id": 106,
@@ -1472,7 +1466,7 @@
         "Supender la lactancia nocturna"
       ],
       "correctAnswer": "d",
-      "explanation": "Aunque esté con lactancia materna exclusiva, hoy se considera obeso (para el diagnóstico de obesidad manda el IPT en menores de 1 año; en cambio para el diagnóstico de desnutrición se usa el IPE hasta el año de edad). Sin embargo, si está con LME, no es necesario tomar ninguna medida, ni siquiera espaciar las tomas, hasta los 6 meses.",
+      "explanation": "Es una pregunta muy discutible. Aunque esté con lactancia materna exclusiva, hoy se considera obeso (para el diagnóstico de obesidad manda el IPT en menores de 1 año; en cambio para el diagnóstico de desnutrición se usa el IPE hasta el año de edad). Sin embargo, si está con LME, no es necesario tomar ninguna medida, ni siquiera espaciar las tomas, hasta los 6 meses.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -1487,7 +1481,7 @@
         "Chlamydia trachomatis"
       ],
       "correctAnswer": "e",
-      "explanation": "Puede ser cualquiera de las opciones, menos la B. Sin embargo, la causa más frecuente de uretritis no gonocócica es la Chlamydia trachomatis. Si bien le falta clínica para tener una uretritis (solo tiene disuria, sin secreción uretral), pareciera que es lo que se está preguntando, dadas las alternativas.",
+      "explanation": "Pregunta pésima, puede ser cualquiera de las opciones, menos la B. Sin embargo, la causa más frecuente de uretritis no gonocócica es la Chlamydia trachomatis. Si bien le falta clínica para tener una uretritis (solo tiene disuria, sin secreción uretral), pareciera que es lo que se está preguntando, dadas las alternativas.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -1502,7 +1496,7 @@
         "Meningococcemia"
       ],
       "correctAnswer": "a",
-      "explanation": "El exantema macular eritematoso es la reacción adversa a medicamentos más frecuente. Las otras opciones no pueden ser."
+      "explanation": "En un adolescente con linfoma de Hodgkin que acaba de recibir quimioterapia, la aparición de un exantema o reacción cutánea generalizada tras la administración de fármacos orienta con mayor probabilidad a una reacción adversa a medicamentos, que es la causa más frecuente de exantemas en pacientes oncológicos. La relación temporal con el ciclo de quimioterapia es el dato central. La infiltración cutánea por linfoma es rara y de curso más crónico, con nódulos o placas. El prurito paraneoplásico no produce una erupción aguda, sino prurito sin lesiones primarias. La mononucleosis no se relaciona con el ciclo. La meningococcemia causa púrpura febril grave."
     },
     {
       "id": 112,
@@ -1515,7 +1509,7 @@
         "Calcemia"
       ],
       "correctAnswer": "d",
-      "explanation": "Es un mieloma, que se diagnostica con mielograma o biopsia de médula ósea (el mielograma equivale al frotis de médula ósea)."
+      "explanation": "Hombre de 75 años con dolor lumbar, baja de peso, anemia, trombocitopenia, VHS de 103, insuficiencia renal y brecha de proteínas (proteínas totales 9,8 con albúmina 3,2): la sospecha es un mieloma múltiple. El examen para confirmar el diagnóstico es el mielograma o biopsia de médula ósea, que muestra infiltración con más de 10% de plasmocitos clonales. La electroforesis de proteínas y el recuento de inmunoglobulinas orientan, pero no confirman. Las radiografías de cráneo y huesos largos buscan lesiones líticas y forman parte de la etapificación. La calcemia evalúa una complicación del mieloma, no su diagnóstico."
     },
     {
       "id": 113,
@@ -1632,7 +1626,7 @@
         "Hiperaldosteronismo primario"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un síndrome nefrótico clásico (proteinuria, edema, hipoalbuminemia). No hay hematuria ni HTA, así que no puede ser nefrítico."
+      "explanation": "Adulto con edema de extremidades inferiores y palpebral matutino, proteinuria (++), hipoalbuminemia (3,0 g/dl) y sedimento con escasos eritrocitos: es un síndrome nefrótico. No hay hematuria dismórfica ni hipertensión importante, por lo que no es un síndrome nefrítico, que cursa con hematuria, edema, hipertensión e insuficiencia renal. El síndrome cardiorrenal se produce por insuficiencia cardíaca con deterioro renal, sin ese perfil de proteinuria. La injuria renal aguda es un deterioro rápido de la función, sin explicar el edema y la proteinuria. El hiperaldosteronismo primario produce hipertensión e hipokalemia, sin proteinuria ni hipoalbuminemia. Debe estudiarse con biopsia renal."
     },
     {
       "id": 122,
@@ -1645,7 +1639,7 @@
         "Púrpura de Schölein Henoch"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un SHU clásico (niño, antecedente de diarrea, insuficiencia renal aguda grave, anemia hemolítica y trombocitopenia)."
+      "explanation": "Niña de 3 años con diarrea que se hace sanguinolenta a los 2 días, luego palidez, hematocrito bajo, plaquetopenia (75.000) e insuficiencia renal aguda (creatinina de 2,3): es la tríada del síndrome hemolítico urémico típico, asociado a E. coli productora de toxina Shiga tras una diarrea con sangre. La leucemia aguda no explicaría el antecedente diarreico ni la falla renal aislada con leucocitos normales. El shock séptico cursaría con hipotensión y compromiso hemodinámico. La glomerulonefritis aguda se presenta con hematuria, edema e hipertensión, sin plaquetopenia. La púrpura de Schönlein-Henoch tiene plaquetas normales y lesiones purpúricas en piernas. No se deben usar antibióticos."
     },
     {
       "id": 123,
@@ -1658,7 +1652,7 @@
         "Ensayo clínico controlado"
       ],
       "correctAnswer": "b",
-      "explanation": "La aparición de una enfermedad a lo largo del tiempo es la definición de incidencia. La incidencia se mide con los estudios de incidencia y con los estudios de cohortes, con la diferencia que el estudio de incidencia es simplemente descriptivo y no tiene un grupo de comparación (dice “un grupo de escolares”), mientras que los de cohortes tienen un grupo de control (se separan en expuesto y no expuestos a un factor de riesgo y se siguen en el tiempo, para ver las incidencias de patología). Ambas respuestas son correctas; la B es la más adecuada por ser solo un grupo y dar la definición de incidencia en el enunciado.",
+      "explanation": "La aparición de una enfermedad a lo largo del tiempo es la definición de incidencia. La incidencia se mide con los estudios de incidencia y con los estudios de cohortes, con la diferencia que el estudio de incidencia es simplemente descriptivo y no tiene un grupo de comparación (dice “un grupo de escolares”), mientras que los de cohortes tienen un grupo de control (se separan en expuesto y no expuestos a un factor de riesgo y se siguen en el tiempo, para ver las incidencias de patología). Es una pregunta que induce a error, ya que ambas respuestas son correctas, pero dejaremos como correcta la B, por ser solo un grupo y dar la definición de incidencia en el enunciado.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Seguimiento de escolares en el tiempo cabe en estudio de incidencia o cohortes (D), el banco lo reconoce ambigua"
     },
@@ -1701,7 +1695,7 @@
         "Anergia cutánea"
       ],
       "correctAnswer": "b",
-      "explanation": "Ya que el control positivo (con histamina) resulta 0 mm, lo que habitualmente significa que está usando antihistamínicos y el examen no sirve, por la anergia cutánea farmacológica, sin embargo, también resulta negativo para todo lo demás. En cambio, en este caso, resultó positivo para pólenes (>3 mm), lo que es imposible según lo anterior, pero da cuenta que está sensibilizado para pólenes. . Lo más correcto es que hubiese dicho que el control con suero fisiológico estaba en 0 mm y no el de la histamina. No es posible afirmar que sea alérgico, ya que ese es un diagnóstico clínico y no mediante el prick test.",
+      "explanation": "En mi opinión, es una pregunta con error, ya que el control positivo (con histamina) resulta 0 mm, lo que habitualmente significa que está usando antihistamínicos y el examen no sirve, por la anergia cutánea farmacológica, sin embargo, también resulta negativo para todo lo demás. En cambio, en este caso, resultó positivo para pólenes (>3 mm), lo que es imposible según lo anterior, pero da cuenta que está sensibilizado para pólenes. Por eso, dejaremos como respuesta correcta la B. Lo más correcto es que hubiese dicho que el control con suero fisiológico estaba en 0 mm y no el de la histamina. No es posible afirmar que sea alérgico, ya que ese es un diagnóstico clínico y no mediante el prick test.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Control de histamina 0 mm invalida el test, la clave sensibilizado es discutible, ya reconocido como error de la pregunta"
     },
@@ -1716,7 +1710,7 @@
         "Angioedema"
       ],
       "correctAnswer": "d",
-      "explanation": "Es el cuadro clásico de aspiración de cuerpo extraño (síndrome de penetración: tos intensa; y luego clínica obstructiva localizada)."
+      "explanation": "Lactante de 1 año con inicio súbito de tos, sofocación y dificultad respiratoria, sibilancias y disminución del murmullo pulmonar localizada: es el síndrome de penetración por aspiración de un cuerpo extraño bronquial, frecuente a esta edad por la exploración oral. El neumotórax produce dolor y disminución del murmullo, pero no sibilancias focales tras un episodio de atoramiento. La laringitis aguda es de inicio progresivo, con estridor y tos perruna, tras un cuadro viral. La bronquitis obstructiva es de inicio gradual, con fiebre o cuadro catarral. El angioedema tiene edema facial o de labios y relación con un alérgeno. Se confirma con broncoscopía rígida, que además extrae el objeto."
     },
     {
       "id": 128,
@@ -1742,7 +1736,7 @@
         "Trastorno de pánico"
       ],
       "correctAnswer": "a",
-      "explanation": "Es una fobia social clásica: ansiedad al realizar actividades en público y evitación de las mismas."
+      "explanation": "Mujer de 34 años con ansiedad marcada al hacer presentaciones o hablar en reuniones, que evita esas situaciones y delega sus tareas, llegando a faltar a un congreso: es una fobia social (trastorno de ansiedad social), con miedo a ser evaluada negativamente en situaciones de exposición pública. El trastorno de ansiedad generalizada es una preocupación excesiva por múltiples temas, sin relación específica con situaciones sociales. El trastorno de personalidad antisocial se caracteriza por desprecio de las normas y los derechos de otros. El trastorno evitativo es un patrón generalizado de inhibición social desde la adultez temprana. El pánico implica crisis inesperadas."
     },
     {
       "id": 130,
@@ -1755,7 +1749,7 @@
         "Cáncer de ovario complicado"
       ],
       "correctAnswer": "a",
-      "explanation": "Es una diverticulitis clásica, con irritación peritoneal en la FII (fosa iliaca izquierda)."
+      "explanation": "Mujer de 70 años con dolor abdominal de 12 horas, más intenso en el hemiabdomen izquierdo, fiebre de 38,5, hipotensión, taquicardia, y signos de irritación peritoneal en fosa ilíaca izquierda: es una diverticulitis aguda complicada con peritonitis, probablemente por perforación, ya que la enfermedad diverticular afecta sobre todo al sigmoides. Se confirma con TAC. El cáncer colorrectal complicado puede perforarse, pero la fiebre, el inicio agudo y la edad orientan más a diverticulitis. El vólvulo sigmoideo y la obstrucción cursan con distensión, sin esa fiebre e irritación peritoneal. El cáncer de ovario complicado es poco probable en una evolución de 12 horas."
     },
     {
       "id": 131,
@@ -1783,7 +1777,7 @@
         "Síndrome de Sjörgren primario"
       ],
       "correctAnswer": "a",
-      "explanation": "Aunque los marcadores estén negativos, es una AR clásica. Tiene además un Sjögren secundario."
+      "explanation": "Mujer de 54 años con poliartritis simétrica de pequeñas y grandes articulaciones, con compromiso de metacarpofalángicas e interfalángicas proximales, rigidez matinal de más de una hora y evolución de un año: cumple con el patrón de la artritis reumatoide, y es seronegativa. Los factores reumatoideo y anti-CCP negativos no la descartan, y la sequedad ocular es un síndrome sicca secundario, frecuente en la AR. La artritis reactiva es asimétrica y de grandes articulaciones, tras una infección. La artrosis tiene rigidez breve y compromete las interfalángicas distales. La artritis psoriática requiere psoriasis o dactilitis. El síndrome de Sjögren primario no explicaría la sinovitis persistente."
     },
     {
       "id": 133,
@@ -1835,7 +1829,7 @@
         "Solicitar cintigrafía tiroidea"
       ],
       "correctAnswer": "c",
-      "explanation": "El diagnóstico es un hipotiroidismo subclínico y el manejo de esta patología está llena de controversias. Los niveles de TSH y T4 libre de este paciente no justifican los síntomas. Lo más correcto sería seguir estudiando la causa de la astenia y mialgias. Dentro de las opciones, sería válida iniciar tratamiento, si la pregunta se refiere a un hipoT4 sintomático (y por lo tanto clínico), pero probablemente no se refiere a eso, por tener una TSH de apenas 5,6. Por el contrario, sería controlar con pruebas tiroideas, si se refiere a un hipotiroidismo subclínico propiamente tal y decidir el manejo con levotroxina solo si persiste con los niveles elevados de TSH en 3 meses y con los síntomas, o si se asocia algún otro factor de riesgo, como dislipidemia, depresión.",
+      "explanation": "Es una pregunta muy discutible, ya que el diagnóstico es un hipotiroidismo subclínico y el manejo de esta patología está llena de controversias. Los niveles de TSH y T4 libre de este paciente no justifican los síntomas. Lo más correcto sería seguir estudiando la causa de la astenia y mialgias. Dentro de las opciones, sería válida iniciar tratamiento, si la pregunta se refiere a un hipoT4 sintomático (y por lo tanto clínico), pero probablemente no se refiere a eso, por tener una TSH de apenas 5,6. Por el contrario, sería controlar con pruebas tiroideas, si se refiere a un hipotiroidismo subclínico propiamente tal y decidir el manejo con levotroxina solo si persiste con los niveles elevados de TSH en 3 meses y con los síntomas, o si se asocia algún otro factor de riesgo, como dislipidemia, depresión.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: TSH 5,6 con T4L normal: hipotiroidismo subclínico leve, repetir en 3 meses es defendible pero la propia explicación admite que habría que buscar otra causa de los síntomas"
     },
@@ -1889,7 +1883,7 @@
         "VIH"
       ],
       "correctAnswer": "a",
-      "explanation": "Puerperio con disnea, hemoptisis y desaturacion orienta a TEP."
+      "explanation": "Puérpera de 15 días con disnea, tos con expectoración hemoptoica, escasos crépitos y desaturación de 90%: el puerperio es un estado de hipercoagulabilidad, y esta combinación orienta a tromboembolismo pulmonar con infarto pulmonar (la hemoptisis). La neumonía adquirida en la comunidad suele cursar con fiebre, tos productiva y foco de condensación, que no se describe. La neumonía intrahospitalaria requiere hospitalización previa de más de 48 horas, y no aplica. La tuberculosis pulmonar es de evolución subaguda o crónica, con baja de peso y sudoración. El VIH no explica un cuadro agudo como este. Se confirma con angioTAC de tórax."
     },
     {
       "id": 141,
@@ -1956,7 +1950,7 @@
         "Ureaplasma urealyticum"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un herpes genital clásico.",
+      "explanation": "Adolescente con relaciones sexuales sin protección, que presenta primero sensación de aumento de volumen de la vulva y luego prurito y ardor, con lesiones vesiculosas y ulceradas dolorosas en el examen: es un herpes genital, causado por el virus herpes simplex (VHS-2 sobre todo). Treponema pallidum causa un chancro único, indoloro y de bordes indurados, o condilomas planos. Chlamydia trachomatis produce cervicitis o uretritis, generalmente asintomática, sin úlceras vulvares características. El virus papiloma humano causa condilomas acuminados, que son verrugas sin ardor ni vesículas. Ureaplasma causa uretritis, no lesiones vulvares. El tratamiento es con aciclovir.",
       "image": {
         "src": "/data/reconstrucciones/img/julio-2016_p145.jpg",
         "credit": "Fitzpatrick, fig. 193-5",
@@ -1974,7 +1968,7 @@
         "Hemofilia"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un PTI clásico, con el hemograma característico: trombocitopenia asilada."
+      "explanation": "Escolar con petequias, equimosis, epistaxis y gingivorragia de 4 días, hemograma con plaquetopenia aislada (18.000) y serie roja y blanca normales, y coagulación normal (INR 1,1): es una púrpura trombocitopénica inmune, donde hay destrucción periférica de plaquetas por autoanticuerpos, habitualmente tras un cuadro viral. La púrpura de Schönlein-Henoch cursa con plaquetas normales y púrpura palpable en piernas y glúteos, con dolor abdominal y artritis. La leucemia aguda tendría compromiso de otras series y blastos. La meningococcemia presenta fiebre y compromiso del estado general. La hemofilia cursa con hemartrosis y TTPA prolongado, no con plaquetopenia."
     },
     {
       "id": 147,
@@ -1987,7 +1981,7 @@
         "Sales de rehidratación oral"
       ],
       "correctAnswer": "b",
-      "explanation": "Dado el diagnóstico de deshidratación hipertónica, con marcada hipernatremia e hipecrloremia, da miedo el suero fisiológico (la evidencia no soporta esta recomendación, pero lo habitual es que se crea que el SF puede agravar la hiponatremia). Debería iniciarse suero glucosalino isosmolar, pero no aparece en las opciones. Se pregunta el primer suero a administrar y el suero glucosado parece la única opción aceptable, ya que es hipotónico. Entonces ante la duda, se responde así: ¿Qué pasa si le doy solo suero glucosado?: se muere; y ¿qué pasa si le soy solo suero fisiológico?: tal vez vive. Por tanto, se elige el suero fisiológico.",
+      "explanation": "Es una pregunta muy discutible, pero dado el diagnóstico de deshidratación hipertónica, con marcada hipernatremia e hipecrloremia, da miedo el suero fisiológico (la evidencia no soporta esta recomendación, pero lo habitual es que se crea que el SF puede agravar la hiponatremia). Debería iniciarse suero glucosalino isosmolar, pero no aparece en las opciones. Se pregunta el primer suero a administrar y el suero glucosado parece la única opción aceptable, ya que es hipotónico. Sin embargo, también está la afirmación: “se corrige primero la volemia y luego, nos preocupamos de los electrolitos” y en ese caso sería correcto el SF, ya que con él se logrará corregir la volemia (con SF o Ringer) y luego corregir la natremia (con suero glucosado). Entonces ante la duda, se responde así: ¿Qué pasa si le doy solo suero glucosado?: se muere; y ¿qué pasa si le soy solo suero fisiológico?: tal vez vive. Por tanto, se elige el suero fisiológico.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Hipernatremia 156 con shock hipovolémico: SF es aceptable para reponer volemia, la explicación del banco sugiere glucosado/glucosalino. Depende de guía."
     },
@@ -2041,7 +2035,7 @@
         "Bronquiolitis aguda"
       ],
       "correctAnswer": "d",
-      "explanation": "Es un coqueluche clásico: tos en accesos, precedido por cuadro catarral y linfocitosis en el hemograma."
+      "explanation": "Lactante de 5 meses con cuadro catarral que progresa a accesos de tos que dificultan la alimentación, afebril, buen estado general, examen pulmonar normal y leucocitosis de 17.000 con 78% de linfocitos: es un coqueluche (tos convulsa por Bordetella pertussis), cuya linfocitosis marcada es característica. Es grave en menores de 6 meses y se debe vigilar apneas. La neumonía atípica y la infección por adenovirus cursan con fiebre y compromiso pulmonar, con otro perfil de leucocitos. La influenza es febril, con síntomas generales marcados. La bronquiolitis tiene sibilancias y examen pulmonar alterado. Se trata con macrólidos."
     },
     {
       "id": 152,
@@ -2054,7 +2048,7 @@
         "TAC de tórax"
       ],
       "correctAnswer": "a",
-      "explanation": "Parece una TBC (cuadro subagudo, con compromiso de los lóbulos superiores), por lo que debe estudiarse con baciloscopías y cultivo."
+      "explanation": "Paciente de 42 años con tos y expectoración mucopurulenta a veces hemoptoica, baja de peso y astenia por 3 meses, y una radiografía con relleno alveolar en el lóbulo superior derecho: es sospecha de tuberculosis pulmonar. El estudio se continúa con baciloscopías y cultivo de Koch de expectoración, que son rápidas, de bajo costo y permiten confirmar el diagnóstico y notificar el caso. El Elisa VIH se solicita a todo paciente con tuberculosis confirmada, pero no es el primer paso. La biopsia por videotoracoscopía y el lavado broncoalveolar son invasivos y se reservan para baciloscopías negativas. El TAC de tórax no reemplaza el estudio microbiológico."
     },
     {
       "id": 153,
@@ -2199,7 +2193,7 @@
         "Paro sinusal"
       ],
       "correctAnswer": "c",
-      "explanation": "Tiene una imagen de un BAV de segundo grado, Mobitz I, en que se va alargando el PR, hasta que una onda P no conduce.",
+      "explanation": "El trazado corresponde a un bloqueo auriculoventricular de segundo grado tipo Mobitz I (Wenckebach): el intervalo PR se alarga progresivamente hasta que una onda P no conduce y el QRS se omite. El bloqueo AV completo muestra disociación entre las ondas P y los QRS, con frecuencia ventricular baja y ritmo de escape. La fibrilación auricular lenta no tiene ondas P y su respuesta ventricular es irregular. La bradicardia sinusal tiene cada P seguida de QRS con PR constante. El paro sinusal muestra pausas por ausencia de ondas P. Por lo general, el Mobitz I es benigno y no requiere marcapasos si es asintomático.",
       "image": {
         "src": "/data/reconstrucciones/img/julio-2016_p163.jpg",
         "credit": "Knoop, ECG (p. 809): bloqueo AV 2.º grado Mobitz II",
@@ -2295,7 +2289,7 @@
         "Hemorragia intracraneana"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un Guillain Barré clásico (tetraparesia fácida y arrefléctica, con parálisis facial bilateral)."
+      "explanation": "Paciente que desarrolla en pocas semanas paresia facial bilateral y parálisis del VI par, con hipotonía simétrica de las cuatro extremidades y arreflexia: es un síndrome de Guillain-Barré, una polirradiculoneuropatía desmielinizante aguda con parálisis fláccida ascendente y arreflexia, frecuente tras una infección. El accidente vascular de tronco o la hemorragia intracraneana darían un déficit de inicio súbito, con hiperreflexia posterior y signos focales. La miastenia gravis cursa con debilidad fluctuante, fatigable, sin arreflexia. El botulismo causa parálisis descendente con compromiso pupilar y autonómico. Se confirma con disociación albúmino-citológica en el líquido cefalorraquídeo."
     },
     {
       "id": 171,
@@ -2386,7 +2380,7 @@
         "Cardiopatía congénita"
       ],
       "correctAnswer": "c",
-      "explanation": "Tanto por el antecedente de cesárea, como por la radiografía es taquipnea transitoria clásica."
+      "explanation": "Recién nacido de 36 semanas por cesárea, con dificultad respiratoria precoz, taquipnea y retracción, y una radiografía con hiperinsuflación, reforzamiento hiliar, aplanamiento de diafragmas y silueta cardíaca normal: es una taquipnea transitoria del recién nacido, por retraso en la reabsorción del líquido pulmonar fetal, favorecida por la cesárea sin trabajo de parto. La enfermedad de membrana hialina se da en prematuros más inmaduros, con radiografía de vidrio esmerilado y broncograma aéreo, y pulmones poco expandidos. La neumonía connatal tiene factores de riesgo infeccioso. El neumomediastino muestra aire visible. Las cardiopatías congénitas dan cianosis o soplos o cardiomegalia."
     },
     {
       "id": 178,
