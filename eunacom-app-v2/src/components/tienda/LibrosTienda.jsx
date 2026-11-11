@@ -245,9 +245,9 @@ export default function LibrosTienda() {
               <div className="shelf">
                 {shelfBySection[s.id].map(b => (
                   <div key={b.key} className="shelf-item">
-                    {b.rec
+                    {b.rec && !b.rec.cover
                       ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
-                      : <Cover src={b.cover} alt={b.label} />}
+                      : <Cover src={b.cover || b.rec?.cover} alt={b.label} />}
                     <b>{b.label}</b>
                     {b.soon
                       ? <span className="mini-btn owned">16 nov</span>
@@ -276,7 +276,7 @@ export default function LibrosTienda() {
           {!isOwned(RECON_JUL2026.sku) && (
             <section className="tienda-section rec-new" id="reconstruccion-julio-2026">
               <div className="rec-new__card">
-                <div className="rec-cover"><small>EUNACOM JUL</small><strong>2026</strong></div>
+                <Cover src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" style={{ width: 150 }} />
                 <div className="rec-new__body">
                   <span className="rec-new__kicker">Nuevo · {isReleased(RECON_JUL2026) ? 'ya disponible' : 'llega el 16 de noviembre'}</span>
                   <h2>Reconstrucción EUNACOM Julio 2026</h2>
@@ -330,11 +330,12 @@ export default function LibrosTienda() {
             )}
 
             {looseType === 'recons' ? (
-              <div className="rec-grid">
+              <div className="tomo-grid">
                 {RECONS.map(r => (
-                  <div key={r.sku} className="rec-item">
-                    <div className="band" />
-                    <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
+                  <div key={r.sku} className="tomo-item">
+                    <Cover src={r.cover} alt={r.name} />
+                    <span className="n">{r.questions} PREGUNTAS</span>
+                    <b>{r.name}</b>
                     <div className="tomo-row">
                       <span className="p">{fmtClp(r.price)}</span>
                       <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>

@@ -94,7 +94,7 @@ const REC_LIST = [
 const REC_MES = { ENE: 'Enero', JUL: 'Julio', AGO: 'Agosto', DIC: 'Diciembre' }
 export const RECONS = REC_LIST.map(([month, year]) => ({
   sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${month ? month[0] + month.slice(1).toLowerCase() + ' ' : ''}${year}`,
-  price: 4990, questions: 180,
+  price: 4990, questions: 180, cover: `${COVER}rec_${month}${year}.jpg`,
   // PDF por examen: books/scripts/build_reconstrucciones_por_examen.cjs (publishing hub) → libros/03_Reconstrucciones/
   file: `03_Reconstrucciones/Reconstruccion_EUNACOM_${REC_MES[month] || 'Diciembre'}_${year}.pdf`,
 }))
@@ -102,7 +102,7 @@ export const RECONS = REC_LIST.map(([month, year]) => ({
 // Reconstrucción Julio 2026 (enviada por Mario Sánchez). Libro aparte, NO entra en el Gran Libro ni en la Biblioteca:
 // se vende suelto a $12.999 y viene GRATIS con cualquier suscripción activa. Se compra desde el 16-nov-2026 (hora Chile).
 export const RECON_JUL2026 = {
-  sku: 'rec-JUL2026', month: 'JUL', year: 2026, name: 'Reconstrucción Julio 2026', price: 12999, questions: 180,
+  sku: 'rec-JUL2026', month: 'JUL', year: 2026, name: 'Reconstrucción Julio 2026', price: 12999, questions: 180, cover: `${COVER}rec_JUL2026.jpg`,
   releaseDate: '2026-11-16', freeWithPlan: true, isNew: true,
   file: '03_Reconstrucciones/Reconstruccion_EUNACOM_Julio_2026.pdf', // TODO(entrega): subir el PDF a R2 libros/<ruta> antes del 16-nov
 }
