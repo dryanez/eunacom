@@ -91,10 +91,12 @@ const REC_LIST = [
   ['JUL', 2013], ['JUL', 2015], ['JUL', 2016], ['JUL', 2017], ['DIC', 2017], ['JUL', 2018], ['DIC', 2018], ['JUL', 2019],
   ['DIC', 2019], ['AGO', 2021], ['', 2022], ['ENE', 2023], ['JUL', 2024], ['DIC', 2024], ['JUL', 2025], ['DIC', 2025],
 ]
+const REC_MES = { ENE: 'Enero', JUL: 'Julio', AGO: 'Agosto', DIC: 'Diciembre' }
 export const RECONS = REC_LIST.map(([month, year]) => ({
   sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${month ? month[0] + month.slice(1).toLowerCase() + ' ' : ''}${year}`,
   price: 4990, questions: 180,
-  file: null, // TODO(entrega): PDF de cada examen por separado (hoy solo existe el Gran Libro completo)
+  // PDF por examen: books/scripts/build_reconstrucciones_por_examen.cjs (publishing hub) → libros/03_Reconstrucciones/
+  file: `03_Reconstrucciones/Reconstruccion_EUNACOM_${REC_MES[month] || 'Diciembre'}_${year}.pdf`,
 }))
 
 // Reconstrucción Julio 2026 (enviada por Mario Sánchez). Libro aparte, NO entra en el Gran Libro ni en la Biblioteca:
