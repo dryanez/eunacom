@@ -26,7 +26,7 @@ export default function Paywall({ onClose }) {
   const exam = nextExam();
   const android = isAndroidApp();
   const plans = SALE_PLANS;
-  const [planId, setPlanId] = useState('3m');
+  const [planId, setPlanId] = useState(() => SALE_PLANS.find(p => p.popular)?.id || '3m');
   const [slide, setSlide] = useState(0);
   const [prices, setPrices] = useState({});
   const [busy, setBusy] = useState(false);

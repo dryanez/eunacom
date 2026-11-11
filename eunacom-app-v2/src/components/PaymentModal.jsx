@@ -86,12 +86,12 @@ const PaymentModal = ({ onClose }) => {
   };
 
   const [selectedPlanId, setSelectedPlanId] = useState(() => {
-    // /oferta deja marcado el plan que la persona eligió; si no, 3 meses (el más vendido)
+    // /oferta deja marcado el plan que la persona eligió; si no, el plan marcado «Más elegido» (6 meses)
     try {
       const pick = sessionStorage.getItem('eunacom_plan_pick');
       if (pick) { sessionStorage.removeItem('eunacom_plan_pick'); if (PLANS.some(p => p.id === pick)) return pick; }
     } catch {}
-    return '3m';
+    return SALE_PLANS.find(p => p.popular)?.id || '3m';
   });
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const payRef = React.useRef(null);
