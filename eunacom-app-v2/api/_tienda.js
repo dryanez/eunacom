@@ -93,7 +93,7 @@ const REC_LIST = [
 ]
 const REC_MES = { ENE: 'Enero', JUL: 'Julio', AGO: 'Agosto', DIC: 'Diciembre' }
 export const RECONS = REC_LIST.map(([month, year]) => ({
-  sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${month ? month[0] + month.slice(1).toLowerCase() + ' ' : ''}${year}`,
+  sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${REC_MES[month] || 'Diciembre'} ${year}`,
   price: 4990, questions: 180, cover: `${COVER}rec_${month}${year}.jpg`,
   // PDF por examen: books/scripts/build_reconstrucciones_por_examen.cjs (publishing hub) → libros/03_Reconstrucciones/
   file: `03_Reconstrucciones/Reconstruccion_EUNACOM_${REC_MES[month] || 'Diciembre'}_${year}.pdf`,
