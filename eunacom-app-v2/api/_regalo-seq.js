@@ -1,113 +1,219 @@
 // Secuencia de correos para quienes bajaron un libro gratis de los reels (tabla regalo_leads, ver _regalos.js).
 // La corre el cron diario (api/email-marketing-cron.js): a cada persona a lo más un correo cada 2 días, según los días
 // desde que descargó. El correo del día 0 (el link del libro) ya lo manda _regalos.js al descargar.
-//   día 1: cómo sacarle partido a la guía · día 3: cómo estudiar la especialidad · día 5: qué trae el Manual · día 8: cierre
+//   día 1: una pregunta real de su especialidad + cómo usar el libro · día 3: el método (clases, manual, preguntas, repaso)
+//   día 5: por dentro del Manual · día 8: el Manual o la librería completa
+// Mismo diseño que el correo del día 0 (portadas, cajas, precio). Datos reales por especialidad en _regalo-seq-data.js
+// (generado: preguntas de los shorts, catálogo del Aula, banco AEE). Imágenes en public/email/regalo/.
 // La oferta es la de la página del regalo (eunacom-examen.cl/?regalo=<slug>&k=<token>): el Manual a $9.990 (código REGALO).
 // Nada de plazos falsos: el precio de regalo no vence. Baja en un clic (?action=regalo_baja&k=) → email_suppressions.
 import { REGALOS } from './_regalos.js'
+import { SEQ_DATA } from './_regalo-seq-data.js'
 
 const AEE = 'https://eunacom-examen.cl'
+const IMG = 'https://www.eunacomapp.cl/email/regalo'
 const API = 'https://www.eunacomapp.cl/api/user-profiles'
-const PRICE = { manual: '$19.990', regalo: '$9.990' }
+const IG = 'https://www.instagram.com/academiaeunacom/'
+const PRICE = { manual: '$19.990', regalo: '$9.990', clases: '$24.990', banco: '$9.990', repaso: '$12.990' }
 export const REGALO_SEQ = [
   { step: 1, day: 1, key: 'uso' },
   { step: 2, day: 3, key: 'estudio' },
   { step: 3, day: 5, key: 'manual' },
   { step: 4, day: 8, key: 'cierre' },
 ]
+const NAVY = '#0a365f', BLUE = '#0b5ea8', INK = '#334155', MUTED = '#64748b'
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 const first = n => String(n || '').trim().split(/\s+/)[0]
+const fmt = n => Number(n).toLocaleString('es-CL')
 const utm = (slug, key) => `utm_source=email&utm_medium=regalo_seq&utm_campaign=${encodeURIComponent(slug)}&utm_content=${key}`
 const giftUrl = (lead, key) => `${AEE}/?regalo=${encodeURIComponent(lead.slug)}&k=${encodeURIComponent(lead.token)}&${utm(lead.slug, key)}`
 const libUrl = (lead, key) => `${AEE}/?code=SHORTS20&${utm(lead.slug, key)}#tienda`
 export const unsubUrl = lead => `${API}?action=regalo_baja&k=${encodeURIComponent(lead.token)}`
-
-// Consejos de uso según el tipo de regalo (texto de método de estudio, no contenido médico)
-const USO = {
-  guia: ['Mira cada trazado primero solo, sin leer, y di tú el diagnóstico.', 'Después compara con los marcadores numerados y con «Qué tienes que ver».', 'Al final haz la autoevaluación: las imágenes sin marcas, como en el examen.'],
-  atlas: ['Tapa el texto y mira cada foto: ¿qué ves y qué diagnóstico es?', 'Compara con los marcadores y la conducta inicial de cada ficha.', 'Cierra con la autoevaluación del final, sin respuestas a la vista.'],
-  gordo: ['Hazlo como examen: 90 preguntas, reloj corriendo, sin mirar la clave.', 'Corrige después y anota los códigos del Perfil V3 donde fallaste.', 'Repite solo esas preguntas en 3 días.'],
-  repaso: ['Lee una página por tema, sin saltarte el recuadro de perlas.', 'Sigue el plan de 7 días del final del libro.', 'El día antes del examen, solo los recuadros.'],
+const cov = name => `${AEE}/covers/${name}.jpg`
+const specKey = s => {
+  const k = String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  return { respiratorio: 'neumologia', otorrinolaringologia: 'otorrino' }[k] || k
 }
 
-function layout({ lead, preheader, body, cta, ctaUrl, ps }) {
+// Qué es cada regalo, para hablar de él con propiedad
+const KIND = {
+  gordo: { label: 'Libro Gordo', art: 'lo', have: esp => `Tienes <b>90 preguntas de ${esp}</b> con su explicación.` },
+  repaso: { label: 'Repaso Final', art: 'lo', have: esp => `Tienes <b>los temas clave de ${esp}</b>, una página por tema.` },
+  atlas: { label: 'Atlas', art: 'lo', have: esp => `Tienes <b>las imágenes de ${esp}</b> que caen en el EUNACOM, comentadas.` },
+  guia: { label: 'Guía', art: 'la', have: () => '' },
+}
+// Cómo usar cada tipo de regalo (método de estudio, no contenido médico)
+const USO = {
+  gordo: [['Hazlo como examen:', 'bloques de 30 preguntas, reloj corriendo, sin mirar la clave.'], ['Corrige y anota', 'el código del Perfil V3 de cada error.'], ['En 3 días repite solo esas.', 'Ahí se queda lo que más cae.']],
+  repaso: [['Una página por tema,', 'sin saltarte el recuadro de perlas.'], ['Sigue el plan de 7 días', 'del final del libro.'], ['El día antes del examen,', 'solo los recuadros.']],
+  atlas: [['Tapa el texto', 'y mira cada foto: ¿qué ves y qué diagnóstico es?'], ['Compara', 'con los marcadores y la conducta inicial de cada ficha.'], ['Cierra con la autoevaluación', 'del final, sin respuestas a la vista.']],
+  guia: [['Mira cada trazado primero solo,', 'sin leer, y di tú el diagnóstico.'], ['Compara', 'con los marcadores numerados y con «Qué tienes que ver».'], ['Al final haz la autoevaluación:', 'las imágenes sin marcas, como en el examen.']],
+}
+
+// ── piezas ───────────────────────────────────────────────────────────────────
+const btn = (href, text, bg = NAVY) => `<a href="${href}" style="display:inline-block;background:${bg};color:#fff;padding:14px 26px;border-radius:12px;text-decoration:none;font-weight:800;font-size:16px">${text}</a>`
+const coverImg = (src, w = 110, alt = '') => `<img src="${src}" width="${w}" alt="${esc(alt)}" style="display:block;width:${w}px;border-radius:6px;box-shadow:0 6px 16px rgba(10,54,95,.25)">`
+const pill = (t, bg = '#fef3c7', fg = '#92400e') => `<span style="display:inline-block;background:${bg};color:${fg};font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">${t}</span>`
+const li = t => `<tr><td style="padding:3px 8px 3px 0;color:${BLUE};font-weight:800;vertical-align:top">✓</td><td style="padding:3px 0;color:#1e293b;font-size:14px">${t}</td></tr>`
+const price = (big = 28) => `<span style="color:#94a3b8;text-decoration:line-through;font-size:15px">${PRICE.manual}</span> <span style="color:${NAVY};font-size:${big}px;font-weight:900">${PRICE.regalo}</span> <span style="background:#fce7f3;color:#9d174d;font-size:12px;font-weight:800;padding:3px 8px;border-radius:6px">Precio de regalo</span>`
+const rule = t => esc(t).replace(/\*([^*]+)\*/g, '<span style="background:#fde68a;padding:0 4px">$1</span>')
+const stat = (big, small, w = '33%') => `<td width="${w}" align="center" style="padding:10px 4px;background:#fff;border:1px solid #e2e8f0;border-radius:10px"><div style="color:${NAVY};font-size:20px;font-weight:900;line-height:1.15">${big}</div><div style="color:${MUTED};font-size:11px">${small}</div></td>`
+
+function layout({ lead, r, preheader, rows }) {
   return `<!DOCTYPE html><html lang="es-CL"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#eef4fb;font-family:Arial,Helvetica,sans-serif;color:#2f3e4d">
+<body style="margin:0;padding:0;background:#eef4fb">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#fff;border-radius:16px;overflow:hidden">
-<tr><td style="background:#08365f;padding:18px 24px"><a href="${AEE}" style="text-decoration:none;color:#fff;font-weight:bold;font-size:18px;letter-spacing:.3px">AEE <span style="font-weight:normal;font-size:13px;color:#9cc3ea">· Academia Examen EUNACOM</span></a></td></tr>
-<tr><td style="padding:26px 28px 6px;font-size:16px;line-height:1.6">${body}</td></tr>
-${cta ? `<tr><td align="center" style="padding:14px 28px 6px"><a href="${ctaUrl}" style="display:inline-block;background:#08365f;color:#fff;font-size:16px;font-weight:bold;text-decoration:none;padding:15px 30px;border-radius:12px">${esc(cta)}</a></td></tr>` : ''}
-${ps ? `<tr><td style="padding:14px 28px 4px;font-size:14px;line-height:1.55;color:#475569">${ps}</td></tr>` : ''}
-<tr><td style="padding:18px 28px 26px;font-size:15px;line-height:1.6">Mucho éxito,<br><strong>Dr. Felipe Yáñez</strong><br>Academia Examen EUNACOM</td></tr>
-<tr><td align="center" style="background:#f4f7fb;padding:18px 28px;font-size:12px;line-height:1.6;color:#64748b">
-Recibes este correo porque descargaste «${esc(REGALOS[lead.slug]?.title || 'un libro gratis')}» desde Instagram (@academiaeunacom).<br>
-¿Dudas? Responde este correo. · <a href="${unsubUrl(lead)}" style="color:#64748b">No quiero más correos</a>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb;font-family:Arial,Helvetica,sans-serif"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#fff;border-radius:18px;overflow:hidden">
+<tr><td style="padding:18px 24px;border-bottom:1px solid #e2e8f0"><a href="${AEE}" style="text-decoration:none"><table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="padding-right:12px;vertical-align:middle"><img src="${IMG}/aee.png" width="64" height="35" alt="AEE" style="display:block;width:64px;height:35px"></td>
+<td style="vertical-align:middle;color:${NAVY};font-size:18px;font-weight:900;letter-spacing:-.2px">Academia Examen EUNACOM</td></tr></table></a></td></tr>
+${rows}
+<tr><td style="padding:4px 24px 22px;font-size:15px;line-height:1.6;color:${INK}">Mucho éxito,<br><b>Dr. Felipe Yáñez</b><br><span style="color:${MUTED};font-size:13px">Academia Examen EUNACOM</span></td></tr>
+<tr><td style="padding:16px 24px 22px;background:#f8fafc;color:${MUTED};font-size:12px;line-height:1.5">
+Academia Examen EUNACOM · <a href="${AEE}" style="color:${BLUE}">eunacom-examen.cl</a> · Instagram <a href="${IG}" style="color:${BLUE}">@academiaeunacom</a><br>
+Recibes este correo porque descargaste «${esc(r.title)}» en eunacom-examen.cl. · <a href="${unsubUrl(lead)}" style="color:${MUTED}">No quiero más correos</a>
 </td></tr></table></td></tr></table></body></html>`
+}
+
+const hero = (kicker, title, text, img, alt) => `<tr><td style="padding:26px 24px 8px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td width="110" style="vertical-align:top;padding-right:16px">${coverImg(img, 110, alt)}</td>
+<td style="vertical-align:top"><div style="color:${BLUE};font-size:13px;font-weight:800">${kicker}</div>
+<h1 style="margin:6px 0 8px;color:${NAVY};font-size:22px;line-height:1.25">${title}</h1>
+<p style="margin:0;color:${INK};font-size:14px;line-height:1.5">${text}</p></td></tr></table></td></tr>`
+
+const manualBox = (lead, key, esp, pages, title, tag, utmKey) => `<tr><td style="padding:8px 24px 26px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:2px solid ${NAVY};border-radius:16px">
+<tr><td style="padding:20px 20px 6px">${pill(tag)}<h2 style="margin:10px 0 0;color:${NAVY};font-size:21px">${title}</h2></td></tr>
+<tr><td style="padding:12px 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td width="120" style="vertical-align:top;padding-right:16px"><a href="${giftUrl(lead, utmKey)}">${coverImg(cov(`tomo_${key}`), 120, `Manual de ${esp}`)}</a></td>
+<td style="vertical-align:top"><table role="presentation" cellpadding="0" cellspacing="0">
+${pages ? li(`${pages} páginas: toda la teoría de ${esp} del Perfil V3`) : li(`Toda la teoría de ${esp} del Perfil V3`)}${li('Algoritmos, tablas y perlas EUNACOM')}${li('Fotos clínicas en contexto')}${li('Lo descargas al tiro, en PDF')}
+</table></td></tr></table></td></tr>
+<tr><td style="padding:4px 20px 0">${price()}</td></tr>
+<tr><td style="padding:14px 20px 22px">${btn(giftUrl(lead, utmKey), `Quiero el Manual a ${PRICE.regalo} →`, BLUE)}<div style="color:${MUTED};font-size:12px;margin-top:8px">Mercado Pago, Webpay, PayPal o transferencia.</div></td></tr>
+</table></td></tr>`
+
+// La pregunta real del día 1: de su especialidad y, si se puede, distinta del reel donde comentó (utm_campaign = palabra)
+function pickQuestion(d, lead) {
+  const qs = d?.questions || []
+  const seen = String(lead.utm_campaign || '').toUpperCase()
+  return qs.find(q => q.kw && q.kw !== seen) || qs.find(q => q.kw !== seen) || qs[0] || null
 }
 
 // Asunto + HTML de un paso para un lead
 export function regaloEmail(lead, step) {
-  const r = REGALOS[lead.slug] || { title: 'tu libro', specialty: 'la especialidad', kind: 'guia' }
-  const n = first(lead.nombre)
-  const hola = n ? `Hola ${esc(n)},` : 'Hola,'
-  const esp = esc(r.specialty)
-  const manualLine = `El <b>Manual de ${esp}</b> completo (toda la teoría del Perfil V3) está a <b>${PRICE.regalo}</b> en vez de ${PRICE.manual} para quienes bajaron la guía.`
+  const r = REGALOS[lead.slug] || { title: 'tu libro', specialty: 'la especialidad', kind: 'guia', cover: '' }
+  const key = specKey(r.specialty), d = SEQ_DATA[key] || null
+  const n = first(lead.nombre), esp = esc(r.specialty)
+  const k = KIND[r.kind] || KIND.guia
+  const gift = r.cover ? `${AEE}${r.cover}` : cov(`gordo_${key}`)
+  const q = pickQuestion(d, lead)
   const s = REGALO_SEQ.find(x => x.step === step)
+  const L = rows => layout({ lead, r, ...rows })
+
   if (s.key === 'uso') {
-    const tips = USO[r.kind] || USO.guia
+    const pregunta = !q ? '' : `<tr><td style="padding:18px 24px 6px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${NAVY};border-radius:16px"><tr>
+<td width="150" style="vertical-align:top;padding:16px 0 16px 16px"><a href="${IG}"><img src="${IMG}/${q.id}.jpg" width="134" alt="Reel: ${esc(q.top)}" style="display:block;width:134px;border-radius:10px;border:1px solid #1e4f80"></a>
+<div style="margin-top:8px;text-align:center"><a href="${IG}" style="color:#fde68a;font-size:13px;font-weight:800;text-decoration:none">▶ Ver el reel</a></div></td>
+<td style="vertical-align:top;padding:18px 18px 18px 16px;color:#fff">${pill(`PREGUNTA REAL · EUNACOM ${esc(q.date).toUpperCase()}`, '#fde68a', '#78350f')}
+<div style="margin:12px 0 6px;font-size:15px;line-height:1.5;color:#cfe3f7">${q.case.map(esc).join(' · ')}</div>
+<div style="font-size:19px;font-weight:900;line-height:1.3">${esc(q.q)}</div>
+<div style="margin-top:10px;font-size:13px;color:#9cc3ea">Piénsalo 5 segundos y baja 👇</div></td></tr></table></td></tr>
+<tr><td style="padding:10px 24px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:14px"><tr><td style="padding:16px 18px;color:#064e3b;font-size:14px;line-height:1.55">
+<div style="font-size:16px;font-weight:900;margin-bottom:6px">✅ ${esc(q.ans)}</div>${esc(q.why)}
+<div style="margin-top:12px;background:#fff;border-radius:10px;padding:10px 12px;color:${NAVY};font-weight:800">⭐ Regla de oro: ${rule(q.rule)}</div>
+</td></tr></table></td></tr>`
+    const pasos = (USO[r.kind] || USO.guia).map(([b, t], i) => `<tr><td width="34" style="vertical-align:top;padding:0 10px 12px 0"><div style="width:28px;height:28px;border-radius:999px;background:${BLUE};color:#fff;font-weight:900;font-size:14px;text-align:center;line-height:28px">${i + 1}</div></td>
+<td style="vertical-align:top;padding:4px 0 12px;color:${INK};font-size:14px;line-height:1.5"><b>${esc(b)}</b> ${esc(t)}</td></tr>`).join('')
+    const have = r.kind === 'guia' ? esc(r.blurb) : k.have(esp)
     return {
-      subject: n ? `${n}, cómo sacarle partido a tu guía` : 'Cómo sacarle partido a tu guía',
-      html: layout({
-        lead, preheader: `3 pasos para que «${r.title}» te sirva de verdad.`,
-        body: `<p style="margin:0 0 14px">${hola}</p><p style="margin:0 0 14px">Hace poco bajaste <b>${esc(r.title)}</b>. Para que no quede en la carpeta de descargas, úsala así:</p>
-<ol style="margin:0 0 14px;padding-left:20px">${tips.map(t => `<li style="margin:0 0 8px">${esc(t)}</li>`).join('')}</ol>
-<p style="margin:0">Son 20 minutos y te quedan los conceptos que más se preguntan.</p>`,
-        cta: 'Abrir mi guía', ctaUrl: giftUrl(lead, 'uso'),
-        ps: `PD: ${manualLine}`,
+      subject: q ? `${n ? `${n}, ` : ''}¿qué harías aquí? Pregunta real de ${r.specialty}` : `${n ? `${n}, ` : ''}cómo sacarle el jugo a tu ${k.label}`,
+      html: L({
+        preheader: q ? `${q.top}: pregunta real del EUNACOM, con su respuesta.` : `3 pasos para que tu ${k.label} te sirva de verdad.`,
+        rows: hero(`📘 TU ${k.label.toUpperCase()}`, `¿Ya ${k.art} abriste${n ? `, ${esc(n)}` : ''}?`, `${have}${q ? ' Antes de partir, prueba con esta, que salió en el EUNACOM:' : ''}`, gift, r.title)
+          + pregunta
+          + `<tr><td style="padding:22px 24px 4px"><div style="color:${NAVY};font-size:17px;font-weight:900;margin-bottom:12px">Cómo sacarle el jugo a tu ${k.label}</div><table role="presentation" cellpadding="0" cellspacing="0">${pasos}</table></td></tr>`
+          + `<tr><td style="padding:6px 24px 24px">${btn(giftUrl(lead, 'uso'), `📘 Abrir mi ${k.label}`)}</td></tr>`,
       }),
     }
   }
-  if (s.key === 'estudio') return {
-    subject: `Cómo estudiar ${r.specialty} para el EUNACOM`,
-    html: layout({
-      lead, preheader: `El orden que funciona: teoría, preguntas y repaso.`,
-      body: `<p style="margin:0 0 14px">${hola}</p><p style="margin:0 0 14px">${esp} pesa mucho en el EUNACOM. El orden que mejor funciona:</p>
-<ol style="margin:0 0 14px;padding-left:20px">
-<li style="margin:0 0 8px"><b>Teoría una vez, completa.</b> Todo el Perfil V3 de la especialidad, de principio a fin, con algoritmos y tablas.</li>
-<li style="margin:0 0 8px"><b>Preguntas tipo examen.</b> Cada error te dice qué código del Perfil repasar.</li>
-<li style="margin:0 0 8px"><b>Repaso corto la última semana.</b> Solo perlas y algoritmos.</li></ol>
-<p style="margin:0">Para el paso 1 hicimos el <b>Manual de ${esp}</b>: lo descargas al tiro en PDF.</p>`,
-      cta: `Ver el Manual a ${PRICE.regalo}`, ctaUrl: giftUrl(lead, 'estudio'),
-      ps: `PD: es el mismo formato de la guía que bajaste, pero con la especialidad entera.`,
-    }),
+
+  if (s.key === 'estudio') {
+    const paso = (num, titulo, texto, img, estado) => `<tr><td style="padding:0 24px 12px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px"><tr>
+<td width="78" style="vertical-align:top;padding:14px 0 14px 14px">${coverImg(img, 64)}</td>
+<td style="vertical-align:top;padding:14px 16px"><div style="color:${BLUE};font-size:12px;font-weight:900;letter-spacing:.5px">PASO ${num}</div>
+<div style="color:${NAVY};font-size:17px;font-weight:900;margin:2px 0 4px">${titulo}</div>
+<div style="color:${INK};font-size:14px;line-height:1.5">${texto}</div><div style="margin-top:8px">${estado}</div></td></tr></table></td></tr>`
+    const c = d?.classes, b = d?.bank
+    const hm = c ? `${Math.floor(c.min / 60)} h ${String(c.min % 60).padStart(2, '0')} min` : ''
+    const lista = !c ? '' : `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:10px;background:#fff;border:1px solid #e2e8f0;border-radius:10px">
+${c.list.map(([num, t, m]) => `<tr><td style="padding:5px 8px;color:${MUTED};font-size:12px;font-weight:800;white-space:nowrap;vertical-align:top">▶ ${esc(num)}</td><td style="padding:5px 4px;color:#1e293b;font-size:13px;line-height:1.35">${esc(t)}</td><td style="padding:5px 8px;color:${MUTED};font-size:12px;white-space:nowrap;vertical-align:top;text-align:right">${m} min</td></tr>`).join('')}
+${c.n > c.list.length ? `<tr><td colspan="3" style="padding:6px 8px 8px;color:${BLUE};font-size:13px;font-weight:800">+ ${c.n - c.list.length} clases más de ${esp}</td></tr>` : ''}</table>`
+    const preg = !b ? '' : `<table role="presentation" width="100%" cellpadding="0" cellspacing="4" style="margin-top:8px"><tr>
+${stat('90', r.kind === 'gordo' ? 'en tu Libro Gordo ✓' : 'en el Libro Gordo')}${stat(`+${fmt(b.total)}`, 'en el banco AEE')}${stat(fmt(b.real), 'de exámenes reales')}</tr></table>`
+    const tengo = pill('✓ Ya lo tienes', '#dcfce7', '#166534')
+    return {
+      subject: `Cómo estudiar ${r.specialty} para el EUNACOM`,
+      html: L({
+        preheader: `El orden que funciona: clases, manual, preguntas y repaso.`,
+        rows: hero('🧭 MÉTODO AEE', `Cómo estudiar ${esp} para el EUNACOM`, `${n ? `Hola ${esc(n)}. ` : ''}${esp} se aprueba en cuatro pasos y en este orden:`, gift, r.title)
+          + '<tr><td style="height:14px"></td></tr>'
+          + (c ? paso(1, `Mira las clases · ${c.n} clases, ${hm}`, `Una clase por tema del Perfil V3, con animaciones y casos tipo examen al final.${lista}`, cov(`clase_${key}`), pill(`Clases de ${esp} · ${PRICE.clases}`, '#dbeafe', '#1e3a8a')) : '')
+          + paso(c ? 2 : 1, 'Lee el Manual, una vez y completo', `Todo el Perfil V3 de ${esp} de principio a fin, con algoritmos y tablas.`, cov(`tomo_${key}`), pill(`Manual · ${PRICE.regalo} con tu regalo`, '#fce7f3', '#9d174d'))
+          + paso(c ? 3 : 2, 'Haz preguntas', `Cada error te dice qué código del Perfil repasar.${preg}`, cov(`gordo_${key}`), r.kind === 'gordo' ? tengo : pill(`Banco de ${esp} · ${PRICE.banco}`, '#dbeafe', '#1e3a8a'))
+          + paso(c ? 4 : 3, 'Repaso corto la última semana', 'Solo perlas y algoritmos, una página por tema.', cov(`repaso_${key}`), r.kind === 'repaso' ? tengo : pill(`Repaso Final · ${PRICE.repaso}`, '#f1f5f9', '#334155'))
+          + manualBox(lead, key, esp, d?.manualPages, 'Empieza por el Manual', 'Con tu regalo, a mitad de precio', 'estudio'),
+      }),
+    }
   }
-  if (s.key === 'manual') return {
-    subject: `Qué trae el Manual de ${r.specialty}`,
-    html: layout({
-      lead, preheader: `Toda la teoría del Perfil V3 de ${r.specialty} en un PDF.`,
-      body: `<p style="margin:0 0 14px">${hola}</p><p style="margin:0 0 14px">Varios nos preguntaron qué trae el Manual de ${esp}. Esto:</p>
-<ul style="margin:0 0 14px;padding-left:20px">
-<li style="margin:0 0 8px">Todo el <b>Perfil V3 de ${esp}</b>, tema por tema, en el orden del examen.</li>
-<li style="margin:0 0 8px">Algoritmos, tablas y perlas EUNACOM en recuadros.</li>
-<li style="margin:0 0 8px">Fotos clínicas junto al párrafo que las explica.</li>
-<li style="margin:0 0 8px">PDF para el celular o el computador, para siempre.</li></ul>
-<p style="margin:0">${manualLine}</p>`,
-      cta: 'Quiero el Manual', ctaUrl: giftUrl(lead, 'manual'),
-      ps: 'PD: si ya lo compraste, ¡gracias! Ignora este correo.',
-    }),
+
+  if (s.key === 'manual') {
+    const st = (big, small) => `<td align="center" style="padding:12px 6px;background:#f8fafc;border-radius:12px"><div style="color:${NAVY};font-size:24px;font-weight:900">${big}</div><div style="color:${MUTED};font-size:12px">${small}</div></td>`
+    return {
+      subject: `Por dentro del Manual de ${r.specialty}`,
+      html: L({
+        preheader: `Toda la teoría del Perfil V3 de ${r.specialty} en un PDF.`,
+        rows: `<tr><td align="center" style="padding:28px 24px 6px">${pill('POR DENTRO DEL MANUAL')}
+<h1 style="margin:12px 0 6px;color:${NAVY};font-size:24px;line-height:1.25">Manual de ${esp}</h1>
+<p style="margin:0 0 18px;color:${INK};font-size:15px;line-height:1.5">${n ? `Hola ${esc(n)}. ` : ''}Si tu ${k.label} te mostró dónde fallas, el Manual es donde lo arreglas.</p>
+<a href="${giftUrl(lead, 'manual')}"><img src="${cov(`tomo_${key}`)}" width="200" alt="Manual de ${esp}" style="display:block;width:200px;border-radius:8px;box-shadow:0 14px 30px rgba(10,54,95,.30)"></a></td></tr>
+<tr><td style="padding:22px 24px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="6"><tr>${d?.manualPages ? st(d.manualPages, 'páginas') : ''}${st('V3', 'todo el Perfil')}${st('PDF', 'celular y PC')}</tr></table></td></tr>
+<tr><td style="padding:14px 24px 4px"><table role="presentation" cellpadding="0" cellspacing="0">
+${li('Tema por tema, en el orden del Perfil V3 del EUNACOM')}${li('Algoritmos y tablas para decidir rápido')}${li('Perlas EUNACOM en recuadros: lo que más se pregunta')}${li('Fotos clínicas junto al párrafo que las explica')}</table></td></tr>
+${q ? `<tr><td style="padding:12px 24px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb;border-radius:14px"><tr><td style="padding:14px 16px;color:${NAVY};font-size:14px;line-height:1.5">
+💡 <b>¿Te acuerdas de «${esc(q.top)}»?</b> Ese tema está en el Manual, explicado de principio a fin.</td></tr></table></td></tr>` : ''}
+<tr><td style="padding:18px 24px 6px">${price()}</td></tr>
+<tr><td style="padding:10px 24px 24px">${btn(giftUrl(lead, 'manual'), `Quiero el Manual a ${PRICE.regalo} →`, BLUE)}<div style="color:${MUTED};font-size:12px;margin-top:8px">Si ya lo compraste, ¡gracias! Ignora este correo.</div></td></tr>`,
+      }),
+    }
   }
+
+  // cierre: dos caminos
+  const grid = ['tomo_cardiologia', 'tomo_pediatria', 'gordo_cirugia', 'repaso_obstetricia', 'atlas_dermatologia', 'gordo_neurologia'].map(c => `<td style="padding:0 3px">${coverImg(cov(c), 56)}</td>`).join('')
+  const cell = (num, t, sub) => `<td width="33%" align="center" style="padding:10px 4px;background:#f8fafc;border-radius:10px"><div style="color:${NAVY};font-size:20px;font-weight:900;line-height:1.1">${num}</div><div style="color:#1e293b;font-size:12px;font-weight:800">${t}</div><div style="color:${MUTED};font-size:11px">${sub}</div></td>`
+  const lib = `<table role="presentation" width="100%" cellpadding="0" cellspacing="6" style="margin-top:10px">
+<tr>${cell('21', 'Manuales', '+2.500 páginas')}${cell('21', 'Libros Gordos', '1.890 preguntas')}${cell('21', 'Repaso Final', '1 por especialidad')}</tr>
+<tr>${cell('19', 'Atlas', 'de imágenes')}${cell('468', 'clases en video', '96 horas')}${cell('+10.800', 'preguntas', 'en el banco')}</tr></table>
+<div style="color:${INK};font-size:13px;line-height:1.5;margin:4px 0 0">+ 21 guías Perfil V3 código por código, 21 mazos Anki y 16 reconstrucciones de exámenes reales (2013–2025).</div>`
+  const camino = (tag, titulo, cuerpo, precio, boton, borde) => `<tr><td style="padding:0 24px 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:2px solid ${borde};border-radius:16px"><tr><td style="padding:18px 20px">
+${tag}<div style="color:${NAVY};font-size:19px;font-weight:900;margin:8px 0 8px">${titulo}</div>${cuerpo}<div style="margin:10px 0 12px">${precio}</div>${boton}</td></tr></table></td></tr>`
   return {
     subject: n ? `${n}, ¿seguimos con ${r.specialty}?` : `¿Seguimos con ${r.specialty}?`,
-    html: layout({
-      lead, preheader: 'El Manual o la librería completa, tú eliges.',
-      body: `<p style="margin:0 0 14px">${hola}</p><p style="margin:0 0 14px">Este es el último correo sobre tu guía. Si te sirvió, tienes dos caminos:</p>
-<p style="margin:0 0 10px">📘 <b>Solo ${esp}:</b> el Manual completo a <b>${PRICE.regalo}</b>.</p>
-<p style="margin:0 0 14px">📚 <b>Todo el examen:</b> la librería completa (manuales, clases en video, Libros Gordos, Repaso Final, Atlas y banco de preguntas) con <b>20 % de descuento</b> usando SHORTS20. <a href="${libUrl(lead, 'cierre')}" style="color:#0b5ea8">Ver la librería →</a></p>
-<p style="margin:0">Cada semana publicamos una guía gratis nueva en Instagram: comenta la palabra del reel y te llega por DM.</p>`,
-      cta: `Manual de ${r.specialty} a ${PRICE.regalo}`, ctaUrl: giftUrl(lead, 'cierre'),
+    html: L({
+      preheader: `El Manual de ${r.specialty} o la librería completa: tú eliges.`,
+      rows: hero('✉️ ÚLTIMO CORREO SOBRE TU REGALO', `${n ? `${esc(n)}, ` : ''}¿seguimos?`, `Si ${esc(r.title)} te sirvió, tienes dos caminos:`, gift, r.title)
+        + '<tr><td style="height:12px"></td></tr>'
+        + camino(pill(`SOLO ${esp.toUpperCase()}`, '#dbeafe', '#1e3a8a'), `Manual de ${esp}`,
+          `<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="padding-right:14px">${coverImg(cov(`tomo_${key}`), 70)}</td><td style="color:${INK};font-size:14px;line-height:1.5">Toda la teoría del Perfil V3 de ${esp}, en PDF.</td></tr></table>`,
+          `<span style="color:#94a3b8;text-decoration:line-through">${PRICE.manual}</span> <b style="color:${NAVY};font-size:24px">${PRICE.regalo}</b>`, btn(giftUrl(lead, 'cierre'), 'Quiero el Manual →', BLUE), '#cbd5e1')
+        + camino(pill('TODO EL EXAMEN'), 'La librería AEE completa', `<table role="presentation" cellpadding="0" cellspacing="0"><tr>${grid}</tr></table>${lib}`,
+          `<b style="color:${NAVY};font-size:20px">20 % de descuento</b> <span style="color:${MUTED};font-size:13px">con el código</span> <span style="background:${NAVY};color:#fff;font-weight:900;padding:3px 8px;border-radius:6px;font-size:13px">SHORTS20</span>`,
+          btn(libUrl(lead, 'cierre'), 'Ver la librería →'), NAVY)
+        + `<tr><td style="padding:4px 24px 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fdf2f8;border-radius:14px"><tr><td style="padding:14px 16px;color:#831843;font-size:14px;line-height:1.5">
+🎁 <b>Cada semana hay un regalo nuevo en Instagram.</b> Comenta la palabra del reel y te llega por DM. <a href="${IG}" style="color:#9d174d;font-weight:800">Seguir a @academiaeunacom →</a></td></tr></table></td></tr>`,
     }),
   }
 }
