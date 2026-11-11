@@ -1,5 +1,13 @@
 /* Tienda de libros (/biblioteca) — usa las variables de tema de la app (oscuro/claro) */
 .tienda { padding-bottom: 6rem; }
+
+/* Tarjeta «App · Plan 3 meses»: manual + ícono de la app juntos */
+.anchor-combo { display: flex; align-items: center; justify-content: center; gap: .7rem; margin: .4rem 0 1rem; }
+.anchor-combo .ac-book { width: 74px; aspect-ratio: 331 / 468; object-fit: cover; border-radius: 6px; transform: rotate(-5deg); box-shadow: 0 14px 28px -10px rgba(0, 0, 0, .75); border: 1px solid rgba(255, 255, 255, .12); }
+.anchor-combo .ac-plus { font-size: 1.6rem; font-weight: 800; color: var(--accent-blue, #3b82f6); line-height: 1; }
+.anchor-combo .ac-app { display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+.anchor-combo .ac-app img { width: 74px; height: 74px; border-radius: 18px; background: #fff; box-shadow: 0 14px 28px -10px rgba(0, 0, 0, .75); transform: rotate(4deg); }
+.anchor-combo .ac-app b { font-size: .78rem; color: var(--surface-50); letter-spacing: .01em; }
 .tienda-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.25rem; background: var(--surface-700); padding: 0.25rem; border-radius: 12px; width: fit-content; max-width: 100%; overflow-x: auto; }
 .tienda-tabs button { border: none; background: transparent; color: var(--surface-300); font-weight: 700; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 9px; cursor: pointer; white-space: nowrap; font-family: inherit; }
 .tienda-tabs button.on { background: var(--surface-500); color: var(--surface-50); }
@@ -325,3 +333,12 @@
 .gift-fan { position: relative; width: 100%; max-width: 300px; margin: 0 auto; aspect-ratio: 4 / 4.2; }
 .gift-store__covers .gift-fan img { position: absolute; left: 21%; top: 0; width: 58%; height: auto; aspect-ratio: 210 / 297; object-fit: cover; margin: 0;
   border-radius: 4px 8px 8px 4px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transition: transform .9s cubic-bezier(.65,0,.25,1), opacity .9s ease, filter .9s ease; }
+
+/* Libros sueltos: tipo de libro arriba, módulo abajo */
+.tienda-chips-type { margin-bottom: .5rem; }
+.tienda-chips-type button { font-size: .82rem; padding: .5rem .95rem; }
+.tienda-chips-mod button { font-weight: 600; font-size: .74rem; padding: .3rem .7rem; }
+@media (max-width: 640px) {
+  .tienda-chips-type button { font-size: .78rem; padding: .42rem .75rem; }
+  .tienda-chips-mod button { font-size: .7rem; padding: .28rem .6rem; }
+}
