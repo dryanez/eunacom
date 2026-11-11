@@ -141,7 +141,9 @@ function giftEmail(r, link, nombre, source) {
   return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;background:#eef4fb">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef4fb;font-family:Arial,Helvetica,sans-serif"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#fff;border-radius:18px;overflow:hidden">
-  <tr><td style="padding:20px 24px;border-bottom:1px solid #e2e8f0"><img src="${AEE}/email/header.png" width="190" alt="Academia Examen EUNACOM" style="display:block;width:190px"></td></tr>
+  <tr><td style="padding:18px 24px;border-bottom:1px solid #e2e8f0"><a href="${AEE}" style="text-decoration:none"><table role="presentation" cellpadding="0" cellspacing="0"><tr>
+    <td style="padding-right:12px;vertical-align:middle"><img src="https://www.eunacomapp.cl/email/regalo/aee.png" width="64" height="35" alt="AEE" style="display:block;width:64px;height:35px"></td>
+    <td style="vertical-align:middle;color:#0a365f;font-size:18px;font-weight:900;letter-spacing:-.2px;font-family:Arial,Helvetica,sans-serif">Academia Examen EUNACOM</td></tr></table></a></td></tr>
   <tr><td style="padding:26px 24px 8px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
       <td width="110" style="vertical-align:top;padding-right:16px"><a href="${link}"><img src="${AEE}${r.cover}" width="110" alt="${r.title}" style="display:block;width:110px;border-radius:6px;box-shadow:0 6px 16px rgba(10,54,95,.25)"></a></td>

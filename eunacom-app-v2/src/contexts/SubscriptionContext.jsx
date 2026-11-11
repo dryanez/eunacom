@@ -15,6 +15,8 @@ export function useSubscription() {
   return useContext(SubscriptionContext);
 }
 
+let appOpenCounted = false; // one app open per page load (Paywall auto-open below)
+
 export function SubscriptionProvider({ children }) {
   const { user, isAdmin, loading: authLoading } = useAuth();
 
@@ -77,6 +79,27 @@ export function SubscriptionProvider({ children }) {
   const togglePremium = () => {
     setIsPremium(prev => !prev);
   };
+
+  // Android app, free user: show the paywall on app open from the 2nd open on, at most every
+  // 3 days. The timer is cleared if the profile turns out premium meanwhile (deps change).
+  useEffect(() => {
+    if (!user?.id || !isAndroidApp() || loadingPremium || authLoading || isPremium) return;
+    try {
+      if (!appOpenCounted) {
+        appOpenCounted = true;
+        localStorage.setItem('eunacom_app_opens', String(Number(localStorage.getItem('eunacom_app_opens') || 0) + 1));
+      }
+      const opens = Number(localStorage.getItem('eunacom_app_opens') || 0);
+      const last = Number(localStorage.getItem('eunacom_paywall_auto') || 0);
+      if (opens < 2 || Date.now() - last < 3 * 86400000) return;
+      const t = setTimeout(() => {
+        localStorage.setItem('eunacom_paywall_auto', String(Date.now()));
+        track('paywall_auto_open', { opens });
+        setShowPaymentModal(true);
+      }, 5000);
+      return () => clearTimeout(t);
+    } catch {}
+  }, [user?.id, loadingPremium, authLoading, isPremium]);
 
   // Came from an offer link (/oferta) before logging in → open checkout once the user is logged in
   useEffect(() => {

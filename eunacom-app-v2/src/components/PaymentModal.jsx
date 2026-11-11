@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
 import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
 import PlayPayButton from './PlayPayButton';
+import Paywall from './Paywall';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
@@ -16,15 +17,8 @@ const DAYS = { 1: 30, 3: 90, 6: 180, 12: 365 };
 export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone: 'America/Santiago', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }) + ' h';
 const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
-export const LIB_COVERS = [TOMOS[0].cover, TOMOS[17].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover];
-export const LIB_ITEMS = [
-  { n: '21', t: 'Tomos AEE', d: 'Toda la teoría del Perfil V3, especialidad por especialidad, con algoritmos y tablas.' },
-  { n: '2013–26', t: 'EUNACOM reconstruidos', d: 'Gran Libro de Reconstrucciones 2013–2026: los exámenes reales, pregunta por pregunta, con explicación.' },
-  { n: '23', t: 'Libros Gordos', d: 'El Gran Libro Gordo + 22 libros de 90 preguntas por tema.' },
-  { n: '21', t: 'Repaso Final', d: 'Un libro de repaso por especialidad: lo que más se pregunta, para la última semana.' },
-  { n: '1.569', t: 'Códigos explicados', d: 'Perfil V3 código por código: qué te pueden preguntar de cada uno.' },
-  { n: '1.144', t: 'Imágenes en 19 atlas', d: 'Un atlas comentado por especialidad: lo que hay que reconocer en cada foto.' },
-];
+export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
+import { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
 
 const PaymentModal = ({ onClose }) => {
   const androidApp = isAndroidApp();
@@ -92,12 +86,12 @@ const PaymentModal = ({ onClose }) => {
   };
 
   const [selectedPlanId, setSelectedPlanId] = useState(() => {
-    // /oferta deja marcado el plan que la persona eligió; si no, 3 meses (el más vendido)
+    // /oferta deja marcado el plan que la persona eligió; si no, el plan marcado «Más elegido» (6 meses)
     try {
       const pick = sessionStorage.getItem('eunacom_plan_pick');
       if (pick) { sessionStorage.removeItem('eunacom_plan_pick'); if (PLANS.some(p => p.id === pick)) return pick; }
     } catch {}
-    return '3m';
+    return SALE_PLANS.find(p => p.popular)?.id || '3m';
   });
   const selectedPlan = plansToDisplay.find(p => p.id === selectedPlanId) || plansToDisplay[2];
   const payRef = React.useRef(null);
@@ -390,4 +384,12 @@ const PaymentModal = ({ onClose }) => {
   );
 };
 
-export default PaymentModal;
+// En la app Android se muestra el paywall con slides (Paywall.jsx). En la web, para verlo:
+// localStorage.eunacom_paywall_preview = '1'
+const PlansEntry = props => {
+  let preview = false;
+  try { preview = localStorage.getItem('eunacom_paywall_preview') === '1'; } catch {}
+  return isAndroidApp() || preview ? <Paywall {...props} /> : <PaymentModal {...props} />;
+};
+
+export default PlansEntry;

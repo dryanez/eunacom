@@ -8,8 +8,8 @@
 export const LIFETIME_MONTHS = 1200 // plan_months de «De por vida» (y de los founders)
 export const APP_PLANS = [
   { id: '1m', name: '1 Mes', months: 1, price: 29990, includesLibrary: false, tagline: 'La recta final antes del examen', paypal: null },
-  { id: '3m', name: '3 Meses', months: 3, price: 55990, includesLibrary: true, popular: true, tagline: 'Prepárate para este EUNACOM', paypal: null },
-  { id: '6m', name: '6 Meses', months: 6, price: 75990, includesLibrary: true, tagline: 'Dos convocatorias con tiempo de sobra', paypal: null },
+  { id: '3m', name: '3 Meses', months: 3, price: 55990, includesLibrary: true, tagline: 'Prepárate para este EUNACOM', paypal: null },
+  { id: '6m', name: '6 Meses', months: 6, price: 75990, includesLibrary: true, popular: true, tagline: 'Dos convocatorias con tiempo de sobra', paypal: null },
   { id: 'life', name: 'De por vida', months: LIFETIME_MONTHS, price: 129990, includesLibrary: true, lifetime: true, tagline: 'Hasta que apruebes, sin volver a pagar', paypal: null },
   { id: '1y', name: '1 Año', months: 12, price: 89990, includesLibrary: true, hidden: true, paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' },
 ]
