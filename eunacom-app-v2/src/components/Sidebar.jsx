@@ -8,8 +8,7 @@ import { calculateUserOverallStats, getLevelTitle } from '../utils/xpSystem'
 import {
     Home, CalendarDays, FileText, Stethoscope, Target,
     Clock, BarChart3, CreditCard, RotateCcw, Settings,
-    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen, Layers, Archive
-} from 'lucide-react'
+    LogOut, LogIn, ChevronDown, Menu, X, Video, Shield, Users, Flame, Eye, EyeOff, BookOpen, Layers, Archive, Film } from 'lucide-react'
 import { EunacomLogo } from './EunacomLogo'
 import { DOCTOR_CHARACTERS, getDoctorAvatar } from '../utils/doctorAvatars'
 
@@ -42,6 +41,7 @@ const NAV_GROUPS = [
         { to: '/dashboard', label: 'Inicio', icon: Home, tour: 'dashboard' },
         { to: '/study-plan', label: 'Plan de estudio', icon: CalendarDays, tour: 'study-plan', admin: true },
         { to: '/mis-clases', label: 'Mis clases', icon: Video, tour: 'mis-clases' },
+        { to: '/clases-guevara', label: 'Clases Dr. Guevara', icon: Film },
         { to: '/biblioteca', label: 'Biblioteca', icon: BookOpen, tour: 'libros' },
         { to: '/flashcards', label: 'Flashcards', icon: Layers },
         { to: '/medlingo', label: 'MedLingo', icon: Flame, tour: 'medlingo' },
