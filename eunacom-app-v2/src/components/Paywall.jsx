@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X, Check } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { buyPlanWithPlay, getPlayPrices, finishPendingPlayPurchases, isAndroidApp } from '../lib/playBilling';
-import { APP_PLANS, SALE_PLANS, PRODUCTS, TOMOS, EXTRAS, fmtClp } from '../config/tienda';
+import { APP_PLANS, SALE_PLANS, PRODUCTS, TOMOS, EXTRAS, fmtClp, looseValue } from '../config/tienda';
+import { LIB_ITEMS, LIB_COVERS } from '../config/biblioteca';
 import { nextExam } from '../config/examen';
 import { track } from '../lib/analytics';
 import '../styles/paywall.css';
@@ -10,14 +11,14 @@ import '../styles/paywall.css';
 // App-style paywall for the Android app: benefit slides on top, plan picker and one big
 // button below. Pays through Google Play (lib/playBilling.js); Play sets the price per country.
 const PERIOD = { '1m': 'cada mes', '3m': 'cada 3 meses', '6m': 'cada 6 meses' };
-const COVERS = [TOMOS[0].cover, EXTRAS[0].cover, EXTRAS[1].cover, TOMOS[17].cover, EXTRAS[2].cover];
+const COVERS = LIB_COVERS.slice(0, 5);
 const LIB = PRODUCTS.biblioteca;
 
 const SLIDES = [
   { k: 'clases', img: '/oferta/clase-neumotorax.gif', kind: 'wide', t: '+650 clases en video', d: 'Todo el Perfil V3 explicado, código por código, con animaciones.' },
+  { k: 'libros', kind: 'covers', t: 'Toda la biblioteca de regalo', d: `+100 libros: 21 Tomos, Libros Gordos, Repaso Final, Atlas y Perfil V3. Gratis con 3 meses, 6 meses y De por vida.` },
   { k: 'preguntas', img: '/landing/app-cardiologia.webp', kind: 'phone', t: '+47.000 preguntas', d: 'Practica por especialidad y entiende cada respuesta con su explicación.' },
   { k: 'recons', img: EXTRAS[0].cover, kind: 'book', t: 'Los EUNACOM reales', d: 'Del 2013 al 2026, reconstruidos pregunta por pregunta, y simulacros con tiempo.' },
-  { k: 'libros', kind: 'covers', t: 'Biblioteca incluida', d: `Tomos, Libros Gordos, Repaso Final y Atlas (valor ${fmtClp(LIB.price)}). Viene con 3 meses, 6 meses y De por vida.` },
 ];
 
 export default function Paywall({ onClose }) {
@@ -116,7 +117,8 @@ export default function Paywall({ onClose }) {
                 <span className="pw-radio">{on && <Check size={14} strokeWidth={3} />}</span>
                 <span className="pw-plan__main">
                   <b>{p.name}</b>
-                  <small>{p.lifetime ? 'Un solo pago, para siempre' : p.includesLibrary ? 'Curso completo + biblioteca' : 'Curso completo'}</small>
+                  <small>{p.lifetime ? 'Un solo pago, para siempre' : 'Curso completo'}</small>
+                  {p.includesLibrary ? <span className="pw-libchip">📚 + Biblioteca de regalo</span> : <span className="pw-nolib">Sin biblioteca</span>}
                 </span>
                 <span className="pw-plan__price">
                   <b>{priceOf(p.id)}</b>
@@ -126,6 +128,18 @@ export default function Paywall({ onClose }) {
               </button>
             );
           })}
+        </div>
+
+        <div className="pw-lib">
+          <div className="pw-lib__covers" aria-hidden="true">
+            {LIB_COVERS.map((c, i) => <img key={c} src={c} alt="" style={{ transform: `rotate(${(i - 3) * 6}deg)`, zIndex: 7 - Math.abs(i - 3) }} />)}
+          </div>
+          <h3>📚 La biblioteca completa viene de regalo</h3>
+          <p>Con 3 meses, 6 meses o De por vida te llevas todos los libros de Academia Examen EUNACOM, para leer en la app:</p>
+          <div className="pw-lib__grid">
+            {LIB_ITEMS.map(x => <div key={x.t}><b>{x.n}</b><strong>{x.t}</strong><span>{x.d}</span></div>)}
+          </div>
+          <div className="pw-lib__value">Libro por libro costaría <s>{fmtClp(looseValue('biblioteca'))}</s>. Con tu plan: <b>$0</b>.</div>
         </div>
 
         <div className="pw-foot">
