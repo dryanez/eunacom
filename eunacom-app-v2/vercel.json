@@ -1,10 +1,4 @@
 {
-    "crons": [
-        {
-            "path": "/api/email-marketing-cron",
-            "schedule": "0 13 * * *"
-        }
-    ],
     "redirects": [
         {
             "source": "/regalo/:slug([a-z0-9_-]+)",
