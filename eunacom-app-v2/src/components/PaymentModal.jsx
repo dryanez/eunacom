@@ -22,7 +22,7 @@ import { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
 
 const PaymentModal = ({ onClose }) => {
   const androidApp = isAndroidApp();
-  const { user } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const exam = nextExam();
   const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
   const navigate = useNavigate();
@@ -114,11 +114,15 @@ const PaymentModal = ({ onClose }) => {
 
   // In-app PayPal order (charges the promo price). Falls back to the fixed-price PayPal link
   // if the PayPal API isn't configured on the server.
+  // Sin sesión (p. ej. en /oferta) se ven los mismos planes; al pagar se pide entrar o crear cuenta y se queda en el plan elegido
+  const askLogin = () => {
+    try { sessionStorage.setItem('eunacom_plan_pick', selectedPlan.id); } catch {}
+    track('checkout_login_prompt', { plan: selectedPlan.id });
+    openAuthModal('register', `Crea tu cuenta (o inicia sesión) para pagar ${selectedPlan.name} · ${selectedPlan.price}`);
+  };
+
   const handlePaypal = async () => {
-    if (!user) {
-      setErrorMp("Debes iniciar sesión para suscribirte.");
-      return;
-    }
+    if (!user) return askLogin();
     setLoadingMp(true);
     setErrorMp(null);
     try {
@@ -134,10 +138,7 @@ const PaymentModal = ({ onClose }) => {
   };
 
   const handleMercadoPago = async () => {
-    if (!user) {
-      setErrorMp("Debes iniciar sesión para suscribirte.");
-      return;
-    }
+    if (!user) return askLogin();
     setLoadingMp(true);
     setErrorMp(null);
     try {
