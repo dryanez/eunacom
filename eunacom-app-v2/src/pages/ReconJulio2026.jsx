@@ -109,7 +109,7 @@ export default function ReconJulio2026() {
         <div className="rj-stats">
           <div><b>+47.000</b><span>preguntas</span></div>
           <div><b>+650</b><span>clases en video</span></div>
-          <div><b>18</b><span>reconstrucciones 2013–2026</span></div>
+          <div><b>17</b><span>reconstrucciones 2013–2026</span></div>
           <div><b>21</b><span>tomos del Perfil V3</span></div>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default function ReconJulio2026() {
         <details><summary>¿Ya tengo un plan. Tengo que hacer algo?</summary><p>No. La reconstrucción se agrega sola a tu biblioteca{out ? '' : ' el 16 de noviembre'}; la encuentras en Reconstrucciones y en Biblioteca.</p></details>
         <details><summary>¿Puedo comprar solo la reconstrucción?</summary><p>Sí, a {fmtClp(RECON_JUL2026.price)}{out ? '' : ' desde el 16 de noviembre'}. Si después tomas un plan, igual tienes todo lo demás.</p></details>
         <details><summary>¿Quién la reconstruyó?</summary><p>Mario Sánchez, que dio el examen en julio 2026. Nuestro equipo revisó cada pregunta y escribió las explicaciones.</p></details>
-        <details><summary>¿Qué incluye un plan?</summary><p>Todas las preguntas, las clases en video, los simulacros, las 18 reconstrucciones y los libros de tu plan. Los ves en <Link to={plans}>la página de planes</Link>.</p></details>
+        <details><summary>¿Qué incluye un plan?</summary><p>Todas las preguntas, las clases en video, los simulacros, las 17 reconstrucciones y los libros de tu plan. Los ves en <Link to={plans}>la página de planes</Link>.</p></details>
       </section>
 
       <section className="rj-end">
