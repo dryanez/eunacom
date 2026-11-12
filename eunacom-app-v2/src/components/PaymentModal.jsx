@@ -203,9 +203,14 @@ const PaymentModal = ({ onClose }) => {
       )}
 
       <div className="plan-checkout__body">
-        <div className="plan-r26">
+        <div className="plan-r26a">
           <img src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" />
-          <div><span>🆕 Nueva · la última antes de tu examen</span><b>Reconstrucción EUNACOM Julio 2026 gratis con cualquier plan</b><small>180 preguntas con explicación · suelta vale {fmtClp(RECON_JUL2026.price)}</small></div>
+          <div>
+            <span className="plan-r26a__pill">Nueva · la última antes de tu examen</span>
+            <h4>Reconstrucción EUNACOM Julio 2026</h4>
+            <p>180 preguntas reales con explicación</p>
+            <div className="plan-r26a__pr"><s>{fmtClp(RECON_JUL2026.price)}</s><b>GRATIS</b><em>con cualquier plan</em></div>
+          </div>
         </div>
         {discountPercent > 0 && (
           <div className="plan-banner promo">
@@ -263,9 +268,7 @@ const PaymentModal = ({ onClose }) => {
                   <li><i>✓</i>+47.000 preguntas y simulacros</li>
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
-                  {plan.includesLibrary
-                    ? <li className="plan-anki"><img src="/tienda/anki.webp" alt="Anki" /><span><b>+15.900 flashcards tipo Anki</b></span></li>
-                    : <li className="no"><i>✕</i>Flashcards tipo Anki</li>}
+                  <li className="plan-anki"><img src="/tienda/anki.webp" alt="Anki" /><span><b>+15.900 flashcards tipo Anki</b></span></li>
                   {plan.includesLibrary
                     ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa: {LIB_BOOK_COUNT} libros GRATIS de Academia Examen EUNACOM</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
@@ -314,7 +317,7 @@ const PaymentModal = ({ onClose }) => {
             <div className="plan-lib__anki">
               <img src="/tienda/anki.webp" alt="Anki" className="plan-lib__anki-logo" width="44" height="44" />
               <b>+15.900</b>
-              <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen desde el plan de <u>3 meses</u>.</span>
+              <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen en <u>todos</u> los planes.</span>
             </div>
             <div className="plan-lib__value">
               Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack de {LIB_BOOK_COUNT} libros. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
