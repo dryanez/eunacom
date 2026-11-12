@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
+import { X, CheckCircle2, BookOpen, Tag, Hourglass } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
 import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
@@ -179,6 +179,13 @@ const PaymentModal = ({ onClose }) => {
         <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
       </div>
 
+      {exam && exam.days <= 120 && (
+        <div className="plan-countdown">
+          <Hourglass size={17} />
+          <span>Faltan <b>{exam.days} días</b> para el EUNACOM del {exam.label}</span>
+        </div>
+      )}
+
       <div className="plan-checkout__body">
         <div className="plan-r26">
           <img src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" />
@@ -202,9 +209,6 @@ const PaymentModal = ({ onClose }) => {
           </div>
         )}
 
-        {exam && exam.days <= 120 && (
-          <div className="plan-banner credit">⏳ Faltan <strong>{exam.days} días</strong> para el EUNACOM del {exam.label}.</div>
-        )}
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
         <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros.</p>
 
@@ -321,9 +325,18 @@ const PaymentModal = ({ onClose }) => {
 
         {/* Pago */}
         <div ref={payRef} className="plan-pay">
-          <h3 className="plan-pay__title">
-            Completar pago: <span>{selectedPlan.name} · {selectedPlan.price}</span>
-          </h3>
+          <div className="plan-pay__sum">
+            <div className="plan-pay__plan">
+              <small>Completar pago</small>
+              <b>{selectedPlan.name}</b>
+              <span>{selectedPlan.lifetime ? 'Acceso para siempre' : `${selectedPlan.days} días de acceso`}{selectedPlan.includesLibrary ? ' · con biblioteca' : ''}</span>
+            </div>
+            <div className="plan-pay__amt">
+              {selectedPlan.oldPrice && !selectedPlan.anchorIsMonthly && <s>{selectedPlan.oldPrice}</s>}
+              <strong>{selectedPlan.price}</strong>
+              <small>CLP · pago único</small>
+            </div>
+          </div>
 
           {androidApp ? (
             <PlayPayButton plan={selectedPlan} userId={user?.id} />
