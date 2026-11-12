@@ -18,6 +18,7 @@ import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
 import InicioMidnight from '../components/redesign/InicioMidnight'
+import RecJul2026Popup from '../components/RecJul2026Popup'
 import RecJul2026Card from '../components/RecJul2026Card'
 import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/dashboardProMax.css'
@@ -474,6 +475,9 @@ const Dashboard = () => {
       </div>
 
       <div className="dash-content-layer" style={{ paddingBottom: '2.5rem' }}>
+      {/* ─── NUEVA: RECONSTRUCCIÓN JULIO 2026, arriba de todo ─── */}
+      <div style={{ paddingTop: 12 }}><RecJul2026Card owned={!!user && !!ownedBooks?.has?.(RECON_JUL2026.sku)} dismissible utm="app_inicio" /></div>
+
       {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
       {(
         <InicioMidnight
@@ -488,7 +492,7 @@ const Dashboard = () => {
       )}
 
       {/* ─── NUEVA: RECONSTRUCCIÓN JULIO 2026 ─── */}
-      <RecJul2026Card owned={!!user && ownedBooks?.has?.(RECON_JUL2026.sku)} dismissible utm="app_inicio" />
+      <RecJul2026Popup owned={!!user && !!ownedBooks?.has?.(RECON_JUL2026.sku)} />
 
       {/* ─── STREAK FREEZE WARNING BANNER (Trigger de Racha en Riesgo) ─── */}
       {stats.streak > 0 && todayAnswers === 0 && (
