@@ -232,8 +232,8 @@ export default function LandingPage() {
       {/* ── TOP ANNOUNCEMENT BAR ── */}
       <div className="ln-announce">
         <GraduationCap size={15} />
-        <span>100% Actualizado al <strong>Perfil de Conocimientos V3 2026</strong> (Convocatoria Diciembre & Julio) · +47.000 preguntas y +650 clases en video</span>
-        <a href="#planes">Ver planes desde $29.990 <ArrowRight size={13} /></a>
+        <span>Nueva: <strong>Reconstrucción EUNACOM Julio 2026</strong>, las 180 preguntas con su explicación · gratis con cualquier plan</span>
+        <Link to="/reconstruccion-julio-2026?utm_source=eunacomapp&utm_medium=home_barra">Verla <ArrowRight size={13} /></Link>
       </div>
 
       {/* ── HEADER / NAVIGATION ── */}
