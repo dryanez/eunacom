@@ -20,6 +20,15 @@ const BIBLIOTECA = PRODUCTS.biblioteca;
 export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
 import { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
 
+// Portadas que se deslizan solas (carrusel infinito). size = alto en px.
+const CoverMarquee = ({ size = 150, speed = 28 }) => (
+  <div className="cov-marquee" style={{ '--cov-h': `${size}px`, '--cov-speed': `${speed}s` }} aria-hidden="true">
+    <div className="cov-marquee__track">
+      {[...LIB_COVERS, ...LIB_COVERS].map((c, i) => <img key={i} src={c} alt="" className="book-cover" loading="lazy" />)}
+    </div>
+  </div>
+);
+
 const PaymentModal = ({ onClose }) => {
   const androidApp = isAndroidApp();
   const { user, openAuthModal } = useAuth();
@@ -30,7 +39,7 @@ const PaymentModal = ({ onClose }) => {
   const onBooksPage = location.pathname.startsWith('/biblioteca') || location.pathname.startsWith('/libros');
   const [couponInput, setCouponInput] = useState(coupon?.code || '');
   const [couponError, setCouponError] = useState('');
-  const [showCouponBox, setShowCouponBox] = useState(!!coupon);
+  const [showCouponBox, setShowCouponBox] = useState(true); // el campo del código queda siempre a la vista en el pago
   const credit = upgradeCredit?.amount || 0;
   
   // Read discount from URL or localStorage (30, 40, 50)
@@ -97,6 +106,13 @@ const PaymentModal = ({ onClose }) => {
   const payRef = React.useRef(null);
   const libRef = React.useRef(null);
   const scrollToPay = () => payRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // «¿Qué trae?»: baja a la biblioteca y la ilumina un momento para que se note dónde quedó
+  const [libFlash, setLibFlash] = useState(false);
+  const goLib = () => {
+    const el = libRef.current; if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setLibFlash(true); setTimeout(() => setLibFlash(false), 1800);
+  };
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
@@ -246,9 +262,9 @@ const PaymentModal = ({ onClose }) => {
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
                 </ul>
                 {plan.includesLibrary && (
-                  <button className="plan-libstrip" onClick={e => { e.stopPropagation(); libRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
-                    <span className="covers">{LIB_COVERS.slice(0, 4).map(c => <img key={c} src={c} alt="" className="book-cover" />)}</span>
-                    <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y más <u>¿Qué trae? →</u></span>
+                  <button type="button" className="plan-libstrip" onClick={e => { e.stopPropagation(); goLib(); }}>
+                    <CoverMarquee size={64} speed={22} />
+                    <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final, atlas y más <u>¿Qué trae? →</u></span>
                   </button>
                 )}
                 <button
@@ -262,13 +278,21 @@ const PaymentModal = ({ onClose }) => {
           })}
         </div>
 
+        {!onBooksPage && !libraryIncluded && (
+          <button type="button" onClick={() => { onClose(); navigate('/biblioteca'); }} className="plan-books">
+            <CoverMarquee size={78} speed={26} />
+            <span className="plan-books__txt">
+              <small>¿Solo quieres los libros?</small>
+              <b>Biblioteca completa · {fmtClp(BIBLIOTECA.price)}</b>
+              <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y atlas, para leer en la app</span>
+            </span>
+            <span className="plan-books__go">Ver libros →</span>
+          </button>
+        )}
+
         {/* Qué es la biblioteca (para que se entienda qué traen 3 meses y de por vida) */}
-        <div ref={libRef} className="plan-lib">
-          <div className="plan-lib__covers" aria-hidden="true">
-            {LIB_COVERS.map((c, i) => (
-              <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2.5) * 5}deg)`, zIndex: 6 - Math.abs(Math.round(i - 2.5)) }} />
-            ))}
-          </div>
+        <div ref={libRef} className={`plan-lib ${libFlash ? 'is-flash' : ''}`}>
+          <CoverMarquee size={190} speed={36} />
           <div className="plan-lib__text">
             <span className="tienda-kick">📚 Incluida desde 3 meses</span>
             <h3>¿Qué es la Biblioteca EUNACOM?</h3>
@@ -278,49 +302,14 @@ const PaymentModal = ({ onClose }) => {
                 <div key={x.t}><b>{x.n}</b><strong>{x.t}</strong><span>{x.d}</span></div>
               ))}
             </div>
+            <div className="plan-lib__anki">
+              <b>+15.900</b>
+              <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen en <u>todos</u> los planes.</span>
+            </div>
             <div className="plan-lib__value">
               Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
             </div>
           </div>
-        </div>
-
-        <div className="plan-extras">
-          <div style={androidApp ? { display: 'none' } : undefined}>
-            {!showCouponBox ? (
-              <button onClick={() => setShowCouponBox(true)} className="plan-link">
-                <Tag size={13} /> ¿Tienes un código de descuento?
-              </button>
-            ) : (
-              <div>
-                <div style={{ display: 'flex', gap: '0.4rem', maxWidth: 360 }}>
-                  <input
-                    value={couponInput}
-                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
-                    onKeyDown={e => e.key === 'Enter' && applyCoupon()}
-                    placeholder="Ej: SHORTS20"
-                    aria-label="Código de descuento"
-                    className="plan-input"
-                  />
-                  <button onClick={applyCoupon} className="plan-apply">Aplicar</button>
-                </div>
-                {couponError && <div style={{ color: '#f87171', fontSize: '0.75rem', marginTop: 4 }}>{couponError}</div>}
-                {coupon && !couponError && discountPercent > socialPercent && (
-                  <div style={{ color: 'var(--surface-400)', fontSize: '0.75rem', marginTop: 4 }}>Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Libros como opción secundaria (en /biblioteca el orden es al revés) */}
-          {!onBooksPage && !libraryIncluded && (
-            <button onClick={() => { onClose(); navigate('/biblioteca'); }} className="plan-books">
-              <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
-              <span>
-                ¿Solo quieres los libros? <strong>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
-                <span className="plan-books__sub">Tomos, reconstrucciones, Libros Gordos, Repaso Final y Atlas, en la app →</span>
-              </span>
-            </button>
-          )}
         </div>
 
         {/* Pago */}
@@ -341,6 +330,28 @@ const PaymentModal = ({ onClose }) => {
           {androidApp ? (
             <PlayPayButton plan={selectedPlan} userId={user?.id} />
           ) : (<>
+          <div className="plan-pay__coupon">
+            {!showCouponBox ? (
+              <button type="button" onClick={() => setShowCouponBox(true)} className="plan-link"><Tag size={13} /> ¿Tienes un código de descuento?</button>
+            ) : (
+              <>
+                <div className="plan-pay__coupon-row">
+                  <Tag size={15} />
+                  <input
+                    value={couponInput}
+                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
+                    onKeyDown={e => e.key === 'Enter' && applyCoupon()}
+                    placeholder="Código de descuento"
+                    aria-label="Código de descuento"
+                  />
+                  <button type="button" onClick={applyCoupon}>Aplicar</button>
+                </div>
+                {couponError && <div className="plan-pay__coupon-msg err">{couponError}</div>}
+                {coupon && !couponError && discountPercent > socialPercent && <div className="plan-pay__coupon-msg">Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>}
+                {coupon && !couponError && discountPercent === socialPercent && <div className="plan-pay__coupon-msg ok">Código {coupon.code} aplicado: {socialPercent}% de descuento.</div>}
+              </>
+            )}
+          </div>
           <p className="plan-refund">
             Al pagar aceptas nuestra <a href="/reembolsos" target="_blank" rel="noopener noreferrer">Política de Reembolsos</a>: como el acceso se activa de inmediato, no hay reembolsos una vez activado.
           </p>

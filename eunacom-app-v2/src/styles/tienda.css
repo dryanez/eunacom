@@ -390,3 +390,52 @@
 .plan-pay__amt strong{font-size:1.75rem;font-weight:800;color:#fff;letter-spacing:-.01em}
 .plan-pay__amt small{font-size:.66rem;color:#94a3b8;margin-top:2px}
 @media (max-width:420px){.plan-countdown{font-size:.82rem}.plan-pay__amt strong{font-size:1.5rem}.plan-pay__plan b{font-size:1.05rem}}
+
+/* ── Planes nov-2026 (2): 6 meses resalta, portadas que se deslizan, solo libros y cupón en el pago ── */
+@media (min-width: 1001px) {
+  .plan-grid { align-items: center; padding-top: 1.4rem; }
+  .plan-card.star { transform: scale(1.05); z-index: 2; }
+  .plan-card.star:hover { transform: scale(1.05) translateY(-2px); }
+}
+.plan-card.star { border-width: 2px; box-shadow: 0 0 0 4px rgba(59,130,246,.15), 0 28px 60px -22px rgba(59,130,246,.75); background: linear-gradient(180deg, rgba(59,130,246,.18), transparent 55%), var(--surface-700); }
+.plan-card.star .pack-ribbon { font-size: .8rem; padding: 4px 14px; box-shadow: 0 6px 16px -6px rgba(59,130,246,.9); }
+.plan-card.star .pack-price { font-size: 2.35rem; }
+
+.cov-marquee { position: relative; overflow: hidden; height: calc(var(--cov-h) + 14px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.cov-marquee__track { display: flex; gap: calc(var(--cov-h) * .12); width: max-content; padding: 4px 0 10px; animation: covSlide var(--cov-speed) linear infinite; }
+.cov-marquee__track img { height: var(--cov-h); width: auto; flex: none; }
+.cov-marquee:hover .cov-marquee__track { animation-play-state: paused; }
+@keyframes covSlide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .cov-marquee__track { animation: none; } }
+
+.plan-libstrip { flex-direction: column; align-items: stretch; gap: .35rem; padding: .5rem .6rem .6rem; margin: -.2rem 0 1rem; text-align: left; cursor: pointer; }
+.plan-libstrip .cov-marquee { border-radius: 8px; }
+.plan-libstrip u { white-space: nowrap; }
+
+.plan-books { display: flex; align-items: center; gap: 1rem; width: 100%; margin: 1.6rem 0 0; padding: .85rem 1.1rem; border-radius: 16px; border: 1px solid rgba(251,191,36,.35); background: linear-gradient(135deg, rgba(251,191,36,.12), rgba(251,191,36,.03)); color: var(--surface-300); cursor: pointer; text-align: left; font-family: inherit; }
+.plan-books .cov-marquee { width: 210px; flex: none; }
+.plan-books__txt { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.plan-books__txt small { font-size: .74rem; font-weight: 700; color: #fbbf24; letter-spacing: .02em; }
+.plan-books__txt b { font-size: 1.05rem; color: var(--surface-50); margin: .1rem 0; }
+.plan-books__txt span { font-size: .78rem; color: var(--surface-400); line-height: 1.4; }
+.plan-books__go { flex: none; padding: .55rem .95rem; border-radius: 10px; background: #fbbf24; color: #1f2937; font-weight: 800; font-size: .82rem; white-space: nowrap; }
+@media (max-width: 640px) { .plan-books { flex-direction: column; align-items: stretch; gap: .6rem; } .plan-books .cov-marquee { width: 100%; } .plan-books__go { text-align: center; } }
+
+.plan-lib { grid-template-columns: 1fr; gap: .4rem; scroll-margin-top: 1rem; transition: box-shadow .4s, border-color .4s; }
+.plan-lib.is-flash { border-color: #fbbf24; box-shadow: 0 0 0 4px rgba(251,191,36,.25), 0 0 40px rgba(251,191,36,.25); }
+.plan-lib__anki { display: flex; align-items: center; gap: .8rem; margin-top: .7rem; padding: .7rem .9rem; border-radius: 12px; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.3); }
+.plan-lib__anki b { font-size: 1.35rem; color: #38bdf8; flex: none; }
+.plan-lib__anki span { font-size: .8rem; color: var(--surface-300); line-height: 1.4; }
+.plan-lib__anki strong { color: var(--surface-50); }
+@media (max-width: 560px) { .plan-lib .cov-marquee { --cov-h: 140px !important; } }
+
+.plan-pay__coupon { margin: -.35rem 0 .9rem; display: flex; flex-direction: column; align-items: center; }
+.plan-pay__coupon-row { display: flex; align-items: center; gap: .5rem; width: 100%; padding: .3rem .3rem .3rem .75rem; border-radius: 12px; background: var(--surface-800, #0f172a); border: 1px solid rgba(56,189,248,.3); color: #7dd3fc; }
+.plan-pay__coupon-row input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--surface-50); font: inherit; font-size: 16px; font-weight: 700; letter-spacing: .04em; }
+.plan-pay__coupon-row input::placeholder { font-weight: 500; letter-spacing: 0; color: var(--surface-400); }
+.plan-pay__coupon-row button { flex: none; padding: .5rem .95rem; border: 0; border-radius: 9px; background: var(--accent-blue, #3b82f6); color: #fff; font: inherit; font-weight: 700; font-size: .82rem; cursor: pointer; }
+.plan-pay__coupon-msg { align-self: flex-start; font-size: .76rem; margin-top: .35rem; color: var(--surface-400); }
+.plan-pay__coupon-msg.err { color: #f87171; } .plan-pay__coupon-msg.ok { color: #4ade80; }
+.plan-grid > .plan-card { min-width: 0; }
+.cov-marquee { width: 100%; min-width: 0; contain: inline-size; }
+@media (min-width: 1001px) { .plan-grid { padding-left: .6rem; padding-right: .6rem; } .plan-card.star, .plan-card.star:hover { transform: scale(1.035); } }
