@@ -9,7 +9,7 @@ export const LIFETIME_MONTHS = 1200 // plan_months de «De por vida» (y de los 
 export const APP_PLANS = [
   { id: '1m', name: '1 Mes', months: 1, price: 29990, includesLibrary: false, tagline: 'La recta final antes del examen', paypal: null },
   { id: '3m', name: '3 Meses', months: 3, price: 55990, includesLibrary: true, tagline: 'Prepárate para este EUNACOM', paypal: null },
-  { id: '6m', name: '6 Meses', months: 6, price: 75990, includesLibrary: true, popular: true, tagline: 'Dos convocatorias con tiempo de sobra', paypal: null },
+  { id: '6m', name: '6 Meses', months: 6, price: 69990, includesLibrary: true, popular: true, tagline: 'Dos convocatorias con tiempo de sobra', paypal: null },
   { id: 'life', name: 'De por vida', months: LIFETIME_MONTHS, price: 129990, includesLibrary: true, lifetime: true, tagline: 'Hasta que apruebes, sin volver a pagar', paypal: null },
   { id: '1y', name: '1 Año', months: 12, price: 89990, includesLibrary: true, hidden: true, paypal: 'https://www.paypal.com/ncp/payment/XWTMQC3CJ4V9L' },
 ]
@@ -240,7 +240,7 @@ export const PACKS = [
     includes: ALL_TOMOS,
   },
   {
-    sku: 'biblioteca', name: 'Biblioteca completa', price: 39990, star: true, desc: 'Teoría + todas las preguntas: lo que necesitas para estudiar sin la app.',
+    sku: 'biblioteca', name: 'Biblioteca completa', price: 99990, star: true, desc: 'Teoría + todas las preguntas: lo que necesitas para estudiar sin la app.',
     covers: [TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover],
     features: ['Los 21 tomos AEE', 'Gran Libro de Reconstrucciones 2013–2025', 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', '21 libros Repaso Final, uno por especialidad', 'Perfil V3: los 1.569 códigos explicados', '19 Atlas de Imágenes, uno por especialidad'],
     includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3', 'repasos', 'atlas', ...SINGLES.map(x => x.sku)],

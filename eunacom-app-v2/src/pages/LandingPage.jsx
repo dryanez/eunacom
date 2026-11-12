@@ -72,8 +72,8 @@ const PLANS = [
   {
     id: '6m',
     name: '6 Meses',
-    price: '$75.990',
-    unit: 'pago único (~$12.665/mes)',
+    price: '$69.990',
+    unit: 'pago único (~$11.665/mes)',
     badge: 'Más elegido',
     desc: 'Medio año para estudiar con calma, con el curso completo y los libros.',
     features: [
