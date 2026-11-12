@@ -5,7 +5,7 @@
       (function() {
         var h = window.location.hostname;
         // Las vistas previas (…-dryanezs-projects.vercel.app) no se redirigen
-        if (h.endsWith('vercel.app') && h.indexOf('dryanezs-projects') === -1) {
+        if (h.endsWith('vercel.app') && h.indexOf('dryanezs-projects') === -1 && h.indexOf('dr-guevara') === -1) {
           window.location.replace('https://www.eunacomapp.cl' + window.location.pathname + window.location.search + window.location.hash);
         }
         // Force-bust stale Service Workers & cache storage across app version upgrades
