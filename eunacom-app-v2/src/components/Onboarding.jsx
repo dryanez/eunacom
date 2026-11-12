@@ -1,747 +1,404 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {
-  Stethoscope, GraduationCap, Building2, User, Phone, ChevronDown,
-  ChevronRight, ChevronLeft, Sparkles, CheckCircle2,
-  Calendar, Clock, ArrowRight, Loader2, PartyPopper,
-  MapPin, Globe2, Trophy, Target, HeartPulse, Baby, Venus,
-  Scissors, BarChart3, Landmark, Zap
+  User, Phone, ChevronDown, ChevronLeft, ArrowRight, Search, Check, Loader2,
+  Zap, Target, Flame, Clock, Star, Globe2,
 } from 'lucide-react'
-import { EunacomLogo, EunacomLogoIcon } from './EunacomLogo'
+import { EunacomLogo } from './EunacomLogo'
+import Flag from './Flag'
+import SpecialtyIcon from './redesign/SpecialtyIcon'
 import './redesign/onboarding.css'
 import { track } from '../lib/analytics'
-import { CHILEAN_UNIVERSITIES, getSedesForUniversity, UserInstitutionBadge, getUserInstitutionBadge, COUNTRIES } from '../utils/universityAndCountry'
+import { saveUserProfile } from '../lib/api'
 
-// ─── COUNTRY CODES & PHONE VALIDATION ────────────────────────────────────
+// Registro (opción 4, nov-2026): 3 pasos — datos, universidad (país → región → escudo), enfoque — y el plan listo.
+// Se guarda lo respondido al final de cada paso, y desde el paso 2 se puede «Saltar» y entrar igual a la app.
+
+// ─── WhatsApp: códigos y validación ──────────────────────────────────────
 const COUNTRY_CODES = [
-  { code: '+56', country: 'Chile', flag: '🇨🇱', minDigits: 9, maxDigits: 9, placeholder: '9 1234 5678' },
-  { code: '+54', country: 'Argentina', flag: '🇦🇷', minDigits: 10, maxDigits: 11, placeholder: '9 11 1234 5678' },
-  { code: '+57', country: 'Colombia', flag: '🇨🇴', minDigits: 10, maxDigits: 10, placeholder: '300 123 4567' },
-  { code: '+51', country: 'Perú', flag: '🇵🇪', minDigits: 9, maxDigits: 9, placeholder: '912 345 678' },
-  { code: '+58', country: 'Venezuela', flag: '🇻🇪', minDigits: 10, maxDigits: 10, placeholder: '412 123 4567' },
-  { code: '+593', country: 'Ecuador', flag: '🇪🇨', minDigits: 9, maxDigits: 9, placeholder: '91 234 5678' },
-  { code: '+591', country: 'Bolivia', flag: '🇧🇴', minDigits: 8, maxDigits: 8, placeholder: '7123 4567' },
-  { code: '+52', country: 'México', flag: '🇲🇽', minDigits: 10, maxDigits: 10, placeholder: '55 1234 5678' },
-  { code: '+53', country: 'Cuba', flag: '🇨🇺', minDigits: 8, maxDigits: 8, placeholder: '5 123 4567' },
-  { code: '+34', country: 'España', flag: '🇪🇸', minDigits: 9, maxDigits: 9, placeholder: '612 345 678' },
-  { code: '+1', country: 'Estados Unidos / Canadá', flag: '🇺🇸', minDigits: 10, maxDigits: 10, placeholder: '202 555 0123' },
-  { code: '+', country: 'Otro', flag: '🌐', minDigits: 7, maxDigits: 12, placeholder: '123456789' },
+  { code: '+56', iso: 'CL', country: 'Chile', minDigits: 9, maxDigits: 9, placeholder: '9 1234 5678' },
+  { code: '+591', iso: 'BO', country: 'Bolivia', minDigits: 8, maxDigits: 8, placeholder: '7123 4567' },
+  { code: '+593', iso: 'EC', country: 'Ecuador', minDigits: 9, maxDigits: 9, placeholder: '91 234 5678' },
+  { code: '+58', iso: 'VE', country: 'Venezuela', minDigits: 10, maxDigits: 10, placeholder: '412 123 4567' },
+  { code: '+54', iso: 'AR', country: 'Argentina', minDigits: 10, maxDigits: 11, placeholder: '9 11 1234 5678' },
+  { code: '+57', iso: 'CO', country: 'Colombia', minDigits: 10, maxDigits: 10, placeholder: '300 123 4567' },
+  { code: '+51', iso: 'PE', country: 'Perú', minDigits: 9, maxDigits: 9, placeholder: '912 345 678' },
+  { code: '+53', iso: 'CU', country: 'Cuba', minDigits: 8, maxDigits: 8, placeholder: '5 123 4567' },
+  { code: '+52', iso: 'MX', country: 'México', minDigits: 10, maxDigits: 10, placeholder: '55 1234 5678' },
+  { code: '+34', iso: 'ES', country: 'España', minDigits: 9, maxDigits: 9, placeholder: '612 345 678' },
+  { code: '+595', iso: 'PY', country: 'Paraguay', minDigits: 9, maxDigits: 9, placeholder: '981 123 456' },
+  { code: '+598', iso: 'UY', country: 'Uruguay', minDigits: 8, maxDigits: 8, placeholder: '94 123 456' },
+  { code: '+1809', iso: 'DO', country: 'República Dominicana', minDigits: 7, maxDigits: 7, placeholder: '123 4567' },
+  { code: '+502', iso: 'GT', country: 'Guatemala', minDigits: 8, maxDigits: 8, placeholder: '5123 4567' },
+  { code: '+504', iso: 'HN', country: 'Honduras', minDigits: 8, maxDigits: 8, placeholder: '9123 4567' },
+  { code: '+503', iso: 'SV', country: 'El Salvador', minDigits: 8, maxDigits: 8, placeholder: '7123 4567' },
+  { code: '+505', iso: 'NI', country: 'Nicaragua', minDigits: 8, maxDigits: 8, placeholder: '8123 4567' },
+  { code: '+506', iso: 'CR', country: 'Costa Rica', minDigits: 8, maxDigits: 8, placeholder: '8312 3456' },
+  { code: '+507', iso: 'PA', country: 'Panamá', minDigits: 8, maxDigits: 8, placeholder: '6123 4567' },
+  { code: '+1', iso: 'PR', country: 'EE.UU. / Puerto Rico', minDigits: 10, maxDigits: 10, placeholder: '787 555 0123' },
+  { code: '+', iso: '', country: 'Otro', minDigits: 7, maxDigits: 13, placeholder: '123456789' },
 ]
 
 function validatePhone(rawNumber, selectedCode) {
   const digits = (rawNumber || '').replace(/\D/g, '')
   if (!digits) return { valid: false, message: 'Ingresa tu número de WhatsApp.' }
-
   const isRepeating = /^(\d)\1+$/.test(digits)
   const isSequence = '01234567890123456789'.includes(digits) || '98765432109876543210'.includes(digits)
-  if (isRepeating || isSequence || digits.length < 7) {
-    return { valid: false, message: 'Por favor ingresa un número de WhatsApp real.' }
-  }
-
+  if (isRepeating || isSequence || digits.length < 7) return { valid: false, message: 'Por favor ingresa un número de WhatsApp real.' }
   const rule = COUNTRY_CODES.find(c => c.code === selectedCode) || COUNTRY_CODES[0]
-  if (rule.minDigits && digits.length < rule.minDigits) {
-    return { valid: false, message: `El número para ${rule.country} debe tener al menos ${rule.minDigits} dígitos.` }
-  }
-  if (rule.maxDigits && digits.length > rule.maxDigits) {
-    return { valid: false, message: `El número para ${rule.country} no debe superar ${rule.maxDigits} dígitos.` }
-  }
-
+  if (rule.minDigits && digits.length < rule.minDigits) return { valid: false, message: `El número para ${rule.country} debe tener al menos ${rule.minDigits} dígitos.` }
+  if (rule.maxDigits && digits.length > rule.maxDigits) return { valid: false, message: `El número para ${rule.country} no debe superar ${rule.maxDigits} dígitos.` }
   return { valid: true }
 }
 
-const TOTAL_INTERACTIVE_STEPS = 4
+const AREAS = [
+  { title: 'Medicina Interna', icon: 'Cardiología', note: '37% del examen' },
+  { title: 'Pediatría', icon: 'Pediatría', note: 'Muy frecuente' },
+  { title: 'Ginecología y Obstetricia', icon: 'Obstetricia', note: 'Muy frecuente' },
+  { title: 'Cirugía General', icon: 'Cirugía', note: 'Muy frecuente' },
+  { title: 'Salud Pública', icon: 'Salud Pública', note: 'Fija en cada examen' },
+]
+const PACES = [
+  { label: '15-20 min', sub: 'Express', Icon: Zap },
+  { label: '45 min', sub: 'Recomendado', Icon: Target },
+  { label: '2+ horas', sub: 'Intensivo', Icon: Flame },
+]
+const SITUACIONES_CL = ['Médico Titulado (Chile)', 'Interno de Medicina (Chile)', 'Estudiante de Medicina']
+const SITUACION_LABEL = { 'Médico Titulado (Chile)': 'Titulado(a)', 'Interno de Medicina (Chile)': 'Interno(a)', 'Estudiante de Medicina': 'Estudiante' }
+const YEARS = ['2027', '2026', '2025', '2024', '2023', '2022', '2021', '2020 o anterior']
+
+// Datos de escuelas (país → región → escuela con escudo). Se cargan una vez.
+let schoolsCache = null
+function useSchools() {
+  const [data, setData] = useState(schoolsCache)
+  useEffect(() => {
+    if (schoolsCache) return
+    fetch('/data/escuelas-medicina.json').then(r => r.json()).then(d => { schoolsCache = d; setData(d) }).catch(() => setData([]))
+  }, [])
+  return data
+}
+
+function Crest({ school, size = 52 }) {
+  const s = { width: size, height: size }
+  if (!school?.logo) {
+    const sig = school?.sigla || '?'
+    return <span className="ob4-crest is-text" style={{ ...s, fontSize: sig.length <= 4 ? size * 0.25 : size * 0.18 }}>{sig}</span>
+  }
+  return (
+    <span className={`ob4-crest ${school.dark ? 'is-dark' : ''}`} style={s}>
+      <img src={school.logo} alt="" loading="lazy" style={{ maxWidth: size * 0.74, maxHeight: size * 0.74 }} />
+    </span>
+  )
+}
 
 const Onboarding = ({ user, onComplete }) => {
-  // Step: 1 (Name/WA) | 2 (Academic profile/Uni) | 3 (Goal/Date) | 4 (Focus/Time) | 5 (Calculating Plan) | 6 (Plan Ready Reveal)
-  const [step, setStep] = useState(1)
+  const schools = useSchools()
+  const [step, setStep] = useState(1) // 1 datos · 2 país · 3 universidad · 4 enfoque · 5 plan listo
 
-  // Form State
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState(() => (user?.user_metadata?.full_name || '').split(' ')[0] || '')
+  const [lastName, setLastName] = useState(() => (user?.user_metadata?.full_name || '').split(' ').slice(1).join(' ') || '')
   const [countryCode, setCountryCode] = useState('+56')
+  const [codeOpen, setCodeOpen] = useState(false)
   const [whatsapp, setWhatsapp] = useState('')
 
-  // Academic Profile State (Matching user screenshot)
-  const [studyLocation, setStudyLocation] = useState('chile') // 'chile' | 'extranjero'
-  const [studyCountry, setStudyCountry] = useState('Colombia')
-  const [profileType, setProfileType] = useState('Médico Titulado (Chile)')
+  const [countryIso, setCountryIso] = useState('')
+  const [region, setRegion] = useState('ALL')
+  const [query, setQuery] = useState('')
+  const [schoolId, setSchoolId] = useState('')
+  const [customUni, setCustomUni] = useState('')
+  const [notListed, setNotListed] = useState(false)
+  const [situacion, setSituacion] = useState('Médico Titulado (Chile)')
   const [graduationYear, setGraduationYear] = useState('2025')
-  const [university, setUniversity] = useState('')
-  const [sede, setSede] = useState('')
-  const [customUniversity, setCustomUniversity] = useState('')
 
-  // Goal & Exam Date
-  const [goal, setGoal] = useState('beca') // 'pass_51' | 'beca' | 'reval'
-  const [examMonth, setExamMonth] = useState('Diciembre')
-  const [examYear, setExamYear] = useState('2026')
-  const [inscrito, setInscrito] = useState('Sí')
-
-  // Focus & Study Pace
-  const [weakArea, setWeakArea] = useState('Medicina Interna / Cardiología')
-  const [studyHours, setStudyHours] = useState('45 min/día (Recomendado)')
-
-  // Calculation screen simulation states
-  const [calcProgress, setCalcProgress] = useState(15)
-  const [calcTextIdx, setCalcTextIdx] = useState(0)
+  const [weakArea, setWeakArea] = useState('Medicina Interna')
+  const [pace, setPace] = useState('45 min')
 
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
-  // Calculation animation trigger when entering step 5
-  useEffect(() => {
-    if (step === 5) {
-      const interval = setInterval(() => {
-        setCalcProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(interval)
-            setTimeout(() => setStep(6), 600)
-            return 100
-          }
-          return prev + 18
-        })
-      }, 450)
+  const country = useMemo(() => (schools || []).find(c => c.code === countryIso) || null, [schools, countryIso])
+  const school = country?.schools.find(s => s.id === schoolId) || null
+  const isChile = countryIso === 'CL'
+  const rule = COUNTRY_CODES.find(c => c.code === countryCode) || COUNTRY_CODES[0]
 
-      const textTimer1 = setTimeout(() => setCalcTextIdx(1), 900)
-      const textTimer2 = setTimeout(() => setCalcTextIdx(2), 1800)
+  const regions = useMemo(() => {
+    if (!country) return []
+    const m = new Map()
+    country.schools.forEach(s => s.regions.forEach(r => m.set(r, (m.get(r) || 0) + 1)))
+    return [...m.entries()].sort((a, b) => b[1] - a[1])
+  }, [country])
 
-      return () => {
-        clearInterval(interval)
-        clearTimeout(textTimer1)
-        clearTimeout(textTimer2)
-      }
+  const visibleSchools = useMemo(() => {
+    if (!country) return []
+    const q = query.trim().toLowerCase()
+    return country.schools.filter(s =>
+      (q ? (s.sigla + ' ' + s.name + ' ' + (s.short || '')).toLowerCase().includes(q) : (region === 'ALL' || s.regions.includes(region))))
+  }, [country, region, query])
+
+  const universityString = () => {
+    if (notListed || !country) return customUni.trim() ? (isChile ? customUni.trim() : `${country?.name || 'Extranjero'} - ${customUni.trim()}`) : ''
+    if (!school) return ''
+    return isChile ? school.name : `${country.name} - ${school.name}`
+  }
+
+  const buildProfile = (done) => {
+    const countryName = country?.name || (countryIso === 'OTRO' ? 'Otro' : '')
+    const regionName = region !== 'ALL' ? region : (school?.regions?.[0] || '')
+    return {
+      id: user.id,
+      email: user.email,
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      country_code: countryCode,
+      whatsapp: `${countryCode} ${whatsapp.trim().replace(/\D/g, '')}`,
+      nationality: countryName || undefined,
+      country: countryName || undefined,
+      profile_type: countryIso ? (isChile ? situacion : 'Médico Extranjero (Revalidación)') : undefined,
+      goal: countryIso ? (isChile ? 'pass_51' : 'reval') : undefined,
+      graduation_year: countryIso ? graduationYear : undefined,
+      university: universityString() || undefined,
+      sede: countryIso ? (regionName || countryName) : undefined,
+      weak_area: step >= 4 ? weakArea : undefined,
+      study_hours: step >= 4 ? `${pace}/día (${PACES.find(p => p.label === pace)?.sub})` : undefined,
+      xp: 50,
+      onboarding_done: done,
     }
-  }, [step])
-
-  const selectedRule = COUNTRY_CODES.find(c => c.code === countryCode) || COUNTRY_CODES[0]
-  const phoneValidation = validatePhone(whatsapp, countryCode)
-
-  const handleNextFromStep1 = () => {
-    if (!firstName.trim()) { setError('Por favor ingresa tu nombre.'); return }
-    if (!lastName.trim()) { setError('Por favor ingresa tu apellido.'); return }
-    if (!phoneValidation.valid) { setError(phoneValidation.message); return }
-    setError('')
-    setStep(2)
   }
 
-  const handleNextFromStep2 = () => {
-    if (studyLocation === 'chile') {
-      if (!profileType) { setError('Por favor selecciona tu tipo de perfil.'); return }
-      if (!graduationYear) { setError('Por favor selecciona tu año de egreso.'); return }
-      if (!university) { setError('Por favor selecciona tu universidad.'); return }
-    } else {
-      if (!studyCountry) { setError('Por favor selecciona el país donde estudiaste.'); return }
-      if (!graduationYear) { setError('Por favor selecciona tu año de egreso.'); return }
-    }
-    setError('')
-    setStep(3)
+  // Guarda lo respondido hasta ahora sin cerrar el cuestionario (si se va, no pierde lo hecho)
+  const saveProgress = () => { saveUserProfile(buildProfile(false)).catch(() => {}) }
+
+  const next1 = () => {
+    if (!firstName.trim()) return setError('Por favor ingresa tu nombre.')
+    if (!lastName.trim()) return setError('Por favor ingresa tu apellido.')
+    const v = validatePhone(whatsapp, countryCode)
+    if (!v.valid) return setError(v.message)
+    setError(''); saveProgress(); setStep(2)
+  }
+  const pickCountry = (iso) => {
+    setCountryIso(iso); setRegion('ALL'); setQuery(''); setSchoolId(''); setNotListed(false); setError('')
+  }
+  const next2 = () => {
+    if (!countryIso) return setError('Elige el país donde estudiaste Medicina.')
+    setError(''); setStep(3)
+  }
+  const next3 = () => {
+    if (!universityString()) return setError(notListed || !country ? 'Escribe el nombre de tu universidad.' : 'Elige tu universidad (o toca «No está mi universidad»).')
+    setError(''); saveProgress(); setStep(4)
   }
 
-  const handleNextFromStep3 = () => {
-    if (!goal) { setError('Por favor selecciona tu objetivo en el examen.'); return }
-    if (!examMonth || !examYear) { setError('Por favor selecciona la fecha de tu examen.'); return }
-    setError('')
-    setStep(4)
-  }
-
-  const handleGeneratePlan = () => {
-    setError('')
-    setStep(5)
-  }
-
-  const handleFinish = async () => {
-    setSaving(true)
+  const finish = async () => {
+    setSaving(true); setError('')
     try {
-      const fullPhone = `${countryCode} ${whatsapp.trim().replace(/\D/g, '')}`
-      const finalUni = studyLocation === 'chile'
-        ? university
-        : (customUniversity.trim() ? `${studyCountry} - ${customUniversity.trim()}` : `Universidad en ${studyCountry}`)
-      
-      const finalCountry = studyLocation === 'chile' ? 'Chile' : studyCountry
-
-      await onComplete({
-        id: user.id,
-        email: user.email,
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
-        country_code: countryCode,
-        whatsapp: fullPhone,
-        nationality: finalCountry,
-        country: finalCountry,
-        profile_type: studyLocation === 'chile' ? profileType : 'Médico Extranjero (Revalidación)',
-        graduation_year: graduationYear,
-        university: finalUni,
-        sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
-        goal,
-        exam_month: examMonth,
-        exam_year: examYear,
-        inscrito_eunacom: inscrito,
-        ayuda_inscripcion: inscrito === 'No' ? 'Sí' : 'No',
-        weak_area: weakArea,
-        study_hours: studyHours,
-        xp: 50, // +50 XP bonus given
-        onboarding_done: true,
-      })
+      await onComplete(buildProfile(true))
       track('sign_up_completed', {
         signup_method: user.app_metadata?.provider || 'email',
-        study_location: studyLocation,
-        country: finalCountry,
-        goal,
-        exam_month: examMonth,
-        exam_year: examYear,
+        study_location: isChile ? 'chile' : 'extranjero',
+        country: country?.name || 'Otro',
+        university_from_list: Boolean(school),
       })
     } catch (e) {
       console.error('Onboarding save error:', e)
-      setError('Error al guardar tu perfil. Intenta de nuevo.')
+      setError('No se pudo guardar. Revisa tu conexión e intenta de nuevo.')
       setSaving(false)
     }
   }
+  const skip = async () => {
+    setSaving(true); setError('')
+    try { await onComplete(buildProfile(true)); track('onboarding_skipped', { step }) }
+    catch { setSaving(false); setError('No se pudo guardar. Intenta de nuevo.') }
+  }
 
-  // Calculation texts
-  const calcMessages = [
-    'Ponderando materias con mayor peso oficial del Perfil EUNACOM 2026...',
-    `Calibrando algoritmo para tu meta (${goal === 'beca' ? 'Beca de Especialidad >75%' : goal === 'pass_51' ? 'Aprobación Segura 51%' : 'Revalidación'})...`,
-    'Asignando tus primeros casos clínicos y plan de repaso personalizado...',
-  ]
-
-  // "Dr(a)." solo una vez: si el nombre ya trae Dr/Dra/Dr(a)., no se agrega otro
-  const greetName = firstName.trim()
-  const alreadyDr = /^dr(a|\(a\))?\.?(\s|$)/i.test(greetName)
-  const greeting = greetName
-    ? (alreadyDr ? greetName : `Dr(a). ${greetName}`)
-    : 'Doctor(a)'
+  const progress = { 1: 25, 2: 50, 3: 75, 4: 100 }[step]
+  const greet = firstName.trim() ? (/^dr(a|\(a\))?\.?(\s|$)/i.test(firstName.trim()) ? firstName.trim() : `Dr(a). ${firstName.trim()}`) : 'Doctor(a)'
 
   return (
     <>
-      {/* Backdrop */}
       <div className="ob-mn-backdrop" />
-
-      {/* Main Modal Layout */}
       <div className="ob-mn-overlay">
-        <div className="ob-mn" role="dialog" aria-modal="true">
+        <div className="ob-mn ob4" role="dialog" aria-modal="true">
 
-          {/* Top Branding & Gamification Bar */}
-          <div className="ob-mn-top">
-            <EunacomLogo size={28} textColor="#f1f5f9" accentColor="#38bdf8" />
-            <div className="ob-mn-xp">
-              <PartyPopper size={13} />
-              <span>+50 XP</span>
-            </div>
-          </div>
-
-          {/* Step dots */}
-          {step <= TOTAL_INTERACTIVE_STEPS && (
-            <div className="ob-mn-dots">
-              {[1, 2, 3, 4].map((s) => (
-                <div key={s} className={`ob-mn-dot ${s === step ? 'is-on' : s < step ? 'is-done' : ''}`} />
-              ))}
+          {step <= 4 && (
+            <div className="ob4-top">
+              {step > 1 ? (
+                <button type="button" className="ob4-icon" onClick={() => { setError(''); setStep(step - 1) }} aria-label="Volver"><ChevronLeft size={20} /></button>
+              ) : <EunacomLogo size={24} textColor="#f1f5f9" accentColor="#38bdf8" />}
+              <div className="ob4-prog"><i style={{ width: `${progress}%` }} /></div>
+              {step > 1
+                ? <button type="button" className="ob4-skip" onClick={skip} disabled={saving}>Saltar</button>
+                : <span className="ob4-xp">+50 XP</span>}
             </div>
           )}
 
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 1: NOMBRE Y CONTACTO
-          ═══════════════════════════════════════════════════════════════ */}
+          {/* ── PASO 1: DATOS ── */}
           {step === 1 && (
-            <div>
-              <div className="ob-mn-head">
-                <span className="ob-mn-eyebrow">Paso 1 de {TOTAL_INTERACTIVE_STEPS}</span>
-                <h2 className="ob-mn-h">¡Bienvenido(a)!</h2>
-              </div>
-
-              <div className="ob-mn-stack">
-                {/* Nombre */}
-                <div>
-                  <label className="ob-mn-label">Tu Nombre</label>
-                  <div className="ob-mn-field">
-                    <User size={18} />
-                    <input
-                      type="text"
-                      placeholder="Nombre"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                {/* Apellido */}
-                <div>
-                  <label className="ob-mn-label">Tu Apellido</label>
-                  <div className="ob-mn-field">
-                    <User size={18} />
-                    <input
-                      type="text"
-                      placeholder="Apellido"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                {/* WhatsApp */}
-                <div>
-                  <label className="ob-mn-label">WhatsApp</label>
-                  <div className="ob-mn-row">
-                    <select
-                      className="ob-mn-select code"
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                    >
-                      {COUNTRY_CODES.map((c) => (
-                        <option key={c.code + c.country} value={c.code}>
-                          {c.flag} {c.code}
-                        </option>
+            <div className="ob4-body">
+              <h2 className="ob4-h">¿Cómo te llamas?</h2>
+              <p className="ob4-p">Y tu WhatsApp para avisarte de simulacros y clases en vivo.</p>
+              <label className="ob4-label">Nombre</label>
+              <div className="ob4-field"><User size={16} /><input type="text" placeholder="Nombre" value={firstName} onChange={e => setFirstName(e.target.value)} autoComplete="given-name" /></div>
+              <label className="ob4-label">Apellido</label>
+              <div className="ob4-field"><User size={16} /><input type="text" placeholder="Apellido" value={lastName} onChange={e => setLastName(e.target.value)} autoComplete="family-name" /></div>
+              <label className="ob4-label">WhatsApp</label>
+              <div className="ob4-row">
+                <div className="ob4-code">
+                  <button type="button" className="ob4-field ob4-code-btn" onClick={() => setCodeOpen(o => !o)} aria-expanded={codeOpen}>
+                    <Flag code={rule.iso} size={22} /><span>{rule.code}</span><ChevronDown size={14} />
+                  </button>
+                  {codeOpen && (
+                    <div className="ob4-code-list" role="listbox">
+                      {COUNTRY_CODES.map(c => (
+                        <button key={c.code + c.country} type="button" role="option" aria-selected={c.code === countryCode}
+                          className={c.code === countryCode ? 'on' : ''} onClick={() => { setCountryCode(c.code); setCodeOpen(false) }}>
+                          <Flag code={c.iso} size={22} /><span>{c.country}</span><small>{c.code}</small>
+                        </button>
                       ))}
-                    </select>
-
-                    <div className="ob-mn-field" style={{ flex: 1 }}>
-                      <Phone size={16} />
-                      <input
-                        type="tel"
-                        inputMode="tel"
-                        placeholder={selectedRule.placeholder}
-                        value={whatsapp}
-                        onChange={(e) => setWhatsapp(e.target.value)}
-                      />
                     </div>
+                  )}
+                </div>
+                <div className="ob4-field" style={{ flex: 1 }}><Phone size={15} /><input type="tel" inputMode="tel" placeholder={rule.placeholder} value={whatsapp} onChange={e => setWhatsapp(e.target.value)} autoComplete="tel-national" /></div>
+              </div>
+              {error && <div className="ob-mn-err">{error}</div>}
+              <button type="button" className="ob4-btn" onClick={next1}>Continuar <ArrowRight size={17} /></button>
+            </div>
+          )}
+
+          {/* ── PASO 2: PAÍS ── */}
+          {step === 2 && (
+            <div className="ob4-body">
+              <h2 className="ob4-h">¿Dónde estudiaste Medicina?</h2>
+              {!schools ? <div className="ob4-loading"><Loader2 className="ob-mn-spin" size={22} /></div> : (
+                <div className="ob4-flags">
+                  {schools.map(c => (
+                    <button key={c.code} type="button" className={`ob4-fl ${countryIso === c.code ? 'on' : ''}`} onClick={() => pickCountry(c.code)}>
+                      <Flag code={c.code} size={36} radius={4} />
+                      <span>{c.name === 'República Dominicana' ? 'R. Dominicana' : c.name}</span>
+                    </button>
+                  ))}
+                  <button type="button" className={`ob4-fl ${countryIso === 'OTRO' ? 'on' : ''}`} onClick={() => pickCountry('OTRO')}>
+                    <Globe2 size={24} strokeWidth={1.6} /><span>Otro país</span>
+                  </button>
+                </div>
+              )}
+              {error && <div className="ob-mn-err">{error}</div>}
+              <button type="button" className="ob4-btn" onClick={next2}>Continuar <ArrowRight size={17} /></button>
+            </div>
+          )}
+
+          {/* ── PASO 3: UNIVERSIDAD ── */}
+          {step === 3 && (
+            <div className="ob4-body">
+              <button type="button" className="ob4-chosen" onClick={() => setStep(2)}>
+                {country ? <Flag code={country.code} size={24} /> : <Globe2 size={20} />}
+                <b>{country?.name || 'Otro país'}</b><span>Cambiar</span>
+              </button>
+              <h2 className="ob4-h" style={{ marginTop: '.8rem' }}>Tu universidad</h2>
+
+              {country && !notListed && (
+                <>
+                  <div className="ob4-search"><Search size={15} /><input type="search" placeholder="Busca tu universidad" value={query} onChange={e => setQuery(e.target.value)} /></div>
+                  {!query && (
+                    <div className="ob4-chips">
+                      <button type="button" className={region === 'ALL' ? 'on' : ''} onClick={() => setRegion('ALL')}>Todas<i>{country.schools.length}</i></button>
+                      {regions.map(([r, n]) => (
+                        <button key={r} type="button" className={region === r ? 'on' : ''} onClick={() => setRegion(r)}>{r}<i>{n}</i></button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="ob4-unis">
+                    {visibleSchools.map(s => (
+                      <button key={s.id} type="button" className={`ob4-uni ${schoolId === s.id ? 'on' : ''}`} onClick={() => { setSchoolId(s.id); setError('') }} title={s.name}>
+                        <Crest school={s} />
+                        <b>{s.sigla}</b>
+                        <small>{s.short || s.name}</small>
+                      </button>
+                    ))}
+                    {!visibleSchools.length && <p className="ob4-p" style={{ gridColumn: '1/-1' }}>No encontramos «{query}».</p>}
+                  </div>
+                  <button type="button" className="ob4-link" onClick={() => { setNotListed(true); setSchoolId(''); setCustomUni(query) }}>No está mi universidad</button>
+                </>
+              )}
+
+              {(notListed || !country) && (
+                <>
+                  <label className="ob4-label">Nombre de tu universidad</label>
+                  <div className="ob4-field"><Search size={15} /><input type="text" placeholder="Ej: Universidad Nacional de…" value={customUni} onChange={e => setCustomUni(e.target.value)} autoFocus /></div>
+                  {country && <button type="button" className="ob4-link" onClick={() => setNotListed(false)}>Volver a la lista</button>}
+                </>
+              )}
+
+              {(school || notListed || !country) && (
+                <div className="ob4-extra">
+                  {isChile && (
+                    <div className="ob4-seg">
+                      {SITUACIONES_CL.map(s => (
+                        <button key={s} type="button" className={situacion === s ? 'on' : ''} onClick={() => setSituacion(s)}>{SITUACION_LABEL[s]}</button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="ob4-year">
+                    <span>Año de egreso</span>
+                    <select value={graduationYear} onChange={e => setGraduationYear(e.target.value)}>
+                      {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
+                    </select>
                   </div>
                 </div>
-              </div>
+              )}
 
               {error && <div className="ob-mn-err">{error}</div>}
+              <button type="button" className="ob4-btn" onClick={next3}>Continuar <ArrowRight size={17} /></button>
+            </div>
+          )}
 
-              <button type="button" className="ob-mn-btn solo" onClick={handleNextFromStep1}>
-                <span>Continuar</span>
-                <ChevronRight size={18} />
+          {/* ── PASO 4: ENFOQUE ── */}
+          {step === 4 && (
+            <div className="ob4-body">
+              <h2 className="ob4-h">¿Qué área te cuesta más?</h2>
+              <div className="ob4-areas">
+                {AREAS.map(a => (
+                  <button key={a.title} type="button" className={`ob4-area ${weakArea === a.title ? 'on' : ''}`} onClick={() => setWeakArea(a.title)}>
+                    <SpecialtyIcon name={a.icon} size={34} />
+                    <span><b>{a.title}</b><small>{a.note}</small></span>
+                    {weakArea === a.title && <Check size={17} />}
+                  </button>
+                ))}
+              </div>
+              <label className="ob4-label">Tiempo al día</label>
+              <div className="ob4-pace">
+                {PACES.map(({ label, sub, Icon }) => (
+                  <button key={label} type="button" className={pace === label ? 'on' : ''} onClick={() => setPace(label)}>
+                    <Icon size={15} /><b>{label}</b><small>{sub}</small>
+                  </button>
+                ))}
+              </div>
+              {error && <div className="ob-mn-err">{error}</div>}
+              <button type="button" className="ob4-btn" onClick={() => { setError(''); setStep(5) }}>Crear mi plan <ArrowRight size={17} /></button>
+            </div>
+          )}
+
+          {/* ── PLAN LISTO ── */}
+          {step === 5 && (
+            <div className="ob4-body ob4-done">
+              <div className="ob4-ok"><Check size={30} strokeWidth={2.6} /></div>
+              <h2 className="ob4-h" style={{ textAlign: 'center' }}>¡Listo, {greet}!</h2>
+              <p className="ob4-p" style={{ textAlign: 'center' }}>Tu plan ya está activo.</p>
+              <div className="ob4-sum">
+                <div><SpecialtyIcon name={AREAS.find(a => a.title === weakArea)?.icon} size={30} /><span><small>Prioridad</small><b>{weakArea}</b></span></div>
+                <div><Clock size={18} /><span><small>Tiempo al día</small><b>{pace}</b></span></div>
+                <div>
+                  {school ? <Crest school={school} size={30} /> : (country ? <Flag code={country.code} size={22} /> : <Globe2 size={18} />)}
+                  <span><small>Formación</small><b>{school ? `${school.sigla} · ${country.name}` : (universityString() || country?.name || '—')}</b></span>
+                </div>
+                <div><Star size={18} /><span><small>Bono de bienvenida</small><b className="ob4-green">+50 XP</b></span></div>
+              </div>
+              {error && <div className="ob-mn-err">{error}</div>}
+              <button type="button" className="ob4-btn" onClick={finish} disabled={saving}>
+                {saving ? <><Loader2 size={17} className="ob-mn-spin" /> Guardando…</> : <>Empezar a estudiar <ArrowRight size={17} /></>}
               </button>
             </div>
           )}
-
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 2: FORMACIÓN MÉDICA & UNIVERSIDAD
-          ═══════════════════════════════════════════════════════════════ */}
-          {step === 2 && (
-            <div>
-              <div className="ob-mn-head">
-                <span className="ob-mn-eyebrow">Paso 2 de {TOTAL_INTERACTIVE_STEPS}</span>
-                <h2 className="ob-mn-h">Formación Médica</h2>
-              </div>
-
-              {/* Location Toggle */}
-              <div className="ob-mn-grid2" style={{ marginBottom: '0.85rem' }}>
-                <button
-                  type="button"
-                  className={`ob-mn-seg ${studyLocation === 'chile' ? 'is-on' : ''}`}
-                  onClick={() => {
-                    setStudyLocation('chile')
-                    setProfileType('Médico Titulado (Chile)')
-                  }}
-                >
-                  <MapPin size={15} />
-                  <span>En Chile</span>
-                </button>
-
-                <button
-                  type="button"
-                  className={`ob-mn-seg ${studyLocation === 'extranjero' ? 'is-on' : ''}`}
-                  onClick={() => {
-                    setStudyLocation('extranjero')
-                    setProfileType('Médico Extranjero (Revalidación)')
-                    setGoal('reval')
-                  }}
-                >
-                  <Globe2 size={15} />
-                  <span>Fuera de Chile</span>
-                </button>
-              </div>
-
-              <div className="ob-mn-stack">
-                {studyLocation === 'chile' ? (
-                  <>
-                    <div className="ob-mn-field accent">
-                      <Stethoscope size={19} />
-                      <select value={profileType} onChange={(e) => setProfileType(e.target.value)}>
-                        <option value="Médico Titulado (Chile)">Médico Titulado (Chile)</option>
-                        <option value="Interno de Medicina (Chile)">Interno de Medicina (Chile)</option>
-                        <option value="Estudiante de Medicina">Estudiante de Medicina</option>
-                      </select>
-                    </div>
-
-                    <div className="ob-mn-field accent">
-                      <GraduationCap size={19} />
-                      <select value={graduationYear} onChange={(e) => setGraduationYear(e.target.value)}>
-                        <option value="" disabled>Año Egreso...</option>
-                        {['2027', '2026', '2025', '2024', '2023', '2022', '2021', '2020 o anterior'].map((y) => (
-                          <option key={y} value={y}>{y}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <UniPicker
-                      value={university}
-                      onChange={(val) => {
-                        setUniversity(val)
-                        const sedes = getSedesForUniversity(val)
-                        if (sedes && sedes.length > 0) setSede(sedes[0])
-                      }}
-                    />
-
-                    {university && (
-                      <div className="ob-mn-field accent">
-                        <MapPin size={19} />
-                        <select value={sede} onChange={(e) => setSede(e.target.value)}>
-                          <option value="" disabled>Selecciona tu sede / campus...</option>
-                          {getSedesForUniversity(university).map((s) => (
-                            <option key={s} value={s}>
-                              Sede: {s}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <div className="ob-mn-field accent">
-                      <Globe2 size={19} />
-                      <select value={studyCountry} onChange={(e) => setStudyCountry(e.target.value)}>
-                        {COUNTRIES.filter(c => c.name !== 'Chile').map((c) => (
-                          <option key={c.code} value={c.name}>{c.flag} {c.name}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="ob-mn-field accent">
-                      <GraduationCap size={19} />
-                      <select value={graduationYear} onChange={(e) => setGraduationYear(e.target.value)}>
-                        <option value="" disabled>Año Egreso...</option>
-                        {['2027', '2026', '2025', '2024', '2023', '2022', '2021', '2020 o anterior'].map((y) => (
-                          <option key={y} value={y}>{y}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="ob-mn-field accent">
-                      <Building2 size={19} />
-                      <input
-                        type="text"
-                        placeholder="Nombre de tu universidad (ej: UCV, UBA, UNMSM...)"
-                        value={customUniversity}
-                        onChange={(e) => setCustomUniversity(e.target.value)}
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Live Preview Badge */}
-                <div className="ob-mn-preview">
-                  <span>Insignia de perfil:</span>
-                  <div>
-                    <UserInstitutionBadge
-                      user={{
-                        university: studyLocation === 'chile' ? university : customUniversity,
-                        sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
-                        country: studyLocation === 'chile' ? 'Chile' : studyCountry
-                      }}
-                      size={26}
-                      showLabel={true}
-                      labelStyle={{ color: '#e2e8f0', fontWeight: 700, fontSize: '0.8rem', maxWidth: '150px' }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {error && <div className="ob-mn-err">{error}</div>}
-
-              <div className="ob-mn-actions">
-                <button type="button" className="ob-mn-back" onClick={() => setStep(1)} aria-label="Volver">
-                  <ChevronLeft size={18} />
-                </button>
-                <button type="button" className="ob-mn-btn" onClick={handleNextFromStep2}>
-                  <span>Continuar</span>
-                  <ChevronRight size={18} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 3: OBJETIVO & FECHA
-          ═══════════════════════════════════════════════════════════════ */}
-          {step === 3 && (
-            <div>
-              <div className="ob-mn-head">
-                <span className="ob-mn-eyebrow">Paso 3 de {TOTAL_INTERACTIVE_STEPS}</span>
-                <h2 className="ob-mn-h">Tu Meta</h2>
-              </div>
-
-              <div className="ob-mn-stack tight">
-                {[
-                  { id: 'beca', label: 'Beca de Especialidad (> 75 - 80%)', Icon: Trophy },
-                  { id: 'pass_51', label: 'Aprobar EUNACOM (≥ 51%)', Icon: Target },
-                  { id: 'reval', label: 'Revalidación de Título', Icon: Stethoscope },
-                ].map(({ id, label, Icon }) => (
-                  <div
-                    key={id}
-                    className={`ob-mn-choice ${goal === id ? 'is-on' : ''}`}
-                    onClick={() => setGoal(id)}
-                  >
-                    <span className="ob-mn-ic"><Icon size={18} /></span>
-                    <div className="ob-mn-choice-t">{label}</div>
-                    {goal === id && <CheckCircle2 size={18} className="ob-mn-check" />}
-                  </div>
-                ))}
-
-                {/* Fecha Examen */}
-                <div style={{ marginTop: '0.4rem' }}>
-                  <label className="ob-mn-label">
-                    <Calendar size={13} /> ¿Cuándo rindes el examen?
-                  </label>
-                  <div className="ob-mn-grid2">
-                    <select className="ob-mn-select" value={examMonth} onChange={(e) => setExamMonth(e.target.value)}>
-                      <option value="Julio">Julio</option>
-                      <option value="Diciembre">Diciembre</option>
-                    </select>
-
-                    <select className="ob-mn-select" value={examYear} onChange={(e) => setExamYear(e.target.value)}>
-                      <option value="2025">2025</option>
-                      <option value="2026">2026</option>
-                      <option value="2027">2027</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              {error && <div className="ob-mn-err">{error}</div>}
-
-              <div className="ob-mn-actions">
-                <button type="button" className="ob-mn-back" onClick={() => setStep(2)} aria-label="Volver">
-                  <ChevronLeft size={18} />
-                </button>
-                <button type="button" className="ob-mn-btn" onClick={handleNextFromStep3}>
-                  <span>Continuar</span>
-                  <ChevronRight size={18} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 4: ENFOQUE & RITMO DIARIO
-          ═══════════════════════════════════════════════════════════════ */}
-          {step === 4 && (
-            <div>
-              <div className="ob-mn-head">
-                <span className="ob-mn-eyebrow">Paso 4 de {TOTAL_INTERACTIVE_STEPS}</span>
-                <h2 className="ob-mn-h">Enfoque de Estudio</h2>
-              </div>
-
-              <div className="ob-mn-stack tight">
-                {[
-                  { title: 'Medicina Interna', badge: '37%', Icon: HeartPulse },
-                  { title: 'Pediatría', badge: 'Frecuente', Icon: Baby },
-                  { title: 'Ginecología y Obstetricia', badge: 'GES', Icon: Venus },
-                  { title: 'Cirugía General', badge: 'Frecuente', Icon: Scissors },
-                  { title: 'Salud Pública', badge: 'Fija', Icon: BarChart3 },
-                ].map(({ title, badge, Icon }) => (
-                  <div
-                    key={title}
-                    className={`ob-mn-choice ${weakArea.startsWith(title) ? 'is-on' : ''}`}
-                    onClick={() => setWeakArea(title)}
-                  >
-                    <span className="ob-mn-ic"><Icon size={17} /></span>
-                    <div className="ob-mn-choice-t">{title}</div>
-                    <span className="ob-mn-tag">{badge}</span>
-                  </div>
-                ))}
-
-                {/* Tiempo de estudio */}
-                <div style={{ marginTop: '0.4rem' }}>
-                  <label className="ob-mn-label">
-                    <Clock size={13} /> Tiempo diario disponible:
-                  </label>
-                  <div className="ob-mn-grid3">
-                    {[
-                      { label: '15-20 min', sub: 'Express' },
-                      { label: '45 min', sub: 'Recomendado' },
-                      { label: '2+ horas', sub: 'Intensivo' },
-                    ].map((opt) => (
-                      <button
-                        key={opt.label}
-                        type="button"
-                        className={`ob-mn-seg stacked ${studyHours.includes(opt.label) ? 'is-on' : ''}`}
-                        onClick={() => setStudyHours(`${opt.label}/día (${opt.sub})`)}
-                      >
-                        <span>{opt.label}</span>
-                        <small>{opt.sub}</small>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="ob-mn-actions">
-                <button type="button" className="ob-mn-back" onClick={() => setStep(3)} aria-label="Volver">
-                  <ChevronLeft size={18} />
-                </button>
-                <button type="button" className="ob-mn-btn" onClick={handleGeneratePlan}>
-                  <span>Generar Plan</span>
-                  <Sparkles size={18} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 5: CALCULANDO TU PLAN
-          ═══════════════════════════════════════════════════════════════ */}
-          {step === 5 && (
-            <div className="ob-mn-calc">
-              <div className="ob-mn-orb">
-                <Loader2 size={32} className="ob-mn-spin" />
-              </div>
-
-              <h3 className="ob-mn-h">Generando tu Plan Personalizado...</h3>
-
-              <p className="ob-mn-calc-msg">{calcMessages[calcTextIdx]}</p>
-
-              <div className="ob-mn-bar">
-                <b style={{ width: `${calcProgress}%` }} />
-              </div>
-
-              <div className="ob-mn-pct">{calcProgress}% Completado</div>
-            </div>
-          )}
-
-          {/* ═══════════════════════════════════════════════════════════════
-              STEP 6: REVEAL FINAL & BOTÓN DE ARRANQUE
-          ═══════════════════════════════════════════════════════════════ */}
-          {step === 6 && (() => {
-            const userBadge = getUserInstitutionBadge({
-              university: studyLocation === 'chile' ? university : (customUniversity || studyCountry),
-              sede: studyLocation === 'chile' ? (sede || 'Sede Principal') : (studyCountry || 'Extranjero'),
-              country: studyLocation === 'chile' ? 'Chile' : studyCountry
-            })
-
-            const formationDisplay = studyLocation === 'chile'
-              ? (userBadge.primaryLabel || university || 'Chile')
-              : (customUniversity.trim() || studyCountry || 'Extranjero')
-
-            const formationFull = studyLocation === 'chile'
-              ? (university || 'Chile')
-              : (customUniversity.trim() ? `${studyCountry} - ${customUniversity.trim()}` : studyCountry)
-
-            const goalDisplay = goal === 'beca'
-              ? 'Beca >75%'
-              : goal === 'pass_51'
-                ? 'Aprobar ≥51%'
-                : 'Revalidación'
-
-            const priorityDisplay = weakArea.split('/')[0].trim()
-
-            return (
-              <div>
-                <div className="ob-mn-head" style={{ marginBottom: '1.1rem' }}>
-                  <div className="ob-mn-chip">
-                    <Sparkles size={13} />
-                    <span>Plan Personalizado 2026</span>
-                  </div>
-                  <h2 className="ob-mn-h">¡Listo, {greeting}!</h2>
-                  <p className="ob-mn-p">Tu algoritmo de estudio ha sido calibrado a tu meta.</p>
-                </div>
-
-                {/* Plan Pass Card */}
-                <div className="ob-mn-pass">
-                  <div className="ob-mn-pass-top">
-                    <div className="ob-mn-pass-brand">
-                      <EunacomLogoIcon size={22} />
-                      <span>eunacom<em>app</em></span>
-                    </div>
-                    <span className="ob-mn-pass-tag">Perfil 2026</span>
-                  </div>
-
-                  <div className="ob-mn-stats">
-                    <div className="ob-mn-stat" title={`Meta: ${goalDisplay}`}>
-                      <div className="ob-mn-stat-k"><Target size={12} /> Objetivo</div>
-                      <div className="ob-mn-stat-v"><span>{goalDisplay}</span></div>
-                    </div>
-
-                    <div className="ob-mn-stat" title={`Examen: ${examMonth} ${examYear}`}>
-                      <div className="ob-mn-stat-k"><Calendar size={12} /> Fecha Examen</div>
-                      <div className="ob-mn-stat-v"><span>{examMonth} {examYear}</span></div>
-                    </div>
-
-                    <div className="ob-mn-stat" title={formationFull}>
-                      <div className="ob-mn-stat-k"><Landmark size={12} /> Formación</div>
-                      <div className="ob-mn-stat-v">
-                        {userBadge.flag && <span style={{ flexShrink: 0, fontSize: '0.75rem' }}>{userBadge.flag}</span>}
-                        <span>{formationDisplay}</span>
-                      </div>
-                    </div>
-
-                    <div className="ob-mn-stat" title={`Prioridad: ${weakArea}`}>
-                      <div className="ob-mn-stat-k"><Zap size={12} /> Prioridad</div>
-                      <div className="ob-mn-stat-v sky"><span>{priorityDisplay}</span></div>
-                    </div>
-                  </div>
-
-                  <div className="ob-mn-pass-foot">
-                    <span>
-                      <Clock size={13} />
-                      <span>{studyHours.split('(')[0].trim()}</span>
-                    </span>
-                    <span className="ob-mn-ok">
-                      <CheckCircle2 size={12} />
-                      <span>Algoritmo activo</span>
-                    </span>
-                  </div>
-                </div>
-
-                {error && <div className="ob-mn-err" style={{ marginTop: 0, marginBottom: '0.85rem' }}>{error}</div>}
-
-                <button type="button" className="ob-mn-btn" onClick={handleFinish} disabled={saving}>
-                  {saving ? (
-                    <>
-                      <Loader2 size={18} className="ob-mn-spin" />
-                      <span>Guardando tu plan...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>¡Empezar a Estudiar Ahora!</span>
-                      <ArrowRight size={18} />
-                    </>
-                  )}
-                </button>
-              </div>
-            )
-          })()}
         </div>
       </div>
     </>
-  )
-}
-
-// Selector de universidad con el escudo de cada una (un <select> nativo no puede mostrar imágenes)
-function UniPicker({ value, onChange }) {
-  const [open, setOpen] = useState(false)
-  const sel = CHILEAN_UNIVERSITIES.find(u => u.name === value)
-  return (
-    <div className="ob-uni">
-      <button type="button" className={`ob-mn-field accent ob-uni-btn ${value ? '' : 'is-empty'}`} onClick={() => setOpen(o => !o)} aria-expanded={open}>
-        {sel?.logo ? <img src={sel.logo} alt="" className="ob-uni-crest" /> : <Building2 size={19} />}
-        <span className="ob-uni-name">{sel ? sel.name : 'Selecciona tu universidad...'}</span>
-        <ChevronDown size={17} className="ob-uni-chev" />
-      </button>
-      {open && (
-        <div className="ob-uni-list" role="listbox">
-          {CHILEAN_UNIVERSITIES.map(u => (
-            <button key={u.id} type="button" role="option" aria-selected={u.name === value}
-              className={`ob-uni-opt ${u.name === value ? 'on' : ''}`}
-              onClick={() => { onChange(u.name); setOpen(false) }}>
-              {u.logo ? <img src={u.logo} alt="" className="ob-uni-crest" loading="lazy" /> : <Building2 size={18} />}
-              <span>{u.name}</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
   )
 }
 
