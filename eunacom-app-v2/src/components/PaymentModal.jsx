@@ -309,6 +309,7 @@ const PaymentModal = ({ onClose }) => {
               ))}
             </div>
             <div className="plan-lib__anki">
+              <img src="/tienda/anki.webp" alt="Anki" className="plan-lib__anki-logo" width="44" height="44" />
               <b>+15.900</b>
               <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen en <u>todos</u> los planes.</span>
             </div>

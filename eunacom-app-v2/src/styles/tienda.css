@@ -450,3 +450,7 @@
 .plan-collab__aee-t{line-height:1.15;text-align:left}.plan-collab__aee-t b{display:block;color:#fff;font-size:.95rem}.plan-collab__aee-t small{display:block;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:#22d3ee}
 @media (max-width:420px){.plan-collab__aee-t small{display:none}}
 .pack-feat li.plan-free b{color:#4ade80}
+/* logo de Anki en la esquina de arriba a la izquierda del recuadro de flashcards */
+.plan-lib__anki{position:relative;margin-top:1.3rem;padding-left:1.2rem}
+.plan-lib__anki-logo{position:absolute;top:-16px;left:-12px;width:40px;height:auto;transform:rotate(-10deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
+.plan-lib__anki{padding-left:2.6rem}
