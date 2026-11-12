@@ -18,13 +18,13 @@ export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone
 const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
 export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
-import { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
+import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL } from '../config/biblioteca';
 
 // Portadas que se deslizan solas (carrusel infinito). size = alto en px.
-const CoverMarquee = ({ size = 150, speed = 28 }) => (
+const CoverMarquee = ({ size = 150, speed = 28, covers = LIB_COVERS }) => (
   <div className="cov-marquee" style={{ '--cov-h': `${size}px`, '--cov-speed': `${speed}s` }} aria-hidden="true">
     <div className="cov-marquee__track">
-      {[...LIB_COVERS, ...LIB_COVERS].map((c, i) => <img key={i} src={c} alt="" className="book-cover" loading="lazy" />)}
+      {[...covers, ...covers].map((c, i) => <img key={i} src={c} alt="" className="book-cover" loading="lazy" />)}
     </div>
   </div>
 );
@@ -190,7 +190,7 @@ const PaymentModal = ({ onClose }) => {
     <div className="plan-checkout" role="dialog" aria-modal="true" aria-label="Planes EUNACOM App">
       <div className="plan-checkout__bar">
         <div>
-          <div className="plan-checkout__title">Curso Completo Todo-en-Uno ⭐</div>
+          <div className="plan-checkout__brand"><img src="/logo.png" alt="" width="26" height="26" /><span>eunacom<b>app</b></span></div>
         </div>
         <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
       </div>
@@ -226,7 +226,13 @@ const PaymentModal = ({ onClose }) => {
         )}
 
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
-        <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros.</p>
+        <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros <b>gratis</b>.</p>
+        <div className="plan-collab">
+          <img src="/logo.png" alt="" width="34" height="34" /><span className="plan-collab__app">eunacom<b>app</b></span>
+          <span className="plan-collab__x">×</span>
+          <img src="/tienda/aee-logo.svg" alt="Academia Examen EUNACOM" className="plan-collab__aee" />
+          <span className="plan-collab__aee-t"><b>AEE</b><small>Academia Examen EUNACOM</small></span>
+        </div>
 
         <div className="plan-grid">
           {plansToDisplay.map(plan => {
@@ -258,7 +264,7 @@ const PaymentModal = ({ onClose }) => {
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
                   {plan.includesLibrary
-                    ? <li><i>✓</i><span><b>Biblioteca completa de libros</b> <span className="plan-libval">(valor {fmtClp(BIBLIOTECA.price)})</span></span></li>
+                    ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa de libros GRATIS</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
                 </ul>
                 {plan.includesLibrary && (
@@ -292,7 +298,7 @@ const PaymentModal = ({ onClose }) => {
 
         {/* Qué es la biblioteca (para que se entienda qué traen 3 meses y de por vida) */}
         <div ref={libRef} className={`plan-lib ${libFlash ? 'is-flash' : ''}`}>
-          <CoverMarquee size={190} speed={36} />
+          <CoverMarquee size={190} speed={90} covers={LIB_COVERS_ALL} />
           <div className="plan-lib__text">
             <span className="tienda-kick">📚 Incluida desde 3 meses</span>
             <h3>¿Qué es la Biblioteca EUNACOM?</h3>

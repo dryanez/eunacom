@@ -439,3 +439,14 @@
 .plan-grid > .plan-card { min-width: 0; }
 .cov-marquee { width: 100%; min-width: 0; contain: inline-size; }
 @media (min-width: 1001px) { .plan-grid { padding-left: .6rem; padding-right: .6rem; } .plan-card.star, .plan-card.star:hover { transform: scale(1.035); } }
+/* barra de arriba: solo la marca (sin «Curso Completo Todo-en-Uno») */
+.plan-checkout__brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.05rem;color:#fff;letter-spacing:-.01em}
+.plan-checkout__brand b{color:#38bdf8}
+/* eunacomapp × AEE bajo «Elige tu plan» */
+.plan-collab{display:flex;align-items:center;justify-content:center;gap:10px;margin:.4rem auto 1.1rem;padding:.55rem 1.1rem;width:fit-content;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.plan-collab__app{font-weight:700;font-size:1.05rem;color:#fff;letter-spacing:-.02em}.plan-collab__app b{color:#38bdf8}
+.plan-collab__x{color:#64748b;font-size:1.2rem}
+.plan-collab__aee{height:30px;width:auto}
+.plan-collab__aee-t{line-height:1.15;text-align:left}.plan-collab__aee-t b{display:block;color:#fff;font-size:.95rem}.plan-collab__aee-t small{display:block;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:#22d3ee}
+@media (max-width:420px){.plan-collab__aee-t small{display:none}}
+.pack-feat li.plan-free b{color:#4ade80}

@@ -10,3 +10,13 @@ export const LIB_ITEMS = [
   { n: '1.569', t: 'Códigos explicados', d: 'Perfil V3 código por código: qué te pueden preguntar de cada uno.' },
   { n: '1.144', t: 'Imágenes en 19 atlas', d: 'Un atlas comentado por especialidad: lo que hay que reconocer en cada foto.' },
 ];
+
+// Carrusel grande de la biblioteca (planes): mezcla de tomos, repasos, libros gordos, atlas, reconstrucciones y código por código
+const ESP = ['cardiologia', 'pediatria', 'cirugia', 'obstetricia', 'neurologia', 'infectologia', 'ginecologia', 'nefrologia']
+const mix = []
+ESP.forEach((e, i) => {
+  mix.push(TOMOS[i * 2 % TOMOS.length].cover, `/tienda/repaso_${e}.jpg`, `/tienda/gordo_${e}.jpg`, `/tienda/atlas_${e}.jpg`)
+  if (i % 2 === 0) mix.push(['/tienda/rec_JUL2025.jpg', '/tienda/rec_DIC2024.jpg', '/tienda/rec_JUL2024.jpg', '/tienda/rec_DIC2025.jpg'][i / 2])
+  if (i === 3) mix.push(`/tienda/perfil_${e}.jpg`)
+})
+export const LIB_COVERS_ALL = [...new Set(mix)]
