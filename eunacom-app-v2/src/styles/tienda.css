@@ -469,3 +469,14 @@
 .plan-collab__aee{height:38px;width:auto}
 .plan-collab__aeebox span{font-family:'DM Mono',ui-monospace,monospace;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#e2e8f0;white-space:nowrap}
 @media (max-width:420px){.plan-collab{gap:12px;padding:.5rem 1rem}.plan-collab__aee{height:32px}.plan-collab__aeebox span{font-size:.68rem}.plan-collab__app{font-size:.95rem}}
+/* «Alianza oficial» AEE bajo la biblioteca: centrado, emblema grande y nombre legible */
+.pack-feat li.plan-aee{justify-content:center;gap:14px;margin:8px auto 6px;padding:8px 18px;width:100%;max-width:300px;border-radius:14px}
+.plan-aee__logo{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pack-feat li.plan-aee .plan-aee__logo img{height:34px;width:auto}
+.plan-aee__logo small{font-family:'DM Mono',ui-monospace,monospace;font-size:.6rem;font-weight:600;letter-spacing:.05em;color:#e2e8f0;white-space:nowrap}
+.plan-aee__t{padding-left:14px;border-left:1px solid rgba(148,163,184,.35);font-size:.82rem;line-height:1.2;font-weight:700;color:#e2e8f0;text-align:left}
+.pack-feat li.plan-aee{max-width:none;padding:8px 10px;gap:12px}
+.plan-aee__logo small{font-family:inherit;font-size:.64rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.plan-aee__t{padding-left:12px;font-size:.8rem}
+.plan-lib__count{display:inline-block;vertical-align:middle;margin-left:8px;padding:3px 11px;border-radius:999px;background:#fbbf24;color:#1f2937;font-size:.85rem;font-weight:800}
+@media (min-width:1001px){.plan-aee__logo small{font-size:.56rem}.plan-aee__t{font-size:.74rem}.pack-feat li.plan-aee{gap:10px;padding:8px}}

@@ -18,7 +18,7 @@ export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone
 const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
 export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
-import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL } from '../config/biblioteca';
+import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL, LIB_BOOK_COUNT } from '../config/biblioteca';
 
 // Portadas que se deslizan solas (carrusel infinito). size = alto en px.
 const CoverMarquee = ({ size = 150, speed = 28, covers = LIB_COVERS }) => (
@@ -265,14 +265,13 @@ const PaymentModal = ({ onClose }) => {
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
                   {plan.includesLibrary
-                    ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa de libros GRATIS</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
+                    ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa: {LIB_BOOK_COUNT} libros GRATIS de Academia Examen EUNACOM</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
-                  {plan.includesLibrary && <li className="plan-aee"><img src="/tienda/aee-logo.svg" alt="AEE" /><span>en alianza oficial con <b>AEE</b></span></li>}
                 </ul>
                 {plan.includesLibrary && (
                   <button type="button" className="plan-libstrip" onClick={e => { e.stopPropagation(); goLib(); }}>
                     <CoverMarquee size={64} speed={22} />
-                    <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final, atlas y más <u>¿Qué trae? →</u></span>
+                    <span>{LIB_BOOK_COUNT} libros: tomos, reconstrucciones, Libros Gordos, Repaso Final, atlas y más <u>¿Qué trae? →</u></span>
                   </button>
                 )}
                 <button
@@ -291,7 +290,7 @@ const PaymentModal = ({ onClose }) => {
             <CoverMarquee size={78} speed={26} />
             <span className="plan-books__txt">
               <small>¿Solo quieres los libros?</small>
-              <b>Biblioteca completa · {fmtClp(BIBLIOTECA.price)}</b>
+              <b>Biblioteca completa · {LIB_BOOK_COUNT} libros · {fmtClp(BIBLIOTECA.price)}</b>
               <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y atlas, para leer en la app</span>
             </span>
             <span className="plan-books__go">Ver libros →</span>
@@ -303,7 +302,7 @@ const PaymentModal = ({ onClose }) => {
           <CoverMarquee size={190} speed={90} covers={LIB_COVERS_ALL} />
           <div className="plan-lib__text">
             <span className="tienda-kick">📚 Incluida desde 3 meses</span>
-            <h3>¿Qué es la Biblioteca EUNACOM?</h3>
+            <h3>¿Qué es la Biblioteca EUNACOM? <span className="plan-lib__count">{LIB_BOOK_COUNT} libros</span></h3>
             <p>Los libros de Academia Examen EUNACOM para estudiar el Perfil V3. Se leen dentro de la app, en el computador o el celular.</p>
             <div className="plan-lib__grid">
               {LIB_ITEMS.map(x => (
@@ -316,7 +315,7 @@ const PaymentModal = ({ onClose }) => {
               <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen en <u>todos</u> los planes.</span>
             </div>
             <div className="plan-lib__value">
-              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
+              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack de {LIB_BOOK_COUNT} libros. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
             </div>
           </div>
         </div>
