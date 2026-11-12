@@ -12,7 +12,7 @@
         "Gastropatía crónica"
       ],
       "correctAnswer": "b",
-      "explanation": "",
+      "explanation": "Paciente con artritis reumatoide que maneja el dolor con tramadol y dos antiinflamatorios llega soporosa tras días de malestar. El compromiso de conciencia sin foco en una persona polimedicada con un opioide, que se acumula si hay deterioro renal inducido por AINE, orienta a intoxicación por opiáceos. Las otras alternativas son causas de sangrado digestivo: úlcera, lesión de Dieulafoy, Mallory Weiss o gastropatía crónica, que explicarían las deposiciones oscuras, pero no por sí solas el estado soporoso. Ante sospecha, se evalúa pupilas y frecuencia respiratoria, se administra naloxona y se estabiliza hemodinámicamente. Perla: soporoso más polifarmacia con opioide, pensar en toxicidad.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Artritis reumatoide con AINEs (celecoxib+naproxeno): melena, palidez, FC 120, PA 80/40 y compromiso de conciencia = shock hipovolémico por úlcera gastroduodenal (D); la intoxicación opioide daría miosis, bradicardia y depresión respiratoria, no melena ni taquicardia. Además MAL_VINCUL"
     },
@@ -26,8 +26,8 @@
         "Vacuna antirrábica",
         "Vacuna contra la fiebre amarilla"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "La vacuna contra la fiebre amarilla se produce en huevos embrionados de pollo y contiene proteínas de ovoalbúmina, por lo que la anafilaxia al huevo es una contraindicación formal. La tresvírica (sarampión, rubéola y paperas) se cultiva en fibroblastos y se considera segura incluso en alérgicos graves al huevo, que pueden recibirla en forma habitual. La vacuna neumocócica conjugada, la antimeningocócica y la antirrábica de cultivo celular no contienen proteína de huevo relevante. En quienes requieren fiebre amarilla por viaje y tienen alergia al huevo, se evalúa con pruebas cutáneas y administración supervisada en centro especializado. Perla: huevo igual a fiebre amarilla (y cautela con influenza).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Leucocoria en lactante: catarata congénita y retinoblastoma son ambos derivación urgente, la clave B es defendible pero el retinoblastoma es el diagnóstico a no omitir, B y C casi equivalentes."
     },
@@ -42,7 +42,7 @@
         "Disección aórtica"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Un joven operado de coartación aórtica en la infancia que desarrolla hipertensión con presión de pulso amplia (155/75) y falla cardíaca, con soplo sistólico y un soplo diastólico que llega hasta el final de la diástole, plantea una recoartación aórtica: la zona operada se estrecha, genera sobrecarga de presión y puede asociarse a válvula aórtica bicúspide con insuficiencia. El soplo continuo que se prolonga a la diástole corresponde al flujo por la estenosis y a colaterales. La estenosis aórtica pura no explica la hipertensión sistólica severa, la insuficiencia tricuspídea no corresponde, y la disección sería un cuadro agudo con dolor.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Operado de coartacion con soplo diastolico hasta el final de la diastole y muerte subita familiar sugiere insuficiencia aortica (valvula bicuspide), ademas explicacion con parrafo ajeno de asma"
     },
@@ -57,7 +57,7 @@
         "Estradiol y progesterona combinados por vía transdérmica"
       ],
       "correctAnswer": "b",
-      "explanation": "La enfermedad coronaria es contraindicación de TRH, se usa un ISRS/IRSN como escitalopram."
+      "explanation": "Una mujer de 54 años con síntomas vasomotores moderados tiene enfermedad coronaria conocida, que contraindica la terapia hormonal de reemplazo por aumento del riesgo cardiovascular y tromboembólico. Lo adecuado es un tratamiento no hormonal, y los inhibidores de recaptación de serotonina, como escitalopram, venlafaxina o paroxetina, reducen los sofocos de forma efectiva. El estradiol intravaginal trata solo los síntomas genitourinarios y no los sofocos, y la tibolona, así como la terapia combinada oral o transdérmica con estrógenos y progestágeno, mantienen riesgo vascular en una paciente con enfermedad coronaria."
     },
     {
       "id": 5,
@@ -70,7 +70,7 @@
         "Biopsia de endometrio"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Una mujer de 48 años con sangrado uterino prolongado por dos semanas y endometrio de 19 mm tiene un sangrado uterino anormal con engrosamiento endometrial. Como tiene más de 45 años y factores de riesgo de hiperplasia o cáncer de endometrio, corresponde obtener estudio histológico con biopsia endometrial antes de indicar tratamiento hormonal. El ácido tranexámico, los estrógenos y los anticonceptivos orales controlan el sangrado pero no descartan neoplasia, y la histerectomía sería excesiva sin diagnóstico. El Papanicolau normal y el test de embarazo negativo descartan causas cervicales y gestacionales. Perla: mayor de 45 años con sangrado anormal, biopsia de endometrio."
     },
     {
       "id": 6,
@@ -82,8 +82,8 @@
         "Coma mixedematoso",
         "Accidente vascular encefálico"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "d",
+      "explanation": "Hipotiroidismo conocido que suspende su tratamiento, con letargo progresivo, facies edematosa, hipotermia (35,1 °C), bradicardia, arreflexia, hiponatremia, anemia leve y CK elevada, junto a T4 libre muy baja y TSH de 100, corresponde a coma mixedematoso, una emergencia con alta mortalidad. La glicemia de 270 mg/dl es compatible con diabetes descompensada y no define el cuadro: la cetoacidosis daría taquicardia, respiración de Kussmaul y cetosis, y el estado hiperosmolar glicemias mucho mayores. El infarto y el accidente vascular no explican el conjunto. Manejo: levotiroxina endovenosa, hidrocortisona, calentamiento pasivo y manejo en cuidados intensivos.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Facies edematosa, hipotermia, bradicardia, arreflexia y suspensión de levotiroxina describen coma mixedematoso, la clave A (CAD) contradice la propia explicación sobre hipotiroidismo (glicemia truncada)"
     },
@@ -97,8 +97,8 @@
         "Ecografía abdominal",
         "Mielograma"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Paciente con quimioterapia reciente (9 días, cerca del nadir) y fiebre de 38,5 °C debe considerarse neutropénica febril mientras no se demuestre lo contrario. El primer examen es el hemograma, que confirma el recuento absoluto de neutrófilos (menos de 500 o descenso esperado) y define riesgo y conducta; junto a él se toman hemocultivos antes de iniciar antibióticos de amplio espectro precoces. El urocultivo, la radiografía de tórax y la ecografía son parte del estudio de foco posterior, y el mielograma no se necesita para este diagnóstico. La demora en tratar aumenta la mortalidad. Perla: fiebre más quimioterapia, hemograma y antibiótico en menos de 60 minutos.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Fiebre a 9 días de quimioterapia: lo primero es hemograma (recuento de neutrófilos); urocultivo no es el examen de elección. Explicación sólo de relleno."
     },
@@ -125,8 +125,8 @@
         "Diazepam 3 mg vía oral, en la noche",
         "Melatonina oral, 3 mg en la noche"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Un anciano con Alzheimer y un delirio probablemente por infección urinaria, con agitación nocturna, necesita tratar la causa y controlar la conducta con medidas no farmacológicas y, si persiste el riesgo, un antipsicótico en dosis bajas: risperidona en gotas (8 a 10 gotas equivalen a unos 0,5 a 1 mg), de predominio nocturno. El diazepam empeora la confusión y aumenta el riesgo de caídas y depresión respiratoria, el haloperidol de 5 mg cada 12 horas es una dosis excesiva con riesgo de extrapiramidalismo, la contención física agrava la agitación y la melatonina es insuficiente como único manejo. Perla: benzodiacepinas casi nunca en el adulto mayor con delirio.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Delirium sobre demencia: las benzodiacepinas (diazepam) están contraindicadas; correcta risperidona en dosis bajas (B) (alternativa E melatonina). Explicación ajena (plasmaféresis)."
     },
@@ -140,8 +140,8 @@
         "Colirio de gentamicina",
         "Ungüento de cloramfenicol"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Un preescolar con fiebre, faringitis, adenopatías cervicales y ojo rojo bilateral que comenzó en un ojo y se extendió al otro, con secreción mucosa escasa, tiene fiebre faringoconjuntival por adenovirus. Es una conjuntivitis viral, autolimitada en 1 a 2 semanas, contagiosa, que se maneja con aseo ocular con suero fisiológico, lágrimas artificiales, compresas frías y medidas de contagio como lavado de manos. Los antibióticos tópicos (tobramicina, gentamicina, cloranfenicol) se reservan para secreción purulenta bacteriana, y los corticoides tópicos están contraindicados en el médico general por riesgo de empeorar infecciones herpéticas. Perla: secreción mucosa, adenopatías y faringitis, pensar en adenovirus.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Cuadro viral (fiebre faringoconjuntival) con manejo de síntomas oculares: lo coherente es aseo con suero (A), como en Ene 2023 P22, ungüento de cloramfenicol sería por sobreinfección bacteriana"
     },
@@ -156,7 +156,7 @@
         "Enterobacter cloacae"
       ],
       "correctAnswer": "d",
-      "explanation": "Los cálculos coraliformes de estruvita (fosfato amónico magnésico) se asocian a bacterias ureasa positivas, sobre todo Proteus mirabilis."
+      "explanation": "Los cálculos coraliformes de estruvita (fosfato amónico magnésico) se forman por infecciones urinarias de repetición con bacterias que producen ureasa y alcalinizan la orina, siendo Proteus mirabilis el germen más característico. El hallazgo de cristales de fosfato de amonio magnesiano, bacteriuria y litiasis coraliforme bilateral lo confirma. Escherichia coli, Pseudomonas y Enterobacter generalmente no son productores relevantes de ureasa, y Campylobacter es un enteropatógeno sin relación con la vía urinaria. Estos cálculos se manejan con urocultivo, antibióticos y extracción quirúrgica completa de los fragmentos, pues la infección se perpetúa si queda residuo."
     },
     {
       "id": 12,
@@ -168,8 +168,8 @@
         "Controlar con nueva ecografía mamaria en 6 meses",
         "Realizar remoción quirúrgica"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Una mujer de 23 años con nódulo sólido, liso, móvil y bien delimitado tiene un fibroadenoma, benigno por ecografía (BIRADS 2). Sin embargo, el tamaño de 5 cm lo hace un fibroadenoma gigante, y los de más de 3 a 5 cm, o que crecen rápido, se extirpan por la deformidad mamaria y por la dificultad de excluir un tumor phyllodes. La biopsia estereotáxica se usa en lesiones mamográficas, la resonancia no está indicada en un caso benigno y la mamografía anual en una paciente menor de 30 años no es una conducta estándar por la densidad mamaria. Los fibroadenomas pequeños se controlan con ecografía.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Mamografía a los 23 años no corresponde, nódulo de 5 cm requiere exéresis (descartar filodes), explicación habla de mastopatía fibroquística. Duda conocida Dic 2022 P12."
     },
@@ -197,7 +197,7 @@
         "Ensayo de liberación de interferón gama"
       ],
       "correctAnswer": "c",
-      "explanation": "Sospecha de TBC con baciloscopias negativas: se continua con TAC de torax segun el hallazgo radiologico, el cultivo y la PCR complementan."
+      "explanation": "Un paciente con factores de riesgo de tuberculosis, tos con hemoptisis, baja de peso, sudoración y cuadro de tres semanas tiene alta sospecha de tuberculosis pulmonar. Con dos baciloscopías negativas y una radiografía sospechosa, el estudio debe continuar sin descartar la enfermedad: el cultivo de Koch y las pruebas moleculares complementan, pero el siguiente examen para caracterizar mejor las lesiones (cavitación, infiltrados en lóbulos superiores) es el TAC de tórax. La tuberculina y el interferón gama solo indican infección y no confirman enfermedad activa, y el lavado broncoalveolar es una opción posterior si no hay expectoración adecuada. Perla: baciloscopía negativa no descarta tuberculosis."
     },
     {
       "id": 15,
@@ -210,7 +210,7 @@
         "Embolia mesentérica"
       ],
       "correctAnswer": "d",
-      "explanation": "",
+      "explanation": "Dolor abdominal intenso de inicio súbito en mujer obesa de 62 años, que parte cólico y se hace permanente, con vómitos, taquicardia, distensión y silencio abdominal, sugiere isquemia mesentérica aguda, con dolor desproporcionado a los hallazgos del examen. La obstrucción intestinal y el vólvulo darían distensión con cirugías previas o fecalomas, y la perforación se asocia a peritonismo en tabla; la embolia arterial es posible, pero requiere fuente embólica como una fibrilación auricular, que no se describe. La trombosis venosa se asocia a estados de hipercoagulabilidad y obesidad. El estudio de elección es angio-TAC de abdomen, y el tratamiento incluye anticoagulación, reanimación y evaluación quirúrgica.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Pérdida de matidez hepática (neumoperitoneo), timpanismo y RHA disminuidos: sugiere perforación; trombosis venosa mesentérica no explica neumoperitoneo. Explicación genérica sin sustento."
     },
@@ -224,8 +224,8 @@
         "Inducir el parto con misoprostol",
         "Realizar cesárea de urgencia"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Embarazada de 35+6 semanas con hipertensión de reciente aparición, edema, disminución de movimientos fetales, registro basal no estresante no reactivo repetido y perfil biofísico con bolsillo único menor a 1 cm tiene preeclampsia con signos de compromiso fetal por insuficiencia placentaria. A esa edad gestacional, y con bienestar fetal alterado, corresponde interrumpir el embarazo. Como tiene cesárea previa y un cuello inmaduro (Bishop 3), la inducción con misoprostol está contraindicada, y el test de tolerancia a las contracciones está contraindicado por cicatriz y oligohidramnios. Repetir el perfil o solicitar Doppler solo retrasa la decisión; la vía es la cesárea.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: 35+6 sem con PA 149/96, RBNE no reactivo x2 y bolsillo <1 cm (PBF 6/10), Bishop 3 y cesárea previa: sobre 34 sem se interrumpe (cesárea), Ene2023 P43 casi idéntica da cesárea, explicación es plantilla vacía"
     },
@@ -252,8 +252,8 @@
         "Iniciar cotrimoxazol oral",
         "Mantener los cuidados habituales"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Un anciano postrado con sonda Foley permanente y un urocultivo positivo, sin fiebre ni síntomas atribuibles, tiene bacteriuria asintomática. En sondados crónicos prácticamente todos tienen colonización, y tratarla solo selecciona bacterias resistentes sin disminuir complicaciones. Por eso no se pide urocultivo de rutina ni se inician ceftriaxona, ciprofloxacino o cotrimoxazol; el tratamiento se reserva para síntomas como fiebre, compromiso hemodinámico o signos de infección sistémica, y en ese caso se cambia la sonda antes de tomar la muestra. El cambio ya se hizo hace 15 días dentro del esquema mensual. Perla: no tratar bacteriuria asintomática, salvo embarazo o procedimiento urológico.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Mismo caso de bacteriuria asintomática con sonda que recTag Diciembre 2018 P122 (clave observar), aquí la clave A (cambiar sonda) contradice la norma, la opción E equivale a observar"
     },
@@ -268,7 +268,7 @@
         "Bordetella pertusis"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Una niña de 7 años con tos disfónica de varios días, malestar general, fiebre moderada, estado general conservado, sibilancias y crepitaciones bilaterales y radiografía con infiltrados intersticiales bilaterales y atelectasias lineales tiene una neumonía atípica, cuyo agente más frecuente en escolares es Mycoplasma pneumoniae. El curso subagudo y la discordancia entre buen estado general y hallazgos radiológicos son típicos. Streptococcus pneumoniae causa neumonía lobar con inicio brusco; adenovirus y parainfluenza dan cuadros virales con predominio de síntomas altos, y Bordetella pertussis causa tos coqueluchoide paroxística."
     },
     {
       "id": 20,
@@ -281,7 +281,7 @@
         "Tasa de mortalidad postneonatal"
       ],
       "correctAnswer": "c",
-      "explanation": "Mortalidad neonatal = muertes de menores de 28 días por 1.000 nacidos vivos, la perinatal incluye muertes fetales tardías y neonatales precoces."
+      "explanation": "La fórmula de muertes en menores de 28 días dividido por los nacidos vivos, por mil, corresponde a la tasa de mortalidad neonatal. La mortalidad neonatal precoz solo considera los primeros 7 días de vida, la postneonatal abarca desde los 28 días hasta antes del año, la infantil incluye todos los menores de un año y la perinatal cuenta muertes fetales tardías (desde las 22 semanas) más las muertes neonatales precoces, en relación a nacidos totales. Conviene distinguir los denominadores y los períodos de cada tasa. Perla: neonatal es menor de 28 días, y es la mayor parte de la mortalidad infantil en Chile."
     },
     {
       "id": 21,
@@ -294,7 +294,7 @@
         "Antibióticos endovenosos"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un niño de 3 años agitado y llorando por quemaduras con flictenas en dedos y espalda tiene quemaduras de segundo grado superficiales, muy dolorosas. En un paciente con dolor intenso y agitación, la conducta inicial es el control rápido del dolor con analgesia endovenosa (por ejemplo, morfina o fentanilo), pues la vía oral es lenta y insuficiente en la fase aguda. Las curaciones y el aseo se realizan después, con el dolor controlado, y no se indican antibióticos sistémicos ni tópicos de manera profiláctica. El paracetamol oral sirve como coadyuvante, pero no alcanza como medida inicial. Además se debe evaluar la superficie quemada, el patrón de lesión y descartar maltrato infantil."
     },
     {
       "id": 22,
@@ -307,7 +307,7 @@
         "Controlar en dos horas"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Embarazo de 36+2 semanas en trabajo de parto activo (5 contracciones en 10 minutos, 4 cm de dilatación) cuyo registro fetal muestra un trazado patológico que sugiere hipoxia fetal en curso, como desaceleraciones tardías repetidas o bradicardia sostenida con pérdida de variabilidad. Con dilatación de apenas 4 cm, no es posible un parto vaginal rápido, por lo que se debe interrumpir de inmediato mediante cesárea de urgencia. Romper membranas o inducir con oxitocina o misoprostol aumentaría la actividad uterina y empeoraría la hipoxia, y esperar dos horas pondría en riesgo al feto. Se acompaña de reanimación intrauterina: posición lateral, oxígeno y suspender oxitócicos.",
       "image": {
         "src": "/data/reconstrucciones/img/diciembre-2022_p22.jpg",
         "credit": "CTO Ginecología y Obstetricia, p. 173",
@@ -325,7 +325,7 @@
         "Niño sano"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Un niño con epistaxis frecuente, sangrado prolongado tras extracción dental y equimosis múltiples, con antecedente de la madre con menorragia y tendencia a equimosis, sugiere un trastorno hereditario de hemostasia primaria. Plaquetas normales (323.000), protrombina normal y TTPA discretamente alargado o límite apuntan a enfermedad de von Willebrand, la coagulopatía hereditaria más común, de herencia autosómica dominante y con déficit de factor von Willebrand que protege al factor VIII. La hemofilia es ligada al X y causa hemartrosis, la trombocitopenia inmune cursa con plaquetas bajas y el síndrome antifosfolípido da trombosis. El tratamiento es desmopresina o concentrados de factor."
     },
     {
       "id": 24,
@@ -350,8 +350,8 @@
         "Ecografía abdominopélvica",
         "Tomografía de abdomen y pelvis"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Dolor de dos días en fosa ilíaca derecha con Blumberg positivo y ruidos disminuidos en un paciente de 64 años diabético orienta a apendicitis aguda, posiblemente evolucionada o con presentación atípica. En adultos mayores y comórbidos, donde el diagnóstico diferencial incluye diverticulitis o neoplasia cecal, el examen con mayor sensibilidad y especificidad es el TAC de abdomen y pelvis. El enema baritado y la colonoscopía están contraindicados con signos de peritonismo por riesgo de perforación, la ecografía es útil en jóvenes y embarazadas pero depende del operador, y la laparotomía exploradora sería precipitada sin imagen.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Sospecha de apendicitis en adulto de 64 años: examen de elección TAC de abdomen y pelvis (o eco); enema baritado no se usa. Explicación es de hipotiroidismo (ajena)."
     },
@@ -366,7 +366,7 @@
         "Divertículo esofágico"
       ],
       "correctAnswer": "a",
-      "explanation": "La línea Z proximal a la impresión diafragmática indica hernia hiatal por deslizamiento (tipo I, directa), que facilita el reflujo."
+      "explanation": "Una línea Z a 28 cm de la arcada dentaria con impresión diafragmática a 37 cm indica que parte del estómago está por encima del diafragma, es decir, una hernia hiatal por deslizamiento (tipo I). Es la causa anatómica más común de reflujo gastroesofágico, por pérdida de la competencia del esfínter. En el esófago de Barrett la línea Z está proximal pero con epitelio columnar metaplásico, que requiere biopsia, y la acalasia muestra esófago dilatado y estenosis distal, no esofagitis con pirosis. El Helicobacter pylori afecta la mucosa gástrica, que aquí es normal, y el divertículo es una bolsa esofágica. Tratamiento: IBP, medidas higiénico-dietéticas y control endoscópico."
     },
     {
       "id": 27,
@@ -379,7 +379,7 @@
         "Indicar tratamiento médico expulsor"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un cálculo de 9 mm en uréter distal con hidroureteronefrosis más fiebre de 38,8 °C es una uropatía obstructiva infectada, una urgencia urológica por riesgo de pielonefritis obstructiva y sepsis. Además de analgesia y antibióticos, se debe derivar la orina de forma inmediata con catéter doble J o nefrostomía percutánea. La nefrolitotomía, la litotripsia extracorpórea y el tratamiento médico expulsor (tamsulosina) están contraindicados mientras haya infección activa, pues pueden diseminar bacterias; el cálculo se resuelve de forma diferida, una vez controlada la infección. Perla: obstrucción más infección, derivar vía urinaria primero."
     },
     {
       "id": 28,
@@ -392,7 +392,7 @@
         "Trastorno de angustia social"
       ],
       "correctAnswer": "a",
-      "explanation": "Trastorno por estrés agudo: síntomas de intrusión, evitación y ánimo de 3 días a 1 mes tras un evento traumático; el TEPT requiere más de 1 mes."
+      "explanation": "Un paciente con síntomas de angustia, insomnio, pesadillas y evitación de lugares tras ser testigo de un asalto con herido, que comenzó hace 10 días y lleva dos semanas desde el evento, tiene un trastorno por estrés agudo: los síntomas de intrusión, evitación y activación duran entre 3 días y 1 mes tras el trauma. El trastorno por estrés postraumático exige más de un mes de duración, la depresión mayor requiere al menos dos semanas con ánimo deprimido o anhedonia como núcleo, y la angustia generalizada o social se mantiene por 6 meses o es distinta en su contexto. Se maneja con apoyo psicológico y, si persiste, derivación."
     },
     {
       "id": 29,
@@ -405,7 +405,7 @@
         "Infarto agudo al miocardio de pared anterolateral"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Dolor retroesternal opresivo con tope inspiratorio, que cede con ciertas posiciones, febrícula, taquicardia leve y ECG con supradesnivel difuso del segmento ST, sin soplos, es la presentación de pericarditis aguda. La relación con el movimiento respiratorio y la irradiación al dorso la distinguen del infarto, que no varía con la respiración, y una disección aórtica daría dolor desgarrante con asimetría de pulsos. El tromboembolismo pulmonar suele producir disnea e hipoxemia, y los infartos tendrían un supradesnivel localizado en un territorio. Se trata con antiinflamatorios (ibuprofeno o aspirina) más colchicina, y se solicitan troponinas y ecocardiograma."
     },
     {
       "id": 30,
@@ -431,7 +431,7 @@
         "Hospital comunitario"
       ],
       "correctAnswer": "c",
-      "explanation": "El COSAM (C) es nivel secundario, posta rural, CESFAM y CECOSF son APS, y el hospital comunitario es de baja complejidad."
+      "explanation": "En la red asistencial chilena, la atención primaria incluye postas de salud rural, CESFAM, CECOSF y centros comunitarios, que resuelven problemas de baja complejidad y están más cerca de las personas. Los COSAM (centros comunitarios de salud mental) son dispositivos de nivel secundario, ambulatorios y de especialidad en salud mental, a los que se deriva desde la atención primaria. El hospital comunitario o de baja complejidad es un establecimiento de apoyo a la atención primaria con camas, pero se ubica en el nivel de menor complejidad, no en el secundario de especialidades. Perla: los centros de referencia de salud (CRS) y los CDT también son nivel secundario."
     },
     {
       "id": 32,
@@ -444,7 +444,7 @@
         "Virus herpes 6"
       ],
       "correctAnswer": "c",
-      "explanation": "",
+      "explanation": "Una niña de 4 años con tres días de fiebre y exantema generalizado de tronco, extremidades y cara tiene un cuadro viral típico de la infancia, y la imagen orienta a lesiones maculopapulares o vesiculares propias de enterovirus, cuyo agente más frecuente es Coxsackie A16. La rubéola da exantema cefalocaudal con adenopatías retroauriculares, el parvovirus B19 produce la cara abofeteada, el herpes 6 cursa con fiebre alta y exantema al caer la fiebre en menores de 2 años y el herpes simple da vesículas agrupadas en piel o mucosas. El manejo es sintomático y se vigila hidratación, con aislamiento por contagiosidad.",
       "image": {
         "src": "/data/reconstrucciones/img/diciembre-2022_p32.jpg",
         "credit": "CTO Pediatría, p. 100",
@@ -462,7 +462,7 @@
         "Solicitar prueba de detección y tipificación de virus papiloma humano"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Una mujer de 32 años con PAP previo informado como probable NIE 2 sin seguimiento, ahora con sangrado intermitente, mal olor y una lesión cervical ulcerada visible de 2 cm, tiene alta sospecha de cáncer cervicouterino. Toda lesión macroscópica sospechosa del cuello se confirma con biopsia dirigida, que es el examen que define el diagnóstico y el estadio inicial. Repetir el PAP o pedir tipificación de VPH no sustituye la histología, el cono es para lesiones intraepiteliales sin lesión visible y la histerectomía radical se decide solo con confirmación y estadificación. Perla: lesión visible en el cuello, biopsia siempre."
     },
     {
       "id": 34,
@@ -474,8 +474,8 @@
         "Trastorno facticio",
         "Trastorno disociativo"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Un hombre con rigidez generalizada y un episodio de pérdida de conciencia con movimientos repetitivos, con examen neurológico y resonancia normales, en un contexto de angustia de varios días, tiene un síntoma neurológico funcional: el trastorno conversivo, en que el conflicto psíquico se expresa como déficit motor o sensitivo sin causa orgánica. El trastorno facticio requiere producción deliberada de síntomas para asumir el rol de enfermo, lo que no se sugiere en un buen trabajador sin motivación evidente. El adaptativo y depresivo no explican los síntomas físicos, y el disociativo se centra en amnesia o despersonalización.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Neurológico y RM normales, rigidez generalizada y episodio con pérdida de conciencia con movimientos repetitivos (pseudocrisis) tras estrés en persona sin ganancia: conversivo (B). Facticio exige simulación intencional de síntomas, no sugerida. psiq-05/09."
     },
@@ -490,7 +490,7 @@
         "Trastorno por déficit atencional hipoactivo"
       ],
       "correctAnswer": "b",
-      "explanation": "Falta de interacción social, rutinas rígidas, hipersensibilidad sensorial y lenguaje escaso a los 3 años: trastorno del espectro autista."
+      "explanation": "Una niña de 3 años con escaso lenguaje, ausencia de juego e interés social con otros niños, apego a rutinas y orden rígido de los juguetes, agresividad al cambiar actividades e hipersensibilidad a ruidos fuertes cumple las dos áreas centrales del trastorno del espectro autista: déficit de comunicación e interacción social y patrones restringidos y repetitivos de conducta e intereses. La discapacidad cognitiva afecta el desarrollo global y no explica la rigidez ni la hipersensibilidad, la hipoacusia daría falta de respuesta al sonido y no molestia, y el TOC y el déficit atencional hipoactivo no se manifiestan así a esa edad."
     },
     {
       "id": 36,
@@ -503,7 +503,7 @@
         "Doxazosina"
       ],
       "correctAnswer": "a",
-      "explanation": "Con IC e HTA se agrega IECA/ARA2, los alfabloqueadores aumentan eventos de IC y no son de elección."
+      "explanation": "Paciente hipertensa con carvedilol y diurético a dosis plena, con cifras persistentemente elevadas y síntomas de insuficiencia cardíaca (disnea de esfuerzo, ortopnea, crepitaciones), necesita sumar un fármaco que mejore el pronóstico de la insuficiencia cardíaca y baje la presión: los bloqueadores del sistema renina angiotensina, como losartán (ARA II) o un IECA. Los calcioantagonistas, como verapamilo y diltiazem, son inotrópicos negativos y se evitan en insuficiencia cardíaca con fracción de eyección reducida, y la doxazosina aumentó eventos de insuficiencia cardíaca y no es de elección. La función renal y el potasio permiten usarlo con seguridad."
     },
     {
       "id": 37,
@@ -516,7 +516,7 @@
         "Iniciar anticonceptivos orales"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Una mujer de 35 años con sangrado menstrual abundante y un pólipo endometrial de 8 mm en la ecografía necesita confirmar y tratar la lesión. La histeroscopía es el procedimiento de elección porque permite visualizar la cavidad, resecar el pólipo y obtener histología en el mismo acto. La histerosonografía solo mejora el diagnóstico por imagen, el legrado a ciegas puede dejar restos del pólipo, los anticonceptivos orales no resuelven una lesión estructural y la histerectomía sería desproporcionada para una lesión benigna en una mujer joven nulípara."
     },
     {
       "id": 38,
@@ -529,7 +529,7 @@
         "Aumentar la dosis de hidroclorotiazida a 50 mg/día"
       ],
       "correctAnswer": "c",
-      "explanation": "El edema es efecto adverso del amlodipino: se suspende o reemplaza, enalapril no lo causa."
+      "explanation": "El edema bilateral de tobillos con sensación de pesadez en un adulto mayor con presión controlada y examen cardiopulmonar normal es un efecto adverso conocido del amlodipino, dependiente de dosis y no relacionado con retención de sodio, por lo que no mejora con diuréticos. Lo adecuado es suspenderlo o reemplazarlo, ya que la presión está bien controlada en 120/80. Agregar furosemida o aumentar la hidroclorotiazida expone a alteraciones electrolíticas e hipotensión en un anciano, y el enalapril o el losartán no causan edema, por lo que modificarlos no corrige el problema. Perla: edema por calcioantagonista, retirar el fármaco."
     },
     {
       "id": 39,
@@ -541,8 +541,8 @@
         "Iniciar anticonceptivos orales y ácido mefenámico",
         "Solicitar subunidad beta HCG"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Una mujer de 21 años con dolor hipogástrico de 4 días, sensibilidad anexial derecha y ecografía transvaginal sin lesiones ni líquido libre debe descartarse embarazo, incluido el ectópico, con subunidad beta HCG antes de cualquier otro estudio, pues un embarazo temprano puede no verse en ecografía. Con test negativo se evalúa enfermedad inflamatoria pélvica o dismenorrea y se trata de forma empírica. La resonancia no es un estudio de primera línea, la histerosalpingografía está contraindicada en infección o embarazo, la laparoscopía se reserva para abdomen agudo o falla del manejo, y indicar anticonceptivos sin descartar embarazo es inseguro.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Dolor pelvico en mujer en edad fertil: beta-hCG es el primer paso, RMN sin eco alterada no es conducta inicial, explicacion de plantilla"
     },
@@ -557,7 +557,7 @@
         "Adenitis mesentérica"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Una joven con rectorragia masiva sin dolor intenso, inestabilidad hemodinámica y anemia severa, con antecedente de dolor periumbilical recurrente y sangre que fluye desde el íleon por la válvula ileocecal en la colonoscopía, sugiere un sangrado de origen ileal: el divertículo de Meckel, que contiene mucosa gástrica ectópica que se ulcera y sangra. La enfermedad de Crohn tendría diarrea crónica y úlceras, el pólipo juvenil sangra en niños pequeños y de forma menor, la Shigella causa diarrea con fiebre y la adenitis mesentérica no sangra. Se confirma con cintigrafía con tecnecio y se trata con resección quirúrgica."
     },
     {
       "id": 41,
@@ -570,7 +570,7 @@
         "Resonancia magnética nuclear de cerebro"
       ],
       "correctAnswer": "a",
-      "explanation": "Cinco o más hemangiomas cutáneos obligan a ecografía abdominal para descartar hemangiomas hepáticos."
+      "explanation": "Los hemangiomas infantiles múltiples (cinco o más) se asocian a hemangiomas viscerales, principalmente hepáticos, por lo que se recomienda una ecografía abdominal para pesquisarlos y descartar complicaciones como insuficiencia cardíaca de alto gasto o hipotiroidismo por consumo de la enzima desyodasa. Los estudios de cerebro o columna se reservan para hemangiomas faciales extensos (síndrome PHACE) o hemangiomas lumbosacros (disrafismo). La ecografía de partes blandas no aporta en lesiones cutáneas superficiales. Perla: cinco o más hemangiomas, ecografía abdominal."
     },
     {
       "id": 42,
@@ -583,7 +583,7 @@
         "Eccema numular"
       ],
       "correctAnswer": "b",
-      "explanation": "",
+      "explanation": "Una lesión cutánea ulcerada en la pierna de un anciano que se origina de lesiones puntiformes y crece de forma progresiva a lo largo de meses es compatible con pioderma gangrenoso, una dermatosis neutrofílica de causa inflamatoria asociada a enfermedades sistémicas como enfermedad inflamatoria intestinal, artritis o neoplasias hematológicas. Se caracteriza por una úlcera dolorosa de bordes violáceos y socavados, con fenómeno de patergia. El melanoma con satelitosis y el basocelular tienen aspecto tumoral, el granuloma piógeno es nodular y sangrante y el eccema numular es pruriginoso, descamativo y no ulcera. Su tratamiento son los corticoides sistémicos o inmunosupresores.",
       "image": {
         "src": "/data/reconstrucciones/img/diciembre-2022_p42.jpg",
         "credit": "Knoop, p. 413",
@@ -600,8 +600,8 @@
         "Virus varicela zóster",
         "Virus de Epstein Baar"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Un lactante de 11 meses con fiebre alta de tres días, buen estado general y exantema maculopapular generalizado que aparece cuando la fiebre cede tiene el cuadro clásico de exantema súbito o roséola infantil, producido por el virus herpes humano 6 (y a veces 7). Es benigno, autolimitado y puede complicarse con convulsiones febriles. El parvovirus B19 da eritema infeccioso con mejillas abofeteadas sin fiebre alta, Coxsackie A16 produce lesiones en manos, pies y boca, la varicela da vesículas en distintos estadios y el Epstein Barr se asocia a faringoamigdalitis, adenopatías y esplenomegalia, no a este cuadro.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Lactante de 11 meses con fiebre 3 días y luego exantema papular generalizado: cuadro de exantema súbito (VHH-6), la explicación no justifica EBV"
     },
@@ -616,7 +616,7 @@
         "TAC de oídos"
       ],
       "correctAnswer": "d",
-      "explanation": "Perforación timpánica traumática: mantener seco el oído y controlar, la mayoría cierra espontáneamente en semanas. Nunca lavar."
+      "explanation": "Una perforación timpánica traumática pequeña, tras el uso de cotonito, con otorragia leve, hipoacusia moderada y sin vértigo, cierra espontáneamente en la mayoría de los casos en semanas. La conducta es mantener el oído seco, evitar el lavado y controlar en un tiempo prudente con otoscopía y audiometría. El lavado de oídos está contraindicado porque introduce agua y puede causar otitis, los antibióticos tópicos se reservan para otorrea infectada, la timpanoplastía se indica si la perforación persiste más allá de 2 a 3 meses y el TAC solo se pide si hay sospecha de fractura de hueso temporal o lesión de la cadena osicular."
     },
     {
       "id": 45,
@@ -629,7 +629,7 @@
         "Latrodectus mactans"
       ],
       "correctAnswer": "d",
-      "explanation": "",
+      "explanation": "Una lesión cutánea que aparece en menos de un día, con dolor y un centro oscuro necrótico de 10 cm, plantea una infección necrosante de piel por bacilo gramnegativo como Pseudomonas aeruginosa, cuyo prototipo es el ectima gangrenoso, una lesión con escara central negra rodeada por halo eritematoso. Staphylococcus aureus produce forúnculos, ántrax o abscesos con pus, el estreptococo del grupo B afecta a recién nacidos y adultos con comorbilidad, y Loxosceles laeta y Latrodectus son agentes de araña y no bacterias. Se confirma con cultivo y se trata con antibióticos antipseudomónicos y desbridamiento si hay necrosis.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Lesión de 10 cm con centro oscuro y dolor escapular de 1 día es loxoscelismo (ver Ene 2023 P149 con el mismo caso y clave Loxosceles), Pseudomonas no calza, foto ausente y explicación genérica"
     },
@@ -643,8 +643,8 @@
         "Neuritis óptica",
         "Glaucoma crónica"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Una paciente con artritis psoriática, enfermedad asociada a HLA-B27 y a uveítis anterior, que desarrolla dolor ocular, fotofobia intensa y descenso de la agudeza visual con ojo rojo, tiene una uveítis aguda. La fotofobia marcada y la inyección ciliar destacan sobre un cuadro por lo demás sin secreción. La conjuntivitis viral cursa con secreción y poco dolor, el glaucoma agudo se presenta con dolor intenso, halos, náuseas, pupila midriática poco reactiva y ojo pétreo, la neuritis óptica no da ojo rojo y el glaucoma crónico es indoloro. Se deriva a oftalmología para corticoides tópicos y midriáticos.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Artritis psoriásica con ojo rojo bilateral, fotofobia marcada y baja de AV: uveítis aguda (A), la clave glaucoma agudo no encaja y la explicación habla de celulitis orbitaria"
     },
@@ -659,7 +659,7 @@
         "Estradiol más dienogest por vía oral"
       ],
       "correctAnswer": "a",
-      "explanation": "Atrofia urogenital aislada se trata con estrógenos locales (promestrieno), la vía oral sistémica no es necesaria."
+      "explanation": "Una mujer de 68 años con disuria y dispareunia, urocultivos negativos y mucosa vaginal pálida y seca tiene síndrome genitourinario de la menopausia, por déficit estrogénico local. El tratamiento de elección cuando los síntomas son solo urogenitales son los estrógenos tópicos vaginales, como promestrieno, que actúan localmente con mínima absorción sistémica. La terapia oral, ya sea estradiol, tibolona o combinaciones con progestágenos, expone a riesgos sistémicos innecesarios, y el acetato de medroxiprogesterona solo no corrige la atrofia. Perla: atrofia genital aislada, estrógeno local."
     },
     {
       "id": 48,
@@ -671,8 +671,8 @@
         "Niveles de testosterona y prolactina",
         "Resonancia magnética nuclear de silla turca"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Un hombre con astenia, caída de libido, hipotermia, piel seca, bradicardia y pérdida del vello corporal tiene un hipopituitarismo, y el defecto del campo visual temporal indica compresión del quiasma óptico por una masa selar, típicamente un adenoma hipofisario. El examen de elección para evaluar la causa es la resonancia magnética de silla turca, mucho más sensible que la radiografía. La TSH aislada no sirve para estudiar un hipotiroidismo central, pues puede estar normal o baja, y se debe medir T4 libre. Los niveles hormonales completos se piden junto con la imagen, y el TAC de suprarrenales no evalúa la hipófisis.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Hombre con déficit hormonal y defecto campimétrico temporal: examen de elección es RM de silla turca (igual que Dic-2018 P111, clave RM), TSH sola no estudia la lesión"
     },
@@ -687,7 +687,7 @@
         "Aneurisma coronario"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un niño de 5 años con fiebre de al menos 5 días resistente a antipiréticos, inyección conjuntival bilateral sin exudado, lengua en frambuesa, faringe eritematosa, adenopatía cervical y exantema, incluso en zona genital, cumple criterios de enfermedad de Kawasaki. La complicación más grave y que define el pronóstico son los aneurismas de las arterias coronarias, que aparecen en un cuarto de los casos sin tratamiento. Se previene con inmunoglobulina endovenosa en los primeros 10 días más aspirina. La glomerulonefritis, la pericarditis y la hepatitis son hallazgos menos frecuentes y la rotura esplénica no es una complicación de esta vasculitis. Se controla con ecocardiograma."
     },
     {
       "id": 50,
@@ -700,7 +700,7 @@
         "Infección por Entamoeba histolytica"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Un hombre joven con diarrea de dos semanas, fiebre baja, antecedente de fístula perianal operada y úlceras orales (aftas) tiene enfermedad de Crohn: puede comprometer cualquier segmento del tubo digestivo desde la boca al ano, con inflamación transmural y complicaciones como fístulas y abscesos perianales. La colitis ulcerosa afecta solo colon y recto, con rectorragia y sin fístulas, la Shigella y la ameba dan disentería aguda, y la colitis pseudomembranosa se asocia a antibióticos. Se confirma con colonoscopía con biopsias y se trata con inmunomoduladores y biológicos, evitando el tabaco."
     },
     {
       "id": 51,
@@ -713,7 +713,7 @@
         "Reemplazar el amlodipino por diltiazem"
       ],
       "correctAnswer": "d",
-      "explanation": "HTA refractaria con triple terapia a dosis plenas: agregar espironolactona y estudiar causa secundaria."
+      "explanation": "Un paciente de 40 años con hipertensión de difícil manejo que persiste con 158/97 pese a hidroclorotiazida 50 mg, losartán 100 mg y amlodipino 10 mg con buena adherencia, y con monitoreo de presión que confirma cargas altas, tiene hipertensión resistente (tres fármacos a dosis plenas, incluido un diurético). En ese caso se agrega un cuarto fármaco, espironolactona, y se estudian causas secundarias, sobre todo hiperaldosteronismo primario, en un paciente joven. Sustituir uno de los fármacos por otro de la misma familia (IECA, diltiazem) o agregar doxazosina es poco efectivo, y cambiar el diurético solo mejora levemente."
     },
     {
       "id": 52,
@@ -726,7 +726,7 @@
         "Realizar operación cesárea al llegar a término"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Una embarazada de 36 semanas con cultivo rectovaginal positivo para estreptococo del grupo B está colonizada. Se previene la sepsis neonatal temprana con profilaxis antibiótica intraparto, de preferencia penicilina endovenosa desde el inicio del trabajo de parto o rotura de membranas, idealmente al menos 4 horas antes del parto. El tratamiento oral anteparto no erradica la colonización por recolonización, la antibioterapia al recién nacido se usa en caso de factores de riesgo con profilaxis incompleta, la inducción no previene la transmisión y la cesárea no está indicada solo por esta colonización. Perla: colonización por SGB, penicilina en el parto."
     },
     {
       "id": 53,
@@ -738,8 +738,8 @@
         "Enfermedad de Kawasaki",
         "Brucelosis"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Un niño de 4 años con nueve días de fiebre, adenopatías submandibulares, hepatomegalia y múltiples lesiones granulomatosas hepatoesplénicas en la ecografía tiene un síndrome febril prolongado cuya causa típica es la infección por Bartonella henselae, adquirida por arañazo o mordedura de gato. La forma diseminada se manifiesta por fiebre de origen desconocido con compromiso hepatoesplénico. El VIH no se presenta así, el Epstein Barr cursa con faringitis y esplenomegalia sin granulomas, el Kawasaki tiene criterios mucocutáneos y la brucelosis es rara en niños. Se trata con azitromicina o rifampicina.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Granulomas hepatoesplénicos con fiebre prolongada y adenopatías es enfermedad por arañazo de gato (Bartonella), igual que la pregunta 2025 con clave Bartonella, VIH no es el diagnóstico"
     },
@@ -754,7 +754,7 @@
         "Amlodipino"
       ],
       "correctAnswer": "b",
-      "explanation": "Diabético hipertenso con proteinuria (IP/C 2,2): el fármaco de elección es un IECA/ARA-II (enalapril) por nefroprotección."
+      "explanation": "Un paciente diabético hipertenso con creatinina elevada y relación proteinuria/creatininuria de 2,2 (proteinuria significativa) tiene nefropatía diabética. En ese contexto el fármaco de elección para la hipertensión son los inhibidores de la enzima convertidora o los ARA II, como enalapril, porque reducen la presión intraglomerular, disminuyen la proteinuria y retrasan la progresión de la enfermedad renal. La hidroclorotiazida, el diltiazem y la amlodipino pueden asociarse después, y la doxazosina no tiene beneficio renal ni de mortalidad. Perla: diabético hipertenso con proteinuria, IECA o ARA II, vigilando potasio y creatinina."
     },
     {
       "id": 55,
@@ -766,8 +766,8 @@
         "Ciprofloxacino",
         "Probióticos"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
+      "correctAnswer": "c",
+      "explanation": "Un adolescente con siete días de diarrea y fiebre, con Campylobacter jejuni identificado, tiene una enteritis bacteriana prolongada con síntomas persistentes, y en esos casos de fiebre, curso largo o gravedad se indica tratamiento antibiótico con macrólidos, siendo azitromicina la opción de elección por la alta resistencia a quinolonas. El cotrimoxazol no tiene actividad fiable, el metronidazol se usa en amebiasis, giardiasis o Clostridioides, y el ciprofloxacino tiene resistencia elevada. Los probióticos tienen un rol de apoyo, pero no tratan el patógeno. El cuadro leve se maneja solo con hidratación.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Diarrea febril de 7 días por Campylobacter: clave probióticos contradice la práctica actual y Ene 2023 P76 (azitromicina)"
     },
@@ -782,7 +782,7 @@
         "Hidatidosis pulmonar"
       ],
       "correctAnswer": "e",
-      "explanation": "Expectoracion de membranas tipo hollejos de uva en trabajador agricola es hidatidosis pulmonar (quiste roto)."
+      "explanation": "Un trabajador agrícola con tos, expectoración líquida abundante y eliminación de membranas parecidas a hollejos de uva presenta hidatidosis pulmonar con quiste roto hacia un bronquio, producida por Echinococcus granulosus, cuya transmisión se asocia a perros y ganado. Las membranas corresponden a la pared laminar del quiste, y la radiografía muestra imágenes redondeadas, a veces con signo del camalote. El tuberculoma y el cáncer no expulsan membranas, el aspergiloma produce una masa móvil con halo aéreo en cavidad previa y el absceso da expectoración purulenta fétida. Se trata con albendazol y cirugía."
     },
     {
       "id": 57,
@@ -795,7 +795,7 @@
         "Biopsia estereotáxica"
       ],
       "correctAnswer": "a",
-      "explanation": "BI-RADS 3 (probablemente benigno, <2 % de malignidad) se controla con mamografía a los 6 meses."
+      "explanation": "Un nódulo BI-RADS 3 es probablemente benigno (menos de 2 por ciento de riesgo de cáncer), con ecografía y examen sin hallazgos. El manejo es seguimiento corto con mamografía a los 6 meses, luego cada 6 a 12 meses hasta completar dos a tres años de estabilidad. La biopsia, ya sea con aguja fina o estereotáxica, se reserva para BI-RADS 4 y 5, la resonancia mamaria se usa para tamizaje de alto riesgo o estadificación, y el estudio de BRCA no se justifica sin antecedentes familiares sugerentes. Perla: BI-RADS 3, control a los 6 meses."
     },
     {
       "id": 58,
@@ -808,7 +808,7 @@
         "Neuritis óptica"
       ],
       "correctAnswer": "d",
-      "explanation": "DMRE: pérdida de visión central lenta con metamorfopsias, el glaucoma afecta campo periférico sin deformar."
+      "explanation": "Una mujer de 77 años con dificultad progresiva para leer a pesar de cambiar los lentes, deformación de las imágenes (metamorfopsia) y segmento anterior normal con reflejos conservados tiene degeneración macular relacionada con la edad, que afecta la visión central. El glaucoma de ángulo abierto daña el campo periférico sin distorsión, la catarata produciría opacidad y disminución del rojo pupilar, el desprendimiento de retina da fotopsias, miodesopsias y una cortina y la neuritis óptica es de inicio agudo y con dolor. Se estudia con rejilla de Amsler y fondo de ojo, y en la forma húmeda se usa antiangiogénicos intravítreos."
     },
     {
       "id": 59,
@@ -821,7 +821,7 @@
         "cardioversión eléctrica"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Un paciente joven con taquicardia regular de inicio brusco a 160 por minuto, estable hemodinámicamente y con ECG de complejo angosto tiene taquicardia paroxística supraventricular, por reentrada nodal. Tras las maniobras vagales, el fármaco de elección es adenosina 6 mg endovenosa en bolo rápido, que bloquea transitoriamente el nodo AV y la reentrada. La cardioversión eléctrica se reserva para inestabilidad, y la amiodarona y la lidocaína se usan en taquicardias ventriculares. El diltiazem es alternativa si falla la adenosina o está contraindicada, como en asma. Perla: adenosina en bolo rápido y lavado con suero."
     },
     {
       "id": 60,
@@ -833,8 +833,8 @@
         "Candida albicans",
         "Staphilococcus aureus"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "d",
+      "explanation": "Un lactante de 3 meses con lesiones en el área del pañal, de dos días de evolución, presenta lo más probable una dermatitis candidiásica: eritema rojo brillante con pústulas satélite en pliegues inguinales, causada por Candida albicans, favorecida por humedad, oclusión y oclusión del pañal. El herpes zóster es muy infrecuente a esta edad y sigue un dermatoma, el herpes simple da vesículas agrupadas y el estreptococo y el estafilococo producen impétigo o enfermedad ampollar. Se trata con aseo, cambio frecuente de pañal, protección de barrera y antimicótico tópico, como nistatina o clotrimazol.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Lesiones en zona del pañal en lactante de 3 meses: agente más probable Candida albicans, herpes zóster es improbable. Además depende de imagen ausente"
     },
@@ -848,8 +848,8 @@
         "Solicitar resonancia magnética nuclear de mamas",
         "Derivar para cirugía mamaria a la brevedad"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Las microcalcificaciones agrupadas BI-RADS 4 en una mujer de 52 años con antecedente familiar tienen riesgo intermedio de cáncer y requieren diagnóstico histológico. Como son visibles solo en mamografía y sin masa palpable o ecográfica, la biopsia debe guiarse por estereotaxia. Derivar a cirugía sin histología expone a cirugía innecesaria, la ecografía no suele ver microcalcificaciones, la resonancia no reemplaza la biopsia y la biopsia con aguja gruesa guiada por ecografía solo sirve si hay lesión visible por ecografía. Perla: BI-RADS 4 o 5, biopsia.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: BI-RADS 4 con microcalcificaciones no palpables: biopsia estereotáxica (gin-14: \"BI-RADS 4 se biopsia siempre\"); derivar a cirugía sin diagnóstico no es primera conducta. Explicación pertenece a otra pregunta (shock/isquemia)."
     },
@@ -864,7 +864,7 @@
         "Embarazo ectópico roto"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Una mujer de 25 años con dolor intenso en fosa ilíaca derecha e hipogastrio, de varias horas, que se deteriora con taquicardia e hipotensión, tiene un abdomen agudo quirúrgico de origen apendicular: la apendicitis es la causa más frecuente de dolor en fosa ilíaca derecha y su perforación lleva a peritonitis y respuesta inflamatoria sistémica con inestabilidad hemodinámica. El dolor en ambas fosas por irritación peritoneal pélvica sigue siendo compatible. La torsión ovárica y el absceso tuboovárico no explican esa evolución y el embarazo ectópico requiere descartarse con beta HCG. Se resuelve con reanimación, antibióticos y apendicectomía urgente.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Mujer en edad fértil con dolor en ambas fosas ilíacas y shock hipovolémico en 2 h: embarazo ectópico roto es más compatible que apendicitis; la explicación es genérica (varones, fiebre) y no justifica el shock."
     },
@@ -879,7 +879,7 @@
         "Hidralacina endovenoso"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Una embarazada de 35 semanas con 164/112, cefalea, mareos y fotopsias tiene preeclampsia con criterios de gravedad y síntomas neurológicos, es decir, riesgo inminente de eclampsia. La conducta inicial es el sulfato de magnesio, anticonvulsivante de primera línea que previene y trata las convulsiones eclámpticas, junto con antihipertensivos (labetalol o hidralazina) para bajar la presión de forma gradual y la planificación de la interrupción del embarazo. Los tocolíticos y la dexametasona no son la prioridad, el misoprostol no se usa sin estabilizar y los antihipertensivos solos no previenen las convulsiones. Perla: síntomas neurológicos más hipertensión, sulfato de magnesio."
     },
     {
       "id": 64,
@@ -891,8 +891,8 @@
         "Frío local y paracetamol",
         "Amoxicilina más ácido clavulánico vía oral"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Una puérpera con fiebre, grietas del pezón y una masa mamaria fluctuante de 6 cm, eritematosa y caliente, tiene una mastitis abscedada, generalmente por Staphylococcus aureus. El tratamiento requiere antibióticos antiestafilocócicos más drenaje del absceso, por punción guiada por ecografía o incisión según tamaño. La lactancia se mantiene, y se vacía la mama para ayudar a resolver, salvo cuando se vea comprometido el pezón o el drenaje. El drenaje solo o los antibióticos orales aislados son insuficientes con colección grande, frío y paracetamol son medidas de apoyo y suspender la lactancia no mejora la infección y complica el manejo.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Absceso mamario puerperal (masa fluctuante 6 cm): libro indica ATB + drenaje (puncion ecoguiada o quirurgico) y NUNCA suspender lactancia, la clave C la suspende, explicacion generica"
     },
@@ -906,8 +906,8 @@
         "Haloperidol",
         "Clorpomazina"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "c",
+      "explanation": "Una paciente con enfermedad de Parkinson y pielonefritis presenta delirium con agitación e ideas persecutorias. Se trata la causa (ceftriaxona) y, si hay riesgo, se controla la agitación con un antipsicótico atípico con bajo bloqueo dopaminérgico: quetiapina (o clozapina), que no empeora la rigidez. El haloperidol, la clorpromazina y la risperidona bloquean D2 y agravan el parkinsonismo, e incluso pueden causar síndrome neuroléptico maligno. Las benzodiacepinas, como alprazolam, empeoran la confusión y el riesgo de caídas en el adulto mayor. Perla: Parkinson más agitación, quetiapina.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Parkinson con delirium por ITU: benzodiacepinas (alprazolam) están contraindicadas; correcto quetiapina (C). Explicación ajena."
     },
@@ -922,7 +922,7 @@
         "PieloTAC"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Un paciente prostático con resección transuretral reciente, retención urinaria y una sonda que no pasa más allá de la uretra bulbar, con uretrorragia y globo vesical, tiene sospecha de lesión uretral o estrechez, y no se debe forzar la instalación de la sonda. En el contexto agudo el primer paso es la ecografía pélvica, rápida e inocua, que confirma el globo vesical y descarta otras causas y guía la derivación para cateterismo suprapúbico y uretrografía retrógrada en el centro urológico. El TAC, el UroTAC o el pieloTAC no evalúan bien la uretra y la radiografía de pelvis solo muestra fracturas.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Misma situación que Ene 2023 P142 (RTU previa, sonda que no pasa, uretrorragia) que tiene clave uretrografía retrógrada; aquí las opciones no incluyen UCR y la clave es ecografía pélvica (confirmar globo/cistostomía). Claves incoherentes entre sí y con uro-02/trauma-05 (la clase ur"
     },
@@ -937,7 +937,7 @@
         "Leucemia mieloide aguda"
       ],
       "correctAnswer": "d",
-      "explanation": "Pancitopenia con VCM muy elevado, hemólisis intramedular y compromiso cognitivo en anciano: déficit de B12 (anemia megaloblástica)."
+      "explanation": "Un paciente de 86 años con astenia, bradipsiquia, palidez, pancitopenia, VCM de 126 fl, LDH muy elevada y bilirrubina indirecta alta tiene una anemia megaloblástica, en la que el déficit de vitamina B12 o folato altera la síntesis de ADN, produce eritropoyesis ineficaz con hemólisis intramedular y afecta el sistema nervioso. La mielodisplasia y la leucemia aguda se asocian a blastos y VCM menos marcado, el mieloma no da macrocitosis y la anemia hemolítica pura no produce pancitopenia ni VCM tan elevado. Se trata con vitamina B12 intramuscular y se estudia la causa, como anemia perniciosa o gastritis atrófica."
     },
     {
       "id": 68,
@@ -949,8 +949,8 @@
         "Iniciarla de inmediato con mascarilla",
         "Iniciarla de inmediato sin protección"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "d",
+      "explanation": "Una puérpera con Covid-19 de 10 días de evolución, con síntomas leves, que acaba de tener un parto vaginal y un recién nacido sano debe iniciar la lactancia materna de inmediato, con mascarilla y lavado de manos, porque el contacto piel con piel y la leche entregan anticuerpos y beneficios superiores al riesgo, y el virus no se transmite por la leche. Posponerla hasta una PCR negativa o por 14 o 28 días no tiene respaldo y daría riesgo de fracaso de la lactancia. Hacerlo sin protección no es adecuado.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Esperar 28 dias para amamantar contradice la norma (lactancia inmediata con mascarilla) y la pregunta Ene2023 P55, explicacion ajena (dopamina/galactorrea)"
     },
@@ -965,7 +965,7 @@
         "Demencia por cuerpos de Lewy"
       ],
       "correctAnswer": "e",
-      "explanation": "Cursa con movimientos durante el sueño REM, fluctuación cognitiva, síntomas psicóticos y parkinsonismo: es demencia por cuerpos de Lewy."
+      "explanation": "Un hombre de 78 años con deterioro cognitivo fluctuante, ideas paranoides (alucinaciones o delirios), parkinsonismo con rigidez y movimientos involuntarios al dormirse, compatibles con trastorno de conducta del sueño REM, tiene demencia por cuerpos de Lewy. La demencia por Alzheimer cursa con amnesia progresiva sin fluctuación ni parkinsonismo temprano, la hidrocefalia normotensiva se acompaña de marcha apráxica e incontinencia, y la enfermedad de Parkinson parte con síntomas motores. El síndrome confusional agudo es de inicio brusco. Se evitan antipsicóticos típicos por sensibilidad."
     },
     {
       "id": 70,
@@ -977,8 +977,8 @@
         "Endometriosis",
         "Miomatosis"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Una mujer multípara de 38 años con dolor menstrual, sangrado abundante, útero globuloso, blando y doloroso a la palpación tiene una adenomiosis: el endometrio invade el miometrio, produce menorragia y dismenorrea y aumenta el útero de forma difusa. La endometriosis suele dar dolor pélvico crónico, dispareunia, infertilidad y útero de tamaño normal con nódulos o masas anexiales, y la miomatosis da un útero irregular. La dismenorrea primaria aparece en jóvenes sin hipermenorrea y la enfermedad inflamatoria tendría fiebre y secreción. Se confirma con resonancia o ecografía y se trata con AINE, hormonas o histerectomía.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Dismenorrea + hipermenorrea + útero aumentado, blando y sensible en multípara con cesáreas = adenomiosis, la explicación genérica describe endometriosis (tejido fuera del útero) sin justificar, coherente con Ene 2023 P60 y Ago 2021 P116 cuya clave es adenomiosis"
     },
@@ -993,7 +993,7 @@
         "Controlar con colonoscopía en 5 años"
       ],
       "correctAnswer": "e",
-      "explanation": "Pólipo adenomatoso pequeño resecado por colonoscopía: no requiere cirugía, se hace control colonoscópico según histología y tamaño."
+      "explanation": "Un adenoma tubulovelloso pequeño (6 mm) resecado completamente en la colonoscopía de tamizaje, con displasia de bajo a moderado grado, tiene bajo riesgo de transformación y no requiere cirugía ni nueva resección, ya que la polipectomía fue curativa. El seguimiento en pacientes con uno o dos adenomas menores de 10 mm es una nueva colonoscopía en 5 a 10 años. La hemicolectomía se reserva para cáncer invasor o pólipos con displasia de alto grado no resecables, la mucosectomía es innecesaria, el control a los 6 meses es excesivo y el test de sangre oculta no reemplaza la colonoscopía de vigilancia. Perla: adenoma pequeño y único, control a los 5 a 10 años."
     },
     {
       "id": 72,
@@ -1005,8 +1005,8 @@
         "Ecografía transvaginal",
         "Prolactinemia"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Una mujer con amenorrea de 8 meses y galactorrea bilateral, con T de cobre (que descarta anovulación por anticonceptivos hormonales), tiene sospecha de hiperprolactinemia, cuya causa más frecuente es un prolactinoma. El examen inicial de elección es la prolactinemia, que se confirma repitiéndola y descartando embarazo, hipotiroidismo y fármacos. Los demás exámenes hormonales (estradiol, LH, FSH, TSH) se piden para evaluar la amenorrea una vez conocida la prolactina, la resonancia de silla turca se solicita si la prolactina está elevada sin causa secundaria y la ecografía transvaginal no explica la galactorrea. El tratamiento del prolactinoma son los agonistas dopaminérgicos, como cabergolina.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Amenorrea + galactorrea: el primer examen es prolactinemia (como en Jul-2013 P79), panel hormonal completo es defendible solo si se descarta embarazo"
     },
@@ -1020,8 +1020,8 @@
         "Dar fórmula láctea después de cada toma de leche materna",
         "Alimentar inmediatamente al pecho materno y solicitar glicemia a las 2 horas de vida"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Una recién nacida de término con peso de 2.500 g, pequeña para la edad gestacional, con Apgar normal y buen aspecto, tiene riesgo de hipoglicemia por escasas reservas de glucógeno, por lo que se recomienda lactancia materna inmediata y precoz y controlar la glicemia a las 2 horas de vida. No requiere suero glucosado endovenoso ni oral si está asintomática y la glicemia es normal, y la fórmula se agrega solo si la glicemia es baja o la lactancia es insuficiente. Dar fórmula después de cada toma o esperar la subida de leche interfiere con la lactancia y no corresponde. Perla: PEG asintomático, pecho precoz y glicemia.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: RN PEG vigoroso: lactancia precoz y control de glicemia a las 2 h (misma conducta que Ene 2023 P8), suero glucosado oral no es lo indicado, ya listada como dudosa"
     },
@@ -1036,7 +1036,7 @@
         "Acretismo placentario"
       ],
       "correctAnswer": "c",
-      "explanation": "Cesarea previa con cese de contracciones, sangrado escaso y bradicardia fetal: rotura uterina."
+      "explanation": "Una mujer multípara con una cesárea previa en trabajo de parto activo, cuyas contracciones cesan de pronto, con sangrado vaginal escaso y bradicardia fetal súbita, tiene una rotura uterina por dehiscencia de la cicatriz. El cese de la dinámica uterina, la pérdida de la presentación y la bradicardia son característicos. La placenta previa y el desprendimiento prematuro causan sangrado, pero el útero se mantiene hipertónico con dolor, la rotura de vasa previa produce sangrado con rotura de membranas y bradicardia pero no cese de contracciones, y el acretismo se manifiesta en el alumbramiento. Requiere cesárea de urgencia y laparotomía."
     },
     {
       "id": 75,
@@ -1049,7 +1049,7 @@
         "Quiste epidermoide"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Una masa cervical blanda, de crecimiento lento, ubicada en la línea media entre el mentón y el cartílago tiroides en un joven corresponde a un quiste del conducto tirogloso, remanente embrionario del descenso de la glándula tiroides. Un dato típico es que se mueve con la deglución y la protrusión de la lengua porque se une al hueso hioides. Los quistes branquiales se ubican en la región lateral, por delante del esternocleidomastoideo, el adenoma de glándula salival submandibular se ubica lateral y bajo la mandíbula, la adenitis supurada es dolorosa y con inflamación y el quiste epidermoide es dérmico. Se trata con resección quirúrgica según Sistrunk."
     },
     {
       "id": 76,
@@ -1062,7 +1062,7 @@
         "Endoscopía digestiva alta"
       ],
       "correctAnswer": "a",
-      "explanation": "Estenosis hipertrófica del píloro: vómitos explosivos a las 3-6 semanas, diagnóstico con ecografía abdominal."
+      "explanation": "Un lactante de 28 días con vómitos explosivos postprandiales de una semana, detención del crecimiento y hambre persistente, pero con buen estado general e hidratación, tiene una estenosis hipertrófica del píloro. Se presenta entre las 2 y 8 semanas de vida, sobre todo en varones primogénitos. El estudio de elección es la ecografía abdominal, que muestra un píloro engrosado (más de 3 mm) y alargado, con alta sensibilidad. La sonda nasogástrica, la radiografía, el TAC y la endoscopía no son necesarios para el diagnóstico. El tratamiento es la corrección de la alcalosis metabólica hipoclorémica y la piloromiotomía de Ramstedt."
     },
     {
       "id": 77,
@@ -1075,7 +1075,7 @@
         "Estenosis pielocalicilar"
       ],
       "correctAnswer": "d",
-      "explanation": "Tumor de Wilms: masa abdominal flanco con hematuria, el tumor renal más frecuente en niños."
+      "explanation": "Un niño de 4 años con orina oscura por hematuria microscópica significativa y una masa abdominal sólida en el flanco izquierdo, sin infección urinaria y con función renal normal, tiene un tumor de Wilms (nefroblastoma), el tumor renal maligno más frecuente de la infancia. El neuroblastoma puede dar masa abdominal, pero rara vez hematuria y se asocia a catecolaminas elevadas, el hepatoblastoma es hepático y se ubica a la derecha, el riñón poliquístico y la estenosis pieloureteral son lesiones quísticas o hidronefrosis y no masas sólidas. Se estudia con ecografía y TAC y se trata con cirugía más quimioterapia."
     },
     {
       "id": 78,
@@ -1101,7 +1101,7 @@
         "Soplo funcional"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Un lactante de 4 meses con fatiga al mamar, mal incremento ponderal, hepatomegalia y crepitaciones tiene signos de insuficiencia cardíaca por un cortocircuito izquierda-derecha con hiperflujo pulmonar. El soplo holosistólico fuerte (III a IV sobre VI) en todo el precordio con irradiación a la espalda es característico de comunicación interventricular, la cardiopatía congénita acianótica más frecuente. La comunicación interauricular suele ser asintomática en esta etapa con soplo suave, el ductus da un soplo continuo, el canal AV se asocia a síndrome de Down y un soplo funcional no causa insuficiencia cardíaca. Se confirma con ecocardiograma y se maneja con diuréticos y cirugía si el defecto es grande."
     },
     {
       "id": 80,
@@ -1113,8 +1113,8 @@
         "Discapacidad cognitiva",
         "Desarrollo psicomotor normal"
       ],
-      "correctAnswer": "d",
-      "explanation": ""
+      "correctAnswer": "e",
+      "explanation": "Un lactante de 9 meses que dice disílabos sin significado, gatea, toma objetos con pinza intermedia, desconfía de extraños y muestra ansiedad de separación tiene un desarrollo psicomotor normal para su edad. Lo esperado a los 9 meses incluye balbuceo, sedestación estable, gateo, pinza digital en evolución y ansiedad ante extraños, mientras que la primera palabra y los pasos con apoyo se esperan alrededor de los 10 a 12 meses. Por eso no hay criterios de retraso ni de discapacidad cognitiva, y el diagnóstico de parálisis cerebral o trastorno global no se sostiene. Basta continuar con los controles de salud habituales."
     },
     {
       "id": 81,
@@ -1140,7 +1140,7 @@
         "Hormonoterapia"
       ],
       "correctAnswer": "c",
-      "explanation": "Gleason 3+3 en 0,5% del tejido a los 85 años, con diseminación negativa: observar; la expectativa de vida no justifica tratamiento radical."
+      "explanation": "Un adenocarcinoma prostático de bajo grado (Gleason 3+3), con un volumen mínimo de tumor (0,5 por ciento del tejido) y estudio de diseminación negativo en un paciente de 85 años, corresponde a un cáncer de riesgo muy bajo, con evolución lenta y expectativa de vida que supera probablemente a la del tumor. La conducta es observación o vigilancia activa, evitando los efectos adversos de la cirugía, la radioterapia, la braquiterapia o la hormonoterapia, que no mejoran la sobrevida en este contexto. Perla: bajo riesgo y expectativa de vida corta, observar."
     },
     {
       "id": 83,
@@ -1153,7 +1153,7 @@
         "Trastorno esquiafectivo"
       ],
       "correctAnswer": "a",
-      "explanation": "Delirio persistente, bien sistematizado, con funcionalidad y cognición conservadas y sin síntomas afectivos: trastorno delirante."
+      "explanation": "Una mujer de 64 años con una idea delirante persistente y sistematizada de que los vecinos entran a su casa y buscan dañarla, sin otros síntomas psicóticos, con funcionamiento social conservado, buena red de apoyo y Minimental de 29 sobre 30, tiene un trastorno delirante. La depresión psicótica y el trastorno esquizoafectivo se acompañan de síntomas afectivos importantes, la esquizofrenia de inicio tardío tiene además alucinaciones y desorganización, el trastorno paranoide de personalidad es un patrón de desconfianza desde la adultez temprana y no un delirio fijo. Se trata con antipsicóticos y apoyo psicosocial."
     },
     {
       "id": 84,
@@ -1178,8 +1178,8 @@
         "Leucemia aguda",
         "Fibrosis quística"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Una lactante de 9 meses alimentada solo con leche de una madre vegana estricta, que no recibió suplementos, tiene riesgo de déficit de vitamina B12, presente solo en alimentos de origen animal. El cuadro de detención del crecimiento, retraso motor y del lenguaje, hipoactividad, palidez y pancitopenia (hemoglobina 7,9, leucocitos 3.700, plaquetas 45.000) con VHS normal es característico de anemia megaloblástica por déficit de B12, con afectación neurológica. La leucemia daría fiebre, hepatoesplenomegalia o sangrado, la celíaca y la fibrosis quística cursan con diarrea y la hemólisis tendría ictericia. Se trata con vitamina B12 y se suplementa a la madre.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Pancitopenia con letargia, regresión del desarrollo y madre vegana con lactancia exclusiva es déficit de vitamina B12, la clave leucemia no se sustenta. La explicación es ajena (dopamina/prolactina)"
     },
@@ -1193,8 +1193,8 @@
         "IgM para virus hepatitis A",
         "Anticuerpos heterófilos"
       ],
-      "correctAnswer": "a",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Un escolar de 11 años con fiebre prolongada, faringitis, adenopatías cervicales múltiples y hepatoesplenomegalia presenta un cuadro de mononucleosis infecciosa, causada por el virus Epstein Barr. Para confirmar el diagnóstico se pide el test de anticuerpos heterófilos (monotest o Paul Bunnell), que es positivo desde la primera a segunda semana, junto con frotis con linfocitos atípicos; en menores de cuatro años o si es negativo se solicitan anticuerpos IgM contra la cápside viral. El coprocultivo, los hemocultivos y la serología para Brucella corresponden a enfermedades gastrointestinales, sepsis o zoonosis, y la hepatitis A no produce adenopatías ni faringitis.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Fiebre 10 días con hepatoesplenomegalia: sospecha de fiebre tifoidea, el hemocultivo es el examen de confirmación en la 1a-2a semana, coprocultivo rinde más tarde. Hermana #45 usa hemocultivo"
     },
@@ -1208,8 +1208,8 @@
         "Flutter auricular",
         "Síndrome de Brugada"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Un hombre de 22 años con crisis recurrentes de palpitaciones de inicio y término bruscos, que ceden con maniobras vagales, tiene una taquicardia paroxística supraventricular por reentrada. En un joven sin cardiopatía el sustrato más probable en el ECG basal es una vía accesoria: el síndrome de Wolff Parkinson White, con intervalo PR corto y onda delta. El bloqueo completo de rama izquierda es un hallazgo de conducción sin episodios paroxísticos, la fibrilación y el flutter son más propias de adultos mayores, y el síndrome de Brugada se manifiesta con síncope y supradesnivel en V1 a V3. Se trata con ablación por radiofrecuencia.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Palpitaciones paroxísticas con cese por maniobras vagales en joven: el diagnóstico propuesto sería WPW (preexcitación) y no BCRI, que no explica el cuadro, ECG no disponible"
     },
@@ -1224,7 +1224,7 @@
         "Hepatitis aguda"
       ],
       "correctAnswer": "b",
-      "explanation": "",
+      "explanation": "Un paciente de 30 años con dolor epigástrico y en hipocondrio derecho irradiado al dorso, vómitos alimentarios, calofríos e ictericia tiene una pancreatitis aguda de probable origen biliar: el dolor en barra con irradiación dorsal y vómitos es característico, y la ictericia sugiere obstrucción por un cálculo en la vía biliar común. La coledocolitiasis y la colecistitis también producen dolor del hipocondrio derecho, pero no el patrón epigástrico irradiado a la espalda, y la apendicitis y la hepatitis no se manifiestan así. Se confirma con lipasa o amilasa mayor a tres veces el valor normal y ecografía abdominal para evaluar litiasis biliar.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Dolor HCD con ictericia y calofríos, sin lipasa: coledocolitiasis (C) más defendible que pancreatitis, probablemente falta información (lipasa)."
     },
@@ -1239,7 +1239,7 @@
         "Pie cavo"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un arco plantar muy marcado con callosidades bajo las cabezas de los metatarsianos, por sobrecarga del antepié, y dolor al trotar, corresponden a pie cavo, en que el arco longitudinal está exagerado y se carga el peso en el talón y los metatarsianos. El pie plano tiene el arco disminuido, el pie varo es una desviación del retropié, el pie bot (equinovaro) es una malformación congénita compleja, y el pie equino es la flexión plantar fija del tobillo con apoyo en el antepié. Se maneja con plantillas ortopédicas y calzado adecuado, y si es de causa neurológica se estudia la enfermedad de base."
     },
     {
       "id": 90,
@@ -1252,7 +1252,7 @@
         "Condromalacia"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un adolescente con dolor persistente de la tibia que no mejora con analgésicos, y una radiografía con destrucción cortical, reacción perióstica triangular (triángulo de Codman), calcificaciones de partes blandas y áreas escleróticas y líticas mixtas, tiene un tumor óseo maligno, probablemente osteosarcoma, el más frecuente en esta edad y localizado en la metáfisis de huesos largos cerca de la rodilla. El trauma fue solo un hallazgo casual. La fractura en maduración o el hematoma calcificado no destruyen la cortical con reacción perióstica agresiva, la osteomielitis tiene fiebre y la condromalacia no produce cambios óseos. Se confirma con biopsia."
     },
     {
       "id": 91,
@@ -1265,7 +1265,7 @@
         "Trastorno por consumo de sustancias"
       ],
       "correctAnswer": "d",
-      "explanation": "Cuadro maníaco/hipomaníaco de debut en adolescente: trastorno bipolar; la esquizofrenia requiere síntomas psicóticos o negativos por más de 6 meses."
+      "explanation": "Una adolescente de 15 años con conflictos, hablar excesivo, irritabilidad y agresividad, duración reducida del sueño (5 horas), conductas de riesgo como sexo sin protección y consumo de marihuana presenta un episodio de manía o hipomanía de debut, compatible con un trastorno bipolar. El déficit atencional es crónico desde la infancia, el trastorno límite se caracteriza por inestabilidad afectiva e impulsividad persistentes, la esquizofrenia requiere síntomas psicóticos y deterioro funcional prolongado, y el consumo de marihuana, aunque pudo contribuir, no explica el cuadro completo. Se trata con estabilizadores del ánimo."
     },
     {
       "id": 92,
@@ -1291,7 +1291,7 @@
         "Infarto vertebro basilar"
       ],
       "correctAnswer": "c",
-      "explanation": "Ptosis con miosis (Horner) y dolor cervical/facial tras esfuerzo: disección carotídea, la parálisis del III par produce ptosis con midriasis."
+      "explanation": "Un hombre joven con dolor cervical súbito durante el deporte, irradiado a la cara, y síndrome de Horner (ptosis y miosis) ipsilateral tiene una disección de la arteria carótida interna, que lesiona las fibras simpáticas pericarotídeas y es causa frecuente de AVE en adultos jóvenes. La cefalea en racimo produce dolor orbitario con lagrimeo y Horner transitorio pero no dolor cervical traumático, la parálisis del tercer par da ptosis con midriasis, y los infartos vertebrobasilares producen vértigo y déficit de pares craneales. Se confirma con angio-TAC o angiorresonancia y se trata con antitrombóticos."
     },
     {
       "id": 94,
@@ -1304,7 +1304,7 @@
         "Síndrome de secreción inadecuada de hormona antidiurética"
       ],
       "correctAnswer": "c",
-      "explanation": "Poliuria de 12 L con hipernatremia en tratamiento con litio: diabetes insípida nefrogénica inducida por litio."
+      "explanation": "Un paciente bipolar tratado con litio que presenta poliuria de 12 litros diarios, polidipsia e hipernatremia (154 mEq/L) con función renal y glicemia normales tiene una diabetes insípida nefrogénica inducida por litio, pues el litio entra por canales de sodio al túbulo colector y bloquea el efecto de la hormona antidiurética sobre la acuaporina 2. La polidipsia psicógena produciría hiponatremia, el SIADH provoca oliguria con hiponatremia, y la lamotrigina y la clorpromazina no causan este cuadro. Se maneja con hidratación, suspensión del litio o diuréticos tiazídicos y amilorida."
     },
     {
       "id": 95,
@@ -1316,8 +1316,8 @@
         "Test de tolerancia a la glucosa oral",
         "Tomografía axial computada pancreática"
       ],
-      "correctAnswer": "d",
-      "explanation": ""
+      "correctAnswer": "c",
+      "explanation": "Un paciente hospitalizado que recibe hidrocortisona y adrenalina, con glicemias de ayuno de 160 a 180 mg/dl, puede tener hiperglicemia inducida por esteroides y estrés o una diabetes no diagnosticada. La hemoglobina glicosilada refleja el promedio de los tres meses previos y permite distinguir entre ambas: normal indica efecto transitorio por fármacos y elevada sugiere diabetes preexistente. El test de tolerancia oral no es válido durante la exposición a corticoides ni en un paciente hospitalizado agudo, el péptido C y los anticuerpos anti GAD sirven para tipificar diabetes autoinmune y el TAC pancreático no aporta."
     },
     {
       "id": 96,
@@ -1330,7 +1330,7 @@
         "Esquizofrenia paranoide"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un delirium secundario a neumonía: inicio agudo con agitación nocturna y alucinaciones en un adulto mayor con infección."
+      "explanation": "Un anciano con una infección respiratoria baja de una semana, fiebre, crepitaciones y saturación límite que presenta agitación nocturna y alucinaciones visuales de inicio agudo (extraterrestres) tiene un delirium secundario a la neumonía. Es un síndrome confusional agudo con inicio brusco, curso fluctuante, alteración de la atención y de la conciencia y causa orgánica. La demencia de Alzheimer tiene curso crónico y progresivo, la esquizofrenia paranoide no debuta a esta edad con fiebre y disnea, la epilepsia del lóbulo temporal es episódica y el accidente vascular tendría déficit focal. Se trata la causa y se manejan los factores ambientales."
     },
     {
       "id": 97,
@@ -1342,8 +1342,8 @@
         "Accidente vascular encefálico hemorrágico",
         "Accidente vascular de tipo lacunar"
       ],
-      "correctAnswer": "a",
-      "explanation": ""
+      "correctAnswer": "d",
+      "explanation": "Una mujer de 65 años hipertensa y diabética con cefalea intensa de inicio súbito y hemiparesia derecha sin compromiso del lenguaje ni de la sensibilidad ni alteraciones visuales tiene un déficit motor puro. Un infarto de la arteria cerebral media produciría afasia (hemisferio izquierdo), déficit sensitivo, hemianopsia y compromiso facial y braquial mayor, y la cerebral anterior afectaría más la pierna. La cefalea intensa de inicio súbito es un síntoma típico de hemorragia intracerebral, favorecida por hipertensión y traumatismos repetidos. El TAC sin contraste lo confirma de inmediato y es el estudio inicial."
     },
     {
       "id": 98,
@@ -1356,22 +1356,20 @@
         "Embolias cardíacas"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Un paciente de 69 años hipertenso con dolor torácico intenso, lancinante, irradiado al cuello y al dorso, hipertensión severa (200/140), taquicardia y pulso radial disminuido con frialdad en el brazo izquierdo tiene una disección aórtica, en que el flap intimal compromete la salida de la arteria subclavia izquierda. El infarto, la pericarditis y el tromboembolismo no producen asimetría de pulsos. La disección aórtica tipo A requiere cirugía urgente y la tipo B manejo médico, con control de la frecuencia y la presión con betabloqueadores endovenosos. Se confirma con angio-TAC de tórax."
     },
     {
       "id": 99,
-      "question": "Una paciente de 20 años es encontrada inconsciente en el baño por sus familiares, con el piloto del calefont apagado, por lo que es llevada al servicio de urgencia de inmediato, recuperándose parcialmente en el camino. Al examen físico está consciente, responde al interrogatorio y coopera, aunque está soporosa y se queja de muchas náuseas y cefalea intensa. Satura 97% a FiO2 ambiental, tiene frecuencia cardíaca de 90x’ y presión arterial 146/92 mmHg. Su examen cardiopulmonar resulta normal. Cuál es el examen de elección para",
+      "question": "Una paciente de 20 años es encontrada inconsciente en el baño por sus familiares, con el piloto del calefont apagado. La llevan de inmediato al servicio de urgencia y en el camino se recupera parcialmente. Al examen está consciente, responde al interrogatorio y coopera, aunque está somnolienta, con muchas náuseas y cefalea intensa. Satura 97% con aire ambiental, tiene frecuencia cardíaca de 90 lpm y presión arterial de 146/92 mmHg. El examen cardiopulmonar es normal. ¿Cuál es el examen de elección para confirmar el diagnóstico?",
       "options": [
         "Radiografía de tórax",
-        "Resonancia magnética nuclear de cerebro",
+        "Resonancia magnética de cerebro",
         "Carboxihemoglobina",
-        "Gases en sangre arterial",
+        "Gases en sangre arterial con saturación calculada",
         "TAC de cerebro sin contraste"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
-      "excluir": true,
-      "audit_nota": "Enunciado cortado («examen de elección para...»), en intoxicación por CO (calefont) el examen de confirmación es carboxihemoglobina, clave E (TAC) dudosa, explicación genérica"
+      "correctAnswer": "c",
+      "explanation": "Una persona que pierde la conciencia en un baño cerrado con calefont, con cefalea, náuseas y compromiso de conciencia, tiene una intoxicación por monóxido de carbono hasta que se demuestre lo contrario. El diagnóstico se confirma midiendo la carboxihemoglobina por cooximetría, y mientras tanto se da oxígeno al 100%. La saturación de pulso y la PaO2 salen normales, porque el oxímetro no distingue la carboxihemoglobina; por eso los gases con saturación calculada engañan. El TAC y la resonancia de cerebro sirven para buscar complicaciones, pero no confirman la intoxicación. La radiografía de tórax no aporta al diagnóstico."
     },
     {
       "id": 100,
@@ -1383,8 +1381,8 @@
         "Alprazolam",
         "Diazepam"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Una niña de 13 años con crisis de angustia recurrentes, con sensación de muerte, disnea, vértigo, miedo a enloquecer y deterioro de su vida, sin síntomas depresivos, tiene un trastorno de pánico. El tratamiento de primera línea es la psicoterapia cognitivo conductual junto con un ISRS, como sertralina, que previene las crisis a largo plazo. Las benzodiacepinas, como alprazolam o diazepam, alivian rápido pero generan tolerancia y dependencia y solo se usan al inicio por poco tiempo. La quetiapina y el ácido valproico no tienen indicación para pánico.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Niña con crisis de pánico recurrentes: el tratamiento más importante es ISRS (sertralina, A), como en Ago 2021 P12 y Dic 2018 P37; alprazolam es solo sintomático (psiq-06: benzodiacepina como puente, nunca de mantención). Explicación es plantilla ajena (TDA)."
     },
@@ -1399,7 +1397,7 @@
         "Realizar biopsia excisional quirúrgica"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Un nódulo tiroideo de 1 cm detectado en forma incidental, con función tiroidea normal, requiere definir si es maligno. La punción con aguja fina es el examen de elección para estudiarlo, pues el aspecto ecográfico y las pruebas tiroideas no permiten descartar cáncer y la citología orienta la conducta. La cintigrafía se reserva para nódulos con TSH suprimida, la levotiroxina no reduce nódulos de forma útil en un paciente eutiroideo, el control ecográfico aislado deja pasar un posible cáncer y la biopsia excisional quirúrgica se indica después de una citología sospechosa. Perla: nódulo de 1 cm o más, función normal, punción con aguja fina.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Nódulo de 1 cm quístico y capsulado: contradice Ene-2023 P154 (10 mm quístico, clave control ecográfico), el umbral de PAAF depende de la versión de la guía"
     },
@@ -1413,8 +1411,8 @@
         "Administrar suero Ringer lactato intravenoso",
         "Administrar bicarbonato de sodio endovenoso"
       ],
-      "correctAnswer": "c",
-      "explanation": "",
+      "correctAnswer": "a",
+      "explanation": "Una paciente tiroidectomizada con hipoparatiroidismo en tratamiento con calcio oral, que presenta diarrea acuosa de varios días, debilidad generalizada y signo de Chvostek positivo, tiene una hipocalcemia sintomática, pues la diarrea disminuye la absorción de calcio y vitamina D. La conducta es administrar gluconato de calcio endovenoso para corregir rápidamente la hipocalcemia con riesgo de tetania, arritmias o convulsiones, y luego ajustar el tratamiento oral. Aumentar la levotiroxina no corrige el calcio, los sueros hidratan pero no tratan la tetania y el bicarbonato podría agravarla al alcalinizar. Se mide calcio y magnesio.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: Hipoparatiroidismo con diarrea, debilidad y Chvostek es hipocalcemia sintomática: calcio EV (igual que Dic-2018 P25 con clave gluconato EV), suero fisiológico no corrige la hipocalcemia"
     },
@@ -1429,7 +1427,7 @@
         "Fondo Único de Prestaciones Familiares, con cargo Estatal"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Una embarazada con amenaza de parto prematuro y licencia médica por enfermedad común está afiliada a Isapre, por lo que el subsidio por incapacidad laboral lo financia la Isapre, previo trámite en la Compin, que solo autoriza o rechaza la licencia. La mutual (Ley de accidentes del trabajo) solo cubre licencias por accidentes laborales y enfermedades profesionales, Fonasa financia a los afiliados a Fonasa, las cajas de compensación entregan beneficios sociales y el FUPF corresponde a asignaciones familiares. Perla: licencia por enfermedad común, Isapre o Fonasa; accidente del trabajo, mutual."
     },
     {
       "id": 104,
@@ -1441,8 +1439,8 @@
         "Hemodiálisis de urgencia",
         "Administrar suero fisiológico endovenosos"
       ],
-      "correctAnswer": "e",
-      "explanation": "",
+      "correctAnswer": "b",
+      "explanation": "Una paciente con insuficiencia renal crónica en tratamiento con losartán y atenolol, con potasio de 8,2, bradicardia de 30 por minuto, hipotensión y compromiso de conciencia, tiene una hiperkalemia grave con cardiotoxicidad. La conducta inicial es gluconato de calcio endovenoso, que antagoniza el efecto del potasio sobre la membrana del miocardio en minutos, antes de desplazar el potasio con insulina más glucosa y salbutamol y de eliminarlo con diuréticos o hemodiálisis. El suero fisiológico no baja el potasio con rapidez, la atropina y el marcapasos tratan solo la bradicardia, y la hemodiálisis requiere tiempo para organizarse.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: K 8,2 con bradicardia 30 y shock: primera medida es gluconato de calcio ev (estabilizar membrana), coherente con preguntas hermanas (p.52, p.54), suero fisiológico no es la primera conducta."
     },
@@ -1457,7 +1455,7 @@
         "Valsartán"
       ],
       "correctAnswer": "e",
-      "explanation": "En diabético hipertenso se prefiere IECA/ARA2, los betabloqueadores como atenolol no son primera línea."
+      "explanation": "Un hombre de 56 años diabético con hipertensión de reciente diagnóstico con riesgo renal y cardiovascular elevado se beneficia de un fármaco que proteja el riñón y el corazón: los bloqueadores del sistema renina angiotensina, como el valsartán (ARA II) o un IECA, que reducen la presión intraglomerular y la progresión de la nefropatía. El atenolol no es de primera línea y empeora el perfil metabólico, la hidralazina y la espironolactona se usan como adyuvantes en hipertensión resistente y el amlodipino es una opción de segunda línea."
     },
     {
       "id": 106,
@@ -1470,7 +1468,7 @@
         "Agregar furosemida"
       ],
       "correctAnswer": "d",
-      "explanation": "Disnea y tos con crepitos bilaterales bajo amiodarona sugieren neumonitis por amiodarona: suspenderla."
+      "explanation": "Una mujer en tratamiento prolongado con amiodarona que desarrolla disnea progresiva en meses, tos seca y crepitaciones bilaterales con infiltrado intersticial en la radiografía tiene una toxicidad pulmonar por amiodarona, que se manifiesta como neumonitis intersticial o fibrosis. La conducta es suspender el fármaco y, según gravedad, iniciar corticoides. El salbutamol no es útil sin broncoespasmo, la espironolactona y la furosemida están dirigidas a insuficiencia cardíaca, que aquí no hay (sin edema ni ingurgitación) y el rivaroxabán no causa daño pulmonar. Perla: amiodarona, tiroides, hígado, pulmón, ojo y piel."
     },
     {
       "id": 107,
@@ -1483,7 +1481,7 @@
         "Broncoscopía"
       ],
       "correctAnswer": "b",
-      "explanation": "Broncorrea matinal e infecciones recurrentes sugieren bronquiectasias: el examen de eleccion es el TAC de torax."
+      "explanation": "Una mujer con infecciones respiratorias en la infancia, broncorrea abundante de predominio matinal (cerca de 300 cc diarios), exacerbaciones frecuentes y estertores tiene bronquiectasias. El examen de elección para confirmar el diagnóstico y ver la extensión es el TAC de tórax de alta resolución, que muestra dilatación bronquial y signo del anillo de sello. La radiografía solo muestra signos indirectos, la broncoscopía o lavado se reservan para obstrucción o toma de muestras, el recuento de inmunoglobulinas es parte del estudio etiológico posterior y las baciloscopías se piden si hay sospecha de tuberculosis o micobacterias."
     },
     {
       "id": 108,
@@ -1496,7 +1494,7 @@
         "Episodio depresivo mayor"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Un hombre de 43 años con angustia, insomnio y cefalea tensional que comenzó 15 días después de enterarse de un traslado laboral, es decir, tras un estresor identificable, tiene un trastorno de adaptación con ansiedad. Aparece dentro de los tres meses del estresor, con síntomas desproporcionados sin cumplir criterios de otro trastorno. El trastorno de ansiedad generalizada requiere seis meses de preocupación, el de angustia se manifiesta por crisis súbitas, el episodio depresivo mayor exige ánimo deprimido o anhedonia y la somatización implica síntomas múltiples y crónicos. Se maneja con apoyo psicosocial y psicoterapia breve."
     },
     {
       "id": 109,
@@ -1509,7 +1507,7 @@
         "Fibrosis pulmonar"
       ],
       "correctAnswer": "a",
-      "explanation": "Patron obstructivo no reversible (VEF1/CVF 52%, sin cambio con broncodilatador) con torax hiperinsuflado: EPOC."
+      "explanation": "Un trabajador minero con disnea de esfuerzo progresiva, tórax hiperinsuflado, espiración prolongada y sibilancias, con espirometría con relación VEF1/CVF de 52 por ciento, que no revierte con broncodilatador, tiene una obstrucción fija, característica de EPOC. El asma presenta obstrucción reversible (aumento mayor a 12 por ciento y 200 ml del VEF1), la fibrosis pulmonar y la neumoconiosis clásica dan patrón restrictivo, y la hipertensión pulmonar y la insuficiencia cardíaca no producen este patrón. La exposición a polvo mineral aumenta el riesgo, y se trata con broncodilatadores de larga acción y cese del tabaco."
     },
     {
       "id": 110,
@@ -1522,7 +1520,7 @@
         "Audiometría"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un hombre de 33 años que despierta con hipoacusia unilateral y tinnitus, sin vértigo, con otoscopía normal, tiene una sordera súbita neurosensorial hasta demostrar lo contrario. El primer examen es la audiometría, que confirma el tipo (neurosensorial) y el grado de pérdida y permite iniciar de inmediato corticoides sistémicos, idealmente en las primeras 72 horas. La resonancia se solicita después para descartar un schwannoma vestibular, el TAC de oído o cerebro tiene menor rendimiento, la impedanciometría evalúa el oído medio y la prueba calórica estudia la función vestibular."
     },
     {
       "id": 111,
@@ -1535,7 +1533,7 @@
         "Baños de asiento y analgésicos"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Una paciente con tres abscesos de Bartolino previos que requirieron drenaje, es decir, con recurrencia, y tumefacción de 3 cm de la glándula, requiere un tratamiento definitivo. Tras el drenaje inicial, la recidiva se evita con la bartolinocistoneostomía (marsupialización), que crea una nueva desembocadura permanente de la glándula, o con la extirpación en casos recurrentes. La punción y la incisión simple tienen alta recidiva, los antibióticos orales y los baños de asiento sirven como apoyo y no tratan la colección ni la causa estructural. Perla: quiste o absceso de Bartolino recurrente, marsupialización."
     },
     {
       "id": 112,
@@ -1548,7 +1546,7 @@
         "Realizar legrado y biopsia endometrial"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Una citología con células escamosas atípicas sugerentes de NIE 3 (lesión intraepitelial de alto grado), con colposcopía sin lesiones visibles y curetaje endocervical normal, genera una discordancia que no permite descartar la lesión. La conducta es la conización cervical, que es tanto diagnóstica como terapéutica, ya que permite estudiar el canal endocervical y extirpar la lesión. Repetir el curetaje o esperar un año expone a progresión a cáncer, la histerectomía es excesiva sin diagnóstico confirmado y el legrado endometrial no estudia el cuello uterino. Perla: citología de alto grado con colposcopía no concordante, cono."
     },
     {
       "id": 113,
@@ -1561,7 +1559,7 @@
         "Vólvulo de ciego"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Una mujer de 24 años con dolor de inicio súbito e intenso en fosa ilíaca derecha, náuseas y vómitos, una masa anexial palpable de 6 cm y ecografía con un quiste anexial derecho, sin líquido libre y con apéndice no visualizado, tiene una torsión de un quiste ovárico, causa clásica de abdomen agudo ginecológico en mujeres jóvenes con quistes mayores a 5 cm. El embarazo ectópico se descarta por el endometrio y la ausencia de líquido libre, el absceso tuboovárico se acompaña de fiebre y la apendicitis no explica la masa anexial. Requiere laparoscopía urgente para detorsión."
     },
     {
       "id": 114,
@@ -1574,7 +1572,7 @@
         "Controlar en un año"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "En un niño de 3 años con fimosis fisiológica irreductible, sin infecciones ni balanitis, la primera conducta es la aplicación de corticoide tópico durante cuatro a seis semanas, con una eficacia cercana al 80 por ciento, además del masaje suave. La tracción forzada del prepucio puede causar desgarros, cicatrices y parafimosis, la circuncisión se reserva para falla del tratamiento médico o balanopostitis y la infección urinaria a repetición, y los antibióticos tópicos no corrigen la estrechez. Esperar un año sin tratar es una opción en menores asintomáticos de menos de 3 años."
     },
     {
       "id": 115,
@@ -1587,7 +1585,7 @@
         "Indicar parche ocular alternante"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Un estrabismo intermitente y asimétrico en un lactante de 1 mes es un hallazgo fisiológico, porque el control de la alineación ocular aún no madura y se consolida hacia los 4 a 6 meses. Con crecimiento y desarrollo normales y sin otros signos, solo corresponde continuar los controles habituales y reevaluar en los siguientes meses. El estrabismo constante, fijo o que persiste después de los 4 meses requiere derivación a oftalmología. La resonancia, el fondo de ojo y el parche alternante no son necesarios, y el parche se usa en ambliopía en el contexto de especialista. Perla: estrabismo intermitente antes de los 4 meses, observar."
     },
     {
       "id": 116,
@@ -1600,7 +1598,7 @@
         "Planificar cirugía de descenso testicular al cumplir un año"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un recién nacido de término con ambos testículos no palpables y un pene de solo 2 cm (micropene) no tiene una simple criptorquidia: la combinación de gónadas no palpables y genitales anormales sugiere un trastorno del desarrollo sexual, por ejemplo una niña virilizada por hiperplasia suprarrenal congénita. Por eso, además de la ecografía, se solicita un cariograma para conocer el sexo cromosómico y orientar el estudio hormonal y de genitales. Esperar un mes o planificar la cirugía al año retrasaría un diagnóstico potencialmente grave, la testosterona sola no define el sexo, y la laparoscopía exploradora no es la conducta inicial. Perla: testículos no palpables bilaterales y genitales anómalos, cariograma."
     },
     {
       "id": 117,
@@ -1613,7 +1611,7 @@
         "Iniciar ceftriaxona endovenosa"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Un lactante febril sin foco con una muestra de orina tomada por recolector, que muestra células epiteliales, bacterias y 10 leucocitos por campo, tiene una muestra potencialmente contaminada, porque en los menores que no controlan esfínteres el recolector tiene muchos falsos positivos. Por ello, para confirmar infección urinaria se debe obtener orina por sondeo vesical (o punción suprapúbica) para sedimento y urocultivo antes de tratar. Iniciar cefadroxilo o ceftriaxona sin confirmación expone a tratamiento innecesario; la ecografía renal y la cintigrafía se solicitan después de confirmar infección, para buscar malformaciones o cicatrices renales."
     },
     {
       "id": 118,
@@ -1626,7 +1624,7 @@
         "Conjuntivitis viral"
       ],
       "correctAnswer": "d",
-      "explanation": "",
+      "explanation": "Un niño de 5 años con una semana de rinosinusitis purulenta que de pronto agrega más fiebre y edema con eritema periocular unilateral tiene una complicación orbitaria de la sinusitis, con extensión desde los senos etmoidales hacia el tejido periorbitario, es decir, celulitis o absceso periorbitario. La conjuntivitis, bacteriana o viral, no se asocia a este cuadro de sinusitis ni a edema palpebral con fiebre alta, y el absceso frontal tendría tumefacción frontal y cefalea intensa. La sinusitis maxilar sin complicación no produce edema periocular. Es una urgencia que requiere TAC, antibióticos endovenosos y evaluación de drenaje.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Edema y eritema periocular por sinusitis: celulitis preseptal más probable que absceso periorbitario (misma redacción que #555 con otra clave)"
     },
@@ -1641,7 +1639,7 @@
         "Observar evolución"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Una embarazada de 18 semanas expuesta a varicela, que no recuerda haberla tenido, no puede asumir que es susceptible, pues muchas personas sin antecedente tienen inmunidad. El primer paso es pedir serología (IgG) para varicela: si es positiva está protegida y no requiere nada; si es negativa, se administra inmunoglobulina hiperinmune dentro de las 96 horas del contacto. El aciclovir se usa si desarrolla la enfermedad, la vacuna está contraindicada en el embarazo por ser de virus vivo atenuado y solo observar puede dejar pasar la ventana de profilaxis."
     },
     {
       "id": 120,
@@ -1654,7 +1652,7 @@
         "Diazepam endovenosa"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un paciente con litio y deterioro neurológico leve a moderado (sopor, temblor, desorientación) y litemia de 2,2 mEq/L tiene una intoxicación crónica por litio, favorecida por deterioro de función renal y deshidratación. La conducta inicial es suspender el litio y administrar suero fisiológico endovenoso, que restablece el volumen y aumenta la excreción renal del litio. La hemodiálisis se reserva para litemia muy alta (mayor a 4), litemia sobre 2,5 con síntomas graves o insuficiencia renal significativa. La plasmaféresis y la alcalinización de la orina no son útiles, y el diazepam solo se usa si hay convulsiones."
     },
     {
       "id": 121,
@@ -1667,7 +1665,7 @@
         "Hiperaldosteronismo primario"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un hombre joven con hipertensión resistente a tres fármacos, hipokalemia espontánea (3,1 mEq/L) con sodio alto-normal, debilidad muscular y una masa suprarrenal sólida de 2 cm tiene hiperaldosteronismo primario, probablemente por un adenoma productor de aldosterona (síndrome de Conn). El exceso de aldosterona retiene sodio, aumenta el volumen y elimina potasio. El feocromocitoma cursa con crisis paroxísticas de palpitaciones y sudoración, la hipertensión renovascular produce hipokalemia pero sin tumor suprarrenal, la esencial no explica el potasio bajo y la asociada a insuficiencia renal tendría función renal alterada. Se confirma con relación aldosterona/renina."
     },
     {
       "id": 122,
@@ -1680,7 +1678,7 @@
         "Letalidad mensual de la influenza"
       ],
       "correctAnswer": "b",
-      "explanation": "",
+      "explanation": "La efectividad de una campaña de vacunación se evalúa con la tasa de cobertura de vacunación, que es la proporción de la población objetivo que efectivamente recibió la vacuna, pues mide directamente el cumplimiento de la intervención. La mortalidad, la incidencia, la prevalencia y la letalidad por influenza son indicadores del estado de salud o del impacto de la enfermedad, que dependen de muchos factores además de la vacuna, por lo que sirven para evaluar el impacto a largo plazo y no la efectividad inmediata de la campaña. Perla: cobertura mide proceso, incidencia y mortalidad miden resultado.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: La cobertura mide cumplimiento, no efectividad, efectividad se mide con incidencia (Ago2021 P2, Ene2023 P2, Dic2017 P69), explicación es plantilla clínica ajena"
     },
@@ -1695,11 +1693,11 @@
         "Administrar suero fisiológico endovenoso"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un paciente con cáncer de próstata avanzado y calcemia de 14,8 mg/dl con obnubilación tiene una hipercalcemia maligna sintomática, una urgencia oncológica. La conducta inicial es la hidratación vigorosa con suero fisiológico, pues estos pacientes están deshidratados por poliuria, y la expansión de volumen aumenta la excreción renal de calcio. Luego se agregan bifosfonatos (ácido zoledrónico) que actúan en 2 a 4 días, y calcitonina cuando se necesita bajar el calcio más rápido. El gluconato de calcio estaría contraindicado, y la hemodiálisis es para casos refractarios con insuficiencia renal grave."
     },
     {
       "id": 124,
-      "question": "Un país presenta la siguiente pirámide poblacional: ¿En qué tipo de medidas se deben focalizar las intervenciones de salud pública?",
+      "question": "Un país presenta una pirámide poblacional de base muy ancha que se estrecha rápidamente hacia el vértice: cerca del 40% de la población tiene menos de 15 años y menos del 5% tiene más de 65 años, con tasas de natalidad y de mortalidad infantil elevadas. ¿En qué tipo de medidas se deben focalizar las intervenciones de salud pública?",
       "options": [
         "Prevenir y tratar oportunamente el cáncer",
         "Prevención del consumo de drogas, cigarrillo y alcohol",
@@ -1708,9 +1706,7 @@
         "Detección y tratamiento oportuno de enfermedades crónicas no transmisibles"
       ],
       "correctAnswer": "c",
-      "explanation": "",
-      "excluir": true,
-      "audit_nota": "Requiere la pirámide, versiones equivalentes (Ago2021 P4, Ene2023 P7) dan salud materno-infantil/saneamiento si es pirámide joven"
+      "explanation": "Una pirámide de base ancha, con alta natalidad y alta mortalidad infantil, es progresiva o joven y corresponde a una etapa temprana de la transición demográfica y epidemiológica. En esa población predominan las enfermedades infecciosas, la desnutrición y los problemas maternoinfantiles, así que las intervenciones más efectivas son la planificación familiar, la prevención de la desnutrición, el saneamiento básico y la vacunación. El cáncer, las enfermedades crónicas no transmisibles, el sedentarismo, la obesidad y el consumo de tabaco, alcohol y drogas son prioridades de las poblaciones envejecidas o en transición avanzada, como la chilena actual."
     },
     {
       "id": 125,
@@ -1723,7 +1719,7 @@
         "Diarrea viral"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Una joven diabética tipo 1 con diarrea crónica, baja de peso y palidez, de dos meses de evolución, tiene alta sospecha de enfermedad celíaca, que se asocia con frecuencia a otras enfermedades autoinmunes, sobre todo diabetes tipo 1 y tiroiditis, y produce malabsorción con anemia. El síndrome de intestino irritable no cursa con baja de peso, la enfermedad inflamatoria intestinal suele dar sangre y mucosidad, la enteropatía perdedora de proteínas se manifiesta con edema e hipoalbuminemia y la diarrea viral es aguda y autolimitada. Se confirma con anticuerpos antitransglutaminasa IgA y biopsia duodenal, y se trata con dieta sin gluten."
     },
     {
       "id": 126,
@@ -1736,7 +1732,7 @@
         "Síndrome de HELLP"
       ],
       "correctAnswer": "e",
-      "explanation": "Dolor epigástrico, PA elevada y plaquetas 80.000 con alteración hepática: HELLP."
+      "explanation": "Una embarazada de 32 semanas con hipertensión, dolor epigástrico e hipocondrio derecho, plaquetopenia de 80.000, transaminasas elevadas (GOT 320) y bilirrubina indirecta aumentada por hemólisis tiene un síndrome HELLP (hemólisis, enzimas hepáticas elevadas y plaquetas bajas), una forma grave de preeclampsia. La litiasis vesicular es hallazgo incidental y no explica la plaquetopenia ni la alteración enzimática. La hepatitis viral no produce hipertensión ni trombocitopenia en el embarazo, la pancreatitis tendría lipasa elevada y la colestasia intrahepática cursa con prurito y alza de ácidos biliares. Requiere sulfato de magnesio e interrupción del embarazo."
     },
     {
       "id": 127,
@@ -1749,11 +1745,11 @@
         "PCR para Clostridioides difficile"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Una mujer de 27 años con tres semanas de diarrea con pujo, tenesmo y rectorragia escasa tiene una probable colitis ulcerosa (proctitis o proctosigmoiditis), con sintomas de inflamación del recto. El examen de elección para el diagnóstico es la colonoscopía con biopsias, que muestra la extensión de la inflamación mucosa continua y descarta otras causas. El parasitológico y el test de Clostridioides son útiles para excluir infección, pero no confirman la enfermedad inflamatoria, la sangre oculta es insuficiente en una paciente con síntomas, y el TAC no evalúa bien la mucosa. Se debe descartar infección antes de iniciar corticoides."
     },
     {
       "id": 128,
-      "question": "Un paciente de 58 años presenta dolor abdominal intenso, tipo cólico, asociado a náuseas y distensión abdominal. Sus últimas deposiciones fueron hace dos días y no ha eliminado gases por ano desde ayer. Sus signos vitales muestran T°: 36,8°C, FC: 96x’, PA: 144/92 mmHg, abdomen distendido, doloroso a la palpación, con signo Blumberg esbozado. En la auscultación abdominal, tiene bazuqueo intestinal y disminución de los ruidos hidroaéreos. Como antecedentes médico- quirúrgicos, es diabético, usa metformina y aspirina y se realizó apendicectomía hace 10 años. ¿Cuál es el diagnóstico más probable?",
+      "question": "Un paciente de 58 años presenta dolor abdominal intenso, tipo cólico, asociado a náuseas y distensión abdominal. Sus últimas deposiciones fueron hace dos días y no ha eliminado gases por ano desde ayer. Sus signos vitales muestran T°: 36,8°C, FC: 96x’, PA: 144/92 mmHg, abdomen distendido, doloroso a la palpación, con signo Blumberg esbozado. En la auscultación abdominal, tiene bazuqueo intestinal y disminución de los ruidos hidroaéreos. Como antecedentes médicoquirúrgicos, es diabético, usa metformina y aspirina y se realizó apendicectomía hace 10 años. ¿Cuál es el diagnóstico más probable?",
       "options": [
         "Vólvulo de sigmoides",
         "Isquemia mesentérica",
@@ -1762,7 +1758,7 @@
         "Cáncer de colon perforado"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un hombre de 58 años con dolor cólico, náuseas, distensión, ausencia de eliminación de gases y deposiciones, bazuqueo y una cirugía abdominal previa (apendicectomía) tiene una obstrucción intestinal, probablemente por bridas postoperatorias, que son la causa más frecuente de obstrucción de intestino delgado. El vólvulo de sigmoides se presenta en adultos mayores con constipación crónica, la isquemia mesentérica produce dolor desproporcionado, la gastroenteritis cursa con diarrea y el cáncer de colon perforado tendría peritonitis difusa. Se estudia con radiografía y TAC, y se trata con reposo digestivo, sonda nasogástrica, hidratación y cirugía si hay compromiso vascular."
     },
     {
       "id": 129,
@@ -1788,7 +1784,7 @@
         "HLA B27"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Una mujer de 45 años con artritis simétrica de pequeñas articulaciones de las manos, rigidez matinal de más de una hora y signos inflamatorios tiene una artritis reumatoide. El examen más específico es el anticuerpo anti péptido citrulinado cíclico (anti CCP), con especificidad cercana al 95 por ciento, que además predice una enfermedad más erosiva. El factor reumatoide es más sensible pero menos específico, los anticuerpos antinucleares y anti ADN nativo se asocian al lupus, los anticuerpos anti citoplasma de neutrófilos a vasculitis y el HLA B27 a espondiloartropatías."
     },
     {
       "id": 131,
@@ -1801,7 +1797,7 @@
         "Síndrome compartimental"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Una mujer con fractura de radio distal, inmovilizada con yeso, que a las 5 horas tiene dolor intenso desproporcionado que no cede con analgesia, dificultad para mover los dedos y llene capilar lento, tiene un síndrome compartimental por aumento de la presión en un compartimento cerrado a causa del edema bajo el yeso. El dolor intenso, especialmente al estirar pasivamente los dedos, es el signo más precoz. La lesión de la arteria radial no explicaría el dolor intenso, la trombosis venosa es de extremidad inferior, el dolor regional complejo aparece semanas después y la compresión del mediano produce síntomas sensitivos. Se debe abrir o retirar el yeso y derivar para fasciotomía."
     },
     {
       "id": 132,
@@ -1814,7 +1810,7 @@
         "Metotrexato"
       ],
       "correctAnswer": "a",
-      "explanation": "Para prevenir recurrencias de artritis por pirofosfato de calcio se usa colchicina profiláctica en dosis bajas."
+      "explanation": "Un paciente de 70 años con artritis aguda de rodilla recurrente por cristales de pirofosfato de calcio tiene una artropatía por pirofosfato (condrocalcinosis o pseudogota). Para prevenir las recurrencias se usa colchicina en dosis bajas de forma profiláctica. El naproxeno sirve para tratar el ataque agudo pero no es adecuado como terapia crónica en un adulto mayor, por el riesgo renal, gástrico y cardiovascular. El alopurinol es para la gota por ácido úrico, la hidroclorotiazida puede incluso causar hiperuricemia y el metotrexato se reserva para casos crónicos refractarios."
     },
     {
       "id": 133,
@@ -1827,7 +1823,7 @@
         "Niveles plasmáticos de vitamina B12"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Un hombre de 78 años con lumbago progresivo que no cede con analgesia, anemia, plaquetopenia, VHS de 78, insuficiencia renal y brecha de proteínas (proteínas totales 8,9 y albúmina 2,9) sospecha de mieloma múltiple, tumor de células plasmáticas con lesiones óseas, anemia, daño renal e hipercalcemia. El examen más adecuado para confirmar la gammapatía monoclonal es la electroforesis de proteínas (con inmunofijación). La densitometría no sirve para lesiones líticas, la radiografía de huesos largos y cráneo es complementaria, el citogenético es pronóstico y la vitamina B12 no explica el cuadro.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Pide \"confirmar\": el mielograma/biopsia de médula (D del banco de otros años, ver p.9/10) confirma mieloma, la electroforesis es el examen de sospecha. Depende de cómo se formule."
     },
@@ -1842,7 +1838,7 @@
         "Quimioterapia"
       ],
       "correctAnswer": "e",
-      "explanation": "LLA con hiperleucocitosis y riesgo de lisis tumoral: el tratamiento definitivo es la quimioterapia, junto a hidratación y medidas de lisis tumoral."
+      "explanation": "Un paciente de 70 años con leucemia linfoblástica aguda (60 por ciento de blastos linfoides, leucocitosis de 45.000, anemia, petequias y adenopatías) y alteraciones metabólicas de lisis tumoral (hiperuricemia, hiperkalemia, hiperfosfemia) requiere un tratamiento definitivo urgente, que es la quimioterapia, pues el recuento elevado de blastos es lo que produce el cuadro. Se acompaña de hidratación, alopurinol o rasburicasa y control del potasio. Los antibióticos, la heparina y la hidrocortisona no tratan la enfermedad, y el sulfonato de poliestireno solo corrige parcialmente el potasio. Perla: leucemia aguda es una urgencia, derivar para quimioterapia."
     },
     {
       "id": 135,
@@ -1855,7 +1851,7 @@
         "Frotis de sangre periférica"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Un recién nacido con cefalohematoma grande, sangrado en el sitio de punción, TTPA prolongado (65 segundos), TP normal y plaquetas normales, con un tío fallecido en período neonatal por hemorragia intracraneal, plantea una hemofilia, enfermedad ligada al cromosoma X que afecta los factores VIII (hemofilia A) y IX (hemofilia B). Lo adecuado es medir los factores VIII y IX para confirmar el diagnóstico. La agregometría plaquetaria estudia disfunción plaquetaria con TTPA normal, la trombofilia se asocia a trombosis, el frotis no confirma un déficit de factor y la biopsia de médula ósea no tiene indicación."
     },
     {
       "id": 136,
@@ -1868,7 +1864,7 @@
         "Inmunodeficiencia celular"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Un lactante de 15 meses, sano hasta los 6 meses, que después presenta infecciones bacterianas repetidas (otitis y neumonías) tiene una inmunodeficiencia humoral, la más frecuente, que se manifiesta tras la caída de los anticuerpos maternos alrededor de los 6 meses, con infecciones por bacterias encapsuladas. La inmunodeficiencia combinada severa se presenta desde los primeros meses con infecciones graves y falla de crecimiento, y la celular se asocia a candidiasis, virus y oportunistas, la alteración de la fagocitosis a abscesos y el déficit de complemento a infecciones por Neisseria. Se estudia con inmunoglobulinas."
     },
     {
       "id": 137,
@@ -1881,7 +1877,7 @@
         "Artritis reactiva"
       ],
       "correctAnswer": "c",
-      "explanation": "Dolor de IFD/IFP con rigidez matinal breve, pinzamiento y esclerosis subcondral: osteoartritis."
+      "explanation": "Una mujer de 63 años con dolor en articulaciones interfalángicas distales y proximales, rigidez matinal breve (5 minutos) y radiografía con disminución del espacio articular y esclerosis subcondral tiene una osteoartritis de manos, de tipo mecánico con nódulos de Heberden y Bouchard. En la artritis reumatoide la rigidez dura más de una hora, compromete las metacarpofalángicas y respeta las interfalángicas distales, y la psoriásica y la reactiva se asocian a psoriasis y a infecciones, con erosiones. La osteoporosis es asintomática hasta una fractura. Se trata con paracetamol, AINE tópicos y ejercicios."
     },
     {
       "id": 138,
@@ -1894,7 +1890,7 @@
         "Resonancia magnética nuclear de muslo"
       ],
       "correctAnswer": "e",
-      "explanation": "Tumor sólido de partes blandas grande y creciente (sospecha de sarcoma): RNM de muslo para estadificación local, antes de la biopsia."
+      "explanation": "Una mujer de 72 años con una tumoración de 10 a 12 cm en el muslo, de consistencia muscular, de crecimiento progresivo en meses y sólida en la ecografía, plantea un sarcoma de partes blandas hasta demostrar lo contrario. El estudio de elección para caracterizar la lesión, su relación con los compartimentos, vasos y nervios y planificar la biopsia es la resonancia magnética del muslo. La radiografía no evalúa partes blandas, el TAC es inferior en el detalle de tejidos blandos, el PET y la biopsia de médula ósea son parte de la estadificación posterior. La biopsia debe hacerse en el centro tratante."
     },
     {
       "id": 139,
@@ -1907,7 +1903,7 @@
         "Antihistamínicos orales por 7 días"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Un adolescente con 12 días de síntomas de vía aérea superior que, tras una mejoría inicial, vuelve a empeorar con fiebre, rinorrea purulenta y descarga posterior, tiene criterios de rinosinusitis aguda bacteriana (más de 10 días sin mejoría o empeoramiento con fiebre). El tratamiento de elección es amoxicilina por 7 días, con seguridad y baja resistencia. La claritromicina se reserva para alérgicos a penicilina, los corticoides orales y los antihistamínicos no tratan la infección y el aseo nasal con suero fisiológico solo es un coadyuvante."
     },
     {
       "id": 140,
@@ -1920,7 +1916,7 @@
         "Solicitar ecografía de caderas"
       ],
       "correctAnswer": "d",
-      "explanation": "Ángulo acetabular normal hasta 30° a los 3 meses; 28° y 26° son normales, no requieren derivación ni ecografía: control de niño sano."
+      "explanation": "Un lactante de 3 meses con ángulo acetabular de 28 grados a la derecha y 26 grados a la izquierda en la radiografía de pelvis tiene un valor normal, pues el índice acetabular es normal hasta cerca de 30 grados a esa edad, mayor en recién nacidos y menor a medida que crece. Por lo tanto, no tiene displasia de cadera y no requiere derivación, correas de Pavlik, doble pañal ni ecografía, y solo corresponde mantener los controles habituales. Perla: displasia de cadera se confirma con ecografía antes de los 4 meses y con radiografía después."
     },
     {
       "id": 141,
@@ -1933,22 +1929,20 @@
         "Síndrome de la fascia lata rígida"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Una mujer obesa de 65 años con dolor de una semana en la cara lateral de la cadera, que aumenta al caminar y al acostarse sobre ese lado, con dolor a la palpación del trocánter mayor, tiene una bursitis trocantérica, por inflamación de la bolsa serosa sobre el trocánter. La coxartrosis produce dolor inguinal con limitación de la rotación interna, la fractura por estrés se presentaría con dolor con apoyo en la ingle, la radiculopatía L2 irradia por el muslo, y el síndrome de la fascia lata rígida es una tensión de la banda iliotibial sin dolor trocantérico focal. Se trata con reposo, AINE y fisioterapia, y con infiltración si persiste."
     },
     {
       "id": 142,
-      "question": "Una lactante de 6 meses, presenta eritema del pañal, desde hace 7 días, que no ha mejorado a pesar de realizar cambios frecuentes del pañal y de aplicar óxido de zink. Usa pañal desechable y se alimenta con lactancia materna exclusiva. Al examen físico, se aprecia lo siguiente: ¿Cuál es el tratamiento de elección?",
+      "question": "Una lactante de 6 meses presenta eritema del pañal desde hace 7 días, que no ha mejorado a pesar de cambiar el pañal con frecuencia y aplicar óxido de zinc. Usa pañal desechable y se alimenta con lactancia materna exclusiva. Al examen físico se observa un eritema rojo intenso y brillante que compromete los pliegues inguinales, con bordes bien definidos y descamación periférica, y múltiples pápulas y pústulas satélite en la periferia. ¿Cuál es el tratamiento de elección?",
       "options": [
         "Mupirocina tópica",
         "Betametasona tópica",
         "Vaselina tópica",
         "Clotrimazol tópico",
-        "Pimetacrolimus tópico"
+        "Pimecrolimus tópico"
       ],
       "correctAnswer": "d",
-      "explanation": "",
-      "excluir": true,
-      "audit_nota": "El diagnóstico (candidiasis) depende de la foto ausente, clave D coherente con falta de respuesta a óxido de zinc"
+      "explanation": "Una dermatitis del pañal que compromete los pliegues, con eritema intenso de borde neto y lesiones satélite, y que no responde a las medidas de barrera, corresponde a una candidiasis del pañal. El tratamiento de elección es un antimicótico tópico, como clotrimazol o nistatina, dos a tres veces al día, junto con mantener la zona seca y con cambios frecuentes del pañal. La mupirocina sirve para el impétigo. La betametasona es un corticoide potente, contraindicado en la zona del pañal del lactante y capaz de empeorar la candidiasis. La vaselina es solo de barrera. El pimecrolimus no está indicado en menores de 2 años ni en infecciones."
     },
     {
       "id": 143,
@@ -1961,7 +1955,7 @@
         "Vaselina más betametasona tópica"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Un anciano institucionalizado con lesiones crónicas en las piernas (4 meses) compatibles con dermatitis eccematosa o de estasis, con sequedad, descamación e inflamación, se maneja con emolientes como vaselina más un corticoide tópico de potencia media, como betametasona, que controla la inflamación y el prurito. No hay signos de infección que justifiquen mupirocina o antibióticos orales, las vendas elásticas se usan en úlceras venosas con compresión tras descartar enfermedad arterial, y la biopsia se reserva para lesiones atípicas o resistentes."
     },
     {
       "id": 144,
@@ -1974,7 +1968,7 @@
         "Cáncer pulmonar"
       ],
       "correctAnswer": "e",
-      "explanation": "Fumadora con dolor costal, hemoptisis y baja de peso: cancer pulmonar."
+      "explanation": "Una mujer de 63 años con 40 paquetes-año de tabaquismo, tos con hemoptisis, baja de peso, disnea progresiva, dolor torácico pleurítico y dolor a la palpación costal, con una radiografía con una lesión sospechosa, tiene un cáncer pulmonar, probablemente con infiltración de pared costal. La tríada de tabaco, baja de peso y hemoptisis es muy sugerente. El absceso y la neumonía neumocócica tienen fiebre y evolución aguda, la tuberculosis tiene cuadro subagudo con sudoración, y la disección aórtica produce dolor desgarrante. Se continúa con TAC de tórax y biopsia."
     },
     {
       "id": 145,
@@ -1987,7 +1981,7 @@
         "Fibrilación ventricular"
       ],
       "correctAnswer": "c",
-      "explanation": "",
+      "explanation": "En el certificado de defunción, la causa inmediata es la enfermedad o complicación que produjo directamente la muerte, mientras que la causa básica es la que inició la cadena de eventos. En este paciente con cáncer de próstata avanzado, el evento que lo llevó a morir fue un tromboembolismo pulmonar masivo, con colapso circulatorio y paro cardiorrespiratorio, por lo que el TEP es la causa inmediata, y el cáncer de próstata (que favoreció la trombosis) queda como causa básica. La insuficiencia respiratoria, la falla multiorgánica o la fibrilación ventricular son mecanismos terminales y no se anotan como causa de muerte aislada.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Incoherente con Ene 2023 P4: allí causa inmediata = falla respiratoria, aquí cadena TEP-insuficiencia respiratoria-colapso. Enunciado además truncado y explicación habla de 'tratamiento'"
     },
@@ -2002,7 +1996,7 @@
         "Serología para virus hepatitis"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Una mujer joven con dolor abdominal, ictericia y síntomas generales con GOT 512 y GPT 356 elevadas marcadamente, con fosfatasa alcalina y GGT poco aumentadas, tiene un patrón hepatocelular, característico de hepatitis aguda, por lo que lo adecuado es solicitar la serología de virus hepatitis (A, B y C) para confirmar la causa viral. La obstrucción biliar mostraría un patrón colestásico, con fosfatasas alcalinas y GGT muy elevadas, por lo que no corresponde pedir ecografía, TAC o colangioresonancia de inicio, y la endoscopía digestiva alta no estudia el hígado."
     },
     {
       "id": 147,
@@ -2015,7 +2009,7 @@
         "Colangitis aguda"
       ],
       "correctAnswer": "c",
-      "explanation": "Ictericia, baja de peso y epigastralgia en adulto mayor: cáncer de páncreas."
+      "explanation": "Un hombre de 80 años con ictericia progresiva, prurito, baja de peso y malestar epigástrico, con patrón colestásico (fosfatasa alcalina y GGT muy elevadas y bilirrubina directa alta), tiene una obstrucción biliar maligna, y la causa más frecuente en esta edad es el cáncer de cabeza de páncreas. Una ictericia indolora y progresiva con baja de peso es lo clásico. La coledocolitiasis y la colangitis cursan con dolor y fiebre, el cáncer ampular da ictericia fluctuante, y el colangiocarcinoma es menos frecuente. Se estudia con ecografía y TAC con contraste, y el marcador CA 19-9 sirve para seguimiento."
     },
     {
       "id": 148,
@@ -2028,7 +2022,7 @@
         "Risperidona"
       ],
       "correctAnswer": "c",
-      "explanation": "Delirium tremens: benzodiacepinas (lorazepam o diazepam) como base, más tiamina previa a glucosa y corrección electrolítica."
+      "explanation": "Un hombre con hálito alcohólico que a las 48 horas de hospitalización desarrolla agitación, desorientación, temblor y delirios persecutorios tiene un delirium tremens por síndrome de abstinencia alcohólica. El fármaco de elección son las benzodiacepinas (lorazepam o diazepam), que reducen la hiperactividad autonómica, previenen las convulsiones y son el único tratamiento que disminuye la mortalidad. La tiamina se administra para prevenir la encefalopatía de Wernicke, pero no controla la agitación, y los antipsicóticos como haloperidol, clorpromazina o risperidona bajan el umbral convulsivo y solo se usan como complemento."
     },
     {
       "id": 149,
@@ -2041,7 +2035,7 @@
         "Iniciar liraglutide"
       ],
       "correctAnswer": "c",
-      "explanation": "HbA1c >9% con síntomas/glicemia muy alta: iniciar insulina NPH."
+      "explanation": "Un adulto mayor de 82 años con diabetes tipo 2 en tratamiento con metformina y dieta que presenta glicemia de ayuno de 355 mg/dl y hemoglobina glicosilada de 9,5 por ciento tiene un control muy deficiente con descompensación severa, para lo cual los antidiabéticos orales o análogos no son suficientes y se requiere insulina. Según la guía chilena, se inicia insulina NPH nocturna y se ajusta según glicemia, manteniendo la metformina si la función renal lo permite. La glibenclamida causa hipoglicemias en ancianos, la sitagliptina o el liraglutide tienen una potencia limitada para bajar tanto la glicemia."
     },
     {
       "id": 150,
@@ -2054,22 +2048,20 @@
         "Distrés respiratorio"
       ],
       "correctAnswer": "a",
-      "explanation": "Recién nacido PEG (hijo de madre preeclámptica): la complicación más precoz y frecuente es la hipoglicemia por escasas reservas de glucógeno."
+      "explanation": "Un recién nacido de término con peso de 2.600 g, hijo de madre con preeclampsia, tiene riesgo de restricción de crecimiento intrauterino por insuficiencia placentaria. La complicación más frecuente en las primeras horas de vida de un recién nacido pequeño para la edad gestacional es la hipoglicemia, por menores depósitos de glucógeno y grasa. Otras complicaciones como policitemia, hipotermia y asfixia perinatal también ocurren, pero menos. La sepsis y la hiperbilirrubinemia aparecen más tarde, la anemia no es característica y el distrés respiratorio se asocia más a prematuros. Se previene con alimentación precoz y control de glicemia."
     },
     {
       "id": 151,
-      "question": "Una paciente de 26 años, cursando un embarazo de 41 semanas, inicia trabajo de parto. Al examen tienen 4 contracciones cada 10 minutos, dilatación cervical de 6 cm El registro fetal muestra desaceleraciones variables. Al romperse las membranas sale meconio espeso. El nacimiento se produce algunos minutos después, obteniéndose un recién nacido hiporreactivo e hipotónico. ¿Cuál es la conducta inicial más adecuada?",
+      "question": "Una paciente de 26 años, con embarazo de 41 semanas, inicia trabajo de parto. Al examen tiene 4 contracciones cada 10 minutos y 6 cm de dilatación cervical. El registro fetal muestra desaceleraciones variables. Al romperse las membranas sale líquido con meconio espeso. Algunos minutos después nace un recién nacido hiporreactivo e hipotónico. ¿Cuál es la conducta inicial más adecuada?",
       "options": [
-        "Poner bajo calor radiante, administrar oxígeno, secar y reevaluar en 30 segundos",
-        "Realizar intubación orotraqueal y aspirar la vía aérea",
-        "Realizar ventilación a presión positiva",
-        "Realizar compresiones torácicas",
+        "Ponerlo bajo calor radiante, posicionar la vía aérea, aspirar boca y nariz si hay secreciones, secarlo, estimularlo y reevaluar",
+        "Realizar intubación orotraqueal y aspirar la tráquea antes de cualquier otra maniobra",
+        "Iniciar compresiones torácicas",
+        "Administrar oxígeno a flujo libre al 100% y reevaluar en 5 minutos",
         "Aspirar el contenido gástrico"
       ],
-      "correctAnswer": "b",
-      "explanation": "",
-      "excluir": true,
-      "audit_nota": "Enunciado confuso con comentario del recopilador en la alternativa D, la clave A (midriasis arreactiva) es de glaucoma agudo, en glaucoma crónico el hallazgo es defecto pupilar aferente."
+      "correctAnswer": "a",
+      "explanation": "Según las guías actuales de reanimación neonatal (ILCOR/NRP, adoptadas en Chile), al recién nacido no vigoroso con líquido meconial ya no se le intuba de rutina para aspirar la tráquea, porque esa maniobra no mejora los resultados y retrasa la ventilación. Se le hacen los pasos iniciales: calor, posicionar la vía aérea, aspirar boca y nariz si es necesario, secar y estimular. Luego se evalúan la respiración y la frecuencia cardíaca, y si hay apnea o la frecuencia es menor de 100 lpm, se inicia ventilación a presión positiva. La intubación queda reservada para la obstrucción de la vía aérea. Las compresiones vienen después de ventilar de forma efectiva. El oxígeno al 100% no es inicial."
     },
     {
       "id": 152,
@@ -2082,7 +2074,7 @@
         "Adrenalina"
       ],
       "correctAnswer": "e",
-      "explanation": "Anafilaxia: adrenalina IM inmediata, corticoides y antihistamínicos son coadyuvantes."
+      "explanation": "Una niña de 6 años con edema de labios (angioedema), urticaria generalizada, dolor abdominal y náuseas desde hace dos horas tiene una anafilaxia, por compromiso de piel y de un segundo sistema (gastrointestinal). El fármaco que debe recibir de inmediato es adrenalina intramuscular, de primera línea y que salva la vida, porque revierte el broncoespasmo, el edema y la hipotensión. Los antihistamínicos (clorfenamina) y los corticoides (prednisona) son coadyuvantes que no previenen el colapso, el salbutamol se usa en broncoespasmo persistente y el gluconato de calcio no tiene rol. Perla: en anafilaxia, adrenalina primero."
     },
     {
       "id": 153,
@@ -2095,7 +2087,7 @@
         "Tasa de mortalidad infantil"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "La demografía dinámica estudia los cambios de la población en el tiempo, a través de los fenómenos de natalidad, fecundidad, mortalidad y migración, por lo que la tasa de fecundidad es una variable de la demografía dinámica. En cambio, la demografía estática describe las características de la población en un momento dado: el tamaño, la distribución por edad y sexo (pirámide), la razón de masculinidad y la proporción urbana o rural. Perla: dinámica, eventos vitales; estática, estructura de la población.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Contradice Ene2023 P1 (mortalidad infantil), tanto fecundidad como mortalidad infantil son variables dinámicas, ambas opciones presentes, explicación plantilla"
     },
@@ -2110,7 +2102,7 @@
         "Hematoma en organización"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Un adolescente con dolor de rodilla que empeora a pesar del tratamiento de un supuesto esguince, sin respuesta a analgésicos potentes y con dolor en la zona proximal y medial de la tibia, y una radiografía con aspecto heterogéneo de la tibia proximal con reacción perióstica, tiene un osteosarcoma, el tumor óseo maligno más frecuente en adolescentes, de localización metafisaria alrededor de la rodilla. La fractura o el hematoma tendrían antecedente de trauma importante y mejorarían, la osteomielitis tendría fiebre y alza de reactantes, y un esguince severo mostraría inestabilidad. Se confirma con biopsia y resonancia."
     },
     {
       "id": 155,
@@ -2123,7 +2115,7 @@
         "Diabetes mellitus"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Un niño operado de un tumor cerebral hace 7 días, con poliuria de 4,5 litros al día, hipernatremia (154 mEq/L), orina diluida (densidad 1.005 y osmolaridad de 100 mOsm/L) y glicemia normal tiene una diabetes insípida central posquirúrgica, por daño del eje hipotálamo hipofisario con déficit de hormona antidiurética. La diabetes mellitus produciría glucosuria, el SIADH causa hiponatremia con orina concentrada, el síndrome perdedor de sal cerebral cursa con hiponatremia y la insuficiencia suprarrenal con hiponatremia e hiperkalemia. Se trata con desmopresina e hidratación."
     },
     {
       "id": 156,
@@ -2136,7 +2128,7 @@
         "Tumor de órbita"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Una niña de 2 años con estrabismo (desviación lateral) y leucocoria (reflejo pupilar blanco) unilateral tiene un retinoblastoma hasta demostrar lo contrario, el tumor intraocular maligno más frecuente en la infancia. El estrabismo es la segunda forma de presentación después de la leucocoria. La catarata congénita también causa leucocoria, pero habitualmente es bilateral o presente desde el nacimiento, el glaucoma congénito cursa con lagrimeo y fotofobia, la retinopatía del prematuro se asocia a prematuridad y un tumor de órbita produce proptosis. Requiere derivación urgente a oftalmología y estudio con fondo de ojo y ecografía."
     },
     {
       "id": 157,
@@ -2149,7 +2141,7 @@
         "Rosuvastatina 10 mg/día"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "Un paciente de 66 años, diabético e hipertenso con infarto previo, tiene un riesgo cardiovascular muy alto, y en prevención secundaria el objetivo prioritario es bajar el colesterol LDL con una estatina de alta intensidad, como atorvastatina 40 mg al día, incluso con triglicéridos elevados (325 mg/dl) y HDL bajo, que mejoran en parte con la estatina. Los fibratos (fenofibrato, gemfibrozilo) disminuyen triglicéridos pero no han demostrado beneficio cardiovascular consistente como tratamiento inicial, el gemfibrozilo aumenta el riesgo de miopatía con estatinas, los omega 3 son coadyuvantes y la rosuvastatina 10 mg tiene intensidad moderada."
     },
     {
       "id": 158,
@@ -2162,7 +2154,7 @@
         "Administrar adrenalina endovenosa en bolo"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Paciente con dolor torácico que cae inconsciente, sin respiración ni pulso: paro cardiorrespiratorio presenciado, probablemente por síndrome coronario agudo con arritmia maligna. Tras confirmar el paro y activar el código, la prioridad absoluta es iniciar de inmediato compresiones torácicas de alta calidad, porque la perfusión coronaria y cerebral depende de ellas. Monitor con paletas, adrenalina, intubación y electrocardiograma son pasos posteriores, que no deben retrasar las compresiones ni interrumpirlas. Perla: en el algoritmo SVB/SVCA el orden es compresiones, desfibrilación precoz si hay ritmo desfibrilable y luego vía aérea y drogas."
     },
     {
       "id": 159,
@@ -2175,7 +2167,7 @@
         "Ecografía abdominal"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Cirrótico con ascitis a tensión, fiebre y deterioro del sensorio: hay que descartar peritonitis bacteriana espontánea, que se diagnostica con paracentesis diagnóstica y estudio del líquido ascítico (recuento de polimorfonucleares sobre 250 por mm3, citoquímico y cultivo en frascos de hemocultivo). Es el examen de elección porque define la conducta inmediata, que es iniciar antibiótico y albúmina. Los hemocultivos complementan pero no confirman la PBE, el hemograma es inespecífico, y la TAC o la ecografía no diagnostican infección del líquido. Perla: toda ascitis de un cirrótico que se hospitaliza o se descompensa debe puncionarse."
     },
     {
       "id": 160,
@@ -2188,7 +2180,7 @@
         "Iniciar AINEs orales"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Tos y opresión de predominio nocturno con rinorrea y disfonía que empeoran en primavera orientan a rinitis alérgica estacional con tos por goteo posterior, o a una vía aérea superior alérgica. El tratamiento inicial es antihistamínico oral (con o sin corticoide nasal). El omeprazol se reserva para tos por reflujo, que daría pirosis y no estacionalidad. Los antibióticos no tienen lugar sin signos de infección bacteriana y los corticoides orales y AINEs no son manejo inicial de una rinitis alérgica. Perla: en tos crónica las causas más frecuentes son goteo posnasal, asma y reflujo."
     },
     {
       "id": 161,
@@ -2201,7 +2193,7 @@
         "Test de sangre oculta en deposiciones"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Anemia microcítica con ferritina baja en una paciente de 65 años que usa aspirina y diclofenaco y tiene antecedente de úlcera duodenal: es una anemia ferropénica por pérdida digestiva crónica, probablemente una úlcera o gastropatía por AINE. En todo adulto mayor con anemia ferropénica corresponde estudiar el tubo digestivo, y el examen de elección es la endoscopía digestiva alta, que además permite biopsia y tratamiento. El test de sangre oculta no cambia la conducta y se negativiza con frecuencia, la B12 no explica un VCM bajo y la biopsia de médula no está indicada. Perla: suspender los AINE y usar inhibidor de bomba."
     },
     {
       "id": 162,
@@ -2214,7 +2206,7 @@
         "Iniciar insulina"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Hombre obeso con acantosis nigricans, síntomas clásicos de hiperglicemia y glicemia de ayuno de 318 mg/dl: el diagnóstico de diabetes mellitus tipo 2 está hecho porque con síntomas basta una glicemia sobre 200 mg/dl, sin necesidad de repetir ni de hacer test de tolerancia. Según la guía MINSAL de DM2, se inicia metformina junto con dieta y ejercicio. No se parte con insulina porque no hay cetoacidosis ni descompensación hiperosmolar, y solo dieta o repetir el examen retrasaría el tratamiento. Perla: la insulina se reserva para glicemias muy altas con cetosis o falla de antidiabéticos orales.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Síntomas cardinales con baja de peso y glicemia 318: la norma chilena indica insulina con glicemia >300 sintomática, metformina inicial es lo habitual si no hay HbA1c"
     },
@@ -2229,7 +2221,7 @@
         "Solicitar anticuerpos antifosfolípido a la mujer"
       ],
       "correctAnswer": "d",
-      "explanation": "Hijo previo con defecto del tubo neural: acido folico 4 mg/dia desde 3 meses antes del embarazo, el hipotiroidismo subclinico no cambia la prioridad."
+      "explanation": "Pareja con hijo previo con defecto del tubo neural (anencefalia) que planea un nuevo embarazo: la conducta de prevención es indicar ácido fólico en dosis alta, 4 mg al día, desde al menos 3 meses antes de la concepción. Reduce de forma importante la recurrencia. El cariograma no se justifica porque la anencefalia es multifactorial y no cromosómica, el hermano con trisomía 21 no aumenta el riesgo, el hipotiroidismo subclínico no es la prioridad ni causa de este defecto, y el espermiograma o los anticuerpos antifosfolípido no aplican. Perla: la dosis habitual es 0,4 mg y se sube a 4 mg si hay antecedente de DTN."
     },
     {
       "id": 164,
@@ -2242,7 +2234,7 @@
         "Quistes simples hepáticos"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "Cirrótico alcohólico con lesiones hepáticas focales hipoecogénicas que crecen en seis meses: el diagnóstico más probable es hepatocarcinoma. El crecimiento documentado en un hígado cirrótico es el dato clave, ya que la cirrosis es el principal factor de riesgo del HCC y por eso se hace tamizaje ecográfico semestral. Los nódulos de regeneración son estables, los adenomas ocurren en mujeres jóvenes en hígado sano, y los hemangiomas y quistes simples son benignos, estables y típicamente hiperecogénicos o anecogénicos. Perla: el siguiente paso es TAC o RM con fase arterial y lavado precoz."
     },
     {
       "id": 165,
@@ -2255,7 +2247,7 @@
         "Histerosonografía"
       ],
       "correctAnswer": "d",
-      "explanation": "",
+      "explanation": "Mujer de 73 años con masa anexial sólida, dura y de 8 cm es una masa de alta sospecha de neoplasia ovárica en posmenopausia. Además de la ecografía y del Ca-125, el examen para continuar el estudio y definir extensión y resecabilidad es la TAC de abdomen y pelvis, que evalúa carcinomatosis, adenopatías y ascitis y orienta la cirugía. La ecografía abdominal o transvaginal ya está superada por la palpación de la masa y no agrega a la conducta, la resonancia se reserva para dudas diagnósticas, y la histerosonografía evalúa la cavidad uterina. Perla: toda masa sólida en posmenopáusica se deriva a ginecooncología.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Inconsistente con Enero 2023 P64 (eco TV inicial), la ecografía TV es el primer examen y TAC se usa para etapificar."
     },
@@ -2283,7 +2275,7 @@
         "Pseudomona aureginosa"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Dolor, eritema e hinchazón del pabellón auricular tras un piercing en el cartílago corresponde a pericondritis auricular. El agente más frecuente en perforaciones del cartílago es Pseudomonas aeruginosa, que coloniza bien el cartílago avascular, por lo que el tratamiento empírico debe cubrirla (ciprofloxacino). Staphylococcus aureus y Streptococcus pyogenes causan celulitis y erisipela del lóbulo y de partes blandas, y son menos frecuentes en el cartílago. S. epidermidis y S. agalactiae no son agentes típicos. Perla: la perforación del lóbulo se complica con S. aureus, la del cartílago con Pseudomonas."
     },
     {
       "id": 168,
@@ -2296,7 +2288,7 @@
         "Realizar maniobras de reposición vestibular"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Vértigo intenso de segundos de duración, desencadenado por movimientos cefálicos, sin síntomas auditivos ni signos neurológicos y con Dix-Hallpike positivo: vértigo posicional paroxístico benigno, que puede aparecer tras un traumatismo craneano. El tratamiento es la maniobra de reposición canalicular (Epley o Semont), que es curativa. Los fármacos supresores vestibulares como difenidol o betahistina no tratan la causa y los antivertiginosos prolongados retrasan la compensación. La prueba calórica y la resonancia no se necesitan con un examen neurológico normal y una maniobra diagnóstica positiva."
     },
     {
       "id": 169,
@@ -2309,7 +2301,7 @@
         "Resonancia magnética nuclear de cerebro y médula"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Paciente diabético, dislipidémico e hipertenso con dolor en pantorrillas al caminar dos cuadras que lo obliga a detenerse tiene claudicación intermitente, o sea enfermedad arterial periférica. La ecografía Doppler de extremidades inferiores, con índice tobillo-brazo, confirma el diagnóstico. La neuropatía sensitiva diabética que también presenta (dolor urente, hipoestesia y arreflexia) se diagnostica clínicamente, por lo que ni la electromiografía ni la resonancia son necesarias. La B12 sería útil en neuropatía por metformina pero no explica la claudicación. Perla: la claudicación neurogénica mejora al sentarse, la vascular al detenerse.",
       "revisar": true,
       "audit_nota": "MAL_VINCULADA: Claudicacion intermitente en diabetico con neuropatia es pie diabetico/enfermedad arterial periferica, la explicacion habla de dislipidemias y es plantilla generica, proponer diab-22"
     },
@@ -2324,7 +2316,7 @@
         "Valaciclovir 1 gramo vía oral cada 8 horas, por 7 días"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Dolor hemicraneano unilateral previo y luego lesiones vesiculares en la piel en un territorio de dermatoma: herpes zóster. El tratamiento es antiviral oral dentro de 72 horas desde el inicio de las lesiones, y valaciclovir 1 g cada 8 horas por 7 días es una pauta de primera línea. Flucloxacilina y mupirocina son antibióticos para impétigo o celulitis bacteriana, no para una infección viral. La prednisona sola no trata el virus y no se usa como tratamiento inicial. Perla: si el zóster compromete la rama oftálmica del trigémino se agrega derivación a oftalmología."
     },
     {
       "id": 171,
@@ -2337,7 +2329,7 @@
         "Dispositivo intrauterino liberador de levonorgestrel"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Mujer a 8 meses del parto con lactancia y amenorrea: el método de amenorrea de lactancia sólo es válido hasta los 6 meses posparto, con lactancia exclusiva y amenorrea, por lo que ya no protege de modo confiable. Debe elegirse un método sin estrógenos, y el dispositivo intrauterino liberador de levonorgestrel es de alta eficacia, de larga duración y compatible con lactancia. Los anticonceptivos combinados (oral, parche o inyectable con estradiol) están contraindicados o no recomendados en lactancia, porque disminuyen la producción de leche. Perla: la píldora de sólo progestina es otra opción en puérperas que amamantan."
     },
     {
       "id": 172,
@@ -2350,7 +2342,7 @@
         "T de cobre"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "A las 72 horas de una relación sin protección, la anticoncepción de emergencia más efectiva es la T de cobre, que puede colocarse hasta 5 días después y tiene una eficacia sobre 99%. El levonorgestrel en dosis única es eficaz sobre todo en las primeras 72 horas y pierde efectividad con el tiempo, y el esquema de dos dosis de 0,75 mg es el antiguo con igual eficacia pero más efectos adversos. El método Yuzpe es el menos eficaz y peor tolerado, y el anillo vaginal no es un método de emergencia. Perla: la T de cobre además queda como anticoncepción posterior."
     },
     {
       "id": 173,
@@ -2363,7 +2355,7 @@
         "Eccema del pezón"
       ],
       "correctAnswer": "a",
-      "explanation": "",
+      "explanation": "Mujer de 52 años con eritema, prurito y descamación unilateral y crónica de pezón y aréola, que no responde a tratamientos tópicos: enfermedad de Paget de la mama, expresión cutánea de un carcinoma ductal subyacente. El diagnóstico se hace con biopsia, que muestra células de Paget. El cáncer inflamatorio produce eritema y edema difuso de toda la mama con piel de naranja y evolución rápida, no limitada al complejo areola-pezón. El eccema suele ser bilateral y responde a corticoides, la mastitis candidiásica ocurre en lactancia y el papiloma causa secreción sanguinolenta. Perla: lesión de pezón unilateral crónica es cáncer hasta demostrar lo contrario.",
       "image": {
         "src": "/data/reconstrucciones/img/diciembre-2022_p173.jpg",
         "credit": "Goljan, Pathology, link 22-141",
@@ -2381,7 +2373,7 @@
         "Hospitalización por preclamsia a las 30 semanas"
       ],
       "correctAnswer": "d",
-      "explanation": ""
+      "explanation": "La licencia médica tipo 1 corresponde a enfermedad o accidente común, como una amigdalitis bacteriana. La lumbago en un trabajador de la construcción podría ser de origen laboral y la fractura en el trayecto casa-trabajo es accidente del trayecto, que se tramita como accidente laboral con licencia tipo 5. La invalidez por AVE se maneja por el sistema de pensiones, no con licencia común. La hospitalización por preeclampsia durante el embarazo corresponde a licencia tipo 7 (patología del embarazo). Perla: tipo 3 es maternidad, tipo 4 enfermedad grave del niño menor de un año."
     },
     {
       "id": 175,
@@ -2394,7 +2386,7 @@
         "Lesión del nervio radial"
       ],
       "correctAnswer": "b",
-      "explanation": ""
+      "explanation": "Mujer obesa de 45 años con parestesias nocturnas en la mano que la despiertan, mejoran al sacudirla (signo de la sacudida o flick sign) y pérdida de fuerza de puño al amasar: síndrome del túnel carpiano por compresión del nervio mediano. El tumor de Pancoast produce dolor de hombro y síndrome de Horner, la enfermedad de Dupuytren causa contractura de la fascia palmar sin parestesias, la hernia cervical se acompaña de dolor cervical con radiculopatía, y la lesión radial da mano caída. Perla: el examen confirmatorio es la electromiografía y el tratamiento inicial es férula nocturna."
     },
     {
       "id": 176,
@@ -2407,7 +2399,7 @@
         "Conjuntivitis bacteriana crónica"
       ],
       "correctAnswer": "d",
-      "explanation": "",
+      "explanation": "Hombre de 70 años con lesión de crecimiento lento en un año, en el párpado inferior, localizada en una zona fotoexpuesta: el diagnóstico más probable es el carcinoma basocelular, el cáncer palpebral más frecuente (cerca del 90%), con nódulo perlado, telangiectasias y a veces úlcera central. El orzuelo y el chalazión son lesiones inflamatorias agudas o subagudas, dolorosas y que se resuelven en semanas. El melanoma es pigmentado y mucho menos frecuente, y la conjuntivitis crónica no forma una masa. Perla: lesión palpebral que crece, sangra o hace perder pestañas debe biopsiarse.",
       "image": {
         "src": "/data/reconstrucciones/img/diciembre-2022_p176.jpg",
         "credit": "Kanski, p. 28",
@@ -2425,7 +2417,7 @@
         "Tasa de letalidad"
       ],
       "correctAnswer": "a",
-      "explanation": ""
+      "explanation": "La descripción relaciona los casos nuevos de un periodo con las personas en riesgo al inicio del seguimiento, que es la definición de incidencia acumulada, una proporción que estima el riesgo de enfermar. La tasa de incidencia (densidad de incidencia) usa como denominador persona-tiempo en riesgo, por eso no es la respuesta. La tasa de ataque es una incidencia acumulada usada en brotes, sobre una población expuesta y en periodos cortos, no para un cáncer. La prevalencia mide casos existentes y la letalidad relaciona muertes con enfermos. Perla: incidencia acumulada es riesgo, densidad de incidencia es velocidad."
     },
     {
       "id": 178,
@@ -2438,7 +2430,7 @@
         "Tratar con doxicilina"
       ],
       "correctAnswer": "a",
-      "explanation": "Úlcera indolora en horquilla vulvar con adenopatía inguinal a las 3 semanas del contacto sugiere sífilis primaria: penicilina benzatina."
+      "explanation": "Úlcera genital única, aparecida unas tres semanas después de un contacto de riesgo, junto con adenopatía inguinal, sin otros síntomas, es un chancro de sífilis primaria. El periodo de incubación de tres semanas y la lesión indolora orientan a esta etiología. El tratamiento es penicilina benzatina 2,4 millones de UI intramuscular dosis única, y no se debe esperar confirmación para tratar. El aciclovir y la PCR para herpes corresponderían a vesículas o úlceras dolorosas múltiples, el fluconazol a candidiasis y la doxiciclina a clamidia o donovanosis. Perla: se estudia además VIH y otras ITS."
     },
     {
       "id": 179,
@@ -2451,7 +2443,7 @@
         "Ondasentrón oral"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Primigesta de 12 semanas con náuseas y vómitos que afectan su calidad de vida: el manejo inicial farmacológico es la combinación de doxilamina más piridoxina (vitamina B6), de primera línea y segura en el embarazo, después de medidas dietéticas. Metoclopramida y ondansetrón son de segunda línea si no hay respuesta, y los corticoides se reservan para casos refractarios por su riesgo de hendidura palatina en el primer trimestre. El omeprazol no trata las náuseas del embarazo. Perla: la hiperémesis grave con deshidratación o cetosis requiere hospitalización con hidratación endovenosa y tiamina."
     },
     {
       "id": 180,
@@ -2464,7 +2456,7 @@
         "Troponinas plasmáticas"
       ],
       "correctAnswer": "c",
-      "explanation": ""
+      "explanation": "Dolor torácico intenso migratorio con irradiación al dorso y abdomen, hipertensión y disminución de pulsos de extremidades inferiores es una disección aórtica. En un paciente estable, el examen de elección para confirmar el diagnóstico es el angioTAC de tórax y abdomen, rápido, con alta sensibilidad y especificidad y que muestra extensión y ramas comprometidas. El ecocardiograma transtorácico es poco sensible para la aorta descendente, la coronariografía y las troponinas no confirman una disección y la radiografía de tórax solo puede sugerirla con ensanchamiento mediastínico. Perla: el ecocardiograma transesofágico es la alternativa en inestables."
     }
   ]
 }

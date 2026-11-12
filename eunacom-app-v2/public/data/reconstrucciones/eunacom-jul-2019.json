@@ -6,33 +6,29 @@
   "questions": [
     {
       "id": 1,
-      "question": "Las preguntas incorrectas ya no descontaban, por lo que no era recomendable omitir.",
+      "question": "Una primigesta de 39 semanas, con embarazo fisiológico, ingresa en trabajo de parto. Al examen tiene 3 contracciones cada 10 minutos, de buena intensidad, y latidos cardiofetales de 140 lpm con un registro tranquilizador. Al tacto vaginal tiene 6 cm de dilatación, cuello borrado 100%, membranas íntegras y presentación cefálica en espinas 0, con la sutura sagital en sentido transversal y la fontanela posterior hacia la izquierda. Dos horas antes tenía 4 cm. ¿Cuál es la conducta más adecuada?",
       "options": [
-        "Ninguna de las anteriores es correcta",
-        "Todas las anteriores son correctas",
-        "No se dispone de información suficiente",
-        "Otra alternativa no descrita",
-        "Otra alternativa no descrita"
+        "Realizar una cesárea por situación transversa",
+        "Realizar una rotación manual de la cabeza fetal",
+        "Aplicar fórceps",
+        "Mantener la vigilancia del trabajo de parto",
+        "Iniciar oxitocina por variedad de posición anómala"
       ],
-      "correctAnswer": "c",
-      "explanation": "Está en presentación cefálica (fontanela se palpa en el centro de la pelvis), pero en posición transversa, la que no debe ser confundida con la situación transversa, que sí es indicación de cesárea. Aparte de eso está todo evolucionando bien, en fase activa (4 a 9 cm de dilatación).",
-      "excluir": true,
-      "audit_nota": "Enunciado es texto de plataforma, alternativas genericas repetidas, explicacion habla de posicion transversa de otra pregunta"
+      "correctAnswer": "d",
+      "explanation": "La paciente está en la fase activa del trabajo de parto, con un progreso adecuado (de 4 a 6 cm en 2 horas), dinámica uterina normal y un registro fetal tranquilizador. La presentación es cefálica en posición occípito transversa izquierda, que es habitual a esta altura: la cabeza rota a occípito anterior al descender. No debe confundirse con la situación transversa, en que el eje fetal es perpendicular al materno y que sí obliga a una cesárea. Por eso se mantiene la vigilancia. La rotación manual y el fórceps exigen dilatación completa y una indicación precisa. La oxitocina no está indicada sin un trabajo de parto detenido ni una dinámica insuficiente."
     },
     {
       "id": 2,
-      "question": "Las preguntas aparecieron, por primera vez, en dos columnas (ahorraron hojas, a expensas de tener imágenes muy pequeñas).",
+      "question": "Un paciente de 58 años, hospitalizado hace 10 días por una pancreatitis aguda, tiene un catéter venoso central. Inicia fiebre de 39 °C y calofríos, sin otro foco evidente. Se toman hemocultivos periféricos y por el catéter, se retira el catéter y se inicia tratamiento empírico con vancomicina y cefepime. A las 48 horas, los hemocultivos informan Staphylococcus aureus sensible a oxacilina (cloxacilina), cefazolina, clindamicina y vancomicina. ¿Cuál es la conducta antibiótica más adecuada?",
       "options": [
-        "Ninguna de las anteriores es correcta",
-        "Todas las anteriores son correctas",
-        "No se dispone de información suficiente",
-        "Otra alternativa no descrita",
-        "Otra alternativa no descrita"
+        "Mantener vancomicina y cefepime",
+        "Suspender cefepime y mantener vancomicina sola",
+        "Cambiar a cloxacilina endovenosa",
+        "Cambiar a clindamicina oral",
+        "Agregar gentamicina al esquema actual"
       ],
-      "correctAnswer": "d",
-      "explanation": "Hay dos cosas importantes: 1. toda infección intrahospitalaria debe estudiarse y mientras tanto recibir cobertura para microorganismos resistentes (en este caso la vancomicina cubre S. aureus meticilino resistente, Enterococo resistente a ampicilina y Neumococo resistente a penicilina, aunque este último no produce infecciones intrahospitalarias. 2. Una vez que se identifica el microorganismo, se cubre de la manera más simple posible. 3. La cloxacilina es más potente antibiótico que la vancomicina en las bacterias sensibles. 4. El cefotaximo no cubría bien pseudomona, así que al inicio habría sido mejor dejar vancomicina + cefoperazona o cefepime.",
-      "excluir": true,
-      "audit_nota": "Enunciado es una frase del libro sobre columnas y opciones genéricas repetidas, pregunta irrecuperable (explicación habla de IIH y vancomicina)"
+      "correctAnswer": "c",
+      "explanation": "Frente a una infección asociada a la atención de salud, como la bacteriemia por catéter, se parte con cobertura empírica amplia que incluya Staphylococcus aureus resistente a meticilina, por ejemplo con vancomicina, y bacilos gramnegativos, por ejemplo con cefepime. Cuando se identifica el microorganismo y su sensibilidad, se ajusta el esquema al antibiótico más simple y eficaz. Para S. aureus sensible a meticilina, la cloxacilina es más efectiva que la vancomicina, con menor mortalidad y menos recaídas, así que se debe cambiar a ella. Mantener la vancomicina es inferior y favorece la resistencia. La clindamicina oral no sirve para una bacteriemia. La gentamicina no aporta y es nefrotóxica."
     },
     {
       "id": 3,
@@ -46,6 +42,19 @@
       ],
       "correctAnswer": "c",
       "explanation": "Tiene un síndrome coronario agudo con un bloqueo completo de rama izquierda de reciente aparición, por lo que debe ser manejado igual que un SCA con supradesnivel del ST: reperfusión inmediata."
+    },
+    {
+      "id": 4,
+      "question": "Un lactante de 11 meses de edad, con antecedente de haber nacido prematuro, a las 32 semanas, presenta peso de 7.450 gramos.\n\nTabla peso/edad para niños de 0 a 24 meses (kg):\nMeses | -2DS | -1DS | Prom. | 1DS | 2DS\n0 | 2.525 | 2.929 | 3.333 | 3.939 | 4.444\n1 | 3.434 | 3.939 | 4.545 | 5.151 | 5.858\n2 | 4.343 | 4.949 | 5.656 | 6.363 | 7.171\n3 | 5.050 | 5.757 | 6.464 | 7.272 | 8.080\n4 | 5.656 | 6.262 | 7.070 | 7.878 | 8.787\n5 | 6.060 | 6.767 | 7.575 | 8.484 | 9.393\n6 | 6.464 | 7.171 | 7.979 | 8.888 | 9.898\n7 | 6.767 | 7.474 | 8.383 | 9.292 | 10.403\n8 | 6.969 | 7.777 | 8.686 | 9.696 | 10.807\n9 | 7.171 | 8.080 | 8.989 | 9.999 | 11.110\n10 | 7.474 | 8.282 | 9.292 | 10.302 | 11.514\n11 | 7.676 | 8.484 | 9.494 | 10.605 | 11.817\n12 | 7.777 | 8.686 | 9.696 | 10.908 | 12.120\n13 | 7.979 | 8.888 | 9.999 | 11.110 | 12.423\n14 | 8.181 | 9.090 | 10.201 | 11.413 | 12.726\n15 | 8.383 | 9.292 | 10.403 | 11.615 | 12.928\n16 | 8.484 | 9.494 | 10.605 | 11.817 | 13.231\n17 | 8.686 | 9.696 | 10.807 | 12.120 | 13.534\n18 | 8.888 | 9.898 | 11.009 | 12.322 | 13.837\n19 | 8.989 | 10.100 | 11.211 | 12.625 | 14.039\n20 | 9.191 | 10.201 | 11.413 | 12.827 | 14.342\n21 | 9.292 | 10.403 | 11.615 | 13.029 | 14.645\n22 | 9.494 | 10.605 | 11.918 | 13.332 | 14.847\n23 | 9.595 | 10.807 | 12.120 | 13.534 | 15.150\n24 | 9.797 | 10.908 | 12.322 | 13.736 | 15.453\n\n¿Cuál es el diagnóstico nutricional?",
+      "options": [
+        "Desnutrición",
+        "Riesgo de desnutrición",
+        "Eutrófico",
+        "Sobrepeso",
+        "Obesidad"
+      ],
+      "correctAnswer": "b",
+      "explanation": "Por haber nacido a las 32 semanas se debe corregir la edad: a la edad cronológica (11 meses) se le resta el tiempo que faltaba para las 40 semanas (8 semanas, es decir 2 meses). Tiene entonces 9 meses y su peso cae entre -1 y -2 DS: riesgo de desnutrición."
     },
     {
       "id": 5,
@@ -110,7 +119,7 @@
         "Enfermedad pulmonar intersticial"
       ],
       "correctAnswer": "c",
-      "explanation": "Es un cáncer bronquial o pulmonar clásico, tanto por la clínica, como por la imagen."
+      "explanation": "Un fumador de 20 paquetes año, de 55 años, con tos de 3 meses, disnea y expectoración, con murmullo pulmonar conservado y una radiografía que muestra una lesión sospechosa, tiene como diagnóstico más probable un cáncer bronquial: el tabaco es el factor de riesgo principal, y la tos persistente en un fumador mayor de 50 años obliga a descartarlo. El asma se presenta con sibilancias y reversibilidad. La EPOC tendría un examen pulmonar con espiración prolongada y radiografía de hiperinsuflación. La hidatidosis pulmonar se ve en zonas endémicas, con quiste de pared fina. La enfermedad intersticial daría crépitos. Perla: tos persistente en fumador con imagen pulmonar, estudie con TAC y biopsia."
     },
     {
       "id": 10,
@@ -136,7 +145,7 @@
         "Prevención de obesidad en la población de riesgo de diabetes"
       ],
       "correctAnswer": "c",
-      "explanation": "La única respuesta aceptable es la C, ya que es la única medida de prevención terciaria y es la forma en que se plantea la pregunta (evitar complicaciones). La A y B son prevención secundaria. La D y E son prevención primaria.",
+      "explanation": "Es una pregunta muy rara y muy mala, pero la única respuesta aceptable es la C, ya que es la única medida de prevención terciaria y es la forma en que se plantea la pregunta (evitar complicaciones). La A y B son prevención secundaria. La D y E son prevención primaria.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -151,7 +160,7 @@
         "Síndrome de Asherman"
       ],
       "correctAnswer": "b",
-      "explanation": "Tiene una menopausia normal (mayor a 40 años), que es un hipogonadismo (estrógenos bajos) hipergonadotrópico (FSH alta)."
+      "explanation": "Una mujer de 45 años que suspende los anticonceptivos orales y presenta amenorrea de 4 meses, con FSH elevada (60 UI/L) y estradiol bajo (13 pg/ml), tiene un hipogonadismo hipergonadotrópico: el ovario no responde y, sin retroalimentación negativa por estrógenos, la FSH sube. Corresponde a una insuficiencia ovárica o perimenopausia. El síndrome de ovario poliquístico cursa con LH y andrógenos elevados y FSH normal. El hipogonadismo hipogonadotrópico tendría FSH baja. La atrofia endometrial por anticonceptivos y el síndrome de Asherman no elevan la FSH. TSH y prolactina normales descartan otras causas. Perla: amenorrea con FSH alta, falla ovárica."
     },
     {
       "id": 13,
@@ -312,7 +321,7 @@
         "Agregar sitagliptina"
       ],
       "correctAnswer": "a",
-      "explanation": "Recordar que en el mayor de 75 años el objetivo de la HbA1c es menor a 8%. Por tanto, está bien."
+      "explanation": "Un adulto mayor de 81 años, con diabetes tratada con metformina y una hemoglobina glicosilada de 7,5%, está dentro de la meta individualizada para su edad y comorbilidades: en mayores de 75 años la meta de HbA1c es menos estricta (7,5% a 8,5%, según estado funcional) para evitar hipoglucemias. Por eso se mantiene el tratamiento. Agregar glibenclamida o insulina aumenta mucho el riesgo de hipoglucemia grave y caídas. Subir la metformina o agregar sitagliptina no se justifica porque la meta se cumple. Perla: en el adulto mayor frágil, es preferible un control menos estricto que arriesgar hipoglucemias."
     },
     {
       "id": 25,
@@ -405,7 +414,7 @@
         "Riesgo atribuible porcentual"
       ],
       "correctAnswer": "a",
-      "explanation": "Es la definición de RR, que es la razón de incidencias. B y E son medidas de impacto."
+      "explanation": "Para establecer cuántas veces aumentan los casos de asma en fumadores en comparación con no fumadores, la medida adecuada es el riesgo relativo, razón entre la incidencia en expuestos y no expuestos; un valor mayor de 1 indica que el factor aumenta el riesgo. El riesgo atribuible y el riesgo atribuible porcentual expresan cuánta enfermedad se debe a la exposición, es decir una diferencia, no una razón. La razón de prevalencias compara prevalencias, no casos nuevos. La tasa de incidencia describe la frecuencia de la enfermedad en un grupo, sin comparar. Perla: el RR mide fuerza de asociación, el riesgo atribuible mide impacto."
     },
     {
       "id": 32,
@@ -457,7 +466,7 @@
         "Hidrocéfalo normotensivo"
       ],
       "correctAnswer": "c",
-      "explanation": "Es una clásica demencia vascular de tipo subcortical. El antecedente de AVE es algo muy sugerente y la labilidad emocional y desinhibición son sugerentes de la localización subcortical. Si no hubiese estado en las opciones, sería una depresión."
+      "explanation": "Es una clásica demencia vascular de tipo subcortical. Es una pregunta muy difícil, pero el antecedente de AVE es algo muy sugerente y la labilidad emocional y desinhibición son sugerentes de la localización subcortical. Si no hubiese estado en las opciones, sería una depresión."
     },
     {
       "id": 36,
@@ -514,7 +523,7 @@
         "Cardiopatía hipertrófica"
       ],
       "correctAnswer": "d",
-      "explanation": "Si bien la TGV no suele tener soplos, sí puede tenerlo, ya que la arteria pulmonar queda algo estrecha para la sangre que proviene del ventrículo izquierdo y eso produce flujo turbulento. Además, la TGV es la única cardiopatía cianótica de las alternativas y, por ello, es la respuesta correcta con certeza. La TGV sí se caracteriza por un mediastino delgado."
+      "explanation": "Revisar el resumen de semiología cardíaca. Si bien la TGV no suele tener soplos, sí puede tenerlo, ya que la arteria pulmonar queda algo estrecha para la sangre que proviene del ventrículo izquierdo y eso produce flujo turbulento. Además, la TGV es la única cardiopatía cianótica de las alternativas y, por ello, es la respuesta correcta con certeza. La TGV sí se caracteriza por un mediastino delgado."
     },
     {
       "id": 40,
@@ -553,7 +562,7 @@
         "Tonsilolitiasis"
       ],
       "correctAnswer": "e",
-      "explanation": "Tiene amigdalitos o tonsilolitos clásicos. Se observan y se enseña al paciente a retirárselos con un palillo."
+      "explanation": "Una niña con halitosis y odinofagia leve de 6 meses, amígdalas rosadas con criptas profundas y una secreción blanquecina de aspecto caseoso de 5 mm, tiene una tonsilolitiasis (amigdalolitos): acumulación de restos celulares, bacterias y alimentos en las criptas, sin infección aguda. La mononucleosis infecciosa cursa con fiebre, adenopatías y exudado amigdalino difuso. El absceso peritonsilar causa trismus, fiebre y desviación de la úvula. La amigdalitis bacteriana es aguda, con fiebre. El linfoma amigdalino da asimetría o masa. Perla: halitosis crónica con material caseoso en criptas, tonsilolitos; se tratan retirándolos y con higiene, y la amigdalectomía solo en casos refractarios."
     },
     {
       "id": 43,
@@ -711,7 +720,7 @@
         "Realizar controles periódicos con pruebas de coagulación"
       ],
       "correctAnswer": "e",
-      "explanation": "El manejo de un gemelo muerto depende de la edad gestacional y de la corionicidad. En el primer trimestre siempre se observa evolución, porque no hay nada más que hacer. En el segundo y tercer trimestre los monocoriales se tienen a interrumpir, ya que si uno muere, el otro también, a menos que se pueda hacer alguna otra intervención intrauterina (si muy prematuro).´En los bicoriales, en cambio, se puede observar, pero existe el riesgo de sufrimiento fetal y de coagulación intravascular diseminada. Por tanto, se sigue con pruebas de bienestar fetal y con pruebas de coagulación, ya que, a pesar de que el DD es el examen con el que habitualmente se diagnostica la CID, en el embarazo el CID se altera per sé y, por ello, se usan las pruebas de coagulación (que se alargan en la CID).",
+      "explanation": "Es una pregunta muy difícil, pero el manejo de un gemelo muerto depende de la edad gestacional y de la corionicidad. En el primer trimestre siempre se observa evolución, porque no hay nada más que hacer. En el segundo y tercer trimestre los monocoriales se tienen a interrumpir, ya que si uno muere, el otro también, a menos que se pueda hacer alguna otra intervención intrauterina (si muy prematuro).´En los bicoriales, en cambio, se puede observar, pero existe el riesgo de sufrimiento fetal y de coagulación intravascular diseminada. Por tanto, se sigue con pruebas de bienestar fetal y con pruebas de coagulación, ya que, a pesar de que el DD es el examen con el que habitualmente se diagnostica la CID, en el embarazo el CID se altera per sé y, por ello, se usan las pruebas de coagulación (que se alargan en la CID).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Muerte de un gemelo bicorial a las 26 sem: manejo expectante con vigilancia del sobreviviente, el control de coagulación de rutina está cuestionado (duda E5 Jul 2019 P54)"
     },
@@ -726,7 +735,7 @@
         "Fisura anal"
       ],
       "correctAnswer": "b",
-      "explanation": "La forma en que está redactada es difícil, ya que \"deposiciones semiformadas\" sí orientan a fisura. Sin embargo, la mucosidad (aunque puede ser normal) sugiere algo más la APLV y, además, que hagan énfasis en que está con alimentación mixta y que tiene deposiciones frecuentes, hace que sea mejor marcar la B. También sugiere que sea la B el resto de las opciones, que muestran que las redactó el pediatra general o digestivo y no el cirujano pediátrico. Sea como sea, lo importante es saber que, aunque uno se sepa la materia, siempre tendrá preguntas malas en el Eunacom y por ello es tan importante estudiar bien, hasta lograr un nivel de conocimiento en el que no importe tener algunas malas por leer mal o porque pensaron mal en el minuto de tiempo que tienen.",
+      "explanation": "Ya sé que en clases les dije que era una fisura anal, pero la verdad es que cambié de opinión. La forma en que está redactada es difícil, ya que \"deposiciones semiformadas\" sí orientan a fisura. Sin embargo, la mucosidad (aunque puede ser normal) sugiere algo más la APLV y, además, que hagan énfasis en que está con alimentación mixta y que tiene deposiciones frecuentes, hace que sea mejor marcar la B. También sugiere que sea la B el resto de las opciones, que muestran que las redactó el pediatra general o digestivo y no el cirujano pediátrico. Sea como sea, lo importante es saber que, aunque uno se sepa la materia, siempre tendrá preguntas malas en el Eunacom y por ello es tan importante estudiar bien, hasta lograr un nivel de conocimiento en el que no importe tener algunas malas por leer mal o porque pensaron mal en el minuto de tiempo que tienen.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Lactante de 28 días con estrías de sangre y buen incremento: APLV (proctocolitis) vs fisura anal, el autor de la explicación admite cambiar de opinión"
     },
@@ -785,7 +794,7 @@
         "Polineuropatía"
       ],
       "correctAnswer": "e",
-      "explanation": ""
+      "explanation": "Dolor urente, parestesias en los pies, hipoestesia en calcetín bilateral, paresia de los extensores de los ortejos y disminución de ambos reflejos aquilianos con rotulianos conservados, es un patrón distal y simétrico, con predominio de las extremidades inferiores, que corresponde a una polineuropatía (por ejemplo diabética o carencial). La radiculopatía S1 bilateral produciría pérdida de la sensibilidad en un dermatoma, no en calcetín. El síndrome de cauda equina incluye anestesia en silla de montar y alteración esfinteriana. El síndrome del cono medular tiene compromiso esfinteriano temprano. El Guillain Barré es una parálisis ascendente aguda con arreflexia."
     },
     {
       "id": 60,
@@ -837,7 +846,7 @@
         "Enfermedad pulmonar intersticial difusa"
       ],
       "correctAnswer": "a",
-      "explanation": "Aunque por la edad y por el tabaquismo podría ser un EPOC, lo habitual es que el EPOC tenga más de 15 paquetes-año y, lo más importante, en este caso la espirometría es un patrón obstructivo que mejora con BD, por lo que está confirmado el diagnóstico de asma."
+      "explanation": "Aunque por la edad y por el tabaquismo podría ser un EPOC, la verdad es que lo habitual es que el EPOC tenga más de 15 paquetes-año y, lo más importante, en este caso la espirometría es un patrón obstructivo que mejora con BD, por lo que está confirmado el diagnóstico de asma."
     },
     {
       "id": 64,
@@ -943,7 +952,7 @@
         "Reducación vesical"
       ],
       "correctAnswer": "a",
-      "explanation": "Si bien está claro que tiene una incontinencia urinaria de urgencia, tanto los anticolinérgicos, como la terapia conductual (reeducación vesical sería lo más similar a ello) son tratamientos adecuados. Como se pregunta el tratamiento inicial, la E sigue las recomendaciones norteamericanas.",
+      "explanation": "Es una pregunta muy discutible, ya que, si bien está claro que tiene una incontinencia urinaria de urgencia, tanto los anticolinérgicos, como la terapia conductual (reeducación vesical sería lo más similar a ello) son tratamientos adecuados. Como se pregunta el tratamiento inicial, yo marqué la E, siguiendo las recomendaciones norteamericanas. Pero, la verdad, es que aquello es discutido por las asociaciones de especialistas luego de conversarlo mucho con varios especialistas, ellos recomiendan marcar la A, por ser claramente de urgencia. En fin... lo importante es no pelear con el Eunacom y seguir respondiendo.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Incontinencia de urgencia: anticolinérgico vs reeducación vesical como tratamiento inicial; el propio banco la marca discutible y la clase no la usa."
     },
@@ -958,7 +967,7 @@
         "Raquiestenosis"
       ],
       "correctAnswer": "b",
-      "explanation": "Tiene una espondilitis anquilosante clásica tanto por el lumbago inflamatorio (mayor en la noche y en el reposo) como por la uveítis."
+      "explanation": "Un paciente psoriático, joven, con dolor glúteo profundo de predominio nocturno que cede con la actividad (lumbago inflamatorio), de 3 meses de evolución, y un episodio de uveítis, tiene una espondiloartritis (sacroileítis), asociada a psoriasis y HLA B27. El dolor mecánico, que empeora con el esfuerzo y mejora con el reposo, sugeriría radiculopatía, hernia o estenosis del canal, que no calzan con el cuadro. La espondilodiscitis se asocia a fiebre y dolor intenso con signos infecciosos. La uveítis y la psoriasis son manifestaciones extraarticulares de las espondiloartropatías. Perla: dolor lumbar o glúteo nocturno que mejora con el movimiento, piense en espondiloartritis."
     },
     {
       "id": 73,
@@ -984,7 +993,7 @@
         "Solicitar pieloTAC"
       ],
       "correctAnswer": "c",
-      "explanation": "Que tenga solo 10% de captación y adelgazamiento cortical muestra que el riñón probablemente tiene daño severo e irrecuperable, por lo que estaría indicada la nefrectomía. Eso sí, antes debería pedirse una TAC, ya que igual se puede intentar salvar ese 10% con una pieloplastía.",
+      "explanation": "Pregunta muy discutible y de manejo de especialista, que no debería preguntarse. Que tenga solo 10% de captación y adelgazamiento cortical muestra que el riñón probablemente tiene daño severo e irrecuperable, por lo que estaría indicada la nefrectomía. Eso sí, antes debería pedirse una TAC, ya que igual se puede intentar salvar ese 10% con una pieloplastía. Discutimos mucho esta pregunta con varios especialistas y aunque no hubo consenso, dejaremos como correcta la nefrectomía. Nuevamente, en fin... así es el Eunacom y lo más importante es no pelear con él, sino seguir respondiendo.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Hidronefrosis con 10% de función y adelgazamiento cortical: nefrectomía es plausible pero el propio banco la llama muy discutible (pieloplastía o pieloTAC previo)."
     },
@@ -1038,7 +1047,7 @@
         "Estudio de hemostasia"
       ],
       "correctAnswer": "e",
-      "explanation": "La hipermenorrea siempre se estudia primeramente con una ecografía transvaginal, de modo de buscar una causa anatómica. Si resulta normal y es una adolescente o si es que tiene clínica de alteraciones de la hemostasia, se debe proceder directamente al estudio de la hemostasia, en busca de una enfermedad de Von Willebrand u otra análoga."
+      "explanation": "Es una pregunta difícil, pero la hipermenorrea siempre se estudia primeramente con una ecografía transvaginal, de modo de buscar una causa anatómica. Si resulta normal y es una adolescente o si es que tiene clínica de alteraciones de la hemostasia, se debe proceder directamente al estudio de la hemostasia, en busca de una enfermedad de Von Willebrand u otra análoga."
     },
     {
       "id": 79,
@@ -1064,7 +1073,7 @@
         "Carbamazepina oral"
       ],
       "correctAnswer": "a",
-      "explanation": "Tiene un glaucoma agudo clásico, cuyo tratamiento incluye el manitol ev, gotas mióticas (ej. pilocarpina) y la iridotomía láser."
+      "explanation": "Una mujer de 54 años con cefalea intensa periocular, náuseas y vómitos, ojo rojo con pupila fija en semimidriasis, y que usa topiramato (que puede inducir glaucoma de ángulo cerrado por edema del cuerpo ciliar), tiene un glaucoma agudo, una urgencia oftalmológica. El tratamiento inicial es bajar la presión intraocular con manitol endovenoso, acetazolamida y gotas de timolol y pilocarpina, para luego realizar una iridotomía láser. La clorpromazina, el ketorolaco, el oxígeno con triptanes o la carbamazepina tratan cefaleas, pero no corrigen el bloqueo del ángulo. Perla: cefalea con ojo rojo y pupila fija, piense en glaucoma agudo y no solo en migraña."
     },
     {
       "id": 81,
@@ -1107,7 +1116,7 @@
     },
     {
       "id": 84,
-      "question": "Un paciente de 83 años, calvo, con antecedente de múltiples queratosis actínicas en la cabeza, presenta una lesión en el cuero cabelludo, que notó hace 3 meses y que ha ido creciendo hasta alcanzar un diámetro de 2 x 3 cm. Se muestra a continuación: El diagnóstico más probable es:",
+      "question": "Un paciente de 83 años, calvo, con antecedente de múltiples queratosis actínicas en el cuero cabelludo, presenta una lesión en esa zona que notó hace 3 meses y que ha crecido hasta medir 2 x 3 cm. Al examen se observa un nódulo exofítico, de base indurada, con superficie queratósica y costrosa, ulcerado en el centro y que sangra fácilmente. No tiene pigmento. ¿Cuál es el diagnóstico más probable?",
       "options": [
         "Melanoma",
         "Impétigo",
@@ -1116,9 +1125,7 @@
         "Carcinoma espinocelular"
       ],
       "correctAnswer": "e",
-      "explanation": "Tanto por las queratosis actínicas (premalignas, que evolucionan a cáncer espinocelular) como por la imagen, tiene un cáncer espinocelular.",
-      "excluir": true,
-      "audit_nota": "Ligaduras perdidas (Quera22s, Uveí2s...), clave A coherente con ojo seco vespertino."
+      "explanation": "Un nódulo queratósico, indurado y ulcerado, de crecimiento rápido en meses, sobre piel con daño solar crónico y queratosis actínicas, en un adulto mayor, es típico del carcinoma espinocelular. Las queratosis actínicas son lesiones premalignas que pueden evolucionar a este cáncer, que puede dar metástasis ganglionares. Se confirma con biopsia y se trata con extirpación quirúrgica con márgenes. El melanoma suele ser pigmentado y asimétrico. El impétigo es una infección superficial con costras melicéricas, propia de niños. La dermatitis de contacto y la quemadura solar son procesos inflamatorios difusos, no nódulos que crecen."
     },
     {
       "id": 85,
@@ -1170,7 +1177,7 @@
         "Facticio"
       ],
       "correctAnswer": "d",
-      "explanation": "Tiene un T. de somatización clásico. Por no tener ánimo ganancial, no es facticio."
+      "explanation": "Un paciente con síntomas físicos variados (cefalea, náuseas, mareos, epigastralgia) por dos años, con múltiples exámenes normales, que insiste en más estudios y no busca una ganancia secundaria, tiene un trastorno de somatización (somatomorfo): síntomas físicos múltiples y persistentes, sin causa orgánica que los explique y sin producción voluntaria. El trastorno facticio implica manipulación intencional para asumir el rol de enfermo. El depresivo mayor tendría ánimo bajo y anhedonia. El delirante tiene una creencia fija y falsa. El obsesivo compulsivo cursa con obsesiones y compulsiones."
     },
     {
       "id": 89,
@@ -1222,7 +1229,7 @@
         "Solicitar prueba de provocación bronquial"
       ],
       "correctAnswer": "d",
-      "explanation": "Es un caso clásico de tos, como efecto adverso de los IECAs. Se deben suspender y reemplazar por un ARA2 (ej. losartán)."
+      "explanation": "Un diabético hipertenso en tratamiento con enalapril que presenta tos seca de 3 meses, con examen pulmonar y radiografía normales, tiene una tos inducida por IECA, efecto adverso frecuente por acumulación de bradicinina. La conducta inicial es suspender el enalapril y reemplazarlo por un ARA II, como losartán, que mantiene la nefroprotección sin producir tos. Suspender la metformina no tiene relación. Iniciar salbutamol o hacer una prueba de provocación bronquial sería para asma, que no hay. La codeína solo trata el síntoma sin corregir la causa. Perla: tos seca por IECA puede aparecer semanas o meses después de iniciarlo y desaparece al suspenderlo; el angioedema es el efecto grave."
     },
     {
       "id": 93,
@@ -1248,7 +1255,7 @@
         "Exploración quirúrgica"
       ],
       "correctAnswer": "e",
-      "explanation": "Todo testículo agudo se explora. En este caso, por la edad (adolescente o adulto) y por la clínica, se sospecha una torsión testicular."
+      "explanation": "Un hombre de 16 años con dolor testicular intenso de 8 horas de evolución, que no mejora con la elevación del testículo (signo de Prehn negativo), tiene una torsión testicular hasta demostrar lo contrario, y la conducta es la exploración quirúrgica inmediata, porque el testículo es viable por unas 6 horas y la isquemia prolongada causa infarto. Los antibióticos y analgésicos orales corresponden a una epididimitis, que mejora con la elevación. El Doppler testicular podría ser útil si hay duda, pero no debe retrasar la cirugía si la sospecha es alta. Perla: escroto agudo en un adolescente, explorar sin demora y fijar el testículo contralateral."
     },
     {
       "id": 95,
@@ -1261,7 +1268,7 @@
         "Prediabetes"
       ],
       "correctAnswer": "e",
-      "explanation": "La glicemia de ayuno está en 117, es decir, tiene una glicemia de ayuno alterada (GGA). La glicemia poscarga está normal (menor a 140), por lo que no tiene intolerancia a la glucosa (IGO) ni diabetes (DM). La prediabetes se define como GAA, IGO o GAA + IGO, sin criterios de DM."
+      "explanation": "Es una pregunta difícil, pero la glicemia de ayuno está en 117, es decir, tiene una glicemia de ayuno alterada (GGA). La glicemia poscarga está normal (menor a 140), por lo que no tiene intolerancia a la glucosa (IGO) ni diabetes (DM). La prediabetes se define como GAA, IGO o GAA + IGO, sin criterios de DM."
     },
     {
       "id": 96,
@@ -1287,7 +1294,7 @@
         "Solicitar Doppler fetal"
       ],
       "correctAnswer": "b",
-      "explanation": "Por la redacción, que no permite diferenciar entre una procidencia de cordón y una rotura de vasa previa (ambas tienen sufrimiento fetal, tras la rotura de membranas, pero la rotura de vasa previa tiene metrorragia y, en este caso, solo se dice líquido hemático, lo que orienta más a rotura de vasa previa). De todos modos, el tratamiento en ambas es la interrupción inmediata, por la vía más expedita y aquella se determina con el tacto vaginal (sin embargo, en este caso, se indica que ya tenía 5 cm, por lo que la vía más expedita es la cesárea). En el caso de la procidencia de cordón, el TV, además, podría ayudar a descomprimir el cordón, mientras se organiza el equipo para la cesárea de urgencia (esto hace pensar que realmente se quería preguntar una procidencia de cordón, ya que es la única opción aceptable).",
+      "explanation": "Es una pregunta difícil, por la redacción, que no permite diferenciar entre una procidencia de cordón y una rotura de vasa previa (ambas tienen sufrimiento fetal, tras la rotura de membranas, pero la rotura de vasa previa tiene metrorragia y, en este caso, solo se dice líquido hemático, lo que orienta más a rotura de vasa previa). De todos modos, el tratamiento en ambas es la interrupción inmediata, por la vía más expedita y aquella se determina con el tacto vaginal (sin embargo, en este caso, se indica que ya tenía 5 cm, por lo que la vía más expedita es la cesárea). En el caso de la procidencia de cordón, el TV, además, podría ayudar a descomprimir el cordón, mientras se organiza el equipo para la cesárea de urgencia (esto hace pensar que realmente se quería preguntar una procidencia de cordón, ya que es la única opción aceptable).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Enunciado ambiguo entre vasa previa y procidencia de cordon, con 5 cm el TV es la unica opcion razonable pero la via expedita es cesarea, la propia explicacion lo reconoce"
     },
@@ -1343,7 +1350,7 @@
         "Miocardiopatía hipertrófica"
       ],
       "correctAnswer": "b",
-      "explanation": "Es una estenosis aórtica clásica, probablemente congénita. El pulso débil y de ascenso lento (parvus et tardus) hace que sea una estenosis aórtica y no una MCPHT, que tiene pulso amplio o Celler."
+      "explanation": "Es una estenosis aórtica clásica, probablemente congénita. Deben revisar el resumen de semiología cardíaca completo y aprendérselo hoy de una vez por todas. Insisto: hoy. El pulso débil y de ascenso lento (parvus et tardus) hace que sea una estenosis aórtica y no una MCPHT, que tiene pulso amplio o Celler."
     },
     {
       "id": 102,
@@ -1382,7 +1389,7 @@
         "Neurinoma con compresión del troncoencéfalo"
       ],
       "correctAnswer": "d",
-      "explanation": "El cuadro solo es compatible con una esclerosis múltiple ya que ha tenido múltiples signos focales, de inicio subagudo, que pueden recuperarse (como el trastorno del equilibrio)."
+      "explanation": "Es una pregunta difícil, pero el cuadro solo es compatible con una esclerosis múltiple ya que ha tenido múltiples signos focales, de inicio subagudo, que pueden recuperarse (como el trastorno del equilibrio). Revisar el resumen de semiología neurológica."
     },
     {
       "id": 105,
@@ -1395,7 +1402,7 @@
         "Azitromicina"
       ],
       "correctAnswer": "d",
-      "explanation": "Tiene una neumonía, en contexto de EPOC. En el cuadro clínico no queda del todo claro que requiera hospitalizarse, como para recibir cefotaximo o ceftriaxona (misma cobertura) o si solo requiere tratamiento ambulatorio (con amoxicilina clavulánico, dado que el antecedente de EPOC obliga a cubrir Haemophilus influenzae, lo que también se podría lograr con macrólidos). El apremio respiratorio hace que probablemente la respuesta correcta sea cefotaximo."
+      "explanation": "Tiene una neumonía, en contexto de EPOC. En el cuadro clínico no queda del todo claro que requiera hospitalizarse, como para recibir cefotaximo o ceftriaxona (misma cobertura) o si solo requiere tratamiento ambulatorio (con amoxicilina clavulánico, dado que el antecedente de EPOC obliga a cubrir Haemophilus influenzae, lo que también se podría lograr con macrólidos). El apremio respiratorio hace que probablemente la respuesta correcta sea cefotaximo. Además, la B y E son equivalentes, por lo que podemos asumir que no eran la respuesta esperada por quien redactó la pregunta."
     },
     {
       "id": 106,
@@ -1434,7 +1441,7 @@
         "Control en 6 meses"
       ],
       "correctAnswer": "b",
-      "explanation": "Se resumen en \"¿Cuál es el examen de elección ante la sospecha de hipoacusia congénita?\" y la respuesta es potenciales evocados auditivos. Las emisiones otoacústicas son una opción más barata, como screening en los pacientes asintomáticos, pero si hay una sospecha, lo ideal es pedir potenciales evocados. Eso sí, a los 4 años es posible que el paciente ya coopere en la audiometría.",
+      "explanation": "Es una pregunta difícil y discutible, pero se resumen en \"¿Cuál es el examen de elección ante la sospecha de hipoacusia congénita?\" y la respuesta es potenciales evocados auditivos. Las emisiones otoacústicas son una opción más barata, como screening en los pacientes asintomáticos, pero si hay una sospecha, lo ideal es pedir potenciales evocados. Eso sí, a los 4 años es posible que el paciente ya coopere en la audiometría, por lo que técnicamente es una mala pregunta.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Explicación admite que es discutible: sospecha de hipoacusia en niño de 4 años puede estudiarse con evaluación fonoaudiológica/audiometría, potenciales evocados es la clave pero no el estudio inicial habitual"
     },
@@ -1559,18 +1566,16 @@
     },
     {
       "id": 118,
-      "question": "Una paciente de 33 años, cursando embarazo de 40 semanas, inicia trabajo de parto. Se realiza control del parto, que constata dilatación cervical completa y cabeza en espinas +2. El monitoreo electrónico fetal muestra lo siguiente: La conducta más adecuada es:",
+      "question": "Una paciente de 33 años, con embarazo de 40 semanas y analgesia epidural instalada, está en trabajo de parto. El examen constata dilatación cervical completa, presentación cefálica en occípito anterior y cabeza en espinas +2. El monitoreo electrónico fetal muestra una bradicardia fetal sostenida de 80 lpm desde hace 12 minutos, con variabilidad mínima, que no ha cedido pese a lateralizar a la madre, suspender la oxitocina, hidratarla y administrarle oxígeno. ¿Cuál es la conducta más adecuada?",
       "options": [
         "Realizar cesárea de urgencia",
         "Realizar fórceps",
         "Solicitar perfil biofísico",
-        "Lateralizar a la madre y administrarle oxígeno",
+        "Administrar tocolíticos y reevaluar en 30 minutos",
         "Mantener una conducta expectante"
       ],
       "correctAnswer": "b",
-      "explanation": "Tiene una bradicardia fetal mantenida (mayor a 10 minutos), por lo que se debe interrumpir inmediatamente por la vía más expedita. En este caso, la vía más expedita es el fórceps, ya que cumple con todos los requisitos: cefálica, dilatación completa, espinas +2 y anestesia (aunque no se menciona, pero tampoco se puede hacer una cesárea sin anestesia).",
-      "excluir": true,
-      "audit_nota": "Registro fetal no incluido, la explicacion supone bradicardia mantenida"
+      "explanation": "Una bradicardia fetal sostenida por más de 10 minutos que no responde a las medidas de reanimación intrauterina (lateralizar, suspender la oxitocina, hidratar, dar oxígeno) es un registro categoría III y obliga a interrumpir el embarazo de inmediato por la vía más expedita. Con dilatación completa, presentación cefálica en occípito anterior, espinas +2 y analgesia, se cumplen los requisitos del parto instrumental, así que el fórceps es más rápido que la cesárea. La cesárea sería la vía si la cabeza estuviera alta o no se cumplieran las condiciones. El perfil biofísico, la tocólisis y la conducta expectante retrasan una extracción urgente."
     },
     {
       "id": 119,
@@ -1598,7 +1603,7 @@
         "Realizar estudio de líquido pleural"
       ],
       "correctAnswer": "e",
-      "explanation": "La radiografía muestra únicamente un derrame pleural izquierdo y, por tanto, se debe puncionar y estudiar. Además, queda la duda si se trata de un derrame tuberculoso o de otra causa, ya que respondió parcialmente a la amoxicilina y tiene una clínica aguda, sugerente de neumonía bacteriana, por lo que podría ser paraneumónico. Finalmente, el manejo de los contactos de tuberculosis, se hace apenas se diagnostica el caso y no cuando ya está en la fase bisemanal, en que ya no contagia (además que el estudio de los contactos es con BK y RxTx).",
+      "explanation": "Es una pregunta discutible, sin embargo, la radiografía muestra únicamente un derrame pleural izquierdo y, por tanto, se debe puncionar y estudiar. Además, queda la duda si se trata de un derrame tuberculoso o de otra causa, ya que respondió parcialmente a la amoxicilina y tiene una clínica aguda, sugerente de neumonía bacteriana, por lo que podría ser paraneumónico. Finalmente, el manejo de los contactos de tuberculosis, se hace apenas se diagnostica el caso y no cuando ya está en la fase bisemanal, en que ya no contagia (además que el estudio de los contactos es con BK y RxTx).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Derrame pleural con contacto TBC, punzar vs iniciar tratamiento es discutible, ya reconocido en la explicacion"
     },
@@ -1678,7 +1683,7 @@
         "Anticuerpos anti-Sm"
       ],
       "correctAnswer": "d",
-      "explanation": "La historia es compatible con un síndrome de Sjögren (tiene el síndrome de Sicca: xeroftalmia y xerostomía). El 90% tiene FR positivo. Además, es frecuente que tengan positivos los ANA, con un perfil ENA que muestra anticuerpos anti-Ro o anti-La positivos."
+      "explanation": "La historia es compatible con un síndrome de Sjögren (tiene el síndrome de Sicca: xeroftalmia y xerostomía). El 90% tiene FR positivo. Además, es frecuente que tengan positivos los ANA, con un perfil ENA que muestra anticuerpos anti-Ro o anti-La positivos. Se confirma la biopsia de glándula salival menor o con los anticuerpos anti-Ro o anti-La, aunque actualmente el diagnóstico se realiza en base a una serie de criterios clínicos y de laboratorio, que no vale la pena aprenderse."
     },
     {
       "id": 127,
@@ -1743,7 +1748,7 @@
         "Lupus eritematoso sistémico"
       ],
       "correctAnswer": "d",
-      "explanation": "Que se caracteriza por 1. trombopenia, 2. anemia hemolítica (LDH alta y esquistocitos, junto a la hiperbilirrubinemia indirecta), 3. falla renal (creatinina elevada, HTA) y 4. compromiso nervioso tanto central (convulsiones, compromiso de conciencia) como periférico (parestesias migratorias). El síndrome de Evans es una anemia hemolítica autoinmune, asociada a trombopenia autoinmune (pero le sobra la falla renal). El lupus sí puede verse así exactamente, pero es un hombre y, lo más importante, es un PTT clásico."
+      "explanation": "Es un PTT clásico (pregunta difícil), que se caracteriza por 1. trombopenia, 2. anemia hemolítica (LDH alta y esquistocitos, junto a la hiperbilirrubinemia indirecta), 3. falla renal (creatinina elevada, HTA) y 4. compromiso nervioso tanto central (convulsiones, compromiso de conciencia) como periférico (parestesias migratorias). El síndrome de Evans es una anemia hemolítica autoinmune, asociada a trombopenia autoinmune (pero le sobra la falla renal). El lupus sí puede verse así exactamente, pero es un hombre y, lo más importante, es un PTT clásico."
     },
     {
       "id": 132,
@@ -1782,7 +1787,7 @@
         "Clindamicina"
       ],
       "correctAnswer": "a",
-      "explanation": "Rinosinusitis aguda bacteriana (síntomas >10 días): amoxicilina es el tratamiento de primera línea."
+      "explanation": "Un niño de 11 años con 10 días de congestión nasal y rinorrea mucopurulenta, fiebre de 38,5°C, tos y descarga posterior purulenta tiene una rinosinusitis aguda bacteriana, ya que los síntomas persisten por más de 10 días sin mejoría o se acompañan de fiebre alta y secreción purulenta. El tratamiento de primera línea es la amoxicilina. La prednisona y la clorfenamina no tratan la infección. El paracetamol es sintomático. La clindamicina no cubre bien los gérmenes habituales (neumococo, Haemophilus, Moraxella) y se reserva para alergia a penicilina junto con otros fármacos."
     },
     {
       "id": 135,
@@ -1821,7 +1826,7 @@
         "Tetralogía de Fallot"
       ],
       "correctAnswer": "a",
-      "explanation": "Disnea y edema con soplo sistolico eyectivo paraesternal izquierdo, S2 desdoblado fijo y BCRD: CIA."
+      "explanation": "Un adulto joven con disnea, edema y antecedente de soplo infantil, con un segundo ruido desdoblado fijo, soplo sistólico eyectivo paraesternal izquierdo (flujo pulmonar aumentado) y un bloqueo completo de rama derecha en el ECG, tiene una comunicación interauricular tipo ostium secundum, cardiopatía congénita que se diagnostica en la adultez. El desdoblamiento fijo del segundo ruido es característico. La comunicación interventricular da un soplo holosistólico. La coartación aórtica produce hipertensión de extremidades superiores. El ductus da soplo continuo. La tetralogía de Fallot se manifiesta con cianosis desde la infancia. Perla: desdoblamiento fijo de S2 más BCRD, piense en CIA."
     },
     {
       "id": 138,
@@ -1860,7 +1865,7 @@
         "Laparoscopía exploradora ginecológica"
       ],
       "correctAnswer": "e",
-      "explanation": "No queda claro si están preguntando un huevo anembrionado menor a 25 mm (que se observa y controla con una nueva ecografía en 7 a 14 días) o si es un embarazo heterotópico (es decir, uno normal y otro ectópico), con el embarazo ectópico complicado, caso en el cual habría que hacer una laparoscopía exploradora.",
+      "explanation": "Es una pregunta muy difícil y mal intencionada, ya que no queda claro si están preguntando un huevo anembrionado menor a 25 mm (que se observa y controla con una nueva ecografía en 7 a 14 días) o si es un embarazo heterotópico (es decir, uno normal y otro ectópico), con el embarazo ectópico complicado, caso en el cual habría que hacer una laparoscopía exploradora. Por tener dolor intenso, FC sobre 90 (igual normal en el embarazo), PA de 110/60 (normal también en el embarazo) y la lesión quística en el ovario derecho (que puede ser también el cuerpo lúteo, aunque suele ser sólido-quístico, lo que hace pensar que también pueda ser un embarazo ectópico), creemos que se está preguntando el embarazo heterotópico y se debe proceder a la laparoscopía exploradora, pero solo quien redactó la pregunta sabe realmente qué quería preguntar.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Enunciado sin pregunta final, embarazo heterotópico es raro y la explicación admite ambigüedad (huevo anembrionado vs heterotópico)."
     },
@@ -1875,7 +1880,7 @@
         "Iniciar pioglitazona"
       ],
       "correctAnswer": "b",
-      "explanation": "Si alguien tiene máximo riesgo cardiovascular, por enfermedad coronaria (además de la diabetes), los hipoglicemiantes de elección para agregarle a la metformina son la empaglifozina y el liraglutide, es decir, los análogos de las incretinas. Si no lo sabían, pues ahora ya lo saben."
+      "explanation": "Pregunta ultra específica, pero si alguien tiene máximo riesgo cardiovascular, por enfermedad coronaria (además de la diabetes), los hipoglicemiantes de elección para agregarle a la metformina son la empaglifozina y el liraglutide, es decir, los análogos de las incretinas. Si no lo sabían, pues ahora ya lo saben."
     },
     {
       "id": 142,
@@ -1929,7 +1934,7 @@
         "Histeroscopía"
       ],
       "correctAnswer": "c",
-      "explanation": "Metrorragia persistente tras parto con imágenes quísticas endometriales: descartar NTG con beta-HCG cuantitativa.",
+      "explanation": "Una puérpera de 3 meses con metrorragia persistente y una ecografía con endometrio engrosado de 17 mm y áreas quísticas debe estudiarse para descartar una enfermedad trofoblástica gestacional o restos placentarios; el examen que confirma el diagnóstico es el estudio histológico del tejido endometrial (biopsia o legrado). La beta-HCG es un marcador de apoyo y seguimiento, pero no confirma la naturaleza de la lesión. La resonancia y el TAC no dan diagnóstico de certeza. La histeroscopía es visual y requiere de todas formas biopsia. Perla: sangrado puerperal prolongado con imágenes quísticas endometriales, pida biopsia y beta-HCG.",
       "revisar": true,
       "audit_nota": "la fuente original la califica de discutible/mala"
     },
@@ -1957,7 +1962,7 @@
         "Virus de fiebre amarilla"
       ],
       "correctAnswer": "c",
-      "explanation": "Porque es muy infrecuente la malaria por P. falciparum en América, incluyendo la Amazonía. Sin embargo, la presencia de anemia marcada hace que el diagnóstico sea malaria y no las demás opciones. La clínica es compatible también con el dengue. El virus Zika puede tener la misma clínica, pero suele ser menos intensa; a la fiebre amarilla le falta la ictericia; a la fiebre tifoidea le falta la diarrea."
+      "explanation": "Pregunta muy difícil, en especial porque es muy infrecuente la malaria por P. falciparum en América, incluyendo la Amazonía. Sin embargo, la presencia de anemia marcada hace que el diagnóstico sea malaria y no las demás opciones. La clínica es compatible también con el dengue. El virus Zika puede tener la misma clínica, pero suele ser menos intensa; a la fiebre amarilla le falta la ictericia; a la fiebre tifoidea le falta la diarrea."
     },
     {
       "id": 148,
@@ -1998,7 +2003,7 @@
         "Amlodipino"
       ],
       "correctAnswer": "b",
-      "explanation": "Tiene una insuficiencia renal, con hiperkalemia, hiponatremia y acidosis metabólica. De las complicaciones, la hiperkalemia es la más urgente de mejorar, por el riesgo de evolucionar a una arritmia maligna, pero, por lo general, el gluconato de calcio solo está indicado si hay compromiso electrocardiográfico o si el potasio está sobre 7 mEq/L. La acidosis sí se debe tratar con bicarbonato de sodio, ya sea EV o VO, dependiendo del pH (en este caso no lo dan, pero por el nivel de bicarbonato parece candidato a EV). Las diálisis solo se indican si es que tiene un síndrome urémico o una complicación grave y refractaria al tratamiento médico. Como se pregunta la conducta inicial, la respuesta es el gluconato de calcio, para el manejo de la hiperkalemia.",
+      "explanation": "Es una pregunta muy discutible y que no tiene una respuesta clara. Tiene una insuficiencia renal, con hiperkalemia, hiponatremia y acidosis metabólica. De las complicaciones, la hiperkalemia es la más urgente de mejorar, por el riesgo de evolucionar a una arritmia maligna, pero, por lo general, el gluconato de calcio solo está indicado si hay compromiso electrocardiográfico o si el potasio está sobre 7 mEq/L. La acidosis sí se debe tratar con bicarbonato de sodio, ya sea EV o VO, dependiendo del pH (en este caso no lo dan, pero por el nivel de bicarbonato parece candidato a EV). Las diálisis solo se indican si es que tiene un síndrome urémico o una complicación grave y refractaria al tratamiento médico. Como se pregunta la conduta inicial, en conjunto con varios especialistas, asumimos que la respuesta es el gluconato de calcio, para el manejo de la hiperkalemia, pero insistimos en que es una pregunta mala.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: K 5,8 sin ECG: gluconato de calcio no está indicado, el bicarbonato (acidosis HCO3 15) es defendible. Pregunta muy discutible según el propio banco."
     },
@@ -2026,7 +2031,7 @@
         "Sarcoma de Ewing"
       ],
       "correctAnswer": "e",
-      "explanation": "Que ya se había realizado antes y se trata de un sarcoma de Ewing clásico, especialmente por la edad (menores de 15 años es lo más frecuente, aunque incluso se ve en adultos jóvenes) y por localización diafisiaria. Eso sí, también podría ser un sarcoma de partes blandas (más frecuente desde los 15 años), pero la clara afectación ósea de la RMN y también de la Rx hace que la respuesta sea la E, sin dudarlo mucho.",
+      "explanation": "Es una pregunta difícil, pero que ya se había realizado antes y se trata de un sarcoma de Ewing clásico, especialmente por la edad (menores de 15 años es lo más frecuente, aunque incluso se ve en adultos jóvenes) y por localización diafisiaria. Eso sí, también podría ser un sarcoma de partes blandas (más frecuente desde los 15 años), pero la clara afectación ósea de la RMN y también de la Rx hace que la respuesta sea la E, sin dudarlo mucho.",
       "image": {
         "src": "/data/reconstrucciones/img/julio-2019_p152.jpg",
         "credit": "Nelson Textbook of Pediatrics 22.ª ed., fig. 550.3",
@@ -2148,7 +2153,7 @@
         "Tumor filoides"
       ],
       "correctAnswer": "b",
-      "explanation": "Es un fibroadenoma clásico (joven con nódulo liso y móvil)."
+      "explanation": "Una mujer de 24 años con un nódulo mamario indoloro de 2 cm, no adherido a la piel ni a planos profundos, y una ecografía con lesión bien delimitada, homogénea y de pared fina, tiene un fibroadenoma: tumor benigno más frecuente de la mama en mujeres jóvenes, móvil, liso y bien delimitado. El quiste mamario es anecoico y sin pared propia visible, con contenido líquido. El cáncer de mama mostraría bordes irregulares y adherencias. El papiloma mamario se manifiesta con secreción serosanguinolenta por el pezón. El tumor filoides crece rápido y suele ser mayor. Perla: nódulo móvil y bien delimitado en menor de 30 años, ecografía y control o biopsia según tamaño."
     },
     {
       "id": 162,
@@ -2228,7 +2233,7 @@
         "Realizar cirugía"
       ],
       "correctAnswer": "a",
-      "explanation": "El manejo general del nódulo tiroideo es 1. solicitar TSH (y T4 libre), 2. solicitar ecografía tiroidea (puede ser simultáneamente con la TSH), 3. si tiene más de 10 mm, solicitar PAAF. Sin embargo, la excepción es cuando está hipertiroideo, en que se debe pedir una cintigrafía tiroidea: como en este caso que la TSH está baja y, por tanto, tiene un hipertiroidismo subclínico (con T4 normal). Si es un nódulo caliente (hipercaptante), se diagnostica el adenoma tóxico y se debe extirpar. Si es frío (capta igual o menos que el resto de la tiroides), se procede a la punción."
+      "explanation": "Pregunta difícil, ya que el manejo general del nódulo tiroideo es 1. solicitar TSH (y T4 libre), 2. solicitar ecografía tiroidea (puede ser simultáneamente con la TSH), 3. si tiene más de 10 mm, solicitar PAAF. Sin embargo, la excepción es cuando está hipertiroideo, en que se debe pedir una cintigrafía tiroidea: como en este caso que la TSH está baja y, por tanto, tiene un hipertiroidismo subclínico (con T4 normal). Si es un nódulo caliente (hipercaptante), se diagnostica el adenoma tóxico y se debe extirpar. Si es frío (capta igual o menos que el resto de la tiroides), se procede a la punción."
     },
     {
       "id": 168,
@@ -2254,7 +2259,7 @@
         "Cáncer de colon complicado"
       ],
       "correctAnswer": "a",
-      "explanation": "Es una diverticulitis clásica: dolor en la FII, con signos peritoneales (resistencia muscular y RHA disminuidos)."
+      "explanation": "Un paciente de 68 años con dolor en el cuadrante inferior izquierdo, fiebre baja, resistencia muscular localizada en la fosa iliaca izquierda y ruidos hidroaéreos disminuidos, tiene una diverticulitis aguda complicada con irritación peritoneal localizada. La colitis isquémica produce dolor con deposiciones sanguinolentas. La apendicitis aguda duele en la fosa iliaca derecha. El vólvulo de sigmoides cursa con distensión abdominal marcada y obstrucción. El cáncer de colon complicado es posible, pero la presentación aguda con fiebre y localización típica favorece la diverticulitis."
     },
     {
       "id": 170,
@@ -2267,7 +2272,7 @@
         "Error de clasificación no diferencial"
       ],
       "correctAnswer": "d",
-      "explanation": "El sesgo de memoria es un tipo de sesgo de información o medida, que afecta al evaluado. Los errores de clasificación son aquellos…"
+      "explanation": "Cuando en un estudio de casos y controles las personas olvidan las exposiciones pasadas, se produce un sesgo de memoria, que es un sesgo de información (o de medición): error sistemático en la forma de obtener los datos sobre la exposición. Los errores de clasificación, diferencial y no diferencial, son consecuencias del sesgo de información, pero el sesgo corresponde a la categoría general. El sesgo de selección se debe a la forma de escoger los participantes, y el de confusión a una tercera variable asociada a exposición y enfermedad. Perla: el sesgo de memoria es típico del diseño retrospectivo, y puede disminuirse usando registros objetivos."
     },
     {
       "id": 171,
@@ -2321,7 +2326,7 @@
         "Mycoplasma genitalium"
       ],
       "correctAnswer": "c",
-      "explanation": "Tiene un PIP clásico, con la perihepatitis (síndrome de Fitz-Hugh-Curtis), que habitualmente es causado por Chlamydia trachomatis o por gonococo."
+      "explanation": "Una joven sexualmente activa con disuria, dolor abdominal bajo que se extiende al hipocondrio derecho y leucorrea tiene un proceso inflamatorio pelviano con perihepatitis (síndrome de Fitz-Hugh-Curtis). El agente más frecuente es Chlamydia trachomatis, seguida por Neisseria gonorrhoeae. Enterococcus faecalis no es agente habitual de las infecciones de transmisión sexual. Ureaplasma urealyticum y Mycoplasma genitalium son menos frecuentes. Treponema pallidum causa sífilis, que se presenta con chancro y no con un cuadro pelviano agudo. Perla: dolor del cuadrante superior derecho en una mujer con PIP, piense en Fitz-Hugh-Curtis y trate con cobertura para Chlamydia y gonococo."
     },
     {
       "id": 175,
@@ -2386,7 +2391,7 @@
         "Osteosíntesis"
       ],
       "correctAnswer": "e",
-      "explanation": "El tratamiento de la fractura de clavícula suele ser ortopédico y se basa actualmente en la inmovilización con un inmovilizador de hombro (un tipo de cabestrillo). Más antiguo, pero aún vigente es el vendaje en ocho.",
+      "explanation": "Es una pregunta discutible y la radiografía de este caso no es igual a la que apareció en el Eunacom. El tratamiento de la fractura de clavícula suele ser ortopédico y se basa actualmente en la inmovilización con un inmovilizador de hombro (un tipo de cabestrillo). Más antiguo, pero aún vigente es el vendaje en ocho. En el Eunacom real, la respuesta probablemente era el cabestrillo, a menos que se tratara de una pregunta muy antigua y repetida, que se haya quedado con el vendaje en 8. Sin embargo, en la imagen de la prueba que hicieron, hay un desplazamiento muy grande, mayor a 2 cm, por lo que se debe resolver con cirugía (en el Eunacom real probablemente la respuesta siempre será ortopédica y no se preguntará una excepción, como la de esta imagen, que insisto, era distinta a las del Eunacom real).",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: La explicación indica que el Eunacom real era conservador (cabestrillo); la clave osteosíntesis depende de una imagen distinta; además falta la imagen."
     },

@@ -56,7 +56,7 @@
         "Trastorno de ansiedad generalizada"
       ],
       "correctAnswer": "a",
-      "explanation": "Bajo peso severo + restricción alimentaria voluntaria + negación de la enfermedad + ejercicio compulsivo = anorexia nerviosa restrictiva."
+      "explanation": "Una adolescente de 17 años con IMC de 15,5 kg/m2 (bajo peso severo), que niega la enfermedad, hace ejercicio intenso diario y come menos de un cuarto de lo habitual, presenta una anorexia nerviosa tipo restrictiva: restricción de la ingesta, peso significativamente bajo y falta de conciencia de enfermedad. En la bulimia el peso es normal y hay atracones con conductas compensatorias, y el trastorno por atracón no se acompaña de restricción. La depresión mayor y el TAG no explican la restricción ni la negación. Requiere evaluación de criterios de hospitalización."
     },
     {
       "id": 5,
@@ -332,8 +332,8 @@
         "Hipoglicemia neonatal",
         "Hemorragia intraventricular"
       ],
-      "correctAnswer": "a",
-      "explanation": "Encefalopatia hipoxico isquemica",
+      "correctAnswer": "b",
+      "explanation": "Un recién nacido de parto distócico que requirió reanimación y desarrolla horas después hipotonía, astenia y compromiso neurológico presenta una encefalopatía hipóxico-isquémica, secundaria a asfixia perinatal. Se clasifica según Sarnat y se maneja con soporte, control de convulsiones y, en casos moderados a severos, hipotermia terapéutica dentro de las primeras 6 horas. La sepsis neonatal también causa hipotonía pero se esperaría un factor de riesgo infeccioso (RPM, fiebre materna, corioamnionitis). La meningitis, la hipoglicemia y la hemorragia intraventricular no se relacionan tan directamente con el antecedente de asfixia.",
       "revisar": true,
       "audit_nota": "CLAVE_ERRONEA: RN con parto distócico y reanimación con hipotonía: encefalopatía hipóxico-isquémica, la propia explicación nombra HIE aunque la clave es sepsis. Explicación con texto ajeno (PIP/leucorrea), enunciado incompleto"
     },
@@ -664,7 +664,7 @@
         "Oxígeno suplementario"
       ],
       "correctAnswer": "b",
-      "explanation": "El estrabismo intermitente en menores de 4 meses es fisiológico, se deriva si persiste después de esa edad."
+      "explanation": "En un recién nacido de término con líquido amniótico claro, que llora inmediatamente, con buena frecuencia cardíaca, buen tono y piel rosada, no se requiere reanimación: la primera maniobra es el contacto piel a piel con la madre (apego precoz) para mantener la temperatura y favorecer la lactancia, secándolo y vigilando su estado. La aspiración rutinaria de la vía aérea no se recomienda en un recién nacido vigoroso, y el oxígeno suplementario tampoco. La vitamina K y la profilaxis ocular se administran después, dentro de las primeras horas de vida."
     },
     {
       "id": 51,
@@ -958,7 +958,7 @@
         "Reflujo gastroesofágico"
       ],
       "correctAnswer": "b",
-      "explanation": "Estenosis hipertrófica del píloro: oliva pilórica palpable y vómitos explosivos en lactante pequeño."
+      "explanation": "Un lactante con vómitos sin relación con la alimentación, en que se palpa la oliva pilórica, tiene una estenosis hipertrófica del píloro, la causa más común de obstrucción gástrica en los primeros meses de vida, con vómitos en proyectil no biliosos, hambre persistente y alcalosis metabólica hipoclorémica. Se confirma con ecografía abdominal. La alergia a proteína de leche y el reflujo no producen oliva palpable ni vómitos tan proyectivos. La atresia pilórica es extremadamente rara, y la invaginación cursa con dolor cólico y deposiciones en jalea de grosella. El tratamiento es la piloromiotomía."
     },
     {
       "id": 73,
@@ -1127,7 +1127,7 @@
         "Amnioinfusión"
       ],
       "correctAnswer": "b",
-      "explanation": "RPM >=34 semanas sin contraindicacion: inducir el parto (con ATB profilacticos), corticoides solo si <34 sem."
+      "explanation": "Una embarazada de 35 semanas con rotura prematura de membranas, sin contracciones ni signos de infección, y un feto en cefálica sin sufrimiento, debe resolverse mediante inducción del parto, ya que a partir de las 34 semanas los riesgos de infección superan los beneficios de prolongar el embarazo, y no se justifica la maduración pulmonar. La cesárea solo se indica por causas obstétricas. El manejo expectante con hospitalización, corticoides y antibióticos es para edades gestacionales menores, el alta es insegura con la rotura prolongada, y la amnioinfusión se usa en condiciones específicas, no de rutina."
     },
     {
       "id": 86,
@@ -1270,7 +1270,7 @@
         "Trombolisis y no trasladar"
       ],
       "correctAnswer": "b",
-      "explanation": "Si el centro con hemodinamia está a <120 min del primer contacto, se traslada para angioplastia primaria, trombolisis solo si se excede ese tiempo."
+      "explanation": "En un infarto con supradesnivel del ST que llega a un hospital sin angioplastia, y en que el centro con ICPP está a 60 minutos, la reperfusión de elección es la angioplastia primaria, por lo que se debe trasladar de inmediato mientras se da tratamiento antiagregante y anticoagulante, siempre que se pueda realizar en un tiempo de contacto médico a balón de 120 minutos o menos. La fibrinólisis es la alternativa si el traslado supera ese tiempo. El tratamiento médico solo no reperfunde, y la angioplastia de rescate en el mismo centro no existe, pues este no cuenta con hemodinamia."
     },
     {
       "id": 97,
@@ -2176,8 +2176,8 @@
         "TAC",
         "RX"
       ],
-      "correctAnswer": "d",
-      "explanation": "",
+      "correctAnswer": "e",
+      "explanation": "Ante la sospecha de fractura de pie en una adulta mayor con aumento de volumen, dolor y limitación para apoyar, el examen inicial y de elección es la radiografía simple en proyecciones apropiadas (anteroposterior, oblicua y lateral, con carga si es posible): es accesible, rápida y confirma la mayoría de las fracturas. El TAC, la RNM o la cintigrafía se piden en un segundo paso, ante una radiografía normal con alta sospecha (fractura oculta o de estrés) o para planear cirugía en fracturas complejas. La ecografía no es el examen de elección en lesiones óseas.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Enunciado informal (\"decía cual era estudio dx de elección\"); en sospecha de fractura de pie el estudio inicial de elección es la Rx simple (E), TAC solo para fracturas complejas (calcáneo, Lisfranc)."
     },
@@ -2192,7 +2192,7 @@
         "Metformina"
       ],
       "correctAnswer": "b",
-      "explanation": "DMG sin control con metformina: agregar insulina (pioglitazona, sulfonilureas e iDPP4 no se usan en el embarazo)."
+      "explanation": "En una gestante con diabetes gestacional que, pese a la metformina, mantiene cifras elevadas de glicemia, el tratamiento a seguir es agregar insulina, que es el fármaco de elección en el embarazo por su eficacia, titulación y porque no cruza la placenta. La pioglitazona y la sitagliptina no están recomendadas en el embarazo por falta de seguridad, y la glibenclamida es una alternativa de menor evidencia. Continuar con metformina sola mantendría el mal control metabólico y el riesgo de macrosomía, hipoglicemia neonatal y complicaciones obstétricas."
     },
     {
       "id": 167,

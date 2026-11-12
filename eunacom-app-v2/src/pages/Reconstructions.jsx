@@ -199,11 +199,14 @@ function SubjectCard({ subject, onSelectTopic, isLocked, onShowPayment }) {
   )
 }
 
+// Exámenes con fecha de salida (Julio 2026): «próximamente» hasta el día de salida, hora Chile
+const isSoon = e => !!e.coming_soon && Date.now() < Date.parse(`${e.release_date}T00:00:00-03:00`)
+
 /* ── Main ── */
 const Reconstructions = () => {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const { isPremium, hasExceededReconstructions } = useSubscription()
+  const { isPremium, hasExceededReconstructions, ownedBooks } = useSubscription()
   const [index, setIndex] = useState(null)
   const [topicIndex, setTopicIndex] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -271,6 +274,9 @@ const Reconstructions = () => {
   const handleStartExam = async (exam, selectedMode) => {
     if (!user) { setShowLoginGate(true); return }
     const activeTest = activeTests[exam.id]?.[selectedMode]
+    if (isSoon(exam)) return
+    // Julio 2026: gratis con cualquier plan, o comprada suelta en la Tienda (no usa la reconstrucción gratis)
+    if (exam.requires_sku && !isPremium && !ownedBooks?.has(exam.requires_sku)) { setSelectedExam(null); navigate('/biblioteca'); return }
     if (!activeTest && !isPremium && hasExceededReconstructions) {
       setShowPaymentModal(true)
       return
@@ -494,18 +500,26 @@ const Reconstructions = () => {
             {examsByYear[year].map((exam, i) => {
               const result = examResults[exam.id]
               const pct = result?.pct
-              const isLocked = hasExceededReconstructions;
+              const soon = isSoon(exam)
+              const hasSku = !exam.requires_sku || isPremium || ownedBooks?.has(exam.requires_sku)
+              const isLocked = !soon && (exam.requires_sku ? !hasSku : hasExceededReconstructions);
               const state = result ? (pct >= 60 ? 'is-pass' : 'is-fail') : ''
 
               return (
                 <div
                   key={exam.id}
-                  className={`sr-exam ${state} ${isLocked ? 'is-locked' : ''}`}
-                  onClick={() => isLocked ? setShowPaymentModal(true) : setSelectedExam(exam)}
+                  className={`sr-exam ${state} ${isLocked ? 'is-locked' : ''} ${soon ? 'is-soon' : ''}`}
+                  onClick={() => soon ? (!isPremium && setShowPaymentModal(true)) : isLocked ? (exam.requires_sku ? navigate('/biblioteca') : setShowPaymentModal(true)) : setSelectedExam(exam)}
                 >
+                  {exam.requires_sku && (
+                    <div className="sr-new">
+                      <span className="sr-pill ok">Nuevo</span>
+                      <span>{soon ? `Llega el ${new Date(exam.release_date + 'T12:00:00').toLocaleDateString('es-CL', { day: 'numeric', month: 'long' })} · ` : ''}{isPremium ? 'Incluida gratis en tu plan' : 'Gratis con cualquier plan o $12.999 suelta'}</span>
+                    </div>
+                  )}
                   {isLocked && (
                     <div className="sr-lock">
-                      <span><Lock size={16} /> Desbloquear Acceso Ilimitado</span>
+                      <span><Lock size={16} /> {exam.requires_sku ? 'Gratis con tu plan · o $12.999 en la Tienda' : 'Desbloquear Acceso Ilimitado'}</span>
                     </div>
                   )}
 
@@ -534,14 +548,20 @@ const Reconstructions = () => {
                   )}
 
                   <div className="sr-exam-foot">
-                    {!exam.questions_with_answers ? (
+                    {soon ? (
+                      <span className="sr-pill warn">Próximamente</span>
+                    ) : !exam.questions_with_answers ? (
                       <span className="sr-pill warn">Sin pauta</span>
                     ) : (
                       <span className="sr-pill ok"><Check size={11} /> Con pauta oficial</span>
                     )}
+                    {soon ? (
+                      <span className="mn-cl-nb">{isPremium ? 'Te avisamos' : 'Ver planes'}</span>
+                    ) : (
                     <span className={`mn-cl-nb ${result ? '' : 'pri'}`}>
                       {result ? <RotateCcw size={14}/> : <PlayCircle size={14}/>} {result ? 'Repetir' : 'Iniciar'}
                     </span>
+                    )}
                   </div>
                 </div>
               )

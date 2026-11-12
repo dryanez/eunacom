@@ -145,6 +145,19 @@
       "total_questions": 180,
       "questions_with_answers": 167,
       "file": "eunacom-jul-2025.json"
+    },
+    {
+      "id": "eunacom-jul-2026",
+      "name": "EUNACOM Julio 2026",
+      "month": "Julio",
+      "year": 2026,
+      "total_questions": 180,
+      "questions_with_answers": 0,
+      "file": "eunacom-jul-2026.json",
+      "coming_soon": true,
+      "release_date": "2026-11-16",
+      "requires_sku": "rec-JUL2026",
+      "source": "Mario Sánchez"
     }
   ]
 }

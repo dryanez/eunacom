@@ -168,7 +168,7 @@
         "Iniciar ceftriaxona endovenosa"
       ],
       "correctAnswer": "c",
-      "explanation": "Tratamiento en Otitis Media Aguda: La dosis recomendada de amoxicilina para esta condición es de 80 a 100 mg por kilogramo al día. Si en 48-72 horas no responde a la dosis adecuada, se debe agregar ácido clavulánico. En este caso, la dosis dada fue inferior, por lo que una respuesta potencialmente correcta también sería indicar la dosis recomendada actualmente. Es más, en la práctica médica, probablemente se hagan ambas cosas. Debido a que los gérmenes más frecuentes son neumococo, que en las infecciones extrameníngeas tiene muy baja tasa de resistencia a penicilinas y luego Moraxella y Haemophilus, que producen betalactamasas, recomendamos agregar el ácido clavulánico.",
+      "explanation": "Tratamiento en Otitis Media Aguda: La dosis recomendada de amoxicilina para esta condición es de 80 a 100 mg por kilogramo al día. Si en 48-72 horas no responde a la dosis adecuada, se debe agregar ácido clavulánico. En este caso, la dosis dada fue inferior, por lo que una respuesta potencialmente correcta también sería indicar la dosis recomendada actualmente. Es más, en la práctica médica, probablemente se hagan ambas cosas. Debido a que los gérmenes más frecuentes son neumococo, que en las infecciones extrameníngeas tiene muy baja tasa de resistencia a penicilinas y luego Moraxella y Haemophilus, que producen betalactamasas, recomendamos agregar el ácido clavulánico. Sin embargo, es una pregunta muy difícil.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Con amoxicilina a 50 mg/kg, la guía MINSAL permite subir a dosis alta (A) o agregar clavulánico (C) según el esquema, la explicación usa 80-100 mg/kg como dosis estándar"
     },
@@ -196,7 +196,7 @@
         "Delirium"
       ],
       "correctAnswer": "c",
-      "explanation": "Trastorno Neurocognitivo Menor: Este trastorno se caracteriza por un deterioro cognitivo inicial en adultos mayores sin llegar a cumplir los criterios de demencia. El manejo se centra en mantener la autonomía del paciente y monitorear la posible evolución a demencia en los próximos años."
+      "explanation": "Trastorno Neurocognitivo Menor: Este trastorno se caracteriza por un deterioro cognitivo inicial en adultos mayores sin llegar a cumplir los criterios de demencia . El manejo se centra en mantener la autonomía del paciente y monitorear la posible evolución a demencia en los próximos años."
     },
     {
       "id": 16,
@@ -450,7 +450,7 @@
         "Prednisona"
       ],
       "correctAnswer": "e",
-      "explanation": "Gota Aguda: El diagnóstico es una crisis de gota aguda, probablemente desencadenada por el uso de hidroclorotiazida (se debe cambiar por otro antihipertensivo como el amlodipino). El tratamiento de la crisis se puede realizar con AINEs, prednisona o colchicina. Aunque los AINEs son la recomendación tradicional en Chile, las guías internacionales sugieren corticoides como primera línea (. Dado el episodio previo, se debe indicar alopurinol para controlar el ácido úrico, pero no se espera un beneficio inmediato al añadirlo en este momento.",
+      "explanation": "Gota Aguda: El diagnóstico es una crisis de gota aguda, probablemente desencadenada por el uso de hidroclorotiazida (se debe cambiar por otro antihipertensivo como el amlodipino). El tratamiento de la crisis se puede realizar con AINEs, prednisona o colchicina. Aunque los AINEs son la recomendación tradicional en Chile, las guías internacionales sugieren corticoides como primera línea (por lo que la dejaremos como respuesta correcta). Dado el episodio previo, se debe indicar alopurinol para controlar el ácido úrico, pero no se espera un beneficio inmediato al añadirlo en este momento.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Crisis de gota: AINE (D tradicional en Chile), corticoide o colchicina todos válidos, la clave E (prednisona) depende de guía, la explicación lo reconoce"
     },
@@ -504,7 +504,7 @@
         "Insuficiencia cardíaca congestiva"
       ],
       "correctAnswer": "d",
-      "explanation": "Fibrosis Pulmonar Idiopática: Tanto la historia clínica como la radiografía son compatibles con una fibrosis pulmonar idiopática."
+      "explanation": "Una mujer de 58 años con disnea progresiva de dos años, crepitaciones bibasales bilaterales (en velcro) e hipocratismo digital presenta un cuadro de enfermedad pulmonar intersticial, y la forma idiopática (fibrosis pulmonar idiopática) es la más probable en este perfil. La EPOC y la bronquitis crónica no producen hipocratismo y se manifiestan con sibilancias, hiperinsuflación y tabaquismo importante (aquí solo 4 cigarrillos diarios). El asma no tiene crepitaciones ni acropaquia. La insuficiencia cardíaca tendría ortopnea, edema y cardiomegalia, y con la radiografía mostrando patrón reticular basal se confirma el diagnóstico con TAC de alta resolución."
     },
     {
       "id": 39,
@@ -602,7 +602,7 @@
         "Parálisis del tercer nervio craneal"
       ],
       "correctAnswer": "e",
-      "explanation": "Parálisis del Tercer Nervio Craneal: Se trata de una parálisis del tercer nervio craneal (oculomotor) clásica."
+      "explanation": "Parálisis del Tercer Nervio Craneal: Se trata de una parálisis del tercer nervio craneal (oculomotor) clásica. Se recomienda revisar el resumen de semiología neurológica."
     },
     {
       "id": 46,
@@ -952,7 +952,7 @@
         "Cáncer pulmonar"
       ],
       "correctAnswer": "e",
-      "explanation": "Cáncer de Pulmón: El cuadro clínico y la radiografía sugerían un cáncer de pulmón, pero ninguna de las opciones del Eunacom real tenían dicha respuesta.",
+      "explanation": "Cáncer de Pulmón: El cuadro clínico y la radiografía sugerían un cáncer de pulmón, pero ninguna de las opciones del Eunacom real tenían dicha respuesta. Así es el Eunacom y no se puede reclamar. Para efectos de subirlo a la plataforma, incluimos la opción.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Explicacion admite que la opcion correcta fue agregada por la plataforma (no estaba en el examen real)"
     },
@@ -993,7 +993,7 @@
         "Miastenia gravis"
       ],
       "correctAnswer": "e",
-      "explanation": "Miastenia Gravis: El caso presentado corresponde a una miastenia gravis clásica."
+      "explanation": "La debilidad con ptosis palpebral de predominio vespertino (fatigabilidad que empeora con el uso y mejora con el reposo), con reflejos osteotendíneos y sensibilidad normales, es el patrón de la miastenia gravis, por anticuerpos contra el receptor de acetilcolina en la unión neuromuscular. La esclerosis lateral amiotrófica tiene signos de motoneurona superior e inferior sin fluctuación. La polimiositis causa debilidad proximal con CK elevada sin ptosis, el Guillain-Barré es ascendente con arreflexia, y la esclerosis múltiple da déficits neurológicos focales con signos de piramidalismo. Perla: se confirma con anticuerpos anti-receptor de acetilcolina y electromiografía."
     },
     {
       "id": 75,
@@ -1019,7 +1019,7 @@
         "Iniciar vancomicina endovenosa"
       ],
       "correctAnswer": "a",
-      "explanation": "Manejo de Diarrea Aguda con Portación Asintomática de Clostridium difficile: Un niño con diarrea aguda por rotavirus y portación asintomática de Clostridium difficile no requiere tratamiento para C. difficile. La portación asintomática en niños es frecuente y no suele complicarse. El metronidazol no ha demostrado mayor utilidad en estos casos. El manejo de este caso se centra en la diarrea por rotavirus con tolerancia oral y rehidratación oral."
+      "explanation": "Manejo de Diarrea Aguda con Portación Asintomática de Clostridium difficile: Un niño con diarrea aguda por rotavirus y portación asintomática de Clostridium difficile no requiere tratamiento para C. difficile. La portación asintomática en niños es frecuente y no suele complicarse. El metronidazol no ha demostrado mayor utilidad en estos casos. El manejo de este caso se centra en la diarrea por rotavirus con tolerancia oral y rehidratación oral.."
     },
     {
       "id": 77,
@@ -1032,7 +1032,7 @@
         "Iniciar dieta estricta"
       ],
       "correctAnswer": "e",
-      "explanation": "Manejo de Hipertrigliceridemia Severa: En un paciente con dislipidemia mixta el objetivo suele ser bajar el colesterol LDL, a menos que los triglicéridos sean > 500 mg/dL, en que la prioridad es bajar los triglicéridos. Con niveles > 1000 mg/dL, hay alto riesgo de pancreatitis, por lo que se debe manejar urgentemente. Hace años incluso se recomendaba hospitalizarlos para el manejo, sin embargo esa recomendación actualmente está obsoleta (tal vez el Eunacom aún la considera). La medida más importante o urgente es la suspensión inmediata del consumo de alcohol y una dieta estricta baja en glúcidos y baja en grasas. En paralelo, se inician los fibratos (gemfibrozilo).",
+      "explanation": "Manejo de Hipertrigliceridemia Severa: En un paciente con dislipidemia mixta el objetivo suele ser bajar el colesterol LDL, a menos que los triglicéridos sean > 500 mg/dL, en que la prioridad es bajar los triglicéridos. Con niveles > 1000 mg/dL, hay alto riesgo de pancreatitis, por lo que se debe manejar urgentemente. Hace años incluso se recomendaba hospitalizarlos para el manejo, sin embargo esa recomendación actualmente está obsoleta (tal vez el Eunacom aún la considera). La medida más importante o urgente es la suspensión inmediata del consumo de alcohol y una dieta estricta baja en glúcidos y baja en grasas. En paralelo, se inician los fibratos (gemfibrozilo)..",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: TG 1.000 mg/dl sin pancreatitis: la norma indica fibrato (gemfibrozilo) con TG >500 además de dieta/abstención de alcohol, 'dieta estricta' es defendible como primer paso pero la propia explicación habla de manejo urgente"
     },
@@ -1099,7 +1099,7 @@
         "Administrar calcitonina"
       ],
       "correctAnswer": "c",
-      "explanation": "Hipocalcemia Post Tiroidectomía: El cuadro clínico sugiere hipocalcemia por hipoparatiroidismo post tiroidectomía, ya sea por extirpación o isquemia de las glándulas paratiroides. La calcemia baja confirma el diagnóstico. El tratamiento es con gluconato de calcio endovenoso 1g."
+      "explanation": "Hipocalcemia Post Tiroidectomía: El cuadro clínico sugiere hipocalcemia por hipoparatiroidismo post tiroidectomía, ya sea por extirpación o isquemia de las glándulas paratiroides. La calcemia baja confirma el diagnóstico. El tratamiento es con gluconato de calcio endovenoso 1g.."
     },
     {
       "id": 83,
@@ -1182,7 +1182,7 @@
         "Soplo funcional"
       ],
       "correctAnswer": "d",
-      "explanation": "Ductus Arterioso Persistente: El soplo continuo (maquinaria) es característico del ductus arterioso persistente."
+      "explanation": "Ductus Arterioso Persistente: El soplo continuo (maquinaria) es característico del ductus arterioso persistente. Se recomienda revisar el resumen de semiología cardíaca."
     },
     {
       "id": 89,
@@ -1195,7 +1195,7 @@
         "Soplo funcional"
       ],
       "correctAnswer": "d",
-      "explanation": "Ductus Arterioso Persistente: El soplo continuo es característico del ductus arterioso persistente."
+      "explanation": "Ductus Arterioso Persistente: El soplo continuo es característico del ductus arterioso persistente. Se recomienda revisar el resumen de semiología cardíaca."
     },
     {
       "id": 90,
@@ -1304,7 +1304,7 @@
         "Administración oral de vitamina C y folatos"
       ],
       "correctAnswer": "c",
-      "explanation": "Mantenimiento de la Salud en Adultos Mayores: El ejercicio físico y el estudio activo son las medidas que han demostrado mayor impacto en mantener la salud física, cognitiva y mental de los adultos mayores."
+      "explanation": "Mantenimiento de la Salud en Adultos Mayores: El ejercicio físico y el estudio activo son las medidas que han demostrado mayor impacto en mantener la salud física, cognitiva y mental de los adultos mayores.."
     },
     {
       "id": 98,
@@ -1330,7 +1330,7 @@
         "Prescribir lactobacillus reuteri"
       ],
       "correctAnswer": "d",
-      "explanation": "Peso en Recién Nacidos: Es normal que un recién nacido pierda hasta un 10% de su peso durante los primeros días de vida, el cual se recupera al cumplir los 7 días. Luego de la baja inicial, el incremento norma es de 20 a 25 g al día o más. En este caso, el recién nacido ha subido de peso adecuadamente, lo que sugiere que es un recién nacido normal. Por estar prendido al pecho todo el día, se asume que la técnica de lactancia no es óptima. Si no hubiese subido de peso, sería correcto mejorar la técnica de lactancia y, además, citar a control en 24 horas. El Lactobacillus reuteri se indica en los cólicos, pero son poco probables a esta edad."
+      "explanation": "Peso en Recién Nacidos: Es normal que un recién nacido pierda hasta un 10% de su peso durante los primeros días de vida, el cual se recupera al cumplir los 7 días. Luego de la baja inicial, el incremento norma es de 20 a 25 g al día o más. En este caso, el recién nacido ha subido de peso adecuadamente, lo que sugiere que es un recién nacido normal. Por estar prendido al pecho todo el día, se asume que la técnica de lactancia no es óptima. Si no hubiese subido de peso, sería correcto mejorar la técnica de lactancia y, además, citar a control en 24 horas. El Lactobacillus reuteri se indica en los cólicos, pero son poco probables a esta edad.."
     },
     {
       "id": 100,
@@ -1395,7 +1395,7 @@
         "Escarlatina"
       ],
       "correctAnswer": "a",
-      "explanation": "Síndrome de Stevens-Johnson: El cuadro clínico presentado, junto con la imagen, son característicos del síndrome de Stevens-Johnson."
+      "explanation": "El antecedente de un fármaco reciente (amoxicilina), con fiebre, malestar, ardor ocular, eritema conjuntival, úlceras orales y un exantema con pápulas y placas eritematosas en tronco y extremidades es un cuadro de síndrome de Stevens-Johnson, que compromete al menos dos mucosas con menos de 10% de superficie corporal desprendida. La necrólisis epidérmica tóxica supera el 30% de despegamiento. La gingivoestomatitis herpética no afecta la conjuntiva ni la piel de esta forma, el pénfigo cursa con ampollas flácidas, y la escarlatina da exantema escarlatiniforme con lengua en frambuesa sin úlceras. Se suspende el fármaco."
     },
     {
       "id": 105,
@@ -1652,7 +1652,7 @@
         "Trastorno de personalidad evitativa"
       ],
       "correctAnswer": "d",
-      "explanation": "Fobia Social: El cuadro clínico presentado describe una fobia social, también llamada trastorno de ansiedad social."
+      "explanation": "El miedo a presentarse en público, con enrojecimiento facial, torpeza y bloqueo (mente en blanco) frente a la evaluación de otros, y con deterioro del rendimiento académico, es un trastorno de ansiedad social (fobia social). La fobia específica se limita a un objeto o situación concreta (animales, alturas), y la agorafobia es el temor a lugares de los que es difícil escapar. En el trastorno de ansiedad generalizada la preocupación es difusa y persistente, no ligada a situaciones sociales. El trastorno de personalidad evitativa es un patrón global y crónico de inhibición social, más extenso que lo descrito. El tratamiento es terapia cognitivo-conductual e ISRS."
     },
     {
       "id": 124,
@@ -1678,7 +1678,7 @@
         "Solicitar estudio de neurofibromatosis"
       ],
       "correctAnswer": "a",
-      "explanation": "Psoriasis, ojo rojo profundo, fotofobia importante y baja de AV: uveítis anterior aguda."
+      "explanation": "Un lactante con cinco o más hemangiomas cutáneos tiene riesgo de hemangiomatosis con compromiso visceral, sobre todo hepático, por lo que se debe solicitar una ecografía abdominal (con Doppler). La RNM de cerebro se piensa en hemangiomas segmentarios faciales (síndrome PHACE) y no en lesiones del tronco. El propranolol está indicado en hemangiomas complicados o con riesgo funcional o estético, no solo por número; los corticoides intralesionales son de uso limitado, y el estudio de neurofibromatosis corresponde a manchas café con leche, no a hemangiomas."
     },
     {
       "id": 126,
@@ -1717,7 +1717,7 @@
         "Insuficiencia pulmonar"
       ],
       "correctAnswer": "c",
-      "explanation": "Estenosis Mitral: El cuadro clínico es compatible con estenosis mitral. Se recomienda repasar la semiología cardíaca."
+      "explanation": "La disnea con ortopnea, la fibrilación auricular, los estertores bibasales y un soplo diastólico en un paciente con edema de extremidades son congruentes con una estenosis mitral, en que la obstrucción al llenado ventricular eleva la presión en la aurícula izquierda y produce congestión pulmonar y fibrilación auricular. Los soplos de la estenosis aórtica y pulmonar son sistólicos. La insuficiencia aórtica produce un soplo diastólico decreciente con presión de pulso amplia y choque de la punta desplazado, y la insuficiencia pulmonar es infrecuente, sin esta repercusión. Se confirma con ecocardiografía."
     },
     {
       "id": 129,
@@ -1730,7 +1730,7 @@
         "Fondo Nacional de Salud (FONASA)"
       ],
       "correctAnswer": "d",
-      "explanation": "Superintendencia de Salud: La Superintendencia de Salud es el organismo encargado de las funciones mencionadas en la pregunta."
+      "explanation": "La Superintendencia de Salud es el organismo encargado de supervisar y fiscalizar a las instituciones del sistema, tanto públicas como privadas, incluidos FONASA y las ISAPRE, y de velar por el cumplimiento de las garantías GES. El Instituto de Salud Pública regula y fiscaliza medicamentos, laboratorios y productos sanitarios. La SEREMI fiscaliza y ejecuta la autoridad sanitaria a nivel regional, el Ministerio de Salud a través de la Subsecretaría de Salud Pública define políticas y normas, y FONASA administra el seguro público y es quien resulta fiscalizado."
     },
     {
       "id": 130,
@@ -1823,7 +1823,7 @@
         "Insuficiencia tricuspídea"
       ],
       "correctAnswer": "b",
-      "explanation": "Taponamiento Cardíaco: Aunque el antecedente de cáncer, la hipotensión y la disnea sugieren un tromboembolismo pulmonar, la disminución de la intensidad de los ruidos cardíacos apunta a derrame pericárdico con taponamiento, también compatible con el antecedente de cáncer y el resto de la clínica."
+      "explanation": "Taponamiento Cardíaco: Aunque el antecedente de cáncer, la hipotensión y la disnea sugieren un tromboembolismo pulmonar, la disminución de la intensidad de los ruidos cardíacos apunta a derrame pericárdico con taponamiento, también compatible con el antecedente de cáncer y el resto de la clínica. Se recomienda revisar el resumen de semiología cardíaca."
     },
     {
       "id": 137,
@@ -1903,7 +1903,7 @@
         "Trastorno adaptativo de tipo ansioso"
       ],
       "correctAnswer": "a",
-      "explanation": "Trastorno Somatomorfo: Este audio describe un trastorno somatomorfo, caracterizado por síntomas físicos sin una causa orgánica subyacente.",
+      "explanation": "Una mujer con cefalea, náuseas y mareos recurrentes, con examen físico normal y un contexto de estrés laboral, tiene síntomas físicos múltiples sin causa orgánica que los explique, lo que corresponde a un trastorno somatomorfo (somatización). En el trastorno conversivo hay déficits neurológicos voluntarios (parálisis, convulsiones psicógenas), en el disociativo alteraciones de la identidad, memoria o conciencia, y en el facticio se simulan síntomas de forma intencional para asumir el rol de enfermo. El adaptativo ansioso es más probable si predominan ansiedad y un estresor claro, pero aquí lo central son los síntomas somáticos.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Cuadro somático inespecífico con estrés laboral; E (adaptativo ansioso) es defendible si el estresor es el desencadenante (sin tiempos). Explicación habla de «este audio» (artefacto de transcripción). Clave probablemente A según banco. psiq-05."
     },
@@ -1998,7 +1998,7 @@
         "Broncoscopía"
       ],
       "correctAnswer": "c",
-      "explanation": "Estenosis Subglótica: La estenosis subglótica post-intubación se trata con dilatación con balón mediante broncoscopia en casos estables. Si el paciente está descompensado, como en este caso, se requiere una traqueotomía de urgencia para asegurar la vía aérea. La intubación puede ser difícil por la estenosis severa, y la cricotirotomía es riesgosa porque no se sabe si se realizará por encima o por debajo de la estenosis.",
+      "explanation": "Estenosis Subglótica: La estenosis subglótica post-intubación se trata con dilatación con balón mediante broncoscopia en casos estables. Si el paciente está descompensado, como en este caso, se requiere una traqueotomía de urgencia para asegurar la vía aérea. La intubación puede ser difícil por la estenosis severa, y la cricotirotomía es riesgosa porque no se sabe si se realizará por encima o por debajo de la estenosis. Es una pregunta muy discutible y es posible que el Eunacom haya considerado correcta otra opción.",
       "revisar": true,
       "audit_nota": "CLAVE_DISCUTIBLE: Estenosis subglótica post-intubación: dilatación con balón por broncoscopía en paciente estable, traqueostomía solo si descompensado (explicación admite duda)"
     },
@@ -2108,7 +2108,7 @@
         "Ciprofloxacino oral"
       ],
       "correctAnswer": "c",
-      "explanation": "Otomicosis: El cuadro clínico es característico de la otomicosis por Candida albicans, que se trata con antimicóticos tópicos como el clotrimazol."
+      "explanation": "Un prurito ótico con secreción blanquecina grumosa abundante y sensación de oído tapado es el cuadro típico de otitis externa fúngica (otomicosis), generalmente por Aspergillus o Candida, que se ve como detritus grumoso, a veces con puntos negros. El tratamiento es aseo del conducto y antimicótico tópico como clotrimazol. El ciprofloxacino tópico se usa en la otitis externa bacteriana aguda, que da otalgia intensa y dolor al tironeo del pabellón. Los antibióticos orales (amoxicilina, ciprofloxacino) no tratan una infección fúngica del conducto, y el fluconazol oral no es de primera línea para una infección localizada."
     },
     {
       "id": 158,
@@ -2292,7 +2292,7 @@
     },
     {
       "id": 171,
-      "question": "Un niño de 7 años es hospitalizado para manejo quirúrgico de una osteomielitis. El antibiograma informa desarrollo de Staphylococcus aureus con el siguiente antibiograma: ¿Cuál de los siguientes antibióticos es de elección para el manejo inicial?",
+      "question": "Un niño de 7 años está hospitalizado para el manejo quirúrgico de una osteomielitis de tibia. El cultivo de la muestra ósea informa desarrollo de Staphylococcus aureus con el siguiente antibiograma: oxacilina resistente, cefazolina resistente, penicilina resistente, vancomicina sensible, cotrimoxazol sensible, clindamicina sensible y tetraciclina sensible. ¿Cuál de los siguientes antibióticos es de elección para el manejo inicial?",
       "options": [
         "Flucloxacilina",
         "Cefazolina",
@@ -2301,9 +2301,7 @@
         "Cotrimoxazol"
       ],
       "correctAnswer": "c",
-      "explanation": "Tratamiento de Staphylococcus aureus Resistente a la Meticilina: Un antibiograma que muestra Staphylococcus aureus resistente a la meticilina (SARM), siendo resistente a los betalactámicos en general, incluyendo oxacilina y cefalosporinas. El tratamiento de elección para el SARM es la vancomicina.",
-      "excluir": true,
-      "audit_nota": "El antibiograma no está en el enunciado, la clave vancomicina asume SARM sin poder verificarlo"
+      "explanation": "La resistencia a oxacilina define un Staphylococcus aureus resistente a meticilina (SARM), que es resistente a todos los betalactámicos, incluidas la flucloxacilina y la cefazolina, aunque el antibiograma las informe por separado. En una infección grave e invasiva, como una osteomielitis que requiere cirugía en un niño hospitalizado, el antibiótico de elección para el manejo inicial endovenoso es la vancomicina. El cotrimoxazol y la clindamicina pueden servir para completar el tratamiento por vía oral si son sensibles, pero no son la primera elección inicial. La tetraciclina está contraindicada en menores de 8 años por la tinción dental y no es de elección."
     },
     {
       "id": 172,
@@ -2329,7 +2327,7 @@
         "TSH"
       ],
       "correctAnswer": "e",
-      "explanation": "Sospecha clínica de hipotiroidismo: TSH como examen inicial, con T4 libre si está alterada."
+      "explanation": "Los síntomas de astenia, ganancia de peso, intolerancia al frío, constipación, mialgias, piel seca, bradicardia, lentitud psicomotora y alopecia, y la presencia de vitíligo (asociado a autoinmunidad), son típicos de un hipotiroidismo, probablemente tiroiditis de Hashimoto. El examen inicial es la TSH, que está elevada en el hipotiroidismo primario, y se complementa con T4 libre y anticuerpos antiperoxidasa. El hemograma-VHS es inespecífico, el cortisol busca insuficiencia suprarrenal, y el TAC de cerebro o la colonoscopía no tienen relación con el cuadro."
     },
     {
       "id": 174,

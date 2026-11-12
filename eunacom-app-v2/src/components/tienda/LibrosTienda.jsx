@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import {
-  PACKS, TOMOS, RECONS, EXTRAS, COLLECTIONS, SINGLES, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
+  PACKS, TOMOS, RECONS, RECON_JUL2026, isReleased, EXTRAS, COLLECTIONS, SINGLES, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
   expandSkus, looseValue, cartTotal, fmtClp, itemFiles,
 } from '../../config/tienda'
 import { captureBookPaypal } from '../../lib/api'
@@ -211,6 +211,7 @@ export default function LibrosTienda() {
     const fallback = COLLECTIONS.find(c => c.sku === x.collection).cover
     shelfBySection[x.collection] = [...(shelfBySection[x.collection] || []), { key: x.sku, item: x.sku, cover: fileCover(x.collection, x.label, fallback), label: x.label }]
   }
+  if (ownedBooks.has(RECON_JUL2026.sku)) shelfBySection.recons = [{ key: RECON_JUL2026.sku, item: RECON_JUL2026.sku, rec: RECON_JUL2026, label: RECON_JUL2026.name, soon: !isReleased(RECON_JUL2026) }]
   if (!ownedBooks.has('gran-recons')) {
     shelfBySection.recons = [...(shelfBySection.recons || []), ...RECONS.filter(r => ownedBooks.has(r.sku)).map(r => ({ key: r.sku, item: r.sku, rec: r, label: r.name }))]
   }
@@ -244,11 +245,13 @@ export default function LibrosTienda() {
               <div className="shelf">
                 {shelfBySection[s.id].map(b => (
                   <div key={b.key} className="shelf-item">
-                    {b.rec
+                    {b.rec && !b.rec.cover
                       ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
-                      : <Cover src={b.cover} alt={b.label} />}
+                      : <Cover src={b.cover || b.rec?.cover} alt={b.label} />}
                     <b>{b.label}</b>
-                    {itemFiles(b.item).length
+                    {b.soon
+                      ? <span className="mini-btn owned">16 nov</span>
+                      : itemFiles(b.item).length
                       ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>Leer</button>
                       : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
                   </div>
@@ -269,6 +272,25 @@ export default function LibrosTienda() {
             </div>
           )}
 
+
+          {!isOwned(RECON_JUL2026.sku) && (
+            <section className="tienda-section rec-new" id="reconstruccion-julio-2026">
+              <div className="rec-new__card">
+                <Cover src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" style={{ width: 150 }} />
+                <div className="rec-new__body">
+                  <span className="rec-new__kicker">Nuevo · {isReleased(RECON_JUL2026) ? 'ya disponible' : 'llega el 16 de noviembre'}</span>
+                  <h2>Reconstrucción EUNACOM Julio 2026</h2>
+                  <p className="sub">La última reconstrucción antes de tu examen: el EUNACOM de julio 2026, pregunta por pregunta. <strong>Gratis con cualquier plan</strong>, o suelta por {fmtClp(RECON_JUL2026.price)}.</p>
+                  <div className="rec-new__cta">
+                    <button className="t-btn" onClick={openPlans}>Obtenerla gratis con un plan</button>
+                    {isReleased(RECON_JUL2026)
+                      ? <button className={`t-btn ghost ${btnState(RECON_JUL2026.sku)}`} onClick={() => toggle(RECON_JUL2026.sku)}>{btnLabel(RECON_JUL2026.sku, `Comprar suelta · ${fmtClp(RECON_JUL2026.price)}`)}</button>
+                      : <span className="mini-btn owned">Suelta {fmtClp(RECON_JUL2026.price)} desde el 16 nov</span>}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section className="tienda-section" id="packs">
             <h2>Elige tu pack</h2>
@@ -308,11 +330,12 @@ export default function LibrosTienda() {
             )}
 
             {looseType === 'recons' ? (
-              <div className="rec-grid">
+              <div className="tomo-grid">
                 {RECONS.map(r => (
-                  <div key={r.sku} className="rec-item">
-                    <div className="band" />
-                    <div className="top"><div className="m">EUNACOM {r.month}</div><div className="y">{r.year}</div><div className="q">{r.questions} preguntas</div></div>
+                  <div key={r.sku} className="tomo-item">
+                    <Cover src={r.cover} alt={r.name} />
+                    <span className="n">{r.questions} PREGUNTAS</span>
+                    <b>{r.name}</b>
                     <div className="tomo-row">
                       <span className="p">{fmtClp(r.price)}</span>
                       <button className={`mini-btn ${btnState(r.sku)}`} onClick={() => toggle(r.sku)} aria-label={`Agregar ${r.name}`}>{isOwned(r.sku) ? 'Tuyo' : btnState(r.sku) ? <Check size={15} strokeWidth={3} /> : '+'}</button>

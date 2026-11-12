@@ -2,7 +2,7 @@
 // está en el límite de funciones). Tablas: book_orders (carro pagado con Webpay) y
 // book_purchases (una fila por producto comprado; de aquí sale el acceso y el crédito de upgrade).
 import { verifyPlayBook, acknowledgePlayPurchase } from './_play-billing.js'
-import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, LIBRARY_ITEMS, UPGRADE_CREDIT_DAYS, cartTotal, expandSkus, itemFiles, usdPrice } from './_tienda.js'
+import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, LIBRARY_ITEMS, PLAN_FREE_ITEMS, UPGRADE_CREDIT_DAYS, cartTotal, expandSkus, isReleased, itemFiles, usdPrice } from './_tienda.js'
 
 const ADMIN_EMAIL = 'dr.felipeyanez@gmail.com'
 
@@ -36,9 +36,12 @@ export async function ensureBookTables(db) {
   })
 }
 
-function planIncludesLibrary(profile) {
+function planActive(profile) {
   if (!profile || Number(profile.is_premium) !== 1) return false
-  if (profile.premium_until && new Date(profile.premium_until) <= new Date()) return false
+  return !(profile.premium_until && new Date(profile.premium_until) <= new Date())
+}
+function planIncludesLibrary(profile) {
+  if (!planActive(profile)) return false
   return Number(profile.plan_months || 0) >= LIBRARY_MIN_PLAN_MONTHS
 }
 
@@ -79,7 +82,7 @@ export async function getUserBooks(db, userId) {
       .then(r => r.rows?.[0] || null).catch(() => null),
     getUpgradeCredit(db, userId),
   ])
-  return { skus, planLibrary: planIncludesLibrary(profile), planMonths: Number(profile?.plan_months || 0), credit }
+  return { skus, planActive: planActive(profile), planLibrary: planIncludesLibrary(profile), planMonths: Number(profile?.plan_months || 0), credit }
 }
 
 async function insertPurchases(db, { userId, email, skus, method, ref, note, amounts }) {
@@ -109,7 +112,7 @@ const isAdmin = email => String(email || '').trim().toLowerCase() === ADMIN_EMAI
 
 // Crea la orden del carro (sin lo que el usuario ya tiene). null si no queda nada que cobrar.
 async function createBookOrder(db, userId, rawSkus) {
-  const skus = [...new Set((rawSkus || []).filter(s => PRODUCTS[s]))]
+  const skus = [...new Set((rawSkus || []).filter(s => PRODUCTS[s] && isReleased(PRODUCTS[s])))]
   if (!userId || !skus.length) return { error: 'Carro vacío o inválido' }
   await ensureBookTables(db)
   const owned = new Set(await ownedSkus(db, userId))
@@ -128,10 +131,11 @@ async function createBookOrder(db, userId, rawSkus) {
 
 // Lo que este usuario puede leer (comprado o incluido en su plan; admin todo)
 async function readableItems(db, userId, extraAdminIds = []) {
-  const { skus, planLibrary } = await getUserBooks(db, userId)
+  const { skus, planActive, planLibrary } = await getUserBooks(db, userId)
   const email = (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [userId] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
-  if (planLibrary || isAdmin(email) || extraAdminIds.includes(userId)) return new Set(LIBRARY_ITEMS)
-  return expandSkus(skus)
+  const out = (planLibrary || isAdmin(email) || extraAdminIds.includes(userId)) ? new Set(LIBRARY_ITEMS) : expandSkus(skus)
+  if (planActive || isAdmin(email) || extraAdminIds.includes(userId)) PLAN_FREE_ITEMS.forEach(i => out.add(i))
+  return out
 }
 
 // Devuelve true si atendió la request. Opciones (las inyecta user-profiles.js o el dev server):

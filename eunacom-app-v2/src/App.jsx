@@ -18,6 +18,7 @@ import TestRunner from './pages/TestRunner'
 import Register from './pages/Register'
 import Offer from './pages/Offer'
 import MisClases from './pages/MisClases'
+import ClasesV3 from './pages/ClasesV3'
 import Biblioteca from './pages/Biblioteca'
 import Links from './pages/Links'
 import Regalo from './pages/Regalo'
@@ -124,7 +125,11 @@ function App() {
                 <Route path="/medlingo" element={<MedLingoPage />} />
                 <Route path="/racha" element={<MedLingoPage />} />
                 <Route path="/reconstructions" element={<Reconstructions />} />
-                <Route path="/mis-clases" element={<MisClases />} />
+                <Route path="/mis-clases" element={<ClasesV3 />} />
+                <Route path="/mis-clases/:spec" element={<ClasesV3 />} />
+                <Route path="/mis-clases/:spec/test/:n" element={<ClasesV3 />} />
+                <Route path="/mis-clases/:spec/:id" element={<ClasesV3 />} />
+                <Route path="/clases-guevara" element={<MisClases />} />
                 <Route path="/test" element={<TestCreator />} />
                 <Route path="/simulation" element={<Simulation />} />
                 <Route path="/oferta" element={<Offer />} />

@@ -91,11 +91,24 @@ const REC_LIST = [
   ['JUL', 2013], ['JUL', 2015], ['JUL', 2016], ['JUL', 2017], ['DIC', 2017], ['JUL', 2018], ['DIC', 2018], ['JUL', 2019],
   ['DIC', 2019], ['AGO', 2021], ['', 2022], ['ENE', 2023], ['JUL', 2024], ['DIC', 2024], ['JUL', 2025], ['DIC', 2025],
 ]
+const REC_MES = { ENE: 'Enero', JUL: 'Julio', AGO: 'Agosto', DIC: 'Diciembre' }
 export const RECONS = REC_LIST.map(([month, year]) => ({
-  sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${month ? month[0] + month.slice(1).toLowerCase() + ' ' : ''}${year}`,
-  price: 4990, questions: 180,
-  file: null, // TODO(entrega): PDF de cada examen por separado (hoy solo existe el Gran Libro completo)
+  sku: `rec-${month}${year}`, month, year, name: `Reconstrucción ${REC_MES[month] || 'Diciembre'} ${year}`,
+  price: 4990, questions: 180, cover: `${COVER}rec_${month}${year}.jpg`,
+  // PDF por examen: books/scripts/build_reconstrucciones_por_examen.cjs (publishing hub) → libros/03_Reconstrucciones/
+  file: `03_Reconstrucciones/Reconstruccion_EUNACOM_${REC_MES[month] || 'Diciembre'}_${year}.pdf`,
 }))
+
+// Reconstrucción Julio 2026 (enviada por Mario Sánchez). Libro aparte, NO entra en el Gran Libro ni en la Biblioteca:
+// se vende suelto a $12.999 y viene GRATIS con cualquier suscripción activa. Se compra desde el 16-nov-2026 (hora Chile).
+export const RECON_JUL2026 = {
+  sku: 'rec-JUL2026', month: 'JUL', year: 2026, name: 'Reconstrucción Julio 2026', price: 12999, questions: 180, cover: `${COVER}rec_JUL2026.jpg`,
+  releaseDate: '2026-11-16', freeWithPlan: true, isNew: true,
+  file: '03_Reconstrucciones/Reconstruccion_EUNACOM_Julio_2026.pdf', // TODO(entrega): subir el PDF a R2 libros/<ruta> antes del 16-nov
+}
+export const isReleased = (p, now = Date.now()) => !p?.releaseDate || now >= Date.parse(`${p.releaseDate}T00:00:00-03:00`)
+// Ítems que trae cualquier plan activo (aunque no incluya la biblioteca)
+export const PLAN_FREE_ITEMS = [RECON_JUL2026.sku]
 
 // Libros que solo vienen dentro de los packs
 export const EXTRAS = [
@@ -242,7 +255,7 @@ export const PACKS = [
 ]
 
 export const PRODUCTS = Object.fromEntries(
-  [...PACKS, ...TOMOS, ...RECONS, ...SINGLES].map(p => [p.sku, { includes: [p.sku], ...p }])
+  [...PACKS, ...TOMOS, ...RECONS, RECON_JUL2026, ...SINGLES].map(p => [p.sku, { includes: [p.sku], ...p }])
 )
 export const LIBRARY_ITEMS = PACKS.find(p => p.sku === 'biblioteca').includes
 
@@ -266,7 +279,7 @@ export const fmtClp = n => `$${Math.round(n).toLocaleString('es-CL')}`
 
 // Archivos legibles de un ítem desbloqueado (ruta dentro de books/dist; en producción, clave `libros/<ruta>` en R2)
 export function itemFiles(item) {
-  const x = TOMOS.find(t => t.sku === item) || EXTRAS.find(t => t.sku === item) || RECONS.find(t => t.sku === item) || SINGLES.find(t => t.sku === item)
+  const x = TOMOS.find(t => t.sku === item) || EXTRAS.find(t => t.sku === item) || RECONS.find(t => t.sku === item) || (item === RECON_JUL2026.sku && RECON_JUL2026) || SINGLES.find(t => t.sku === item)
   if (!x) return []
   if (x.files) return x.files
   return x.file ? [{ label: x.label || x.name, file: x.file }] : []

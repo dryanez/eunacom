@@ -170,3 +170,7 @@
 .sr-row svg { color: var(--mn-sky); flex: none; }
 .sr-more { display: flex; align-items: center; justify-content: center; gap: .3rem; width: 100%; padding: .65rem; border: 0; border-top: 1px solid var(--mn-tline); background: none; color: var(--mn-sky); font-size: .8rem; font-weight: 600; cursor: pointer; font-family: inherit; }
 .sr-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mn-sky); margin: 0 0 .5rem; }
+
+/* Reconstrucción nueva (Julio 2026): aviso «llega el 16 de noviembre» */
+.sr-exam.is-soon { border-style: dashed; }
+.sr-new { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 600; opacity: .9; margin-bottom: 4px; }

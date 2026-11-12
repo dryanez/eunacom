@@ -233,6 +233,7 @@ const PaymentModal = ({ onClose }) => {
                   <li><i>✓</i>+650 clases en video</li>
                   <li><i>✓</i>+47.000 preguntas y simulacros</li>
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
+                  <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
                   {plan.includesLibrary
                     ? <li><i>✓</i><span><b>Biblioteca completa de libros</b> <span className="plan-libval">(valor {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
