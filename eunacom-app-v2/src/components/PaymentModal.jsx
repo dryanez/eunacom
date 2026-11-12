@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { X, CheckCircle2, BookOpen, Tag } from 'lucide-react';
+import { X, CheckCircle2, BookOpen, Tag, Hourglass } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { createCheckoutSession, createPaypalOrder, getEmailDiscount } from '../lib/api';
 import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
@@ -18,11 +18,20 @@ export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone
 const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
 export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
-import { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
+import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL, LIB_BOOK_COUNT } from '../config/biblioteca';
+
+// Portadas que se deslizan solas (carrusel infinito). size = alto en px.
+const CoverMarquee = ({ size = 150, speed = 28, covers = LIB_COVERS }) => (
+  <div className="cov-marquee" style={{ '--cov-h': `${size}px`, '--cov-speed': `${speed}s` }} aria-hidden="true">
+    <div className="cov-marquee__track">
+      {[...covers, ...covers].map((c, i) => <img key={i} src={c} alt="" className="book-cover" loading="lazy" />)}
+    </div>
+  </div>
+);
 
 const PaymentModal = ({ onClose }) => {
   const androidApp = isAndroidApp();
-  const { user } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const exam = nextExam();
   const { promo, coupon, setCoupon, upgradeCredit, libraryIncluded } = useSubscription();
   const navigate = useNavigate();
@@ -30,7 +39,7 @@ const PaymentModal = ({ onClose }) => {
   const onBooksPage = location.pathname.startsWith('/biblioteca') || location.pathname.startsWith('/libros');
   const [couponInput, setCouponInput] = useState(coupon?.code || '');
   const [couponError, setCouponError] = useState('');
-  const [showCouponBox, setShowCouponBox] = useState(!!coupon);
+  const [showCouponBox, setShowCouponBox] = useState(true); // el campo del código queda siempre a la vista en el pago
   const credit = upgradeCredit?.amount || 0;
   
   // Read discount from URL or localStorage (30, 40, 50)
@@ -97,6 +106,13 @@ const PaymentModal = ({ onClose }) => {
   const payRef = React.useRef(null);
   const libRef = React.useRef(null);
   const scrollToPay = () => payRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // «¿Qué trae?»: baja a la biblioteca y la ilumina un momento para que se note dónde quedó
+  const [libFlash, setLibFlash] = useState(false);
+  const goLib = () => {
+    const el = libRef.current; if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setLibFlash(true); setTimeout(() => setLibFlash(false), 1800);
+  };
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
@@ -114,11 +130,15 @@ const PaymentModal = ({ onClose }) => {
 
   // In-app PayPal order (charges the promo price). Falls back to the fixed-price PayPal link
   // if the PayPal API isn't configured on the server.
+  // Sin sesión (p. ej. en /oferta) se ven los mismos planes; al pagar se pide entrar o crear cuenta y se queda en el plan elegido
+  const askLogin = () => {
+    try { sessionStorage.setItem('eunacom_plan_pick', selectedPlan.id); } catch {}
+    track('checkout_login_prompt', { plan: selectedPlan.id });
+    openAuthModal('register', `Crea tu cuenta (o inicia sesión) para pagar ${selectedPlan.name} · ${selectedPlan.price}`);
+  };
+
   const handlePaypal = async () => {
-    if (!user) {
-      setErrorMp("Debes iniciar sesión para suscribirte.");
-      return;
-    }
+    if (!user) return askLogin();
     setLoadingMp(true);
     setErrorMp(null);
     try {
@@ -134,10 +154,7 @@ const PaymentModal = ({ onClose }) => {
   };
 
   const handleMercadoPago = async () => {
-    if (!user) {
-      setErrorMp("Debes iniciar sesión para suscribirte.");
-      return;
-    }
+    if (!user) return askLogin();
     setLoadingMp(true);
     setErrorMp(null);
     try {
@@ -173,15 +190,27 @@ const PaymentModal = ({ onClose }) => {
     <div className="plan-checkout" role="dialog" aria-modal="true" aria-label="Planes EUNACOM App">
       <div className="plan-checkout__bar">
         <div>
-          <div className="plan-checkout__title">Curso Completo Todo-en-Uno ⭐</div>
+          <div className="plan-checkout__brand"><img src="/logo.png" alt="" width="26" height="26" /><span>eunacom<b>app</b></span></div>
         </div>
         <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
       </div>
 
+      {exam && exam.days <= 120 && (
+        <div className="plan-countdown">
+          <Hourglass size={17} />
+          <span>Faltan <b>{exam.days} días</b> para el EUNACOM del {exam.label}</span>
+        </div>
+      )}
+
       <div className="plan-checkout__body">
-        <div className="plan-r26">
+        <div className="plan-r26a">
           <img src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" />
-          <div><span>🆕 Nueva · la última antes de tu examen</span><b>Reconstrucción EUNACOM Julio 2026 gratis con cualquier plan</b><small>180 preguntas con explicación · suelta vale {fmtClp(RECON_JUL2026.price)}</small></div>
+          <div>
+            <span className="plan-r26a__pill">Nueva · la última antes de tu examen</span>
+            <h4>Reconstrucción EUNACOM Julio 2026</h4>
+            <p>180 preguntas reales con explicación</p>
+            <div className="plan-r26a__pr"><s>{fmtClp(RECON_JUL2026.price)}</s><b>GRATIS</b><em>con cualquier plan</em></div>
+          </div>
         </div>
         {discountPercent > 0 && (
           <div className="plan-banner promo">
@@ -201,11 +230,15 @@ const PaymentModal = ({ onClose }) => {
           </div>
         )}
 
-        {exam && exam.days <= 120 && (
-          <div className="plan-banner credit">⏳ Faltan <strong>{exam.days} días</strong> para el EUNACOM del {exam.label}.</div>
-        )}
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
-        <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros.</p>
+        <div className="plan-collab">
+          <img src="/logo.png" alt="" width="34" height="34" /><span className="plan-collab__app">eunacom<b>app</b></span>
+          <span className="plan-collab__sep" aria-hidden="true" />
+          <span className="plan-collab__aeebox">
+            <img src="/tienda/aee-emblem.svg" alt="" className="plan-collab__aee" />
+            <span>Academia Examen EUNACOM</span>
+          </span>
+        </div>
 
         <div className="plan-grid">
           {plansToDisplay.map(plan => {
@@ -233,17 +266,17 @@ const PaymentModal = ({ onClose }) => {
                 <ul className="pack-feat">
                   <li><i>✓</i>+650 clases en video</li>
                   <li><i>✓</i>+47.000 preguntas y simulacros</li>
-                  <li><i>✓</i>+15.900 flashcards tipo Anki</li>
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
+                  <li className="plan-anki"><img src="/tienda/anki.webp" alt="Anki" /><span><b>+15.900 flashcards tipo Anki</b></span></li>
                   {plan.includesLibrary
-                    ? <li><i>✓</i><span><b>Biblioteca completa de libros</b> <span className="plan-libval">(valor {fmtClp(BIBLIOTECA.price)})</span></span></li>
+                    ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa: {LIB_BOOK_COUNT} libros GRATIS de Academia Examen EUNACOM</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
                 </ul>
                 {plan.includesLibrary && (
-                  <button className="plan-libstrip" onClick={e => { e.stopPropagation(); libRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}>
-                    <span className="covers">{LIB_COVERS.slice(0, 4).map(c => <img key={c} src={c} alt="" className="book-cover" />)}</span>
-                    <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y más <u>¿Qué trae? →</u></span>
+                  <button type="button" className="plan-libstrip" onClick={e => { e.stopPropagation(); goLib(); }}>
+                    <CoverMarquee size={64} speed={22} />
+                    <span>{LIB_BOOK_COUNT} libros: tomos, reconstrucciones, Libros Gordos, Repaso Final, atlas y más <u>¿Qué trae? →</u></span>
                   </button>
                 )}
                 <button
@@ -257,76 +290,81 @@ const PaymentModal = ({ onClose }) => {
           })}
         </div>
 
+        {!onBooksPage && !libraryIncluded && (
+          <button type="button" onClick={() => { onClose(); navigate('/biblioteca'); }} className="plan-books">
+            <CoverMarquee size={78} speed={26} />
+            <span className="plan-books__txt">
+              <small>¿Solo quieres los libros?</small>
+              <b>Biblioteca completa · {LIB_BOOK_COUNT} libros · {fmtClp(BIBLIOTECA.price)}</b>
+              <span>Tomos, reconstrucciones, Libros Gordos, Repaso Final y atlas, para leer en la app</span>
+            </span>
+            <span className="plan-books__go">Ver libros →</span>
+          </button>
+        )}
+
         {/* Qué es la biblioteca (para que se entienda qué traen 3 meses y de por vida) */}
-        <div ref={libRef} className="plan-lib">
-          <div className="plan-lib__covers" aria-hidden="true">
-            {LIB_COVERS.map((c, i) => (
-              <img key={c} src={c} alt="" className="book-cover" style={{ transform: `rotate(${(i - 2.5) * 5}deg)`, zIndex: 6 - Math.abs(Math.round(i - 2.5)) }} />
-            ))}
-          </div>
+        <div ref={libRef} className={`plan-lib ${libFlash ? 'is-flash' : ''}`}>
+          <CoverMarquee size={190} speed={90} covers={LIB_COVERS_ALL} />
           <div className="plan-lib__text">
             <span className="tienda-kick">📚 Incluida desde 3 meses</span>
-            <h3>¿Qué es la Biblioteca EUNACOM?</h3>
+            <h3>¿Qué es la Biblioteca EUNACOM? <span className="plan-lib__count">{LIB_BOOK_COUNT} libros</span></h3>
             <p>Los libros de Academia Examen EUNACOM para estudiar el Perfil V3. Se leen dentro de la app, en el computador o el celular.</p>
             <div className="plan-lib__grid">
               {LIB_ITEMS.map(x => (
                 <div key={x.t}><b>{x.n}</b><strong>{x.t}</strong><span>{x.d}</span></div>
               ))}
             </div>
+            <div className="plan-lib__anki">
+              <img src="/tienda/anki.webp" alt="Anki" className="plan-lib__anki-logo" width="44" height="44" />
+              <b>+15.900</b>
+              <span><strong>Flashcards tipo Anki</strong> con repetición espaciada, por especialidad y código. Vienen en <u>todos</u> los planes.</span>
+            </div>
             <div className="plan-lib__value">
-              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
+              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack de {LIB_BOOK_COUNT} libros. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
             </div>
           </div>
         </div>
 
-        <div className="plan-extras">
-          <div style={androidApp ? { display: 'none' } : undefined}>
-            {!showCouponBox ? (
-              <button onClick={() => setShowCouponBox(true)} className="plan-link">
-                <Tag size={13} /> ¿Tienes un código de descuento?
-              </button>
-            ) : (
-              <div>
-                <div style={{ display: 'flex', gap: '0.4rem', maxWidth: 360 }}>
-                  <input
-                    value={couponInput}
-                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
-                    onKeyDown={e => e.key === 'Enter' && applyCoupon()}
-                    placeholder="Ej: SHORTS20"
-                    aria-label="Código de descuento"
-                    className="plan-input"
-                  />
-                  <button onClick={applyCoupon} className="plan-apply">Aplicar</button>
-                </div>
-                {couponError && <div style={{ color: '#f87171', fontSize: '0.75rem', marginTop: 4 }}>{couponError}</div>}
-                {coupon && !couponError && discountPercent > socialPercent && (
-                  <div style={{ color: 'var(--surface-400)', fontSize: '0.75rem', marginTop: 4 }}>Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Libros como opción secundaria (en /biblioteca el orden es al revés) */}
-          {!onBooksPage && !libraryIncluded && (
-            <button onClick={() => { onClose(); navigate('/biblioteca'); }} className="plan-books">
-              <BookOpen size={18} style={{ color: '#fbbf24', flexShrink: 0 }} />
-              <span>
-                ¿Solo quieres los libros? <strong>{BIBLIOTECA.name} {fmtClp(BIBLIOTECA.price)}</strong>
-                <span className="plan-books__sub">Tomos, reconstrucciones, Libros Gordos, Repaso Final y Atlas, en la app →</span>
-              </span>
-            </button>
-          )}
-        </div>
-
         {/* Pago */}
         <div ref={payRef} className="plan-pay">
-          <h3 className="plan-pay__title">
-            Completar pago: <span>{selectedPlan.name} · {selectedPlan.price}</span>
-          </h3>
+          <div className="plan-pay__sum">
+            <div className="plan-pay__plan">
+              <small>Completar pago</small>
+              <b>{selectedPlan.name}</b>
+              <span>{selectedPlan.lifetime ? 'Acceso para siempre' : `${selectedPlan.days} días de acceso`}{selectedPlan.includesLibrary ? ' · con biblioteca' : ''}</span>
+            </div>
+            <div className="plan-pay__amt">
+              {selectedPlan.oldPrice && !selectedPlan.anchorIsMonthly && <s>{selectedPlan.oldPrice}</s>}
+              <strong>{selectedPlan.price}</strong>
+              <small>CLP · pago único</small>
+            </div>
+          </div>
 
           {androidApp ? (
             <PlayPayButton plan={selectedPlan} userId={user?.id} />
           ) : (<>
+          <div className="plan-pay__coupon">
+            {!showCouponBox ? (
+              <button type="button" onClick={() => setShowCouponBox(true)} className="plan-link"><Tag size={13} /> ¿Tienes un código de descuento?</button>
+            ) : (
+              <>
+                <div className="plan-pay__coupon-row">
+                  <Tag size={15} />
+                  <input
+                    value={couponInput}
+                    onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
+                    onKeyDown={e => e.key === 'Enter' && applyCoupon()}
+                    placeholder="Código de descuento"
+                    aria-label="Código de descuento"
+                  />
+                  <button type="button" onClick={applyCoupon}>Aplicar</button>
+                </div>
+                {couponError && <div className="plan-pay__coupon-msg err">{couponError}</div>}
+                {coupon && !couponError && discountPercent > socialPercent && <div className="plan-pay__coupon-msg">Ya tienes un descuento mayor aplicado; los códigos no se suman.</div>}
+                {coupon && !couponError && discountPercent === socialPercent && <div className="plan-pay__coupon-msg ok">Código {coupon.code} aplicado: {socialPercent}% de descuento.</div>}
+              </>
+            )}
+          </div>
           <p className="plan-refund">
             Al pagar aceptas nuestra <a href="/reembolsos" target="_blank" rel="noopener noreferrer">Política de Reembolsos</a>: como el acceso se activa de inmediato, no hay reembolsos una vez activado.
           </p>

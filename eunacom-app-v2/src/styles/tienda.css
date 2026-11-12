@@ -375,3 +375,121 @@
 .plan-r26 b{font-size:16px;line-height:1.25}.plan-r26 small{color:#bfdbfe;font-size:12.5px}
 .plan-checkout__lead b{color:var(--surface-50,#fff)}
 .plan-refund{margin:0 0 12px;font-size:.74rem;line-height:1.45;color:var(--surface-300);text-align:center}.plan-refund a{color:#60a5fa;text-decoration:underline}
+
+/* Planes: contador del examen arriba como franja, y resumen del pago con el precio grande (nov-2026) */
+.plan-countdown{display:flex;align-items:center;justify-content:center;gap:.55rem;padding:.6rem 1rem;flex-shrink:0;background:linear-gradient(90deg,#1d4ed8,#0ea5e9);color:#fff;font-size:.9rem;font-weight:600;text-align:center;box-shadow:0 6px 18px -10px rgba(14,165,233,.9)}
+.plan-countdown b{font-weight:800;font-size:1.05rem;padding:0 .1rem}
+.plan-countdown svg{flex:none;opacity:.9}
+.plan-pay__sum{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 0 1rem;padding:.95rem 1.05rem;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.22),rgba(14,165,233,.08));border:1px solid rgba(56,189,248,.35)}
+.plan-pay__plan{display:flex;flex-direction:column;min-width:0}
+.plan-pay__plan small{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7dd3fc}
+.plan-pay__plan b{font-size:1.2rem;font-weight:800;color:#f8fafc;line-height:1.25}
+.plan-pay__plan span{font-size:.76rem;color:#94a3b8}
+.plan-pay__amt{display:flex;flex-direction:column;align-items:flex-end;flex:none;line-height:1.1}
+.plan-pay__amt s{font-size:.78rem;color:#64748b}
+.plan-pay__amt strong{font-size:1.75rem;font-weight:800;color:#fff;letter-spacing:-.01em}
+.plan-pay__amt small{font-size:.66rem;color:#94a3b8;margin-top:2px}
+@media (max-width:420px){.plan-countdown{font-size:.82rem}.plan-pay__amt strong{font-size:1.5rem}.plan-pay__plan b{font-size:1.05rem}}
+
+/* ── Planes nov-2026 (2): 6 meses resalta, portadas que se deslizan, solo libros y cupón en el pago ── */
+@media (min-width: 1001px) {
+  .plan-grid { align-items: center; padding-top: 1.4rem; }
+  .plan-card.star { transform: scale(1.05); z-index: 2; }
+  .plan-card.star:hover { transform: scale(1.05) translateY(-2px); }
+}
+.plan-card.star { border-width: 2px; box-shadow: 0 0 0 4px rgba(59,130,246,.15), 0 28px 60px -22px rgba(59,130,246,.75); background: linear-gradient(180deg, rgba(59,130,246,.18), transparent 55%), var(--surface-700); }
+.plan-card.star .pack-ribbon { font-size: .8rem; padding: 4px 14px; box-shadow: 0 6px 16px -6px rgba(59,130,246,.9); }
+.plan-card.star .pack-price { font-size: 2.35rem; }
+
+.cov-marquee { position: relative; overflow: hidden; height: calc(var(--cov-h) + 14px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.cov-marquee__track { display: flex; gap: calc(var(--cov-h) * .12); width: max-content; padding: 4px 0 10px; animation: covSlide var(--cov-speed) linear infinite; }
+.cov-marquee__track img { height: var(--cov-h); width: auto; flex: none; }
+.cov-marquee:hover .cov-marquee__track { animation-play-state: paused; }
+@keyframes covSlide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .cov-marquee__track { animation: none; } }
+
+.plan-libstrip { flex-direction: column; align-items: stretch; gap: .35rem; padding: .5rem .6rem .6rem; margin: -.2rem 0 1rem; text-align: left; cursor: pointer; }
+.plan-libstrip .cov-marquee { border-radius: 8px; }
+.plan-libstrip u { white-space: nowrap; }
+
+.plan-books { display: flex; align-items: center; gap: 1rem; width: 100%; margin: 1.6rem 0 0; padding: .85rem 1.1rem; border-radius: 16px; border: 1px solid rgba(251,191,36,.35); background: linear-gradient(135deg, rgba(251,191,36,.12), rgba(251,191,36,.03)); color: var(--surface-300); cursor: pointer; text-align: left; font-family: inherit; }
+.plan-books .cov-marquee { width: 210px; flex: none; }
+.plan-books__txt { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.plan-books__txt small { font-size: .74rem; font-weight: 700; color: #fbbf24; letter-spacing: .02em; }
+.plan-books__txt b { font-size: 1.05rem; color: var(--surface-50); margin: .1rem 0; }
+.plan-books__txt span { font-size: .78rem; color: var(--surface-400); line-height: 1.4; }
+.plan-books__go { flex: none; padding: .55rem .95rem; border-radius: 10px; background: #fbbf24; color: #1f2937; font-weight: 800; font-size: .82rem; white-space: nowrap; }
+@media (max-width: 640px) { .plan-books { flex-direction: column; align-items: stretch; gap: .6rem; } .plan-books .cov-marquee { width: 100%; } .plan-books__go { text-align: center; } }
+
+.plan-lib { grid-template-columns: 1fr; gap: .4rem; scroll-margin-top: 1rem; transition: box-shadow .4s, border-color .4s; }
+.plan-lib.is-flash { border-color: #fbbf24; box-shadow: 0 0 0 4px rgba(251,191,36,.25), 0 0 40px rgba(251,191,36,.25); }
+.plan-lib__anki { display: flex; align-items: center; gap: .8rem; margin-top: .7rem; padding: .7rem .9rem; border-radius: 12px; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.3); }
+.plan-lib__anki b { font-size: 1.35rem; color: #38bdf8; flex: none; }
+.plan-lib__anki span { font-size: .8rem; color: var(--surface-300); line-height: 1.4; }
+.plan-lib__anki strong { color: var(--surface-50); }
+@media (max-width: 560px) { .plan-lib .cov-marquee { --cov-h: 140px !important; } }
+
+.plan-pay__coupon { margin: -.35rem 0 .9rem; display: flex; flex-direction: column; align-items: center; }
+.plan-pay__coupon-row { display: flex; align-items: center; gap: .5rem; width: 100%; padding: .3rem .3rem .3rem .75rem; border-radius: 12px; background: var(--surface-800, #0f172a); border: 1px solid rgba(56,189,248,.3); color: #7dd3fc; }
+.plan-pay__coupon-row input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--surface-50); font: inherit; font-size: 16px; font-weight: 700; letter-spacing: .04em; }
+.plan-pay__coupon-row input::placeholder { font-weight: 500; letter-spacing: 0; color: var(--surface-400); }
+.plan-pay__coupon-row button { flex: none; padding: .5rem .95rem; border: 0; border-radius: 9px; background: var(--accent-blue, #3b82f6); color: #fff; font: inherit; font-weight: 700; font-size: .82rem; cursor: pointer; }
+.plan-pay__coupon-msg { align-self: flex-start; font-size: .76rem; margin-top: .35rem; color: var(--surface-400); }
+.plan-pay__coupon-msg.err { color: #f87171; } .plan-pay__coupon-msg.ok { color: #4ade80; }
+.plan-grid > .plan-card { min-width: 0; }
+.cov-marquee { width: 100%; min-width: 0; contain: inline-size; }
+@media (min-width: 1001px) { .plan-grid { padding-left: .6rem; padding-right: .6rem; } .plan-card.star, .plan-card.star:hover { transform: scale(1.035); } }
+/* barra de arriba: solo la marca (sin «Curso Completo Todo-en-Uno») */
+.plan-checkout__brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.05rem;color:#fff;letter-spacing:-.01em}
+.plan-checkout__brand b{color:#38bdf8}
+/* eunacomapp × AEE bajo «Elige tu plan» */
+.plan-collab{display:flex;align-items:center;justify-content:center;gap:10px;margin:.4rem auto 1.1rem;padding:.55rem 1.1rem;width:fit-content;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.plan-collab__app{font-weight:700;font-size:1.05rem;color:#fff;letter-spacing:-.02em}.plan-collab__app b{color:#38bdf8}
+.plan-collab__x{color:#64748b;font-size:1.2rem}
+.plan-collab__aee{height:30px;width:auto}
+.plan-collab__aee-t{line-height:1.15;text-align:left}.plan-collab__aee-t b{display:block;color:#fff;font-size:.95rem}.plan-collab__aee-t small{display:block;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:#22d3ee}
+@media (max-width:420px){.plan-collab__aee-t small{display:none}}
+.pack-feat li.plan-free b{color:#4ade80}
+/* logo de Anki en la esquina de arriba a la izquierda del recuadro de flashcards */
+.plan-lib__anki{position:relative;margin-top:1.3rem;padding-left:1.2rem}
+.plan-lib__anki-logo{position:absolute;top:-16px;left:-12px;width:40px;height:auto;transform:rotate(-10deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
+.plan-lib__anki{padding-left:2.6rem}
+/* «en alianza oficial con AEE» bajo la biblioteca en los planes */
+.pack-feat li.plan-aee{display:flex;align-items:center;gap:8px;width:fit-content;margin:2px 0 4px 1.55rem;padding:4px 12px 4px 6px;border-radius:999px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);font-size:.78rem;color:#94a3b8}
+.pack-feat li.plan-aee img{height:24px;width:auto}
+.pack-feat li.plan-aee b{color:#e2e8f0}
+/* eunacomapp × logo AEE: sin el texto de la derecha, logo AEE más grande para que se lea «Academia Examen EUNACOM» */
+.plan-collab{padding:.5rem 1.3rem;gap:14px}
+.plan-collab__aee{height:54px}
+@media (max-width:420px){.plan-collab__aee{height:46px}}
+/* separador vertical en vez de «×»; nombre de AEE como texto, más grande */
+.plan-collab{gap:18px;padding:.55rem 1.5rem}
+.plan-collab__sep{width:1px;align-self:stretch;margin:4px 0;background:linear-gradient(180deg,transparent,rgba(148,163,184,.55),transparent)}
+.plan-collab__aeebox{display:flex;flex-direction:column;align-items:center;gap:5px}
+.plan-collab__aee{height:38px;width:auto}
+.plan-collab__aeebox span{font-family:'DM Mono',ui-monospace,monospace;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#e2e8f0;white-space:nowrap}
+@media (max-width:420px){.plan-collab{gap:12px;padding:.5rem 1rem}.plan-collab__aee{height:32px}.plan-collab__aeebox span{font-size:.68rem}.plan-collab__app{font-size:.95rem}}
+/* «Alianza oficial» AEE bajo la biblioteca: centrado, emblema grande y nombre legible */
+.pack-feat li.plan-aee{justify-content:center;gap:14px;margin:8px auto 6px;padding:8px 18px;width:100%;max-width:300px;border-radius:14px}
+.plan-aee__logo{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pack-feat li.plan-aee .plan-aee__logo img{height:34px;width:auto}
+.plan-aee__logo small{font-family:'DM Mono',ui-monospace,monospace;font-size:.6rem;font-weight:600;letter-spacing:.05em;color:#e2e8f0;white-space:nowrap}
+.plan-aee__t{padding-left:14px;border-left:1px solid rgba(148,163,184,.35);font-size:.82rem;line-height:1.2;font-weight:700;color:#e2e8f0;text-align:left}
+.pack-feat li.plan-aee{max-width:none;padding:8px 10px;gap:12px}
+.plan-aee__logo small{font-family:inherit;font-size:.64rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.plan-aee__t{padding-left:12px;font-size:.8rem}
+.plan-lib__count{display:inline-block;vertical-align:middle;margin-left:8px;padding:3px 11px;border-radius:999px;background:#fbbf24;color:#1f2937;font-size:.85rem;font-weight:800}
+@media (min-width:1001px){.plan-aee__logo small{font-size:.56rem}.plan-aee__t{font-size:.74rem}.pack-feat li.plan-aee{gap:10px;padding:8px}}
+.pack-feat li.plan-anki{align-items:center}
+.pack-feat li.plan-anki img{width:22px;height:auto;margin-left:6px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.pack-feat li.plan-anki img{display:inline-block;vertical-align:-5px;width:20px;margin:0 6px 0 0}
+.pack-feat li.plan-anki img{display:block;width:18px;height:auto;margin:0;flex:none;vertical-align:0}
+/* Franja Reconstrucción Julio 2026 (opción A): fondo rojo oscuro, portada inclinada, $12.999 → GRATIS */
+.plan-r26a{display:flex;gap:22px;align-items:center;margin:0 0 14px;padding:16px 22px;border-radius:20px;color:#fff;background:radial-gradient(120% 140% at 0% 50%,#7f1d1d 0%,#1e1b3a 45%,#0b1530 100%);border:1px solid rgba(248,113,113,.45);box-shadow:0 20px 50px -25px rgba(239,68,68,.7)}
+.plan-r26a img{width:92px;flex:none;transform:rotate(-6deg);border-radius:3px 7px 7px 3px;box-shadow:0 16px 30px rgba(0,0,0,.6)}
+.plan-r26a h4{margin:0;font-size:1.2rem;line-height:1.2}
+.plan-r26a p{margin:4px 0 0;color:#bfdbfe;font-size:.82rem}
+.plan-r26a__pill{display:inline-block;margin-bottom:8px;padding:3px 10px;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fecaca;background:rgba(239,68,68,.2);border:1px solid rgba(248,113,113,.5)}
+.plan-r26a__pr{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:8px}
+.plan-r26a__pr s{color:#94a3b8}.plan-r26a__pr b{font-size:1.65rem;font-weight:900;color:#4ade80;line-height:1}.plan-r26a__pr em{font-style:normal;font-size:.76rem;color:#cbd5e1}
+@media (max-width:480px){.plan-r26a{gap:14px;padding:14px}.plan-r26a img{width:68px}.plan-r26a h4{font-size:1rem}.plan-r26a__pill{font-size:.58rem;letter-spacing:.03em}.plan-r26a__pr b{font-size:1.35rem}}

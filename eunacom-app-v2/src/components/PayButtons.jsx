@@ -52,10 +52,10 @@ export default function PayButtons({ onMercadoPago, onPaypal, loading, showMerca
       <div className="pb-wallets">
         <button className="pb-brand pb-apple" onClick={onPaypal} disabled={loading} aria-label="Pagar con Apple Pay"><AppleLogo /> <b>Pay</b></button>
         <button className="pb-brand pb-google" onClick={onPaypal} disabled={loading} aria-label="Pagar con Google Pay"><GoogleG /> <b>Pay</b></button>
+        <button className="pb-brand pb-pp" onClick={onPaypal} disabled={loading} aria-label="Pagar con PayPal">
+          <PayLogo name="paypal" size={18} color="#003087" /><i><span>Pay</span><span>Pal</span></i>
+        </button>
       </div>
-      <button className="pb-brand pb-pp" onClick={onPaypal} disabled={loading}>
-        <span>Pagar con</span> <PayLogo name="paypal" size={19} color="#003087" /><i><span>Pay</span><span>Pal</span></i>
-      </button>
       <p className="pb-usd">Apple Pay, Google Pay y PayPal se cobran en dólares en la página segura de PayPal{usdLabel ? ` (${usdLabel})` : ''}. Sirven desde cualquier país.</p>
 
       {transferAmount && (
