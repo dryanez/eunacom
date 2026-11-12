@@ -233,7 +233,11 @@ const PaymentModal = ({ onClose }) => {
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
         <div className="plan-collab">
           <img src="/logo.png" alt="" width="34" height="34" /><span className="plan-collab__app">eunacom<b>app</b></span>
-          <span className="plan-collab__sep" aria-hidden="true" />
+          <span className="plan-collab__link" aria-hidden="true">
+            <i />
+            <svg viewBox="0 0 24 24" width="18" height="18"><defs><linearGradient id="pcPlus" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#60a5fa" /><stop offset="1" stopColor="#38bdf8" /></linearGradient></defs><path d="M12 4v16M4 12h16" stroke="url(#pcPlus)" strokeWidth="3" strokeLinecap="round" /></svg>
+            <i />
+          </span>
           <span className="plan-collab__aeebox">
             <img src="/tienda/aee-emblem.svg" alt="" className="plan-collab__aee" />
             <span>Academia Examen EUNACOM</span>

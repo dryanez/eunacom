@@ -493,3 +493,14 @@
 .plan-r26a__pr{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:8px}
 .plan-r26a__pr s{color:#94a3b8}.plan-r26a__pr b{font-size:1.65rem;font-weight:900;color:#4ade80;line-height:1}.plan-r26a__pr em{font-style:normal;font-size:.76rem;color:#cbd5e1}
 @media (max-width:480px){.plan-r26a{gap:14px;padding:14px}.plan-r26a img{width:68px}.plan-r26a h4{font-size:1rem}.plan-r26a__pill{font-size:.58rem;letter-spacing:.03em}.plan-r26a__pr b{font-size:1.35rem}}
+/* «+» entre eunacomapp y AEE (en vez de la línea) */
+.plan-collab__plus{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:50%;background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.4);color:#38bdf8;font-size:1.25rem;font-weight:800;line-height:1}
+@media (max-width:420px){.plan-collab__plus{width:24px;height:24px;font-size:1rem}}
+@media (max-width:480px){.plan-collab{gap:8px;padding:.45rem .8rem;max-width:100%}.plan-collab>img{width:28px;height:28px}.plan-collab__app{font-size:.88rem}.plan-collab__aee{height:28px}.plan-collab__aeebox span{font-size:.56rem;letter-spacing:.03em}.plan-collab__plus{width:22px;height:22px;font-size:.95rem}}
+/* entre eunacomapp y AEE: «+» con brillo y dos líneas de luz que conectan (opción D) */
+.plan-collab__plus{display:none}
+.plan-collab__link{display:flex;align-items:center;gap:3px;flex:none}
+.plan-collab__link i{width:14px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#38bdf8)}
+.plan-collab__link i:last-child{background:linear-gradient(90deg,#38bdf8,transparent)}
+.plan-collab__link svg{filter:drop-shadow(0 0 6px rgba(56,189,248,.9))}
+@media (max-width:480px){.plan-collab__link i{width:9px}.plan-collab__link svg{width:15px;height:15px}}
