@@ -18,11 +18,12 @@ import LevelUpModal from '../components/LevelUpModal'
 import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
 import InicioMidnight from '../components/redesign/InicioMidnight'
+import RecJul2026Card from '../components/RecJul2026Card'
 import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
-import { PRODUCTS, TOMOS, EXTRAS, fmtClp } from '../config/tienda'
+import { PRODUCTS, TOMOS, EXTRAS, fmtClp, RECON_JUL2026 } from '../config/tienda'
 
 const TOPIC_PRESETS = [
   // Módulo 1 · Medicina Interna
@@ -485,6 +486,9 @@ const Dashboard = () => {
           dailyGoal={DAILY_GOAL}
         />
       )}
+
+      {/* ─── NUEVA: RECONSTRUCCIÓN JULIO 2026 ─── */}
+      <RecJul2026Card owned={!!user && ownedBooks?.has?.(RECON_JUL2026.sku)} dismissible utm="app_inicio" />
 
       {/* ─── STREAK FREEZE WARNING BANNER (Trigger de Racha en Riesgo) ─── */}
       {stats.streak > 0 && todayAnswers === 0 && (

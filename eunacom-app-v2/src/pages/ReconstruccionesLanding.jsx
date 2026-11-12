@@ -5,6 +5,7 @@ import {
   BookOpen, Layers, ArrowRight, ShieldCheck
 } from 'lucide-react'
 import { usePageSeo } from '../lib/seo'
+import RecJul2026Card from '../components/RecJul2026Card'
 
 export default function ReconstruccionesLanding() {
   const navigate = useNavigate()
@@ -54,6 +55,8 @@ export default function ReconstruccionesLanding() {
           </button>
         </nav>
       </header>
+
+      <div style={{ padding: '24px 20px 0' }}><RecJul2026Card utm="reconstrucciones_landing" /></div>
 
       {/* ── HERO ── */}
       <section style={{ padding: '50px 20px 30px', maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}>
