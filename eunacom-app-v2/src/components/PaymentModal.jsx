@@ -226,12 +226,10 @@ const PaymentModal = ({ onClose }) => {
         )}
 
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
-        <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros <b>gratis</b>.</p>
         <div className="plan-collab">
           <img src="/logo.png" alt="" width="34" height="34" /><span className="plan-collab__app">eunacom<b>app</b></span>
           <span className="plan-collab__x">×</span>
           <img src="/tienda/aee-logo.svg" alt="Academia Examen EUNACOM" className="plan-collab__aee" />
-          <span className="plan-collab__aee-t"><b>AEE</b><small>Academia Examen EUNACOM</small></span>
         </div>
 
         <div className="plan-grid">
