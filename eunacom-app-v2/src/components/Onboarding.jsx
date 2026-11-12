@@ -8,7 +8,7 @@ import Flag from './Flag'
 import SpecialtyIcon from './redesign/SpecialtyIcon'
 import './redesign/onboarding.css'
 import { track } from '../lib/analytics'
-import { saveUserProfile } from '../lib/api'
+import { saveUserProfile, fetchUserProfile } from '../lib/api'
 
 // Registro (opción 4, nov-2026): 3 pasos — datos, universidad (país → región → escudo), enfoque — y el plan listo.
 // Se guarda lo respondido al final de cada paso, y desde el paso 2 se puede «Saltar» y entrar igual a la app.
@@ -114,6 +114,33 @@ const Onboarding = ({ user, onComplete }) => {
 
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+
+  // Si ya había empezado (se guardó un paso y se fue), retoma con lo que respondió y en el paso que le falta
+  const [resumed, setResumed] = useState(false)
+  useEffect(() => {
+    if (!schools || resumed || !user?.id) return
+    setResumed(true)
+    fetchUserProfile(user.id).then(p => {
+      if (!p) return
+      if (p.first_name) setFirstName(p.first_name)
+      if (p.last_name) setLastName(p.last_name)
+      const wa = String(p.whatsapp || '').trim().match(/^(\+\d*)\s+(\d+)$/)
+      if (wa && COUNTRY_CODES.some(c => c.code === wa[1])) { setCountryCode(wa[1]); setWhatsapp(wa[2]) }
+      const c = schools.find(x => x.name === p.country)
+      let s = null
+      if (c) {
+        setCountryIso(c.code)
+        const uni = String(p.university || '').replace(`${c.name} - `, '')
+        s = c.schools.find(x => x.name === uni)
+        if (s) setSchoolId(s.id)
+        else if (uni) { setNotListed(true); setCustomUni(uni) }
+      } else if (p.country === 'Otro') { setCountryIso('OTRO'); setCustomUni(String(p.university || '').replace(/^[^-]+ - /, '')) }
+      if (SITUACIONES_CL.includes(p.profile_type)) setSituacion(p.profile_type)
+      if (YEARS.includes(p.graduation_year)) setGraduationYear(p.graduation_year)
+      const hasData = p.first_name && p.last_name && wa
+      if (hasData) setStep(p.university ? 4 : (c ? 3 : 2))
+    }).catch(() => {})
+  }, [schools, resumed, user?.id])
 
   const country = useMemo(() => (schools || []).find(c => c.code === countryIso) || null, [schools, countryIso])
   const school = country?.schools.find(s => s.id === schoolId) || null
