@@ -14,18 +14,30 @@ export default function BookCheckoutModal(props) {
   return <WebBookCheckout {...props} />
 }
 
+// Compra sin cuenta: se guarda quién compró para la vuelta del pago (ventana «crea tu cuenta»)
+export const GUEST_BUYER_KEY = 'eunacom_guest_buyer'
+const EMAIL_RE = /^[^\s@|]+@[^\s@|]+\.[^\s@|]+$/
+
 function WebBookCheckout({ skus, onClose, onPaid }) {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [guestEmail, setGuestEmail] = useState('')
+  const cleanEmail = guestEmail.trim().toLowerCase()
+  const guestOk = !!user || EMAIL_RE.test(cleanEmail)
   const total = cartTotal(skus)
   const usd = skus.reduce((a, s) => a + usdPrice(PRODUCTS[s].price), 0)
 
   const go = async (create, key) => {
+    if (!guestOk) { setError('Escribe tu correo: ahí quedan guardados tus libros.'); return }
     setLoading(true)
     setError(null)
+    const buyerId = user?.id || `guest:${cleanEmail}`
+    if (!user) {
+      try { localStorage.setItem(GUEST_BUYER_KEY, JSON.stringify({ id: buyerId, email: cleanEmail, skus, at: Date.now() })) } catch { /* sin storage */ }
+    }
     try {
-      const res = await create(user.id, skus)
+      const res = await create(buyerId, skus)
       const url = res[key]
       if (!url) throw new Error('sin url de pago')
       if (url.startsWith('/')) { onPaid?.(); return } // dev: pago simulado
@@ -65,6 +77,19 @@ function WebBookCheckout({ skus, onClose, onPaid }) {
             <CheckCircle2 size={14} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: 4 }} />
             Al pagar quedan <strong>desbloqueados al tiro</strong> para leer en tu Biblioteca.
           </div>
+
+          {!user && (
+            <label style={{ display: 'block', marginBottom: '0.85rem' }}>
+              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--surface-100)', marginBottom: 4 }}>Tu correo</span>
+              <input
+                type="email" autoComplete="email" inputMode="email" value={guestEmail}
+                onChange={e => { setGuestEmail(e.target.value); setError(null) }}
+                placeholder="tucorreo@ejemplo.com"
+                style={{ width: '100%', boxSizing: 'border-box', padding: '0.7rem 0.8rem', borderRadius: 10, border: '1px solid rgba(255,255,255,0.15)', background: 'var(--surface-800, #0b1120)', color: 'var(--surface-50)', fontSize: '0.95rem' }}
+              />
+              <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--surface-300)', marginTop: 4 }}>Puedes pagar sin cuenta. Después creas tu cuenta con este mismo correo y los libros aparecen en tu Biblioteca.</span>
+            </label>
+          )}
 
           <PayButtons
             loading={loading}

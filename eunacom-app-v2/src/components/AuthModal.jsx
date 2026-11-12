@@ -46,8 +46,9 @@ const AuthModal = ({
       setMode(activeMode)
       setError(null)
       setSuccessMsg(null)
+      if (!isControlled && authModal?.email) setEmail(authModal.email)
     }
-  }, [isOpen, isControlled, initialMode, authModal?.mode])
+  }, [isOpen, isControlled, initialMode, authModal?.mode, authModal?.email])
 
   // Auto-close if user is logged in
   useEffect(() => {

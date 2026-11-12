@@ -5,7 +5,7 @@ import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies, LIFETIME_MONTHS } from './_tienda.js'
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed } from './_books.js'
+import { handleBooks, fulfillBookOrder, getUpgradeCredit, markCreditUsed, guestEmail } from './_books.js'
 import { handleRegalo } from './_regalos.js'
 import { syncPlaySubscription, verifyPlayLifetime, acknowledgePlayPurchase, PLAY_LIFETIME } from './_play-billing.js'
 import { Resend } from 'resend'
@@ -134,7 +134,7 @@ async function bookPreference(db, { userId, title, amount, externalReference }) 
     headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       items: [{ title, quantity: 1, unit_price: amount, currency_id: 'CLP' }],
-      payer: { email: r.rows?.[0]?.email || 'test@test.com' },
+      payer: { email: guestEmail(userId) || r.rows?.[0]?.email || 'test@test.com' },
       external_reference: externalReference,
       back_urls: {
         success: 'https://www.eunacomapp.cl/biblioteca?books=success',
