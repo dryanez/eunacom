@@ -7,7 +7,7 @@ import { isAndroidApp, PLAY_BASE_PLANS } from '../lib/playBilling';
 import PlayPayButton from './PlayPayButton';
 import Paywall from './Paywall';
 import { useSubscription } from '../contexts/SubscriptionContext';
-import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
+import { APP_PLANS, SALE_PLANS, PRODUCTS, TRANSFER, RECON_JUL2026, MIN_CHARGE_CLP, TOMOS, EXTRAS, fmtClp, creditApplies, looseValue } from '../config/tienda';
 import PayButtons from './PayButtons';
 import '../styles/tienda.css';
 import { track } from '../lib/analytics';
@@ -101,8 +101,6 @@ const PaymentModal = ({ onClose }) => {
   const [loadingMp, setLoadingMp] = useState(false);
   const [errorMp, setErrorMp] = useState(null);
   
-  // Bolivia QR State
-  const [country, setCountry] = useState('CL'); // 'CL' | 'BO'
 
   useEffect(() => {
     track('plans_viewed', { discount_percent: discountPercent || 0, logged_in: !!user });
@@ -176,12 +174,15 @@ const PaymentModal = ({ onClose }) => {
       <div className="plan-checkout__bar">
         <div>
           <div className="plan-checkout__title">Curso Completo Todo-en-Uno ⭐</div>
-          <div className="plan-checkout__sub">+650 clases en video · +47.000 preguntas · simulacros · reconstrucciones 2013–2026</div>
         </div>
         <button onClick={onClose} aria-label="Cerrar" className="plan-checkout__close"><X size={20} /></button>
       </div>
 
       <div className="plan-checkout__body">
+        <div className="plan-r26">
+          <img src={RECON_JUL2026.cover} alt="Reconstrucción EUNACOM Julio 2026" />
+          <div><span>🆕 Nueva · la última antes de tu examen</span><b>Reconstrucción EUNACOM Julio 2026 gratis con cualquier plan</b><small>180 preguntas con explicación · suelta vale {fmtClp(RECON_JUL2026.price)}</small></div>
+        </div>
         {discountPercent > 0 && (
           <div className="plan-banner promo">
             <span>
@@ -204,7 +205,7 @@ const PaymentModal = ({ onClose }) => {
           <div className="plan-banner credit">⏳ Faltan <strong>{exam.days} días</strong> para el EUNACOM del {exam.label}.</div>
         )}
         <h2 className="plan-checkout__h2">Elige tu plan</h2>
-        <p className="plan-checkout__lead">Todos los planes incluyen acceso total al curso. 3 meses y De por vida traen además la biblioteca completa de libros.</p>
+        <p className="plan-checkout__lead">Todos traen el curso completo. <b>Desde 3 meses</b> incluyen además la biblioteca de libros.</p>
 
         <div className="plan-grid">
           {plansToDisplay.map(plan => {
@@ -232,6 +233,7 @@ const PaymentModal = ({ onClose }) => {
                 <ul className="pack-feat">
                   <li><i>✓</i>+650 clases en video</li>
                   <li><i>✓</i>+47.000 preguntas y simulacros</li>
+                  <li><i>✓</i>+15.900 flashcards tipo Anki</li>
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
                   {plan.includesLibrary
@@ -263,7 +265,7 @@ const PaymentModal = ({ onClose }) => {
             ))}
           </div>
           <div className="plan-lib__text">
-            <span className="tienda-kick">📚 Incluida en 6 meses y 1 año</span>
+            <span className="tienda-kick">📚 Incluida desde 3 meses</span>
             <h3>¿Qué es la Biblioteca EUNACOM?</h3>
             <p>Los libros de Academia Examen EUNACOM para estudiar el Perfil V3. Se leen dentro de la app, en el computador o el celular.</p>
             <div className="plan-lib__grid">
@@ -272,7 +274,7 @@ const PaymentModal = ({ onClose }) => {
               ))}
             </div>
             <div className="plan-lib__value">
-              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses o De por vida <strong>viene incluida</strong>.
+              Por separado: <s>{fmtClp(looseValue('biblioteca'))}</s> libro por libro, o <strong>{fmtClp(BIBLIOTECA.price)}</strong> el pack. Con 3 meses, 6 meses o De por vida <strong>viene incluida</strong>.
             </div>
           </div>
         </div>
@@ -325,53 +327,22 @@ const PaymentModal = ({ onClose }) => {
           {androidApp ? (
             <PlayPayButton plan={selectedPlan} userId={user?.id} />
           ) : (<>
-          <div className="plan-country">
-            <button onClick={() => setCountry('CL')} className={country === 'CL' ? 'on' : ''}>🇨🇱 Chile</button>
-            <button onClick={() => setCountry('BO')} className={country === 'BO' ? 'on' : ''}>🇧🇴 Bolivia / Int.</button>
-          </div>
-
-          <div className="plan-banner credit" style={{ textAlign: 'center' }}>
-            <CheckCircle2 size={15} style={{ verticalAlign: 'text-bottom', marginRight: 4 }} />
-            <strong>Activación inmediata</strong>&nbsp;al terminar el pago.
-          </div>
-              <p style={{ margin: '0.75rem 0 0', fontSize: '0.72rem', color: 'var(--surface-300)', lineHeight: 1.4, textAlign: 'center' }}>
-                Al pagar aceptas nuestra{' '}
-                <a href="/reembolsos" target="_blank" rel="noopener noreferrer" style={{ color: '#60a5fa', textDecoration: 'underline' }}>Política de Reembolsos</a>:
-                {' '}como el acceso se activa de inmediato, no hay reembolsos una vez activado.
-              </p>
-
-          {country === 'CL' ? (
-            <>
-              <PayButtons loading={loadingMp} onMercadoPago={handleMercadoPago} onPaypal={handlePaypal} />
-              {selectedPlan.oldPrice && !selectedPlan.anchorIsMonthly && (
-                <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: '0.3rem', textAlign: 'center' }}>
-                  Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
-                </div>
-              )}
-              {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
-
-              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '1rem 0' }} />
-              <h4 className="plan-pay__h4">Transferencia directa</h4>
-              <div className="plan-transfer">
-                <p>Puedes transferir directamente <strong>{selectedPlan.price}</strong> a:</p>
-                <ul>
-                  <li><strong>Banco:</strong> {TRANSFER.bank}</li>
-                  <li><strong>{TRANSFER.account}:</strong> {TRANSFER.number}</li>
-                  <li><strong>Nombre:</strong> {TRANSFER.name}</li>
-                  <li><strong>Monto:</strong> {selectedPlan.price}</li>
-                </ul>
-                <p className="ok">IMPORTANTE: Envía tu comprobante por WhatsApp al {TRANSFER.whatsapp}.</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <p style={{ color: 'var(--surface-300)', fontSize: '0.85rem', margin: '0 0 0.8rem', lineHeight: 1.45, textAlign: 'center' }}>
-                Para estudiantes de Bolivia y otros países, procesamos los pagos de forma segura a través de <strong>PayPal</strong> en dólares (USD). Puedes pagar con Apple Pay, Google Pay o tarjeta.
-              </p>
-              <PayButtons showMercadoPago={false} loading={loadingMp} onPaypal={handlePaypal} />
-              {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
-            </>
+          <p className="plan-refund">
+            Al pagar aceptas nuestra <a href="/reembolsos" target="_blank" rel="noopener noreferrer">Política de Reembolsos</a>: como el acceso se activa de inmediato, no hay reembolsos una vez activado.
+          </p>
+          <PayButtons
+            loading={loadingMp}
+            onMercadoPago={handleMercadoPago}
+            onPaypal={handlePaypal}
+            transferAmount={selectedPlan.price}
+            transferWhat={`plan ${selectedPlan.name}`}
+          />
+          {selectedPlan.oldPrice && !selectedPlan.anchorIsMonthly && (
+            <div style={{ color: 'var(--surface-400)', fontSize: '0.72rem', marginTop: '0.5rem', textAlign: 'center' }}>
+              Si PayPal te muestra el precio sin descuento, paga con Mercado Pago o transferencia, o escríbenos por WhatsApp.
+            </div>
           )}
+          {errorMp && <div style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.4rem', textAlign: 'center' }}>{errorMp}</div>}
           </>)}
         </div>
       </div>
