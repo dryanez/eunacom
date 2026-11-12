@@ -41,6 +41,7 @@ import CursoComparativa from './pages/CursoComparativa'
 import SimulacrosLanding from './pages/SimulacrosLanding'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
+import ReconJulio2026 from './pages/ReconJulio2026'
 import ConveniosLanding from './pages/ConveniosLanding'
 import Privacidad from './pages/Privacidad'
 import EliminarCuenta from './pages/EliminarCuenta'
@@ -86,6 +87,7 @@ function App() {
               <Route path="/simulacros-eunacom" element={<SimulacrosLanding />} />
               <Route path="/guia-eunacom-2026" element={<GuiaCompletaLanding />} />
               <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
+              <Route path="/reconstruccion-julio-2026" element={<ReconJulio2026 />} />
               <Route path="/convenios" element={<ConveniosLanding />} />
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/politica-de-privacidad" element={<Privacidad />} />

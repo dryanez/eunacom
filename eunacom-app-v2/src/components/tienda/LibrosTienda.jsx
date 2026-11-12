@@ -167,6 +167,13 @@ export default function LibrosTienda() {
     })
   }
 
+  // ?add=<sku> (landing de la reconstrucción, correos): deja ese libro en el carro al entrar
+  useEffect(() => {
+    const sku = new URLSearchParams(window.location.search).get('add')
+    if (!sku || !PRODUCTS[sku] || !isReleased(PRODUCTS[sku]) || isOwned(sku)) return
+    setCart(prev => (prev.includes(sku) ? prev : [...prev, sku]))
+  }, [ownedBooks]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const swapToPack = packSku => {
     const inc = new Set(PRODUCTS[packSku].includes)
     setCart(prev => [...prev.filter(s => !PRODUCTS[s].includes.every(i => inc.has(i))), packSku])
