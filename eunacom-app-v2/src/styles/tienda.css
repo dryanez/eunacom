@@ -480,3 +480,7 @@
 .plan-aee__t{padding-left:12px;font-size:.8rem}
 .plan-lib__count{display:inline-block;vertical-align:middle;margin-left:8px;padding:3px 11px;border-radius:999px;background:#fbbf24;color:#1f2937;font-size:.85rem;font-weight:800}
 @media (min-width:1001px){.plan-aee__logo small{font-size:.56rem}.plan-aee__t{font-size:.74rem}.pack-feat li.plan-aee{gap:10px;padding:8px}}
+.pack-feat li.plan-anki{align-items:center}
+.pack-feat li.plan-anki img{width:22px;height:auto;margin-left:6px;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.pack-feat li.plan-anki img{display:inline-block;vertical-align:-5px;width:20px;margin:0 6px 0 0}
+.pack-feat li.plan-anki img{display:block;width:18px;height:auto;margin:0;flex:none;vertical-align:0}

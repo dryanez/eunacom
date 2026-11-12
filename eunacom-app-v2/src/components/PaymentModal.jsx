@@ -261,9 +261,9 @@ const PaymentModal = ({ onClose }) => {
                 <ul className="pack-feat">
                   <li><i>✓</i>+650 clases en video</li>
                   <li><i>✓</i>+47.000 preguntas y simulacros</li>
-                  <li><i>✓</i>+15.900 flashcards tipo Anki</li>
                   <li><i>✓</i>Reconstrucciones 2013–2026</li>
                   <li><i>✓</i><span><b>Reconstrucción Julio 2026 gratis</b> <span className="plan-libval">(suelta $12.999)</span></span></li>
+                  <li className="plan-anki"><img src="/tienda/anki.webp" alt="Anki" /><span><b>+15.900 flashcards tipo Anki</b></span></li>
                   {plan.includesLibrary
                     ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa: {LIB_BOOK_COUNT} libros GRATIS de Academia Examen EUNACOM</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
