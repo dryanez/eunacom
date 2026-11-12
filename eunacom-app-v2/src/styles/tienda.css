@@ -351,3 +351,18 @@
 .rec-new__cta { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-top: .75rem; }
 .rec-new__cta .t-btn { width: auto; }
 @media (max-width: 560px) { .rec-new__card { flex-direction: column; align-items: flex-start; } }
+
+/* Compra sin cuenta: ventana «¡Felicitaciones! crea tu cuenta» */
+.gp-back{position:fixed;inset:0;z-index:10001;display:grid;place-items:center;padding:16px;background:rgba(2,6,16,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.gp{position:relative;width:100%;max-width:420px;max-height:calc(100dvh - 32px);overflow-y:auto;padding:28px 24px 20px;border-radius:24px;background:#0b1120;color:#e2e8f0;text-align:center;font-family:Lexend,system-ui,sans-serif;box-shadow:0 40px 90px -30px #000,0 0 0 1px rgba(255,255,255,.08)}
+.gp-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:10px;background:rgba(255,255,255,.06);color:#cbd5e1;display:grid;place-items:center;cursor:pointer}
+.gp-ok{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;color:#34d399;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35)}
+.gp h2{margin:0 0 8px;font-size:23px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.gp-sub{margin:0 0 10px;font-size:14.5px;color:#cbd5e1}.gp-sub b{color:#fff;word-break:break-all}
+.gp ul{list-style:none;padding:10px 12px;margin:0 0 14px;border-radius:12px;background:#111a2e;border:1px solid #1e2a44;text-align:left;display:grid;gap:5px;font-size:14px;color:#e2e8f0}
+.gp li::before{content:'✓';color:#34d399;font-weight:700;margin-right:8px}
+.gp-step{margin:0 0 16px;padding:11px 12px;border-radius:12px;font-size:14px;line-height:1.45;color:#cbd5e1;background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.25);text-align:left}.gp-step b{color:#fff}
+.gp-btn{width:100%;padding:15px;border:0;border-radius:16px;background:#22d3ee;color:#06202a;font:700 15.5px Lexend,sans-serif;cursor:pointer;box-shadow:0 14px 26px -12px rgba(34,211,238,.7)}
+.gp-btn:hover{background:#67e8f9}
+.gp-link{display:block;width:100%;margin-top:8px;padding:8px;border:0;background:none;color:#94a3b8;font:500 14px Lexend,sans-serif;cursor:pointer}.gp-link:hover{color:#fff}
+.gp-x:focus-visible,.gp-btn:focus-visible,.gp-link:focus-visible{outline:3px solid #22d3ee;outline-offset:2px}

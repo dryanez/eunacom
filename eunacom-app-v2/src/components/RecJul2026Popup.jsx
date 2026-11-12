@@ -38,7 +38,7 @@ export default function RecJul2026Popup({ owned = false }) {
   if (!open) return null
   const landing = '/reconstruccion-julio-2026?utm_source=eunacomapp&utm_medium=popup_inicio'
   const cta = owned
-    ? (out ? { to: '/reconstructions', label: 'Hacer la reconstrucción' } : { to: landing, label: 'Ver qué trae' })
+    ? { to: '/reconstructions', label: out ? 'Hacer la reconstrucción' : 'Verla en Reconstrucciones' }
     : { to: landing, label: 'Llevármela gratis' }
 
   return createPortal(

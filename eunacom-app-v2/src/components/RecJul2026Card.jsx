@@ -29,7 +29,7 @@ export default function RecJul2026Card({ owned = false, dismissible = false, utm
         </p>
       </div>
       {owned
-        ? <Link className="rj26-btn" to={out ? '/reconstructions' : landing}>{out ? 'Hacer la reconstrucción' : 'Ver qué trae'}</Link>
+        ? <Link className="rj26-btn" to="/reconstructions">{out ? 'Hacer la reconstrucción' : 'Verla en Reconstrucciones'}</Link>
         : <Link className="rj26-btn" to={landing}>Ver la reconstrucción</Link>}
       {dismissible && <button className="rj26-x" onClick={close} aria-label="Ocultar aviso"><X size={16} /></button>}
     </section>

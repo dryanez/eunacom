@@ -8,7 +8,7 @@ import {
   expandSkus, looseValue, cartTotal, fmtClp, itemFiles,
 } from '../../config/tienda'
 import { captureBookPaypal } from '../../lib/api'
-import BookCheckoutModal from './BookCheckoutModal'
+import BookCheckoutModal, { GUEST_BUYER_KEY } from './BookCheckoutModal'
 import LectorLibro from './LectorLibro'
 import '../../styles/tienda.css'
 import '../../styles/biblioteca-anim.css'
@@ -130,13 +130,23 @@ export default function LibrosTienda() {
 
   useEffect(() => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)) } catch {} }, [cart])
 
+  // Compra sin cuenta (guardada antes de ir a pagar): para la ventana «¡felicitaciones! crea tu cuenta»
+  const [guestBuyer, setGuestBuyer] = useState(() => { try { return JSON.parse(localStorage.getItem(GUEST_BUYER_KEY) || 'null') } catch { return null } })
+  const [guestPaid, setGuestPaid] = useState(false)
+  useEffect(() => {
+    // Ya con cuenta: el servidor pasa sola la compra a su usuario al leer sus libros
+    if (user?.id && guestBuyer) { try { localStorage.removeItem(GUEST_BUYER_KEY) } catch {} setGuestBuyer(null); setGuestPaid(false); refreshBooks() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id])
+
   // Vuelta desde PayPal (?paypal_books=return&token=ORDER): capturar y desbloquear
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const token = params.get('token')
-    if (params.get('paypal_books') !== 'return' || !token || !user?.id) return
+    const buyerId = user?.id || guestBuyer?.id
+    if (params.get('paypal_books') !== 'return' || !token || !buyerId) return
     window.history.replaceState(null, '', window.location.pathname)
-    captureBookPaypal(user.id, token)
+    captureBookPaypal(buyerId, token)
       .then(() => { refreshBooks(); setPaidBanner('success') })
       .catch(err => { console.error('PayPal books capture failed:', err); setPaidBanner('failure') })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -145,6 +155,7 @@ export default function LibrosTienda() {
   // Vuelta desde Webpay: el webhook puede tardar unos segundos en registrar la compra
   useEffect(() => {
     if (paidBanner !== 'success') return
+    if (!user && guestBuyer) setGuestPaid(true)
     setCart([])
     const t1 = setTimeout(refreshBooks, 2500)
     const t2 = setTimeout(refreshBooks, 7000)
@@ -186,7 +197,8 @@ export default function LibrosTienda() {
   }
 
   const pay = () => {
-    if (!user) return openAuthModal('login', 'Inicia sesión para comprar: los libros quedan guardados en tu cuenta')
+    // En la app Android el pago es por Google Play y necesita la cuenta; en la web se puede pagar sin cuenta
+    if (!user && isAndroidApp()) return openAuthModal('login', 'Inicia sesión para comprar: los libros quedan guardados en tu cuenta')
     setCheckout(true)
   }
 
@@ -227,7 +239,15 @@ export default function LibrosTienda() {
 
   return (
     <div className="tienda">
-      {paidBanner === 'success' && (
+      {guestPaid && guestBuyer && !user && (
+        <GuestPaidModal
+          buyer={guestBuyer}
+          onRegister={() => openAuthModal('register', `Crea tu cuenta con ${guestBuyer.email} y tus libros aparecen en tu Biblioteca`, guestBuyer.email)}
+          onLogin={() => openAuthModal('login', `Inicia sesión con ${guestBuyer.email} y tus libros aparecen en tu Biblioteca`, guestBuyer.email)}
+          onClose={() => setGuestPaid(false)}
+        />
+      )}
+      {paidBanner === 'success' && (user || !guestBuyer) && (
         <div className="tienda-banner ok">
           <span><CheckCircle2 size={16} style={{ verticalAlign: -3, marginRight: 6 }} />¡Pago recibido! Tus libros quedan desbloqueados en «Mis libros» (puede tardar unos segundos).</span>
           <button className="mini-btn" onClick={() => setPaidBanner(null)}>OK</button>
@@ -447,6 +467,25 @@ export default function LibrosTienda() {
           onPaid={() => { setCheckout(false); setPaidBanner('success') }}
         />
       )}
+    </div>
+  )
+}
+
+// Después de pagar sin cuenta: felicitaciones + crear la cuenta con el mismo correo
+function GuestPaidModal({ buyer, onRegister, onLogin, onClose }) {
+  const names = (buyer.skus || []).map(s => PRODUCTS[s]?.name).filter(Boolean)
+  return (
+    <div className="gp-back" onClick={onClose}>
+      <div className="gp" role="dialog" aria-modal="true" aria-labelledby="gp-title" onClick={e => e.stopPropagation()}>
+        <button className="gp-x" onClick={onClose} aria-label="Cerrar"><XIcon size={18} /></button>
+        <div className="gp-ok"><CheckCircle2 size={34} /></div>
+        <h2 id="gp-title">¡Felicitaciones, ya es tuyo!</h2>
+        <p className="gp-sub">Recibimos tu pago. Esto quedó guardado a nombre de <b>{buyer.email}</b>:</p>
+        {names.length > 0 && <ul>{names.map(n => <li key={n}>{n}</li>)}</ul>}
+        <div className="gp-step"><b>Último paso:</b> crea tu cuenta con <b>ese mismo correo</b> y lo verás al tiro en tu Biblioteca.</div>
+        <button className="gp-btn" onClick={onRegister}>Crear mi cuenta</button>
+        <button className="gp-link" onClick={onLogin}>Ya tengo cuenta: iniciar sesión</button>
+      </div>
     </div>
   )
 }

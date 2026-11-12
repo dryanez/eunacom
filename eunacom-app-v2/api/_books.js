@@ -69,6 +69,23 @@ export async function markCreditUsed(db, userId, ref) {
   })
 }
 
+// Compra sin cuenta: la orden y la compra quedan a nombre de «guest:<correo>» hasta que esa persona
+// crea su cuenta (o inicia sesión) con el mismo correo; ahí pasan solas a su usuario.
+const GUEST = 'guest:'
+const EMAIL_RE = /^[^\s@|]+@[^\s@|]+\.[^\s@|]+$/
+export const guestEmail = userId => (String(userId || '').startsWith(GUEST) ? String(userId).slice(GUEST.length) : null)
+const validBuyer = userId => !!userId && (!String(userId).startsWith(GUEST) || EMAIL_RE.test(guestEmail(userId)))
+
+async function claimGuestPurchases(db, userId) {
+  if (!userId || guestEmail(userId)) return
+  const email = (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [userId] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
+  if (!email) return
+  const gid = GUEST + String(email).trim().toLowerCase()
+  const r = await db.execute({ sql: `UPDATE book_purchases SET user_id = ? WHERE user_id = ?`, args: [userId, gid] })
+  await db.execute({ sql: `UPDATE book_orders SET user_id = ? WHERE user_id = ?`, args: [userId, gid] })
+  if (r.rowsAffected) console.log(`[Books] ${r.rowsAffected} compra(s) sin cuenta asignadas a ${userId}`)
+}
+
 async function ownedSkus(db, userId) {
   const r = await db.execute({ sql: `SELECT DISTINCT sku FROM book_purchases WHERE user_id = ?`, args: [userId] })
   return r.rows.map(x => x.sku)
@@ -76,6 +93,7 @@ async function ownedSkus(db, userId) {
 
 export async function getUserBooks(db, userId) {
   await ensureBookTables(db)
+  await claimGuestPurchases(db, userId).catch(e => console.error('[Books] claim failed', e))
   const [skus, profile, credit] = await Promise.all([
     ownedSkus(db, userId),
     db.execute({ sql: `SELECT is_premium, premium_until, plan_months FROM user_profiles WHERE id = ?`, args: [userId] })
@@ -103,7 +121,7 @@ export async function fulfillBookOrder(db, orderId, paymentRef) {
   })
   if (!upd.rowsAffected) return false
   const o = (await db.execute({ sql: `SELECT * FROM book_orders WHERE id = ?`, args: [orderId] })).rows[0]
-  const email = (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [o.user_id] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
+  const email = guestEmail(o.user_id) || (await db.execute({ sql: `SELECT email FROM user_profiles WHERE id = ?`, args: [o.user_id] }).catch(() => ({ rows: [] }))).rows?.[0]?.email
   await insertPurchases(db, { userId: o.user_id, email, skus: JSON.parse(o.skus), method: 'webpay', ref: paymentRef })
   return true
 }
@@ -113,7 +131,7 @@ const isAdmin = email => String(email || '').trim().toLowerCase() === ADMIN_EMAI
 // Crea la orden del carro (sin lo que el usuario ya tiene). null si no queda nada que cobrar.
 async function createBookOrder(db, userId, rawSkus) {
   const skus = [...new Set((rawSkus || []).filter(s => PRODUCTS[s] && isReleased(PRODUCTS[s])))]
-  if (!userId || !skus.length) return { error: 'Carro vacío o inválido' }
+  if (!validBuyer(userId) || !skus.length) return { error: 'Carro vacío o inválido' }
   await ensureBookTables(db)
   const owned = new Set(await ownedSkus(db, userId))
   const toBuy = skus.filter(s => !owned.has(s))

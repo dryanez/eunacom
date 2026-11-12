@@ -136,10 +136,11 @@ export const AuthProvider = ({ children }) => {
         if (user?.id && !isLocalHost) identifyUser(user)
     }, [user?.id])
 
-    const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '' })
+    const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '', email: '' })
 
-    const openAuthModal = (mode = 'register', message = '') => {
-        setAuthModal({ isOpen: true, mode, message })
+    // email: deja el correo escrito (p. ej. quien compró libros sin cuenta)
+    const openAuthModal = (mode = 'register', message = '', email = '') => {
+        setAuthModal({ isOpen: true, mode, message, email })
     }
 
     const closeAuthModal = () => {
