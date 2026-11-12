@@ -454,3 +454,7 @@
 .plan-lib__anki{position:relative;margin-top:1.3rem;padding-left:1.2rem}
 .plan-lib__anki-logo{position:absolute;top:-16px;left:-12px;width:40px;height:auto;transform:rotate(-10deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
 .plan-lib__anki{padding-left:2.6rem}
+/* «en alianza oficial con AEE» bajo la biblioteca en los planes */
+.pack-feat li.plan-aee{display:flex;align-items:center;gap:8px;width:fit-content;margin:2px 0 4px 1.55rem;padding:4px 12px 4px 6px;border-radius:999px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);font-size:.78rem;color:#94a3b8}
+.pack-feat li.plan-aee img{height:24px;width:auto}
+.pack-feat li.plan-aee b{color:#e2e8f0}

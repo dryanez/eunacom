@@ -266,6 +266,7 @@ const PaymentModal = ({ onClose }) => {
                   {plan.includesLibrary
                     ? <li className="plan-free"><i>✓</i><span><b>Biblioteca completa de libros GRATIS</b> <span className="plan-libval">(sola vale {fmtClp(BIBLIOTECA.price)})</span></span></li>
                     : <li className="no"><i>✕</i>Biblioteca de libros</li>}
+                  {plan.includesLibrary && <li className="plan-aee"><img src="/tienda/aee-logo.svg" alt="AEE" /><span>en alianza oficial con <b>AEE</b></span></li>}
                 </ul>
                 {plan.includesLibrary && (
                   <button type="button" className="plan-libstrip" onClick={e => { e.stopPropagation(); goLib(); }}>
