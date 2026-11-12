@@ -366,3 +366,12 @@
 .gp-btn:hover{background:#67e8f9}
 .gp-link{display:block;width:100%;margin-top:8px;padding:8px;border:0;background:none;color:#94a3b8;font:500 14px Lexend,sans-serif;cursor:pointer}.gp-link:hover{color:#fff}
 .gp-x:focus-visible,.gp-btn:focus-visible,.gp-link:focus-visible{outline:3px solid #22d3ee;outline-offset:2px}
+
+/* Planes: Reconstrucción Julio 2026 arriba (igual que /oferta) */
+.plan-r26{display:flex;gap:14px;align-items:center;margin:0 0 14px;padding:12px 16px;border-radius:16px;background:#0b2545;color:#fff;border:2px solid #22d3ee}
+.plan-r26 img{width:58px;flex:none;border-radius:3px 6px 6px 3px;box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.plan-r26 div{display:flex;flex-direction:column;gap:2px}
+.plan-r26 span{font-size:11.5px;font-weight:800;color:#22d3ee;letter-spacing:.04em}
+.plan-r26 b{font-size:16px;line-height:1.25}.plan-r26 small{color:#bfdbfe;font-size:12.5px}
+.plan-checkout__lead b{color:var(--surface-50,#fff)}
+.plan-refund{margin:0 0 12px;font-size:.74rem;line-height:1.45;color:var(--surface-300);text-align:center}.plan-refund a{color:#60a5fa;text-decoration:underline}
