@@ -462,3 +462,10 @@
 .plan-collab{padding:.5rem 1.3rem;gap:14px}
 .plan-collab__aee{height:54px}
 @media (max-width:420px){.plan-collab__aee{height:46px}}
+/* separador vertical en vez de «×»; nombre de AEE como texto, más grande */
+.plan-collab{gap:18px;padding:.55rem 1.5rem}
+.plan-collab__sep{width:1px;align-self:stretch;margin:4px 0;background:linear-gradient(180deg,transparent,rgba(148,163,184,.55),transparent)}
+.plan-collab__aeebox{display:flex;flex-direction:column;align-items:center;gap:5px}
+.plan-collab__aee{height:38px;width:auto}
+.plan-collab__aeebox span{font-family:'DM Mono',ui-monospace,monospace;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#e2e8f0;white-space:nowrap}
+@media (max-width:420px){.plan-collab{gap:12px;padding:.5rem 1rem}.plan-collab__aee{height:32px}.plan-collab__aeebox span{font-size:.68rem}.plan-collab__app{font-size:.95rem}}

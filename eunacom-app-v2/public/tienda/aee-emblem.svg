@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 80" fill="none">
+  <!-- Emblema AEE sin el nombre (el nombre va como texto HTML para que se lea más grande) -->
+  <polygon points="3,3 125,3 125,52 101,77 3,77" fill="#08365f" stroke="#0bd9e7" stroke-width="3" stroke-linejoin="round" />
+  <text x="64" y="49" text-anchor="middle" style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">
+    <tspan fill="#ffffff">A</tspan><tspan fill="#0bd9e7">E</tspan><tspan fill="#ffffff">E</tspan>
+  </text>
+</svg>
