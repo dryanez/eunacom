@@ -32,3 +32,7 @@
 .pb-wallets{grid-template-columns:repeat(3,1fr)}
 .pb-wallets .pb-pp{gap:4px}.pb-wallets .pb-pp i{font-size:17px}
 @media (max-width:380px){.pb-wallets{gap:7px}.pb-wallets .pb-pp i{font-size:15px}.pb-wallets .pb-pp svg{display:none}}
+/* cada uno en su propia fila: Apple Pay, luego Google Pay, luego PayPal */
+.pb-wallets{grid-template-columns:1fr;gap:10px}
+.pb-wallets .pb-pp i{font-size:19px}
+@media (max-width:380px){.pb-wallets .pb-pp svg{display:inline-block}.pb-wallets .pb-pp i{font-size:19px}}
