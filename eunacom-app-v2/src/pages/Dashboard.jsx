@@ -60,6 +60,14 @@ const PERIODS = [
   { key: 'all', label: 'General' },
 ]
 
+// Tema del Inicio → especialidad de las clases nuevas (Mis clases V3)
+const V3_KEYS = [['cardio', 'cardiologia'], ['gastro', 'gastroenterologia'], ['neumo', 'neumologia'], ['respir', 'neumologia'], ['nefro', 'nefrologia'],
+  ['diabet', 'diabetes'], ['endocrin', 'endocrinologia'], ['hemato', 'hematologia'], ['infecto', 'infectologia'], ['reumato', 'reumatologia'],
+  ['neuro', 'neurologia'], ['geriatr', 'neurologia'], ['cirug', 'cirugia'], ['trauma', 'traumatologia'], ['urolog', 'urologia'], ['otorrino', 'otorrino'],
+  ['oftalmo', 'oftalmologia'], ['dermato', 'dermatologia'], ['psiquiat', 'psiquiatria'], ['pediatr', 'pediatria'], ['obstetr', 'obstetricia'],
+  ['ginecol', 'ginecologia'], ['salud publica', 'saludpublica']]
+const v3SpecKey = name => { const n = String(name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); return (V3_KEYS.find(([k]) => n.includes(k)) || [])[1] }
+
 const Dashboard = () => {
   const { user, openAuthModal } = useAuth()
   const { libraryIncluded, ownedBooks } = useSubscription()
@@ -553,7 +561,7 @@ const Dashboard = () => {
               const tone = { 'modulo-1': 'blue', 'modulo-2': 'amber', 'modulo-3': 'pink' }[t.module] || 'blue'
               const pct = Math.round(t.masteryPct || 0)
               return (
-                <button key={t.topic || idx} className="mn-li" onClick={() => setSelectedTopicForModal(t)}>
+                <button key={t.topic || idx} className="mn-li" onClick={() => { const k = v3SpecKey(t.topic); if (k) navigate(`/mis-clases/${k}`); else setSelectedTopicForModal(t) }}>
                   {hasSpecialtyIcon(t.topic)
                     ? <SpecialtyIcon name={t.topic} size={44} />
                     : <span className={`mn-ab mn-tone-${tone}`}>{ab}</span>}
