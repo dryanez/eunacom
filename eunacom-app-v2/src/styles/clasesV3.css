@@ -142,3 +142,13 @@
   .cv3-res-grid{grid-template-columns:1fr}
   .cv3-score{font-size:72px}
 }
+/* Módulos primero (nov-2026): 4 tarjetas grandes; al entrar, los tomos del módulo */
+.cv3-mods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cv3-modcard{position:relative;display:flex;flex-direction:column;gap:8px;padding:22px 22px 18px;border-radius:20px;background:var(--panel);border:1px solid var(--line);overflow:hidden;transition:transform .18s,border-color .18s}
+.cv3-modcard::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--spec),#38bdf8)}
+.cv3-modcard:hover{transform:translateY(-2px);border-color:var(--spec)}
+.cv3-modcard .tomo{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--spec);text-transform:uppercase}
+.cv3-modcard b{color:#fff;font-size:22px;font-weight:700;line-height:1.2}
+.cv3-modcard small{color:var(--mute);font-size:13px}
+.cv3-modcard__specs{display:flex;gap:5px;margin-top:2px}.cv3-modcard__specs i{width:22px;height:6px;border-radius:9px}
+@media (max-width:640px){.cv3-mods{grid-template-columns:1fr}.cv3-modcard b{font-size:19px}}

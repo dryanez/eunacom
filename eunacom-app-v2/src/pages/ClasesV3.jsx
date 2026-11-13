@@ -112,7 +112,7 @@ function useIndex() {
 const orderedIds = s => s.blocks.flatMap(b => b.ids)
 
 /* ════════ INICIO ════════ */
-function Home({ data, prog }) {
+function Home({ data, prog, mod }) {
   const { idx, specs, byId } = data
   const all = Object.values(specs)
   const total = all.reduce((a, s) => a + s.classes.length, 0)
@@ -139,26 +139,52 @@ function Home({ data, prog }) {
           <span className="btn">Continuar</span>
         </Link>
       )}
-      {idx.modules.map(m => (
-        <section className="cv3-mod" key={m.name}>
-          <h2>{m.name}</h2>
-          <div className="cv3-specs">
-            {m.specialties.map(s => {
-              const d = s.classes.filter(c => prog.done[c.id]).length
-              const mins = s.classes.reduce((a, c) => a + c.minutes, 0)
+      {mod == null ? (
+        <section className="cv3-mod">
+          <h2>Elige un módulo</h2>
+          <div className="cv3-mods">
+            {idx.modules.map((m, mi) => {
+              const cls = m.specialties.flatMap(x => x.classes)
+              const d = cls.filter(c => prog.done[c.id]).length
+              const mins = cls.reduce((a, c) => a + c.minutes, 0)
+              const [num, name] = m.name.split(' · ')
               return (
-                <Link key={s.key} className="cv3-spec" style={specStyle(s)} to={`/mis-clases/${s.key}`}>
-                  <span className="tomo">Tomo {Number(s.tomo) || ''}</span>
-                  <b>{s.name}</b>
-                  <small>{s.classes.length} clases · {s.blocks.length} {s.blocks.length === 1 ? 'bloque' : 'bloques'} · {Math.floor(mins / 60)} h {mins % 60} min</small>
-                  <div className="meter" style={{ marginTop: 4 }}><i style={{ width: `${100 * d / s.classes.length}%` }} /></div>
-                  <small>{d ? `${d} de ${s.classes.length} vistas` : 'Sin empezar'}</small>
+                <Link key={m.name} className="cv3-modcard" style={specStyle(m.specialties[0])} to={`/mis-clases?modulo=${mi + 1}`}>
+                  <span className="tomo">{num}</span>
+                  <b>{name || m.name}</b>
+                  <small>{m.specialties.length} {m.specialties.length === 1 ? 'tomo' : 'tomos'} · {cls.length} clases · {Math.floor(mins / 60)} h</small>
+                  <div className="cv3-modcard__specs">{m.specialties.map(x => <i key={x.key} style={{ background: x.color }} title={x.name} />)}</div>
+                  <div className="meter" style={{ marginTop: 4 }}><i style={{ width: `${100 * d / cls.length}%` }} /></div>
+                  <small>{d ? `${d} de ${cls.length} vistas` : 'Sin empezar'}</small>
                 </Link>
               )
             })}
           </div>
         </section>
-      ))}
+      ) : (() => {
+        const m = idx.modules[mod]
+        return (
+          <section className="cv3-mod" key={m.name}>
+            <Back to="/mis-clases">Módulos</Back>
+            <h2 style={{ marginTop: 14 }}>{m.name}</h2>
+            <div className="cv3-specs">
+              {m.specialties.map(s => {
+                const d = s.classes.filter(c => prog.done[c.id]).length
+                const mins = s.classes.reduce((a, c) => a + c.minutes, 0)
+                return (
+                  <Link key={s.key} className="cv3-spec" style={specStyle(s)} to={`/mis-clases/${s.key}`}>
+                    <span className="tomo">Tomo {Number(s.tomo) || ''}</span>
+                    <b>{s.name}</b>
+                    <small>{s.classes.length} clases · {s.blocks.length} {s.blocks.length === 1 ? 'bloque' : 'bloques'} · {Math.floor(mins / 60)} h {mins % 60} min</small>
+                    <div className="meter" style={{ marginTop: 4 }}><i style={{ width: `${100 * d / s.classes.length}%` }} /></div>
+                    <small>{d ? `${d} de ${s.classes.length} vistas` : 'Sin empezar'}</small>
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )
+      })()}
       <Link className="cv3-old" to="/clases-guevara">
         <div><b>Clases del Dr. Guevara</b><small>Las clases grabadas anteriores siguen disponibles, con sus resúmenes y pruebas.</small></div>
         <span className="btn ghost">Abrir</span>
@@ -177,7 +203,7 @@ function Tomo({ s, prog }) {
   const nb = s.blocks.length
   return (
     <>
-      <Back to="/mis-clases">Mis clases</Back>
+      <Back to={`/mis-clases?modulo=${s.mi + 1}`}>{s.module}</Back>
       <div className="cv3-tomo-head">
         <div>
           <div className="k">{s.module} · Tomo {Number(s.tomo)}</div>
@@ -452,7 +478,7 @@ export default function ClasesV3() {
   const data = useIndex()
   const prog = useProgress(user)
   const [modal, setModal] = useState(null)
-  useEffect(() => { window.scrollTo(0, 0) }, [spec, id, n])
+  useEffect(() => { window.scrollTo(0, 0) }, [spec, id, n, loc.search])
 
   // enlaces antiguos (libros, plan de estudio, dashboard) → clases del Dr. Guevara
   const st = loc.state || {}
@@ -464,6 +490,8 @@ export default function ClasesV3() {
   if (data.idx === false) return <div className="cv3"><p className="mute">No se pudieron cargar las clases. Revisa tu conexión y recarga la página.</p></div>
   if (!data.idx) return <div className="cv3"><div className="cv3-loading">Cargando clases…</div></div>
   const s = spec && data.specs[spec]
+  const mq = Number(sp.get('modulo'))
+  const modIdx = mq >= 1 && mq <= data.idx.modules.length ? mq - 1 : null
   if (spec && !s) return <Navigate to="/mis-clases" replace />
 
   let gate = null
@@ -485,7 +513,7 @@ export default function ClasesV3() {
 
   return (
     <div className="cv3" style={specStyle(s)}>
-      {!s && <Home data={data} prog={prog.p} />}
+      {!s && <Home data={data} prog={prog.p} mod={modIdx} />}
       {s && !id && !n && <Tomo s={s} prog={prog.p} />}
       {s && id && <Clase key={id} s={s} id={id} prog={prog} gate={gate} />}
       {s && n && <Test key={n} s={s} n={n} prog={prog} />}
