@@ -1,6 +1,6 @@
 {
-  "synced_at": "2026-11-12T19:35:24.422Z",
-  "date": "2026-11-12",
+  "synced_at": "2026-11-13T19:15:33.471Z",
+  "date": "2026-11-13",
   "health_score": 91,
   "totals": {
     "clicks": 8,
@@ -27,7 +27,7 @@
         "ai_patterns": []
       },
       "tokens": 2015,
-      "unique_tokens": 612
+      "unique_tokens": 613
     },
     "schema": {
       "json_ld_count": 0,
