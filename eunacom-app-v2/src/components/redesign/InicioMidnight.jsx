@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Database, PenLine, Flame, Star,
-  Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus,
+  Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus, Archive,
 } from 'lucide-react'
 import './midnight.css'
 import { LIB_3D, LIB_BOOK_COUNT } from '../../config/biblioteca'
@@ -11,6 +11,7 @@ import { LIB_3D, LIB_BOOK_COUNT } from '../../config/biblioteca'
 // Inicio (rediseño nov-2026): arriba los números (dominio, respondidas, racha, meta), después tarjetas grandes
 // (clase con el video andando, banco, biblioteca con libros 3D que se deslizan, reconstrucciones) y accesos rápidos.
 const MORE = [
+  { to: '/reconstructions', icon: Archive, title: 'Reconstrucciones', sub: '17 exámenes', tone: 'red' },
   { to: '/flashcards', icon: Layers, title: 'Flashcards', sub: '21 mazos Anki', tone: 'violet' },
   { to: '/simulation', icon: Timer, title: 'Simulación', sub: 'Examen con tiempo', tone: 'amber' },
   { to: '/review', icon: RotateCcw, title: 'Repasar errores', sub: 'Por tema', tone: 'pink' },

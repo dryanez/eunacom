@@ -293,3 +293,6 @@ button.mn-lb-row { cursor: pointer; }
 .mn2-cls .mn2-t b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 /* las secciones de abajo (temas, clasificación) con el mismo ancho que el Inicio en pantallas grandes */
 @media (min-width:1100px){.dash-content-layer > .mn-sec{max-width:1100px}}
+.mn2-acc{grid-template-columns:repeat(6,minmax(0,1fr))}
+.mn2 .mn-tone-red .mn2-ib{background:linear-gradient(140deg,#f87171,#dc2626)}
+@media (max-width:900px){.mn2-acc{grid-template-columns:repeat(3,minmax(0,1fr))}}
