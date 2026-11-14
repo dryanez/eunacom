@@ -23,3 +23,6 @@ export const LIB_COVERS_ALL = [...new Set(mix)]
 
 // Cuántos libros trae la biblioteca: 21 tomos + 21 Repaso Final + 23 Libros Gordos + 19 atlas + Gran Libro de Reconstrucciones + Perfil V3
 export const LIB_BOOK_COUNT = 21 + 21 + 23 + 19 + 1 + 1
+
+// Las mismas portadas renderizadas en 3D (tapa, lomo, páginas y sombra) para los carruseles
+export const LIB_3D = LIB_COVERS_ALL.map(c => c.replace('/tienda/', '/tienda/3d/').replace(/\.jpg$/, '.webp'))
