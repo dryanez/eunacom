@@ -12,6 +12,7 @@ import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchClaseProgress, saveClaseProgress } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
 import PaymentModal from '../components/PaymentModal'
+import SpecialtyIcon from '../components/redesign/SpecialtyIcon'
 
 const BASE = '/data/clases-v3'
 const FREE = 3                       // clases gratis sin plan (igual que antes)
@@ -111,6 +112,21 @@ function useIndex() {
   }, [idx])
 }
 const orderedIds = s => s.blocks.flatMap(b => b.ids)
+const R2V = 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev/Clases_V3/'
+const videoOf = id => R2V + id.split('-')[0] + '/' + id + '.mp4'
+const MOD_ICON = ['Cardiología', 'Cirugía', 'Pediatría', 'Salud Pública']
+const MOD_COL = ['#38bdf8', '#fbbf24', '#f472b6', '#34d399']
+// anillo de avance (como el dashboard de FaMED)
+function Ring({ pct, color = '#38bdf8', size = 44 }) {
+  const r = 18, c = 2 * Math.PI * r
+  return (
+    <svg className="cv3-ring" width={size} height={size} viewBox="0 0 44 44" aria-label={`${pct}%`}>
+      <circle cx="22" cy="22" r={r} fill="none" stroke="#1e293b" strokeWidth="4" />
+      <circle cx="22" cy="22" r={r} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" strokeDasharray={`${Math.max(pct ? 2 : .5, c * pct / 100)} ${c}`} transform="rotate(-90 22 22)" />
+      <text x="22" y="26" textAnchor="middle" fontSize="11" fontWeight="700" fill="#e2e8f0">{pct}%</text>
+    </svg>
+  )
+}
 
 /* ════════ INICIO ════════ */
 function Home({ data, prog, mod }) {
@@ -136,7 +152,8 @@ function Home({ data, prog, mod }) {
       </div>
       {lc && (
         <Link className="cv3-cont" style={specStyle(ls)} to={`/mis-clases/${ls.key}/${lc.id}`}>
-          <div><small>Sigue donde quedaste · {ls.name}</small><b>{lc.num} · {lc.title}</b></div>
+          <span className="cv3-cont-th"><video src={videoOf(lc.id) + '#t=' + Math.max(5, prog.pos[last] || 60)} muted playsInline preload="metadata" /><i className="cv3-play">▶</i></span>
+          <div><small>Sigue donde quedaste · {ls.name}</small><b>{lc.num} · {lc.title}</b>{prog.pos[last] ? <small>Vas en {mm(prog.pos[last])} de {lc.minutes} min</small> : null}</div>
           <span className="btn">Continuar</span>
         </Link>
       )}
@@ -147,16 +164,13 @@ function Home({ data, prog, mod }) {
             {idx.modules.map((m, mi) => {
               const cls = m.specialties.flatMap(x => x.classes)
               const d = cls.filter(c => prog.done[c.id]).length
-              const mins = cls.reduce((a, c) => a + c.minutes, 0)
               const [num, name] = m.name.split(' · ')
               return (
-                <Link key={m.name} className="cv3-modcard" style={specStyle(m.specialties[0])} to={`/mis-clases?modulo=${mi + 1}`}>
-                  <span className="tomo">{num}</span>
+                <Link key={m.name} className="cv3-modbox" style={{ '--mc': MOD_COL[mi] || '#38bdf8' }} to={`/mis-clases?modulo=${mi + 1}`}>
+                  <div className="cv3-modbox-top"><SpecialtyIcon name={MOD_ICON[mi] || m.specialties[0].name} size={50} /><Ring pct={Math.round(100 * d / cls.length)} color={MOD_COL[mi]} /></div>
+                  <small>{num}</small>
                   <b>{name || m.name}</b>
-                  <small>{m.specialties.length} {m.specialties.length === 1 ? 'tomo' : 'tomos'} · {cls.length} clases · {Math.floor(mins / 60)} h</small>
-                  <div className="cv3-modcard__specs">{m.specialties.map(x => <i key={x.key} style={{ background: x.color }} title={x.name} />)}</div>
-                  <div className="meter" style={{ marginTop: 4 }}><i style={{ width: `${100 * d / cls.length}%` }} /></div>
-                  <small>{d ? `${d} de ${cls.length} vistas` : 'Sin empezar'}</small>
+                  <span>{m.specialties.length} {m.specialties.length === 1 ? 'tomo' : 'tomos'} · {cls.length} clases</span>
                 </Link>
               )
             })}
@@ -168,17 +182,15 @@ function Home({ data, prog, mod }) {
           <section className="cv3-mod" key={m.name}>
             <Back to="/mis-clases">Módulos</Back>
             <h2 style={{ marginTop: 14 }}>{m.name}</h2>
-            <div className="cv3-specs">
+            <div className="cv3-tomos">
               {m.specialties.map(s => {
                 const d = s.classes.filter(c => prog.done[c.id]).length
                 const mins = s.classes.reduce((a, c) => a + c.minutes, 0)
                 return (
-                  <Link key={s.key} className="cv3-spec" style={specStyle(s)} to={`/mis-clases/${s.key}`}>
-                    <span className="tomo">Tomo {Number(s.tomo) || ''}</span>
-                    <b>{s.name}</b>
-                    <small>{s.classes.length} clases · {s.blocks.length} {s.blocks.length === 1 ? 'bloque' : 'bloques'} · {Math.floor(mins / 60)} h {mins % 60} min</small>
-                    <div className="meter" style={{ marginTop: 4 }}><i style={{ width: `${100 * d / s.classes.length}%` }} /></div>
-                    <small>{d ? `${d} de ${s.classes.length} vistas` : 'Sin empezar'}</small>
+                  <Link key={s.key} className="cv3-tomo" style={specStyle(s)} to={`/mis-clases/${s.key}`}>
+                    <SpecialtyIcon name={s.name} size={46} />
+                    <span className="cv3-tomo-t"><small>Tomo {Number(s.tomo) || ''}</small><b>{s.name}</b><span>{s.classes.length} clases · {Math.floor(mins / 60)} h {mins % 60} min</span></span>
+                    <Ring pct={Math.round(100 * d / s.classes.length)} color={s.color} />
                   </Link>
                 )
               })}
