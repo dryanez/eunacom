@@ -83,10 +83,10 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
       )}
 
       <div className="mn2-stats">
-        <div className="s"><Star size={16} className="i" style={{ color: '#38bdf8' }} /><b style={{ color: '#38bdf8' }}>{accuracy}%</b><small>Dominio</small></div>
-        <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Respondidas</small></div>
-        <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Racha</small></div>
-        <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Meta de hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
+        <div className="s"><Star size={16} className="i" style={{ color: '#38bdf8' }} /><b style={{ color: '#38bdf8' }}>{accuracy}%</b><small>Correctas · de tus respuestas</small></div>
+        <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Preguntas respondidas</small></div>
+        <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Racha · días seguidos</small></div>
+        <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Preguntas hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
       </div>
 
       <div className="mn2-cards">
@@ -110,7 +110,7 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         <button className="mn2-card mn2-q" onClick={go('/test')}>
           <div className="mn2-t">
             <small>Banco · 47.000+ preguntas</small>
-            <b>Tu dominio: {accuracy}%</b>
+            <b>{accuracy}% correctas</b>
             <span className="mn2-go blue"><PenLine size={13} /> Crear test</span>
           </div>
           <Ring pct={accuracy} />

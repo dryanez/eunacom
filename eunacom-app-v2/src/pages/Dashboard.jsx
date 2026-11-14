@@ -8,7 +8,7 @@ import {
   Video, ArrowRight, PlayCircle, ShieldCheck, Heart, Star
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { fetchProgress, fetchLeaderboard, fetchUserProfile, saveUserProfile, fetchClases, fetchClaseProgress, fetchTests } from '../lib/api'
+import { fetchProgress, fetchProgressBySpecialty, fetchLeaderboard, fetchUserProfile, saveUserProfile, fetchClases, fetchClaseProgress, fetchTests } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT, XP_PER_CLASS, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP, getDoctorForLevel } from '../utils/xpSystem'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
@@ -63,9 +63,85 @@ const PERIODS = [
 const V3_KEYS = [['cardio', 'cardiologia'], ['gastro', 'gastroenterologia'], ['neumo', 'neumologia'], ['respir', 'neumologia'], ['nefro', 'nefrologia'],
   ['diabet', 'diabetes'], ['endocrin', 'endocrinologia'], ['hemato', 'hematologia'], ['infecto', 'infectologia'], ['reumato', 'reumatologia'],
   ['neuro', 'neurologia'], ['geriatr', 'neurologia'], ['cirug', 'cirugia'], ['trauma', 'traumatologia'], ['urolog', 'urologia'], ['otorrino', 'otorrino'],
-  ['oftalmo', 'oftalmologia'], ['dermato', 'dermatologia'], ['psiquiat', 'psiquiatria'], ['pediatr', 'pediatria'], ['obstetr', 'obstetricia'],
+  ['oftalmo', 'oftalmologia'], ['infeccios', 'infectologia'], ['dermato', 'dermatologia'], ['psiquiat', 'psiquiatria'], ['pediatr', 'pediatria'], ['obstetr', 'obstetricia'],
   ['ginecol', 'ginecologia'], ['salud publica', 'saludpublica']]
 const v3SpecKey = name => { const n = String(name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); return (V3_KEYS.find(([k]) => n.includes(k)) || [])[1] }
+
+const MOD_TONE = [['#38bdf8', '#2563eb'], ['#fbbf24', '#ea580c'], ['#f472b6', '#a855f7'], ['#34d399', '#0d9488']]
+const MOD_ICON = ['Cardiología', 'Cirugía', 'Pediatría', 'Salud Pública']
+function TemaRing({ pct, color, size = 46 }) {
+  const r = 18, c = 2 * Math.PI * r
+  return (
+    <svg width={size} height={size} viewBox="0 0 44 44" style={{ flex: 'none' }}>
+      <circle cx="22" cy="22" r={r} fill="none" stroke="#1e293b" strokeWidth="4" />
+      {pct != null && <circle cx="22" cy="22" r={r} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" strokeDasharray={`${Math.max(.5, c * pct / 100)} ${c}`} transform="rotate(-90 22 22)" />}
+      <text x="22" y="26" textAnchor="middle" fontSize={pct == null ? 13 : 11} fontWeight="700" fill={pct == null ? '#64748b' : '#e2e8f0'}>{pct == null ? '—' : `${pct}%`}</text>
+    </svg>
+  )
+}
+// Módulos → especialidades. % = preguntas del banco que respondiste bien en esa especialidad; además clases vistas.
+function TemasPorModulo({ userId, onOpen }) {
+  const [idx, setIdx] = useState(null)
+  const [bySpec, setBySpec] = useState({})
+  const [mod, setMod] = useState(null)
+  useEffect(() => { fetch('/data/clases-v3/index.json').then(r => r.json()).then(setIdx).catch(() => {}) }, [])
+  useEffect(() => {
+    if (!userId) return
+    fetchProgressBySpecialty(userId).then(rows => {
+      const m = {}
+      for (const r of rows || []) { const k = v3SpecKey(r.specialty); if (!k) continue; m[k] = m[k] || { n: 0, ok: 0 }; m[k].n += Number(r.n) || 0; m[k].ok += Number(r.ok) || 0 }
+      setBySpec(m)
+    }).catch(() => {})
+  }, [userId])
+  if (!idx) return null
+  let done = {}
+  try { done = (JSON.parse(localStorage.getItem('cv3_progress')) || {}).done || {} } catch {}
+  const pct = x => (x && x.n ? Math.round(100 * x.ok / x.n) : null)
+  const sum = list => list.reduce((a, s) => { const x = bySpec[s.key]; if (x) { a.n += x.n; a.ok += x.ok } return a }, { n: 0, ok: 0 })
+  const m = mod != null ? idx.modules[mod] : null
+  return (
+    <section className="mn-sec mn-temas">
+      <div className="mn-sec-head">
+        <h2>{m ? m.name.split(' · ')[1] || m.name : 'Temas y especialidades'}</h2>
+        <span className="mn-sub">% = preguntas del banco que respondiste bien · clases vistas de cada tema</span>
+      </div>
+      {!m ? (
+        <div className="mn-temas-mods">
+          {idx.modules.map((mm, i) => {
+            const t = sum(mm.specialties), cls = mm.specialties.flatMap(s => s.classes), seen = cls.filter(c => done[c.id]).length
+            const [num, name] = mm.name.split(' · ')
+            return (
+              <button key={mm.name} className="mn-temas-mod" style={{ '--mc': MOD_TONE[i][0] }} onClick={() => setMod(i)}>
+                <div className="top"><SpecialtyIcon name={MOD_ICON[i]} size={46} /><TemaRing pct={pct(t)} color={MOD_TONE[i][0]} /></div>
+                <small>{num}</small><b>{name}</b>
+                <span>{t.n.toLocaleString('es-CL')} respondidas · {seen}/{cls.length} clases</span>
+              </button>
+            )
+          })}
+        </div>
+      ) : (
+        <>
+          <button className="mn-temas-back" onClick={() => setMod(null)}><ChevronRight size={15} style={{ transform: 'rotate(180deg)' }} /> Módulos</button>
+          <div className="mn-card mn-list mn-topics">
+            {m.specialties.map(s => {
+              const x = bySpec[s.key], seen = s.classes.filter(c => done[c.id]).length
+              return (
+                <button key={s.key} className="mn-li" onClick={() => onOpen(s.key)}>
+                  <SpecialtyIcon name={s.name} size={44} />
+                  <span className="mn-li-txt">{s.name}
+                    <small>{x ? `${x.ok.toLocaleString('es-CL')} de ${x.n.toLocaleString('es-CL')} correctas` : 'Sin preguntas respondidas'} · {seen}/{s.classes.length} clases vistas</small>
+                  </span>
+                  <TemaRing pct={pct(x)} color={s.color} size={42} />
+                  <ChevronRight size={16} className="mn-li-go" />
+                </button>
+              )
+            })}
+          </div>
+        </>
+      )}
+    </section>
+  )
+}
 
 const Dashboard = () => {
   const { user, openAuthModal } = useAuth()
@@ -518,46 +594,8 @@ const Dashboard = () => {
         />
       )}
 
-      {/* ─── TEMAS Y ESPECIALIDADES (Midnight Pro) ─── */}
-      <section className="mn-sec">
-        <div className="mn-sec-head">
-          <h2>Temas y especialidades</h2>
-          <span className="mn-sub">Videoclases, preguntas y dominio por tema</span>
-        </div>
-        <div className="mn-chips">
-          {[
-            { key: 'all', label: 'Todos' },
-            { key: 'modulo-1', label: 'Medicina Interna' },
-            { key: 'modulo-2', label: 'Cirugía y especialidades' },
-            { key: 'modulo-3', label: 'Materno-infantil' },
-          ].map(f => (
-            <button key={f.key} className={topicModuleFilter === f.key ? 'on' : ''} onClick={() => setTopicModuleFilter(f.key)}>{f.label}</button>
-          ))}
-        </div>
-        <div className="mn-card mn-list mn-topics">
-          {topicsList
-            .filter(t => topicModuleFilter === 'all' || t.module === topicModuleFilter)
-            .map((t, idx) => {
-              const ab = (t.topic || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').slice(0, 3).toUpperCase()
-              const tone = { 'modulo-1': 'blue', 'modulo-2': 'amber', 'modulo-3': 'pink' }[t.module] || 'blue'
-              const pct = Math.round(t.masteryPct || 0)
-              return (
-                <button key={t.topic || idx} className="mn-li" onClick={() => { const k = v3SpecKey(t.topic); if (k) navigate(`/mis-clases/${k}`); else setSelectedTopicForModal(t) }}>
-                  {hasSpecialtyIcon(t.topic)
-                    ? <SpecialtyIcon name={t.topic} size={44} />
-                    : <span className={`mn-ab mn-tone-${tone}`}>{ab}</span>}
-                  <span className="mn-li-txt">
-                    {t.topic}
-                    <small>{(t.questionsCount || 0).toLocaleString('es-CL')} preguntas · {t.classesCount || 0} clases</small>
-                    <span className="mn-bar"><b style={{ width: `${Math.max(2, pct)}%` }} /></span>
-                  </span>
-                  <span className="mn-pct">{pct}%</span>
-                  <ChevronRight size={16} className="mn-li-go" />
-                </button>
-              )
-            })}
-        </div>
-      </section>
+      {/* ─── TEMAS: módulos → especialidades (preguntas del banco + clases vistas) ─── */}
+      <TemasPorModulo userId={user?.id} onOpen={k => navigate(`/mis-clases/${k}`)} />
 
       {/* Pop-up Bigger Modal for Topics */}
       <TopicQuickModal

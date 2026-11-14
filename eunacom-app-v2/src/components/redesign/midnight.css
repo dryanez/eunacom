@@ -296,3 +296,14 @@ button.mn-lb-row { cursor: pointer; }
 .mn2-acc{grid-template-columns:repeat(6,minmax(0,1fr))}
 .mn2 .mn-tone-red .mn2-ib{background:linear-gradient(140deg,#f87171,#dc2626)}
 @media (max-width:900px){.mn2-acc{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Temas: módulos primero (como Mis clases), luego sus especialidades */
+.mn-temas{max-width:1100px}
+.mn-temas-mods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mn-temas-mod{display:flex;flex-direction:column;gap:3px;padding:16px;border-radius:20px;background:var(--mn-tile);border:1px solid var(--mn-tline);color:#e2e8f0;text-align:left;font-family:var(--font);cursor:pointer;transition:transform .18s,border-color .18s}
+.mn-temas-mod:hover{transform:translateY(-2px);border-color:var(--mc)}
+.mn-temas-mod .top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.mn-temas-mod small{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mc)}
+.mn-temas-mod b{font-size:1.02rem;color:#fff;line-height:1.2}.mn-temas-mod span{font-size:.74rem;color:var(--mn-mut)}
+.mn-temas-back{display:inline-flex;align-items:center;gap:4px;margin-bottom:10px;padding:7px 12px;border-radius:11px;background:var(--mn-tile);border:1px solid var(--mn-tline);color:#e2e8f0;font-family:var(--font);font-size:.82rem;cursor:pointer}
+@media (max-width:900px){.mn-temas-mods{grid-template-columns:repeat(2,minmax(0,1fr))}}
