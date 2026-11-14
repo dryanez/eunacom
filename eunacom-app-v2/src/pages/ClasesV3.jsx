@@ -47,12 +47,12 @@ function useProgress(user) {
   const markDone = useCallback((id, inVideo) => {
     update(n => { n.done[id] = 1; return n })
     const q = inVideo && inVideo.total ? { quizCompleted: 1, quizCorrect: inVideo.ok, quizTotal: inVideo.total, quizScore: Math.round(100 * inVideo.ok / inVideo.total) } : {}
-    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3:' + id, videoWatched: 1, ...q }).catch(() => {})
+    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3:' + id, videoWatched: 1, ...q }).then(() => window.dispatchEvent(new Event('eunacom-xp'))).catch(() => {})
   }, [user?.id, update])
   const savePos = useCallback((id, t) => update(n => { n.pos[id] = Math.round(t); return n }), [update])
   const saveTest = useCallback((key, ok, total, answers) => {
     update(n => { const o = n.tests[key]; if (!o || ok >= o.ok) n.tests[key] = { ok, n: total }; return n })
-    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3test:' + key, quizCompleted: 1, quizScore: Math.round(100 * ok / total), quizCorrect: ok, quizTotal: total, quizAnswers: JSON.stringify(answers) }).catch(() => {})
+    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3test:' + key, quizCompleted: 1, quizScore: Math.round(100 * ok / total), quizCorrect: ok, quizTotal: total, quizAnswers: JSON.stringify(answers) }).then(() => window.dispatchEvent(new Event('eunacom-xp'))).catch(() => {})
   }, [user?.id, update])
   return { p, markDone, savePos, saveTest }
 }
