@@ -1,6 +1,6 @@
 {
-  "synced_at": "2026-11-13T19:15:33.471Z",
-  "date": "2026-11-13",
+  "synced_at": "2026-11-14T17:41:42.329Z",
+  "date": "2026-11-14",
   "health_score": 91,
   "totals": {
     "clicks": 8,
@@ -26,7 +26,7 @@
         "filler": [],
         "ai_patterns": []
       },
-      "tokens": 2015,
+      "tokens": 2016,
       "unique_tokens": 613
     },
     "schema": {
@@ -435,7 +435,7 @@
       "agent": "seo-content",
       "action": "Content Density & Readability",
       "status": "Passed 🟢",
-      "impact": "Information density: 75%, 0% filler penalty (2015 tokens)"
+      "impact": "Information density: 75%, 0% filler penalty (2016 tokens)"
     },
     {
       "agent": "seo-technical",
