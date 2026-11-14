@@ -165,3 +165,28 @@
 .cv3-end-next small{font-weight:500;font-size:12px;opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 @media (max-width:640px){.cv3-end{padding:12px 28px}.cv3-end-in{gap:7px;width:100%}.cv3-end .k{font-size:11px}.cv3-end-next small{font-size:11px}}
 .cv3-end{grid-template-columns:minmax(0,1fr)}.cv3-end-in{min-width:0;max-width:100%}.cv3-end-next{min-width:0}
+/* Opción D (nov-2026): módulos en cajas con ícono y anillo; tomos en filas con ícono y anillo; continuar con miniatura */
+.cv3-mods{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cv3-modbox{display:flex;flex-direction:column;gap:3px;padding:16px;border-radius:20px;background:var(--panel);border:1px solid var(--line);transition:transform .18s,border-color .18s}
+.cv3-modbox:hover{transform:translateY(-2px);border-color:var(--mc)}
+.cv3-modbox-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.cv3-modbox small{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mc)}
+.cv3-modbox b{color:#fff;font-size:17px;font-weight:700;line-height:1.2}
+.cv3-modbox span{color:var(--mute);font-size:12.5px}
+.cv3-tomos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cv3-tomo{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:18px;background:var(--panel);border:1px solid var(--line);transition:transform .18s,border-color .18s}
+.cv3-tomo:hover{transform:translateY(-2px);border-color:var(--spec)}
+.cv3-tomo-t{flex:1;min-width:0;display:flex;flex-direction:column}
+.cv3-tomo-t small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.cv3-tomo-t b{color:#fff;font-size:16px;font-weight:700;line-height:1.25}
+.cv3-tomo-t span{color:var(--mute);font-size:12.5px}
+.cv3-ring{flex:none}
+.cv3-cont{border-left:1px solid var(--line);padding:10px}
+.cv3-cont-th{position:relative;width:118px;height:68px;flex:none;border-radius:12px;overflow:hidden;background:#000}
+.cv3-cont-th video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cv3-play{position:absolute;inset:0;margin:auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#0b1120;font-size:11px;font-style:normal;padding-left:2px}
+.cv3-cont small{display:block}
+@media (max-width:900px){.cv3-mods{grid-template-columns:repeat(2,minmax(0,1fr))}.cv3-tomos{grid-template-columns:1fr}}
+@media (max-width:640px){.cv3-modbox{padding:13px}.cv3-modbox b{font-size:15px}.cv3-cont-th{width:96px;height:56px}}
+.cv3-cont b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:640px){.cv3-cont .btn{display:none}.cv3-cont{gap:10px}.cv3-cont b{font-size:13.5px}.cv3-cont small{font-size:11px}.cv3-hero p{display:none}}
