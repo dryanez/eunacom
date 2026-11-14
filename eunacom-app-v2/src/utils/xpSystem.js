@@ -7,6 +7,7 @@ export const XP_PER_CORRECT = 10
 export const XP_PER_INCORRECT = 2
 export const XP_PER_TEST = 50
 export const XP_PERFECT_BONUS = 100
+export const XP_PER_CLASS = 50   // cada clase en video vista completa
 
 // ─── 10 DOCTOR EVOLUTION LEVELS ──────────────────────────────────────────────
 export const DOCTOR_LEVEL_PROGRESSION = [
@@ -254,6 +255,7 @@ export const calculateUserOverallStats = async (userId) => {
     let totalAnswered = 0
     let correctAnswers = 0
     let totalExams = 0
+    let classesWatched = 0
 
     for (const t of (userTests || [])) {
       if (t.status === 'completed') {
@@ -273,6 +275,7 @@ export const calculateUserOverallStats = async (userId) => {
     }
 
     for (const cp of (userClasesProgress || [])) {
+      if (cp.video_watched) classesWatched++
       if (cp.quiz_completed) {
         const numQuestions = cp.quiz_total || 0
         const numCorrect = cp.quiz_correct || 0
@@ -285,7 +288,7 @@ export const calculateUserOverallStats = async (userId) => {
     }
 
     const incorrectAnswers = Math.max(0, totalAnswered - correctAnswers)
-    const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT)
+    const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT) + classesWatched * XP_PER_CLASS
     const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
 
     return {
