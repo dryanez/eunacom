@@ -5,6 +5,7 @@
 // POST /api/progress?stats=true            → record answer stat pick
 // PUT  /api/progress?stats=true            → batch get stats
 import { getTurso } from './_turso.js';
+import { requireUser, ownUserId } from './_auth.js';
 import { randomUUID } from 'crypto';
 
 export default async function handler(req, res) {
@@ -70,6 +71,19 @@ export default async function handler(req, res) {
   // ── USER PROGRESS ────────────────────────────────────────────────────────
   try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
   try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+
+  // GET /api/progress?bySpecialty=1&userId=… → preguntas del banco respondidas y correctas por especialidad
+  if (req.method === 'GET' && req.query.bySpecialty) {
+    const authUser = await requireUser(req, res); if (!authUser) return
+    const uid = ownUserId(req, res, authUser, req.query.userId); if (uid === null) return
+    const r = await db.execute({
+      sql: `SELECT q.specialty AS specialty, COUNT(*) AS n, SUM(p.is_correct) AS ok
+            FROM user_progress p JOIN eunacom_questions q ON q.id = p.question_id
+            WHERE p.user_id = ? AND COALESCE(p.is_omitted, 0) = 0 GROUP BY q.specialty`,
+      args: [uid || authUser.id]
+    })
+    return res.json({ data: r.rows })
+  }
 
   if (req.method === 'GET') {
     const { userId } = req.query

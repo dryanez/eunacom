@@ -131,6 +131,8 @@ function Ring({ pct, color = '#38bdf8', size = 44 }) {
 /* ════════ INICIO ════════ */
 function Home({ data, prog, mod }) {
   const { idx, specs, byId } = data
+  const { isAdmin } = useAuth()
+  const isAdminUser = !!isAdmin?.()
   const all = Object.values(specs)
   const total = all.reduce((a, s) => a + s.classes.length, 0)
   const done = Object.keys(prog.done).filter(id => byId[id]).length
@@ -198,10 +200,10 @@ function Home({ data, prog, mod }) {
           </section>
         )
       })()}
-      <Link className="cv3-old" to="/clases-guevara">
+      {isAdminUser && <Link className="cv3-old" to="/clases-guevara">
         <div><b>Clases del Dr. Guevara</b><small>Las clases grabadas anteriores siguen disponibles, con sus resúmenes y pruebas.</small></div>
         <span className="btn ghost">Abrir</span>
-      </Link>
+      </Link>}
     </>
   )
 }

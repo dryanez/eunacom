@@ -44,6 +44,11 @@ export async function fetchProgress(userId) {
   return data.data || []
 }
 
+export async function fetchProgressBySpecialty(userId) {
+  const data = await apiFetch(`/api/progress?bySpecialty=1&userId=${userId}`)
+  return data.data || []
+}
+
 export async function insertProgress(userId, questionId, isCorrect, isOmitted = false) {
   return apiFetch('/api/progress', {
     method: 'POST',

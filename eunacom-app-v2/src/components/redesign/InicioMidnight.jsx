@@ -2,7 +2,7 @@ import { nextExam } from '../../config/examen'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Database, PenLine, Flame, Star,
+  Database, PenLine, Flame,
   Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus, Archive,
 } from 'lucide-react'
 import './midnight.css'
@@ -18,6 +18,7 @@ const MORE = [
   { to: '/study-plan', icon: CalendarDays, title: 'Plan de estudio', sub: 'Lo de hoy', tone: 'teal' },
   { to: '/biblioteca?sec=atlas', icon: ImageIcon, title: '19 Atlas', sub: '1.144 fotos', tone: 'green' },
 ]
+const PASS = 51 // % para aprobar el EUNACOM
 const R2V = 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev/Clases_V3/'
 const mm = t => { t = Math.max(0, Math.round(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0') }
 
@@ -51,6 +52,45 @@ function useNextClass() {
   return c
 }
 
+// Tarjeta del Banco de preguntas: verde si tu promedio está sobre el 51 %, rojo si está bajo.
+// Variantes para elegir el diseño: ?banco=1..5 (por ahora; luego queda solo la elegida)
+function BankCard({ pct: realPct, onOpen }) {
+  const qs = new URLSearchParams(window.location.search)
+  const v = Number(qs.get('banco')) || 1
+  const pct = import.meta.env.DEV && qs.get('pct') ? Number(qs.get('pct')) : realPct  // solo en local, para ver el verde y el rojo
+  const ok = pct >= PASS, c = ok ? '#4ade80' : '#f87171', c2 = ok ? '#16a34a' : '#dc2626'
+  const state = ok ? `Sobre el ${PASS} % para aprobar` : `Bajo el ${PASS} % para aprobar`
+  const cta = <span className="bk-cta"><PenLine size={18} /><span>Crear test</span><span aria-hidden="true">→</span></span>
+  const title = <div className="bk-t"><b>Banco de preguntas</b><span>47.271 preguntas tipo EUNACOM</span></div>
+  const r = 52, C = 2 * Math.PI * r
+  const ring = size => (
+    <svg width={size} height={size} viewBox="0 0 120 120" className="bk-ring">
+      <circle cx="60" cy="60" r={r} fill="none" stroke="#1e293b" strokeWidth="11" />
+      <circle cx="60" cy="60" r={r} fill="none" stroke={c} strokeWidth="11" strokeLinecap="round" strokeDasharray={`${Math.max(1, C * pct / 100)} ${C}`} transform="rotate(-90 60 60)" />
+      <line x1="60" y1="1" x2="60" y2="19" stroke="#fff" strokeWidth="3" strokeLinecap="round" transform={`rotate(${3.6 * PASS} 60 60)`} />
+      <text x="60" y="64" textAnchor="middle" fontSize="27" fontWeight="800" fill={c}>{pct}%</text>
+      <text x="60" y="82" textAnchor="middle" fontSize="10" fill="#94a3b8">correctas</text>
+    </svg>
+  )
+  const L = Math.PI * 70, ang = Math.PI * (1 - PASS / 100)
+  return (
+    <button className={`bk bk${v} ${ok ? 'ok' : 'bad'}`} style={{ '--c': c, '--c2': c2 }} onClick={onOpen}>
+      {v === 1 && <><div className="bk-row">{ring(124)}<div>{title}<span className="bk-state">{state}</span></div></div>{cta}</>}
+      {v === 2 && <><div className="bk-glow" />{title}<div className="bk-big"><b>{pct}%</b><span>correctas en tus tests</span></div>
+        <div className="bk-bar"><i style={{ width: `${Math.max(2, pct)}%` }} /><em style={{ left: `${PASS}%` }} /></div><div className="bk-bl"><span style={{ left: `${PASS}%` }}>aprobar {PASS} %</span></div>{cta}</>}
+      {v === 3 && <><div className="bk-q"><span className="tag">Cardiología</span><p>Una paciente presenta un ECG con QRS ancho, PR corto y onda delta. Tendrá alto riesgo de:</p>
+        <div className="op ok"><b>A</b>Muerte súbita</div><div className="op"><b>B</b>Fibrilación auricular</div></div>
+        <div className="bk-row2">{title}<span className="bk-pill">{pct}%</span></div><span className="bk-state">{state}</span>{cta}</>}
+      {v === 4 && <>{title}<div className="bk-gauge"><svg viewBox="0 0 180 104" width="250">
+        <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke="#1e293b" strokeWidth="14" strokeLinecap="round" />
+        <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke={c} strokeWidth="14" strokeLinecap="round" strokeDasharray={`${Math.max(1, L * pct / 100)} ${L}`} />
+        <line x1={90 + 58 * Math.cos(ang)} y1={92 - 58 * Math.sin(ang)} x2={90 + 82 * Math.cos(ang)} y2={92 - 82 * Math.sin(ang)} stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg>
+        <div className="bk-gv"><b>{pct}%</b><span>{state}</span></div></div>{cta}</>}
+      {v === 5 && <><div className="bk-side"><b>{pct}%</b><span>{ok ? 'Aprobando' : `Bajo ${PASS} %`}</span></div><div className="bk-main">{title}{cta}</div></>}
+    </button>
+  )
+}
+
 // guest: mismo Inicio, pero cada botón pide crear cuenta (onAuth('register'|'login'))
 export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAnswers = 0, dailyGoal = 50, answered = 0, level = 1, levelTitle = '', xp = 0, levelPct = 0, avatar, guest = false, onAuth }) {
   const navigate = useNavigate()
@@ -61,18 +101,14 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
 
   return (
     <section className="mn-inicio mn2">
+      {ex && ex.days <= 120 && <small className="mn2-days">Faltan {ex.days} días para el EUNACOM del {ex.label}</small>}
       <div className="mn2-hola">
-        <div>
-          {ex && ex.days <= 120 && <small>Faltan {ex.days} días para el EUNACOM del {ex.label}</small>}
+        {!guest && avatar && <img className="mn2-av" src={avatar} alt="" />}
+        <div className="mn2-who">
           <h1 className="mn-h1">Hola, {name || 'Doctor'}</h1>
-          {guest && <p className="mn-sub">Crea tu cuenta gratis y empieza a prepararte para el EUNACOM</p>}
+          {guest ? <p className="mn-sub">Crea tu cuenta gratis y empieza a prepararte para el EUNACOM</p>
+            : <div className="mn2-lv"><b>Nivel {level}{levelTitle ? ` · ${levelTitle}` : ''}</b><i>{Number(xp || 0).toLocaleString('es-CL')} XP</i><span className="mn2-lvbar"><em style={{ width: `${Math.max(3, levelPct)}%` }} /></span></div>}
         </div>
-        {!guest && (
-          <div className="mn2-lvl">
-            {avatar && <img src={avatar} alt="" />}
-            <div><b>Nivel {level}{levelTitle ? ` · ${levelTitle}` : ''}</b><i>{Number(xp || 0).toLocaleString('es-CL')} XP</i><span className="mn2-lvbar"><em style={{ width: `${Math.max(3, levelPct)}%` }} /></span></div>
-          </div>
-        )}
       </div>
 
       {guest && (
@@ -82,11 +118,12 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         </div>
       )}
 
-      <div className="mn2-stats">
-        <div className="s"><Star size={16} className="i" style={{ color: '#38bdf8' }} /><b style={{ color: '#38bdf8' }}>{accuracy}%</b><small>Dominio</small></div>
+      <BankCard pct={accuracy} onOpen={go('/test')} />
+
+      <div className="mn2-stats mn2-stats3">
         <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Respondidas</small></div>
-        <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Racha</small></div>
-        <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Meta de hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
+        <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Días de racha</small></div>
+        <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Preguntas hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
       </div>
 
       <div className="mn2-cards">
@@ -105,15 +142,6 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
               {cls.pos ? <i className="bar" style={{ width: `${Math.min(100, 100 * cls.pos / (cls.minutes * 60))}%` }} /> : null}
             </span>
           )}
-        </button>
-
-        <button className="mn2-card mn2-q" onClick={go('/test')}>
-          <div className="mn2-t">
-            <small>Banco · 47.000+ preguntas</small>
-            <b>Tu dominio: {accuracy}%</b>
-            <span className="mn2-go blue"><PenLine size={13} /> Crear test</span>
-          </div>
-          <Ring pct={accuracy} />
         </button>
 
         <button className="mn2-card mn2-lib" onClick={go('/biblioteca')}>
