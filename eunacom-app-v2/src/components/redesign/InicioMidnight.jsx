@@ -2,7 +2,7 @@ import { nextExam } from '../../config/examen'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Database, PenLine, Flame, Star,
+  Database, PenLine, Flame,
   Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus, Archive,
 } from 'lucide-react'
 import './midnight.css'
@@ -18,6 +18,7 @@ const MORE = [
   { to: '/study-plan', icon: CalendarDays, title: 'Plan de estudio', sub: 'Lo de hoy', tone: 'teal' },
   { to: '/biblioteca?sec=atlas', icon: ImageIcon, title: '19 Atlas', sub: '1.144 fotos', tone: 'green' },
 ]
+const PASS = 51 // % para aprobar el EUNACOM
 const R2V = 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev/Clases_V3/'
 const mm = t => { t = Math.max(0, Math.round(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0') }
 
@@ -82,8 +83,21 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         </div>
       )}
 
-      <div className="mn2-stats">
-        <div className="s"><Star size={16} className="i" style={{ color: '#38bdf8' }} /><b style={{ color: '#38bdf8' }}>{accuracy}%</b><small>Correctas · de tus respuestas</small></div>
+      {(() => {
+        const ok = accuracy >= PASS
+        const c = ok ? '#4ade80' : '#f87171'
+        return (
+          <button className={`mn2-bank ${ok ? 'ok' : 'bad'}`} onClick={go('/test')}>
+            <div className="mn2-bank-t"><b>Banco de preguntas</b><span>47.271 preguntas tipo EUNACOM</span></div>
+            <div className="mn2-bank-p"><b style={{ color: c }}>{accuracy}%</b><span>correctas en tus tests</span></div>
+            <div className="mn2-bank-bar"><i style={{ width: `${Math.max(2, accuracy)}%` }} /><em style={{ left: `${PASS}%` }} /></div>
+            <div className="mn2-bank-l"><span>0 %</span><span style={{ left: `${PASS}%` }}>aprobar {PASS} %</span><span>100 %</span></div>
+            <span className="mn2-bank-cta"><PenLine size={18} /><span>Crear test</span><span aria-hidden="true">→</span></span>
+          </button>
+        )
+      })()}
+
+      <div className="mn2-stats mn2-stats3">
         <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Preguntas respondidas</small></div>
         <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Racha · días seguidos</small></div>
         <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Preguntas hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
@@ -105,15 +119,6 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
               {cls.pos ? <i className="bar" style={{ width: `${Math.min(100, 100 * cls.pos / (cls.minutes * 60))}%` }} /> : null}
             </span>
           )}
-        </button>
-
-        <button className="mn2-card mn2-q" onClick={go('/test')}>
-          <div className="mn2-t">
-            <small>Banco · 47.000+ preguntas</small>
-            <b>{accuracy}% correctas</b>
-            <span className="mn2-go blue"><PenLine size={13} /> Crear test</span>
-          </div>
-          <Ring pct={accuracy} />
         </button>
 
         <button className="mn2-card mn2-lib" onClick={go('/biblioteca')}>

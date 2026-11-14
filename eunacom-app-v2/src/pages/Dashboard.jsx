@@ -103,7 +103,6 @@ function TemasPorModulo({ userId, onOpen }) {
     <section className="mn-sec mn-temas">
       <div className="mn-sec-head">
         <h2>{m ? m.name.split(' · ')[1] || m.name : 'Temas y especialidades'}</h2>
-        <span className="mn-sub">% = preguntas del banco que respondiste bien · clases vistas de cada tema</span>
       </div>
       {!m ? (
         <div className="mn-temas-mods">
@@ -618,7 +617,6 @@ const Dashboard = () => {
         <div className="mn-row mn-between mn-sec-head">
           <div>
             <h2>Tabla de clasificación</h2>
-            <span className="mn-sub">La comunidad que se prepara contigo</span>
           </div>
           {myRank > 0 && lbView === 'doctors' && <span className="mn-pill mn-pill-sky">Tu puesto #{myRank}</span>}
         </div>
