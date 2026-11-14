@@ -44,14 +44,15 @@ function useProgress(user) {
     }).catch(() => {})
   }, [user?.id])
   const update = useCallback(fn => setP(prev => { const n = fn(JSON.parse(JSON.stringify(prev))); localStorage.setItem(LS, JSON.stringify(n)); return n }), [])
-  const markDone = useCallback(id => {
+  const markDone = useCallback((id, inVideo) => {
     update(n => { n.done[id] = 1; return n })
-    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3:' + id, videoWatched: 1 }).catch(() => {})
+    const q = inVideo && inVideo.total ? { quizCompleted: 1, quizCorrect: inVideo.ok, quizTotal: inVideo.total, quizScore: Math.round(100 * inVideo.ok / inVideo.total) } : {}
+    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3:' + id, videoWatched: 1, ...q }).then(() => window.dispatchEvent(new Event('eunacom-xp'))).catch(() => {})
   }, [user?.id, update])
   const savePos = useCallback((id, t) => update(n => { n.pos[id] = Math.round(t); return n }), [update])
   const saveTest = useCallback((key, ok, total, answers) => {
     update(n => { const o = n.tests[key]; if (!o || ok >= o.ok) n.tests[key] = { ok, n: total }; return n })
-    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3test:' + key, quizCompleted: 1, quizScore: Math.round(100 * ok / total), quizCorrect: ok, quizTotal: total, quizAnswers: JSON.stringify(answers) }).catch(() => {})
+    if (user?.id) saveClaseProgress({ userId: user.id, claseId: 'v3test:' + key, quizCompleted: 1, quizScore: Math.round(100 * ok / total), quizCorrect: ok, quizTotal: total, quizAnswers: JSON.stringify(answers) }).then(() => window.dispatchEvent(new Event('eunacom-xp'))).catch(() => {})
   }, [user?.id, update])
   return { p, markDone, savePos, saveTest }
 }
@@ -293,9 +294,11 @@ function Clase({ s, id, prog, gate }) {
   const [ask, setAsk] = useState(null)        // índice de la pregunta abierta
   const [pick, setPick] = useState({})        // respuestas en el video
   const [time, setTime] = useState(0)
+  const [ended, setEnded] = useState(false)   // pantalla de «clase terminada»
+  const [gained, setGained] = useState(0)     // XP ganados en esta vista
   const v = useRef(null), shown = useRef({}), lastSave = useRef(0)
   const nav = useNavigate()
-  useEffect(() => { setC(null); setTab(0); setAsk(null); setPick({}); shown.current = {}; getJSON(`${BASE}/c/${id}.json`).then(setC).catch(() => setC(false)) }, [id])
+  useEffect(() => { setC(null); setTab(0); setAsk(null); setPick({}); setEnded(false); setGained(0); shown.current = {}; getJSON(`${BASE}/c/${id}.json`).then(setC).catch(() => setC(false)) }, [id])
   const ids = orderedIds(s)
   const bl = s.blocks.find(b => b.ids.includes(id))
   const sum = s.classes.find(x => x.id === id)
@@ -310,7 +313,15 @@ function Clase({ s, id, prog, gate }) {
       if (!shown.current[i] && t >= q.tPause && t < q.tPause + 1.5) { shown.current[i] = 1; el.pause(); setAsk(i) }
     })
     if (t - lastSave.current > 10 || t < lastSave.current) { lastSave.current = t; prog.savePos(id, t) }
-    if (!prog.p.done[id] && t > (c.total || el.duration) * 0.9) prog.markDone(id)
+    if (!prog.p.done[id] && t > (c.total || el.duration) * 0.9) finishClass()
+  }
+  // XP: 50 por la clase + 10 por cada respuesta correcta y 2 por cada incorrecta dentro del video (igual que xpSystem)
+  const finishClass = () => {
+    if (prog.p.done[id] || !c) return
+    const answered = Object.keys(pick).length
+    const ok = Object.entries(pick).filter(([i, l]) => c.quizzes[i]?.correct === l).length
+    prog.markDone(id, answered ? { ok, total: answered } : null)
+    setGained(50 + ok * 10 + (answered - ok) * 2)
   }
   const onLoaded = () => { const t = prog.p.pos[id]; if (t && !prog.p.done[id] && v.current && t < (c?.total || 1e9) - 20) v.current.currentTime = t }
   const chapterOn = c ? c.chapters.reduce((k, h, i) => (time >= h.t ? i : k), 0) : 0
@@ -330,7 +341,21 @@ function Clase({ s, id, prog, gate }) {
           <div>
             <div className="cv3-player">
               <video ref={v} src={c.video} controls playsInline preload="metadata" onTimeUpdate={onTime} onLoadedMetadata={onLoaded}
-                onEnded={() => { if (!prog.p.done[id]) prog.markDone(id) }} />
+                onEnded={() => { finishClass(); setEnded(true) }} onPlay={() => setEnded(false)} />
+              {ended && !q && (
+                <div className="cv3-end">
+                  <div className="cv3-end-in">
+                    <div className="cv3-end-ok">✓</div>
+                    <div className="k">Clase {sum.num} terminada</div>
+                    {gained > 0 && <div className="cv3-end-xp">+{gained} XP</div>}
+                    {Object.keys(pick).length > 0 && <p className="mute">Respondiste bien {Object.entries(pick).filter(([i, l]) => c.quizzes[i]?.correct === l).length} de {Object.keys(pick).length} preguntas del video.</p>}
+                    {next
+                      ? <Link className="btn cv3-end-next" to={`/mis-clases/${s.key}/${next.id}`}><span>Siguiente clase →</span><small>{next.num} · {next.title}</small></Link>
+                      : <Link className="btn" to={`/mis-clases/${s.key}/test/${bl.n}`}>Hacer el test del bloque {bl.n} →</Link>}
+                    <button className="btn ghost" onClick={() => { setEnded(false); seek(0) }}>Volver a ver</button>
+                  </div>
+                </div>
+              )}
               {q && (
                 <div className="cv3-ask">
                   <div className="cv3-ask-in">

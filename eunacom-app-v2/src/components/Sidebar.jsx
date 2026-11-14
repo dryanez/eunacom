@@ -67,6 +67,10 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
     const { isPremium, usageStats, setShowPaymentModal, loadingPremium } = useSubscription()
     const navigate = useNavigate()
     const [userLevel, setUserLevel] = useState(1)
+    const [userXp, setUserXp] = useState(0)
+    const [xpTick, setXpTick] = useState(0)
+    // al ganar XP (p. ej. al terminar una clase) se recalcula el nivel sin recargar
+    useEffect(() => { const f = () => setXpTick(t => t + 1); window.addEventListener('eunacom-xp', f); return () => window.removeEventListener('eunacom-xp', f) }, [])
     const [displayName, setDisplayName] = useState(null)
     const [avatarEmoji, setAvatarEmoji] = useState('🩺')
     const [avatarImage, setAvatarImage] = useState('/avatars/dr_strange.png')
@@ -94,6 +98,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
         ]).then(([profile, stats]) => {
             const userLvl = stats?.level || 1
             setUserLevel(userLvl)
+            setUserXp(stats?.totalXP || 0)
             if (profile?.first_name) {
                 setDisplayName(`Dr(a). ${noTitle(`${profile.first_name} ${profile.last_name || ''}`)}`.trim())
             } else if (user.user_metadata?.full_name) {
@@ -105,7 +110,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
             const doc = getDoctorAvatar(user, 1)
             if (doc?.image) setAvatarImage(doc.image)
         })
-    }, [user])
+    }, [user, xpTick])
 
     const handleLogout = async () => {
         await signOut()
@@ -240,6 +245,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
                                         {displayName || user.email?.split('@')[0] || 'Usuario'}
                                     </div>
                                     <div className="sidebar__user-level">Nivel {userLevel} · {getLevelTitle(userLevel)}</div>
+                                    <div className="sidebar__user-level" style={{ color: '#fbbf24', fontWeight: 700 }}>{userXp.toLocaleString('es-CL')} XP</div>
                                 </div>
                             )}
                         </div>
