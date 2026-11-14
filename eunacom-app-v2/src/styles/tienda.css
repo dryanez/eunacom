@@ -504,3 +504,6 @@
 .plan-collab__link i:last-child{background:linear-gradient(90deg,#38bdf8,transparent)}
 .plan-collab__link svg{filter:drop-shadow(0 0 6px rgba(56,189,248,.9))}
 @media (max-width:480px){.plan-collab__link i{width:9px}.plan-collab__link svg{width:15px;height:15px}}
+/* libros renderizados en 3D: se superponen un poco y sin marco */
+.cov-marquee__track img.book-3d{margin-right:calc(var(--cov-h) * -.27);border-radius:0;box-shadow:none}
+.cov-marquee__track:has(.book-3d){gap:0}

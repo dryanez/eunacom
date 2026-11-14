@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { fetchProgress, fetchLeaderboard, fetchUserProfile, saveUserProfile, fetchClases, fetchClaseProgress, fetchTests } from '../lib/api'
-import { XP_PER_CORRECT, XP_PER_INCORRECT, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP, getDoctorForLevel } from '../utils/xpSystem'
+import { XP_PER_CORRECT, XP_PER_INCORRECT, XP_PER_CLASS, calculateLevelUp, getXPForLevel, getLevelTitle, getLevelProgress, formatXP, getDoctorForLevel } from '../utils/xpSystem'
 import { TopicCard } from '../components/TopicCard'
 import { TopicQuickModal } from '../components/TopicQuickModal'
 import { UserInstitutionBadge, CHILEAN_UNIVERSITIES, COUNTRIES } from '../utils/universityAndCountry'
@@ -19,7 +19,6 @@ import StreakRiskBanner from '../components/StreakRiskBanner'
 import StreakSaverModal from '../components/StreakSaverModal'
 import InicioMidnight from '../components/redesign/InicioMidnight'
 import RecJul2026Popup from '../components/RecJul2026Popup'
-import RecJul2026Card from '../components/RecJul2026Card'
 import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
@@ -384,7 +383,8 @@ const Dashboard = () => {
       }
 
       const incorrectAnswers = totalAnswered - correctAnswers
-      const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT)
+      const classesWatched = userClasesProgress.filter(cp => cp.video_watched).length
+      const totalXP = (correctAnswers * XP_PER_CORRECT) + (incorrectAnswers * XP_PER_INCORRECT) + classesWatched * XP_PER_CLASS
       const { newLevel, remainingXP } = calculateLevelUp(totalXP, 1)
 
       setSubStats({
@@ -484,7 +484,6 @@ const Dashboard = () => {
 
       <div className="dash-content-layer" style={{ paddingBottom: '2.5rem' }}>
       {/* ─── NUEVA: RECONSTRUCCIÓN JULIO 2026, arriba de todo ─── */}
-      <div style={{ paddingTop: 12 }}><RecJul2026Card owned={!!user && !!ownedBooks?.has?.(RECON_JUL2026.sku)} dismissible utm="app_inicio" /></div>
 
       {/* ─── MIDNIGHT PRO: INICIO (rediseño nov-2026) ─── */}
       {(
@@ -496,6 +495,13 @@ const Dashboard = () => {
           accuracy={accuracy}
           todayAnswers={todayAnswers}
           dailyGoal={DAILY_GOAL}
+          answered={stats.totalAnswered}
+          exams={stats.totalExams}
+          level={stats.level}
+          levelTitle={getLevelTitle(stats.level)}
+          xp={stats.totalXP}
+          levelPct={Math.round(getLevelProgress(stats.totalXP, stats.level) || 0)}
+          avatar={activeDoctor?.image}
         />
       )}
 
@@ -510,31 +516,6 @@ const Dashboard = () => {
           hoursRemaining={3}
           onOpenStreakSaver={() => setShowStreakSaverModal(true)}
         />
-      )}
-
-      {/* ─── TU PROGRESO (Midnight Pro) ─── */}
-      {user && (
-        <section className="mn-sec">
-          <div className="mn-sec-head"><h2>Tu progreso</h2></div>
-          <div className="mn-chips">
-            {[
-              { id: 'general', label: 'General' },
-              { id: 'clases', label: 'Clases' },
-              { id: 'reconstructions', label: 'Reconstrucciones' },
-              { id: 'custom', label: 'Exámenes' },
-            ].map(tab => (
-              <button key={tab.id} className={activeTab === tab.id ? 'on' : ''} onClick={() => setActiveTab(tab.id)}>{tab.label}</button>
-            ))}
-          </div>
-          <div className="mn-stats">
-            <div className="mn-stat"><b className="mn-blue">{accuracy}%</b><span>Correctas</span></div>
-            <div className="mn-stat"><b>{currentAnswered.toLocaleString('es-CL')}</b><span>Respondidas</span></div>
-            <div className="mn-stat"><b>{(currentExams || 0).toLocaleString('es-CL')}</b><span>Exámenes</span></div>
-            <div className="mn-stat"><b>{todayAnswers}<small>/{DAILY_GOAL}</small></b><span>Meta de hoy</span>
-              <span className="mn-bar"><b style={{ width: `${Math.max(3, Math.min(100, (todayAnswers / DAILY_GOAL) * 100))}%` }} /></span>
-            </div>
-          </div>
-        </section>
       )}
 
       {/* ─── TEMAS Y ESPECIALIDADES (Midnight Pro) ─── */}

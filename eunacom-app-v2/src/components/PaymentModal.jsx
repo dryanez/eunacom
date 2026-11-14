@@ -18,13 +18,13 @@ export const fmtExpiry = iso => new Date(iso).toLocaleString('es-CL', { timeZone
 const PLANS = SALE_PLANS.map(p => ({ ...p, price: fmtClp(p.price), days: DAYS[p.months] }));
 const BIBLIOTECA = PRODUCTS.biblioteca;
 export { LIB_COVERS, LIB_ITEMS } from '../config/biblioteca';
-import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL, LIB_BOOK_COUNT } from '../config/biblioteca';
+import { LIB_COVERS, LIB_ITEMS, LIB_COVERS_ALL, LIB_BOOK_COUNT, LIB_3D } from '../config/biblioteca';
 
 // Portadas que se deslizan solas (carrusel infinito). size = alto en px.
-const CoverMarquee = ({ size = 150, speed = 28, covers = LIB_COVERS }) => (
+const CoverMarquee = ({ size = 150, speed = 28, covers = LIB_3D }) => (
   <div className="cov-marquee" style={{ '--cov-h': `${size}px`, '--cov-speed': `${speed}s` }} aria-hidden="true">
     <div className="cov-marquee__track">
-      {[...covers, ...covers].map((c, i) => <img key={i} src={c} alt="" className="book-cover" loading="lazy" />)}
+      {[...covers, ...covers].map((c, i) => <img key={i} src={c} alt="" className="book-3d" loading="lazy" />)}
     </div>
   </div>
 );
@@ -308,7 +308,7 @@ const PaymentModal = ({ onClose }) => {
 
         {/* Qué es la biblioteca (para que se entienda qué traen 3 meses y de por vida) */}
         <div ref={libRef} className={`plan-lib ${libFlash ? 'is-flash' : ''}`}>
-          <CoverMarquee size={190} speed={90} covers={LIB_COVERS_ALL} />
+          <CoverMarquee size={210} speed={110} />
           <div className="plan-lib__text">
             <span className="tienda-kick">📚 Incluida desde 3 meses</span>
             <h3>¿Qué es la Biblioteca EUNACOM? <span className="plan-lib__count">{LIB_BOOK_COUNT} libros</span></h3>
