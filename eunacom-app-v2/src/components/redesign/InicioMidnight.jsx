@@ -52,41 +52,23 @@ function useNextClass() {
   return c
 }
 
-// Tarjeta del Banco de preguntas: verde si tu promedio está sobre el 51 %, rojo si está bajo.
-// Variantes para elegir el diseño: ?banco=1..5 (por ahora; luego queda solo la elegida)
+// Tarjeta del Banco de preguntas: medidor con tu % de correctas en todos los tests,
+// verde si está sobre el 51 % para aprobar, rojo si está bajo. La rayita blanca marca el 51 %.
 function BankCard({ pct: realPct, onOpen }) {
   const qs = new URLSearchParams(window.location.search)
-  const v = Number(qs.get('banco')) || 1
   const pct = import.meta.env.DEV && qs.get('pct') ? Number(qs.get('pct')) : realPct  // solo en local, para ver el verde y el rojo
   const ok = pct >= PASS, c = ok ? '#4ade80' : '#f87171', c2 = ok ? '#16a34a' : '#dc2626'
   const state = ok ? `Sobre el ${PASS} % para aprobar` : `Bajo el ${PASS} % para aprobar`
-  const cta = <span className="bk-cta"><PenLine size={18} /><span>Crear test</span><span aria-hidden="true">→</span></span>
-  const title = <div className="bk-t"><b>Banco de preguntas</b><span>47.271 preguntas tipo EUNACOM</span></div>
-  const r = 52, C = 2 * Math.PI * r
-  const ring = size => (
-    <svg width={size} height={size} viewBox="0 0 120 120" className="bk-ring">
-      <circle cx="60" cy="60" r={r} fill="none" stroke="#1e293b" strokeWidth="11" />
-      <circle cx="60" cy="60" r={r} fill="none" stroke={c} strokeWidth="11" strokeLinecap="round" strokeDasharray={`${Math.max(1, C * pct / 100)} ${C}`} transform="rotate(-90 60 60)" />
-      <line x1="60" y1="1" x2="60" y2="19" stroke="#fff" strokeWidth="3" strokeLinecap="round" transform={`rotate(${3.6 * PASS} 60 60)`} />
-      <text x="60" y="64" textAnchor="middle" fontSize="27" fontWeight="800" fill={c}>{pct}%</text>
-      <text x="60" y="82" textAnchor="middle" fontSize="10" fill="#94a3b8">correctas</text>
-    </svg>
-  )
   const L = Math.PI * 70, ang = Math.PI * (1 - PASS / 100)
   return (
-    <button className={`bk bk${v} ${ok ? 'ok' : 'bad'}`} style={{ '--c': c, '--c2': c2 }} onClick={onOpen}>
-      {v === 1 && <><div className="bk-row">{ring(124)}<div>{title}<span className="bk-state">{state}</span></div></div>{cta}</>}
-      {v === 2 && <><div className="bk-glow" />{title}<div className="bk-big"><b>{pct}%</b><span>correctas en tus tests</span></div>
-        <div className="bk-bar"><i style={{ width: `${Math.max(2, pct)}%` }} /><em style={{ left: `${PASS}%` }} /></div><div className="bk-bl"><span style={{ left: `${PASS}%` }}>aprobar {PASS} %</span></div>{cta}</>}
-      {v === 3 && <><div className="bk-q"><span className="tag">Cardiología</span><p>Una paciente presenta un ECG con QRS ancho, PR corto y onda delta. Tendrá alto riesgo de:</p>
-        <div className="op ok"><b>A</b>Muerte súbita</div><div className="op"><b>B</b>Fibrilación auricular</div></div>
-        <div className="bk-row2">{title}<span className="bk-pill">{pct}%</span></div><span className="bk-state">{state}</span>{cta}</>}
-      {v === 4 && <>{title}<div className="bk-gauge"><svg viewBox="0 0 180 104" width="250">
+    <button className={`bk bk4 ${ok ? 'ok' : 'bad'}`} style={{ '--c': c, '--c2': c2 }} onClick={onOpen}>
+      <div className="bk-t"><b>Banco de preguntas</b><span>47.271 preguntas tipo EUNACOM</span></div>
+      <div className="bk-gauge"><svg viewBox="0 0 180 104" width="250">
         <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke="#1e293b" strokeWidth="14" strokeLinecap="round" />
         <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke={c} strokeWidth="14" strokeLinecap="round" strokeDasharray={`${Math.max(1, L * pct / 100)} ${L}`} />
         <line x1={90 + 58 * Math.cos(ang)} y1={92 - 58 * Math.sin(ang)} x2={90 + 82 * Math.cos(ang)} y2={92 - 82 * Math.sin(ang)} stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg>
-        <div className="bk-gv"><b>{pct}%</b><span>{state}</span></div></div>{cta}</>}
-      {v === 5 && <><div className="bk-side"><b>{pct}%</b><span>{ok ? 'Aprobando' : `Bajo ${PASS} %`}</span></div><div className="bk-main">{title}{cta}</div></>}
+        <div className="bk-gv"><b>{pct}%</b><span>{state}</span></div></div>
+      <span className="bk-cta"><PenLine size={18} /><span>Crear test</span><span aria-hidden="true">→</span></span>
     </button>
   )
 }
