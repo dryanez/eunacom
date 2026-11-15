@@ -20,6 +20,7 @@ import StreakSaverModal from '../components/StreakSaverModal'
 import InicioMidnight from '../components/redesign/InicioMidnight'
 import RecJul2026Popup from '../components/RecJul2026Popup'
 import SpecialtyIcon, { hasSpecialtyIcon } from '../components/redesign/SpecialtyIcon'
+import SpecialtyArt from '../components/redesign/SpecialtyArt'
 import '../styles/dashboardProMax.css'
 import '../styles/tienda.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
@@ -111,7 +112,7 @@ function TemasPorModulo({ userId, onOpen }) {
             const [num, name] = mm.name.split(' · ')
             return (
               <button key={mm.name} className="mn-temas-mod" style={{ '--mc': MOD_TONE[i][0] }} onClick={() => setMod(i)}>
-                <div className="top"><SpecialtyIcon name={MOD_ICON[i]} size={46} /><TemaRing pct={pct(t)} color={MOD_TONE[i][0]} /></div>
+                <div className="top"><SpecialtyArt name={MOD_ICON[i]} size={58} /><TemaRing pct={pct(t)} color={MOD_TONE[i][0]} /></div>
                 <small>{num}</small><b>{name}</b>
                 <span>{t.n.toLocaleString('es-CL')} respondidas · {seen}/{cls.length} clases</span>
               </button>
@@ -126,7 +127,7 @@ function TemasPorModulo({ userId, onOpen }) {
               const x = bySpec[s.key], seen = s.classes.filter(c => done[c.id]).length
               return (
                 <button key={s.key} className="mn-li" onClick={() => onOpen(s.key)}>
-                  <SpecialtyIcon name={s.name} size={44} />
+                  <SpecialtyArt name={s.name} size={48} />
                   <span className="mn-li-txt">{s.name}
                     <small>{x ? `${x.ok.toLocaleString('es-CL')} de ${x.n.toLocaleString('es-CL')} correctas` : 'Sin preguntas respondidas'} · {seen}/{s.classes.length} clases vistas</small>
                   </span>

@@ -363,3 +363,8 @@ button.mn-lb-row { cursor: pointer; }
 .qa-art.book img{max-width:none;max-height:none;width:86px;height:86px;object-fit:contain;margin:-14px 0}.mn2-a:hover .qa-art.book img{transform:translateY(-3px) rotate(-3deg)}@media (max-width:900px){.qa-art.book img{width:80px;height:80px}}
 @media (min-width:901px){.mn2-a{flex-direction:column;text-align:center;gap:6px;padding:14px 8px 12px}.mn2-a b{font-size:.84rem}}
 .mn2 .mn-tone-blue{--qa:#3b82f6}
+/* Ilustraciones de especialidades */
+.spa{position:relative;flex:none;display:grid;place-items:center}
+.spa::before{content:"";position:absolute;inset:10%;border-radius:50%;background:var(--sa);filter:blur(12px);opacity:.45}
+.spa svg{position:relative;filter:drop-shadow(0 6px 8px rgba(0,0,0,.45))}
+.mn-li:hover .spa svg,.mn-temas-mod:hover .spa svg{transform:translateY(-2px) rotate(-3deg);transition:transform .2s}
