@@ -44,13 +44,38 @@ const ArtPlan = () => {
     </svg>
   )
 }
+const ArtRec = () => (
+  <svg viewBox="0 0 64 64" className="qa-svg">
+    <rect x="16" y="6" width="36" height="46" rx="5" fill="#fecaca" transform="rotate(10 34 29)" />
+    <rect x="12" y="9" width="36" height="46" rx="5" fill="#fee2e2" transform="rotate(3 30 32)" />
+    <rect x="9" y="12" width="36" height="46" rx="5" fill="#f8fafc" transform="rotate(-5 27 35)" />
+    <g transform="rotate(-5 27 35)">
+      <rect x="9" y="12" width="36" height="11" rx="5" fill="#dc2626" /><rect x="9" y="18" width="36" height="5" fill="#dc2626" />
+      <text x="27" y="21" textAnchor="middle" fontSize="7.5" fontWeight="800" fill="#fff" fontFamily="Lexend,sans-serif">2026</text>
+      <circle cx="15" cy="30" r="2.2" fill="#cbd5e1" /><rect x="19.5" y="29" width="20" height="2.2" rx="1.1" fill="#cbd5e1" />
+      <circle cx="15" cy="37" r="2.2" fill="#4ade80" /><rect x="19.5" y="36" width="16" height="2.2" rx="1.1" fill="#cbd5e1" />
+      <circle cx="15" cy="44" r="2.2" fill="#cbd5e1" /><rect x="19.5" y="43" width="19" height="2.2" rx="1.1" fill="#cbd5e1" />
+    </g>
+    <circle cx="50" cy="48" r="10" fill="#0f172a" stroke="#f87171" strokeWidth="2" /><text x="50" y="52" textAnchor="middle" fontSize="10" fontWeight="800" fill="#fca5a5" fontFamily="Lexend,sans-serif">17</text>
+  </svg>
+)
+const ArtStats = () => (
+  <svg viewBox="0 0 64 64" className="qa-svg">
+    <rect x="6" y="8" width="52" height="48" rx="8" fill="#f8fafc" />
+    <g fill="#e2e8f0"><rect x="12" y="44" width="40" height="1.5" /><rect x="12" y="33" width="40" height="1" /><rect x="12" y="22" width="40" height="1" /></g>
+    <rect x="14" y="34" width="7" height="10" rx="2" fill="#93c5fd" /><rect x="24" y="28" width="7" height="16" rx="2" fill="#60a5fa" />
+    <rect x="34" y="22" width="7" height="22" rx="2" fill="#3b82f6" /><rect x="44" y="15" width="7" height="29" rx="2" fill="#1d4ed8" />
+    <path d="M14 30 L27 24 L37 19 L49 11" stroke="#22c55e" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M44 10.5 L49.5 10.5 L49.5 16" stroke="#22c55e" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
 const MORE = [
-  { to: '/reconstructions', img: '/tienda/3d/rec_JUL2026.webp', cls: 'book', title: 'Reconstrucciones', sub: '17 exámenes', tone: 'red' },
+  { to: '/reconstructions', Art: ArtRec, title: 'Reconstrucciones', sub: '17 exámenes', tone: 'red' },
   { to: '/flashcards', img: '/tienda/anki.webp', title: 'Flashcards', sub: '21 mazos Anki', tone: 'violet', cls: 'anki' },
   { to: '/simulation', Art: ArtSim, title: 'Simulación', sub: 'Examen con tiempo', tone: 'amber' },
   { to: '/review', Art: ArtErr, title: 'Repasar errores', sub: 'Por tema', tone: 'pink' },
   { to: '/study-plan', Art: ArtPlan, title: 'Plan de estudio', sub: 'Lo de hoy', tone: 'teal' },
-  { to: '/biblioteca?sec=atlas', img: '/tienda/3d/atlas_cardiologia.webp', cls: 'book', title: '19 Atlas', sub: '1.144 fotos', tone: 'green' },
+  { to: '/stats', Art: ArtStats, title: 'Estadísticas', sub: 'Tu avance por tema', tone: 'blue' },
 ]
 const PASS = 51 // % para aprobar el EUNACOM
 const R2V = 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev/Clases_V3/'

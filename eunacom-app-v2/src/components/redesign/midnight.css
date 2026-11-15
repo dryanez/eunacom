@@ -362,3 +362,4 @@ button.mn-lb-row { cursor: pointer; }
 .qa-art .qa-svg{width:56px;height:56px}@media (max-width:900px){.qa-art .qa-svg{width:50px;height:50px}}
 .qa-art.book img{max-width:none;max-height:none;width:86px;height:86px;object-fit:contain;margin:-14px 0}.mn2-a:hover .qa-art.book img{transform:translateY(-3px) rotate(-3deg)}@media (max-width:900px){.qa-art.book img{width:80px;height:80px}}
 @media (min-width:901px){.mn2-a{flex-direction:column;text-align:center;gap:6px;padding:14px 8px 12px}.mn2-a b{font-size:.84rem}}
+.mn2 .mn-tone-blue{--qa:#3b82f6}
