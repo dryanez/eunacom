@@ -101,6 +101,15 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
       )}
 
       <BankCard pct={accuracy} onOpen={go('/test')} />
+      <h3 className="mn2-sec">Accesos rápidos</h3>
+      <div className="mn2-acc">
+        {MORE.map(m => (
+          <button key={m.to} className={`mn2-a mn-tone-${m.tone}`} onClick={go(m.to)}>
+            <span className="mn2-ib"><m.icon size={20} /></span>
+            <span><b>{m.title}</b><small>{m.sub}</small></span>
+          </button>
+        ))}
+      </div>
 
       <div className="mn2-stats mn2-stats3">
         <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Respondidas</small></div>
@@ -146,15 +155,6 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         </button>
       </div>
 
-      <h3 className="mn2-sec">Accesos rápidos</h3>
-      <div className="mn2-acc">
-        {MORE.map(m => (
-          <button key={m.to} className={`mn2-a mn-tone-${m.tone}`} onClick={go(m.to)}>
-            <span className="mn2-ib"><m.icon size={20} /></span>
-            <span><b>{m.title}</b><small>{m.sub}</small></span>
-          </button>
-        ))}
-      </div>
     </section>
   )
 }
