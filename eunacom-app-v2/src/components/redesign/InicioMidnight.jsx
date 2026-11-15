@@ -54,7 +54,7 @@ function useNextClass() {
 
 // Tarjeta del Banco de preguntas: medidor con tu % de correctas en todos los tests,
 // verde si está sobre el 51 % para aprobar, rojo si está bajo. La rayita blanca marca el 51 %.
-function BankCard({ pct: realPct, onOpen }) {
+function BankCard({ pct: realPct, onOpen, answered = 0, streak = 0, today = 0, goal = 50 }) {
   const qs = new URLSearchParams(window.location.search)
   const pct = import.meta.env.DEV && qs.get('pct') ? Number(qs.get('pct')) : realPct  // solo en local, para ver el verde y el rojo
   const ok = pct >= PASS, c = ok ? '#4ade80' : '#f87171', c2 = ok ? '#16a34a' : '#dc2626'
@@ -63,11 +63,18 @@ function BankCard({ pct: realPct, onOpen }) {
   return (
     <button className={`bk bk4 ${ok ? 'ok' : 'bad'}`} style={{ '--c': c, '--c2': c2 }} onClick={onOpen}>
       <div className="bk-t"><b>Banco de preguntas</b><span>47.271 preguntas tipo EUNACOM</span></div>
-      <div className="bk-gauge"><svg viewBox="0 0 180 104" width="250">
-        <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke="#1e293b" strokeWidth="14" strokeLinecap="round" />
-        <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke={c} strokeWidth="14" strokeLinecap="round" strokeDasharray={`${Math.max(1, L * pct / 100)} ${L}`} />
-        <line x1={90 + 58 * Math.cos(ang)} y1={92 - 58 * Math.sin(ang)} x2={90 + 82 * Math.cos(ang)} y2={92 - 82 * Math.sin(ang)} stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg>
-        <div className="bk-gv"><b>{pct}%</b><span>{state}</span></div></div>
+      <div className="bk-body">
+        <div className="bk-gauge"><svg viewBox="0 0 180 104" width="170">
+          <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke="#1e293b" strokeWidth="14" strokeLinecap="round" />
+          <path d="M20 92 A70 70 0 0 1 160 92" fill="none" stroke={c} strokeWidth="14" strokeLinecap="round" strokeDasharray={`${Math.max(1, L * pct / 100)} ${L}`} />
+          <line x1={90 + 58 * Math.cos(ang)} y1={92 - 58 * Math.sin(ang)} x2={90 + 82 * Math.cos(ang)} y2={92 - 82 * Math.sin(ang)} stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg>
+          <div className="bk-gv"><b>{pct}%</b><span>{ok ? 'Aprobando' : `Bajo ${PASS} %`}</span></div></div>
+        <div className="bk-st">
+          <div><Database size={15} /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>respondidas</small></div>
+          <div><Flame size={15} style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak}</b><small>{streak === 1 ? 'día' : 'días'} de racha</small></div>
+          <div><PenLine size={15} style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{today}<em>/{goal}</em></b><small>hoy</small></div>
+        </div>
+      </div>
       <span className="bk-cta"><PenLine size={18} /><span>Crear test</span><span aria-hidden="true">→</span></span>
     </button>
   )
@@ -100,7 +107,7 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
         </div>
       )}
 
-      <BankCard pct={accuracy} onOpen={go('/test')} />
+      <BankCard pct={accuracy} onOpen={go('/test')} answered={answered} streak={streak} today={todayAnswers} goal={dailyGoal} />
       <h3 className="mn2-sec">Accesos rápidos</h3>
       <div className="mn2-acc">
         {MORE.map(m => (
@@ -109,12 +116,6 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
             <span><b>{m.title}</b><small>{m.sub}</small></span>
           </button>
         ))}
-      </div>
-
-      <div className="mn2-stats mn2-stats3">
-        <div className="s"><Database size={16} className="i" /><b>{Number(answered || 0).toLocaleString('es-CL')}</b><small>Respondidas</small></div>
-        <div className="s"><Flame size={16} className="i" style={{ color: '#fb923c' }} /><b style={{ color: '#fb923c' }}>{streak} {streak === 1 ? 'día' : 'días'}</b><small>Días de racha</small></div>
-        <div className="s"><PenLine size={16} className="i" style={{ color: '#fbbf24' }} /><b style={{ color: '#fbbf24' }}>{todayAnswers}<em>/{dailyGoal}</em></b><small>Preguntas hoy</small><span className="mini"><em style={{ width: `${Math.max(3, dailyPct)}%` }} /></span></div>
       </div>
 
       <div className="mn2-cards">
