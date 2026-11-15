@@ -3,20 +3,54 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Database, PenLine, Flame,
-  Layers, Timer, RotateCcw, CalendarDays, Image as ImageIcon, LogIn, UserPlus, Archive,
+  LogIn, UserPlus,
 } from 'lucide-react'
 import './midnight.css'
 import { LIB_3D, LIB_BOOK_COUNT } from '../../config/biblioteca'
 
 // Inicio (rediseño nov-2026): arriba los números (dominio, respondidas, racha, meta), después tarjetas grandes
 // (clase con el video andando, banco, biblioteca con libros 3D que se deslizan, reconstrucciones) y accesos rápidos.
+// Accesos rápidos: cada uno con su propio dibujo (libros 3D reales, logo de Anki y mini-escenas), no íconos genéricos.
+const ArtSim = () => (
+  <svg viewBox="0 0 64 64" className="qa-svg">
+    <rect x="8" y="10" width="34" height="44" rx="5" fill="#f8fafc" transform="rotate(-6 25 32)" />
+    <g transform="rotate(-6 25 32)" fill="#cbd5e1"><rect x="13" y="17" width="20" height="3" rx="1.5" /><rect x="13" y="24" width="24" height="2.4" rx="1.2" /><rect x="13" y="30" width="18" height="2.4" rx="1.2" /><rect x="13" y="36" width="22" height="2.4" rx="1.2" /></g>
+    <circle cx="44" cy="42" r="15" fill="#f59e0b" /><circle cx="44" cy="42" r="11.5" fill="#fff7ed" />
+    <rect x="41" y="23" width="6" height="5" rx="1.5" fill="#f59e0b" />
+    <path d="M44 42 L44 33.5" stroke="#0f172a" strokeWidth="2.4" strokeLinecap="round" /><path d="M44 42 L50 45" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" className="qa-hand" />
+    <circle cx="44" cy="42" r="2" fill="#0f172a" />
+  </svg>
+)
+const ArtErr = () => (
+  <svg viewBox="0 0 64 64" className="qa-svg">
+    <rect x="6" y="9" width="46" height="46" rx="7" fill="#f8fafc" transform="rotate(5 29 32)" />
+    <g transform="rotate(5 29 32)">
+      <rect x="11" y="15" width="30" height="3" rx="1.5" fill="#cbd5e1" />
+      <rect x="11" y="23" width="36" height="9" rx="3" fill="#fee2e2" stroke="#f87171" strokeWidth="1.2" /><path d="M14 25.5l4 4m0-4l-4 4" stroke="#dc2626" strokeWidth="1.8" strokeLinecap="round" /><rect x="21" y="26.5" width="18" height="2" rx="1" fill="#fca5a5" />
+      <rect x="11" y="36" width="36" height="9" rx="3" fill="#dcfce7" stroke="#4ade80" strokeWidth="1.2" /><path d="M13.5 40.5l2.3 2.3 4-4.3" stroke="#16a34a" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" /><rect x="21" y="39.5" width="20" height="2" rx="1" fill="#86efac" />
+    </g>
+    <circle cx="50" cy="14" r="9" fill="#ec4899" /><path d="M46 14a4 4 0 1 0 1.3-3" stroke="#fff" strokeWidth="1.8" fill="none" strokeLinecap="round" /><path d="M46.6 9.6l.8 2.4 2.4-.6" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+const ArtPlan = () => {
+  const d = new Date().getDate()
+  return (
+    <svg viewBox="0 0 64 64" className="qa-svg">
+      <rect x="9" y="12" width="46" height="44" rx="7" fill="#f8fafc" />
+      <path d="M9 19a7 7 0 0 1 7-7h32a7 7 0 0 1 7 7v5H9z" fill="#14b8a6" />
+      <rect x="19" y="7" width="4" height="10" rx="2" fill="#0f766e" /><rect x="41" y="7" width="4" height="10" rx="2" fill="#0f766e" />
+      <text x="32" y="47" textAnchor="middle" fontSize="20" fontWeight="800" fill="#0f172a" fontFamily="Lexend,sans-serif">{d}</text>
+      <circle cx="32" cy="40" r="12.5" fill="none" stroke="#f43f5e" strokeWidth="2" strokeDasharray="62 8" transform="rotate(-30 32 40)" />
+    </svg>
+  )
+}
 const MORE = [
-  { to: '/reconstructions', icon: Archive, title: 'Reconstrucciones', sub: '17 exámenes', tone: 'red' },
-  { to: '/flashcards', icon: Layers, title: 'Flashcards', sub: '21 mazos Anki', tone: 'violet' },
-  { to: '/simulation', icon: Timer, title: 'Simulación', sub: 'Examen con tiempo', tone: 'amber' },
-  { to: '/review', icon: RotateCcw, title: 'Repasar errores', sub: 'Por tema', tone: 'pink' },
-  { to: '/study-plan', icon: CalendarDays, title: 'Plan de estudio', sub: 'Lo de hoy', tone: 'teal' },
-  { to: '/biblioteca?sec=atlas', icon: ImageIcon, title: '19 Atlas', sub: '1.144 fotos', tone: 'green' },
+  { to: '/reconstructions', img: '/tienda/3d/rec_JUL2026.webp', cls: 'book', title: 'Reconstrucciones', sub: '17 exámenes', tone: 'red' },
+  { to: '/flashcards', img: '/tienda/anki.webp', title: 'Flashcards', sub: '21 mazos Anki', tone: 'violet', cls: 'anki' },
+  { to: '/simulation', Art: ArtSim, title: 'Simulación', sub: 'Examen con tiempo', tone: 'amber' },
+  { to: '/review', Art: ArtErr, title: 'Repasar errores', sub: 'Por tema', tone: 'pink' },
+  { to: '/study-plan', Art: ArtPlan, title: 'Plan de estudio', sub: 'Lo de hoy', tone: 'teal' },
+  { to: '/biblioteca?sec=atlas', img: '/tienda/3d/atlas_cardiologia.webp', cls: 'book', title: '19 Atlas', sub: '1.144 fotos', tone: 'green' },
 ]
 const PASS = 51 // % para aprobar el EUNACOM
 const R2V = 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev/Clases_V3/'
@@ -112,7 +146,7 @@ export default function InicioMidnight({ name, streak = 0, accuracy = 0, todayAn
       <div className="mn2-acc">
         {MORE.map(m => (
           <button key={m.to} className={`mn2-a mn-tone-${m.tone}`} onClick={go(m.to)}>
-            <span className="mn2-ib"><m.icon size={20} /></span>
+            <span className={`qa-art ${m.cls || ''}`}>{m.img ? <img src={m.img} alt="" loading="lazy" /> : <m.Art />}</span>
             <span><b>{m.title}</b><small>{m.sub}</small></span>
           </button>
         ))}
