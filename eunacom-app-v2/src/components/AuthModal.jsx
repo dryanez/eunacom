@@ -19,6 +19,8 @@ const AuthModal = ({
     signInWithGoogle,
     signIn,
     signUp,
+    verifySignupCode,
+    resendSignupCode,
     createDevTestUser
   } = useAuth()
 
@@ -38,12 +40,18 @@ const AuthModal = ({
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [successMsg, setSuccessMsg] = useState(null)
+  // Registro con correo: 'form' → 'code' (código de 6 dígitos que llega al correo)
+  const [step, setStep] = useState('form')
+  const [code, setCode] = useState('')
+  const [resendIn, setResendIn] = useState(0)
 
   // Sync mode strictly whenever the modal opens or the requested mode changes
   useEffect(() => {
     if (isOpen) {
       const activeMode = isControlled ? (initialMode || 'register') : (authModal?.mode || 'register')
       setMode(activeMode)
+      setStep('form')
+      setCode('')
       setError(null)
       setSuccessMsg(null)
       if (!isControlled && authModal?.email) setEmail(authModal.email)
@@ -56,6 +64,13 @@ const AuthModal = ({
       handleClose()
     }
   }, [user, isOpen, handleClose])
+
+  // Cuenta atrás para poder reenviar el código (Supabase: uno cada 60 s)
+  useEffect(() => {
+    if (resendIn <= 0) return
+    const t = setTimeout(() => setResendIn(s => s - 1), 1000)
+    return () => clearTimeout(t)
+  }, [resendIn])
 
   // Escape key handler
   useEffect(() => {
@@ -80,6 +95,59 @@ const AuthModal = ({
       }
     } catch (err) {
       setError(err.message || 'Error de autenticación.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Mensajes de Supabase → español
+  const authErrorText = (err, fallback) => {
+    const m = String(err?.message || '')
+    if (err?.status === 429 || /rate limit|too many|security purposes|only request this after/i.test(m)) return 'Demasiados intentos seguidos. Espera un minuto y vuelve a probar.'
+    if (/expired|invalid|otp/i.test(m)) return 'Código incorrecto o vencido. Revísalo o pide uno nuevo.'
+    if (/already registered|already been registered/i.test(m)) return 'Este correo ya está registrado. Por favor inicia sesión.'
+    if (/failed to fetch|network/i.test(m)) return 'Sin conexión. Revisa tu internet y vuelve a probar.'
+    return m || fallback
+  }
+
+  const goToCodeStep = () => {
+    setStep('code')
+    setCode('')
+    setError(null)
+    setSuccessMsg(null)
+    setResendIn(60)
+  }
+
+  const handleVerifyCode = async (e) => {
+    e.preventDefault()
+    if (code.length < 6 || loading) return
+    setError(null)
+    setSuccessMsg(null)
+    setLoading(true)
+    try {
+      const { data, error } = await verifySignupCode(email.trim(), code)
+      if (error) setError(authErrorText(error, 'No pudimos confirmar el código.'))
+      else if (data?.session) handleClose()
+      else setError('No pudimos confirmar el código. Pide uno nuevo.')
+    } catch (err) {
+      setError(authErrorText(err, 'No pudimos confirmar el código.'))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleResendCode = async () => {
+    if (resendIn > 0 || loading) return
+    setError(null)
+    setSuccessMsg(null)
+    setLoading(true)
+    try {
+      const { error } = await resendSignupCode(email.trim())
+      if (error) setError(authErrorText(error, 'No pudimos reenviar el código.'))
+      else { setSuccessMsg('Te enviamos un código nuevo.'); setCode('') }
+      setResendIn(60)
+    } catch (err) {
+      setError(authErrorText(err, 'No pudimos reenviar el código.'))
     } finally {
       setLoading(false)
     }
@@ -111,19 +179,18 @@ const AuthModal = ({
 
       setLoading(true)
       try {
-        const { data, error } = await signUp(email.trim(), password, fullName.trim())
+        const { data, error, needsCode, alreadyRegistered } = await signUp(email.trim(), password, fullName.trim())
         if (error) {
-          if (error.message.includes('already registered')) {
-            setError('Este correo ya está registrado. Por favor inicia sesión.')
-          } else {
-            setError(error.message)
-          }
+          setError(authErrorText(error, 'Error al crear la cuenta.'))
+        } else if (alreadyRegistered) {
+          setMode('login')
+          setError('Este correo ya tiene cuenta. Inicia sesión (o entra con Google si la creaste así).')
+        } else if (data?.session) {
+          handleClose()
+        } else if (needsCode) {
+          goToCodeStep()
         } else {
-          if (data?.session) {
-            handleClose()
-          } else {
-            setSuccessMsg('¡Cuenta creada con éxito! Si es necesario, verifica el enlace enviado a tu correo.')
-          }
+          setError('No pudimos crear la cuenta. Vuelve a intentarlo.')
         }
       } catch (err) {
         setError(err.message || 'Error al crear la cuenta.')
@@ -138,8 +205,12 @@ const AuthModal = ({
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
             setError('Correo o contraseña incorrectos.')
+          } else if (/not confirmed/i.test(error.message)) {
+            // Cuenta creada pero con el correo sin confirmar: mandar un código y pedirlo aquí mismo
+            await resendSignupCode(email.trim()).catch(() => {})
+            goToCodeStep()
           } else {
-            setError(error.message)
+            setError(authErrorText(error, 'Error al iniciar sesión.'))
           }
         } else {
           if (data?.session) {
@@ -432,6 +503,93 @@ const AuthModal = ({
             </span>
           </div>
 
+          {step === 'code' ? (
+            /* ── Paso 2 del registro con correo: código de 6 dígitos ── */
+            <div>
+              <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+                <div style={{ width: 54, height: 54, borderRadius: '50%', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.85rem' }}>
+                  <Mail size={26} color="#2563eb" />
+                </div>
+                <h2 style={{ fontSize: '1.55rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '0.4rem' }}>
+                  Revisa tu correo
+                </h2>
+                <p style={{ fontSize: '0.88rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
+                  Te enviamos un código de 6 dígitos a<br />
+                  <strong style={{ color: '#0f172a', wordBreak: 'break-all' }}>{email.trim()}</strong>
+                </p>
+              </div>
+
+              {error && (
+                <div style={{ backgroundColor: '#fef2f2', border: '1px solid #fecaca', borderRadius: '10px', padding: '0.65rem 0.85rem', color: '#b91c1c', fontSize: '0.82rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                  <span>{error}</span>
+                </div>
+              )}
+              {successMsg && (
+                <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '10px', padding: '0.65rem 0.85rem', color: '#15803d', fontSize: '0.82rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <CheckCircle2 size={16} style={{ flexShrink: 0 }} />
+                  <span>{successMsg}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleVerifyCode} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  pattern="[0-9]*"
+                  maxLength={8}
+                  autoFocus
+                  aria-label="Código de confirmación"
+                  placeholder="······"
+                  value={code}
+                  onChange={(e) => { setCode(e.target.value.replace(/\D/g, '')); setError(null) }}
+                  style={{
+                    width: '100%', boxSizing: 'border-box', padding: '0.85rem 1rem', textAlign: 'center',
+                    fontSize: '1.7rem', fontWeight: 800, letterSpacing: '0.45em', color: '#0f172a',
+                    border: '1.5px solid #cbd5e1', borderRadius: '12px', outline: 'none', backgroundColor: '#f8fafc',
+                    fontVariantNumeric: 'tabular-nums',
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={loading || code.length < 6}
+                  style={{
+                    width: '100%', padding: '0.8rem 1rem', border: 'none', borderRadius: '12px', minHeight: '48px',
+                    background: loading || code.length < 6 ? '#94a3b8' : 'linear-gradient(135deg, #2563eb 0%, #0284c7 100%)',
+                    color: '#ffffff', fontWeight: 800, fontSize: '0.95rem',
+                    cursor: loading ? 'wait' : code.length < 6 ? 'not-allowed' : 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                  }}
+                >
+                  <span>{loading ? 'Comprobando...' : 'Confirmar y entrar'}</span>
+                  <ArrowRight size={18} />
+                </button>
+              </form>
+
+              <p style={{ fontSize: '0.8rem', color: '#64748b', textAlign: 'center', margin: '1rem 0 0.6rem', lineHeight: 1.5 }}>
+                ¿No te llega? Mira en spam o promociones. El código vale 1 hora.
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', flexWrap: 'wrap', fontSize: '0.84rem' }}>
+                <button
+                  type="button"
+                  onClick={handleResendCode}
+                  disabled={loading || resendIn > 0}
+                  style={{ background: 'none', border: 'none', padding: 0, fontSize: 'inherit', fontWeight: 700, color: resendIn > 0 ? '#94a3b8' : '#2563eb', cursor: resendIn > 0 ? 'default' : 'pointer' }}
+                >
+                  {resendIn > 0 ? `Reenviar código en ${resendIn} s` : 'Reenviar código'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setStep('form'); setCode(''); setError(null); setSuccessMsg(null) }}
+                  style={{ background: 'none', border: 'none', padding: 0, fontSize: 'inherit', fontWeight: 700, color: '#2563eb', cursor: 'pointer' }}
+                >
+                  Cambiar correo
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
           {/* Form Header */}
           <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
             <h2
@@ -849,6 +1007,8 @@ const AuthModal = ({
               </span>
             )}
           </div>
+            </>
+          )}
 
           {/* Support Link */}
           <div style={{ textAlign: 'center', marginTop: '0.85rem' }}>

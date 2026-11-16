@@ -44,18 +44,32 @@ const devGuest = (() => {
 
 const isLocalHost = isDevHost && !devGuest
 
+// Hasta nov-2026 la app dejaba entrar sin sesión a quien se registraba con correo y no lo
+// confirmaba (guardado como «usuario local»). Eso ya no vale en producción: sin sesión de
+// Supabase no hay usuario. Si quedó uno guardado, se borra y se recuerda su correo para
+// llevarlo directo a confirmar con el código.
+const staleLocalEmail = (() => {
+    if (isDevHost || typeof window === 'undefined') return ''
+    try {
+        const stored = JSON.parse(localStorage.getItem('eunacom_local_dev_user') || 'null')
+        if (!stored) return ''
+        localStorage.removeItem('eunacom_local_dev_user')
+        const email = String(stored.email || '')
+        return /@eunacom\.app$/.test(email) ? '' : email
+    } catch { return '' }
+})()
+
 export const AuthProvider = ({ children }) => {
     const [localDevUser, setLocalDevUser] = useState(() => {
         if (devGuest) return (() => { try { return JSON.parse(localStorage.getItem('eunacom_local_dev_user') || 'null') } catch { return null } })()
         if (isLocalHost) return DEFAULT_LOCAL_ADMIN
-        const stored = localStorage.getItem('eunacom_local_dev_user')
-        return stored ? JSON.parse(stored) : null
+        return null // producción: solo vale la sesión de Supabase
     })
 
     const [user, setUser] = useState(() => {
         if (devGuest) return (() => { try { return JSON.parse(localStorage.getItem('eunacom_local_dev_user') || 'null') } catch { return null } })()
         try {
-            const storedDev = localStorage.getItem('eunacom_local_dev_user')
+            const storedDev = isDevHost ? localStorage.getItem('eunacom_local_dev_user') : null
             if (storedDev) return JSON.parse(storedDev)
             const cached = localStorage.getItem('eunacom_cached_user')
             if (cached) return JSON.parse(cached)
@@ -66,7 +80,7 @@ export const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(() => {
         if (isLocalHost) return false
-        const hasStoredUser = !!(localStorage.getItem('eunacom_local_dev_user') || localStorage.getItem('eunacom_cached_user'))
+        const hasStoredUser = !!localStorage.getItem('eunacom_cached_user')
         return !hasStoredUser
     })
     const [adminPreviewMode, setAdminPreviewMode] = useState(false)
@@ -136,7 +150,10 @@ export const AuthProvider = ({ children }) => {
         if (user?.id && !isLocalHost) identifyUser(user)
     }, [user?.id])
 
-    const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'register', message: '', email: '' })
+    // Quien venía usando la app sin confirmar su correo: abrir el login con su correo puesto
+    const [authModal, setAuthModal] = useState(() => staleLocalEmail && !localStorage.getItem('eunacom_cached_user')
+        ? { isOpen: true, mode: 'login', message: 'Confirma tu correo para seguir donde quedaste: inicia sesión y te enviamos un código.', email: staleLocalEmail }
+        : { isOpen: false, mode: 'register', message: '', email: '' })
 
     // email: deja el correo escrito (p. ej. quien compró libros sin cuenta)
     const openAuthModal = (mode = 'register', message = '', email = '') => {
@@ -176,23 +193,37 @@ export const AuthProvider = ({ children }) => {
                 }
             })
             
-            // If Supabase hits 429 rate limit or error in development, fallback to local dev user seamlessly!
-            if (error && (error.status === 429 || error.message?.includes('rate limit') || error.message?.includes('429') || window.location.hostname === 'localhost')) {
-                console.warn('Supabase signup rate limited / errored. Falling back to local dev user account:', error.message)
+            // Solo en localhost: si Supabase falla, seguir con un usuario de prueba local
+            if (error && isDevHost) {
+                console.warn('Supabase signup errored on localhost. Falling back to local dev user account:', error.message)
                 return createDevTestUser(email, fullName)
             }
-            
-            if (data?.user && !data?.session) {
-                // If email confirmation is required by Supabase, also set local user so they can immediately test onboarding
-                localStorage.setItem('eunacom_local_dev_user', JSON.stringify(data.user))
-                setUser(data.user)
-            }
+            if (error) return { data, error }
 
-            return { data, error }
+            // Sin sesión = Supabase pide confirmar el correo. No se entra a la app todavía:
+            // quien llama muestra el paso del código (verifySignupCode).
+            // Un correo que ya tiene cuenta confirmada vuelve como usuario sin identidades.
+            const alreadyRegistered = !!data?.user && !data?.session && Array.isArray(data.user.identities) && data.user.identities.length === 0
+            return { data, error: null, needsCode: !!data?.user && !data?.session && !alreadyRegistered, alreadyRegistered }
         } catch (err) {
-            console.warn('SignUp exception, falling back to local dev account:', err)
-            return createDevTestUser(email, fullName)
+            if (isDevHost) {
+                console.warn('SignUp exception on localhost, falling back to local dev account:', err)
+                return createDevTestUser(email, fullName)
+            }
+            return { data: null, error: err }
         }
+    }
+
+    // Código de 6 dígitos del correo de confirmación → sesión real (la recoge onAuthStateChange)
+    const verifySignupCode = async (email, code) => {
+        const { data, error } = await supabase.auth.verifyOtp({ email, token: String(code).trim(), type: 'signup' })
+        return { data, error }
+    }
+
+    // Reenvía el correo de confirmación (Supabase permite uno cada 60 s por persona)
+    const resendSignupCode = async (email) => {
+        const { data, error } = await supabase.auth.resend({ type: 'signup', email })
+        return { data, error }
     }
 
     const signIn = async (email, password) => {
@@ -257,6 +288,8 @@ export const AuthProvider = ({ children }) => {
         user,
         loading,
         signUp,
+        verifySignupCode,
+        resendSignupCode,
         signIn,
         signInWithGoogle,
         signOut,
