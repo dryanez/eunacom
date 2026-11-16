@@ -41,7 +41,7 @@ const NAV_GROUPS = [
         { to: '/dashboard', label: 'Inicio', icon: Home, tour: 'dashboard' },
         { to: '/study-plan', label: 'Plan de estudio', icon: CalendarDays, tour: 'study-plan', admin: true },
         { to: '/mis-clases', label: 'Mis clases', icon: Video, tour: 'mis-clases' },
-        { to: '/clases-guevara', label: 'Clases Dr. Guevara', icon: Film },
+        { to: '/clases-guevara', label: 'Clases Dr. Guevara', icon: Film, admin: true },
         { to: '/biblioteca', label: 'Biblioteca', icon: BookOpen, tour: 'libros' },
         { to: '/flashcards', label: 'Flashcards', icon: Layers },
         { to: '/medlingo', label: 'MedLingo', icon: Flame, tour: 'medlingo' },

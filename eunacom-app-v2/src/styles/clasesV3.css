@@ -190,3 +190,20 @@
 @media (max-width:640px){.cv3-modbox{padding:13px}.cv3-modbox b{font-size:15px}.cv3-cont-th{width:96px;height:56px}}
 .cv3-cont b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:640px){.cv3-cont .btn{display:none}.cv3-cont{gap:10px}.cv3-cont b{font-size:13.5px}.cv3-cont small{font-size:11px}.cv3-hero p{display:none}}
+
+/* Bloques plegables: se ve solo el bloque; al tocarlo se abren sus clases */
+.cv3-blkbtn{display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;margin:14px 0 8px;padding:14px 16px;border-radius:16px;background:#111a2e;border:1px solid #1e293b;transition:border-color .15s,background .15s}
+.cv3-blkbtn:hover{border-color:var(--spec)}
+.cv3-blkbtn .dot{top:12px}
+.cv3-blkbtn h2{margin:2px 0 0}
+.cv3-bsum{display:flex;align-items:center;gap:10px;margin-top:10px}
+.cv3-bsum .bm{flex:0 0 90px;height:6px;border-radius:4px;background:#1e293b;overflow:hidden}.cv3-bsum .bm i{display:block;height:100%;background:var(--spec);border-radius:4px}
+.cv3-bsum small{color:#94a3b8;font-size:.78rem;flex:1;min-width:0}
+.cv3-bsum em{font-style:normal;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;color:var(--spec);background:color-mix(in srgb,var(--spec) 15%,transparent);white-space:nowrap}
+.cv3-bsum .chev{font-size:1.4rem;line-height:1;color:#64748b;transition:transform .2s}
+.cv3-blkbtn.open .chev{transform:rotate(90deg);color:var(--spec)}
+.cv3-blkbtn.full .dot{background:#4ade80}
+.cv3-route button.cv3-blkbtn{background:#111a2e;border:1px solid #1e293b}
+.cv3-route button.cv3-blkbtn:hover,.cv3-route button.cv3-blkbtn.open{border-color:var(--spec)}
+.cv3-bsum .bm{flex:0 0 70px}.cv3-bsum small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv3-bsum .bm{flex:0 0 52px}.cv3-bsum small{overflow:visible;text-overflow:clip}.cv3-bsum{gap:8px}

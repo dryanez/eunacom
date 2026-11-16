@@ -131,6 +131,8 @@ function Ring({ pct, color = '#38bdf8', size = 44 }) {
 /* ════════ INICIO ════════ */
 function Home({ data, prog, mod }) {
   const { idx, specs, byId } = data
+  const { isAdmin } = useAuth()
+  const isAdminUser = !!isAdmin?.()
   const all = Object.values(specs)
   const total = all.reduce((a, s) => a + s.classes.length, 0)
   const done = Object.keys(prog.done).filter(id => byId[id]).length
@@ -198,10 +200,10 @@ function Home({ data, prog, mod }) {
           </section>
         )
       })()}
-      <Link className="cv3-old" to="/clases-guevara">
+      {isAdminUser && <Link className="cv3-old" to="/clases-guevara">
         <div><b>Clases del Dr. Guevara</b><small>Las clases grabadas anteriores siguen disponibles, con sus resúmenes y pruebas.</small></div>
         <span className="btn ghost">Abrir</span>
-      </Link>
+      </Link>}
     </>
   )
 }
@@ -214,6 +216,8 @@ function Tomo({ s, prog }) {
   const now = ids.find(id => !prog.done[id])
   const mins = s.classes.reduce((a, c) => a + c.minutes, 0), tot = s.classes.reduce((a, c) => a + c.imp, 0)
   const nb = s.blocks.length
+  const [open, setOpen] = useState(() => new Set())
+  const toggle = n => setOpen(o => { const x = new Set(o); x.has(n) ? x.delete(n) : x.add(n); return x })
   return (
     <>
       <Back to={`/mis-clases?modulo=${s.mi + 1}`}>{s.module}</Back>
@@ -234,10 +238,22 @@ function Tomo({ s, prog }) {
       <div className="cv3-route">
         {s.blocks.map(b => {
           const t = prog.tests[`${s.key}:${b.n}`]
+          const isOpen = open.has(b.n), seenB = b.ids.filter(id => prog.done[id]).length
+          const minsB = b.ids.reduce((a, id) => a + (byId[id]?.minutes || 0), 0), hasNow = b.ids.includes(now)
           return (
             <React.Fragment key={b.n}>
-              <div className="cv3-blk"><span className="dot">{b.n}</span><div className="k">Bloque {b.n}</div><h2>{b.name}</h2></div>
-              {b.ids.map(id => {
+              <button className={'cv3-blk cv3-blkbtn' + (isOpen ? ' open' : '') + (seenB === b.ids.length ? ' full' : '')} onClick={() => toggle(b.n)} aria-expanded={isOpen}>
+                <span className="dot">{b.n}</span>
+                <div className="k">Bloque {b.n} · {b.ids.length} {b.ids.length === 1 ? 'clase' : 'clases'} · {minsB} min</div>
+                <h2>{b.name}</h2>
+                <div className="cv3-bsum">
+                  <span className="bm"><i style={{ width: `${100 * seenB / b.ids.length}%` }} /></span>
+                  <small>{seenB}/{b.ids.length} vistas{t ? ` · test ${t.ok}/${t.n}` : ''}</small>
+                  {hasNow && <em>Sigue aquí</em>}
+                  <span className="chev" aria-hidden="true">›</span>
+                </div>
+              </button>
+              {isOpen && b.ids.map(id => {
                 const c = byId[id]
                 return (
                   <Link key={id} className={'cv3-cls ' + (prog.done[id] ? 'done' : id === now ? 'now' : '')} to={`/mis-clases/${s.key}/${id}`}>
@@ -247,7 +263,7 @@ function Tomo({ s, prog }) {
                   </Link>
                 )
               })}
-              {b.test > 0 && (
+              {isOpen && b.test > 0 && (
                 <Link className="cv3-test" to={`/mis-clases/${s.key}/test/${b.n}`}>
                   <span>Test del bloque {b.n} · {b.test} preguntas{t ? <small> · tu mejor resultado: {t.ok} de {t.n}</small> : null}</span><span>›</span>
                 </Link>
