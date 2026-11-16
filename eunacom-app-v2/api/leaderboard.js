@@ -280,7 +280,7 @@ export default async function handler(req, res) {
         // PERIOD === 'all' (General Historical Rankings)
         // Combines all registered user profiles, user_progress questions, and completed tests
         lb = await cachedRanking(lbKey, () => db.execute({
-          sql: `SELECT 
+          sql: `SELECT * FROM (SELECT 
             pr.id as user_id,
             COALESCE(pr.first_name, '') as first_name,
             COALESCE(pr.last_name, '') as last_name,
@@ -318,13 +318,13 @@ export default async function handler(req, res) {
           ) t ON pr.id = t.user_id
           WHERE (COALESCE(q.total_answers, 0) > 0 OR COALESCE(pr.xp, 0) > 0 OR COALESCE(t.total_questions, 0) > 0)
           ${filterSql}
-          ORDER BY xp DESC
+          ) ORDER BY xp DESC
           LIMIT 100`,
           args: filterArgs
         }))
 
         sedeLb = await cachedRanking(groupsKey + '|sede', () => db.execute({
-          sql: `SELECT 
+          sql: `SELECT * FROM (SELECT 
             COALESCE(NULLIF(pr.university, ''), 'Otra Universidad') as university,
             COALESCE(NULLIF(pr.sede, ''), 'Sede Principal') as sede,
             COALESCE(pr.country, 'Chile') as country,
@@ -359,14 +359,14 @@ export default async function handler(req, res) {
           ) t ON pr.id = t.user_id
           WHERE pr.university IS NOT NULL AND pr.university != ''
           GROUP BY university, sede
-          HAVING xp > 0
+          ) WHERE xp > 0
           ORDER BY xp DESC
           LIMIT 50`,
           args: []
         }))
 
         countryLb = await cachedRanking(groupsKey + '|country', () => db.execute({
-          sql: `SELECT 
+          sql: `SELECT * FROM (SELECT 
             COALESCE(NULLIF(pr.country, ''), NULLIF(pr.nationality, ''), 'Chile') as country,
             COALESCE(pr.country_code, '+56') as country_code,
             COUNT(DISTINCT pr.id) as total_doctors,
@@ -399,7 +399,7 @@ export default async function handler(req, res) {
             GROUP BY user_id
           ) t ON pr.id = t.user_id
           GROUP BY country
-          HAVING xp > 0
+          ) WHERE xp > 0
           ORDER BY xp DESC
           LIMIT 30`,
           args: []
