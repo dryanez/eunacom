@@ -214,7 +214,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // Código de 6 dígitos del correo de confirmación → sesión real (la recoge onAuthStateChange)
+    // Código del correo de confirmación → sesión real (la recoge onAuthStateChange)
     const verifySignupCode = async (email, code) => {
         const { data, error } = await supabase.auth.verifyOtp({ email, token: String(code).trim(), type: 'signup' })
         return { data, error }

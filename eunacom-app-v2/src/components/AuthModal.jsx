@@ -6,6 +6,10 @@ import {
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
+// Largo del código de confirmación: debe coincidir con «Email OTP length» en Supabase
+// (Authentication → Sign In / Providers → Email). Hoy está en 8.
+const CODE_LENGTH = 8
+
 const AuthModal = ({
   isOpen: propIsOpen,
   onClose: propOnClose,
@@ -40,7 +44,7 @@ const AuthModal = ({
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [successMsg, setSuccessMsg] = useState(null)
-  // Registro con correo: 'form' → 'code' (código de 6 dígitos que llega al correo)
+  // Registro con correo: 'form' → 'code' (código que llega al correo)
   const [step, setStep] = useState('form')
   const [code, setCode] = useState('')
   const [resendIn, setResendIn] = useState(0)
@@ -120,7 +124,7 @@ const AuthModal = ({
 
   const handleVerifyCode = async (e) => {
     e.preventDefault()
-    if (code.length < 6 || loading) return
+    if (code.length < CODE_LENGTH || loading) return
     setError(null)
     setSuccessMsg(null)
     setLoading(true)
@@ -504,7 +508,7 @@ const AuthModal = ({
           </div>
 
           {step === 'code' ? (
-            /* ── Paso 2 del registro con correo: código de 6 dígitos ── */
+            /* ── Paso 2 del registro con correo: código que llega al correo ── */
             <div>
               <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
                 <div style={{ width: 54, height: 54, borderRadius: '50%', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.85rem' }}>
@@ -514,7 +518,7 @@ const AuthModal = ({
                   Revisa tu correo
                 </h2>
                 <p style={{ fontSize: '0.88rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-                  Te enviamos un código de 6 dígitos a<br />
+                  Te enviamos un código de {CODE_LENGTH} dígitos a<br />
                   <strong style={{ color: '#0f172a', wordBreak: 'break-all' }}>{email.trim()}</strong>
                 </p>
               </div>
@@ -538,27 +542,27 @@ const AuthModal = ({
                   inputMode="numeric"
                   autoComplete="one-time-code"
                   pattern="[0-9]*"
-                  maxLength={8}
+                  maxLength={CODE_LENGTH}
                   autoFocus
                   aria-label="Código de confirmación"
-                  placeholder="······"
+                  placeholder={'·'.repeat(CODE_LENGTH)}
                   value={code}
                   onChange={(e) => { setCode(e.target.value.replace(/\D/g, '')); setError(null) }}
                   style={{
                     width: '100%', boxSizing: 'border-box', padding: '0.85rem 1rem', textAlign: 'center',
-                    fontSize: '1.7rem', fontWeight: 800, letterSpacing: '0.45em', color: '#0f172a',
+                    fontSize: '1.7rem', fontWeight: 800, letterSpacing: '0.3em', color: '#0f172a',
                     border: '1.5px solid #cbd5e1', borderRadius: '12px', outline: 'none', backgroundColor: '#f8fafc',
                     fontVariantNumeric: 'tabular-nums',
                   }}
                 />
                 <button
                   type="submit"
-                  disabled={loading || code.length < 6}
+                  disabled={loading || code.length < CODE_LENGTH}
                   style={{
                     width: '100%', padding: '0.8rem 1rem', border: 'none', borderRadius: '12px', minHeight: '48px',
-                    background: loading || code.length < 6 ? '#94a3b8' : 'linear-gradient(135deg, #2563eb 0%, #0284c7 100%)',
+                    background: loading || code.length < CODE_LENGTH ? '#94a3b8' : 'linear-gradient(135deg, #2563eb 0%, #0284c7 100%)',
                     color: '#ffffff', fontWeight: 800, fontSize: '0.95rem',
-                    cursor: loading ? 'wait' : code.length < 6 ? 'not-allowed' : 'pointer',
+                    cursor: loading ? 'wait' : code.length < CODE_LENGTH ? 'not-allowed' : 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
                   }}
                 >
