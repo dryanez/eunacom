@@ -48,6 +48,7 @@ const AuthModal = ({
   const [step, setStep] = useState('form')
   const [code, setCode] = useState('')
   const [resendIn, setResendIn] = useState(0)
+  const [codeEmail, setCodeEmail] = useState('') // último correo al que se envió un código
 
   // Sync mode strictly whenever the modal opens or the requested mode changes
   useEffect(() => {
@@ -105,21 +106,28 @@ const AuthModal = ({
   }
 
   // Mensajes de Supabase → español
-  const authErrorText = (err, fallback) => {
+  const isRateLimit = (err) => err?.status === 429 || /rate limit|too many|security purposes|only request this after/i.test(String(err?.message || ''))
+
+  // where: 'code' (comprobando o reenviando el código) | 'form' (registro / inicio de sesión)
+  const authErrorText = (err, fallback, where = 'form') => {
     const m = String(err?.message || '')
-    if (err?.status === 429 || /rate limit|too many|security purposes|only request this after/i.test(m)) return 'Demasiados intentos seguidos. Espera un minuto y vuelve a probar.'
-    if (/expired|invalid|otp/i.test(m)) return 'Código incorrecto o vencido. Revísalo o pide uno nuevo.'
+    if (isRateLimit(err)) return 'Demasiados intentos seguidos. Espera un minuto y vuelve a probar.'
+    if (where === 'code' && /expired|invalid|otp/i.test(m)) return 'Código incorrecto o vencido. Revísalo o pide uno nuevo.'
+    if (/validate email|invalid format|email address.*invalid/i.test(m)) return 'Ese correo no parece válido. Revísalo.'
+    if (/password/i.test(m) && /weak|short|least|characters/i.test(m)) return 'Esa contraseña es muy débil. Usa al menos 8 caracteres y evita las comunes.'
     if (/already registered|already been registered/i.test(m)) return 'Este correo ya está registrado. Por favor inicia sesión.'
     if (/failed to fetch|network/i.test(m)) return 'Sin conexión. Revisa tu internet y vuelve a probar.'
     return m || fallback
   }
 
-  const goToCodeStep = () => {
+  // note: aviso verde opcional; keepCooldown: no reiniciar la espera de reenvío
+  const goToCodeStep = (note = null, keepCooldown = false) => {
     setStep('code')
     setCode('')
     setError(null)
-    setSuccessMsg(null)
-    setResendIn(60)
+    setSuccessMsg(note)
+    setCodeEmail(email.trim().toLowerCase())
+    if (!keepCooldown) setResendIn(60)
   }
 
   const handleVerifyCode = async (e) => {
@@ -129,12 +137,12 @@ const AuthModal = ({
     setSuccessMsg(null)
     setLoading(true)
     try {
-      const { data, error } = await verifySignupCode(email.trim(), code)
-      if (error) setError(authErrorText(error, 'No pudimos confirmar el código.'))
+      const { data, error } = await verifySignupCode(email.trim(), code, mode === 'register' ? password : '')
+      if (error) setError(authErrorText(error, 'No pudimos confirmar el código.', 'code'))
       else if (data?.session) handleClose()
       else setError('No pudimos confirmar el código. Pide uno nuevo.')
     } catch (err) {
-      setError(authErrorText(err, 'No pudimos confirmar el código.'))
+      setError(authErrorText(err, 'No pudimos confirmar el código.', 'code'))
     } finally {
       setLoading(false)
     }
@@ -147,11 +155,11 @@ const AuthModal = ({
     setLoading(true)
     try {
       const { error } = await resendSignupCode(email.trim())
-      if (error) setError(authErrorText(error, 'No pudimos reenviar el código.'))
+      if (error) setError(authErrorText(error, 'No pudimos reenviar el código.', 'code'))
       else { setSuccessMsg('Te enviamos un código nuevo.'); setCode('') }
       setResendIn(60)
     } catch (err) {
-      setError(authErrorText(err, 'No pudimos reenviar el código.'))
+      setError(authErrorText(err, 'No pudimos reenviar el código.', 'code'))
     } finally {
       setLoading(false)
     }
@@ -184,7 +192,9 @@ const AuthModal = ({
       setLoading(true)
       try {
         const { data, error, needsCode, alreadyRegistered } = await signUp(email.trim(), password, fullName.trim())
-        if (error) {
+        if (error && isRateLimit(error) && codeEmail === email.trim().toLowerCase()) {
+          goToCodeStep('Ya te enviamos un código hace un momento: sigue valiendo.', true)
+        } else if (error) {
           setError(authErrorText(error, 'Error al crear la cuenta.'))
         } else if (alreadyRegistered) {
           setMode('login')
@@ -208,11 +218,13 @@ const AuthModal = ({
         const { data, error } = await signIn(email.trim(), password)
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
-            setError('Correo o contraseña incorrectos.')
+            setError('Correo o contraseña incorrectos. Si nunca confirmaste tu correo, usa «Crear Cuenta gratis» con ese mismo correo.')
           } else if (/not confirmed/i.test(error.message)) {
             // Cuenta creada pero con el correo sin confirmar: mandar un código y pedirlo aquí mismo
-            await resendSignupCode(email.trim()).catch(() => {})
-            goToCodeStep()
+            const sent = await resendSignupCode(email.trim()).catch((err) => ({ error: err }))
+            if (!sent?.error) goToCodeStep()
+            else if (isRateLimit(sent.error)) goToCodeStep('Usa el último código que te enviamos. Podrás pedir otro en un minuto.')
+            else setError(authErrorText(sent.error, 'No pudimos enviarte el código. Vuelve a intentarlo.'))
           } else {
             setError(authErrorText(error, 'Error al iniciar sesión.'))
           }
@@ -231,7 +243,7 @@ const AuthModal = ({
 
   return (
     <div
-      onClick={handleClose}
+      onClick={() => { if (step !== 'code') handleClose() }}
       style={{
         position: 'fixed',
         inset: 0,

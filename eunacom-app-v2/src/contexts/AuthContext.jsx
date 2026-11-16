@@ -92,35 +92,8 @@ export const AuthProvider = ({ children }) => {
             return
         }
 
-        // Force-logout if session version has changed (e.g. to trigger onboarding re-check)
-        const storedVersion = localStorage.getItem(SESSION_KEY)
-        if (storedVersion !== SESSION_VERSION) {
-            supabase.auth.signOut().finally(() => {
-                localStorage.setItem(SESSION_KEY, SESSION_VERSION)
-                localStorage.removeItem('eunacom_cached_user')
-                setUser(null)
-                setLoading(false)
-            })
-            return
-        }
-
-        // Check active sessions and sets the user
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            if (!localDevUser) {
-                const activeUser = session?.user ?? (isLocalHost ? DEFAULT_LOCAL_ADMIN : null)
-                if (activeUser) {
-                    try {
-                        localStorage.setItem('eunacom_cached_user', JSON.stringify(activeUser))
-                    } catch (e) {}
-                } else if (!isLocalHost) {
-                    localStorage.removeItem('eunacom_cached_user')
-                }
-                setUser(activeUser)
-            }
-            setLoading(false)
-        })
-
-        // Listen for changes on auth state (sign in, sign out, etc.)
+        // Listen for changes on auth state (sign in, sign out, etc.). Subscribed first, so a
+        // sign-in right after the first page load (version branch below) is not missed.
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             if (localDevUser) return
             if (session?.user) {
@@ -142,6 +115,33 @@ export const AuthProvider = ({ children }) => {
             setLoading(false)
         })
 
+        // Force-logout if session version has changed (e.g. to trigger onboarding re-check)
+        const storedVersion = localStorage.getItem(SESSION_KEY)
+        if (storedVersion !== SESSION_VERSION) {
+            supabase.auth.signOut().finally(() => {
+                localStorage.setItem(SESSION_KEY, SESSION_VERSION)
+                localStorage.removeItem('eunacom_cached_user')
+                setUser(null)
+                setLoading(false)
+            })
+        } else {
+            // Check active sessions and sets the user
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (!localDevUser) {
+                    const activeUser = session?.user ?? (isLocalHost ? DEFAULT_LOCAL_ADMIN : null)
+                    if (activeUser) {
+                        try {
+                            localStorage.setItem('eunacom_cached_user', JSON.stringify(activeUser))
+                        } catch (e) {}
+                    } else if (!isLocalHost) {
+                        localStorage.removeItem('eunacom_cached_user')
+                    }
+                    setUser(activeUser)
+                }
+                setLoading(false)
+            })
+        }
+
         return () => subscription.unsubscribe()
     }, [localDevUser])
 
@@ -152,7 +152,7 @@ export const AuthProvider = ({ children }) => {
 
     // Quien venía usando la app sin confirmar su correo: abrir el login con su correo puesto
     const [authModal, setAuthModal] = useState(() => staleLocalEmail && !localStorage.getItem('eunacom_cached_user')
-        ? { isOpen: true, mode: 'login', message: 'Confirma tu correo para seguir donde quedaste: inicia sesión y te enviamos un código.', email: staleLocalEmail }
+        ? { isOpen: true, mode: 'register', message: 'Falta confirmar tu correo para seguir donde quedaste: completa el registro y te enviamos un código.', email: staleLocalEmail }
         : { isOpen: false, mode: 'register', message: '', email: '' })
 
     // email: deja el correo escrito (p. ej. quien compró libros sin cuenta)
@@ -215,8 +215,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     // Código del correo de confirmación → sesión real (la recoge onAuthStateChange)
-    const verifySignupCode = async (email, code) => {
+    // `password`: la clave escrita en el formulario. Si el correo ya tenía un registro sin confirmar,
+    // Supabase reenvía el código pero conserva la clave antigua; con la sesión recién creada se deja
+    // la que la persona acaba de escribir (si falla, entra igual y la clave antigua sigue valiendo).
+    const verifySignupCode = async (email, code, password = '') => {
         const { data, error } = await supabase.auth.verifyOtp({ email, token: String(code).trim(), type: 'signup' })
+        if (!error && data?.session && password) {
+            await supabase.auth.updateUser({ password }).catch(() => {})
+        }
         return { data, error }
     }
 
