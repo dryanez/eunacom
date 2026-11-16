@@ -1,9 +1,34 @@
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
+
+// In-memory cache for the SHARED ranking lists (overall / by sede / by country).
+// These queries scan user_progress and tests completely, and their result does not
+// depend on who is asking, so one result is reused by every request on this function
+// instance for 5 minutes. Per-user data (streak, today's stats) is never stored here.
+const RANKING_TTL_MS = 5 * 60 * 1000
+const RANKING_MAX_ENTRIES = 200
+const rankingCache = new Map() // key -> { at, promise }
+
+function cachedRanking(key, run) {
+  const hit = rankingCache.get(key)
+  if (hit && Date.now() - hit.at < RANKING_TTL_MS) return hit.promise
+  rankingCache.delete(key)
+  const entry = { at: Date.now(), promise: null }
+  entry.promise = Promise.resolve().then(run).then((result) => ({ rows: result.rows })).catch((err) => {
+    if (rankingCache.get(key) === entry) rankingCache.delete(key)
+    throw err
+  })
+  rankingCache.set(key, entry)
+  while (rankingCache.size > RANKING_MAX_ENTRIES) {
+    rankingCache.delete(rankingCache.keys().next().value)
+  }
+  return entry.promise
+}
 
 export default async function handler(req, res) {
   const db = getTurso()
 
   try {
+    await ensureOnce('leaderboard:schema', async () => {
     await db.execute({
       sql: `CREATE TABLE IF NOT EXISTS user_profiles (
         id TEXT PRIMARY KEY,
@@ -54,6 +79,7 @@ export default async function handler(req, res) {
 
     try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
     try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+    })
 
     if (req.method === 'GET') {
       const { period, userId, university, sede, country } = req.query // period: 'today' | 'week' | 'all'
@@ -86,11 +112,16 @@ export default async function handler(req, res) {
         filterArgs.push(cLower, cLower)
       }
 
+      // Cache keys for the shared ranking lists (nothing here depends on userId).
+      const periodKey = period === 'today' || period === 'week' ? period : 'all'
+      const groupsKey = `groups|${periodKey}`
+      const lbKey = `lb|${periodKey}|${JSON.stringify(filterArgs)}|${university ? 'u' : ''}${sede ? 's' : ''}${country ? 'c' : ''}`
+
       let lb, sedeLb, countryLb
 
       if (period === 'today' || period === 'week') {
         // Activity for specific period (today or week)
-        lb = await db.execute({
+        lb = await cachedRanking(lbKey, () => db.execute({
           sql: `WITH user_activity AS (
             SELECT 
               user_id,
@@ -143,9 +174,9 @@ export default async function handler(req, res) {
           ORDER BY act.xp DESC
           LIMIT 100`,
           args: filterArgs
-        })
+        }))
 
-        sedeLb = await db.execute({
+        sedeLb = await cachedRanking(groupsKey + '|sede', () => db.execute({
           sql: `WITH user_activity AS (
             SELECT 
               user_id,
@@ -194,9 +225,9 @@ export default async function handler(req, res) {
           ORDER BY xp DESC
           LIMIT 50`,
           args: []
-        })
+        }))
 
-        countryLb = await db.execute({
+        countryLb = await cachedRanking(groupsKey + '|country', () => db.execute({
           sql: `WITH user_activity AS (
             SELECT 
               user_id,
@@ -244,11 +275,11 @@ export default async function handler(req, res) {
           ORDER BY xp DESC
           LIMIT 30`,
           args: []
-        })
+        }))
       } else {
         // PERIOD === 'all' (General Historical Rankings)
         // Combines all registered user profiles, user_progress questions, and completed tests
-        lb = await db.execute({
+        lb = await cachedRanking(lbKey, () => db.execute({
           sql: `SELECT 
             pr.id as user_id,
             COALESCE(pr.first_name, '') as first_name,
@@ -290,9 +321,9 @@ export default async function handler(req, res) {
           ORDER BY xp DESC
           LIMIT 100`,
           args: filterArgs
-        })
+        }))
 
-        sedeLb = await db.execute({
+        sedeLb = await cachedRanking(groupsKey + '|sede', () => db.execute({
           sql: `SELECT 
             COALESCE(NULLIF(pr.university, ''), 'Otra Universidad') as university,
             COALESCE(NULLIF(pr.sede, ''), 'Sede Principal') as sede,
@@ -332,9 +363,9 @@ export default async function handler(req, res) {
           ORDER BY xp DESC
           LIMIT 50`,
           args: []
-        })
+        }))
 
-        countryLb = await db.execute({
+        countryLb = await cachedRanking(groupsKey + '|country', () => db.execute({
           sql: `SELECT 
             COALESCE(NULLIF(pr.country, ''), NULLIF(pr.nationality, ''), 'Chile') as country,
             COALESCE(pr.country_code, '+56') as country_code,
@@ -372,7 +403,7 @@ export default async function handler(req, res) {
           ORDER BY xp DESC
           LIMIT 30`,
           args: []
-        })
+        }))
       }
 
       // Streak & user stats for requesting user

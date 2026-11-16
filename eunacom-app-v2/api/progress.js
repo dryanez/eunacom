@@ -4,7 +4,7 @@
 // GET  /api/progress?stats=true&questionId=xxx → answer stats (merged from answer-stats.js)
 // POST /api/progress?stats=true            → record answer stat pick
 // PUT  /api/progress?stats=true            → batch get stats
-import { getTurso } from './_turso.js';
+import { getTurso, ensureOnce } from './_turso.js';
 import { randomUUID } from 'crypto';
 
 export default async function handler(req, res) {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   // ── ANSWER STATS (merged from answer-stats.js) ──────────────────────────
   if (req.query.stats === 'true') {
-    await db.execute({
+    await ensureOnce('progress:answer_stats-table', () => db.execute({
       sql: `CREATE TABLE IF NOT EXISTS answer_stats (
         question_id TEXT NOT NULL,
         option_id TEXT NOT NULL,
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         PRIMARY KEY (question_id, option_id)
       )`,
       args: []
-    })
+    }))
 
     if (req.method === 'GET') {
       const { questionId } = req.query
@@ -68,8 +68,10 @@ export default async function handler(req, res) {
   }
 
   // ── USER PROGRESS ────────────────────────────────────────────────────────
+  await ensureOnce('progress:user_progress-columns', async () => {
   try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
   try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+  })
 
   if (req.method === 'GET') {
     const { userId } = req.query

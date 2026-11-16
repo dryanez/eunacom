@@ -1,5 +1,5 @@
 import { getAuthUser, isAdminUser } from './_auth.js'
-import { getTurso } from './_turso.js';
+import { getTurso, ensureOnce } from './_turso.js';
 import { Resend } from 'resend';
 import { 
   getDiscountEmailHtml, 
@@ -66,6 +66,7 @@ export default async function handler(req, res) {
 
   try {
     // 1. Ensure table exists
+    await ensureOnce('email-marketing-cron:schema', async () => {
     await db.execute({
       sql: `CREATE TABLE IF NOT EXISTS email_campaign_logs (
         id TEXT PRIMARY KEY,
@@ -91,6 +92,7 @@ export default async function handler(req, res) {
       sql: `CREATE INDEX IF NOT EXISTS idx_ecl_user_campaign ON email_campaign_logs(user_id, campaign_type)`,
       args: []
     }).catch(() => {});
+    });
 
     // 2. Auth check
     const authHeader = req.headers['authorization'] || '';

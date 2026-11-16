@@ -1,4 +1,4 @@
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 import { requireUser, ownUserId, isAdminUser } from './_auth.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
@@ -153,6 +153,7 @@ export default async function handler(req, res) {
   const db = getTurso()
 
   try {
+    await ensureOnce('user-profiles:user_profiles-schema', async () => {
     // Ensure table exists and has all columns
     await db.execute({
       sql: `CREATE TABLE IF NOT EXISTS user_profiles (
@@ -201,6 +202,7 @@ export default async function handler(req, res) {
     for (const col of ensureCols) {
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
     }
+    })
 
     // --- MERCADO PAGO WEBHOOK & IPN HANDLING ---
     const topic = req.query?.topic || req.body?.topic || req.query?.type || req.body?.type
@@ -290,9 +292,11 @@ export default async function handler(req, res) {
               }
               const premiumUntil = baseDate.toISOString()
 
+              await ensureOnce('user-profiles:premium-columns', async () => {
               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
               await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+              })
 
               await db.execute({
                 sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
@@ -436,7 +440,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Pago PayPal no completado', status: order.status })
       }
       // Each order activates once — replaying an old order id must not extend the plan again
-      await db.execute({ sql: `CREATE TABLE IF NOT EXISTS paypal_inapp_orders (order_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, captured_at TEXT DEFAULT (datetime('now')))`, args: [] })
+      await ensureOnce('user-profiles:paypal_inapp_orders-table', () => db.execute({ sql: `CREATE TABLE IF NOT EXISTS paypal_inapp_orders (order_id TEXT PRIMARY KEY, user_id TEXT, plan_id TEXT, captured_at TEXT DEFAULT (datetime('now')))`, args: [] }))
       const ins = await db.execute({ sql: `INSERT OR IGNORE INTO paypal_inapp_orders (order_id, user_id, plan_id) VALUES (?, ?, ?)`, args: [order.id, userId, planId] })
       if (!ins.rowsAffected) return res.json({ success: true, already_processed: true })
       const premiumUntil = await activatePremium(db, userId, PLAN_MAP[planId].months)
@@ -459,7 +463,7 @@ export default async function handler(req, res) {
       if (!userId || !purchaseToken) return res.status(400).json({ error: 'Missing parameters' })
       const v = await verifyPlayLifetime({ userId, purchaseToken })
       if (!v.ok) return res.status(v.status).json({ error: v.error })
-      await db.execute({ sql: `CREATE TABLE IF NOT EXISTS play_lifetime_orders (order_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, purchase_token TEXT, created_at TEXT DEFAULT (datetime('now')))`, args: [] })
+      await ensureOnce('user-profiles:play_lifetime_orders-table', () => db.execute({ sql: `CREATE TABLE IF NOT EXISTS play_lifetime_orders (order_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, purchase_token TEXT, created_at TEXT DEFAULT (datetime('now')))`, args: [] }))
       const ins = await db.execute({ sql: `INSERT OR IGNORE INTO play_lifetime_orders (order_id, user_id, purchase_token) VALUES (?, ?, ?)`, args: [v.orderId, userId, purchaseToken] })
       let premiumUntil = null
       if (ins.rowsAffected) premiumUntil = await activatePremium(db, userId, LIFETIME_MONTHS)
@@ -564,6 +568,7 @@ export default async function handler(req, res) {
         return res.status(403).json({ error: 'Forbidden' })
       }
 
+      await ensureOnce('user-profiles:profile-post-columns', async () => {
       // Ensure all columns exist if adding to old DB (catch errors if they already exist)
       const newCols = [
         'exam_month TEXT', 'exam_year TEXT', 'prep_months TEXT',
@@ -580,6 +585,7 @@ export default async function handler(req, res) {
       for (const col of newCols) {
         await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN ${col}`, args: [] }).catch(() => {})
       }
+      })
 
       // Check if this email already has active premium under another user_id
       let isPremiumInit = 0

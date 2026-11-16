@@ -1,5 +1,5 @@
 import { requireAdmin } from './_auth.js'
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 
 const ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'APP_USR-7082707557004383-062820-0010b807284702f3c66366d196d3cefa-3123324373'
 const USD_TO_CLP_RATE = 930
@@ -168,7 +168,7 @@ export default async function handler(req, res) {
     let paypalTransactions = []
     if (db) {
       try {
-        await db.execute({
+        await ensureOnce('admin-finances:paypal_transactions', () => db.execute({
         sql: `CREATE TABLE IF NOT EXISTS paypal_transactions (
           transaction_id TEXT PRIMARY KEY,
           payer_name TEXT,
@@ -187,7 +187,7 @@ export default async function handler(req, res) {
           created_at TEXT DEFAULT (datetime('now'))
         )`,
         args: []
-      }).catch(() => {})
+      }).catch(() => {}))
 
       const ppResult = await db.execute({
         sql: `SELECT pt.*, up.first_name as profile_first_name, up.last_name as profile_last_name,

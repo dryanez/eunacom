@@ -44,7 +44,16 @@ export const bookName = key => key === GRAN_LIBRO
 
 export const isBookKey = key => key === GRAN_LIBRO || LIBROS_GORDOS.some(b => b.key === key)
 
-export async function ensureLibroGordoTables(db) {
+// Same idea as ensureOnce in _turso.js (schema setup at most once per function instance; retried if it
+// throws). Kept local because this file is also imported by the browser bundle (src/pages/History.jsx) and
+// _turso.js would drag the database client into it.
+let libroGordoTablesOnce = null
+export function ensureLibroGordoTables(db) {
+  if (!libroGordoTablesOnce) libroGordoTablesOnce = createLibroGordoTables(db).catch(err => { libroGordoTablesOnce = null; throw err })
+  return libroGordoTablesOnce
+}
+
+async function createLibroGordoTables(db) {
   await db.execute(`CREATE TABLE IF NOT EXISTS libro_gordo_questions (
     id TEXT PRIMARY KEY,
     book TEXT NOT NULL,

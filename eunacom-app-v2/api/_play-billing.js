@@ -8,6 +8,7 @@
 // Env: GOOGLE_PLAY_SERVICE_ACCOUNT_JSON — key of a Google Cloud service account that has
 // "View financial data" + "Manage orders" in Play Console (Users and permissions).
 import crypto from 'node:crypto'
+import { ensureOnce } from './_turso.js'
 
 export const PLAY_PACKAGE = 'com.eunacom.app'
 export const PLAY_SUBSCRIPTION = 'eunacom_premium'
@@ -107,7 +108,7 @@ export async function acknowledgePlaySubscription(purchaseToken) {
 export async function syncPlaySubscription(db, purchaseToken, claimedUserId = null) {
   const sub = await readPlaySubscription(purchaseToken)
   if (!sub.ok) return sub
-  await db.execute({ sql: `CREATE TABLE IF NOT EXISTS play_subscriptions (purchase_token TEXT PRIMARY KEY, user_id TEXT NOT NULL, base_plan TEXT, state TEXT, expiry TEXT, updated_at TEXT DEFAULT (datetime('now')))`, args: [] })
+  await ensureOnce('play-billing:play_subscriptions', () => db.execute({ sql: `CREATE TABLE IF NOT EXISTS play_subscriptions (purchase_token TEXT PRIMARY KEY, user_id TEXT NOT NULL, base_plan TEXT, state TEXT, expiry TEXT, updated_at TEXT DEFAULT (datetime('now')))`, args: [] }))
   const known = (await db.execute({ sql: `SELECT user_id FROM play_subscriptions WHERE purchase_token = ? OR purchase_token = ?`, args: [purchaseToken, sub.linkedToken || ''] })).rows?.[0]?.user_id
   const userId = sub.userId || known
   if (!userId) return { ok: false, status: 404, error: 'Suscripción sin usuario' }

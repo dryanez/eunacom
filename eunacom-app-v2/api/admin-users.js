@@ -1,4 +1,4 @@
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 import { requireAdmin } from './_auth.js'
 import { Resend } from 'resend'
 import financesHandler from './_admin-finances.js'
@@ -94,9 +94,9 @@ export default async function handler(req, res) {
 
       // Public settings fetch
       if (action === 'settings') {
-        await db.execute({
+        await ensureOnce('admin-users:app_settings-table', () => db.execute({
           sql: `CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY, value TEXT)`, args: []
-        })
+        }))
         await db.execute({
           sql: `INSERT OR IGNORE INTO app_settings (key, value) VALUES ('freemium_mode', 'strict')`, args: []
         })
@@ -145,7 +145,7 @@ export default async function handler(req, res) {
 
       // Email Marketing route
       if (action === 'email_marketing') {
-        await db.execute({
+        await ensureOnce('admin-users:email_campaign_logs-table', () => db.execute({
           sql: `CREATE TABLE IF NOT EXISTS email_campaign_logs (
             id TEXT PRIMARY KEY,
             user_id TEXT NOT NULL,
@@ -157,7 +157,7 @@ export default async function handler(req, res) {
             metadata TEXT
           )`,
           args: []
-        }).catch(() => {})
+        }).catch(() => {}))
 
         const [countsRes, logsRes, usersRes, activityRes, streakLogsRes] = await Promise.all([
           db.execute({
@@ -319,9 +319,11 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing userId or months' })
       }
 
+      await ensureOnce('admin-users:premium-columns', async () => {
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
       await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+      })
 
       const now = new Date()
       if (months === 12) now.setFullYear(now.getFullYear() + 1)
@@ -344,9 +346,9 @@ export default async function handler(req, res) {
       if (action === 'settings') {
         if (!key || value === undefined) return res.status(400).json({ error: 'Missing key or value' })
         
-        await db.execute({
+        await ensureOnce('admin-users:app_settings-table', () => db.execute({
           sql: `CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY, value TEXT)`, args: []
-        })
+        }))
         await db.execute({
           sql: `INSERT INTO app_settings (key, value) VALUES (?, ?)
                 ON CONFLICT(key) DO UPDATE SET value = excluded.value`,

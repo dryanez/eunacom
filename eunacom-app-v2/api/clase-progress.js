@@ -1,12 +1,13 @@
 // GET  /api/clase-progress?userId=xxx  → { data: [...] }
 // POST /api/clase-progress             → upsert progress for a class
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 import { randomUUID } from 'crypto'
 
 export default async function handler(req, res) {
   const db = getTurso()
 
   // Ensure table + columns exist (idempotent migrations)
+  await ensureOnce('clase-progress:schema', async () => {
   await db.execute({
     sql: `CREATE TABLE IF NOT EXISTS clase_progress (
       id TEXT PRIMARY KEY,
@@ -30,6 +31,7 @@ export default async function handler(req, res) {
   try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_correct INTEGER DEFAULT 0', args: [] }) } catch {}
   try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_total INTEGER DEFAULT 0', args: [] }) } catch {}
   try { await db.execute({ sql: 'ALTER TABLE clase_progress ADD COLUMN quiz_answers TEXT', args: [] }) } catch {}
+  })
 
   if (req.method === 'GET') {
     const { userId } = req.query

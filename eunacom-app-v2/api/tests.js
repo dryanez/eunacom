@@ -3,7 +3,7 @@
 // PATCH /api/tests body: { id, answers, currentIndex, status, score }
 // DELETE /api/tests?id=xxx
 // GET  /api/tests?lg=…              → Libros Gordos online (api/_libro-gordo.js); lg=test es un intento normal
-import { getTurso } from './_turso.js';
+import { getTurso, ensureOnce } from './_turso.js';
 import { handleLibroGordo } from './_libro-gordo.js';
 
 export default async function handler(req, res) {
@@ -40,8 +40,10 @@ export async function handleTests(db, req, res) {
   if (req.method === 'PATCH') {
     const { id, answers, currentIndex, status, score, timeLeftSeconds, tutorState } = req.body
 
+    await ensureOnce('tests:tests-columns', async () => {
     try { await db.execute('ALTER TABLE tests ADD COLUMN time_left_seconds INTEGER DEFAULT NULL') } catch {}
     try { await db.execute('ALTER TABLE tests ADD COLUMN tutor_state TEXT DEFAULT NULL') } catch {}
+    })
 
     if (status === 'completed') {
       await db.execute({
@@ -50,6 +52,7 @@ export async function handleTests(db, req, res) {
       })
 
       // Sync completed test answers to user_progress table
+      await ensureOnce('tests:user_progress-schema', async () => {
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
       try { await db.execute('CREATE UNIQUE INDEX IF NOT EXISTS idx_up_user_question ON user_progress(user_id, question_id)') } catch (e) {
@@ -58,6 +61,7 @@ export async function handleTests(db, req, res) {
           await db.execute('CREATE UNIQUE INDEX idx_up_user_question ON user_progress(user_id, question_id)')
         } catch (err) {}
       }
+      })
 
       const testRow = await db.execute({ sql: 'SELECT user_id, questions FROM tests WHERE id = ?', args: [id] })
       if (testRow.rows.length > 0) {

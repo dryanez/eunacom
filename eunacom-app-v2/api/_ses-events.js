@@ -1,7 +1,7 @@
 // Amazon SES bounce/complaint notifications via SNS (HTTPS subscription to /api/ses-events).
 // Permanent bounces and complaints go into email_suppressions, which every campaign send excludes.
 // Only messages from the configured topic (SES_SNS_TOPIC_ARN) are accepted.
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 
 const SNS_HOST = /^sns\.[a-z0-9-]+\.amazonaws\.com$/
 
@@ -37,8 +37,8 @@ export default async function sesEventsHandler(req, res) {
   if (!reason) return res.json({ ignored: type })
 
   const db = getTurso()
-  await db.execute(`CREATE TABLE IF NOT EXISTS email_suppressions (
-    email TEXT PRIMARY KEY, reason TEXT, detail TEXT, created_at TEXT DEFAULT (datetime('now')))`)
+  await ensureOnce('ses-events:email_suppressions', () => db.execute(`CREATE TABLE IF NOT EXISTS email_suppressions (
+    email TEXT PRIMARY KEY, reason TEXT, detail TEXT, created_at TEXT DEFAULT (datetime('now')))`))
   for (const r of recipients) {
     const email = String(r.emailAddress || '').trim().toLowerCase()
     if (!email) continue

@@ -1,5 +1,5 @@
 import { requireAdmin } from './_auth.js'
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 
 // GET  /api/paypal-export?adminEmail=xxx         → export transactions as JSON
 // GET  /api/paypal-export?adminEmail=xxx&format=csv → export as CSV
@@ -34,7 +34,7 @@ function matchPlanByAmount(amount) {
 }
 
 async function ensureTable(db) {
-  await db.execute({
+  await ensureOnce('paypal-export:paypal_transactions', () => db.execute({
     sql: `CREATE TABLE IF NOT EXISTS paypal_transactions (
       transaction_id TEXT PRIMARY KEY,
       payer_name TEXT,
@@ -53,7 +53,7 @@ async function ensureTable(db) {
       created_at TEXT DEFAULT (datetime('now'))
     )`,
     args: []
-  })
+  }))
 }
 
 async function matchUserByEmail(db, payerEmail) {
@@ -70,9 +70,11 @@ export async function activatePremium(db, userId, months) {
   if (months === 12) now.setFullYear(now.getFullYear() + 1)
   else now.setMonth(now.getMonth() + months)
   const premiumUntil = now.toISOString()
+  await ensureOnce('paypal-export:user_profiles-premium-columns', async () => {
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN is_premium INTEGER DEFAULT 0`, args: [] }).catch(() => {})
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN premium_until TEXT`, args: [] }).catch(() => {})
   await db.execute({ sql: `ALTER TABLE user_profiles ADD COLUMN plan_months INTEGER`, args: [] }).catch(() => {})
+  })
   await db.execute({
     sql: `UPDATE user_profiles SET is_premium = 1, premium_until = ?, plan_months = ?, updated_at = datetime('now') WHERE id = ?`,
     args: [premiumUntil, months, userId]

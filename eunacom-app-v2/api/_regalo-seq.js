@@ -9,6 +9,7 @@
 // Nada de plazos falsos: el precio de regalo no vence. Baja en un clic (?action=regalo_baja&k=) → email_suppressions.
 import { REGALOS } from './_regalos.js'
 import { SEQ_DATA } from './_regalo-seq-data.js'
+import { ensureOnce } from './_turso.js'
 
 const AEE = 'https://eunacom-examen.cl'
 const IMG = 'https://www.eunacomapp.cl/email/regalo'
@@ -219,8 +220,10 @@ ${tag}<div style="color:${NAVY};font-size:19px;font-weight:900;margin:8px 0 8px"
 }
 
 export async function ensureSeqColumns(db) {
+  await ensureOnce('regalo-seq:columns', async () => {
   for (const col of ['seq_step INTEGER DEFAULT 0', 'seq_sent_at TEXT', 'unsub INTEGER DEFAULT 0'])
     await db.execute({ sql: `ALTER TABLE regalo_leads ADD COLUMN ${col}`, args: [] }).catch(() => {})
+  })
 }
 
 // Leads a los que hoy les toca un correo (uno por persona y día; el más reciente de cada correo si pidió varios libros)

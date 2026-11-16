@@ -56,7 +56,16 @@ export const REGALOS = Object.fromEntries(Object.entries(LIST).map(([slug, [kind
 const LINK_SECONDS = 3600 // vida del link firmado al PDF
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-export async function ensureRegaloTable(db) {
+// Same idea as ensureOnce in _turso.js (schema setup at most once per function instance; retried if it
+// throws). Kept local because this file is also imported by the browser bundle (src/pages/Regalo.jsx) and
+// _turso.js would drag the database client into it.
+let regaloTableOnce = null
+export function ensureRegaloTable(db) {
+  if (!regaloTableOnce) regaloTableOnce = createRegaloTable(db).catch(err => { regaloTableOnce = null; throw err })
+  return regaloTableOnce
+}
+
+async function createRegaloTable(db) {
   await db.execute({
     sql: `CREATE TABLE IF NOT EXISTS regalo_leads (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

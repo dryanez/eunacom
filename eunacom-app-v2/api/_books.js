@@ -2,11 +2,13 @@
 // está en el límite de funciones). Tablas: book_orders (carro pagado con Webpay) y
 // book_purchases (una fila por producto comprado; de aquí sale el acceso y el crédito de upgrade).
 import { verifyPlayBook, acknowledgePlayPurchase } from './_play-billing.js'
+import { ensureOnce } from './_turso.js'
 import { PRODUCTS, APP_PLANS, LIBRARY_MIN_PLAN_MONTHS, LIBRARY_ITEMS, PLAN_FREE_ITEMS, UPGRADE_CREDIT_DAYS, cartTotal, expandSkus, isReleased, itemFiles, usdPrice } from './_tienda.js'
 
 const ADMIN_EMAIL = 'dr.felipeyanez@gmail.com'
 
 export async function ensureBookTables(db) {
+  await ensureOnce('books:tables', async () => {
   await db.execute({
     sql: `CREATE TABLE IF NOT EXISTS book_purchases (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,6 +35,7 @@ export async function ensureBookTables(db) {
       created_at TEXT DEFAULT (datetime('now')),
       paid_at TEXT
     )`, args: []
+  })
   })
 }
 

@@ -8,7 +8,7 @@
 // GET /api/questions?sin_codigo=1&specialty=Cardiología      → preguntas propias sin código, por especialidad
 // GET /api/questions?ids=rs2026-1,rs2026-2                    → preguntas por lista de ids (máx. 300), en ese orden
 //   fuente: NULL = banco propio («propio»), 'rs2026' = banco importado de regionalsantiago (generado por IA)
-import { getTurso } from './_turso.js';
+import { getTurso, ensureOnce } from './_turso.js';
 import { handleBanco, hasFuente } from './_banco.js';
 
 export default async function handler(req, res) {
@@ -97,6 +97,7 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
 
   // Ensure table exists (idempotent – safe if already created by upload script)
+  await ensureOnce('questions:eunacom_questions-schema', async () => {
   await db.execute({ sql: `
     CREATE TABLE IF NOT EXISTS eunacom_questions (
       id TEXT PRIMARY KEY,
@@ -119,6 +120,7 @@ export default async function handler(req, res) {
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_code ON eunacom_questions(eunacom_code)', args: [] }) } catch {}
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_clase ON eunacom_questions(clase_id)', args: [] }) } catch {}
   try { await db.execute({ sql: 'CREATE INDEX IF NOT EXISTS idx_eq_spec ON eunacom_questions(specialty)', args: [] }) } catch {}
+  })
 
   if (req.query.tree || req.query.code || req.query.code_prefix || req.query.sin_codigo || req.query.ids) {
     return handleBanco(db, req, res)
@@ -133,8 +135,10 @@ export default async function handler(req, res) {
 
     if (req.query.reviewUserId) {
       // Ensure columns exist just in case
+      await ensureOnce('questions:user_progress-columns', async () => {
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_omitted INTEGER DEFAULT 0') } catch {}
       try { await db.execute('ALTER TABLE user_progress ADD COLUMN is_flagged INTEGER DEFAULT 0') } catch {}
+      })
 
       const result = await db.execute({
         sql: `

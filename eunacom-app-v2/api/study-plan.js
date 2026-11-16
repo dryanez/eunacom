@@ -1,9 +1,10 @@
-import { getTurso } from './_turso.js'
+import { getTurso, ensureOnce } from './_turso.js'
 
 export default async function handler(req, res) {
   const db = getTurso()
 
   try {
+    await ensureOnce('study-plan:schema', async () => {
     await db.execute({
       sql: `CREATE TABLE IF NOT EXISTS study_plan_settings (
         user_id TEXT PRIMARY KEY,
@@ -26,6 +27,7 @@ export default async function handler(req, res) {
     try { await db.execute({ sql: 'ALTER TABLE study_plan_settings ADD COLUMN sunday_minutes INTEGER DEFAULT 60', args: [] }) } catch {}
     try { await db.execute({ sql: 'ALTER TABLE study_plan_settings ADD COLUMN completed_subjects TEXT DEFAULT "[]"', args: [] }) } catch {}
     try { await db.execute({ sql: 'ALTER TABLE study_plan_settings ADD COLUMN plan_start TEXT', args: [] }) } catch {}
+    })
 
     if (req.method === 'GET') {
       const { userId } = req.query
