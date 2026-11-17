@@ -7,6 +7,8 @@ import '../components/redesign/midnight.css'
 import '../components/redesign/runner.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useSubscription } from '../contexts/SubscriptionContext'
+import { isHeld } from '../config/disputeHolds'
 import { useTheme } from '../contexts/ThemeContext'
 import { saveTestProgress, completeTest, insertProgress, genId } from '../lib/api'
 import { XP_PER_CORRECT, XP_PER_INCORRECT } from '../utils/xpSystem'
@@ -19,6 +21,10 @@ const TestRunner = () => {
     const { user } = useAuth()
     const { isDark } = useTheme()
     const questions = location.state?.questions || []
+    // Reclamo PayPal abierto: Julio 2026 pausada (src/config/disputeHolds.js), también al retomar un test guardado
+    const { ownedBooks } = useSubscription()
+    const heldJul2026 = isHeld(user?.id, 'rec-JUL2026') && !ownedBooks?.has?.('rec-JUL2026') && questions.some(q => String(q.id).startsWith('eunacom-jul-2026'))
+    useEffect(() => { if (heldJul2026) navigate('/acceso-pausado', { replace: true }) }, [heldJul2026])
 
     const isSimulation = !!location.state?.isSimulation
     const startFinished = !!location.state?.startFinished

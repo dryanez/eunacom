@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { isHeld } from '../config/disputeHolds'
 import { createTest, genId, fetchProgress, fetchTests } from '../lib/api'
 import {
   Stethoscope, CheckCircle2, FileText, AlertCircle, ChevronRight, TrendingUp,
@@ -276,6 +277,7 @@ const Reconstructions = () => {
     const activeTest = activeTests[exam.id]?.[selectedMode]
     if (isSoon(exam)) return
     // Julio 2026: gratis con cualquier plan, o comprada suelta en la Tienda (no usa la reconstrucción gratis)
+    if (exam.requires_sku && isHeld(user.id, exam.requires_sku) && !ownedBooks?.has(exam.requires_sku)) { setSelectedExam(null); navigate('/acceso-pausado'); return }
     if (exam.requires_sku && !isPremium && !ownedBooks?.has(exam.requires_sku)) { setSelectedExam(null); navigate('/biblioteca'); return }
     if (!activeTest && !isPremium && hasExceededReconstructions) {
       setShowPaymentModal(true)
@@ -501,7 +503,8 @@ const Reconstructions = () => {
               const result = examResults[exam.id]
               const pct = result?.pct
               const soon = isSoon(exam)
-              const hasSku = !exam.requires_sku || isPremium || ownedBooks?.has(exam.requires_sku)
+              const held = !!exam.requires_sku && isHeld(user?.id, exam.requires_sku) && !ownedBooks?.has(exam.requires_sku)
+              const hasSku = !held && (!exam.requires_sku || isPremium || ownedBooks?.has(exam.requires_sku))
               const isLocked = !soon && (exam.requires_sku ? !hasSku : hasExceededReconstructions);
               const state = result ? (pct >= 60 ? 'is-pass' : 'is-fail') : ''
 
@@ -509,7 +512,7 @@ const Reconstructions = () => {
                 <div
                   key={exam.id}
                   className={`sr-exam ${state} ${isLocked ? 'is-locked' : ''} ${soon ? 'is-soon' : ''}`}
-                  onClick={() => soon ? (!isPremium && setShowPaymentModal(true)) : isLocked ? (exam.requires_sku ? navigate('/biblioteca') : setShowPaymentModal(true)) : setSelectedExam(exam)}
+                  onClick={() => soon ? (!isPremium && setShowPaymentModal(true)) : isLocked ? (exam.requires_sku ? navigate(held ? '/acceso-pausado' : '/biblioteca') : setShowPaymentModal(true)) : setSelectedExam(exam)}
                 >
                   {exam.requires_sku && (
                     <div className="sr-new">
