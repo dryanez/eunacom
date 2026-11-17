@@ -43,6 +43,7 @@ import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ReconJulio2026 from './pages/ReconJulio2026'
 import AccesoPausado from './pages/AccesoPausado'
+import DisputeGate from './components/DisputeGate'
 import ConveniosLanding from './pages/ConveniosLanding'
 import Privacidad from './pages/Privacidad'
 import EliminarCuenta from './pages/EliminarCuenta'
@@ -81,6 +82,7 @@ function App() {
           <SubscriptionProvider>
             <AuthModal />
             <CyberWeekPopup />
+            <DisputeGate>
             <Routes>
               {/* ── SEO Public Pages (no layout wrapper, standalone) ── */}
               <Route path="/" element={<LandingPage />} />
@@ -161,6 +163,7 @@ function App() {
               {/* ── Catch-all ── */}
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
+            </DisputeGate>
           </SubscriptionProvider>
         </AuthProvider>
       </ThemeProvider>
