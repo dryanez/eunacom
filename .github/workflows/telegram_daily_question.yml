@@ -34,4 +34,4 @@ jobs:
           git config --global user.name "EUNACOM Bot"
           git config --global user.email "bot@eunacomapp.cl"
           git add telegram-bot/posted_history.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(telegram): update posted question history [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(telegram): update posted question history [skip ci]" && git pull --rebase && git push)

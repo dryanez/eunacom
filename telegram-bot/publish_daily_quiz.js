@@ -76,11 +76,14 @@ async function callTelegramApi(endpoint, body, botToken) {
           await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
           continue;
         }
-        throw new Error(`Telegram API [${endpoint}] error: ${data.description || res.statusText} (Code: ${data.error_code})`);
+        const apiErr = new Error(`Telegram API [${endpoint}] error: ${data.description || res.statusText} (Code: ${data.error_code || res.status})`);
+        // Telegram answered (e.g. 504): the message may already be posted, so never resend it (that caused 3 copies on 18-nov).
+        apiErr.noRetry = true;
+        throw apiErr;
       }
       return data.result;
     } catch (err) {
-      if (attempt === 3) throw err;
+      if (attempt === 3 || err.noRetry) throw err;
       console.warn(`[Telegram API] Attempt ${attempt} failed: ${err.message}. Retrying in 2s...`);
       await new Promise(resolve => setTimeout(resolve, 2000));
     }
@@ -296,13 +299,14 @@ export async function publishDailyQuestion(options = {}) {
       }
 
       // 1. Send Clinical Case Vignette
+      // If Telegram times out we don't know whether it arrived; go on to the poll anyway so it never ends up without options.
       const vignetteRes = await callTelegramApi('sendMessage', {
         chat_id: channelId,
         text: vignetteMsg,
         parse_mode: 'Markdown',
         disable_web_page_preview: true,
-      }, botToken);
-      console.log(`   ✓ Vignette sent (msg_id: ${vignetteRes.message_id})`);
+      }, botToken).catch(e => { console.warn(`   ⚠️ Vignette: ${e.message} (continuing)`); return null; });
+      if (vignetteRes) console.log(`   ✓ Vignette sent (msg_id: ${vignetteRes.message_id})`);
 
       // 2. Send Native Interactive Quiz Poll
       const pollRes = await callTelegramApi('sendPoll', {
@@ -313,7 +317,7 @@ export async function publishDailyQuestion(options = {}) {
         correct_option_id: quizPayload.correct_option_id,
         is_anonymous: quizPayload.is_anonymous,
         explanation: quizPayload.explanation,
-        reply_to_message_id: vignetteRes.message_id,
+        ...(vignetteRes ? { reply_to_message_id: vignetteRes.message_id } : {}),
       }, botToken);
       console.log(`   ✓ Quiz Poll sent (msg_id: ${pollRes.message_id})`);
 
@@ -344,7 +348,7 @@ export async function publishDailyQuestion(options = {}) {
         questionId: question.id,
         topic: question.topic,
         success: true,
-        vignetteMessageId: vignetteRes.message_id,
+        vignetteMessageId: vignetteRes?.message_id,
         pollMessageId: pollRes.message_id,
         explanationMessageId: explRes.message_id,
       });
