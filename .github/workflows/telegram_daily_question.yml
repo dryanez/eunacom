@@ -24,7 +24,7 @@ jobs:
       - name: Publish Daily EUNACOM Quiz to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL_IDS: ${{ secrets.TELEGRAM_CHANNEL_IDS }}
+          TELEGRAM_CHANNEL_IDS: ${{ secrets.TELEGRAM_CHANNEL_IDS }},@Eunacom2026
           SITE_URL: 'https://www.eunacomapp.cl'
         run: |
           node telegram-bot/publish_daily_quiz.js
