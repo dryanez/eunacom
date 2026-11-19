@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import { isHeld } from '../config/disputeHolds';
 import { fetchUserProfile, fetchTests, fetchClaseProgress, fetchAppSettings, capturePaypalOrder, fetchUserBooks } from '../lib/api';
 import PaymentModal from '../components/PaymentModal';
 import { resolvePromo } from '../config/promo';
@@ -297,7 +298,8 @@ export function SubscriptionProvider({ children }) {
   const libraryIncluded = isUserAdmin || books.planLibrary || (isPremium && planMonths >= LIBRARY_MIN_PLAN_MONTHS);
   const ownedBooks = libraryIncluded ? new Set(LIBRARY_ITEMS) : expandSkus(books.skus);
   // Cualquier plan activo trae la Reconstrucción Julio 2026 gratis
-  if (effectiveIsPremium) PLAN_FREE_ITEMS.forEach(i => ownedBooks.add(i));
+  // …salvo si el acceso está pausado por un reclamo de PayPal (src/config/disputeHolds.js)
+  if (effectiveIsPremium) PLAN_FREE_ITEMS.forEach(i => { if (!isHeld(user?.id, i)) ownedBooks.add(i); });
 
   // Convenience flags for the UI
   const hasExceededClasses = !effectiveIsPremium && usageStats.clasesOpened >= 3;

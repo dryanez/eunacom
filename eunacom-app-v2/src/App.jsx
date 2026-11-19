@@ -42,6 +42,8 @@ import SimulacrosLanding from './pages/SimulacrosLanding'
 import GuiaCompletaLanding from './pages/GuiaCompletaLanding'
 import ReconstruccionesLanding from './pages/ReconstruccionesLanding'
 import ReconJulio2026 from './pages/ReconJulio2026'
+import AccesoPausado from './pages/AccesoPausado'
+import DisputeGate from './components/DisputeGate'
 import ConveniosLanding from './pages/ConveniosLanding'
 import Privacidad from './pages/Privacidad'
 import EliminarCuenta from './pages/EliminarCuenta'
@@ -80,6 +82,7 @@ function App() {
           <SubscriptionProvider>
             <AuthModal />
             <CyberWeekPopup />
+            <DisputeGate>
             <Routes>
               {/* ── SEO Public Pages (no layout wrapper, standalone) ── */}
               <Route path="/" element={<LandingPage />} />
@@ -88,6 +91,7 @@ function App() {
               <Route path="/guia-eunacom-2026" element={<GuiaCompletaLanding />} />
               <Route path="/reconstrucciones-eunacom" element={<ReconstruccionesLanding />} />
               <Route path="/reconstruccion-julio-2026" element={<ReconJulio2026 />} />
+              <Route path="/acceso-pausado" element={<AccesoPausado />} />
               <Route path="/convenios" element={<ConveniosLanding />} />
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/politica-de-privacidad" element={<Privacidad />} />
@@ -159,6 +163,7 @@ function App() {
               {/* ── Catch-all ── */}
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
+            </DisputeGate>
           </SubscriptionProvider>
         </AuthProvider>
       </ThemeProvider>
