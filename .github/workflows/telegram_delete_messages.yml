@@ -1,0 +1,20 @@
+name: Telegram - delete messages
+
+on:
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: 'Messages to delete, e.g. @eunacomteorico2026:268-270,@exameneunacom:264'
+        required: true
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: node telegram-bot/delete_messages.js "${{ inputs.targets }}"
