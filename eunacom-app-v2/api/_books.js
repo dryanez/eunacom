@@ -39,6 +39,37 @@ export async function ensureBookTables(db) {
   })
 }
 
+// Lector web: avance, destacados, notas y marcadores del usuario (una fila por libro; `data` es JSON)
+async function ensureReaderTable(db) {
+  await ensureOnce('books:reader', async () => {
+  await db.execute({
+    sql: `CREATE TABLE IF NOT EXISTS book_reader_data (
+      user_id TEXT NOT NULL,
+      book_key TEXT NOT NULL,
+      data TEXT NOT NULL,
+      updated_at TEXT DEFAULT (datetime('now')),
+      PRIMARY KEY (user_id, book_key)
+    )`, args: []
+  })
+  })
+}
+const READER_KEY_RE = /^[\w.:-]{1,80}$/
+// Libros con edición para leer por temas (JSON en movil/…)
+const MOVIL_FILE_RE = /^(01_Tomos|04_Perfil_V3_Codigo_por_Codigo|05_Repaso_Final|06_Atlas)\/.+\.pdf$/
+// Datos del lector: el dueño es quien inició sesión. `opts.authUser(req)` (producción) entrega el usuario verificado
+// por su token; el userId de la request no se usa. Sin `opts.authUser` (servidor local de desarrollo) se confía en él.
+// → userId, o null si ya se respondió con error.
+async function readerUserId(req, res, opts, requested) {
+  if (!opts.authUser) {
+    if (!requested || guestEmail(requested)) { res.status(400).json({ error: 'userId required' }); return null }
+    return requested
+  }
+  const user = await opts.authUser(req)
+  if (!user?.id) { res.status(401).json({ error: 'Login required' }); return null }
+  return user.id
+}
+const READER_MAX_BYTES = 400_000
+
 function planActive(profile) {
   if (!profile || Number(profile.is_premium) !== 1) return false
   return !(profile.premium_until && new Date(profile.premium_until) <= new Date())
@@ -164,6 +195,7 @@ async function readableItems(db, userId, extraAdminIds = []) {
 //   paypalOrder({ userId, orderId, title, usd }) → approve_url de PayPal (USD; ahí también Apple Pay / Google Pay)
 //   paypalCapture(paypalOrderId) → { status, customId, id }
 //   signFile(path) → URL temporal del PDF (lector en línea)
+//   authUser(req) → { id } del usuario verificado por su token, o null (datos del lector: reader_get / reader_put)
 export async function handleBooks(db, req, res, opts = {}) {
   const q = req.query || {}
   const b = req.body || {}
@@ -196,16 +228,70 @@ export async function handleBooks(db, req, res, opts = {}) {
     const items = await readableItems(db, q.userId, opts.extraAdminIds)
     if (!items.has(q.item)) { res.status(403).json({ error: 'No tienes este libro' }); return true }
     if (!opts.signFile) { res.status(503).json({ error: 'Lector no configurado' }); return true }
-    // Modo celular: el mismo libro en texto adaptable (JSON en libros/movil/…, solo manuales)
+    // Lectura por temas: el mismo libro como JSON en libros/movil/<misma ruta>.json (Tomos, Perfil V3, Repaso Final, Atlas).
+    // La clave va en NFC (los nombres del Perfil llevan tilde).
     const movil = q.mode === 'movil'
-    if (movil && !/^01_Tomos\/.+\.pdf$/.test(f.file)) { res.status(404).json({ error: 'Este libro aún no tiene modo celular' }); return true }
-    const url = await opts.signFile(movil ? `movil/${f.file.replace(/\.pdf$/, '.json')}` : f.file)
+    if (movil && !MOVIL_FILE_RE.test(f.file)) { res.status(404).json({ error: 'Este libro aún no tiene modo celular' }); return true }
+    const url = await opts.signFile(movil ? `movil/${f.file.replace(/\.pdf$/, '.json')}`.normalize('NFC') : f.file)
     if (!url) { res.status(500).json({ error: 'No se pudo abrir el libro' }); return true }
     res.json({ url, files: files.map(x => x.label) })
     return true
   }
 
+  // Red de temas (lector web), formato v2: link temporal a movil/_red/index.json (términos y frases, se pide una vez)
+  // o a movil/_red/t/<spec>.json (lo que muestra la tarjeta de los términos de una especialidad, se pide al abrir la
+  // primera tarjeta de esa especialidad), si el usuario puede leer algún libro. Lo de cada libro se sigue pidiendo con book_read.
+  if (req.method === 'GET' && q.action === 'red_read') {
+    if (!q.userId) { res.status(400).json({ error: 'userId required' }); return true }
+    const f = String(q.file || 'index')
+    const m = f === 'index' ? null : f.match(/^t\/([a-z0-9-]{1,40})$/)
+    if (f !== 'index' && !m) { res.status(400).json({ error: 'file inválido' }); return true }
+    const items = await readableItems(db, q.userId, opts.extraAdminIds)
+    if (!items.size) { res.status(403).json({ error: 'No tienes libros' }); return true }
+    if (!opts.signFile) { res.status(503).json({ error: 'Lector no configurado' }); return true }
+    const url = await opts.signFile(m ? `movil/_red/t/${m[1]}.json` : 'movil/_red/index.json')
+    if (!url) { res.status(500).json({ error: 'No se pudo abrir la red de temas' }); return true }
+    res.json({ url })
+    return true
+  }
+
+  // Lector web: datos del lector de un libro (bookKey = `<item>:<archivo>`, o `_prefs`); sin bookKey, todos
+  if (req.method === 'GET' && q.action === 'reader_get') {
+    if (q.bookKey && !READER_KEY_RE.test(q.bookKey)) { res.status(400).json({ error: 'bookKey inválido' }); return true }
+    const uid = await readerUserId(req, res, opts, q.userId)
+    if (!uid) return true
+    await ensureReaderTable(db)
+    const parse = t => { try { return JSON.parse(t) } catch { return null } }
+    if (q.bookKey) {
+      const r = await db.execute({ sql: `SELECT data, updated_at FROM book_reader_data WHERE user_id = ? AND book_key = ?`, args: [uid, q.bookKey] })
+      const row = r.rows?.[0]
+      res.json({ data: row ? parse(row.data) : null, updated_at: row?.updated_at || null })
+      return true
+    }
+    const r = await db.execute({ sql: `SELECT book_key, data, updated_at FROM book_reader_data WHERE user_id = ? LIMIT 200`, args: [uid] })
+    res.json({ books: Object.fromEntries(r.rows.map(x => [x.book_key, { data: parse(x.data), updated_at: x.updated_at }])) })
+    return true
+  }
+
   if (req.method !== 'POST') return false
+
+  // Lector web: guarda los datos del lector de un libro (gana lo último que llega)
+  if (b.action === 'reader_put') {
+    if (!READER_KEY_RE.test(String(b.bookKey || ''))) { res.status(400).json({ error: 'Missing parameters' }); return true }
+    if (!b.data || typeof b.data !== 'object' || Array.isArray(b.data)) { res.status(400).json({ error: 'data inválido' }); return true }
+    const json = JSON.stringify(b.data)
+    if (json.length > READER_MAX_BYTES) { res.status(413).json({ error: 'Demasiados datos' }); return true }
+    const uid = await readerUserId(req, res, opts, b.userId)
+    if (!uid) return true
+    await ensureReaderTable(db)
+    await db.execute({
+      sql: `INSERT INTO book_reader_data (user_id, book_key, data, updated_at) VALUES (?, ?, ?, datetime('now'))
+            ON CONFLICT(user_id, book_key) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at`,
+      args: [uid, b.bookKey, json]
+    })
+    res.json({ success: true })
+    return true
+  }
 
   if (b.action === 'book_paypal_order') {
     const o = await createBookOrder(db, b.userId, b.skus)

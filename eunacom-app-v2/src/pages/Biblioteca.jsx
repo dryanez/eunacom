@@ -362,7 +362,7 @@ const JUMPS = [
   { id: 'atlas', label: 'Atlas', sub: '19 · 1.144 fotos', icon: ImageIcon, bg: 'rgba(167,139,250,.18)', color: '#a78bfa' },
   { id: 'gordos', label: 'Libros Gordos', sub: '23 · 90 preguntas c/u', icon: FileText, bg: 'rgba(239,68,68,.15)', color: '#f87171' },
   { id: 'recons', label: 'Reconstrucciones', sub: '16 + Gran Libro', icon: Archive, bg: 'rgba(34,197,94,.15)', color: '#4ade80' },
-  { id: 'perfil', label: 'Perfil V3', sub: '1.569 códigos', icon: ClipboardList, bg: 'rgba(56,189,248,.15)', color: '#38bdf8' },
+  { id: 'perfil', label: 'Perfil V3', sub: '1.556 códigos', icon: ClipboardList, bg: 'rgba(56,189,248,.15)', color: '#38bdf8' },
 ]
 // Sin sesión no hay estantes: cada botón lleva a la parte de la tienda que lo incluye
 const STORE_ANCHOR = { tomos: 'tomos', recons: 'recs', repasos: 'pack-completa', atlas: 'pack-completa', gordos: 'pack-completa' }

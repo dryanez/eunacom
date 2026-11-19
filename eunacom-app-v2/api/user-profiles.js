@@ -1,5 +1,5 @@
 import { getTurso, ensureOnce } from './_turso.js'
-import { requireUser, ownUserId, isAdminUser } from './_auth.js'
+import { requireUser, ownUserId, isAdminUser, getAuthUser } from './_auth.js'
 import { getActivePromo } from './_promo.js'
 import { PAYPAL_API, PLAN_MAP, activatePremium } from './_paypal-export.js'
 import { APP_PLANS, resolveCoupon, MIN_CHARGE_CLP, creditApplies, LIFETIME_MONTHS } from './_tienda.js'
@@ -320,7 +320,8 @@ export default async function handler(req, res) {
 
     // --- LIBROS (tienda /biblioteca) ---
     if (await handleBooks(db, req, res, {
-      createPreference: bookPreference, paypalOrder: bookPaypalOrder, paypalCapture: bookPaypalCapture, signFile: signBookFile
+      createPreference: bookPreference, paypalOrder: bookPaypalOrder, paypalCapture: bookPaypalCapture, signFile: signBookFile,
+      authUser: getAuthUser, // reader_get / reader_put: los datos del lector son de quien inició sesión (no del userId enviado)
     })) return
 
     // --- BAJA de los correos de la app (link del pie y List-Unsubscribe one-click) ---

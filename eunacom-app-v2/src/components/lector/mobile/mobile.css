@@ -1,0 +1,125 @@
+/* Lector web · teléfono (components/lector/mobile). */
+.lw-top { display: flex; align-items: center; gap: 6px; padding: 7px 8px; padding-top: max(7px, env(safe-area-inset-top)); background: var(--lw-bar); color: #e2e8f0; border-bottom: 1px solid var(--lw-bar-line); flex-shrink: 0; }
+.lw-top-t { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.2; padding: 0 4px; }
+.lw-top-t small { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lw-top-t b { font-size: 0.86rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lw-ib.marked { color: #fbbf24; border-color: rgba(251, 191, 36, 0.55); background: rgba(251, 191, 36, 0.14); }
+
+.lw-view { flex: 1; min-height: 0; display: flex; flex-direction: column; position: relative; }
+.lw-over { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; background: var(--lw-bg); }
+
+/* ── Inicio del libro ── */
+.lw-start { max-width: 720px; margin: 0 auto; padding: 18px 16px 48px; }
+.lw-hero { display: flex; gap: 14px; align-items: flex-start; }
+.lw-hero img { width: 92px; height: auto; border-radius: 6px; box-shadow: 0 6px 18px rgba(2, 6, 23, 0.28); flex-shrink: 0; pointer-events: none; }
+.lw-hero-k { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lw-acc-ink); }
+.lw-hero h1 { font-size: 1.5rem; line-height: 1.15; font-weight: 800; margin: 4px 0 6px; color: inherit; }
+.lw-hero p { margin: 0; font-size: 0.82rem; line-height: 1.4; color: var(--lw-muted); }
+
+.lw-continue { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 18px; padding: 13px 14px; border: 0; border-radius: 14px; background: var(--acc, #2563eb); color: #fff; text-align: left; cursor: pointer;
+  box-shadow: 0 8px 20px -8px var(--acc, #2563eb); }
+.lw-continue span { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.lw-continue small { font-size: 0.72rem; font-weight: 700; opacity: 0.85; }
+.lw-continue b { font-size: 0.95rem; line-height: 1.25; font-weight: 800; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+.lw-prog { margin-top: 16px; }
+.lw-prog-l { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.8rem; color: var(--lw-muted); margin-bottom: 6px; }
+.lw-prog-l b { color: var(--lw-ink); font-size: 0.86rem; }
+.lw-bar { height: 8px; border-radius: 999px; background: var(--lw-line); overflow: hidden; }
+.lw-bar i { display: block; height: 100%; border-radius: 999px; background: var(--acc, #2563eb); transition: width 0.3s; }
+
+.lw-quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.lw-quick button { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--lw-line); background: var(--lw-card); color: inherit; cursor: pointer; text-align: left; }
+.lw-quick svg { color: var(--lw-acc-ink); }
+.lw-quick b { font-size: 0.8rem; font-weight: 700; }
+.lw-quick small { font-size: 0.72rem; color: var(--lw-muted); }
+
+.lw-toc-b { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 24px 0 6px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lw-acc-ink); }
+.lw-toc-b span { color: var(--lw-muted); font-weight: 700; letter-spacing: 0; flex-shrink: 0; }
+.lw-toc { border: 1px solid var(--lw-line); border-radius: 12px; background: var(--lw-card); overflow: hidden; }
+.lw-toc-t { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--lw-line); color: inherit; padding: 12px; font-size: 0.9rem; line-height: 1.35; cursor: pointer; }
+.lw-toc-t:last-child { border-bottom: 0; }
+.lw-toc-n { flex-shrink: 0; min-width: 30px; color: var(--lw-muted); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.82rem; }
+.lw-toc-t > span:nth-child(2) { flex: 1; min-width: 0; }
+.lw-toc-t.cur { background: var(--lw-acc-soft); }
+.lw-toc-t.cur .lw-toc-n { color: var(--lw-acc-ink); }
+.lw-tick { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--lw-line); display: inline-flex; align-items: center; justify-content: center; color: transparent; }
+.lw-tick.on { background: #16a34a; border-color: #16a34a; color: #fff; }
+.lw-start-pdf { width: 100%; min-height: 44px; margin-top: 22px; }
+
+/* ── Tema ── */
+.lw-doc { padding-bottom: 28px; }
+.lw-acts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; font-family: system-ui, -apple-system, sans-serif; }
+.lw-act { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; min-height: 40px; border-radius: 999px; border: 1px solid var(--lw-line); background: var(--lw-card); color: inherit; font: 700 13px/1 system-ui, -apple-system, sans-serif; cursor: pointer; }
+.lw-act.clase { background: var(--acc, #2563eb); border-color: var(--acc, #2563eb); color: #fff; }
+.lw-act svg { flex-shrink: 0; }
+.lw-next { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 2em; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--lw-line); background: var(--lw-card); color: inherit; text-align: left; cursor: pointer; font-family: system-ui, -apple-system, sans-serif; }
+.lw-next span { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.lw-next small { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lw-muted); }
+.lw-next b { font-size: 14px; line-height: 1.3; }
+
+.lw-bottom { display: flex; align-items: center; gap: 8px; padding: 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); background: var(--lw-card); border-top: 1px solid var(--lw-line); flex-shrink: 0; }
+.lw-bottom .lw-step { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 62px; height: 44px; padding: 0 8px; border-radius: 12px; border: 1px solid var(--lw-line); background: none; color: inherit; font-weight: 700; font-size: 0.82rem; font-variant-numeric: tabular-nums; cursor: pointer; }
+.lw-bottom .lw-step:disabled { opacity: 0.3; }
+.lw-done { flex: 1; min-width: 0; height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border-radius: 12px; border: 1.5px solid var(--acc, #2563eb); background: none; color: var(--lw-acc-ink); font-weight: 800; font-size: 0.86rem; cursor: pointer; white-space: nowrap; }
+.lw-done.on { background: #16a34a; border-color: #16a34a; color: #fff; }
+
+/* «Buscando…» va en su propia franja entre el texto y la barra de abajo: no tapa el texto */
+.lw-chip { position: relative; align-self: center; flex-shrink: 0; margin: 6px 12px; display: inline-flex; align-items: center; gap: 2px; max-width: calc(100% - 24px); padding: 0 0 0 14px; border-radius: 999px; background: #0b1120; color: #e2e8f0; font-size: 0.78rem; font-weight: 600; box-shadow: 0 8px 22px rgba(2, 6, 23, 0.4); }
+.lw-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lw-chip button { border: 0; background: none; color: inherit; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+
+/* ── Listas: destacados, notas, marcadores ── */
+.lw-tabs { display: flex; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--lw-line); background: var(--lw-card); flex-shrink: 0; }
+.lw-tabs button { flex: 1; height: 40px; border-radius: 999px; border: 1px solid var(--lw-line); background: none; color: var(--lw-muted); font-weight: 700; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+.lw-tabs button.on { background: var(--lw-ink); border-color: var(--lw-ink); color: var(--lw-bg); }
+.lw-list { max-width: 720px; margin: 0 auto; padding: 6px 14px 40px; }
+.lw-group { display: flex; align-items: center; gap: 8px; margin: 18px 0 8px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; }
+.lw-group i { width: 12px; height: 12px; border-radius: 50%; }
+.lw-group span { color: var(--lw-muted); font-weight: 700; }
+.lw-item { display: block; width: 100%; text-align: left; padding: 11px 12px 11px 14px; margin-bottom: 8px; border-radius: 12px; border: 1px solid var(--lw-line); border-left: 5px solid var(--c, var(--lw-line)); background: var(--lw-card); color: inherit; cursor: pointer; }
+.lw-item q, .lw-item .q { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font: 0.92rem/1.45 Georgia, 'Iowan Old Style', serif; quotes: none; }
+.lw-item .note { display: block; font-size: 0.9rem; line-height: 1.4; font-weight: 600; margin-bottom: 5px; white-space: pre-wrap; }
+.lw-item .q.small { font-size: 0.82rem; color: var(--lw-muted); -webkit-line-clamp: 2; }
+.lw-item small { display: block; margin-top: 6px; font-size: 0.72rem; font-weight: 700; color: var(--lw-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lw-row { display: flex; align-items: stretch; gap: 8px; margin-bottom: 8px; }
+.lw-row .lw-item { margin: 0; flex: 1; min-width: 0; }
+.lw-row .lw-rm { width: 44px; border-radius: 12px; border: 1px solid var(--lw-line); background: var(--lw-card); color: var(--lw-muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+.lw-empty { text-align: center; color: var(--lw-muted); font-size: 0.9rem; line-height: 1.5; padding: 3rem 1.5rem; }
+.lw-empty b { display: block; color: var(--lw-ink); font-size: 1rem; margin-bottom: 4px; }
+
+/* ── Buscador ── */
+.lw-search-in { flex: 1; min-width: 0; height: 40px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.16); background: #16203a; color: #f1f5f9; padding: 0 12px; font-size: 16px; outline: none; }
+.lw-search-in::placeholder { color: #7f8ba3; }
+.lw-search-in:focus { border-color: #38bdf8; }
+.lw-count { margin: 12px 2px 4px; font-size: 0.8rem; color: var(--lw-muted); }
+.lw-res-h { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 40px; margin: 8px 0 4px; padding: 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; font-size: 0.86rem; font-weight: 800; line-height: 1.3; }
+.lw-res-h i { font-style: normal; color: var(--lw-acc-ink); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.lw-res-h em { font-style: normal; font-weight: 600; color: var(--lw-muted); font-size: 0.76rem; flex-shrink: 0; margin-left: auto; }
+.lw-res { display: block; width: 100%; text-align: left; padding: 9px 12px; margin-bottom: 6px; border-radius: 10px; border: 1px solid var(--lw-line); background: var(--lw-card); color: inherit; cursor: pointer; font: 0.86rem/1.45 Georgia, 'Iowan Old Style', serif; }
+.lw-res-more { display: block; width: 100%; min-height: 40px; margin: 0 0 6px; padding: 8px 12px; border-radius: 10px; border: 1px dashed var(--lw-line); background: none; color: var(--lw-acc-ink); font-weight: 700; font-size: 0.82rem; text-align: left; cursor: pointer; }
+.lw-res mark { background: rgba(249, 115, 22, 0.3); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* ── Hoja Aa ── */
+.lw-aa h6 { margin: 14px 0 6px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lw-muted); }
+.lw-seg { display: flex; gap: 6px; }
+.lw-seg button { flex: 1; height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px; border: 1px solid var(--lw-line); background: none; color: inherit; font-weight: 700; font-size: 0.88rem; cursor: pointer; }
+.lw-seg button.on { border-color: var(--acc, #2563eb); background: var(--lw-acc-soft); color: var(--lw-acc-ink); box-shadow: inset 0 0 0 1px var(--acc, #2563eb); }
+.lw-seg button:disabled { opacity: 0.35; }
+.lw-seg .lw-size { flex: 1.4; font-variant-numeric: tabular-nums; border: 0; color: var(--lw-muted); font-size: 0.8rem; display: inline-flex; align-items: center; justify-content: center; }
+.lw-aa-note { margin: 6px 0 0; font-size: 0.76rem; color: var(--lw-muted); }
+
+@media (min-width: 700px) { .lw-quick { grid-template-columns: repeat(3, minmax(0, 200px)); } }
+
+/* con la marca «Buscando…» abajo, el final del tema no queda tapado */
+
+
+/* Teléfono acostado: barras más bajas para dejar más texto a la vista (botones de 40 px igual) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .lw-top { padding-top: max(3px, env(safe-area-inset-top)); padding-bottom: 3px; }
+  .lw-top-t small { display: none; }
+  .lw-bottom { padding-top: 4px; padding-bottom: max(4px, env(safe-area-inset-bottom)); }
+  .lw-bottom .lw-step, .lw-done { height: 40px; }
+  .lw-done { flex: 0 1 300px; margin: 0 auto; }
+  .lw-chip { margin: 3px 12px; }
+}

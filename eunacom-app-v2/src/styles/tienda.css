@@ -104,6 +104,37 @@
 .shelf-item .rec-cover small { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.08em; opacity: 0.8; }
 .shelf-item .rec-cover strong { font-size: 1.3rem; }
 .shelf-item b { font-size: 0.76rem; line-height: 1.2; color: var(--surface-50); }
+/* Estante: avance de lectura y libros de preguntas (Responder en línea / Ver PDF) */
+.shelf-cover { position: relative; }
+.shelf-tag { position: absolute; left: 6px; bottom: 6px; max-width: calc(100% - 12px); padding: 2px 7px; border-radius: 999px; background: rgba(11,17,32,0.86); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.18); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+.shelf-prog { font-size: 0.66rem; line-height: 1.2; color: var(--surface-300); }
+.mini-btn.fill { background: var(--accent-blue, #3b82f6); color: #fff; }
+.shelf-actions { display: flex; flex-direction: column; align-items: stretch; gap: 0.15rem; }
+.shelf-actions .mini-btn { white-space: normal; line-height: 1.15; padding: 0.34rem 0.4rem; text-align: center; border-radius: 12px; }
+.shelf-link { border: 0; background: none; padding: 0.3rem 0.2rem; font: inherit; font-size: 0.7rem; font-weight: 700; color: var(--surface-300); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; text-align: center; }
+.shelf-link:hover { color: var(--surface-50); }
+/* botones del estante: área de toque de al menos 40 px (teléfono) */
+.shelf-item > .mini-btn, .shelf-actions .mini-btn { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+.shelf-link { min-height: 40px; }
+.shelf-item .mini-btn:focus-visible, .shelf-link:focus-visible { outline: 2px solid var(--accent-blue, #3b82f6); outline-offset: 2px; }
+.lector-wait { color: #e2e8f0; font-size: 0.9rem; font-weight: 600; }
+/* Ventana «Responder en línea» (usa el marco .gp) */
+.gp.ol { text-align: left; padding-top: 24px; }
+.ol-kicker { display: block; margin: 0 40px 4px 0; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #22d3ee; }
+.gp.ol h2 { font-size: 20px; margin-right: 40px; }
+.ol-mode, .ol-resume { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 10px; padding: 12px; border-radius: 14px; border: 1px solid #1e2a44; background: #111a2e; color: #e2e8f0; font-family: inherit; text-align: left; cursor: pointer; }
+.ol-mode:hover, .ol-resume:hover { border-color: #22d3ee; }
+.ol-mode:disabled, .ol-resume:disabled { opacity: 0.55; cursor: default; }
+.ol-mode i { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(99,102,241,0.18); color: #a5b4fc; }
+.ol-mode.amber i { background: rgba(245,158,11,0.16); color: #fbbf24; }
+.ol-resume { border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.08); }
+.ol-resume svg { flex: none; color: #34d399; }
+.ol-mode span, .ol-resume span { display: grid; gap: 2px; min-width: 0; }
+.ol-mode b, .ol-resume b { font-size: 14.5px; font-weight: 700; color: #fff; }
+.ol-mode small, .ol-resume small { font-size: 12.5px; line-height: 1.35; color: #94a3b8; }
+.ol-note { margin: 12px 0 0; font-size: 13px; color: #94a3b8; }
+.ol-note.bad { color: #fca5a5; }
+.ol-mode:focus-visible, .ol-resume:focus-visible { outline: 3px solid #22d3ee; outline-offset: 2px; }
 
 .tienda-cart { position: fixed; left: 50%; transform: translateX(-50%); bottom: 1rem; z-index: 900; width: min(760px, calc(100% - 1.5rem)); background: var(--surface-800, #0f172a); border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6); padding: 0.75rem 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .tienda-cart .row { display: flex; align-items: center; gap: 0.75rem; }

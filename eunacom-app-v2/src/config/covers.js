@@ -106,3 +106,25 @@ export const ALL_COVERS = [
   '/tienda/gordo_urologia.jpg',
   '/tienda/perfil_urologia.jpg',
 ]
+
+// Portada por especialidad (public/tienda/<tipo>_<clave>.jpg, copiadas de la Academia) a partir de la etiqueta del archivo.
+// La usan la Biblioteca (components/tienda/LibrosTienda.jsx) y el lector web (lib/lector/content.js → bookCover).
+export const SPECIALTY_KEYS = [
+  ['cardiolog', 'cardiologia'], ['cirug', 'cirugia'], ['dermatolog', 'dermatologia'], ['diabetes', 'diabetes'],
+  ['endocrinolog', 'endocrinologia'], ['gastroenterolog', 'gastroenterologia'], ['hemato', 'hematologia'],
+  ['infectolog', 'infectologia'], ['infecciosas', 'infectologia'], ['nefrolog', 'nefrologia'], ['neurolog', 'neurologia'],
+  ['obstetricia', 'obstetricia'], ['ginecolog', 'ginecologia'], ['oftalmolog', 'oftalmologia'], ['otorrino', 'otorrino'],
+  ['pediatr', 'pediatria'], ['psiquiatr', 'psiquiatria'], ['respirator', 'neumologia'], ['reumatolog', 'reumatologia'],
+  ['salud publica', 'saludpublica'], ['traumatolog', 'traumatologia'], ['urolog', 'urologia'],
+]
+// colección (sku del pack de archivos) → prefijo de su portada
+export const COVER_PREFIX = { gordos: 'gordo', repasos: 'repaso', atlas: 'atlas', 'perfil-v3': 'perfil' }
+const plainLabel = label => String(label || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+/** Clave de especialidad de una etiqueta («Cardiología» → 'cardiologia'), o null. */
+export const specialtyKey = label => SPECIALTY_KEYS.find(([k]) => plainLabel(label).includes(k))?.[1] || null
+/** Portada de un archivo de una colección (`sku` = gordos | repasos | atlas | perfil-v3), o `fallback`. */
+export function fileCover(sku, label, fallback) {
+  if (/completo|gran libro|ponderado|practica|geriatr/.test(plainLabel(label))) return fallback
+  const key = specialtyKey(label)
+  return key && COVER_PREFIX[sku] ? `/tienda/${COVER_PREFIX[sku]}_${key}.jpg` : fallback
+}
