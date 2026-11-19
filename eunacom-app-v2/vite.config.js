@@ -75,11 +75,32 @@ function clasesApiPlugin() {
       let booksDb
       // PDFs locales para el lector (en producción salen de R2). BOOKS_DIST_DIR = carpeta books/dist
       const booksDir = process.env.BOOKS_DIST_DIR || '/Users/felipeyanez/Documents/Archive/Apps/eunacom-fotos/books/dist'
+      const booksMovilDir = process.env.BOOKS_MOVIL_DIR || '/Volumes/SanDisk/AEE/video-work/eunacom-movil'
+      // Ruta real de `rel` dentro de `root`, sin importar si el disco guarda los nombres en NFC o NFD. null si no existe.
+      const findBookFile = (root, rel) => {
+        let cur = path.resolve(root)
+        for (const seg of rel.split('/').filter(Boolean)) {
+          if (seg === '.' || seg === '..' || seg.startsWith('._')) return null
+          const want = seg.normalize('NFC')
+          let name = null
+          try { name = fs.readdirSync(cur).find(n => n.normalize('NFC') === want) || null } catch { return null }
+          if (!name) return null
+          cur = path.join(cur, name)
+        }
+        try { return fs.statSync(cur).isFile() ? cur : null } catch { return null }
+      }
       server.middlewares.use((req, res, next) => {
         if (!req.url.startsWith('/__libros_dev/')) return next()
         const rel = decodeURIComponent(req.url.slice('/__libros_dev/'.length).split('?')[0])
-        const file = path.resolve(booksDir, rel)
-        if (!file.startsWith(path.resolve(booksDir)) || !fs.existsSync(file)) { res.statusCode = 404; return res.end('not found') }
+        // Los JSON para leer por temas (movil/…) se buscan en books/dist/movil y después en BOOKS_MOVIL_DIR
+        // (Atlas, Repaso Final y Perfil V3 generados en el SanDisk, que lista los nombres con tilde en NFD).
+        let file = findBookFile(booksDir, rel) || (rel.startsWith('movil/') ? findBookFile(booksMovilDir, rel.slice('movil/'.length)) : null)
+        // Red de temas (v2: _red/index.json y _red/t/<spec>.json): con RED_DIR (una carpeta de prueba) se lee de ahí
+        if (rel.startsWith('movil/_red/')) {
+          const red = rel.slice('movil/_red/'.length)
+          file = /^(index|t\/[a-z0-9-]{1,40})\.json$/.test(red) ? (process.env.RED_DIR ? findBookFile(process.env.RED_DIR, red) : findBookFile(booksMovilDir, `_red/${red}`)) : null
+        }
+        if (!file) { res.statusCode = 404; return res.end('not found') }
         res.setHeader('Content-Type', file.endsWith('.json') ? 'application/json' : 'application/pdf')
         if (req.url.includes('?dl=1')) res.setHeader('Content-Disposition', `attachment; filename="${path.basename(file)}"`) // como el link firmado del regalo
         fs.createReadStream(file).pipe(res)
@@ -112,10 +133,10 @@ function clasesApiPlugin() {
         if (!req.url.startsWith('/api/user-profiles')) return next()
         const url = new URL(req.url, 'http://localhost')
         const getAction = url.searchParams.get('action')
-        if (req.method === 'GET' && !['books', 'book_purchases', 'book_read'].includes(getAction)) return next()
+        if (req.method === 'GET' && !['books', 'book_purchases', 'book_read', 'reader_get', 'red_read'].includes(getAction)) return next()
         try {
           const run = adaptVercelHandler(async (rq, rs) => {
-            if (rq.method === 'POST' && !String(rq.body?.action || '').startsWith('book_')) return next()
+            if (rq.method === 'POST' && !/^(book_|reader_put$)/.test(String(rq.body?.action || ''))) return next()
             if (!booksDb) {
               const os = await import('os')
               booksDb = createClient({ url: `file:${path.join(os.tmpdir(), 'eunacom-tienda-dev.db')}` })
@@ -703,7 +724,12 @@ function clasesApiPlugin() {
 }
 
 // https://vite.dev/config/
+// Copias de trabajo que enlazan node_modules de otra carpeta: sin esto, «?url» (worker del PDF) no se transforma en dev
+let linkedModules = false
+try { linkedModules = fs.lstatSync('node_modules').isSymbolicLink() } catch { /* sin node_modules */ }
+
 export default defineConfig({
+  resolve: { preserveSymlinks: linkedModules },
   plugins: [
     react(),
     clasesApiPlugin(),

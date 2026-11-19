@@ -124,9 +124,9 @@ export const EXTRAS = [
     ].map(([label, f]) => ({ label, file: `02_Libros_Gordos_90Q/${f}` })),
   },
   {
-    sku: 'perfil-v3', name: 'Perfil V3 código por código: los 1.569 códigos explicados', cover: `${COVER}q_perfil.jpg`,
+    sku: 'perfil-v3', name: 'Perfil V3 código por código: los 1.556 códigos explicados', cover: `${COVER}q_perfil.jpg`,
     files: [
-      { label: 'Perfil V3 completo (1.569 códigos)', file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Completo_2026.pdf' },
+      { label: 'Perfil V3 completo (1.556 códigos)', file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Completo_2026.pdf' },
       { label: 'Cardiología', file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Cardiología.pdf' },
       { label: 'Cirugía General y Anestesia', file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Cirugía_General_y_Anestesia.pdf' },
       { label: 'Dermatología', file: '04_Perfil_V3_Codigo_por_Codigo/Perfil_V3_Codigo_por_Codigo_Dermatología.pdf' },
@@ -229,7 +229,7 @@ const COLLECTION_PACKS = [
   { sku: 'pack-gordos', col: 'gordos', name: 'Pack Libros Gordos', desc: 'El Gran Libro Gordo + los 22 Libros Gordos por tema.', features: ['Gran Libro Gordo (1.890 preguntas)', '22 libros de 90 preguntas por tema', 'Respuesta y explicación de cada pregunta'] },
   { sku: 'pack-repasos', col: 'repasos', name: 'Pack 21 Repaso Final', desc: 'Un libro de repaso por especialidad, para la recta final.', features: ['21 libros, uno por especialidad', 'Lo que más se pregunta', 'Actualizados 2026'] },
   { sku: 'pack-atlas', col: 'atlas', name: 'Pack 19 Atlas de Imágenes', desc: '1.144 imágenes comentadas, un atlas por especialidad.', features: ['19 atlas, uno por especialidad', '1.144 imágenes comentadas', 'Para reconocer lo que sale en el examen'] },
-  { sku: 'pack-perfil', col: 'perfil-v3', name: 'Pack Perfil V3 código por código', desc: 'Los 1.569 códigos del Perfil V3 explicados.', features: ['Perfil V3 completo', 'Un libro por especialidad', 'Preguntas de práctica'] },
+  { sku: 'pack-perfil', col: 'perfil-v3', name: 'Pack Perfil V3 código por código', desc: 'Los 1.556 códigos del Perfil V3 explicados.', features: ['Perfil V3 completo', 'Un libro por especialidad', 'Preguntas de práctica'] },
 ].map(({ col, ...p }) => ({ ...p, price: COLLECTION_PACK_PRICE, covers: [EXTRAS.find(x => x.sku === col).cover], includes: [col, ...singlesOf(col)] }))
 
 export const PACKS = [
@@ -242,7 +242,7 @@ export const PACKS = [
   {
     sku: 'biblioteca', name: 'Biblioteca completa', price: 99990, star: true, desc: 'Teoría + todas las preguntas: lo que necesitas para estudiar sin la app.',
     covers: [TOMOS[0].cover, EXTRAS[3].cover, EXTRAS[0].cover, EXTRAS[1].cover, EXTRAS[2].cover, EXTRAS[4].cover],
-    features: ['Los 21 tomos AEE', 'Gran Libro de Reconstrucciones 2013–2025', 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', '21 libros Repaso Final, uno por especialidad', 'Perfil V3: los 1.569 códigos explicados', '19 Atlas de Imágenes, uno por especialidad'],
+    features: ['Los 21 tomos AEE', 'Gran Libro de Reconstrucciones 2013–2025', 'Gran Libro Gordo + 22 Libros Gordos (90 preguntas por tema)', '21 libros Repaso Final, uno por especialidad', 'Perfil V3: los 1.556 códigos explicados', '19 Atlas de Imágenes, uno por especialidad'],
     includes: [...ALL_TOMOS, ...ALL_RECS, 'gran-recons', 'gordos', 'perfil-v3', 'repasos', 'atlas', ...SINGLES.map(x => x.sku)],
   },
   {

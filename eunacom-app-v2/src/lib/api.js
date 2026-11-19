@@ -369,6 +369,18 @@ export async function fetchBookRead(userId, item, file = 0, mode = '') {
   return apiFetch(`/api/user-profiles?action=book_read&userId=${encodeURIComponent(userId)}&item=${encodeURIComponent(item)}&file=${file}${mode ? `&mode=${mode}` : ''}`)
 }
 
+// Lector web: datos del lector por libro (avance, destacados, notas, marcadores). bookKey = `<item>:<archivo>` o `_prefs`
+export async function fetchReaderData(userId, bookKey) {
+  return apiFetch(`/api/user-profiles?action=reader_get&userId=${encodeURIComponent(userId)}&bookKey=${encodeURIComponent(bookKey)}`)
+}
+
+export async function saveReaderData(userId, bookKey, data) {
+  return apiFetch('/api/user-profiles', {
+    method: 'POST',
+    body: JSON.stringify({ action: 'reader_put', userId, bookKey, data })
+  })
+}
+
 export async function fetchBookPurchases(adminEmail) {
   return apiFetch(`/api/user-profiles?action=book_purchases&adminEmail=${encodeURIComponent(adminEmail)}`)
 }

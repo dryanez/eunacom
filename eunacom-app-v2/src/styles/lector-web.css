@@ -1,0 +1,31 @@
+/* Lector web de libros (src/components/lector). Todo bajo .lw para no tocar el resto de la app.
+   Compartido por teléfono y computador: variables de tema, botones, estados de carga.
+   El cuerpo de los temas está en components/lector/render/render.css; cada área trae su propio css. */
+.lw { position: fixed; inset: 0; z-index: 10001; display: flex; flex-direction: column; background: var(--lw-bg); color: var(--lw-ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  --lw-bg: #f6f4ef; --lw-card: #fff; --lw-line: #e4e0d6; --lw-muted: #6b7280; --lw-ink: #1c1f24; --lw-bar: #0b1120; --lw-bar-line: #1e293b;
+  --lw-acc: var(--acc, #2563eb); --lw-acc-ink: var(--acc-d, var(--acc, #1d4ed8)); --lw-acc-soft: var(--acc-t, #eef2f7); }
+.lw.lw-dark { --lw-bg: #0f1115; --lw-card: #171a20; --lw-line: #2a2f38; --lw-muted: #8b94a3; --lw-ink: #d9dde3;
+  --lw-acc-ink: var(--acc-l, #93c5fd); --lw-acc-soft: #1d222b; }
+.lw *, .lw *::before, .lw *::after { box-sizing: border-box; }
+.lw input, .lw textarea { user-select: text; -webkit-user-select: text; }
+.lw button { font-family: inherit; }
+
+/* botón de ícono sobre barra oscura */
+.lw-ib { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #e2e8f0; border-radius: 10px; min-width: 40px; height: 40px; padding: 0 8px;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+.lw-ib:disabled { opacity: 0.35; }
+.lw-ib.on { background: rgba(56, 189, 248, 0.2); border-color: rgba(56, 189, 248, 0.6); color: #7dd3fc; }
+.lw-ib.plain { background: none; border-color: transparent; }
+
+/* botón sobre el papel */
+.lw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--lw-line);
+  background: var(--lw-card); color: inherit; font: 700 0.88rem/1.2 system-ui, -apple-system, sans-serif; cursor: pointer; }
+.lw-btn:disabled { opacity: 0.4; }
+.lw-btn.pri { background: var(--acc, #2563eb); border-color: var(--acc, #2563eb); color: #fff; }
+
+.lw-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; margin: auto; padding: 3rem 1.5rem; color: var(--lw-muted); font-size: 0.95rem; }
+.lw-msg p { margin: 0; max-width: 34ch; }
+.lw-spin { animation: lw-spin 0.9s linear infinite; }
+@keyframes lw-spin { to { transform: rotate(360deg); } }

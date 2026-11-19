@@ -1,39 +1,32 @@
 import { isAndroidApp } from '../../lib/playBilling'
-import { Check, X as XIcon, Star, RefreshCw, CheckCircle2, Smartphone } from 'lucide-react'
-import React, { useEffect, useMemo, useState } from 'react'
+import { Check, X as XIcon, Star, RefreshCw, CheckCircle2, Smartphone, GraduationCap, Clock, PlayCircle } from 'lucide-react'
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate, useNavigationType } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useSubscription } from '../../contexts/SubscriptionContext'
 import {
   PACKS, TOMOS, RECONS, RECON_JUL2026, isReleased, EXTRAS, COLLECTIONS, SINGLES, MODULES, PRODUCTS, APP_PLANS, UPGRADE_CREDIT_DAYS, TRANSFER,
   expandSkus, looseValue, cartTotal, fmtClp, itemFiles,
 } from '../../config/tienda'
-import { captureBookPaypal } from '../../lib/api'
+import { captureBookPaypal, createTest, genId, fetchTests, fetchLibroGordoQuestions } from '../../lib/api'
+import { LIBROS_GORDOS } from '../../../api/_libro-gordo.js'
 import BookCheckoutModal, { GUEST_BUYER_KEY } from './BookCheckoutModal'
-import LectorLibro from './LectorLibro'
+import { SPECIALTY_KEYS, fileCover } from '../../config/covers'
+import { getStore, useUserData } from '../../lib/lector/userData'
+import { navDepth, replaceUrl, setForwardHandler, urlWith, useHistoryLayer } from '../../lib/lector/nav'
 import '../../styles/tienda.css'
 import '../../styles/biblioteca-anim.css'
 
+// Lectores aparte del paquete de la biblioteca: se descargan al abrir un libro
+const LectorWeb = React.lazy(() => import('../lector/LectorWeb'))
+const LectorLibro = React.lazy(() => import('./LectorLibro'))
+
 const CART_KEY = 'eunacom_book_cart'
+const SCROLL_KEY = 'eunacom_biblio_scroll' // sessionStorage: altura del estante
 const PLAN_3M = APP_PLANS.find(p => p.id === '3m')
 const BIBLIOTECA = PRODUCTS.biblioteca
 
-// Portada por especialidad (public/tienda/<tipo>_<clave>.jpg, copiadas de la Academia) a partir de la etiqueta del archivo
-const SPECIALTY_KEYS = [
-  ['cardiolog', 'cardiologia'], ['cirug', 'cirugia'], ['dermatolog', 'dermatologia'], ['diabetes', 'diabetes'],
-  ['endocrinolog', 'endocrinologia'], ['gastroenterolog', 'gastroenterologia'], ['hemato', 'hematologia'],
-  ['infectolog', 'infectologia'], ['infecciosas', 'infectologia'], ['nefrolog', 'nefrologia'], ['neurolog', 'neurologia'],
-  ['obstetricia', 'obstetricia'], ['ginecolog', 'ginecologia'], ['oftalmolog', 'oftalmologia'], ['otorrino', 'otorrino'],
-  ['pediatr', 'pediatria'], ['psiquiatr', 'psiquiatria'], ['respirator', 'neumologia'], ['reumatolog', 'reumatologia'],
-  ['salud publica', 'saludpublica'], ['traumatolog', 'traumatologia'], ['urolog', 'urologia'],
-]
 const ACCENTED = { Cardiologia: 'Cardiología', Cirugia: 'Cirugía', Dermatologia: 'Dermatología', Endocrinologia: 'Endocrinología', Gastroenterologia: 'Gastroenterología', Ginecologia: 'Ginecología', Hematologia: 'Hematología', Infectologia: 'Infectología', Nefrologia: 'Nefrología', Neurologia: 'Neurología', Oftalmologia: 'Oftalmología', Otorrinolaringologia: 'Otorrinolaringología', Pediatria: 'Pediatría', Psiquiatria: 'Psiquiatría', Reumatologia: 'Reumatología', Traumatologia: 'Traumatología', Urologia: 'Urología' }
-const COVER_PREFIX = { gordos: 'gordo', repasos: 'repaso', atlas: 'atlas', 'perfil-v3': 'perfil' }
-function fileCover(sku, label, fallback) {
-  const norm = label.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
-  if (/completo|gran libro|ponderado|practica|geriatr/.test(norm)) return fallback
-  const key = SPECIALTY_KEYS.find(([k]) => norm.includes(k))?.[1]
-  return key && COVER_PREFIX[sku] ? `/tienda/${COVER_PREFIX[sku]}_${key}.jpg` : fallback
-}
 // Módulo de cada especialidad (para filtrar los libros sueltos que no son tomos)
 const KEY_MODULE = {
   cardiologia: 1, diabetes: 1, endocrinologia: 1, gastroenterologia: 1, hematologia: 1, infectologia: 1, nefrologia: 1,
@@ -79,6 +72,61 @@ function looseSub(type) {
   return `${c.sub} Cada uno a ${fmtClp(one.price)}${pack ? `, o todos en el ${pack.name} por ${fmtClp(pack.price)}` : ''}.`
 }
 
+const plain = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
+// Libros de preguntas → su test en línea. Sin inventar: un Libro Gordo solo se enlaza si su especialidad existe
+// en api/_libro-gordo.js, y una reconstrucción solo si su examen (mismo mes y año) está en /data/reconstrucciones/index.json.
+function gordoBookKey(item, fileIdx) {
+  if (item !== 'gordos' && SINGLES.find(x => x.sku === item)?.collection !== 'gordos') return null
+  const norm = plain(itemFiles(item)[fileIdx || 0]?.label)
+  if (!norm || /gran libro|ponderado/.test(norm)) return null // sin test propio: son varios libros en uno
+  const key = SPECIALTY_KEYS.find(([k]) => norm.includes(k))?.[1]
+  return LIBROS_GORDOS.some(b => b.key === key) ? key : null
+}
+function reconExam(rec, exams) {
+  const [, month, year] = rec.name.split(' ') // «Reconstrucción Julio 2025»
+  const found = (exams || []).filter(e => Number(e.year) === Number(year) && plain(e.month) === plain(month))
+  return found.length === 1 ? found[0] : null
+}
+const examSoon = e => !!e.coming_soon && Date.now() < Date.parse(`${e.release_date}T00:00:00-03:00`)
+
+// Avance del lector web (lib/lector/userData.js): progress[`<item>:<fileIdx>`] = { topicId, done: { [topicId]: ts }, ts },
+// cards[bookKey] (Repaso, Atlas: 'se' | 'rep') y answers[bookKey][topicId][nº] (preguntas respondidas).
+const isStarted = p => !!p && typeof p === 'object' && !!(p.topicId || Object.keys(p.done || {}).length)
+// Qué cuenta `done` en cada familia de libro: la carpeta del archivo, igual que los `match` de components/lector/modes/index.js
+// (no se usa bookKind de lib/lector/content.js: los tipos solo se registran cuando se carga el lector).
+const PROGRESS_NOUN = [
+  [/^06_Atlas\//, 'imagen vista', 'imágenes vistas'],
+  [/^04_Perfil_V3_Codigo_por_Codigo\//, 'código estudiado', 'códigos estudiados'],
+]
+const plural = (n, one, many) => `${n.toLocaleString('es-CL')} ${n === 1 ? one : many}`
+/** «3 temas estudiados · 12 tarjetas que ya sabes · 5 preguntas respondidas» (lo que haya, hasta dos datos). */
+function progressLabel(item, fileIdx, data) {
+  const key = `${item}:${Number(fileIdx) || 0}`
+  const file = itemFiles(item)[Number(fileIdx) || 0]?.file || ''
+  const [, one, many] = PROGRESS_NOUN.find(([re]) => re.test(file)) || [null, 'tema estudiado', 'temas estudiados']
+  const done = Object.keys(data.progress[key]?.done || {}).length
+  const known = Object.values(data.cards[key] || {}).filter(v => v === 'se').length
+  const answered = Object.values(data.answers[key] || {}).reduce((a, qs) => a + Object.keys(qs || {}).length, 0)
+  const atlas = /^06_Atlas\//.test(file)
+  const parts = []
+  if (done) parts.push(plural(done, one, many))
+  if (known) parts.push(plural(known, atlas ? 'imagen que reconoces' : 'tarjeta que ya sabes', atlas ? 'imágenes que reconoces' : 'tarjetas que ya sabes'))
+  if (answered) parts.push(plural(answered, 'pregunta respondida', 'preguntas respondidas'))
+  return parts.slice(0, 2).join(' · ')
+}
+
+// Libro abierto en la dirección: /biblioteca?leer=<item>:<fileIdx>[&t=<tema>][&pdf=1]. Así «Atrás» del teléfono o del
+// navegador cierra el lector (y antes el tema y lo que esté encima), y al recargar o volver de una clase se reabre.
+function readUrlBook() {
+  try {
+    const q = new URLSearchParams(window.location.search)
+    const m = String(q.get('leer') || '').match(/^([\w.-]{1,60}):(\d{1,2})$/)
+    return m ? { item: m[1], fileIdx: Number(m[2]), topicId: q.get('t') || null, pdf: q.get('pdf') === '1' } : null
+  } catch { return null }
+}
+const bookUrl = (item, fileIdx, pdf) => urlWith({ leer: `${item}:${Number(fileIdx) || 0}`, t: null, pdf: pdf ? 1 : null })
+
 function Cover({ src, alt, style }) {
   return <img className="book-cover" src={src} alt={alt} loading="lazy" style={style} />
 }
@@ -116,8 +164,10 @@ function useBookReveal() {
 // Tienda de libros: oferta primero, la app como upgrade (en el checkout de planes es al revés).
 export default function LibrosTienda() {
   useBookReveal()
+  const navigate = useNavigate()
+  const navType = useNavigationType()
   const { user, openAuthModal } = useAuth()
-  const { isPremium, planMonths, libraryIncluded, ownedBooks, purchasedBookSkus, setShowPaymentModal, refreshBooks } = useSubscription()
+  const { isPremium, planMonths, libraryIncluded, ownedBooks, purchasedBookSkus, hasExceededReconstructions, setShowPaymentModal, refreshBooks, loadingPremium } = useSubscription()
 
   const [cart, setCart] = useState(() => {
     try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]').filter(s => PRODUCTS[s]) } catch { return [] }
@@ -126,7 +176,17 @@ export default function LibrosTienda() {
   const [looseType, setLooseType] = useState('tomos')
   const [checkout, setCheckout] = useState(false)
   const [paidBanner, setPaidBanner] = useState(() => new URLSearchParams(window.location.search).get('books'))
-  const [reading, setReading] = useState(null) // { item, title, fileIdx }
+  // { item, title, fileIdx, pdf, topicId?, url, adopt? } · pdf: abre directo el PDF (libros de preguntas)
+  const [reading, setReading] = useState(null)
+  const [online, setOnline] = useState(null) // test en línea elegido: { kind: 'lg' | 'rec', … }
+  const [recExams, setRecExams] = useState(null) // exámenes de /data/reconstrucciones/index.json
+  // Avance de lectura: el mismo almacén del lector (se actualiza solo, también con lo que llega del servidor)
+  const [readerData] = useUserData(user?.id)
+  const progress = readerData.progress
+
+  // El lector abierto es una entrada del historial: «Atrás» lo cierra; cerrarlo con la X vuelve atrás.
+  useHistoryLayer(!!reading, () => setReading(null), { url: reading?.url, adopt: !!reading?.adopt })
+  const restore = useRef(readUrlBook()) // libro en la dirección al entrar (recarga, vuelta desde «Ver la clase»)
 
   useEffect(() => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)) } catch {} }, [cart])
 
@@ -207,7 +267,9 @@ export default function LibrosTienda() {
   const nR = cart.filter(s => s.startsWith('rec-')).length
   let hint = null
   if (total >= BIBLIOTECA.price) {
-    hint = <>Por {fmtClp(Math.max(0, PLAN_3M.price - total))} más tienes la app 3 meses con toda la biblioteca, las clases y las preguntas. <button onClick={openPlans}>Ver plan →</button></>
+    const d = PLAN_3M.price - total
+    const lead = d > 0 ? <>Por {fmtClp(d)} más tienes</> : d < 0 ? <>Por {fmtClp(-d)} menos tienes</> : <>Por el mismo precio tienes</>
+    hint = <>{lead} la app 3 meses con toda la biblioteca, las clases y las preguntas. <button onClick={openPlans}>Ver plan →</button></>
   } else if (nT >= 5) {
     hint = <>Llevas {nT} tomos ({fmtClp(nT * TOMOS[0].price)}). El pack de los 21 cuesta {fmtClp(PRODUCTS['pack-tomos'].price)}. <button onClick={() => swapToPack('pack-tomos')}>Cambiar al pack →</button></>
   } else if (nR >= 4) {
@@ -230,15 +292,157 @@ export default function LibrosTienda() {
     const fallback = COLLECTIONS.find(c => c.sku === x.collection).cover
     shelfBySection[x.collection] = [...(shelfBySection[x.collection] || []), { key: x.sku, item: x.sku, cover: fileCover(x.collection, x.label, fallback), label: x.label }]
   }
-  if (ownedBooks.has(RECON_JUL2026.sku)) shelfBySection.recons = [{ key: RECON_JUL2026.sku, item: RECON_JUL2026.sku, rec: RECON_JUL2026, label: RECON_JUL2026.name, soon: !isReleased(RECON_JUL2026) }]
+  // Julio 2026 va primero, sin sacar lo que ya está en la sección (el Gran Libro de Reconstrucciones)
+  if (ownedBooks.has(RECON_JUL2026.sku)) shelfBySection.recons = [{ key: RECON_JUL2026.sku, item: RECON_JUL2026.sku, rec: RECON_JUL2026, label: RECON_JUL2026.name, soon: !isReleased(RECON_JUL2026) }, ...(shelfBySection.recons || [])]
   if (!ownedBooks.has('gran-recons')) {
     shelfBySection.recons = [...(shelfBySection.recons || []), ...RECONS.filter(r => ownedBooks.has(r.sku)).map(r => ({ key: r.sku, item: r.sku, rec: r, label: r.name }))]
   }
   const shelf = SHELF_SECTIONS.flatMap(s => shelfBySection[s.id] || [])
+  const shelfSig = shelf.map(b => b.key).join('|')
+
+  // Avance del estante desde el servidor (otro dispositivo): una sola consulta con todos los libros, al entrar
+  useEffect(() => {
+    if (user?.id && shelfSig) getStore(user.id).syncShelf?.()
+  }, [user?.id, !!shelfSig]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Reabrir el libro de la dirección, solo si está en el estante de esta cuenta. Si no está (o no hay sesión), se limpia la dirección.
+  const shelfBook = r => (r ? shelf.find(x => x.item === r.item && (x.fileIdx || 0) === r.fileIdx && !x.soon && itemFiles(x.item).length > 0) || null : null)
+  const live = useRef({})
+  Object.assign(live.current, { shelfBook, reading, loaded: !!shelfSig && !loadingPremium })
+  // «Adelante» del navegador hasta un libro que se había cerrado: se reabre ahí (si ya no se puede, nav.js vuelve atrás)
+  useEffect(() => setForwardHandler(() => {
+    const { shelfBook: find, reading: open } = live.current
+    if (open) return false
+    const r = readUrlBook()
+    const b = find(r)
+    if (!b) return false
+    setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0, pdf: r.pdf, topicId: r.topicId, adopt: true, url: null })
+    return true
+  }), [])
+  // ?leer= que no se entiende (p. ej. ?leer=foo): se limpia al entrar (se decide con la dirección del primer dibujo)
+  const badLeer = useRef(null)
+  if (badLeer.current === null) { try { badLeer.current = !restore.current && new URLSearchParams(window.location.search).has('leer') } catch { badLeer.current = false } }
+  useEffect(() => {
+    if (!badLeer.current) return
+    badLeer.current = false
+    replaceUrl(urlWith({ leer: null, t: null, pdf: null }))
+  }, [])
+  useEffect(() => {
+    const r = restore.current
+    if (!r || reading) return undefined
+    const b = shelfBook(r)
+    const clean = () => { restore.current = null; replaceUrl(urlWith({ leer: null, t: null, pdf: null })) }
+    if (b) {
+      restore.current = null
+      const adopt = navDepth() >= 1 // la entrada del libro ya existe (recarga, «Atrás» desde una clase)
+      if (!adopt) replaceUrl(urlWith({ leer: null, t: null, pdf: null })) // enlace directo: la entrada actual queda como el estante
+      setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0, pdf: r.pdf, topicId: r.topicId, adopt, url: adopt ? null : bookUrl(b.item, b.fileIdx, r.pdf) })
+      return undefined
+    }
+    if (loadingPremium) return undefined
+    if (!user) { clean(); return undefined }
+    if (shelfSig) { clean(); return undefined } // los libros de la cuenta ya llegaron y ese no está (o el enlace no es válido)
+    const t = setTimeout(clean, 8000) // los libros de la cuenta llegan después del perfil
+    return () => clearTimeout(t)
+  }, [shelfSig, loadingPremium, user?.id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Altura del estante: al volver con «Atrás» (desde un test, /reconstructions o una clase) se vuelve a la misma altura.
+  // Lo que se desplaza es el contenedor de la app (.main-content en el computador) o la ventana.
+  const rootRef = useRef(null)
+  const scroller = () => {
+    for (let el = rootRef.current?.parentElement; el && el !== document.body; el = el.parentElement) {
+      if (/(auto|scroll)/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight) return el
+    }
+    return document.scrollingElement || document.documentElement
+  }
+  // Lo guardado al entrar: mientras se reaplica no se guarda la altura (la página aún crece y el contenedor la recorta).
+  const savedY = useRef(null)
+  if (savedY.current === null) { try { savedY.current = Number(sessionStorage.getItem(SCROLL_KEY)) || 0 } catch { savedY.current = 0 } }
+  const scrollDone = useRef(navType !== 'POP')
+  useEffect(() => {
+    let raf = 0
+    const save = () => {
+      raf = 0
+      const l = live.current
+      l.pending = false
+      if (l.reading || l.leaving || !scrollDone.current || l.restoring) return
+      try { sessionStorage.setItem(SCROLL_KEY, String(Math.round(scroller().scrollTop))) } catch { /* nada */ }
+    }
+    const on = () => { live.current.pending = true; if (!raf) raf = setTimeout(save, 120) } // (no rAF: en una pestaña de fondo no corre)
+    window.addEventListener('scroll', on, { passive: true, capture: true })
+    return () => { window.removeEventListener('scroll', on, { capture: true }); clearTimeout(raf) }
+  }, [])
+  // Al salir del estante a otra página (test, /reconstructions, otra sección) esa página parte arriba: el contenedor
+  // de la app es el mismo para todas. La altura del estante ya quedó guardada para «Atrás».
+  useLayoutEffect(() => {
+    live.current.leaving = false
+    const anc = [] // contenedores que pueden desplazarse (al desmontar, rootRef ya no está)
+    for (let el = rootRef.current?.parentElement; el && el !== document.body; el = el.parentElement) anc.push(el)
+    return () => {
+      const l = live.current
+      const el = anc.find(a => a.scrollTop > 0) || null
+      // la última altura (el guardado espera 120 ms)
+      if (el && l.pending && !l.reading && scrollDone.current && !l.restoring) { try { sessionStorage.setItem(SCROLL_KEY, String(Math.round(el.scrollTop))) } catch { /* nada */ } }
+      l.leaving = true
+      anc.forEach(a => { if (a.scrollTop) a.scrollTop = 0 })
+      window.scrollTo(0, 0)
+    }
+  }, [])
+  useEffect(() => {
+    if (scrollDone.current || !shelfSig) return undefined
+    const y = savedY.current
+    if (y <= 0) { scrollDone.current = true; return undefined }
+    // lo de más abajo (packs, tienda, portadas) termina de dibujarse después: se insiste hasta que la página alcanza
+    // esa altura y se queda ahí un momento, o hasta que la persona se mueve sola, o 8 s.
+    live.current.restoring = true
+    const t0 = Date.now()
+    let okSince = 0
+    let iv = 0
+    const EVS = ['wheel', 'touchstart', 'keydown', 'pointerdown']
+    const off = () => { clearInterval(iv); live.current.restoring = false; EVS.forEach(e => window.removeEventListener(e, stop, true)) }
+    function stop() { off(); scrollDone.current = true }
+    const go = () => {
+      if (live.current.reading) return stop()
+      const el = scroller()
+      if (Math.abs(el.scrollTop - y) > 4) { el.scrollTop = y; okSince = 0 } else if (!okSince) okSince = Date.now()
+      if ((okSince && Date.now() - okSince > 1200) || Date.now() - t0 > 8000) stop()
+    }
+    EVS.forEach(e => window.addEventListener(e, stop, true))
+    go()
+    iv = setInterval(go, 120)
+    return off // desmontar (o el doble montaje de desarrollo) no cuenta como terminado
+  }, [!!shelfSig]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Reconstrucciones en el estante → hace falta el índice de exámenes para saber cuál se responde en línea
+  const hasRecons = !!shelfBySection.recons?.length
+  useEffect(() => {
+    if (!hasRecons || recExams) return
+    let alive = true
+    fetch('/data/reconstrucciones/index.json').then(r => r.json()).then(d => { if (alive) setRecExams(d.exams || []) }).catch(() => {})
+    return () => { alive = false }
+  }, [hasRecons]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Test en línea de un libro del estante, solo si existe y la cuenta puede usarlo hoy (mismas reglas que
+  // api/_libro-gordo.js y pages/Reconstructions.jsx; aquí no se cambia quién tiene acceso).
+  const canRecons = isPremium || !hasExceededReconstructions
+  const onlineFor = b => {
+    if (!user || b.soon) return null
+    const book = gordoBookKey(b.item, b.fileIdx)
+    if (book) return isPremium ? { kind: 'lg', book, title: `Libro Gordo · ${LIBROS_GORDOS.find(x => x.key === book).name}`, count: 90 } : null
+    if (b.item === 'gran-recons') return canRecons ? { kind: 'recs' } : null
+    if (!b.rec) return null
+    const exam = reconExam(b.rec, recExams)
+    if (!exam || examSoon(exam)) return null
+    const allowed = exam.requires_sku ? (isPremium || ownedBooks.has(exam.requires_sku)) : canRecons
+    return allowed ? { kind: 'rec', exam, title: exam.name, count: exam.total_questions } : null
+  }
+  const openOnline = t => (t.kind === 'recs' ? navigate('/reconstructions') : setOnline(t))
+
+  const lastRead = Object.entries(progress).filter(([, p]) => isStarted(p)).sort((a, b) => (Number(b[1].ts) || 0) - (Number(a[1].ts) || 0))[0]?.[0]
   const shortPlan = isPremium && !libraryIncluded && planMonths > 0
 
   return (
-    <div className="tienda">
+    <div className="tienda" ref={rootRef}>
       {guestPaid && guestBuyer && !user && (
         <GuestPaidModal
           buyer={guestBuyer}
@@ -270,19 +474,38 @@ export default function LibrosTienda() {
             <div key={s.id} id={`shelf-${s.id}`} className="shelf-section">
               <h3 className="shelf-section__title">{s.title} <span>{shelfBySection[s.id].length}</span></h3>
               <div className="shelf">
-                {shelfBySection[s.id].map(b => (
-                  <div key={b.key} className="shelf-item">
-                    {b.rec && !b.rec.cover
-                      ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
-                      : <Cover src={b.cover || b.rec?.cover} alt={b.label} />}
-                    <b>{b.label}</b>
-                    {b.soon
-                      ? <span className="mini-btn owned">16 nov</span>
-                      : itemFiles(b.item).length
-                      ? <button className="mini-btn" onClick={() => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0 })}>Leer</button>
-                      : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
-                  </div>
-                ))}
+                {shelfBySection[s.id].map(b => {
+                  const hasPdf = itemFiles(b.item).length > 0
+                  const test = onlineFor(b)
+                  const open = pdf => setReading({ item: b.item, title: b.label, fileIdx: b.fileIdx || 0, pdf, url: bookUrl(b.item, b.fileIdx, pdf) })
+                  const pKey = `${b.item}:${b.fileIdx || 0}`
+                  const started = !test && isStarted(progress[pKey])
+                  const studied = started ? progressLabel(b.item, b.fileIdx, readerData) : ''
+                  return (
+                    <div key={b.key} className="shelf-item">
+                      <div className="shelf-cover">
+                        {b.rec && !b.rec.cover
+                          ? <div className="rec-cover"><small>EUNACOM {b.rec.month}</small><strong>{b.rec.year}</strong></div>
+                          : <Cover src={b.cover || b.rec?.cover} alt={b.label} />}
+                        {started && pKey === lastRead && <span className="shelf-tag">Última lectura</span>}
+                      </div>
+                      <b>{b.label}</b>
+                      {studied && <small className="shelf-prog">{studied}</small>}
+                      {b.soon
+                        ? <span className="mini-btn owned">16 nov</span>
+                        : test
+                        ? (
+                          <div className="shelf-actions">
+                            <button className="mini-btn fill" onClick={() => openOnline(test)}>Responder en línea</button>
+                            {hasPdf && <button className="shelf-link" onClick={() => open(true)}>PDF original</button>}
+                          </div>
+                        )
+                        : hasPdf
+                        ? <button className={`mini-btn${started ? ' fill' : ''}`} onClick={() => open(false)}>{started ? 'Continuar' : 'Leer'}</button>
+                        : <span className="mini-btn owned" title={`Escríbenos por WhatsApp al ${TRANSFER.whatsapp}`}>Próximamente</span>}
+                    </div>
+                  )
+                })}
               </div>
             </div>
           ))}
@@ -397,7 +620,7 @@ export default function LibrosTienda() {
                 <div className="pack-price">{fmtClp(BIBLIOTECA.price)}</div>
                 <ul className="pack-feat">
                   <li><i><Check size={13} strokeWidth={3} /></i>21 tomos + 23 Libros Gordos + 21 Repaso Final</li>
-                  <li><i><Check size={13} strokeWidth={3} /></i>1.569 códigos explicados + 19 atlas de imágenes</li>
+                  <li><i><Check size={13} strokeWidth={3} /></i>1.556 códigos explicados + 19 atlas de imágenes</li>
                   <li><i><Check size={13} strokeWidth={3} /></i>Reconstrucciones 2013–2026</li>
                   <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+650 clases en video</li>
                   <li className="no"><i><XIcon size={13} strokeWidth={3} /></i>+47.000 preguntas en la app y simulacros</li>
@@ -429,7 +652,11 @@ export default function LibrosTienda() {
               </div>
             </div>
             <div className="tienda-diff">
-              Por <b>{fmtClp(PLAN_3M.price - BIBLIOTECA.price)} más</b>, el plan de 3 meses ({fmtClp(PLAN_3M.price)}) incluye la misma biblioteca + clases + preguntas.
+              {PLAN_3M.price > BIBLIOTECA.price
+                ? <>Por <b>{fmtClp(PLAN_3M.price - BIBLIOTECA.price)} más</b>, el plan de 3 meses ({fmtClp(PLAN_3M.price)}) incluye la misma biblioteca + clases + preguntas.</>
+                : PLAN_3M.price < BIBLIOTECA.price
+                  ? <>El plan de 3 meses ({fmtClp(PLAN_3M.price)}) cuesta <b>{fmtClp(BIBLIOTECA.price - PLAN_3M.price)} menos</b> que los libros solos e incluye la misma biblioteca + clases + preguntas.</>
+                  : <>Por <b>el mismo precio</b>, el plan de 3 meses ({fmtClp(PLAN_3M.price)}) incluye la misma biblioteca + clases + preguntas.</>}
             </div>
           </section>
 
@@ -458,7 +685,15 @@ export default function LibrosTienda() {
         </div>
       )}
 
-      {reading && <LectorLibro item={reading.item} title={reading.title} initialFileIdx={reading.fileIdx} onClose={() => setReading(null)} />}
+      {reading && (
+        <React.Suspense fallback={<div className="gp-back" role="status"><span className="lector-wait">Abriendo el libro…</span></div>}>
+          {reading.pdf
+            ? <LectorLibro item={reading.item} title={reading.title} initialFileIdx={reading.fileIdx} onClose={() => setReading(null)} />
+            : <LectorWeb item={reading.item} title={reading.title} initialFileIdx={reading.fileIdx} initialTopicId={reading.topicId} onClose={() => setReading(null)} />}
+        </React.Suspense>
+      )}
+
+      {online && <TestOnlineModal target={online} onClose={() => setOnline(null)} />}
 
       {checkout && (
         <BookCheckoutModal
@@ -485,6 +720,114 @@ function GuestPaidModal({ buyer, onRegister, onLogin, onClose }) {
         <div className="gp-step"><b>Último paso:</b> crea tu cuenta con <b>ese mismo correo</b> y lo verás al tiro en tu Biblioteca.</div>
         <button className="gp-btn" onClick={onRegister}>Crear mi cuenta</button>
         <button className="gp-link" onClick={onLogin}>Ya tengo cuenta: iniciar sesión</button>
+      </div>
+    </div>
+  )
+}
+
+// Reconstrucciones: mismo formato que usa pages/Reconstructions.jsx para el TestRunner
+const LETTERS = ['A', 'B', 'C', 'D', 'E']
+function reconQuestion(q, examId) {
+  const choices = (q.options || q.opciones || []).map((text, i) => ({ id: LETTERS[i] || String(i), text }))
+  const rc = q.correctAnswer || q.respuesta_correcta
+  let correctAnswer = null
+  if (typeof rc === 'string' && /^[A-Ea-e]$/.test(rc)) correctAnswer = rc.toUpperCase()
+  else if (typeof rc === 'number' && rc < choices.length) correctAnswer = LETTERS[rc]
+  return { id: `${examId}_q${q.id}`, question: q.question || q.pregunta, choices, correctAnswer, explanation: q.explanation || q.explicacion || q.respuesta_texto || '', imageUrl: q.imageUrl || q.image?.src, imageNote: q.image?.nota, imageCredit: q.image?.credit }
+}
+const parseJson = (v, fb) => { try { return typeof v === 'string' ? JSON.parse(v) : (v ?? fb) } catch { return fb } }
+
+// «Responder en línea»: abre el libro como test en el TestRunner de la app (modo tutor o simulacro),
+// igual que pages/LibroGordo.jsx (intentos "lg-<libro>-<uuid>") y pages/Reconstructions.jsx.
+function TestOnlineModal({ target, onClose }) {
+  const navigate = useNavigate()
+  const { user } = useAuth()
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState(null)
+  const [pending, setPending] = useState([]) // intentos en curso de este libro
+
+  const isLg = target.kind === 'lg'
+  const mine = t => {
+    if (t.status !== 'in_progress') return false
+    if (isLg) return String(t.id).startsWith(`lg-${target.book}-`) && !/^lg-[a-z]+-d\d-/.test(String(t.id)) // sin las pruebas por día de Mis clases
+    return String(parseJson(t.questions, [])?.[0] || '').startsWith(`${target.exam.id}_q`)
+  }
+  useEffect(() => {
+    let alive = true
+    fetchTests(user.id).then(ts => {
+      if (!alive) return
+      const byMode = {}
+      for (const t of (ts || []).filter(mine)) if (!byMode[t.mode] || String(t.created_at) > String(byMode[t.mode].created_at)) byMode[t.mode] = t
+      setPending(Object.values(byMode))
+    }).catch(() => {})
+    return () => { alive = false }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const loadQuestions = async () => {
+    if (isLg) {
+      const res = await fetchLibroGordoQuestions(target.book, user.id)
+      if (res.error) throw new Error(res.error === 'no_access' ? 'Tu cuenta no tiene acceso al test en línea de este libro.' : 'No pudimos cargar las preguntas. Intenta de nuevo en unos minutos.')
+      return res.data || []
+    }
+    const data = await fetch(`/data/reconstrucciones/${target.exam.file}`).then(r => r.json())
+    return data.questions.filter(q => !q.excluir && (q.opciones || q.options || []).length >= 2).map(q => reconQuestion(q, target.exam.id))
+  }
+
+  const go = async (mode, attempt) => {
+    if (busy) return
+    setBusy(true); setError(null)
+    try {
+      const questions = await loadQuestions()
+      if (!questions.length) throw new Error('Este libro todavía no tiene preguntas en línea.')
+      const timeLimitSeconds = mode === 'exam' ? questions.length * 60 : 0
+      const base = { questions, mode, isSimulation: mode === 'exam', returnTo: '/biblioteca', ...(isLg ? {} : { isReconstruction: true, examName: target.exam.name }) }
+      if (attempt) {
+        navigate('/test-runner', {
+          state: {
+            ...base, testId: attempt.id,
+            timeLimitSeconds: attempt.time_limit_seconds || timeLimitSeconds,
+            timeLeftSeconds: attempt.time_left_seconds ?? undefined,
+            tutorState: parseJson(attempt.tutor_state, null),
+            savedIndex: attempt.current_question_index || 0,
+            savedAnswers: parseJson(attempt.answers, {}) || {},
+          },
+        })
+        return
+      }
+      const testId = isLg ? `lg-${target.book}-${genId()}` : genId()
+      await createTest({ id: testId, userId: user.id, mode, timeLimitSeconds, totalQuestions: questions.length, questions: questions.map(q => q.id) })
+      navigate('/test-runner', { state: { ...base, testId, timeLimitSeconds } })
+    } catch (e) {
+      setError(e?.message && !/fetch|JSON|token/i.test(e.message) ? e.message : 'No pudimos abrir el test. Revisa tu conexión e intenta de nuevo.')
+      setBusy(false)
+    }
+  }
+
+  const modeName = m => (m === 'exam' ? 'Simulacro' : 'Tutor')
+  return (
+    <div className="gp-back" onClick={onClose}>
+      <div className="gp ol" role="dialog" aria-modal="true" aria-labelledby="ol-title" onClick={e => e.stopPropagation()}>
+        <button className="gp-x" onClick={onClose} aria-label="Cerrar"><XIcon size={18} /></button>
+        <span className="ol-kicker">Responder en línea</span>
+        <h2 id="ol-title">{target.title}</h2>
+        <p className="gp-sub">{target.count} preguntas con su explicación. Tu puntaje queda guardado en tu historial.</p>
+        {pending.map(a => (
+          <button key={a.id} className="ol-resume" disabled={busy} onClick={() => go(a.mode, a)}>
+            <PlayCircle size={18} />
+            <span><b>Continuar donde quedaste</b><small>Modo {modeName(a.mode)} · pregunta {(a.current_question_index || 0) + 1}</small></span>
+          </button>
+        ))}
+        <button className="ol-mode" disabled={busy} onClick={() => go('tutor')}>
+          <i><GraduationCap size={20} /></i>
+          <span><b>Modo Tutor</b><small>Sin límite de tiempo, con la explicación después de cada pregunta.</small></span>
+        </button>
+        <button className="ol-mode amber" disabled={busy} onClick={() => go('exam')}>
+          <i><Clock size={20} /></i>
+          <span><b>Modo Simulacro</b><small>Cronometrado ({target.count} minutos). Las explicaciones al final.</small></span>
+        </button>
+        {busy && <p className="ol-note" role="status">Preparando tus preguntas…</p>}
+        {error && <p className="ol-note bad" role="alert">{error}</p>}
       </div>
     </div>
   )

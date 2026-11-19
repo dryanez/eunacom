@@ -22,6 +22,18 @@ function loadPdfjs() {
 }
 
 const block = e => e.preventDefault()
+// Un mismo libro pedido dos veces seguidas (doble montaje en desarrollo, abrir/cerrar rápido) usa el mismo link
+// temporal: una sola llamada a book_read por minuto (el link dura 10 min).
+const reads = new Map()
+function bookReadOnce(userId, item, fileIdx) {
+  const k = `${userId}|${item}|${fileIdx}`
+  const hit = reads.get(k)
+  if (hit && Date.now() - hit.at < 60e3) return hit.p
+  const p = fetchBookRead(userId, item, fileIdx)
+  reads.set(k, { at: Date.now(), p })
+  p.catch(() => { if (reads.get(k)?.p === p) reads.delete(k) })
+  return p
+}
 const GAP = 12
 const MIN_ZOOM = 0.6
 const MAX_ZOOM = 3
@@ -115,7 +127,8 @@ export default function LectorLibro(props) {
   return <LectorPdf {...props} onMovil={movilOk ? () => cambiar('movil') : null} />
 }
 
-function LectorPdf({ item, title, initialFileIdx = 0, onClose, onMovil }) {
+// También lo usa el lector web (components/lector/LectorWeb.jsx) para «Página original»: initialPage abre en esa página.
+export function LectorPdf({ item, title, initialFileIdx = 0, initialPage = 0, onClose, onMovil }) {
   const { user } = useAuth()
   const [fileIdx, setFileIdx] = useState(initialFileIdx)
   const [files, setFiles] = useState([])
@@ -186,7 +199,7 @@ function LectorPdf({ item, title, initialFileIdx = 0, onClose, onMovil }) {
     }
     ;(async () => {
       try {
-        const { url, files: list } = await fetchBookRead(user.id, item, fileIdx)
+        const { url, files: list } = await bookReadOnce(user.id, item, fileIdx)
         if (cancelled) return
         setFiles(list || [])
         const lib = await loadPdfjs()
@@ -215,6 +228,15 @@ function LectorPdf({ item, title, initialFileIdx = 0, onClose, onMovil }) {
     setPageInput(String(p))
     if (narrow) setPanel(null)
   }, [pdf, pageH, narrow])
+
+  // Abrir directamente en una página (solo la primera vez que carga el PDF)
+  const startPage = useRef(initialPage)
+  useEffect(() => {
+    if (!pdf || !boxWidth || !(startPage.current > 1)) return
+    const p = startPage.current
+    startPage.current = 0
+    requestAnimationFrame(() => goTo(p))
+  }, [pdf, boxWidth, goTo])
 
   const onScroll = () => {
     const box = boxRef.current
