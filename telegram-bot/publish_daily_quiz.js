@@ -223,6 +223,14 @@ export async function publishDailyQuestion(options = {}) {
 
   const questions = loadQuestionDb();
   const history = loadHistory();
+  // Only one post per Chile day: a manual run earlier today makes the scheduled run skip.
+  const chileDay = d => new Date(d).toLocaleDateString('en-CA', { timeZone: 'America/Santiago' });
+  const today = chileDay(Date.now());
+  if (!isDryRun && !process.argv.includes('--force') &&
+      history.history.some(e => chileDay(e.postedAt) === today && e.channels?.some(c => c.success))) {
+    console.log(`⏭️ Already posted today (${today}, Chile). Skipping.`);
+    return { success: true, skipped: true };
+  }
   const promo = loadPromo();
   console.log(promo ? `📣 Promo before question: ${promo.image} → ${promo.url}` : '📣 Promo: off');
 
