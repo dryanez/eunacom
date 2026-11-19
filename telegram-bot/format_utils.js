@@ -205,7 +205,7 @@ export function formatExplanationMessage(q, { siteUrl = 'https://www.eunacomapp.
   
   let msg = `📖 <b>RESOLUCIÓN Y FUNDAMENTO OFICIAL</b>\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
-  msg += `✅ <b>Respuesta Correcta: Alternativa ${correctLetter}</b>\n\n`;
+  msg += `✅ <b>Respuesta correcta</b> (toca para ver): <tg-spoiler><b>Alternativa ${correctLetter}</b></tg-spoiler>\n\n`;
   
   if (displayExplanation.length > 2500) {
     displayExplanation = displayExplanation.slice(0, 2450) + '\n\n<i>(Explicación completa disponible en la plataforma)</i>';
@@ -215,7 +215,7 @@ export function formatExplanationMessage(q, { siteUrl = 'https://www.eunacomapp.
   // High converting CTA
   msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
   msg += `🎯 <b>¿Preparando el EUNACOM 2026?</b>\n`;
-  msg += `Practica gratis más de 6.000 preguntas oficiales comentadas, filtra por especialidad y rinde ensayos cronometrados con ranking nacional en:\n`;
+  msg += `Practica con +47.000 preguntas comentadas, filtra por especialidad y rinde ensayos cronometrados con ranking nacional en:\n`;
   msg += `👉 🌐 <a href="${siteUrl}?utm_source=telegram&utm_medium=daily_quiz&utm_campaign=pregunta_del_dia">www.eunacomapp.cl</a>\n`;
 
   return msg;

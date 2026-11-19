@@ -1,0 +1,21 @@
+name: Telegram - find group topics
+
+on:
+  workflow_dispatch:
+    inputs:
+      chat:
+        default: '@Eunacom2026'
+      max:
+        default: '3000'
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: node telegram-bot/find_topics.js "${{ inputs.chat }}" "${{ inputs.max }}"
