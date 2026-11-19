@@ -1,6 +1,6 @@
 {
-  "synced_at": "2026-11-18T20:00:54.656Z",
-  "date": "2026-11-18",
+  "synced_at": "2026-11-19T19:59:30.631Z",
+  "date": "2026-11-19",
   "health_score": 91,
   "totals": {
     "clicks": 8,
@@ -18,7 +18,7 @@
     "content": {
       "filler_score": 0,
       "ai_pattern_score": 0,
-      "information_density": 0.749,
+      "information_density": 0.742,
       "repetition_score": 19,
       "overall_quality": 91,
       "flags": [],
@@ -26,8 +26,8 @@
         "filler": [],
         "ai_patterns": []
       },
-      "tokens": 2016,
-      "unique_tokens": 614
+      "tokens": 2035,
+      "unique_tokens": 616
     },
     "schema": {
       "json_ld_count": 0,
@@ -435,7 +435,7 @@
       "agent": "seo-content",
       "action": "Content Density & Readability",
       "status": "Passed 🟢",
-      "impact": "Information density: 75%, 0% filler penalty (2016 tokens)"
+      "impact": "Information density: 74%, 0% filler penalty (2035 tokens)"
     },
     {
       "agent": "seo-technical",
