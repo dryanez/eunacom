@@ -88,6 +88,36 @@ async function callTelegramApi(endpoint, body, botToken) {
 }
 
 /**
+ * Daily promo (photo + button) posted right before the question.
+ * Edit promo/promo.json to change it; "enabled": false or a past "until" date turns it off.
+ */
+function loadPromo() {
+  const promoPath = path.resolve(__dirname, 'promo', 'promo.json');
+  if (!fs.existsSync(promoPath)) return null;
+  const promo = JSON.parse(fs.readFileSync(promoPath, 'utf8'));
+  if (!promo.enabled) return null;
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Santiago' });
+  if (promo.until && today > promo.until) return null;
+  promo.imagePath = path.resolve(__dirname, 'promo', promo.image);
+  return promo;
+}
+
+async function sendPromoPhoto(channelId, promo, botToken) {
+  const form = new FormData();
+  form.append('chat_id', channelId);
+  form.append('caption', promo.caption);
+  form.append('parse_mode', 'HTML');
+  form.append('reply_markup', JSON.stringify({
+    inline_keyboard: [[{ text: promo.buttonText, url: promo.url }]],
+  }));
+  form.append('photo', new Blob([fs.readFileSync(promo.imagePath)], { type: 'image/jpeg' }), promo.image);
+  const res = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: form });
+  const data = await res.json();
+  if (!data.ok) throw new Error(`Telegram API [sendPhoto] error: ${data.description} (Code: ${data.error_code})`);
+  return data.result;
+}
+
+/**
  * Load questions database
  */
 function loadQuestionDb() {
@@ -190,6 +220,8 @@ export async function publishDailyQuestion(options = {}) {
 
   const questions = loadQuestionDb();
   const history = loadHistory();
+  const promo = loadPromo();
+  console.log(promo ? `📣 Promo before question: ${promo.image} → ${promo.url}` : '📣 Promo: off');
 
   console.log(`📚 Total questions in database: ${questions.length}`);
   console.log(`📝 Total globally logged posts: ${history.postedIds.length}`);
@@ -226,6 +258,10 @@ export async function publishDailyQuestion(options = {}) {
 
     if (isDryRun) {
       console.log(`\n[DRY-RUN PREVIEW FOR ${channelId}]`);
+      if (promo) {
+        if (!fs.existsSync(promo.imagePath)) throw new Error(`Promo image missing: ${promo.imagePath}`);
+        console.log(`--- PROMO PHOTO --- ${promo.image}\n${promo.caption}\n[${promo.buttonText}] → ${promo.url}`);
+      }
       console.log(`--- VIGNETTE ---`);
       console.log(vignetteMsg.slice(0, 200) + '...');
       console.log(`--- POLL QUESTION ---: ${quizPayload.question}`);
@@ -248,6 +284,17 @@ export async function publishDailyQuestion(options = {}) {
     }
 
     try {
+      // 0. Daily promo photo + button (a failure here never blocks the question)
+      if (promo) {
+        try {
+          const promoRes = await sendPromoPhoto(channelId, promo, botToken);
+          console.log(`   ✓ Promo photo sent (msg_id: ${promoRes.message_id})`);
+          await new Promise(r => setTimeout(r, 1500));
+        } catch (e) {
+          console.warn(`   ⚠️ Promo failed for ${channelId}: ${e.message}`);
+        }
+      }
+
       // 1. Send Clinical Case Vignette
       const vignetteRes = await callTelegramApi('sendMessage', {
         chat_id: channelId,
