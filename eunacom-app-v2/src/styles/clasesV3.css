@@ -207,3 +207,5 @@
 .cv3-route button.cv3-blkbtn:hover,.cv3-route button.cv3-blkbtn.open{border-color:var(--spec)}
 .cv3-bsum .bm{flex:0 0 70px}.cv3-bsum small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cv3-bsum .bm{flex:0 0 52px}.cv3-bsum small{overflow:visible;text-overflow:clip}.cv3-bsum{gap:8px}
+.cv3-guev{display:inline-flex;align-items:center;gap:8px;margin:4px 0 10px;padding:8px 14px;border-radius:999px;border:1px solid #2b3d61;background:#0d1528;color:#e2e8f0;font-weight:600;font-size:14px;text-decoration:none}
+.cv3-guev:hover{border-color:#38bdf8;color:#fff}

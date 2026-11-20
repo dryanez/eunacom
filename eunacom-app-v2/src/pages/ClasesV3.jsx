@@ -6,8 +6,9 @@
 import '../styles/clasesV3.css'
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Film } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { canSeeGuevara } from '../lib/guevaraAccess'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchClaseProgress, saveClaseProgress } from '../lib/api'
 import LoginGateModal from '../components/LoginGateModal'
@@ -131,8 +132,8 @@ function Ring({ pct, color = '#38bdf8', size = 44 }) {
 /* ════════ INICIO ════════ */
 function Home({ data, prog, mod }) {
   const { idx, specs, byId } = data
-  const { isAdmin } = useAuth()
-  const isAdminUser = !!isAdmin?.()
+  const { isAdmin, user } = useAuth()
+  const isAdminUser = canSeeGuevara(user, isAdmin)
   const all = Object.values(specs)
   const total = all.reduce((a, s) => a + s.classes.length, 0)
   const done = Object.keys(prog.done).filter(id => byId[id]).length
@@ -145,6 +146,7 @@ function Home({ data, prog, mod }) {
         <div>
           <div className="k" style={{ color: '#38bdf8' }}>Clases en video · Perfil EUNACOM V3</div>
           <h1>Mis clases</h1>
+          {isAdminUser && <Link className="cv3-guev" to="/clases-guevara"><Film size={16} /> Clases Dr. Guevara</Link>}
           <p>{total} clases animadas en el orden de tus 21 tomos. Cada video se detiene en sus preguntas para que respondas; cada bloque termina con un test de 20 preguntas y cada especialidad con un ensayo de 90.</p>
         </div>
         <div className="cv3-prog" style={{ minWidth: 240 }}>

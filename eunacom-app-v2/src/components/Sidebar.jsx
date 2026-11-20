@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { canSeeGuevara } from '../lib/guevaraAccess'
 import './redesign/midnight.css'
 import { useSubscription } from '../contexts/SubscriptionContext'
 import { fetchProgress, fetchUserProfile } from '../lib/api'
@@ -41,7 +42,7 @@ const NAV_GROUPS = [
         { to: '/dashboard', label: 'Inicio', icon: Home, tour: 'dashboard' },
         { to: '/study-plan', label: 'Plan de estudio', icon: CalendarDays, tour: 'study-plan', admin: true },
         { to: '/mis-clases', label: 'Mis clases', icon: Video, tour: 'mis-clases' },
-        { to: '/clases-guevara', label: 'Clases Dr. Guevara', icon: Film, admin: true },
+        { to: '/clases-guevara', label: 'Clases Dr. Guevara', icon: Film, guevara: true },
         { to: '/biblioteca', label: 'Biblioteca', icon: BookOpen, tour: 'libros' },
         { to: '/flashcards', label: 'Flashcards', icon: Layers },
         { to: '/medlingo', label: 'MedLingo', icon: Flame, tour: 'medlingo' },
@@ -153,7 +154,7 @@ const Sidebar = ({ mobileOpen, onToggle }) => {
 
             <nav className="sidebar__nav">
                 {NAV_GROUPS.map(group => {
-                    const items = group.items.filter(it => !it.admin || isAdmin())
+                    const items = group.items.filter(it => it.guevara ? canSeeGuevara(user, isAdmin) : (!it.admin || isAdmin()))
                     if (!items.length) return null
                     return (
                         <React.Fragment key={group.title}>
