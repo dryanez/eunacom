@@ -32,22 +32,27 @@
       </div>
       <div>
         <h1 class="text-sm font-bold text-white tracking-tight flex items-center gap-2">
-          Boards & Beyond <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">Studio Player</span>
+          Boards &amp; Beyond + Pathoma <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">Studio Player</span>
         </h1>
-        <p class="text-[11px] text-slate-400 font-medium">Step 1 (Preclinical) & Step 2 (Clinical) Master Library</p>
+        <p class="text-[11px] text-slate-400 font-medium">Step 1 • Step 2 • Pathoma 2026 Master Library (Local &amp; Cloudflare R2)</p>
       </div>
     </div>
 
     <!-- Live Stats & Global Actions -->
     <div class="flex items-center gap-3">
+      <button onclick="toggleCloudMode()" id="btn-cloud-mode" class="px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition flex items-center gap-1.5 text-xs font-semibold shadow-sm active:scale-95" title="Toggle between Local Disk and Cloudflare R2 Bucket Streaming">
+        <i data-lucide="cloud" class="w-3.5 h-3.5 text-emerald-400"></i>
+        <span id="cloud-mode-label">R2 Cloud Ready</span>
+      </button>
+
       <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs shadow-inner">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span class="text-slate-200 font-bold" id="stats-total">744 Videos</span>
+        <span class="text-slate-200 font-bold" id="stats-total">856 Videos</span>
         <span class="text-slate-600">•</span>
-        <span class="text-slate-400 font-mono text-[11px]" id="stats-size">45.6 GB</span>
+        <span class="text-slate-400 font-mono text-[11px]" id="stats-size">52.8 GB</span>
       </div>
 
       <button onclick="fetchVideos(true)" class="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold border border-slate-700/60 shadow-sm active:scale-95">
@@ -66,8 +71,8 @@
       <!-- Top Filters -->
       <div class="p-3.5 border-b border-slate-800/80 bg-slate-950/60 space-y-2.5">
         
-        <!-- Step 1 / Step 2 / All Switcher -->
-        <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+        <!-- Step 1 / Step 2 / Pathoma / All Switcher -->
+        <div class="grid grid-cols-4 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
           <button onclick="setTab('Step 1 - Preclinical')" id="tab-step1" class="py-1.5 rounded-lg transition bg-indigo-600 text-white shadow font-bold flex items-center justify-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-indigo-300"></span>
             <span>Step 1</span>
@@ -75,6 +80,10 @@
           <button onclick="setTab('Step 2 - Clinical')" id="tab-step2" class="py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>Step 2</span>
+          </button>
+          <button onclick="setTab('Pathoma')" id="tab-pathoma" class="py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+            <span>Pathoma</span>
           </button>
           <button onclick="setTab('all')" id="tab-all" class="py-1.5 rounded-lg transition text-slate-400 hover:text-white">
             <span>All</span>
@@ -256,16 +265,37 @@
     let openAccordions = new Set();
     let currentQuizData = null;
 
+    let useCloudStream = false;
+
     const videoEl = document.getElementById('main-video');
     const emptyScreen = document.getElementById('empty-screen');
+
+    function toggleCloudMode() {
+      useCloudStream = !useCloudStream;
+      updateCloudButtonUI();
+      fetchVideos(true);
+    }
+
+    function updateCloudButtonUI() {
+      const btn = document.getElementById('btn-cloud-mode');
+      const lbl = document.getElementById('cloud-mode-label');
+      const isCloud = useCloudStream || serverData.mode === 'r2_cloud';
+      if (btn && lbl) {
+        lbl.textContent = isCloud ? 'Streaming: Cloudflare R2' : 'Streaming: Local Disk (R2 Ready)';
+        btn.className = isCloud
+          ? 'px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 transition flex items-center gap-1.5 text-xs font-bold shadow-sm active:scale-95'
+          : 'px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition flex items-center gap-1.5 text-xs font-semibold shadow-sm active:scale-95';
+      }
+    }
 
     async function fetchVideos(isManual = false) {
       const refreshIcon = document.getElementById('refresh-icon');
       if (isManual && refreshIcon) refreshIcon.classList.add('animate-spin');
 
       try {
-        const res = await fetch('/api/videos');
+        const res = await fetch(useCloudStream ? '/api/videos?cloud=1' : '/api/videos');
         serverData = await res.json();
+        updateCloudButtonUI();
         renderCurriculum(document.getElementById('search-input').value);
       } catch (err) {
         console.error('Failed to fetch videos:', err);
@@ -285,6 +315,13 @@
       document.getElementById('tab-step2').className = tab.includes('2')
         ? 'py-1.5 rounded-lg transition bg-amber-600 text-white shadow font-bold flex items-center justify-center gap-1.5'
         : 'py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+
+      const tabPathoma = document.getElementById('tab-pathoma');
+      if (tabPathoma) {
+        tabPathoma.className = tab.toLowerCase().includes('pathoma')
+          ? 'py-1.5 rounded-lg transition bg-rose-600 text-white shadow font-bold flex items-center justify-center gap-1.5'
+          : 'py-1.5 rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+      }
 
       document.getElementById('tab-all').className = tab === 'all'
         ? 'py-1.5 rounded-lg transition bg-slate-800 text-white font-bold shadow'
@@ -345,23 +382,33 @@
       document.getElementById('stats-size').textContent = serverData.totalSize;
 
       const container = document.getElementById('curriculum-tree');
-      let stepsToRender = serverData.tree;
+      let stepsToRender = serverData.tree || [];
 
       if (activeTab !== 'all') {
-        stepsToRender = stepsToRender.filter(s => s.name.toLowerCase().includes(activeTab.toLowerCase().includes('1') ? 'step 1' : 'step 2'));
+        const key = activeTab.toLowerCase().includes('pathoma')
+          ? 'pathoma'
+          : activeTab.toLowerCase().includes('1')
+          ? 'step 1'
+          : 'step 2';
+        stepsToRender = stepsToRender.filter(s => s.name.toLowerCase().includes(key));
       }
 
       flatPlaylist = [];
       let html = '';
 
       stepsToRender.forEach((stepNode, stepIdx) => {
+        const isPathoma = stepNode.name.toLowerCase().includes('pathoma');
         const isStep1 = stepNode.name.includes('1');
-        const stepBadgeBg = isStep1 ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400';
+        const stepBadgeBg = isPathoma
+          ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+          : isStep1
+          ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
+          : 'bg-amber-500/10 border-amber-500/20 text-amber-400';
 
         let stepCount = 0;
         function countNode(n) {
-          stepCount += n.videos.length;
-          n.children.forEach(countNode);
+          stepCount += (n.videos || []).length;
+          (n.children || []).forEach(countNode);
         }
         countNode(stepNode);
 
@@ -493,7 +540,14 @@
       const vid = flatPlaylist[index];
 
       emptyScreen.classList.add('hidden');
-      videoEl.src = vid.url;
+      const streamUrl = (useCloudStream || serverData.mode === 'r2_cloud') && vid.r2Url ? vid.r2Url : vid.url;
+      videoEl.onerror = () => {
+        if (vid.r2Url && videoEl.src !== vid.r2Url) {
+          videoEl.src = vid.r2Url;
+          videoEl.play();
+        }
+      };
+      videoEl.src = streamUrl;
       videoEl.playbackRate = currentSpeed;
       videoEl.play();
 
@@ -503,6 +557,12 @@
       document.getElementById('badge-subsection').textContent = vid.subsection;
       document.getElementById('current-size-badge').textContent = vid.sizeFormatted;
 
+      const pdfBtn = document.getElementById('btn-download-pdf');
+      if (pdfBtn) {
+        const isPathoma = (vid.step || '').toLowerCase().includes('pathoma');
+        pdfBtn.innerHTML = `<i data-lucide="file-down" class="w-4 h-4 text-indigo-400"></i><span>${isPathoma ? 'Pathoma 2025 PDF' : 'Download Slides PDF'}</span>`;
+      }
+
       loadTranscript(vid.relativePath);
       loadQuiz(vid.relativePath);
       renderCurriculum(document.getElementById('search-input').value);
@@ -511,13 +571,40 @@
     function downloadCompanionPdf() {
       if (currentIndex < 0) return;
       const vid = flatPlaylist[currentIndex];
+      if ((useCloudStream || serverData.mode === 'r2_cloud') && (vid.step || '').toLowerCase().includes('pathoma') && serverData.pathomaPdfUrl) {
+        window.open(serverData.pathomaPdfUrl, '_blank');
+        return;
+      }
       window.open(`/api/pdf?path=${encodeURIComponent(vid.relativePath)}`, '_blank');
     }
+
+    function formatExplanationBlocks(expText) {
+      if (!expText) return '<div class="p-3.5 rounded-xl border bg-slate-900/80 border-slate-800 text-slate-400 text-xs italic">Explanation extracting in background...</div>';
+      const blocks = expText.split(/\n\s*\n/).filter(Boolean);
+      return blocks.map(blk => {
+        const isCorrect = /^Answers?\s*[A-Na-n][^\n]*\(\s*correct/i.test(blk.trim());
+        const borderCls = isCorrect
+          ? 'bg-emerald-950/35 border-emerald-500/40 text-emerald-100'
+          : 'bg-slate-900/80 border-slate-800 text-slate-300';
+        const formatted = blk.replace(
+          /^(Answers?\s*[A-Na-n](?:\s*(?:,|and|&)\s*[A-Na-n])*\s*\([^)]+\)\s*:?)/i,
+          `<span class="font-bold ${isCorrect ? 'text-emerald-400' : 'text-amber-300'}">$1</span>`
+        );
+        return `<div class="p-3.5 rounded-xl border ${borderCls} text-xs leading-relaxed">${formatted}</div>`;
+      }).join('');
+    }
+
+    let quizScore = 0;
+    let quizAnswered = new Set();
 
     async function loadQuiz(relPath) {
       const quizContainer = document.getElementById('quiz-container');
       const countBadge = document.getElementById('quiz-count-badge');
+      const panelQuiz = document.getElementById('panel-quiz');
+      if (panelQuiz) panelQuiz.className = studyTab === 'quiz' ? 'max-h-[820px] overflow-y-auto pr-2 space-y-4' : 'hidden max-h-[820px] overflow-y-auto pr-2 space-y-4';
       quizContainer.innerHTML = '<div class="text-xs text-slate-500 p-4">Loading chapter quiz...</div>';
+      quizScore = 0;
+      quizAnswered = new Set();
 
       try {
         const res = await fetch(`/api/quiz?path=${encodeURIComponent(relPath)}`);
@@ -541,73 +628,139 @@
         countBadge.classList.remove('hidden');
 
         let html = `
-          <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
-            <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-              <i data-lucide="help-circle" class="w-4 h-4"></i>
-              <span>${data.title || 'Chapter Quiz'} (${data.total_questions} Questions)</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-800 sticky top-0 bg-slate-900/95 backdrop-blur z-10 pt-1 px-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                <span>${data.title || 'Chapter Quiz'}</span>
+              </span>
+              <div class="flex items-center gap-1 ml-2 flex-wrap">
+                ${data.questions.map((q, idx) => `
+                  <button onclick="document.getElementById('q-card-${idx}')?.scrollIntoView({behavior:'smooth', block:'start'})" id="q-nav-pill-${idx}" class="px-2 py-0.5 rounded-md bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white font-mono text-[10px] font-bold border border-slate-700 transition">
+                    Q${q.question_number}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+            <span id="quiz-score-pill" class="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-indigo-300">
+              Score: 0 / ${data.questions.length}
             </span>
           </div>
         `;
 
         data.questions.forEach((q, qIdx) => {
+          const vMeta = q.visual_metadata || {};
+          const slideUrl = q.lecture_slide_image || q.explanation_image;
+          const is4kSlide = vMeta.type === 'lecture_slide_4k';
+          const slideBadgeText = is4kSlide
+            ? `⚡ 4K UHD Master Slide${vMeta.matched_deck ? ' • ' + vMeta.matched_deck + ' (Slide ' + vMeta.matched_slide + ')' : ''}`
+            : '📊 Clinical Reference Table / Medical Diagram';
+
           html += `
-            <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3.5 shadow-md">
-              <div class="text-xs font-semibold text-slate-200 leading-relaxed">
-                <span class="px-2 py-0.5 rounded bg-indigo-600/30 text-indigo-300 font-mono text-[10px] mr-1.5 font-bold">Q${q.question_number}</span>
+            <div id="q-card-${qIdx}" class="p-5 rounded-2xl bg-slate-950 border border-slate-800/90 space-y-4 shadow-lg">
+              <!-- Question Header -->
+              <div class="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-0.5 rounded-md bg-indigo-600/25 text-indigo-300 border border-indigo-500/30 font-mono text-xs font-bold">Question ${q.question_number} of ${data.questions.length}</span>
+                  <span class="text-[11px] text-slate-500 font-medium">Boards &amp; Beyond Clinical Vignette</span>
+                </div>
+                <span id="q-${qIdx}-status" class="text-[11px] font-semibold text-slate-500">Unanswered</span>
+              </div>
+
+              <!-- Clinical Vignette -->
+              <div class="text-sm text-slate-100 leading-relaxed font-normal tracking-wide">
                 ${q.question}
               </div>
 
-              <!-- ISOLATED CLINICAL FIGURE (Shown ONLY if the question has a diagram/chart/formula) -->
+              <!-- ISOLATED CLINICAL FIGURE / LAB TABLE -->
               ${q.figure_image ? `
-                <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center">
-                  <div class="w-full flex items-center justify-between mb-1.5 px-1">
-                    <span class="text-[10px] font-bold text-indigo-400 flex items-center gap-1">
-                      <i data-lucide="image" class="w-3 h-3"></i>
-                      <span>Figure / Diagram</span>
+                <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col items-center">
+                  <div class="w-full flex items-center justify-between mb-2 px-1">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                      <i data-lucide="table-2" class="w-3.5 h-3.5"></i>
+                      <span>Clinical Lab Data / Figure (Pixel-Perfect Crop)</span>
                     </span>
-                    <a href="${q.figure_image}" target="_blank" class="text-[10px] text-slate-400 hover:text-indigo-400 flex items-center gap-0.5">
-                      <span>Full View</span>
-                      <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                    <a href="${q.figure_image}" target="_blank" class="text-[10px] text-slate-400 hover:text-indigo-400 flex items-center gap-1 font-semibold">
+                      <span>Open Full Size</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
                     </a>
                   </div>
-                  <img 
-                    src="${q.figure_image}" 
-                    alt="Clinical Figure" 
-                    class="rounded-lg max-h-56 bg-white p-2.5 object-contain shadow-md cursor-pointer hover:scale-[1.01] transition"
-                    onclick="window.open('${q.figure_image}', '_blank')"
-                  >
+                  <div class="bg-white p-3 rounded-xl shadow-md max-w-full overflow-x-auto flex justify-center">
+                    <img 
+                      src="${q.figure_image}" 
+                      alt="Clinical Figure" 
+                      class="rounded max-h-72 object-contain cursor-pointer hover:scale-[1.01] transition"
+                      onclick="window.open('${q.figure_image}', '_blank')"
+                    >
+                  </div>
                 </div>
               ` : ''}
 
-              <!-- Clean Option Cards -->
-              <div class="space-y-1.5">
-                ${Object.entries(q.options || {}).map(([key, val]) => `
-                  <button 
-                    onclick="checkAnswer(${qIdx}, '${key}', '${q.correct_answer}')" 
-                    id="q-${qIdx}-opt-${key}"
-                    class="quiz-opt-${qIdx} w-full text-left p-3 rounded-xl bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 flex items-center gap-3 transition active:scale-[0.99] group"
-                  >
-                    <span class="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 font-mono font-bold flex items-center justify-center shrink-0 text-xs group-hover:bg-indigo-600 group-hover:text-white transition">${key}</span>
-                    <span class="flex-1 font-medium leading-snug">${val || 'Option ' + key}</span>
-                  </button>
-                `).join('')}
+              <!-- Option Cards with Peer Performance Bars -->
+              <div class="space-y-2 pt-1">
+                ${Object.entries(q.options || {}).map(([key, val]) => {
+                  const pct = (q.peer_statistics && q.peer_statistics[key] !== undefined) ? q.peer_statistics[key] : null;
+                  return `
+                    <button 
+                      onclick="checkAnswer(${qIdx}, '${key}', '${q.correct_answer}')" 
+                      id="q-${qIdx}-opt-${key}"
+                      class="quiz-opt-${qIdx} relative overflow-hidden w-full text-left p-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 text-xs text-slate-200 flex items-center justify-between gap-3 transition active:scale-[0.995] group"
+                    >
+                      <div class="flex items-center gap-3 z-10">
+                        <span class="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 font-mono font-bold flex items-center justify-center shrink-0 text-xs group-hover:bg-indigo-600 group-hover:text-white transition">${key}</span>
+                        <span class="flex-1 font-medium text-xs sm:text-[13px] leading-snug">${val || key}</span>
+                      </div>
+                      ${pct !== null ? `
+                        <span id="q-${qIdx}-pct-${key}" class="hidden z-10 text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-slate-950/70 text-slate-300 shrink-0">${pct}%</span>
+                      ` : ''}
+                    </button>
+                  `;
+                }).join('')}
               </div>
 
-              <!-- Explanation Box (Revealed on click) -->
-              <div id="q-${qIdx}-explanation" class="hidden mt-3 p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-slate-300 leading-relaxed space-y-2">
-                <div class="font-bold text-emerald-400 flex items-center gap-1.5 text-xs">
-                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-                  <span>Correct Answer: (${q.correct_answer})</span>
+              <!-- Explanation & 4K Lecture Slide Box (Revealed on answer click) -->
+              <div id="q-${qIdx}-explanation" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-4">
+                <div class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                  <div class="font-bold text-emerald-400 flex items-center gap-2 text-xs">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Correct Answer: (${q.correct_answer})</span>
+                  </div>
+                  ${(q.peer_statistics && q.peer_statistics[q.correct_answer]) ? `
+                    <span class="text-[11px] text-emerald-300/90 font-mono font-semibold">${q.peer_statistics[q.correct_answer]}% of peers answered correctly</span>
+                  ` : ''}
                 </div>
-                <p class="text-slate-300 text-xs leading-relaxed">${q.explanation}</p>
-                ${q.explanation_image ? `
-                  <div class="mt-2 pt-2 border-t border-indigo-500/20 flex items-center justify-between">
-                    <a href="${q.explanation_image}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-indigo-400 hover:underline font-semibold">
-                      <i data-lucide="file-image" class="w-3.5 h-3.5"></i> 
-                      <span>View Official Board Explanation Slide</span>
-                    </a>
+
+                ${slideUrl ? `
+                  <div class="p-3.5 rounded-xl bg-slate-900/95 border border-indigo-500/25 space-y-2.5">
+                    <div class="w-full flex items-center justify-between flex-wrap gap-2">
+                      <span class="text-[11px] font-bold text-indigo-300 flex items-center gap-1.5">
+                        <i data-lucide="presentation" class="w-3.5 h-3.5 text-amber-400"></i>
+                        <span>Dr. Ryan Lecture Slide Mechanism</span>
+                      </span>
+                      <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold">${slideBadgeText}</span>
+                        <a href="${slideUrl}" target="_blank" class="text-[10px] text-amber-400 hover:underline flex items-center gap-1 font-bold">
+                          <span>Zoom 4K</span>
+                          <i data-lucide="external-link" class="w-3 h-3"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="flex justify-center bg-white rounded-xl p-2 overflow-hidden shadow-lg">
+                      <img 
+                        src="${slideUrl}" 
+                        alt="Explanation Slide" 
+                        class="rounded max-h-96 w-auto object-contain cursor-pointer hover:scale-[1.01] transition"
+                        onclick="window.open('${slideUrl}', '_blank')"
+                      >
+                    </div>
                   </div>
                 ` : ''}
+
+                <!-- Color-Coded Pathophysiological Rationale Cards -->
+                <div class="space-y-2.5">
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">Pathophysiological Rationale &amp; Distractor Breakdown</div>
+                  ${formatExplanationBlocks(q.explanation)}
+                </div>
               </div>
             </div>
           `;
@@ -622,18 +775,37 @@
 
     function checkAnswer(qIdx, selectedKey, correctKey) {
       const expBox = document.getElementById(`q-${qIdx}-explanation`);
+      const statusEl = document.getElementById(`q-${qIdx}-status`);
+      const navPill = document.getElementById(`q-nav-pill-${qIdx}`);
+      const scorePill = document.getElementById('quiz-score-pill');
       const buttons = document.querySelectorAll(`.quiz-opt-${qIdx}`);
 
       buttons.forEach(btn => btn.disabled = true);
 
+      // Reveal peer percentages on all options for this question
+      document.querySelectorAll(`[id^="q-${qIdx}-pct-"]`).forEach(el => el.classList.remove('hidden'));
+
       const selectedBtn = document.getElementById(`q-${qIdx}-opt-${selectedKey}`);
       const correctBtn = document.getElementById(`q-${qIdx}-opt-${correctKey}`);
 
-      if (selectedKey === correctKey) {
-        if (selectedBtn) selectedBtn.className = 'w-full text-left p-2.5 rounded-lg bg-emerald-950/60 border border-emerald-500/60 text-xs text-emerald-200 flex items-start gap-2.5';
+      const isCorrect = selectedKey === correctKey;
+      if (!quizAnswered.has(qIdx)) {
+        quizAnswered.add(qIdx);
+        if (isCorrect) quizScore++;
+        if (scorePill && currentQuizData) {
+          scorePill.textContent = `Score: ${quizScore} / ${currentQuizData.questions.length}`;
+        }
+      }
+
+      if (isCorrect) {
+        if (selectedBtn) selectedBtn.className = 'relative overflow-hidden w-full text-left p-3.5 rounded-xl bg-emerald-950/60 border-2 border-emerald-500/80 text-xs text-emerald-100 flex items-center justify-between gap-3 shadow-md';
+        if (statusEl) { statusEl.textContent = '✓ Correct'; statusEl.className = 'text-[11px] font-bold text-emerald-400'; }
+        if (navPill) navPill.className = 'px-2 py-0.5 rounded-md bg-emerald-600 text-white font-mono text-[10px] font-bold border border-emerald-500';
       } else {
-        if (selectedBtn) selectedBtn.className = 'w-full text-left p-2.5 rounded-lg bg-rose-950/60 border border-rose-500/60 text-xs text-rose-200 flex items-start gap-2.5';
-        if (correctBtn) correctBtn.className = 'w-full text-left p-2.5 rounded-lg bg-emerald-950/60 border border-emerald-500/60 text-xs text-emerald-200 flex items-start gap-2.5';
+        if (selectedBtn) selectedBtn.className = 'relative overflow-hidden w-full text-left p-3.5 rounded-xl bg-rose-950/60 border-2 border-rose-500/80 text-xs text-rose-100 flex items-center justify-between gap-3';
+        if (correctBtn) correctBtn.className = 'relative overflow-hidden w-full text-left p-3.5 rounded-xl bg-emerald-950/60 border-2 border-emerald-500/80 text-xs text-emerald-100 flex items-center justify-between gap-3';
+        if (statusEl) { statusEl.textContent = `✗ Incorrect (Ans: ${correctKey})`; statusEl.className = 'text-[11px] font-bold text-rose-400'; }
+        if (navPill) navPill.className = 'px-2 py-0.5 rounded-md bg-rose-600 text-white font-mono text-[10px] font-bold border border-rose-500';
       }
 
       if (expBox) expBox.classList.remove('hidden');
