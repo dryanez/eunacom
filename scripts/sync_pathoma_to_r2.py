@@ -233,7 +233,6 @@ def main():
     uploaded_bytes = 0
 
     def upload_one(idx, f_path: Path, r2_key: str, f_size: int):
-        t0 = time.time()
         ext = f_path.suffix.lower()
         content_type = (
             "video/mp4" if ext == ".mp4"
@@ -241,22 +240,31 @@ def main():
             else "application/json" if ext == ".json"
             else "application/octet-stream"
         )
-        s3.upload_file(
-            str(f_path),
-            BUCKET_NAME,
-            r2_key,
-            ExtraArgs={
-                "ContentType": content_type,
-                "CacheControl": "public, max-age=31536000, immutable",
-            },
-            Config=transfer_config,
-        )
-        dt = max(0.05, time.time() - t0)
-        mb = f_size / (1024 * 1024)
-        return idx, f_path.name, r2_key, f_size, mb, dt, mb / dt
+        last_err = None
+        for attempt in range(1, 6):
+            try:
+                t0 = time.time()
+                client = get_r2_client()
+                client.upload_file(
+                    str(f_path),
+                    BUCKET_NAME,
+                    r2_key,
+                    ExtraArgs={
+                        "ContentType": content_type,
+                        "CacheControl": "public, max-age=31536000, immutable",
+                    },
+                    Config=transfer_config,
+                )
+                dt = max(0.05, time.time() - t0)
+                mb = f_size / (1024 * 1024)
+                return idx, f_path.name, r2_key, f_size, mb, dt, mb / dt
+            except Exception as e:
+                last_err = e
+                time.sleep(3.0 * attempt)
+        raise last_err
 
-    # Upload 4 files concurrently with 8 threads per file
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    # Upload 2 files concurrently with 6 threads per file + automatic 5x retry
+    with ThreadPoolExecutor(max_workers=2) as pool:
         futures = [
             pool.submit(upload_one, i, f_path, r2_key, f_size)
             for i, (f_path, r2_key, f_size) in enumerate(pending, 1)

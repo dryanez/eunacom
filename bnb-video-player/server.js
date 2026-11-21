@@ -8,6 +8,19 @@ const app = express();
 const PORT = process.env.PORT || 4100;
 const R2_PUBLIC_BASE = process.env.R2_PUBLIC_BASE || 'https://pub-779a681676944ef9acf0f9492f86ba03.r2.dev';
 const CLOUD_CATALOG_PATH = path.join(__dirname, 'cloud_catalog.json');
+const CLOUD_QUIZZES_PATH = path.join(__dirname, 'cloud_quizzes.json');
+
+let cachedCloudQuizzes = null;
+function getCloudQuizzes() {
+  if (cachedCloudQuizzes) return cachedCloudQuizzes;
+  if (fs.existsSync(CLOUD_QUIZZES_PATH)) {
+    try {
+      cachedCloudQuizzes = JSON.parse(fs.readFileSync(CLOUD_QUIZZES_PATH, 'utf8'));
+      return cachedCloudQuizzes;
+    } catch (e) {}
+  }
+  return null;
+}
 
 function resolveDir(envName, folderName) {
   if (process.env[envName] && fs.existsSync(process.env[envName])) {
@@ -132,7 +145,7 @@ app.get('/api/videos', (req, res) => {
       }
     }
 
-    // If running on another computer without local D:/ drives (or if cloud=1 requested), load from cloud_catalog.json
+    // If running on Mac / another computer without local D:/ drives (or if cloud=1 requested), load from cloud_catalog.json
     if ((topNodes.length === 0 || preferCloud) && fs.existsSync(CLOUD_CATALOG_PATH)) {
       const catalog = JSON.parse(fs.readFileSync(CLOUD_CATALOG_PATH, 'utf8'));
       return res.json({
@@ -187,7 +200,7 @@ app.get('/api/stream', (req, res) => {
   const r2Prefix = source === 'pathoma' ? 'Pathoma' : 'Boards_and_Beyond';
   const filePath = path.join(baseDir, cleanRel);
 
-  // If file is not present locally, redirect seamlessly to Cloudflare R2 bucket!
+  // If file is not present locally (e.g. on Mac), redirect seamlessly to Cloudflare R2 bucket!
   if (!filePath.startsWith(baseDir) || !fs.existsSync(filePath)) {
     return res.redirect(302, encodeR2Path(`${r2Prefix}/${cleanRel}`));
   }
@@ -264,12 +277,17 @@ app.get('/api/transcript', (req, res) => {
   res.json({ available: false, message: 'Transcript not generated for this lecture yet.' });
 });
 
-// API: Get Interactive Quiz for a video lesson
+// API: Get Interactive Quiz for a video lesson (Local Disk OR Cloud Quizzes Bundle for Mac!)
 app.get('/api/quiz', (req, res) => {
   const relPath = req.query.path;
   if (!relPath) return res.status(400).json({ error: 'Missing path' });
 
-  const cleanLesson = path.basename(relPath, path.extname(relPath)).replace(/^\d+[\._\s\-]+[a-z]?[\._\s\-]*/i, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const cleanLesson = path
+    .basename(relPath, path.extname(relPath))
+    .replace(/^\d+[\._\s\-]+[a-z]?[\._\s\-]*/i, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
+
   const quizDir = path.join(VIDEOS_DIR, 'quizzes_extracted');
 
   if (fs.existsSync(quizDir)) {
@@ -281,8 +299,13 @@ app.get('/api/quiz', (req, res) => {
           const found = findQuiz(full);
           if (found) return found;
         } else if (e.name === 'quiz.json') {
-          const parentClean = path.basename(dir).replace(/^\d+[\._\s\-]+/, '').toLowerCase().replace(/[^a-z0-9]/g, '');
-          if (parentClean.includes(cleanLesson) || cleanLesson.includes(parentClean)) {
+          const parentClean = path
+            .basename(dir)
+            .replace(/^\d+[\._\s\-]+/, '')
+            .replace(/-quiz$/i, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, '');
+          if (parentClean && (parentClean.includes(cleanLesson) || cleanLesson.includes(parentClean))) {
             return full;
           }
         }
@@ -296,6 +319,17 @@ app.get('/api/quiz', (req, res) => {
         const data = JSON.parse(fs.readFileSync(matchedQuiz, 'utf8'));
         return res.json({ available: true, ...data });
       } catch (e) {}
+    }
+  }
+
+  // Fallback for Mac / Remote Computer: Look up in cloud_quizzes.json!
+  const cloudQuizzes = getCloudQuizzes();
+  if (cloudQuizzes) {
+    let matchedKey = Object.keys(cloudQuizzes).find(
+      (k) => k === cleanLesson || k.includes(cleanLesson) || cleanLesson.includes(k)
+    );
+    if (matchedKey && cloudQuizzes[matchedKey]) {
+      return res.json({ available: true, ...cloudQuizzes[matchedKey] });
     }
   }
 
@@ -352,9 +386,15 @@ app.get('/api/pdf', (req, res) => {
   res.status(404).send('No PDF companion found for this lesson.');
 });
 
-if (fs.existsSync(path.join(VIDEOS_DIR, 'quizzes_extracted'))) {
-  app.use('/quizzes', express.static(path.join(VIDEOS_DIR, 'quizzes_extracted')));
+// Serve extracted quiz images locally if present, otherwise redirect to Cloudflare R2!
+const localQuizzesDir = path.join(VIDEOS_DIR, 'quizzes_extracted');
+if (fs.existsSync(localQuizzesDir)) {
+  app.use('/quizzes', express.static(localQuizzesDir));
 }
+app.get('/quizzes/*', (req, res) => {
+  const subPath = decodeURIComponent(req.path.replace(/^\/quizzes\//, ''));
+  return res.redirect(302, encodeR2Path(`Boards_and_Beyond/quizzes_extracted/${subPath}`));
+});
 
 app.listen(PORT, () => {
   console.log(`\n======================================================`);
