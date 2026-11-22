@@ -262,7 +262,11 @@
     "4c7e59ea-c442-4097-8e8d-45fcc2cebbe5",
     "e28edd50-140e-47c8-8bea-c8de5c936e31",
     "f08e1768-541d-4eb8-9883-bacf190236bf",
-    "aa69e7f5-cb05-4d3b-a0c8-c0da5cd8b617"
+    "aa69e7f5-cb05-4d3b-a0c8-c0da5cd8b617",
+    "c4d8a269-1774-49e4-96ac-f432a689794d",
+    "ae91b9b2-9f63-5b90-9b0f-0a494bce8cb9",
+    "66450f55-2f7a-5f07-b243-797a23a900db",
+    "9613a91a-0ce4-474b-a115-4b57f112a340"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -354,7 +358,8 @@
       "5b91cd15-6d53-4a3e-9ef2-385b0b4c5f16",
       "4546a9be-dae3-4537-a00e-9a46a9486f79",
       "f8734080-3f33-48a3-80f1-158b48b1572e",
-      "e28edd50-140e-47c8-8bea-c8de5c936e31"
+      "e28edd50-140e-47c8-8bea-c8de5c936e31",
+      "ae91b9b2-9f63-5b90-9b0f-0a494bce8cb9"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -445,7 +450,8 @@
       "921cb49b-d55c-46aa-aa77-270a6f09bb35",
       "ff2ebb63-f389-4384-87a0-064b43b6f5f2",
       "csv_Respiratorio_296_1776130297709",
-      "f08e1768-541d-4eb8-9883-bacf190236bf"
+      "f08e1768-541d-4eb8-9883-bacf190236bf",
+      "66450f55-2f7a-5f07-b243-797a23a900db"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -534,13 +540,15 @@
       "899caa1b-e1d6-44fb-a508-2a58620be67e",
       "07bed8aa-b3e2-4b2b-b1a8-6d70e340509a",
       "csv_Nefrología_213_1776130184463",
-      "4c7e59ea-c442-4097-8e8d-45fcc2cebbe5"
+      "4c7e59ea-c442-4097-8e8d-45fcc2cebbe5",
+      "c4d8a269-1774-49e4-96ac-f432a689794d"
     ],
     "@Eunacom2026": [
       "7a0c29bb-b3b6-4c8a-ac4d-e437bdc049e6",
       "1a06adcc-3605-4d5f-92aa-920758800584",
       "50758720-9fa5-4520-bc12-9bd48a70ad50",
-      "aa69e7f5-cb05-4d3b-a0c8-c0da5cd8b617"
+      "aa69e7f5-cb05-4d3b-a0c8-c0da5cd8b617",
+      "9613a91a-0ce4-474b-a115-4b57f112a340"
     ]
   },
   "history": [
@@ -3476,6 +3484,47 @@
           "vignetteMessageId": 2533,
           "pollMessageId": 2534,
           "explanationMessageId": 2535
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-11-22T18:48:48.295Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "c4d8a269-1774-49e4-96ac-f432a689794d",
+          "topic": "Cardiología",
+          "success": true,
+          "vignetteMessageId": 275,
+          "pollMessageId": 276,
+          "explanationMessageId": 277
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "ae91b9b2-9f63-5b90-9b0f-0a494bce8cb9",
+          "topic": "Cardiología",
+          "success": true,
+          "vignetteMessageId": 284,
+          "pollMessageId": 285,
+          "explanationMessageId": 286
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "66450f55-2f7a-5f07-b243-797a23a900db",
+          "topic": "Psiquiatría",
+          "success": true,
+          "vignetteMessageId": 289,
+          "pollMessageId": 290,
+          "explanationMessageId": 291
+        },
+        {
+          "channelId": "@Eunacom2026",
+          "questionId": "9613a91a-0ce4-474b-a115-4b57f112a340",
+          "topic": "Hematología",
+          "success": true,
+          "vignetteMessageId": 2537,
+          "pollMessageId": 2538,
+          "explanationMessageId": 2539
         }
       ]
     }
