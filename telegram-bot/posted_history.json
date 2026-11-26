@@ -278,7 +278,11 @@
     "69683de5-5594-4385-a69b-d8f8cabd5b22",
     "46fc5711-cb17-56c0-889a-a3117f8697f6",
     "22aeb92f-4bb9-4908-af66-1cce7dfcc641",
-    "csv_Cardiología_26_1776129963955"
+    "csv_Cardiología_26_1776129963955",
+    "a0f18b90-555d-489a-9608-5055b7f20686",
+    "1f54bc99-9eb7-4078-82c2-dda7f3932854",
+    "26cd3419-d6a7-414e-8c60-bcd14373d1fb",
+    "37722596-b662-4803-a595-e5600978a55e"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -374,7 +378,8 @@
       "ae91b9b2-9f63-5b90-9b0f-0a494bce8cb9",
       "144953ad-753f-4f5b-8358-5cf5625668f0",
       "dd1f9eb7-414b-4212-a9e3-1b8cf29c7d75",
-      "46fc5711-cb17-56c0-889a-a3117f8697f6"
+      "46fc5711-cb17-56c0-889a-a3117f8697f6",
+      "1f54bc99-9eb7-4078-82c2-dda7f3932854"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -469,7 +474,8 @@
       "66450f55-2f7a-5f07-b243-797a23a900db",
       "62b883e0-53b1-5f58-b520-5953387bc86b",
       "9feb21c7-96cf-4a82-8a6b-cd2f269ee177",
-      "22aeb92f-4bb9-4908-af66-1cce7dfcc641"
+      "22aeb92f-4bb9-4908-af66-1cce7dfcc641",
+      "26cd3419-d6a7-414e-8c60-bcd14373d1fb"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -562,7 +568,8 @@
       "c4d8a269-1774-49e4-96ac-f432a689794d",
       "22346e0e-f80a-4676-9868-170571554db1",
       "2cd076c6-58e7-44ef-8db8-ef88b018535d",
-      "69683de5-5594-4385-a69b-d8f8cabd5b22"
+      "69683de5-5594-4385-a69b-d8f8cabd5b22",
+      "a0f18b90-555d-489a-9608-5055b7f20686"
     ],
     "@Eunacom2026": [
       "7a0c29bb-b3b6-4c8a-ac4d-e437bdc049e6",
@@ -572,7 +579,8 @@
       "9613a91a-0ce4-474b-a115-4b57f112a340",
       "bfbbd525-9635-4f98-9e7f-ffa86d46f7da",
       "06c3766c-4193-4cb8-9dd5-2f5baa308597",
-      "csv_Cardiología_26_1776129963955"
+      "csv_Cardiología_26_1776129963955",
+      "37722596-b662-4803-a595-e5600978a55e"
     ]
   },
   "history": [
@@ -3672,6 +3680,47 @@
           "vignetteMessageId": 2555,
           "pollMessageId": 2556,
           "explanationMessageId": 2557
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-11-26T20:41:17.153Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "a0f18b90-555d-489a-9608-5055b7f20686",
+          "topic": "Psiquiatría",
+          "success": true,
+          "vignetteMessageId": 291,
+          "pollMessageId": 292,
+          "explanationMessageId": 293
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "1f54bc99-9eb7-4078-82c2-dda7f3932854",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 300,
+          "pollMessageId": 301,
+          "explanationMessageId": 302
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "26cd3419-d6a7-414e-8c60-bcd14373d1fb",
+          "topic": "Oftalmología",
+          "success": true,
+          "vignetteMessageId": 305,
+          "pollMessageId": 306,
+          "explanationMessageId": 307
+        },
+        {
+          "channelId": "@Eunacom2026",
+          "questionId": "37722596-b662-4803-a595-e5600978a55e",
+          "topic": "Pediatría y Ginecología",
+          "success": true,
+          "vignetteMessageId": 2562,
+          "pollMessageId": 2563,
+          "explanationMessageId": 2564
         }
       ]
     }
