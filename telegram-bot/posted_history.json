@@ -282,7 +282,11 @@
     "a0f18b90-555d-489a-9608-5055b7f20686",
     "1f54bc99-9eb7-4078-82c2-dda7f3932854",
     "26cd3419-d6a7-414e-8c60-bcd14373d1fb",
-    "37722596-b662-4803-a595-e5600978a55e"
+    "37722596-b662-4803-a595-e5600978a55e",
+    "382cbbef-c01a-4bc6-a3e7-cf12fe54a0b9",
+    "26dd09f4-9cd0-405e-b510-bc94e8f2eb0c",
+    "b115b636-a9ba-4ef8-b2bd-536da09b2825",
+    "9f142dd5-66bb-4cb2-bf8e-28b3cefe701c"
   ],
   "channelHistory": {
     "@exameneunacom": [
@@ -379,7 +383,8 @@
       "144953ad-753f-4f5b-8358-5cf5625668f0",
       "dd1f9eb7-414b-4212-a9e3-1b8cf29c7d75",
       "46fc5711-cb17-56c0-889a-a3117f8697f6",
-      "1f54bc99-9eb7-4078-82c2-dda7f3932854"
+      "1f54bc99-9eb7-4078-82c2-dda7f3932854",
+      "26dd09f4-9cd0-405e-b510-bc94e8f2eb0c"
     ],
     "@eunacomteorico2026": [
       "44d38eaf-09ad-4ba0-bcba-8653f5a658e1",
@@ -475,7 +480,8 @@
       "62b883e0-53b1-5f58-b520-5953387bc86b",
       "9feb21c7-96cf-4a82-8a6b-cd2f269ee177",
       "22aeb92f-4bb9-4908-af66-1cce7dfcc641",
-      "26cd3419-d6a7-414e-8c60-bcd14373d1fb"
+      "26cd3419-d6a7-414e-8c60-bcd14373d1fb",
+      "b115b636-a9ba-4ef8-b2bd-536da09b2825"
     ],
     "@Preguntas_Eunacom": [
       "a3280366-594c-4701-a918-626ffb695469",
@@ -569,7 +575,8 @@
       "22346e0e-f80a-4676-9868-170571554db1",
       "2cd076c6-58e7-44ef-8db8-ef88b018535d",
       "69683de5-5594-4385-a69b-d8f8cabd5b22",
-      "a0f18b90-555d-489a-9608-5055b7f20686"
+      "a0f18b90-555d-489a-9608-5055b7f20686",
+      "382cbbef-c01a-4bc6-a3e7-cf12fe54a0b9"
     ],
     "@Eunacom2026": [
       "7a0c29bb-b3b6-4c8a-ac4d-e437bdc049e6",
@@ -580,7 +587,8 @@
       "bfbbd525-9635-4f98-9e7f-ffa86d46f7da",
       "06c3766c-4193-4cb8-9dd5-2f5baa308597",
       "csv_Cardiología_26_1776129963955",
-      "37722596-b662-4803-a595-e5600978a55e"
+      "37722596-b662-4803-a595-e5600978a55e",
+      "9f142dd5-66bb-4cb2-bf8e-28b3cefe701c"
     ]
   },
   "history": [
@@ -3721,6 +3729,47 @@
           "vignetteMessageId": 2562,
           "pollMessageId": 2563,
           "explanationMessageId": 2564
+        }
+      ]
+    },
+    {
+      "postedAt": "2026-11-27T20:27:32.413Z",
+      "channels": [
+        {
+          "channelId": "@Preguntas_Eunacom",
+          "questionId": "382cbbef-c01a-4bc6-a3e7-cf12fe54a0b9",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 295,
+          "pollMessageId": 296,
+          "explanationMessageId": 297
+        },
+        {
+          "channelId": "@exameneunacom",
+          "questionId": "26dd09f4-9cd0-405e-b510-bc94e8f2eb0c",
+          "topic": "Cardiología",
+          "success": true,
+          "vignetteMessageId": 304,
+          "pollMessageId": 305,
+          "explanationMessageId": 306
+        },
+        {
+          "channelId": "@eunacomteorico2026",
+          "questionId": "b115b636-a9ba-4ef8-b2bd-536da09b2825",
+          "topic": "Medicina Interna",
+          "success": true,
+          "vignetteMessageId": 309,
+          "pollMessageId": 310,
+          "explanationMessageId": 311
+        },
+        {
+          "channelId": "@Eunacom2026",
+          "questionId": "9f142dd5-66bb-4cb2-bf8e-28b3cefe701c",
+          "topic": "Respiratorio",
+          "success": true,
+          "vignetteMessageId": 2567,
+          "pollMessageId": 2568,
+          "explanationMessageId": 2569
         }
       ]
     }
